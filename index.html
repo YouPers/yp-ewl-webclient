@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="icon" href="http://www.youpers.com/en/wp-content/uploads/2013/03/favicon.png" type="image/png">
+
+    <!-- page title, displayed in your browser bar -->
+    <title>YouPers | eWorkLife Prototype</title>
+
+
+    <!-- google webfont font replacement -->
+    <link href='http://fonts.googleapis.com/css?family=Dosis:200,400,600,800' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/general_foundicons.css" />
+    <link rel="stylesheet" href="css/general_enclosed_foundicons.css" />
+    <link rel="stylesheet" href="css/social_foundicons.css" />
+    <link rel="stylesheet" href="css/youpers.css" />
+    <link rel="stylesheet" href="css/todo.css" />
+
+    <script src="js/vendor/custom.modernizr.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="js/todo.js"></script>
+
+</head>
+
+
+<body id="top" class="home blog stretched">
+
+<!-- Header and Nav -->
+<nav class="top-bar">
+    <ul class="title-area">
+        <!-- Title Area -->
+        <li class="name">
+            <h1>
+                <a href="#">
+                    YouPers
+                </a>
+            </h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="left">
+            <li class="service"> <a href="#">eWorkLife</a></li>
+        </ul>
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li class="has-dropdown">
+                <a class="active" href="#">Einstellungen</a>
+                <ul class="dropdown">
+                    <li><label>Übergreifend</label></li>
+                    <li><a href="#">Konto</a></li>
+                    <li><a href="#">Privatsphäre</a></li>
+                    <li><a href="#">Benachrichtigungen</a></li>
+                    <li><a href="#">Farben</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Verbindungen</a>
+                        <ul class="dropdown test">
+                            <li><a href="#">Withings</a></li>
+                            <li><a href="#">fitbit</a></li>
+                            <li><a href="#">endomondo</a></li>
+                            <li><a href="#">RunKeeper</a></li>
+                            <li><a href="#">runtastic</a></li>
+                        </ul>
+                    </li>
+                    <li><label>eWorkLife</label></li>
+                    <li><a href="#">Cockpit</a></li>
+                    <li><a href="#">Auswertungen</a></li>
+                    <li><label>Inspiration</label></li>
+                    <li><a href="#">Cockpit</a></li>
+                    <li><a href="#">Gruppen</a></li>
+                    <li><a href="#">Auswertungen</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Hilfe</a></li>
+            <li class="has-dropdown">
+                <a href="#">Mein Profil</a>
+                <ul class="dropdown">
+                    <li><label>Persönliches</label></li>
+                    <li><a href="#">Ich</a></li>
+                    <li><a href="#">Familie</a></li>
+                    <li><label>eWorkLife</label></li>
+                    <li><a href="#">Self Assessment</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Abmelden</a></li>
+        </ul>
+    </section>
+</nav>
+<!-- End Header and Nav -->
+
+<!-- Nav Sidebar -->
+<!-- This is source ordered to be pulled to the left on larger screens -->
+<div class="large-2 columns hide-for-small">
+    <div class="panel">
+        <h5>Dein Assessment</h5>
+        <p>Sei perfekt!</br>
+            Zeitmanagement!</br>
+            xy!</p>
+    </div>
+    <div class="panel">
+        <label>Name:</label>
+        <input type="text" ng-model="yourName" placeholder="Dein Name?">
+        <h5><a href="#">{{yourName}}</a></h5>
+        <div class="section-container vertical-nav" data-section="vertical-nav" data-options="one_up: false">
+            <section class="section">
+                <p class="title" data-section-title><a href="#">Stressverstärker</a></p>
+                <div class="content" data-section-content>
+                    <ul class="side-nav">
+                        <li><a href="#">Sei perfekt!</a></li>
+                        <li><a href="#">Sei beliebt!</a></li>
+                        <li><a href="#">Sei stark!</a></li>
+                        <li><a href="#">Sei auf der Hut!</a></li>
+                        <li><a href="#">Ich kann das nicht!</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Weitere Infos...</a></li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section">
+                <p class="title" data-section-title><a href="#">Stressursachen</a></p>
+                <div class="content" data-section-content>
+                    <ul class="side-nav">
+                        <li><a href="#">Zeitmanagement</a></li>
+                        <li><a href="#">Ursache 2</a></li>
+                        <li><a href="#">Ursache 3</a></li>
+                        <li><a href="#">Ursache 4</a></li>
+                        <li><a href="#">Ursache 5</a></li>
+                        <li><a href="#">Ursache 6</a></li>
+                        <li><a href="#">Ursache 7</a></li>
+                        <li><a href="#">Ursache 8</a></li>
+                        <li><a href="#">Ursache 9</a></li>
+                        <li><a href="#">Ursache 10</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Weitere Infos...</a></li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section">
+                <p class="title" data-section-title><a href="#">Soziales Umfeld</a></p>
+                <div class="content" data-section-content>
+                    <ul class="side-nav">
+                        <li><a href="#">Familie</a></li>
+                        <li><a href="#">Freunde</a></li>
+                        <li><a href="#">Arbeitsumfeld</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Weitere Infos...</a></li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section">
+                <p class="title" data-section-title><a href="#">Persönliche Angaben</a></p>
+                <div class="content" data-section-content>
+                    <ul class="side-nav">
+                        <li><a href="#">Introvertiert vs. Extrovertiert</a></li>
+                        <li><a href="#">xxxx 2</a></li>
+                        <li><a href="#">xxxx 3</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Weitere Infos...</a></li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<!-- Main Part -->
+
+<div class="large-6 columns">
+
+    <!-- Your Tasks -->
+    <div class="row">
+        <div class="large-12 columns">
+
+            <h3>Deine Aufgaben</h3>
+            <p>Dies ist die Liste der von dir ausgewählten Aufgaben zur Stressverminderung.</p>
+
+            <div ng-controller="TodoCtrl">
+                <h6><span>{{remaining()}} von {{todos.length}} noch offen</span>
+                [ <a href="" ng-click="archive()">Archiviere erledigte Aufgaben</a> ]</h6>
+
+
+                <div class="row">
+                    <div class="large-1 columns small-1"><strong>Status</strong>
+                    </div>
+                    <div class="large-6 columns"><p><strong>Aufgabe</strong></p></div>
+                    <div class="large-2 columns"><p><strong>Wann?</strong></p></div>
+                    <div class="large-1 columns"><p><strong>Art</strong></p></div>
+                    <div class="large-2 columns"><p><strong>Feld</strong></p></div>
+                </div>
+
+
+                <div class="row" ng-repeat="todo in todos">
+                    <div class="large-1 columns small-1"><p><input type="checkbox" ng-model="todo.done"></p></div>
+                    <div class="large-6 columns"><p><span class="done-{{todo.done}}">{{todo.text}}</span></p></div>
+                    <div class="large-2 columns"><p>{{todo.deadline}}</p></div>
+                    <div class="large-1 columns small-1">
+                        <ul class="medium-icons">
+                            <i class="general foundicon-{{todo.art}}"></i>
+                        </ul>
+                    </div>
+                    <div class="large-2 columns"><p>{{todo.feld}}</p></div>
+                </div>
+
+                <div class="row">
+                    <form ng-submit="addTodo()">
+                        <div class="large-10 columns"><input type="text" ng-model="todoText"  size="30"
+                               placeholder="Füge neue Aufgabe hier hinzu."></div>
+                        <div class="large-2 columns"><input class="medium button" type="submit" value="Neu"></div>
+                    </form>
+                </div>
+            </div>
+
+<!--
+            <div class="row">
+                <div class="large-1 columns small-1"><strong>Status</strong>
+                </div>
+                <div class="large-6 columns"><p><strong>Aufgabe</strong></p></div>
+                <div class="large-2 columns"><p><strong>Wann?</strong></p></div>
+                <div class="large-1 columns"><p><strong>Art</strong></p></div>
+                <div class="large-2 columns"><p><strong>Feld</strong></p></div>
+            </div>
+            <div class="row">
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-checkmark"></i>
+                    </ul>
+                </div>
+                <div class="large-6 columns"><p>An Arbeitstagen vormittags eine 15-minütige Arbeitspause weg vom Arbeitsplatz einlegen.</p></div>
+                <div class="large-2 columns"><p>22. Juli 2013</p></div>
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-refresh"></i>
+                    </ul>
+                </div>
+                <div class="large-2 columns"><p>Bewegung</p></div>
+            </div>
+            <div class="row">
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-minus"></i>
+                    </ul>
+                </div>
+                <div class="large-6 columns"><p>Bei Mahlzeit in der Kantine auf tiefen Kohlenhydratanteil achten.</p></div>
+                <div class="large-2 columns"><p>22. Juli 2013</p></div>
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-refresh"></i>
+                    </ul>
+                </div>
+                <div class="large-2 columns"><p>Ernährung</p></div>
+            </div>
+            <div class="row">
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-minus"></i>
+                    </ul>
+                </div>
+                <div class="large-6 columns"><p>Am Mittag mit der Arbeit aufhören und Nachmittag mit der Familie verbringen.</p></div>
+                <div class="large-2 columns"><p>31. Juli 2013</p></div>
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-calendar"></i>
+                    </ul>
+                </div>
+                <div class="large-2 columns"><p>Sozialer Austausch</p></div>
+            </div>
+-->
+
+        </div>
+    </div>
+    <!-- End Feed Entry -->
+
+    <hr />
+
+    <!-- Proposals / Fields (Part 1) -->
+    <div class="row">
+        <div class="large-3 columns small-3">
+            <img src="http://placehold.it/120x120&text=Bewegung" />
+            <div class="large-1 columns small-1">
+                <ul class="small-icons">
+                    <i class="social foundicon-thumb-up">1</i>
+                    <i class="gen-enclosed foundicon-checkmark">64</i>
+                    <i class="social foundicon-chat">7</i>
+                </ul>
+            </div>
+        </div>
+        <div class="large-3 columns small-3">
+            <img src="http://placehold.it/120x120&text=Ernährung" />
+            <div class="large-1 columns small-1">
+                <ul class="small-icons">
+                    <i class="social foundicon-thumb-up">1</i>
+                    <i class="gen-enclosed foundicon-checkmark">87</i>
+                    <i class="social foundicon-chat">28</i>
+                </ul>
+            </div>
+        </div>
+        <div class="large-3 columns small-3">
+            <img src="http://placehold.it/120x120&text=Zeit" />
+            <div class="large-1 columns small-1">
+                <ul class="small-icons">
+                    <i class="gen-enclosed foundicon-checkmark">13</i>
+                    <i class="social foundicon-chat">2</i>
+                </ul>
+            </div>
+        </div>
+        <div class="large-3 columns small-3">
+            <img src="http://placehold.it/120x120&text=Arbeitsweg" />
+            <div class="large-1 columns small-1">
+                <ul class="small-icons">
+                    <i class="gen-enclosed foundicon-checkmark">18</i>
+                    <i class="social foundicon-chat">12</i>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Feed Entry -->
+
+    <hr />
+
+    <!-- Proposals / Fields (Part 2) -->
+    <div class="row">
+        <div class="large-3 columns small-3">
+            <img src="http://placehold.it/120x120&text=Pausen" />
+            <div class="large-1 columns small-1">
+                <ul class="small-icons">
+                    <i class="gen-enclosed foundicon-checkmark">32</i>
+                    <i class="social foundicon-chat">121</i>
+                </ul>
+            </div>
+        </div>
+        <div class="large-3 columns small-3">
+            <img src="http://placehold.it/120x120&text=Sozial" />
+            <div class="large-1 columns small-1">
+                <ul class="small-icons">
+                   <i class="social foundicon-thumb-up">1</i>
+                    <i class="gen-enclosed foundicon-checkmark">9</i>
+                    <i class="social foundicon-chat">2</i>
+                </ul>
+            </div>
+        </div>
+        <div class="large-3 columns small-3">
+            <img src="http://placehold.it/120x120&text=Freizeit" />
+            <div class="large-1 columns small-1">
+                <ul class="small-icons">
+                    <i class="gen-enclosed foundicon-checkmark">97</i>
+                    <i class="social foundicon-chat">113</i>
+                </ul>
+            </div>
+        </div>
+        <div class="large-3 columns small-3">
+            <img src="http://placehold.it/120x120&text=Arbeit" />
+            <div class="large-1 columns small-1">
+                <ul class="small-icons">
+                    <i class="gen-enclosed foundicon-checkmark">77</i>
+                    <i class="social foundicon-chat">88</i>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Feed Entry -->
+
+    <hr />
+
+    <!-- Your News Feed -->
+    <div class="row">
+        <div class="large-12 columns">
+
+            <h3>Dein News Feed</h3>
+
+            <div class="row">
+                <div class="large-1 columns small-1"><strong>Status</strong>
+                </div>
+                <div class="large-6 columns"><p><strong>Nachricht</strong></p></div>
+                <div class="large-2 columns"><p><strong>Eingegangen</strong></p></div>
+                <div class="large-1 columns"><p><strong></strong></p></div>
+                <div class="large-2 columns"><p><strong>Feld</strong></p></div>
+            </div>
+            <div class="row">
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-inbox"></i>
+                    </ul>
+                </div>
+                <div class="large-6 columns"><p>Wusstest du, dass...</p></div>
+                <div class="large-2 columns"><p>23. Juli 2013</p></div>
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-mail"></i>
+                    </ul>
+                </div>
+                <div class="large-2 columns"><p>Bewegung</p></div>
+            </div>
+            <div class="row">
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-inbox"></i>
+                    </ul>
+                </div>
+                <div class="large-6 columns"><p>Für alle, die nach neuen Ideen für bessere Ernährung suchen...</p></div>
+                <div class="large-2 columns"><p>23. Juli 2013</p></div>
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="social foundicon-slideshare"></i>
+                    </ul>
+                </div>
+                <div class="large-2 columns"><p>Ernährung</p></div>
+            </div>
+            <div class="row">
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-checkmark"></i>
+                    </ul>
+                </div>
+                <div class="large-6 columns"><p>Lust, über Mittag Jogging zu gehen?</p></div>
+                <div class="large-2 columns"><p>19. Juli 2013</p></div>
+                <div class="large-1 columns small-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-mail"></i>
+                    </ul>
+                </div>
+                <div class="large-2 columns"><p>Sozialer Austausch</p></div>
+            </div>
+        </div>
+    </div>
+    <!-- End Feed Entry -->
+
+
+</div>
+
+<!-- Right Sidebar -->
+<!-- On small devices this column is hidden -->
+<aside class="large-3 columns hide-for-small">
+    <div class="panel">
+        <h5>Dein aktueller Stresslevel</h5>
+        <ul class="button-group round even-5">
+            <li><a class="button stress-level-1" href="#">1</a></li>
+            <li><a class="button stress-level-2" href="#">2</a></li>
+            <li><a class="button stress-level-3" href="#">3</a></li>
+            <li><a class="button stress-level-4" href="#">4</a></li>
+            <li><a class="button stress-level-5" href="#">5</a></li>
+        </ul>
+        <a class="medium button expand" href="#">Deinen Verlauf anzeigen</a>
+    </div>
+    <div class="panel">
+        <h5>Deine Merkliste</h5>
+        <ul class="side-nav">
+            <li><a href="#">Vorschlag 1</a></li>
+            <li><a href="#">Vorschlag 23</a></li>
+            <li><a href="#">Vorschlag 24</a></li>
+            <li><a href="#">Vorschlag 35</a></li>
+            <li><a href="#">Vorschlag 48</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Ganze Merkliste anzeigen...</a></li>
+        </ul>
+    </div>
+    <div class="panel">
+        <h5>Cockpit Kampagne</h5>
+        <p></br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </p>
+    </div>
+    <div class="panel">
+        <h5>YouPers Beiträge</h5>
+        <p></br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+        </p>
+    </div>
+</aside>
+
+
+<!-- Footer -->
+
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-5 columns">
+                <p>&copy; Copyright no one at all. Go to town.</p>
+            </div>
+            <div class="large-7 columns">
+                <ul class="inline-list right">
+                    <li><a href="#">Section 1</a></li>
+                    <li><a href="#">Section 2</a></li>
+                    <li><a href="#">Section 3</a></li>
+                    <li><a href="#">Section 4</a></li>
+                    <li><a href="#">Section 5</a></li>
+                    <li><a href="#">Section 6</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+
+  <script src="js/foundation.min.js"></script>
+  <!--
+
+  <script src="js/foundation/foundation.js"></script>
+
+  <script src="js/foundation/foundation.alerts.js"></script>
+
+  <script src="js/foundation/foundation.clearing.js"></script>
+
+  <script src="js/foundation/foundation.cookie.js"></script>
+
+  <script src="js/foundation/foundation.dropdown.js"></script>
+
+  <script src="js/foundation/foundation.forms.js"></script>
+
+  <script src="js/foundation/foundation.joyride.js"></script>
+
+  <script src="js/foundation/foundation.magellan.js"></script>
+
+  <script src="js/foundation/foundation.orbit.js"></script>
+
+  <script src="js/foundation/foundation.reveal.js"></script>
+
+  <script src="js/foundation/foundation.section.js"></script>
+
+  <script src="js/foundation/foundation.tooltips.js"></script>
+
+  <script src="js/foundation/foundation.topbar.js"></script>
+
+  <script src="js/foundation/foundation.interchange.js"></script>
+
+  <script src="js/foundation/foundation.placeholder.js"></script>
+
+  -->
+
+  <script>
+    $(document).foundation();
+  </script>
+</body>
+</html>

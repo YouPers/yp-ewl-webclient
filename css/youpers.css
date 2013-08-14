@@ -1,0 +1,207 @@
+
+
+/* "overwrites" foundation.css */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal; }
+
+
+h1 {
+    font-size: 2.6875em; }
+
+h2 {
+    font-size: 2.125em; }
+
+h3 {
+    font-size: 1.6875em; }
+
+h4 {
+    font-size: 1.375em; }
+
+h5 {
+    font-size: 1.375em; }
+
+h6 {
+    font-size: 1.125em; }
+
+p {
+    font-size: 0.875em;
+    line-height: 1.4; }
+
+.top-bar .name h1 a {
+    background: #444444;
+    font-size: 1.6875em;
+    font-weight: normal; }
+
+@media only screen and (min-width: 58.75em) {
+    .top-bar {
+        background: #ffffff; }
+}
+
+.top-bar-section li a:not(.button) {
+    text-transform: uppercase;
+    font-weight: normal;
+    color: #999999;
+    background: #ffffff; }
+
+.top-bar-section .dropdown a:not(.button) {
+    text-transform: none;
+    font-weight: normal;
+    font-size: 0.875em;
+    color: #ffffff;
+    background: #999999; }
+
+.top-bar-section ul li.hover > a {
+    background: #999999;
+    color: white; }
+
+.top-bar-section ul .dropdown li.hover > a {
+    background: white;
+    font-size: 0.875em;
+    color: #999999; }
+
+.top-bar-section .dropdown li label {
+    white-space: nowrap;
+    background: #777777; }
+
+.top-bar-section .dropdown label {
+    padding: 8px 15px 8px;
+    margin-bottom: 0;
+    text-transform: none;
+    color: white;
+    font-weight: normal;
+    font-size: 0.875em; }
+
+
+.top-bar-section li.service a:not(.button) {
+    text-transform: none;
+    font-weight: normal;
+    font-size: 1.6875em;
+    color: #ffffff;
+    background: #aec71e; }
+
+ul.medium-icons i.general {
+    font-family: "GeneralFoundicons";
+    -webkit-transition: color .5s;
+    -moz-transition: color .5s;
+    -o-transition: color .5s;
+    transition: color .5s;
+    color: #231f20;
+    display: block;
+    line-height: 1.4;
+    text-align: center;
+    font-size: 30px; }
+
+ul.medium-icons i.general.foundicon-checkmark {
+    color: #c60f13;
+}
+ul.medium-icons i.social {
+    font-family: "SocialFoundicons";
+    -webkit-transition: color .5s;
+    -moz-transition: color .5s;
+    -o-transition: color .5s;
+    transition: color .5s;
+    color: #231f20;
+    display: block;
+    line-height: 1.4;
+    text-align: center;
+    font-size: 30px; }
+
+ul.medium-icons:hover i {
+    color: #0caee3;
+}
+
+ul.medium-icons:hover i.foundicon-checkmark {
+    color: #0caee3;
+}
+
+ul.small-icons i.gen-enclosed {
+    font-family: "GeneralEnclosedFoundicons";
+    -webkit-transition: color .5s;
+    -moz-transition: color .5s;
+    -o-transition: color .5s;
+    transition: color .5s;
+    color: #3785ff;
+    display: block;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 20px; }
+
+ul.small-icons i.social {
+    font-family: "SocialFoundicons";
+    -webkit-transition: color .5s;
+    -moz-transition: color .5s;
+    -o-transition: color .5s;
+    transition: color .5s;
+    color: #3785ff;
+    display: block;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 20px; }
+
+ul.small-icons i.social.foundicon-thumb-up {
+    font-family: "SocialFoundicons";
+    -webkit-transition: color .5s;
+    -moz-transition: color .5s;
+    -o-transition: color .5s;
+    transition: color .5s;
+    color: #c60f13;
+    display: block;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 20px; }
+
+ul.small-icons:hover i {
+    color: #0caee3;
+}
+
+ul.small-icons:hover i.foundicon-thumb-up {
+    color: #0caee3;
+}
+
+button.stress-level-1, .button.stress-level-1 {
+    background-color: #5da423;
+    border-color: #457a1a;
+    color: #ffffff; }
+button.stress-level-1:hover, button.stress-level-1:focus, .button.stress-level-1:hover, .button.stress-level-1:focus {
+    background-color: #457a1a; }
+button.stress-level-1:hover, button.stress-level-1:focus, .button.stress-level-1:hover, .button.stress-level-1:focus {
+    color: #ffffff; }
+
+button.stress-level-2, .button.stress-level-2 {
+    background-color: #9cc618;
+    border-color: #6e971d;
+    color: #ffffff; }
+button.stress-level-2:hover, button.stress-level-2:focus, .button.stress-level-2:hover, .button.stress-level-2:focus {
+    background-color: #6e971d; }
+button.stress-level-2:hover, button.stress-level-2:focus, .button.stress-level-2:hover, .button.stress-level-2:focus {
+    color: #ffffff; }
+
+button.stress-level-3, .button.stress-level-3 {
+    background-color: #c69318;
+    border-color: #977115;
+    color: #ffffff; }
+button.stress-level-3:hover, button.stress-level-3:focus, .button.stress-level-3:hover, .button.stress-level-3:focus {
+    background-color: #977115; }
+button.stress-level-3:hover, button.stress-level-3:focus, .button.stress-level-3:hover, .button.stress-level-3:focus {
+    color: #ffffff; }
+
+button.stress-level-4, .button.stress-level-4 {
+    background-color: #c65114;
+    border-color: #974112;
+    color: #ffffff; }
+button.stress-level-4:hover, button.stress-level-4:focus, .button.stress-level-4:hover, .button.stress-level-4:focus {
+    background-color: #974112; }
+button.stress-level-4:hover, button.stress-level-4:focus, .button.stress-level-4:hover, .button.stress-level-4:focus {
+    color: #ffffff; }
+
+button.stress-level-5, .button.stress-level-5 {
+    background-color: #c60f13;
+    border-color: #970b0e;
+    color: #ffffff; }
+button.stress-level-5:hover, button.stress-level-5:focus, .button.stress-level-5:hover, .button.stress-level-5:focus {
+    background-color: #970b0e; }
+button.stress-level-5:hover, button.stress-level-5:focus, .button.stress-level-5:hover, .button.stress-level-5:focus {
+    color: #ffffff; }
+
