@@ -6,7 +6,9 @@
     "dependencies": {
         "node-static": "~0.6.5"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "karma":    "*"
+    },
     "scripts": {
         "test": "scripts/test.sh"
     },
