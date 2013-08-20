@@ -98,7 +98,7 @@ ul.medium-icons i.general {
     color: #231f20;
     display: block;
     line-height: 1.4;
-    text-align: center;
+    text-align: left;
     font-size: 30px; }
 
 ul.medium-icons i.general.foundicon-checkmark {
@@ -113,7 +113,7 @@ ul.medium-icons i.social {
     color: #231f20;
     display: block;
     line-height: 1.4;
-    text-align: center;
+    text-align: left;
     font-size: 30px; }
 
 ul.medium-icons:hover i {
@@ -133,7 +133,7 @@ ul.small-icons i.gen-enclosed {
     color: #3785ff;
     display: block;
     line-height: 1.2;
-    text-align: center;
+    text-align: left;
     font-size: 20px; }
 
 ul.small-icons i.social {
@@ -145,7 +145,7 @@ ul.small-icons i.social {
     color: #3785ff;
     display: block;
     line-height: 1.2;
-    text-align: center;
+    text-align: left;
     font-size: 20px; }
 
 ul.small-icons i.social.foundicon-thumb-up {
@@ -157,7 +157,7 @@ ul.small-icons i.social.foundicon-thumb-up {
     color: #c60f13;
     display: block;
     line-height: 1.2;
-    text-align: center;
+    text-align: left;
     font-size: 20px; }
 
 ul.small-icons:hover i {
@@ -213,3 +213,20 @@ button.stress-level-5:hover, button.stress-level-5:focus, .button.stress-level-5
 button.stress-level-5:hover, button.stress-level-5:focus, .button.stress-level-5:hover, .button.stress-level-5:focus {
     color: #ffffff; }
 
+.button {
+    font-family: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+.actionfield-icons {
+    position: absolute;
+    top: 60px;
+    left: 30px
+
+}
+
+.actionfield-button {
+    height: 150px;
+    width: 150px;
+    background-color: darkgrey;
+}
