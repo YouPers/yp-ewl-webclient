@@ -13,6 +13,7 @@ function TodoCtrl($scope) {
             feld:'Bewegung',
             art:'refresh',
             done:true},
+
         {text:'Bei Mahlzeit in der Kantine auf tiefen Kohlenhydratanteil achten.',
             deadline:'22. Juli 2013',
             feld:'Ernährung',
