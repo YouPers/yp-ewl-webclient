@@ -81,6 +81,14 @@ p {
     color: #ffffff;
     background: #aec71e; }
 
+.top-bar-section .has-form {
+    background: white;
+    padding: 0 15px;
+    height: 45px; }
+
+
+
+
 ul.medium-icons i.general {
     font-family: "GeneralFoundicons";
     -webkit-transition: color .5s;
