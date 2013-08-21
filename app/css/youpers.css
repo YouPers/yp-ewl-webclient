@@ -228,6 +228,10 @@ button.stress-level-5:hover, button.stress-level-5:focus, .button.stress-level-5
     background-color: darkgrey;
 }
 
+.actionfield-button-selected-true {
+    background-color: #2284a1;
+}
+
 .action-selector {
     font-size: 0.875em;
     line-height: 1.4;

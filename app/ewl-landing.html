@@ -71,7 +71,7 @@
 <!-- Proposals / Fields (Part 1) -->
 <div class="row">
     <div class="large-3 columns small-6">
-        <a class="button large actionfield-button" ng-click="selectActionField('exercise')">Bewegung</a>
+        <a class="button large actionfield-button actionfield-button-selected-{{ 'exercise'==actionFieldSelected }}" ng-click="selectActionField('exercise')">Bewegung</a>
 
         <div class="actionfield-icons">
 
@@ -83,7 +83,7 @@
         </div>
     </div>
     <div class="large-3 columns small-6">
-        <a class="button large actionfield-button" ng-click="selectActionField('nutrition')">Ernährung</a>
+        <a class="button large actionfield-button actionfield-button-selected-{{ 'nutrition'==actionFieldSelected }}" ng-click="selectActionField('nutrition')">Ernährung</a>
 
         <div class="actionfield-icons">
 

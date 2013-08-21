@@ -84,7 +84,6 @@ function ActionFieldCtrl($scope) {
 
     $scope.isActionPlanned = function (actionId) {
         for (var i = 0; i < $scope.myPlannedActions.length; i++) {
-            console.log("passedID: " + actionId + " , currentActionId: " + $scope.myPlannedActions[i].action_id);
             if ($scope.myPlannedActions[i].action_id == actionId) {
                 return true;
             }
