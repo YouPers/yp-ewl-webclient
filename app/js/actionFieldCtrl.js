@@ -36,7 +36,7 @@ function ActionFieldCtrl($scope) {
             id: 4,
             title: "Spaziergang über Mittag",
             text: "ist immer super",
-            field: "nutrition",
+            field: "exercise",
             planningCat: "daily"
         },
         {
@@ -60,10 +60,41 @@ function ActionFieldCtrl($scope) {
             field: "nutrition",
             planningCat: "daily"
         }
-    ]
+    ];
 
-   $scope.selectActionField = function(actionField) {
+
+    $scope.myPlannedActions = [
+        {
+            action_id: 2,
+            field: "exercise"
+        },
+        {
+            action_id: 3,
+            field: "nutrition"
+        }
+
+    ];
+
+    $scope.planAction = function (action) {
+      $scope.myPlannedActions.push({
+          action_id: action.id,
+          field: action.field
+      })
+    }
+
+    $scope.isActionPlanned = function (actionId) {
+        for (var i = 0; i < $scope.myPlannedActions.length; i++) {
+            console.log("passedID: " + actionId + " , currentActionId: " + $scope.myPlannedActions[i].action_id);
+            if ($scope.myPlannedActions[i].action_id == actionId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    $scope.selectActionField = function (actionField) {
         $scope.actionFieldSelected = actionField;
-   };
+    };
 
 }

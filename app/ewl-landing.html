@@ -12,7 +12,6 @@
     <!-- page title, displayed in your browser bar -->
     <title>YouPers | eWorkLife Prototype</title>
 
-
     <!-- google webfont font replacement -->
     <link href='http://fonts.googleapis.com/css?family=Dosis:200,400,600,800' rel='stylesheet' type='text/css'>
 
@@ -55,8 +54,8 @@
         <!-- Right Nav Section -->
         <ul class="right">
             <li class="has-form">
-                    <input type="text" placeholder="Username"/>
-                </li>
+                <input type="text" placeholder="Username"/>
+            </li>
             <li class="has-form">
                 <input type="text" placeholder="Password"/>
             </li>
@@ -77,7 +76,7 @@
         <div class="actionfield-icons">
 
             <ul class="small-icons">
-                <i class="social foundicon-thumb-up">1</i>
+                <i class="social foundicon-thumb-up">{{ (myPlannedActions | filter:{field:'exercise'}).length}}</i>
                 <i class="gen-enclosed foundicon-checkmark">{{ (actions | filter:{field:'exercise'}).length}}</i>
                 <i class="social foundicon-chat">121</i>
             </ul>
@@ -89,7 +88,7 @@
         <div class="actionfield-icons">
 
             <ul class="small-icons">
-                <i class="social foundicon-thumb-up">1</i>
+                <i class="social foundicon-thumb-up">{{ (myPlannedActions | filter:{field:'nutrition'}).length}}</i>
                 <i class="gen-enclosed foundicon-checkmark">{{ (actions | filter:{field:'nutrition'}).length}}</i>
                 <i class="social foundicon-chat">121</i>
             </ul>
@@ -117,20 +116,25 @@
             </ul>
         </div>
     </div>
-
 </div>
 
 
-<div ng-show="actionFieldSelected" class="row" ng-repeat="action in actions | filter:{field:actionFieldSelected}">
-    <div class="large-1 columns small-1"><p><input type="checkbox" ng-model="action.done"></p></div>
-    <div class="large-2 columns"><p><span class="done-{{action.done}}">{{action.title}}</span></p></div>
-    <div class="large-6 columns"><p>{{action.text}}</p></div>
-    <div class="large-1 columns small-1">
-        <ul class="medium-icons">
-            <i class="general foundicon-{{action.art}}"></i>
-        </ul>
+<div class="row panel radius action-selectbox" ng-show="actionFieldSelected">
+    <div class="large-12 columns small-12">
+        <div class="row action-selector"
+             ng-repeat="action in actions | filter:{field:actionFieldSelected}">
+            <div class="large-1 columns small-1"><a ng-class="isActionPlanned(action.id) ?
+                'button round tiny action_planned' : 'button round tiny action_unplanned'" ng-click="planAction(action)"></a></div>
+            <div class="large-4 columns small-4"><span class="done-{{action.done}}">{{action.title}}</span></div>
+            <div class="large-4 columns small-4">{{action.text}}</div>
+            <div class="large-1 columns small-1">
+                <ul class="medium-icons">
+                    <i class="general foundicon-{{action.art}}"></i>
+                </ul>
+            </div>
+            <div class="large-2 columns small-2">{{action.field}}</div>
+        </div>
     </div>
-    <div class="large-2 columns"><p>{{action.field}}</p></div>
 </div>
 
 <!-- Proposals / Fields (Part 2) -->

@@ -1,11 +1,8 @@
-
-
 /* "overwrites" foundation.css */
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     font-weight: normal; }
-
 
 h1 {
     font-size: 2.6875em; }
@@ -229,4 +226,28 @@ button.stress-level-5:hover, button.stress-level-5:focus, .button.stress-level-5
     height: 150px;
     width: 150px;
     background-color: darkgrey;
+}
+
+.action-selector {
+    font-size: 0.875em;
+    line-height: 1.4;
+    font-family: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+
+.action-selectbox {
+
+}
+
+.action_planned {
+    background-color:  green;
+}
+
+.action_planned:before {
+    content: "geplant";
+}
+
+.action_unplanned:before {
+    content: "einplanen";
 }
