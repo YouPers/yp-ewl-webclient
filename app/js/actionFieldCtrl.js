@@ -70,7 +70,7 @@ function ActionFieldCtrl($scope) {
         },
         {
             action_id: 3,
-            field: "nutrition"
+            field: "exercise"
         }
 
     ];
