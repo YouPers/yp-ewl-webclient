@@ -15,175 +15,215 @@
     <!-- google webfont font replacement -->
     <link href='http://fonts.googleapis.com/css?family=Dosis:200,400,600,800' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/foundation.css"/>
-    <link rel="stylesheet" href="css/general_foundicons.css"/>
-    <link rel="stylesheet" href="css/general_enclosed_foundicons.css"/>
-    <link rel="stylesheet" href="css/social_foundicons.css"/>
-    <link rel="stylesheet" href="css/youpers.css"/>
-    <link rel="stylesheet" href="css/todo.css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 
-    <script src="lib/custom.modernizr.js"></script>
+    <link rel="stylesheet" href="css/youpers.css"/>
 
     <script src="lib/angular/angular.js"></script>
     <script src="js/actionFieldCtrl.js"></script>
 
+    <!-- To better visualize the columns
+    <style>
+        .row > div {
+            background-color: #dedef8;
+            box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
+        }
+    </style>
+ -->
 </head>
 
 
-<body id="top" class="home blog stretched" ng-controller="ActionFieldCtrl">
-<!-- Header and Nav -->
-<nav class="top-bar">
-    <ul class="title-area">
-        <!-- Title Area -->
-        <li class="name">
-            <h1>
-                <a href="index.html#">
-                    YouPers
-                </a>
-            </h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
+<body id="top" ng-controller="ActionFieldCtrl">
 
-    <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="left">
-            <li class="service"><a href="#">eWorkLife</a></li>
-        </ul>
-        <!-- Right Nav Section -->
-        <ul class="right">
-            <li class="has-form">
-                <input type="text" placeholder="Username"/>
-            </li>
-            <li class="has-form">
-                <input type="text" placeholder="Password"/>
-            </li>
-            <li class="has-form">
-                <a href="#" class="small button radius">login</a>
-            </li>
-        </ul>
-    </section>
-</nav>
-<!-- End Header and Nav -->
-
+<div class="navbar  navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand youpers-logo" href="#">YouPers</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="yp-service" >eWorkLife</li>
+                <li><a href="#about">About</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-default">Login</button>
+            </form>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
 
 <!-- Proposals / Fields (Part 1) -->
-<div class="row">
-    <div class="large-3 columns small-6">
-        <a class="button large actionfield-button actionfield-button-selected-{{ 'exercise'==actionFieldSelected }}" ng-click="selectActionField('exercise')">Bewegung</a>
-
-        <div class="actionfield-icons">
-
-            <ul class="small-icons">
-                <i class="social foundicon-thumb-up">{{ (myPlannedActions | filter:{field:'exercise'}).length}}</i>
-                <i class="gen-enclosed foundicon-checkmark">{{ (actions | filter:{field:'exercise'}).length}}</i>
-                <i class="social foundicon-chat">121</i>
-            </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
         </div>
-    </div>
-    <div class="large-3 columns small-6">
-        <a class="button large actionfield-button actionfield-button-selected-{{ 'nutrition'==actionFieldSelected }}" ng-click="selectActionField('nutrition')">Ernährung</a>
+        <div class="col-xs-6 col-md-2">
+            <button type="button"
+                    class="btn btn-actionfield actionfield-button-selected-{{ 'exercise'==actionFieldSelected }}"
+                    ng-click="selectActionField('exercise')">Bewegung
+            </button>
 
-        <div class="actionfield-icons">
+            <div class="actionfield-icons">
 
-            <ul class="small-icons">
-                <i class="social foundicon-thumb-up">{{ (myPlannedActions | filter:{field:'nutrition'}).length}}</i>
-                <i class="gen-enclosed foundicon-checkmark">{{ (actions | filter:{field:'nutrition'}).length}}</i>
-                <i class="social foundicon-chat">121</i>
-            </ul>
+                <ul class="small-icons">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{ (myPlannedActions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-check"></span> {{ (actions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-star"></span> 121
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="large-3 columns small-6" ng-click="selectActionField('time')">
-        <a class="button large actionfield-button">Zeit</a>
+        <div class="col-xs-6 col-md-2">
+            <button type="button"
+                    class="btn btn-actionfield actionfield-button-selected-{{ 'nutrition'==actionFieldSelected }}"
+                    ng-click="selectActionField('nutrition')">Ernährung
+            </button>
 
-        <div class="actionfield-icons">
+            <div class="actionfield-icons">
 
-            <ul class="small-icons">
-                <i class="gen-enclosed foundicon-checkmark">{{ (actions | filter:{field:'time'}).length}}</i>
-                <i class="social foundicon-chat">121</i>
-            </ul>
+                <ul class="small-icons">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{ (myPlannedActions | filter:{field:'nutrition'}).length}}
+                    <span class="glyphicon glyphicon-check"></span> {{ (actions | filter:{field:'nutrition'}).length}}
+                    <span class="glyphicon glyphicon-star"></span> 121
+
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="large-3 columns small-6">
-        <a class="button large actionfield-button">Arbeitsweg</a>
+        <div class="col-xs-6 col-md-2" ng-click="selectActionField('time')">
+            <button type="button" class="btn btn-actionfield">Zeit</button>
 
-        <div class="actionfield-icons">
+            <div class="actionfield-icons">
 
-            <ul class="small-icons">
-                <i class="gen-enclosed foundicon-checkmark">32</i>
-                <i class="social foundicon-chat">121</i>
-            </ul>
+                <ul class="small-icons">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{ (myPlannedActions | filter:{field:'time'}).length}}
+                    <span class="glyphicon glyphicon-check"></span> {{ (actions | filter:{field:'time'}).length}}
+                    <span class="glyphicon glyphicon-star"></span> 121
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <button type="button" class="btn btn-actionfield">Arbeitsweg</button>
+
+            <div class="actionfield-icons">
+
+                <ul class="small-icons">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{ (myPlannedActions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-check"></span> {{ (actions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-star"></span> 121
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2">
         </div>
     </div>
 </div>
 
-
-<div class="row panel radius action-selectbox" ng-show="actionFieldSelected">
-    <div class="large-12 columns small-12">
-        <div class="row action-selector"
-             ng-repeat="action in actions | filter:{field:actionFieldSelected}">
-            <div class="large-1 columns small-1"><a ng-class="isActionPlanned(action.id) ?
-                'button round tiny action_planned' : 'button round tiny action_unplanned'" ng-click="planAction(action)"></a></div>
-            <div class="large-4 columns small-4"><span class="done-{{action.done}}">{{action.title}}</span></div>
-            <div class="large-4 columns small-4">{{action.text}}</div>
-            <div class="large-1 columns small-1">
-                <ul class="medium-icons">
-                    <i class="general foundicon-{{action.art}}"></i>
-                </ul>
+<div class="container top-buffer">
+    <div class="row action-selectbox" ng-show="actionFieldSelected">
+        <div class="col-md-12">
+            <div class="row action-selector"
+                 ng-repeat="action in actions | filter:{field:actionFieldSelected}">
+                <div class="col-md-1">
+                    <button type="button" ng-class="isActionPlanned(action.id) ?
+                'btn btn-action_planned' : 'btn btn-action_unplanned'"
+                            ng-click="planAction(action)"></button>
+                </div>
+                <div class="col-md-4"><span class="done-{{action.done}}">{{action.title}}</span></div>
+                <div class="col-md-3">{{action.text}}</div>
+                <div class="col-md-1">
+                    <ul class="medium-icons">
+                        <i class="general foundicon-{{action.art}}"></i>
+                    </ul>
+                </div>
+                <div class="col-md-2">{{action.field}}</div>
             </div>
-            <div class="large-2 columns small-2">{{action.field}}</div>
         </div>
     </div>
 </div>
 
 <!-- Proposals / Fields (Part 2) -->
-<div class="row">
-    <div class="large-3 columns small-6">
-        <a class="button large actionfield-button">Pausen</a>
+<div class="container">
 
-        <div class="actionfield-icons">
+    <div class="row  top-buffer">
+        <div class="col-md-2">
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <button type="button" class="btn btn-actionfield">Pausen</button>
 
-            <ul class="small-icons">
-                <i class="gen-enclosed foundicon-checkmark">32</i>
-                <i class="social foundicon-chat">121</i>
-            </ul>
+            <div class="actionfield-icons">
+
+                <ul class="small-icons">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{ (myPlannedActions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-check"></span> {{ (actions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-star"></span> 121
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <button type="button" class="btn btn-actionfield">Sozial</button>
+
+            <div class="actionfield-icons">
+
+                <ul class="small-icons">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{ (myPlannedActions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-check"></span> {{ (actions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-star"></span> 121
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <button type="button" class="btn btn-actionfield">Freizeit</button>
+
+            <div class="actionfield-icons">
+
+                <ul class="small-icons">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{ (myPlannedActions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-check"></span> {{ (actions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-star"></span> 121
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <button type="button" class="btn btn-actionfield">Arbeit</button>
+
+            <div class="actionfield-icons">
+
+                <ul class="small-icons">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{ (myPlannedActions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-check"></span> {{ (actions | filter:{field:'exercise'}).length}}
+                    <span class="glyphicon glyphicon-star"></span> 121
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2">
         </div>
     </div>
-    <div class="large-3 columns small-6">
-        <a class="button large actionfield-button">Sozial</a>
-
-        <div class="actionfield-icons">
-
-            <ul class="small-icons">
-                <i class="gen-enclosed foundicon-checkmark">32</i>
-                <i class="social foundicon-chat">121</i>
-            </ul>
-        </div>
-    </div>
-    <div class="large-3 columns small-6">
-        <a class="button large actionfield-button">Freizeit</a>
-
-        <div class="actionfield-icons">
-
-            <ul class="small-icons">
-                <i class="gen-enclosed foundicon-checkmark">32</i>
-                <i class="social foundicon-chat">121</i>
-            </ul>
-        </div>
-    </div>
-    <div class="large-3 columns small-6">
-        <a class="button large actionfield-button">Arbeit</a>
-
-        <div class="actionfield-icons">
-
-            <ul class="small-icons">
-                <i class="gen-enclosed foundicon-checkmark">32</i>
-                <i class="social foundicon-chat">121</i>
-            </ul>
-        </div>
-    </div>
-
 </div>
 
 <!-- End Feed Entry -->
@@ -192,59 +232,21 @@
 <!-- Footer -->
 
 <footer class="row">
-    <div class="large-12 columns">
+    <div class="col-md-12">
         <hr/>
         <div class="row">
-            <div class="large-12 columns">
+            <div class="col-md-12">
                 <p>&copy; Copyright no one at all. Go to town.</p>
             </div>
         </div>
     </div>
 </footer>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="lib/jquery/jquery-2.0.3.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap/assets/js/holder.js"></script>
 
-<script>
-    document.write('<script src=' +
-            ('__proto__' in {} ? 'lib/zepto' : 'lib/jquery') +
-            '.js><\/script>')
-</script>
-
-<script src="lib/foundation/foundation.min.js"></script>
-<!--
-
-<script src="js/foundation/foundation.js"></script>
-
-<script src="js/foundation/foundation.alerts.js"></script>
-
-<script src="js/foundation/foundation.clearing.js"></script>
-
-<script src="js/foundation/foundation.cookie.js"></script>
-
-<script src="js/foundation/foundation.dropdown.js"></script>
-
-<script src="js/foundation/foundation.forms.js"></script>
-
-<script src="js/foundation/foundation.joyride.js"></script>
-
-<script src="js/foundation/foundation.magellan.js"></script>
-
-<script src="js/foundation/foundation.orbit.js"></script>
-
-<script src="js/foundation/foundation.reveal.js"></script>
-
-<script src="js/foundation/foundation.section.js"></script>
-
-<script src="js/foundation/foundation.tooltips.js"></script>
-
-<script src="js/foundation/foundation.topbar.js"></script>
-
-<script src="js/foundation/foundation.interchange.js"></script>
-
-<script src="js/foundation/foundation.placeholder.js"></script>
-
--->
-
-<script>
-    $(document).foundation();
-</script>
 </body>
 </html>
