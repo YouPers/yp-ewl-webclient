@@ -175,6 +175,10 @@ ul.small-icons:hover {
 
 }
 
+.btn {
+    font-family: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
 .btn-action_planned {
     background-color: hsl(84, 50%, 29%) !important;
     background-repeat: repeat-x;

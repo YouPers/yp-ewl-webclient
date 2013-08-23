@@ -1,165 +1,140 @@
 <!DOCTYPE html>
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html ng-app class="no-js" lang="en"> <!--<![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en" ng-app> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" ng-app> <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
 
     <link rel="icon" href="http://www.youpers.com/en/wp-content/uploads/2013/03/favicon.png" type="image/png">
 
     <!-- page title, displayed in your browser bar -->
     <title>YouPers | eWorkLife Prototype</title>
 
-
     <!-- google webfont font replacement -->
     <link href='http://fonts.googleapis.com/css?family=Dosis:200,400,600,800' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="css/general_foundicons.css" />
-    <link rel="stylesheet" href="css/general_enclosed_foundicons.css" />
-    <link rel="stylesheet" href="css/social_foundicons.css" />
-    <link rel="stylesheet" href="css/youpers.css" />
-    <link rel="stylesheet" href="css/todo.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 
-    <script src="lib/custom.modernizr.js"></script>
+    <link rel="stylesheet" href="css/youpers.css"/>
 
     <script src="lib/angular/angular.js"></script>
+    <script src="js/actionFieldCtrl.js"></script>
+
+    <!-- To better visualize the columns
+    <style>
+        .row > div {
+            background-color: #dedef8;
+            box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
+        }
+    </style>
+ -->
 </head>
 
 
-<body id="top" class="home blog stretched">
+<body id="top" ng-controller="ActionFieldCtrl">
 
-<!-- Header and Nav -->
-<nav class="top-bar">
-    <ul class="title-area">
-        <!-- Title Area -->
-        <li class="name">
-            <h1>
-                <a href="#">
-                    YouPers
-                </a>
-            </h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-
-    <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="left">
-            <li class="service"> <a href="#">Drive your Health!</a></li>
-        </ul>
-        <!-- Right Nav Section -->
-        <ul class="right">
-            <li class="has-form">
-                <input type="text" placeholder="Username" />
-            </li>
-            <li class="has-form">
-                <input type="text" placeholder="Password" />
-            </li>
-            <li class="has-form">
-                <a href="#" class="small button radius">login</a>
-            </li>
-        </ul>
-    </section>
-</nav>
-<!-- End Header and Nav -->
-
-
-
-
-<div class="row">
-    <div class="large-offset-2 large-2 columns">
-        <a class="button large expand service-enabled" href="ewl-landing.html">eWorkLife</a>
-    </div>
-    <div class="large-2 columns">
-        <a class="button large expand disabled">INSPIRATION</a>
-    </div>
-    <div class="large-2 columns">
-        <a class="button large expand disabled">eFitness</a>
-    </div>
-    <div class="large-2 columns">
-        <a class="button large expand disabled">REVOLUTION</a>
-    </div>
-    <div class="large-2 columns">
+<div class="navbar  navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand youpers-logo" href="#">YouPers</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="yp-service">Drive Your Health!</li>
+                <li><a href="#about">About</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-default">Login</button>
+            </form>
+        </div>
+        <!--/.nav-collapse -->
     </div>
 </div>
 
+
 <div class="row">
-    <div class="large-offset-2 large-2 columns">
-        <a class="button large expand disabled">Hoodle</a>
+    <div class="col-md-offset-2 col-md-2">
+        <a class="btn btn-primary btn-lg service-enabled" href="ewl-landing.html">eWorkLife</a>
     </div>
-    <div class="large-2 columns">
-        <a class="button large expand disabled">coming soon</a>
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-lg" disabled>INSPIRATION</a>
     </div>
-    <div class="large-2 columns">
-        <a class="button large expand disabled">coming soon</a>
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-lg" disabled>eFitness</a>
     </div>
-    <div class="large-2 columns">
-        <a class="button large expand disabled">coming soon</a>
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-lg" disabled>REVOLUTION</a>
     </div>
-    <div class="large-2 columns">
+    <div class="col-md-2">
     </div>
 </div>
+
+<div class="row top-buffer">
+    <div class="col-md-offset-2 col-md-2">
+        <a class="btn btn-primary btn-lg" disabled>Hoodle</a>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-lg" disabled>coming soon</a>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-lg" disabled>coming soon</a>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-lg" disabled>coming soon</a>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+
 
 
 
 <!-- Footer -->
 
 <footer class="row">
-    <div class="large-12 columns">
-        <hr />
+    <div class="col-md-12">
+        <hr/>
         <div class="row">
-            <div class="large-12 columns">
+            <div class="col-md-12">
                 <p>&copy; Copyright no one at all. Go to town.</p>
             </div>
         </div>
     </div>
 </footer>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="lib/jquery/jquery-2.0.3.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap/assets/js/holder.js"></script>
 
-  <script>
-  document.write('<script src=' +
-  ('__proto__' in {} ? 'lib/zepto' : 'lib/jquery') +
-  '.js><\/script>')
-  </script>
-
-  <script src="lib/foundation/foundation.min.js"></script>
-  <!--
-
-  <script src="js/foundation/foundation.js"></script>
-
-  <script src="js/foundation/foundation.alerts.js"></script>
-
-  <script src="js/foundation/foundation.clearing.js"></script>
-
-  <script src="js/foundation/foundation.cookie.js"></script>
-
-  <script src="js/foundation/foundation.dropdown.js"></script>
-
-  <script src="js/foundation/foundation.forms.js"></script>
-
-  <script src="js/foundation/foundation.joyride.js"></script>
-
-  <script src="js/foundation/foundation.magellan.js"></script>
-
-  <script src="js/foundation/foundation.orbit.js"></script>
-
-  <script src="js/foundation/foundation.reveal.js"></script>
-
-  <script src="js/foundation/foundation.section.js"></script>
-
-  <script src="js/foundation/foundation.tooltips.js"></script>
-
-  <script src="js/foundation/foundation.topbar.js"></script>
-
-  <script src="js/foundation/foundation.interchange.js"></script>
-
-  <script src="js/foundation/foundation.placeholder.js"></script>
-
-  -->
-
-  <script>
-    $(document).foundation();
-  </script>
 </body>
 </html>
