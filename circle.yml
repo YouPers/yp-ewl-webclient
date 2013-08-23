@@ -1,6 +1,6 @@
 deployment:
   staging:
-    branch: master
+    branch: bootstrap
     heroku:
       appname: yp-ewl-webclient
 
