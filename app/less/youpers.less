@@ -277,15 +277,20 @@ input[type="range"]{
   background: #42c11f; /* Old browsers */
   background: -moz-linear-gradient(left, #f43d3d 0%, #42c11f 53%, #f43d3d 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f43d3d ), color-stop(53%,#42c11f), color-stop(100%,#f43d3d)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #42c11f 53%,#f43d3d 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, #42c11f 53%,#f43d3d 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, #42c11f 53%,#f43d3d 100%); /* IE10+ */
+  background: -webkit-linear-gradient(left, #f43d3d 0%, #42c11f 53%,#f43d3d 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #f43d3d 0%, #42c11f 53%,#f43d3d 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #f43d3d 0%, #42c11f 53%,#f43d3d 100%); /* IE10+ */
   background: linear-gradient(to right, #f43d3d 0%, #42c11f 53%,#f43d3d 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42c11f', endColorstr='#f43d3d',GradientType=1 ); /* IE6-9 */
 }
 
+input[type=range]::-moz-range-track {
+  background: none;
+  border: none;
+}
 
-input[type="range"]::-webkit-slider-thumb{
+
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance:none;
   -moz-apperance:none;
   width:25px;
