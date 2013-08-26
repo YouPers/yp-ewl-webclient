@@ -17,7 +17,7 @@ function AssessmentCtrl($scope) {
             minText: "minText1",
             maxText: "maxText1",
             expText: "explainText1",
-            answer: 50
+            answer: 0
         },
         {
             id: 2,
@@ -25,7 +25,7 @@ function AssessmentCtrl($scope) {
             minText: "minText2",
             maxText: "maxText2",
             expText: "explainText2",
-            answer: 50
+            answer: 0
         },
         {
             id: 3,
@@ -33,7 +33,7 @@ function AssessmentCtrl($scope) {
             minText: "minText3",
             maxText: "maxText3",
             expText: "explainText3",
-            answer: 50
+            answer: 0
         },
         {
             id: 4,
@@ -41,7 +41,7 @@ function AssessmentCtrl($scope) {
             minText: "minText4",
             maxText: "maxText4",
             expText: "explainText4",
-            answer: 50
+            answer: 0
         }
 
     ]

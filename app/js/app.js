@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'globalErrors', 'ui.router', 'uiSlider']).
+angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'globalErrors', 'ui.router']).
   config(function($stateProvider, $urlRouterProvider){
     //
     // For any unmatched url, send to /route1

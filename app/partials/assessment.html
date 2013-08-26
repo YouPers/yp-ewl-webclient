@@ -1,47 +1,19 @@
-<div class="container">
-    <div class="row top-buffer ass-question">
-        <div class="col-md-2 col-md-offset-5">{{ questions[1].title }}</div>
-    </div>
-    <div class="row">
+<div class="container top-buffer">
 
-        <div class="col-md-2 col-md-offset-1 ass-min-text">{{ questions[1].minText }}</div>
-        <div class="col-md-6">
-            <slider floor="0" ceiling="100" precision="1" ng-model="questions[1].answer">
-
-            </slider>
-
-        </div>
-        <div class="col-md-2 ass-max-text">{{ questions[1].maxText }}</div>
-
-    </div>
-    <div class="row top-buffer">
+    <div class="row top-buffer" ng-repeat="question in questions">
         <div class="row top-buffer ass-question">
-            <div class="col-md-2 col-md-offset-5">{{ questions[2].title }}</div>
+            <div class="col-md-2 col-md-offset-5">{{ question.title }} Wert: {{ question.answer }}</div>
         </div>
 
-        <div class="col-md-2 col-md-offset-1 ass-min-text"><p>{{ questions[2].minText }}</p></div>
-        <div class="col-md-6">
-            <slider floor="0" ceiling="100" precision="1" ng-model="questions[2].answer">
+        <div class="col-md-2 col-md-offset-2 ass-min-text">{{ question.minText }}</div>
+        <div class="col-md-4">
+            <input type="range"  min="-100" max="100" ng-model="question.answer">
 
             </slider>
 
         </div>
-        <div class="col-md-2 ass-max-text">{{ questions[2].maxText }}</div>
+        <div class="col-md-2 ass-max-text">{{ question.maxText }}</div>
 
     </div>
-    <div class="row top-buffer">
-        <div class="row top-buffer ass-question">
-            <div class="col-md-2 col-md-offset-5 ">{{ questions[2].title }}</div>
-        </div>
 
-        <div class="col-md-2 col-md-offset-1 ass-min-text">{{ questions[3].minText }}</div>
-        <div class="col-md-6">
-            <slider floor="0" ceiling="100" precision="1" ng-model="questions[3].answer">
-
-            </slider>
-
-        </div>
-        <div class="col-md-2 ass-max-text">{{ questions[3].maxText }}</div>
-
-    </div>
 </div>
