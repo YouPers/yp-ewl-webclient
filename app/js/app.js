@@ -2,9 +2,24 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'globalErrors']).
-  config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-    $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'LoginController'});
-    $routeProvider.otherwise({redirectTo: '/view1'});
-  }]);
+angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'globalErrors', 'ui.router']).
+  config(function($stateProvider, $urlRouterProvider){
+    //
+    // For any unmatched url, send to /route1
+    $urlRouterProvider.otherwise("/home")
+    //
+    // Now set up the states
+    $stateProvider
+        .state('home', {
+            url: "/home",
+            templateUrl: "partials/home.html"
+        })
+        .state('serviceChoice', {
+            url: "/serviceChoice",
+            templateUrl: "partials/serviceChoice.html"
+        })
+        .state('ewlActivityFields', {
+            url: "/ewl-activityfields",
+            templateUrl: "partials/ewlActivityFields.html"
+        })
+})

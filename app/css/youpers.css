@@ -1,6 +1,6 @@
 /* "overwrites" foundation.css */
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
     font-family: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     font-weight: normal;
 }
@@ -34,71 +34,105 @@ p {
     line-height: 1.4;
 }
 
-.top-bar .name h1 a {
-    background: #444444;
-    font-size: 1.6875em;
-    font-weight: normal;
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
 
-@media only screen and (min-width: 58.75em) {
-    .top-bar {
-        background: #ffffff;
-    }
+/* new YouPers element vor YouPers logo in the NavBar */
+
+.navbar-logo {
+    float: left;
+    padding-right: 15px;
 }
 
-.top-bar-section li a:not(.button) {
-    text-transform: uppercase;
-    font-weight: normal;
-    color: #999999;
-    background: #ffffff;
+.navbar-logo:hover,
+.navbar-logo:focus {
+    text-decoration: none;
 }
 
-.top-bar-section .dropdown a:not(.button) {
-    text-transform: none;
-    font-weight: normal;
-    font-size: 0.875em;
+/* change NavBar brand to white color and appropriate hover/focus color*/
+.navbar-brand {
+    /*text-transform: uppercase;*/
+}
+
+.navbar-inverse .navbar-brand {
     color: #ffffff;
-    background: #999999;
 }
 
-.top-bar-section ul li.hover > a {
-    background: #999999;
-    color: white;
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+    color: #4a5d14;
+    background-color: transparent;
 }
 
-.top-bar-section ul .dropdown li.hover > a {
-    background: white;
-    font-size: 0.875em;
-    color: #999999;
+/* change NavBar background color from #080808 to the one used by YouPers */
+
+.navbar-inverse {
+    background-color: #AEC71E;
+    border-color: #AEC71E;
 }
 
-.top-bar-section .dropdown li label {
-    white-space: nowrap;
-    background: #777777;
-}
+/* change currently active menu to white color and appropriate hover/focus color*/
 
-.top-bar-section .dropdown label {
-    padding: 8px 15px 8px;
-    margin-bottom: 0;
-    text-transform: none;
-    color: white;
-    font-weight: normal;
-    font-size: 0.875em;
-}
-
-.yp-service {
-    text-transform: none;
-    font-weight: normal;
-    font-size: 1.6875em;
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
     color: #ffffff;
-    background: #aec71e;
+    background-color: #AEC71E;
 }
 
-.top-bar-section .has-form {
-    background: white;
-    padding: 0 15px;
-    height: 45px;
+/* change inactive menus to YouPers inactive color */
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #4a5d14;
 }
+
+/* change the "more" caret to YouPers inactive color */
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    border-top-color: #4a5d14;
+    border-bottom-color: #4a5d14;
+}
+
+/* change success button to YouPers colors */
+
+.btn-success {
+    color: #ffffff;
+    background-color: #7f981d;
+    border-color: #4a5d14;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    background-color: #47a447;
+    border-color: #398439;
+}
+
+.btn-success.disabled,
+.btn-success[disabled],
+fieldset[disabled] .btn-success,
+.btn-success.disabled:hover,
+.btn-success[disabled]:hover,
+fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus,
+.btn-success[disabled]:focus,
+fieldset[disabled] .btn-success:focus,
+.btn-success.disabled:active,
+.btn-success[disabled]:active,
+fieldset[disabled] .btn-success:active,
+.btn-success.disabled.active,
+.btn-success[disabled].active,
+fieldset[disabled] .btn-success.active {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+
+
 
 ul.small-icons {
     -webkit-transition: color .5s;
@@ -199,74 +233,4 @@ ul.small-icons:hover {
 
 .btn-action_unplanned:before {
     content: "einplanen";
-}
-
-button.stress-level-1, .button.stress-level-1 {
-    background-color: #5da423;
-    border-color: #457a1a;
-    color: #ffffff;
-}
-
-button.stress-level-1:hover, button.stress-level-1:focus, .button.stress-level-1:hover, .button.stress-level-1:focus {
-    background-color: #457a1a;
-}
-
-button.stress-level-1:hover, button.stress-level-1:focus, .button.stress-level-1:hover, .button.stress-level-1:focus {
-    color: #ffffff;
-}
-
-button.stress-level-2, .button.stress-level-2 {
-    background-color: #9cc618;
-    border-color: #6e971d;
-    color: #ffffff;
-}
-
-button.stress-level-2:hover, button.stress-level-2:focus, .button.stress-level-2:hover, .button.stress-level-2:focus {
-    background-color: #6e971d;
-}
-
-button.stress-level-2:hover, button.stress-level-2:focus, .button.stress-level-2:hover, .button.stress-level-2:focus {
-    color: #ffffff;
-}
-
-button.stress-level-3, .button.stress-level-3 {
-    background-color: #c69318;
-    border-color: #977115;
-    color: #ffffff;
-}
-
-button.stress-level-3:hover, button.stress-level-3:focus, .button.stress-level-3:hover, .button.stress-level-3:focus {
-    background-color: #977115;
-}
-
-button.stress-level-3:hover, button.stress-level-3:focus, .button.stress-level-3:hover, .button.stress-level-3:focus {
-    color: #ffffff;
-}
-
-button.stress-level-4, .button.stress-level-4 {
-    background-color: #c65114;
-    border-color: #974112;
-    color: #ffffff;
-}
-
-button.stress-level-4:hover, button.stress-level-4:focus, .button.stress-level-4:hover, .button.stress-level-4:focus {
-    background-color: #974112;
-}
-
-button.stress-level-4:hover, button.stress-level-4:focus, .button.stress-level-4:hover, .button.stress-level-4:focus {
-    color: #ffffff;
-}
-
-button.stress-level-5, .button.stress-level-5 {
-    background-color: #c60f13;
-    border-color: #970b0e;
-    color: #ffffff;
-}
-
-button.stress-level-5:hover, button.stress-level-5:focus, .button.stress-level-5:hover, .button.stress-level-5:focus {
-    background-color: #970b0e;
-}
-
-button.stress-level-5:hover, button.stress-level-5:focus, .button.stress-level-5:hover, .button.stress-level-5:focus {
-    color: #ffffff;
 }

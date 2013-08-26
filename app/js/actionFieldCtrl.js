@@ -6,62 +6,11 @@
  * example from http://angularjs.org/
  */
 
-function ActionFieldCtrl($scope) {
+function ActionFieldCtrl($scope, activityService) {
 
     $scope.actionFieldSelected = "";
 
-    $scope.actions = [
-        {
-            id: 1,
-            title: "Iss täglich einen Apfel",
-            text: "Früchte sind superduper und darum sollte man immer eine essen...",
-            field: "nutrition",
-            planningCat: "daily"
-        },
-        {
-            id: 2,
-            title: "Joggen über Mittag",
-            text: "Run forest, Run...",
-            field: "exercise",
-            planningCat: "daily"
-        },
-        {
-            id: 3,
-            title: "Badminton über Mittag",
-            text: "Sport zu zweit verhilft zu mehr Bewegung und gibt Gelegenheit sich in ungezwungener Atmosphäre mit einem Kollegen zu unterhalten.",
-            field: "exercise",
-            planningCat: "daily"
-        },
-        {
-            id: 4,
-            title: "Spaziergang über Mittag",
-            text: "ist immer super",
-            field: "exercise",
-            planningCat: "daily"
-        },
-        {
-            id: 5,
-            title: "Einmal pro Woche das Light-Menu in der Kantine essen.",
-            text: "nicht immer Pommes essen!",
-            field: "nutrition",
-            planningCat: "weekly"
-        },
-        {
-            id: 6,
-            title: "Iss täglich eine Birne",
-            text: "wenn der Apfel mal verleidet ist",
-            field: "nutrition",
-            planningCat: "daily"
-        },
-        {
-            id: 7,
-            title: "Iss täglich eine Mandarine",
-            text: "why not a mandarine...",
-            field: "nutrition",
-            planningCat: "daily"
-        }
-    ];
-
+    $scope.actions = activityService.allActivities();
 
     $scope.myPlannedActions = [
         {

@@ -6,48 +6,40 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('myApp.services', []).
-  value('version', '0.1').
+    value('version', '0.1').
 
 
-  factory('apiservice', function ($http) {
+    factory('activityService', function ($http) {
 
-        var _serveruri= 'http://localhost:8080';
 
-        // initialize ServerUri for CI and prod
-        var hostname = window.location.hostname;
-        console.log('hostname: ' + hostname);
-        switch (hostname) {
-            // CI Environment
-            case 'ypwebapp.herokuapp.com':
-                _serveruri = 'http://ypserverapp.herokuapp.com';
-            // dev environment
-            case 'localhost':
-                break;
-            // TODO: prod environment
-            case 'prodserver':
-                break;
-            default:
-                break;
+        function Activity(id, title, text, af, plCat) {
+            this.id = id;
+            this.title = title;
+            this.text = text;
+            this.field = af;
+            this.planningCat = plCat;
         }
-        console.log('using API URL: ' + _serveruri);
 
-        var apiservice = {
+        var actService = {
 
-
-            login: function(encodedCredentials, successCallback) {
-                var config = {
-                    headers: {
-                        'Authorization': 'Basic ' + encodedCredentials
-                    }
-                };
-                $http.get(_serveruri+'/user', config).success(successCallback);
+            allActivities: function () {
+                return $http.get('js/testactivities.json.js').then(function (result) {
+                    return result.data;
+                });
             },
 
-            getBaseURI: function () {
-                return _serveruri;
+            plannedActivities: function () {
+                return $http.get('js/testplannedactivities.json.js').then(function(result) {
+                        return result.data;
+                    }
+
+                )
+
             }
         }
 
-        return apiservice;
+        return actService;
 
-    });
+
+    })
+;
