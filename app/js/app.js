@@ -20,6 +20,17 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
         })
         .state('ewlActivityFields', {
             url: "/ewl-activityfields",
-            templateUrl: "partials/ewlActivityFields.html"
+            templateUrl: "partials/ewlActivityFields.html",
+            controller: "ActionFieldCtrl"
         })
+        .state('planActivity', {
+            url: "/ewl-activityfields",
+            templateUrl: "partials/activityplanning.html",
+            controller: "ActionFieldCtrl"
+        })
+        .state('cockpit', {
+            url: "/cockpit",
+            templateUrl: "partials/cockpit.html"
+        })
+
 })
