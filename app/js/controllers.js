@@ -3,11 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', ['authentication', 'ngCookies', 'Base64', 'myApp.services']).
-
-
     controller('MyCtrl1', ['$scope', '$http', 'apiservice', 'principal' , function ($scope, $http, apiservice, principal) {
-
-
         $scope.model = {
             surveys:  [],
             currentSurvey: {}
