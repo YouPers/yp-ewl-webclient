@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'globalErrors', 'ui.router']).
+angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'globalErrors', 'ui.router', 'uiSlider']).
   config(function($stateProvider, $urlRouterProvider){
     //
     // For any unmatched url, send to /route1
@@ -31,6 +31,11 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
         .state('cockpit', {
             url: "/cockpit",
             templateUrl: "partials/cockpit.html"
+        })
+        .state('assessment', {
+            url: "/assessment",
+            templateUrl: "partials/assessment.html",
+            controller:  "AssessmentCtrl"
         })
 
 })
