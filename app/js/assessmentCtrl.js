@@ -1,26 +1,20 @@
-/**
- * Created with IntelliJ IDEA.
- * User: IvanRigamonti
- * Date: 19.07.13
- * Time: 15:06
- * example from http://angularjs.org/
- */
+'use strict';
 
 function AssessmentCtrl($scope) {
 
     $scope.actionFieldSelected = "";
 
     $scope.assessment = {
-        name: "Beurteile deinen Stresslevel",
+        name: "ASSESS_YOUR_STRESS_LEVEL",
         questionCats: [
             {
-                categorie: "Allgemeiner Stresslevel",
+                categorie: "GENERAL_STRESSLEVEL",
                 questions: [
                     {
                         id: 1,
-                        title: "Wie beurteilst du deinen Stresslevel jetzt in diesem Moment?",
-                        minText: "Ich bin unterfordert, mir ist langweilig",
-                        maxText: "Ich bin total gestresst",
+                        title: "HOW_PERCEIVE_CURRENT_LEVEL",
+                        minText: "I_AM_UNDER_CHALLENGED",
+                        maxText: "I_AM_OVERLOADED",
                         expText: "explainText1",
                         answer: 0
                     }
@@ -28,7 +22,7 @@ function AssessmentCtrl($scope) {
             }
             ,
             {
-                categorie: "Am Arbeitsplatz:",
+                categorie: "AT_WORK",
                 questions: [
                     {
                         id: 2,
