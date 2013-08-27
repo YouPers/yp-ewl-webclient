@@ -66,7 +66,8 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
             BREAKS: 'Pausen',
             COMMUTE: 'Arbeitsweg',
             PLAN_IT: 'einplanen',
-            PLANNED: 'geplant'
+            PLANNED: 'geplant',
+            SELECT_FIELD: 'Wähle ein Aktivitätsgebiet:'
         });
 
         $translateProvider.translations('en', {
@@ -85,17 +86,7 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
             HOW_PERCEIVE_CURRENT_LEVEL: 'How do you perceive your  stress level in this very moment?',
             I_AM_UNDER_CHALLENGED: 'I am bored and totally under challenged',
             I_AM_OVERLOADED: 'I am totally freaking out, cannot cope with everything',
-            AT_WORK: 'At work:',
-            WORK: 'Work',
-            LEISURE: 'Leisure',
-            TIME: 'Time',
-            NUTRITION: 'Nutrition',
-            EXERCISE: 'Exercise',
-            SOCIAL: 'Social',
-            BREAKS: 'Breaks',
-            COMMUTE: 'Commute',
-            PLAN_IT: 'plan it!',
-            PLANNED: 'planned'
+            AT_WORK: 'At work:'
         });
 
         $translateProvider.preferredLanguage('de');
