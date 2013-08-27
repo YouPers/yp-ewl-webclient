@@ -265,6 +265,10 @@ ul.small-icons:hover {
   text-align: left;
 }
 
+// assessment slider styling
+@yp-ass-slider-green: #42c11f;
+@yp-ass-slider-red: #f43d3d;
+
 
 input[type="range"]{
   -webkit-appearance: none;
@@ -274,14 +278,14 @@ input[type="range"]{
   padding: 0 2px;
   border-radius: 2px;
   margin-top: 5px;
-  background: #42c11f; /* Old browsers */
-  background: -moz-linear-gradient(left, #f43d3d 0%, #42c11f 53%, #f43d3d 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f43d3d ), color-stop(53%,#42c11f), color-stop(100%,#f43d3d)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #f43d3d 0%, #42c11f 53%,#f43d3d 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, #f43d3d 0%, #42c11f 53%,#f43d3d 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, #f43d3d 0%, #42c11f 53%,#f43d3d 100%); /* IE10+ */
-  background: linear-gradient(to right, #f43d3d 0%, #42c11f 53%,#f43d3d 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42c11f', endColorstr='#f43d3d',GradientType=1 ); /* IE6-9 */
+  background: @yp-ass-slider-green; /* Old browsers */
+  background: -moz-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 50%, @yp-ass-slider-red 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,@yp-ass-slider-red ), color-stop(50%,@yp-ass-slider-green), color-stop(100%,@yp-ass-slider-red)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 50%,@yp-ass-slider-red 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 50%,@yp-ass-slider-red 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 50%,@yp-ass-slider-red 100%); /* IE10+ */
+  background: linear-gradient(to right, @yp-ass-slider-red 0%, @yp-ass-slider-green 50%,@yp-ass-slider-red 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@yp-ass-slider-green', endColorstr='@yp-ass-slider-red',GradientType=1 ); /* IE6-9 */
 }
 
 input[type=range]::-moz-range-track {
