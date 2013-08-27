@@ -19,23 +19,25 @@
 
     <!-- Bootstrap core CSS -->
     <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="lib/angular-slider/angular-slider.css"/>
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="css/youpers.css"/>
+    <!--<link rel="stylesheet" href="css/youpers.css"/>-->
 
     <!-- YouPers Stylesheet and needed LESS library -->
-    <!--<link rel="stylesheet/less" type="text/css" href="less/youpers.less" />-->
-    <!--<script src="lib/less/less-1.4.1.min.js" type="text/javascript"></script>-->
+    <link rel="stylesheet/less" type="text/css" href="less/youpers.less" />
+    <script type="text/javascript">var less=less||{};less.env='development';</script>
+    <script src="lib/less/less-1.4.1.min.js" type="text/javascript"></script>
     <!--<script type="text/javascript">-->
         <!--less.watch();-->
     <!--</script>-->
 
     <script src="lib/angular/angular.js"></script>
 
-    <script src="lib/angular/angular-cookies.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.js"></script>
+    <script src="lib/angular-translate/angular-translate.js"></script>
+    <script src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+
     <script src="lib/angular/angular-ui-router.js"></script>
-    <script src="lib/angular-slider/angular-slider.js"></script>
 
     <script src="js/base64.js"></script>
     <script src="js/errorhandler.js"></script>
@@ -47,6 +49,7 @@
     <script src="js/controllers.js"></script>
     <script src="js/actionFieldCtrl.js"></script>
     <script src="js/assessmentCtrl.js"></script>
+    <script src="js/i18nCtrl.js"></script>
     <script src="js/app.js"></script>
 
     <!-- To better visualize the columns
@@ -76,15 +79,16 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#/cockpit">Cockpit</a></li>
-                <li><a href="#newactivities">Aktivitäten</a></li>
-                <li><a href="#/assessment">Assessment</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">mehr <b class="caret"></b></a>
+                <li class="active"><a href="#/cockpit">{{ 'COCKPIT' | translate }}</a></li>
+                <li><a href="#newactivities">{{ 'ACTIVITIES' | translate }}</a></li>
+                <li><a href="#/assessment">{{ 'ASSESSMENT' | translate }}</a></li>
+                <li class="dropdown" ng-controller="i18nCtrl">
+                    <a class="dropdown-toggle" data-toggle="dropdown">{{ 'LANGUAGE' | translate }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Weitere Aktion</a></li>
-                        <li><a href="#">Weitere Aktion</a></li>
+                        <li><a href="" ng-click="changeLang('en')">english</a></li>
+                        <li><a href="" ng-click="changeLang('de')">deutsch</a></li>
+                        <li><a href="#">espanol</a></li>
+                        <li><a href="#">francais</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Falls noch nicht genug</li>
                         <li><a href="#">Und noch mehr</a></li>
@@ -94,12 +98,12 @@
             </ul>
             <form class="navbar-form navbar-right">
                 <div class="form-group">
-                    <input type="text" placeholder="E-Mail" class="form-control">
+                    <input type="text" placeholder="{{ 'EMAIL' | translate }}"class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Passwort" class="form-control">
+                    <input type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-success">Anmelden</button>
+                <button type="submit" class="btn btn-success">{{ 'LOGIN' | translate }}</button>
             </form>
         </div><!--/.navbar-collapse -->
     </div>

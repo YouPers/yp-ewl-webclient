@@ -1,57 +1,64 @@
-/**
- * Created with IntelliJ IDEA.
- * User: IvanRigamonti
- * Date: 19.07.13
- * Time: 15:06
- * example from http://angularjs.org/
- */
+'use strict';
 
 function AssessmentCtrl($scope) {
 
     $scope.actionFieldSelected = "";
 
-    $scope.questions = [
-        {
-            id: 1,
-            title:  "question1",
-            minText: "minText1",
-            maxText: "maxText1",
-            expText: "explainText1",
-            answer: 50
-        },
-        {
-            id: 2,
-            title:  "question2",
-            minText: "minText2",
-            maxText: "maxText2",
-            expText: "explainText2",
-            answer: 50
-        },
-        {
-            id: 3,
-            title:  "question3",
-            minText: "minText3",
-            maxText: "maxText3",
-            expText: "explainText3",
-            answer: 50
-        },
-        {
-            id: 4,
-            title:  "question4",
-            minText: "minText4",
-            maxText: "maxText4",
-            expText: "explainText4",
-            answer: 50
-        }
-
-    ]
+    $scope.assessment = {
+        name: "ASSESS_YOUR_STRESS_LEVEL",
+        questionCats: [
+            {
+                categorie: "GENERAL_STRESSLEVEL",
+                questions: [
+                    {
+                        id: 1,
+                        title: "HOW_PERCEIVE_CURRENT_LEVEL",
+                        minText: "I_AM_UNDER_CHALLENGED",
+                        maxText: "I_AM_OVERLOADED",
+                        expText: "explainText1",
+                        answer: 0
+                    }
+                ]
+            }
+            ,
+            {
+                categorie: "AT_WORK",
+                questions: [
+                    {
+                        id: 2,
+                        title: "question2",
+                        minText: "minText2",
+                        maxText: "maxText2",
+                        expText: "explainText2",
+                        answer: 0
+                    },
+                    {
+                        id: 3,
+                        title: "question3",
+                        minText: "minText3",
+                        maxText: "maxText3",
+                        expText: "explainText3",
+                        answer: 0
+                    },
+                    {
+                        id: 4,
+                        title: "question4",
+                        minText: "minText4",
+                        maxText: "maxText4",
+                        expText: "explainText4",
+                        answer: 0
+                    }
+                ]
+            }
+        ]
+    }
 
 
     $scope.planAction = function (action) {
-      $scope.myPlannedActions.push({
-          action_id: action.id,
-          field: action.field
-      })
+        $scope.myPlannedActions.push({
+            action_id: action.id,
+            field: action.field
+        })
     }
 
     $scope.isActionPlanned = function (actionId) {
@@ -66,6 +73,6 @@ function AssessmentCtrl($scope) {
 
     $scope.selectActionField = function (actionField) {
         $scope.actionFieldSelected = actionField;
-    };
+    }
 
 }
