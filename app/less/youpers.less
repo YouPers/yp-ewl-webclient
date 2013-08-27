@@ -13,6 +13,8 @@
 @youpers-brand-secondary: #7f981d;
 @youpers-brand-tertiary:  #4a5d14;
 
+@youpers-brand-pages-background: #eeeeee;
+
 // YouPers Fonts
 // -------------------------
 
@@ -36,7 +38,7 @@
 @youpers-font-size-h5: @youpers-font-size-5;
 @youpers-font-size-h6: @youpers-font-size-6;
 
-/* "overwrites" foundation.css */
+/* YouPers header and body fonts */
 
 h1, h2, h3, h4, h5, h6, p {
   font-family: @youpers-font-family;
@@ -285,4 +287,45 @@ ul.small-icons:hover {
 
 .ass-max-text {
   text-align: left;
+}
+
+/* IRIG: Reuse of Bootstrap jumbotron design for page headers */
+
+
+.jumbotron {
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size:  @youpers-font-size-5;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: @youpers-brand-pages-background;
+}
+
+.jumbotron h1 {
+  line-height: 1;
+  color: inherit;
+  font-size: @youpers-font-size-3;
+}
+
+.jumbotron p {
+  line-height: 1.4;
+}
+
+.container .jumbotron {
+  border-radius: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .container .jumbotron {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .jumbotron h1 {
+    font-size:  @youpers-font-size-3;
+  }
 }
