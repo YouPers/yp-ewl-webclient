@@ -22,9 +22,32 @@
 @youpers-brand-tertiary:  #4a5d14;
 @youpers-brand-bright:    #cef73e;
 
+@youpers-brand-pages-background: #eeeeee;
 @youpers-brand-font: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 
 /* "overwrites" foundation.css */
+
+@youpers-font-family: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+// YouPers Font Sizes
+//--------------------------
+
+@youpers-font-size-1: 2.6875em;
+@youpers-font-size-2: 2.1250em;
+@youpers-font-size-3: 1.6875em;
+@youpers-font-size-4: 1.3750em;
+@youpers-font-size-5: 1.2500em;
+@youpers-font-size-6: 1.0000em;
+
+@youpers-font-size-body: @youpers-font-size-6;
+@youpers-font-size-h1: @youpers-font-size-1;
+@youpers-font-size-h2: @youpers-font-size-2;
+@youpers-font-size-h3: @youpers-font-size-3;
+@youpers-font-size-h4: @youpers-font-size-4;
+@youpers-font-size-h5: @youpers-font-size-5;
+@youpers-font-size-h6: @youpers-font-size-6;
+
+/* YouPers header and body fonts */
 
 h1, h2, h3, h4, h5, h6, p {
   font-family: @youpers-brand-font;
@@ -32,31 +55,31 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h1 {
-  font-size: 2.6875em;
+  font-size: @youpers-font-size-h1;
 }
 
 h2 {
-  font-size: 2.125em;
+  font-size: @youpers-font-size-h2;
 }
 
 h3 {
-  font-size: 1.6875em;
+  font-size: @youpers-font-size-h3;
 }
 
 h4 {
-  font-size: 1.375em;
+  font-size: @youpers-font-size-h4;
 }
 
 h5 {
-  font-size: 1.375em;
+  font-size: @youpers-font-size-h5;
 }
 
 h6 {
-  font-size: 1.125em;
+  font-size: @youpers-font-size-h6;
 }
 
 p {
-  font-size: 0.875em;
+  font-size: @youpers-font-size-body;
   line-height: 1.4;
 }
 
@@ -66,7 +89,7 @@ body {
     padding-bottom: 30px;
 }
 
-/* new YouPers element vor YouPers logo in the NavBar */
+/* new youpers element vor youpers logo in the NavBar */
 
 .navbar-logo {
     float: left;
@@ -93,7 +116,7 @@ body {
     background-color: transparent;
 }
 
-/* change NavBar background color from #080808 to the one used by YouPers */
+/* change NavBar background color from #080808 to the one used by youpers */
 
 .navbar-inverse {
     background-color: @youpers-brand-primary;
@@ -109,22 +132,23 @@ body {
     background-color: @youpers-brand-primary;
 }
 
-/* change inactive menus to YouPers inactive color */
+/* change inactive menus to youpers inactive color */
 
 .navbar-inverse .navbar-nav > li > a {
     color: @youpers-brand-tertiary;
 }
 
-/* change the "more" caret to YouPers inactive color */
+/* change the "more" caret to youpers inactive color */
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
     border-top-color: @youpers-brand-tertiary;
     border-bottom-color: @youpers-brand-tertiary;
 }
 
-/* change success button to YouPers colors */
+/* change success button to youpers colors */
 
 .btn-success {
     color: #ffffff;
+    background-color: @youpers-brand-secondary;
     background-color: @youpers-brand-secondary;
     border-color: @youpers-brand-tertiary;
 }
@@ -303,4 +327,45 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius:20px;
   background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(0.49, #d7d7d7), color-stop(0.51, #d1d1d1), color-stop(1, #c8c8c8) );
   border: 1px solid #787878;
+}}
+
+/* IRIG: Reuse of Bootstrap jumbotron design for page headers */
+
+
+.jumbotron {
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size:  @youpers-font-size-5;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: @youpers-brand-pages-background;
+}
+
+.jumbotron h1 {
+  line-height: 1;
+  color: inherit;
+  font-size: @youpers-font-size-3;
+}
+
+.jumbotron p {
+  line-height: 1.4;
+}
+
+.container .jumbotron {
+  border-radius: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .container .jumbotron {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .jumbotron h1 {
+    font-size:  @youpers-font-size-3;
+  }
 }
