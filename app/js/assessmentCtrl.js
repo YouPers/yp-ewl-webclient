@@ -10,48 +10,61 @@ function AssessmentCtrl($scope) {
 
     $scope.actionFieldSelected = "";
 
-    $scope.questions = [
-        {
-            id: 1,
-            title:  "question1",
-            minText: "minText1",
-            maxText: "maxText1",
-            expText: "explainText1",
-            answer: 0
-        },
-        {
-            id: 2,
-            title:  "question2",
-            minText: "minText2",
-            maxText: "maxText2",
-            expText: "explainText2",
-            answer: 0
-        },
-        {
-            id: 3,
-            title:  "question3",
-            minText: "minText3",
-            maxText: "maxText3",
-            expText: "explainText3",
-            answer: 0
-        },
-        {
-            id: 4,
-            title:  "question4",
-            minText: "minText4",
-            maxText: "maxText4",
-            expText: "explainText4",
-            answer: 0
-        }
-
-    ]
+    $scope.assessment = {
+        name: "Beurteile deinen Stresslevel",
+        questionCats: [
+            {
+                categorie: "Allgemeiner Stresslevel",
+                questions: [
+                    {
+                        id: 1,
+                        title: "Wie beurteilst du deinen Stresslevel jetzt in diesem Moment?",
+                        minText: "Ich bin unterfordert, mir ist langweilig",
+                        maxText: "Ich bin total gestresst",
+                        expText: "explainText1",
+                        answer: 0
+                    }
+                ]
+            }
+            ,
+            {
+                categorie: "Am Arbeitsplatz:",
+                questions: [
+                    {
+                        id: 2,
+                        title: "question2",
+                        minText: "minText2",
+                        maxText: "maxText2",
+                        expText: "explainText2",
+                        answer: 0
+                    },
+                    {
+                        id: 3,
+                        title: "question3",
+                        minText: "minText3",
+                        maxText: "maxText3",
+                        expText: "explainText3",
+                        answer: 0
+                    },
+                    {
+                        id: 4,
+                        title: "question4",
+                        minText: "minText4",
+                        maxText: "maxText4",
+                        expText: "explainText4",
+                        answer: 0
+                    }
+                ]
+            }
+        ]
+    }
 
 
     $scope.planAction = function (action) {
-      $scope.myPlannedActions.push({
-          action_id: action.id,
-          field: action.field
-      })
+        $scope.myPlannedActions.push({
+            action_id: action.id,
+            field: action.field
+        })
     }
 
     $scope.isActionPlanned = function (actionId) {
@@ -66,6 +79,6 @@ function AssessmentCtrl($scope) {
 
     $scope.selectActionField = function (actionField) {
         $scope.actionFieldSelected = actionField;
-    };
+    }
 
 }

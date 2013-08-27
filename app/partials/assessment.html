@@ -1,19 +1,22 @@
 <div class="container top-buffer">
 
-    <div class="row top-buffer" ng-repeat="question in questions">
-        <div class="row top-buffer ass-question">
-            <div class="col-md-2 col-md-offset-5">{{ question.title }} Wert: {{ question.answer }}</div>
+    <h1>{{ assessment.name }}</h1>
+
+    <div class="row ass-questioncat-title" ng-repeat="questioncat in assessment.questionCats">
+        <div class="col-md-4 col-md-offset-2">
+          <h2>{{ questioncat.categorie }}</h2>
         </div>
+        <div class="row top-buffer" ng-repeat="question in questioncat.questions">
+            <div class="row top-buffer ass-question">
+                <div class="col-md-4 col-md-offset-4">{{ question.title }}</div>
+            </div>
 
-        <div class="col-md-2 col-md-offset-2 ass-min-text">{{ question.minText }}</div>
-        <div class="col-md-4">
-            <input type="range"  min="-100" max="100" ng-model="question.answer">
-
-            </slider>
+            <div class="col-md-3 col-md-offset-1 ass-min-text">{{ question.minText }}</div>
+            <div class="col-md-4">
+                <input type="range"  min="-100" max="100" ng-model="question.answer"/>
+            </div>
+            <div class="col-md-3 ass-max-text">{{ question.maxText }}</div>
 
         </div>
-        <div class="col-md-2 ass-max-text">{{ question.maxText }}</div>
-
     </div>
-
 </div>

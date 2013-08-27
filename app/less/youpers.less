@@ -234,10 +234,13 @@ ul.small-icons:hover {
 
 
 //////////////////////////////////////////////
-// assessment slider styling
+// assessment styling
 @yp-ass-slider-green: #42c11f;
 @yp-ass-slider-red: #f43d3d;
 
+.ass-questioncat-title {
+  margin-bottom: 15px;
+}
 
 .ass-min-text, .ass-max-text, .ass-question {
   font-family: @youpers-brand-font;
@@ -257,6 +260,8 @@ ul.small-icons:hover {
   text-align: left;
 }
 
+
+// gradient hier definiert ohne less, weil elements.less keine gradienten mit 3 Farbpunkten unterstützt.
 input[type="range"]{
   -webkit-appearance: none;
   -moz-apperance: none;
@@ -264,7 +269,7 @@ input[type="range"]{
   height: 12px;
   padding: 0 2px;
   border-radius: 2px;
-  margin-top: 5px;
+  margin-top: 10px;
   background: @yp-ass-slider-green; /* Old browsers */
   background: -moz-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 50%, @yp-ass-slider-red 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,@yp-ass-slider-red ), color-stop(50%,@yp-ass-slider-green), color-stop(100%,@yp-ass-slider-red)); /* Chrome,Safari4+ */
