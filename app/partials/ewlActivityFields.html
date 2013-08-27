@@ -6,7 +6,7 @@
         <div class="col-xs-6 col-md-2">
             <button type="button"
                     class="btn btn-actionfield btn-actionfield-selected-{{ 'exercise'==actionFieldSelected }}"
-                    ng-click="selectActionField('exercise')">Bewegung
+                    ng-click="selectActionField('exercise')">{{ 'EXERCISE' | translate }}
             </button>
 
             <div class="actionfield-icons">
@@ -21,7 +21,7 @@
         <div class="col-xs-6 col-md-2">
             <button type="button"
                     class="btn btn-actionfield btn-actionfield-selected-{{ 'nutrition'==actionFieldSelected }}"
-                    ng-click="selectActionField('nutrition')">Ernährung
+                    ng-click="selectActionField('nutrition')">{{ 'NUTRITION' | translate }}
             </button>
 
             <div class="actionfield-icons">
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="col-xs-6 col-md-2" ng-click="selectActionField('time')">
-            <button type="button" class="btn btn-actionfield">Zeit</button>
+            <button type="button" class="btn btn-actionfield">{{ 'TIME' | translate}}</button>
 
             <div class="actionfield-icons">
 
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="col-xs-6 col-md-2">
-            <button type="button" class="btn btn-actionfield">Arbeitsweg</button>
+            <button type="button" class="btn btn-actionfield">{{ 'COMMUTE' | translate}}</button>
 
             <div class="actionfield-icons">
 
@@ -71,14 +71,11 @@
                 <div class="col-md-1">
                     <button type="button" ng-class="isActionPlanned(action.id) ?
                 'btn btn-action_planned' : 'btn btn-action_unplanned'"
-                            ng-click="planAction(action)"></button>
+                            ng-click="planAction(action)">{{ isActionPlanned(action.id) ? 'PLANNED' : 'PLAN_IT' | translate }}</button>
                 </div>
                 <div class="col-md-4"><span class="done-{{action.done}}">{{action.title}}</span></div>
                 <div class="col-md-3">{{action.text}}</div>
                 <div class="col-md-1">
-                    <ul class="medium-icons">
-                        <i class="general foundicon-{{action.art}}"></i>
-                    </ul>
                 </div>
                 <div class="col-md-2">{{action.field}}</div>
             </div>
@@ -93,7 +90,7 @@
         <div class="col-md-2">
         </div>
         <div class="col-xs-6 col-md-2">
-            <button type="button" class="btn btn-actionfield">Pausen</button>
+            <button type="button" class="btn btn-actionfield">{{ 'BREAKS' | translate}}</button>
 
             <div class="actionfield-icons">
 
@@ -105,7 +102,7 @@
             </div>
         </div>
         <div class="col-xs-6 col-md-2">
-            <button type="button" class="btn btn-actionfield">Sozial</button>
+            <button type="button" class="btn btn-actionfield">{{ 'SOCIAL' | translate}}</button>
 
             <div class="actionfield-icons">
 
@@ -117,7 +114,7 @@
             </div>
         </div>
         <div class="col-xs-6 col-md-2">
-            <button type="button" class="btn btn-actionfield">Freizeit</button>
+            <button type="button" class="btn btn-actionfield">{{ 'LEISURE' | translate}}</button>
 
             <div class="actionfield-icons">
 
@@ -129,7 +126,7 @@
             </div>
         </div>
         <div class="col-xs-6 col-md-2">
-            <button type="button" class="btn btn-actionfield">Arbeit</button>
+            <button type="button" class="btn btn-actionfield">{{ 'WORK' | translate}}</button>
 
             <div class="actionfield-icons">
 
@@ -144,5 +141,3 @@
         </div>
     </div>
 </div>
-
-<!-- End Feed Entry -->

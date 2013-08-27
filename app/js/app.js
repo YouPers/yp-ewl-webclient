@@ -56,7 +56,17 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
             HOW_PERCEIVE_CURRENT_LEVEL: 'Wie beurteilst du deinen Stresslevel jetzt in diesem Moment?',
             I_AM_UNDER_CHALLENGED: 'Ich bin unterfordert, mir ist langweilig',
             I_AM_OVERLOADED: 'Ich bin total gestresst',
-            AT_WORK: 'Am Arbeitsplatz:'
+            AT_WORK: 'Am Arbeitsplatz:',
+            WORK: 'Arbeitsplatz',
+            LEISURE: 'Freizeit',
+            TIME: 'Zeit',
+            NUTRITION: 'Ernährung',
+            EXERCISE: 'Bewegung',
+            SOCIAL: 'Soziales',
+            BREAKS: 'Pausen',
+            COMMUTE: 'Arbeitsweg',
+            PLAN_IT: 'einplanen',
+            PLANNED: 'geplant'
         });
 
         $translateProvider.translations('en', {
@@ -75,7 +85,17 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
             HOW_PERCEIVE_CURRENT_LEVEL: 'How do you perceive your  stress level in this very moment?',
             I_AM_UNDER_CHALLENGED: 'I am bored and totally under challenged',
             I_AM_OVERLOADED: 'I am totally freaking out, cannot cope with everything',
-            AT_WORK: 'At work:'
+            AT_WORK: 'At work:',
+            WORK: 'Work',
+            LEISURE: 'Leisure',
+            TIME: 'Time',
+            NUTRITION: 'Nutrition',
+            EXERCISE: 'Exercise',
+            SOCIAL: 'Social',
+            BREAKS: 'Breaks',
+            COMMUTE: 'Commute',
+            PLAN_IT: 'plan it!',
+            PLANNED: 'planned'
         });
 
         $translateProvider.preferredLanguage('de');
