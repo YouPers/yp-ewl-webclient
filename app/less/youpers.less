@@ -420,40 +420,29 @@ input[type="range"]::-webkit-slider-thumb {
 // Acitivty table on cockpit page
 // --------------------------------------------------
 
-.cockpit-log {
-  height: 400px !important;
-  overflow: auto;
-  display: block;
-}
-.cockpit-log-table {
-  clear: both;
-  display: table;
-}
-.cockpit-log-table-header {
+//.cockpit-log {
+//  height: 400px !important;
+//  overflow: auto;
+//  display: block;
+//}
+//.cockpit-log-table {
+//  clear: both;
+//  display: table;
+//}
+//.cockpit-log-table-header {
 //  display: table-header-group;
 //  position: relative;
-}
-.cockpit-log-column-header {
+//}
+.cockpit-log-column-header,
+.cockpit-social-column-header {
   font-size: @youpers-font-size-6;
 //  display: block;
 }
-tbody.scrollContent{
-  display: inline-block;
-  height: 350px;
-  overflow: auto;
-}
-.cockpit-log-column-date {
-  width: 80px;
-}
-.cockpit-log-column-title {
-  width: 170px;
-}
-.cockpit-log-column-status {
-  width: 30px;
-}
-.cockpit-log-column-more {
-  width: 20px;
-}
+//tbody.scrollContent-cockpit-log {
+//  display: inline-block;
+//  height: 350px;
+//  overflow: auto;
+//}
 .cockpit-log-entry-title {
   font-size: @youpers-font-size-6;
 }
@@ -474,37 +463,13 @@ tbody.scrollContent{
 // Social table on cockpit page
 // --------------------------------------------------
 
-.cockpit-social {
-  height: 224px !important;
-  overflow: auto;
-}
-.cockpit-social-table {
-  table-layout: fixed;
-}
-.cockpit-social-column-header {
-  font-size: @youpers-font-size-6;
-}
-.cockpit-social-column-date {
-  width: 60px;
-}
-.cockpit-social-column-time {
-  width: 40px;
-}
-.cockpit-social-column-area {
-  width: 100px;
-}
-.cockpit-social-column-activity {
-  width: 120px;
-}
-.cockpit-social-column-message {
-  width: 150px;
-}
-.cockpit-social-column-status {
-  width: 15px;
-}
-.cockpit-social-column-more {
-  width: 10px;
-}
+//.cockpit-social {
+//  height: 224px !important;
+//  overflow: auto;
+//}
+//.cockpit-social-table {
+//  table-layout: fixed;
+//}
 .cockpit-social-entry-activity {
   font-size: @youpers-font-size-6;
 }
@@ -526,29 +491,43 @@ tbody.scrollContent{
 
 
 /* define height and width of scrollable area. Add 16px to width for scrollbar          */
-div.tableContainer {
+
+table.scrollTable {
+//  font-family: @youpers-brand-font-family;
+}
+
+div.tableContainer-cockpit-log,
+div.tableContainer-cockpit-social {
   clear: both;
-//  border: 1px solid #963;
-  height: 400px;
   overflow: auto;
-//  width: 756px
+}
+
+div.tableContainer-cockpit-log {
+  height: 475px;
+}
+
+div.tableContainer-cockpit-social {
+  height: 300px;
 }
 
 /* Reset overflow value to hidden for all non-IE browsers. */
-html>body div.tableContainer {
+html>body div.tableContainer-cockpit-log,
+html>body div.tableContainer-cockpit-social {
   overflow: hidden;
 //  width: 756px
 }
 
 /* define width of table. IE browsers only                 */
-div.tableContainer table {
+div.tableContainer-cockpit-log table,
+div.tableContainer-cockpit-social {
   float: left;
 //  width: 740px
 }
 
 /* define width of table. Add 16px to width for scrollbar.           */
 /* All other non-IE browsers.                                        */
-html>body div.tableContainer table {
+html>body div.tableContainer-cockpit-log table,
+html>body div.tableContainer-cockpit-social table {
 //  width: 756px
 }
 
@@ -556,7 +535,8 @@ html>body div.tableContainer table {
 /* In WinIE 6.x, any element with a position property set to relative and is a child of       */
 /* an element that has an overflow property set, the relative value translates into fixed.    */
 /* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
-thead.fixedHeader tr {
+thead.fixedHeader-cockpit-log tr,
+thead.fixedHeader-cockpit-social tr {
   position: relative;
   border-bottom: 1px solid @youpers-brand-colors-page-background-highlighted;
 
@@ -564,23 +544,26 @@ thead.fixedHeader tr {
 
 /* set THEAD element to have block level attributes. All other non-IE browsers            */
 /* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
-html>body thead.fixedHeader tr {
+html>body thead.fixedHeader-cockpit-log tr,
+html>body thead.fixedHeader-cockpit-social tr {
   display: block;
 }
 
 /* make the TH elements pretty */
-thead.fixedHeader th {
+thead.fixedHeader-cockpit-log th,
+thead.fixedHeader-cockpit-social th {
   background: @youpers-brand-colors-page-background-normal;
 //  border-left: 1px solid #EB8;
 //  border-right: 1px solid #B74;
 //  border-top: 1px solid #EB8;
   font-weight: normal;
-  padding: 4px 3px;
+  padding: 3px 3px;
   text-align: left;
 }
 
 /* make the A elements pretty. makes for nice clickable headers                */
-thead.fixedHeader a, thead.fixedHeader a:link, thead.fixedHeader a:visited {
+thead.fixedHeader-cockpit-log a, thead.fixedHeader-cockpit-log a:link, thead.fixedHeader-cockpit-log a:visited,
+thead.fixedHeader-cockpit-social a, thead.fixedHeader-cockpit-social a:link, thead.fixedHeader-cockpit-social a:visited {
   color: @youpers-brand-colors-page-background-normal;
   display: block;
   text-decoration: none;
@@ -589,7 +572,8 @@ thead.fixedHeader a, thead.fixedHeader a:link, thead.fixedHeader a:visited {
 
 /* make the A elements pretty. makes for nice clickable headers                */
 /* WARNING: swapping the background on hover may cause problems in WinIE 6.x   */
-thead.fixedHeader a:hover {
+thead.fixedHeader-cockpit-log a:hover,
+thead.fixedHeader-cockpit-social a:hover {
   color: @youpers-brand-colors-page-background-normal;
   display: block;
   text-decoration: underline;
@@ -600,25 +584,50 @@ thead.fixedHeader a:hover {
 /* set TBODY element to have block level attributes. All other non-IE browsers            */
 /* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
 /* induced side effect is that child TDs no longer accept width: auto                     */
-html>body tbody.scrollContent {
+html>body tbody.scrollContent-cockpit-log,
+html>body tbody.scrollContent-cockpit-social {
   display: block;
-  height: 370px;
   overflow: auto;
   width: 100%;
 }
 
+html>body tbody.scrollContent-cockpit-log {
+  height: 445px;
+}
+
+html>body tbody.scrollContent-cockpit-social {
+  height: 270px;
+}
+
 /* make TD elements pretty. Provide alternating classes for striping the table */
 /* http://www.alistapart.com/articles/zebratables/                             */
-tbody.scrollContent td, tbody.scrollContent tr.normalRow td {
+tbody.scrollContent-cockpit-log td, tbody.scrollContent-cockpit-log tr.normalRow td {
   background: @youpers-brand-colors-page-background-normal;
   border-bottom: 1px solid @youpers-brand-colors-page-background-highlighted;
 //  border-left: none;
 //  border-right: 1px solid #CCC;
 //  border-top: 1px solid #DDD;
-  padding: 2px 3px 3px 4px;
+  padding: 3px 3px;
+}
+tbody.scrollContent-cockpit-social td, tbody.scrollContent-cockpit-social tr.normalRow td {
+  background: @youpers-brand-colors-page-background-normal;
+  border-bottom: 1px solid @youpers-brand-colors-page-background-highlighted;
+//  border-left: none;
+//  border-right: 1px solid #CCC;
+//  border-top: 1px solid #DDD;
+  padding: 3px 3px;
 }
 
-tbody.scrollContent tr.alternateRow td {
+tbody.scrollContent-cockpit-log tr.alternateRow td, {
+  background: #EEE;
+  border-bottom: 1px solid @youpers-brand-colors-page-background-highlighted;
+//  border-left: none;
+//  border-right: 1px solid #CCC;
+//  border-top: 1px solid #DDD;
+//  padding: 2px 3px 3px 4px;
+}
+
+tbody.scrollContent-cockpit-social tr.alternateRow td {
   background: #EEE;
   border-bottom: 1px solid @youpers-brand-colors-page-background-highlighted;
 //  border-left: none;
@@ -630,38 +639,94 @@ tbody.scrollContent tr.alternateRow td {
 /* define width of TH elements: 1st, 2nd, and 3rd respectively.          */
 /* Add 16px to last TH for scrollbar padding. All other non-IE browsers. */
 /* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors        */
-html>body thead.fixedHeader th {
+html>body thead.fixedHeader-cockpit-log th {
   width: 80px;
 }
 
-html>body thead.fixedHeader th + th {
+html>body thead.fixedHeader-cockpit-log th + th {
   width: 170px;
 }
 
-html>body thead.fixedHeader th + th + th {
+html>body thead.fixedHeader-cockpit-log th + th + th {
   width: 30px;
 }
 
-html>body thead.fixedHeader th + th + th + th {
+html>body thead.fixedHeader-cockpit-log th + th + th + th {
+  width: 20px;
+}
+
+html>body thead.fixedHeader-cockpit-social th {
+  width: 90px;
+}
+
+html>body thead.fixedHeader-cockpit-social th + th {
+  width: 70px;
+}
+
+html>body thead.fixedHeader-cockpit-social th + th + th {
+  width: 100px;
+}
+
+html>body thead.fixedHeader-cockpit-social th + th + th + th {
+  width: 170px;
+}
+
+html>body thead.fixedHeader-cockpit-social th + th + th + th + th {
+  width: 260px;
+}
+
+html>body thead.fixedHeader-cockpit-social th + th + th + th + th + th {
+  width: 30px;
+}
+
+html>body thead.fixedHeader-cockpit-social th + th + th + th + th + th + th {
   width: 20px;
 }
 
 /* define width of TD elements: 1st, 2nd, and 3rd respectively.          */
 /* All other non-IE browsers.                                            */
 /* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors        */
-html>body tbody.scrollContent td {
+html>body tbody.scrollContent-cockpit-log td {
   width: 80px;
 }
 
-html>body tbody.scrollContent td + td {
+html>body tbody.scrollContent-cockpit-log td + td {
   width: 170px;
 }
 
-html>body tbody.scrollContent td + td + td {
+html>body tbody.scrollContent-cockpit-log td + td + td {
   width: 30px;
 }
 
-html>body tbody.scrollContent td + td + td + td {
+html>body tbody.scrollContent-cockpit-log td + td + td + td {
   width: 30px;
+}
+
+html>body tbody.scrollContent-cockpit-social td {
+  width: 90px;
+}
+
+html>body tbody.scrollContent-cockpit-social td + td {
+  width: 70px;
+}
+
+html>body tbody.scrollContent-cockpit-social td + td + td {
+  width: 100px;
+}
+
+html>body tbody.scrollContent-cockpit-social td + td + td + td {
+  width: 170px;
+}
+
+html>body tbody.scrollContent-cockpit-social td + td + td + td + td {
+  width: 260px;
+}
+
+html>body tbody.scrollContent-cockpit-social td + td + td + td + td + td {
+  width: 30px;
+}
+
+html>body tbody.scrollContent-cockpit-social td + td + td + td + td + td + td {
+  width: 20px;
 }
 
