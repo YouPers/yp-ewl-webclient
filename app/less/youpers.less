@@ -22,6 +22,8 @@
 
 @youpers-brand-colors-page-background-highlighted: #eeeeee;
 @youpers-brand-colors-page-background-normal: #ffffff;
+@youpers-brand-colors-border: #cccccc;
+@youpers-brand-colors-border-rgba: rgba(0, 0, 0, 0.77);
 
 // YouPers Brand fonts
 // -------------------------
@@ -120,8 +122,10 @@ body {
 /* change NavBar background color from #080808 to the one used by youpers */
 
 .navbar-inverse {
-    background-color: @youpers-brand-colors-primary;
-    border-color: @youpers-brand-colors-primary;
+  background-color: @youpers-brand-colors-primary;
+  border-color: @youpers-brand-colors-primary;
+  font-family: @youpers-brand-font-family;
+  text-transform: uppercase;
 }
 
 /* change currently active menu to white color and appropriate hover/focus color*/
@@ -129,8 +133,8 @@ body {
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-    color: #ffffff;
-    background-color: @youpers-brand-colors-primary;
+  color: #ffffff;
+  background-color: @youpers-brand-colors-primary;
 }
 
 /* change inactive menus to youpers inactive color */
@@ -141,9 +145,21 @@ body {
 
 /* change the "more" caret to youpers inactive color */
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
-    border-top-color: @youpers-brand-colors-tertiary;
-    border-bottom-color: @youpers-brand-colors-tertiary;
+  border-top-color: @youpers-brand-colors-tertiary;
+  border-bottom-color: @youpers-brand-colors-tertiary;
 }
+
+/* overwrite bootstrap dropdown menu */
+.dropdown-menu {
+  font-size: @youpers-font-size-5;
+  text-transform: none;
+  background-color: @youpers-brand-colors-page-background-normal;
+  border: 1px solid @youpers-brand-colors-border;
+  border: 1px solid @youpers-brand-colors-border-rgba;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
 
 /* change success button to youpers colors */
 
@@ -332,8 +348,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Reuse of Bootstrap jumbotron design for YouPers page headers */
 
-
-.jumbotron {
+.yp-page-header {
   padding: 15px;
   margin-bottom: 20px;
   font-size:  @youpers-font-size-5;
@@ -343,30 +358,32 @@ input[type="range"]::-webkit-slider-thumb {
   background-color: @youpers-brand-colors-page-background-highlighted;
 }
 
-.jumbotron h1 {
+.yp-page-header h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
   line-height: 1;
   color: inherit;
   font-size: @youpers-font-size-3;
 }
 
-.jumbotron p {
+.yp-page-header p {
   line-height: 1.4;
 }
 
-.container .jumbotron {
+.container .yp-page-header {
   border-radius: 6px;
 }
 
 @media screen and (min-width: 768px) {
-  .jumbotron {
+  .yp-page-header {
     padding-top: 24px;
     padding-bottom: 24px;
   }
-  .container .jumbotron {
-    padding-right: 60px;
-    padding-left: 60px;
-  }
-  .jumbotron h1 {
-    font-size:  @youpers-font-size-3;
+//  .container .yp-page-header {
+//    padding-right: 60px;
+//    padding-left: 60px;
+//  }
+  .yp-page-header h1 {
+    font-size:  @youpers-font-size-2;
   }
 }
