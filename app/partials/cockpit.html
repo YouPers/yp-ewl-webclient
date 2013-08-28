@@ -1,165 +1,351 @@
 <div class="container">
 
-    <!-- Page header  -->
-    <div class="page-header">
-        <h1>Cockpit</h1>
+<!-- Page header  -->
+<div class="page-header">
+    <h1>Cockpit</h1>
+</div>
+
+<div class="container background-test">
+<!-- Example row of columns -->
+<div class="row">
+<div class="col-lg-8">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Zustand</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-6">
+            <h2>Aktivitäten</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Social</h2>
+            <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+            <div class="bs-example">
+                <div class="panel panel-default">
 
-    <div class="container background-test">
-        <!-- Example row of columns -->
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h2>Zustand</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                        <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-                    </div>
-                    <div class="col-lg-6">
-                        <h2>Aktivitäten</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                        <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Social</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                        <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <h2>Logbuch</h2>
-                <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
-
-                <div class="bs-example">
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <!--<div class="panel-heading">Logbuch</div>-->
-
-                        <!-- Table -->
-
+                    <table class="table">
+                        <thead>
+                        <tr class="cockpit-social-column-header">
+                            <th class="cockpit-social-column-date">Datum</th>
+                            <th class="cockpit-social-column-time">Zeit</th>
+                            <th class="cockpit-social-column-area">Aktivitätsgebiet</th>
+                            <th class="cockpit-social-column-activity">Aktivität</th>
+                            <th class="cockpit-social-column-activity">Mitteilung</th>
+                            <th class="cockpit-social-column-status">Status</th>
+                            <th class="cockpit-social-column-more">&nbsp;&nbsp;&nbsp;</th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <div class="panel cockpit-social">
                         <table class="table">
-                            <thead>
-                            <tr class="cockpit-log-column-header">
-                                <th class="cockpit-log-column-date">Datum</th>
-                                <th class="cockpit-log-column-title">Aktivität</th>
-                                <th class="cockpit-log-column-status">Status</th>
-                                <th class="cockpit-log-column-more">&nbsp;&nbsp;&nbsp;</th>
+                            <tbody>
+                            <tr class="cockpit-social-entry-new">
+                                <td class="cockpit-social-column-date">
+                                    <span class="cockpit-social-entry-date">20.08.2013</span>
+                                </td>
+                                <td class="cockpit-social-column-time">
+                                    <span class="cockpit-social-entry-date">11:25</span>
+                                </td>
+                                <td class="cockpit-social-column-area">
+                                    <span class="cockpit-social-entry-activity">Bewegung</span>
+                                </td>
+                                <td class="cockpit-social-column-activity">
+                                    <span class="cockpit-social-entry-activity">Joggen über Mittag</span>
+                                    <p>Jeden Dienstag</p>
+                                </td>
+                                <td class="cockpit-social-column-message">
+                                    <span class="cockpit-social-entry-activity">Urs Baumeler</span>
+                                    <p>Bin auch dabei!</p>
+                                </td>
+                                <td class="cockpit-social-column-status">
+                                    <span class="glyphicon glyphicon-envelope"></span></td>
+                                <td class="cockpit-social-column-more">
+                                    <a href="#" class="list-group-item">&raquo;</a>
+                                </td>
                             </tr>
-                            </thead>
+                            <tr class="cockpit-social-entry-new">
+                                <td class="cockpit-social-column-date">
+                                    <span class="cockpit-social-entry-date">20.08.2013</span>
+                                </td>
+                                <td class="cockpit-social-column-time">
+                                    <span class="cockpit-social-entry-date">11:22</span>
+                                </td>
+                                <td class="cockpit-social-column-area">
+                                    <span class="cockpit-social-entry-activity">Bewegung</span>
+                                </td>
+                                <td class="cockpit-social-column-activity">
+                                    <span class="cockpit-social-entry-activity">Joggen über Mittag</span>
+                                    <p>Jeden Dienstag</p>
+                                </td>
+                                <td class="cockpit-social-column-message">
+                                    <span class="cockpit-social-entry-activity">Ivan Rigamonti</span>
+                                    <p>Kann leider nicht, bin ausser Haus.</p>
+                                </td>
+                                <td class="cockpit-social-column-status">
+                                    <span class="glyphicon glyphicon-envelope"></span></td>
+                                <td class="cockpit-social-column-more">
+                                    <a href="#" class="list-group-item">&raquo;</a>
+                                </td>
+                            </tr>
+                            <tr class="cockpit-social-entry-new-youpers">
+                                <td class="cockpit-social-column-date">
+                                    <span class="cockpit-social-entry-date">20.08.2013</span>
+                                </td>
+                                <td class="cockpit-social-column-time">
+                                    <span class="cockpit-social-entry-date">09:15</span>
+                                </td>
+                                <td class="cockpit-social-column-area">
+                                    <span class="cockpit-social-entry-activity">Ernährung</span>
+                                </td>
+                                <td class="cockpit-social-column-activity">
+                                    <span class="cockpit-social-entry-activity">Kohlenhydratarme Kost</span>
+                                </td>
+                                <td class="cockpit-social-column-message">
+                                    <span class="cockpit-social-entry-activity">YouPers</span>
+                                    <p>Neue attraktive Ernährungsvorschläge!</p>
+                                </td>
+                                <td class="cockpit-social-column-status">
+                                    <span class="glyphicon glyphicon-envelope"></span></td>
+                                <td class="cockpit-social-column-more">
+                                    <a href="#" class="list-group-item">&raquo;</a>
+                                </td>
+                            </tr>
+                            <tr class="cockpit-social-entry-new">
+                                <td class="cockpit-social-column-date">
+                                    <span class="cockpit-social-entry-date">20.08.2013</span>
+                                </td>
+                                <td class="cockpit-social-column-time">
+                                    <span class="cockpit-social-entry-date">09:07</span>
+                                </td>
+                                <td class="cockpit-social-column-area">
+                                    <span class="cockpit-social-entry-activity">Bewegung</span>
+                                </td>
+                                <td class="cockpit-social-column-activity">
+                                    <span class="cockpit-social-entry-activity">Joggen über Mittag</span>
+                                    <p>Jeden Dienstag</p>
+                                </td>
+                                <td class="cockpit-social-column-message">
+                                    <span class="cockpit-social-entry-activity">Reto Blunschi</span>
+                                    <p>Welche Route heute?</p>
+                                </td>
+                                <td class="cockpit-social-column-status">
+                                    <span class="glyphicon glyphicon-envelope"></span></td>
+                                <td class="cockpit-social-column-more">
+                                    <a href="#" class="list-group-item">&raquo;</a>
+                                </td>
+                            </tr>
+                            <tr class="cockpit-social-entry-new">
+                                <td class="cockpit-social-column-date">
+                                    <span class="cockpit-social-entry-date">20.08.2013</span>
+                                </td>
+                                <td class="cockpit-social-column-time">
+                                    <span class="cockpit-social-entry-date">08:15</span>
+                                </td>
+                                <td class="cockpit-social-column-area">
+                                    <span class="cockpit-social-entry-activity">Bewegung</span>
+                                </td>
+                                <td class="cockpit-social-column-activity">
+                                    <span class="cockpit-social-entry-activity">Joggen über Mittag</span>
+                                    <p>Jeden Dienstag</p>
+                                </td>
+                                <td class="cockpit-social-column-message">
+                                    <span class="cockpit-social-entry-activity">Stefan Müller</span>
+                                    <p>Wer ist heute mit von der Partie?</p>
+                                </td>
+                                <td class="cockpit-social-column-status">
+                                    <span class="glyphicon glyphicon-envelope"></span></td>
+                                <td class="cockpit-social-column-more">
+                                    <a href="#" class="list-group-item">&raquo;</a>
+                                </td>
+                            </tr>
+                            <tr class="cockpit-social-entry-read">
+                                <td class="cockpit-social-column-date">
+                                    <span class="cockpit-social-entry-date">17.08.2013</span>
+                                </td>
+                                <td class="cockpit-social-column-time">
+                                    <span class="cockpit-social-entry-date">16:35</span>
+                                </td>
+                                <td class="cockpit-social-column-area">
+                                    <span class="cockpit-social-entry-activity">Bewegung</span>
+                                </td>
+                                <td class="cockpit-social-column-activity">
+                                    <span class="cockpit-social-entry-activity">Joggen über Mittag</span>
+                                    <p>Jeden Dienstag</p>
+                                </td>
+                                <td class="cockpit-social-column-message">
+                                    <span class="cockpit-social-entry-activity">Reto Blunschi</span>
+                                    <p>Kann dir nur zustimmen!</p>
+                                </td>
+                                <td class="cockpit-social-column-status">
+                                    <span class="glyphicon glyphicon-ok"></span></td>
+                                <td class="cockpit-social-column-more">
+                                    <a href="#" class="list-group-item">&raquo;</a>
+                                </td>
+                            </tr>
+                            <tr class="cockpit-social-entry-read">
+                                <td class="cockpit-social-column-date">
+                                    <span class="cockpit-social-entry-date">17.08.2013</span>
+                                </td>
+                                <td class="cockpit-social-column-time">
+                                    <span class="cockpit-social-entry-date">09:15</span>
+                                </td>
+                                <td class="cockpit-social-column-area">
+                                    <span class="cockpit-social-entry-activity">Bewegung</span>
+                                </td>
+                                <td class="cockpit-social-column-activity">
+                                    <span class="cockpit-social-entry-activity">Joggen über Mittag</span>
+                                    <p>Jeden Dienstag</p>
+                                </td>
+                                <td class="cockpit-social-column-message">
+                                    <span class="cockpit-social-entry-activity">Urs Baumeler</span>
+                                    <p>Wetter und Strecke war einfach genial heute!</p>
+                                </td>
+                                <td class="cockpit-social-column-status">
+                                    <span class="glyphicon glyphicon-ok"></span></td>
+                                <td class="cockpit-social-column-more">
+                                    <a href="#" class="list-group-item">&raquo;</a>
+                                </td>
+                            </tr>
+                            </tbody>
                         </table>
-                        <div class="panel cockpit-log">
-                            <table class="table">
-                                <tbody>
-                                <tr class="cockpit-log-entry-past">
-                                    <td class="cockpit-log-column-date">
-                                        <span class="cockpit-log-entry-date">06.08.2013</span>
-                                    </td>
-                                    <td class="cockpit-log-column-title">
-                                        <span class="cockpit-log-entry-title">Joggen über Mittag</span>
-                                        <p>Jeden Dienstag</p>
-                                    </td>
-                                    <td class="cockpit-log-column-status">
-                                        <span class="glyphicon glyphicon-ok-sign"></span></td>
-                                    <td class="cockpit-log-column-more">
-                                        <a href="#" class="list-group-item">&raquo;</a>
-                                    </td>
-                                </tr>
-                                <tr class="cockpit-log-entry-past">
-                                    <td class="cockpit-log-column-date">
-                                        <span class="cockpit-log-entry-date">13.08.2013</span>
-                                    </td>
-                                    <td class="cockpit-log-column-title">
-                                        <span class="cockpit-log-entry-title">Joggen über Mittag</span>
-                                        <p>Jeden Dienstag</p>
-                                    </td>
-                                    <td class="cockpit-log-column-status">
-                                        <span class="glyphicon glyphicon-remove-sign"></span></td>
-                                    <td class="cockpit-log-column-more">
-                                        <a href="#" class="list-group-item">&raquo;</a>
-                                    </td>
-                                </tr>
-                                <tr class="cockpit-log-entry-current">
-                                    <td class="cockpit-log-column-date">
-                                        <span class="cockpit-log-entry-date">20.08.2013</span>
-                                    </td>
-                                    <td class="cockpit-log-column-title">
-                                        <span class="cockpit-log-entry-title">Joggen über Mittag</span>
-                                        <p>Jeden Dienstag</p>
-                                    </td>
-                                    <td class="cockpit-log-column-status">
-                                        <span class="glyphicon glyphicon-unchecked"></span></td>
-                                    <td class="cockpit-log-column-more">
-                                        <a href="#" class="list-group-item">&raquo;</a>
-                                    </td>
-                                </tr>
-                                <tr class="cockpit-log-entry-future">
-                                    <td class="cockpit-log-column-date">
-                                        <span class="cockpit-log-entry-date">27.08.2013</span>
-                                    </td>
-                                    <td class="cockpit-log-column-title">
-                                        <span class="cockpit-log-entry-title">Joggen über Mittag</span>
-                                        <p>Jeden Dienstag</p>
-                                    </td>
-                                    <td class="cockpit-log-column-status">
-                                        <span class="glyphicon glyphicon-unchecked"></span></td>
-                                    <td class="cockpit-log-column-more">
-                                        <a href="#" class="list-group-item">&raquo;</a>
-                                    </td>
-                                </tr>
-                                <tr class="cockpit-log-entry-future">
-                                    <td class="cockpit-log-column-date">
-                                        <span class="cockpit-log-entry-date">03.09.2013</span>
-                                    </td>
-                                    <td class="cockpit-log-column-title">
-                                        <span class="cockpit-log-entry-title">Joggen über Mittag</span>
-                                        <p>Jeden Dienstag</p>
-                                    </td>
-                                    <td class="cockpit-log-column-status">
-                                        <span class="glyphicon glyphicon-unchecked"></span></td>
-                                    <td class="cockpit-log-column-more">
-                                        <a href="#" class="list-group-item">&raquo;</a>
-                                    </td>
-                                </tr>
-                                <tr class="cockpit-log-entry-future">
-                                    <td class="cockpit-log-column-date">
-                                        <span class="cockpit-log-entry-date">10.09.2013</span>
-                                    </td>
-                                    <td class="cockpit-log-column-title">
-                                        <span class="cockpit-log-entry-title">Joggen über Mittag</span>
-                                        <p>Jeden Dienstag</p>
-                                    </td>
-                                    <td class="cockpit-log-column-status">
-                                        <span class="glyphicon glyphicon-unchecked"></span></td>
-                                    <td class="cockpit-log-column-more">
-                                        <a href="#" class="list-group-item">&raquo;</a>
-                                    </td>
-                                </tr>
-                                <tr class="cockpit-log-entry-future">
-                                    <td class="cockpit-log-column-date">
-                                        <span class="cockpit-log-entry-date">17.09.2013</span>
-                                    </td>
-                                    <td class="cockpit-log-column-title">
-                                        <span class="cockpit-log-entry-title">Joggen über Mittag</span>
-                                        <p>Jeden Dienstag</p>
-                                    </td>
-                                    <td class="cockpit-log-column-status">
-                                        <span class="glyphicon glyphicon-unchecked"></span></td>
-                                    <td class="cockpit-log-column-more">
-                                        <a href="#" class="list-group-item">&raquo;</a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <hr>
-
     </div>
+</div>
+<div class="col-lg-4">
+    <h2>Logbuch</h2>
+    <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+
+    <div class="bs-example">
+        <div class="panel panel-default">
+
+            <table class="table">
+                <thead>
+                <tr class="cockpit-log-column-header">
+                    <th class="cockpit-log-column-date">Datum</th>
+                    <th class="cockpit-log-column-title">Aktivität</th>
+                    <th class="cockpit-log-column-status">Status</th>
+                    <th class="cockpit-log-column-more">&nbsp;&nbsp;&nbsp;</th>
+                </tr>
+                </thead>
+            </table>
+            <div class="panel cockpit-log">
+                <table class="table">
+                    <tbody>
+                    <tr class="cockpit-log-entry-past">
+                        <td class="cockpit-log-column-date">
+                            <span class="cockpit-log-entry-date">06.08.2013</span>
+                        </td>
+                        <td class="cockpit-log-column-title">
+                            <span class="cockpit-log-entry-title">Joggen über Mittag</span>
+                            <p>Jeden Dienstag</p>
+                        </td>
+                        <td class="cockpit-log-column-status">
+                            <span class="glyphicon glyphicon-ok-sign"></span></td>
+                        <td class="cockpit-log-column-more">
+                            <a href="#" class="list-group-item">&raquo;</a>
+                        </td>
+                    </tr>
+                    <tr class="cockpit-log-entry-past">
+                        <td class="cockpit-log-column-date">
+                            <span class="cockpit-log-entry-date">13.08.2013</span>
+                        </td>
+                        <td class="cockpit-log-column-title">
+                            <span class="cockpit-log-entry-title">Joggen über Mittag</span>
+                            <p>Jeden Dienstag</p>
+                        </td>
+                        <td class="cockpit-log-column-status">
+                            <span class="glyphicon glyphicon-remove-sign"></span></td>
+                        <td class="cockpit-log-column-more">
+                            <a href="#" class="list-group-item">&raquo;</a>
+                        </td>
+                    </tr>
+                    <tr class="cockpit-log-entry-current">
+                        <td class="cockpit-log-column-date">
+                            <span class="cockpit-log-entry-date">20.08.2013</span>
+                        </td>
+                        <td class="cockpit-log-column-title">
+                            <span class="cockpit-log-entry-title">Joggen über Mittag</span>
+                            <p>Jeden Dienstag</p>
+                        </td>
+                        <td class="cockpit-log-column-status">
+                            <span class="glyphicon glyphicon-unchecked"></span></td>
+                        <td class="cockpit-log-column-more">
+                            <a href="#" class="list-group-item">&raquo;</a>
+                        </td>
+                    </tr>
+                    <tr class="cockpit-log-entry-future">
+                        <td class="cockpit-log-column-date">
+                            <span class="cockpit-log-entry-date">27.08.2013</span>
+                        </td>
+                        <td class="cockpit-log-column-title">
+                            <span class="cockpit-log-entry-title">Joggen über Mittag</span>
+                            <p>Jeden Dienstag</p>
+                        </td>
+                        <td class="cockpit-log-column-status">
+                            <span class="glyphicon glyphicon-unchecked"></span></td>
+                        <td class="cockpit-log-column-more">
+                            <a href="#" class="list-group-item">&raquo;</a>
+                        </td>
+                    </tr>
+                    <tr class="cockpit-log-entry-future">
+                        <td class="cockpit-log-column-date">
+                            <span class="cockpit-log-entry-date">03.09.2013</span>
+                        </td>
+                        <td class="cockpit-log-column-title">
+                            <span class="cockpit-log-entry-title">Joggen über Mittag</span>
+                            <p>Jeden Dienstag</p>
+                        </td>
+                        <td class="cockpit-log-column-status">
+                            <span class="glyphicon glyphicon-unchecked"></span></td>
+                        <td class="cockpit-log-column-more">
+                            <a href="#" class="list-group-item">&raquo;</a>
+                        </td>
+                    </tr>
+                    <tr class="cockpit-log-entry-future">
+                        <td class="cockpit-log-column-date">
+                            <span class="cockpit-log-entry-date">10.09.2013</span>
+                        </td>
+                        <td class="cockpit-log-column-title">
+                            <span class="cockpit-log-entry-title">Joggen über Mittag</span>
+                            <p>Jeden Dienstag</p>
+                        </td>
+                        <td class="cockpit-log-column-status">
+                            <span class="glyphicon glyphicon-unchecked"></span></td>
+                        <td class="cockpit-log-column-more">
+                            <a href="#" class="list-group-item">&raquo;</a>
+                        </td>
+                    </tr>
+                    <tr class="cockpit-log-entry-future">
+                        <td class="cockpit-log-column-date">
+                            <span class="cockpit-log-entry-date">17.09.2013</span>
+                        </td>
+                        <td class="cockpit-log-column-title">
+                            <span class="cockpit-log-entry-title">Joggen über Mittag</span>
+                            <p>Jeden Dienstag</p>
+                        </td>
+                        <td class="cockpit-log-column-status">
+                            <span class="glyphicon glyphicon-unchecked"></span></td>
+                        <td class="cockpit-log-column-more">
+                            <a href="#" class="list-group-item">&raquo;</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<hr>
+
+</div>
 </div>
