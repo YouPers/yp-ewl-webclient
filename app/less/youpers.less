@@ -86,9 +86,9 @@ p {
   line-height: 1.4;
 }
 
-/* Move down content because we have a fixed navbar that is 50px tall */
+/* Move down content because we have a fixed navbar that is up to 100px tall */
 body {
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 30px;
 }
 
@@ -202,12 +202,27 @@ fieldset[disabled] .btn-success.active {
 // style entry page buttons
 
 .btn-yp-roleselection {
-  font-size:  2.125em;
+  font-size:  @youpers-font-size-2;
   margin-left: 15%;
   margin-right: 15%;
   margin-top: 10px;
   margin-bottom: 10px;
   width: 70%;
+}
+
+//
+// Buttons for Service Selection
+// --------------------------------------------------
+
+.btn-yp-serviceselection {
+  font-size:  @youpers-font-size-4;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 80%;
 }
 
 
@@ -353,42 +368,40 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Reuse of Bootstrap jumbotron design for YouPers page headers */
 
-.yp-page-header {
-  padding: 15px;
-  margin-bottom: 20px;
-  font-size:  @youpers-font-size-5;
-  font-weight: 200;
-  line-height: 2.1428571435;
-  color: inherit;
-  background-color: @youpers-brand-colors-page-background-highlighted;
-}
+//.yp-page-header {
+//  position: relative;
+//  padding: 15px;
+//  margin-bottom: 20px;
+//  font-size:  @youpers-font-size-3;
+//  font-weight: 200;
+//  line-height: 2.1428571435;
+//  color: inherit;
+//  background-color: @youpers-brand-colors-page-background-highlighted;
+//}
 
-.yp-page-header h1 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  line-height: 1;
-  color: inherit;
-  font-size: @youpers-font-size-3;
-}
+//.yp-page-header h1 {
+//  margin-top: 10px;
+//  margin-bottom: 10px;
+//  line-height: 1;
+//  color: inherit;
+//  font-size: @youpers-font-size-3;
+//}
 
-.yp-page-header p {
-  line-height: 1.4;
-}
+//.yp-page-header p {
+//  line-height: 1.4;
+//}
 
-.container .yp-page-header {
-  border-radius: 6px;
-}
+//.container .yp-page-header {
+//  border-radius: 6px;
+//}
 
-@media screen and (min-width: 768px) {
-  .yp-page-header {
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
-//  .container .yp-page-header {
-//    padding-right: 60px;
-//    padding-left: 60px;
+//@media screen and (min-width: 768px) {
+//  .yp-page-header {
+//    position: relative;
+//    padding-top: 24px;
+//    padding-bottom: 24px;
 //  }
-  .yp-page-header h1 {
-    font-size:  @youpers-font-size-2;
-  }
-}
+//  .yp-page-header h1 {
+//    font-size:  @youpers-font-size-3;
+//  }
+//}
