@@ -4,10 +4,13 @@ function AssessmentCtrl($scope) {
 
     $scope.actionFieldSelected = "";
 
+    // tobe loaded from server via assessmentService
     $scope.assessment = {
+        id: "1",
         name: "ASSESS_YOUR_STRESS_LEVEL",
         questionCats: [
             {
+                id: "1",
                 categorie: "GENERAL_STRESSLEVEL",
                 questions: [
                     {
@@ -16,12 +19,13 @@ function AssessmentCtrl($scope) {
                         minText: "I_AM_UNDER_CHALLENGED",
                         maxText: "I_AM_OVERLOADED",
                         expText: "explainText1",
-                        answer: 0
+                        defaultAnswer: 0
                     }
                 ]
             }
             ,
             {
+                id: "2",
                 categorie: "AT_WORK",
                 questions: [
                     {
@@ -30,7 +34,7 @@ function AssessmentCtrl($scope) {
                         minText: "minText2",
                         maxText: "maxText2",
                         expText: "explainText2",
-                        answer: 0
+                        defaultAnswer: 0
                     },
                     {
                         id: 3,
@@ -38,7 +42,7 @@ function AssessmentCtrl($scope) {
                         minText: "minText3",
                         maxText: "maxText3",
                         expText: "explainText3",
-                        answer: 0
+                        defaultAnswer: 0
                     },
                     {
                         id: 4,
@@ -46,11 +50,60 @@ function AssessmentCtrl($scope) {
                         minText: "minText4",
                         maxText: "maxText4",
                         expText: "explainText4",
-                        answer: 0
+                        defaultAnswer: 0
                     }
                 ]
             }
         ]
+    }
+
+    // tobe loaded from server via assessmentService
+    var assessmentAnswers = [
+        {
+            id: 1,
+            assessment_id: 1,
+            question_id: 1,
+            answer: 0
+        },
+        {
+            id: 2,
+            assessment_id: 1,
+            question_id: 2,
+            answer: 0
+        }
+        ,
+        {
+            id: 3,
+            assessment_id: 1,
+            question_id: 3,
+            answer: 0
+        }
+        ,
+        {
+            id: 4,
+            assessment_id: 1,
+            question_id: 4,
+            answer: 0
+        }
+        ,
+        {
+            id: 5,
+            assessment_id: 1,
+            question_id: 5,
+            answer: 0
+        }
+
+    ];
+
+    $scope.assAnswersByQuestionId = getAnswersByQuestionId(assessmentAnswers);
+
+    function getAnswersByQuestionId(assessmentAnswers) {
+        var answersByQId = {};
+        _.forEach(assessmentAnswers, function (myAnswer) {
+            answersByQId[myAnswer.question_id] = myAnswer
+        })
+        return answersByQId;
+
     }
 
 

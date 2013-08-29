@@ -16,10 +16,9 @@
 
             <div class="col-md-3 col-md-offset-1 ass-min-text">{{ question.minText  | translate}}</div>
             <div class="col-md-4">
-                <input type="range"  min="-100" max="100" ng-model="question.answer"/>
+                <input type="range"  min="-100" max="100" ng-model="assAnswersByQuestionId[question.id].answer"/>
             </div>
             <div class="col-md-3 ass-max-text">{{ question.maxText  | translate}}</div>
-
         </div>
     </div>
 </div>
