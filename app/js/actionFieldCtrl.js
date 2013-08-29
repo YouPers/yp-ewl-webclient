@@ -1,28 +1,16 @@
-/**
- * Created with IntelliJ IDEA.
- * User: IvanRigamonti
- * Date: 19.07.13
- * Time: 15:06
- * example from http://angularjs.org/
- */
+'use strict';
 
-function ActionFieldCtrl($scope, activityService) {
+function ActionFieldCtrl($scope, activityService, $timeout) {
 
     $scope.actionFieldSelected = "";
 
-    $scope.actions = activityService.allActivities();
+    activityService.allActivities.then(function(data) {
+        $scope.actions = data;
+    });
 
-    $scope.myPlannedActions = [
-        {
-            action_id: 2,
-            field: "exercise"
-        },
-        {
-            action_id: 3,
-            field: "exercise"
-        }
-
-    ];
+    activityService.plannedActivities.then(function(data) {
+        $scope.myPlannedActions = data;
+    });
 
     $scope.planAction = function (action) {
       $scope.myPlannedActions.push({
@@ -30,6 +18,44 @@ function ActionFieldCtrl($scope, activityService) {
           field: action.field
       })
     }
+
+    $scope.dt = new Date();
+
+    $scope.today = function() {
+        $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.showWeeks = true;
+    $scope.toggleWeeks = function () {
+        $scope.showWeeks = ! $scope.showWeeks;
+    };
+
+    $scope.clear = function () {
+        $scope.dt = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+        return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+        $scope.minDate = ( $scope.minDate ) ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function() {
+        $timeout(function() {
+            $scope.opened = true;
+        });
+    };
+
+    $scope.dateOptions = {
+        'year-format': "'yy'",
+        'starting-day': 1
+    };
+
 
     $scope.isActionPlanned = function (actionId) {
         for (var i = 0; i < $scope.myPlannedActions.length; i++) {

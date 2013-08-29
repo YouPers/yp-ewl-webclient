@@ -20,22 +20,18 @@ angular.module('myApp.services', []).
             this.planningCat = plCat;
         }
 
+        var activityProposals = $http.get('js/testactivities.json.js').then(function (result) {
+            return result.data;
+        });
+
+        var plannedActivities = $http.get('js/testplannedactivities.json.js').then(function (result) {
+            return result.data;
+        });
+
+
         var actService = {
-
-            allActivities: function () {
-                return $http.get('js/testactivities.json.js').then(function (result) {
-                    return result.data;
-                });
-            },
-
-            plannedActivities: function () {
-                return $http.get('js/testplannedactivities.json.js').then(function(result) {
-                        return result.data;
-                    }
-
-                )
-
-            }
+            allActivities: activityProposals,
+            plannedActivities: plannedActivities
         }
 
         return actService;

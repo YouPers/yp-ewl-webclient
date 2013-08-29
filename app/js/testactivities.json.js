@@ -40,6 +40,13 @@
         "text": "Run forest, Run...",
         "field": "exercise",
         "planningCat": "daily"
+    },
+    {
+        "id": "7",
+        "title": "Iss täglich einen Apfel",
+        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
+        "field": "nutrition",
+        "planningCat": "daily"
     }
 
 
