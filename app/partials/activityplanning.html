@@ -193,16 +193,22 @@
         </div>
     </div>
     <div class="col-md-6 activity-planning">
-        <h2>Für dich einplanen: opened {{ opened }}</h2>
-        <ul>
-            <li>einmalig am <div class="form-horizontal">
-                    <input type="text" datepicker-popup="dd-MMMM-yyyy" ng-model="dt" open="opened" min="minDate"
-                           max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
-                           ng-required="true"/>
-                    <button class="btn" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                </div>
+        <h2>Für dich einplanen: </h2>
 
-            </li>
+        <div class="form-inline" role="form">
+            <label for="datePickerOnce">Einmalig am: </label>
+
+            <div class="form-group">
+                <input class="form-control" type="text" id="datePickerOnce" datepicker-popup="dd-MMMM-yyyy" ng-model="dt"
+                       is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions"
+                       date-disabled="disabled(date, mode)" ng-required="true"/>
+            </div>
+            <button class="btn btn-info" ng-click="open()">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </button>
+        </div>
+
+        <ul>
             <li>Täglich <input type="select"/></li>
             <li>Wöchentlich</li>
         </ul>
