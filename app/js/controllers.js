@@ -11,7 +11,7 @@ angular.module('myApp.controllers', ['authentication', 'ngCookies', 'Base64', 'm
 
         $scope.isLoggedIn = function () {
             return principal.isAuthenticated();
-        }
+        };
 
         $scope.setCurrentSurvey = function (id) {
             for (var i = 0; i < $scope.model.surveys.length; i++) {
@@ -20,13 +20,13 @@ angular.module('myApp.controllers', ['authentication', 'ngCookies', 'Base64', 'm
                     break;
                 }
             }
-        }
+        };
 
         $scope.addNewQuestion = function () {
             $scope.model.currentSurvey.questions.push({
                 "title": "new"
             })
-        }
+        };
 
         $scope.saveCurrentSurvey = function () {
             $http.put(apiservice.getBaseURI() + '/survey/' + $scope.model.currentSurvey.id, $scope.model.currentSurvey).success(
@@ -34,7 +34,7 @@ angular.module('myApp.controllers', ['authentication', 'ngCookies', 'Base64', 'm
                     // $scope.survey = resp;
                 }
             )
-        }
+        };
 
 
         $scope.fetchSurveys = function () {
@@ -44,9 +44,9 @@ angular.module('myApp.controllers', ['authentication', 'ngCookies', 'Base64', 'm
             $http.get(apiservice.getBaseURI() + '/survey').success(function (resp, status, headers, config) {
                     $scope.model.surveys = resp;
                 }
-            )
+            );
             $scope.model.currentSurvey = {};
-        }
+        };
 
 
         $scope.$on('event:authority-deauthorized', function () {
@@ -70,7 +70,7 @@ angular.module('myApp.controllers', ['authentication', 'ngCookies', 'Base64', 'm
                 username: '',
                 name: '',
                 password: ''
-            }
+            };
 
             function loginBasicAuth(encoded) {
                 apiservice.login(encoded, function (data) {
@@ -85,27 +85,27 @@ angular.module('myApp.controllers', ['authentication', 'ngCookies', 'Base64', 'm
                 $scope.model.username = '';
                 $scope.model.password = '';
                 loginBasicAuth(encoded);
-            }
+            };
 
             $scope.logout = function () {
                 $cookieStore.remove('authdata');
                 $http.defaults.headers.common.Authorization = '';
                 authority.deauthorize();
-            }
+            };
 
-            $scope.register = function() {
+            $scope.register = function () {
                 var user = {
                     username: $scope.model.username,
                     name: $scope.model.name,
                     password: $scope.model.password
-                }
-                $http.post(apiservice.getBaseURI()+'/user', user);
+                };
+                $http.post(apiservice.getBaseURI() + '/user', user);
                 $location.path('/view1');
-            }
+            };
 
             $scope.isLoggedIn = function () {
                 return principal.isAuthenticated();
-            }
+            };
 
             $scope.getUsername = function () {
                 if (principal.isAuthenticated()) {

@@ -17,7 +17,7 @@ function ActionFieldCtrl($scope, activityService, $timeout) {
             action_id: action.id,
             field: action.field
         })
-    }
+    };
 
     $scope.dt = null;
 
@@ -44,7 +44,7 @@ function ActionFieldCtrl($scope, activityService, $timeout) {
             }
         }
         return false;
-    }
+    };
 
 
     $scope.selectActionField = function (actionField) {

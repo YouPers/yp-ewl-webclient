@@ -199,17 +199,17 @@
             <label for="datePickerOnce">Einmalig am: </label>
 
             <div class="form-group">
-                <input class="form-control" type="text" id="datePickerOnce" datepicker-popup="dd-MMMM-yyyy" ng-model="dt"
+                <input class="form-control input-sm" type="text" id="datePickerOnce" datepicker-popup="dd-MMMM-yyyy" ng-model="dt"
                        is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions"
                        date-disabled="disabled(date, mode)" ng-required="true"/>
             </div>
-            <button class="btn btn-info" ng-click="open()">
+            <button class="btn btn-info btn-sm" ng-click="open()">
                 <span class="glyphicon glyphicon-calendar"></span>
             </button>
         </div>
 
         <ul>
-            <li>Täglich <input type="select"/></li>
+            <li>Täglich <select /></li>
             <li>Wöchentlich</li>
         </ul>
         Hier wird konkret geplant

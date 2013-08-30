@@ -170,4 +170,4 @@ angular.module('Base64', []).
             'decodeToHex': decodeToHex,
             'encodeFromHex': encodeFromHex
         };
-    }])
+    }]);

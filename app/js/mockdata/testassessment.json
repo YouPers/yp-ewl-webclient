@@ -1,0 +1,51 @@
+{
+    "id": "1",
+    "name": "ASSESS_YOUR_STRESS_LEVEL",
+    "questionCats": [
+        {
+            "id": "1",
+            "category": "GENERAL_STRESSLEVEL",
+            "questions": [
+                {
+                    "id": 1,
+                    "title": "HOW_PERCEIVE_CURRENT_LEVEL",
+                    "minText": "I_AM_UNDER_CHALLENGED",
+                    "maxText": "I_AM_OVERLOADED",
+                    "expText": "explainText1",
+                    "defaultAnswer": 0
+                }
+            ]
+        }
+        ,
+        {
+            "id": "2",
+            "category": "AT_WORK",
+            "questions": [
+                {
+                    "id": 2,
+                    "title": "question2",
+                    "minText": "minText2",
+                    "maxText": "maxText2",
+                    "expText": "explainText2",
+                    "defaultAnswer": 0
+                },
+                {
+                    "id": 3,
+                    "title": "question3",
+                    "minText": "minText3",
+                    "maxText": "maxText3",
+                    "expText": "explainText3",
+                    "defaultAnswer": 0
+                },
+                {
+                    "id": 4,
+                    "title": "question4",
+                    "minText": "minText4",
+                    "maxText": "maxText4",
+                    "expText": "explainText4",
+                    "defaultAnswer": 0
+                }
+            ]
+        }
+    ]
+}

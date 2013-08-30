@@ -9,7 +9,7 @@ angular.module('myApp.services', []).
     value('version', '0.1').
 
 
-    factory('activityService', function ($http) {
+    factory('activityService', ['$http', function ($http) {
 
 
         function Activity(id, title, text, af, plCat) {
@@ -20,11 +20,11 @@ angular.module('myApp.services', []).
             this.planningCat = plCat;
         }
 
-        var activityProposals = $http.get('js/testactivities.json.js').then(function (result) {
+        var activityProposals = $http.get('js/mockdata/testactivities.json').then(function (result) {
             return result.data;
         });
 
-        var plannedActivities = $http.get('js/testplannedactivities.json.js').then(function (result) {
+        var plannedActivities = $http.get('js/mockdata/testplannedactivities.json').then(function (result) {
             return result.data;
         });
 
@@ -32,10 +32,8 @@ angular.module('myApp.services', []).
         var actService = {
             allActivities: activityProposals,
             plannedActivities: plannedActivities
-        }
+        };
 
         return actService;
-
-
-    })
+    }])
 ;
