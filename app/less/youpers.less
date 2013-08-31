@@ -25,6 +25,7 @@
 
 @youpers-brand-colors-page-background-highlighted: #eeeeee;
 @youpers-brand-colors-page-background-normal: #ffffff;
+@youpers-brand-colors-font-inversed: #ffffff;
 @youpers-brand-colors-border: #cccccc;
 @youpers-brand-colors-border-rgba: rgba(0, 0, 0, 0.15);
 
@@ -32,6 +33,7 @@
 // -------------------------
 
 @youpers-brand-font-family: "Dosis", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+@youpers-brand-font-family-numbers: "Roboto Condensed", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 
 // YouPers Brand Font Sizes
 //--------------------------
@@ -44,6 +46,7 @@
 @youpers-font-size-5: 1.2500em;
 @youpers-font-size-6: 1.0000em;
 @youpers-font-size-7: 0.8750em;
+@youpers-font-size-8: 0.6875em;
 
 // Specific
 @youpers-font-size-body: @youpers-font-size-6;
@@ -91,10 +94,12 @@ p {
   line-height: 1.4;
 }
 
-/* Move down content because we have a fixed navbar that is up to 100px tall */
+// bootstrap.css:body
 body {
-    padding-top: 100px;
-    padding-bottom: 30px;
+  font-family: @youpers-brand-font-family;
+  /* Move down content because we have a fixed navbar that is up to 100px tall */
+  padding-top: 100px;
+//  padding-bottom: 30px;
 }
 
 /* new youpers element vor youpers logo in the NavBar */
@@ -492,11 +497,6 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: @youpers-font-size-6;
 //  display: block;
 }
-//tbody.scrollContent-cockpit-log {
-//  display: inline-block;
-//  height: 350px;
-//  overflow: auto;
-//}
 .cockpit-log-entry-title {
   font-size: @youpers-font-size-6;
 }
@@ -638,15 +638,10 @@ thead.fixedHeader-cockpit-social a:hover {
 /* set TBODY element to have block level attributes. All other non-IE browsers            */
 /* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
 /* induced side effect is that child TDs no longer accept width: auto                     */
-html>body tbody.scrollContent-cockpit-log,
 html>body tbody.scrollContent-cockpit-social {
   display: block;
   overflow: auto;
   width: 100%;
-}
-
-html>body tbody.scrollContent-cockpit-log {
-  height: 445px;
 }
 
 html>body tbody.scrollContent-cockpit-social {
@@ -784,4 +779,167 @@ html>body tbody.scrollContent-cockpit-social td + td + td + td + td + td + td {
   width: 20px;
 }
 
+// bootstrap.css:list-group-item
+.list-group-item {
+  background-color: @youpers-brand-colors-page-background-normal;
+  border: 1px solid @youpers-brand-colors-page-background-highlighted;
+}
 
+.list-group-item:hover,
+.list-group-item:focus {
+  background-color: @youpers-brand-colors-page-background-highlighted;
+}
+
+.list-group-item.active {
+  background-color: fade(@youpers-brand-colors-blue-primary, 50%);
+  border-color: @youpers-brand-colors-page-background-highlighted;
+
+}
+
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  background-color: fade(@youpers-brand-colors-blue-primary, 90%);
+  border-color: @youpers-brand-colors-page-background-highlighted;
+}
+
+// bootstrap.css:badge
+.badge {
+  font-family: @youpers-brand-font-family-numbers;
+}
+
+.list-group.social-log {
+  clear: both;
+  overflow: auto;
+  height: 375px;
+}
+
+@social-log-status-indent: -15px;
+@social-log-author-avatar-indent: 5px;
+@social-log-author-name-indent: 5px;
+@social-log-area-indent: 0px;
+@social-log-title-indent: 0px;
+
+.social-log.status{
+  float: left;
+  margin-left: @social-log-status-indent;
+//  margin-top: 3px;
+}
+
+.social-log.author-avatar {
+  float: left;
+  margin-left: @social-log-author-avatar-indent;
+//  margin-top: 3px;
+  height: 48px;
+  width: 48px;
+  .rounded(3px);
+}
+
+.social-log.author-name {
+  float: left;
+  margin-left: @social-log-author-name-indent;
+//  width: 90px;
+}
+
+.social-log.area {
+//  float: left;
+  margin-left: @social-log-area-indent;
+}
+
+.social-log.title {
+//  float: left;
+  margin-left: @social-log-title-indent;
+}
+
+.social-log.feedback-box {
+  margin-left: @activity-log-indent;
+  margin-top: 10px;
+}
+
+.social-log.comment {
+//  float: left;
+//  position: relative;
+  margin-left: @social-log-title-indent;
+}
+
+.social-log.time-box {
+  float: right;
+  margin-top: 1px;
+  position: relative;
+}
+
+.list-group.activity-log {
+  clear: both;
+  overflow: auto;
+  height: 525px;
+}
+
+@activity-log-indent: 7px;
+
+.activity-log.title {
+  margin-left: @activity-log-indent;
+}
+
+.social-log.title,
+.activity-log.title {
+  font-size: @youpers-font-size-5;
+  font-weight:600;
+}
+
+.list-group-item.active > a.social-log.title,
+.list-group-item.active > a.activity-log.title {
+  color: @youpers-brand-colors-font-inversed;
+}
+
+.list-group-item.active > a.social-log.title:hover,
+.list-group-item.active > a.activity-log.title:hover {
+  color: darken(@youpers-brand-colors-blue-primary,30%);
+}
+
+.list-group-item.community > a.social-log.title:hover,
+.list-group-item.past > a.activity-log.title:hover {
+  color: darken(@youpers-brand-colors-primary,20%);
+}
+
+.activity-log.status{
+  float: left;
+  margin-left: -@activity-log-indent;
+  margin-top: 3px;
+}
+
+.activity-log.time-box {
+  float: right;
+  margin-top: 1px;
+  position: relative;
+}
+
+.activity-log.time-box.timestamp {
+  font-family: @youpers-brand-font-family-numbers;
+  font-weight:300;
+  font-size: @youpers-font-size-8;
+}
+
+.activity-log.time-box.info {
+  font-family: @youpers-brand-font-family;
+  font-size: @youpers-font-size-6;
+}
+
+.activity-log.feedback-box {
+  margin-left: @activity-log-indent;
+  margin-top: 10px;
+}
+
+.activity-log.feedback-box.comments {
+
+}
+
+.activity-log.feedback-box.rating {
+  float: right;
+  margin-top: 0px;
+}
+
+.list-group-item.community > a.social-log.title,
+.list-group-item.community .social-log,
+.list-group-item.past > a.activity-log.title,
+.list-group-item.past .activity-log {
+  color: @youpers-brand-colors-secondary;
+}
