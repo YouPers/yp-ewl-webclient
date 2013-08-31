@@ -1,72 +1,35 @@
 'use strict';
 
 angular.module('yp.ewl.assessment', [])
+
     .factory('AssessmentService', ['$http', function ($http) {
         var assService = {};
 
+        var assessments = {};
+
         assService.getAssessment = function (id) {
-            $http.get();
+            if (!(id in assessments)) {
+                return $http.get('js/mockdata/testassessment.json').then(function (result) {
+                        assessments[id] = result.data;
+                        return result.data;
+                    }
+                );
+            }
+            return assessments[id];
         };
 
         return assService;
     }])
 
-    .controller('AssessmentCtrl', ['$scope', function ($scope) {
+    .controller('AssessmentCtrl', ['$scope','AssessmentService', function ($scope, AssessmentService) {
 
         $scope.actionFieldSelected = "";
 
+
         // tobe loaded from server via assessmentService
-        $scope.assessment = {
-            id: "1",
-            name: "ASSESS_YOUR_STRESS_LEVEL",
-            questionCats: [
-                {
-                    id: "1",
-                    categorie: "GENERAL_STRESSLEVEL",
-                    questions: [
-                        {
-                            id: 1,
-                            title: "HOW_PERCEIVE_CURRENT_LEVEL",
-                            minText: "I_AM_UNDER_CHALLENGED",
-                            maxText: "I_AM_OVERLOADED",
-                            expText: "explainText1",
-                            defaultAnswer: 0
-                        }
-                    ]
-                }
-                ,
-                {
-                    id: "2",
-                    categorie: "AT_WORK",
-                    questions: [
-                        {
-                            id: 2,
-                            title: "question2",
-                            minText: "minText2",
-                            maxText: "maxText2",
-                            expText: "explainText2",
-                            defaultAnswer: 0
-                        },
-                        {
-                            id: 3,
-                            title: "question3",
-                            minText: "minText3",
-                            maxText: "maxText3",
-                            expText: "explainText3",
-                            defaultAnswer: 0
-                        },
-                        {
-                            id: 4,
-                            title: "question4",
-                            minText: "minText4",
-                            maxText: "maxText4",
-                            expText: "explainText4",
-                            defaultAnswer: 0
-                        }
-                    ]
-                }
-            ]
-        };
+        $scope.assessment = AssessmentService.getAssessment('1');
+        console.log(AssessmentService.getAssessment('1'));
+
 
         // tobe loaded from server via assessmentService
         var assessmentAnswers = [

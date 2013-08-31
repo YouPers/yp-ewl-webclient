@@ -35,7 +35,7 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
             .state('assessment', {
                 url: "/assessment",
                 templateUrl: "partials/assessment.html",
-                controller: "AssessmentCtrl"
+                controller: "AssessmentCtrl",
             })
             .state('planactivity', {
                 url: "/planactivity",
@@ -45,71 +45,8 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
     }).
 
     config(['$translateProvider', function ($translateProvider) {
-        $translateProvider.translations('de', {
-            COCKPIT: 'Cockpit',
-            ACTIVITIES: 'Aktivitäten',
-            ASSESSMENT: 'Fragebogen',
-            LANGUAGE: 'Sprache',
-            EMAIL: 'E-Mail',
-            PASSWORD: 'Passwort',
-            LOGIN: 'anmelden',
-            INDIVIDUALS: 'Privat-Personen',
-            HEALTH_PROMOTERS: 'Gesundheits-Promotoren',
-            FOR: 'für',
-            SELECT_YOUPERS_SERVICE: 'Wähle dein YouPers Service aus:',
-            ASSESS_YOUR_STRESS_LEVEL: 'Beurteile deinen persönlichen Stresslevel:',
-            GENERAL_STRESSLEVEL: 'Allgemeiner Stresslevel',
-            HOW_PERCEIVE_CURRENT_LEVEL: 'Wie beurteilst du deinen Stresslevel jetzt in diesem Moment?',
-            I_AM_UNDER_CHALLENGED: 'Ich bin unterfordert, mir ist langweilig',
-            I_AM_OVERLOADED: 'Ich bin total gestresst',
-            AT_WORK: 'Am Arbeitsplatz:',
-            WORK: 'Arbeitsplatz',
-            LEISURE: 'Freizeit',
-            TIME: 'Zeit',
-            NUTRITION: 'Ernährung',
-            EXERCISE: 'Bewegung',
-            SOCIAL: 'Soziales',
-            BREAKS: 'Pausen',
-            COMMUTE: 'Arbeitsweg',
-            PLAN_IT: 'einplanen',
-            PLANNED: 'geplant',
-            SELECT_FIELD: 'Wähle ein Aktivitätsgebiet:'
-        });
-
-        $translateProvider.translations('en', {
-            COCKPIT: 'Cockpit',
-            ACTIVITIES: 'Activities',
-            ASSESSMENT: 'Assessment',
-            LANGUAGE: 'Language',
-            EMAIL: 'email',
-            PASSWORD: 'password',
-            LOGIN: 'login',
-            INDIVIDUALS: 'Individuals',
-            HEALTH_PROMOTERS: 'Health Promoters',
-            FOR: 'for',
-            SELECT_YOUPERS_SERVICE: 'Select your YouPers Service:',
-            ASSESS_YOUR_STRESS_LEVEL: 'Assess your personal stress level:',
-            GENERAL_STRESSLEVEL: 'General stresslevel',
-            HOW_PERCEIVE_CURRENT_LEVEL: 'How do you perceive your  stress level in this very moment?',
-            I_AM_UNDER_CHALLENGED: 'I am bored and totally under challenged',
-            I_AM_OVERLOADED: 'I am totally freaking out, cannot cope with everything',
-            AT_WORK: 'At work:',
-            WORK: 'Work',
-            LEISURE: 'Leisure',
-            TIME: 'Time',
-            NUTRITION: 'Nutrition',
-            EXERCISE: 'Exercise',
-            SOCIAL: 'Social',
-            BREAKS: 'Breaks',
-            COMMUTE: 'Commute',
-            PLAN_IT: 'plan it!',
-            PLANNED: 'planned',
-            SELECT_FIELD: 'Select an activity field:'
-        });
-
         $translateProvider.preferredLanguage('de');
         $translateProvider.useCookieStorage();
-
     }]);
 
 
