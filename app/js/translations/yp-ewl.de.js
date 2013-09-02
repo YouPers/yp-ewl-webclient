@@ -19,7 +19,7 @@ angular.module('yp-ewl').
             HOW_PERCEIVE_CURRENT_LEVEL: 'Wie beurteilst du deinen Stresslevel jetzt in diesem Moment?',
             I_AM_UNDER_CHALLENGED: 'Ich bin unterfordert, mir ist langweilig',
             I_AM_OVERLOADED: 'Ich bin total gestresst',
-            AT_WORK: 'Am Arbeitsplatz:',
+            AT_WORK: 'Stress am Arbeitsplatz',
             WORK: 'Arbeitsplatz',
             LEISURE: 'Freizeit',
             TIME: 'Zeit',
