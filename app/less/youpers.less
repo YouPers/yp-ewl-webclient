@@ -502,68 +502,6 @@ input[type="range"].twoSided::-webkit-slider-thumb {
   background-color: @youpers-brand-colors-page-background-highlighted;
 }
 
-/* define width of table. IE browsers only                 */
-div.tableContainer-cockpit-log table {
-  float: left;
-//  width: 740px
-}
-
-/* define width of table. Add 16px to width for scrollbar.           */
-/* All other non-IE browsers.                                        */
-html>body div.tableContainer-cockpit-log table,
-html>body div.tableContainer-cockpit-social table {
-//  width: 756px
-}
-
-/* set table header to a fixed position. WinIE 6.x only                                       */
-/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
-/* an element that has an overflow property set, the relative value translates into fixed.    */
-/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
-thead.fixedHeader-cockpit-log tr,
-thead.fixedHeader-cockpit-social tr {
-  position: relative;
-  border-bottom: 1px solid @youpers-brand-colors-page-background-highlighted;
-
-}
-
-/* set THEAD element to have block level attributes. All other non-IE browsers            */
-/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
-html>body thead.fixedHeader-cockpit-log tr,
-html>body thead.fixedHeader-cockpit-social tr {
-  display: block;
-}
-
-/* make the TH elements pretty */
-thead.fixedHeader-cockpit-log th,
-thead.fixedHeader-cockpit-social th {
-  background: @youpers-brand-colors-page-background-normal;
-//  border-left: 1px solid #EB8;
-//  border-right: 1px solid #B74;
-//  border-top: 1px solid #EB8;
-  font-weight: normal;
-  padding: 3px 3px;
-  text-align: left;
-}
-
-/* make the A elements pretty. makes for nice clickable headers                */
-thead.fixedHeader-cockpit-log a, thead.fixedHeader-cockpit-log a:link, thead.fixedHeader-cockpit-log a:visited,
-thead.fixedHeader-cockpit-social a, thead.fixedHeader-cockpit-social a:link, thead.fixedHeader-cockpit-social a:visited {
-  color: @youpers-brand-colors-page-background-normal;
-  display: block;
-  text-decoration: none;
-  width: 100%;
-}
-
-/* make the A elements pretty. makes for nice clickable headers                */
-/* WARNING: swapping the background on hover may cause problems in WinIE 6.x   */
-thead.fixedHeader-cockpit-log a:hover,
-thead.fixedHeader-cockpit-social a:hover {
-  color: @youpers-brand-colors-page-background-normal;
-  display: block;
-  text-decoration: underline;
-  width: 100%;
-}
-
 // bootstrap.css:list-group-item
 .list-group-item {
   background-color: @youpers-brand-colors-page-background-normal;
