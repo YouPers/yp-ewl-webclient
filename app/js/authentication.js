@@ -2,59 +2,8 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', ['authentication', 'ngCookies', 'Base64', 'myApp.services']).
-    controller('MyCtrl1', ['$scope', '$http', 'apiservice', 'principal' , function ($scope, $http, apiservice, principal) {
-        $scope.model = {
-            surveys:  [],
-            currentSurvey: {}
-        };
-
-        $scope.isLoggedIn = function () {
-            return principal.isAuthenticated();
-        };
-
-        $scope.setCurrentSurvey = function (id) {
-            for (var i = 0; i < $scope.model.surveys.length; i++) {
-                if (id == $scope.model.surveys[i].id) {
-                    $scope.model.currentSurvey = $scope.model.surveys[i];
-                    break;
-                }
-            }
-        };
-
-        $scope.addNewQuestion = function () {
-            $scope.model.currentSurvey.questions.push({
-                "title": "new"
-            })
-        };
-
-        $scope.saveCurrentSurvey = function () {
-            $http.put(apiservice.getBaseURI() + '/survey/' + $scope.model.currentSurvey.id, $scope.model.currentSurvey).success(
-                function (resp, status, headers) {
-                    // $scope.survey = resp;
-                }
-            )
-        };
-
-
-        $scope.fetchSurveys = function () {
-
-            //            $http.get('js/survey.json', config).success(function(resp, status, headers, config) {
-            //            $http.get('http://ypserverapp.herokuapp.com/survey', config).success(function(resp, status, headers, config) {
-            $http.get(apiservice.getBaseURI() + '/survey').success(function (resp, status, headers, config) {
-                    $scope.model.surveys = resp;
-                }
-            );
-            $scope.model.currentSurvey = {};
-        };
-
-
-        $scope.$on('event:authority-deauthorized', function () {
-            $scope.model.currentSurvey = {};
-            $scope.model.surveys = [];
-
-        })
-    }]).controller('LoginController', ['$scope', '$http', '$cookieStore',
+angular.module('yp-auth', ['authentication', 'ngCookies', 'Base64', 'myApp.services'])
+   .controller('LoginController', ['$scope', '$http', '$cookieStore',
         'base64codec', 'principal', 'authority','apiservice', '$location',
         function ($scope, $http, $cookieStore, base64codec, principal, authority, apiservice, $location) {
 

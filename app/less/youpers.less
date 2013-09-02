@@ -317,6 +317,7 @@ ul.small-icons:hover {
 @yp-ass-slider-green: #42c11f;
 @yp-ass-slider-red: #f43d3d;
 
+
 .ass-questioncat-title {
   margin-bottom: 15px;
 }
@@ -331,7 +332,14 @@ ul.small-icons:hover {
   margin-top: 20px;
 }
 
+.ass-mid-text {
+  text-align: center;
+  margin-top: 0px;
+}
+
+
 .ass-min-text {
+
   text-align: right;
 }
 
@@ -340,15 +348,24 @@ ul.small-icons:hover {
 }
 
 
+input[type=range]::-moz-range-track {
+  background: none;
+  border: none;
+}
+
 // gradient hier definiert ohne less, weil elements.less keine gradienten mit 3 Farbpunkten unterstützt.
-input[type="range"]{
+input[type="range"] {
   -webkit-appearance: none;
   -moz-apperance: none;
-  width: 100%;
   height: 12px;
   padding: 0 2px;
   border-radius: 2px;
   margin-top: 10px;
+
+}
+
+input[type="range"].twoSided {
+  width: 100%;
   background: @yp-ass-slider-green; /* Old browsers */
   background: -moz-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 50%, @yp-ass-slider-red 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,@yp-ass-slider-red ), color-stop(50%,@yp-ass-slider-green), color-stop(100%,@yp-ass-slider-red)); /* Chrome,Safari4+ */
@@ -359,13 +376,22 @@ input[type="range"]{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@yp-ass-slider-green', endColorstr='@yp-ass-slider-red',GradientType=1 ); /* IE6-9 */
 }
 
-input[type=range]::-moz-range-track {
-  background: none;
-  border: none;
+
+input[type="range"].oneSided {
+  margin-left: 0%;
+  width: 52%;
+  background: @yp-ass-slider-green; /* Old browsers */
+  background: -moz-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,@yp-ass-slider-red ), color-stop(100%,@yp-ass-slider-green)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, @yp-ass-slider-red 0%, @yp-ass-slider-green 100%); /* IE10+ */
+  background: linear-gradient(to right, @yp-ass-slider-red 0%, @yp-ass-slider-green 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@yp-ass-slider-green', endColorstr='@yp-ass-slider-red',GradientType=1 ); /* IE6-9 */
 }
 
 
-input[type="range"]::-webkit-slider-thumb {
+input[type="range"].twoSided::-webkit-slider-thumb {
   -webkit-appearance:none;
   -moz-apperance:none;
   width:25px;
