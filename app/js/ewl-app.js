@@ -2,7 +2,8 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'yp.ewl.assessment', 'globalErrors', 'ui.router','ui.bootstrap', 'pascalprecht.translate']).
+angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','globalErrors', 'ui.router','ui.bootstrap',
+        'ngCookies', 'i18n']).
     config(function ($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, send to /home
@@ -21,12 +22,12 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
             .state('ewlActivityFields', {
                 url: "/ewl-activityfields",
                 templateUrl: "partials/ewlActivityFields.html",
-                controller: "ActionFieldCtrl"
+                controller: "ActivityCtrl"
             })
             .state('planActivity', {
                 url: "/ewl-activityfields",
                 templateUrl: "partials/activityplanning.html",
-                controller: "ActionFieldCtrl"
+                controller: "ActivityCtrl"
             })
             .state('cockpit', {
                 url: "/cockpit",
@@ -35,12 +36,12 @@ angular.module('yp-ewl', ['myApp.filters', 'myApp.services', 'myApp.directives',
             .state('assessment', {
                 url: "/assessment",
                 templateUrl: "partials/assessment.html",
-                controller: "AssessmentCtrl",
+                controller: "AssessmentCtrl"
             })
             .state('planactivity', {
                 url: "/planactivity",
                 templateUrl: "partials/activityplanning.html",
-                controller: "ActionFieldCtrl"
+                controller: "ActivityCtrl"
             })
     }).
 
