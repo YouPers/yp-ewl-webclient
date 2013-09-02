@@ -45,6 +45,14 @@ angular.module('yp.ewl.activity', []).
                 $scope.myPlannedActions = data;
             });
 
+            $scope.unPlanAction = function(action) {
+                for (var i = 0; i < $scope.myPlannedActions.length; i++) {
+                    if ($scope.myPlannedActions[i].action_id === action.id) {
+                        $scope.myPlannedActions.splice(i,1);
+                    }
+                }
+            }
+
             $scope.planAction = function (action) {
                 var newAction = true;
 
