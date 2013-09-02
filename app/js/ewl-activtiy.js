@@ -46,10 +46,26 @@ angular.module('yp.ewl.activity', []).
             });
 
             $scope.planAction = function (action) {
-                $scope.myPlannedActions.push({
-                    action_id: action.id,
-                    field: action.field
-                })
+                var newAction = true;
+
+                // check whether this activity is already planned, if so, do replace the plan
+                // if not, add it
+                for (var i = 0; i < $scope.myPlannedActions.length; i++) {
+                    if ($scope.myPlannedActions[i].action_id === action.id) {
+
+                        $scope.myPlannedActions[i] = {
+                            action_id: action.id,
+                            field: action.field
+                        };
+                        newAction = false;
+                    }
+                }
+                if (newAction) {
+                    $scope.myPlannedActions.push({
+                        action_id: action.id,
+                        field: action.field
+                    })
+                }
             };
 
             $scope.dt = null;
