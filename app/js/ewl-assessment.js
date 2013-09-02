@@ -6,7 +6,7 @@ angular.module('yp.ewl.assessment', [])
         var assService = {};
 
         var assessment;
-        var answers = [];
+        var answers = {};
 
         assService.getAssessment = function (id) {
             return $q.all([
@@ -23,7 +23,6 @@ angular.module('yp.ewl.assessment', [])
                         answersAsArray = generateDefaultAnswers();
                     }
 
-                    var answers = {};
                     _.forEach(answersAsArray, function (myAnswer) {
                         answers[myAnswer.question_id] = myAnswer
                     });
@@ -38,6 +37,7 @@ angular.module('yp.ewl.assessment', [])
 
 
         function generateDefaultAnswers() {
+            var defaultAnswers = [];
             var nextId = 1;
             for (var i = 0; i < assessment.questionCats.length; i++) {
                 var questionCat = assessment.questionCats[i];
@@ -49,9 +49,10 @@ angular.module('yp.ewl.assessment', [])
                         question_id: question.id,
                         answer: 0
                     }
-                    answers.push(answer);
+                    defaultAnswers.push(answer);
                 }
             }
+            return defaultAnswers;
 
         }
 
