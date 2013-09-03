@@ -39,6 +39,26 @@ angular.module('yp.discussion', []).
             thread.comments.push(newComment);
         }
 
+        $scope.submitNewThread = function (threads) {
+            var newThread = {
+                "ref_obj_id": 1,
+                "ref_obj": "activity",
+                "author": {
+                    "id": 1,
+                    "fullname": "Urs Baumeler",
+                    "pic": "assets/img/UBAU.jpeg",
+                    "link": "#/u/UBAU"
+                },
+                "date": new Date(),
+                "type": "generic",
+                "text": threads.newThread,
+                "comments": []
+            }
+            threads.newThread = '';
+            threads.showNewThread = false;
+            threads.unshift(newThread);
+        }
+
     }])
 
 
