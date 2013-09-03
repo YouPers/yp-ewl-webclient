@@ -10,6 +10,7 @@
             "link": "#/u/UBAU"
         },
         "date": "16.05.2013",
+        "type": "generic",
         "text": "Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?",
         "comments": [
             {
@@ -67,7 +68,53 @@
             "link": "#/u/SMUE"
         },
         "date": "16.05.2013",
+        "type": "generic",
         "text": "Heute 17 Km gemacht, war supercool",
+        "comments": [
+            {
+                "id": 4,
+                "ref_id": 1,
+                "ref_obj": "activity",
+                "thread_id": 1,
+                "author": {
+                    "id": 2,
+                    "fullname": "Ivan Rigamonti",
+                    "pic": "assets/img/IRIG.jpeg",
+                    "link": "#/u/IRIG"
+                },
+                "date": "16.05.2013",
+                "text": "Gratulation, nicht schlecht, morgen gehen wir zusammen oder?"
+            },
+            {
+                "id": 5,
+                "ref_id": 1,
+                "ref_obj": "activity",
+                "thread_id": 1,
+                "author": {
+                    "id": 3,
+                    "fullname": "Stefan Müller",
+                    "pic": "assets/img/SMUE.jpeg",
+                    "link": "#/u/SMUE"
+                },
+                "date": "16.05.2013",
+                "text": "Ist mir zu langsam mit dir ;-)"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "ref_obj_id": 1,
+        "ref_obj": "activity",
+        "author": {
+            "id": 1,
+            "fullname": "Stefan Müller",
+            "pic": "assets/img/SMUE.jpeg",
+            "link": "#/u/SMUE"
+        },
+        "date": "16.05.2013",
+        "type": "rating",
+        "text": "Heute 17 Km gemacht, war supercool",
+        "ratingValue": 4,
         "comments": [
             {
                 "id": 4,

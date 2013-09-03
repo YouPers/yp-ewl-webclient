@@ -7,12 +7,13 @@ angular.module('yp.discussion', []).
     factory('CommentService', ['$http', function ($http) {
         var commentService = {};
 
-        commentService.getThreadsFor = function (objectType, objectId) {
-            return $http.get('js/mockdata/testcomments.json').then(function (result) {
-                return result.data;
-            })
-        }
+        var comments = $http.get('js/mockdata/testcomments.json').then(function (result) {
+            return result.data;
+        })
 
+        commentService.getThreadsFor = function (objectType, objectId) {
+            return comments;
+        }
 
         return commentService;
     }
@@ -32,8 +33,8 @@ angular.module('yp.discussion', []).
                     fullname: 'Reto Blunschi',
                     pic: 'assets/pics/RBLU.jpeg'
                 },
-                date:  new Date(),
-                text:   thread.newComment
+                date: new Date(),
+                text: thread.newComment
             }
 
             thread.comments.push(newComment);

@@ -47,7 +47,7 @@
                 </div>
                 <div class="social-thread-footer">
                     <a href="" ng-click="thread.showComments = !thread.showComments">{{ thread.comments.length + ' Kommentare' }}</a>
-                    <span class="thread-actions"><a href="">kommentieren</a></span>
+                    <span class="thread-actions"><a href="" ng-click="thread.showComments = !thread.showComments">kommentieren</a></span>
                 </div>
                 <div class="container" ng-show="thread.showComments">
                     <div class="row social-thread" ng-repeat="comment in thread.comments">
