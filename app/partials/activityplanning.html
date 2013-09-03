@@ -32,24 +32,59 @@
             <a class="action-social-comment-link" href="">neuer Kommentar</a>
         </div>
     </div>
-    <div class="row action-social-content">
+    <div class="row action-social-content" ng-controller="CommentCtrl">
         <div class="col-md-12">
-            <div class="row social-thread">
+            <div class="row social-thread" ng-repeat="thread in threads">
                 <div class="social-thread-header">
-                    <a href="#/u/ubau">
-                        <img src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                        <strong class="fullname">Urs Baumeler</strong>
+                    <a href="{{ thread.author.link }}">
+                        <img ng-src="{{ thread.author.pic }}" class="avatar-icon"/>
+                        <strong class="fullname">{{ thread.author.fullname }}</strong>
                     </a>
-                    <span class="thread-time">17:00</span>
+                    <span class="thread-time">{{ thread.date }}</span>
                 </div>
                 <div class="social-thread-text">
-                    Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?
+                    {{ thread.text }}
                 </div>
                 <div class="social-thread-footer">
-                    <a href="">3 Kommentare</a>
+                    <a href="" ng-click="thread.showComments = !thread.showComments">{{ thread.comments.length + ' Kommentare' }}</a>
                     <span class="thread-actions"><a href="">kommentieren</a></span>
                 </div>
+                <div class="container" ng-show="thread.showComments">
+                    <div class="row social-thread" ng-repeat="comment in thread.comments">
+                        <div class="social-thread-header">
+                            <a href="{{ comment.author.link }}">
+                                <img ng-src="{{ comment.author.pic }}" class="avatar-icon"/>
+                                <strong class="fullname">{{ comment.author.fullname }}</strong>
+                            </a>
+                            <span class="thread-time">{{ comment.date }}</span>
+                        </div>
+                        <div class="social-thread-text">
+                            {{ comment.text }}
+                        </div>
+                        <div class="social-thread-footer">
+                        </div>
+                    </div>
+                    <div class="row social-thread">
+                        <div class="social-thread-header">
+                            <a href="#/u/RBLU">
+                                <img ng-src="assets/pics/RBLU.jpeg" class="avatar-icon"/>
+                                <strong class="fullname">Reto Blunschi</strong>
+                            </a>
+                            <span class="thread-time">4.9.2013</span>
+                        </div>
+                        <div class="social-thread-text">
+                            <input type="text" class="form-control" ng-model="thread.newComment">
+                        </div>
+                        <div class="social-thread-footer">
+                            <button class="btn btn-primary btn-sm" ng-click="submitNewComment(thread)">submit</button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+
+
             <div class="row social-thread">
                 <div class="social-thread-header">
                     <a href="#/u/ubau">
