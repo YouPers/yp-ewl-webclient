@@ -8,27 +8,38 @@ angular.module('yp.ewl.assessment', [])
         var assessment;
         var answers = {};
 
-        assService.getAssessment = function (id) {
-            return $q.all([
-                    $http.get('js/mockdata/testassessment.json'),
-                    $http.get('js/mockdata/testass_answers.json')
-                ]
-                ).then(function (results) {
-                    assessment = results[0].data;
-                    var answersAsArray;
+        /**
+         * gets Assessment from service singleton, loads it from server
+         * @returns {*}
+         */
+        assService.getAssessment = function () {
+            if (assessment) {
+                return assessment;
+            } else {
+                return $q.all([
+                        $http.get('js/mockdata/testassessment.json'),
+                        $http.get('js/mockdata/testass_answers.json')
+                    ]
+                    ).then(function (results) {
+                        assessment = results[0].data;
 
-                    if (results[1].data.size > 0) {
-                        answersAsArray = results[1].data;
-                    } else {
-                        answersAsArray = generateDefaultAnswers();
+                        // check whether we got saved answers for this user and this assessment
+                        var answersAsArray;
+                        if (results[1].data.size > 0) {
+                            answersAsArray = results[1].data;
+                        } else {
+                            // got no answers from server, need to generate default answers
+                            answersAsArray = generateDefaultAnswers();
+                        }
+
+                        // sort answers into keyed object to ease access by view
+                        _.forEach(answersAsArray, function (myAnswer) {
+                            answers[myAnswer.question_id] = myAnswer
+                        });
+                        return assessment;
                     }
-
-                    _.forEach(answersAsArray, function (myAnswer) {
-                        answers[myAnswer.question_id] = myAnswer
-                    });
-                    return assessment;
-                }
-            );
+                );
+            }
         }
 
         assService.getAssAnswers = function () {
@@ -62,8 +73,12 @@ angular.module('yp.ewl.assessment', [])
     .controller('AssessmentCtrl', ['$scope', 'AssessmentService', function ($scope, AssessmentService) {
         var assId = '1';  // only one assessment suppoerted at the moment
 
-        $scope.assessment = AssessmentService.getAssessment(assId);
+        $scope.assessment = AssessmentService.getAssessment();
         $scope.assAnswersByQuestionId = AssessmentService.getAssAnswers();
+
+        $scope.answersAsJSON = function () {
+            return JSON.stringify(AssessmentService.getAssAnswers(), undefined, 2);
+        }
 
     }]);
 
