@@ -72,9 +72,6 @@ function SocialLogCtrl($scope) {
         }
     ];
 
-
-
-
     $scope.glyphicon = function(status) {
         var icon = "";
         if (status == "newMessage") {

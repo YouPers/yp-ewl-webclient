@@ -1,85 +1,133 @@
 function ActivityLogCtrl($scope) {
     $scope.activityLogEntries = [
         {
-            "type": "community",
-            "status": "newMessage",
-            "avatar": "assets/img/UBAU.jpeg",
-            "author": "Urs Baumeler",
-            "area": "Bewegung",
+            "status": "done",
+            "type": "past",
             "activity": "Joggen über Mittag",
-            "comment": "Bin auch dabei",
-            "timestamp": "20.08.2013 11:25"
+            "nofcomments": "7",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "4",
+            "timestamp": "06.08.2013 12:15"
         },
         {
-            "type": "community",
-            "status": "newMessage",
-            "avatar": "assets/img/IRIG.jpeg",
-            "author": "Ivan Rigamonti",
-            "area": "Bewegung",
+            "status": "not done",
+            "type": "past",
             "activity": "Joggen über Mittag",
-            "comment": "Kann leider nicht, bin ausser Haus.",
-            "timestamp": "20.08.2013 11:22"
+            "nofcomments": "2",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "1",
+            "timestamp": "13.08.2013 11:45"
         },
         {
-            "type": "youpers",
-            "status": "newMessage",
-            "avatar": "assets/img/youpers.jpeg",
-            "author": "YouPers",
-            "area": "Ernährung",
-            "activity": "Kohlenhydratarme Kost",
-            "comment": "Neue attraktive Ernährungsvorschläge!",
-            "timestamp": "20.08.2013 09:15"
+            "status": "open",
+            "type": "current",
+            "activity": "Joggen über Mittag",
+            "nofcomments": "3",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "0",
+            "timestamp": "heute 12:00"
         },
         {
-            "type": "community",
-            "status": "newMessage",
-            "avatar": "assets/img/RBLU.jpeg",
-            "author": "Reto Blunschi",
-            "area": "Bewegung",
+            "status": "open",
+            "type": "future",
             "activity": "Joggen über Mittag",
-            "comment": "Welche Route heute?",
-            "timestamp": "20.08.2013 09:07"
+            "nofcomments": "0",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "0",
+            "timestamp": "27.08.2013 12:00"
         },
         {
-            "type": "community",
-            "status": "newMessage",
-            "avatar": "assets/img/SMUE.jpeg",
-            "author": "Stefan Müller",
-            "area": "Bewegung",
+            "status": "open",
+            "type": "future",
             "activity": "Joggen über Mittag",
-            "comment": "Wer ist mit von der Partie?",
-            "timestamp": "20.08.2013 08:15"
+            "nofcomments": "0",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "0",
+            "timestamp": "03.09.2013 12:00"
         },
         {
-            "type": "community",
-            "status": "readMessage",
-            "avatar": "assets/img/UBAU.jpeg",
-            "author": "Urs Baumeler",
-            "area": "Bewegung",
+            "status": "open",
+            "type": "future",
             "activity": "Joggen über Mittag",
-            "comment": "Kann dir nur zustimmen!",
-            "timestamp": "17.08.2013 16:35"
+            "nofcomments": "0",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "0",
+            "timestamp": "10.09.2013 12:00"
         },
         {
-            "type": "community",
-            "status": "readMessage",
-            "avatar": "assets/img/SMUE.jpeg",
-            "author": "Stefan Müller",
-            "area": "Bewegung",
+            "status": "open",
+            "type": "future",
             "activity": "Joggen über Mittag",
-            "comment": "Wetter und Strecke waren einfach genial heute!",
-            "timestamp": "17.08.2013 14:22"
+            "nofcomments": "0",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "0",
+            "timestamp": "17.09.2013 12:00"
+        },
+        {
+            "status": "open",
+            "type": "future",
+            "activity": "Joggen über Mittag",
+            "nofcomments": "0",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "0",
+            "timestamp": "24.09.2013 12:00"
+        },
+        {
+            "status": "open",
+            "type": "future",
+            "activity": "Joggen über Mittag",
+            "nofcomments": "0",
+            "recurring": "yes",
+            "recurringinfo": "jeden Dienstag",
+            "rating": "0",
+            "timestamp": "01.10.2013 12:00"
         }
     ];
 
-    $scope.glyphicon = function(status) {
+    $scope.getStars = function(num) {
+        var starsArray = new Array();
+        for (var i = 0; i < num; i++) {
+            starsArray[i]=i;
+        }
+        return starsArray;
+    }
+
+    $scope.getEmptyStars = function(num) {
+        var starsArray = new Array();
+        for (var i = 0; i < num; i++) {
+            starsArray[i]=i;
+        }
+        return starsArray;
+    }
+
+    $scope.glyphiconStatus = function(status) {
         var icon = "";
-        if (status == "newMessage") {
-            icon = "envelope";
-        } else if (status == "readMessage") {
+        if (status == "done") {
             icon = "ok";
-        } else {
-            icon = "star";
+        } else if (status == "not done") {
+            icon = "remove";
+        } else if (status == "open") {
+            icon = "unchecked";
+        };
+        return icon;
+    };
+
+    $scope.glyphiconType = function(status) {
+        var icon = "";
+        if (status == "past") {
+            icon = "past";
+        } else if (status == "current") {
+            icon = "active";
+        } else if (status == "future") {
+            icon = "";
         };
         return icon;
     };

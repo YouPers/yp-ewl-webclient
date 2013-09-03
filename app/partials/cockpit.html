@@ -2,328 +2,111 @@
 
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
-<!-- Page header  -->
-<div class="page-header">
-    <h1>Cockpit</h1>
-</div>
-
-<div class="container background-test">
-<div class="row">
-<div class="col-md-8">
-<div class="row">
-    <div class="col-md-6">
-        <h2>Massgeschneiderte Vorschläge</h2>
-
-        <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur Stressreduktion
-            vorzuschlagen. </p>
-
-        <p><a class="btn btn-default" href="#">Zum Fragebogen &raquo;</a></p>
+    <!-- Page header  -->
+    <div class="page-header">
+        <h1>Cockpit</h1>
     </div>
-    <div class="col-md-6">
-        <h2>Aktivitäten</h2>
 
-        <p>Wie hat sich dein Stresslevel entwickelt? </p>
+    <div class="container background-test">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Massgeschneiderte Vorschläge</h2>
 
-        <p><a class="btn btn-default" href="#">Ausführliche Darstellung &raquo;</a></p>
-    </div>
-</div>
-<div class="row">
-<div class="col-md-12">
-<h2>Social</h2>
+                        <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur Stressreduktion vorzuschlagen. </p>
 
-<p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
-
-<div class="list-group social-log" ng-controller="SocialLogCtrl">
-    <!--<ul class="list-group social-log">-->
-        <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
-            <div class="row">
-                <div class="col-xs-7 col-md-7">
-                    <div class="col-xs-6 col-md-6">
-                        <div class="social-log status">
-                            <!--<span class="glyphicon glyphicon-{{socialLogEntry.status}}"></span></td>-->
-                            <span class="glyphicon glyphicon-{{glyphicon(socialLogEntry.status)}}"></span></td>
-                        </div>
-                        <a href="#/u/ubau">
-                            <img src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
-                            <strong class="social-log author-name">{{socialLogEntry.author}}</strong>
-                        </a>
+                        <p><a class="btn btn-default" href="#">Zum Fragebogen &raquo;</a></p>
                     </div>
-                    <div class="col-xs-6 col-md-6">
-                        <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
-                        <a href="#" class="social-log title">{{socialLogEntry.activity}}</a>
+                    <div class="col-md-6">
+                        <h2>Aktivitäten</h2>
+
+                        <p>Wie hat sich dein Stresslevel entwickelt? </p>
+
+                        <p><a class="btn btn-default" href="#">Ausführliche Darstellung &raquo;</a></p>
                     </div>
                 </div>
-                <div class="col-xs-5 col-md-5">
-                    <div class="col-xs-6 col-md-6">
-                        <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
-                    </div>
-                    <div class="col-xs-6 col-md-6">
-                        <div class="social-log time-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Social</h2>
+
+                        <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+                        <div class="list-group social-log" ng-controller="SocialLogCtrl">
+
+                            <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
+                                <div class="row">
+                                    <div class="col-xs-7 col-md-7">
+                                        <div class="col-xs-6 col-md-6">
+                                            <div class="social-log status">
+                                                <span class="glyphicon glyphicon-{{glyphicon(socialLogEntry.status)}}"></span></td>
+                                            </div>
+                                            <a href="#/u/ubau">
+                                                <img src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
+                                                <strong class="social-log author-name">{{socialLogEntry.author}}</strong>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6">
+                                            <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
+                                            <a href="#" class="social-log title">{{socialLogEntry.activity}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5 col-md-5">
+                                        <div class="col-xs-6 col-md-6">
+                                            <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6">
+                                            <div class="social-log time-box">
                                                 <span class="activity-log time-box timestamp">
                                                     {{socialLogEntry.timestamp}}</br>
-                                                    <!--<span class="activity-log time-box info">-->
-                                                        <!--jeden Dienstag&nbsp;&nbsp;-->
-                                                        <!--<span class="glyphicon glyphicon-repeat"></span>-->
-                                                    <!--</span>-->
                                                 </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-    <!--</ul>-->
-</div>
+            <div class="col-md-4">
+                <div class="col-md-12">
+                    <h2>Dein Logbuch</h2>
 
-</div>
-</div>
-</div>
-<div class="col-md-4">
-<div class="col-md-12">
-<h2>Dein Logbuch</h2>
+                    <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
+                    <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
+                        <div class="list-group-item {{glyphiconType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries">
+                            <a href="#" class="activity-log title">{{activityLogEntry.activity}}</a>
 
-
-
-<p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
-
-<div class="list-group activity-log">
-<div class="list-group-item past">
-    <a href="#" class="activity-log title">Joggen über Mittag</a>
-
-    <div class="activity-log status">
-        <span class="glyphicon glyphicon-ok"></span></td>
-    </div>
-    <div class="activity-log time-box">
+                            <div class="activity-log status">
+                                <span class="glyphicon glyphicon-{{glyphiconStatus(activityLogEntry.status)}}"></span></td>
+                            </div>
+                            <div class="activity-log time-box">
                                 <span class="activity-log time-box timestamp">
-                                    06.08.2013 12:15</br>
+                                    {{activityLogEntry.timestamp}}</br>
                                     <span class="activity-log time-box info">
-                                        jeden Dienstag&nbsp;&nbsp;
+                                        {{activityLogEntry.recurringInfo}}&nbsp;&nbsp;
                                         <span class="glyphicon glyphicon-repeat"></span>
                                     </span>
                                 </span>
-    </div>
-    <div class="activity-log feedback-box">
+                            </div>
+                            <div class="activity-log feedback-box">
                                 <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">7</a>
+                                    Kommentare <a href="#" class="badge">{{activityLogEntry.nofcomments}}</a>
                                 </span>
 
-        <div class="activity-log feedback-box rating">
-            <span class="glyphicon glyphicon-star individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
+                                <div class="activity-log feedback-box rating">
+                                    <span class="glyphicon glyphicon-star individual-rating" ng-repeat="i in getStars(activityLogEntry.rating)"></span>
+                                    <span class="glyphicon glyphicon-star-empty individual-rating" ng-repeat="i in getEmptyStars(5 - activityLogEntry.rating)"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <hr>
     </div>
-</div>
-<div class="list-group-item past">
-    <a href="#" class="activity-log title">Joggen über Mittag</a>
-
-    <div class="activity-log status">
-        <span class="glyphicon glyphicon-remove"></span></td>
-    </div>
-    <div class="activity-log time-box">
-                                <span class="activity-log time-box timestamp">
-                                    13.08.2013 11:45</br>
-                                    <span class="activity-log time-box info">
-                                        jeden Dienstag&nbsp;&nbsp;
-                                        <span class="glyphicon glyphicon-repeat"></span>
-                                    </span>
-                                </span>
-    </div>
-    <div class="activity-log feedback-box">
-                                <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">2</a>
-                                </span>
-
-        <div class="activity-log feedback-box rating">
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-        </div>
-    </div>
-</div>
-<div class="list-group-item active">
-    <a href="#" class="activity-log title">Joggen über Mittag</a>
-
-    <div class="activity-log status">
-        <span class="glyphicon glyphicon-unchecked"></span></td>
-    </div>
-    <div class="activity-log time-box">
-                                <span class="activity-log time-box timestamp">
-                                    heute 12:00</br>
-                                    <span class="activity-log time-box info">
-                                        jeden Dienstag&nbsp;&nbsp;
-                                        <span class="glyphicon glyphicon-repeat"></span>
-                                    </span>
-                                </span>
-    </div>
-    <div class="activity-log feedback-box">
-                                <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">3</a>
-                                </span>
-
-        <div class="activity-log feedback-box rating">
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-        </div>
-    </div>
-</div>
-<div class="list-group-item">
-    <a href="#" class="activity-log title">Joggen über Mittag</a>
-
-    <div class="activity-log status">
-        <span class="glyphicon glyphicon-unchecked"></span></td>
-    </div>
-    <div class="activity-log time-box">
-                                <span class="activity-log time-box timestamp">
-                                    27.08.2013 12:00</br>
-                                    <span class="activity-log time-box info">
-                                        jeden Dienstag&nbsp;&nbsp;
-                                        <span class="glyphicon glyphicon-repeat"></span>
-                                    </span>
-                                </span>
-    </div>
-    <div class="activity-log feedback-box">
-                                <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">0</a>
-                                </span>
-
-        <div class="activity-log feedback-box rating">
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-        </div>
-    </div>
-</div>
-<div class="list-group-item">
-    <a href="#" class="activity-log title">Joggen über Mittag</a>
-
-    <div class="activity-log status">
-        <span class="glyphicon glyphicon-unchecked"></span></td>
-    </div>
-    <div class="activity-log time-box">
-                                <span class="activity-log time-box timestamp">
-                                    03.09.2013 12:00</br>
-                                    <span class="activity-log time-box info">
-                                        jeden Dienstag&nbsp;&nbsp;
-                                        <span class="glyphicon glyphicon-repeat"></span>
-                                    </span>
-                                </span>
-    </div>
-    <div class="activity-log feedback-box">
-                                <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">0</a>
-                                </span>
-
-        <div class="activity-log feedback-box rating">
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-        </div>
-    </div>
-</div>
-<div class="list-group-item">
-    <a href="#" class="activity-log title">Joggen über Mittag</a>
-
-    <div class="activity-log status">
-        <span class="glyphicon glyphicon-unchecked"></span></td>
-    </div>
-    <div class="activity-log time-box">
-                                <span class="activity-log time-box timestamp">
-                                    10.09.2013 12:00</br>
-                                    <span class="activity-log time-box info">
-                                        jeden Dienstag&nbsp;&nbsp;
-                                        <span class="glyphicon glyphicon-repeat"></span>
-                                    </span>
-                                </span>
-    </div>
-    <div class="activity-log feedback-box">
-                                <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">0</a>
-                                </span>
-
-        <div class="activity-log feedback-box rating">
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-        </div>
-    </div>
-</div>
-<div class="list-group-item">
-    <a href="#" class="activity-log title">Joggen über Mittag</a>
-
-    <div class="activity-log status">
-        <span class="glyphicon glyphicon-unchecked"></span></td>
-    </div>
-    <div class="activity-log time-box">
-                                <span class="activity-log time-box timestamp">
-                                    17.09.2013 12:00</br>
-                                    <span class="activity-log time-box info">
-                                        jeden Dienstag&nbsp;&nbsp;
-                                        <span class="glyphicon glyphicon-repeat"></span>
-                                    </span>
-                                </span>
-    </div>
-    <div class="activity-log feedback-box">
-                                <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">0</a>
-                                </span>
-
-        <div class="activity-log feedback-box rating">
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-        </div>
-    </div>
-</div>
-<div class="list-group-item">
-    <a href="#" class="activity-log title">Joggen über Mittag</a>
-
-    <div class="activity-log status">
-        <span class="glyphicon glyphicon-unchecked"></span></td>
-    </div>
-    <div class="activity-log time-box">
-                                <span class="activity-log time-box timestamp">
-                                    24.09.2013 12:00</br>
-                                    <span class="activity-log time-box info">
-                                        jeden Dienstag&nbsp;&nbsp;
-                                        <span class="glyphicon glyphicon-repeat"></span>
-                                    </span>
-                                </span>
-    </div>
-    <div class="activity-log feedback-box">
-                                <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">0</a>
-                                </span>
-
-        <div class="activity-log feedback-box rating">
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-            <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<hr>
-</div>
 </div>
