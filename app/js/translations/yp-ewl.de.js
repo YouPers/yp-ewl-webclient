@@ -30,9 +30,13 @@ angular.module('yp-ewl').
             COMMUTE: 'Arbeitsweg',
             PLAN_IT: 'einplanen',
             PLANNED: 'geplant',
-            SELECT_FIELD: 'Wähle ein Aktivitätsgebiet:'
-
-
-
+            SELECT_FIELD: 'Wähle ein Aktivitätsgebiet:',
+            MONDAY: 'Montag',
+            TUESDAY: 'Dienstag',
+            WEDNESDAY: 'Mittwoch',
+            THURSDAY: 'Donnerstag',
+            FRIDAY: 'Freitag',
+            SATURDAY: 'Samstag',
+            SUNDAY: 'Sonntag'
         })
     }]);

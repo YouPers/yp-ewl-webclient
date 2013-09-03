@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','globalErrors', 'ui.router','ui.bootstrap',
+angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion','globalErrors', 'ui.router','ui.bootstrap',
         'ngCookies', 'i18n']).
     config(function ($stateProvider, $urlRouterProvider) {
         //
@@ -22,7 +22,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','globalErrors',
             .state('ewlActivityFields', {
                 url: "/ewl-activityfields",
                 templateUrl: "partials/ewlActivityFields.html",
-                controller: "ActivityCtrl"
+                controller: "ActivityFieldCtrl"
             })
             .state('planActivity', {
                 url: "/ewl-activityfields",
