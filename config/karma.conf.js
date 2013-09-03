@@ -11,7 +11,8 @@ module.exports = function (config) {
             'app/lib/angular-ui-router/angular-ui-router.js',
             'app/lib/angular-bootstrap/ui-bootstrap-*.js',
             'app/lib/jquery/jquery-2.0.3.min.js',
-
+            'app/lib/momentjs/moment.js',
+            'app/lib/momentjs/lang-de.js',
             'test/lib/angular/angular-mocks.js',
             'app/js/**/*.js',
             'test/unit/**/*.js'
