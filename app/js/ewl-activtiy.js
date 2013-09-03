@@ -47,9 +47,11 @@ angular.module('yp.ewl.activity', []).
             },
             setSelectedActivity: function (activity) {
                 selectedActivity = activity;
-                selectedActivityPlan = _.find(plannedActivities, function (obj){return obj.action_id == activity.id})
+                selectedActivityPlan = _.find(plannedActivities, function (obj) {
+                    return obj.action_id == activity.id
+                })
             },
-            getSelectedActivityPlan: function (){
+            getSelectedActivityPlan: function () {
                 return selectedActivityPlan;
             }
 
@@ -102,9 +104,12 @@ angular.module('yp.ewl.activity', []).
         };
 
         $scope.isActionPlanned = function (actionId) {
-            for (var i = 0; i < $scope.myPlannedActions.length; i++) {
-                if ($scope.myPlannedActions[i].action_id == actionId) {
-                    return true;
+
+            if (typeof ($scope.myPlannedActions) != 'undefined')  {
+                for (var i = 0; i < $scope.myPlannedActions.length; i++) {
+                    if ($scope.myPlannedActions[i].action_id == actionId) {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -117,7 +122,7 @@ angular.module('yp.ewl.activity', []).
 
     } ])
 
-    .controller('ActivityCtrl', ['$scope', 'ActivityService','$timeout', function ($scope, ActivityService, $timeout) {
+    .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', function ($scope, ActivityService, $timeout) {
 
         $scope.selectedActivity = ActivityService.getSelectedActivity();
         $scope.selectedActivityPlan = ActivityService.getSelectedActivityPlan();
