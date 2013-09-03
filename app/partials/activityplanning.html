@@ -23,24 +23,47 @@
     </div>
 </div>
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-6" ng-controller="CommentCtrl">
 <div class="row">
     <div class="col-md-6">
         <h2>Kommentare</h2>
     </div>
     <div class="col-md-6">
-        <a class="action-social-comment-link" href="">neuer Kommentar</a>
+        <a class="action-social-comment-link" href="" ng-click="threads.showNewThread = !threads.showNewThread">neuer Kommentar</a>
     </div>
 </div>
-<div class="row action-social-content" ng-controller="CommentCtrl">
+<div class="row action-social-content">
     <div class="col-md-12">
-        <div class="row social-thread" ng-repeat="thread in threads">
+
+    <div class="row social-thread" ng-show="threads.showNewThread">
+        <div class="social-thread-header">
+            <a href="">
+                <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
+                <strong class="fullname">Urs Baumeler</strong>
+            </a>
+            <span class="thread-time"> </span>
+        </div>
+        <div class="social-thread-text">
+            <form ng-submit="submitNewThread(threads)">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" ng-model="threads.newThread">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                            </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="row social-thread" ng-repeat="thread in threads">
             <div class="social-thread-header">
                 <a href="{{ thread.author.link }}">
                     <img ng-src="{{ thread.author.pic }}" class="avatar-icon"/>
                     <strong class="fullname">{{ thread.author.fullname }}</strong>
                 </a>
-                <span class="thread-time">{{ thread.date }}</span>
+                <span class="thread-time">{{ thread.date | fromNow}}</span>
             </div>
             <div class="social-thread-text">
                 {{ thread.text }}
@@ -57,7 +80,7 @@
                             <img ng-src="{{ comment.author.pic }}" class="avatar-icon"/>
                             <strong class="fullname">{{ comment.author.fullname }}</strong>
                         </a>
-                        <span class="thread-time">{{ comment.date }}</span>
+                        <span class="thread-time">{{ comment.date | fromNow}}</span>
                     </div>
                     <div class="social-thread-text">
                         {{ comment.text }}
@@ -71,7 +94,7 @@
                             <img ng-src="assets/pics/RBLU.jpeg" class="avatar-icon"/>
                             <strong class="fullname">Reto Blunschi</strong>
                         </a>
-                        <span class="thread-time">4.9.2013</span>
+                        <span class="thread-time"> </span>
                     </div>
                     <form ng-submit="submitNewComment(thread)">
                         <div class="input-group input-group-sm">
@@ -225,6 +248,7 @@
                 <span class="thread-actions"><a href="">kommentieren</a></span>
             </div>
         </div>
+        {{ threads }}
     </div>
 </div>
 </div>
