@@ -74,18 +74,17 @@
                         <span class="thread-time">4.9.2013</span>
                     </div>
                     <form ng-submit="submitNewComment(thread)">
-                        <div class="social-thread-text">
+                        <div class="input-group input-group-sm">
                             <input type="text" class="form-control" ng-model="thread.newComment">
-                        </div>
-                        <div class="social-thread-footer">
-                            <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                            </span>
                         </div>
                     </form>
                 </div>
 
             </div>
         </div>
-
 
         <div class="row social-thread">
             <div class="social-thread-header">
@@ -251,11 +250,11 @@
                                        is-open="opened" min="minDate" max="'2015-06-22'"
                                        datepicker-options="dateOptions"
                                        date-disabled="disabled(date, mode)" ng-required="true"/>
-                    <span class="input-group-btn">
-                    <button class="btn btn-info " ng-click="open()">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </button>
-                        </span>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info " ng-click="open()">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </button>
+                                </span>
                             </div>
                         </div>
 
