@@ -29,9 +29,13 @@ angular.module('yp-ewl').
             COMMUTE: 'Commute',
             PLAN_IT: 'plan it!',
             PLANNED: 'planned',
-            SELECT_FIELD: 'Select an activity field:'
-
-
-
+            SELECT_FIELD: 'Select an activity field:',
+            MONDAY: 'Monday',
+            TUESDAY: 'Tuesday',
+            WEDNESDAY: 'Wednesday',
+            THURSDAY: 'Thursday',
+            FRIDAY: 'Friday',
+            SATURDAY: 'Saturday',
+            SUNDAY: 'Sunday'
         });
     }]);

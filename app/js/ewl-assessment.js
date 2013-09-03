@@ -3,13 +3,16 @@
 angular.module('yp.ewl.assessment', [])
 
     .factory('AssessmentService', ['$http', '$q', function ($http, $q) {
-        var assService = {};
 
+        // private data;
         var assessment;
         var answers = {};
 
+
+        var assService = {};
+
         /**
-         * gets Assessment from service singleton, loads it from server
+         * gets Assessment from service singleton or loads it from server
          * @returns {*}
          */
         assService.getAssessment = function () {

@@ -22,7 +22,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','globalErrors',
             .state('ewlActivityFields', {
                 url: "/ewl-activityfields",
                 templateUrl: "partials/ewlActivityFields.html",
-                controller: "ActivityCtrl"
+                controller: "ActivityFieldCtrl"
             })
             .state('planActivity', {
                 url: "/ewl-activityfields",

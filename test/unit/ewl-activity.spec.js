@@ -14,7 +14,7 @@ describe('ewl activity', function () {
         }));
     });
 
-    describe('ActivityCtrl', function () {
+    describe('ActivityFieldCtrl', function () {
         var $scope = null;
         var ctrl = null;
 
@@ -29,7 +29,7 @@ describe('ewl activity', function () {
 
             //now run that scope through the controller function,
             //injecting any services or other injectables we need.
-            ctrl = $controller('ActivityCtrl', {
+            ctrl = $controller('ActivityFieldCtrl', {
                 $scope: $scope,
                 ActivityService: {
                     allActivities: {
