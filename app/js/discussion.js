@@ -36,7 +36,7 @@ angular.module('yp.discussion', []).
                 date: new Date(),
                 text: thread.newComment
             }
-
+            thread.newComment=null;
             thread.comments.push(newComment);
         }
 
