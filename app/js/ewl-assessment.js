@@ -35,7 +35,7 @@ angular.module('yp.ewl.assessment', [])
                             answersAsArray = generateDefaultAnswers();
                         }
 
-                        // sort answers into keyed object to ease access by view
+                        // sort answers into keyed object (by question_id) to ease access by view
                         _.forEach(answersAsArray, function (myAnswer) {
                             answers[myAnswer.question_id] = myAnswer
                         });
@@ -50,6 +50,12 @@ angular.module('yp.ewl.assessment', [])
         }
 
 
+        /**
+         * generate empty answerset for the currently loaded assessment, is called in case
+         * we did not get stored answers for this assessment/user from the server
+         *
+         * @returns {Array}
+         */
         function generateDefaultAnswers() {
             var defaultAnswers = [];
             var nextId = 1;
@@ -84,4 +90,3 @@ angular.module('yp.ewl.assessment', [])
         }
 
     }]);
-
