@@ -43,11 +43,11 @@ angular.module('yp.ewl.assessment', [])
                     }
                 );
             }
-        }
+        };
 
         assService.getAssAnswers = function () {
             return answers;
-        }
+        };
 
 
         /**
@@ -68,7 +68,7 @@ angular.module('yp.ewl.assessment', [])
                         assessment_id: assessment.id,
                         question_id: question.id,
                         answer: 0
-                    }
+                    };
                     defaultAnswers.push(answer);
                 }
             }
@@ -80,7 +80,6 @@ angular.module('yp.ewl.assessment', [])
     }])
 
     .controller('AssessmentCtrl', ['$scope', 'AssessmentService', function ($scope, AssessmentService) {
-        var assId = '1';  // only one assessment suppoerted at the moment
 
         $scope.assessment = AssessmentService.getAssessment();
         $scope.assAnswersByQuestionId = AssessmentService.getAssAnswers();
