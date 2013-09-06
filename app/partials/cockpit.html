@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="col-xs-6 col-md-6">
                                             <div class="social-log time-box">
-                                                <span class="activity-log time-box timestamp">
+                                                <span class="action-log time-box timestamp">
                                                     {{socialLogEntry.timestamp}}</br>
                                                 </span>
                                             </div>
@@ -76,30 +76,30 @@
 
                     <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
-                    <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
-                        <div class="list-group-item {{glyphiconType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries">
-                            <a href="#" class="activity-log title">{{activityLogEntry.activity}}</a>
+                    <div class="list-group action-log" ng-controller="ActionLogCtrl">
+                        <div class="list-group-item {{getGlyphiconType(actionLogEntry.type)}}" ng-repeat="actionLogEntry in actionLogEntries">
+                            <a href="#" class="action-log title">{{actionLogEntry.activity}}</a>
 
-                            <div class="activity-log status">
-                                <span class="glyphicon glyphicon-{{glyphiconStatus(activityLogEntry.status)}}"></span></td>
+                            <div class="action-log status">
+                                <span class="glyphicon glyphicon-{{getGlyphiconStatus(actionLogEntry.status)}}"></span></td>
                             </div>
-                            <div class="activity-log time-box">
-                                <span class="activity-log time-box timestamp">
-                                    {{activityLogEntry.timestamp}}</br>
-                                    <span class="activity-log time-box info">
-                                        {{activityLogEntry.recurringInfo}}&nbsp;&nbsp;
+                            <div class="action-log time-box">
+                                <span class="action-log time-box timestamp">
+                                    {{actionLogEntry.timestamp}}</br>
+                                    <span class="action-log time-box info">
+                                        {{actionLogEntry.recurringInfo}}&nbsp;&nbsp;
                                         <span class="glyphicon glyphicon-repeat"></span>
                                     </span>
                                 </span>
                             </div>
-                            <div class="activity-log feedback-box">
-                                <span class="activity-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">{{activityLogEntry.nofcomments}}</a>
+                            <div class="action-log feedback-box">
+                                <span class="action-log feedback-box comments">
+                                    Kommentare <a href="#" class="badge">{{actionLogEntry.nofcomments}}</a>
                                 </span>
 
-                                <div class="activity-log feedback-box rating">
-                                    <span class="glyphicon glyphicon-star individual-rating" ng-repeat="i in getStars(activityLogEntry.rating)"></span>
-                                    <span class="glyphicon glyphicon-star-empty individual-rating" ng-repeat="i in getEmptyStars(5 - activityLogEntry.rating)"></span>
+                                <div class="action-log feedback-box rating">
+                                    <span class="glyphicon glyphicon-star individual-rating" ng-repeat="i in getStars(actionLogEntry.rating)"></span>
+                                    <span class="glyphicon glyphicon-star-empty individual-rating" ng-repeat="i in getEmptyStars(5 - actionLogEntry.rating)"></span>
                                 </div>
                             </div>
                         </div>

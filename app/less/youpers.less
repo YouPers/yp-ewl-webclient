@@ -535,8 +535,10 @@ input[type="range"]::-webkit-slider-thumb {
   margin-left: @social-log-title-indent;
 }
 
+@action-log-indent: 7px;
+
 .social-log.feedback-box {
-  margin-left: @activity-log-indent;
+  margin-left: @action-log-indent;
   margin-top: 10px;
 }
 
@@ -552,79 +554,77 @@ input[type="range"]::-webkit-slider-thumb {
   position: relative;
 }
 
-.list-group.activity-log {
+.list-group.action-log {
   clear: both;
   overflow: auto;
   height: 532px;
 }
 
-@activity-log-indent: 7px;
-
-.activity-log.title {
-  margin-left: @activity-log-indent;
+.action-log.title {
+  margin-left: @action-log-indent;
 }
 
 .social-log.title,
-.activity-log.title {
+.action-log.title {
   font-size: @youpers-font-size-5;
   font-weight:600;
 }
 
 .list-group-item.active > a.social-log.title,
-.list-group-item.active > a.activity-log.title {
+.list-group-item.active > a.action-log.title {
   color: @youpers-brand-colors-font-inversed;
 }
 
 .list-group-item.active > a.social-log.title:hover,
-.list-group-item.active > a.activity-log.title:hover {
+.list-group-item.active > a.action-log.title:hover {
   color: darken(@youpers-brand-colors-blue-primary,30%);
 }
 
 .list-group-item.community > a.social-log.title:hover,
-.list-group-item.past > a.activity-log.title:hover {
+.list-group-item.past > a.action-log.title:hover {
   color: darken(@youpers-brand-colors-primary,20%);
 }
 
-.activity-log.status{
+.action-log.status{
   float: left;
-  margin-left: -@activity-log-indent;
+  margin-left: -@action-log-indent;
   margin-top: 3px;
 }
 
-.activity-log.time-box {
+.action-log.time-box {
   float: right;
   margin-top: 1px;
   position: relative;
 }
 
-.activity-log.time-box.timestamp {
+.action-log.time-box.timestamp {
   font-family: @youpers-brand-font-family-numbers;
   font-weight:300;
   font-size: @youpers-font-size-8;
 }
 
-.activity-log.time-box.info {
+.action-log.time-box.info {
   font-family: @youpers-brand-font-family;
   font-size: @youpers-font-size-6;
 }
 
-.activity-log.feedback-box {
-  margin-left: @activity-log-indent;
+.action-log.feedback-box {
+  margin-left: @action-log-indent;
   margin-top: 10px;
 }
 
-.activity-log.feedback-box.comments {
+.action-log.feedback-box.comments {
 
 }
 
-.activity-log.feedback-box.rating {
+.action-log.feedback-box.rating {
   float: right;
   margin-top: 0px;
 }
 
 .list-group-item.community > a.social-log.title,
 .list-group-item.community .social-log,
-.list-group-item.past > a.activity-log.title,
-.list-group-item.past .activity-log {
+.list-group-item.past > a.action-log.title,
+.list-group-item.past .action-log {
   color: @youpers-brand-colors-secondary;
 }
