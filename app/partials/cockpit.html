@@ -58,7 +58,7 @@
                                         <div class="col-xs-6 col-md-6">
                                             <div class="social-log time-box">
                                                 <span class="action-log time-box timestamp">
-                                                    {{socialLogEntry.timestamp}}</br>
+                                                    {{socialLogEntry.timestamp | fromNowFake}}</br>
                                                 </span>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="action-log time-box">
                                 <span class="action-log time-box timestamp">
-                                    {{actionLogEntry.timestamp}}</br>
+                                    {{actionLogEntry.timestamp | fromNowFake}}</br>
                                     <span class="action-log time-box info">
                                         {{actionLogEntry.recurringInfo}}&nbsp;&nbsp;
                                         <span class="glyphicon glyphicon-repeat"></span>

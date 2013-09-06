@@ -7,7 +7,7 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "4",
-        "timestamp": "06.08.2013 12:15"
+        "timestamp": "2013-08-06T12:15:00.000Z"
     },
     {
         "status": "not done",
@@ -17,7 +17,7 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "1",
-        "timestamp": "13.08.2013 11:45"
+        "timestamp": "2013-08-13T11:45:00.000Z"
     },
     {
         "status": "open",
@@ -27,7 +27,7 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "0",
-        "timestamp": "heute 12:00"
+        "timestamp": "2013-08-20T12:00:00.000Z"
     },
     {
         "status": "open",
@@ -37,7 +37,7 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "0",
-        "timestamp": "27.08.2013 12:00"
+        "timestamp": "2013-08-27T12:00:00.000Z"
     },
     {
         "status": "open",
@@ -47,7 +47,7 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "0",
-        "timestamp": "03.09.2013 12:00"
+        "timestamp": "2013-09-03T12:00:00.000Z"
     },
     {
         "status": "open",
@@ -57,7 +57,7 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "0",
-        "timestamp": "10.09.2013 12:00"
+        "timestamp": "2013-09-10T12:00:00.000Z"
     },
     {
         "status": "open",
@@ -67,7 +67,7 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "0",
-        "timestamp": "17.09.2013 12:00"
+        "timestamp": "2013-09-17T12:00:00.000Z"
     },
     {
         "status": "open",
@@ -77,7 +77,7 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "0",
-        "timestamp": "24.09.2013 12:00"
+        "timestamp": "2013-09-24T12:00:00.000Z"
     },
     {
         "status": "open",
@@ -87,6 +87,6 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "0",
-        "timestamp": "01.10.2013 12:00"
+        "timestamp": "2013-10-01T12:00:00.000Z"
     }
 ]
