@@ -2303,8 +2303,8 @@ angular.module('ui.bootstrap.rating', [])
 
 .constant('ratingConfig', {
   max: 5,
-  stateOn: 'icon-star',
-  stateOff: 'icon-star-empty'
+  stateOn: 'glyphicon glyphicon-star',
+  stateOff: 'glyphicon glyphicon-star-empty'
 })
 
 .controller('RatingController', ['$scope', '$attrs', '$parse', 'ratingConfig', function($scope, $attrs, $parse, ratingConfig) {

@@ -2304,8 +2304,8 @@ angular.module('ui.bootstrap.rating', [])
 
 .constant('ratingConfig', {
   max: 5,
-  stateOn: 'icon-star',
-  stateOff: 'icon-star-empty'
+  stateOn: 'glyphicon glyphicon-star',
+  stateOff: 'glyphicon glyphicon-star-empty'
 })
 
 .controller('RatingController', ['$scope', '$attrs', '$parse', 'ratingConfig', function($scope, $attrs, $parse, ratingConfig) {
@@ -3418,7 +3418,7 @@ angular.module("template/progressbar/progress.html", []).run(["$templateCache", 
 angular.module("template/rating/rating.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/rating/rating.html",
     "<span ng-mouseleave=\"reset()\">\n" +
-    "	<i ng-repeat=\"r in range\" ng-mouseenter=\"enter($index + 1)\" ng-click=\"rate($index + 1)\" ng-class=\"$index < val && r.stateOn || r.stateOff\"></i>\n" +
+    "	<i ng-repeat=\"r in range track by $index\" ng-mouseenter=\"enter($index + 1)\" ng-click=\"rate($index + 1)\" ng-class=\"$index < val && r.stateOn || r.stateOff\"></i>\n" +
     "</span>");
 }]);
 

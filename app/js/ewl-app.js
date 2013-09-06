@@ -24,11 +24,6 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion'
                 templateUrl: "partials/ewlActivityFields.html",
                 controller: "ActivityFieldCtrl"
             })
-            .state('planActivity', {
-                url: "/ewl-activityfields",
-                templateUrl: "partials/activityplanning.html",
-                controller: "ActivityCtrl"
-            })
             .state('cockpit', {
                 url: "/cockpit",
                 templateUrl: "partials/cockpit.html"

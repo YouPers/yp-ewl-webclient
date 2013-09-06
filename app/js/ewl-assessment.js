@@ -35,7 +35,7 @@ angular.module('yp.ewl.assessment', [])
                             answersAsArray = generateDefaultAnswers();
                         }
 
-                        // sort answers into keyed object to ease access by view
+                        // sort answers into keyed object (by question_id) to ease access by view
                         _.forEach(answersAsArray, function (myAnswer) {
                             answers[myAnswer.question_id] = myAnswer
                         });
@@ -43,13 +43,19 @@ angular.module('yp.ewl.assessment', [])
                     }
                 );
             }
-        }
+        };
 
         assService.getAssAnswers = function () {
             return answers;
-        }
+        };
 
 
+        /**
+         * generate empty answerset for the currently loaded assessment, is called in case
+         * we did not get stored answers for this assessment/user from the server
+         *
+         * @returns {Array}
+         */
         function generateDefaultAnswers() {
             var defaultAnswers = [];
             var nextId = 1;
@@ -62,7 +68,7 @@ angular.module('yp.ewl.assessment', [])
                         assessment_id: assessment.id,
                         question_id: question.id,
                         answer: 0
-                    }
+                    };
                     defaultAnswers.push(answer);
                 }
             }
@@ -74,7 +80,6 @@ angular.module('yp.ewl.assessment', [])
     }])
 
     .controller('AssessmentCtrl', ['$scope', 'AssessmentService', function ($scope, AssessmentService) {
-        var assId = '1';  // only one assessment suppoerted at the moment
 
         $scope.assessment = AssessmentService.getAssessment();
         $scope.assAnswersByQuestionId = AssessmentService.getAssAnswers();
@@ -84,4 +89,3 @@ angular.module('yp.ewl.assessment', [])
         }
 
     }]);
-
