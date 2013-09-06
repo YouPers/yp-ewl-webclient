@@ -4,298 +4,164 @@
 <div class="page-header">
     <h1>Plane: Jogging über Mittag</h1>
 </div>
-<div class="container background-test">
+<div class="container">
 
 <div class="row">
-    <div class="col-md-10">
-        <p>Jogging über Mittag macht Spass, lüftet den Kopf und ist sowieso immer gut</p>
+<div class="col-md-6 panel panel-default">
 
-    </div>
-    <div class="col-md-2">
-        <p>340 mal geplant<br/>
-            230 mal ausgeführt</p>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <a href="">(34)</a>
-    </div>
-</div>
-<div class="row">
-<div class="col-md-6" ng-controller="CommentCtrl">
-<div class="row">
-    <div class="col-md-6">
-        <h2>Kommentare</h2>
-    </div>
-    <div class="col-md-6">
-        <a class="action-social-comment-link" href="" ng-click="threads.showNewThread = !threads.showNewThread">neuer Kommentar</a>
-    </div>
-</div>
-<div class="row action-social-content">
-    <div class="col-md-12">
+    <div class="row">    <!-- Action Description and overall Rating -->
 
-    <div class="row social-thread" ng-show="threads.showNewThread">
-        <div class="social-thread-header">
-            <a href="">
-                <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                <strong class="fullname">Urs Baumeler</strong>
-            </a>
-            <span class="thread-time"> </span>
+
+        <div class="col-md-8">
+            <p>Jogging über Mittag macht Spass, lüftet den Kopf und ist sowieso immer gut</p>
+
         </div>
-        <div class="social-thread-text">
-            <form ng-submit="submitNewThread(threads)">
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" ng-model="threads.newThread">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
-                            </span>
-                </div>
-            </form>
+        <div class="col-md-4">
+            <p>3453 mal geplant<br/>
+                2320 mal ausgeführt</p>
+            <rating max="5" value="4"></rating>
+            <a href="">(34)</a>
         </div>
+
     </div>
+    <!-- actionProposal Description and overall Rating -->
 
+    <div class="row"> <!-- Kommentare für Action -->
+        <div class="col-md-12" ng-controller="CommentCtrl">
 
-
-    <div class="row social-thread" ng-repeat="thread in threads">
-            <div class="social-thread-header">
-                <a href="{{ thread.author.link }}">
-                    <img ng-src="{{ thread.author.pic }}" class="avatar-icon"/>
-                    <strong class="fullname">{{ thread.author.fullname }}</strong>
-                </a>
-                <span class="thread-time">{{ thread.date | fromNow}}</span>
-            </div>
-            <div class="social-thread-text">
-                {{ thread.text }}
-            </div>
-            <div class="social-thread-footer">
-                <a href="" ng-click="thread.showComments = !thread.showComments">{{ thread.comments.length + '
-                    Kommentare' }}</a>
-                <span class="thread-actions"><a href="" ng-click="thread.showComments = !thread.showComments">kommentieren</a></span>
-            </div>
-            <div class="container" ng-show="thread.showComments">
-                <div class="row social-thread" ng-repeat="comment in thread.comments">
-                    <div class="social-thread-header">
-                        <a href="{{ comment.author.link }}">
-                            <img ng-src="{{ comment.author.pic }}" class="avatar-icon"/>
-                            <strong class="fullname">{{ comment.author.fullname }}</strong>
-                        </a>
-                        <span class="thread-time">{{ comment.date | fromNow}}</span>
-                    </div>
-                    <div class="social-thread-text">
-                        {{ comment.text }}
-                    </div>
-                    <div class="social-thread-footer">
-                    </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Kommentare</h2>
                 </div>
-                <div class="row social-thread">
-                    <div class="social-thread-header">
-                        <a href="#/u/RBLU">
-                            <img ng-src="assets/pics/RBLU.jpeg" class="avatar-icon"/>
-                            <strong class="fullname">Reto Blunschi</strong>
-                        </a>
-                        <span class="thread-time"> </span>
-                    </div>
-                    <form ng-submit="submitNewComment(thread)">
-                        <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" ng-model="thread.newComment">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
-                            </span>
+                <div class="col-md-6">
+                    <a class="action-social-comment-link" href=""
+                       ng-click="threads.showNewThread = !threads.showNewThread">neuer
+                        Kommentar</a>
+                </div>
+            </div>
+            <div class="row action-social-content">
+                <div class="col-md-12">
+
+                    <div class="row social-thread" ng-show="threads.showNewThread">
+                        <div class="social-thread-header">
+                            <a href="">
+                                <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
+                                <strong class="fullname">Urs Baumeler</strong>
+                            </a>
+                            <span class="thread-time"> </span>
                         </div>
-                    </form>
-                </div>
+                        <div class="social-thread-text">
+                            <form ng-submit="submitNewThread(threads)">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" ng-model="threads.newThread">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                            </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-            </div>
-        </div>
 
-        <div class="row social-thread">
-            <div class="social-thread-header">
-                <a href="#/u/ubau">
-                    <img src="assets/img/IRIG.jpeg" class="avatar-icon"/>
-                    <strong class="fullname">Ivan Rigamonti</strong>
-                </a>
-                <span class="thread-time">11:45</span>
-            </div>
-            <div class="social-thread-text">
-                Ich fands doof, viel zu anstrengend! -
-                <rating max="'5'" value="'4'"></rating>
-            </div>
-            <div class="social-thread-footer">
-                <a href="">7 Kommentare</a>
-                <span class="thread-actions"><a href="">kommentieren</a></span>
-            </div>
-        </div>
-        <div class="row social-thread">
-            <div class="social-thread-header">
-                <a href="#/u/ubau">
-                    <img src="assets/img/SMUE.jpeg" class="avatar-icon"/>
-                    <strong class="fullname">Stefan Müller</strong>
-                </a>
-                <span class="thread-time">26.8.2013</span>
-            </div>
-            <div class="social-thread-text">
-                heute 15km gemacht, fühle mich super! -
-                <span class="glyphicon glyphicon-star individual-rating"></span>
-                <span class="glyphicon glyphicon-star individual-rating"></span>
-                <span class="glyphicon glyphicon-star individual-rating"></span>
-                <span class="glyphicon glyphicon-star individual-rating"></span>
-                <span class="glyphicon glyphicon-star-empty individual-rating"></span>
-
-            </div>
-            <div class="social-thread-footer">
-                <a href="">3 Kommentare</a>
-                <span class="thread-actions"><a href="">kommentieren</a></span>
-            </div>
-        </div>
-        <div class="row social-thread">
-            <div class="social-thread-header">
-                <a href="#/u/ubau">
-                    <img src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                    <strong class="fullname">Urs Baumeler</strong>
-                </a>
-                <span class="thread-time">3.8.2013 17:00</span>
-            </div>
-            <div class="social-thread-text">
-                Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?
-            </div>
-            <div class="social-thread-footer">
-                <a href="">3 Kommentare</a>
-                <span class="thread-actions"><a href="">kommentieren</a></span>
-            </div>
-        </div>
-        <div class="row social-thread">
-            <div class="social-thread-header">
-                <a href="#/u/ubau">
-                    <img src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                    <strong class="fullname">Urs Baumeler</strong>
-                </a>
-                <span class="thread-time">3.8.2013 17:00</span>
-            </div>
-            <div class="social-thread-text">
-                Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?
-            </div>
-            <div class="social-thread-footer">
-                <a href="">3 Kommentare</a>
-                <span class="thread-actions"><a href="">kommentieren</a></span>
-            </div>
-        </div>
-        <div class="row social-thread">
-            <div class="social-thread-header">
-                <a href="#/u/ubau">
-                    <img src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                    <strong class="fullname">Urs Baumeler</strong>
-                </a>
-                <span class="thread-time">3.8.2013 17:00</span>
-            </div>
-            <div class="social-thread-text">
-                Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?
-            </div>
-            <div class="social-thread-footer">
-                <a href="">3 Kommentare</a>
-                <span class="thread-actions"><a href="">kommentieren</a></span>
-            </div>
-        </div>
-        <div class="row social-thread">
-            <div class="social-thread-header">
-                <a href="#/u/ubau">
-                    <img src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                    <strong class="fullname">Urs Baumeler</strong>
-                </a>
-                <span class="thread-time">3.8.2013 17:00</span>
-            </div>
-            <div class="social-thread-text">
-                Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?
-            </div>
-            <div class="social-thread-footer">
-                <a href="">3 Kommentare</a>
-                <span class="thread-actions"><a href="">kommentieren</a></span>
-            </div>
-        </div>
-        <div class="row social-thread">
-            <div class="social-thread-header">
-                <a href="#/u/ubau">
-                    <img src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                    <strong class="fullname">Urs Baumeler</strong>
-                </a>
-                <span class="thread-time">3.8.2013 17:00</span>
-            </div>
-            <div class="social-thread-text">
-                Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?
-            </div>
-            <div class="social-thread-footer">
-                <a href="">3 Kommentare</a>
-                <span class="thread-actions"><a href="">kommentieren</a></span>
-            </div>
-        </div>
-        <div class="row social-thread">
-            <div class="social-thread-header">
-                <a href="#/u/ubau">
-                    <img src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                    <strong class="fullname">Urs Baumeler</strong>
-                </a>
-                <span class="thread-time">3.8.2013 17:00</span>
-            </div>
-            <div class="social-thread-text">
-                Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?
-            </div>
-            <div class="social-thread-footer">
-                <a href="">3 Kommentare</a>
-                <span class="thread-actions"><a href="">kommentieren</a></span>
-            </div>
-        </div>
-        {{ threads }}
-    </div>
-</div>
-</div>
-<div class="col-md-6 activity-planning">
-    <h2>Für dich einplanen: </h2>
-
-    <div class="row">
-        <div class="col-md-1">
-            <input type="radio" name="planTypes" id="planTypeOnce" value="once" class="form-control"
-                   ng-model="selectedActivityPlan.planType">
-        </div>
-        <div class="col-md-11">
-            <div class="form-horizontal" role="form">
-                <fieldset ng-disabled="selectedActivityPlan.planType!='once'">
-                    <div class="form-group">
-                        <label for="datePickerOnce" class="col-md-3 control-label">Einmalig am:</label>
-
-                        <div class="col-md-6">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control" type="text" id="datePickerOnce"
-                                       datepicker-popup="dd-MMMM-yyyy"
-                                       ng-model="selectedActivityPlan.onceDate"
-                                       is-open="opened" min="minDate" max="'2015-06-22'"
-                                       datepicker-options="dateOptions"
-                                       date-disabled="disabled(date, mode)" ng-required="true"/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-info " ng-click="open()">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </button>
-                                </span>
+                    <div class="row social-thread" ng-repeat="thread in threads">
+                        <div class="social-thread-header">
+                            <a href="{{ thread.author.link }}">
+                                <img ng-src="{{ thread.author.pic }}" class="avatar-icon"/>
+                                <strong class="fullname">{{ thread.author.fullname }}</strong>
+                            </a>
+                            <span class="thread-time">{{ thread.date | fromNow}}</span>
+                        </div>
+                        <div class="social-thread-text">
+                            {{ thread.text }}
+                        </div>
+                        <div class="social-thread-footer">
+                            <a href="" ng-click="thread.showComments = !thread.showComments">{{ thread.comments.length +
+                                '
+                                Kommentare' }}</a>
+                            <span class="thread-actions"><a href=""
+                                                            ng-click="thread.showComments = !thread.showComments">kommentieren</a></span>
+                        </div>
+                        <div class="container" ng-show="thread.showComments">
+                            <div class="row social-thread" ng-repeat="comment in thread.comments">
+                                <div class="social-thread-header">
+                                    <a href="{{ comment.author.link }}">
+                                        <img ng-src="{{ comment.author.pic }}" class="avatar-icon"/>
+                                        <strong class="fullname">{{ comment.author.fullname }}</strong>
+                                    </a>
+                                    <span class="thread-time">{{ comment.date | fromNow}}</span>
+                                </div>
+                                <div class="social-thread-text">
+                                    {{ comment.text }}
+                                </div>
+                                <div class="social-thread-footer">
+                                </div>
                             </div>
+                            <div class="row social-thread">
+                                <div class="social-thread-header">
+                                    <a href="#/u/RBLU">
+                                        <img ng-src="assets/pics/RBLU.jpeg" class="avatar-icon"/>
+                                        <strong class="fullname">Reto Blunschi</strong>
+                                    </a>
+                                    <span class="thread-time"> </span>
+                                </div>
+                                <form ng-submit="submitNewComment(thread)">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" ng-model="thread.newComment">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                            </span>
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
-
                     </div>
-                </fieldset>
+                </div>
             </div>
-
-
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-1">
-            <input type="radio" name="planTypes" id="planTypeDaily" value="daily" class="form-control"
-                   ng-model="selectedActivityPlan.planType">
-        </div>
-        <div class="col-md-11">
-            <div class="form-horizontal" role="form">
 
-                <fieldset ng-disabled="selectedActivityPlan.planType!='daily'">
-                    <div class="form-group">
-                        <label for="timePickerDaily" class="col-md-3 control-label">Täglich um:</label>
+</div>
+<div class="col-md-6">  <!-- Einplanung -->
+    <tabset>
+        <tab heading="Selber einplanen">
+            <div class="container yp-action-planning-tab">
+                <form class="form-inline" role="form">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="planTypes" id="planTypeOnce" value="once"
+                                   ng-model="selectedActivityPlan.planType">
+                            Einmalig am:
+                        </label>
+                    </div>
+                    <fieldset ng-disabled="selectedActivityPlan.planType!='once'">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control" type="text" id="datePickerOnce"
+                                   datepicker-popup="dd-MMMM-yyyy"
+                                   ng-model="selectedActivityPlan.onceDate"
+                                   is-open="opened" min="minDate" max="'2015-06-22'"
+                                   datepicker-options="dateOptions"
+                                   date-disabled="disabled(date, mode)" ng-required="true"/>
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-info " ng-click="open()">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </button>
+                         </span>
+                        </div>
+
+                    </fieldset>
+
+
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
+                                   ng-model="selectedActivityPlan.planType">
+                            Täglich um:
+                        </label>
+                    </div>
+
+                    <fieldset ng-disabled="selectedActivityPlan.planType!='daily'">
 
                         <div ng-model="selectedActivityPlan.dailyTime" class="col-md-6">
                             <timepicker id="timePickerDaily" minute-step="15"
@@ -304,39 +170,123 @@
                         <div class="col-md-3">
                             {{ dailyTime }}
                         </div>
+                    </fieldset>
+
+                    <div class="radio-inline">
+
+                        <label>
+                            <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly"
+                                   ng-model="selectedActivityPlan.planType">
+                            Wöchentlich am:
+                        </label>
                     </div>
-                </fieldset>
-            </div>
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col-md-1">
-            <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly" class="form-control"
-                   ng-model="selectedActivityPlan.planType">
-        </div>
-        <div class="col-md-11">
-            <fieldset ng-disabled="selectedActivityPlan.planType!='weekly'">
-
-                <div class="form-group">
-                    <label for="weeklyDay" class="col-md-3 control-label">Wöchentlich am:</label>
-
-                    <div class="col-md-4">
+                    <fieldset ng-disabled="selectedActivityPlan.planType!='weekly'">
                         <select ng-model="selectedActivityPlan.weeklyDay"
                                 name="weeklyDay"
                                 id="weeklyDay"
                                 ng-options="availableDays.indexOf(d) as d.label | translate for d in availableDays"
                                 class="form-control">
                         </select>
-                    </div>
-                    <div class="col-md-2">
-                    </div>
 
+                    </fieldset>
+                    <div class="checkbox">
+
+                        <label>
+                            <input type="radio"/> alleine machen
+                        </label>
+                    </div>
+                    <div class="checkbox">
+
+                        <label>
+                            <input type="radio"/> andere einladen
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-10 col-md-2">
+                            <button type="button" class="btn btn-primary">einplanen!</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </tab>
+        <tab heading="Bei andern mitmachen">
+            <div class="container yp-action-planning-tab">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-sm btn-primary">Ich mache mit</button>
+                            </div>
+                            <div class="col-md-4">
+                                Zug, am See <br>
+                                Immer am Mittwoch: 12:00 - 13:00 <br>
+                                <a href="">7 Kommentare</a>
+                            </div>
+                            <div class="col-md-6">
+                                Dabei sind schon <br>
+                                <a href="" ng-click="showJoiners = !showJoiners">3 andere aus deinem Betrieb</a>
+
+                                <div ng-show="showJoiners">
+                                    <div class="social-thread-header">
+                                        <a href="">
+                                            <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
+                                            <strong class="fullname">Urs Baumeler</strong>
+                                        </a>
+                                        <span class="thread-time">seit 15.8.2013</span>
+                                    </div>
+                                    <div class="social-thread-header">
+                                        <a href="">
+                                            <img ng-src="assets/img/IRIG.jpeg" class="avatar-icon"/>
+                                            <strong class="fullname">Ivan Rigamonti</strong>
+                                        </a>
+                                        <span class="thread-time">seit 15.8.2013</span>
+                                    </div>
+                                    <div class="social-thread-header">
+                                        <a href="">
+                                            <img ng-src="assets/img/SMUE.jpeg" class="avatar-icon"/>
+                                            <strong class="fullname">Stefan Müller</strong>
+                                        </a>
+                                        <span class="thread-time">seit 15.8.2013</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-sm btn-primary">Ich mache mit</button>
+                            </div>
+                            <div class="col-md-4">
+                                Cham im Wald <br>
+                                Immer am Donnerstag: 07:00 - 07:30<br>
+                                <a href="">1 Kommentare</a>
+                            </div>
+                            <div class="col-md-6">
+                                Dabei sind schon <br>
+                                <a href="" ng-click="showJoiners2 = !showJoiners2">1 anderer aus deinem Betrieb</a>
+
+                                <div ng-show="showJoiners2">
+                                    <div class="social-thread-header">
+                                        <a href="">
+                                            <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
+                                            <strong class="fullname">Urs Baumeler</strong>
+                                        </a>
+                                        <span class="thread-time">seit 15.8.2013</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
-            </fieldset>
-        </div>
-    </div>
+
+            </div>
+        </tab>
+    </tabset>
 </div>
-</div>
+
 </div>
 </div>
