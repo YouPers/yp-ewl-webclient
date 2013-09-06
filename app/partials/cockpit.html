@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2>Social</h2>
+                        <h2>Social Ticker</h2>
 
                         <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
 
@@ -70,32 +70,30 @@
 
                             <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
                                 <div class="row">
-                                    <div class="col-xs-7 col-md-7">
-                                        <div class="col-xs-6 col-md-6">
+                                    <div class="col-xs-10 col-md-10">
+                                        <div class="col-xs-6 col-md-5">
                                             <div class="social-log status">
                                                 <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
                                             </div>
                                             <a href="#/u/ubau">
                                                 <img src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
-                                                <strong class="social-log author-name">{{socialLogEntry.author}}</strong>
+                                                <strong class="social-log author-name">{{socialLogEntry.authorFirstName}}</br>{{socialLogEntry.authorFamilyName}}</strong>
                                             </a>
                                         </div>
-                                        <div class="col-xs-6 col-md-6">
+                                        <div class="col-xs-6 col-md-7">
                                             <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
-                                            <a href="#" class="social-log title">{{socialLogEntry.activity}}</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-5 col-md-5">
-                                        <div class="col-xs-6 col-md-6">
+                                            <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
                                             <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
                                         </div>
-                                        <div class="col-xs-6 col-md-6">
+                                    </div>
+                                    <div class="col-xs-2 col-md-2">
+                                        <!--<div class="col-xs-6 col-md-4">-->
                                             <div class="social-log time-box">
                                                 <span class="action-log time-box timestamp">
                                                     {{socialLogEntry.timestamp | fromNowFake}}</br>
                                                 </span>
                                             </div>
-                                        </div>
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
