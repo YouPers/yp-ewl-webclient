@@ -23,7 +23,7 @@ function SocialLogCtrl($scope) {
         {
             "type": "youpers",
             "status": "newMessage",
-            "avatar": "assets/img/youpers.jpeg",
+            "avatar": "assets/img/YouPersAvatar.png",
             "author": "YouPers",
             "area": "Ernährung",
             "activity": "Kohlenhydratarme Kost",
