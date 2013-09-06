@@ -50,6 +50,7 @@ angular.module('yp.actionlog', []).
 //            return starsArray;
 //        }
 
+
         $scope.getGlyphiconStatus = function(status) {
             var icon = "";
             if (status == "done") {
@@ -62,7 +63,7 @@ angular.module('yp.actionlog', []).
             return icon;
         }
 
-        $scope.getGlyphiconType = function(status) {
+        $scope.getActionTimeType = function(status) {
             var icon = "";
             if (status == "past") {
                 icon = "past";

@@ -33,29 +33,35 @@
                         <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
                         <div class="list-group action-log" ng-controller="ActionLogCtrl">
-                            <div class="list-group-item {{getGlyphiconType(actionLogEntry.type)}}" ng-repeat="actionLogEntry in actionLogEntries">
-                                <a href="#" class="action-log title">{{actionLogEntry.activity}}</a>
-
-                                <div class="action-log status">
-                                    <span class="glyphicon glyphicon-{{getGlyphiconStatus(actionLogEntry.status)}}"></span></td>
-                                </div>
-                                <div class="action-log time-box">
-                                <span class="action-log time-box timestamp">
-                                    {{actionLogEntry.timestamp | fromNowFake}}</br>
-                                    <span class="action-log time-box info">
-                                        {{actionLogEntry.recurringInfo}}&nbsp;&nbsp;
-                                        <span class="glyphicon glyphicon-repeat"></span>
-                                    </span>
-                                </span>
-                                </div>
-                                <div class="action-log feedback-box">
-                                <span class="action-log feedback-box comments">
-                                    Kommentare <a href="#" class="badge">{{actionLogEntry.nofcomments}}</a>
-                                </span>
-                                    <div class="action-log feedback-box rating">
-                                        <!--<span class="glyphicon glyphicon-star individual-rating" ng-repeat="i in getStars(actionLogEntry.rating)"></span>-->
-                                        <!--<span class="glyphicon glyphicon-star-empty individual-rating" ng-repeat="i in getEmptyStars(5 - actionLogEntry.rating)"></span>-->
-                                        <rating max="5" value="actionLogEntry.rating"></rating>
+                            <div class="list-group-item {{getActionTimeType(actionLogEntry.type)}}" ng-repeat="actionLogEntry in actionLogEntries">
+                                <div class="row">
+                                    <div class="col-xs-1 col-md-1">
+                                        <div class="action-log status">
+                                            <span class="glyphicon glyphicon-{{getGlyphiconStatus(actionLogEntry.status)}}"></span></td>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6">
+                                        <a href="#" class="action-log title">{{actionLogEntry.activity}}</br></a>
+                                        <span class="action-log comments">
+                                            Kommentare <a href="#" class="badge">{{actionLogEntry.nofcomments}}</a>
+                                        </span>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2">
+                                        <div class="action-feedback-{{actionLogEntry.rating}}-small"></div>
+                                            <div class="action-log rating">
+                                                <rating max="5" value="actionLogEntry.rating"></rating>
+                                            </div>
+                                    </div>
+                                    <div class="col-xs-3 col-md-3">
+                                        <div class="action-log time-box">
+                                            <span class="action-log time-box timestamp">
+                                                {{actionLogEntry.timestamp | fromNowFake}}</br>
+                                                <span class="action-log time-box info">
+                                                    {{actionLogEntry.recurringInfo}}&nbsp;&nbsp;
+                                                    <span class="glyphicon glyphicon-repeat"></span>
+                                                </span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

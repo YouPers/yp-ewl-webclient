@@ -540,9 +540,10 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 @action-log-indent: 7px;
+@action-log-title-indent: 0px;
 
 .social-log.feedback-box {
-  margin-left: @action-log-indent;
+  margin-left: @action-log-title-indent;
   margin-top: 10px;
 }
 
@@ -565,7 +566,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .action-log.title {
-  margin-left: @action-log-indent;
+  margin-left: -@action-log-indent;
 }
 
 .social-log.title,
@@ -604,7 +605,7 @@ input[type="range"]::-webkit-slider-thumb {
 .action-log.time-box.timestamp {
   font-family: @youpers-brand-font-family-numbers;
   font-weight:300;
-  font-size: @youpers-font-size-8;
+  font-size: @youpers-font-size-7;
 }
 
 .action-log.time-box.info {
@@ -612,18 +613,17 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: @youpers-font-size-6;
 }
 
-.action-log.feedback-box {
-  margin-left: @action-log-indent;
-  margin-top: 10px;
+//.action-log.feedback-box {
+//  margin-left: @action-log-indent;
+//  margin-top: 10px;
+//}
+
+.action-log.comments {
+  margin-left: -@action-log-indent;
 }
 
-.action-log.feedback-box.comments {
-
-}
-
-.action-log.feedback-box.rating {
-  float: right;
-  margin-top: 0px;
+.action-log.rating {
+  font-size: @youpers-font-size-8;
 }
 
 .list-group-item.community > a.social-log.title,
@@ -631,4 +631,92 @@ input[type="range"]::-webkit-slider-thumb {
 .list-group-item.past > a.action-log.title,
 .list-group-item.past .action-log {
   color: @youpers-brand-colors-secondary;
+}
+
+// smiley selection (sprites from runtastic.png)
+//ToDo: replace it with own YouPers Smileys
+
+.action-feedback-1,
+.action-feedback-1.selected,
+.action-feedback-2,
+.action-feedback-2.selected,
+.action-feedback-3,
+.action-feedback-3.selected,
+.action-feedback-4,
+.action-feedback-4.selected,
+.action-feedback-5 {
+  background-image: url(../assets/img/runtastic.png);
+  width: 51px;
+  height: 51px;
+}
+
+.action-feedback-1-small,
+.action-feedback-2-small,
+.action-feedback-3-small,
+.action-feedback-4-small,
+.action-feedback-5-small {
+  margin-top: 3px;
+  background-image: url(../assets/img/runtastic.png);
+  width: 30px;
+  height: 30px;
+}
+
+.action-feedback-5 {
+  background-position: 0px -660px;
+}
+
+.action-feedback-5.selected {
+  background-position: 0px -594px;
+}
+
+.action-feedback-5-small {
+  background-position: 0px -3807px;
+}
+
+.action-feedback-4 {
+  background-position: 0px -330px;
+}
+
+.action-feedback-4.selected {
+  background-position: 0px -264px;
+}
+
+.action-feedback-4-small {
+  background-position: 0px -3305px;
+}
+
+.action-feedback-3 {
+  background-position: 0px -772px;
+}
+
+.action-feedback-3.selected {
+  background-position: 0px -838px;
+}
+
+.action-feedback-3-small {
+  background-position: 0px -4923px;
+}
+
+.action-feedback-2 {
+  background-position: 0px -462px;
+}
+
+.action-feedback-2.selected {
+  background-position: 0px -396px;
+}
+
+.action-feedback-2-small {
+  background-position: 0px -3696px;
+}
+
+.action-feedback-1 {
+  background-position: 0px -198px;
+}
+
+.action-feedback-1.selected {
+  background-position: 0px -132px;
+}
+
+.action-feedback-1-small {
+  background-position: 0px -3149px;
 }

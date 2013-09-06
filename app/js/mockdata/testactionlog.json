@@ -6,8 +6,28 @@
         "nofcomments": "7",
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
+        "rating": "2",
+        "timestamp": "2013-07-16T12:15:00.000Z"
+    },
+    {
+        "status": "done",
+        "type": "past",
+        "activity": "Joggen über Mittag",
+        "nofcomments": "7",
+        "recurring": "yes",
+        "recurringinfo": "jeden Dienstag",
+        "rating": "3",
+        "timestamp": "2013-07-23T12:15:00.000Z"
+    },
+    {
+        "status": "done",
+        "type": "past",
+        "activity": "Joggen über Mittag",
+        "nofcomments": "7",
+        "recurring": "yes",
+        "recurringinfo": "jeden Dienstag",
         "rating": "4",
-        "timestamp": "2013-08-06T12:15:00.000Z"
+        "timestamp": "2013-07-30T12:15:00.000Z"
     },
     {
         "status": "not done",
@@ -17,7 +37,17 @@
         "recurring": "yes",
         "recurringinfo": "jeden Dienstag",
         "rating": "1",
-        "timestamp": "2013-08-13T11:45:00.000Z"
+        "timestamp": "2013-08-06T11:45:00.000Z"
+    },
+    {
+        "status": "done",
+        "type": "past",
+        "activity": "Joggen über Mittag",
+        "nofcomments": "7",
+        "recurring": "yes",
+        "recurringinfo": "jeden Dienstag",
+        "rating": "5",
+        "timestamp": "2013-08-13T12:15:00.000Z"
     },
     {
         "status": "open",
