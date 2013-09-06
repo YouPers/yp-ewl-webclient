@@ -99,9 +99,6 @@ p {
 // bootstrap.css:body
 body {
   font-family: @youpers-brand-font-family;
-  /* Move down content because we have a fixed navbar that is up to 100px tall */
-  padding-top: 50px;
-//  padding-bottom: 30px;
 }
 
 /* new youpers element vor youpers logo in the NavBar */
@@ -171,6 +168,12 @@ body {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
+
+/* reduce top margin of bootstrap page-header */
+.page-header {
+  margin: 20px 0 20px;
+}
+
 
 
 /* change success button to youpers colors */
