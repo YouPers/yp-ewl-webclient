@@ -52,10 +52,10 @@
                                 <span class="action-log feedback-box comments">
                                     Kommentare <a href="#" class="badge">{{actionLogEntry.nofcomments}}</a>
                                 </span>
-
                                     <div class="action-log feedback-box rating">
-                                        <span class="glyphicon glyphicon-star individual-rating" ng-repeat="i in getStars(actionLogEntry.rating)"></span>
-                                        <span class="glyphicon glyphicon-star-empty individual-rating" ng-repeat="i in getEmptyStars(5 - actionLogEntry.rating)"></span>
+                                        <!--<span class="glyphicon glyphicon-star individual-rating" ng-repeat="i in getStars(actionLogEntry.rating)"></span>-->
+                                        <!--<span class="glyphicon glyphicon-star-empty individual-rating" ng-repeat="i in getEmptyStars(5 - actionLogEntry.rating)"></span>-->
+                                        <rating max="5" value="actionLogEntry.rating"></rating>
                                     </div>
                                 </div>
                             </div>

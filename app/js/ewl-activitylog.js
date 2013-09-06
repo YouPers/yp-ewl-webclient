@@ -34,21 +34,21 @@ angular.module('yp.actionlog', []).
             return icon;
         }
 
-        $scope.getStars = function(num) {
-            var starsArray = new Array();
-            for (var i = 0; i < num; i++) {
-                starsArray[i]=i;
-            }
-            return starsArray;
-        }
-
-        $scope.getEmptyStars = function(num) {
-            var starsArray = new Array();
-            for (var i = 0; i < num; i++) {
-                starsArray[i]=i;
-            }
-            return starsArray;
-        }
+//        $scope.getStars = function(num) {
+//            var starsArray = new Array();
+//            for (var i = 0; i < num; i++) {
+//                starsArray[i]=i;
+//            }
+//            return starsArray;
+//        }
+//
+//        $scope.getEmptyStars = function(num) {
+//            var starsArray = new Array();
+//            for (var i = 0; i < num; i++) {
+//                starsArray[i]=i;
+//            }
+//            return starsArray;
+//        }
 
         $scope.getGlyphiconStatus = function(status) {
             var icon = "";
