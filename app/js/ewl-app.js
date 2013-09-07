@@ -2,8 +2,8 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion','yp.sociallog', 'yp.actionlog', 'globalErrors', 'ui.router','ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.filters']).
+angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion','yp.sociallog', 'yp.actionlog', 'google-chart-sample', 'globalErrors', 'ui.router','ui.bootstrap',
+        'ngCookies', 'i18n', 'yp.filters', 'googlechart']).
     config(function ($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, send to /home
