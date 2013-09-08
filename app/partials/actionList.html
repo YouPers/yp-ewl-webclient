@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+            Hier kommen die Sorter
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+               Hier kommen die Filter
+        </div>
+
+        <div class="col-md-10 ">
+            <div class="row panel panel-default" ng-repeat="action in actions">
+                <div class="col-md-2">
+                        {{ action.title }}
+                </div>
+                <div class="col-md-1">
+                        {{ action.field }}
+                </div>
+                <div class="col-md-2">
+                    <rating max='5' value='action.rating' ></rating>
+                </div>
+                <div class="col-md-5">
+                    {{ action.text }}
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary btn-sm" ng-href="#/actions/{{ action.id }}">einplanen!</a>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>

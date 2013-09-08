@@ -153,5 +153,16 @@ angular.module('yp.ewl.activity', []).
         ];
 
 
-    }]);
+    }])
+
+    .controller('ActionListCtrl', ['$scope', 'ActivityService', function($scope, ActivityService) {
+        ActivityService.allActivities.then(function (data) {
+            $scope.actions = data;
+        });
+
+
+
+
+    }])
+;
 

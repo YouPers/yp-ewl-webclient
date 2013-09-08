@@ -6,7 +6,8 @@
         "field": "nutrition",
         "defaultPlanType": "daily",
         "defaultExecutionType": "self",
-        "defaultPrivacy": "public"
+        "defaultPrivacy": "public",
+        "rating": "3"
     },
     {
         "id": "2",
@@ -15,7 +16,8 @@
         "field": "exercise",
         "defaultPlanType": "daily",
         "defaultExecutionType": "group",
-        "defaultPrivacy": "community"
+        "defaultPrivacy": "community",
+        "rating": 3
     },
     {
         "id": "3",
@@ -24,7 +26,8 @@
         "field": "nutrition",
         "defaultPlanType": "daily",
         "defaultExecutionType": "self",
-        "defaultPrivacy": "public"
+        "defaultPrivacy": "public",
+        "rating": 4
     },
     {
         "id": "4",
@@ -33,7 +36,8 @@
         "field": "exercise",
         "defaultPlanType": "daily",
         "defaultExecutionType": "group",
-        "defaultPrivacy": "public"
+        "defaultPrivacy": "public",
+        "rating": 5
     },
     {
         "id": "5",
@@ -42,7 +46,8 @@
         "field": "nutrition",
         "defaultPlanType": "daily",
         "defaultExecutionType": "self",
-        "defaultPrivacy": "public"
+        "defaultPrivacy": "public",
+        "rating": 5
     },
     {
         "id": "6",
@@ -51,7 +56,8 @@
         "field": "exercise",
         "defaultPlanType": "daily",
         "defaultExecutionType": "group",
-        "defaultPrivacy": "public"
+        "defaultPrivacy": "public",
+        "rating": 2
     },
     {
         "id": "7",
@@ -60,8 +66,57 @@
         "field": "nutrition",
         "defaultPlanType": "daily",
         "defaultExecutionType": "self",
-        "defaultPrivacy": "private"
+        "defaultPrivacy": "private",
+        "rating": 3
+    },
+    {
+        "id": "8",
+        "title": "Iss täglich einen Apfel",
+        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
+        "field": "nutrition",
+        "defaultPlanType": "daily",
+        "defaultExecutionType": "self",
+        "defaultPrivacy": "private",
+        "rating": 3
+    },
+    {
+        "id": "9",
+        "title": "Iss täglich einen Apfel",
+        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
+        "field": "nutrition",
+        "defaultPlanType": "daily",
+        "defaultExecutionType": "self",
+        "defaultPrivacy": "private",
+        "rating": 3
+    },
+    {
+        "id": "10",
+        "title": "Iss täglich einen Apfel",
+        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
+        "field": "nutrition",
+        "defaultPlanType": "daily",
+        "defaultExecutionType": "self",
+        "defaultPrivacy": "private",
+        "rating": 2
+    },
+    {
+        "id": "11",
+        "title": "Iss täglich einen Apfel",
+        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
+        "field": "nutrition",
+        "defaultPlanType": "daily",
+        "defaultExecutionType": "self",
+        "defaultPrivacy": "private",
+        "rating": 5
+    },
+    {
+        "id": "12",
+        "title": "Iss täglich einen Apfel",
+        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
+        "field": "nutrition",
+        "defaultPlanType": "daily",
+        "defaultExecutionType": "self",
+        "defaultPrivacy": "private",
+        "rating": 3
     }
-
-
 ]
