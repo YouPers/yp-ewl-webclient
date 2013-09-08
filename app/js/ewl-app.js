@@ -38,11 +38,30 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion'
                 templateUrl: "partials/activityplanning.html",
                 controller: "ActivityCtrl"
             })
+            .state('actionlist', {
+                url: "/actions",
+                templateUrl: "partials/actionlist.html",
+                controller: "ActionListCtrl"
+            })
+            .state('actionDetail', {
+                url: "/actions/:actionId",
+                templateUrl: "partials/activityplanning.html",
+                controller: "ActivityCtrl"
+            })
+
+
     }).
 
     config(['$translateProvider', function ($translateProvider) {
         $translateProvider.preferredLanguage('de');
         $translateProvider.useCookieStorage();
+    }])
+
+
+    .controller('MainMenuCtrl', ['$scope','$location', function($scope, $location) {
+        $scope.isActive = function (viewLocation) {
+            return viewLocation === $location.path();
+        };
     }]);
 
 
