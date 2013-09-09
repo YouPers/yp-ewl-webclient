@@ -17,15 +17,28 @@
                         <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur Stressreduktion vorzuschlagen. </p>
                         <p>Wie hat sich dein Stresslevel entwickelt? </p>
 
-                        <p><a class="btn btn-default" href="#">Zum Fragebogen &raquo;</a></p>
+                        <p><a class="btn btn-default" href="#" data-toggle="button">Zum Fragebogen &raquo;</a></p>
                     </div>
-                    <div class="col-md-6" ng-app="google-chart-sample" ng-cloak="" ng-controller="CockpitActionChartCtrl">
+                    <div class="col-md-6" ng-app="yp.ewl.cockpit-action-chart" ng-cloak="" ng-controller="CockpitActionChartCtrl">
                         <h2>Aktivitäten</h2>
 
                         <p>Wieviele der geplanten Aktivitäten hast du durchgeführt und wieviele verpasst? </p>
 
                         <p><a class="btn btn-default" href="#">Ausführliche Darstellung &raquo;</a></p>
-                        <div google-chart chart="chart" style="{{chart.cssStyle}}"/>
+                        <div class="btn-group">
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}" name="timespanoption" id="optionweek" checked="checked"> Woche
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}" name="timespanoption" id="optionmonth"> Monat
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}" name="timespanoption" id="optionyear"> Jahr
+                            </label>
+
+                        </div>
+                        <!--<div google-chart chart="chart" style="{{chart.cssStyle}}"/>-->
+                        <div google-chart chart="chart"/>
                     </div>
                 </div>
                 <div class="row">
