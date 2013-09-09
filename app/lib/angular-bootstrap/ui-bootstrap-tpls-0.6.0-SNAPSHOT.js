@@ -2724,6 +2724,8 @@ angular.module('ui.bootstrap.timepicker', [])
       }
 
       var selected = new Date(), meridians = timepickerConfig.meridians;
+      selected.setHours(12);
+      selected.setMinutes(0);
 
       var hourStep = timepickerConfig.hourStep;
       if (attrs.hourStep) {
