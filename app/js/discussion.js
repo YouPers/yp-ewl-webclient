@@ -19,8 +19,8 @@ angular.module('yp.discussion', []).
     }
     ])
 
-    .controller('CommentCtrl', ['$scope', 'CommentService', 'ActivityService', function ($scope, CommentService, ActivityService) {
-        var selectedAction = ActivityService.getSelectedActivity();
+    .controller('CommentCtrl', ['$scope', 'CommentService', 'ActionService', function ($scope, CommentService, ActionService) {
+        var selectedAction = ActionService.getSelectedActivity();
         CommentService.getThreadsFor('Activity', selectedAction.id).then(function (data) {
             $scope.threads = data;
         });

@@ -48,11 +48,11 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion'
                 templateUrl: "partials/activityplanning.html",
                 controller: "ActivityCtrl",
                 resolve: {
-                    allActions: function (ActivityService) {
-                        return ActivityService.allActivities;
+                    allActions: function (ActionService) {
+                        return ActionService.allActivities;
                     },
-                    plannedActions: function (ActivityService) {
-                        return ActivityService.plannedActivities;
+                    plannedActions: function (ActionService) {
+                        return ActionService.plannedActivities;
                     }
                 }
             })

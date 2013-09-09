@@ -28,7 +28,7 @@ angular.module('yp.ewl.activity', []).
             "text": "Früchte sind superduper und darum sollte man immer eine essen...",
             "field": "nutrition",
             "planningCat": "daily"
-        }
+        };
 
         var selectedActivityPlan = {
             "action_id": 1,
@@ -37,7 +37,7 @@ angular.module('yp.ewl.activity', []).
             "onceDate": "",
             "onceTime": "",
             "weeklyDay": ""
-        }
+        };
 
         var actService = {
             allActivities: activityProposals,
@@ -53,7 +53,7 @@ angular.module('yp.ewl.activity', []).
                 if (plannedActions && allActions) {
                 selectedActivity = _.find(allActions, function (obj) {
                     return obj.id == actionId;
-                })
+                });
 
                 selectedActivityPlan = _.find(plannedActions, function (obj) {
                     return obj.action_id == actionId;
@@ -98,7 +98,7 @@ angular.module('yp.ewl.activity', []).
                     $scope.myPlannedActions.splice(i, 1);
                 }
             }
-        }
+        };
 
         $scope.planAction = function (action) {
             var newAction = true;
@@ -124,8 +124,8 @@ angular.module('yp.ewl.activity', []).
         };
 
         $scope.isActionPlanned = function (actionId) {
-            return ActionService.isActionPlanned ($scope.myPlannedActions, actionId);
-        }
+            return ActionService.isActionPlanned($scope.myPlannedActions, actionId);
+        };
 
 
         $scope.selectActionField = function (actionField) {
