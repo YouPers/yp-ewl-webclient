@@ -1,5 +1,12 @@
 <div class="container">
-    <div class="row">
+
+        <!-- Page header  -->
+        <div class="page-header">
+            <h1>Plane eine für dich passende Aktivität</h1>
+        </div>
+
+
+        <div class="row">
         <div class="col-md-8 col-md-offset-4">
             Hier kommen die Sorter
         </div>
@@ -7,11 +14,118 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-               Hier kommen die Filter
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>AktvitätsCluster</h3>
+                    <div class="container panel panel-default">
+                        <div class="checkbox filter-option" ng-class="query.cluster.general ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.cluster.general">
+                                Allg. Ges.-Mgmt
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.cluster.fitness ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.cluster.fitness">
+                                Körper./geistige Fitness
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.cluster.nutrition ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.cluster.nutrition">
+                                Ernährung/Konsum
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.cluster.wellness ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.cluster.wellness">
+                                Wohlbefinden
+                            </label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Rating</h3>
+                    <div class="container panel panel-default">
+                        <div class="checkbox filter-option" ng-class="query.rating.five ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.five">
+                                    <rating value="5" max="5"></rating>
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.rating.four ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.four">
+                                    <rating value="4" max="5"></rating>
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.rating.three ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.three">
+                                    <rating value="3" max="5"></rating>
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.rating.two ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.two">
+                                    <rating value="2" max="5"></rating>
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.rating.one ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.one">
+                                    <rating value="1" max="5"></rating>
+                            </label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Zeitaufwand</h3>
+                    <div class="container panel panel-default">
+                        <div class="checkbox filter-option" ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.time.t15">
+                               < 15 Minuten
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.time.t30">
+                                < 30 Minuten
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.time.t60">
+                                < 1 Stunde
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option" ng-class="query.time.more ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.time.more">
+                                mehr als 1 Stunde
+                            </label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
         </div>
 
         <div class="col-md-10 ">
-            <div class="row panel panel-default" ng-repeat="action in actions">
+            <div class="row panel panel-default" ng-repeat="action in actions | ActionListFilter:query">
                 <div class="col-md-2">
                         {{ action.title }}
                 </div>
