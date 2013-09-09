@@ -80,15 +80,15 @@ angular.module('yp.ewl.activity', []).
         return actService;
     }])
 
-    .controller('ActivityFieldCtrl', [ '$scope', 'ActivityService', '$timeout', function ($scope, activityService) {
+    .controller('ActivityFieldCtrl', [ '$scope', 'ActivityService', function ($scope, ActivityService) {
 
         $scope.actionFieldSelected = "";
 
-        activityService.allActivities.then(function (data) {
+       ActivityService.allActivities.then(function (data) {
             $scope.actions = data;
         });
 
-        activityService.plannedActivities.then(function (data) {
+        ActivityService.plannedActivities.then(function (data) {
             $scope.myPlannedActions = data;
         });
 
@@ -123,7 +123,9 @@ angular.module('yp.ewl.activity', []).
             }
         };
 
-        $scope.isActionPlanned = ActivityService.isActionPlanned (myPlannedActions, actionId);
+        $scope.isActionPlanned = function (actionId) {
+            return ActivityService.isActionPlanned ($scope.myPlannedActions, actionId);
+        }
 
 
         $scope.selectActionField = function (actionField) {

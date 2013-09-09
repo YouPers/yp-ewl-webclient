@@ -22,7 +22,7 @@ describe('ewl activity', function () {
          * this is where we're setting up the $scope and
          * calling the controller function on it, injecting
          * all the important bits, like our mockService */
-        beforeEach(inject(function ($rootScope, $controller, $timeout, $q) {
+        beforeEach(inject(function ($rootScope, $controller) {
 
             //create a scope object for us to use.
             $scope = $rootScope.$new();
@@ -62,9 +62,19 @@ describe('ewl activity', function () {
                             ]
                             )
                         }
+                    },
+
+                    isActionPlanned: function(plannedActions, actionId) {
+                        if (typeof (plannedActions) != 'undefined')  {
+                            for (var i = 0; i < plannedActions.length; i++) {
+                                if (plannedActions[i].action_id == actionId) {
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
                     }
-                },
-                $timeout: $timeout
+                }
             });
         }));
 
