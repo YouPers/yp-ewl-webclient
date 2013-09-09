@@ -2722,7 +2722,7 @@ angular.module('ui.bootstrap.timepicker', [])
         return; // do nothing if no ng-model
       }
 
-      var selected = new Date(), meridians = timepickerConfig.meridians;
+      var selected, meridians = timepickerConfig.meridians;
 
       var hourStep = timepickerConfig.hourStep;
       if (attrs.hourStep) {
