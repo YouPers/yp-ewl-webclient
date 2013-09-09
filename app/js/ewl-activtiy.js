@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('yp.ewl.activity', []).
+angular.module('yp.ewl.activity', [])
 
 
-    factory('ActionService', ['$http', function ($http) {
+    .factory('ActionService', ['$http', function ($http) {
 
 
         function Activity(id, title, text, af, plCat) {
@@ -80,6 +80,47 @@ angular.module('yp.ewl.activity', []).
         return actService;
     }])
 
+    .filter('ActionListFilter', function () {
+        return function (actions, query) {
+            var out = [];
+
+            var allClusters = true;
+            angular.forEach(query.cluster, function(value, key) {
+                if (value) {
+                    allClusters = false;
+                }
+            });
+
+
+            var allRatings = true;
+            angular.forEach(query.rating, function(value, key) {
+                if (value) {
+                    allRatings = false;
+                }
+            });
+
+            var ratingsMapping = ['none', 'one', 'two', 'three','four', 'five']
+            var allTimes = true;
+            angular.forEach(query.times, function(value, key) {
+                if (value) {
+                    allTimes = false;
+                }
+            });
+
+
+            angular.forEach(actions, function(action, key) {
+
+                if (   (allClusters || query.cluster[action.field]) &&
+                       (allRatings  || query.rating[ratingsMapping[action.rating]]) &&
+                       (allTimes || query.time[action.time]))
+                    out.push(action);
+                }
+             )
+            return out;
+
+        }
+    }
+    )
     .controller('ActivityFieldCtrl', [ '$scope', 'ActionService', function ($scope, ActionService) {
 
         $scope.actionFieldSelected = "";
@@ -190,6 +231,29 @@ angular.module('yp.ewl.activity', []).
 
         $scope.isActionPlanned = function (actionId) {
             return ActionService.isActionPlanned($scope.plannedActions, actionId);
+        }
+
+
+        $scope.query = {
+            cluster: {
+                general: false,
+                fitness: false,
+                nutrition: false,
+                wellness: false
+            },
+            rating: {
+                five: false,
+                four: false,
+                three: false,
+                two: false,
+                one: false
+            },
+            time: {
+                t15: false,
+                t30: false,
+                t60: false,
+                more: false
+            }
         }
     }])
 ;
