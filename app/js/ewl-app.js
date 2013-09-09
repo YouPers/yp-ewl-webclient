@@ -17,7 +17,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion'
             })
             .state('serviceChoice', {
                 url: "/serviceChoice",
-                templateUrl: "partials/serviceChoice.html"
+                templateUrl: "partials/topic.html"
             })
             .state('ewlActivityFields', {
                 url: "/ewl-activityfields",
