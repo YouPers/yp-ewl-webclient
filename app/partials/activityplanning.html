@@ -2,7 +2,7 @@
 
 <!-- Page header  -->
 <div class="page-header">
-    <h1>Plane: Jogging über Mittag</h1>
+    <h1>Plane: {{ currentAction.title }}</h1>
 </div>
 <div class="container">
 
@@ -13,13 +13,13 @@
 
 
         <div class="col-md-8">
-            <p>Jogging über Mittag macht Spass, lüftet den Kopf und ist sowieso immer gut</p>
+            <p>{{ currentAction.text }}</p>
 
         </div>
         <div class="col-md-4">
             <p>3453 mal geplant<br/>
                 2320 mal ausgeführt</p>
-            <rating max="5" value="4"></rating>
+            <rating max="5" value="currentAction.rating"></rating>
             <a href="">(34)</a>
         </div>
 
@@ -122,7 +122,8 @@
     </div>
 
 </div>
-<div class="col-md-6">  <!-- Einplanung -->
+<!-- Einplanung, falls noch nicht geplant -->
+<div class="col-md-6" ng-hide="isActionPlanned(currentAction.id)">
     <tabset>
         <tab heading="Selber einplanen">
             <div class="container yp-action-planning-tab">
@@ -130,15 +131,15 @@
                     <div class="radio-inline">
                         <label>
                             <input type="radio" name="planTypes" id="planTypeOnce" value="once"
-                                   ng-model="selectedActivityPlan.planType">
+                                   ng-model="currentActionPlan.planType">
                             Einmalig am:
                         </label>
                     </div>
-                    <fieldset ng-disabled="selectedActivityPlan.planType!='once'">
+                    <fieldset ng-disabled="currentActionPlan.planType!='once'">
                         <div class="input-group input-group-sm">
                             <input class="form-control" type="text" id="datePickerOnce"
                                    datepicker-popup="dd-MMMM-yyyy"
-                                   ng-model="selectedActivityPlan.onceDate"
+                                   ng-model="currentActionPlan.onceDate"
                                    is-open="opened" min="minDate" max="'2015-06-22'"
                                    datepicker-options="dateOptions"
                                    date-disabled="disabled(date, mode)" ng-required="true"/>
@@ -156,14 +157,14 @@
                     <div class="radio-inline">
                         <label>
                             <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
-                                   ng-model="selectedActivityPlan.planType">
+                                   ng-model="currentActionPlan.planType">
                             Täglich um:
                         </label>
                     </div>
 
-                    <fieldset ng-disabled="selectedActivityPlan.planType!='daily'">
+                    <fieldset ng-disabled="currentActionPlan.planType!='daily'">
 
-                        <div ng-model="selectedActivityPlan.dailyTime" class="col-md-6">
+                        <div ng-model="currentActionPlan.dailyTime" class="col-md-6">
                             <timepicker id="timePickerDaily" minute-step="15"
                                         show-meridian="false"></timepicker>
                         </div>
@@ -176,12 +177,12 @@
 
                         <label>
                             <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly"
-                                   ng-model="selectedActivityPlan.planType">
+                                   ng-model="currentActionPlan.planType">
                             Wöchentlich am:
                         </label>
                     </div>
-                    <fieldset ng-disabled="selectedActivityPlan.planType!='weekly'">
-                        <select ng-model="selectedActivityPlan.weeklyDay"
+                    <fieldset ng-disabled="currentActionPlan.planType!='weekly'">
+                        <select ng-model="currentActionPlan.weeklyDay"
                                 name="weeklyDay"
                                 id="weeklyDay"
                                 ng-options="availableDays.indexOf(d) as d.label | translate for d in availableDays"
@@ -207,7 +208,9 @@
                         </div>
                     </div>
                 </form>
+                <p>{{ currentAction }}</p>
 
+                <p>{{ currentActionPlan }}</p>
             </div>
         </tab>
         <tab heading="Bei andern mitmachen">
@@ -288,5 +291,12 @@
     </tabset>
 </div>
 
+<!-- Daten zur geplanten Action, falls schon geplant -->
+<div class="col-md-6" ng-show="isActionPlanned(currentAction.id)">
+    <div class="container yp-action-planning-tab">
+        Diese Action ist schon geplant für diesen User.
+    </div>
+</div>
+</div>
 </div>
 </div>

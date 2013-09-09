@@ -1,6 +1,6 @@
 [
     {
-        "activity_id": 1,
+        "action_id": 1,
         "field": "exercise",
         "planType": "once",
         "privacy" : "public",
@@ -9,7 +9,7 @@
         "onceTime": ""
     },
     {
-        "activity_id": 3,
+        "action_id": 3,
         "field": "nutrition",
         "planType": "weekly",
         "privacy" : "public",
@@ -17,7 +17,7 @@
         "weeklyDayOfWeek": "MONDAY"
     },
     {
-        "activity_id": 4,
+        "action_id": 4,
         "field": "exercise",
         "planType": "daily",
         "privacy" : "public",

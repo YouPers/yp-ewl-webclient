@@ -46,7 +46,15 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion'
             .state('actionDetail', {
                 url: "/actions/:actionId",
                 templateUrl: "partials/activityplanning.html",
-                controller: "ActivityCtrl"
+                controller: "ActivityCtrl",
+                resolve: {
+                    allActions: function (ActivityService) {
+                        return ActivityService.allActivities;
+                    },
+                    plannedActions: function (ActivityService) {
+                        return ActivityService.plannedActivities;
+                    }
+                }
             })
 
 
