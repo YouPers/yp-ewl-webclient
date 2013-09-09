@@ -6,11 +6,11 @@ describe('ewl activity', function () {
     beforeEach(module('yp.ewl.activity'));
 
 
-    describe('ActivityService', function () {
+    describe('ActionService', function () {
 
-        it('allActivities should be defined and loadable', inject(function (ActivityService) {
-            expect(ActivityService.allActivities).toBeDefined();
-            expect(ActivityService.plannedActivities).toBeDefined();
+        it('allActivities should be defined and loadable', inject(function (ActionService) {
+            expect(ActionService.allActivities).toBeDefined();
+            expect(ActionService.plannedActivities).toBeDefined();
         }));
     });
 
@@ -31,7 +31,7 @@ describe('ewl activity', function () {
             //injecting any services or other injectables we need.
             ctrl = $controller('ActivityFieldCtrl', {
                 $scope: $scope,
-                ActivityService: {
+                ActionService: {
                     allActivities: {
                         then: function (callback) {
                             callback({

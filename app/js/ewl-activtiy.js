@@ -3,7 +3,7 @@
 angular.module('yp.ewl.activity', []).
 
 
-    factory('ActivityService', ['$http', function ($http) {
+    factory('ActionService', ['$http', function ($http) {
 
 
         function Activity(id, title, text, af, plCat) {
@@ -80,15 +80,15 @@ angular.module('yp.ewl.activity', []).
         return actService;
     }])
 
-    .controller('ActivityFieldCtrl', [ '$scope', 'ActivityService', function ($scope, ActivityService) {
+    .controller('ActivityFieldCtrl', [ '$scope', 'ActionService', function ($scope, ActionService) {
 
         $scope.actionFieldSelected = "";
 
-       ActivityService.allActivities.then(function (data) {
+       ActionService.allActivities.then(function (data) {
             $scope.actions = data;
         });
 
-        ActivityService.plannedActivities.then(function (data) {
+        ActionService.plannedActivities.then(function (data) {
             $scope.myPlannedActions = data;
         });
 
@@ -124,7 +124,7 @@ angular.module('yp.ewl.activity', []).
         };
 
         $scope.isActionPlanned = function (actionId) {
-            return ActivityService.isActionPlanned ($scope.myPlannedActions, actionId);
+            return ActionService.isActionPlanned ($scope.myPlannedActions, actionId);
         }
 
 
@@ -134,17 +134,17 @@ angular.module('yp.ewl.activity', []).
 
     } ])
 
-    .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', '$stateParams', 'allActions', 'plannedActions',
-        function ($scope, ActivityService, $timeout, $stateParams, allActions, plannedActions) {
+    .controller('ActivityCtrl', ['$scope', 'ActionService', '$timeout', '$stateParams', 'allActions', 'plannedActions',
+        function ($scope, ActionService, $timeout, $stateParams, allActions, plannedActions) {
 
             $scope.actions = allActions;
 
             $scope.plannedActions = plannedActions;
 
-        ActivityService.setSelectedActivity($stateParams.actionId, $scope.actions, $scope.plannedActions);
+        ActionService.setSelectedActivity($stateParams.actionId, $scope.actions, $scope.plannedActions);
 
-        $scope.currentAction = ActivityService.getSelectedActivity();
-        $scope.currentActionPlan = ActivityService.getSelectedActivityPlan();
+        $scope.currentAction = ActionService.getSelectedActivity();
+        $scope.currentActionPlan = ActionService.getSelectedActivityPlan();
 
 
 
@@ -174,22 +174,22 @@ angular.module('yp.ewl.activity', []).
         ];
 
             $scope.isActionPlanned = function (actionId) {
-                return ActivityService.isActionPlanned($scope.plannedActions, actionId);
+                return ActionService.isActionPlanned($scope.plannedActions, actionId);
             }
 
         }])
 
-    .controller('ActionListCtrl', ['$scope', 'ActivityService', function($scope, ActivityService) {
-        ActivityService.allActivities.then(function (data) {
+    .controller('ActionListCtrl', ['$scope', 'ActionService', function($scope, ActionService) {
+        ActionService.allActivities.then(function (data) {
             $scope.actions = data;
         });
 
-        ActivityService.plannedActivities.then(function (data) {
+        ActionService.plannedActivities.then(function (data) {
             $scope.plannedActions = data;
         });
 
         $scope.isActionPlanned = function (actionId) {
-            return ActivityService.isActionPlanned($scope.plannedActions, actionId);
+            return ActionService.isActionPlanned($scope.plannedActions, actionId);
         }
     }])
 ;
