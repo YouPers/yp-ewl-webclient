@@ -121,6 +121,14 @@ angular.module('yp.ewl.activity', [])
         }
     }
     )
+
+    .filter('startFrom', function () {
+        return function (input, start) {
+            start = +start; //parse to int
+            return input.slice(start);
+        };
+    })
+
     .controller('ActivityFieldCtrl', [ '$scope', 'ActionService', function ($scope, ActionService) {
 
         $scope.actionFieldSelected = "";
@@ -220,9 +228,11 @@ angular.module('yp.ewl.activity', [])
 
         }])
 
-    .controller('ActionListCtrl', ['$scope', 'ActionService', function($scope, ActionService) {
+    .controller('ActionListCtrl', ['$scope', 'ActionService', '$filter', function($scope, ActionService, $filter) {
         ActionService.allActivities.then(function (data) {
             $scope.actions = data;
+            $scope.filteredActions = data;
+
         });
 
         ActionService.plannedActivities.then(function (data) {
@@ -255,6 +265,16 @@ angular.module('yp.ewl.activity', [])
                 more: false
             }
         }
+
+        $scope.pageSize = 10;
+        $scope.maxSize = 5;
+        $scope.currentPage = 1;
+
+
+        $scope.$watch('query', function (newQuery) {
+            $scope.currentPage = 1;
+            $scope.filteredActions = $filter('ActionListFilter')($scope.actions, $scope.query);
+        }, true);
     }])
 ;
 

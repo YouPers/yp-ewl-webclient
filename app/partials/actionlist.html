@@ -125,7 +125,7 @@
         </div>
 
         <div class="col-md-10 ">
-            <div class="row panel panel-default" ng-repeat="action in actions | ActionListFilter:query">
+            <div class="row panel panel-default" ng-repeat="action in filteredActions | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
                 <div class="col-md-2">
                         {{ action.title }}
                 </div>
@@ -144,6 +144,7 @@
                        ng-href="#/actions/{{ action.id }}">{{ isActionPlanned(action.id) ? 'PLANNED' : 'PLAN_IT' | translate }}</a>
                 </div>
            </div>
+           <pagination total-items="filteredActions.length" items-per-page="pageSize" page="currentPage" max-size="maxSize" class="pagination" boundary-links="true"/>
         </div>
     </div>
 </div>
