@@ -91,6 +91,14 @@ angular.module('yp.ewl.activity', [])
                 }
             });
 
+            var allTopics = true;
+            angular.forEach(query.topic, function(value, key) {
+                if (value) {
+                    allTopics = false;
+                }
+            });
+
+
 
             var allRatings = true;
             angular.forEach(query.rating, function(value, key) {
@@ -110,7 +118,8 @@ angular.module('yp.ewl.activity', [])
 
             angular.forEach(actions, function(action, key) {
 
-                if (   (allClusters || query.cluster[action.field]) &&
+                if (   (allClusters || _.any(action.field, function(value) {return query.cluster[value]})) &&
+                       (allTopics || _.any(action.topic, function(value) {return query.topic[value]})) &&
                        (allRatings  || query.rating[ratingsMapping[action.rating]]) &&
                        (allTimes || query.time[action.time]))
                     out.push(action);
@@ -263,7 +272,14 @@ angular.module('yp.ewl.activity', [])
                 t30: false,
                 t60: false,
                 more: false
+            },
+            topic: {
+                workLifeBalance: true,
+                physicalFitness: false,
+                nutrition: false,
+                mentalFitness: false
             }
+
         }
 
         $scope.pageSize = 10;
