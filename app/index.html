@@ -140,6 +140,8 @@
     </div>
 </div>
 
+<alert type='globalUserMsg.type' close="closeUserMsg()" class="yp-globalUserMsg" ng-hide="$parent.globalUserMsg == null">{{ globalUserMsg.text }}</alert>
+
 <div ui-view></div>
 
 <div class="loginReminderBox panel panel-default" ng-show="showLoginDialog" >

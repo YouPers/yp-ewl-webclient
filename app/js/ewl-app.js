@@ -65,6 +65,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
     .run(['$rootScope', '$state', 'principal', 'userRoles', function ($rootScope, $state, principal, userRoles) {
 
+        // handle routing authentication
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
             var authenticated = principal.isAuthenticated();
@@ -79,7 +80,8 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             if (fromState.name == '' && principal.isAuthenticated() && toState.name == 'home') {
                 event.preventDefault();
                 $state.go('cockpit');
-            };
+            }
+            ;
 
             if (requiredAccessLevel & currentUserRole) {
                 // everything ok, user is authorized to access this state
@@ -88,9 +90,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
             }
 
-
         });
-
 
 
     }]).
@@ -101,99 +101,120 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
     }])
 
 
-    .controller('MainCtrl', ['$scope', '$state', 'authority', 'principal', '$cookieStore', 'userRoles',
-        function ($scope, $state, authority, principal, $cookieStore, userRoles) {
+    .controller('MainCtrl', ['$scope', '$rootScope', '$state', 'authority', 'principal', '$cookieStore', 'userRoles', '$timeout',
+        function ($scope, $rootScope, $state, authority, principal, $cookieStore, userRoles, $timeout) {
 
-        // handle Menu Highlighting
-        $scope.isActive = function (viewLocation) {
-            return   $state.current.url.indexOf(viewLocation) != -1;
-        };
+            // handle Menu Highlighting
+            $scope.isActive = function (viewLocation) {
+                return   $state.current.url.indexOf(viewLocation) != -1;
+            };
 
-        $scope.$on('loginMessageShow', function (event, data){
-            $scope.showLoginDialog = true;
-            $scope.nextStateAfterLogin = data;
-        })
+            $scope.$on('loginMessageShow', function (event, data) {
+                $scope.showLoginDialog = true;
+                $scope.nextStateAfterLogin = data;
+            })
 
-        var fakeLogin = function (credentials) {
-            var knownUsers = {
-                ivan: {
-                    id: 123123,
-                    username: 'ivan',
-                    fullname: 'Ivan Rigamonti',
-                    picture: 'assets/img/IRIG.jpeg',
-                    role: userRoles.admin
-                }, urs: {
-                    id: 2342,
-                    username: 'urs',
-                    fullname: 'Urs Baumeler',
-                    picture: 'assets/img/UBAU.jpeg',
-                    role: userRoles.user
-                },
-                stefan: {
-                    id: 34543,
-                    username: 'stefan',
-                    fullname: 'Stefan Müller',
-                    picture: 'assets/img/SMUE.jpeg',
-                    role: userRoles.user
-                },
-                reto: {
-                    id: 777,
-                    username: 'reto',
-                    fullname: 'Reto Blunschi',
-                    picture: 'assets/img/RBLU.jpeg',
-                    role: userRoles.admin
+            var fakeLogin = function (credentials) {
+                var knownUsers = {
+                    ivan: {
+                        id: 123123,
+                        username: 'ivan',
+                        fullname: 'Ivan Rigamonti',
+                        picture: 'assets/img/IRIG.jpeg',
+                        role: userRoles.admin
+                    }, urs: {
+                        id: 2342,
+                        username: 'urs',
+                        fullname: 'Urs Baumeler',
+                        picture: 'assets/img/UBAU.jpeg',
+                        role: userRoles.user
+                    },
+                    stefan: {
+                        id: 34543,
+                        username: 'stefan',
+                        fullname: 'Stefan Müller',
+                        picture: 'assets/img/SMUE.jpeg',
+                        role: userRoles.user
+                    },
+                    reto: {
+                        id: 777,
+                        username: 'reto',
+                        fullname: 'Reto Blunschi',
+                        picture: 'assets/img/RBLU.jpeg',
+                        role: userRoles.admin
+                    }
+                }
+
+                if (credentials in knownUsers) {
+                    // $http.defaults.headers.common.Authorization = 'Basic ' + username;
+                    $cookieStore.put('authdata', credentials);
+                    authority.authorize(
+                        knownUsers[credentials]
+                    );
+                } else {
+                    $rootScope.$broadcast('globalUserMsg', 'Login / password not valid, please try again or register', 'danger', 3000);
                 }
             }
 
-            if (credentials in knownUsers) {
-                // $http.defaults.headers.common.Authorization = 'Basic ' + username;
-                $cookieStore.put('authdata', credentials);
-                authority.authorize(
-                    knownUsers[credentials]
-                );
+            var encodeCredentials = function (username, password) {
+                return (username == password) ? username : '';
             }
-        }
 
-        var encodeCredentials = function (username, password) {
-            return (username == password) ? username : '';
-        }
+            var credentialsFromCookie = $cookieStore.get('authdata');
 
-        var credentialsFromCookie = $cookieStore.get('authdata');
-
-        if (credentialsFromCookie != null) {
-            fakeLogin(credentialsFromCookie);
-        }
-
-        $scope.principal = principal;
-
-        $scope.loginSubmit = function () {
-            // loginBasicAuth();
-            fakeLogin(encodeCredentials($scope.username, $scope.password));
-            $scope.username = '';
-            $scope.password = '';
-            if ($scope.nextStateAfterLogin ) {
-                $state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
-                $scope.nextStateAfterLogin = null;
-            } else {
-                $state.go('cockpit');
+            if (credentialsFromCookie != null) {
+                fakeLogin(credentialsFromCookie);
             }
-            $scope.showLoginDialog = false;
-        };
 
-        $scope.logout = function () {
-            $cookieStore.remove('authdata');
-            // $http.defaults.headers.common.Authorization = '';
-            authority.deauthorize();
-        };
+            $scope.principal = principal;
 
-        $scope.getUsername = function () {
-            if (principal.isAuthenticated()) {
-                return principal.identity().name();
-            } else {
-                return '';
+            $scope.loginSubmit = function () {
+                // loginBasicAuth();
+                fakeLogin(encodeCredentials($scope.username, $scope.password));
+                $scope.username = '';
+                $scope.password = '';
+                if ($scope.nextStateAfterLogin) {
+                    $state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
+                    $scope.nextStateAfterLogin = null;
+                } else {
+                    $state.go('cockpit');
+                }
+                $scope.showLoginDialog = false;
+            };
+
+            $scope.logout = function () {
+                $cookieStore.remove('authdata');
+                // $http.defaults.headers.common.Authorization = '';
+                authority.deauthorize();
+            };
+
+            $scope.getUsername = function () {
+                if (principal.isAuthenticated()) {
+                    return principal.identity().name();
+                } else {
+                    return '';
+                }
             }
-        }
-    }]);
+
+            $scope.$on('globalUserMsg', function (event, msg, type, duration) {
+                $scope.globalUserMsg = {
+                    text: msg,
+                    type: type,
+                    duration: duration
+                };
+                if (duration) {
+                    $timeout(function () {
+                         $scope.globalUserMsg = null;
+                    }, duration)
+                }
+            });
+
+            $scope.closeUserMsg = function () {
+                $scope.globalUserMsg = null;
+            }
+
+
+        }]);
 
 
 
