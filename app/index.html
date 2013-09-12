@@ -51,7 +51,7 @@
     <script src="lib/momentjs/lang-de.js"></script>
 
     <script src="js/common/base64.js"></script>
-    <script src="js/common/filters.js"></script>
+    <script src="js/common/yp-commons.js"></script>
 
     <script src="lib/angular-authentication/angular-authentication.js"></script>
     <script src="js/ewl-activtiy.js"></script>
@@ -142,7 +142,21 @@
 
 <div ui-view></div>
 
-
+<div class="loginReminderBox panel panel-default" ng-show="showLoginDialog" >
+    <a class="close" ng-click="showLoginDialog=false">×</a>
+    Für diese Seite ist es notwendig, dass du dich einloggst. <br>
+    Sonst gehen deine Daten verloren.
+    <form class="navbar-form" ng-submit="loginSubmit()">
+        <div class="form-group">
+            <input type="text" placeholder="{{ 'EMAIL' | translate }}" class="form-control" ng-model="username" setfocus="showLoginDialog">
+        </div>
+        <div class="form-group">
+            <input type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control"
+                   ng-model="password">
+        </div>
+        <button type="submit" class="btn btn-success btn-sm">{{ 'LOGIN' | translate }}</button>
+    </form>
+</div>
 <!-- Footer -->
 
 <footer class="row">

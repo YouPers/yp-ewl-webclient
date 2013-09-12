@@ -4,8 +4,8 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.actionlog',
         'yp.ewl.cockpit-action-chart', 'ui.router', 'ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.filters', 'googlechart', 'authentication']).
-    config(function ($stateProvider, $urlRouterProvider) {
+        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication']).
+    config(function ($stateProvider, $urlRouterProvider, userRoles, accessLevels) {
         //
         // For any unmatched url, send to /home
         $urlRouterProvider.otherwise("/home");
@@ -14,40 +14,42 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
         $stateProvider
             .state('home', {
                 url: "/home",
-                templateUrl: "partials/home.html"
+                templateUrl: "partials/home.html",
+                access: accessLevels.public
             })
             .state('serviceChoice', {
                 url: "/serviceChoice",
-                templateUrl: "partials/topic.html"
+                templateUrl: "partials/topic.html",
+                access: accessLevels.public
             })
             .state('ewlActivityFields', {
                 url: "/ewl-activityfields",
                 templateUrl: "partials/ewlActivityFields.html",
-                controller: "ActivityFieldCtrl"
+                controller: "ActivityFieldCtrl",
+                access: accessLevels.public
             })
             .state('cockpit', {
                 url: "/cockpit",
-                templateUrl: "partials/cockpit.html"
+                templateUrl: "partials/cockpit.html",
+                access: accessLevels.user
             })
             .state('assessment', {
                 url: "/assessment",
                 templateUrl: "partials/assessment.html",
-                controller: "AssessmentCtrl"
-            })
-            .state('planactivity', {
-                url: "/planactivity",
-                templateUrl: "partials/activityplanning.html",
-                controller: "ActivityCtrl"
+                controller: "AssessmentCtrl",
+                access: accessLevels.public
             })
             .state('actionlist', {
                 url: "/actions",
                 templateUrl: "partials/actionlist.html",
-                controller: "ActionListCtrl"
+                controller: "ActionListCtrl",
+                access: accessLevels.public
             })
             .state('actionDetail', {
                 url: "/actions/:actionId",
                 templateUrl: "partials/activityplanning.html",
                 controller: "ActivityCtrl",
+                access: accessLevels.user,
                 resolve: {
                     allActions: function (ActionService) {
                         return ActionService.allActivities;
@@ -61,14 +63,34 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
     })
 
-    .run(['$rootScope', '$location', 'principal', function ($rootScope, $location, principal) {
+    .run(['$rootScope', '$location', 'principal', 'userRoles', function ($rootScope, $state, principal, userRoles) {
 
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-            // authenticated returning user goes directly to cockpit
+
+            var authenticated = principal.isAuthenticated();
+            var currentUserRole = userRoles.public;
+            if (authenticated) {
+                currentUserRole = principal.identity().role();
+            }
+            var requiredAccessLevel = toState.access;
+
+            // special case:
+            // authenticated, returning user goes directly to cockpit
             if (fromState.name == '' && principal.isAuthenticated() && toState.name == 'home') {
-                $location.path('/cockpit');
+                $state.go('cockpit');
             };
+
+            if (requiredAccessLevel & currentUserRole) {
+                // everything ok, user is authorized to access this state
+            } else {
+                event.preventDefault();
+                $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
+            }
+
+
         });
+
+
 
     }]).
 
@@ -78,13 +100,18 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
     }])
 
 
-    .controller('MainCtrl', ['$scope', '$location', 'authority', 'principal', '$cookieStore', function ($scope, $location, authority, principal, $cookieStore) {
+    .controller('MainCtrl', ['$scope', '$state', 'authority', 'principal', '$cookieStore', 'userRoles',
+        function ($scope, $state, authority, principal, $cookieStore, userRoles) {
 
         // handle Menu Highlighting
         $scope.isActive = function (viewLocation) {
-            return   $location.path().indexOf(viewLocation) != -1;
+            return   $state.current.url.indexOf(viewLocation) != -1;
         };
 
+        $scope.$on('loginMessageShow', function (event, data){
+            $scope.showLoginDialog = true;
+            $scope.nextStateAfterLogin = data;
+        })
 
         var fakeLogin = function (credentials) {
             var knownUsers = {
@@ -92,24 +119,28 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                     id: 123123,
                     username: 'ivan',
                     fullname: 'Ivan Rigamonti',
-                    picture: 'assets/img/IRIG.jpeg'
+                    picture: 'assets/img/IRIG.jpeg',
+                    role: userRoles.admin
                 }, urs: {
                     id: 2342,
                     username: 'urs',
                     fullname: 'Urs Baumeler',
-                    picture: 'assets/img/UBAU.jpeg'
+                    picture: 'assets/img/UBAU.jpeg',
+                    role: userRoles.user
                 },
                 stefan: {
                     id: 34543,
                     username: 'stefan',
                     fullname: 'Stefan Müller',
-                    picture: 'assets/img/SMUE.jpeg'
+                    picture: 'assets/img/SMUE.jpeg',
+                    role: userRoles.user
                 },
                 reto: {
                     id: 777,
                     username: 'reto',
                     fullname: 'Reto Blunschi',
-                    picture: 'assets/img/RBLU.jpeg'
+                    picture: 'assets/img/RBLU.jpeg',
+                    role: userRoles.admin
                 }
             }
 
@@ -119,7 +150,6 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 authority.authorize(
                     knownUsers[credentials]
                 );
-                $location.path('/cockpit');
             }
         }
 
@@ -140,6 +170,11 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             fakeLogin(encodeCredentials($scope.username, $scope.password));
             $scope.username = '';
             $scope.password = '';
+            if ($scope.nextStateAfterLogin ) {
+                $state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
+                $scope.nextStateAfterLogin = null;
+            }
+            $scope.showLoginDialog = false;
         };
 
         $scope.logout = function () {
@@ -155,8 +190,6 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 return '';
             }
         }
-
-
     }]);
 
 
