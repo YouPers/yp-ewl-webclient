@@ -59,7 +59,18 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             })
 
 
-    }).
+    })
+
+    .run(['$rootScope', '$location', 'principal', function ($rootScope, $location, principal) {
+
+        $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+            // authenticated returning user goes directly to cockpit
+            if (fromState.name == '' && principal.isAuthenticated() && toState.name == 'home') {
+                $location.path('/cockpit');
+            };
+        });
+
+    }]).
 
     config(['$translateProvider', function ($translateProvider) {
         $translateProvider.preferredLanguage('de');
@@ -108,6 +119,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 authority.authorize(
                     knownUsers[credentials]
                 );
+                $location.path('/cockpit');
             }
         }
 
