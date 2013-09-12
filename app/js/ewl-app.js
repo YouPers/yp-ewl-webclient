@@ -63,7 +63,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
     })
 
-    .run(['$rootScope', '$location', 'principal', 'userRoles', function ($rootScope, $state, principal, userRoles) {
+    .run(['$rootScope', '$state', 'principal', 'userRoles', function ($rootScope, $state, principal, userRoles) {
 
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
@@ -77,6 +77,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             // special case:
             // authenticated, returning user goes directly to cockpit
             if (fromState.name == '' && principal.isAuthenticated() && toState.name == 'home') {
+                event.preventDefault();
                 $state.go('cockpit');
             };
 
@@ -173,6 +174,8 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             if ($scope.nextStateAfterLogin ) {
                 $state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
                 $scope.nextStateAfterLogin = null;
+            } else {
+                $state.go('cockpit');
             }
             $scope.showLoginDialog = false;
         };
