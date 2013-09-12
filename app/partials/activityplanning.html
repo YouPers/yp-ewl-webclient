@@ -45,8 +45,8 @@
                     <div class="row social-thread" ng-show="threads.showNewThread">
                         <div class="social-thread-header">
                             <a href="">
-                                <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                                <strong class="fullname">Urs Baumeler</strong>
+                                <img ng-src="{{ principal.identity().picture() }}" class="avatar-icon"/>
+                                <strong class="fullname">{{ principal.identity().fullname() }}</strong>
                             </a>
                             <span class="thread-time"> </span>
                         </div>
@@ -99,8 +99,8 @@
                             <div class="row social-thread">
                                 <div class="social-thread-header">
                                     <a href="#/u/RBLU">
-                                        <img ng-src="assets/pics/RBLU.jpeg" class="avatar-icon"/>
-                                        <strong class="fullname">Reto Blunschi</strong>
+                                        <img ng-src="{{ principal.identity().picture() }}" class="avatar-icon"/>
+                                        <strong class="fullname">{{ principal.identity().fullname() }}</strong>
                                     </a>
                                     <span class="thread-time"> </span>
                                 </div>

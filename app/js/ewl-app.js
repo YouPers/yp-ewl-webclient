@@ -2,9 +2,9 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion','yp.sociallog', 'yp.actionlog',
-        'yp.ewl.cockpit-action-chart', 'ui.router','ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.filters', 'googlechart']).
+angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.actionlog',
+        'yp.ewl.cockpit-action-chart', 'ui.router', 'ui.bootstrap',
+        'ngCookies', 'i18n', 'yp.filters', 'googlechart', 'authentication']).
     config(function ($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, send to /home
@@ -67,10 +67,84 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity','yp.discussion'
     }])
 
 
-    .controller('MainMenuCtrl', ['$scope','$location', function($scope, $location) {
+    .controller('MainCtrl', ['$scope', '$location', 'authority', 'principal', '$cookieStore', function ($scope, $location, authority, principal, $cookieStore) {
+
+        // handle Menu Highlighting
         $scope.isActive = function (viewLocation) {
-            return viewLocation === $location.path();
+            return   $location.path().indexOf(viewLocation) != -1;
         };
+
+
+        var fakeLogin = function (credentials) {
+            var knownUsers = {
+                ivan: {
+                    id: 123123,
+                    username: 'ivan',
+                    fullname: 'Ivan Rigamonti',
+                    picture: 'assets/img/IRIG.jpeg'
+                }, urs: {
+                    id: 2342,
+                    username: 'urs',
+                    fullname: 'Urs Baumeler',
+                    picture: 'assets/img/UBAU.jpeg'
+                },
+                stefan: {
+                    id: 34543,
+                    username: 'stefan',
+                    fullname: 'Stefan Müller',
+                    picture: 'assets/img/SMUE.jpeg'
+                },
+                reto: {
+                    id: 777,
+                    username: 'reto',
+                    fullname: 'Reto Blunschi',
+                    picture: 'assets/img/RBLU.jpeg'
+                }
+            }
+
+            if (credentials in knownUsers) {
+                // $http.defaults.headers.common.Authorization = 'Basic ' + username;
+                $cookieStore.put('authdata', credentials);
+                authority.authorize(
+                    knownUsers[credentials]
+                );
+            }
+        }
+
+        var encodeCredentials = function (username, password) {
+            return (username == password) ? username : '';
+        }
+
+        var credentialsFromCookie = $cookieStore.get('authdata');
+
+        if (credentialsFromCookie != null) {
+            fakeLogin(credentialsFromCookie);
+        }
+
+        $scope.principal = principal;
+
+        $scope.loginSubmit = function () {
+            // loginBasicAuth();
+            fakeLogin(encodeCredentials($scope.username, $scope.password));
+            $scope.username = '';
+            $scope.password = '';
+        };
+
+        $scope.logout = function () {
+            $cookieStore.remove('authdata');
+            // $http.defaults.headers.common.Authorization = '';
+            authority.deauthorize();
+        };
+
+        $scope.getUsername = function () {
+            if (principal.isAuthenticated()) {
+                return principal.identity().name();
+            } else {
+                return '';
+            }
+        }
+
+
     }]);
 
 

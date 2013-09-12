@@ -78,6 +78,8 @@
       // to just `name`, `id` stayed the same, and `date` was ignored.
       this.identityKeys = {
         username: 'name',
+        fullname: 'fullname',
+        picture: 'picture',
         id: 'id'
       };
 

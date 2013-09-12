@@ -13,6 +13,7 @@ module.exports = function (config) {
             'app/lib/jquery/jquery-2.0.3.min.js',
             'app/lib/momentjs/moment.js',
             'app/lib/momentjs/lang-de.js',
+            'app/lib/angular-authentication/angular-authentication.js',
             'test/lib/angular/angular-mocks.js',
             'app/js/**/*.js',
             'test/unit/**/*.js'

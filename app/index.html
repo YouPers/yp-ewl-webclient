@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--[if IE 8]>
-    <html class="no-js lt-ie9" lang="en" ng-app="yp-ewl"> <![endif]-->
+<html class="no-js lt-ie9" lang="en" ng-app="yp-ewl"> <![endif]-->
 <!--[if gt IE 8]><!-->
 
 <html class="no-js" lang="en" ng-app="yp-ewl"> <![endif]
@@ -29,11 +29,12 @@
     <!--<link rel="stylesheet" href="css/youpers.css"/>-->
 
     <!-- YouPers Stylesheet and needed LESS library -->
-    <link rel="stylesheet/less" type="text/css" href="less/youpers.less" />
-    <script type="text/javascript">var less=less||{};less.env='development';</script>
+    <link rel="stylesheet/less" type="text/css" href="less/youpers.less"/>
+    <script type="text/javascript">var less = less || {};
+    less.env = 'development';</script>
     <script src="lib/less/less-1.4.1.min.js" type="text/javascript"></script>
     <!--<script type="text/javascript">-->
-        <!--less.watch();-->
+    <!--less.watch();-->
     <!--</script>-->
 
     <script src="lib/angular/angular.js"></script>
@@ -53,7 +54,6 @@
     <script src="js/common/filters.js"></script>
 
     <script src="lib/angular-authentication/angular-authentication.js"></script>
-    <script src="js/authentication.js"></script>
     <script src="js/ewl-activtiy.js"></script>
     <script src="js/ewl-assessment.js"></script>
     <script src="js/discussion.js"></script>
@@ -77,10 +77,10 @@
 </head>
 
 
-<body>
+<body ng-controller="MainCtrl">
 
 
-<div class="navbar navbar-inverse" ng-controller="MainMenuCtrl">
+<div class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -88,14 +88,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-logo" href="http://www.youpers.com/en/"><img src="assets/img/logo.png" alt="YouPers" height="50"></a>
+            <a class="navbar-logo" href="http://www.youpers.com/en/"><img src="assets/img/logo.png" alt="YouPers"
+                                                                          height="50"></a>
             <!--<a class="navbar-brand" href="#">eWorkLife</a>-->
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li ng-class="{ active: isActive('/cockpit')}"><a href="#/cockpit">{{ 'COCKPIT' | translate }}</a></li>
-                <li ng-class="{ active: isActive('/actions')}"><a href="#/actions">{{ 'ACTIVITIES' | translate }}</a></li>
-                <li ng-class="{ active: isActive('/assessment')}"><a href="#/assessment">{{ 'ASSESSMENT' | translate }}</a></li>
+                <li ng-class="{ active: isActive('/actions')}"><a href="#/actions">{{ 'ACTIVITIES' | translate }}</a>
+                </li>
+                <li ng-class="{ active: isActive('/assessment')}"><a href="#/assessment">{{ 'ASSESSMENT' | translate
+                    }}</a></li>
                 <li class="dropdown" ng-controller="i18nCtrl">
                     <a class="dropdown-toggle" data-toggle="dropdown">{{ 'LANGUAGE' | translate }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -110,16 +113,30 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-right">
+            <form class="navbar-form navbar-right" ng-submit="loginSubmit()" ng-show="!principal.isAuthenticated()">
                 <div class="form-group">
-                    <input type="text" placeholder="{{ 'EMAIL' | translate }}"class="form-control">
+                    <input type="text" placeholder="{{ 'EMAIL' | translate }}" class="form-control" ng-model="username">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control">
+                    <input type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control"
+                           ng-model="password">
                 </div>
                 <button type="submit" class="btn btn-success btn-sm">{{ 'LOGIN' | translate }}</button>
             </form>
-        </div><!--/.navbar-collapse -->
+            <div class="nav navbar-right" ng-show="principal.isAuthenticated()">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">{{ principal.identity().fullname() }}<b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="" ng-click="logout()">{{ 'LOGOUT' | translate }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <!--/.navbar-collapse -->
     </div>
 </div>
 
