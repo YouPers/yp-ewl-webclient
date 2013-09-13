@@ -127,87 +127,115 @@
     <tabset>
         <tab heading="Selber einplanen">
             <div class="container yp-action-planning-tab">
-                <form class="form-inline" role="form">
-                    <div class="radio-inline">
-                        <label>
-                            <input type="radio" name="planTypes" id="planTypeOnce" value="once"
-                                   ng-model="currentActionPlan.planType">
-                            Einmalig am:
-                        </label>
-                    </div>
-                    <fieldset ng-disabled="currentActionPlan.planType!='once'">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" type="text" id="datePickerOnce"
-                                   datepicker-popup="dd-MMMM-yyyy"
-                                   ng-model="currentActionPlan.onceDate"
-                                   is-open="opened" min="minDate" max="'2015-06-22'"
-                                   datepicker-options="dateOptions"
-                                   date-disabled="disabled(date, mode)" ng-required="true"/>
+                <div class="row">
+                    <form class="form-horizontal" role="form">
+                        <div class="col-xs-6">
 
-                        <span class="input-group-btn">
-                            <button class="btn btn-info " ng-click="open()">
-                                <span class="glyphicon glyphicon-calendar"></span>
+                            <div class="planning-option" ng-class="{planningOptionActive: currentActionPlan.planType=='once'}">
+                                <div class="radio-inline">
+                                    <label>
+                                        <input type="radio" name="planTypes" id="planTypeOnce" value="once"
+                                               ng-model="currentActionPlan.planType">
+                                        Einmalig am:
+                                    </label>
+                                </div>
+                                <fieldset ng-disabled="currentActionPlan.planType!='once'">
+                                    <div class="input-group input-group-sm">
+                                        <input class="form-control" type="text" id="datePickerOnce"
+                                               datepicker-popup="dd-MMMM-yyyy"
+                                               ng-model="currentActionPlan.onceDate"
+                                               is-open="opened" min="minDate" max="'2015-06-22'"
+                                               datepicker-options="dateOptions"
+                                               date-disabled="disabled(date, mode)" ng-required="true"/>
+
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info " ng-click="open()">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </button>
+                                    </span>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div class="planning-option" ng-class="{planningOptionActive: currentActionPlan.planType=='daily'}">
+                                <div class="radio-inline">
+                                    <label>
+                                        <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
+                                               ng-model="currentActionPlan.planType">
+                                        Täglich um:
+                                    </label>
+                                </div>
+
+                                <fieldset ng-disabled="currentActionPlan.planType!='daily'">
+
+                                    <div ng-model="currentActionPlan.dailyTime" class="col-md-12">
+                                        <timepicker id="timePickerDaily" minute-step="15"
+                                                    show-meridian="false"></timepicker>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="planning-option" ng-class="{planningOptionActive: currentActionPlan.planType=='weekly'}">
+                                <div class="radio-inline">
+
+                                    <label>
+                                        <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly"
+                                               ng-model="currentActionPlan.planType">
+                                        Wöchentlich am:
+                                    </label>
+                                </div>
+                                <fieldset ng-disabled="currentActionPlan.planType=='weekly'">
+                                    <select ng-model="currentActionPlan.weeklyDay"
+                                            name="weeklyDay"
+                                            id="weeklyDay"
+                                            ng-options="availableDays.indexOf(d) as d.label | translate for d in availableDays"
+                                            class="form-control">
+                                    </select>
+
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label>
+                                Dauer:
+                                <input type="text" size="5" class="form-control">
+                            </label>
+
+                            <div class="panel panel-default">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="radio" name="excecutionTypes" id="exTypeSelf" value="self"
+                                               ng-model="currentActionPlan.executionType"/> alleine machen
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="radio" name="excecutionTypes" id="exTypeGroup" value="group"
+                                               ng-model="currentActionPlan.executionType"/> andere einladen
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="radio" name="privacyTypes" id="privacyTypePublic" value="public"
+                                               ng-model="currentActionPlan.privacyType"/> öffentlich
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="radio" name="privacyTypes" id="privacyTypePrivate" value="private"
+                                               ng-model="currentActionPlan.privacyType"/> privat
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" ng-click="planActivityDone()">
+                                einplanen!
                             </button>
-                         </span>
                         </div>
-
-                    </fieldset>
-
-
-                    <div class="radio-inline">
-                        <label>
-                            <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
-                                   ng-model="currentActionPlan.planType">
-                            Täglich um:
-                        </label>
-                    </div>
-
-                    <fieldset ng-disabled="currentActionPlan.planType!='daily'">
-
-                        <div ng-model="currentActionPlan.dailyTime" class="col-md-6">
-                            <timepicker id="timePickerDaily" minute-step="15"
-                                        show-meridian="false"></timepicker>
-                        </div>
-                        <div class="col-md-3">
-                            {{ dailyTime }}
-                        </div>
-                    </fieldset>
-
-                    <div class="radio-inline">
-
-                        <label>
-                            <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly"
-                                   ng-model="currentActionPlan.planType">
-                            Wöchentlich am:
-                        </label>
-                    </div>
-                    <fieldset ng-disabled="currentActionPlan.planType!='weekly'">
-                        <select ng-model="currentActionPlan.weeklyDay"
-                                name="weeklyDay"
-                                id="weeklyDay"
-                                ng-options="availableDays.indexOf(d) as d.label | translate for d in availableDays"
-                                class="form-control">
-                        </select>
-
-                    </fieldset>
-                    <div class="checkbox">
-
-                        <label>
-                            <input type="radio"/> alleine machen
-                        </label>
-                    </div>
-                    <div class="checkbox">
-
-                        <label>
-                            <input type="radio"/> andere einladen
-                        </label>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-offset-10 col-md-2">
-                            <button type="button" class="btn btn-primary">einplanen!</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </tab>
         <tab heading="Bei andern mitmachen">

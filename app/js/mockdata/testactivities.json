@@ -16,9 +16,9 @@
         "text": "Run forest, Run...",
         "field": ["fitness"],
         "topic" : ["workLifeBalance", "physicalFitness"],
-        "defaultPlanType": "daily",
+        "defaultPlanType": "weekly",
         "defaultExecutionType": "group",
-        "defaultPrivacy": "community",
+        "defaultPrivacy": "public",
         "rating": 3
     },
     {
@@ -38,7 +38,7 @@
         "text": "Run forest, Run...",
         "field": ["fitness"],
         "topic" : ["workLifeBalance", "physicalFitness"],
-        "defaultPlanType": "daily",
+        "defaultPlanType": "weekly",
         "defaultExecutionType": "group",
         "defaultPrivacy": "public",
         "rating": 5
@@ -60,7 +60,7 @@
         "text": "Run forest, Run...",
         "field": ["fitness"],
         "topic" : ["workLifeBalance", "physicalFitness"],
-        "defaultPlanType": "daily",
+        "defaultPlanType": "weekly",
         "defaultExecutionType": "group",
         "defaultPrivacy": "public",
         "rating": 2

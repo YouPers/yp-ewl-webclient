@@ -22,22 +22,9 @@ angular.module('yp.ewl.activity', [])
             return result.data;
         });
 
-        var selectedActivity = {
-            "id": "1",
-            "title": "Iss täglich einen Apfel",
-            "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-            "field": "nutrition",
-            "planningCat": "daily"
-        };
+        var selectedActivity;
 
-        var selectedActivityPlan = {
-            "action_id": 1,
-            "field": "exercise",
-            "planType": "unplanned",
-            "onceDate": "",
-            "onceTime": "",
-            "weeklyDay": ""
-        };
+        var selectedActivityPlan;
 
         var actService = {
             allActivities: activityProposals,
@@ -55,9 +42,20 @@ angular.module('yp.ewl.activity', [])
                         return obj.id == actionId;
                     });
 
+                    selectedActivityPlan = null;
                     selectedActivityPlan = _.find(plannedActions, function (obj) {
                         return obj.action_id == actionId;
                     });
+
+                    if (!selectedActivityPlan) {
+                        selectedActivityPlan = {
+                            "action_id": 1,
+                            "field": selectedActivity.field,
+                            "planType": selectedActivity.defaultPlanType,
+                            "privacyType" : selectedActivity.defaultPrivacy,
+                            "executionType": selectedActivity.defaultExecutionType
+                        };
+                    }
                 } else {
                     selectedActivity = {};
                     selectedActivityPlan = {};
@@ -196,8 +194,8 @@ angular.module('yp.ewl.activity', [])
 
     } ])
 
-    .controller('ActivityCtrl', ['$scope', 'ActionService', '$timeout', '$stateParams', 'allActions', 'plannedActions',
-        function ($scope, ActionService, $timeout, $stateParams, allActions, plannedActions) {
+    .controller('ActivityCtrl', ['$scope', 'ActionService', '$timeout', '$state','$stateParams', 'allActions', 'plannedActions',
+        function ($scope, ActionService, $timeout, $state, $stateParams, allActions, plannedActions) {
 
             $scope.actions = allActions;
 
@@ -236,6 +234,12 @@ angular.module('yp.ewl.activity', [])
 
             $scope.isActionPlanned = function (actionId) {
                 return ActionService.isActionPlanned($scope.plannedActions, actionId);
+            };
+
+            $scope.planActivityDone = function() {
+                // save Activity Plan
+                // transition to cockpit
+                $state.go('cockpit');
             };
 
         }])

@@ -48,7 +48,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             })
             .state('actionDetail', {
                 url: "/actions/:actionId",
-                templateUrl: "partials/activityplanning.html",
+                templateUrl: "partials/action.detail.html",
                 controller: "ActivityCtrl",
                 access: accessLevels.user,
                 resolve: {
