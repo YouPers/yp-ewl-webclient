@@ -185,7 +185,7 @@
                                         Wöchentlich am:
                                     </label>
                                 </div>
-                                <fieldset ng-disabled="currentActionPlan.planType=='weekly'">
+                                <fieldset ng-disabled="currentActionPlan.planType!='weekly'">
                                     <select ng-model="currentActionPlan.weeklyDay"
                                             name="weeklyDay"
                                             id="weeklyDay"
