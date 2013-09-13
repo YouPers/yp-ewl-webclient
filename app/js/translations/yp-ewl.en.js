@@ -12,7 +12,7 @@ angular.module('yp-ewl').
             INDIVIDUALS: 'Individuals',
             HEALTH_PROMOTERS: 'Health Promoters',
             FOR: 'for',
-            SELECT_YOUPERS_SERVICE: 'Select your YouPers Service:',
+            CHOOSE_A_TOPIC: 'Choose a health topic and set a goal:',
             ASSESS_YOUR_STRESS_LEVEL: 'Assess your personal stress level:',
             GENERAL_STRESSLEVEL: 'General stresslevel',
             HOW_PERCEIVE_CURRENT_LEVEL: 'How do you perceive your  stress level in this very moment?',
@@ -36,6 +36,7 @@ angular.module('yp-ewl').
             THURSDAY: 'Thursday',
             FRIDAY: 'Friday',
             SATURDAY: 'Saturday',
-            SUNDAY: 'Sunday'
+            SUNDAY: 'Sunday',
+            TOPIC: 'Health-Topic'
         });
     }]);

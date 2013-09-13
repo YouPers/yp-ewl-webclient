@@ -51,21 +51,21 @@ angular.module('yp.ewl.activity', [])
 
             setSelectedActivity: function (actionId, allActions, plannedActions) {
                 if (plannedActions && allActions) {
-                selectedActivity = _.find(allActions, function (obj) {
-                    return obj.id == actionId;
-                });
+                    selectedActivity = _.find(allActions, function (obj) {
+                        return obj.id == actionId;
+                    });
 
-                selectedActivityPlan = _.find(plannedActions, function (obj) {
-                    return obj.action_id == actionId;
-                })
+                    selectedActivityPlan = _.find(plannedActions, function (obj) {
+                        return obj.action_id == actionId;
+                    });
                 } else {
-                    selectedActivity ={};
-                    selectedActivityPlan ={};
+                    selectedActivity = {};
+                    selectedActivityPlan = {};
                 }
             },
 
-            isActionPlanned: function(plannedActions, actionId) {
-                if (typeof (plannedActions) != 'undefined')  {
+            isActionPlanned: function (plannedActions, actionId) {
+                if (typeof (plannedActions) != 'undefined') {
                     for (var i = 0; i < plannedActions.length; i++) {
                         if (plannedActions[i].action_id == actionId) {
                             return true;
@@ -85,51 +85,55 @@ angular.module('yp.ewl.activity', [])
             var out = [];
 
             var allClusters = true;
-            angular.forEach(query.cluster, function(value, key) {
+            angular.forEach(query.cluster, function (value, key) {
                 if (value) {
                     allClusters = false;
                 }
             });
 
             var allTopics = true;
-            angular.forEach(query.topic, function(value, key) {
+            angular.forEach(query.topic, function (value, key) {
                 if (value) {
                     allTopics = false;
                 }
             });
 
 
-
             var allRatings = true;
-            angular.forEach(query.rating, function(value, key) {
+            angular.forEach(query.rating, function (value, key) {
                 if (value) {
                     allRatings = false;
                 }
             });
 
-            var ratingsMapping = ['none', 'one', 'two', 'three','four', 'five']
+            var ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'];
             var allTimes = true;
-            angular.forEach(query.times, function(value, key) {
+            angular.forEach(query.times, function (value, key) {
                 if (value) {
                     allTimes = false;
                 }
             });
 
 
-            angular.forEach(actions, function(action, key) {
+            angular.forEach(actions, function (action, key) {
 
-                if (   (allClusters || _.any(action.field, function(value) {return query.cluster[value]})) &&
-                       (allTopics || _.any(action.topic, function(value) {return query.topic[value]})) &&
-                       (allRatings  || query.rating[ratingsMapping[action.rating]]) &&
-                       (allTimes || query.time[action.time]))
-                    out.push(action);
+                    if ((allClusters || _.any(action.field, function (value) {
+                        return query.cluster[value];
+                    })) &&
+                        (allTopics || _.any(action.topic, function (value) {
+                            return query.topic[value];
+                        })) &&
+                        (allRatings || query.rating[ratingsMapping[action.rating]]) &&
+                        (allTimes || query.time[action.time])) {
+                        out.push(action);
+                    }
                 }
-             )
+            );
             return out;
 
-        }
+        };
     }
-    )
+)
 
     .filter('startFrom', function () {
         return function (input, start) {
@@ -142,7 +146,7 @@ angular.module('yp.ewl.activity', [])
 
         $scope.actionFieldSelected = "";
 
-       ActionService.allActivities.then(function (data) {
+        ActionService.allActivities.then(function (data) {
             $scope.actions = data;
         });
 
@@ -177,7 +181,7 @@ angular.module('yp.ewl.activity', [])
                 $scope.myPlannedActions.push({
                     action_id: action.id,
                     field: action.field
-                })
+                });
             }
         };
 
@@ -199,45 +203,44 @@ angular.module('yp.ewl.activity', [])
 
             $scope.plannedActions = plannedActions;
 
-        ActionService.setSelectedActivity($stateParams.actionId, $scope.actions, $scope.plannedActions);
+            ActionService.setSelectedActivity($stateParams.actionId, $scope.actions, $scope.plannedActions);
 
-        $scope.currentAction = ActionService.getSelectedActivity();
-        $scope.currentActionPlan = ActionService.getSelectedActivityPlan();
+            $scope.currentAction = ActionService.getSelectedActivity();
+            $scope.currentActionPlan = ActionService.getSelectedActivityPlan();
 
 
+            // one time planning using daypicker
+            $scope.showWeeks = false;
+            $scope.minDate = new Date();
 
-        // one time planning using daypicker
-        $scope.showWeeks = false;
-        $scope.minDate = new Date();
+            $scope.open = function () {
+                $timeout(function () {
+                    $scope.opened = true;
+                });
+            };
+            $scope.dateOptions = {
+                'year-format': "'yy'",
+                'starting-day': 1
+            };
 
-        $scope.open = function () {
-            $timeout(function () {
-                $scope.opened = true;
-            });
-        };
-        $scope.dateOptions = {
-            'year-format': "'yy'",
-            'starting-day': 1
-        };
-
-        // weeklyplanning using dayselector
-        $scope.availableDays = [
-            {label: 'MONDAY'},
-            {label: 'TUESDAY'},
-            {label: 'WEDNESDAY'},
-            {label: 'THURSDAY'},
-            {label: 'FRIDAY'},
-            {label: 'SATURDAY'},
-            {label: 'SUNDAY'}
-        ];
+            // weeklyplanning using dayselector
+            $scope.availableDays = [
+                {label: 'MONDAY'},
+                {label: 'TUESDAY'},
+                {label: 'WEDNESDAY'},
+                {label: 'THURSDAY'},
+                {label: 'FRIDAY'},
+                {label: 'SATURDAY'},
+                {label: 'SUNDAY'}
+            ];
 
             $scope.isActionPlanned = function (actionId) {
                 return ActionService.isActionPlanned($scope.plannedActions, actionId);
-            }
+            };
 
         }])
 
-    .controller('ActionListCtrl', ['$scope', 'ActionService', '$filter', function($scope, ActionService, $filter) {
+    .controller('ActionListCtrl', ['$scope', 'ActionService', '$filter', function ($scope, ActionService, $filter) {
         ActionService.allActivities.then(function (data) {
             $scope.actions = data;
             $scope.filteredActions = data;
@@ -250,7 +253,7 @@ angular.module('yp.ewl.activity', [])
 
         $scope.isActionPlanned = function (actionId) {
             return ActionService.isActionPlanned($scope.plannedActions, actionId);
-        }
+        };
 
 
         $scope.query = {
@@ -280,7 +283,7 @@ angular.module('yp.ewl.activity', [])
                 mentalFitness: false
             }
 
-        }
+        };
 
         $scope.pageSize = 10;
         $scope.maxSize = 5;

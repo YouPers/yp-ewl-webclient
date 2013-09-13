@@ -222,6 +222,7 @@ fieldset[disabled] .btn-success.active {
   background-color: @youpers-brand-colors-primary;
   padding: 10px;
   z-index: 1000;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .yp-globalUserMsg {
@@ -260,6 +261,22 @@ fieldset[disabled] .btn-success.active {
   width: 80%;
 }
 
+.goalSettingDialog {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 50%;
+  max-width: 300px;
+  margin-left: -150px;
+  .rounded(5px);
+  background-color: @youpers-brand-colors-primary;
+  padding: 15px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  border: 1px;
+  border-color: @youpers-brand-colors-tertiary;
+  border-style: solid;
+  z-index: 5000;
+}
 
 //////////////////////////
 // activity fields
@@ -496,6 +513,9 @@ input[type="range"]::-webkit-slider-thumb {
   border-left-width: 1px;
   border-left-color: #dddddd;
   border-left-style: solid;
+  border-right-width: 1px;
+  border-right-color: #dddddd;
+  border-right-style: solid;
   padding-top: 15px;
 }
 

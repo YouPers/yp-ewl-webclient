@@ -2,7 +2,7 @@
 // Copyright (C) 2013 Qloo Inc., Michael Diolosa <michael.diolosa@gmail.com>  
 // License: MIT
 
-/*global angular:true, browser: true */
+/*global angular:true */
 
 (function () {
     'use strict';
@@ -11,13 +11,13 @@
     var _identity = {},
 
     // Stores whether the user has been authenticated
-        _authenticated = false;
+        _authenticated = false,
 
-    var userRoles = {
-        public: 1,
-        user: 2,
-        admin: 4
-    }
+        userRoles = {
+            anonymous: 1,
+            user: 2,
+            admin: 4
+        };
 
     // authentication
     // ==============
@@ -31,15 +31,14 @@
         .constant('version', '1.0.4')
 
 
-
         // authorization levels and user Roles
         .constant('userRoles', userRoles)
 
         .constant('accessLevels', {
-            public: userRoles.public | // 111
+            all: userRoles.anonymous | // 111
                 userRoles.user |
                 userRoles.admin,
-            anon: userRoles.public,  // 001
+            anon: userRoles.anonymous,  // 001
             user: userRoles.user |   // 110
                 userRoles.admin,
             admin: userRoles.admin    // 100
@@ -60,7 +59,17 @@
                 },
                 isAuthenticated: function () {
                     return _authenticated;
+                },
+                isAuthorized: function(reqAccessLevel, userRole) {
+                    var currentUserRole = userRoles.anonymous;
+                    if (userRole) {
+                        currentUserRole = userRole;
+                    } else if (_identity && ('role' in _identity)) {
+                        currentUserRole = _identity.role();
+                    }
+                    return reqAccessLevel & currentUserRole;
                 }
+
             };
         })
 
@@ -162,6 +171,7 @@
                             // Broadcast the deauthorized event
                             $rootScope.$broadcast('event:authority-deauthorized');
                         }
+
                     };
                 }];
         });

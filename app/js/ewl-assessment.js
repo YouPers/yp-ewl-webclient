@@ -37,7 +37,7 @@ angular.module('yp.ewl.assessment', [])
 
                         // sort answers into keyed object (by question_id) to ease access by view
                         _.forEach(answersAsArray, function (myAnswer) {
-                            answers[myAnswer.question_id] = myAnswer
+                            answers[myAnswer.question_id] = myAnswer;
                         });
                         return assessment;
                     }
@@ -86,6 +86,6 @@ angular.module('yp.ewl.assessment', [])
 
         $scope.answersAsJSON = function () {
             return JSON.stringify(AssessmentService.getAssAnswers(), undefined, 2);
-        }
+        };
 
     }]);

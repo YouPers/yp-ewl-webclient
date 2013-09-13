@@ -1,9 +1,9 @@
 'use strict';
-
+/*global angular:true */
 
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.actionlog',
-        'yp.ewl.cockpit-action-chart', 'ui.router', 'ui.bootstrap',
+        'yp.ewl.cockpit-action-chart','yp.topic', 'ui.router', 'ui.bootstrap',
         'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication']).
     config(function ($stateProvider, $urlRouterProvider, userRoles, accessLevels) {
         //
@@ -15,18 +15,19 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             .state('home', {
                 url: "/home",
                 templateUrl: "partials/home.html",
-                access: accessLevels.public
+                access: accessLevels.all
             })
-            .state('serviceChoice', {
-                url: "/serviceChoice",
+            .state('topics', {
+                url: "/topics",
                 templateUrl: "partials/topic.html",
-                access: accessLevels.public
+                controller: "TopicController",
+                access: accessLevels.all
             })
             .state('ewlActivityFields', {
                 url: "/ewl-activityfields",
                 templateUrl: "partials/ewlActivityFields.html",
                 controller: "ActivityFieldCtrl",
-                access: accessLevels.public
+                access: accessLevels.all
             })
             .state('cockpit', {
                 url: "/cockpit",
@@ -37,13 +38,13 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 url: "/assessment",
                 templateUrl: "partials/assessment.html",
                 controller: "AssessmentCtrl",
-                access: accessLevels.public
+                access: accessLevels.user
             })
             .state('actionlist', {
                 url: "/actions",
                 templateUrl: "partials/actionlist.html",
                 controller: "ActionListCtrl",
-                access: accessLevels.public
+                access: accessLevels.all
             })
             .state('actionDetail', {
                 url: "/actions/:actionId",
@@ -58,9 +59,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                         return ActionService.plannedActivities;
                     }
                 }
-            })
-
-
+            });
     })
 
     .run(['$rootScope', '$state', 'principal', 'userRoles', function ($rootScope, $state, principal, userRoles) {
@@ -68,24 +67,22 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
         // handle routing authentication
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
-            var authenticated = principal.isAuthenticated();
-            var currentUserRole = userRoles.public;
+            var authenticated = principal.isAuthenticated(),
+                requiredAccessLevel = toState.access,
+                currentUserRole = userRoles.anonymous;
+
             if (authenticated) {
                 currentUserRole = principal.identity().role();
             }
-            var requiredAccessLevel = toState.access;
 
             // special case:
             // authenticated, returning user goes directly to cockpit
-            if (fromState.name == '' && principal.isAuthenticated() && toState.name == 'home') {
+            if (!fromState.name && principal.isAuthenticated() && toState.name === 'home') {
                 event.preventDefault();
                 $state.go('cockpit');
             }
-            ;
 
-            if (requiredAccessLevel & currentUserRole) {
-                // everything ok, user is authorized to access this state
-            } else {
+            if (!(principal.isAuthorized(requiredAccessLevel))) {
                 event.preventDefault();
                 $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
             }
@@ -106,13 +103,13 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
             // handle Menu Highlighting
             $scope.isActive = function (viewLocation) {
-                return   $state.current.url.indexOf(viewLocation) != -1;
+                return ($state.current.url.indexOf(viewLocation) !== -1);
             };
 
             $scope.$on('loginMessageShow', function (event, data) {
                 $scope.showLoginDialog = true;
                 $scope.nextStateAfterLogin = data;
-            })
+            });
 
             var fakeLogin = function (credentials) {
                 var knownUsers = {
@@ -122,7 +119,8 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                         fullname: 'Ivan Rigamonti',
                         picture: 'assets/img/IRIG.jpeg',
                         role: userRoles.admin
-                    }, urs: {
+                    },
+                    urs: {
                         id: 2342,
                         username: 'urs',
                         fullname: 'Urs Baumeler',
@@ -143,7 +141,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                         picture: 'assets/img/RBLU.jpeg',
                         role: userRoles.admin
                     }
-                }
+                };
 
                 if (credentials in knownUsers) {
                     // $http.defaults.headers.common.Authorization = 'Basic ' + username;
@@ -154,15 +152,15 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 } else {
                     $rootScope.$broadcast('globalUserMsg', 'Login / password not valid, please try again or register', 'danger', 3000);
                 }
-            }
+            };
 
             var encodeCredentials = function (username, password) {
-                return (username == password) ? username : '';
-            }
+                return (username === password) ? username : '';
+            };
 
             var credentialsFromCookie = $cookieStore.get('authdata');
 
-            if (credentialsFromCookie != null) {
+            if (credentialsFromCookie) {
                 fakeLogin(credentialsFromCookie);
             }
 
@@ -194,7 +192,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 } else {
                     return '';
                 }
-            }
+            };
 
             $scope.$on('globalUserMsg', function (event, msg, type, duration) {
                 $scope.globalUserMsg = {
@@ -205,13 +203,13 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 if (duration) {
                     $timeout(function () {
                          $scope.globalUserMsg = null;
-                    }, duration)
+                    }, duration);
                 }
             });
 
             $scope.closeUserMsg = function () {
                 $scope.globalUserMsg = null;
-            }
+            };
 
 
         }]);

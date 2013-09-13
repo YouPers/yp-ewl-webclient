@@ -1,3 +1,6 @@
+/*  globalstrict:true angular:true */
+'use strict';
+
 angular.module('yp-ewl').
     config(['$translateProvider', function ($translateProvider) {
         $translateProvider.translations('de', {
@@ -13,7 +16,7 @@ angular.module('yp-ewl').
             INDIVIDUALS: 'Privat-Personen',
             HEALTH_PROMOTERS: 'Gesundheits-Promotoren',
             FOR: 'für',
-            SELECT_YOUPERS_SERVICE: 'Wähle dein YouPers Service aus:',
+            CHOOSE_A_TOPIC: 'Wähle ein Gesundheits-Thema und setze dir ein Ziel:',
             ASSESS_YOUR_STRESS_LEVEL: 'Beurteile deinen persönlichen Stresslevel:',
             GENERAL_STRESSLEVEL: 'Allgemeiner Stresslevel',
             HOW_PERCEIVE_CURRENT_LEVEL: 'Wie beurteilst du deinen Stresslevel jetzt in diesem Moment?',
@@ -37,6 +40,7 @@ angular.module('yp-ewl').
             THURSDAY: 'Donnerstag',
             FRIDAY: 'Freitag',
             SATURDAY: 'Samstag',
-            SUNDAY: 'Sonntag'
-        })
+            SUNDAY: 'Sonntag',
+            TOPIC: 'Gesundheits-Thema'
+        });
     }]);
