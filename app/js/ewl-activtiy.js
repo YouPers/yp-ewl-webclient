@@ -53,7 +53,8 @@ angular.module('yp.ewl.activity', [])
                             "field": selectedActivity.field,
                             "planType": selectedActivity.defaultPlanType,
                             "privacyType" : selectedActivity.defaultPrivacy,
-                            "executionType": selectedActivity.defaultExecutionType
+                            "executionType": selectedActivity.defaultExecutionType,
+                            "duration": 15
                         };
                     }
                 } else {

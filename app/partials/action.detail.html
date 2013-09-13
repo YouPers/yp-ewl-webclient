@@ -124,196 +124,208 @@
 </div>
 <!-- Einplanung, falls noch nicht geplant -->
 <div class="col-md-6" ng-hide="isActionPlanned(currentAction.id)">
-    <tabset>
-        <tab heading="Selber einplanen">
-            <div class="container yp-action-planning-tab">
-                <div class="row">
-                    <form class="form-horizontal" role="form">
-                        <div class="col-xs-6">
+<tabset>
+<tab heading="Selber einplanen">
+    <div class="container yp-action-planning-tab">
+        <div class="row">
+            <form class="form-horizontal" role="form">
+                <div class="col-xs-6">
 
-                            <div class="planning-option" ng-class="{planningOptionActive: currentActionPlan.planType=='once'}">
-                                <div class="radio-inline">
-                                    <label>
-                                        <input type="radio" name="planTypes" id="planTypeOnce" value="once"
-                                               ng-model="currentActionPlan.planType">
-                                        Einmalig am:
-                                    </label>
-                                </div>
-                                <fieldset ng-disabled="currentActionPlan.planType!='once'">
-                                    <div class="input-group input-group-sm">
-                                        <input class="form-control" type="text" id="datePickerOnce"
-                                               datepicker-popup="dd-MMMM-yyyy"
-                                               ng-model="currentActionPlan.onceDate"
-                                               is-open="opened" min="minDate" max="'2015-06-22'"
-                                               datepicker-options="dateOptions"
-                                               date-disabled="disabled(date, mode)" ng-required="true"/>
+                    <div class="planning-option"
+                         ng-class="{planningOptionActive: currentActionPlan.planType=='once'}">
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="planTypes" id="planTypeOnce" value="once"
+                                       ng-model="currentActionPlan.planType">
+                                Einmalig am:
+                            </label>
+                        </div>
+                        <fieldset ng-disabled="currentActionPlan.planType!='once'">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" type="text" id="datePickerOnce"
+                                       datepicker-popup="dd-MMMM-yyyy"
+                                       ng-model="currentActionPlan.onceDate"
+                                       is-open="opened" min="minDate" max="'2015-06-22'"
+                                       datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true"/>
 
                                     <span class="input-group-btn">
                                         <button class="btn btn-info " ng-click="open()">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </button>
                                     </span>
-                                    </div>
-
-                                </fieldset>
                             </div>
 
-                            <div class="planning-option" ng-class="{planningOptionActive: currentActionPlan.planType=='daily'}">
-                                <div class="radio-inline">
-                                    <label>
-                                        <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
-                                               ng-model="currentActionPlan.planType">
-                                        Täglich um:
-                                    </label>
-                                </div>
+                        </fieldset>
+                    </div>
 
-                                <fieldset ng-disabled="currentActionPlan.planType!='daily'">
-
-                                    <div ng-model="currentActionPlan.dailyTime" class="col-md-12">
-                                        <timepicker id="timePickerDaily" minute-step="15"
-                                                    show-meridian="false"></timepicker>
-                                    </div>
-                                </fieldset>
-                            </div>
-
-                            <div class="planning-option" ng-class="{planningOptionActive: currentActionPlan.planType=='weekly'}">
-                                <div class="radio-inline">
-
-                                    <label>
-                                        <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly"
-                                               ng-model="currentActionPlan.planType">
-                                        Wöchentlich am:
-                                    </label>
-                                </div>
-                                <fieldset ng-disabled="currentActionPlan.planType!='weekly'">
-                                    <select ng-model="currentActionPlan.weeklyDay"
-                                            name="weeklyDay"
-                                            id="weeklyDay"
-                                            ng-options="availableDays.indexOf(d) as d.label | translate for d in availableDays"
-                                            class="form-control">
-                                    </select>
-
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
+                    <div class="planning-option"
+                         ng-class="{planningOptionActive: currentActionPlan.planType=='daily'}">
+                        <div class="radio-inline">
                             <label>
-                                Dauer:
-                                <input type="text" size="5" class="form-control">
+                                <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
+                                       ng-model="currentActionPlan.planType">
+                                Täglich um:
                             </label>
-
-                            <div class="panel panel-default">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="radio" name="excecutionTypes" id="exTypeSelf" value="self"
-                                               ng-model="currentActionPlan.executionType"/> alleine machen
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="radio" name="excecutionTypes" id="exTypeGroup" value="group"
-                                               ng-model="currentActionPlan.executionType"/> andere einladen
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="radio" name="privacyTypes" id="privacyTypePublic" value="public"
-                                               ng-model="currentActionPlan.privacyType"/> öffentlich
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="radio" name="privacyTypes" id="privacyTypePrivate" value="private"
-                                               ng-model="currentActionPlan.privacyType"/> privat
-                                    </label>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary" ng-click="planActivityDone()">
-                                einplanen!
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </tab>
-        <tab heading="Bei andern mitmachen">
-            <div class="container yp-action-planning-tab">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-sm btn-primary">Ich mache mit</button>
-                            </div>
-                            <div class="col-md-4">
-                                Zug, am See <br>
-                                Immer am Mittwoch: 12:00 - 13:00 <br>
-                                <a href="">7 Kommentare</a>
-                            </div>
-                            <div class="col-md-6">
-                                Dabei sind schon <br>
-                                <a href="" ng-click="showJoiners = !showJoiners">3 andere aus deinem Betrieb</a>
-
-                                <div ng-show="showJoiners">
-                                    <div class="social-thread-header">
-                                        <a href="">
-                                            <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                                            <strong class="fullname">Urs Baumeler</strong>
-                                        </a>
-                                        <span class="thread-time">seit 15.8.2013</span>
-                                    </div>
-                                    <div class="social-thread-header">
-                                        <a href="">
-                                            <img ng-src="assets/img/IRIG.jpeg" class="avatar-icon"/>
-                                            <strong class="fullname">Ivan Rigamonti</strong>
-                                        </a>
-                                        <span class="thread-time">seit 15.8.2013</span>
-                                    </div>
-                                    <div class="social-thread-header">
-                                        <a href="">
-                                            <img ng-src="assets/img/SMUE.jpeg" class="avatar-icon"/>
-                                            <strong class="fullname">Stefan Müller</strong>
-                                        </a>
-                                        <span class="thread-time">seit 15.8.2013</span>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-sm btn-primary">Ich mache mit</button>
-                            </div>
-                            <div class="col-md-4">
-                                Cham im Wald <br>
-                                Immer am Donnerstag: 07:00 - 07:30<br>
-                                <a href="">1 Kommentare</a>
-                            </div>
-                            <div class="col-md-6">
-                                Dabei sind schon <br>
-                                <a href="" ng-click="showJoiners2 = !showJoiners2">1 anderer aus deinem Betrieb</a>
+                        <fieldset ng-disabled="currentActionPlan.planType!='daily'">
 
-                                <div ng-show="showJoiners2">
-                                    <div class="social-thread-header">
-                                        <a href="">
-                                            <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
-                                            <strong class="fullname">Urs Baumeler</strong>
-                                        </a>
-                                        <span class="thread-time">seit 15.8.2013</span>
-                                    </div>
-                                </div>
+                            <div ng-model="currentActionPlan.dailyTime" class="col-md-12">
+                                <timepicker id="timePickerDaily" minute-step="15"
+                                            show-meridian="false"></timepicker>
                             </div>
+                        </fieldset>
+                    </div>
 
+                    <div class="planning-option"
+                         ng-class="{planningOptionActive: currentActionPlan.planType=='weekly'}">
+                        <div class="radio-inline">
+
+                            <label>
+                                <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly"
+                                       ng-model="currentActionPlan.planType">
+                                Wöchentlich am:
+                            </label>
                         </div>
+                        <fieldset ng-disabled="currentActionPlan.planType!='weekly'">
+                            <select ng-model="currentActionPlan.weeklyDay"
+                                    name="weeklyDay"
+                                    id="weeklyDay"
+                                    ng-options="availableDays.indexOf(d) as d.label | translate for d in availableDays"
+                                    class="form-control">
+                            </select>
 
+                        </fieldset>
                     </div>
                 </div>
+                <div class="col-xs-6">
+                    <label>
+                        Dauer:
+                        <input type="text" size="5" class="form-control" ng-model="currentActionPlan.duration">
+                    </label>
+
+                    <div class="panel panel-default">
+                        <div class="checkbox">
+                            <label>
+                                <input type="radio" name="excecutionTypes" id="exTypeSelf" value="self"
+                                       ng-model="currentActionPlan.executionType"/> alleine machen
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="radio" name="excecutionTypes" id="exTypeGroup" value="group"
+                                       ng-model="currentActionPlan.executionType"/> andere einladen
+                            </label>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="checkbox">
+                            <label>
+                                <input type="radio" name="privacyTypes" id="privacyTypePublic" value="public"
+                                       ng-model="currentActionPlan.privacyType"/> öffentlich
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="radio" name="privacyTypes" id="privacyTypePrivate" value="private"
+                                       ng-model="currentActionPlan.privacyType"/> privat
+                            </label>
+                        </div>
+                    </div>
+                    <div ng-show="currentActionPlan.planType=='weekly' || currentActionPlan.planType=='daily'">
+                        <label>
+                            während
+                            <input type="text" size="5" class="form-control" ng-model="currentActionPlan.duration">
+                        </label>
+                        Wochen
+                    </div>
+                    <div class="btn-bottom-right">
+                        <button type="button" class="btn btn-primary" ng-click="planActivityDone()">
+                            einplanen!
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</tab>
+<tab heading="Bei andern mitmachen">
+    <div class="container yp-action-planning-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-sm btn-primary">Ich mache mit</button>
+                    </div>
+                    <div class="col-md-4">
+                        Zug, am See <br>
+                        Immer am Mittwoch: 12:00 - 13:00 <br>
+                        <a href="">7 Kommentare</a>
+                    </div>
+                    <div class="col-md-6">
+                        Dabei sind schon <br>
+                        <a href="" ng-click="showJoiners = !showJoiners">3 andere aus deinem Betrieb</a>
+
+                        <div ng-show="showJoiners">
+                            <div class="social-thread-header">
+                                <a href="">
+                                    <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
+                                    <strong class="fullname">Urs Baumeler</strong>
+                                </a>
+                                <span class="thread-time">seit 15.8.2013</span>
+                            </div>
+                            <div class="social-thread-header">
+                                <a href="">
+                                    <img ng-src="assets/img/IRIG.jpeg" class="avatar-icon"/>
+                                    <strong class="fullname">Ivan Rigamonti</strong>
+                                </a>
+                                <span class="thread-time">seit 15.8.2013</span>
+                            </div>
+                            <div class="social-thread-header">
+                                <a href="">
+                                    <img ng-src="assets/img/SMUE.jpeg" class="avatar-icon"/>
+                                    <strong class="fullname">Stefan Müller</strong>
+                                </a>
+                                <span class="thread-time">seit 15.8.2013</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-sm btn-primary">Ich mache mit</button>
+                    </div>
+                    <div class="col-md-4">
+                        Cham im Wald <br>
+                        Immer am Donnerstag: 07:00 - 07:30<br>
+                        <a href="">1 Kommentare</a>
+                    </div>
+                    <div class="col-md-6">
+                        Dabei sind schon <br>
+                        <a href="" ng-click="showJoiners2 = !showJoiners2">1 anderer aus deinem Betrieb</a>
+
+                        <div ng-show="showJoiners2">
+                            <div class="social-thread-header">
+                                <a href="">
+                                    <img ng-src="assets/img/UBAU.jpeg" class="avatar-icon"/>
+                                    <strong class="fullname">Urs Baumeler</strong>
+                                </a>
+                                <span class="thread-time">seit 15.8.2013</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
-        </tab>
-    </tabset>
+        </div>
+
+    </div>
+</tab>
+</tabset>
 </div>
 
 <!-- Daten zur geplanten Action, falls schon geplant -->
