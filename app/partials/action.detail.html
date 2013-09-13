@@ -123,12 +123,12 @@
 
 </div>
 <!-- Einplanung, falls noch nicht geplant -->
-<div class="col-md-6" ng-hide="isActionPlanned(currentAction.id)">
+<div class="col-md-6">
 <tabset>
 <tab heading="Selber einplanen">
     <div class="container yp-action-planning-tab">
         <div class="row">
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" ng-submit="planActivityDone()">
                 <div class="col-xs-6">
 
                     <div class="planning-option"
@@ -236,12 +236,12 @@
                     <div ng-show="currentActionPlan.planType=='weekly' || currentActionPlan.planType=='daily'">
                         <label>
                             während
-                            <input type="text" size="5" class="form-control" ng-model="currentActionPlan.duration">
+                            <input type="text" size="5" class="form-control" ng-model="currentActionPlan.repeatWeeks">
                         </label>
                         Wochen
                     </div>
                     <div class="btn-bottom-right">
-                        <button type="button" class="btn btn-primary" ng-click="planActivityDone()">
+                        <button type="submit" class="btn btn-primary">
                             einplanen!
                         </button>
                     </div>
@@ -326,13 +326,6 @@
     </div>
 </tab>
 </tabset>
-</div>
-
-<!-- Daten zur geplanten Action, falls schon geplant -->
-<div class="col-md-6" ng-show="isActionPlanned(currentAction.id)">
-    <div class="container yp-action-planning-tab">
-        Diese Action ist schon geplant für diesen User.
-    </div>
 </div>
 </div>
 </div>

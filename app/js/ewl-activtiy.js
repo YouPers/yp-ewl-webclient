@@ -54,7 +54,8 @@ angular.module('yp.ewl.activity', [])
                             "planType": selectedActivity.defaultPlanType,
                             "privacyType" : selectedActivity.defaultPrivacy,
                             "executionType": selectedActivity.defaultExecutionType,
-                            "duration": 15
+                            "duration": 15,
+                            "repeatWeeks": 6
                         };
                     }
                 } else {
