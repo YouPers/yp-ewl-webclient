@@ -132,7 +132,7 @@
                 <div class="col-xs-6">
 
                     <div class="planning-option"
-                         ng-class="{planningOptionActive: currentActionPlan.planType=='once'}">
+                         ng-class="{planningOptionActive: currentActionPlan.planType=='once'}" ng-click="currentActionPlan.planType = 'once'">
                         <div class="radio-inline">
                             <label>
                                 <input type="radio" name="planTypes" id="planTypeOnce" value="once"
@@ -160,7 +160,7 @@
                     </div>
 
                     <div class="planning-option"
-                         ng-class="{planningOptionActive: currentActionPlan.planType=='daily'}">
+                         ng-class="{planningOptionActive: currentActionPlan.planType=='daily'}" ng-click="currentActionPlan.planType = 'daily'">
                         <div class="radio-inline">
                             <label>
                                 <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
@@ -179,7 +179,7 @@
                     </div>
 
                     <div class="planning-option"
-                         ng-class="{planningOptionActive: currentActionPlan.planType=='weekly'}">
+                         ng-class="{planningOptionActive: currentActionPlan.planType=='weekly'}" ng-click="currentActionPlan.planType = 'weekly'">
                         <div class="radio-inline">
 
                             <label>
