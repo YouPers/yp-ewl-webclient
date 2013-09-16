@@ -8,13 +8,13 @@
             "questions": [
                 {
                     "id": 1,
-                    "category": "Allgemeiner Stresslevel",
+                    "category": "general",
                     "title": "Stresslevel",
                     "type": "twoSided",
-                    "minText": "Unterfordernd/Langweilig",
-                    "midText": "Ausgewogen / positiver, motivierender Stress",
-                    "maxText": "Überfordernd/Frustrierend",
-                    "expText": "tbd"
+                    "mintext": "Unterfordernd/Langweilig",
+                    "midtext": "Ausgewogen / positiver, motivierender Stress",
+                    "maxtext": "Überfordernd/Frustrierend",
+                    "exptext": "tbd"
                 }
 
             ]
@@ -26,113 +26,112 @@
             "questions": [
                 {
                     "id": 2,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Arbeitsmenge",
                     "type": "twoSided",
-                    "minText": "Ungenügend",
-                    "midText": "Gerade richtig",
-                    "maxText": "Erdrückend",
-                    "expText": "Erdrückend: Zur Bewältigung meiner Arbeitsmenge muss ich lange arbeiten / Überzeit leisten / mit hohem Tempo arbeiten"
+                    "mintext": "Ungenügend",
+                    "midtext": "Gerade richtig",
+                    "maxtext": "Erdrückend",
+                    "exptext": "Erdrückend: Zur Bewältigung meiner Arbeitsmenge muss ich lange arbeiten / Überzeit leisten / mit hohem Tempo arbeiten"
                 },
                 {
                     "id": 3,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Leistungsdruck",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Optimal",
-                    "maxText": "Zu viel",
-                    "expText": "Ich arbeite ständig unter einem grossen Leistungs- bzw. Zeitdruck, Für eine seriöse Planung und Organisation der Arbeit fehlt mir die Zeit, Mein privates Leben kommt verursacht durch die berufliche Beanspruchung zu kurz"
+                    "mintext": "Zu wenig",
+                    "midtext": "Optimal",
+                    "maxtext": "Zu viel",
+                    "exptext": "Ich arbeite ständig unter einem grossen Leistungs- bzw. Zeitdruck, Für eine seriöse Planung und Organisation der Arbeit fehlt mir die Zeit, Mein privates Leben kommt verursacht durch die berufliche Beanspruchung zu kurz"
                 },
                 {
                     "id": 4,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Unterstützung",
                     "type": "twoSided",
-                    "minText": "Keine (zu wenig)",
-                    "midText": "Gerade richtig",
-                    "maxText": "Zu viel",
-                    "expText": "Es gibt keine Unterstützung, wenn ich sie brauche, Ich werde von meinem Vorgesetzten "
+                    "mintext": "Keine (zu wenig)",
+                    "midtext": "Gerade richtig",
+                    "maxtext": "Zu viel",
+                    "exptext": "Es gibt keine Unterstützung, wenn ich sie brauche, Ich werde von meinem Vorgesetzten \"überbetreut\""
                 },
                 {
                     "id": 5,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Selbstbestimmung",
                     "type": "twoSided",
-                    "minText": "Keine (zu wenig)",
-                    "midText": "Gerade richtig",
-                    "maxText": "Zu viel",
-                    "expText": "Ich habe keinen Einfluss auf die Planung und Gestaltung meiner Arbeit, Ich habe zu wenig Entscheidungsfreiheit, Meine Arbeitsgestaltung ist weitgehend Fremdbestimmt"
+                    "mintext": "Keine (zu wenig)",
+                    "midtext": "Gerade richtig",
+                    "maxtext": "Zu viel",
+                    "exptext": "Ich habe keinen Einfluss auf die Planung und Gestaltung meiner Arbeit, Ich habe zu wenig Entscheidungsfreiheit, Meine Arbeitsgestaltung ist weitgehend Fremdbestimmt"
                 },
                 {
                     "id": 6,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Arbeitsbedingungen",
                     "type": "oneSided",
-                    "minText": "Schlecht",
-                    "midText": "Optimal",
-                    "maxText": "",
-                    "expText": "Viele Störungen, viele Sitzungen, grosser administrativer Aufwand, Lärm, Enge, Grossraumbüro, Raumklima/Temperatur, körperliche Belastung"
+                    "mintext": "Schlecht",
+                    "midtext": "Optimal",
+                    "maxtext": "",
+                    "exptext": "Viele Störungen, viele Sitzungen, grosser administrativer Aufwand, Lärm, Enge, Grossraumbüro, Raumklima/Temperatur, körperliche Belastung"
                 },
                 {
                     "id": 7,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
-                    "title": "Anforderungen",
+                    "category": "work",
+                    "title": "Arbeitsanforderungen",
                     "type": "twoSided",
-                    "minText": "Unterfordernd",
-                    "midText": "Ausgewogen",
-                    "maxText": "Überfordernd",
-                    "expText": "Die mir gestellten Ziele und Aufgaben überfordern mich, Ich erlebe zu viel Routine, Es fehlt die Herausforderung, Ich empfinde meine Arbeit als langweilig"
+                    "mintext": "Unterfordernd",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Überfordernd",
+                    "exptext": "Die mir gestellten Ziele und Aufgaben überfordern mich, Ich erlebe zu viel Routine, Es fehlt die Herausforderung, Ich empfinde meine Arbeit als langweilig"
                 },
                 {
                     "id": 8,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Arbeitsidentifikation",
                     "type": "twoSided",
-                    "minText": "Zu gering",
-                    "midText": "Ausgewogen",
-                    "maxText": "Besessen",
-                    "expText": "Meine Arbeit entspricht überhaupt nicht meinen eigentlichen Interessen und Neigungen"
+                    "mintext": "Zu gering",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Besessen",
+                    "exptext": "Meine Arbeit entspricht überhaupt nicht meinen eigentlichen Interessen und Neigungen"
                 },
                 {
                     "id": 9,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Anerkennung",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Gut",
-                    "maxText": "Übertrieben",
-                    "expText": "Ich bekomme kein echtes Feedback (fehlende Anerkennung und mangelnde konstruktive Kritik), Meine Vorschläge, Anregungen, Kritik werden nicht ernst genommen"
+                    "mintext": "Zu wenig",
+                    "midtext": "Gut",
+                    "maxtext": "Übertrieben",
+                    "exptext": "Ich bekomme kein echtes Feedback (fehlende Anerkennung und mangelnde konstruktive Kritik), Meine Vorschläge, Anregungen, Kritik werden nicht ernst genommen"
                 },
                 {
                     "id": 10,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Entwicklungsmöglichkeiten",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Optimal",
-                    "maxText": "Zu viel",
-                    "expText": ""
+                    "mintext": "Zu wenig",
+                    "midtext": "Optimal",
+                    "maxtext": "Zu viel"
                 },
                 {
                     "id": 11,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Betriebsklima",
                     "type": "twoSided",
-                    "minText": "Demotivierend",
-                    "midText": "Optimal",
-                    "maxText": "Übermotivierend",
-                    "expText": "Ungelöste Konflikte belasten mich, Es herrscht ein schlechtes Betriebsklima in meinem Umfeld, Ich werde gemobbt, Ich werde diskriminiert"
+                    "mintext": "Demotivierend",
+                    "midtext": "Optimal",
+                    "maxtext": "Übermotivierend",
+                    "exptext": "Ungelöste Konflikte belasten mich, Es herrscht ein schlechtes Betriebsklima in meinem Umfeld, Ich werde gemobbt, Ich werde diskriminiert"
                 },
                 {
                     "id": 12,
-                    "category": "Stress am Arbeitsplatz (Stressfaktoren am Arbeitsplatz)",
+                    "category": "work",
                     "title": "Arbeitsplatzsicherheit",
-                    "type": "twoSided",
-                    "minText": "Zu gering",
-                    "midText": "gut",
-                    "maxText": "",
-                    "expText": "Ich habe Angst vor einem Arbeitsplatzverlust"
+                    "type": "oneSided",
+                    "mintext": "Zu gering",
+                    "midtext": "gut",
+                    "maxtext": "",
+                    "exptext": "Ich habe Angst vor einem Arbeitsplatzverlust"
                 }
 
             ]
@@ -145,43 +144,43 @@
             "questions": [
                 {
                     "id": 13,
-                    "category": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
+                    "category": "leisure",
                     "title": "Freizeitverpflichtungen",
                     "type": "twoSided",
-                    "minText": "Zu wenige",
-                    "midText": "Gerade richtig",
-                    "maxText": "Zu viele ",
-                    "expText": "Kinderbetreuung, Krankenpflege, Haushaltsarbeiten, Gartenarbeiten, Vereinstätigkeiten, weitere  Verpflichtungen"
+                    "mintext": "Zu wenige",
+                    "midtext": "Gerade richtig",
+                    "maxtext": "Zu viele ",
+                    "exptext": "Kinderbetreuung, Krankenpflege, Haushaltsarbeiten, Gartenarbeiten, Vereinstätigkeiten, weitere  Verpflichtungen"
                 },
                 {
                     "id": 14,
-                    "category": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
+                    "category": "leisure",
                     "title": "Familiäre Situation",
                     "type": "oneSided",
-                    "minText": "Belastend",
-                    "midText": "Entlastend",
-                    "maxText": "",
-                    "expText": "Beziehungsprobleme, Trennung, Schul-/Erziehungsprobleme, Krankheit von mir/Angehörigen, Verlust eines Angehörigen"
+                    "mintext": "Belastend",
+                    "midtext": "Entlastend",
+                    "maxtext": "",
+                    "exptext": "Beziehungsprobleme, Trennung, Schul-/Erziehungsprobleme, Krankheit von mir/Angehörigen, Verlust eines Angehörigen"
                 },
                 {
                     "id": 15,
-                    "category": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
+                    "category": "leisure",
                     "title": "Finanzieller Spielraum / finanzielle Möglichkeiten",
                     "type": "oneSided",
-                    "minText": "Zu eng",
-                    "midText": "gut",
-                    "maxText": "",
-                    "expText": "Permanente Geldknappheit, Schulden"
+                    "mintext": "Zu eng",
+                    "midtext": "gut",
+                    "maxtext": "",
+                    "exptext": "Permanente Geldknappheit, Schulden"
                 },
                 {
                     "id": 16,
-                    "category": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
+                    "category": "leisure",
                     "title": "Soziales Umfeld",
                     "type": "twoSided",
-                    "minText": "Wenig unterstützend",
-                    "midText": "Optimal",
-                    "maxText": "Einengend",
-                    "expText": "Ich werde von meinen sozialen Umfeld zu wenig unterstützt und getragen\nNachbarschaftsprobleme"
+                    "mintext": "Wenig unterstützend",
+                    "midtext": "Optimal",
+                    "maxtext": "Einengend",
+                    "exptext": "Ich werde von meinen sozialen Umfeld zu wenig unterstützt und getragen\nNachbarschaftsprobleme"
                 }
 
             ]
@@ -194,63 +193,61 @@
             "questions": [
                 {
                     "id": 17,
-                    "category": "Stresstyp (Stressverstärker)",
+                    "category": "stresstypus",
                     "title": "Persönlicher Standard",
                     "type": "twoSided",
-                    "minText": "Minimalistisch",
-                    "midText": "Ausgewogen",
-                    "maxText": "Perfektionistisch",
-                    "expText": ""
+                    "mintext": "Minimalistisch",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Perfektionistisch"
                 },
                 {
                     "id": 18,
-                    "category": "Stresstyp (Stressverstärker)",
+                    "category": "stresstypus",
                     "title": "Kontrollwunsch",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Ausgewogen",
-                    "maxText": "Zu viel",
-                    "expText": "Zu viel: Zwanghaft"
+                    "mintext": "Zu wenig",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Zu viel",
+                    "exptext": "Zu viel: Zwanghaft"
                 },
                 {
                     "id": 19,
-                    "category": "Stresstyp (Stressverstärker)",
+                    "category": "stresstypus",
                     "title": "Verantwortungsbewusstsein",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Ausgewogen",
-                    "maxText": "Zu viel",
-                    "expText": "Zu wenig: Verantwortungslos, leichtsinnig, gleichgültig\nZu viel: Zu starkes Verantwortungsgefühl, zu starkes Pflichtgefühl"
+                    "mintext": "Zu wenig",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Zu viel",
+                    "exptext": "Zu wenig: Verantwortungslos, leichtsinnig, gleichgültig\nZu viel: Zu starkes Verantwortungsgefühl, zu starkes Pflichtgefühl"
                 },
                 {
                     "id": 20,
-                    "category": "Stresstyp (Stressverstärker)",
+                    "category": "stresstypus",
                     "title": "Genauigkeit / Korrektheit",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Ausgewogen",
-                    "maxText": "Zu viel",
-                    "expText": "Zu viel: Überkorrekt"
+                    "mintext": "Zu wenig",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Zu viel",
+                    "exptext": "Zu viel: Überkorrekt"
                 },
                 {
                     "id": 21,
-                    "category": "Stresstyp (Stressverstärker)",
+                    "category": "stresstypus",
                     "title": "Harmoniebedürfnis",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Ausgewogen",
-                    "maxText": "Zu viel",
-                    "expText": "Zu viel: Überangepasst"
+                    "mintext": "Zu wenig",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Zu viel",
+                    "exptext": "Zu viel: Überangepasst"
                 },
                 {
                     "id": 22,
-                    "category": "Stresstyp (Stressverstärker)",
+                    "category": "stresstypus",
                     "title": "Geltungsbedürfnis",
                     "type": "twoSided",
-                    "minText": "Sich unterordnend",
-                    "midText": "Ausgewogen",
-                    "maxText": "Dominierend",
-                    "expText": ""
+                    "mintext": "Sich unterordnend",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Dominierend"
                 }
 
             ]
@@ -262,73 +259,72 @@
             "questions": [
                 {
                     "id": 23,
-                    "category": "Stressbewältigung (Entspannung/Ausgleich)",
+                    "category": "handling",
                     "title": "Passive Erholung",
                     "type": "oneSided",
-                    "minText": "Zu wenig",
-                    "midText": "Optimal",
-                    "maxText": "",
-                    "expText": "Keine/zu wenige/zu kurze Pausen während der Arbeit \nZu wenig Erholungszeit am Mittag/Feierabend/Wochenende, Keine/zu wenig/zu kurze Ferien"
+                    "mintext": "Zu wenig",
+                    "midtext": "Optimal",
+                    "maxtext": "",
+                    "exptext": "Keine/zu wenige/zu kurze Pausen während der Arbeit, \nZu wenig Erholungszeit am Mittag/Feierabend/Wochenende, Keine/zu wenig/zu kurze Ferien"
                 },
                 {
                     "id": 24,
-                    "category": "Stressbewältigung (Entspannung/Ausgleich)",
+                    "category": "handling",
                     "title": "Schlaf",
                     "type": "oneSided",
-                    "minText": "Zu wenig",
-                    "midText": "Optimal",
-                    "maxText": "",
-                    "expText": "Ich fühle mich nach dem Schlaf nicht richtig erholt\nIch bin bei der Arbeit oft müde aufgrund eines ungenügenden Schlafes"
+                    "mintext": "Zu wenig",
+                    "midtext": "Optimal",
+                    "maxtext": "",
+                    "exptext": "Ich fühle mich nach dem Schlaf nicht richtig erholt, \nIch bin bei der Arbeit oft müde aufgrund eines ungenügenden Schlafes"
                 },
                 {
                     "id": 25,
-                    "category": "Stressbewältigung (Entspannung/Ausgleich)",
+                    "category": "handling",
                     "title": "Entspannung",
                     "type": "oneSided",
-                    "minText": "Keine (zu wenig)",
-                    "midText": "Optimal",
-                    "maxText": "",
-                    "expText": "Ich führe keinerlei Entspannungsübungen durch"
+                    "mintext": "Keine (zu wenig)",
+                    "midtext": "Optimal",
+                    "maxtext": "",
+                    "exptext": "Ich führe keinerlei Entspannungsübungen durch"
                 },
                 {
                     "id": 26,
-                    "category": "Stressbewältigung (Entspannung/Ausgleich)",
+                    "category": "handling",
                     "title": "Körperliche Aktivität",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Ausgewogen",
-                    "maxText": "Zu viel",
-                    "expText": "Ich bewege mich im Alltag zu wenig\nIch ich bin während der Arbeit oft müde vom intensiven Sporttraining"
+                    "mintext": "Zu wenig",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Zu viel",
+                    "exptext": "Ich bewege mich im Alltag zu wenig, \nIch bin während der Arbeit oft müde vom intensiven Sporttraining"
                 },
                 {
                     "id": 27,
-                    "category": "Stressbewältigung (Entspannung/Ausgleich)",
+                    "category": "handling",
                     "title": "Aktive Erholung",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Ausgewogen",
-                    "maxText": "Zu viel",
-                    "expText": "Erholende Freizeitaktivitäten kommen bei mir zu kurz"
+                    "mintext": "Zu wenig",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Zu viel",
+                    "exptext": "Erholende Freizeitaktivitäten kommen bei mir zu kurz"
                 },
                 {
                     "id": 28,
-                    "category": "Stressbewältigung (Entspannung/Ausgleich)",
+                    "category": "handling",
                     "title": "Sozialer Austausch",
                     "type": "twoSided",
-                    "minText": "Zu wenig",
-                    "midText": "Ausgewogen",
-                    "maxText": "Zu viel",
-                    "expText": ""
+                    "mintext": "Zu wenig",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "Zu viel"
                 },
                 {
                     "id": 29,
-                    "category": "Stressbewältigung (Entspannung/Ausgleich)",
+                    "category": "handling",
                     "title": "Ernährung",
                     "type": "oneSided",
-                    "minText": "Ungesund",
-                    "midText": "Ausgewogen",
-                    "maxText": "",
-                    "expText": "Ich ernähre mich stressbedingt oft nur mit Fast Food\nIch esse stressbedingt unregelmässig/zu viel/zu wenig, Ich trinke stressbedingt zu viel Alkohol"
+                    "mintext": "Ungesund",
+                    "midtext": "Ausgewogen",
+                    "maxtext": "",
+                    "exptext": "Ich ernähre mich stressbedingt oft nur mit Fast Food, \nIch esse stressbedingt unregelmässig/zu viel/zu wenig, Ich trinke stressbedingt zu viel Alkohol"
                 }
 
             ]

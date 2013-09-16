@@ -38,7 +38,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 url: "/assessment",
                 templateUrl: "partials/assessment.html",
                 controller: "AssessmentCtrl",
-                access: accessLevels.user
+                access: accessLevels.all
             })
             .state('actionlist', {
                 url: "/actions",
@@ -62,18 +62,12 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             });
     })
 
-    .run(['$rootScope', '$state', 'principal', 'userRoles', function ($rootScope, $state, principal, userRoles) {
+    .run(['$rootScope', '$state', 'principal', function ($rootScope, $state, principal) {
 
         // handle routing authentication
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
-            var authenticated = principal.isAuthenticated(),
-                requiredAccessLevel = toState.access,
-                currentUserRole = userRoles.anonymous;
-
-            if (authenticated) {
-                currentUserRole = principal.identity().role();
-            }
+            var requiredAccessLevel = toState.access;
 
             // special case:
             // authenticated, returning user goes directly to cockpit
@@ -82,6 +76,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 $state.go('cockpit');
             }
 
+            // check whether user is authorized to access the desired access-Level
             if (!(principal.isAuthorized(requiredAccessLevel))) {
                 event.preventDefault();
                 $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});

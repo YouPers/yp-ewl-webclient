@@ -1,10 +1,10 @@
 [
     {
-        "id": 1,
-        "ref_obj_id": 1,
+        "id": "1",
+        "ref_obj_id": "1",
         "ref_obj": "activity",
         "author": {
-            "id": 1,
+            "id": "1",
             "fullname": "Urs Baumeler",
             "pic": "assets/img/UBAU.jpeg",
             "link": "#/u/UBAU"
@@ -14,12 +14,12 @@
         "text": "Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?",
         "comments": [
             {
-                "id": 1,
-                "ref_id": 1,
+                "id": "1",
+                "ref_id": "1",
                 "ref_obj": "activity",
-                "thread_id": 1,
+                "thread_id": "1",
                 "author": {
-                    "id": 2,
+                    "id": "2",
                     "fullname": "Ivan Rigamonti",
                     "pic": "assets/img/IRIG.jpeg",
                     "link": "#/u/IRIG"
@@ -28,12 +28,12 @@
                 "text": "Keine Zeit am Mittwoch"
             },
             {
-                "id": 2,
-                "ref_id": 1,
+                "id": "2",
+                "ref_id": "1",
                 "ref_obj": "activity",
-                "thread_id": 1,
+                "thread_id": "1",
                 "author": {
-                    "id": 3,
+                    "id": "3",
                     "fullname": "Stefan Müller",
                     "pic": "assets/img/SMUE.jpeg",
                     "link": "#/u/SMUE"
@@ -42,12 +42,12 @@
                 "text": "Ist mir zu langsam mit dir ;-)"
             },
             {
-                "id": 3,
-                "ref_id": 1,
+                "id": "3",
+                "ref_id": "1",
                 "ref_obj": "activity",
-                "thread_id": 1,
+                "thread_id": "1",
                 "author": {
-                    "id": 3,
+                    "id": "3",
                     "fullname": "Stefan Müller",
                     "pic": "assets/img/SMUE.jpeg",
                     "link": "#/u/SMUE"
@@ -58,11 +58,11 @@
         ]
     },
     {
-        "id": 2,
-        "ref_obj_id": 1,
+        "id": "2",
+        "ref_obj_id": "1",
         "ref_obj": "activity",
         "author": {
-            "id": 1,
+            "id": "1",
             "fullname": "Stefan Müller",
             "pic": "assets/img/SMUE.jpeg",
             "link": "#/u/SMUE"
@@ -72,12 +72,12 @@
         "text": "Heute 17 Km gemacht, war supercool",
         "comments": [
             {
-                "id": 4,
-                "ref_id": 1,
+                "id": "4",
+                "ref_id": "1",
                 "ref_obj": "activity",
-                "thread_id": 1,
+                "thread_id": "1",
                 "author": {
-                    "id": 2,
+                    "id": "2",
                     "fullname": "Ivan Rigamonti",
                     "pic": "assets/img/IRIG.jpeg",
                     "link": "#/u/IRIG"
@@ -86,12 +86,12 @@
                 "text": "Gratulation, nicht schlecht, morgen gehen wir zusammen oder?"
             },
             {
-                "id": 5,
-                "ref_id": 1,
+                "id": "5",
+                "ref_id": "1",
                 "ref_obj": "activity",
-                "thread_id": 1,
+                "thread_id": "1",
                 "author": {
-                    "id": 3,
+                    "id": "3",
                     "fullname": "Stefan Müller",
                     "pic": "assets/img/SMUE.jpeg",
                     "link": "#/u/SMUE"
@@ -102,11 +102,11 @@
         ]
     },
     {
-        "id": 3,
-        "ref_obj_id": 1,
+        "id": "3",
+        "ref_obj_id": "1",
         "ref_obj": "activity",
         "author": {
-            "id": 1,
+            "id": "1",
             "fullname": "Stefan Müller",
             "pic": "assets/img/SMUE.jpeg",
             "link": "#/u/SMUE"
@@ -117,12 +117,12 @@
         "ratingValue": 4,
         "comments": [
             {
-                "id": 4,
-                "ref_id": 1,
+                "id": "4",
+                "ref_id": "1",
                 "ref_obj": "activity",
-                "thread_id": 1,
+                "thread_id": "1",
                 "author": {
-                    "id": 2,
+                    "id": "2",
                     "fullname": "Ivan Rigamonti",
                     "pic": "assets/img/IRIG.jpeg",
                     "link": "#/u/IRIG"
@@ -131,12 +131,12 @@
                 "text": "Gratulation, nicht schlecht, morgen gehen wir zusammen oder?"
             },
             {
-                "id": 5,
-                "ref_id": 1,
+                "id": "5",
+                "ref_id": "1",
                 "ref_obj": "activity",
-                "thread_id": 1,
+                "thread_id": "1",
                 "author": {
-                    "id": 3,
+                    "id": "3",
                     "fullname": "Stefan Müller",
                     "pic": "assets/img/SMUE.jpeg",
                     "link": "#/u/SMUE"

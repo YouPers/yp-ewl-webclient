@@ -364,15 +364,16 @@ ul.small-icons:hover {
 }
 
 .ass-done-button {
-  position: fixed;
   right: 10%;
 }
 
 .ass-done-button-top {
+  position: absolute;
   top: 200px;
 }
 
 .ass-done-button-bottom {
+  position: fixed;
   bottom: 50px;
 }
 
@@ -406,6 +407,13 @@ input[type=range]::-moz-range-track {
   background: none;
   border: none;
 }
+
+input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper, input[type=range]::-ms-track {
+  background: none;
+  border: none;
+  -ms-appearance: none;
+}
+
 
 // gradient hier definiert ohne less, weil elements.less keine gradienten mit 3 Farbpunkten unterstützt.
 input[type="range"] {
@@ -446,18 +454,55 @@ input[type="range"].oneSided {
 
 
 input[type="range"]::-webkit-slider-thumb {
+  cursor: pointer;
   -webkit-appearance:none;
-  -moz-apperance:none;
   width:25px;
   height:25px;
   -webkit-border-radius:20px;
-  -moz-border-radius:20px;
   -ms-border-radius:20px;
   -o-border-radius:20px;
   border-radius:20px;
-  background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(0.49, #d7d7d7), color-stop(0.51, #d1d1d1), color-stop(1, #c8c8c8) );
-  border: 1px solid #787878;
+  background:url("../assets/ico/questionmark.png") center center no-repeat #e5e9e8;
+  background-size: 30px 30px;
 }
+
+input[type="range"]::-moz-range-thumb {
+  cursor: pointer;
+  width:25px;
+  height:25px;
+  -ms-border-radius:20px;
+  -o-border-radius:20px;
+  border-radius:20px;
+  background:url("../assets/ico/questionmark.png") center center no-repeat #e5e9e8;
+  background-size: 30px 30px;
+}
+
+input[type="range"]::-ms-thumb {
+  cursor: pointer;
+  width:25px;
+  height:25px;
+  -ms-border-radius:20px;
+  -o-border-radius:20px;
+  border-radius:20px;
+  background:url("../assets/ico/questionmark.png") center center no-repeat #e5e9e8;
+  background-size: 30px 30px;
+}
+
+input[type="range"].answered::-moz-range-thumb {
+  background:url("../assets/ico/checkmark.png") center center no-repeat #e5e9e8;
+  background-size: 30px 30px;
+}
+
+input[type="range"].answered::-webkit-slider-thumb  {
+  background:url("../assets/ico/checkmark.png") center center no-repeat #e5e9e8;
+  background-size: 30px 30px;
+}
+
+input[type="range"].answered::-ms-thumb {
+  background:url("../assets/ico/checkmark.png") center center no-repeat #e5e9e8;
+  background-size: 30px 30px;
+}
+
 
 /////////////////////////
 // action list
@@ -543,6 +588,8 @@ input[type="range"]::-webkit-slider-thumb {
 
 .planning-option:hover {
   background-color: @youpers-brand-colors-secondary-dimmed;
+  cursor: pointer;
+  cursor: hand;
 }
 
 .planningOptionActive {
@@ -552,6 +599,8 @@ input[type="range"]::-webkit-slider-thumb {
 
 .planningOptionActive:hover {
   background-color: #ffffff;
+  cursor: default;
+  cursor: default;
 }
 
 .btn-bottom-right {

@@ -1,3 +1,6 @@
+/*  globalstrict:true angular:true */
+'use strict';
+
 angular.module('yp-ewl').
     config(['$translateProvider', function ($translateProvider) {
 
