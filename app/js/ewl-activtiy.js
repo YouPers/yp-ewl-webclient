@@ -82,9 +82,14 @@ angular.module('yp.ewl.activity', [])
 
     .filter('ActionListFilter', function () {
         return function (actions, query) {
-            var out = [];
+            var out = [], allClusters = true;
 
-            var allClusters = true;
+            // if we do not get a query, we return the full set of answers
+            if (!query) {
+                return actions;
+            }
+
+
             angular.forEach(query.cluster, function (value, key) {
                 if (value) {
                     allClusters = false;
