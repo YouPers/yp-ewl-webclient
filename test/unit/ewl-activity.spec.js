@@ -183,7 +183,7 @@ describe('ewl activity', function () {
                                     "text": "Run forest, Run...",
                                     "field": "exercise",
                                     "planningCat": "daily"
-                                })
+                                });
                         }
                     },
 
@@ -196,7 +196,7 @@ describe('ewl activity', function () {
                                     "field": "exercise"
                                 }
                             ]
-                            )
+                            );
                         }
                     },
 
@@ -223,14 +223,14 @@ describe('ewl activity', function () {
             $scope.planAction({
                 id: 1,
                 field: 'nutrition'
-            })
+            });
 
             expect($scope.isActionPlanned(1)).toBeTruthy();
             expect($scope.myPlannedActions.length).toEqual(2);
             $scope.planAction({
                 id: 1,
                 field: 'nutrition'
-            })
+            });
             expect($scope.myPlannedActions.length).toEqual(2);
         }));
 
@@ -239,7 +239,7 @@ describe('ewl activity', function () {
             var myAction = {
                 id: 37,
                 field: 'myField'
-            }
+            };
 
             expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
             $scope.planAction(myAction);
@@ -251,14 +251,14 @@ describe('ewl activity', function () {
             $scope.unPlanAction(myAction);
             expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
 
-        }))
+        }));
 
         describe('unPlan Action', function () {
             it('should remove an action from the planned actions', inject(function () {
                 var myAction = {
                     id: 37,
                     field: 'myField'
-                }
+                };
                 expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
                 $scope.planAction(myAction);
                 expect($scope.isActionPlanned(myAction.id)).toBeTruthy();
@@ -267,7 +267,7 @@ describe('ewl activity', function () {
                 $scope.unPlanAction(myAction);
                 expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
 
-            }))
-        })
+            }));
+        });
     });
 });
