@@ -1,0 +1,34 @@
+{"cols": [
+    {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
+    {"id": "done-id", "label": "durchgeführt", "type": "number"},
+    {"id": "missed-id", "label": "verpasst", "type": "number"}
+], "rows": [
+    {"c": [
+        {"v": "Allgemein"},
+        {"v": 9, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+        {"v": 0}
+    ]},
+    {"c": [
+        {"v": "Fitness"},
+        {"v": 25, "f": "Vorbildiche Fitness!"},
+        {"v": 5, "f": "Möglicherweise wolltest du zuviel?"}
+    ]},
+    {"c": [
+        {"v": "Konsum"},
+        {"v": 12, "f": "Weiter so!"},
+        {"v": 12, "f": "Weniger ist oft mehr..."}
+
+    ]},
+    {"c": [
+        {"v": "Wohlbefinden"},
+        {"v": 2},
+        {"v": 8}
+
+    ]},
+    {"c": [
+        {"v": "Behandlungen"},
+        {"v": 2},
+        {"v": 0}
+
+    ]}
+]}

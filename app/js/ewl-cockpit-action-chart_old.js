@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('yp.ewl.cockpit-action-chart', ['googlechart']).controller("CockpitActionChartCtrl", function ($scope) {
+angular.module('yp.ewl.cockpit-action-chart', ['googlechart'])
+
+    .controller('CockpitActionChartCtrl', function ($scope) {
 
     var dataCurrentWeek = {"cols": [
         {id: "actionCluster", label: "Aktivitätsbereich", type: "string"},
