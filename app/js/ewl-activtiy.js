@@ -39,12 +39,12 @@ angular.module('yp.ewl.activity', [])
             setSelectedActivity: function (actionId, allActions, plannedActions) {
                 if (plannedActions && allActions) {
                     selectedActivity = _.find(allActions, function (obj) {
-                        return obj.id == actionId;
+                        return obj.id === actionId;
                     });
 
                     selectedActivityPlan = null;
                     selectedActivityPlan = _.find(plannedActions, function (obj) {
-                        return obj.action_id == actionId;
+                        return obj.action_id === actionId;
                     });
 
                     if (!selectedActivityPlan) {
@@ -65,9 +65,9 @@ angular.module('yp.ewl.activity', [])
             },
 
             isActionPlanned: function (plannedActions, actionId) {
-                if (typeof (plannedActions) != 'undefined') {
+                if (typeof (plannedActions) !== 'undefined') {
                     for (var i = 0; i < plannedActions.length; i++) {
-                        if (plannedActions[i].action_id == actionId) {
+                        if (plannedActions[i].action_id === actionId) {
                             return true;
                         }
                     }

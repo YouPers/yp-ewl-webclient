@@ -97,6 +97,6 @@ angular.module('yp.ewl.assessment', [])
             if (!($scope.assAnswersByQuestionId[questionid].answered)) {
                 $scope.assAnswersByQuestionId[questionid].answered = true;
             }
-        }
+        };
 
     }]);

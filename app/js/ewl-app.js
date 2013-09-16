@@ -76,6 +76,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 $state.go('cockpit');
             }
 
+            // check whether user is authorized to access the desired access-Level
             if (!(principal.isAuthorized(requiredAccessLevel))) {
                 event.preventDefault();
                 $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
