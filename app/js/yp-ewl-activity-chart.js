@@ -2,7 +2,7 @@
 
 angular.module('yp.ewl.activity.chart', ['googlechart'])
 
-    .factory('yp.ewl.activity.chart.service', ['$http', function($http) {
+    .service    ('yp.ewl.activity.chart.service', ['$http', function($http) {
 
         var valuesThisWeek = $http.get('js/mockdata/test-activities-this-week.json').then(function (result) {
             return result.data;
