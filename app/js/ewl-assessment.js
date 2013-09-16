@@ -79,13 +79,17 @@ angular.module('yp.ewl.assessment', [])
         return assService;
     }])
 
-    .controller('AssessmentCtrl', ['$scope', 'AssessmentService', function ($scope, AssessmentService) {
+    .controller('AssessmentCtrl', ['$scope', 'AssessmentService','$state', function ($scope, AssessmentService, $state) {
 
         $scope.assessment = AssessmentService.getAssessment();
         $scope.assAnswersByQuestionId = AssessmentService.getAssAnswers();
 
         $scope.answersAsJSON = function () {
             return JSON.stringify(AssessmentService.getAssAnswers(), undefined, 2);
+        };
+
+        $scope.assessmentDone = function () {
+            $state.go('cockpit');
         };
 
     }]);
