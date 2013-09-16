@@ -67,7 +67,8 @@ angular.module('yp.ewl.assessment', [])
                         id: nextId++,
                         assessment_id: assessment.id,
                         question_id: question.id,
-                        answer: 0
+                        answer: 0,
+                        answered: false
                     };
                     defaultAnswers.push(answer);
                 }
@@ -91,5 +92,11 @@ angular.module('yp.ewl.assessment', [])
         $scope.assessmentDone = function () {
             $state.go('cockpit');
         };
+
+        $scope.setQuestionAnswered = function (questionid) {
+            if (!($scope.assAnswersByQuestionId[questionid].answered)) {
+                $scope.assAnswersByQuestionId[questionid].answered = true;
+            }
+        }
 
     }]);
