@@ -28,26 +28,26 @@ angular.module('yp.ewl.activity.chart', ['googlechart'])
 
     .controller('yp.ewl.activity.chart.controller', ['$scope', 'yp.ewl.activity.chart.service', function ($scope, ActivityChartService) {
 
-        $scope.chart1 = {};
+        $scope.chart = {};
 
         ActivityChartService.activitiesThisWeek.then(function (data) {
-            $scope.chart1.dataCurrentWeek = data;
-            $scope.chart1.data = data; // default value
+            $scope.chart.dataCurrentWeek = data;
+            $scope.chart.data = data; // default value
         });
 
         ActivityChartService.activitiesThisMonth.then(function (data) {
-            $scope.chart1.dataCurrentMonth = data;
+            $scope.chart.dataCurrentMonth = data;
         });
 
         ActivityChartService.activitiesThisYear.then(function (data) {
-            $scope.chart1.dataCurrentYear = data;
+            $scope.chart.dataCurrentYear = data;
         });
 
-        $scope.chart1.type = "ColumnChart";
-        $scope.chart1.displayed = false;
-        $scope.chart1.cssStyle = "height:250px; width:100%;";
+        $scope.chart.type = "ColumnChart";
+        $scope.chart.displayed = false;
+        $scope.chart.cssStyle = "height:250px; width:100%;";
 
-        $scope.chart1.options = {
+        $scope.chart.options = {
             "title": "Aktivitäten je Bereich",
             "isStacked": "true",
             "fontName": "Dosis",
@@ -64,7 +64,5 @@ angular.module('yp.ewl.activity.chart', ['googlechart'])
                 "slantedText": true
             }
         };
-
-        $scope.chart = $scope.chart1;
 
     }]);
