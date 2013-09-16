@@ -15,22 +15,22 @@
                 <h2>{{ questioncat.category | translate}}</h2>
             </div>
         </div>
-        <div class="row" ng-repeat="question in questioncat.questions" popover="{{ question.expText }}"
+        <div class="row" ng-repeat="question in questioncat.questions" popover="{{ question.exptext }}"
              popover-trigger="mouseenter" popover-placement="bottom">
             <div class="row ass-question">
                 <div class="col-md-4 col-md-offset-4"><h4>{{ question.title | translate}}</h4></div>
             </div>
             <div class="row">
-                <div class="col-md-3 col-md-offset-1 ass-min-text">{{ question.minText | translate}}</div>
+                <div class="col-md-3 col-md-offset-1 ass-min-text">{{ question.mintext | translate}}</div>
                 <div class="col-md-4">
                     <input ng-class="[question.type, assAnswersByQuestionId[question.id].answered ? 'answered' : '']" type="range" min="-100"
                            max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
-                           ng-model="assAnswersByQuestionId[question.id].answer" ng-click="setQuestionAnswered(question.id)"/>
+                           ng-model="assAnswersByQuestionId[question.id].answer" ng-mousedown="setQuestionAnswered(question.id)"/>
                 </div>
-                <div class="col-md-3 ass-max-text">{{ question.maxText | translate}}</div>
+                <div class="col-md-3 ass-max-text">{{ question.maxtext | translate}}</div>
             </div>
             <div class="row ass-mid-text">
-                <div class="col-md-4 col-md-offset-4">{{ question.midText | translate}}</div>
+                <div class="col-md-4 col-md-offset-4">{{ question.midtext | translate}}</div>
             </div>
 
         </div>
