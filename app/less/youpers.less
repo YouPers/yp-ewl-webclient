@@ -407,6 +407,13 @@ input[type=range]::-moz-range-track {
   border: none;
 }
 
+input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper, input[type=range]::-ms-track {
+  background: none;
+  border: none;
+  -ms-appearance: none;
+}
+
+
 // gradient hier definiert ohne less, weil elements.less keine gradienten mit 3 Farbpunkten unterstützt.
 input[type="range"] {
   -webkit-appearance: none;
@@ -469,6 +476,17 @@ input[type="range"]::-moz-range-thumb {
   background-size: 30px 30px;
 }
 
+input[type="range"]::-ms-thumb {
+  cursor: pointer;
+  width:25px;
+  height:25px;
+  -ms-border-radius:20px;
+  -o-border-radius:20px;
+  border-radius:20px;
+  background:url("../assets/ico/questionmark.png") center center no-repeat #e5e9e8;
+  background-size: 30px 30px;
+}
+
 input[type="range"].answered::-moz-range-thumb {
   background:url("../assets/ico/checkmark.png") center center no-repeat #e5e9e8;
   background-size: 30px 30px;
@@ -478,6 +496,12 @@ input[type="range"].answered::-webkit-slider-thumb  {
   background:url("../assets/ico/checkmark.png") center center no-repeat #e5e9e8;
   background-size: 30px 30px;
 }
+
+input[type="range"].answered::-ms-thumb {
+  background:url("../assets/ico/checkmark.png") center center no-repeat #e5e9e8;
+  background-size: 30px 30px;
+}
+
 
 /////////////////////////
 // action list
