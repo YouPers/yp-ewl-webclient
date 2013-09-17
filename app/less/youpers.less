@@ -508,8 +508,20 @@ input[type="range"].answered::-ms-thumb {
 // action list
 
 .filter-option {
-
+  padding-left: 20px;
+  margin: 5px;
+  .rounded(5px);
 }
+
+.filter-option:hover {
+  background: @youpers-brand-colors-secondary-dimmed;
+}
+
+.filter-option:active {
+  background: @youpers-brand-colors-secondary-dimmed;
+  background-color: lightblue;
+}
+
 
 .filter-option-active {
   border-radius: 4px 4px 4px 4px;
@@ -531,7 +543,9 @@ input[type="range"].answered::-ms-thumb {
 .actionListFilterClusterIcon {
   width: 20px;
   height: 20px;
-  float: right;
+  margin-left: -20px;
+  float: left;
+  padding-right: 3px;
 }
 
 .actionListItem {

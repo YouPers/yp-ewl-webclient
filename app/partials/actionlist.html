@@ -39,13 +39,10 @@
             <div class="col-md-12">
                 <h3>AktvitätsCluster</h3>
                 <div class="container panel panel-default">
-                    <div ng-repeat="cluster in clusters" class="checkbox filter-option"
-                         ng-class="query.cluster[cluster.id] ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
+                    <div ng-repeat="cluster in clusters" class="filter-option"
+                         ng-class="query.cluster[cluster.id] ? 'filter-option-active' : 'filter-option-inactive'" ng-click="query.cluster[cluster.id] = !query.cluster[cluster.id]">
                             <img ng-src="/assets/ico/{{cluster.id}}.gif" class="actionListFilterClusterIcon">
-                            <input type="checkbox" value="" ng-model="query.cluster[cluster.id]">
                             {{ cluster.beschreibungdt }}
-                        </label>
                     </div>
                 </div>
             </div>
