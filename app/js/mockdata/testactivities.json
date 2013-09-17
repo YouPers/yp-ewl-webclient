@@ -1,134 +1,2272 @@
 [
     {
-        "id": "1",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance", "nutrition"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "public",
-        "rating": "3"
+        "id": 1,
+        "title": "Tägliche Selbsteinschätzung des aktuellen Stresslevels",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "2",
-        "title": "Joggen über Mittag",
-        "text": "Run forest, Run...",
-        "field": ["fitness"],
-        "topic" : ["workLifeBalance", "physicalFitness"],
-        "defaultPlanType": "weekly",
-        "defaultExecutionType": "group",
-        "defaultPrivacy": "public",
-        "rating": 3
+        "id": 2,
+        "title": "Reflektion des Stresslevels in der vergangenen Woche",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "3",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance", "nutrition"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "public",
-        "rating": 4
+        "id": 3,
+        "title": "Reflektion des Stresslevels im abgelaufenen Monat",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "4",
-        "title": "Joggen über Mittag",
-        "text": "Run forest, Run...",
-        "field": ["fitness"],
-        "topic" : ["workLifeBalance", "physicalFitness"],
-        "defaultPlanType": "weekly",
-        "defaultExecutionType": "group",
-        "defaultPrivacy": "public",
-        "rating": 5
+        "id": 4,
+        "title": "Durchführung Stress Self Assessment um Stressursachen zu eruieren ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "5",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "public",
-        "rating": 5
+        "id": 5,
+        "title": "Durchführung Stress Self Assessment um stressfördernde Haltungen zu erkennen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "6",
-        "title": "Joggen über Mittag",
-        "text": "Run forest, Run...",
-        "field": ["fitness"],
-        "topic" : ["workLifeBalance", "physicalFitness"],
-        "defaultPlanType": "weekly",
-        "defaultExecutionType": "group",
-        "defaultPrivacy": "public",
-        "rating": 2
+        "id": 6,
+        "title": "eLearning-Modul zum Thema „positive Einstellung entwickeln“ durchführen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "7",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance", "nutrition"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "private",
-        "rating": 3
+        "id": 7,
+        "title": "An Seminar zum Thema „positive Einstellung entwickeln“ teilnehmen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "8",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance", "nutrition"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "private",
-        "rating": 3
+        "id": 8,
+        "title": "Gespräch mit persönlichem Coach führen, um an positiver Einstellung zu arbeiten",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "9",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance", "nutrition"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "private",
-        "rating": 3
+        "id": 9,
+        "title": "eLearning-Modul zum Thema „Stressbewältigungsstrategien“ durchführen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "10",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance", "nutrition"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "private",
-        "rating": 2
+        "id": 10,
+        "title": "An Seminar zum Thema „Stressbewältigungsstrategien“ teilnehmen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "11",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance", "nutrition"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "private",
-        "rating": 5
+        "id": 11,
+        "title": "Workshop/Brainstorming mit persönlichem Coach durchführen, um eine für mich passende Stressbewältigungs-Strategie zu entwickeln",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": "12",
-        "title": "Iss täglich einen Apfel",
-        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-        "field": ["nutrition"],
-        "topic" : ["workLifeBalance", "nutrition"],
-        "defaultPlanType": "daily",
-        "defaultExecutionType": "self",
-        "defaultPrivacy": "private",
-        "rating": 3
+        "id": 12,
+        "title": "eLearning-Modul zum Thema „Persönliche Ressourcen stärken“ durchführen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 13,
+        "title": "An Seminar zum Thema „Persönliche Ressourcen stärken “ teilnehmen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 14,
+        "title": "Sinnvolle Weiterbildung suchen und besuchen, um berufliche Qualifikation zu verbessern",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 15,
+        "title": "Gespräch mit Vorgesetztem führen mit den Ziel, den Handlungsspielraum zu erweitern",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 16,
+        "title": "Externer Stressberater zur Unterstützung bei der Stressbewältigung beiziehen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 17,
+        "title": "Mental-kognitive Einflussnahme (positive Suggestionen, Gedankenstopp, Affirmationen, positive Formulierung von Sätzen) ",
+        "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf ",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 18,
+        "title": "An Stressimmunisierungstraining, Stress-Management-Training SMT und Stress-Resistenz-Training teilnehmen",
+        "text": "(http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf.  S. 98, 101",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 19,
+        "title": "eLearning-Modul zum Thema „persönliches Zeitmanagement“ durchführen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 20,
+        "title": "An Seminar zum Thema „persönliches Zeitmanagement“ teilnehmen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 21,
+        "title": "An online Forum zum Thema „persönliches Zeitmanagement“ teilnehmen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "public",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement",
+            "SocialInteraction"
+        ],
+        "aktivittsfeld1": "TimeManagement",
+        "aktivittsfeld2": "SocialInteraction"
+    },
+    {
+        "id": 22,
+        "title": "Tool/Service zur Unterstützung beim Zeitmanagement einsetzen ",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 23,
+        "title": "Erfahrungsaustausch mit Kollegen zum persönlichen Zeitmanagement während der Mittagspause durchführen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement",
+            "SocialInteraction"
+        ],
+        "aktivittsfeld1": "TimeManagement",
+        "aktivittsfeld2": "SocialInteraction"
+    },
+    {
+        "id": 24,
+        "title": "Workshop/Brainstorming mit persönlichem Coach durchführen, um Ideen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 25,
+        "title": "Bewusste Tagesplanung machen / Tagesziel setzen / Zeitgewinn durch Zeitplanung",
+        "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf (S. 11)",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 26,
+        "title": "Die Arbeit in passende Zeitintervalle legen – inklusive Ruhepausen",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 27,
+        "title": "Externer Stressberater zur Unterstützung beim Zeitmanagement beiziehen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 28,
+        "title": "Prioritäten setzen... ",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 29,
+        "title": "Tagesleistungskurve beachten",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 30,
+        "title": "Delegieren von Aufgaben ",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "TimeManagement"
+        ],
+        "aktivittsfeld1": "TimeManagement"
+    },
+    {
+        "id": 31,
+        "title": "Offenes Gespräch mit Vorgesetztem über persönliche Arbeitssituation und –gestaltung führen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 32,
+        "title": "Offenes Gespräch mit Vorgesetztem führen mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 33,
+        "title": "Bewusst die Möglichkeiten der flexiblen Arbeitszeit einmal ausprobieren",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 34,
+        "title": "Bewusst die Möglichkeiten der Heimarbeit einmal ausprobieren ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 35,
+        "title": "Gemeinsam mit dem Vorgesetzten eine sinnvolle Arbeitsplanung ausarbeiten ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 36,
+        "title": "Ungelösten Konflikt mit Personalverantwortlichen besprechen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 37,
+        "title": "Sinnvolle Weiterbildung suchen und besuchen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 38,
+        "title": "Bewusst meinen Stuhl und Tisch ergonomisch einstellen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 39,
+        "title": "Computer ergonomisch einstellen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 40,
+        "title": "Pflanze an den Arbeitsplatz stellen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 41,
+        "title": "Persönliches/inspirierendes Bild an den Arbeitslatz stellen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 42,
+        "title": "Verändere Sitzposition alle 15 Minuten",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 43,
+        "title": "„sei perfekt“-Typ: liefert Arbeit bewusst bevor er eigentlich denkt sie sei bereit",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 44,
+        "title": "Kontroll-Typ: bewusst heute einmal nicht nachfragen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 45,
+        "title": "sei stark-Typ: streicht bewusst 1 Pendenz aus der Tagesplanung",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 46,
+        "title": "sei stark-Typ: bewusst eine Arbeit delegieren",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 47,
+        "title": "ich kann nicht-Typ: bewusst eine Sache probieren, die man sich nicht zutraut",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 48,
+        "title": "Anerkennung und Wertschätzungs-Typ: Bewusst auf erhaltene Anerkennung achten",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 49,
+        "title": "Jemanden heute bewusst Anerkennung für eine Arbeit aussprechen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "AwarenessAbility"
+        ],
+        "aktivittsfeld1": "AwarenessAbility"
+    },
+    {
+        "id": 50,
+        "title": "Mit Vorgesetztem/Personalverantwortlichem über Veränderung von Arbeitsabläufen / Aufgaben sprechen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 51,
+        "title": "Mit Vorgesetztem/Personalverantwortlichem über Veränderung der Arbeitsumgebung sprechen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 52,
+        "title": "Mit Vorgesetztem/Personalverantwortlichem über Einführung von flexiblen Arbeitszeiten sprechen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 53,
+        "title": "Mit Vorgesetztem/Personalverantwortlichem über partizipative Managementstrukturen sprechen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 54,
+        "title": "Mit Vorgesetztem/Personalverantwortlichem über Einbezug der Angestellten bei der Karriereplanung sprechen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 55,
+        "title": "Mit Vorgesetztem Arbeitsrollen und Zielvereinbarungen analysieren",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 56,
+        "title": "Mit Vorgesetztem über Unterstützung und regelmässiges Feedback sprechen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 57,
+        "title": "Mit Personalverantwortlichem über Einführung einer fairen und familienfreundlichen Arbeitspolitik sprechen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 58,
+        "title": "Mit Vorgesetztem/Personalverantwortlichem über Umsatzbeteiligung sprechen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "WorkStructuring"
+        ],
+        "aktivittsfeld1": "WorkStructuring"
+    },
+    {
+        "id": 59,
+        "title": "In regelmässigen Kurzpausen Aufstehen, Strecken und eine Entspannungsübung durchführen",
+        "text": "nationale Präventionsstrategie \"Australia\"",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "Relaxation"
+    },
+    {
+        "id": 60,
+        "title": "15 min Pause draussen mit Spaziergang",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "PhysicalActivity"
+    },
+    {
+        "id": 61,
+        "title": "Dehnungsübung für Schulter und Kopf in der Pause",
+        "text": "http://www.gesundheit.lu.ch/index/gesundheitsfoerderung/flyer_vorlagen.htm ",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "Relaxation"
+    },
+    {
+        "id": 62,
+        "title": "Fenster öffnen, frische Luft in der Pause",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks"
+        ],
+        "aktivittsfeld1": "Breaks"
+    },
+    {
+        "id": 63,
+        "title": "Treffen einer Person im Unternehmen in der Pause, mit der ich nicht direkt zusammenarbeite und schon länger nicht mehr gesprochen habe ",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "SocialInteraction"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "SocialInteraction"
+    },
+    {
+        "id": 64,
+        "title": "10 Minuten Musik hören in der Pause",
+        "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf S. 10",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "Relaxation"
+    },
+    {
+        "id": 65,
+        "title": "Spaziergang während der Mittagspause",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "PhysicalActivity"
+    },
+    {
+        "id": 66,
+        "title": "Jogging mit Kollegen über Mittag",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "SocialInteraction"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "SocialInteraction"
+    },
+    {
+        "id": 67,
+        "title": "Ballspiel über Mittag mit Kollegen ",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "SocialInteraction"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "SocialInteraction"
+    },
+    {
+        "id": 68,
+        "title": "Mit einer Person ausserhalb des eigenen Betriebes in einem guten Restaurant Mittagessen gehen",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "SocialInteraction"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "SocialInteraction"
+    },
+    {
+        "id": 69,
+        "title": "Essen sie woanders als sonst (auswärts, am See)",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "Relaxation"
+    },
+    {
+        "id": 70,
+        "title": "Imagination (Gute Laune Bilder, Ferienerinnerung, Phantasiereise)",
+        "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf S. 9",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Breaks",
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Breaks",
+        "aktivittsfeld2": "Relaxation"
+    },
+    {
+        "id": 71,
+        "title": "Kein Stress beim Aufstehen, genügend Zeit zu Hause vor dem Pendeln",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 72,
+        "title": "Reise ausserhalb der Stosszeiten ",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 73,
+        "title": "Mit dem Velo zur Arbeit ",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "PhysicalActivity"
+    },
+    {
+        "id": 74,
+        "title": "Abschalten auf dem Arbeitsweg mit guter Musik",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 75,
+        "title": "Abschalten auf dem Arbeitsweg mit Freizeit-Lektüre",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 76,
+        "title": "Eine Station vorher aussteigen, später einsteigen und zu Fuss gehen",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "PhysicalActivity"
+    },
+    {
+        "id": 77,
+        "title": "Zuhause Musik laufen lassen am Feierabend z.B. zum kochen",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 78,
+        "title": "An einem Yoga/Meditationskurs teilnehmen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 79,
+        "title": "Yoga Übungen durchführen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 80,
+        "title": "Meditationsübungen durchführen ",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 81,
+        "title": "Autogenes Training durchführen ",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 82,
+        "title": "Eine Massage geniessen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 83,
+        "title": "Bewusstes Atmen / Atemtechniken lernen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 84,
+        "title": "Jogging mit Kollegen über Mittag ",
+        "text": "http://www.wecarelife.at/fitness-sport/stress/stress-und-bewegung/ ",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "PhysicalActivity"
+    },
+    {
+        "id": 85,
+        "title": "Apéro mit Kollegen um 17:00 Uhr",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 86,
+        "title": "Wellness Weekend mit Partner/in und ohne Kids geniessen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 87,
+        "title": "Entspannungsbad am Abend mit beruhigenden Badezusätzen/Waldspaziergang (S. 19/3.0) ",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 88,
+        "title": "Regelmässige Saunagänge durchführen ",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 89,
+        "title": "Sprung in den See nach der Arbeit",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 90,
+        "title": "Musik hören vor dem ins Bett gehen",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 91,
+        "title": "Mentaltraining (3 min positiv Denken vor dem Einschlafen)",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 92,
+        "title": "Heute um 22:00 ins Bett",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 93,
+        "title": "Bewusste Ablenkung von einem konkreten Problem mit einer positiv inspirierenden Entspan-nungsaktivität",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 94,
+        "title": "Progressive Muskelrelaxation nach Jacobson: ",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 95,
+        "title": "Hypnose ",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 96,
+        "title": "Biofeedback ",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 97,
+        "title": "Imagination/imaginative Verfahren",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 98,
+        "title": "Gedankenstopp (eher schon kognitiv-verhaltenstherapeutisches Verfahren)",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "Relaxation"
+    },
+    {
+        "id": 99,
+        "title": "Lach-Seminar besuchen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 100,
+        "title": "Humorfestival besuchen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 101,
+        "title": "Komödie im TV/Kino schauen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Relaxation",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "Relaxation",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 102,
+        "title": "Mit Freunden ein Musikkonzert besuchen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "SocialInteraction",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 103,
+        "title": "Mit Freunden an Spasswettbewerb teilnehmen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "SocialInteraction",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 104,
+        "title": "Mit Freunden einen Sportevent besuchen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "SocialInteraction",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 105,
+        "title": "Mit Freunden in den Ausgang gehen zum Tanzen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "SocialInteraction",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 106,
+        "title": "Treffen einer Person im Unternehmen in der Pause, mit der ich nicht direkt zusammenarbeite und schon länger nicht mehr gesprochen habe",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction"
+        ],
+        "aktivittsfeld1": "SocialInteraction"
+    },
+    {
+        "id": 107,
+        "title": "KollegInnen um Unterstützung fragen ",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf ",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction"
+        ],
+        "aktivittsfeld1": "SocialInteraction"
+    },
+    {
+        "id": 108,
+        "title": "Vorbeigehen anstelle anrufen",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction",
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "SocialInteraction",
+        "aktivittsfeld2": "PhysicalActivity"
+    },
+    {
+        "id": 109,
+        "title": "Mit Partner/in und Kollegen am Wochenende in den Ausgang gehen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "SocialInteraction",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 110,
+        "title": "Kollegen am Wochenende zum Essen einladen ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "SocialInteraction",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 111,
+        "title": "Aktivität in einem Verein (Sport- oder Turnverein, kirchliche Organisation, Musikverein/Chor)",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 96",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "SocialInteraction",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "SocialInteraction",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 112,
+        "title": "Treppe statt Lift nehmen am Morgen zum Arbeitsplatz",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 113,
+        "title": "Treppe statt Lift nehmen zum Sitzungszimmer",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 114,
+        "title": "Treppe statt Lift nehmen am Mittag zum Personalrestaurant",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 115,
+        "title": "Mehrmals am Tag ein Glas Wasser holen",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity",
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "PhysicalActivity",
+        "aktivittsfeld2": "Nutrition"
+    },
+    {
+        "id": 116,
+        "title": "Mit dem Velo zur Arbeit",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 117,
+        "title": "Eine Station vorher aussteigen, später einsteigen und zu Fuss gehen",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 118,
+        "title": "Eine halbe Stunde moderater Sport vor/nach der Arbeit treiben (z.B. Jogging), der Spass macht",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 119,
+        "title": "Eine Stunde moderater Sport am Wochenende treiben (z.B. Vitaparcour), der Spass macht",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 120,
+        "title": "Eine moderate körperliche Arbeit am Wochenende verrichten, die Spass macht (z.B. Gartenarbeiten)",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 121,
+        "title": "Am Wochenende eine schöne Wanderung machen",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 122,
+        "title": "Tool/Service zur Unterstützung bei der Bewegungsförderung einsetzen",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 123,
+        "title": "Externer Fitnessberater zur Unterstützung beiziehen",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 124,
+        "title": "Fitnesstraining",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 101",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 125,
+        "title": "Rückenschule",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 98",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity"
+    },
+    {
+        "id": 126,
+        "title": "Flasche Wasser auffüllen und auf Pult stellen",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 127,
+        "title": "Reichlich Wasser trinken z.B. 6-mal täglich 1 Glas oder eine Tasse (insgesamt 1 bis 2 Liter) ",
+        "text": "http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf;  ",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 128,
+        "title": "Heute Salat zum Zmittag essen",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 129,
+        "title": "Heute Vegimenu zum Zmittag bestellen",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 130,
+        "title": "Eine Frucht essen zum Znüni ",
+        "source": "youpers",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 131,
+        "title": "Heute magnesiumreiche Ernährung zum Abbau von Stresshormonen (Gurke, Cashewnut, Ba-nane, Schokolade)",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 132,
+        "title": "Milchprodukte stärken die Nerven, esse 3 Portionen Milch und Milchprodukte",
+        "source": "community",
+        "defaultplantype": "daily",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 133,
+        "title": "Heute Fisch zum Mittag essen ",
+        "source": "youpers",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 134,
+        "title": "Externer Ernährungsberater zur Unterstützung beiziehen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "Nutrition"
+        ],
+        "aktivittsfeld1": "Nutrition"
+    },
+    {
+        "id": 135,
+        "title": "Spaziergang im Wald nach der Arbeit",
+        "source": "community",
+        "defaultplantype": "weekly",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "PhysicalActivity",
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "PhysicalActivity",
+        "aktivittsfeld2": "LeisureActivity"
+    },
+    {
+        "id": 136,
+        "title": "Diese Woche bewusst einmal etwas spezielles Kochen zu Hause ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "LeisureActivity"
+    },
+    {
+        "id": 137,
+        "title": "Offenes Gespräch mit Partner/in über Freizeitgestaltung führen und gemeinsame Ziele ausarbeiten ",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "LeisureActivity"
+    },
+    {
+        "id": 138,
+        "title": "Mit Partner/in Freizeit-Arbeiten und ausreichenden Auszeiten (Ruhepausen) planen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "LeisureActivity"
+    },
+    {
+        "id": 139,
+        "title": "Möglichkeit prüfen für Arbeitsentlastung in der Freizeit (Kinderbetreueung, Haushaltsarbeit, ...) zu reduzieren",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "LeisureActivity"
+    },
+    {
+        "id": 140,
+        "title": "Offenes Gespräch mit Partner/in über familiäre Belastungen und Probleme führen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "LeisureActivity"
+    },
+    {
+        "id": 141,
+        "title": "Nächste Ferien in max. 6 Monaten planen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "LeisureActivity"
+    },
+    {
+        "id": 142,
+        "title": "Aktivferien planen",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity",
+            "PhysicalActivity"
+        ],
+        "aktivittsfeld1": "LeisureActivity",
+        "aktivittsfeld2": "PhysicalActivity"
+    },
+    {
+        "id": 143,
+        "title": "Bewusster Verzicht auf zu viel Aktivität in der Freizeit",
+        "source": "community",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity",
+            "Relaxation"
+        ],
+        "aktivittsfeld1": "LeisureActivity",
+        "aktivittsfeld2": "Relaxation"
+    },
+    {
+        "id": 144,
+        "title": "Ein neues Hobby (je nach Stressursache eine ruhige oder gesellschaftliche Freizeitbeschäftigung) ausprobieren (z.B. Chor, Singen, Turnen...) ",
+        "text": "⇒ Valentine E, Evans C (2001) The effects of solo singing, choral singing and swimming on mood and physiological indices. Psychology and Psychotherapy 74/1 115-120: Engaging in these activities (solo singing, choral singing and swimming) reduced tense arousal and increased energetic arousal, positive hedonic tone and heart rate\nhttp://archiv.ub.uni-marburg.de/diss/z2009/0801/pdf/djg.pd",
+        "source": "youpers",
+        "defaultplantype": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "topic": [
+            "workLifeBalance"
+        ],
+        "field": [
+            "LeisureActivity"
+        ],
+        "aktivittsfeld1": "LeisureActivity"
     }
 ]

@@ -4,6 +4,7 @@
 
 describe('ewl activity', function () {
     beforeEach(angular.mock.module('yp.ewl.activity'));
+    beforeEach(module('ui.router'));
 
 
     describe('ActionService', function () {
@@ -85,8 +86,10 @@ describe('ewl activity', function () {
         }));
 
         it('should return all activities when filter is null', inject(function ($filter) {
-            var input = [{}];
-            var filtered = $filter('ActionListFilter')(input,null );
+            var input = [
+                {}
+            ];
+            var filtered = $filter('ActionListFilter')(input, null);
             expect(filtered.length).toEqual(input.length);
         }));
 
@@ -96,11 +99,10 @@ describe('ewl activity', function () {
         }));
 
 
-
         it('should filter by single topic', inject(function ($filter) {
             myQuery.topic.nutrition = true;
             var filtered = $filter('ActionListFilter')(myActivities, myQuery);
-            expect(filtered.length).toEqual(myActivities.length -1);
+            expect(filtered.length).toEqual(myActivities.length - 1);
 
             // reset and check if resetted
             myQuery.topic.nutrition = false;
@@ -111,7 +113,7 @@ describe('ewl activity', function () {
         it('should filter by single cluster', inject(function ($filter) {
             myQuery.cluster.nutrition = true;
             var filtered = $filter('ActionListFilter')(myActivities, myQuery);
-            expect(filtered.length).toEqual(myActivities.length -1);
+            expect(filtered.length).toEqual(myActivities.length - 1);
 
             // reset and check if resetted
             myQuery.cluster.nutrition = false;
@@ -150,7 +152,8 @@ describe('ewl activity', function () {
 
     });
 
-    describe('ActivityFieldCtrl', function () {
+
+    describe('ActionListCtrl', function ($state) {
         var $scope = null;
         var ctrl = null;
 
@@ -158,15 +161,16 @@ describe('ewl activity', function () {
          * this is where we're setting up the $scope and
          * calling the controller function on it, injecting
          * all the important bits, like our mockService */
-        beforeEach(inject(function ($rootScope, $controller) {
+        beforeEach(inject(function ($rootScope, $controller, $state) {
 
             //create a scope object for us to use.
             $scope = $rootScope.$new();
 
             //now run that scope through the controller function,
             //injecting any services or other injectables we need.
-            ctrl = $controller('ActivityFieldCtrl', {
+            ctrl = $controller('ActionListCtrl', {
                 $scope: $scope,
+                $state: $state,
                 ActionService: {
                     allActivities: {
                         then: function (callback) {
@@ -214,60 +218,30 @@ describe('ewl activity', function () {
             });
         }));
 
-        it('should mark an action as planned, but only once per action', inject(function () {
+        it('should have access to all activities and the planned activities', inject(function () {
 
             expect($scope.isActionPlanned(1)).toBeFalsy();
 
-            expect($scope.myPlannedActions.length).toEqual(1);
-
-            $scope.planAction({
-                id: 1,
-                field: 'nutrition'
-            });
-
-            expect($scope.isActionPlanned(1)).toBeTruthy();
-            expect($scope.myPlannedActions.length).toEqual(2);
-            $scope.planAction({
-                id: 1,
-                field: 'nutrition'
-            });
-            expect($scope.myPlannedActions.length).toEqual(2);
+            expect($scope.plannedActions.length).toEqual(1);
         }));
 
 
-        it('should check whether an action is planned', inject(function () {
+        it('should return the cluster name for an id', inject(function () {
+            expect($scope.getClusterName('Nutrition')).toBeDefined();
+            expect(typeof $scope.getClusterName('Nutrition')).toEqual('string');
+            expect($scope.getClusterName('Nutrition').length).toBeGreaterThan(0);
+        }));
+
+        it('should return whether an Acitvity is planned or not', inject(function () {
             var myAction = {
-                id: 37,
+                id: "2",
                 field: 'myField'
             };
-
-            expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
-            $scope.planAction(myAction);
-            expect($scope.isActionPlanned(myAction.id)).toBeTruthy();
-            $scope.planAction(myAction);
-
             expect($scope.isActionPlanned(myAction.id)).toBeTruthy();
 
-            $scope.unPlanAction(myAction);
+           myAction.id = "3";
             expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
 
         }));
-
-        describe('unPlan Action', function () {
-            it('should remove an action from the planned actions', inject(function () {
-                var myAction = {
-                    id: 37,
-                    field: 'myField'
-                };
-                expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
-                $scope.planAction(myAction);
-                expect($scope.isActionPlanned(myAction.id)).toBeTruthy();
-                $scope.unPlanAction(myAction);
-                expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
-                $scope.unPlanAction(myAction);
-                expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
-
-            }));
-        });
     });
 });

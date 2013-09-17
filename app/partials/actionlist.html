@@ -7,11 +7,11 @@
 
 <!-- die top row - sorter und empfehlungen -->
 <div class="row">
-    <div class="col-md-3 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-2">
         <pagination total-items="filteredActions.length" items-per-page="pageSize" page="currentPage"
                     max-size="maxSize" class="pagination" boundary-links="false"/>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-4">
         <div class="row">
             <div class="col-md-12">
                 <h3>Topic</h3>
@@ -27,36 +27,6 @@
                     </label>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="checkbox filter-option"
-                     ng-class="query.topic.physicalFitness ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.topic.physicalFitness">
-                        Körperliche Fitness
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="checkbox filter-option"
-                     ng-class="query.topic.nutrition ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.topic.nutrition">
-                        Ernährung/Konsum
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="checkbox filter-option"
-                     ng-class="query.topic.mentalFitness ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.topic.mentalFitness">
-                        Geistige Fitness
-                    </label>
-                </div>
-
-
-            </div>
-
         </div>
     </div>
 
@@ -68,46 +38,21 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>AktvitätsCluster</h3>
-
                 <div class="container panel panel-default">
-                    <div class="checkbox filter-option"
-                         ng-class="query.cluster.general ? 'filter-option-active' : 'filter-option-inactive'">
+                    <div ng-repeat="cluster in clusters" class="checkbox filter-option"
+                         ng-class="query.cluster[cluster.id] ? 'filter-option-active' : 'filter-option-inactive'">
                         <label>
-                            <input type="checkbox" value="" ng-model="query.cluster.general">
-                            Allg. Ges.-Mgmt
+                            <img ng-src="/assets/ico/{{cluster.id}}.gif" class="actionListFilterClusterIcon">
+                            <input type="checkbox" value="" ng-model="query.cluster[cluster.id]">
+                            {{ cluster.beschreibungdt }}
                         </label>
                     </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.cluster.fitness ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.cluster.fitness">
-                            Körper./geistige Fitness
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.cluster.nutrition ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.cluster.nutrition">
-                            Ernährung/Konsum
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.cluster.wellness ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.cluster.wellness">
-                            Wohlbefinden
-                        </label>
-                    </div>
-
                 </div>
-
             </div>
-
         </div>
         <div class="row">
             <div class="col-md-12">
                 <h3>Rating</h3>
-
                 <div class="container panel panel-default">
                     <div class="checkbox filter-option"
                          ng-class="query.rating.five ? 'filter-option-active' : 'filter-option-inactive'">
@@ -144,11 +89,8 @@
                             <rating value="1" max="5"></rating>
                         </label>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -192,25 +134,26 @@
     </div>
     <!-- die eigentliche Liste -->
     <div class="col-md-10 ">
-        <div class="row panel panel-default"
-             ng-repeat="action in filteredActions | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
-            <div class="col-md-2">
+        <div class="row panel panel-default actionListItem" ng-click="gotoActionDetail(action.id)"
+             ng-repeat="action in filteredActions | orderBy:'source':true | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
+            <div class="col-md-1">
+                Act-{{ action.id }}
+            </div>
+            <div class="col-md-6">
                 {{ action.title }}
             </div>
-            <div class="col-md-1">
-                {{ action.field }}
+            <div class="col-md-2">
+
+                <div popover="{{ getClusterName(cluster)}}" popover-trigger="mouseenter" ng-repeat="cluster in action.field">
+                    <img ng-src="/assets/ico/{{cluster}}.gif" class="activityListClusterIcon">
+                </div>
+            </div>
+            <div class="col-md-1" popover="Überprüft und Empfohlen durch YouPers"
+                 popover-trigger="mouseenter">
+                <img ng-src="/assets/img/YouPersAvatar.png" ng-if="action.source == 'youpers'" class="activityListClusterIcon">
             </div>
             <div class="col-md-2">
-                <rating max='5' value='action.rating'></rating>
-            </div>
-            <div class="col-md-5">
-                {{ action.text }}
-            </div>
-            <div class="col-md-2">
-                <a type="button" ng-class="isActionPlanned(action.id) ?
-                'btn btn-action_planned' : 'btn btn-primary btn-action_unplanned'"
-                   ng-href="#/actions/{{ action.id }}">{{ isActionPlanned(action.id) ? 'PLANNED' : 'PLAN_IT' |
-                    translate }}</a>
+
             </div>
         </div>
         <pagination total-items="filteredActions.length" items-per-page="pageSize" page="currentPage"

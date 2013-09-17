@@ -39,21 +39,22 @@ angular.module('yp.ewl.activity', [])
             setSelectedActivity: function (actionId, allActions, plannedActions) {
                 if (plannedActions && allActions) {
                     selectedActivity = _.find(allActions, function (obj) {
-                        return obj.id === actionId;
+                        return obj.id == actionId;
                     });
 
                     selectedActivityPlan = null;
                     selectedActivityPlan = _.find(plannedActions, function (obj) {
-                        return obj.action_id === actionId;
+                        return obj.action_id == actionId;
                     });
 
                     if (!selectedActivityPlan) {
                         selectedActivityPlan = {
-                            "action_id": 1,
+                            "action_id": selectedActivity.id,
                             "field": selectedActivity.field,
-                            "planType": selectedActivity.defaultPlanType,
-                            "privacyType" : selectedActivity.defaultPrivacy,
-                            "executionType": selectedActivity.defaultExecutionType,
+                            "planType": selectedActivity.defaultplantype,
+                            "privacyType" : selectedActivity.defaultprivacy,
+                            "executionType": selectedActivity.defaultexecutiontype,
+                            "visibility": selectedActivity.defaultvisibility,
                             "duration": 15,
                             "repeatWeeks": 6
                         };
@@ -147,60 +148,6 @@ angular.module('yp.ewl.activity', [])
         };
     })
 
-    .controller('ActivityFieldCtrl', [ '$scope', 'ActionService', function ($scope, ActionService) {
-
-        $scope.actionFieldSelected = "";
-
-        ActionService.allActivities.then(function (data) {
-            $scope.actions = data;
-        });
-
-        ActionService.plannedActivities.then(function (data) {
-            $scope.myPlannedActions = data;
-        });
-
-        $scope.unPlanAction = function (action) {
-            for (var i = 0; i < $scope.myPlannedActions.length; i++) {
-                if ($scope.myPlannedActions[i].action_id === action.id) {
-                    $scope.myPlannedActions.splice(i, 1);
-                }
-            }
-        };
-
-        $scope.planAction = function (action) {
-            var newAction = true;
-
-            // check whether this activity is already planned, if so, do replace the plan
-            // if not, add it
-            for (var i = 0; i < $scope.myPlannedActions.length; i++) {
-                if ($scope.myPlannedActions[i].action_id === action.id) {
-
-                    $scope.myPlannedActions[i] = {
-                        action_id: action.id,
-                        field: action.field
-                    };
-                    newAction = false;
-                }
-            }
-            if (newAction) {
-                $scope.myPlannedActions.push({
-                    action_id: action.id,
-                    field: action.field
-                });
-            }
-        };
-
-        $scope.isActionPlanned = function (actionId) {
-            return ActionService.isActionPlanned($scope.myPlannedActions, actionId);
-        };
-
-
-        $scope.selectActionField = function (actionField) {
-            $scope.actionFieldSelected = actionField;
-        };
-
-    } ])
-
     .controller('ActivityCtrl', ['$scope', 'ActionService', '$timeout', '$state','$stateParams', 'allActions', 'plannedActions',
         function ($scope, ActionService, $timeout, $state, $stateParams, allActions, plannedActions) {
 
@@ -251,7 +198,7 @@ angular.module('yp.ewl.activity', [])
 
         }])
 
-    .controller('ActionListCtrl', ['$scope', 'ActionService', '$filter', function ($scope, ActionService, $filter) {
+    .controller('ActionListCtrl', ['$scope', 'ActionService', '$filter', '$state', function ($scope, ActionService, $filter, $state) {
         ActionService.allActivities.then(function (data) {
             $scope.actions = data;
             $scope.filteredActions = data;
@@ -262,10 +209,65 @@ angular.module('yp.ewl.activity', [])
             $scope.plannedActions = data;
         });
 
+        $scope.clusters = [
+            {
+                "id": "AwarenessAbility",
+                "beschreibungdt": "Bewusstsein und Fähigkeit"
+            },
+            {
+                "id": "TimeManagement",
+                "beschreibungdt": "Zeitmanagement"
+            },
+            {
+                "id": "WorkStructuring",
+                "beschreibungdt": "Arbeitsgestaltung"
+            },
+            {
+                "id": "PhysicalActivity",
+                "beschreibungdt": "Körperliche Aktivität"
+            },
+            {
+                "id": "Nutrition",
+                "beschreibungdt": "Ernährung"
+            },
+            {
+                "id": "LeisureActivity",
+                "beschreibungdt": "Freizeitaktivität"
+            },
+            {
+                "id": "Breaks",
+                "beschreibungdt": "Pausen"
+            },
+            {
+                "id": "Relaxation",
+                "beschreibungdt": "Entspannung"
+            },
+            {
+                "id": "SocialInteraction",
+                "beschreibungdt": "Sozialer Austausch"
+            }
+        ];
+
+        $scope.getClusterName = function(clusterId){
+            var cluster = _.find($scope.clusters, function(obj) {
+                return obj.id === clusterId;
+            });
+            if (cluster) {
+                return cluster.beschreibungdt;
+            } else {
+                return undefined;
+            }
+        };
+
+
+
         $scope.isActionPlanned = function (actionId) {
             return ActionService.isActionPlanned($scope.plannedActions, actionId);
         };
 
+        $scope.gotoActionDetail = function (actionId) {
+            $state.go('actionDetail', {actionId: actionId});
+        };
 
         $scope.query = {
             cluster: {
@@ -296,11 +298,12 @@ angular.module('yp.ewl.activity', [])
 
         };
 
-        $scope.pageSize = 10;
-        $scope.maxSize = 5;
+
+        $scope.pageSize = 20;
+        $scope.maxSize = 10;
         $scope.currentPage = 1;
 
-
+        // watch for changes on the query object and reapply filter, use deep watch=true
         $scope.$watch('query', function (newQuery) {
             $scope.currentPage = 1;
             $scope.filteredActions = $filter('ActionListFilter')($scope.actions, $scope.query);

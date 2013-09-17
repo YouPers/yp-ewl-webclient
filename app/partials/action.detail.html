@@ -2,7 +2,7 @@
 
 <!-- Page header  -->
 <div class="page-header">
-    <h1>Plane: {{ currentAction.title }}</h1>
+    <h1>Plane diese Aktivität:</h1>
 </div>
 <div class="container">
 
@@ -13,7 +13,7 @@
 
 
         <div class="col-md-8">
-            <p>{{ currentAction.text }}</p>
+            <p>{{ currentAction.title }}</p>
 
         </div>
         <div class="col-md-4">
@@ -137,7 +137,7 @@
                             <label>
                                 <input type="radio" name="planTypes" id="planTypeOnce" value="once"
                                        ng-model="currentActionPlan.planType">
-                                Einmalig am:
+                                Einmalig bis am:
                             </label>
                         </div>
                         <fieldset ng-disabled="currentActionPlan.planType!='once'">
