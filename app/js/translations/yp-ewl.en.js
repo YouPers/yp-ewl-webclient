@@ -43,6 +43,8 @@ angular.module('yp-ewl').
             FRIDAY: 'Friday',
             SATURDAY: 'Saturday',
             SUNDAY: 'Sunday',
-            TOPIC: 'Health-Topic'
+            TOPIC: 'Health-Topic',
+            group: 'Group-Activity',
+            self: 'Do it Alone'
         });
     }]);

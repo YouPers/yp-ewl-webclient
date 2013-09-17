@@ -44,6 +44,9 @@ angular.module('yp-ewl').
             FRIDAY: 'Freitag',
             SATURDAY: 'Samstag',
             SUNDAY: 'Sonntag',
-            TOPIC: 'Gesundheits-Thema'
+            TOPIC: 'Gesundheits-Thema',
+            group: 'In der Gruppe',
+            self: 'Alleine'
+
         });
     }]);

@@ -150,7 +150,7 @@
                 <img ng-src="/assets/img/YouPersAvatar.png" ng-if="action.source == 'youpers'" class="activityListClusterIcon">
             </div>
             <div class="col-md-2">
-
+                {{ action.defaultexecutiontype | translate }}
             </div>
         </div>
         <pagination total-items="filteredActions.length" items-per-page="pageSize" page="currentPage"
