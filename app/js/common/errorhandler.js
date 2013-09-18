@@ -2,21 +2,21 @@
 
 
 angular.module('globalErrors', [])
-    .config(function($provide, $httpProvider, $compileProvider, $rootScope) {
-        var elementsList = $();
+    .config(['$provide', '$httpProvider','$compileProvider', '$rootScope',function ($provide, $httpProvider, $compileProvider, $rootScope) {
 
         var showMessage = function (errText, type, duration) {
             $rootScope.$broadcast('globalUserMsg', errText, type, duration);
-        }
+        };
 
-        $httpProvider.responseInterceptors.push(function($timeout, $q) {
-            return function(promise) {
-                return promise.then(function(successResponse) {
-                    if (successResponse.config.method.toUpperCase() != 'GET')
+        $httpProvider.responseInterceptors.push(function ($timeout, $q) {
+            return function (promise) {
+                return promise.then(function (successResponse) {
+                    if (successResponse.config.method.toUpperCase() !== 'GET') {
                         showMessage('Success', 'successMessage', 5000);
+                    }
                     return successResponse;
 
-                }, function(errorResponse) {
+                }, function (errorResponse) {
                     switch (errorResponse.status) {
                         case 401:
                             showMessage('Wrong username or password', 'error', 5000);
@@ -34,4 +34,4 @@ angular.module('globalErrors', [])
                 });
             };
         });
-    });
+    }]);
