@@ -63,7 +63,8 @@
             };
         }])
 
-        .directive('googleChart', ['$timeout', '$window', '$rootScope', 'googleChartApiProxy', function ($timeout, $window, $rootScope, apiProxy) {
+        .directive('googleChart', ['$timeout', '$window', '$rootScope', 'googleChartApiProxy',
+            function ($timeout, $window, $rootScope, apiProxy) {
             return {
                 restrict: 'A',
                 scope: {
@@ -125,10 +126,10 @@
             };
         }])
 
-        .run(function ($rootScope, $window) {
+        .run(['$rootScope','$window',function ($rootScope, $window) {
             angular.element($window).bind('resize', function () {
                 $rootScope.$emit('resizeMsg');
             });
-        });
+        }]);
 
 })(document, window);
