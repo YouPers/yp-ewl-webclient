@@ -8,11 +8,11 @@ angular.module('yp.actionlog', []).
 
         var actionLogEntries = $http.get('js/mockdata/testactionlog.json').then(function (result) {
             return result.data;
-        })
+        });
 
         ActionLogService.getActionLog = function () {
             return actionLogEntries;
-        }
+        };
 
         return ActionLogService;
     }
@@ -24,15 +24,15 @@ angular.module('yp.actionlog', []).
 
         $scope.getGlyphicon = function(status) {
             var icon = "";
-            if (status == "newMessage") {
+            if (status === "newMessage") {
                 icon = "envelope";
-            } else if (status == "readMessage") {
+            } else if (status === "readMessage") {
                 icon = "ok";
             } else {
                 icon = "star";
             }
             return icon;
-        }
+        };
 
 //        $scope.getStars = function(num) {
 //            var starsArray = new Array();
@@ -53,25 +53,25 @@ angular.module('yp.actionlog', []).
 
         $scope.getGlyphiconStatus = function(status) {
             var icon = "";
-            if (status == "done") {
+            if (status === "done") {
                 icon = "ok";
-            } else if (status == "not done") {
+            } else if (status === "not done") {
                 icon = "remove";
-            } else if (status == "open") {
+            } else if (status === "open") {
                 icon = "unchecked";
             }
             return icon;
-        }
+        };
 
         $scope.getActionTimeType = function(status) {
             var icon = "";
-            if (status == "past") {
+            if (status === "past") {
                 icon = "past";
-            } else if (status == "current") {
+            } else if (status === "current") {
                 icon = "active";
-            } else if (status == "future") {
+            } else if (status === "future") {
                 icon = "";
             }
             return icon;
-        }
-    }])
+        };
+    }]);
