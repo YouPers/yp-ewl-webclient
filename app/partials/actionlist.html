@@ -98,21 +98,21 @@
                          ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
                         <label>
                             <input type="checkbox" value="" ng-model="query.time.t15">
-                            < 15 Minuten
+                            &lt; 15 Minuten
                         </label>
                     </div>
                     <div class="checkbox filter-option"
                          ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
                         <label>
                             <input type="checkbox" value="" ng-model="query.time.t30">
-                            < 30 Minuten
+                            &lt; 30 Minuten
                         </label>
                     </div>
                     <div class="checkbox filter-option"
                          ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
                         <label>
                             <input type="checkbox" value="" ng-model="query.time.t60">
-                            < 1 Stunde
+                            &lt; 1 Stunde
                         </label>
                     </div>
                     <div class="checkbox filter-option"
@@ -134,7 +134,7 @@
         <div class="row panel panel-default actionListItem" ng-click="gotoActionDetail(action.id)"
              ng-repeat="action in filteredActions | orderBy:'source':true | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
             <div class="col-md-1">
-                Act-{{ action.id }}
+                {{ action.id }}
             </div>
             <div class="col-md-6">
                 {{ action.title }}
