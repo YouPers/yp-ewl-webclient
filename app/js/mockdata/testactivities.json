@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": "Act-1",
         "title": "Tägliche Selbsteinschätzung des aktuellen Stresslevels",
         "source": "community",
         "defaultplantype": "daily",
@@ -15,7 +15,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 2,
+        "id": "Act-2",
         "title": "Reflektion des Stresslevels in der vergangenen Woche",
         "source": "community",
         "defaultplantype": "weekly",
@@ -30,7 +30,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 3,
+        "id": "Act-03",
         "title": "Reflektion des Stresslevels im abgelaufenen Monat",
         "source": "community",
         "defaultplantype": "weekly",
@@ -45,7 +45,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 4,
+        "id": "Act-04",
         "title": "Durchführung Stress Self Assessment um Stressursachen zu eruieren ",
         "source": "community",
         "defaultplantype": "once",
@@ -60,7 +60,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 5,
+        "id": "Act-05",
         "title": "Durchführung Stress Self Assessment um stressfördernde Haltungen zu erkennen",
         "source": "community",
         "defaultplantype": "once",
@@ -75,7 +75,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 6,
+        "id": "Act-06",
         "title": "eLearning-Modul zum Thema „positive Einstellung entwickeln“ durchführen",
         "source": "community",
         "defaultplantype": "once",
@@ -90,7 +90,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 7,
+        "id": "Act-07",
         "title": "An Seminar zum Thema „positive Einstellung entwickeln“ teilnehmen ",
         "source": "community",
         "defaultplantype": "once",
@@ -105,7 +105,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 8,
+        "id": "Act-08",
         "title": "Gespräch mit persönlichem Coach führen, um an positiver Einstellung zu arbeiten",
         "source": "community",
         "defaultplantype": "once",
@@ -120,7 +120,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 9,
+        "id": "Act-09",
         "title": "eLearning-Modul zum Thema „Stressbewältigungsstrategien“ durchführen",
         "source": "community",
         "defaultplantype": "once",
@@ -135,7 +135,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 10,
+        "id": "Act-10",
         "title": "An Seminar zum Thema „Stressbewältigungsstrategien“ teilnehmen",
         "source": "community",
         "defaultplantype": "once",
@@ -150,7 +150,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 11,
+        "id": "Act-11",
         "title": "Workshop/Brainstorming mit persönlichem Coach durchführen, um eine für mich passende Stressbewältigungs-Strategie zu entwickeln",
         "source": "community",
         "defaultplantype": "once",
@@ -165,7 +165,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 12,
+        "id": "Act-12",
         "title": "eLearning-Modul zum Thema „Persönliche Ressourcen stärken“ durchführen",
         "source": "community",
         "defaultplantype": "once",
@@ -180,7 +180,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 13,
+        "id": "Act-13",
         "title": "An Seminar zum Thema „Persönliche Ressourcen stärken “ teilnehmen ",
         "source": "community",
         "defaultplantype": "once",
@@ -195,7 +195,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 14,
+        "id": "Act-14",
         "title": "Sinnvolle Weiterbildung suchen und besuchen, um berufliche Qualifikation zu verbessern",
         "source": "community",
         "defaultplantype": "once",
@@ -210,7 +210,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 15,
+        "id": "Act-15",
         "title": "Gespräch mit Vorgesetztem führen mit den Ziel, den Handlungsspielraum zu erweitern",
         "source": "community",
         "defaultplantype": "once",
@@ -225,7 +225,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 16,
+        "id": "Act-16",
         "title": "Externer Stressberater zur Unterstützung bei der Stressbewältigung beiziehen",
         "source": "community",
         "defaultplantype": "once",
@@ -240,7 +240,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 17,
+        "id": "Act-17",
         "title": "Mental-kognitive Einflussnahme (positive Suggestionen, Gedankenstopp, Affirmationen, positive Formulierung von Sätzen) ",
         "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf ",
         "source": "youpers",
@@ -256,7 +256,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 18,
+        "id": "Act-18",
         "title": "An Stressimmunisierungstraining, Stress-Management-Training SMT und Stress-Resistenz-Training teilnehmen",
         "text": "(http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf.  S. 98, 101",
         "source": "youpers",
@@ -272,7 +272,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 19,
+        "id": "Act-19",
         "title": "eLearning-Modul zum Thema „persönliches Zeitmanagement“ durchführen",
         "source": "community",
         "defaultplantype": "once",
@@ -287,7 +287,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 20,
+        "id": "Act-20",
         "title": "An Seminar zum Thema „persönliches Zeitmanagement“ teilnehmen ",
         "source": "community",
         "defaultplantype": "once",
@@ -302,7 +302,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 21,
+        "id": "Act-21",
         "title": "An online Forum zum Thema „persönliches Zeitmanagement“ teilnehmen ",
         "source": "community",
         "defaultplantype": "once",
@@ -319,7 +319,7 @@
         "aktivittsfeld2": "SocialInteraction"
     },
     {
-        "id": 22,
+        "id": "Act-22",
         "title": "Tool/Service zur Unterstützung beim Zeitmanagement einsetzen ",
         "source": "community",
         "defaultplantype": "daily",
@@ -334,7 +334,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 23,
+        "id": "Act-23",
         "title": "Erfahrungsaustausch mit Kollegen zum persönlichen Zeitmanagement während der Mittagspause durchführen",
         "source": "community",
         "defaultplantype": "once",
@@ -351,7 +351,7 @@
         "aktivittsfeld2": "SocialInteraction"
     },
     {
-        "id": 24,
+        "id": "Act-24",
         "title": "Workshop/Brainstorming mit persönlichem Coach durchführen, um Ideen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
         "source": "community",
         "defaultplantype": "once",
@@ -366,7 +366,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 25,
+        "id": "Act-25",
         "title": "Bewusste Tagesplanung machen / Tagesziel setzen / Zeitgewinn durch Zeitplanung",
         "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf (S. 11)",
         "source": "youpers",
@@ -382,7 +382,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 26,
+        "id": "Act-26",
         "title": "Die Arbeit in passende Zeitintervalle legen – inklusive Ruhepausen",
         "source": "community",
         "defaultplantype": "daily",
@@ -397,7 +397,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 27,
+        "id": "Act-27",
         "title": "Externer Stressberater zur Unterstützung beim Zeitmanagement beiziehen ",
         "source": "community",
         "defaultplantype": "once",
@@ -412,7 +412,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 28,
+        "id": "Act-28",
         "title": "Prioritäten setzen... ",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -427,7 +427,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 29,
+        "id": "Act-29",
         "title": "Tagesleistungskurve beachten",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -442,7 +442,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 30,
+        "id": "Act-30",
         "title": "Delegieren von Aufgaben ",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -457,7 +457,7 @@
         "aktivittsfeld1": "TimeManagement"
     },
     {
-        "id": 31,
+        "id": "Act-31",
         "title": "Offenes Gespräch mit Vorgesetztem über persönliche Arbeitssituation und –gestaltung führen",
         "source": "community",
         "defaultplantype": "once",
@@ -472,7 +472,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 32,
+        "id": "Act-32",
         "title": "Offenes Gespräch mit Vorgesetztem führen mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
         "source": "community",
         "defaultplantype": "once",
@@ -487,7 +487,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 33,
+        "id": "Act-33",
         "title": "Bewusst die Möglichkeiten der flexiblen Arbeitszeit einmal ausprobieren",
         "source": "community",
         "defaultplantype": "once",
@@ -502,7 +502,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 34,
+        "id": "Act-34",
         "title": "Bewusst die Möglichkeiten der Heimarbeit einmal ausprobieren ",
         "source": "community",
         "defaultplantype": "once",
@@ -517,7 +517,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 35,
+        "id": "Act-35",
         "title": "Gemeinsam mit dem Vorgesetzten eine sinnvolle Arbeitsplanung ausarbeiten ",
         "source": "community",
         "defaultplantype": "once",
@@ -532,7 +532,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 36,
+        "id": "Act-36",
         "title": "Ungelösten Konflikt mit Personalverantwortlichen besprechen",
         "source": "community",
         "defaultplantype": "once",
@@ -547,7 +547,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 37,
+        "id": "Act-37",
         "title": "Sinnvolle Weiterbildung suchen und besuchen",
         "source": "community",
         "defaultplantype": "once",
@@ -562,7 +562,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 38,
+        "id": "Act-38",
         "title": "Bewusst meinen Stuhl und Tisch ergonomisch einstellen",
         "source": "community",
         "defaultplantype": "once",
@@ -577,7 +577,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 39,
+        "id": "Act-39",
         "title": "Computer ergonomisch einstellen",
         "source": "community",
         "defaultplantype": "once",
@@ -592,7 +592,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 40,
+        "id": "Act-40",
         "title": "Pflanze an den Arbeitsplatz stellen",
         "source": "community",
         "defaultplantype": "once",
@@ -607,7 +607,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 41,
+        "id": "Act-41",
         "title": "Persönliches/inspirierendes Bild an den Arbeitslatz stellen",
         "source": "community",
         "defaultplantype": "once",
@@ -622,7 +622,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 42,
+        "id": "Act-42",
         "title": "Verändere Sitzposition alle 15 Minuten",
         "source": "community",
         "defaultplantype": "daily",
@@ -637,7 +637,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 43,
+        "id": "Act-43",
         "title": "„sei perfekt“-Typ: liefert Arbeit bewusst bevor er eigentlich denkt sie sei bereit",
         "source": "community",
         "defaultplantype": "once",
@@ -652,7 +652,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 44,
+        "id": "Act-44",
         "title": "Kontroll-Typ: bewusst heute einmal nicht nachfragen ",
         "source": "community",
         "defaultplantype": "once",
@@ -667,7 +667,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 45,
+        "id": "Act-45",
         "title": "sei stark-Typ: streicht bewusst 1 Pendenz aus der Tagesplanung",
         "source": "community",
         "defaultplantype": "once",
@@ -682,7 +682,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 46,
+        "id": "Act-46",
         "title": "sei stark-Typ: bewusst eine Arbeit delegieren",
         "source": "community",
         "defaultplantype": "once",
@@ -697,7 +697,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 47,
+        "id": "Act-47",
         "title": "ich kann nicht-Typ: bewusst eine Sache probieren, die man sich nicht zutraut",
         "source": "community",
         "defaultplantype": "once",
@@ -712,7 +712,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 48,
+        "id": "Act-48",
         "title": "Anerkennung und Wertschätzungs-Typ: Bewusst auf erhaltene Anerkennung achten",
         "source": "community",
         "defaultplantype": "once",
@@ -727,7 +727,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 49,
+        "id": "Act-49",
         "title": "Jemanden heute bewusst Anerkennung für eine Arbeit aussprechen ",
         "source": "community",
         "defaultplantype": "once",
@@ -742,7 +742,7 @@
         "aktivittsfeld1": "AwarenessAbility"
     },
     {
-        "id": 50,
+        "id": "Act-50",
         "title": "Mit Vorgesetztem/Personalverantwortlichem über Veränderung von Arbeitsabläufen / Aufgaben sprechen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -758,7 +758,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 51,
+        "id": "Act-51",
         "title": "Mit Vorgesetztem/Personalverantwortlichem über Veränderung der Arbeitsumgebung sprechen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -774,7 +774,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 52,
+        "id": "Act-52",
         "title": "Mit Vorgesetztem/Personalverantwortlichem über Einführung von flexiblen Arbeitszeiten sprechen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -790,7 +790,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 53,
+        "id": "Act-53",
         "title": "Mit Vorgesetztem/Personalverantwortlichem über partizipative Managementstrukturen sprechen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -806,7 +806,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 54,
+        "id": "Act-54",
         "title": "Mit Vorgesetztem/Personalverantwortlichem über Einbezug der Angestellten bei der Karriereplanung sprechen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -822,7 +822,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 55,
+        "id": "Act-55",
         "title": "Mit Vorgesetztem Arbeitsrollen und Zielvereinbarungen analysieren",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -838,7 +838,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 56,
+        "id": "Act-56",
         "title": "Mit Vorgesetztem über Unterstützung und regelmässiges Feedback sprechen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -854,7 +854,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 57,
+        "id": "Act-57",
         "title": "Mit Personalverantwortlichem über Einführung einer fairen und familienfreundlichen Arbeitspolitik sprechen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -870,7 +870,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 58,
+        "id": "Act-58",
         "title": "Mit Vorgesetztem/Personalverantwortlichem über Umsatzbeteiligung sprechen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
@@ -886,7 +886,7 @@
         "aktivittsfeld1": "WorkStructuring"
     },
     {
-        "id": 59,
+        "id": "Act-59",
         "title": "In regelmässigen Kurzpausen Aufstehen, Strecken und eine Entspannungsübung durchführen",
         "text": "nationale Präventionsstrategie \"Australia\"",
         "source": "youpers",
@@ -904,7 +904,7 @@
         "aktivittsfeld2": "Relaxation"
     },
     {
-        "id": 60,
+        "id": "Act-60",
         "title": "15 min Pause draussen mit Spaziergang",
         "source": "community",
         "defaultplantype": "daily",
@@ -921,7 +921,7 @@
         "aktivittsfeld2": "PhysicalActivity"
     },
     {
-        "id": 61,
+        "id": "Act-61",
         "title": "Dehnungsübung für Schulter und Kopf in der Pause",
         "text": "http://www.gesundheit.lu.ch/index/gesundheitsfoerderung/flyer_vorlagen.htm ",
         "source": "youpers",
@@ -939,7 +939,7 @@
         "aktivittsfeld2": "Relaxation"
     },
     {
-        "id": 62,
+        "id": "Act-62",
         "title": "Fenster öffnen, frische Luft in der Pause",
         "source": "community",
         "defaultplantype": "daily",
@@ -954,7 +954,7 @@
         "aktivittsfeld1": "Breaks"
     },
     {
-        "id": 63,
+        "id": "Act-63",
         "title": "Treffen einer Person im Unternehmen in der Pause, mit der ich nicht direkt zusammenarbeite und schon länger nicht mehr gesprochen habe ",
         "source": "community",
         "defaultplantype": "daily",
@@ -971,7 +971,7 @@
         "aktivittsfeld2": "SocialInteraction"
     },
     {
-        "id": 64,
+        "id": "Act-64",
         "title": "10 Minuten Musik hören in der Pause",
         "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf S. 10",
         "source": "youpers",
@@ -989,7 +989,7 @@
         "aktivittsfeld2": "Relaxation"
     },
     {
-        "id": 65,
+        "id": "Act-65",
         "title": "Spaziergang während der Mittagspause",
         "source": "community",
         "defaultplantype": "weekly",
@@ -1006,7 +1006,7 @@
         "aktivittsfeld2": "PhysicalActivity"
     },
     {
-        "id": 66,
+        "id": "Act-66",
         "title": "Jogging mit Kollegen über Mittag",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1024,7 +1024,7 @@
         "aktivittsfeld2": "SocialInteraction"
     },
     {
-        "id": 67,
+        "id": "Act-67",
         "title": "Ballspiel über Mittag mit Kollegen ",
         "source": "community",
         "defaultplantype": "weekly",
@@ -1041,7 +1041,7 @@
         "aktivittsfeld2": "SocialInteraction"
     },
     {
-        "id": 68,
+        "id": "Act-68",
         "title": "Mit einer Person ausserhalb des eigenen Betriebes in einem guten Restaurant Mittagessen gehen",
         "source": "community",
         "defaultplantype": "weekly",
@@ -1058,7 +1058,7 @@
         "aktivittsfeld2": "SocialInteraction"
     },
     {
-        "id": 69,
+        "id": "Act-69",
         "title": "Essen sie woanders als sonst (auswärts, am See)",
         "source": "community",
         "defaultplantype": "weekly",
@@ -1075,7 +1075,7 @@
         "aktivittsfeld2": "Relaxation"
     },
     {
-        "id": 70,
+        "id": "Act-70",
         "title": "Imagination (Gute Laune Bilder, Ferienerinnerung, Phantasiereise)",
         "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf S. 9",
         "source": "youpers",
@@ -1093,7 +1093,7 @@
         "aktivittsfeld2": "Relaxation"
     },
     {
-        "id": 71,
+        "id": "Act-71",
         "title": "Kein Stress beim Aufstehen, genügend Zeit zu Hause vor dem Pendeln",
         "source": "community",
         "defaultplantype": "daily",
@@ -1108,7 +1108,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 72,
+        "id": "Act-72",
         "title": "Reise ausserhalb der Stosszeiten ",
         "source": "community",
         "defaultplantype": "daily",
@@ -1123,7 +1123,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 73,
+        "id": "Act-73",
         "title": "Mit dem Velo zur Arbeit ",
         "source": "community",
         "defaultplantype": "weekly",
@@ -1140,7 +1140,7 @@
         "aktivittsfeld2": "PhysicalActivity"
     },
     {
-        "id": 74,
+        "id": "Act-74",
         "title": "Abschalten auf dem Arbeitsweg mit guter Musik",
         "source": "community",
         "defaultplantype": "daily",
@@ -1155,7 +1155,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 75,
+        "id": "Act-75",
         "title": "Abschalten auf dem Arbeitsweg mit Freizeit-Lektüre",
         "source": "community",
         "defaultplantype": "daily",
@@ -1170,7 +1170,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 76,
+        "id": "Act-76",
         "title": "Eine Station vorher aussteigen, später einsteigen und zu Fuss gehen",
         "source": "community",
         "defaultplantype": "daily",
@@ -1187,7 +1187,7 @@
         "aktivittsfeld2": "PhysicalActivity"
     },
     {
-        "id": 77,
+        "id": "Act-77",
         "title": "Zuhause Musik laufen lassen am Feierabend z.B. zum kochen",
         "source": "community",
         "defaultplantype": "daily",
@@ -1202,7 +1202,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 78,
+        "id": "Act-78",
         "title": "An einem Yoga/Meditationskurs teilnehmen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1218,7 +1218,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 79,
+        "id": "Act-79",
         "title": "Yoga Übungen durchführen",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1234,7 +1234,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 80,
+        "id": "Act-80",
         "title": "Meditationsübungen durchführen ",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1250,7 +1250,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 81,
+        "id": "Act-81",
         "title": "Autogenes Training durchführen ",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1266,7 +1266,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 82,
+        "id": "Act-82",
         "title": "Eine Massage geniessen",
         "source": "community",
         "defaultplantype": "once",
@@ -1281,7 +1281,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 83,
+        "id": "Act-83",
         "title": "Bewusstes Atmen / Atemtechniken lernen",
         "source": "community",
         "defaultplantype": "once",
@@ -1296,7 +1296,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 84,
+        "id": "Act-84",
         "title": "Jogging mit Kollegen über Mittag ",
         "text": "http://www.wecarelife.at/fitness-sport/stress/stress-und-bewegung/ ",
         "source": "youpers",
@@ -1314,7 +1314,7 @@
         "aktivittsfeld2": "PhysicalActivity"
     },
     {
-        "id": 85,
+        "id": "Act-85",
         "title": "Apéro mit Kollegen um 17:00 Uhr",
         "source": "community",
         "defaultplantype": "once",
@@ -1329,7 +1329,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 86,
+        "id": "Act-86",
         "title": "Wellness Weekend mit Partner/in und ohne Kids geniessen ",
         "source": "community",
         "defaultplantype": "once",
@@ -1346,7 +1346,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 87,
+        "id": "Act-87",
         "title": "Entspannungsbad am Abend mit beruhigenden Badezusätzen/Waldspaziergang (S. 19/3.0) ",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1364,7 +1364,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 88,
+        "id": "Act-88",
         "title": "Regelmässige Saunagänge durchführen ",
         "source": "community",
         "defaultplantype": "weekly",
@@ -1379,7 +1379,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 89,
+        "id": "Act-89",
         "title": "Sprung in den See nach der Arbeit",
         "source": "community",
         "defaultplantype": "once",
@@ -1396,7 +1396,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 90,
+        "id": "Act-90",
         "title": "Musik hören vor dem ins Bett gehen",
         "source": "community",
         "defaultplantype": "daily",
@@ -1411,7 +1411,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 91,
+        "id": "Act-91",
         "title": "Mentaltraining (3 min positiv Denken vor dem Einschlafen)",
         "source": "community",
         "defaultplantype": "daily",
@@ -1426,7 +1426,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 92,
+        "id": "Act-92",
         "title": "Heute um 22:00 ins Bett",
         "source": "community",
         "defaultplantype": "once",
@@ -1441,7 +1441,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 93,
+        "id": "Act-93",
         "title": "Bewusste Ablenkung von einem konkreten Problem mit einer positiv inspirierenden Entspan-nungsaktivität",
         "source": "community",
         "defaultplantype": "once",
@@ -1456,7 +1456,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 94,
+        "id": "Act-94",
         "title": "Progressive Muskelrelaxation nach Jacobson: ",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1472,7 +1472,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 95,
+        "id": "Act-95",
         "title": "Hypnose ",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1488,7 +1488,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 96,
+        "id": "Act-96",
         "title": "Biofeedback ",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1504,7 +1504,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 97,
+        "id": "Act-97",
         "title": "Imagination/imaginative Verfahren",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1520,7 +1520,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 98,
+        "id": "Act-98",
         "title": "Gedankenstopp (eher schon kognitiv-verhaltenstherapeutisches Verfahren)",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
@@ -1536,7 +1536,7 @@
         "aktivittsfeld1": "Relaxation"
     },
     {
-        "id": 99,
+        "id": "Act-99",
         "title": "Lach-Seminar besuchen",
         "source": "community",
         "defaultplantype": "once",
@@ -1553,7 +1553,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 100,
+        "id": "Act-100",
         "title": "Humorfestival besuchen",
         "source": "community",
         "defaultplantype": "once",
@@ -1570,7 +1570,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 101,
+        "id": "Act-101",
         "title": "Komödie im TV/Kino schauen",
         "source": "community",
         "defaultplantype": "once",
@@ -1587,7 +1587,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 102,
+        "id": "Act-102",
         "title": "Mit Freunden ein Musikkonzert besuchen",
         "source": "community",
         "defaultplantype": "once",
@@ -1604,7 +1604,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 103,
+        "id": "Act-103",
         "title": "Mit Freunden an Spasswettbewerb teilnehmen",
         "source": "community",
         "defaultplantype": "once",
@@ -1621,7 +1621,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 104,
+        "id": "Act-104",
         "title": "Mit Freunden einen Sportevent besuchen",
         "source": "community",
         "defaultplantype": "once",
@@ -1638,7 +1638,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 105,
+        "id": "Act-105",
         "title": "Mit Freunden in den Ausgang gehen zum Tanzen",
         "source": "community",
         "defaultplantype": "once",
@@ -1655,7 +1655,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 106,
+        "id": "Act-106",
         "title": "Treffen einer Person im Unternehmen in der Pause, mit der ich nicht direkt zusammenarbeite und schon länger nicht mehr gesprochen habe",
         "source": "community",
         "defaultplantype": "once",
@@ -1670,7 +1670,7 @@
         "aktivittsfeld1": "SocialInteraction"
     },
     {
-        "id": 107,
+        "id": "Act-107",
         "title": "KollegInnen um Unterstützung fragen ",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf ",
         "source": "youpers",
@@ -1686,7 +1686,7 @@
         "aktivittsfeld1": "SocialInteraction"
     },
     {
-        "id": 108,
+        "id": "Act-108",
         "title": "Vorbeigehen anstelle anrufen",
         "source": "youpers",
         "defaultplantype": "once",
@@ -1703,7 +1703,7 @@
         "aktivittsfeld2": "PhysicalActivity"
     },
     {
-        "id": 109,
+        "id": "Act-109",
         "title": "Mit Partner/in und Kollegen am Wochenende in den Ausgang gehen",
         "source": "community",
         "defaultplantype": "once",
@@ -1720,7 +1720,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 110,
+        "id": "Act-110",
         "title": "Kollegen am Wochenende zum Essen einladen ",
         "source": "community",
         "defaultplantype": "once",
@@ -1737,7 +1737,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 111,
+        "id": "Act-111",
         "title": "Aktivität in einem Verein (Sport- oder Turnverein, kirchliche Organisation, Musikverein/Chor)",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 96",
         "source": "youpers",
@@ -1755,7 +1755,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 112,
+        "id": "Act-112",
         "title": "Treppe statt Lift nehmen am Morgen zum Arbeitsplatz",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -1770,7 +1770,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 113,
+        "id": "Act-113",
         "title": "Treppe statt Lift nehmen zum Sitzungszimmer",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -1785,7 +1785,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 114,
+        "id": "Act-114",
         "title": "Treppe statt Lift nehmen am Mittag zum Personalrestaurant",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -1800,7 +1800,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 115,
+        "id": "Act-115",
         "title": "Mehrmals am Tag ein Glas Wasser holen",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -1817,7 +1817,7 @@
         "aktivittsfeld2": "Nutrition"
     },
     {
-        "id": 116,
+        "id": "Act-116",
         "title": "Mit dem Velo zur Arbeit",
         "source": "youpers",
         "defaultplantype": "weekly",
@@ -1832,7 +1832,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 117,
+        "id": "Act-117",
         "title": "Eine Station vorher aussteigen, später einsteigen und zu Fuss gehen",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -1847,7 +1847,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 118,
+        "id": "Act-118",
         "title": "Eine halbe Stunde moderater Sport vor/nach der Arbeit treiben (z.B. Jogging), der Spass macht",
         "source": "youpers",
         "defaultplantype": "weekly",
@@ -1864,7 +1864,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 119,
+        "id": "Act-119",
         "title": "Eine Stunde moderater Sport am Wochenende treiben (z.B. Vitaparcour), der Spass macht",
         "source": "youpers",
         "defaultplantype": "weekly",
@@ -1881,7 +1881,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 120,
+        "id": "Act-120",
         "title": "Eine moderate körperliche Arbeit am Wochenende verrichten, die Spass macht (z.B. Gartenarbeiten)",
         "source": "youpers",
         "defaultplantype": "weekly",
@@ -1898,7 +1898,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 121,
+        "id": "Act-121",
         "title": "Am Wochenende eine schöne Wanderung machen",
         "source": "youpers",
         "defaultplantype": "once",
@@ -1915,7 +1915,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 122,
+        "id": "Act-122",
         "title": "Tool/Service zur Unterstützung bei der Bewegungsförderung einsetzen",
         "source": "community",
         "defaultplantype": "daily",
@@ -1930,7 +1930,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 123,
+        "id": "Act-123",
         "title": "Externer Fitnessberater zur Unterstützung beiziehen",
         "source": "youpers",
         "defaultplantype": "once",
@@ -1945,7 +1945,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 124,
+        "id": "Act-124",
         "title": "Fitnesstraining",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 101",
         "source": "youpers",
@@ -1961,7 +1961,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 125,
+        "id": "Act-125",
         "title": "Rückenschule",
         "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 98",
         "source": "youpers",
@@ -1977,7 +1977,7 @@
         "aktivittsfeld1": "PhysicalActivity"
     },
     {
-        "id": 126,
+        "id": "Act-126",
         "title": "Flasche Wasser auffüllen und auf Pult stellen",
         "source": "community",
         "defaultplantype": "daily",
@@ -1992,7 +1992,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 127,
+        "id": "Act-127",
         "title": "Reichlich Wasser trinken z.B. 6-mal täglich 1 Glas oder eine Tasse (insgesamt 1 bis 2 Liter) ",
         "text": "http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf;  ",
         "source": "youpers",
@@ -2008,7 +2008,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 128,
+        "id": "Act-128",
         "title": "Heute Salat zum Zmittag essen",
         "source": "youpers",
         "defaultplantype": "weekly",
@@ -2023,7 +2023,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 129,
+        "id": "Act-129",
         "title": "Heute Vegimenu zum Zmittag bestellen",
         "source": "community",
         "defaultplantype": "weekly",
@@ -2038,7 +2038,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 130,
+        "id": "Act-130",
         "title": "Eine Frucht essen zum Znüni ",
         "source": "youpers",
         "defaultplantype": "daily",
@@ -2053,7 +2053,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 131,
+        "id": "Act-131",
         "title": "Heute magnesiumreiche Ernährung zum Abbau von Stresshormonen (Gurke, Cashewnut, Ba-nane, Schokolade)",
         "source": "community",
         "defaultplantype": "weekly",
@@ -2068,7 +2068,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 132,
+        "id": "Act-132",
         "title": "Milchprodukte stärken die Nerven, esse 3 Portionen Milch und Milchprodukte",
         "source": "community",
         "defaultplantype": "daily",
@@ -2083,7 +2083,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 133,
+        "id": "Act-133",
         "title": "Heute Fisch zum Mittag essen ",
         "source": "youpers",
         "defaultplantype": "weekly",
@@ -2098,7 +2098,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 134,
+        "id": "Act-134",
         "title": "Externer Ernährungsberater zur Unterstützung beiziehen",
         "source": "community",
         "defaultplantype": "once",
@@ -2113,7 +2113,7 @@
         "aktivittsfeld1": "Nutrition"
     },
     {
-        "id": 135,
+        "id": "Act-135",
         "title": "Spaziergang im Wald nach der Arbeit",
         "source": "community",
         "defaultplantype": "weekly",
@@ -2130,7 +2130,7 @@
         "aktivittsfeld2": "LeisureActivity"
     },
     {
-        "id": 136,
+        "id": "Act-136",
         "title": "Diese Woche bewusst einmal etwas spezielles Kochen zu Hause ",
         "source": "community",
         "defaultplantype": "once",
@@ -2145,7 +2145,7 @@
         "aktivittsfeld1": "LeisureActivity"
     },
     {
-        "id": 137,
+        "id": "Act-137",
         "title": "Offenes Gespräch mit Partner/in über Freizeitgestaltung führen und gemeinsame Ziele ausarbeiten ",
         "source": "community",
         "defaultplantype": "once",
@@ -2160,7 +2160,7 @@
         "aktivittsfeld1": "LeisureActivity"
     },
     {
-        "id": 138,
+        "id": "Act-138",
         "title": "Mit Partner/in Freizeit-Arbeiten und ausreichenden Auszeiten (Ruhepausen) planen",
         "source": "community",
         "defaultplantype": "once",
@@ -2175,7 +2175,7 @@
         "aktivittsfeld1": "LeisureActivity"
     },
     {
-        "id": 139,
+        "id": "Act-139",
         "title": "Möglichkeit prüfen für Arbeitsentlastung in der Freizeit (Kinderbetreueung, Haushaltsarbeit, ...) zu reduzieren",
         "source": "community",
         "defaultplantype": "once",
@@ -2190,7 +2190,7 @@
         "aktivittsfeld1": "LeisureActivity"
     },
     {
-        "id": 140,
+        "id": "Act-140",
         "title": "Offenes Gespräch mit Partner/in über familiäre Belastungen und Probleme führen",
         "source": "community",
         "defaultplantype": "once",
@@ -2205,7 +2205,7 @@
         "aktivittsfeld1": "LeisureActivity"
     },
     {
-        "id": 141,
+        "id": "Act-141",
         "title": "Nächste Ferien in max. 6 Monaten planen",
         "source": "community",
         "defaultplantype": "once",
@@ -2220,7 +2220,7 @@
         "aktivittsfeld1": "LeisureActivity"
     },
     {
-        "id": 142,
+        "id": "Act-142",
         "title": "Aktivferien planen",
         "source": "community",
         "defaultplantype": "once",
@@ -2237,7 +2237,7 @@
         "aktivittsfeld2": "PhysicalActivity"
     },
     {
-        "id": 143,
+        "id": "Act-143",
         "title": "Bewusster Verzicht auf zu viel Aktivität in der Freizeit",
         "source": "community",
         "defaultplantype": "once",
@@ -2254,7 +2254,7 @@
         "aktivittsfeld2": "Relaxation"
     },
     {
-        "id": 144,
+        "id": "Act-144",
         "title": "Ein neues Hobby (je nach Stressursache eine ruhige oder gesellschaftliche Freizeitbeschäftigung) ausprobieren (z.B. Chor, Singen, Turnen...) ",
         "text": "⇒ Valentine E, Evans C (2001) The effects of solo singing, choral singing and swimming on mood and physiological indices. Psychology and Psychotherapy 74/1 115-120: Engaging in these activities (solo singing, choral singing and swimming) reduced tense arousal and increased energetic arousal, positive hedonic tone and heart rate\nhttp://archiv.ub.uni-marburg.de/diss/z2009/0801/pdf/djg.pd",
         "source": "youpers",

@@ -39,12 +39,12 @@ angular.module('yp.ewl.activity', [])
             setSelectedActivity: function (actionId, allActions, plannedActions) {
                 if (plannedActions && allActions) {
                     selectedActivity = _.find(allActions, function (obj) {
-                        return obj.id == actionId;
+                        return obj.id === actionId;
                     });
 
                     selectedActivityPlan = null;
                     selectedActivityPlan = _.find(plannedActions, function (obj) {
-                        return obj.action_id == actionId;
+                        return obj.action_id ===actionId;
                     });
 
                     if (!selectedActivityPlan) {
@@ -81,7 +81,7 @@ angular.module('yp.ewl.activity', [])
         return actService;
     }])
 
-    .filter('ActionListFilter', function () {
+    .filter('ActionListFilter', [function () {
         return function (actions, query) {
             var out = [], allClusters = true;
 
@@ -138,15 +138,15 @@ angular.module('yp.ewl.activity', [])
             return out;
 
         };
-    }
+    }]
 )
 
-    .filter('startFrom', function () {
+    .filter('startFrom', [function () {
         return function (input, start) {
             start = +start; //parse to int
             return input.slice(start);
         };
-    })
+    }])
 
     .controller('ActivityCtrl', ['$scope', 'ActionService', '$timeout', '$state','$stateParams', 'allActions', 'plannedActions',
         function ($scope, ActionService, $timeout, $state, $stateParams, allActions, plannedActions) {
@@ -198,7 +198,8 @@ angular.module('yp.ewl.activity', [])
 
         }])
 
-    .controller('ActionListCtrl', ['$scope', 'ActionService', '$filter', '$state', function ($scope, ActionService, $filter, $state) {
+    .controller('ActionListCtrl', ['$scope', 'ActionService', '$filter', '$state',
+        function ($scope, ActionService, $filter, $state) {
         ActionService.allActivities.then(function (data) {
             $scope.actions = data;
             $scope.filteredActions = data;
