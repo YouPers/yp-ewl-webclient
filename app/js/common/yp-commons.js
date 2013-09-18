@@ -1,21 +1,22 @@
-'use strict'
+'use strict';
 
 angular.module('yp.commons',[]).
     filter('fromNow', function() {
         return function(dateString) {
-            return moment(new Date(dateString)).fromNow()
+            return moment(new Date(dateString)).fromNow();
         };
     }).
 
     filter('fromNowFake', function() {
         return function(dateString) {
-            return moment(new Date(dateString)).from(new Date(2013, 7, 20, 13, 30))
+            return moment(new Date(dateString)).from(new Date(2013, 7, 20, 13, 30));
         };
-    });
+    }).
 
 
 
-angular.module('yp.commons').directive('setfocus', function($timeout) {
+
+    directive('setfocus', ['$timeout', function($timeout) {
     return {
         link: function ( scope, element, attrs ) {
             scope.$watch( attrs.setfocus, function ( val ) {
@@ -32,4 +33,4 @@ angular.module('yp.commons').directive('setfocus', function($timeout) {
             });
         }
     };
-});
+}]);
