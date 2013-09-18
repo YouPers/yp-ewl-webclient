@@ -5,7 +5,8 @@
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.actionlog',
         'yp.ewl.activity.chart','yp.topic', 'ui.router', 'ui.bootstrap',
         'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication']).
-    config(function ($stateProvider, $urlRouterProvider, userRoles, accessLevels) {
+    config(['$stateProvider','$urlRouterProvider','userRoles','accessLevels',
+        function ($stateProvider, $urlRouterProvider, userRoles, accessLevels) {
         //
         // For any unmatched url, send to /home
         $urlRouterProvider.otherwise("/home");
@@ -52,15 +53,15 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 controller: "ActivityCtrl",
                 access: accessLevels.user,
                 resolve: {
-                    allActions: function (ActionService) {
+                    allActions: ['ActionService',function (ActionService) {
                         return ActionService.allActivities;
-                    },
-                    plannedActions: function (ActionService) {
+                    }],
+                    plannedActions: ['ActionService',function (ActionService) {
                         return ActionService.plannedActivities;
-                    }
+                    }]
                 }
             });
-    })
+    }])
 
     .run(['$rootScope', '$state', 'principal', function ($rootScope, $state, principal) {
 
