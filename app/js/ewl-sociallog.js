@@ -8,11 +8,11 @@ angular.module('yp.sociallog', []).
 
         var socialLogEntries = $http.get('js/mockdata/testsociallog.json').then(function (result) {
             return result.data;
-        })
+        });
 
         socialLogService.getSocialLog = function () {
             return socialLogEntries;
-        }
+        };
 
         return socialLogService;
     }
@@ -24,15 +24,15 @@ angular.module('yp.sociallog', []).
 
         $scope.getGlyphicon = function(status) {
             var icon = "";
-            if (status == "newMessage") {
+            if (status === "newMessage") {
                 icon = "envelope";
-            } else if (status == "readMessage") {
+            } else if (status === "readMessage") {
                 icon = "ok";
             } else {
                 icon = "star";
             }
             return icon;
-        }
+        };
 
-    }])
+    }]);
     
