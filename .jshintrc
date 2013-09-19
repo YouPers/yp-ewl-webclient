@@ -1,0 +1,25 @@
+/*jshint bitwise:true, curly:true, eqeqeq:true, forin:true, noarg:true,
+noempty:true, nonew:true, undef:true, strict:true, globalstrict:true, browser:true */
+{
+  "node": true,
+  "browser": true,
+  "esnext": true,
+  "camelcase": false,
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "regexp": true,
+  "undef": true,
+//  "unused": true,
+  "strict": true,
+  "trailing": true,
+  "smarttabs": true,
+  "globals": {
+    "angular": false,
+      "moment": false,
+      "_": false
+  }
+}
