@@ -13,3 +13,6 @@ logs
 results
 .bin
 npm-debug.log
+node_modules
+dist
+.tmp
