@@ -5,6 +5,7 @@ deployment:
       appname: yp-ewl-webclient
   devbuild:
     branch: gruntbuild
+    heroku:
       appname: yp-ewl-webclient-dev
 
 
