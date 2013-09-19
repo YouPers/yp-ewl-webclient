@@ -2,7 +2,7 @@
 /*global angular:true */
 
 // Declare app level module which depends on filters, and services
-angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.actionlog',
+angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
         'yp.ewl.activity.chart','yp.topic', 'ui.router', 'ui.bootstrap',
         'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication']).
     config(['$stateProvider','$urlRouterProvider','userRoles','accessLevels',

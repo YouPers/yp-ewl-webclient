@@ -8,6 +8,10 @@ angular.module('yp-ewl').
 
             COCKPIT: 'Cockpit',
             ACTIVITIES: 'Aktivitäten',
+            SHOW_ACTIVITY_LOG: 'Zeige dein Aktivitätslog',
+            HIDE_ACTIVITY_LOG: 'Verstecke dein Aktivitätslog',
+            SHOW_SOCIAL_LOG: 'Zeige deinen Social Ticker',
+            HIDE_SOCIAL_LOG: 'Verstecke deinen Social Ticker',
             ASSESSMENT: 'Fragebogen',
             LANGUAGE: 'Sprache',
             EMAIL: 'E-Mail',

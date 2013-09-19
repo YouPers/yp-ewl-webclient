@@ -1,26 +1,42 @@
 'use strict';
 
-angular.module('yp.actionlog', []).
+angular.module('yp.activitylog', []).
 
-    factory('ActionLogService', ['$http', function ($http) {
+    factory('ActivityLogService', ['$http', function ($http) {
 
-        var ActionLogService = {};
+        var ActivityLogService = {};
 
-        var actionLogEntries = $http.get('js/mockdata/testactionlog.json').then(function (result) {
+        var activityLogEntries = $http.get('js/mockdata/testactivitylog.json').then(function (result) {
             return result.data;
         });
 
-        ActionLogService.getActionLog = function () {
-            return actionLogEntries;
+        ActivityLogService.getActivityLog = function () {
+            return activityLogEntries;
         };
 
-        return ActionLogService;
+        var activityLogVisible = true;
+
+        ActivityLogService.getActivityLogVisibility = function () {
+            return activityLogVisible;
+        };
+
+        return ActivityLogService;
     }
     ])
 
-    .controller('ActionLogCtrl', ['$scope', 'ActionLogService', function ($scope, ActionLogService) {
+    .controller('ActivityLogCtrl', ['$scope', 'ActivityLogService', function ($scope, ActivityLogService) {
 
-        $scope.actionLogEntries = ActionLogService.getActionLog();
+        $scope.activityLogEntries = ActivityLogService.getActivityLog();
+        
+        $scope.activityLogVisible = ActivityLogService.getActivityLogVisibility();
+
+        $scope.toggleInstruction = function () {
+            if ($scope.activityLogVisible === true) {
+                return "HIDE_ACTIVITY_LOG";
+            } else {
+                return "SHOW_ACTIVITY_LOG";
+            }
+        };
 
         $scope.getGlyphicon = function(status) {
             var icon = "";
@@ -33,23 +49,6 @@ angular.module('yp.actionlog', []).
             }
             return icon;
         };
-
-//        $scope.getStars = function(num) {
-//            var starsArray = new Array();
-//            for (var i = 0; i < num; i++) {
-//                starsArray[i]=i;
-//            }
-//            return starsArray;
-//        }
-//
-//        $scope.getEmptyStars = function(num) {
-//            var starsArray = new Array();
-//            for (var i = 0; i < num; i++) {
-//                starsArray[i]=i;
-//            }
-//            return starsArray;
-//        }
-
 
         $scope.getGlyphiconStatus = function(status) {
             var icon = "";

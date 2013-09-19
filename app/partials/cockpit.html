@@ -19,7 +19,7 @@
 
                         <p><a class="btn btn-default" href="#" data-toggle="button">Zum Fragebogen &raquo;</a></p>
                     </div>
-                    <div class="col-md-6" ng-app="yp.ewl.activity.chart" ng-cloak="" ng-controller="yp.ewl.activity.chart.controller">
+                    <div class="col-md-6" ng-cloak="" ng-controller="yp.ewl.activity.chart.controller">
                         <h2>Aktivitäten</h2>
 
                         <p>Wieviele der geplanten Aktivitäten hast du durchgeführt und wieviele verpasst? </p>
@@ -42,33 +42,38 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <h2>Dein Logbuch</h2>
+                    <div class="col-md-6" ng-controller="ActivityLogCtrl">
+                        </br>
+                        <button ng-click="activityLogVisible = !activityLogVisible" type="button" class="btn btn-primary btn-lg">{{ toggleInstruction() | translate }}</button>
 
-                        <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+                        <div ng-switch on="activityLogVisible">
+                            <div ng-switch-when="true">
 
-                        <div class="list-group action-log" ng-controller="ActionLogCtrl">
-                            <div class="list-group-item {{getActionTimeType(actionLogEntry.type)}}" ng-repeat="actionLogEntry in actionLogEntries">
-                                <div class="row">
-                                    <div class="col-xs-1 col-md-1">
-                                        <div class="action-log status">
-                                            <span class="glyphicon glyphicon-{{getGlyphiconStatus(actionLogEntry.status)}}"></span></td>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-6">
-                                        <a href="#" class="action-log title">{{actionLogEntry.activity}}</br></a>
+                                </br>
+                                <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+
+                                <div class="list-group action-log" >
+                                    <div class="list-group-item {{getActionTimeType(actionLogEntry.type)}}" ng-repeat="actionLogEntry in activityLogEntries">
+                                        <div class="row">
+                                            <div class="col-xs-1 col-md-1">
+                                                <div class="action-log status">
+                                                    <span class="glyphicon glyphicon-{{getGlyphiconStatus(actionLogEntry.status)}}"></span></td>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-md-6">
+                                                <a href="#" class="action-log title">{{actionLogEntry.activity}}</br></a>
                                         <span class="action-log comments">
                                             Kommentare <a href="#" class="badge">{{actionLogEntry.nofcomments}}</a>
                                         </span>
-                                    </div>
-                                    <div class="col-xs-2 col-md-2">
-                                        <div class="action-feedback-{{actionLogEntry.rating}}-small"></div>
-                                            <div class="action-log rating">
-                                                <rating max="5" value="actionLogEntry.rating"></rating>
                                             </div>
-                                    </div>
-                                    <div class="col-xs-3 col-md-3">
-                                        <div class="action-log time-box">
+                                            <div class="col-xs-2 col-md-2">
+                                                <div class="action-feedback-{{actionLogEntry.rating}}-small"></div>
+                                                <div class="action-log rating">
+                                                    <rating max="5" value="actionLogEntry.rating"></rating>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-md-3">
+                                                <div class="action-log time-box">
                                             <span class="action-log time-box timestamp">
                                                 {{actionLogEntry.timestamp | fromNowFake}}</br>
                                                 <span class="action-log time-box info">
@@ -76,95 +81,81 @@
                                                     <span class="glyphicon glyphicon-repeat"></span>
                                                 </span>
                                             </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                            </div>
+                            <div ng-switch-when="false">
+
+                                </br>
+                                <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-md-6">
-                        <h2>Social Ticker</h2>
+                    <div class="col-md-6" ng-controller="SocialLogCtrl">
+                        <!--<h2>Social Ticker</h2>-->
 
-                        <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+                        </br>
+                        <button ng-click="socialLogVisible = !socialLogVisible" type="button" class="btn btn-primary btn-lg">{{ toggleInstruction() | translate }}</button>
 
-                        <div class="list-group social-log" ng-controller="SocialLogCtrl">
+                        <div ng-switch on="socialLogVisible">
+                            <div ng-switch-when="true">
 
-                            <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
-                                <div class="row">
-                                    <div class="col-xs-10 col-md-10">
-                                        <div class="col-xs-6 col-md-5">
-                                            <div class="social-log status">
-                                                <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
+                                </br>
+                                <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+                                <div class="list-group social-log">
+
+                                    <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
+                                        <div class="row">
+                                            <div class="col-xs-10 col-md-10">
+                                                <div class="col-xs-6 col-md-5">
+                                                    <div class="social-log status">
+                                                        <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
+                                                    </div>
+                                                    <a href="#/u/ubau">
+                                                        <img ng-src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
+                                                        <strong class="social-log author-name">{{socialLogEntry.authorFirstName}}</br>{{socialLogEntry.authorFamilyName}}</strong>
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-6 col-md-7">
+                                                    <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
+                                                    <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
+                                                    <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
+                                                </div>
                                             </div>
-                                            <a href="#/u/ubau">
-                                                <img ng-src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
-                                                <strong class="social-log author-name">{{socialLogEntry.authorFirstName}}</br>{{socialLogEntry.authorFamilyName}}</strong>
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-6 col-md-7">
-                                            <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
-                                            <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
-                                            <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-2 col-md-2">
-                                        <!--<div class="col-xs-6 col-md-4">-->
-                                            <div class="social-log time-box">
+                                            <div class="col-xs-2 col-md-2">
+                                                <!--<div class="col-xs-6 col-md-4">-->
+                                                <div class="social-log time-box">
                                                 <span class="action-log time-box timestamp">
                                                     {{socialLogEntry.timestamp | fromNowFake}}</br>
                                                 </span>
+                                                </div>
+                                                <!--</div>-->
                                             </div>
-                                        <!--</div>-->
+                                        </div>
                                     </div>
                                 </div>
+
+                            </div>
+                            <div ng-switch-when="false">
+
+                                </br>
+                                <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
 
-            <!--<div class="col-md-4">-->
-                <!--<div class="col-md-12">-->
-                    <!--<h2>Social</h2>-->
-
-                    <!--<p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>-->
-
-                    <!--<div class="list-group social-log" ng-controller="SocialLogCtrl">-->
-
-                        <!--<div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">-->
-                            <!--<div class="row">-->
-                                <!--<div class="col-xs-7 col-md-7">-->
-                                    <!--<div class="col-xs-6 col-md-6">-->
-                                        <!--<div class="social-log status">-->
-                                            <!--<span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>-->
-                                        <!--</div>-->
-                                        <!--<a href="#/u/ubau">-->
-                                            <!--<img ng-src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>-->
-                                            <!--<strong class="social-log author-name">{{socialLogEntry.author}}</strong>-->
-                                        <!--</a>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-6 col-md-6">-->
-                                        <!--<a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>-->
-                                        <!--<a href="#" class="social-log title">{{socialLogEntry.activity}}</a>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="col-xs-5 col-md-5">-->
-                                    <!--<div class="col-xs-6 col-md-6">-->
-                                        <!--<a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-6 col-md-6">-->
-                                        <!--<div class="social-log time-box">-->
-                                                <!--<span class="action-log time-box timestamp">-->
-                                                    <!--{{socialLogEntry.timestamp | fromNowFake}}</br>-->
-                                                <!--</span>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
         <hr>
     </div>

@@ -2,19 +2,22 @@
 
 angular.module('yp.ewl.activity.chart', ['googlechart'])
 
-    .service    ('yp.ewl.activity.chart.service', ['$http', function($http) {
+    .factory('yp.ewl.activity.chart.service', ['$http', function($http) {
 
-        var valuesThisWeek = $http.get('js/mockdata/test-activities-this-week.json').then(function (result) {
-            return result.data;
-        });
+        var valuesThisWeek = $http.get('js/mockdata/test-activities-this-week.json')
+            .then(function (result) {
+                return result.data;
+            });
 
-        var valuesThisMonth = $http.get('js/mockdata/test-activities-this-month.json').then(function (result) {
-            return result.data;
-        });
+        var valuesThisMonth = $http.get('js/mockdata/test-activities-this-month.json')
+            .then(function (result) {
+                return result.data;
+            });
 
-        var valuesThisYear = $http.get('js/mockdata/test-activities-this-year.json').then(function (result) {
-            return result.data;
-        });
+        var valuesThisYear = $http.get('js/mockdata/test-activities-this-year.json')
+            .then(function (result) {
+                return result.data;
+            });
 
         var ActivityChartService = {
             activitiesThisWeek: valuesThisWeek,

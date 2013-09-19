@@ -7,6 +7,10 @@ angular.module('yp-ewl').
         $translateProvider.translations('en', {
             COCKPIT: 'Cockpit',
             ACTIVITIES: 'Activities',
+            SHOW_ACTIVITY_LOG: 'Show your activity log',
+            HIDE_ACTIVITY_LOG: 'Hide your activity Log',
+            SHOW_SOCIAL_LOG: 'Show your social ticker',
+            HIDE_SOCIAL_LOG: 'Hide your social ticker',
             ASSESSMENT: 'Assessment',
             LANGUAGE: 'Language',
             EMAIL: 'email',

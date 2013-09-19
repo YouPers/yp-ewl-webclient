@@ -4,23 +4,39 @@ angular.module('yp.sociallog', []).
 
     factory('SocialLogService', ['$http', function ($http) {
 
-        var socialLogService = {};
+        var SocialLogService = {};
 
         var socialLogEntries = $http.get('js/mockdata/testsociallog.json').then(function (result) {
             return result.data;
         });
 
-        socialLogService.getSocialLog = function () {
+        SocialLogService.getSocialLog = function () {
             return socialLogEntries;
         };
 
-        return socialLogService;
+        var socialLogVisible = true;
+
+        SocialLogService.getSocialLogVisibility = function () {
+            return socialLogVisible;
+        };
+
+        return SocialLogService;
     }
     ])
 
     .controller('SocialLogCtrl', ['$scope', 'SocialLogService', function ($scope, SocialLogService) {
 
         $scope.socialLogEntries = SocialLogService.getSocialLog();
+
+        $scope.socialLogVisible = SocialLogService.getSocialLogVisibility();
+
+        $scope.toggleInstruction = function () {
+            if ($scope.socialLogVisible === true) {
+                return "HIDE_SOCIAL_LOG";
+            } else {
+                return "SHOW_SOCIAL_LOG";
+            }
+        };
 
         $scope.getGlyphicon = function(status) {
             var icon = "";
