@@ -3,5 +3,8 @@ deployment:
     branch: master
     heroku:
       appname: yp-ewl-webclient
+  devbuild:
+    branch: gruntbuild
+      appname: yp-ewl-webclient-dev
 
 
