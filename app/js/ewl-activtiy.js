@@ -5,7 +5,7 @@ angular.module('yp.ewl.activity', [])
 
     .factory('ActionService', ['$http', function ($http) {
 
-
+/**
         function Activity(id, title, text, af, plCat) {
             this.id = id;
             this.title = title;
@@ -13,7 +13,7 @@ angular.module('yp.ewl.activity', [])
             this.field = af;
             this.planningCat = plCat;
         }
-
+*/
         var activityProposals = $http.get('js/mockdata/testactivities.json').then(function (result) {
             return result.data;
         });

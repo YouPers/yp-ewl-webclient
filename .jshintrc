@@ -13,7 +13,7 @@ noempty:true, nonew:true, undef:true, strict:true, globalstrict:true, browser:tr
   "noarg": true,
   "regexp": true,
   "undef": true,
-//  "unused": true,
+  "unused": "vars",
   "strict": true,
   "trailing": true,
   "smarttabs": true,

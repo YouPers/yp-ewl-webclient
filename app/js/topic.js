@@ -14,13 +14,6 @@ angular.module('yp.topic', ['ui.router'])
 
         var goals = [];
 
-        var topics = [
-            {
-                id: 1,
-                name: 'Work-Life-Balance',
-                duration: ''
-            }
-        ];
 
         myTopicService.setGoal = function(goal) {
             goals.push (goal);
