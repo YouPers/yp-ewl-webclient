@@ -413,6 +413,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('heroku:production', 'build');
-    grunt.registerTask('heroku:development', 'server');
+    grunt.registerTask('heroku:development', 'build');
 
 };
