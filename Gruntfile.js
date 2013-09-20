@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                 tasks: ['coffee:test']
             },
             recess: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.{less}'],
+                files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
                 tasks: ['recess:server', 'autoprefixer']
             },
             styles: {
