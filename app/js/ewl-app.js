@@ -36,7 +36,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 access: accessLevels.all
             })
             .state('activitylist', {
-                url: "/actions",
+                url: "/activities",
                 templateUrl: "partials/activity.list.html",
                 controller: "ActivityListCtrl",
                 access: accessLevels.all
