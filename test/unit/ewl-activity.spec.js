@@ -7,15 +7,15 @@ describe('ewl activity', function () {
     beforeEach(module('ui.router'));
 
 
-    describe('ActionService', function () {
+    describe('ActivityService', function () {
 
-        it('allActivities should be defined and loadable', inject(function (ActionService) {
-            expect(ActionService.allActivities).toBeDefined();
-            expect(ActionService.plannedActivities).toBeDefined();
+        it('allActivities should be defined and loadable', inject(function (ActivityService) {
+            expect(ActivityService.allActivities).toBeDefined();
+            expect(ActivityService.plannedActivities).toBeDefined();
         }));
     });
 
-    describe('ActionListFilter', function () {
+    describe('ActivityListFilter', function () {
         var myActivities = [
             {
                 "id": "1",
@@ -81,54 +81,54 @@ describe('ewl activity', function () {
         };
 
 
-        it('should exist an ActionListFilter', inject(function ($filter) {
-            expect($filter('ActionListFilter')).toBeDefined();
+        it('should exist an ActivityListFilter', inject(function ($filter) {
+            expect($filter('ActivityListFilter')).toBeDefined();
         }));
 
         it('should return all activities when filter is null', inject(function ($filter) {
             var input = [
                 {}
             ];
-            var filtered = $filter('ActionListFilter')(input, null);
+            var filtered = $filter('ActivityListFilter')(input, null);
             expect(filtered.length).toEqual(input.length);
         }));
 
         it('should return all activities with default filter', inject(function ($filter) {
-            var filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            var filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(myActivities.length);
         }));
 
 
         it('should filter by single topic', inject(function ($filter) {
             myQuery.topic.nutrition = true;
-            var filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            var filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(myActivities.length - 1);
 
             // reset and check if resetted
             myQuery.topic.nutrition = false;
-            filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(myActivities.length);
         }));
 
         it('should filter by single cluster', inject(function ($filter) {
             myQuery.cluster.nutrition = true;
-            var filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            var filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(myActivities.length - 1);
 
             // reset and check if resetted
             myQuery.cluster.nutrition = false;
-            filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(myActivities.length);
         }));
 
         it('should filter by single rating', inject(function ($filter) {
             myQuery.rating.four = true;
-            var filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            var filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(1);
 
             // reset and check if resetted
             myQuery.rating.four = false;
-            filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(myActivities.length);
         }));
 
@@ -136,14 +136,14 @@ describe('ewl activity', function () {
             myQuery.rating.four = true;
             myQuery.rating.three = true;
 
-            var filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            var filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(2);
 
 
             // reset and check if resetted
             myQuery.rating.four = false;
             myQuery.rating.three = false;
-            filtered = $filter('ActionListFilter')(myActivities, myQuery);
+            filtered = $filter('ActivityListFilter')(myActivities, myQuery);
             expect(filtered.length).toEqual(myActivities.length);
         }));
 
@@ -153,7 +153,7 @@ describe('ewl activity', function () {
     });
 
 
-    describe('ActionListCtrl', function ($state) {
+    describe('ActivityListCtrl', function ($state) {
         var $scope = null;
         var ctrl = null;
 
@@ -168,10 +168,10 @@ describe('ewl activity', function () {
 
             //now run that scope through the controller function,
             //injecting any services or other injectables we need.
-            ctrl = $controller('ActionListCtrl', {
+            ctrl = $controller('ActivityListCtrl', {
                 $scope: $scope,
                 $state: $state,
-                ActionService: {
+                ActivityService: {
                     allActivities: {
                         then: function (callback) {
                             callback({
@@ -204,10 +204,10 @@ describe('ewl activity', function () {
                         }
                     },
 
-                    isActionPlanned: function (plannedActions, actionId) {
-                        if (typeof (plannedActions) != 'undefined') {
-                            for (var i = 0; i < plannedActions.length; i++) {
-                                if (plannedActions[i].action_id == actionId) {
+                    isActivityPlanned: function (plannedActivities, actionId) {
+                        if (typeof (plannedActivities) != 'undefined') {
+                            for (var i = 0; i < plannedActivities.length; i++) {
+                                if (plannedActivities[i].action_id == actionId) {
                                     return true;
                                 }
                             }
@@ -220,9 +220,9 @@ describe('ewl activity', function () {
 
         it('should have access to all activities and the planned activities', inject(function () {
 
-            expect($scope.isActionPlanned(1)).toBeFalsy();
+            expect($scope.isActivityPlanned(1)).toBeFalsy();
 
-            expect($scope.plannedActions.length).toEqual(1);
+            expect($scope.plannedActivities.length).toEqual(1);
         }));
 
 
@@ -233,14 +233,14 @@ describe('ewl activity', function () {
         }));
 
         it('should return whether an Acitvity is planned or not', inject(function () {
-            var myAction = {
+            var myActivity = {
                 id: "2",
                 field: 'myField'
             };
-            expect($scope.isActionPlanned(myAction.id)).toBeTruthy();
+            expect($scope.isActivityPlanned(myActivity.id)).toBeTruthy();
 
-           myAction.id = "3";
-            expect($scope.isActionPlanned(myAction.id)).toBeFalsy();
+           myActivity.id = "3";
+            expect($scope.isActivityPlanned(myActivity.id)).toBeFalsy();
 
         }));
     });

@@ -8,7 +8,7 @@
 <!-- die top row - sorter und empfehlungen -->
 <div class="row">
     <div class="col-md-6 col-md-offset-2">
-        <pagination total-items="filteredActions.length" items-per-page="pageSize" page="currentPage"
+        <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
                     max-size="maxSize" class="pagination" boundary-links="false"/>
     </div>
     <div class="col-md-4">
@@ -41,7 +41,7 @@
                 <div class="container panel panel-default">
                     <div ng-repeat="cluster in clusters" class="filter-option"
                          ng-class="query.cluster[cluster.id] ? 'filter-option-active' : 'filter-option-inactive'" ng-click="query.cluster[cluster.id] = !query.cluster[cluster.id]">
-                            <img ng-src="/assets/ico/{{cluster.id}}.gif" class="actionListFilterClusterIcon">
+                            <img ng-src="/assets/ico/{{cluster.id}}.gif" class="activityListFilterClusterIcon">
                             {{ cluster.beschreibungdt }}
                     </div>
                 </div>
@@ -131,29 +131,29 @@
     </div>
     <!-- die eigentliche Liste -->
     <div class="col-md-10 ">
-        <div class="row panel panel-default actionListItem" ng-click="gotoActionDetail(action.id)"
-             ng-repeat="action in filteredActions | orderBy:'source':true | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
+        <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity.id)"
+             ng-repeat="activity in filteredActivities | orderBy:'source':true | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
             <div class="col-md-1">
-                {{ action.id }}
+                {{ activity.id }}
             </div>
             <div class="col-md-6">
-                {{ action.title }}
+                {{ activity.title }}
             </div>
             <div class="col-md-2">
 
-                <div popover="{{ getClusterName(cluster)}}" popover-trigger="mouseenter" ng-repeat="cluster in action.field">
+                <div popover="{{ getClusterName(cluster)}}" popover-trigger="mouseenter" ng-repeat="cluster in activity.field">
                     <img ng-src="/assets/ico/{{cluster}}.gif" class="activityListClusterIcon">
                 </div>
             </div>
             <div class="col-md-1" popover="Überprüft und Empfohlen durch YouPers"
                  popover-trigger="mouseenter">
-                <img ng-src="/assets/img/YouPersAvatar.png" ng-if="action.source == 'youpers'" class="activityListClusterIcon">
+                <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activity.source == 'youpers'" class="activityListClusterIcon">
             </div>
             <div class="col-md-2">
-                {{ action.defaultexecutiontype | translate }}
+                {{ activity.defaultexecutiontype | translate }}
             </div>
         </div>
-        <pagination total-items="filteredActions.length" items-per-page="pageSize" page="currentPage"
+        <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
                     max-size="maxSize" class="pagination" boundary-links="false"/>
     </div>
 </div>

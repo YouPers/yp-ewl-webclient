@@ -58,7 +58,11 @@ angular.module('yp-ewl').
             CAMPAIGN: 'Campaign',
             PRIVATE: 'Private',
             COMMENTS: 'Comments',
-            YOUPERS: 'Tested and recommended by YouPers'
-
+            YOUPERS: 'Tested and recommended by YouPers',
+            FIRSTNAME: 'Firstname',
+            LASTNAME: 'Lastname',
+            USERNAME: 'Username',
+            PASSWORD_AGAIN: "repeat password",
+            REGISTER: "register"
         });
     }]);

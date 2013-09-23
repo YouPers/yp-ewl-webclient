@@ -4,9 +4,9 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
         'yp.ewl.activity.chart','yp.topic', 'ui.router', 'ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication']).
-    config(['$stateProvider','$urlRouterProvider','userRoles','accessLevels',
-        function ($stateProvider, $urlRouterProvider, userRoles, accessLevels) {
+        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication', 'yp.user']).
+    config(['$stateProvider','$urlRouterProvider','accessLevels',
+        function ($stateProvider, $urlRouterProvider, accessLevels) {
         //
         // For any unmatched url, send to /home
         $urlRouterProvider.otherwise("/home");
@@ -24,12 +24,6 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 controller: "TopicController",
                 access: accessLevels.all
             })
-            .state('ewlActivityFields', {
-                url: "/ewl-activityfields",
-                templateUrl: "partials/ewlActivityFields.html",
-                controller: "ActivityFieldCtrl",
-                access: accessLevels.all
-            })
             .state('cockpit', {
                 url: "/cockpit",
                 templateUrl: "partials/cockpit.html",
@@ -41,28 +35,31 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 controller: "AssessmentCtrl",
                 access: accessLevels.all
             })
-            .state('actionlist', {
-                url: "/actions",
-                templateUrl: "partials/actionlist.html",
-                controller: "ActionListCtrl",
+            .state('activitylist', {
+                url: "/activities",
+                templateUrl: "partials/activity.list.html",
+                controller: "ActivityListCtrl",
                 access: accessLevels.all
             })
-            .state('actionDetail', {
-                url: "/actions/:actionId",
-                templateUrl: "partials/action.detail.html",
+            .state('activityDetail', {
+                url: "/activities/:activityId",
+                templateUrl: "partials/activity.detail.html",
                 controller: "ActivityCtrl",
                 access: accessLevels.user,
                 resolve: {
-                    allActions: ['ActionService',function (ActionService) {
-                        return ActionService.allActivities;
+                    allActivities: ['ActivityService',function (ActivityService) {
+                        return ActivityService.allActivities;
                     }],
-                    plannedActions: ['ActionService',function (ActionService) {
-                        return ActionService.plannedActivities;
+                    plannedActivities: ['ActivityService',function (ActivityService) {
+                        return ActivityService.plannedActivities;
                     }]
                 }
             });
     }])
 
+/**
+ * setup checking of access levels for logged in user.
+ */
     .run(['$rootScope', '$state', 'principal', function ($rootScope, $state, principal) {
 
         // handle routing authentication
@@ -93,101 +90,20 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
         $translateProvider.useCookieStorage();
     }])
 
-
-    .controller('MainCtrl', ['$scope', '$rootScope', '$state', 'authority', 'principal', '$cookieStore', 'userRoles', '$timeout',
-        function ($scope, $rootScope, $state, authority, principal, $cookieStore, userRoles, $timeout) {
+/**
+ * main controller, responsible for
+ * - showing global user messages
+ * - highlighting global menu option according to currently active state
+ * - providing access to logged in principal for all child states.
+ *
+ */
+    .controller('MainCtrl', ['$scope',  '$state', '$timeout','principal',
+        function ($scope, $state, $timeout, principal) {
+            $scope.principal = principal;
 
             // handle Menu Highlighting
             $scope.isActive = function (viewLocation) {
                 return ($state.current.url.indexOf(viewLocation) !== -1);
-            };
-
-            $scope.$on('loginMessageShow', function (event, data) {
-                $scope.showLoginDialog = true;
-                $scope.nextStateAfterLogin = data;
-            });
-
-            var fakeLogin = function (credentials) {
-                var knownUsers = {
-                    ivan: {
-                        id: 123123,
-                        username: 'ivan',
-                        fullname: 'Ivan Rigamonti',
-                        picture: 'assets/img/IRIG.jpeg',
-                        role: userRoles.admin
-                    },
-                    urs: {
-                        id: 2342,
-                        username: 'urs',
-                        fullname: 'Urs Baumeler',
-                        picture: 'assets/img/UBAU.jpeg',
-                        role: userRoles.user
-                    },
-                    stefan: {
-                        id: 34543,
-                        username: 'stefan',
-                        fullname: 'Stefan Müller',
-                        picture: 'assets/img/SMUE.jpeg',
-                        role: userRoles.user
-                    },
-                    reto: {
-                        id: 777,
-                        username: 'reto',
-                        fullname: 'Reto Blunschi',
-                        picture: 'assets/img/RBLU.jpeg',
-                        role: userRoles.admin
-                    }
-                };
-
-                if (credentials in knownUsers) {
-                    // $http.defaults.headers.common.Authorization = 'Basic ' + username;
-                    $cookieStore.put('authdata', credentials);
-                    authority.authorize(
-                        knownUsers[credentials]
-                    );
-                } else {
-                    $rootScope.$broadcast('globalUserMsg', 'Login / password not valid, please try again or register', 'danger', 3000);
-                }
-            };
-
-            var encodeCredentials = function (username, password) {
-                return (username === password) ? username : '';
-            };
-
-            var credentialsFromCookie = $cookieStore.get('authdata');
-
-            if (credentialsFromCookie) {
-                fakeLogin(credentialsFromCookie);
-            }
-
-            $scope.principal = principal;
-
-            $scope.loginSubmit = function () {
-                // loginBasicAuth();
-                fakeLogin(encodeCredentials($scope.username, $scope.password));
-                $scope.username = '';
-                $scope.password = '';
-                if ($scope.nextStateAfterLogin) {
-                    $state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
-                    $scope.nextStateAfterLogin = null;
-                } else {
-                    $state.go('cockpit');
-                }
-                $scope.showLoginDialog = false;
-            };
-
-            $scope.logout = function () {
-                $cookieStore.remove('authdata');
-                // $http.defaults.headers.common.Authorization = '';
-                authority.deauthorize();
-            };
-
-            $scope.getUsername = function () {
-                if (principal.isAuthenticated()) {
-                    return principal.identity().name();
-                } else {
-                    return '';
-                }
             };
 
             $scope.$on('globalUserMsg', function (event, msg, type, duration) {

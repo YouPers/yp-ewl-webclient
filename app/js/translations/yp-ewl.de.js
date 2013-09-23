@@ -59,7 +59,11 @@ angular.module('yp-ewl').
             CAMPAIGN: 'Kampagne',
             PRIVATE: 'Privat',
             COMMENTS: 'Kommentare',
-            YOUPERS: 'Überprüft und empfohlen durch YouPers'
-
+            YOUPERS: 'Überprüft und empfohlen durch YouPers',
+            FIRSTNAME: 'Vorname',
+            LASTNAME: 'Nachname',
+            USERNAME: "Username",
+            PASSWORD_AGAIN: "Passwort wiederholen",
+            REGISTER: "registrieren"
         });
     }]);

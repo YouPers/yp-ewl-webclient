@@ -1,0 +1,71 @@
+[
+    {
+        "id": "9u230u23f",
+        "href": "user/ubau",
+        "avatar": "assets/img/UBAU.jpeg",
+        "username": "ubau",
+        "firstname": "Urs",
+        "lastname": "Baumeler",
+        "roles": ["individual"],
+        "subscriptions": [],
+        "individual": {
+            "id": "98723498713245",
+            "href": "/individual/98723498713245",
+            "birthDate": "1963-05-27T00:00:00.000Z",
+            "sex": "m",
+            "maritalStatus": "married"
+        }
+    },
+    {
+        "id": "234509uldfssdv",
+        "href": "user/rblu",
+        "avatar": "assets/img/RBLU.jpeg",
+        "username": "rblu",
+        "firstname": "Reto",
+        "lastname": "Blunschi",
+        "roles": ["individual"],
+        "subscriptions": [],
+        "individual": {
+            "id": "asvaevwwevew",
+            "href": "/individual/asvaevwwevew",
+            "birthDate": "1974-07-07T00:00:00.000Z",
+            "sex": "m",
+            "maritalStatus": "married"
+        }
+    },
+    {
+        "id": "fwefwevv232323",
+        "href": "user/irig",
+        "avatar": "assets/img/IRIG.jpeg",
+        "username": "irig",
+        "firstname": "Ivan",
+        "lastname": "Rigamonti",
+        "roles": ["individual"],
+        "subscriptions": [],
+        "individual": {
+            "id": "lkdsjvkldjsf",
+            "href": "/individual/lkdsjvkldjsf",
+            "birthDate": "1963-01-01T00:00:00.000Z",
+            "sex": "m",
+            "maritalStatus": "married"
+        }
+    },
+    {
+        "id": "xcyvsvsdvsdv",
+        "href": "user/smue",
+        "avatar": "assets/img/SMUE.jpeg",
+        "username": "smue",
+        "firstname": "Stefan",
+        "lastname": "Müller",
+        "roles": ["individual"],
+        "subscriptions": [],
+        "individual": {
+            "id": "ewvwevewvyxcvxv",
+            "href": "/individual/lkdsjvkldjsf",
+            "birthDate": "1974-07-07T00:00:00.000Z",
+            "sex": "m",
+            "maritalStatus": "married"
+        }
+    }
+
+]

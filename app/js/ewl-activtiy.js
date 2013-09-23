@@ -3,7 +3,7 @@
 angular.module('yp.ewl.activity', [])
 
 
-    .factory('ActionService', ['$http', function ($http) {
+    .factory('ActivityService', ['$http', function ($http) {
 
 /**
         function Activity(id, title, text, af, plCat) {
@@ -36,20 +36,20 @@ angular.module('yp.ewl.activity', [])
                 return selectedActivityPlan;
             },
 
-            setSelectedActivity: function (actionId, allActions, plannedActions) {
-                if (plannedActions && allActions) {
-                    selectedActivity = _.find(allActions, function (obj) {
-                        return obj.id === actionId;
+            setSelectedActivity: function (activityId, allActivities, plannedActivities) {
+                if (plannedActivities && allActivities) {
+                    selectedActivity = _.find(allActivities, function (obj) {
+                        return obj.id === activityId;
                     });
 
                     selectedActivityPlan = null;
-                    selectedActivityPlan = _.find(plannedActions, function (obj) {
-                        return obj.action_id ===actionId;
+                    selectedActivityPlan = _.find(plannedActivities, function (obj) {
+                        return obj.activity_id ===activityId;
                     });
 
                     if (!selectedActivityPlan) {
                         selectedActivityPlan = {
-                            "action_id": selectedActivity.id,
+                            "activity_id": selectedActivity.id,
                             "field": selectedActivity.field,
                             "planType": selectedActivity.defaultplantype,
                             "privacyType" : selectedActivity.defaultprivacy,
@@ -65,10 +65,10 @@ angular.module('yp.ewl.activity', [])
                 }
             },
 
-            isActionPlanned: function (plannedActions, actionId) {
-                if (typeof (plannedActions) !== 'undefined') {
-                    for (var i = 0; i < plannedActions.length; i++) {
-                        if (plannedActions[i].action_id === actionId) {
+            isActivityPlanned: function (plannedActivities, activityId) {
+                if (typeof (plannedActivities) !== 'undefined') {
+                    for (var i = 0; i < plannedActivities.length; i++) {
+                        if (plannedActivities[i].activity_id === activityId) {
                             return true;
                         }
                     }
@@ -81,13 +81,13 @@ angular.module('yp.ewl.activity', [])
         return actService;
     }])
 
-    .filter('ActionListFilter', [function () {
-        return function (actions, query) {
+    .filter('ActivityListFilter', [function () {
+        return function (activities, query) {
             var out = [], allClusters = true;
 
             // if we do not get a query, we return the full set of answers
             if (!query) {
-                return actions;
+                return activities;
             }
 
 
@@ -121,17 +121,17 @@ angular.module('yp.ewl.activity', [])
             });
 
 
-            angular.forEach(actions, function (action, key) {
+            angular.forEach(activities, function (activity, key) {
 
-                    if ((allClusters || _.any(action.field, function (value) {
+                    if ((allClusters || _.any(activity.field, function (value) {
                         return query.cluster[value];
                     })) &&
-                        (allTopics || _.any(action.topic, function (value) {
+                        (allTopics || _.any(activity.topic, function (value) {
                             return query.topic[value];
                         })) &&
-                        (allRatings || query.rating[ratingsMapping[action.rating]]) &&
-                        (allTimes || query.time[action.time])) {
-                        out.push(action);
+                        (allRatings || query.rating[ratingsMapping[activity.rating]]) &&
+                        (allTimes || query.time[activity.time])) {
+                        out.push(activity);
                     }
                 }
             );
@@ -148,17 +148,17 @@ angular.module('yp.ewl.activity', [])
         };
     }])
 
-    .controller('ActivityCtrl', ['$scope', 'ActionService', '$timeout', '$state','$stateParams', 'allActions', 'plannedActions',
-        function ($scope, ActionService, $timeout, $state, $stateParams, allActions, plannedActions) {
+    .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', '$state','$stateParams', 'allActivities', 'plannedActivities',
+        function ($scope, ActivityService, $timeout, $state, $stateParams, allActivities, plannedActivities) {
 
-            $scope.actions = allActions;
+            $scope.activities = allActivities;
 
-            $scope.plannedActions = plannedActions;
+            $scope.plannedActivities = plannedActivities;
 
-            ActionService.setSelectedActivity($stateParams.actionId, $scope.actions, $scope.plannedActions);
+            ActivityService.setSelectedActivity($stateParams.activityId, $scope.activities, $scope.plannedActivities);
 
-            $scope.currentAction = ActionService.getSelectedActivity();
-            $scope.currentActionPlan = ActionService.getSelectedActivityPlan();
+            $scope.currentActivity = ActivityService.getSelectedActivity();
+            $scope.currentActivityPlan = ActivityService.getSelectedActivityPlan();
 
 
             // one time planning using daypicker
@@ -186,8 +186,8 @@ angular.module('yp.ewl.activity', [])
                 {label: 'SUNDAY'}
             ];
 
-            $scope.isActionPlanned = function (actionId) {
-                return ActionService.isActionPlanned($scope.plannedActions, actionId);
+            $scope.isActivityPlanned = function (activityId) {
+                return ActivityService.isActivityPlanned($scope.plannedActivities, activityId);
             };
 
             $scope.planActivityDone = function() {
@@ -198,16 +198,16 @@ angular.module('yp.ewl.activity', [])
 
         }])
 
-    .controller('ActionListCtrl', ['$scope', 'ActionService', '$filter', '$state',
-        function ($scope, ActionService, $filter, $state) {
-        ActionService.allActivities.then(function (data) {
-            $scope.actions = data;
-            $scope.filteredActions = data;
+    .controller('ActivityListCtrl', ['$scope', 'ActivityService', '$filter', '$state',
+        function ($scope, ActivityService, $filter, $state) {
+        ActivityService.allActivities.then(function (data) {
+            $scope.activities = data;
+            $scope.filteredActivities = data;
 
         });
 
-        ActionService.plannedActivities.then(function (data) {
-            $scope.plannedActions = data;
+        ActivityService.plannedActivities.then(function (data) {
+            $scope.plannedActivities = data;
         });
 
         $scope.clusters = [
@@ -262,12 +262,12 @@ angular.module('yp.ewl.activity', [])
 
 
 
-        $scope.isActionPlanned = function (actionId) {
-            return ActionService.isActionPlanned($scope.plannedActions, actionId);
+        $scope.isActivityPlanned = function (activityId) {
+            return ActivityService.isActivityPlanned($scope.plannedActivities, activityId);
         };
 
-        $scope.gotoActionDetail = function (actionId) {
-            $state.go('actionDetail', {actionId: actionId});
+        $scope.gotoActivityDetail = function (activityId) {
+            $state.go('activityDetail', {activityId: activityId});
         };
 
         $scope.query = {
@@ -307,7 +307,7 @@ angular.module('yp.ewl.activity', [])
         // watch for changes on the query object and reapply filter, use deep watch=true
         $scope.$watch('query', function (newQuery) {
             $scope.currentPage = 1;
-            $scope.filteredActions = $filter('ActionListFilter')($scope.actions, $scope.query);
+            $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
         }, true);
     }])
 ;
