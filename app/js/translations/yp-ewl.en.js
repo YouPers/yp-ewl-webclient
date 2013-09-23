@@ -49,6 +49,16 @@ angular.module('yp-ewl').
             SUNDAY: 'Sunday',
             TOPIC: 'Health-Topic',
             group: 'Group-Activity',
-            self: 'Do it Alone'
+            GROUP: 'Group-Activity',
+            self: 'Do it Alone',
+            SELF: 'Do it Alone',
+            DAILY: 'Daily',
+            WEEKLY_ON_THURSDAY: 'Each Thursday',
+            ONCE: 'Once',
+            CAMPAIGN: 'Campaign',
+            PRIVATE: 'Private',
+            COMMENTS: 'Comments',
+            YOUPERS: 'Tested and recommended by YouPers'
+
         });
     }]);

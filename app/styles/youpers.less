@@ -725,11 +725,11 @@ input[type="range"].answered::-ms-thumb {
   margin-left: @social-log-title-indent;
 }
 
-@action-log-indent: 7px;
-@action-log-title-indent: 0px;
+@activity-log-indent: 7px;
+@activity-log-title-indent: 0px;
 
 .social-log.feedback-box {
-  margin-left: @action-log-title-indent;
+  margin-left: @activity-log-title-indent;
   margin-top: 10px;
 }
 
@@ -745,165 +745,166 @@ input[type="range"].answered::-ms-thumb {
   position: relative;
 }
 
-.list-group.action-log {
+.list-group.activity-log {
   clear: both;
   overflow: auto;
   height: 500px;
 }
 
-.action-log.title {
-  margin-left: -@action-log-indent;
+.activity-log.title {
+//  margin-left: -@activity-log-indent;
+  margin-left: 0;
 }
 
 .social-log.title,
-.action-log.title {
+.activity-log.title {
   font-size: @youpers-font-size-5;
   font-weight:600;
 }
 
 .list-group-item.active > a.social-log.title,
-.list-group-item.active > a.action-log.title {
+.list-group-item.active > a.activity-log.title {
   color: @youpers-brand-colors-font-inversed;
 }
 
 .list-group-item.active > a.social-log.title:hover,
-.list-group-item.active > a.action-log.title:hover {
+.list-group-item.active > a.activity-log.title:hover {
   color: darken(@youpers-brand-colors-blue-primary,30%);
 }
 
 .list-group-item.community > a.social-log.title:hover,
-.list-group-item.past > a.action-log.title:hover {
+.list-group-item.past > a.activity-log.title:hover {
   color: darken(@youpers-brand-colors-primary,20%);
 }
 
-.action-log.status{
+.activity-log.status{
   float: left;
-  margin-left: -@action-log-indent;
+  margin-left: -@activity-log-indent;
   margin-top: 3px;
 }
 
-.action-log.time-box {
+.activity-log.time-box {
   float: right;
   margin-top: 1px;
   position: relative;
 }
 
-.action-log.time-box.timestamp {
+.activity-log.time-box.timestamp {
   font-family: @youpers-brand-font-family-numbers;
   font-weight:300;
   font-size: @youpers-font-size-7;
 }
 
-.action-log.time-box.info {
+.activity-log.time-box.info {
   font-family: @youpers-brand-font-family;
   font-size: @youpers-font-size-6;
 }
 
-//.action-log.feedback-box {
-//  margin-left: @action-log-indent;
+//.activity-log.feedback-box {
+//  margin-left: @activity-log-indent;
 //  margin-top: 10px;
 //}
 
-.action-log.comments {
-  margin-left: -@action-log-indent;
+.activity-log.comments {
+  margin-left: -@activity-log-indent;
 }
 
-.action-log.rating {
+.activity-log.rating {
   font-size: @youpers-font-size-8;
 }
 
 .list-group-item.community > a.social-log.title,
 .list-group-item.community .social-log,
-.list-group-item.past > a.action-log.title,
-.list-group-item.past .action-log {
+.list-group-item.past > a.activity-log.title,
+.list-group-item.past .activity-log {
   color: @youpers-brand-colors-secondary;
 }
 
 // smiley selection (sprites from runtastic.png)
-//ToDo: replace it with own YouPers Smileys
+//ToDo (irig): replace it with own YouPers Smileys
 
-.action-feedback-1,
-.action-feedback-1.selected,
-.action-feedback-2,
-.action-feedback-2.selected,
-.action-feedback-3,
-.action-feedback-3.selected,
-.action-feedback-4,
-.action-feedback-4.selected,
-.action-feedback-5 {
+.activity-feedback-1,
+.activity-feedback-1.selected,
+.activity-feedback-2,
+.activity-feedback-2.selected,
+.activity-feedback-3,
+.activity-feedback-3.selected,
+.activity-feedback-4,
+.activity-feedback-4.selected,
+.activity-feedback-5 {
   background-image: url(../assets/img/runtastic.png);
   width: 51px;
   height: 51px;
 }
 
-.action-feedback-1-small,
-.action-feedback-2-small,
-.action-feedback-3-small,
-.action-feedback-4-small,
-.action-feedback-5-small {
+.activity-feedback-1-small,
+.activity-feedback-2-small,
+.activity-feedback-3-small,
+.activity-feedback-4-small,
+.activity-feedback-5-small {
   margin-top: 3px;
   background-image: url(../assets/img/runtastic.png);
   width: 30px;
   height: 30px;
 }
 
-.action-feedback-5 {
+.activity-feedback-5 {
   background-position: 0px -660px;
 }
 
-.action-feedback-5.selected {
+.activity-feedback-5.selected {
   background-position: 0px -594px;
 }
 
-.action-feedback-5-small {
+.activity-feedback-5-small {
   background-position: 0px -3807px;
 }
 
-.action-feedback-4 {
+.activity-feedback-4 {
   background-position: 0px -330px;
 }
 
-.action-feedback-4.selected {
+.activity-feedback-4.selected {
   background-position: 0px -264px;
 }
 
-.action-feedback-4-small {
+.activity-feedback-4-small {
   background-position: 0px -3305px;
 }
 
-.action-feedback-3 {
+.activity-feedback-3 {
   background-position: 0px -772px;
 }
 
-.action-feedback-3.selected {
+.activity-feedback-3.selected {
   background-position: 0px -838px;
 }
 
-.action-feedback-3-small {
+.activity-feedback-3-small {
   background-position: 0px -4923px;
 }
 
-.action-feedback-2 {
+.activity-feedback-2 {
   background-position: 0px -462px;
 }
 
-.action-feedback-2.selected {
+.activity-feedback-2.selected {
   background-position: 0px -396px;
 }
 
-.action-feedback-2-small {
+.activity-feedback-2-small {
   background-position: 0px -3696px;
 }
 
-.action-feedback-1 {
+.activity-feedback-1 {
   background-position: 0px -198px;
 }
 
-.action-feedback-1.selected {
+.activity-feedback-1.selected {
   background-position: 0px -132px;
 }
 
-.action-feedback-1-small {
+.activity-feedback-1-small {
   background-position: 0px -3149px;
 }
 

@@ -1,0 +1,38 @@
+[
+    {
+        "id": "AwarenessAbility",
+        "beschreibungdt": "Bewusstsein und Fähigkeit"
+    },
+    {
+        "id": "TimeManagement",
+        "beschreibungdt": "Zeitmanagement"
+    },
+    {
+        "id": "WorkStructuring",
+        "beschreibungdt": "Arbeitsgestaltung"
+    },
+    {
+        "id": "PhysicalActivity",
+        "beschreibungdt": "Körperliche Aktivität"
+    },
+    {
+        "id": "Nutrition",
+        "beschreibungdt": "Ernährung"
+    },
+    {
+        "id": "LeisureActivity",
+        "beschreibungdt": "Freizeitaktivität"
+    },
+    {
+        "id": "Breaks",
+        "beschreibungdt": "Pausen"
+    },
+    {
+        "id": "Relaxation",
+        "beschreibungdt": "Entspannung"
+    },
+    {
+        "id": "SocialInteraction",
+        "beschreibungdt": "Sozialer Austausch"
+    }
+]
