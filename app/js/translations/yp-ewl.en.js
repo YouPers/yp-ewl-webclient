@@ -5,6 +5,7 @@ angular.module('yp-ewl').
     config(['$translateProvider', function ($translateProvider) {
 
         $translateProvider.translations('en', {
+
             COCKPIT: 'Cockpit',
             ACTIVITIES: 'Activities',
             SHOW_ACTIVITY_LOG: 'Show your activity log',

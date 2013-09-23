@@ -3,8 +3,8 @@
 
 angular.module('yp-ewl').
     config(['$translateProvider', function ($translateProvider) {
-        $translateProvider.translations('de', {
 
+        $translateProvider.translations('de', {
 
             COCKPIT: 'Cockpit',
             ACTIVITIES: 'Aktivitäten',
