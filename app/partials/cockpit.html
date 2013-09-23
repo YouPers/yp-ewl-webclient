@@ -52,32 +52,32 @@
                                 </br>
                                 <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
-                                <div class="list-group action-log" >
-                                    <div class="list-group-item {{getActionTimeType(actionLogEntry.type)}}" ng-repeat="actionLogEntry in activityLogEntries">
+                                <div class="list-group activity-log" >
+                                    <div class="list-group-item {{getActivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries">
                                         <div class="row">
                                             <div class="col-xs-1 col-md-1">
-                                                <div class="action-log status">
-                                                    <span class="glyphicon glyphicon-{{getGlyphiconStatus(actionLogEntry.status)}}"></span></td>
+                                                <div class="activity-log status">
+                                                    <span class="glyphicon glyphicon-{{getGlyphiconStatus(activityLogEntry.status)}}"></span></td>
                                                 </div>
                                             </div>
                                             <div class="col-xs-6 col-md-6">
-                                                <a href="#" class="action-log title">{{actionLogEntry.activity}}</br></a>
-                                        <span class="action-log comments">
-                                            Kommentare <a href="#" class="badge">{{actionLogEntry.nofcomments}}</a>
+                                                <a href="#" class="activity-log title">{{activityLogEntry.activity}}</br></a>
+                                        <span class="activity-log comments">
+                                            Kommentare <a href="#" class="badge">{{activityLogEntry.nofcomments}}</a>
                                         </span>
                                             </div>
                                             <div class="col-xs-2 col-md-2">
-                                                <div class="action-feedback-{{actionLogEntry.rating}}-small"></div>
-                                                <div class="action-log rating">
-                                                    <rating max="5" value="actionLogEntry.rating"></rating>
+                                                <div class="activity-feedback-{{activityLogEntry.rating}}-small"></div>
+                                                <div class="activity-log rating">
+                                                    <rating max="5" value="activityLogEntry.rating"></rating>
                                                 </div>
                                             </div>
                                             <div class="col-xs-3 col-md-3">
-                                                <div class="action-log time-box">
-                                            <span class="action-log time-box timestamp">
-                                                {{actionLogEntry.timestamp | fromNowFake}}</br>
-                                                <span class="action-log time-box info">
-                                                    {{actionLogEntry.recurringInfo}}&nbsp;&nbsp;
+                                                <div class="activity-log time-box">
+                                            <span class="activity-log time-box timestamp">
+                                                {{activityLogEntry.timestamp | fromNowFake}}</br>
+                                                <span class="activity-log time-box info">
+                                                    {{activityLogEntry.recurringInfo}}&nbsp;&nbsp;
                                                     <span class="glyphicon glyphicon-repeat"></span>
                                                 </span>
                                             </span>
@@ -132,7 +132,7 @@
                                             <div class="col-xs-2 col-md-2">
                                                 <!--<div class="col-xs-6 col-md-4">-->
                                                 <div class="social-log time-box">
-                                                <span class="action-log time-box timestamp">
+                                                <span class="activity-log time-box timestamp">
                                                     {{socialLogEntry.timestamp | fromNowFake}}</br>
                                                 </span>
                                                 </div>

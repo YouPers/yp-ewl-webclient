@@ -24,12 +24,6 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 controller: "TopicController",
                 access: accessLevels.all
             })
-            .state('ewlActivityFields', {
-                url: "/ewl-activityfields",
-                templateUrl: "partials/ewlActivityFields.html",
-                controller: "ActivityFieldCtrl",
-                access: accessLevels.all
-            })
             .state('cockpit', {
                 url: "/cockpit",
                 templateUrl: "partials/cockpit.html",
@@ -43,21 +37,21 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             })
             .state('actionlist', {
                 url: "/actions",
-                templateUrl: "partials/actionlist.html",
-                controller: "ActionListCtrl",
+                templateUrl: "partials/activity.list.html",
+                controller: "ActivityListCtrl",
                 access: accessLevels.all
             })
             .state('actionDetail', {
                 url: "/actions/:actionId",
-                templateUrl: "partials/action.detail.html",
+                templateUrl: "partials/activity.detail.html",
                 controller: "ActivityCtrl",
                 access: accessLevels.user,
                 resolve: {
-                    allActions: ['ActionService',function (ActionService) {
-                        return ActionService.allActivities;
+                    allActivities: ['ActivityService',function (ActivityService) {
+                        return ActivityService.allActivities;
                     }],
-                    plannedActions: ['ActionService',function (ActionService) {
-                        return ActionService.plannedActivities;
+                    plannedActivities: ['ActivityService',function (ActivityService) {
+                        return ActivityService.plannedActivities;
                     }]
                 }
             });

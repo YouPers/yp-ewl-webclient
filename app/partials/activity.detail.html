@@ -9,24 +9,24 @@
 <div class="row">
 <div class="col-md-6 panel panel-default">
 
-    <div class="row">    <!-- Action Description and overall Rating -->
+    <div class="row">    <!-- Activity Description and overall Rating -->
 
 
         <div class="col-md-8">
-            <p>{{ currentAction.title }}</p>
+            <p>{{ currentActivity.title }}</p>
 
         </div>
         <div class="col-md-4">
             <p>3453 mal geplant<br/>
                 2320 mal ausgeführt</p>
-            <rating max="5" value="currentAction.rating"></rating>
+            <rating max="5" value="currentActivity.rating"></rating>
             <a href="">(34)</a>
         </div>
 
     </div>
-    <!-- actionProposal Description and overall Rating -->
+    <!-- activityProposal Description and overall Rating -->
 
-    <div class="row"> <!-- Kommentare für Action -->
+    <div class="row"> <!-- Kommentare für Activity -->
         <div class="col-md-12" ng-controller="CommentCtrl">
 
             <div class="row">
@@ -34,12 +34,12 @@
                     <h2>Kommentare</h2>
                 </div>
                 <div class="col-md-6">
-                    <a class="action-social-comment-link" href=""
+                    <a class="activity-social-comment-link" href=""
                        ng-click="threads.showNewThread = !threads.showNewThread">neuer
                         Kommentar</a>
                 </div>
             </div>
-            <div class="row action-social-content">
+            <div class="row activity-social-content">
                 <div class="col-md-12">
 
                     <div class="row social-thread" ng-show="threads.showNewThread">
@@ -78,7 +78,7 @@
                             <a href="" ng-click="thread.showComments = !thread.showComments">{{ thread.comments.length +
                                 '
                                 Kommentare' }}</a>
-                            <span class="thread-actions"><a href=""
+                            <span class="thread-activities"><a href=""
                                                             ng-click="thread.showComments = !thread.showComments">kommentieren</a></span>
                         </div>
                         <div class="container" ng-show="thread.showComments">
@@ -126,25 +126,25 @@
 <div class="col-md-6">
 <tabset>
 <tab heading="Selber einplanen">
-    <div class="container yp-action-planning-tab">
+    <div class="container yp-activity-planning-tab">
         <div class="row">
             <form class="form-horizontal" role="form" ng-submit="planActivityDone()">
                 <div class="col-xs-6">
 
                     <div class="planning-option"
-                         ng-class="{planningOptionActive: currentActionPlan.planType=='once'}" ng-click="currentActionPlan.planType = 'once'">
+                         ng-class="{planningOptionActive: currentActivityPlan.planType=='once'}" ng-click="currentActivityPlan.planType = 'once'">
                         <div class="radio-inline">
                             <label>
                                 <input type="radio" name="planTypes" id="planTypeOnce" value="once"
-                                       ng-model="currentActionPlan.planType">
+                                       ng-model="currentActivityPlan.planType">
                                 Einmalig bis am:
                             </label>
                         </div>
-                        <fieldset ng-disabled="currentActionPlan.planType!='once'">
+                        <fieldset ng-disabled="currentActivityPlan.planType!='once'">
                             <div class="input-group input-group-sm">
                                 <input class="form-control" type="text" id="datePickerOnce"
                                        datepicker-popup="dd-MMMM-yyyy"
-                                       ng-model="currentActionPlan.onceDate"
+                                       ng-model="currentActivityPlan.onceDate"
                                        is-open="opened" min="minDate" max="'2015-06-22'"
                                        datepicker-options="dateOptions"
                                        date-disabled="disabled(date, mode)" ng-required="true"/>
@@ -160,18 +160,18 @@
                     </div>
 
                     <div class="planning-option"
-                         ng-class="{planningOptionActive: currentActionPlan.planType=='daily'}" ng-click="currentActionPlan.planType = 'daily'">
+                         ng-class="{planningOptionActive: currentActivityPlan.planType=='daily'}" ng-click="currentActivityPlan.planType = 'daily'">
                         <div class="radio-inline">
                             <label>
                                 <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
-                                       ng-model="currentActionPlan.planType">
+                                       ng-model="currentActivityPlan.planType">
                                 Täglich um:
                             </label>
                         </div>
 
-                        <fieldset ng-disabled="currentActionPlan.planType!='daily'">
+                        <fieldset ng-disabled="currentActivityPlan.planType!='daily'">
 
-                            <div ng-model="currentActionPlan.dailyTime" class="col-md-12">
+                            <div ng-model="currentActivityPlan.dailyTime" class="col-md-12">
                                 <timepicker id="timePickerDaily" minute-step="15"
                                             show-meridian="false"></timepicker>
                             </div>
@@ -179,17 +179,17 @@
                     </div>
 
                     <div class="planning-option"
-                         ng-class="{planningOptionActive: currentActionPlan.planType=='weekly'}" ng-click="currentActionPlan.planType = 'weekly'">
+                         ng-class="{planningOptionActive: currentActivityPlan.planType=='weekly'}" ng-click="currentActivityPlan.planType = 'weekly'">
                         <div class="radio-inline">
 
                             <label>
                                 <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly"
-                                       ng-model="currentActionPlan.planType">
+                                       ng-model="currentActivityPlan.planType">
                                 Wöchentlich am:
                             </label>
                         </div>
-                        <fieldset ng-disabled="currentActionPlan.planType!='weekly'">
-                            <select ng-model="currentActionPlan.weeklyDay"
+                        <fieldset ng-disabled="currentActivityPlan.planType!='weekly'">
+                            <select ng-model="currentActivityPlan.weeklyDay"
                                     name="weeklyDay"
                                     id="weeklyDay"
                                     ng-options="availableDays.indexOf(d) as d.label | translate for d in availableDays"
@@ -202,20 +202,20 @@
                 <div class="col-xs-6">
                     <label>
                         Dauer:
-                        <input type="text" size="5" class="form-control" ng-model="currentActionPlan.duration">
+                        <input type="text" size="5" class="form-control" ng-model="currentActivityPlan.duration">
                     </label>
 
                     <div class="panel panel-default">
                         <div class="checkbox">
                             <label>
                                 <input type="radio" name="excecutionTypes" id="exTypeSelf" value="self"
-                                       ng-model="currentActionPlan.executionType"/> alleine machen
+                                       ng-model="currentActivityPlan.executionType"/> alleine machen
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
                                 <input type="radio" name="excecutionTypes" id="exTypeGroup" value="group"
-                                       ng-model="currentActionPlan.executionType"/> andere einladen
+                                       ng-model="currentActivityPlan.executionType"/> andere einladen
                             </label>
                         </div>
                     </div>
@@ -223,20 +223,20 @@
                         <div class="checkbox">
                             <label>
                                 <input type="radio" name="privacyTypes" id="privacyTypePublic" value="public"
-                                       ng-model="currentActionPlan.privacyType"/> öffentlich
+                                       ng-model="currentActivityPlan.privacyType"/> öffentlich
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
                                 <input type="radio" name="privacyTypes" id="privacyTypePrivate" value="private"
-                                       ng-model="currentActionPlan.privacyType"/> privat
+                                       ng-model="currentActivityPlan.privacyType"/> privat
                             </label>
                         </div>
                     </div>
-                    <div ng-show="currentActionPlan.planType=='weekly' || currentActionPlan.planType=='daily'">
+                    <div ng-show="currentActivityPlan.planType=='weekly' || currentActivityPlan.planType=='daily'">
                         <label>
                             während
-                            <input type="text" size="5" class="form-control" ng-model="currentActionPlan.repeatWeeks">
+                            <input type="text" size="5" class="form-control" ng-model="currentActivityPlan.repeatWeeks">
                         </label>
                         Wochen
                     </div>
@@ -251,7 +251,7 @@
     </div>
 </tab>
 <tab heading="Bei andern mitmachen">
-    <div class="container yp-action-planning-tab">
+    <div class="container yp-activity-planning-tab">
         <div class="row">
             <div class="col-md-12">
                 <div class="row">

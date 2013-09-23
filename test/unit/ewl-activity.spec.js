@@ -7,7 +7,7 @@ describe('ewl activity', function () {
     beforeEach(module('ui.router'));
 
 
-    describe('ActionService', function () {
+    describe('ActivityService', function () {
 
         it('allActivities should be defined and loadable', inject(function (ActionService) {
             expect(ActionService.allActivities).toBeDefined();
@@ -171,7 +171,7 @@ describe('ewl activity', function () {
             ctrl = $controller('ActionListCtrl', {
                 $scope: $scope,
                 $state: $state,
-                ActionService: {
+                ActivityService: {
                     allActivities: {
                         then: function (callback) {
                             callback({

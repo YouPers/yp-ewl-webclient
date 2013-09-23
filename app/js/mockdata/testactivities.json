@@ -2784,13 +2784,5 @@
         ],
         "aktivittsfeld1": "TimeManagement",
         "aktivittsfeld2": "AwarenessAbility"
-    },
-    {
-        "topic": [
-            "workLifeBalance"
-        ],
-        "field": [
-            ""
-        ]
     }
 ]
