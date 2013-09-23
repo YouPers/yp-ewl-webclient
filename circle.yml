@@ -1,10 +1,10 @@
 deployment:
   staging:
-    branch: master
+    branch: production
     heroku:
       appname: yp-ewl-webclient
   devbuild:
-    branch: gruntbuild
+    branch: master
     heroku:
       appname: yp-ewl-webclient-dev
 
