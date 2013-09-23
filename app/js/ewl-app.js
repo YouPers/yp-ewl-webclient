@@ -35,14 +35,14 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 controller: "AssessmentCtrl",
                 access: accessLevels.all
             })
-            .state('actionlist', {
+            .state('activitylist', {
                 url: "/actions",
                 templateUrl: "partials/activity.list.html",
                 controller: "ActivityListCtrl",
                 access: accessLevels.all
             })
-            .state('actionDetail', {
-                url: "/actions/:actionId",
+            .state('activityDetail', {
+                url: "/activities/:activityId",
                 templateUrl: "partials/activity.detail.html",
                 controller: "ActivityCtrl",
                 access: accessLevels.user,

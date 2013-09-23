@@ -82,12 +82,12 @@ angular.module('yp.ewl.activity', [])
     }])
 
     .filter('ActivityListFilter', [function () {
-        return function (activitys, query) {
+        return function (activities, query) {
             var out = [], allClusters = true;
 
             // if we do not get a query, we return the full set of answers
             if (!query) {
-                return activitys;
+                return activities;
             }
 
 
@@ -121,7 +121,7 @@ angular.module('yp.ewl.activity', [])
             });
 
 
-            angular.forEach(activitys, function (activity, key) {
+            angular.forEach(activities, function (activity, key) {
 
                     if ((allClusters || _.any(activity.field, function (value) {
                         return query.cluster[value];
@@ -151,11 +151,11 @@ angular.module('yp.ewl.activity', [])
     .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', '$state','$stateParams', 'allActivities', 'plannedActivities',
         function ($scope, ActivityService, $timeout, $state, $stateParams, allActivities, plannedActivities) {
 
-            $scope.activitys = allActivities;
+            $scope.activities = allActivities;
 
             $scope.plannedActivities = plannedActivities;
 
-            ActivityService.setSelectedActivity($stateParams.activityId, $scope.activitys, $scope.plannedActivities);
+            ActivityService.setSelectedActivity($stateParams.activityId, $scope.activities, $scope.plannedActivities);
 
             $scope.currentActivity = ActivityService.getSelectedActivity();
             $scope.currentActivityPlan = ActivityService.getSelectedActivityPlan();
@@ -201,7 +201,7 @@ angular.module('yp.ewl.activity', [])
     .controller('ActivityListCtrl', ['$scope', 'ActivityService', '$filter', '$state',
         function ($scope, ActivityService, $filter, $state) {
         ActivityService.allActivities.then(function (data) {
-            $scope.activitys = data;
+            $scope.activities = data;
             $scope.filteredActivities = data;
 
         });
@@ -307,7 +307,7 @@ angular.module('yp.ewl.activity', [])
         // watch for changes on the query object and reapply filter, use deep watch=true
         $scope.$watch('query', function (newQuery) {
             $scope.currentPage = 1;
-            $scope.filteredActivities = $filter('ActivityListFilter')($scope.activitys, $scope.query);
+            $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
         }, true);
     }])
 ;
