@@ -50,7 +50,11 @@ angular.module('yp-ewl').
             SUNDAY: 'Sonntag',
             TOPIC: 'Gesundheits-Thema',
             group: 'In der Gruppe',
-            self: 'Alleine'
-
+            self: 'Alleine',
+            FIRSTNAME: 'Vorname',
+            LASTNAME: 'Nachname',
+            USERNAME: "Username",
+            PASSWORD_AGAIN: "Passwort wiederholen",
+            REGISTER: "registrieren"
         });
     }]);

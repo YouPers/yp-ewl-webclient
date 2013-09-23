@@ -49,6 +49,11 @@ angular.module('yp-ewl').
             SUNDAY: 'Sunday',
             TOPIC: 'Health-Topic',
             group: 'Group-Activity',
-            self: 'Do it Alone'
+            self: 'Do it Alone',
+            FIRSTNAME: 'Firstname',
+            LASTNAME: 'Lastname',
+            USERNAME: 'Username',
+            PASSWORD_AGAIN: "repeat password",
+            REGISTER: "register"
         });
     }]);

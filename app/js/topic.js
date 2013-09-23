@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: retoblunschi
- * Date: 13.09.13
- * Time: 09:45
- * To change this template use File | Settings | File Templates.
- */
 "use strict";
 
 angular.module('yp.topic', ['ui.router'])
