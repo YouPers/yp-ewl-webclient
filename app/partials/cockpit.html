@@ -55,37 +55,39 @@
                 </br>
                 <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
-                                <div class="list-group action-log" >
-                                    <div class="list-group-item {{getActionTimeType(actionLogEntry.type)}}" ng-repeat="actionLogEntry in activityLogEntries">
-                                        <div class="row">
-                                            <div class="col-xs-1 col-md-1">
-                                                <div class="action-log status">
-                                                    <span class="glyphicon glyphicon-{{getGlyphiconStatus(actionLogEntry.status)}}"></span></td>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-6 col-md-6">
-                                                <a href="#" class="action-log title">{{actionLogEntry.activity}}</br></a>
-                                        <span class="action-log comments">
-                                            Kommentare <a href="#" class="badge">{{actionLogEntry.nofcomments}}</a>
-                                        </span>
-                                            </div>
-                                            <div class="col-xs-2 col-md-2">
-                                                <div class="action-feedback-{{actionLogEntry.rating}}-small"></div>
-                                                <div class="action-log rating">
-                                                    <rating max="5" value="actionLogEntry.rating"></rating>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-3 col-md-3">
-                                                <div class="action-log time-box">
-                                            <span class="action-log time-box timestamp">
-                                                {{actionLogEntry.timestamp | fromNowFake}}</br>
-                                                <span class="action-log time-box info">
-                                                    {{actionLogEntry.recurringInfo}}&nbsp;&nbsp;
-                                                    <span class="glyphicon glyphicon-repeat"></span>
-                                                </span>
-                                            </span>
-                                                </div>
-                                            </div>
+                <div class="list-group activity-log" >
+                    <div class="list-group-item {{getactivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries" ng-controller="ActivityLogHistoryCtrl" ng-click="toggleSelected()" ng-switch on="isSelected()">
+                        <div class="row">
+                            <div class="col-xs-1 col-md-1">
+                                {{ activityLogEntry.id }}
+                            </div>
+                            <div class="col-xs-7 col-md-7">
+                                <a href="" ng-click="gotoActivityDetail(activityLogEntry.id)" class="activity-log title">{{activityLogEntry.title}}</br></a>
+                                {{ activityLogEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
+                                {{ activityLogEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
+                                {{ activityLogEntry.visibility | uppercase | translate }}
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" ng-repeat="activityField in activityLogEntry.activityFields">
+                                    <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
+                                </div>
+
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                                <div class="activity-log time-box">
+                                    <div class="col-md-1" popover="{{ activityLogEntry.source | uppercase | translate }}"
+                                         popover-trigger="mouseenter">
+                                        <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activityLogEntry.source == 'youpers'" class="activityListClusterIcon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-switch-when="true">
+                            <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityLogEntry.activityHistory">
+                                <div class="row">
+                                    <div class="col-xs-1 col-md-1">
+                                        <div class="activity-log status">
+                                            <span class="glyphicon glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}"></span></td>
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-md-6">

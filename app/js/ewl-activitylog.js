@@ -118,10 +118,6 @@ angular.module('yp.activitylog', []).
 
     .controller('ActivityLogCtrl2', ['$scope', 'ActivityLogService2', '$filter', '$state', function ($scope, ActivityLogService2, $filter, $state) {
 
-//        function valuesToArray(obj) {
-//            return Object.keys(obj).map(function (key) { return obj[key]; });
-//        }
-
         $scope.activityFields = ActivityLogService2.getActivityFields();
 
         $scope.activityFieldsArray = ActivityLogService2.getActivityFieldsAsArray();
