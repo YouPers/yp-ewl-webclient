@@ -7,7 +7,7 @@ angular.module('yp.discussion', []).
     factory('CommentService', ['$http', function ($http) {
         var commentService = {};
 
-        var comments = $http.get('js/mockdata/testcomments.json').then(function (result) {
+        var comments = $http.get('api/comments').then(function (result) {
             return result.data;
         });
 

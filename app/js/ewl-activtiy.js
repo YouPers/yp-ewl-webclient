@@ -14,11 +14,11 @@ angular.module('yp.ewl.activity', [])
             this.planningCat = plCat;
         }
 */
-        var activityProposals = $http.get('js/mockdata/testactivities.json').then(function (result) {
+        var activityProposals = $http.get('api/activities').then(function (result) {
             return result.data;
         });
 
-        var plannedActivities = $http.get('js/mockdata/testplannedactivities.json').then(function (result) {
+        var plannedActivities = $http.get('api/activitiesPlanned').then(function (result) {
             return result.data;
         });
 

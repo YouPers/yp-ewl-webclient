@@ -78,7 +78,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
     .run(['$rootScope', '$state', 'principal', function ($rootScope, $state, principal) {
 
         // handle routing authentication
-/**        $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+       $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
             var requiredAccessLevel = toState.access;
 
@@ -96,7 +96,6 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             }
 
         });
-*/
 
     }]).
 

@@ -1,3 +1,4 @@
+mock.activities =
 [
     {
         "id": "Act-1",
@@ -2785,4 +2786,4 @@
         "aktivittsfeld1": "TimeManagement",
         "aktivittsfeld2": "AwarenessAbility"
     }
-]
+];

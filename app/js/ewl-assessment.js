@@ -20,15 +20,15 @@ angular.module('yp.ewl.assessment', [])
                 return assessment;
             } else {
                 return $q.all([
-                        $http.get('js/mockdata/testassessment.json'),
-                        $http.get('js/mockdata/testass_answers.json')
+                        $http.get('api/assessment'),
+                        $http.get('api/assessment/answers')
                     ]
                     ).then(function (results) {
                         assessment = results[0].data;
 
                         // check whether we got saved answers for this user and this assessment
                         var answersAsArray;
-                        if (results[1].data.size > 0) {
+                        if ((results[1].data) && (results[1].data.size > 0)) {
                             answersAsArray = results[1].data;
                         } else {
                             // got no answers from server, need to generate default answers

@@ -6,7 +6,7 @@ angular.module('yp.sociallog', []).
 
         var SocialLogService = {};
 
-        var socialLogEntries = $http.get('js/mockdata/testsociallog.json').then(function (result) {
+        var socialLogEntries = $http.get('api/sociallog').then(function (result) {
             return result.data;
         });
 

@@ -37,6 +37,7 @@
     <script src="lib/lowdash/lodash.js"></script>
     <script src="lib/momentjs/moment.js"></script>
     <script src="lib/momentjs/lang-de.js"></script>
+    <script src="lib/restangular/restangular.js"></script>
     <script src="js/common/base64.js"></script>
     <script src="js/common/yp-commons.js"></script>
     <script src="js/ewl-activtiy.js"></script>
@@ -53,10 +54,15 @@
     <script src="js/translations/yp-ewl.en.js"></script>
     <!-- endbuild -->
 
+    <script src="js/mockdata/backendMockApp.js"></script>
+    <script src="lib/angular/angular-mocks.js"></script>
+    <script src="js/mockdata/MockDataJson.js"></script>
+    <script src="js/mockdata/testactivities.js"></script>
+
 </head>
 
 
-<body ng-app="yp-ewl" ng-controller="MainCtrl">
+<body ng-app="yp-ewl-devmock" ng-controller="MainCtrl">
 
 
 <div class="navbar navbar-inverse">
@@ -74,7 +80,7 @@
         <div class="navbar-collapse collapse" collapse="navCollapsed">
             <ul class="nav navbar-nav">
                 <li ng-class="{ active: isActive('cockpit')}"><a href="#/cockpit">{{ 'COCKPIT' | translate }}</a></li>
-                <li ng-class="{ active: isActive('activitylist')}"><a href="#/activities">{{ 'ACTIVITIES' | translate }}</a>
+                <li ng-class="{ active: isActive('activitylist') || isActive('activityDetail')}"><a href="#/activities">{{ 'ACTIVITIES' | translate }}</a>
                 </li>
                 <li ng-class="{ active: isActive('assessment')}"><a href="#/assessment">{{ 'ASSESSMENT' | translate
                     }}</a></li>

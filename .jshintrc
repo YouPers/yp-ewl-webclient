@@ -20,6 +20,7 @@ noempty:true, nonew:true, undef:true, strict:true, globalstrict:true, browser:tr
   "globals": {
     "angular": false,
       "moment": false,
-      "_": false
+      "_": false,
+      "mock": true
   }
 }
