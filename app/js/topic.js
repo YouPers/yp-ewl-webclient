@@ -28,7 +28,7 @@ angular.module('yp.topic', ['ui.router'])
         };
 
         $scope.setGoal = function () {
-            $state.go('actionlist');
+            $state.go('activitylist');
         };
 
     }]);
