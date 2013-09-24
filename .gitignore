@@ -14,5 +14,6 @@ results
 .bin
 npm-debug.log
 node_modules
+app/vendor
 dist
 .tmp
