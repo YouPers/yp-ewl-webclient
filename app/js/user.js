@@ -3,8 +3,8 @@
 angular.module('yp.user', ['ui.router', 'authentication', 'restangular'])
 
 
-    .factory("yp.user.UserService", ['userRoles', '$cookieStore', 'authority', '$rootScope', 'Restangular',
-        function (userRoles, $cookieStore, authority, $rootScope, Rest) {
+    .factory("yp.user.UserService", ['userRoles', '$cookieStore', 'authority', '$rootScope', 'Restangular', '$state',
+        function (userRoles, $cookieStore, authority, $rootScope, Rest, $state) {
             var getNewUUID = function () {
                 return 'asdfaf32241234';
             };
@@ -49,7 +49,9 @@ angular.module('yp.user', ['ui.router', 'authentication', 'restangular'])
             var credentialsFromCookie = $cookieStore.get('authdata');
 
             if (credentialsFromCookie) {
-                UserService.fakeLogin(credentialsFromCookie);
+                UserService.fakeLogin(credentialsFromCookie, function() {
+                    $state.go('cockpit');
+                });
             }
 
             return UserService;
@@ -79,6 +81,11 @@ angular.module('yp.user', ['ui.router', 'authentication', 'restangular'])
                 $scope.showLoginDialog = true;
                 $scope.nextStateAfterLogin = data;
             });
+
+            $scope.$on('event:authority-authorized', function (event, data) {
+                $scope.showLoginDialog = false;
+            });
+
 
             $scope.loginSubmit = function () {
                 // loginBasicAuth();
