@@ -5,6 +5,7 @@ angular.module('yp-ewl').
     config(['$translateProvider', function ($translateProvider) {
 
         $translateProvider.translations('en', {
+
             COCKPIT: 'Cockpit',
             ACTIVITIES: 'Activities',
             SHOW_ACTIVITY_LOG: 'Show your activity log',
@@ -49,7 +50,16 @@ angular.module('yp-ewl').
             SUNDAY: 'Sunday',
             TOPIC: 'Health-Topic',
             group: 'Group-Activity',
+            GROUP: 'Group-Activity',
             self: 'Do it Alone',
+            SELF: 'Do it Alone',
+            DAILY: 'Daily',
+            WEEKLY_ON_THURSDAY: 'Each Thursday',
+            ONCE: 'Once',
+            CAMPAIGN: 'Campaign',
+            PRIVATE: 'Private',
+            COMMENTS: 'Comments',
+            YOUPERS: 'Tested and recommended by YouPers',
             FIRSTNAME: 'Firstname',
             LASTNAME: 'Lastname',
             USERNAME: 'Username',

@@ -3,8 +3,8 @@
 
 angular.module('yp-ewl').
     config(['$translateProvider', function ($translateProvider) {
-        $translateProvider.translations('de', {
 
+        $translateProvider.translations('de', {
 
             COCKPIT: 'Cockpit',
             ACTIVITIES: 'Aktivitäten',
@@ -50,7 +50,16 @@ angular.module('yp-ewl').
             SUNDAY: 'Sonntag',
             TOPIC: 'Gesundheits-Thema',
             group: 'In der Gruppe',
+            GROUP: 'In der Gruppe',
             self: 'Alleine',
+            SELF: 'Alleine',
+            DAILY: 'Täglich',
+            WEEKLY_ON_THURSDAY: 'Jeden Donnerstag',
+            ONCE: 'Einmalig',
+            CAMPAIGN: 'Kampagne',
+            PRIVATE: 'Privat',
+            COMMENTS: 'Kommentare',
+            YOUPERS: 'Überprüft und empfohlen durch YouPers',
             FIRSTNAME: 'Vorname',
             LASTNAME: 'Nachname',
             USERNAME: "Username",
