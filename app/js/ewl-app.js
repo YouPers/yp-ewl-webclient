@@ -46,6 +46,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 templateUrl: "partials/activity.detail.html",
                 controller: "ActivityCtrl",
                 access: accessLevels.user,
+                abstract:true,
                 resolve: {
                     allActivities: ['ActivityService',function (ActivityService) {
                         return ActivityService.allActivities;
@@ -54,7 +55,21 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                         return ActivityService.plannedActivities;
                     }]
                 }
-            });
+            })
+            .state('activityDetail.self', {
+                url: "",
+                templateUrl: "partials/activity.detail.self.html",
+                controller: "ActivityCtrl",
+                access: accessLevels.user
+            })
+            .state('activityDetail.group', {
+                url: "/group",
+                templateUrl: "partials/activity.detail.group.html",
+                controller: "ActivityCtrl",
+                access: accessLevels.user
+            })
+
+        ;
     }])
 
 /**
@@ -63,7 +78,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
     .run(['$rootScope', '$state', 'principal', function ($rootScope, $state, principal) {
 
         // handle routing authentication
-        $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+/**        $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
             var requiredAccessLevel = toState.access;
 
@@ -81,7 +96,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             }
 
         });
-
+*/
 
     }]).
 
@@ -103,7 +118,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
             // handle Menu Highlighting
             $scope.isActive = function (viewLocation) {
-                return ($state.current.url.indexOf(viewLocation) !== -1);
+                return ($state.current.name.indexOf(viewLocation) !== -1);
             };
 
             $scope.$on('globalUserMsg', function (event, msg, type, duration) {

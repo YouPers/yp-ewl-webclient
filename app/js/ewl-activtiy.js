@@ -266,8 +266,8 @@ angular.module('yp.ewl.activity', [])
             return ActivityService.isActivityPlanned($scope.plannedActivities, activityId);
         };
 
-        $scope.gotoActivityDetail = function (activityId) {
-            $state.go('activityDetail', {activityId: activityId});
+        $scope.gotoActivityDetail = function (activity) {
+            $state.go('activityDetail.'+activity.defaultexecutiontype, {activityId: activity.id});
         };
 
         $scope.query = {

@@ -131,7 +131,7 @@
     </div>
     <!-- die eigentliche Liste -->
     <div class="col-md-10 ">
-        <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity.id)"
+        <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity)"
              ng-repeat="activity in filteredActivities | orderBy:'source':true | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
             <div class="col-md-1">
                 {{ activity.id }}
