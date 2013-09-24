@@ -6,7 +6,7 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
         // let the normal server deliver our partials
         $httpBackend.whenGET(/^partials/).passThrough();
-
+        $httpBackend.whenGET(/^js\/mockdata/).passThrough();
 
         $httpBackend.whenGET('api/activities').respond(mock.activities);
         $httpBackend.whenGET('api/activitiesPlanned').respond(mock.plannedActivities);
