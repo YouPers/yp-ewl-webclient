@@ -17,7 +17,8 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET('api/comments').respond(mock.activityComments);
 
         $httpBackend.whenGET('/api/users').respond(mock.users);
-        $httpBackend.whenPOST('api/users').respond(function (method, url, data, headers) {
+
+        $httpBackend.whenPOST('/api/users').respond(function (method, url, data, headers) {
             mock.users.push(angular.fromJson(data));
             return [201, '', {location: '/api/users/' + data.username}];
         });
