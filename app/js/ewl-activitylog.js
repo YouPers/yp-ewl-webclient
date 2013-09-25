@@ -146,8 +146,8 @@ angular.module('yp.activitylog', []).
             return icon;
         };
 
-        $scope.gotoActivityDetail = function (activityId) {
-            $state.go('actionDetail', {actionId: activityId});
+        $scope.gotoActivityDetail = function (activityLogEntry) {
+            $state.go('activityDetail.'+activityLogEntry.executionType, {activityId: activityLogEntry.id});
         };
 
         $scope.getActivityFieldName = function(activityFieldId) {
@@ -160,6 +160,11 @@ angular.module('yp.activitylog', []).
                 return undefined;
             }
         };
+
+        $scope.gotoActivityList = function () {
+            $state.go('activitylist');
+        };
+
 
     }])
 
@@ -195,6 +200,18 @@ angular.module('yp.activitylog', []).
                 icon = "unchecked";
             }
             return icon;
+        };
+
+    }])
+
+    .controller('ActivityCommentCtrl', ['$scope', function ($scope) {
+
+        $scope.toggleComments = function () {
+            $scope.comments = !$scope.comments;
+        };
+
+        $scope.isComments = function () {
+            return $scope.comments;
         };
 
     }]);

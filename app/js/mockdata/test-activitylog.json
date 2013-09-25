@@ -19,7 +19,7 @@
                 "type": "past",
                 "nofComments": "1",
                 "feedback": "2",
-                "on": "2013-07-16T12:15:00.000Z",
+                "on": "2013-08-06T18:33:50.558Z",
                 "comments": [
                     {
                         "id": "1",
@@ -56,7 +56,7 @@
                 "type": "past",
                 "nofComments": "1",
                 "feedback": "4",
-                "on": "2013-07-16T12:15:00.000Z",
+                "on": "2013-08-04T18:33:50.558Z",
                 "comments": [
                     {
                         "id": "1",
@@ -93,7 +93,7 @@
                 "type": "past",
                 "nofComments": "1",
                 "feedback": "2",
-                "on": "2013-07-16T12:15:00.000Z",
+                "on": "2013-08-04T18:33:50.558Z",
                 "comments": [
                     {
                         "id": "1",
@@ -151,9 +151,9 @@
                 "id": "1",
                 "status": "done",
                 "type": "past",
-                "nofComments": "3",
+                "nofComments": "2",
                 "feedback": "2",
-                "on": "2013-07-16T12:15:00.000Z",
+                "on": "2013-07-16T18:33:50.558Z",
                 "comments": [
                     {
                         "id": "1",
@@ -163,7 +163,7 @@
                             "pic": "assets/img/IRIG.jpeg",
                             "link": "#/u/IRIG"
                         },
-                        "date": "2013-08-04T18:33:50.558Z",
+                        "date": "2013-07-16T18:33:50.558Z",
                         "text": "Keine Zeit am Mittwoch"
                     },
                     {
@@ -174,18 +174,7 @@
                             "pic": "assets/img/SMUE.jpeg",
                             "link": "#/u/SMUE"
                         },
-                        "date": "2013-08-05T18:33:50.558Z",
-                        "text": "Ist mir zu langsam mit dir ;-)"
-                    },
-                    {
-                        "id": "3",
-                        "author": {
-                            "id": "3",
-                            "fullname": "Stefan Müller",
-                            "pic": "assets/img/SMUE.jpeg",
-                            "link": "#/u/SMUE"
-                        },
-                        "date": "2013-08-06T18:33:50.558Z",
+                        "date": "2013-07-16T18:33:50.558Z",
                         "text": "Ist mir zu langsam mit dir ;-)"
                     }
                 ]
@@ -206,7 +195,7 @@
                             "pic": "assets/img/IRIG.jpeg",
                             "link": "#/u/IRIG"
                         },
-                        "date": "2013-08-04T18:33:50.558Z",
+                        "date": "2013-07-23T12:15:00.000Z",
                         "text": "Keine Zeit am Mittwoch"
                     },
                     {
@@ -217,7 +206,7 @@
                             "pic": "assets/img/SMUE.jpeg",
                             "link": "#/u/SMUE"
                         },
-                        "date": "2013-08-05T18:33:50.558Z",
+                        "date": "2013-07-23T12:15:00.000Z",
                         "text": "Ist mir zu langsam mit dir ;-)"
                     },
                     {
@@ -228,7 +217,7 @@
                             "pic": "assets/img/SMUE.jpeg",
                             "link": "#/u/SMUE"
                         },
-                        "date": "2013-08-06T18:33:50.558Z",
+                        "date": "2013-07-23T12:15:00.000Z",
                         "text": "Ist mir zu langsam mit dir ;-)"
                     }
                 ]
@@ -249,7 +238,7 @@
                             "pic": "assets/img/IRIG.jpeg",
                             "link": "#/u/IRIG"
                         },
-                        "date": "2013-08-04T18:33:50.558Z",
+                        "date": "2013-07-30T12:15:00.000Z",
                         "text": "Keine Zeit am Mittwoch"
                     },
                     {
@@ -260,7 +249,7 @@
                             "pic": "assets/img/SMUE.jpeg",
                             "link": "#/u/SMUE"
                         },
-                        "date": "2013-08-05T18:33:50.558Z",
+                        "date": "2013-07-30T12:15:00.000Z",
                         "text": "Ist mir zu langsam mit dir ;-)"
                     },
                     {
@@ -271,7 +260,7 @@
                             "pic": "assets/img/SMUE.jpeg",
                             "link": "#/u/SMUE"
                         },
-                        "date": "2013-08-05T18:33:50.558Z",
+                        "date": "2013-07-30T12:15:00.000Z",
                         "text": "Ist mir zu langsam mit dir ;-)"
                     },
                     {
@@ -282,7 +271,7 @@
                             "pic": "assets/img/SMUE.jpeg",
                             "link": "#/u/SMUE"
                         },
-                        "date": "2013-08-06T18:33:50.558Z",
+                        "date": "2013-07-30T12:15:00.000Z",
                         "text": "Ist mir zu langsam mit dir ;-)"
                     }
                 ]
@@ -291,7 +280,7 @@
                 "id": "4",
                 "status": "not done",
                 "type": "past",
-                "nofComments": "2",
+                "nofComments": "1",
                 "feedback": "1",
                 "on": "2013-08-06T11:45:00.000Z",
                 "comments": [
@@ -299,23 +288,12 @@
                         "id": "1",
                         "author": {
                             "id": "3",
-                            "fullname": "Stefan Müller",
-                            "pic": "assets/img/SMUE.jpeg",
-                            "link": "#/u/SMUE"
-                        },
-                        "date": "2013-08-05T18:33:50.558Z",
-                        "text": "Ist mir zu langsam mit dir ;-)"
-                    },
-                    {
-                        "id": "2",
-                        "author": {
-                            "id": "3",
-                            "fullname": "Stefan Müller",
-                            "pic": "assets/img/SMUE.jpeg",
-                            "link": "#/u/SMUE"
+                            "fullname": "Urs Baumeler",
+                            "pic": "assets/img/UBAU.jpeg",
+                            "link": "#/u/UBAU"
                         },
                         "date": "2013-08-06T18:33:50.558Z",
-                        "text": "Ist mir zu langsam mit dir ;-)"
+                        "text": "Schade, dass ich verletzt bin..."
                     }
                 ]
 

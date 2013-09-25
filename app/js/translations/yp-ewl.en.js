@@ -60,6 +60,7 @@ angular.module('yp-ewl').
             PRIVATE: 'Private',
             COMMENTS: 'Comments',
             YOUPERS: 'Tested and recommended by YouPers',
+            NEW_ACTIVITY: 'Plan new activity...',
             FIRSTNAME: 'Firstname',
             LASTNAME: 'Lastname',
             USERNAME: 'Username',

@@ -55,25 +55,29 @@
                                 </br>
                                 <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
+                                <div class="panel">
+                                    <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
+                                </div>
+
                                 <div class="list-group activity-log" >
                                     <div class="list-group-item {{getactivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries" ng-controller="ActivityLogHistoryCtrl" ng-switch on="isSelected()">
-                                        <div class="row" ng-click="toggleSelected()">
-                                            <div class="col-xs-1 col-md-1">
-                                                {{ activityLogEntry.id }}
+                                        <div class="row">
+                                            <div class="col-xs-2 col-md-2">
+                                                <button ng-click="toggleSelected()" type="button" class="btn btn-primary btn-sm">{{ activityLogEntry.id }}</button>
                                             </div>
                                             <div class="col-xs-7 col-md-7">
-                                                <a href="" ng-click="gotoActivityDetail(activityLogEntry.id)" class="activity-log title">{{activityLogEntry.title}}</br></a>
+                                                <a href="" ng-click="gotoActivityDetail(activityLogEntry)" class="activity-log title">{{activityLogEntry.title}}</br></a>
                                                 {{ activityLogEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
                                                 {{ activityLogEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
                                                 {{ activityLogEntry.visibility | uppercase | translate }}
                                             </div>
                                             <div class="col-xs-2 col-md-2">
-                                                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" ng-repeat="activityField in activityLogEntry.activityFields">
+                                                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" data-container="body" ng-repeat="activityField in activityLogEntry.activityFields">
                                                     <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
                                                 </div>
 
                                             </div>
-                                            <div class="col-xs-2 col-md-2">
+                                            <div class="col-xs-1 col-md-1">
                                                 <div class="activity-log time-box">
                                                     <div class="col-md-1" popover="{{ activityLogEntry.source | uppercase | translate }}"
                                                          popover-trigger="mouseenter">
@@ -83,7 +87,7 @@
                                             </div>
                                         </div>
                                         <div class="row" ng-switch-when="true">
-                                            <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityLogEntry.activityHistory">
+                                            <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityLogEntry.activityHistory"ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
                                                 <div class="row">
                                                     <div class="col-xs-1 col-md-1">
                                                         <div class="activity-log status">
@@ -91,8 +95,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-6 col-md-6">
-                                                        <!--<a href="#" class="activity-log title">{{activityLogEntry.activity}}</br></a>-->
-                                                        <span class="activity-log comments">{{ "COMMENTS" | translate }} <a href="#" class="badge">{{activityHistoryEntry.nofComments}}</a></span>
+                                                        <span class="activity-log comments">{{ "COMMENTS" | translate }} <a href="" ng-click="toggleComments()" class="badge">{{activityHistoryEntry.nofComments}}</a></span>
                                                     </div>
                                                     <div class="col-xs-2 col-md-2">
                                                         <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
@@ -107,6 +110,32 @@
                                                                         <span class="glyphicon glyphicon-repeat"></span>
                                                                     </span>
                                                                 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" ng-switch-when="true">
+                                                    <div class="list-group-item" ng-repeat="comment in activityHistoryEntry.comments">
+                                                        <div class="row">
+                                                            <div class="col-xs-2 col-md-2">
+                                                                <a href="">
+                                                                    <img ng-src="{{comment.author.pic}}" class="social-log author-avatar"/>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-xs-3 col-md-3">
+                                                                <a href="">
+                                                                    <span class="social-log author-name">{{comment.author.fullname}}</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-xs-5 col-md-5">
+                                                                    <span class="social-log comment">{{comment.text}}</span>
+                                                            </div>
+                                                            <div class="col-xs-2 col-md-2">
+                                                                <div class="social-log time-box">
+                                                                            <span class="activity-log time-box timestamp">
+                                                                                   {{comment.date | fromNowFake}}</br>
+                                                                            </span>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
