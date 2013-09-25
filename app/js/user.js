@@ -42,7 +42,9 @@ angular.module('yp.user', ['ui.router', 'authentication', 'restangular'])
                     newuser.id = getNewUUID();
                     newuser.role = userRoles.user;
                     newuser.fullname = newuser.firstname + ' ' + newuser.lastname;
-                    users.post(newuser).then(successCallback);
+                    users.post(newuser).then(function() {
+                        $rootScope.$broadcast('globalUserMsg', 'New Account successfully created', 'success', 3000);
+                    }).then(successCallback);
                 }
             };
 
