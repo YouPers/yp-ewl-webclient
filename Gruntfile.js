@@ -423,8 +423,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('heroku:production', ['concurrent:server',
-        'autoprefixer', 'connect:heroku:keepalive']);
+        'autoprefixer']);
     grunt.registerTask('heroku:development', ['concurrent:server',
-        'autoprefixer', 'connect:heroku:keepalive']);
+        'autoprefixer']);
 
 };
