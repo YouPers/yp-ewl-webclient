@@ -35,39 +35,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 controller: "AssessmentCtrl",
                 access: accessLevels.all
             })
-            .state('activitylist', {
-                url: "/activities",
-                templateUrl: "partials/activity.list.html",
-                controller: "ActivityListCtrl",
-                access: accessLevels.all
-            })
-            .state('activityDetail', {
-                url: "/activities/:activityId",
-                templateUrl: "partials/activity.detail.html",
-                controller: "ActivityCtrl",
-                access: accessLevels.user,
-                abstract:true,
-                resolve: {
-                    allActivities: ['ActivityService',function (ActivityService) {
-                        return ActivityService.getActivities();
-                    }],
-                    plannedActivities: ['ActivityService',function (ActivityService) {
-                        return ActivityService.getPlannedActivities;
-                    }]
-                }
-            })
-            .state('activityDetail.self', {
-                url: "",
-                templateUrl: "partials/activity.detail.self.html",
-                controller: "ActivityCtrl",
-                access: accessLevels.user
-            })
-            .state('activityDetail.group', {
-                url: "/group",
-                templateUrl: "partials/activity.detail.group.html",
-                controller: "ActivityCtrl",
-                access: accessLevels.user
-            })
+
 
         ;
     }])
