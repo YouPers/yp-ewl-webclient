@@ -17,14 +17,15 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET('api/comments').respond(mock.activityComments);
 
         $httpBackend.whenGET('/api/users').respond(mock.users);
-        $httpBackend.whenPOST('api/users').respond(function (method, url, data) {
+
+        $httpBackend.whenPOST('/api/users').respond(function (method, url, data, headers) {
             mock.users.push(angular.fromJson(data));
             return [201, '', {location: '/api/users/' + data.username}];
         });
 
-        $httpBackend.whenGET('api/activitystats/weekly').respond(mock.activitystats.weekly);
-        $httpBackend.whenGET('api/activitystats/monthly').respond(mock.activitystats.monthly);
-        $httpBackend.whenGET('api/activitystats/yearly').respond(mock.activitystats.yearly);
+        $httpBackend.whenGET('api/activitystats?range=weekly').respond(mock.activitystats.weekly);
+        $httpBackend.whenGET('api/activitystats?range=monthly').respond(mock.activitystats.monthly);
+        $httpBackend.whenGET('api/activitystats?range=yearly').respond(mock.activitystats.yearly);
 
         $httpBackend.whenGET('api/activitylog').respond(mock.activitylog);
         $httpBackend.whenGET('api/sociallog').respond(mock.sociallog);

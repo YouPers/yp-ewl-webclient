@@ -4,17 +4,17 @@ angular.module('yp.ewl.activity.chart', ['googlechart'])
 
     .factory('yp.ewl.activity.chart.service', ['$http', function($http) {
 
-        var valuesThisWeek = $http.get('api/activitystats/weekly')
+        var valuesThisWeek = $http.get('api/activitystats?range=weekly')
             .then(function (result) {
                 return result.data;
             });
 
-        var valuesThisMonth = $http.get('api/activitystats/monthly')
+        var valuesThisMonth = $http.get('api/activitystats?range=monthly')
             .then(function (result) {
                 return result.data;
             });
 
-        var valuesThisYear = $http.get('api/activitystats/yearly')
+        var valuesThisYear = $http.get('api/activitystats?range=yearly')
             .then(function (result) {
                 return result.data;
             });
