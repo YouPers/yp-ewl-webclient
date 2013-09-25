@@ -106,6 +106,16 @@ module.exports = function (grunt) {
                         ];
                     }
                 }
+            },
+            heroku: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            mountFolder(connect, '.tmp'),
+                            mountFolder(connect, 'app')
+                        ];
+                    }
+                }
             }
         },
         open: {
@@ -412,7 +422,8 @@ module.exports = function (grunt) {
         'build'
     ]);
 
-    grunt.registerTask('heroku:production', 'build');
+    grunt.registerTask('heroku:production', ['concurrent:test',
+        'autoprefixer', 'connect:heroku:keepalive']);
     grunt.registerTask('heroku:development', 'build');
 
 };
