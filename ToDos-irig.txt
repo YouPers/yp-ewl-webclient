@@ -1,0 +1,5 @@
+Todo (irig): Cockpit - Sichtwechsel zwischen hierarchischer und Zeit-Sicht
+Todo (irig): Cockpit - MockData-Schicht einbauen
+Todo (irig): Cockpit - Resolve, damit das Flackern verschwindet
+Todo (irig): Cockpit - Done-Button bei durchgeführten Aktivitäten, Feedback und Kommentar
+Todo (riig): Cockpit -
