@@ -52,7 +52,6 @@ angular.module('yp.user', ['ui.router', 'authentication', 'restangular'])
 
             if (credentialsFromCookie) {
                 UserService.fakeLogin(credentialsFromCookie, function() {
-                    $state.go('cockpit');
                 });
             }
 
@@ -86,6 +85,9 @@ angular.module('yp.user', ['ui.router', 'authentication', 'restangular'])
 
             $scope.$on('event:authority-authorized', function (event, data) {
                 $scope.showLoginDialog = false;
+                if ($scope.nextStateAfterLogin) {
+                    $state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
+                }
             });
 
 
@@ -94,12 +96,6 @@ angular.module('yp.user', ['ui.router', 'authentication', 'restangular'])
                 UserService.fakeLogin(UserService.encodeCredentials($scope.username, $scope.password), function () {
                     $scope.username = '';
                     $scope.password = '';
-                    if ($scope.nextStateAfterLogin) {
-                        $state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
-                        $scope.nextStateAfterLogin = null;
-                    } else {
-                        $state.go('cockpit');
-                    }
                     $scope.showLoginDialog = false;
                     $scope.showRegistrationForm = false;
                 });

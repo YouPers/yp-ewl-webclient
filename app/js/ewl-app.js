@@ -49,10 +49,10 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 abstract:true,
                 resolve: {
                     allActivities: ['ActivityService',function (ActivityService) {
-                        return ActivityService.allActivities;
+                        return ActivityService.getActivities();
                     }],
                     plannedActivities: ['ActivityService',function (ActivityService) {
-                        return ActivityService.plannedActivities;
+                        return ActivityService.getPlannedActivities;
                     }]
                 }
             })
@@ -82,14 +82,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
             var requiredAccessLevel = toState.access;
 
-            // special case:
-            // authenticated, returning user goes directly to cockpit
-            if (!fromState.name && principal.isAuthenticated() && toState.name === 'home') {
-                event.preventDefault();
-                $state.go('cockpit');
-            }
-
-            // check whether user is authorized to access the desired access-Level
+           // check whether user is authorized to access the desired access-Level
             if (!(principal.isAuthorized(requiredAccessLevel))) {
                 event.preventDefault();
                 $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
@@ -139,7 +132,3 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
 
         }]);
-
-
-
-

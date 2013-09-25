@@ -10,8 +10,8 @@ describe('ewl activity', function () {
     describe('ActivityService', function () {
 
         it('allActivities should be defined and loadable', inject(function (ActivityService) {
-            expect(ActivityService.allActivities).toBeDefined();
-            expect(ActivityService.plannedActivities).toBeDefined();
+            expect(ActivityService.getActivities).toBeDefined();
+            expect(ActivityService.getPlannedActivities).toBeDefined();
         }));
     });
 
@@ -172,36 +172,40 @@ describe('ewl activity', function () {
                 $scope: $scope,
                 $state: $state,
                 ActivityService: {
-                    allActivities: {
-                        then: function (callback) {
-                            callback({
-                                    "id": "1",
-                                    "title": "Iss täglich einen Apfel",
-                                    "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-                                    "field": "nutrition",
-                                    "planningCat": "daily"
-                                },
-                                {
-                                    "id": "2",
-                                    "title": "Joggen über Mittag",
-                                    "text": "Run forest, Run...",
-                                    "field": "exercise",
-                                    "planningCat": "daily"
-                                });
-                        }
+                    getActivities: function () {
+                        return {
+                            then: function (callback) {
+                                callback({
+                                        "id": "1",
+                                        "title": "Iss täglich einen Apfel",
+                                        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
+                                        "field": "nutrition",
+                                        "planningCat": "daily"
+                                    },
+                                    {
+                                        "id": "2",
+                                        "title": "Joggen über Mittag",
+                                        "text": "Run forest, Run...",
+                                        "field": "exercise",
+                                        "planningCat": "daily"
+                                    });
+                            }
+                        };
                     },
 
 
-                    plannedActivities: {
-                        then: function (callback) {
-                            callback([
-                                {
-                                    "action_id": 2,
-                                    "field": "exercise"
-                                }
-                            ]
-                            );
-                        }
+                    getPlannedActivities: function () {
+                        return {
+                            then: function (callback) {
+                                callback([
+                                    {
+                                        "action_id": 2,
+                                        "field": "exercise"
+                                    }
+                                ]
+                                );
+                            }
+                        };
                     },
 
                     isActivityPlanned: function (plannedActivities, actionId) {
@@ -239,7 +243,7 @@ describe('ewl activity', function () {
             };
             expect($scope.isActivityPlanned(myActivity.id)).toBeTruthy();
 
-           myActivity.id = "3";
+            myActivity.id = "3";
             expect($scope.isActivityPlanned(myActivity.id)).toBeFalsy();
 
         }));

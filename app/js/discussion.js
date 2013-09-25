@@ -20,10 +20,14 @@ angular.module('yp.discussion', []).
     }
     ])
 
-    .controller('CommentCtrl', ['$scope', 'CommentService', 'ActivityService', 'principal', function ($scope, CommentService, ActionService, principal) {
-        var selectedAction = ActionService.getSelectedActivity();
-        CommentService.getThreadsFor('Activity', selectedAction.id).then(function (data) {
-            $scope.threads = data;
+    .controller('CommentCtrl', ['$scope', 'CommentService', 'principal', function ($scope, CommentService, principal) {
+
+        $scope.$watch($scope.currentActivity, function () {
+            if ($scope.currentActivity) {
+                CommentService.getThreadsFor('Activity', $scope.currentActivity.id).then(function (data) {
+                    $scope.threads = data;
+                });
+            }
         });
 
         $scope.submitNewComment = function (thread) {
@@ -38,7 +42,7 @@ angular.module('yp.discussion', []).
                 date: new Date(),
                 text: thread.newComment
             };
-            thread.newComment=null;
+            thread.newComment = null;
             thread.comments.push(newComment);
         };
 
