@@ -17,4 +17,4 @@ node_modules
 app/vendor
 dist
 .tmp
-ToDos-*.txt
+ToDos*.txt
