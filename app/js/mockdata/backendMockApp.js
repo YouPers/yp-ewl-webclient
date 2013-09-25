@@ -8,8 +8,8 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET(/^partials/).passThrough();
         $httpBackend.whenGET(/^js\/mockdata/).passThrough();
 
-        $httpBackend.whenGET('api/activities').respond(mock.activities);
-        $httpBackend.whenGET('api/activitiesPlanned').respond(mock.plannedActivities);
+        $httpBackend.whenGET('/api/activities').respond(mock.activities);
+        $httpBackend.whenGET('/api/activitiesPlanned').respond(mock.plannedActivities);
 
         $httpBackend.whenGET('api/assessment').respond(mock.assessment);
         $httpBackend.whenGET('api/assessment/answers').respond(mock.assessmentAnswers);
