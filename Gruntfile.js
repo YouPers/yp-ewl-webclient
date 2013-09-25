@@ -422,9 +422,9 @@ module.exports = function (grunt) {
         'build'
     ]);
 
-    grunt.registerTask('heroku:production', ['concurrent:test',
+    grunt.registerTask('heroku:production', ['concurrent:server',
         'autoprefixer', 'connect:heroku:keepalive']);
-    grunt.registerTask('heroku:development', 'concurrent:test',
+    grunt.registerTask('heroku:development', 'concurrent:server',
         'autoprefixer', 'connect:heroku:keepalive');
 
 };
