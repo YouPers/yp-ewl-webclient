@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Youpers - eWorkLife Prototype",
   "dependencies": {
-      "node-static": "~0.7.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
