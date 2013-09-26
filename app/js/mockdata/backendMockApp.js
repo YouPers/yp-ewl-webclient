@@ -30,6 +30,9 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET('api/activitylog').respond(mock.activitylog);
         $httpBackend.whenGET('api/sociallog').respond(mock.sociallog);
 
+        $httpBackend.whenGET('/api/campaigns').respond(mock.campaigns);
+
+
     });
 
 

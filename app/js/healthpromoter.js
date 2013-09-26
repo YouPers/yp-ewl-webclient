@@ -16,10 +16,10 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'authentication
 
     .factory('yp.healthpromoter.HealthPromoterService', ['$http', 'Restangular', function ($http, Restangular) {
 
+        var campaigns = Restangular.all('api/campaigns');
 
         var myService = {
-
-
+            campaigns: campaigns.getList()
         };
 
         return myService;
@@ -28,26 +28,28 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'authentication
     .controller('HealthPromoterCtrl', ['$scope', 'yp.healthpromoter.HealthPromoterService', '$state', '$stateParams', '$modal', '$log',
         function ($scope, HealthPromoterService, $state, $stateParams, $modal, $log) {
 
-            $scope.open = function() {
+            $scope.welcomeMsgOpen = function() {
 
                 var modalInstance = $modal.open({
                     templateUrl: 'partials/healthpromoter.welcome.html',
                     controller: 'HealthPromoterWelcomeCtrl',
-                    resolve: {
-                        //items: function () {
-                        //return $scope.items;
-                        //}
-                    },
                     backdrop: true
                 });
 
                 modalInstance.result.then(function (doNotShowAgain) {
-                    // TODO (rblu): Save into preferences
+                    // TODO (rblu): Save into user-preferences
                     $log.info('doNotShowAgain(healthPromoterWelcome): ' + doNotShowAgain);
                 });
             };
 
-            $scope.open();
+            $scope.welcomeMsgOpen();
+
+                HealthPromoterService.campaigns.then(function (data) {
+                    $scope.campaigns = data;
+                });
+
+
+
         }])
 
     .controller('HealthPromoterWelcomeCtrl', ['$scope', '$modalInstance','$window',
@@ -79,14 +81,14 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'authentication
                     width: '360',
                     videoId: 'lBoaMTwZisU',
                     events: {
-                        'onReady': $window.onPlayerReady,
-                        'onStateChange': $window.onPlayerStateChange
+                        'onReady': onPlayerReady,
+                        'onStateChange':onPlayerStateChange
                     }
                 });
             };
 
             // 4. The API will call this function when the video player is ready.
-            $window.onPlayerReady = function (event) {
+            var onPlayerReady = function (event) {
                 //event.target.playVideo();
             };
 
@@ -95,7 +97,7 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'authentication
             //    the player should play for six seconds and then stop.
             //var done = false;
 
-             $window.onPlayerStateChange = function (event) {
+             var onPlayerStateChange = function (event) {
                 //if (event.data == YT.PlayerState.PLAYING && !done) {
                 //    setTimeout(stopVideo, 6000);
                 //    done = true;

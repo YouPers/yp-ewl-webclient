@@ -5,7 +5,7 @@ mock.plannedActivities = [
         "action_id": "1",
         "field": "exercise",
         "planType": "once",
-        "privacy" : "public",
+        "privacy": "public",
         "executionType": "group",
         "onceDate": "",
         "onceTime": ""
@@ -14,7 +14,7 @@ mock.plannedActivities = [
         "action_id": "3",
         "field": "nutrition",
         "planType": "weekly",
-        "privacy" : "public",
+        "privacy": "public",
         "executionType": "self",
         "weeklyDayOfWeek": "MONDAY"
     },
@@ -22,7 +22,7 @@ mock.plannedActivities = [
         "action_id": "4",
         "field": "exercise",
         "planType": "daily",
-        "privacy" : "public",
+        "privacy": "public",
         "executionType": "group",
         "dailyTime": ""
     }
@@ -877,3 +877,160 @@ mock.activitystats.weekly = {"cols": [
     ]}
 ]};
 
+mock.campaigns = [
+    {
+        id: "asdfasfwf2323f2332",
+        title: "Schindler WorkLife-Balance Kampagne",
+        startDate: "2013-09-10T12:00:00.000Z",
+        endDate: "2013-10-25T12:00:00.000Z",
+        campaignCommunity: {
+            id: "09893453451we",
+            name: "default Community"
+        },
+        healthpromoter: {
+            id: "3412341234",
+            name: "Schindler AG",
+            type: "company"
+        },
+        topic: {
+            id: "1234123345",
+            name: "WorkLife-Balance"
+        },
+
+        stats: {
+            // Abschnitt über Anzahl Personen in der Kampagne
+            individuals: {
+                // wieviele sind der Kampagne beigetreten, total und pro Tag der laufenden Kampagne
+                joined: {
+                    // total bisher beigetreten
+                    total: 150,
+                    // Anzahl Beitritte pro Tag
+                    perDay: [4, 21, 35, 30, 20, 5, 5, 4, 0, 0, 0, 22, 4, 0]
+                },
+                active: {
+                    // Anzahl aktive User pro Tag, wieviele haben sich an einem Tag eingeloggt.
+                    perDay: [4, 22, 50, 80, 70, 75, 90, 80, 65, 56, 54, 40, 34, 60]
+                }
+            },
+
+            // Abschnitt zu den Aktivitäten
+            activities: {
+                all: {
+                    // geplante Aktivitäten
+                    planned: {
+                        total: 789,
+                        perDay: [8, 42, 70, 70, 30, 10, 5, 9, 20, 25]
+                    },
+                    eventsDone: {
+                        // ausgeführte AktivitätsTermine
+                        total: 1344,
+                        perDay: [8, 42, 70, 70, 30, 10, 5, 9, 20, 25]
+                    },
+                    // nicht ausgeführte AktivitätsTermine
+                    eventsMissed: {
+                        total: 812,
+                        perDay: [8, 42, 70, 70, 30, 10, 5, 9, 20, 25]
+                    },
+                    // durchschnittliche Beurteilung der Aktivitäten
+                    avgRating: {
+                        total: 3.8,
+                        trend: [4.3, 4.1, 4.0, 4.1, 3.9, 4.3, 4.1, 4.0, 4.1, 3.9, 4.3, 4.1, 4.0, 4.1, 3.9]
+                    }
+
+                },
+                // dasselbe, aber nur für die Kampagnen-Spezifischen Aktivitäten
+                campaignSpecific: {
+                    planned: {
+                        perDay: [8, 42, 70, 70, 30, 10, 5, 9, 20, 25]
+                    },
+                    eventsDone: {
+                        perDay: [8, 42, 70, 70, 30, 10, 5, 9, 20, 25]
+                    },
+                    eventsMissed: {
+                        perDay: [8, 42, 70, 70, 30, 10, 5, 9, 20, 25]
+                    },
+                    avgRating: {
+                        total: 4.4,
+                        trend: [4.3, 4.1, 4.0, 4.1, 3.9, 4.3, 4.1, 4.0, 4.1, 3.9, 4.3, 4.1, 4.0, 4.1, 4.4]
+                    }
+
+                },
+                // Top Aktivitäten in der Kampagne
+                topActivities: [
+                    {
+                        id: "123121234",
+                        name: "Esse einen Apfel",
+                        stats: {
+                            campaignCommunity: {
+                                planned: 123,
+                                eventsDone: 160,
+                                eventsMissed: 103,
+                                avgRating: 4.8
+                            }
+                        }
+                    },
+                    {
+                        id: "234898",
+                        name: "Vegi Menu Aktion Schindler Mensa",
+                        stats: {
+                            campaignCommunity: {
+                                planned: 123,
+                                eventsDone: 160,
+                                eventsMissed: 103,
+                                avgRating: 4.8
+                            }
+                        }
+                    },
+                    {
+                        id: "90909",
+                        name: "Jogging über Mittag",
+                        stats: {
+                            campaignCommunity: {
+                                planned: 123,
+                                eventsDone: 160,
+                                eventsMissed: 103,
+                                avgRating: 4.8
+                            }
+                        }
+                    }
+
+
+                ]
+            },
+            // Abschnitt zum Assessment
+            assessment: {
+                done: {
+                    // total Personen, die das Assessment ausgefüllt haben
+                    total: 120,
+                    // Anzahl updates pro Tag
+                    updatesPerDay: [3, 12, 34, 23, 12, 10, 12, 12, 5, 2, 1, 34, 10]
+                },
+                result: {
+                    // Allgemeiner Stresslevel und Entwicklung pro Tag
+                    generalLevel: {
+                        currentAvg: 78,
+                        trend: ['', -34, -20, -10, 0, 4, 23, 45, 67, 55, 78, 79, 78]
+                    },
+                    topStressoren: [
+                        {
+                            title: "Arbeitsmenge",
+                            avg: 79,        // durchschnittliche Ausprägugung
+                            impacted: 60    // Anzahl Betroffene im Betrieb mit Ausprägung über 50
+                        },
+                        {
+                            title: "Betriebsklima",
+                            avg: 76,        // durchschnittliche Ausprägugung
+                            impacted: 40    // Anzahl Betroffene im Betrieb mit Ausprägung über 50
+                        },
+                        {
+                            title: "Kontrollbedürfnis",
+                            avg: 72,        // durchschnittliche Ausprägugung
+                            impacted: 30    // Anzahl Betroffene im Betrieb mit Ausprägung über 50
+                        }
+                    ]
+                }
+            }
+        }
+
+    }
+];

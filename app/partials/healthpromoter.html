@@ -10,6 +10,13 @@
         <div class="col-md-3"></div>
 
         <!-- main content -->
-        <div class="col-md-9"></div>
+        <div class="col-md-9">
+            <div class="panel panel-default" ng-repeat="campaign in campaigns">
+                <h4>{{ campaign.title }}</h4>
+                <p>Start: {{campaign.startDate | date:'longDate'}}</p>
+                <p>Ende:  {{campaign.endDate | date:'longDate'}}</p>
+
+            </div>
+        </div>
     </div>
 </div>
