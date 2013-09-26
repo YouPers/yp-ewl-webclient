@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'authentication'])
+angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
 
     .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
@@ -54,8 +54,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'authentication']
         }
          */
 
-        var activities = Restangular.all('api/activities');
-        var plannedActivities = Restangular.all('api/activitiesPlanned');
+        var activities = Restangular.all('activities');
+        var plannedActivities = Restangular.all('activitiesPlanned');
 
 
         var actService = {

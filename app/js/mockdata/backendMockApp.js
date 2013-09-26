@@ -2,25 +2,34 @@
 
 angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
-    .run(function ($httpBackend) {
+    .run(function ($httpBackend, $log) {
 
         // let the normal server deliver our partials
         $httpBackend.whenGET(/^partials/).passThrough();
         $httpBackend.whenGET(/^js\/mockdata/).passThrough();
 
-        $httpBackend.whenGET('/api/activities').respond(mock.activities);
-        $httpBackend.whenGET('/api/activitiesPlanned').respond(mock.plannedActivities);
+        $httpBackend.whenGET('/activities').respond(mock.activities);
+        $httpBackend.whenGET('/activitiesPlanned').respond(mock.plannedActivities);
 
-        $httpBackend.whenGET('api/assessment').respond(mock.assessment);
-        $httpBackend.whenGET('api/assessment/answers').respond(mock.assessmentAnswers);
+        $httpBackend.whenGET('assessment').respond(mock.assessment);
+        $httpBackend.whenGET('assessment/answers').respond(mock.assessmentAnswers);
 
-        $httpBackend.whenGET('api/comments').respond(mock.activityComments);
+        $httpBackend.whenGET('comments').respond(mock.activityComments);
 
-        $httpBackend.whenGET('/api/users').respond(mock.users);
+        $httpBackend.whenGET('/users').respond(mock.users);
 
-        $httpBackend.whenPOST('/api/users').respond(function (method, url, data, headers) {
+        $httpBackend.whenPOST('/users').respond(function (method, url, data, headers) {
             mock.users.push(angular.fromJson(data));
-            return [201, '', {location: '/api/users/' + data.username}];
+            return [201, '', {location: '/users/' + data.username}];
+        });
+
+        $httpBackend.whenPUT(/\/users\//).respond(function (method, url, data, headers) {
+            var index = _.findIndex(mock.users, function(obj) {
+                return obj.id === data.id;
+            });
+            $log.info('PUT '+url + ' success, putting obj into mock users, obj: ' + angular.toJson(data));
+            mock.users[index] = data;
+            return [200, data, {}];
         });
 
         $httpBackend.whenGET('api/activitystats?range=weekly').respond(mock.activitystats.weekly);
@@ -30,7 +39,7 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET('api/activitylog').respond(mock.activitylog);
         $httpBackend.whenGET('api/sociallog').respond(mock.sociallog);
 
-        $httpBackend.whenGET('/api/campaigns').respond(mock.campaigns);
+        $httpBackend.whenGET('/campaigns').respond(mock.campaigns);
 
 
     });

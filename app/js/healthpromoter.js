@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'authentication'])
+angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
 
     .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
         function ($stateProvider, $urlRouterProvider, accessLevels) {
@@ -9,14 +9,14 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'authentication
                     url: "/healthpromoter",
                     templateUrl: "partials/healthpromoter.html",
                     controller: "HealthPromoterCtrl",
-                    access: accessLevels.user
+                    access: accessLevels.all
                 });
         }])
 
 
     .factory('yp.healthpromoter.HealthPromoterService', ['$http', 'Restangular', function ($http, Restangular) {
 
-        var campaigns = Restangular.all('api/campaigns');
+        var campaigns = Restangular.all('campaigns');
 
         var myService = {
             campaigns: campaigns.getList()
@@ -39,10 +39,16 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'authentication
                 modalInstance.result.then(function (doNotShowAgain) {
                     // TODO (rblu): Save into user-preferences
                     $log.info('doNotShowAgain(healthPromoterWelcome): ' + doNotShowAgain);
+                    if (doNotShowAgain && $scope.principal.isAuthenticated()) {
+                        var user = $scope.principal.getUser();
+                        user.preferences.dismissedDialogs.push('HealthPromoterWelcome');
+                        user.put();
+                    }
                 });
             };
-
-            $scope.welcomeMsgOpen();
+            if ((!$scope.principal.isAuthenticated()) || ($scope.principal.getUser().preferences.dismissedDialogs.indexOf('HealthPromoterWelcome') === -1)) {
+                $scope.welcomeMsgOpen();
+            }
 
                 HealthPromoterService.campaigns.then(function (data) {
                     $scope.campaigns = data;
@@ -54,7 +60,7 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'authentication
 
     .controller('HealthPromoterWelcomeCtrl', ['$scope', '$modalInstance','$window',
         function ($scope, $modalInstance, $window) {
-            $scope.doNotShowAgain = false;
+            $scope.doNotShowAgain = true;
 
             $scope.ok = function() {
                 stopVideo();

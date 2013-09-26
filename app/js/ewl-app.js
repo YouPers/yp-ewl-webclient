@@ -4,7 +4,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
         'yp.ewl.activity.chart','yp.topic', 'ui.router', 'ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication', 'yp.user', 'yp.healthpromoter']).
+        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'yp.auth', 'yp.healthpromoter']).
 
     config(['$stateProvider','$urlRouterProvider','accessLevels',
         function ($stateProvider, $urlRouterProvider, accessLevels) {
@@ -70,11 +70,11 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
  * main controller, responsible for
  * - showing global user messages
  * - highlighting global menu option according to currently active state
- * - providing access to logged in principal for all child states.
  *
  */
-    .controller('MainCtrl', ['$scope',  '$state', '$timeout','principal',
+    .controller('MainCtrl', ['$scope',  '$state', '$timeout', 'principal',
         function ($scope, $state, $timeout, principal) {
+
             $scope.principal = principal;
 
             // handle Menu Highlighting

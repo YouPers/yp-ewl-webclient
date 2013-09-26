@@ -32,7 +32,7 @@ mock.plannedActivities = [
 mock.users = [
     {
         "id": "9u230u23f",
-        "href": "user/ubau",
+        "href": "users/ubau",
         "avatar": "assets/img/UBAU.jpeg",
         "username": "urs",
         "firstname": "Urs",
@@ -46,11 +46,14 @@ mock.users = [
             "birthDate": "1963-05-27T00:00:00.000Z",
             "sex": "m",
             "maritalStatus": "married"
+        },
+        preferences: {
+            dismissedDialogs: []
         }
     },
     {
         "id": "234509uldfssdv",
-        "href": "user/rblu",
+        "href": "users/rblu",
         "avatar": "assets/img/RBLU.jpeg",
         "username": "reto",
         "firstname": "Reto",
@@ -64,11 +67,14 @@ mock.users = [
             "birthDate": "1974-07-07T00:00:00.000Z",
             "sex": "m",
             "maritalStatus": "married"
+        },
+        preferences: {
+            dismissedDialogs: []
         }
     },
     {
         "id": "fwefwevv232323",
-        "href": "user/irig",
+        "href": "users/irig",
         "avatar": "assets/img/IRIG.jpeg",
         "username": "ivan",
         "firstname": "Ivan",
@@ -82,11 +88,15 @@ mock.users = [
             "birthDate": "1963-01-01T00:00:00.000Z",
             "sex": "m",
             "maritalStatus": "married"
+        },
+        preferences: {
+            dismissedDialogs: []
         }
+
     },
     {
         "id": "xcyvsvsdvsdv",
-        "href": "user/smue",
+        "href": "users/smue",
         "avatar": "assets/img/SMUE.jpeg",
         "username": "stefan",
         "firstname": "Stefan",
@@ -100,7 +110,11 @@ mock.users = [
             "birthDate": "1974-07-07T00:00:00.000Z",
             "sex": "m",
             "maritalStatus": "married"
+        },
+        preferences: {
+            dismissedDialogs: []
         }
+
     }
 
 ];

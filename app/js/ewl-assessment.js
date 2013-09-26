@@ -20,8 +20,8 @@ angular.module('yp.ewl.assessment', [])
                 return assessment;
             } else {
                 return $q.all([
-                        $http.get('api/assessment'),
-                        $http.get('api/assessment/answers')
+                        $http.get('assessment'),
+                        $http.get('assessment/answers')
                     ]
                     ).then(function (results) {
                         assessment = results[0].data;

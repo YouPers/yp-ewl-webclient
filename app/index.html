@@ -33,7 +33,6 @@
     <script src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
     <script src="lib/angular-ui-router/angular-ui-router.js"></script>
     <script src="lib/angular-bootstrap/ui-bootstrap-tpls-0.6.0-SNAPSHOT_modal.js"></script>
-    <script src="js/authentication.js"></script>
     <script src="lib/ng-google-chart/ng-google-chart.js"></script>
     <script src="lib/lowdash/lodash.js"></script>
     <script src="lib/momentjs/moment.js"></script>
@@ -43,7 +42,7 @@
     <script src="js/common/yp-commons.js"></script>
     <script src="js/ewl-activtiy.js"></script>
     <script src="js/ewl-assessment.js"></script>
-    <script src="js/user.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/discussion.js"></script>
     <script src="js/topic.js"></script>
     <script src="js/ewl-sociallog.js"></script>
@@ -130,7 +129,7 @@
             <div class="nav navbar-right" ng-show="principal.isAuthenticated()">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">{{ principal.identity().fullname() }}<b
+                        <a class="dropdown-toggle" data-toggle="dropdown">{{ principal.getUser().fullname }}<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="" ng-click="logout()">{{ 'LOGOUT' | translate }}</a></li>
