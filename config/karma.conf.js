@@ -13,7 +13,7 @@ module.exports = function (config) {
             'app/lib/ng-google-chart/*.js',
             'app/lib/momentjs/moment.js',
             'app/lib/momentjs/lang-de.js',
-            'app/lib/angular-authentication/angular-authentication.js',
+            'app/lib/angular-authentication/authentication.js',
             'app/lib/restangular/restangular.js',
             'test/lib/angular/angular-mocks.js',
             'app/js/**/*.js',

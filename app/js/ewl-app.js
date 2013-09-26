@@ -5,6 +5,7 @@
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
         'yp.ewl.activity.chart','yp.topic', 'ui.router', 'ui.bootstrap',
         'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication', 'yp.user', 'yp.healthpromoter']).
+
     config(['$stateProvider','$urlRouterProvider','accessLevels',
         function ($stateProvider, $urlRouterProvider, accessLevels) {
         //
@@ -79,6 +80,16 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             // handle Menu Highlighting
             $scope.isActive = function (viewLocation) {
                 return ($state.current.name.indexOf(viewLocation) !== -1);
+            };
+
+            $scope.getTopMenu = function () {
+                if ($state.current.url.indexOf('healthpromoter') !== -1) {
+                    return 'healthpromoter';
+                } else if ($state.current.url.indexOf('home') !== -1) {
+                    return 'home';
+                } else {
+                    return 'individual';
+                }
             };
 
             $scope.$on('globalUserMsg', function (event, msg, type, duration) {
