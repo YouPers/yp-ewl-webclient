@@ -32,12 +32,12 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
             return [200, data, {}];
         });
 
-        $httpBackend.whenGET('api/activitystats?range=weekly').respond(mock.activitystats.weekly);
-        $httpBackend.whenGET('api/activitystats?range=monthly').respond(mock.activitystats.monthly);
-        $httpBackend.whenGET('api/activitystats?range=yearly').respond(mock.activitystats.yearly);
+        $httpBackend.whenGET('activitystats?range=weekly').respond(mock.activitystats.weekly);
+        $httpBackend.whenGET('activitystats?range=monthly').respond(mock.activitystats.monthly);
+        $httpBackend.whenGET('activitystats?range=yearly').respond(mock.activitystats.yearly);
 
-        $httpBackend.whenGET('api/activitylog').respond(mock.activitylog);
-        $httpBackend.whenGET('api/sociallog').respond(mock.sociallog);
+        $httpBackend.whenGET('activitylog').respond(mock.activitylog);
+        $httpBackend.whenGET('sociallog').respond(mock.sociallog);
 
         $httpBackend.whenGET('/campaigns').respond(mock.campaigns);
 

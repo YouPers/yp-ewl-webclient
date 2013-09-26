@@ -6,7 +6,7 @@ angular.module('yp.activitylog', []).
 
         var ActivityLogService = {};
 
-        var activityLogEntries = $http.get('api/activitylog').then(function (result) {
+        var activityLogEntries = $http.get('activitylog').then(function (result) {
             return result.data;
         });
 

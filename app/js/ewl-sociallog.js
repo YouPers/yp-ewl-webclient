@@ -6,7 +6,7 @@ angular.module('yp.sociallog', []).
 
         var SocialLogService = {};
 
-        var socialLogEntries = $http.get('api/sociallog').then(function (result) {
+        var socialLogEntries = $http.get('sociallog').then(function (result) {
             return result.data;
         });
 
