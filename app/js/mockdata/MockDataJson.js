@@ -69,7 +69,7 @@ mock.users = [
             "maritalStatus": "married"
         },
         preferences: {
-            dismissedDialogs: []
+            dismissedDialogs: ['HealthPromoterWelcome']
         }
     },
     {

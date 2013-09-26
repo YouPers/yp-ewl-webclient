@@ -1,4 +1,3 @@
-
 <div class="container">
 
     <div class="page-header">
@@ -11,11 +10,25 @@
 
         <!-- main content -->
         <div class="col-md-9">
-            <div class="panel panel-default" ng-repeat="campaign in campaigns">
+            <div class="panel panel-default campaignOverview" ng-repeat="campaign in campaigns">
                 <h4>{{ campaign.title }}</h4>
-                <p>Start: {{campaign.startDate | date:'longDate'}}</p>
-                <p>Ende:  {{campaign.endDate | date:'longDate'}}</p>
 
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Start: {{campaign.startDate | date:'longDate'}}</p>
+
+                        <p>Ende: {{campaign.endDate | date:'longDate'}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Anzahl geplannte Aktivitäten: {{ campaign.stats.activities.all.planned.total }}
+
+                        <p>Anzahl ausgeführte Aktivitäten: {{ campaign.stats.activities.all.eventsDone.total }}
+                    </div>
+                    <div class="col-md-4">
+                        <img width=250 height=200 src="http://crossfithoodriver.com/wp-content/uploads/2010/12/Picture-1.png">
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

@@ -18,6 +18,7 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
 
         var campaigns = Restangular.all('campaigns');
 
+
         var myService = {
             campaigns: campaigns.getList()
         };
@@ -27,6 +28,8 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
 
     .controller('HealthPromoterCtrl', ['$scope', 'yp.healthpromoter.HealthPromoterService', '$state', '$stateParams', '$modal', '$log',
         function ($scope, HealthPromoterService, $state, $stateParams, $modal, $log) {
+
+            $scope.healthpromoter =
 
             $scope.welcomeMsgOpen = function() {
 
@@ -60,11 +63,14 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
 
     .controller('HealthPromoterWelcomeCtrl', ['$scope', '$modalInstance','$window',
         function ($scope, $modalInstance, $window) {
-            $scope.doNotShowAgain = true;
+
+            $scope.formModel = {
+                doNotShowAgain: false
+            };
 
             $scope.ok = function() {
                 stopVideo();
-                $modalInstance.close($scope.doNotShowAgain);
+                $modalInstance.close($scope.formModel.doNotShowAgain);
             };
 
 
