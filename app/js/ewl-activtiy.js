@@ -126,12 +126,16 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                     if ((allClusters || _.any(activity.field, function (value) {
                         return query.cluster[value];
-                    })) &&
+                        })) &&
                         (allTopics || _.any(activity.topic, function (value) {
                             return query.topic[value];
                         })) &&
-                        (allRatings || query.rating[ratingsMapping[activity.rating]]) &&
-                        (allTimes || query.time[activity.time])) {
+                        (allRatings || query.rating[ratingsMapping[activity.rating]]
+                        ) &&
+                        (allTimes || query.time[activity.time]
+                        ) &&
+                        (!query.fulltext || activity.title.toUpperCase().indexOf(query.fulltext.toUpperCase()) !== -1)
+                        ) {
                         out.push(activity);
                     }
                 }
@@ -327,8 +331,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     physicalFitness: false,
                     nutrition: false,
                     mentalFitness: false
-                }
-
+                },
+                fulltext: ""
             };
 
 

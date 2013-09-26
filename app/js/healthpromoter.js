@@ -40,7 +40,6 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
                 });
 
                 modalInstance.result.then(function (doNotShowAgain) {
-                    // TODO (rblu): Save into user-preferences
                     $log.info('doNotShowAgain(healthPromoterWelcome): ' + doNotShowAgain);
                     if (doNotShowAgain && $scope.principal.isAuthenticated()) {
                         var user = $scope.principal.getUser();
