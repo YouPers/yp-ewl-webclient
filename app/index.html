@@ -31,8 +31,8 @@
     <script src="lib/angular-translate/angular-translate.js"></script>
     <script src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
     <script src="lib/angular-ui-router/angular-ui-router.js"></script>
-    <script src="lib/angular-bootstrap/ui-bootstrap-tpls-0.6.0-SNAPSHOT.js"></script>
-    <script src="lib/angular-authentication/angular-authentication.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls-0.6.0-SNAPSHOT_modal.js"></script>
+    <script src="js/authentication.js"></script>
     <script src="lib/ng-google-chart/ng-google-chart.js"></script>
     <script src="lib/lowdash/lodash.js"></script>
     <script src="lib/momentjs/moment.js"></script>
@@ -77,15 +77,30 @@
             </button>
             <a class="navbar-logo" href="http://www.youpers.com/en/"><img src="assets/img/logo.png" alt="YouPers"
                                                                           height="50"></a>
-            <!--<a class="navbar-brand" href="#">eWorkLife</a>-->
         </div>
-        <div class="navbar-collapse collapse" collapse="navCollapsed">
-            <ul class="nav navbar-nav">
-                <li ng-class="{ active: isActive('cockpit')}"><a href="#/cockpit">{{ 'COCKPIT' | translate }}</a></li>
-                <li ng-class="{ active: isActive('activitylist') || isActive('activityDetail')}"><a href="#/activities">{{ 'ACTIVITIES' | translate }}</a>
+        <div class="navbar-collapse collapse" collapse="navCollapsed" ng-switch on="getTopMenu()">
+            <ul class="nav navbar-nav" ng-switch-default>
+            </ul>
+            <ul class="nav navbar-nav" ng-switch-when="individual">
+                <li ng-class="{ active: isActive('cockpit')}">
+                    <a href="#/cockpit">{{ 'COCKPIT' | translate }}</a>
                 </li>
-                <li ng-class="{ active: isActive('assessment')}"><a href="#/assessment">{{ 'ASSESSMENT' | translate
-                    }}</a></li>
+                <li ng-class="{ active: isActive('activitylist') || isActive('activityDetail')}">
+                    <a href="#/activities">{{ 'ACTIVITIES' | translate }}</a>
+                </li>
+                <li ng-class="{ active: isActive('assessment')}">
+                    <a href="#/assessment">{{ 'ASSESSMENT' | translate }}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav" ng-switch-when="healthpromoter">
+                <li ng-class="{ active: isActive('campaign')}">
+                    <a href="#/healthpromoter/campaign">{{ 'CAMPAIGN' | translate }}</a>
+                </li>
+                <li ng-class="{ active: isActive('sponsoring')}">
+                    <a href="#/healthpromoter/sponsoring">{{ 'SPONSORING' | translate }}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
                 <li class="dropdown" ng-controller="i18nCtrl">
                     <a class="dropdown-toggle" data-toggle="dropdown">{{ 'LANGUAGE' | translate }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">

@@ -137,8 +137,7 @@
                             // to protect the underlying values.
                             propertyFn = function (k) {
                                 var value = idKeys[k],
-                                    retval = data[k],
-                                    ident = {};
+                                    retval = data[k];
 
                                 _identity[value] = function () {
                                     return retval;
