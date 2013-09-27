@@ -11,14 +11,23 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
         $httpBackend.whenGET('/activities').respond(mock.activities);
         $httpBackend.whenGET('/activitiesPlanned').respond(mock.plannedActivities);
+        $httpBackend.whenPOST('/activitiesPlanned').respond(function(method, url, data, headers) {
+            var plan = angular.fromJson(data);
+            plan.id = '12341234';
+            mock.plannedActivities.push(plan);
+            return [201, '', {location: '/activitiesPlanned/' + plan.id}];
+        });
+
 
         $httpBackend.whenGET('/assessments/1').respond(mock.assessment);
+        $httpBackend.whenGET(/\/users\/\w+\/assessmentresults\/[\w+]/).respond(mock.assessmentAnswers);
+
+
 
         $httpBackend.whenGET('comments').respond(mock.activityComments);
 
         $httpBackend.whenGET('/users').respond(mock.users);
 
-        $httpBackend.whenGET(/\/users\/\w+\/assessmentresults\/[\w+]/).respond(mock.assessmentAnswers);
 
 
 

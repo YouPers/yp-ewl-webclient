@@ -83,6 +83,13 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     }
                 }
                 return false;
+            },
+            savePlan: function (plan) {
+                if (plan.id) {
+                    plannedActivities.put(plan);
+                } else {
+                    plannedActivities.post(plan);
+                }
             }
 
         };
@@ -142,7 +149,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             ) &&
                         (allTimes || query.time[activity.time]
                             ) &&
-                        (!query.fulltext || activity.title.toUpperCase().indexOf(query.fulltext.toUpperCase()) !== -1)
+                        (!query.fulltext || (activity.title.toUpperCase()+activity.id.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
                         ) {
                         out.push(activity);
                     }
@@ -172,24 +179,24 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 $scope.currentActivity = getActivityFromId(activityId);
 
 
-                var savedActivityPlan = _.find(plannedActivities, function (obj) {
+                var currentPlan = _.find(plannedActivities, function (obj) {
                     return obj.activity_id === activityId;
                 });
 
-                if (!savedActivityPlan) {
-                    savedActivityPlan = {
-                        "activity_id": $scope.currentActivity.id,
-                        "field": $scope.currentActivity.field,
+                if (!currentPlan) {
+                    currentPlan = {
+                        "activity": $scope.currentActivity,
                         "planType": $scope.currentActivity.defaultplantype,
                         "privacyType": $scope.currentActivity.defaultprivacy,
                         "executionType": $scope.currentActivity.defaultexecutiontype,
                         "visibility": $scope.currentActivity.defaultvisibility,
                         "duration": 15,
-                        "repeatWeeks": 6
+                        "repeatWeeks": 6,
+                        "status": 'active'
                     };
                 }
 
-                $scope.currentActivityPlan = savedActivityPlan;
+                $scope.currentActivityPlan = currentPlan;
             }
 
             function getActivityFromId(activityId) {
@@ -235,7 +242,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             $scope.planActivityDone = function () {
-                // save Activity Plan
+                ActivityService.savePlan($scope.currentActivityPlan);
                 // transition to cockpit
                 $state.go('cockpit');
             };
@@ -353,6 +360,4 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 $scope.currentPage = 1;
                 $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
             }, true);
-        }])
-;
-
+        }]);
