@@ -17,22 +17,25 @@
             $parent.$parent is needed to get out of the popover scope to the inner loop and then to the outer loop. -->
         <div class="row" ng-repeat="question in questioncat.questions" popover="{{ question.exptext }}"
              popover-trigger="mouseenter" popover-placement="{{ $parent.$parent.$last && $last ? 'top' : 'bottom' }}">
-            <div class="row ass-question">
-                <div class="col-md-4 col-md-offset-4"><h4>{{ question.title | translate}}</h4></div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 col-md-offset-1 ass-min-text">{{ question.mintext | translate}}</div>
-                <div class="col-md-4">
-                    <input ng-class="[question.type, assAnswersByQuestionId[question.id].answered ? 'answered' : '']" type="range" min="-100"
-                           max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
-                           ng-model="assAnswersByQuestionId[question.id].answer" ng-mousedown="setQuestionAnswered(question.id)"/>
+            <div class="col-md-10 col-md-offset-1" ng-class="{mainAssQuestion: question.category=='general'}">
+                <div class="row ass-question">
+                    <div class="col-md-4 col-md-offset-4"><h4>{{ question.title | translate}}</h4></div>
                 </div>
-                <div class="col-md-3 ass-max-text">{{ question.maxtext | translate}}</div>
+                <div class="row">
+                    <div class="col-md-3 ass-min-text">{{ question.mintext | translate}}</div>
+                    <div class="col-md-6">
+                        <input ng-class="[question.type, assAnswersByQuestionId[question.id].answered ? 'answered' : '']"
+                               type="range" min="-100"
+                               max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
+                               ng-model="assAnswersByQuestionId[question.id].answer"
+                               ng-mousedown="setQuestionAnswered(question.id)"/>
+                    </div>
+                    <div class="col-md-3 ass-max-text">{{ question.maxtext | translate}}</div>
+                </div>
+                <div class="row ass-mid-text">
+                    <div class="col-md-4 col-md-offset-4">{{ question.midtext | translate}}</div>
+                </div>
             </div>
-            <div class="row ass-mid-text">
-                <div class="col-md-4 col-md-offset-4">{{ question.midtext | translate}}</div>
-            </div>
-
         </div>
     </div>
     <div class="ass-done-button ass-done-button-bottom">
