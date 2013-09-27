@@ -70,7 +70,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
  * main controller, responsible for
  * - showing global user messages
  * - highlighting global menu option according to currently active state
- *
+ * - setting principal to the scope, so all other scopes inherit it
  */
     .controller('MainCtrl', ['$scope',  '$state', '$timeout', 'principal',
         function ($scope, $state, $timeout, principal) {
