@@ -2,218 +2,282 @@
 
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
-    <!-- Page header  -->
-    <div class="page-header">
-        <h1>Cockpit</h1>
+<!-- Page header  -->
+<div class="page-header">
+    <h1>Cockpit</h1>
+
+</div>
+
+<div class="container background-test">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+    <div class="col-md-6">
+        <h2>Massgeschneiderte Vorschläge</h2>
+
+        <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur Stressreduktion vorzuschlagen. </p>
+        <p>Wie hat sich dein Stresslevel entwickelt? </p>
+
+        <p><a class="btn btn-default" href="#" data-toggle="button">Zum Fragebogen &raquo;</a></p>
     </div>
+    <div class="col-md-6" ng-cloak="" ng-controller="yp.ewl.activity.chart.controller">
+        <h2>Aktivitäten</h2>
 
-    <div class="container background-test">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>Massgeschneiderte Vorschläge</h2>
+        <p>Wieviele der geplanten Aktivitäten hast du durchgeführt und wieviele verpasst? </p>
 
-                        <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur Stressreduktion vorzuschlagen. </p>
-                        <p>Wie hat sich dein Stresslevel entwickelt? </p>
+        <p><a class="btn btn-default" href="#">Ausführliche Darstellung &raquo;</a></p>
+        <div class="btn-group">
+            <label class="btn btn-default">
+                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}" name="timespanoption" id="optionweek" checked="checked"> Woche
+                <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}" name="timespanoption" id="optionmonth"> Monat
+                <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}" name="timespanoption" id="optionyear"> Jahr
+                <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
+            </label>
 
-                        <p><a class="btn btn-default" href="#" data-toggle="button">Zum Fragebogen &raquo;</a></p>
-                    </div>
-                    <div class="col-md-6" ng-cloak="" ng-controller="yp.ewl.activity.chart.controller">
-                        <h2>Aktivitäten</h2>
+        </div>
+        <!--<div google-chart chart="chart" style="{{chart.cssStyle}}"/>-->
+        <div google-chart chart="chart"/>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-6 activity-log-panel" ng-controller="ActivityLogCtrl2">
+    </br>
+    <span class="glyphicon controls glyphicon-{{getControlGlyphicon(activityLogVisible)}}" ng-click="activityLogVisible = !activityLogVisible"><span class="cockpit-sub-title">&nbsp;Aktivitätslog</span></span>
+    <!--<button ng-click="activityLogVisible = !activityLogVisible" type="button" class="btn btn-primary btn-lg">{{ toggleInstruction() | translate }}</button>-->
+    <div ng-switch on="activityLogVisible">
+        <div ng-switch-when="true">
 
-                        <p>Wieviele der geplanten Aktivitäten hast du durchgeführt und wieviele verpasst? </p>
+            </br>
+            <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
-                        <p><a class="btn btn-default" href="#">Ausführliche Darstellung &raquo;</a></p>
-                        <div class="btn-group">
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}" name="timespanoption" id="optionweek" checked="checked"> Woche
-                                <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
-                            </label>
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}" name="timespanoption" id="optionmonth"> Monat
-                                <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
-                            </label>
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}" name="timespanoption" id="optionyear"> Jahr
-                                <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
-                            </label>
+            <div class="panel">
+                <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
+            </div>
+
+            <div class="list-group activity-log" >
+                <div class="list-group-item {{getactivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries" ng-controller="ActivityLogHistoryCtrl" ng-switch on="isSelected()">
+                    <div class="row">
+                        <div class="col-xs-2 col-md-2">
+                            <a href="" ng-click="gotoActivityDetail(activityLogEntry)" class="activity-log title">{{ activityLogEntry.id }}</br></a>
+                            <span class="glyphicon controls glyphicon-{{getControlGlyphicon()}}" ng-click="toggleSelected()"></span></td>
+                        </div>
+                        <div class="col-xs-7 col-md-7">
+                            <a href="" ng-click="gotoActivityDetail(activityLogEntry)" class="activity-log title">{{activityLogEntry.title}}</br></a>
+                            {{ activityLogEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
+                            {{ activityLogEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
+                            {{ activityLogEntry.visibility | uppercase | translate }}
+                        </div>
+                        <div class="col-xs-2 col-md-2">
+                            <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" data-container="body" ng-repeat="activityField in activityLogEntry.activityFields">
+                                <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
+                            </div>
 
                         </div>
-                        <!--<div google-chart chart="chart" style="{{chart.cssStyle}}"/>-->
-                        <div google-chart chart="chart"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 activity-log-panel" ng-controller="ActivityLogCtrl2">
-                        </br>
-                        <button ng-click="activityLogVisible = !activityLogVisible" type="button" class="btn btn-primary btn-lg">{{ toggleInstruction() | translate }}</button>
-
-                        <div ng-switch on="activityLogVisible">
-                            <div ng-switch-when="true">
-
-                                </br>
-                                <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
-
-                                <div class="panel">
-                                    <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
+                        <div class="col-xs-1 col-md-1">
+                            <div class="activity-log time-box">
+                                <div class="col-md-1" popover="{{ activityLogEntry.source | uppercase | translate }}"
+                                     popover-trigger="mouseenter">
+                                    <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activityLogEntry.source == 'youpers'" class="activityListClusterIcon">
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-switch-when="true">
+                        <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityLogEntry.activityHistory" ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
+                            <div class="row">
+                                <div class="col-xs-2 col-md-2">
+                                </div>
+                                <div class="col-xs-1 col-md-1">
+                                    <div class="activity-log status" ng-controller="ActivityDoneCtrl">
+                                        <a class="glyphicon controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" href="" ng-click="openDialog(activityLogEntry, activityHistoryEntry)" class="badge"></a>
 
-                                <div class="list-group activity-log" >
-                                    <div class="list-group-item {{getactivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries" ng-controller="ActivityLogHistoryCtrl" ng-switch on="isSelected()">
-                                        <div class="row">
-                                            <div class="col-xs-2 col-md-2">
-                                                <button ng-click="toggleSelected()" type="button" class="btn btn-primary btn-sm">{{ activityLogEntry.id }}</button>
-                                            </div>
-                                            <div class="col-xs-7 col-md-7">
-                                                <a href="" ng-click="gotoActivityDetail(activityLogEntry)" class="activity-log title">{{activityLogEntry.title}}</br></a>
-                                                {{ activityLogEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
-                                                {{ activityLogEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
-                                                {{ activityLogEntry.visibility | uppercase | translate }}
-                                            </div>
-                                            <div class="col-xs-2 col-md-2">
-                                                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" data-container="body" ng-repeat="activityField in activityLogEntry.activityFields">
-                                                    <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
-                                                </div>
+                                        <div class="doneActivityDialog panel panel-default" ng-show="isDoneDialogOpen()" >
+                                            <a class="close" ng-click="hideDialog()">×</a>
 
-                                            </div>
-                                            <div class="col-xs-1 col-md-1">
-                                                <div class="activity-log time-box">
-                                                    <div class="col-md-1" popover="{{ activityLogEntry.source | uppercase | translate }}"
-                                                         popover-trigger="mouseenter">
-                                                        <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activityLogEntry.source == 'youpers'" class="activityListClusterIcon">
+                                            <div>
+                                                <h3>{{ getActivityInfo() }}</h3>
+                                                <h4>{{ 'ON' | translate }} {{ getActivityWhen() }}</h4>
+                                                Aktivität ausgeführt? Beurteile, wie du dich dabei gefühlt hast. Du kannst dies mit einem Rating oder einem Kommentar machen.
+
+                                                <form class="navbar-form">
+                                                    <div class="panel">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+
+                                                            <div class="btn-group">
+                                                                Ausgeführt?</br>
+                                                                <button class="btn btn-default" ng-model="done" btn-radio="1">{{ 'YES' | translate }}</button>
+                                                                <button class="btn btn-default" ng-model="done" btn-radio="2">{{ 'NO' | translate }}</button>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-6">
+                                                            <div class="btn-group">
+                                                                Wie hast du dich gefühlt?</br>
+                                                                <button class="btn btn-default" ng-model="rating" btn-radio="1"><div class="activity-feedback-1-small"></div></button>
+                                                                <button class="btn btn-default" ng-model="rating" btn-radio="2"><div class="activity-feedback-2-small"></div></button>
+                                                                <button class="btn btn-default" ng-model="rating" btn-radio="3"><div class="activity-feedback-3-small"></div></button>
+                                                                <button class="btn btn-default" ng-model="rating" btn-radio="4"><div class="activity-feedback-4-small"></div></button>
+                                                                <button class="btn btn-default" ng-model="rating" btn-radio="5"><div class="activity-feedback-5-small"></div></button>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    </div>
+
+                                                    <div class="panel">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-10">
+
+                                                            <div class="form-group">
+                                                                <input type="text" placeholder="{{ 'COMMENT' | translate }}" class="form-control comment"
+                                                                       ng-model="newComment">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <button type="submit" ng-click="storeFeedback(activityHistoryEntry)" class="btn btn-success btn-sm">{{ 'SAVE' | translate }}</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                                </form>
                                             </div>
+
+
                                         </div>
-                                        <div class="row" ng-switch-when="true">
-                                            <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityLogEntry.activityHistory"ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
-                                                <div class="row">
-                                                    <div class="col-xs-1 col-md-1">
-                                                        <div class="activity-log status">
-                                                            <span class="glyphicon glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}"></span></td>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-6 col-md-6">
-                                                        <span class="activity-log comments">{{ "COMMENTS" | translate }} <a href="" ng-click="toggleComments()" class="badge">{{activityHistoryEntry.nofComments}}</a></span>
-                                                    </div>
-                                                    <div class="col-xs-2 col-md-2">
-                                                        <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
-                                                        <div class="activity-log rating">
-                                                            <rating max="5" value="activityHistoryEntry.feedback"></rating>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-3 col-md-3">
-                                                        <div class="activity-log time-box">
+
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
+                                </div>
+                                <div class="col-xs-4 col-md-4">
+                                    <a href="" ng-click="toggleComments()" class="activity-log comments">{{ "COMMENTS" | translate }} </a>
+                                    <a href="" ng-click="toggleComments()" class="badge">{{activityHistoryEntry.nofComments}}</a>
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <div class="activity-log time-box">
                                                                 <span class="activity-log time-box timestamp">{{activityHistoryEntry.on | fromNowFake}}</br>
-                                                                    <span class="activity-log time-box info">{{activityHistoryEntry.recurringInfo}}&nbsp;&nbsp;
-                                                                        <span class="glyphicon glyphicon-repeat"></span>
-                                                                    </span>
+                                                                    <!--<span class="activity-log time-box info">{{activityHistoryEntry.recurringInfo}}&nbsp;&nbsp;-->
+                                                                        <!--<span class="glyphicon glyphicon-repeat"></span>-->
+                                                                    <!--</span>-->
                                                                 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row" ng-switch-when="true">
-                                                    <div class="list-group-item" ng-repeat="comment in activityHistoryEntry.comments">
-                                                        <div class="row">
-                                                            <div class="col-xs-2 col-md-2">
-                                                                <a href="">
-                                                                    <img ng-src="{{comment.author.pic}}" class="social-log author-avatar"/>
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xs-3 col-md-3">
-                                                                <a href="">
-                                                                    <span class="social-log author-name">{{comment.author.fullname}}</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xs-5 col-md-5">
-                                                                    <span class="social-log comment">{{comment.text}}</span>
-                                                            </div>
-                                                            <div class="col-xs-2 col-md-2">
-                                                                <div class="social-log time-box">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-switch-when="true">
+                                <div class="list-group-item" ng-repeat="comment in activityHistoryEntry.comments">
+                                    <div class="row">
+                                        <div class="col-xs-2 col-md-2">
+                                            <a href="">
+                                                <img ng-src="{{comment.author.pic}}" class="social-log author-avatar"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <a href="">
+                                                <span class="social-log author-name">{{comment.author.fullname}}</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-5 col-md-5">
+                                            <span class="social-log comment">{{comment.text}}</span>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <div class="social-log time-box">
                                                                             <span class="activity-log time-box timestamp">
                                                                                    {{comment.date | fromNowFake}}</br>
                                                                             </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div ng-switch-when="false">
-
-                                </br>
-                                <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
-
                             </div>
                         </div>
-
-                    </div>
-                    <div class="col-md-6" ng-controller="SocialLogCtrl">
-                        <!--<h2>Social Ticker</h2>-->
-
-                        </br>
-                        <button ng-click="socialLogVisible = !socialLogVisible" type="button" class="btn btn-primary btn-lg">{{ toggleInstruction() | translate }}</button>
-
-                        <div ng-switch on="socialLogVisible">
-                            <div ng-switch-when="true">
-
-                                </br>
-                                <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
-
-                                <div class="list-group social-log">
-
-                                    <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
-                                        <div class="row">
-                                            <div class="col-xs-10 col-md-10">
-                                                <div class="col-xs-6 col-md-5">
-                                                    <div class="social-log status">
-                                                        <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
-                                                    </div>
-                                                    <a href="#/u/ubau">
-                                                        <img ng-src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
-                                                        <strong class="social-log author-name">{{socialLogEntry.authorFirstName}}</br>{{socialLogEntry.authorFamilyName}}</strong>
-                                                    </a>
-                                                </div>
-                                                <div class="col-xs-6 col-md-7">
-                                                    <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
-                                                    <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
-                                                    <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-2 col-md-2">
-                                                <!--<div class="col-xs-6 col-md-4">-->
-                                                <div class="social-log time-box">
-                                                <span class="activity-log time-box timestamp">
-                                                    {{socialLogEntry.timestamp | fromNowFake}}</br>
-                                                </span>
-                                                </div>
-                                                <!--</div>-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div ng-switch-when="false">
-
-                                </br>
-                                <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
-
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
             </div>
 
         </div>
-        <hr>
+        <div ng-switch-when="false">
+
+            </br>
+            <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+
+        </div>
     </div>
+
 </div>
+<div class="col-md-6" ng-controller="SocialLogCtrl">
+    <!--<h2>Social Ticker</h2>-->
+
+    </br>
+    <span class="glyphicon controls glyphicon-{{getControlGlyphicon(socialLogVisible)}}" ng-click="socialLogVisible = !socialLogVisible"><span class="cockpit-sub-title">&nbsp;Social Ticker</span></span>
+    <!--<button ng-click="socialLogVisible = !socialLogVisible" type="button" class="btn btn-primary btn-lg">{{ toggleInstruction() | translate }}</button>-->
+
+    <div ng-switch on="socialLogVisible">
+        <div ng-switch-when="true">
+
+            </br>
+            <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+            <div class="list-group social-log">
+
+                <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
+                    <div class="row">
+                        <div class="col-xs-10 col-md-10">
+                            <div class="col-xs-6 col-md-5">
+                                <div class="social-log status">
+                                    <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
+                                </div>
+                                <a href="#/u/ubau">
+                                    <img ng-src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
+                                    <strong class="social-log author-name">{{socialLogEntry.authorFirstName}}</br>{{socialLogEntry.authorFamilyName}}</strong>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-7">
+                                <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
+                                <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
+                                <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-2 col-md-2">
+                            <!--<div class="col-xs-6 col-md-4">-->
+                            <div class="social-log time-box">
+                                                <span class="activity-log time-box timestamp">
+                                                    {{socialLogEntry.timestamp | fromNowFake}}</br>
+                                                </span>
+                            </div>
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div ng-switch-when="false">
+
+            </br>
+            <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+        </div>
+    </div>
+
+
+</div>
+</div>
+</div>
+
+</div>
+<hr>
+</div>
+</div>
+

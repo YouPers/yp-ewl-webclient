@@ -19,7 +19,7 @@
                 "type": "past",
                 "nofComments": "1",
                 "feedback": "2",
-                "on": "2013-08-06T18:33:50.558Z",
+                "on": "2013-08-06T18:30:00.000Z",
                 "comments": [
                     {
                         "id": "1",
@@ -29,7 +29,7 @@
                             "pic": "assets/img/UBAU.jpeg",
                             "link": "#/u/UBAU"
                         },
-                        "date": "2013-08-06T18:33:50.558Z",
+                        "date": "2013-08-06T18:00:00.000Z",
                         "text": "Na ja, mein Stresslevel sieht nicht allzu positiv aus, leider."
                     }
                 ]
@@ -388,7 +388,7 @@
             {
                 "id": "6",
                 "status": "open",
-                "type": "current",
+                "type": "future",
                 "nofComments": "3",
                 "feedback": "0",
                 "on": "2013-08-20T12:00:00.000Z",

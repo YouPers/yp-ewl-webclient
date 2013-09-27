@@ -165,6 +165,13 @@ angular.module('yp.activitylog', []).
             $state.go('activitylist');
         };
 
+        $scope.getControlGlyphicon = function (visibilty) {
+            if (visibilty) {
+                return "collapse-down";
+            } else {
+                return "expand";
+            }
+        };
 
     }])
 
@@ -176,6 +183,14 @@ angular.module('yp.activitylog', []).
 
         $scope.isSelected = function () {
             return $scope.selected;
+        };
+
+        $scope.getControlGlyphicon = function () {
+            if ($scope.selected) {
+                return "collapse-down";
+            } else {
+                return "expand";
+            }
         };
 
         $scope.getActivityTimeType = function(status) {
@@ -206,6 +221,8 @@ angular.module('yp.activitylog', []).
 
     .controller('ActivityCommentCtrl', ['$scope', function ($scope) {
 
+        // show/hide details
+
         $scope.toggleComments = function () {
             $scope.comments = !$scope.comments;
         };
@@ -213,5 +230,85 @@ angular.module('yp.activitylog', []).
         $scope.isComments = function () {
             return $scope.comments;
         };
+
+    }])
+
+    .controller('ActivityDoneCtrl', ['$scope', function ($scope) {
+
+        // Done Dialog
+
+        $scope.openDialog = function (activityLogEntry, activityHistoryEntry) {
+            $scope.activityLogEntry = activityLogEntry;
+            $scope.activityHistoryEntry = activityHistoryEntry;
+
+            if ($scope.activityHistoryEntry.status === "done") {
+                $scope.done = 1;
+            } else {
+                $scope.done = 2;
+            }
+
+            $scope.rating = parseInt($scope.activityHistoryEntry.feedback,10);
+            $scope.newComment = "";
+
+            $scope.doneDialogOpen = true;
+
+        };
+
+        $scope.hideDialog = function () {
+            $scope.doneDialogOpen = false;
+        };
+
+        $scope.isDoneDialogOpen = function () {
+            return $scope.doneDialogOpen;
+        };
+
+        $scope.getActivityInfo = function () {
+            return $scope.activityLogEntry.id + ": " + $scope.activityLogEntry.title;
+        };
+
+        $scope.getActivityWhen = function () {
+            var date = new Date($scope.activityHistoryEntry.on);
+            return date.toLocaleDateString() + ", " + date.toLocaleTimeString();
+        };
+
+        $scope.isActive = function (rating) {
+            if ($scope.rating === rating) {
+                return "active";
+            } else {
+                return "";
+            }
+        };
+
+        $scope.storeFeedback = function (activityHistoryEntry) {
+
+            if ($scope.done === 1) {
+                activityHistoryEntry.status = "done";
+            } else {
+                activityHistoryEntry.status = "not done";
+            }
+
+            activityHistoryEntry.feedback = $scope.rating;
+
+            if ($scope.newComment.length > 0) {
+
+                var comment = {};
+                comment.id = activityHistoryEntry.nofComments + 1;
+                comment.text = $scope.newComment;
+
+                var author = {};
+                author.id = 1;
+                author.fullname = "Urs Baumeler";
+                author.pic = "assets/img/UBAU.jpeg";
+                author.link = "#/u/UBAU";
+
+                comment.author = author;
+
+                activityHistoryEntry.comments.push(comment);
+                activityHistoryEntry.nofComments++;
+
+            }
+            $scope.hideDialog();
+        };
+
 
     }]);

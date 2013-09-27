@@ -50,5 +50,13 @@ angular.module('yp.sociallog', []).
             return icon;
         };
 
+        $scope.getControlGlyphicon = function (visibilty) {
+            if (visibilty) {
+                return "collapse-down";
+            } else {
+                return "expand";
+            }
+        };
+
     }]);
     
