@@ -4,6 +4,7 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
     .run(function ($httpBackend, $log) {
 
+
         // let the normal server deliver our partials
         $httpBackend.whenGET(/^partials/).passThrough();
         $httpBackend.whenGET(/^js\/mockdata/).passThrough();
@@ -11,12 +12,15 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET('/activities').respond(mock.activities);
         $httpBackend.whenGET('/activitiesPlanned').respond(mock.plannedActivities);
 
-        $httpBackend.whenGET('assessment').respond(mock.assessment);
-        $httpBackend.whenGET('assessment/answers').respond(mock.assessmentAnswers);
+        $httpBackend.whenGET('/assessments/1').respond(mock.assessment);
 
         $httpBackend.whenGET('comments').respond(mock.activityComments);
 
         $httpBackend.whenGET('/users').respond(mock.users);
+
+        $httpBackend.whenGET(/\/users\/\w+\/assessmentresults\/[\w+]/).respond(mock.assessmentAnswers);
+
+
 
         $httpBackend.whenPOST('/users').respond(function (method, url, data, headers) {
             mock.users.push(angular.fromJson(data));
@@ -43,5 +47,3 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
 
     });
-
-

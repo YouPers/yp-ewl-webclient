@@ -30,12 +30,6 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 templateUrl: "partials/cockpit.html",
                 access: accessLevels.user
             })
-            .state('assessment', {
-                url: "/assessment",
-                templateUrl: "partials/assessment.html",
-                controller: "AssessmentCtrl",
-                access: accessLevels.all
-            })
 
 
         ;

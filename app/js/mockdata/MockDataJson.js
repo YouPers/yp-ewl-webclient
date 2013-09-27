@@ -49,7 +49,9 @@ mock.users = [
         },
         preferences: {
             dismissedDialogs: []
-        }
+        },
+        assessmentAnswers: []
+
     },
     {
         "id": "234509uldfssdv",
@@ -70,7 +72,9 @@ mock.users = [
         },
         preferences: {
             dismissedDialogs: ['HealthPromoterWelcome']
-        }
+        },
+        assessmentAnswers: []
+
     },
     {
         "id": "fwefwevv232323",
@@ -91,7 +95,8 @@ mock.users = [
         },
         preferences: {
             dismissedDialogs: []
-        }
+        },
+        assessmentAnswers: []
 
     },
     {
@@ -113,8 +118,8 @@ mock.users = [
         },
         preferences: {
             dismissedDialogs: []
-        }
-
+        },
+        assessmentAnswers: []
     }
 
 ];
