@@ -43,7 +43,7 @@ Create a new app with this buildpack:
 
     heroku create myapp --buildpack https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
 
-Or add this buildpack to your current app:
+or add this buildpack to your current app:
 
     heroku config:add BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
 

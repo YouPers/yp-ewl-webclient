@@ -2,34 +2,57 @@
 
 angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
-    .run(function ($httpBackend) {
+    .run(function ($httpBackend, $log) {
+
 
         // let the normal server deliver our partials
         $httpBackend.whenGET(/^partials/).passThrough();
         $httpBackend.whenGET(/^js\/mockdata/).passThrough();
 
-        $httpBackend.whenGET('/api/activities').respond(mock.activities);
-        $httpBackend.whenGET('/api/activitiesPlanned').respond(mock.plannedActivities);
-
-        $httpBackend.whenGET('api/assessment').respond(mock.assessment);
-        $httpBackend.whenGET('api/assessment/answers').respond(mock.assessmentAnswers);
-
-        $httpBackend.whenGET('api/comments').respond(mock.activityComments);
-
-        $httpBackend.whenGET('/api/users').respond(mock.users);
-
-        $httpBackend.whenPOST('/api/users').respond(function (method, url, data, headers) {
-            mock.users.push(angular.fromJson(data));
-            return [201, '', {location: '/api/users/' + data.username}];
+        $httpBackend.whenGET('/activities').respond(mock.activities);
+        $httpBackend.whenGET('/activitiesPlanned').respond(mock.plannedActivities);
+        $httpBackend.whenPOST('/activitiesPlanned').respond(function(method, url, data, headers) {
+            var plan = angular.fromJson(data);
+            plan.id = '12341234';
+            mock.plannedActivities.push(plan);
+            return [201, '', {location: '/activitiesPlanned/' + plan.id}];
         });
 
-        $httpBackend.whenGET('api/activitystats?range=weekly').respond(mock.activitystats.weekly);
-        $httpBackend.whenGET('api/activitystats?range=monthly').respond(mock.activitystats.monthly);
-        $httpBackend.whenGET('api/activitystats?range=yearly').respond(mock.activitystats.yearly);
 
-        $httpBackend.whenGET('api/activitylog').respond(mock.activitylog);
-        $httpBackend.whenGET('api/sociallog').respond(mock.sociallog);
+        $httpBackend.whenGET('/assessments/1').respond(mock.assessment);
+        $httpBackend.whenGET(/\/users\/\w+\/assessmentresults\/[\w+]/).respond(mock.assessmentAnswers);
+
+
+
+        $httpBackend.whenGET('comments').respond(mock.activityComments);
+
+        $httpBackend.whenGET('/users').respond(mock.users);
+
+
+
+
+        $httpBackend.whenPOST('/users').respond(function (method, url, data, headers) {
+            mock.users.push(angular.fromJson(data));
+            return [201, '', {location: '/users/' + data.username}];
+        });
+
+        $httpBackend.whenPUT(/\/users\//).respond(function (method, url, data, headers) {
+            var index = _.findIndex(mock.users, function(obj) {
+                return obj.id === data.id;
+            });
+            $log.info('PUT '+url + ' success, putting obj into mock users, obj: ' + angular.toJson(data));
+            mock.users[index] = data;
+            return [200, data, {}];
+        });
+
+        $httpBackend.whenGET('activitystats?range=weekly').respond(mock.activitystats.weekly);
+        $httpBackend.whenGET('activitystats?range=monthly').respond(mock.activitystats.monthly);
+        $httpBackend.whenGET('activitystats?range=yearly').respond(mock.activitystats.yearly);
+
+        $httpBackend.whenGET('activitylog').respond(mock.activitylog);
+        $httpBackend.whenGET('sociallog').respond(mock.sociallog);
+
+        $httpBackend.whenGET('/campaigns').respond(mock.campaigns);
+
 
     });
-
-

@@ -73,9 +73,9 @@ module.exports = function (grunt) {
         },
         connect: {
             options: {
-                port: 9000,
+                port: process.env.PORT || 9000,
                 // Change this to '0.0.0.0' to access the server from outside.
-                hostname: 'localhost'
+                hostname: '0.0.0.0'
             },
             livereload: {
                 options: {
@@ -422,9 +422,9 @@ module.exports = function (grunt) {
         'build'
     ]);
 
-    grunt.registerTask('heroku:production', ['concurrent:test',
-        'autoprefixer', 'connect:heroku:keepalive']);
-    grunt.registerTask('heroku:development', 'concurrent:test',
-        'autoprefixer', 'connect:heroku:keepalive');
+    grunt.registerTask('heroku:production', ['concurrent:server',
+        'autoprefixer']);
+    grunt.registerTask('heroku:development', ['concurrent:server',
+        'autoprefixer']);
 
 };

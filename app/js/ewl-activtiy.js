@@ -1,6 +1,53 @@
 'use strict';
 
-angular.module('yp.ewl.activity', ['restangular'])
+angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
+
+
+    .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
+        function ($stateProvider, $urlRouterProvider, accessLevels) {
+            $stateProvider
+                .state('activitylist', {
+                    url: "/activities",
+                    templateUrl: "partials/activity.list.html",
+                    controller: "ActivityListCtrl",
+                    access: accessLevels.all,
+                    resolve: {
+                        allActivities: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getActivities();
+                        }],
+                        plannedActivities: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getPlannedActivities();
+                        }]
+                    }
+                })
+                .state('activityDetail', {
+                    url: "/activities/:activityId",
+                    templateUrl: "partials/activity.detail.html",
+                    controller: "ActivityCtrl",
+                    access: accessLevels.individual,
+                    abstract: true,
+                    resolve: {
+                        allActivities: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getActivities();
+                        }],
+                        plannedActivities: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getPlannedActivities();
+                        }]
+                    }
+                })
+                .state('activityDetail.self', {
+                    url: "",
+                    templateUrl: "partials/activity.detail.self.html",
+                    controller: "ActivityCtrl",
+                    access: accessLevels.individual
+                })
+                .state('activityDetail.group', {
+                    url: "/group",
+                    templateUrl: "partials/activity.detail.group.html",
+                    controller: "ActivityCtrl",
+                    access: accessLevels.individual
+                });
+        }])
 
 
     .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
@@ -15,8 +62,8 @@ angular.module('yp.ewl.activity', ['restangular'])
         }
          */
 
-        var activities = Restangular.all('api/activities');
-        var plannedActivities = Restangular.all('api/activitiesPlanned');
+        var activities = Restangular.all('activities');
+        var plannedActivities = Restangular.all('activitiesPlanned');
 
 
         var actService = {
@@ -36,6 +83,13 @@ angular.module('yp.ewl.activity', ['restangular'])
                     }
                 }
                 return false;
+            },
+            savePlan: function (plan) {
+                if (plan.id) {
+                    plannedActivities.put(plan);
+                } else {
+                    plannedActivities.post(plan);
+                }
             }
 
         };
@@ -45,7 +99,13 @@ angular.module('yp.ewl.activity', ['restangular'])
 
     .filter('ActivityListFilter', [function () {
         return function (activities, query) {
-            var out = [], allClusters = true;
+            var out = [],
+                allClusters = true,
+                allTopics = true,
+                allTimes = true,
+                allRatings = true,
+                allExecutiontypes = true,
+                ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'];
 
             // if we do not get a query, we return the full set of answers
             if (!query) {
@@ -59,7 +119,7 @@ angular.module('yp.ewl.activity', ['restangular'])
                 }
             });
 
-            var allTopics = true;
+
             angular.forEach(query.topic, function (value, key) {
                 if (value) {
                     allTopics = false;
@@ -67,21 +127,24 @@ angular.module('yp.ewl.activity', ['restangular'])
             });
 
 
-            var allRatings = true;
             angular.forEach(query.rating, function (value, key) {
                 if (value) {
                     allRatings = false;
                 }
             });
 
-            var ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'];
-            var allTimes = true;
+
             angular.forEach(query.times, function (value, key) {
                 if (value) {
                     allTimes = false;
                 }
             });
 
+            angular.forEach(query.executiontype, function (value, key) {
+                if (value) {
+                    allExecutiontypes = false;
+                }
+            });
 
             angular.forEach(activities, function (activity, key) {
 
@@ -91,8 +154,13 @@ angular.module('yp.ewl.activity', ['restangular'])
                         (allTopics || _.any(activity.topic, function (value) {
                             return query.topic[value];
                         })) &&
-                        (allRatings || query.rating[ratingsMapping[activity.rating]]) &&
-                        (allTimes || query.time[activity.time])) {
+                        (allRatings || query.rating[ratingsMapping[activity.rating]]
+                            ) &&
+                        (allExecutiontypes || query.executiontype[activity.defaultexecutiontype]) &&
+                        (allTimes || query.time[activity.time]
+                            ) &&
+                        (!query.fulltext || (activity.title.toUpperCase()+activity.id.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
+                        ) {
                         out.push(activity);
                     }
                 }
@@ -121,24 +189,24 @@ angular.module('yp.ewl.activity', ['restangular'])
                 $scope.currentActivity = getActivityFromId(activityId);
 
 
-                var savedActivityPlan = _.find(plannedActivities, function (obj) {
+                var currentPlan = _.find(plannedActivities, function (obj) {
                     return obj.activity_id === activityId;
                 });
 
-                if (!savedActivityPlan) {
-                    savedActivityPlan = {
-                        "activity_id": $scope.currentActivity.id,
-                        "field": $scope.currentActivity.field,
+                if (!currentPlan) {
+                    currentPlan = {
+                        "activity": $scope.currentActivity,
                         "planType": $scope.currentActivity.defaultplantype,
                         "privacyType": $scope.currentActivity.defaultprivacy,
                         "executionType": $scope.currentActivity.defaultexecutiontype,
                         "visibility": $scope.currentActivity.defaultvisibility,
                         "duration": 15,
-                        "repeatWeeks": 6
+                        "repeatWeeks": 6,
+                        "status": 'active'
                     };
                 }
 
-                $scope.currentActivityPlan = savedActivityPlan;
+                $scope.currentActivityPlan = currentPlan;
             }
 
             function getActivityFromId(activityId) {
@@ -184,26 +252,30 @@ angular.module('yp.ewl.activity', ['restangular'])
             };
 
             $scope.planActivityDone = function () {
-                // save Activity Plan
+                ActivityService.savePlan($scope.currentActivityPlan);
                 // transition to cockpit
                 $state.go('cockpit');
             };
 
 
-
         }])
 
-    .controller('ActivityListCtrl', ['$scope', 'ActivityService', '$filter', '$state',
-        function ($scope, ActivityService, $filter, $state) {
-            ActivityService.getActivities().then(function (data) {
-                $scope.activities = data;
-                $scope.filteredActivities = data;
+    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities',
+        function ($scope,  $filter, $state, allActivities, plannedActivities) {
 
+            // enrich plain activities with planning Data
+            _.forEach(allActivities, function (act) {
+                var matchingPlan = _.find(plannedActivities, function (plan) {
+                    return (act.id === plan.activity.id);
+                });
+                act.plan = matchingPlan;
             });
 
-            ActivityService.getPlannedActivities().then(function (data) {
-                $scope.plannedActivities = data;
-            });
+
+            $scope.activities = allActivities;
+            $scope.filteredActivities = allActivities;
+            $scope.plannedActivities = plannedActivities;
+
 
             $scope.clusters = [
                 {
@@ -255,11 +327,6 @@ angular.module('yp.ewl.activity', ['restangular'])
                 }
             };
 
-
-            $scope.isActivityPlanned = function (activityId) {
-                return ActivityService.isActivityPlanned($scope.plannedActivities, activityId);
-            };
-
             $scope.gotoActivityDetail = function (activity) {
                 $state.go('activityDetail.' + activity.defaultexecutiontype, {activityId: activity.id});
             };
@@ -289,8 +356,12 @@ angular.module('yp.ewl.activity', ['restangular'])
                     physicalFitness: false,
                     nutrition: false,
                     mentalFitness: false
+                },
+                fulltext: "",
+                executiontype: {
+                    self: false,
+                    group: false
                 }
-
             };
 
 
@@ -303,6 +374,4 @@ angular.module('yp.ewl.activity', ['restangular'])
                 $scope.currentPage = 1;
                 $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
             }, true);
-        }])
-;
-
+        }]);

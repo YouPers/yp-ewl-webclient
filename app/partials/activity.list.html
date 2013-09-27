@@ -1,160 +1,192 @@
 <div class="container">
 
-<!-- Page header  -->
-<div class="page-header">
-    <h1>Plane eine für dich passende Aktivität</h1>
-</div>
-
-<!-- die top row - sorter und empfehlungen -->
-<div class="row">
-    <div class="col-md-6 col-md-offset-2">
-        <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
-                    max-size="maxSize" class="pagination" boundary-links="false"/>
-    </div>
-    <div class="col-md-4">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Topic</h3>
-            </div>
-        </div>
-        <div class="row panel panel-default">
-            <div class="col-md-6">
-                <div class="checkbox filter-option"
-                     ng-class="query.topic.workLifeBalance ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.topic.workLifeBalance">
-                        WorkLife Balance
-                    </label>
-                </div>
-            </div>
-        </div>
+    <!-- Page header  -->
+    <div class="page-header">
+        <h1>Plane eine für dich passende Aktivität</h1>
     </div>
 
-</div>
+    <!-- die top row - sorter und empfehlungen -->
+    <div class="row">
+        <div class="col-md-6 col-md-offset-2">
+            <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
+                        max-size="maxSize" class="pagination" boundary-links="false"/>
+        </div>
+        <div class="col-md-4">
+            <div class="filter-option"
+                 ng-class="query.fulltext ? 'filter-option-active' : 'filter-option-inactive'">
+                <label>search:
+                    <input type="text" value="" ng-model="query.fulltext">
+                </label>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="query.fulltext=''">
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                </button>
+            </div>
+        </div>
 
-<!-- die filter auf der Seite -->
-<div class="row">
-    <div class="col-md-2">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>AktvitätsCluster</h3>
-                <div class="container panel panel-default">
-                    <div ng-repeat="cluster in clusters" class="filter-option"
-                         ng-class="query.cluster[cluster.id] ? 'filter-option-active' : 'filter-option-inactive'" ng-click="query.cluster[cluster.id] = !query.cluster[cluster.id]">
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <ul class="nav nav-tabs">
+                <li><a href="">Empfohlen für Dich</a></li>
+                <li><a href="">Kampagnen-Aktionen</a></li>
+                <li class="active"><a href="">alle</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- die filter auf der Seite -->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>AktvitätsCluster</h3>
+
+                    <div class="container panel panel-default">
+                        <div ng-repeat="cluster in clusters" class="filter-option"
+                             ng-class="query.cluster[cluster.id] ? 'filter-option-active' : 'filter-option-inactive'"
+                             ng-click="query.cluster[cluster.id] = !query.cluster[cluster.id]">
                             <img ng-src="/assets/ico/{{cluster.id}}.gif" class="activityListFilterClusterIcon">
                             {{ cluster.beschreibungdt }}
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container panel panel-default">
+                        <div class="checkbox filter-option"
+                             ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.executiontype.self">
+                                alleine
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.executiontype.group ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.executiontype.group">
+                                in der Gruppe
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Rating</h3>
+
+                    <div class="container panel panel-default">
+                        <div class="checkbox filter-option"
+                             ng-class="query.rating.five ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.five">
+                                <rating value="5" max="5"></rating>
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.rating.four ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.four">
+                                <rating value="4" max="5"></rating>
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.rating.three ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.three">
+                                <rating value="3" max="5"></rating>
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.rating.two ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.two">
+                                <rating value="2" max="5"></rating>
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.rating.one ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.rating.one">
+                                <rating value="1" max="5"></rating>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Zeitaufwand</h3>
+
+                    <div class="container panel panel-default">
+                        <div class="checkbox filter-option"
+                             ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.time.t15">
+                                &lt; 15 Minuten
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.time.t30">
+                                &lt; 30 Minuten
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.time.t60">
+                                &lt; 1 Stunde
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.time.more ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.time.more">
+                                mehr als 1 Stunde
+                            </label>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Rating</h3>
-                <div class="container panel panel-default">
-                    <div class="checkbox filter-option"
-                         ng-class="query.rating.five ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.rating.five">
-                            <rating value="5" max="5"></rating>
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.rating.four ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.rating.four">
-                            <rating value="4" max="5"></rating>
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.rating.three ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.rating.three">
-                            <rating value="3" max="5"></rating>
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.rating.two ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.rating.two">
-                            <rating value="2" max="5"></rating>
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.rating.one ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.rating.one">
-                            <rating value="1" max="5"></rating>
-                        </label>
+        <!-- die eigentliche Liste -->
+        <div class="col-md-10 ">
+            <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity)"
+                 ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
+                <div class="col-md-1">
+                    {{ activity.id }}
+                    <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge">geplant</div>
+                    <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld">
+                        gemacht
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Zeitaufwand</h3>
-
-                <div class="container panel panel-default">
-                    <div class="checkbox filter-option"
-                         ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.time.t15">
-                            &lt; 15 Minuten
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.time.t30">
-                            &lt; 30 Minuten
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.time.t60">
-                            &lt; 1 Stunde
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.time.more ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.time.more">
-                            mehr als 1 Stunde
-                        </label>
-                    </div>
-
+                <div class="col-md-6">
+                    {{ activity.title }}
                 </div>
+                <div class="col-md-2">
 
+                    <div popover="{{ getClusterName(cluster)}}" popover-trigger="mouseenter"
+                         ng-repeat="cluster in activity.field">
+                        <img ng-src="/assets/ico/{{cluster}}.gif" class="activityListClusterIcon">
+                    </div>
+                </div>
+                <div class="col-md-1" popover="Überprüft und Empfohlen durch YouPers"
+                     popover-trigger="mouseenter">
+                    <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activity.source == 'youpers'"
+                         class="activityListClusterIcon">
+                </div>
+                <div class="col-md-2">
+                    {{ activity.defaultexecutiontype | translate }}
+                </div>
             </div>
-
+            <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
+                        max-size="maxSize" class="pagination" boundary-links="false"/>
         </div>
     </div>
-    <!-- die eigentliche Liste -->
-    <div class="col-md-10 ">
-        <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity)"
-             ng-repeat="activity in filteredActivities | orderBy:'source':true | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
-            <div class="col-md-1">
-                {{ activity.id }}
-            </div>
-            <div class="col-md-6">
-                {{ activity.title }}
-            </div>
-            <div class="col-md-2">
-
-                <div popover="{{ getClusterName(cluster)}}" popover-trigger="mouseenter" ng-repeat="cluster in activity.field">
-                    <img ng-src="/assets/ico/{{cluster}}.gif" class="activityListClusterIcon">
-                </div>
-            </div>
-            <div class="col-md-1" popover="Überprüft und Empfohlen durch YouPers"
-                 popover-trigger="mouseenter">
-                <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activity.source == 'youpers'" class="activityListClusterIcon">
-            </div>
-            <div class="col-md-2">
-                {{ activity.defaultexecutiontype | translate }}
-            </div>
-        </div>
-        <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
-                    max-size="maxSize" class="pagination" boundary-links="false"/>
-    </div>
-</div>
 </div>

@@ -27,12 +27,12 @@
 
     <!-- build:js js/app.js -->
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/i18n/angular-locale_de-ch.js"></script>
     <script src="lib/angular/angular-cookies.js"></script>
     <script src="lib/angular-translate/angular-translate.js"></script>
     <script src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
     <script src="lib/angular-ui-router/angular-ui-router.js"></script>
-    <script src="lib/angular-bootstrap/ui-bootstrap-tpls-0.6.0-SNAPSHOT.js"></script>
-    <script src="lib/angular-authentication/angular-authentication.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls-0.6.0-SNAPSHOT_modal.js"></script>
     <script src="lib/ng-google-chart/ng-google-chart.js"></script>
     <script src="lib/lowdash/lodash.js"></script>
     <script src="lib/momentjs/moment.js"></script>
@@ -42,17 +42,19 @@
     <script src="js/common/yp-commons.js"></script>
     <script src="js/ewl-activtiy.js"></script>
     <script src="js/ewl-assessment.js"></script>
-    <script src="js/user.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/discussion.js"></script>
     <script src="js/topic.js"></script>
     <script src="js/ewl-sociallog.js"></script>
     <script src="js/ewl-activitylog.js"></script>
+    <script src="js/healthpromoter.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/yp-ewl-activity-chart.js"></script>
     <script src="js/ewl-app.js"></script>
     <script src="js/translations/yp-ewl.de.js"></script>
     <script src="js/translations/yp-ewl.en.js"></script>
     <!-- endbuild -->
+
 
     <script src="js/mockdata/backendMockApp.js"></script>
     <script src="lib/angular/angular-mocks.js"></script>
@@ -75,15 +77,30 @@
             </button>
             <a class="navbar-logo" href="http://www.youpers.com/en/"><img src="assets/img/logo.png" alt="YouPers"
                                                                           height="50"></a>
-            <!--<a class="navbar-brand" href="#">eWorkLife</a>-->
         </div>
-        <div class="navbar-collapse collapse" collapse="navCollapsed">
-            <ul class="nav navbar-nav">
-                <li ng-class="{ active: isActive('cockpit')}"><a href="#/cockpit">{{ 'COCKPIT' | translate }}</a></li>
-                <li ng-class="{ active: isActive('activitylist') || isActive('activityDetail')}"><a href="#/activities">{{ 'ACTIVITIES' | translate }}</a>
+        <div class="navbar-collapse collapse" collapse="navCollapsed" ng-switch on="getTopMenu()">
+            <ul class="nav navbar-nav" ng-switch-default>
+            </ul>
+            <ul class="nav navbar-nav" ng-switch-when="individual">
+                <li ng-class="{ active: isActive('cockpit')}">
+                    <a href="#/cockpit">{{ 'COCKPIT' | translate }}</a>
                 </li>
-                <li ng-class="{ active: isActive('assessment')}"><a href="#/assessment">{{ 'ASSESSMENT' | translate
-                    }}</a></li>
+                <li ng-class="{ active: isActive('activitylist') || isActive('activityDetail')}">
+                    <a href="#/activities">{{ 'ACTIVITIES' | translate }}</a>
+                </li>
+                <li ng-class="{ active: isActive('assessment')}">
+                    <a href="#/assessment/1">{{ 'ASSESSMENT' | translate }}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav" ng-switch-when="healthpromoter">
+                <li ng-class="{ active: isActive('campaign')}">
+                    <a href="#/healthpromoter/campaign">{{ 'CAMPAIGN' | translate }}</a>
+                </li>
+                <li ng-class="{ active: isActive('sponsoring')}">
+                    <a href="#/healthpromoter/sponsoring">{{ 'SPONSORING' | translate }}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
                 <li class="dropdown" ng-controller="i18nCtrl">
                     <a class="dropdown-toggle" data-toggle="dropdown">{{ 'LANGUAGE' | translate }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -112,7 +129,7 @@
             <div class="nav navbar-right" ng-show="principal.isAuthenticated()">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">{{ principal.identity().fullname() }}<b
+                        <a class="dropdown-toggle" data-toggle="dropdown">{{ principal.getUser().fullname }}<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="" ng-click="logout()">{{ 'LOGOUT' | translate }}</a></li>

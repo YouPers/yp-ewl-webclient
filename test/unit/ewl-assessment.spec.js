@@ -7,7 +7,7 @@ describe('ewl-assessment', function() {
 
   describe('assessment ', function() {
     it('should be defined', inject(function(AssessmentService) {
-        expect(AssessmentService.getAssessment(1)).toBeDefined();
+        expect(AssessmentService.getAssessmentData(1)).toBeDefined();
       }))
     });
 });

@@ -553,6 +553,7 @@ input[type="range"].answered::-ms-thumb {
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 5px;
+  overflow: hidden;
 }
 
 .activityListItem:hover {
@@ -560,6 +561,26 @@ input[type="range"].answered::-ms-thumb {
   cursor: pointer;
 }
 
+.activityListPlannedEdge {
+  position: absolute;
+  top: 0px;
+  left: -20px;
+  background: green;
+  /* Rotate div */
+  transform:rotate(-45deg);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+.activityListPlannedEdgeOld {
+  background: darkgray;
+}
+
+.pagination {
+  margin: 0px;
+}
 /////////////////////////
 // activity planning
 
@@ -962,4 +983,27 @@ pre{
 .cockpit-sub-title {
   font-size: @youpers-font-size-4;
   font-family: @youpers-brand-font-family;
+}
+
+
+//////////////////////////
+// HealthPromoter Pages
+
+.hpWelcomeDoNotShowAgainCb {
+  float: left;
+  font-weight: normal;
+}
+
+.hpWelcomeVideo {
+  margin: 0 auto;
+  width: 360px;
+}
+
+.campaignOverview {
+  padding: 5px;
+}
+
+.campaignOverview:hover {
+  background: @youpers-brand-colors-secondary-dimmed;
+  cursor: pointer;
 }

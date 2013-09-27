@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3>Willkommen auf der YouPers Plattform</h3>
+</div>
+<div class="modal-body">
+    <p>Auf der YouPers Plattform können sie alles tun - Kampagnen starten, Eier braten, whatever you want, Texte
+        erfinden,
+        noch bessere Texte erfinden, Beispieltext erfinden und vieles mehr...</p>
+
+    <p>Starten sie eine Gesundheits-Kampagne während der sich ihre Community, ihre Angestellten und sie selber zum
+        Ziel setzen während 6 Wochen ihr Verhalten in einem bestimmten Bereich zu verändern.</p>
+
+    <div class="hpWelcomeVideo">
+        <div id="player"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <label class="hpWelcomeDoNotShowAgainCb" ng-show="principal.isAuthenticated()">
+        <input type="checkbox" ng-model="formModel.doNotShowAgain">
+        diesen Dialog künftig nicht mehr zeigen
+    </label>
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>

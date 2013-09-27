@@ -4,7 +4,8 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
         'yp.ewl.activity.chart','yp.topic', 'ui.router', 'ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'authentication', 'yp.user']).
+        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'yp.auth', 'yp.healthpromoter']).
+
     config(['$stateProvider','$urlRouterProvider','accessLevels',
         function ($stateProvider, $urlRouterProvider, accessLevels) {
         //
@@ -27,47 +28,9 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             .state('cockpit', {
                 url: "/cockpit",
                 templateUrl: "partials/cockpit.html",
-                access: accessLevels.user
+                access: accessLevels.individual
             })
-            .state('assessment', {
-                url: "/assessment",
-                templateUrl: "partials/assessment.html",
-                controller: "AssessmentCtrl",
-                access: accessLevels.all
-            })
-            .state('activitylist', {
-                url: "/activities",
-                templateUrl: "partials/activity.list.html",
-                controller: "ActivityListCtrl",
-                access: accessLevels.all
-            })
-            .state('activityDetail', {
-                url: "/activities/:activityId",
-                templateUrl: "partials/activity.detail.html",
-                controller: "ActivityCtrl",
-                access: accessLevels.user,
-                abstract:true,
-                resolve: {
-                    allActivities: ['ActivityService',function (ActivityService) {
-                        return ActivityService.getActivities();
-                    }],
-                    plannedActivities: ['ActivityService',function (ActivityService) {
-                        return ActivityService.getPlannedActivities;
-                    }]
-                }
-            })
-            .state('activityDetail.self', {
-                url: "",
-                templateUrl: "partials/activity.detail.self.html",
-                controller: "ActivityCtrl",
-                access: accessLevels.user
-            })
-            .state('activityDetail.group', {
-                url: "/group",
-                templateUrl: "partials/activity.detail.group.html",
-                controller: "ActivityCtrl",
-                access: accessLevels.user
-            })
+
 
         ;
     }])
@@ -101,16 +64,26 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
  * main controller, responsible for
  * - showing global user messages
  * - highlighting global menu option according to currently active state
- * - providing access to logged in principal for all child states.
- *
+ * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope',  '$state', '$timeout','principal',
+    .controller('MainCtrl', ['$scope',  '$state', '$timeout', 'principal',
         function ($scope, $state, $timeout, principal) {
+
             $scope.principal = principal;
 
             // handle Menu Highlighting
             $scope.isActive = function (viewLocation) {
                 return ($state.current.name.indexOf(viewLocation) !== -1);
+            };
+
+            $scope.getTopMenu = function () {
+                if ($state.current.url.indexOf('hp') !== -1) {
+                    return 'healthpromoter';
+                } else if ($state.current.url.indexOf('home') !== -1) {
+                    return 'home';
+                } else {
+                    return 'individual';
+                }
             };
 
             $scope.$on('globalUserMsg', function (event, msg, type, duration) {

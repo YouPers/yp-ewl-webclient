@@ -161,7 +161,7 @@ describe('ewl activity', function () {
          * this is where we're setting up the $scope and
          * calling the controller function on it, injecting
          * all the important bits, like our mockService */
-        beforeEach(inject(function ($rootScope, $controller, $state) {
+        beforeEach(inject(function ($rootScope, $controller, $state, $filter) {
 
             //create a scope object for us to use.
             $scope = $rootScope.$new();
@@ -170,63 +170,16 @@ describe('ewl activity', function () {
             //injecting any services or other injectables we need.
             ctrl = $controller('ActivityListCtrl', {
                 $scope: $scope,
+                $filter: $filter,
                 $state: $state,
-                ActivityService: {
-                    getActivities: function () {
-                        return {
-                            then: function (callback) {
-                                callback({
-                                        "id": "1",
-                                        "title": "Iss täglich einen Apfel",
-                                        "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-                                        "field": "nutrition",
-                                        "planningCat": "daily"
-                                    },
-                                    {
-                                        "id": "2",
-                                        "title": "Joggen über Mittag",
-                                        "text": "Run forest, Run...",
-                                        "field": "exercise",
-                                        "planningCat": "daily"
-                                    });
-                            }
-                        };
-                    },
-
-
-                    getPlannedActivities: function () {
-                        return {
-                            then: function (callback) {
-                                callback([
-                                    {
-                                        "action_id": 2,
-                                        "field": "exercise"
-                                    }
-                                ]
-                                );
-                            }
-                        };
-                    },
-
-                    isActivityPlanned: function (plannedActivities, actionId) {
-                        if (typeof (plannedActivities) != 'undefined') {
-                            for (var i = 0; i < plannedActivities.length; i++) {
-                                if (plannedActivities[i].action_id == actionId) {
-                                    return true;
-                                }
-                            }
-                        }
-                        return false;
-                    }
-                }
+                allActivities: mock.activities,
+            plannedActivities: mock.plannedActivities
             });
         }));
 
         it('should have access to all activities and the planned activities', inject(function () {
 
-            expect($scope.isActivityPlanned(1)).toBeFalsy();
-
-            expect($scope.plannedActivities.length).toEqual(1);
+            expect($scope.plannedActivities.length).toEqual(4);
         }));
 
 
@@ -236,16 +189,5 @@ describe('ewl activity', function () {
             expect($scope.getClusterName('Nutrition').length).toBeGreaterThan(0);
         }));
 
-        it('should return whether an Acitvity is planned or not', inject(function () {
-            var myActivity = {
-                id: "2",
-                field: 'myField'
-            };
-            expect($scope.isActivityPlanned(myActivity.id)).toBeTruthy();
-
-            myActivity.id = "3";
-            expect($scope.isActivityPlanned(myActivity.id)).toBeFalsy();
-
-        }));
     });
 });

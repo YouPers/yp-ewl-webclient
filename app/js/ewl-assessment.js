@@ -1,102 +1,123 @@
 'use strict';
 
-angular.module('yp.ewl.assessment', [])
+angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
-    .factory('AssessmentService', ['$http', '$q', function ($http, $q) {
-
-        // private data;
-        var assessment;
-        var answers = {};
-
-
-        var assService = {};
-
-        /**
-         * gets Assessment from service singleton or loads it from server
-         * @returns {*}
-         */
-        assService.getAssessment = function () {
-            if (assessment) {
-                return assessment;
-            } else {
-                return $q.all([
-                        $http.get('api/assessment'),
-                        $http.get('api/assessment/answers')
-                    ]
-                    ).then(function (results) {
-                        assessment = results[0].data;
-
-                        // check whether we got saved answers for this user and this assessment
-                        var answersAsArray;
-                        if ((results[1].data) && (results[1].data.size > 0)) {
-                            answersAsArray = results[1].data;
-                        } else {
-                            // got no answers from server, need to generate default answers
-                            answersAsArray = generateDefaultAnswers();
-                        }
-
-                        // sort answers into keyed object (by question_id) to ease access by view
-                        _.forEach(answersAsArray, function (myAnswer) {
-                            answers[myAnswer.question_id] = myAnswer;
-                        });
-                        return assessment;
+    // configuration of routes for all assessment module pages
+    .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
+        function ($stateProvider, $urlRouterProvider, accessLevels) {
+            $stateProvider
+                .state('assessment', {
+                    url: "/assessment/:assessmentId",
+                    templateUrl: "partials/assessment.html",
+                    controller: "AssessmentCtrl",
+                    access: accessLevels.all,
+                    resolve: {
+                        assessmentData: ['AssessmentService', '$stateParams',
+                            function (AssessmentService, $stateParams) {
+                                return AssessmentService.getAssessmentData($stateParams.assessmentId);
+                            }]
                     }
-                );
-            }
-        };
+                });
+        }])
 
-        assService.getAssAnswers = function () {
-            return answers;
-        };
+    // Object methods for all Assessment related objects
+    .run(['Restangular', function (Restangular) {
+        Restangular.extendModel('assessments', function (assessment) {
 
-
-        /**
-         * generate empty answerset for the currently loaded assessment, is called in case
-         * we did not get stored answers for this assessment/user from the server
-         *
-         * @returns {Array}
-         */
-        function generateDefaultAnswers() {
-            var defaultAnswers = [];
-            var nextId = 1;
-            for (var i = 0; i < assessment.questionCats.length; i++) {
-                var questionCat = assessment.questionCats[i];
-                for (var j = 0; j < questionCat.questions.length; j++) {
-                    var question = questionCat.questions[j];
-                    var answer = {
-                        id: nextId++,
-                        assessment_id: assessment.id,
-                        question_id: question.id,
-                        answer: 0,
-                        answered: false
-                    };
-                    defaultAnswers.push(answer);
+            assessment.getDefaultAnswers = function () {
+                var defaultAnswers = [];
+                var nextId = 1;
+                for (var i = 0; i < assessment.questionCats.length; i++) {
+                    var questionCat = assessment.questionCats[i];
+                    for (var j = 0; j < questionCat.questions.length; j++) {
+                        var question = questionCat.questions[j];
+                        var answer = {
+                            id: nextId++,
+                            assessment_id: assessment.id,
+                            question_id: question.id,
+                            answer: 0,
+                            answered: false
+                        };
+                        defaultAnswers.push(answer);
+                    }
                 }
-            }
-            return defaultAnswers;
+                return defaultAnswers;
 
-        }
+            };
+            return assessment;
+        });
+    }])
+
+    // provides methods to get Assessment Information from the server
+    .factory('AssessmentService', ['$http', '$q', 'Restangular', 'principal', function ($http, $q, Restangular, principal) {
+
+        var assService = {
+            getAssessmentData: function (assessmentId) {
+                var assessmentBase = Restangular.one('assessments', assessmentId);
+
+                // if the user is authenticated we try to get his previous answers from the server,
+                // if unauthenticated, we only get the assessment
+                var neededCalls = [assessmentBase.get()];
+                if (principal.isAuthenticated()) {
+                    neededCalls.push(
+                        Restangular.one('users', principal.getUser().username).one('assessmentresults', assessmentId).get()
+                    );
+                }
+                // run the one/two calls in parallel and then processes the results
+                return $q.all(neededCalls).then(function (results) {
+                    var assessment = results[0];
+
+                    // check whether we got saved answers for this user and this assessment
+                    var answersAsArray;
+                    if (results[1] && (results[1]) && (results[1].size > 0)) {
+                        answersAsArray = results[1];
+                    } else {
+                        // got no answers from server, need to generate default answers
+                        answersAsArray = assessment.getDefaultAnswers();
+                    }
+
+                    // sort answers into keyed object (by question_id) to ease access by view
+                    var answers = {};
+                    _.forEach(answersAsArray, function (myAnswer) {
+                        answers[myAnswer.question_id] = myAnswer;
+                    });
+
+                    // return both, assessment and answers in an simple object
+                    return {
+                        assessment: assessment,
+                        answers: answers
+                    };
+                });
+
+
+            }
+        };
 
         return assService;
     }])
 
-    .controller('AssessmentCtrl', ['$scope', 'AssessmentService','$state', function ($scope, AssessmentService, $state) {
+    // Controller to display an assessment and process the answers
+    // assessmentData is resolved on stateTransfer
+    .controller('AssessmentCtrl', ['$scope', '$rootScope', '$state', 'assessmentData',
+        function ($scope, $rootScope, $state, assessmentData) {
 
-        $scope.assessment = AssessmentService.getAssessment();
-        $scope.assAnswersByQuestionId = AssessmentService.getAssAnswers();
+            $scope.assessment = assessmentData.assessment;
+            $scope.assAnswersByQuestionId = assessmentData.answers;
 
-        $scope.answersAsJSON = function () {
-            return JSON.stringify(AssessmentService.getAssAnswers(), undefined, 2);
-        };
+            $scope.assessmentDone = function () {
+                if (!$scope.principal.isAuthenticated()) {
+                    $rootScope.$broadcast('loginMessageShow');
+                } else {
+                    assessmentData.answers.timestamp = new Date();
+                    // Todo (rblu): save assessmentAnswers
+                    //
+                    $state.go('cockpit');
 
-        $scope.assessmentDone = function () {
-            $state.go('cockpit');
-        };
+                }
+            };
 
-        $scope.setQuestionAnswered = function (questionid) {
-            if (!($scope.assAnswersByQuestionId[questionid].answered)) {
+            $scope.setQuestionAnswered = function (questionid) {
                 $scope.assAnswersByQuestionId[questionid].answered = true;
-            }
-        };
+            };
 
-    }]);
+        }]);
