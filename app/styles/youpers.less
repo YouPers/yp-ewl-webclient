@@ -506,7 +506,7 @@ input[type="range"].answered::-ms-thumb {
 
 
 /////////////////////////
-// activity list
+// activitylist
 
 .filter-option {
   padding-left: 20px;
@@ -553,11 +553,29 @@ input[type="range"].answered::-ms-thumb {
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 5px;
+  overflow: hidden;
 }
 
 .activityListItem:hover {
   background: @youpers-brand-colors-secondary-dimmed;
   cursor: pointer;
+}
+
+.activityListPlannedEdge {
+  position: absolute;
+  top: 0px;
+  left: -20px;
+  background: green;
+  /* Rotate div */
+  transform:rotate(-45deg);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+.activityListPlannedEdgeOld {
+  background: darkgray;
 }
 
 /////////////////////////

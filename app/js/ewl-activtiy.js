@@ -10,7 +10,15 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     url: "/activities",
                     templateUrl: "partials/activity.list.html",
                     controller: "ActivityListCtrl",
-                    access: accessLevels.all
+                    access: accessLevels.all,
+                    resolve: {
+                        allActivities: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getActivities();
+                        }],
+                        plannedActivities: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getPlannedActivities();
+                        }]
+                    }
                 })
                 .state('activityDetail', {
                     url: "/activities/:activityId",
@@ -23,7 +31,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             return ActivityService.getActivities();
                         }],
                         plannedActivities: ['ActivityService', function (ActivityService) {
-                            return ActivityService.getPlannedActivities;
+                            return ActivityService.getPlannedActivities();
                         }]
                     }
                 })
@@ -126,14 +134,14 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                     if ((allClusters || _.any(activity.field, function (value) {
                         return query.cluster[value];
-                        })) &&
+                    })) &&
                         (allTopics || _.any(activity.topic, function (value) {
                             return query.topic[value];
                         })) &&
                         (allRatings || query.rating[ratingsMapping[activity.rating]]
-                        ) &&
+                            ) &&
                         (allTimes || query.time[activity.time]
-                        ) &&
+                            ) &&
                         (!query.fulltext || activity.title.toUpperCase().indexOf(query.fulltext.toUpperCase()) !== -1)
                         ) {
                         out.push(activity);
@@ -235,17 +243,22 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
         }])
 
-    .controller('ActivityListCtrl', ['$scope', 'ActivityService', '$filter', '$state',
-        function ($scope, ActivityService, $filter, $state) {
-            ActivityService.getActivities().then(function (data) {
-                $scope.activities = data;
-                $scope.filteredActivities = data;
+    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities',
+        function ($scope,  $filter, $state, allActivities, plannedActivities) {
 
+            // enrich plain activities with planning Data
+            _.forEach(allActivities, function (act) {
+                var matchingPlan = _.find(plannedActivities, function (plan) {
+                    return (act.id === plan.activity.id);
+                });
+                act.plan = matchingPlan;
             });
 
-            ActivityService.getPlannedActivities().then(function (data) {
-                $scope.plannedActivities = data;
-            });
+
+            $scope.activities = allActivities;
+            $scope.filteredActivities = allActivities;
+            $scope.plannedActivities = plannedActivities;
+
 
             $scope.clusters = [
                 {
@@ -295,11 +308,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 } else {
                     return undefined;
                 }
-            };
-
-
-            $scope.isActivityPlanned = function (activityId) {
-                return ActivityService.isActivityPlanned($scope.plannedActivities, activityId);
             };
 
             $scope.gotoActivityDetail = function (activity) {

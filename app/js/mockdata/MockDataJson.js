@@ -2,29 +2,38 @@ var mock = {};
 
 mock.plannedActivities = [
     {
-        "action_id": "1",
-        "field": "exercise",
+        id: "2311234",
+        "activity": {
+            id: "Act-17"
+        },
         "planType": "once",
         "privacy": "public",
         "executionType": "group",
         "onceDate": "",
-        "onceTime": ""
+        "onceTime": "",
+        "status": 'active'
     },
     {
-        "action_id": "3",
-        "field": "nutrition",
+        "id": "9340909",
+        "activity": {
+            id: "Act-3"
+        },
         "planType": "weekly",
         "privacy": "public",
         "executionType": "self",
-        "weeklyDayOfWeek": "MONDAY"
+        "weeklyDayOfWeek": "MONDAY",
+        "status": 'old'
     },
     {
-        "action_id": "4",
-        "field": "exercise",
+        "id": "0909vxcyvyxc",
+        "activity": {
+            id: "Act-34"
+        },
         "planType": "daily",
         "privacy": "public",
         "executionType": "group",
-        "dailyTime": ""
+        "dailyTime": "",
+        "status": 'old'
     }
 
 ];
