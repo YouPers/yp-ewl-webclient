@@ -179,7 +179,7 @@ describe('ewl activity', function () {
 
         it('should have access to all activities and the planned activities', inject(function () {
 
-            expect($scope.plannedActivities.length).toEqual(3);
+            expect($scope.plannedActivities.length).toEqual(4);
         }));
 
 

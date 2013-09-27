@@ -154,8 +154,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         (allTopics || _.any(activity.topic, function (value) {
                             return query.topic[value];
                         })) &&
-                       // (allRatings || query.rating[ratingsMapping[activity.rating]]
-                       //     ) &&
+                        (allRatings || query.rating[ratingsMapping[activity.rating]]
+                            ) &&
                         (allExecutiontypes || query.executiontype[activity.defaultexecutiontype]) &&
                         (allTimes || query.time[activity.time]
                             ) &&
