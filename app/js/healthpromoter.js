@@ -6,7 +6,7 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
         function ($stateProvider, $urlRouterProvider, accessLevels) {
             $stateProvider
                 .state('healthpromoter', {
-                    url: "/healthpromoter",
+                    url: "/hp",
                     templateUrl: "partials/healthpromoter.html",
                     controller: "HealthPromoterCtrl",
                     access: accessLevels.all

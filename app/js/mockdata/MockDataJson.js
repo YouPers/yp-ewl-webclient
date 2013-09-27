@@ -83,7 +83,7 @@ mock.users = [
         "username": "ivan",
         "firstname": "Ivan",
         "lastname": "Rigamonti",
-        "fullname": "Ivan Rigamonit",
+        "fullname": "Ivan Rigamonti",
         "role": 2,
         "subscriptions": [],
         "individual": {

@@ -16,7 +16,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     url: "/activities/:activityId",
                     templateUrl: "partials/activity.detail.html",
                     controller: "ActivityCtrl",
-                    access: accessLevels.user,
+                    access: accessLevels.individual,
                     abstract: true,
                     resolve: {
                         allActivities: ['ActivityService', function (ActivityService) {
@@ -31,13 +31,13 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     url: "",
                     templateUrl: "partials/activity.detail.self.html",
                     controller: "ActivityCtrl",
-                    access: accessLevels.user
+                    access: accessLevels.individual
                 })
                 .state('activityDetail.group', {
                     url: "/group",
                     templateUrl: "partials/activity.detail.group.html",
                     controller: "ActivityCtrl",
-                    access: accessLevels.user
+                    access: accessLevels.individual
                 });
         }])
 

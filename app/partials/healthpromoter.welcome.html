@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <label class="hpWelcomeDoNotShowAgainCb">
+    <label class="hpWelcomeDoNotShowAgainCb" ng-show="principal.isAuthenticated()">
         <input type="checkbox" ng-model="formModel.doNotShowAgain">
         diesen Dialog künftig nicht mehr zeigen
     </label>

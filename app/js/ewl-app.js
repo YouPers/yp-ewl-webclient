@@ -28,7 +28,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             .state('cockpit', {
                 url: "/cockpit",
                 templateUrl: "partials/cockpit.html",
-                access: accessLevels.user
+                access: accessLevels.individual
             })
 
 
@@ -77,7 +77,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             };
 
             $scope.getTopMenu = function () {
-                if ($state.current.url.indexOf('healthpromoter') !== -1) {
+                if ($state.current.url.indexOf('hp') !== -1) {
                     return 'healthpromoter';
                 } else if ($state.current.url.indexOf('home') !== -1) {
                     return 'home';

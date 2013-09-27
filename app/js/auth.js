@@ -10,8 +10,9 @@
 
         userRoles = {
             anonymous: 1,
-            user: 2,
-            admin: 4
+            individual: 2,
+            healthpromoter: 4,
+            admin: 8
         };
 
 
@@ -26,20 +27,22 @@
         // Properties
         // ----------
         // Version
-        .constant('version', '1.0.4')
-
+        .constant('version', '0.0.1')
 
         // authorization levels and user Roles
         .constant('userRoles', userRoles)
 
         .constant('accessLevels', {
-            all: userRoles.anonymous | // 111
-                userRoles.user |
+            all: userRoles.anonymous | // 1111
+                userRoles.individual |
+                userRoles.healthpromoter |
                 userRoles.admin,
-            anon: userRoles.anonymous,  // 001
-            user: userRoles.user |   // 110
+            anononymous: userRoles.anonymous,  // 1000  nur zugänglich,  wenn nicht eingeloggt
+            individual: userRoles.individual |   // 0101
                 userRoles.admin,
-            admin: userRoles.admin    // 100
+            healthpromoter: userRoles.healthpromoter  | // 0011
+                userRoles.admin,
+            admin: userRoles.admin  // 0001
         })
 
 
