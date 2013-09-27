@@ -60,6 +60,17 @@
                 <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
             </div>
 
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="/partials/cockpit.activities.overview.html">Übersicht</a>
+                        </li>
+                        <li ng-class="{active: isActive('group')}">
+                            <a ui-sref="^.activities.details">Aktivitäten</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content " ui-view></div>
+
+
             <div class="list-group activity-log" >
                 <div class="list-group-item {{getactivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries" ng-controller="ActivityLogHistoryCtrl" ng-switch on="isSelected()">
                     <div class="row">

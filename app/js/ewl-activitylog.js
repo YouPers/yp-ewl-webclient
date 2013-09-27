@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('yp.activitylog', []).
+angular.module('yp.activitylog', [])
 
-    factory('ActivityLogService', ['$http', function ($http) {
+    .factory('ActivityLogService', ['$http', function ($http) {
 
         var ActivityLogService = {};
 
@@ -271,13 +271,13 @@ angular.module('yp.activitylog', []).
             return date.toLocaleDateString() + ", " + date.toLocaleTimeString();
         };
 
-        $scope.isActive = function (rating) {
-            if ($scope.rating === rating) {
-                return "active";
-            } else {
-                return "";
-            }
-        };
+//        $scope.isActive = function (rating) {
+//            if ($scope.rating === rating) {
+//                return "active";
+//            } else {
+//                return "";
+//            }
+//        };
 
         $scope.storeFeedback = function (activityHistoryEntry) {
 
