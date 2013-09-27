@@ -295,6 +295,8 @@ angular.module('yp.activitylog', []).
                 comment.id = activityHistoryEntry.nofComments + 1;
                 comment.text = $scope.newComment;
 
+                // currently just UBAU
+
                 var author = {};
                 author.id = 1;
                 author.fullname = "Urs Baumeler";
@@ -309,6 +311,5 @@ angular.module('yp.activitylog', []).
             }
             $scope.hideDialog();
         };
-
 
     }]);
