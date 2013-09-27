@@ -99,7 +99,13 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
     .filter('ActivityListFilter', [function () {
         return function (activities, query) {
-            var out = [], allClusters = true;
+            var out = [],
+                allClusters = true,
+                allTopics = true,
+                allTimes = true,
+                allRatings = true,
+                allExecutiontypes = true,
+                ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'];
 
             // if we do not get a query, we return the full set of answers
             if (!query) {
@@ -113,7 +119,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
             });
 
-            var allTopics = true;
+
             angular.forEach(query.topic, function (value, key) {
                 if (value) {
                     allTopics = false;
@@ -121,21 +127,24 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             });
 
 
-            var allRatings = true;
             angular.forEach(query.rating, function (value, key) {
                 if (value) {
                     allRatings = false;
                 }
             });
 
-            var ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'];
-            var allTimes = true;
+
             angular.forEach(query.times, function (value, key) {
                 if (value) {
                     allTimes = false;
                 }
             });
 
+            angular.forEach(query.executiontype, function (value, key) {
+                if (value) {
+                    allExecutiontypes = false;
+                }
+            });
 
             angular.forEach(activities, function (activity, key) {
 
@@ -145,8 +154,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         (allTopics || _.any(activity.topic, function (value) {
                             return query.topic[value];
                         })) &&
-                        (allRatings || query.rating[ratingsMapping[activity.rating]]
-                            ) &&
+                       // (allRatings || query.rating[ratingsMapping[activity.rating]]
+                       //     ) &&
+                        (allExecutiontypes || query.executiontype[activity.defaultexecutiontype]) &&
                         (allTimes || query.time[activity.time]
                             ) &&
                         (!query.fulltext || (activity.title.toUpperCase()+activity.id.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
@@ -347,7 +357,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     nutrition: false,
                     mentalFitness: false
                 },
-                fulltext: ""
+                fulltext: "",
+                executiontype: {
+                    self: false,
+                    group: false
+                }
             };
 
 

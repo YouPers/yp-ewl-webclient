@@ -24,6 +24,15 @@
         </div>
 
     </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <ul class="nav nav-tabs">
+                <li><a href="">Empfohlen für Dich</a></li>
+                <li><a href="">Kampagnen-Aktionen</a></li>
+                <li class="active"><a href="">alle</a></li>
+            </ul>
+        </div>
+    </div>
 
     <!-- die filter auf der Seite -->
     <div class="row">
@@ -42,6 +51,27 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container panel panel-default">
+                        <div class="checkbox filter-option"
+                             ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.executiontype.self">
+                                alleine
+                            </label>
+                        </div>
+                        <div class="checkbox filter-option"
+                             ng-class="query.executiontype.group ? 'filter-option-active' : 'filter-option-inactive'">
+                            <label>
+                                <input type="checkbox" value="" ng-model="query.executiontype.group">
+                                in der Gruppe
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <h3>Rating</h3>
@@ -132,7 +162,9 @@
                 <div class="col-md-1">
                     {{ activity.id }}
                     <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge">geplant</div>
-                    <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld">gemacht</div>
+                    <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld">
+                        gemacht
+                    </div>
                 </div>
                 <div class="col-md-6">
                     {{ activity.title }}

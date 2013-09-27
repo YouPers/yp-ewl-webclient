@@ -16,18 +16,29 @@ mock.plannedActivities = [
     {
         "id": "9340909",
         "activity": {
-            id: "Act-3"
+            id: "Act-55"
         },
         "planType": "weekly",
         "privacy": "public",
         "executionType": "self",
         "weeklyDayOfWeek": "MONDAY",
-        "status": 'old'
+        "status": 'active'
     },
     {
         "id": "0909vxcyvyxc",
         "activity": {
             id: "Act-34"
+        },
+        "planType": "daily",
+        "privacy": "public",
+        "executionType": "group",
+        "dailyTime": "",
+        "status": 'old'
+    },
+    {
+        "id": "0909vxcyvyxc",
+        "activity": {
+            id: "Act-59"
         },
         "planType": "daily",
         "privacy": "public",
