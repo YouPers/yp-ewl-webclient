@@ -77,7 +77,8 @@ describe('ewl activity', function () {
                 physicalFitness: false,
                 nutrition: false,
                 mentalFitness: false
-            }
+            },
+            subset: 'all'
         };
 
 

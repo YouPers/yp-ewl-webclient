@@ -27,9 +27,9 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-2">
             <ul class="nav nav-tabs">
-                <li><a href="">Empfohlen für Dich</a></li>
-                <li><a href="">Kampagnen-Aktionen</a></li>
-                <li class="active"><a href="">alle</a></li>
+                <li ng-class="{active: query.subset=='recommendations'}"><a href="" ng-click="setListTab('recommendations')">Empfohlen für Dich</a></li>
+                <li ng-class="{active: query.subset=='campaign'}"><a href="" ng-click="setListTab('campaign')">Kampagnen-Aktionen</a></li>
+                <li ng-class="{active: query.subset=='all'}"><a href="" ng-click="setListTab('all')">alle</a></li>
             </ul>
         </div>
     </div>
@@ -164,6 +164,9 @@
                     <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge">geplant</div>
                     <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld">
                         gemacht
+                    </div>
+                    <div ng-if="activity.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended">
+                        empfohlen
                     </div>
                 </div>
                 <div class="col-md-6">

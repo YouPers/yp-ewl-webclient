@@ -105,6 +105,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 allTimes = true,
                 allRatings = true,
                 allExecutiontypes = true,
+                subSetAll = true,
                 ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'];
 
             // if we do not get a query, we return the full set of answers
@@ -146,6 +147,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
             });
 
+            if (query.subset !== 'all') {
+                subSetAll = false;
+            }
+
             angular.forEach(activities, function (activity, key) {
 
                     if ((allClusters || _.any(activity.field, function (value) {
@@ -159,6 +164,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         (allExecutiontypes || query.executiontype[activity.defaultexecutiontype]) &&
                         (allTimes || query.time[activity.time]
                             ) &&
+                        (subSetAll || (query.subset==='campaign' && activity.isCampaign) ||
+                                      (query.subset==='recommendations' && activity.isRecommended)) &&
                         (!query.fulltext || (activity.title.toUpperCase()+activity.id.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
                         ) {
                         out.push(activity);
@@ -263,12 +270,22 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities',
         function ($scope,  $filter, $state, allActivities, plannedActivities) {
 
-            // enrich plain activities with planning Data
+            var recommendations = ['Act-25','Act-45', 'Act-89', 'Act-105', 'Act-157'];
+
+            // enrich plain activities with users data (planning Data, recommendations, campaign-info)
             _.forEach(allActivities, function (act) {
+
                 var matchingPlan = _.find(plannedActivities, function (plan) {
                     return (act.id === plan.activity.id);
                 });
+
                 act.plan = matchingPlan;
+
+                if (act.source === 'Schindler AG') {
+                    act.isCampaign = true;
+                }
+
+                act.isRecommended = (recommendations.indexOf(act.id) !== -1);
             });
 
 
@@ -331,7 +348,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 $state.go('activityDetail.' + activity.defaultexecutiontype, {activityId: activity.id});
             };
 
+            $scope.setListTab = function(tabId) {
+              $scope.query.subset = tabId;
+            };
+
             $scope.query = {
+                subset: 'recommendations',
                 cluster: {
                     general: false,
                     fitness: false,
