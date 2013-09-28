@@ -161,13 +161,13 @@
                  ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
                 <div class="col-md-1">
                     {{ activity.id }}
-                    <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge">geplant</div>
                     <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld">
                         gemacht
                     </div>
                     <div ng-if="activity.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended">
                         empfohlen
                     </div>
+                    <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge">geplant</div>
                 </div>
                 <div class="col-md-6">
                     {{ activity.title }}
