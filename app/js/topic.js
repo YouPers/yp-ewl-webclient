@@ -2,20 +2,28 @@
 
 angular.module('yp.topic', ['ui.router'])
 
+    .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
+        function ($stateProvider, $urlRouterProvider, accessLevels) {
+            $stateProvider
+                .state('topics', {
+                    url: "/topics",
+                    templateUrl: "partials/topic.html",
+                    controller: "TopicController",
+                    access: accessLevels.all
+                });
+        }
+    ])
+
     .factory('TopicService', [function () {
         var myTopicService = {};
-
         var goals = [];
 
-
-        myTopicService.setGoal = function(goal) {
-            goals.push (goal);
+        myTopicService.setGoal = function (goal) {
+            goals.push(goal);
         };
-
-
     }])
 
-    .controller ('TopicController', ['$scope', '$state',    function($scope, $state) {
+    .controller('TopicController', ['$scope', '$state', function ($scope, $state) {
 
         $scope.selectedTopic = null;
 

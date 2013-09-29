@@ -19,12 +19,6 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 templateUrl: "partials/home.html",
                 access: accessLevels.all
             })
-            .state('topics', {
-                url: "/topics",
-                templateUrl: "partials/topic.html",
-                controller: "TopicController",
-                access: accessLevels.all
-            })
             .state('cockpit', {
                 url: "/cockpit",
                 templateUrl: "partials/cockpit.html",
