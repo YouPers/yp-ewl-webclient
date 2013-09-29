@@ -22,15 +22,8 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET('/assessments/1').respond(mock.assessment);
         $httpBackend.whenGET(/\/users\/\w+\/assessmentresults\/[\w+]/).respond(mock.assessmentAnswers);
 
-
-
         $httpBackend.whenGET('comments').respond(mock.activityComments);
-
         $httpBackend.whenGET('/users').respond(mock.users);
-
-
-
-
         $httpBackend.whenPOST('/users').respond(function (method, url, data, headers) {
             mock.users.push(angular.fromJson(data));
             return [201, '', {location: '/users/' + data.username}];

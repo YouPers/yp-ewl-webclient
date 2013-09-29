@@ -1,7 +1,6 @@
 (function () {
     'use strict';
 
-
     // Private variable for storing identity information.
     var _currentUser = {},
 

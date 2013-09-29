@@ -2,7 +2,6 @@
 
 angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
-
     .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
         function ($stateProvider, $urlRouterProvider, accessLevels) {
             $stateProvider
@@ -260,7 +259,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.planActivityDone = function () {
                 ActivityService.savePlan($scope.currentActivityPlan);
-                // transition to cockpit
                 $state.go('cockpit');
             };
 
@@ -270,6 +268,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities',
         function ($scope,  $filter, $state, allActivities, plannedActivities) {
 
+            // mock recommendations, should be loaded from server later...
             var recommendations = ['Act-25','Act-45', 'Act-89', 'Act-105', 'Act-157'];
 
             // enrich plain activities with users data (planning Data, recommendations, campaign-info)
