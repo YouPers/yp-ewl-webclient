@@ -8,8 +8,11 @@
     <!-- die top row - sorter und empfehlungen -->
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
-                        max-size="maxSize" class="pagination" boundary-links="false"/>
+            <span ng-hide="filteredActivities.length < maxSize">
+                <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
+                        max-size="maxSize" class="pagination" boundary-links="false" />
+            </span>
+
         </div>
         <div class="col-md-4">
             <div class="filter-option"
@@ -188,8 +191,10 @@
                     {{ activity.defaultexecutiontype | translate }}
                 </div>
             </div>
-            <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
+             <span ng-hide="filteredActivities.length < maxSize">
+                <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
                         max-size="maxSize" class="pagination" boundary-links="false"/>
+             </span>
         </div>
     </div>
 </div>
