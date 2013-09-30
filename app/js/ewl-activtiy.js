@@ -50,20 +50,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
 
     .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
-
-        /**
-         function Activity(id, title, text, af, plCat) {
-            this.id = id;
-            this.title = title;
-            this.text = text;
-            this.field = af;
-            this.planningCat = plCat;
-        }
-         */
-
         var activities = Restangular.all('activities');
         var plannedActivities = Restangular.all('activitiesPlanned');
-
 
         var actService = {
             getActivities: function () {
@@ -96,6 +84,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         return actService;
     }])
 
+/**
+ * filters an array of activities by a given query, returns an array with all activities that match the query
+ */
     .filter('ActivityListFilter', [function () {
         return function (activities, query) {
             var out = [],
@@ -354,10 +345,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.query = {
                 subset: 'recommendations',
                 cluster: {
-                    general: false,
-                    fitness: false,
-                    nutrition: false,
-                    wellness: false
                 },
                 rating: {
                     five: false,
@@ -391,6 +378,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.currentPage = 1;
 
             // watch for changes on the query object and reapply filter, use deep watch=true
+            // whenever the query changes, update the filtered List of activities to the new query and
+            // jump back to page on of pagination
             $scope.$watch('query', function (newQuery) {
                 $scope.currentPage = 1;
                 $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
