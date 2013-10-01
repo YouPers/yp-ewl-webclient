@@ -271,15 +271,15 @@ module.exports = function (grunt) {
         htmlmin: {
             dist: {
                 options: {
-                    /*removeCommentsFromCDATA: true,
+                    removeCommentsFromCDATA: true,
                      // https://github.com/yeoman/grunt-usemin/issues/44
-                     //collapseWhitespace: true,
+                     // collapseWhitespace: true,
                      collapseBooleanAttributes: true,
                      removeAttributeQuotes: true,
                      removeRedundantAttributes: true,
                      useShortDoctype: true,
                      removeEmptyAttributes: true,
-                     removeOptionalTags: true*/
+                     removeOptionalTags: true
                 },
                 files: [
                     {
@@ -306,7 +306,7 @@ module.exports = function (grunt) {
                             'lib/**/*',
                             'assets/{,*/}*.{gif,webp}',
                             'styles/fonts/{,*/}*.woff',
-                            'js/mockdata/*.json'
+                            'js/mockdata/*'
                         ]
                     },
                     {
@@ -412,7 +412,7 @@ module.exports = function (grunt) {
         //'ngmin',
         'cssmin',
         'uglify',
-        'rev',
+        //'rev',
         'usemin'
     ]);
 
