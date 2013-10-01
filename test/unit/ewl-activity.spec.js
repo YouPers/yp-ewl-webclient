@@ -167,6 +167,11 @@ describe('ewl activity', function () {
             //create a scope object for us to use.
             $scope = $rootScope.$new();
 
+            // add activities-methods:
+            mock.activities.enrichWithUserData = function(arg1, arg2, arg3, arg4) {
+
+            }
+
             //now run that scope through the controller function,
             //injecting any services or other injectables we need.
             ctrl = $controller('ActivityListCtrl', {
