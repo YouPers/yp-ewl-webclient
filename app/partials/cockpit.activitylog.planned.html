@@ -1,0 +1,149 @@
+
+<div class="list-group activity-log" >
+
+    <div class="list-group-item {{getactivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries" ng-controller="ActivityLogHistoryCtrl" ng-switch on="isSelected()">
+
+        <div class="row">
+            <div class="col-xs-2 col-md-2">
+                <a href="" ng-click="gotoActivityDetail(activityLogEntry)" class="activity-log title">{{ activityLogEntry.id }}</br></a>
+                <span class="glyphicon controls glyphicon-{{getControlGlyphicon()}}" ng-click="toggleSelected()"></span></td>
+            </div>
+            <div class="col-xs-7 col-md-7">
+                <a href="" ng-click="gotoActivityDetail(activityLogEntry)" class="activity-log title">{{activityLogEntry.title}}</br></a>
+                {{ activityLogEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
+                {{ activityLogEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
+                {{ activityLogEntry.visibility | uppercase | translate }}
+            </div>
+            <div class="col-xs-2 col-md-2">
+                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" data-container="body" ng-repeat="activityField in activityLogEntry.activityFields">
+                    <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
+                </div>
+
+            </div>
+            <div class="col-xs-1 col-md-1">
+                <div class="activity-log time-box">
+                    <div class="col-md-1" popover="{{ activityLogEntry.source | uppercase | translate }}"
+                         popover-trigger="mouseenter">
+                        <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activityLogEntry.source == 'youpers'" class="activityListClusterIcon">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-switch-when="true">
+            <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityLogEntry.activityHistory" ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
+                <div class="row">
+                    <div class="col-xs-2 col-md-2">
+                    </div>
+                    <div class="col-xs-1 col-md-1">
+                        <div class="activity-log status" ng-controller="ActivityDoneCtrl">
+                            <a class="glyphicon controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" href="" ng-click="openDialog(activityLogEntry, activityHistoryEntry)" class="badge"></a>
+
+                            <div class="doneActivityDialog panel panel-default" ng-show="isDoneDialogOpen()" >
+                                <a class="close" ng-click="hideDialog()">×</a>
+
+                                <div>
+                                    <h3>{{ getActivityInfo() }}</h3>
+                                    <h4>{{ 'ON' | translate }} {{ getActivityWhen() }}</h4>
+                                    Aktivität ausgeführt? Beurteile, wie du dich dabei gefühlt hast. Du kannst dies mit einem Rating oder einem Kommentar machen.
+
+                                    <form class="navbar-form">
+                                        <div class="panel">
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+
+                                                    <div class="btn-group">
+                                                        Ausgeführt?</br>
+                                                        <button class="btn btn-default" ng-model="done" btn-radio="1">{{ 'YES' | translate }}</button>
+                                                        <button class="btn btn-default" ng-model="done" btn-radio="2">{{ 'NO' | translate }}</button>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-6">
+                                                    <div class="btn-group">
+                                                        Wie hast du dich gefühlt?</br>
+                                                        <button class="btn btn-default" ng-model="rating" btn-radio="1"><div class="activity-feedback-1-small"></div></button>
+                                                        <button class="btn btn-default" ng-model="rating" btn-radio="2"><div class="activity-feedback-2-small"></div></button>
+                                                        <button class="btn btn-default" ng-model="rating" btn-radio="3"><div class="activity-feedback-3-small"></div></button>
+                                                        <button class="btn btn-default" ng-model="rating" btn-radio="4"><div class="activity-feedback-4-small"></div></button>
+                                                        <button class="btn btn-default" ng-model="rating" btn-radio="5"><div class="activity-feedback-5-small"></div></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel">
+
+                                            <div class="row">
+                                                <div class="col-lg-10">
+
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="{{ 'COMMENT' | translate }}" class="form-control comment"
+                                                               ng-model="newComment">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <button type="submit" ng-click="storeFeedback(activityHistoryEntry)" class="btn btn-success btn-sm">{{ 'SAVE' | translate }}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-md-2">
+                        <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                        <a href="" ng-click="toggleComments()" class="activity-log comments">{{ "COMMENTS" | translate }} </a>
+                        <a href="" ng-click="toggleComments()" class="badge">{{activityHistoryEntry.nofComments}}</a>
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                        <div class="activity-log time-box">
+                                                                <span class="activity-log time-box timestamp">{{activityHistoryEntry.on | fromNowFake}}</br>
+                                                                    <!--<span class="activity-log time-box info">{{activityHistoryEntry.recurringInfo}}&nbsp;&nbsp;-->
+                                                                        <!--<span class="glyphicon glyphicon-repeat"></span>-->
+                                                                    <!--</span>-->
+                                                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-switch-when="true">
+                    <div class="list-group-item" ng-repeat="comment in activityHistoryEntry.comments">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-2">
+                                <a href="">
+                                    <img ng-src="{{comment.author.pic}}" class="social-log author-avatar"/>
+                                </a>
+                            </div>
+                            <div class="col-xs-3 col-md-3">
+                                <a href="">
+                                    <span class="social-log author-name">{{comment.author.fullname}}</span>
+                                </a>
+                            </div>
+                            <div class="col-xs-5 col-md-5">
+                                <span class="social-log comment">{{comment.text}}</span>
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                                <div class="social-log time-box">
+                                                                            <span class="activity-log time-box timestamp">
+                                                                                   {{comment.date | fromNowFake}}</br>
+                                                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

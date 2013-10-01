@@ -1019,3 +1019,17 @@ pre{
   background: @youpers-brand-colors-secondary-dimmed;
   cursor: pointer;
 }
+
+
+// irig: Fix needed for change in ui-bootsrapt-tpls-0.6.0-SNAPSHOP_modal.js
+// Without this fix tab content is shown above of the tabs
+.tabbable {
+  position: relative;
+  padding-top: 60px; /* height of the tabs */
+}
+
+.tabbable .nav-tabs {
+  position: absolute;
+  top: 0;
+}
+// irig: End of fix

@@ -2745,10 +2745,18 @@ function($parse, $http, $templateCache, $compile) {
       if (!scope.$eval(attrs.tabsetTitles)) {
         elm.remove();
       } else {
-        //now that tabs location has been decided, transclude the tab titles in
-        tabsetCtrl.$transcludeFn(tabsetCtrl.$scope.$parent, function(node) {
-          elm.append(node);
-        });
+          // irig 2013.10.01
+          // Patch gemäss https://github.com/angular-ui/bootstrap/issues/783,
+          // damit die tabsets innerhalb eines ng-switch scopes rechtzeitig for den tabset-titlescompiliert werden
+          // Wird benötigt, um im Cockpit die Tabs innerhalb des Activity Logs anzuzeigen.
+          // ToDo irig: Prüfen, ob bei der nächsten ui-bootstrap Version noch notwendig.
+          setTimeout(function() {
+              //now that tabs location has been decided, transclude the tab titles in
+              tabsetCtrl.$transcludeFn(tabsetCtrl.$scope.$parent, function(node) {
+                  elm.append(node);
+              });
+              scope.$apply();
+          },1)
       }
     }
   };
