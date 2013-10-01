@@ -2,27 +2,27 @@
 
 angular.module('yp.activitylog', ['ui.bootstrap'])
 
-//    .factory('ActivityLogService', ['$http', function ($http) {
-//
-//        var ActivityLogService = {};
-//
-//        var activityLogEntries = $http.get('activitylog').then(function (result) {
-//            return result.data;
-//        });
-//
-//        ActivityLogService.getActivityLog = function () {
-//            return activityLogEntries;
-//        };
-//
-//        var activityLogVisible = true;
-//
-//        ActivityLogService.getActivityLogVisibility = function () {
-//            return activityLogVisible;
-//        };
-//
-//        return ActivityLogService;
-//    }
-//    ])
+    .factory('ActivityLogService', ['$http', function ($http) {
+
+        var ActivityLogService = {};
+
+        var activityLogEntries = $http.get('activitylog').then(function (result) {
+            return result.data;
+        });
+
+        ActivityLogService.getActivityLog = function () {
+            return activityLogEntries;
+        };
+
+        var activityLogVisible = true;
+
+        ActivityLogService.getActivityLogVisibility = function () {
+            return activityLogVisible;
+        };
+
+        return ActivityLogService;
+    }
+    ])
 
     .factory('ActivityLogService2', ['$http', '$q', function ($http, $q) {
 
@@ -31,7 +31,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         var activityFieldsArray = [];
 
         var tabs = [
-            { title:"Laufende Aktivitäten", content:"partials/cockpit.activitylog.planned.html" },
+            { title:"Laufende Aktivitäten", content:"partials/cockpit.activitylog.running.html" },
             { title:"Geplante Aktivitäten", content:"partials/cockpit.activitylog.planned.html" }
 //            { title:"Geplante Aktivitäten", content:"partials/cockpit.activitylog.planned.html", disabled: true }
         ];
@@ -75,56 +75,56 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
     }
     ])
 
-//    .controller('ActivityLogCtrl', ['$scope', 'ActivityLogService', function ($scope, ActivityLogService) {
-//
-//        $scope.activityLogEntries = ActivityLogService.getActivityLog();
-//
-//        $scope.activityLogVisible = ActivityLogService.getActivityLogVisibility();
-//
-//        $scope.toggleInstruction = function () {
-//            if ($scope.activityLogVisible === true) {
-//                return "HIDE_ACTIVITY_LOG";
-//            } else {
-//                return "SHOW_ACTIVITY_LOG";
-//            }
-//        };
-//
-//        $scope.getGlyphicon = function(status) {
-//            var icon = "";
-//            if (status === "newMessage") {
-//                icon = "envelope";
-//            } else if (status === "readMessage") {
-//                icon = "ok";
-//            } else {
-//                icon = "star";
-//            }
-//            return icon;
-//        };
-//
-//        $scope.getGlyphiconStatus = function(status) {
-//            var icon = "";
-//            if (status === "done") {
-//                icon = "ok";
-//            } else if (status === "not done") {
-//                icon = "remove";
-//            } else if (status === "open") {
-//                icon = "unchecked";
-//            }
-//            return icon;
-//        };
-//
-//        $scope.getActionTimeType = function(status) {
-//            var icon = "";
-//            if (status === "past") {
-//                icon = "past";
-//            } else if (status === "current") {
-//                icon = "active";
-//            } else if (status === "future") {
-//                icon = "";
-//            }
-//            return icon;
-//        };
-//    }])
+    .controller('ActivityLogCtrl', ['$scope', 'ActivityLogService', function ($scope, ActivityLogService) {
+
+        $scope.activityLogEntries = ActivityLogService.getActivityLog();
+
+        $scope.activityLogVisible = ActivityLogService.getActivityLogVisibility();
+
+        $scope.toggleInstruction = function () {
+            if ($scope.activityLogVisible === true) {
+                return "HIDE_ACTIVITY_LOG";
+            } else {
+                return "SHOW_ACTIVITY_LOG";
+            }
+        };
+
+        $scope.getGlyphicon = function(status) {
+            var icon = "";
+            if (status === "newMessage") {
+                icon = "envelope";
+            } else if (status === "readMessage") {
+                icon = "ok";
+            } else {
+                icon = "star";
+            }
+            return icon;
+        };
+
+        $scope.getGlyphiconStatus = function(status) {
+            var icon = "";
+            if (status === "done") {
+                icon = "ok";
+            } else if (status === "not done") {
+                icon = "remove";
+            } else if (status === "open") {
+                icon = "unchecked";
+            }
+            return icon;
+        };
+
+        $scope.getActionTimeType = function(status) {
+            var icon = "";
+            if (status === "past") {
+                icon = "past";
+            } else if (status === "current") {
+                icon = "active";
+            } else if (status === "future") {
+                icon = "";
+            }
+            return icon;
+        };
+    }])
 
     .controller('ActivityLogCtrl2', ['$scope', 'ActivityLogService2', '$filter', '$state', function ($scope, ActivityLogService2, $filter, $state) {
 

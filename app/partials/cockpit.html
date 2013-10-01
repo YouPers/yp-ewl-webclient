@@ -49,7 +49,10 @@
                     <div class="col-md-6 activity-log-panel" ng-controller="ActivityLogCtrl2">
 
                         </br>
-                        <span class="glyphicon controls glyphicon-{{getControlGlyphicon(activityLogVisible)}}" ng-click="activityLogVisible = !activityLogVisible"><span class="cockpit-sub-title">&nbsp;Aktivitätslog</span></span>
+                        <span class="glyphicon controls glyphicon-{{getControlGlyphicon(activityLogVisible)}}" ng-click="activityLogVisible = !activityLogVisible">
+                            <span class="cockpit-sub-title">&nbsp;Aktivitätslog</span>
+                            <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
+                        </span>
 
                         <div ng-switch on="activityLogVisible">
 
@@ -58,9 +61,6 @@
                                 </br>
                                 <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
-                                <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
-                                </br>
-                                </br>
 
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12">

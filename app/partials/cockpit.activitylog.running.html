@@ -1,0 +1,35 @@
+<div class="list-group activity-log" ng-controller="ActivityLogCtrl">
+    <div class="list-group-item {{getactivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries">
+        <div class="row">
+            <div class="col-xs-1 col-md-1">
+                <div class="activity-log status">
+                    <span class="glyphicon glyphicon-{{getGlyphiconStatus(activityLogEntry.status)}}"></span></td>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <a href="#" class="activity-log title">{{activityLogEntry.activity}}</br></a>
+                <span class="activity-log comments">
+                    Kommentare <a href="#" class="badge">{{activityLogEntry.nofcomments}}</a>
+                </span>
+            </div>
+            <div class="col-xs-2 col-md-2">
+                <div class="activity-feedback-{{activityLogEntry.rating}}-small"></div>
+                <div class="activity-log rating">
+                    <rating max="5" value="activityLogEntry.rating"></rating>
+                </div>
+            </div>
+            <div class="col-xs-3 col-md-3">
+                <div class="activity-log time-box">
+                    <span class="activity-log time-box timestamp">
+                        {{activityLogEntry.timestamp | fromNowFake}}</br>
+                        <span class="activity-log time-box info">
+                            {{activityLogEntry.recurringInfo}}&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-repeat"></span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
