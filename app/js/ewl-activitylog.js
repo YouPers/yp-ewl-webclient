@@ -28,10 +28,16 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
                         var recurringType;
 
+                        var comments;
+
                         if (result.data[i].planType === "once") {
                             recurringType = "no";
                         } else {
                             recurringType = "yes";
+                        }
+
+                        if (result.data[i].activityHistory[i2].nofComments > 0) {
+                            comments = result.data[i].activityHistory[i2].comments;
                         }
 
                         activityHistoryEntryByTime = {
@@ -40,11 +46,14 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
                             status: result.data[i].activityHistory[i2].status,
                             type: result.data[i].activityHistory[i2].type,
                             title: result.data[i].title,
-                            nofcomments: result.data[i].activityHistory[i2].nofComments,
+                            nofComments: result.data[i].activityHistory[i2].nofComments,
                             recurring: recurringType,
-                            recurringinfo: result.data[i].planType,
+                            planType: result.data[i].planType,
+                            executionType: result.data[i].executionType,
+                            visibility: result.data[i].visibility,
                             feedback: result.data[i].activityHistory[i2].feedback,
-                            on: result.data[i].activityHistory[i2].on
+                            on: result.data[i].activityHistory[i2].on,
+                            comments: comments
                         };
 
                         activityHistoryEntriesByTime.push(activityHistoryEntryByTime);

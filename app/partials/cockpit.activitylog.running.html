@@ -70,23 +70,23 @@
 
 
             </div>
-            <div class="col-xs-6 col-md-6">
+            <div class="col-xs-7 col-md-7">
                 <a href="#" class="activity-log title">{{activityHistoryEntry.title}}</br></a>
+                {{ activityHistoryEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
+                {{ activityHistoryEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
+                {{ activityHistoryEntry.visibility | uppercase | translate }}&nbsp;|&nbsp;
+
                 <span class="activity-log comments">
-                    Kommentare <a href="#" class="badge">{{activityHistoryEntry.nofcomments}}</a>
+                    &nbsp; Kommentare <a href="#" class="badge">{{activityHistoryEntry.nofComments}}</a>
                 </span>
             </div>
             <div class="col-xs-2 col-md-2">
                 <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
             </div>
-            <div class="col-xs-2 col-md-2">
+            <div class="col-xs-1 col-md-1">
                 <div class="activity-log time-box">
                     <span class="activity-log time-box timestamp">
                         {{activityHistoryEntry.on | fromNowFake}}</br>
-                        <span class="activity-log time-box info">
-                            {{activityHistoryEntry.recurringInfo}}&nbsp;&nbsp;
-                            <span class="glyphicon glyphicon-repeat"></span>
-                        </span>
                     </span>
                 </div>
             </div>
