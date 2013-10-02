@@ -8,7 +8,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
         var activityFieldsArray = [];
 
-        var activityLogEntriesByTime = [];
+        var activityHistoryEntriesByTime = [];
 
         var tabs = [
             { title:"Laufende Aktivitäten", content:"partials/cockpit.activitylog.running.html" },
@@ -16,7 +16,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 //            { title:"Geplante Aktivitäten", content:"partials/cockpit.activitylog.planned.html", disabled: true }
         ];
 
-        var activityLogEntries = $http.get('js/mockdata/test-activitylog.json').then(function (result) {
+        var activityHistoryEntriesByPlanned = $http.get('js/mockdata/test-activitylog.json').then(function (result) {
 
             // create array structured by time
             for (var i = 0; i < result.data.length; i++) {
@@ -24,7 +24,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
                     for (var i2 = 0; i2 < result.data[i].activityHistory.length; i2++) {
 
-                        var activityLogEntryByTime = {};
+                        var activityHistoryEntryByTime = {};
 
                         var recurringType;
 
@@ -34,7 +34,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
                             recurringType = "yes";
                         }
 
-                        activityLogEntryByTime = {
+                        activityHistoryEntryByTime = {
                             id: result.data[i].id + "-" + result.data[i].activityHistory[i2].id,
                             status: result.data[i].activityHistory[i2].status,
                             type: result.data[i].activityHistory[i2].type,
@@ -46,7 +46,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
                             timestamp: result.data[i].activityHistory[i2].on
                         };
 
-                        activityLogEntriesByTime.push(activityLogEntryByTime);
+                        activityHistoryEntriesByTime.push(activityHistoryEntryByTime);
 
                     }
 
@@ -72,12 +72,12 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
             return activityFields;
         };
 
-        ActivityLogService.getActivityLog = function () {
-            return activityLogEntries;
+        ActivityLogService.getActivityHistoryByPlanned = function () {
+            return activityHistoryEntriesByPlanned;
         };
 
-        ActivityLogService.getActivityLogByTime = function () {
-            return activityLogEntriesByTime;
+        ActivityLogService.getActivityHistoryByTime = function () {
+            return activityHistoryEntriesByTime;
         };
 
         var activityLogVisible = true;
@@ -116,10 +116,10 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
         $scope.activityFieldsArray = ActivityLogService.getActivityFieldsAsArray();
 
-        $scope.activityLogEntries = ActivityLogService.getActivityLog();
-        $scope.activityLogEntriesByTime = ActivityLogService.getActivityLogByTime();
+        $scope.activityHistoryEntriesByPlanned = ActivityLogService.getActivityHistoryByPlanned();
+        $scope.activityHistoryEntriesByTime = ActivityLogService.getActivityHistoryByTime();
 
-        $scope.getGlyphicon = function(status) {
+            $scope.getGlyphicon = function(status) {
             var icon = "";
             if (status === "newMessage") {
                 icon = "envelope";
@@ -177,7 +177,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
     }])
 
-    .controller('ActivityLogHistoryByPlannedCtrl', ['$scope', function ($scope) {
+    .controller('activityHistoryByPlannedCtrl', ['$scope', function ($scope) {
 
         $scope.toggleSelected = function () {
             $scope.selected = !$scope.selected;
@@ -239,8 +239,8 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
         // Done Dialog
 
-        $scope.openDialog = function (activityLogEntry, activityHistoryEntry) {
-            $scope.activityLogEntry = activityLogEntry;
+        $scope.openDialog = function (activityPlannedEntry, activityHistoryEntry) {
+            $scope.activityPlannedEntry = activityPlannedEntry;
             $scope.activityHistoryEntry = activityHistoryEntry;
 
             if ($scope.activityHistoryEntry.status === "done") {
@@ -265,7 +265,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         };
 
         $scope.getActivityInfo = function () {
-            return $scope.activityLogEntry.id + ": " + $scope.activityLogEntry.title;
+            return $scope.activityPlannedEntry.id + ": " + $scope.activityPlannedEntry.title;
         };
 
         $scope.getActivityWhen = function () {

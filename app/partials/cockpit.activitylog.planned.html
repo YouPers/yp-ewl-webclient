@@ -1,41 +1,41 @@
 <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
 
-    <div class="list-group-item {{getactivityTimeType(activityLogEntry.type)}}" ng-repeat="activityLogEntry in activityLogEntries" ng-controller="ActivityLogHistoryByPlannedCtrl" ng-switch on="isSelected()">
+    <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityPlannedEntry in activityHistoryEntriesByPlanned" ng-controller="activityHistoryByPlannedCtrl" ng-switch on="isSelected()">
 
         <div class="row">
             <div class="col-xs-2 col-md-2">
-                <a href="" ng-click="gotoActivityDetail(activityLogEntry)" class="activity-log title">{{ activityLogEntry.id }}</br></a>
+                <a href="" ng-click="gotoActivityDetail(activityPlannedEntry)" class="activity-log title">{{ activityPlannedEntry.id }}</br></a>
                 <span class="glyphicon controls glyphicon-{{getControlGlyphicon()}}" ng-click="toggleSelected()"></span></td>
             </div>
             <div class="col-xs-7 col-md-7">
-                <a href="" ng-click="gotoActivityDetail(activityLogEntry)" class="activity-log title">{{activityLogEntry.title}}</br></a>
-                {{ activityLogEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
-                {{ activityLogEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
-                {{ activityLogEntry.visibility | uppercase | translate }}
+                <a href="" ng-click="gotoActivityDetail(activityPlannedEntry)" class="activity-log title">{{activityPlannedEntry.title}}</br></a>
+                {{ activityPlannedEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
+                {{ activityPlannedEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
+                {{ activityPlannedEntry.visibility | uppercase | translate }}
             </div>
             <div class="col-xs-2 col-md-2">
-                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" data-container="body" ng-repeat="activityField in activityLogEntry.activityFields">
+                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" data-container="body" ng-repeat="activityField in activityPlannedEntry.activityFields">
                     <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
                 </div>
 
             </div>
             <div class="col-xs-1 col-md-1">
                 <div class="activity-log time-box">
-                    <div class="col-md-1" popover="{{ activityLogEntry.source | uppercase | translate }}"
+                    <div class="col-md-1" popover="{{ activityPlannedEntry.source | uppercase | translate }}"
                          popover-trigger="mouseenter">
-                        <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activityLogEntry.source == 'youpers'" class="activityListClusterIcon">
+                        <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activityPlannedEntry.source == 'youpers'" class="activityListClusterIcon">
                     </div>
                 </div>
             </div>
         </div>
         <div class="row" ng-switch-when="true">
-            <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityLogEntry.activityHistory" ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
+            <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityPlannedEntry.activityHistory" ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
                 <div class="row">
                     <div class="col-xs-2 col-md-2">
                     </div>
                     <div class="col-xs-1 col-md-1">
                         <div class="activity-log status" ng-controller="ActivityDoneCtrl">
-                            <a class="glyphicon controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" href="" ng-click="openDialog(activityLogEntry, activityHistoryEntry)" class="badge"></a>
+                            <a class="glyphicon controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" href="" ng-click="openDialog(activityPlannedEntry, activityHistoryEntry)" class="badge"></a>
 
                             <div class="doneActivityDialog panel panel-default" ng-show="isDoneDialogOpen()" >
                                 <a class="close" ng-click="hideDialog()">×</a>
