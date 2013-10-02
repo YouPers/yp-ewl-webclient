@@ -76,9 +76,9 @@
                 {{ activityHistoryEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
                 {{ activityHistoryEntry.visibility | uppercase | translate }}&nbsp;|&nbsp;
 
-                <span class="activity-log comments">
-                    &nbsp; Kommentare <a href="#" class="badge">{{activityHistoryEntry.nofComments}}</a>
-                </span>
+                <a href="" ng-click="toggleComments()" class="glyphicon glyphicon-comment"> </a>
+                <a href="" ng-click="toggleComments()" class="badge">{{activityHistoryEntry.nofComments}}</a>
+
             </div>
             <div class="col-xs-2 col-md-2">
                 <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
