@@ -2,31 +2,9 @@
 
 angular.module('yp.activitylog', ['ui.bootstrap'])
 
-//    .factory('ActivityLogService', ['$http', function ($http) {
-//
-//        var ActivityLogService = {};
-//
-//        var activityLogEntries = $http.get('activitylog').then(function (result) {
-//            return result.data;
-//        });
-//
-//        ActivityLogService.getActivityLog = function () {
-//            return activityLogEntries;
-//        };
-//
-//        var activityLogVisible = true;
-//
-//        ActivityLogService.getActivityLogVisibility = function () {
-//            return activityLogVisible;
-//        };
-//
-//        return ActivityLogService;
-//    }
-//    ])
+    .factory('ActivityLogService', ['$http', '$q', function ($http, $q) {
 
-    .factory('ActivityLogService2', ['$http', '$q', function ($http, $q) {
-
-        var ActivityLogService2 = {};
+        var ActivityLogService = {};
 
         var activityFieldsArray = [];
 
@@ -86,105 +64,60 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
             return activityFieldsArray;
         });
 
-        ActivityLogService2.getActivityFieldsAsArray = function () {
+        ActivityLogService.getActivityFieldsAsArray = function () {
             return activityFieldsArray;
         };
 
-        ActivityLogService2.getActivityFields = function () {
+        ActivityLogService.getActivityFields = function () {
             return activityFields;
         };
 
-        ActivityLogService2.getActivityLog = function () {
+        ActivityLogService.getActivityLog = function () {
             return activityLogEntries;
         };
 
-        ActivityLogService2.getActivityLogByTime = function () {
+        ActivityLogService.getActivityLogByTime = function () {
             return activityLogEntriesByTime;
         };
 
         var activityLogVisible = true;
 
-        ActivityLogService2.getActivityLogVisibility = function () {
+        ActivityLogService.getActivityLogVisibility = function () {
             return activityLogVisible;
         };
 
-        ActivityLogService2.getTabs = function () {
+        ActivityLogService.getTabs = function () {
             return tabs;
         };
 
-        return ActivityLogService2;
+        return ActivityLogService;
     }
     ])
 
-//    .controller('ActivityLogCtrl', ['$scope', 'ActivityLogService', function ($scope, ActivityLogService) {
-//
-//        $scope.activityLogEntries = ActivityLogService.getActivityLog();
-//
-//        $scope.activityLogVisible = ActivityLogService.getActivityLogVisibility();
-//
-////        $scope.toggleInstruction = function () {
-////            if ($scope.activityLogVisible === true) {
-////                return "HIDE_ACTIVITY_LOG";
-////            } else {
-////                return "SHOW_ACTIVITY_LOG";
-////            }
-////        };
-//
-////        $scope.getGlyphicon = function(status) {
-////            var icon = "";
-////            if (status === "newMessage") {
-////                icon = "envelope";
-////            } else if (status === "readMessage") {
-////                icon = "ok";
-////            } else {
-////                icon = "star";
-////            }
-////            return icon;
-////        };
-//
-////        $scope.getGlyphiconStatus = function(status) {
-////            var icon = "";
-////            if (status === "done") {
-////                icon = "ok";
-////            } else if (status === "not done") {
-////                icon = "remove";
-////            } else if (status === "open") {
-////                icon = "unchecked";
-////            }
-////            return icon;
-////        };
-//
-////        $scope.getActionTimeType = function(status) {
-////            var icon = "";
-////            if (status === "past") {
-////                icon = "past";
-////            } else if (status === "current") {
-////                icon = "active";
-////            } else if (status === "future") {
-////                icon = "";
-////            }
-////            return icon;
-////        };
-//    }])
+    .controller('ActivityLogVisibilityCtrl', ['$scope', 'ActivityLogService', '$filter', '$state', function ($scope, ActivityLogService, $filter, $state) {
 
-    .controller('ActivityLogCtrl2', ['$scope', 'ActivityLogService2', '$filter', '$state', function ($scope, ActivityLogService2, $filter, $state) {
+        $scope.activityLogVisible = ActivityLogService.getActivityLogVisibility();
 
-        $scope.activityFields = ActivityLogService2.getActivityFields();
+        $scope.getVisibilityGlyphicon = function (visibilty) {
+            if (visibilty) {
+                return "collapse-down";
+            } else {
+                return "expand";
+            }
+        };
 
-        $scope.activityFieldsArray = ActivityLogService2.getActivityFieldsAsArray();
+        $scope.tabs = ActivityLogService.getTabs();
 
-        $scope.activityLogEntries = ActivityLogService2.getActivityLog();
-        $scope.activityLogEntriesByTime = ActivityLogService2.getActivityLogByTime();
+    }])
 
-        $scope.activityLogVisible = ActivityLogService2.getActivityLogVisibility();
+    .controller('ActivityLogCtrl', ['$scope', 'ActivityLogService', '$filter', '$state', function ($scope, ActivityLogService, $filter, $state) {
 
-//        $scope.toggleInstruction = function () {
-//            if ($scope.activityLogVisible === true) {
-//                return "HIDE_ACTIVITY_LOG";
-//            } else {
-//                return "SHOW_ACTIVITY_LOG";
-//            }
-//        };
+        $scope.activityFields = ActivityLogService.getActivityFields();
+
+        $scope.activityFieldsArray = ActivityLogService.getActivityFieldsAsArray();
+
+        $scope.activityLogEntries = ActivityLogService.getActivityLog();
+        $scope.activityLogEntriesByTime = ActivityLogService.getActivityLogByTime();
 
         $scope.getGlyphicon = function(status) {
             var icon = "";
@@ -217,14 +150,6 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
             $state.go('activitylist');
         };
 
-        $scope.getControlGlyphicon = function (visibilty) {
-            if (visibilty) {
-                return "collapse-down";
-            } else {
-                return "expand";
-            }
-        };
-
         $scope.getActivityTimeType = function(status) {
             var icon = "";
             if (status === "past") {
@@ -250,11 +175,9 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
             return icon;
         };
 
-        $scope.tabs = ActivityLogService2.getTabs();
-
     }])
 
-    .controller('ActivityLogHistoryCtrl', ['$scope', function ($scope) {
+    .controller('ActivityLogHistoryByPlannedCtrl', ['$scope', function ($scope) {
 
         $scope.toggleSelected = function () {
             $scope.selected = !$scope.selected;

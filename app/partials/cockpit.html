@@ -46,10 +46,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 activity-log-panel" ng-controller="ActivityLogCtrl2">
+                    <div class="col-md-6 activity-log-panel" ng-controller="ActivityLogVisibilityCtrl">
 
                         </br>
-                        <span class="glyphicon controls glyphicon-{{getControlGlyphicon(activityLogVisible)}}" ng-click="activityLogVisible = !activityLogVisible">
+                        <span class="glyphicon controls glyphicon-{{getVisibilityGlyphicon(activityLogVisible)}}" ng-click="activityLogVisible = !activityLogVisible">
                             <span class="cockpit-sub-title">&nbsp;Aktivitätslog</span>
                             <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
                         </span>
