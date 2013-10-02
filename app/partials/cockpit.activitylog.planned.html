@@ -35,7 +35,10 @@
                     </div>
                     <div class="col-xs-1 col-md-1">
                         <div class="activity-log status" ng-controller="ActivityDoneCtrl">
-                            <a class="glyphicon controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" href="" ng-click="openDialog(activityPlannedEntry, activityHistoryEntry)" class="badge"></a>
+                            <button class="btn btn-default" ng-click="openDialog(activityPlannedEntry.id, activityPlannedEntry.title, activityHistoryEntry)">
+                                <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" style="vertical-align:middle"></span>
+                            </button>
+                            <!--<a class="glyphicon controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" href="" ng-click="openDialog(activityPlannedEntry, activityHistoryEntry)" class="badge"></a>-->
 
                             <div class="doneActivityDialog panel panel-default" ng-show="isDoneDialogOpen()" >
                                 <a class="close" ng-click="hideDialog()">×</a>
@@ -93,8 +96,6 @@
 
 
                             </div>
-
-
 
                         </div>
                     </div>

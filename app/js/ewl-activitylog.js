@@ -35,15 +35,16 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
                         }
 
                         activityHistoryEntryByTime = {
-                            id: result.data[i].id + "-" + result.data[i].activityHistory[i2].id,
+                            id: result.data[i].id,
+//                            id: result.data[i].id + "-" + result.data[i].activityHistory[i2].id,
                             status: result.data[i].activityHistory[i2].status,
                             type: result.data[i].activityHistory[i2].type,
-                            activity: result.data[i].title,
+                            title: result.data[i].title,
                             nofcomments: result.data[i].activityHistory[i2].nofComments,
                             recurring: recurringType,
                             recurringinfo: result.data[i].planType,
-                            rating: result.data[i].activityHistory[i2].feedback,
-                            timestamp: result.data[i].activityHistory[i2].on
+                            feedback: result.data[i].activityHistory[i2].feedback,
+                            on: result.data[i].activityHistory[i2].on
                         };
 
                         activityHistoryEntriesByTime.push(activityHistoryEntryByTime);
@@ -237,10 +238,9 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
     .controller('ActivityDoneCtrl', ['$scope', function ($scope) {
 
-        // Done Dialog
-
-        $scope.openDialog = function (activityPlannedEntry, activityHistoryEntry) {
-            $scope.activityPlannedEntry = activityPlannedEntry;
+        $scope.openDialog = function (activityId, activityTitle, activityHistoryEntry) {
+            $scope.activityID = activityId;
+            $scope.activityTitle = activityTitle;
             $scope.activityHistoryEntry = activityHistoryEntry;
 
             if ($scope.activityHistoryEntry.status === "done") {
@@ -265,21 +265,13 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         };
 
         $scope.getActivityInfo = function () {
-            return $scope.activityPlannedEntry.id + ": " + $scope.activityPlannedEntry.title;
+            return $scope.activityID + ": " + $scope.activityTitle;
         };
 
         $scope.getActivityWhen = function () {
             var date = new Date($scope.activityHistoryEntry.on);
             return date.toLocaleDateString() + ", " + date.toLocaleTimeString();
         };
-
-//        $scope.isActive = function (rating) {
-//            if ($scope.rating === rating) {
-//                return "active";
-//            } else {
-//                return "";
-//            }
-//        };
 
         $scope.storeFeedback = function (activityHistoryEntry) {
 
