@@ -1,75 +1,7 @@
 <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
     <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityHistoryEntriesByTime">
-        <div class="row" ng-controller="ActivityDoneCtrl">
-            <div class="col-xs-1 col-md-1">
-                <button class="btn btn-default" ng-click="openDialog(activityHistoryEntry.id, activityHistoryEntry.title, activityHistoryEntry)">
-                    <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" ></span>
-                </button>
-
-                <!--<div class="activity-log status">-->
-                    <!--<span class="glyphicon controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}"></span></td>-->
-                <!--</div>-->
-
-
-                <div class="doneActivityDialog panel panel-default" ng-show="isDoneDialogOpen()" >
-                    <a class="close" ng-click="hideDialog()">×</a>
-
-                    <div>
-                        <h3>{{ getActivityInfo() }}</h3>
-                        <h4>{{ 'ON' | translate }} {{ getActivityWhen() }}</h4>
-                        Aktivität ausgeführt? Beurteile, wie du dich dabei gefühlt hast. Du kannst dies mit einem Rating oder einem Kommentar machen.
-
-                        <form class="navbar-form">
-                            <div class="panel">
-
-                                <div class="row">
-                                    <div class="col-lg-6">
-
-                                        <div class="btn-group">
-                                            Ausgeführt?</br>
-                                            <button class="btn btn-default" ng-model="done" btn-radio="1">{{ 'YES' | translate }}</button>
-                                            <button class="btn btn-default" ng-model="done" btn-radio="2">{{ 'NO' | translate }}</button>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-lg-6">
-                                        <div class="btn-group">
-                                            Wie hast du dich gefühlt?</br>
-                                            <button class="btn btn-default" ng-model="rating" btn-radio="1"><div class="activity-feedback-1-small"></div></button>
-                                            <button class="btn btn-default" ng-model="rating" btn-radio="2"><div class="activity-feedback-2-small"></div></button>
-                                            <button class="btn btn-default" ng-model="rating" btn-radio="3"><div class="activity-feedback-3-small"></div></button>
-                                            <button class="btn btn-default" ng-model="rating" btn-radio="4"><div class="activity-feedback-4-small"></div></button>
-                                            <button class="btn btn-default" ng-model="rating" btn-radio="5"><div class="activity-feedback-5-small"></div></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel">
-
-                                <div class="row">
-                                    <div class="col-lg-10">
-
-                                        <div class="form-group">
-                                            <input type="text" placeholder="{{ 'COMMENT' | translate }}" class="form-control comment"
-                                                   ng-model="newComment">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <button type="submit" ng-click="storeFeedback(activityHistoryEntry)" class="btn btn-success btn-sm">{{ 'SAVE' | translate }}</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-
-
-                </div>
-
-
-            </div>
+        <div class="row">
+            <div ng-include="'partials/cockpit.activity.done.html'" onload="dialogTitle = activityHistoryEntry.id + ': ' + activityHistoryEntry.title"></div>
             <div class="col-xs-7 col-md-7">
                 <a href="#" class="activity-log title">{{activityHistoryEntry.title}}</br></a>
                 {{ activityHistoryEntry.planType | uppercase | translate }}&nbsp;|&nbsp;

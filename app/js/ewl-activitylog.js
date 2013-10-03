@@ -271,8 +271,8 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
     .controller('ActivityDoneCtrl', ['$scope', function ($scope) {
 
-        $scope.openDialog = function (activityId, activityTitle, activityHistoryEntry) {
-            $scope.activityID = activityId;
+        $scope.openDialog = function (activityTitle, activityHistoryEntry) {
+//            $scope.activityID = activityId;
             $scope.activityTitle = activityTitle;
             $scope.activityHistoryEntry = activityHistoryEntry;
 
@@ -298,7 +298,8 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         };
 
         $scope.getActivityInfo = function () {
-            return $scope.activityID + ": " + $scope.activityTitle;
+            return $scope.activityTitle;
+//            return $scope.activityID + ": " + $scope.activityTitle;
         };
 
         $scope.getActivityWhen = function () {
