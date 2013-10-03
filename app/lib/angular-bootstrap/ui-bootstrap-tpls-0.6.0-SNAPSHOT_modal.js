@@ -1139,7 +1139,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
       };
 
       // popup element used to display calendar
-      // TODO: (rblu) patch for datepickerpopup in angular 1.2 rc2
+      // TODO: (rblu) remove patch for datepickerpopup in angular 1.2 rc2 when not needed anymore
         /*
       var popupEl = angular.element('<datepicker-popup-wrap><datepicker></datepicker></datepicker-popup-wrap>');
       popupEl.attr({
