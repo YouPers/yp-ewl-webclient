@@ -34,9 +34,9 @@ angular.module('yp.discussion', []).
             var newComment = {
                 thread_id: thread.id,
                 author: {
-                    "id": principal.identity().id(),
-                    "fullname": principal.identity().fullname(),
-                    "pic": principal.identity().picture(),
+                    "id": principal.getUser().id,
+                    "fullname": principal.getUser().fullname,
+                    "pic": principal.getUser().avatar,
                     "link": ""
                 },
                 date: new Date(),
@@ -51,9 +51,9 @@ angular.module('yp.discussion', []).
                 "ref_obj_id": "1",
                 "ref_obj": "activity",
                 "author": {
-                    "id": principal.identity().id(),
-                    "fullname": principal.identity().fullname(),
-                    "pic": principal.identity().picture(),
+                    "id": principal.getUser().id,
+                    "fullname": principal.getUser().fullname,
+                    "pic": principal.getUser().avatar,
                     "link": ""
                 },
                 "date": new Date(),
