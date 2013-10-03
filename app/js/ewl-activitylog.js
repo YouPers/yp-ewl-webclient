@@ -10,16 +10,21 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
         var activityHistoryEntriesByTime = [];
 
+        var activityHistoryEntriesByPlanned = [];
+
         var tabs = [
             { title:"Laufende Aktivitäten", content:"partials/cockpit.activitylog.running.html" },
             { title:"Geplante Aktivitäten", content:"partials/cockpit.activitylog.planned.html" }
 //            { title:"Geplante Aktivitäten", content:"partials/cockpit.activitylog.planned.html", disabled: true }
         ];
 
-        var activityHistoryEntriesByPlanned = $http.get('js/mockdata/test-activitylog.json').then(function (result) {
+        var activityHistoryEntries = $http.get('js/mockdata/test-activitylog.json').then(function (result) {
 
             // create array structured by time
             for (var i = 0; i < result.data.length; i++) {
+
+                activityHistoryEntriesByPlanned.push(result.data[i]);
+
                 if (result.data[i].activityHistory.length > 0) {
 
                     for (var i2 = 0; i2 < result.data[i].activityHistory.length; i2++) {
@@ -42,6 +47,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
                         activityHistoryEntryByTime = {
                             id: result.data[i].id,
+                            historyEntryId: result.data[i].activityHistory[i2].id,
 //                            id: result.data[i].id + "-" + result.data[i].activityHistory[i2].id,
                             status: result.data[i].activityHistory[i2].status,
                             type: result.data[i].activityHistory[i2].type,
@@ -98,6 +104,47 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
         ActivityLogService.getTabs = function () {
             return tabs;
+        };
+
+        ActivityLogService.updateActivity = function (activityID, activity) {
+            var updatedActivity = activityID;
+            var updatedActivityHistoryEntry = activity.historyEntryId;
+            if (updatedActivityHistoryEntry === undefined) {
+                updatedActivityHistoryEntry = activity.id;
+            }
+            var newStatus = activity.status;
+            var newNofComments = activity.nofComments;
+            var newFeedback = activity.feedback;
+            var newComments = activity.comments;
+
+            for (var i = 0; i < activityHistoryEntriesByPlanned.length; i++) {
+                if (activityHistoryEntriesByPlanned[i].id === updatedActivity) {
+                    for (var i2 = 0; i2 < activityHistoryEntriesByPlanned[i].activityHistory.length; i2++) {
+                        if (activityHistoryEntriesByPlanned[i].activityHistory[i2].id === updatedActivityHistoryEntry) {
+                            activityHistoryEntriesByPlanned[i].activityHistory[i2].status = newStatus;
+                            activityHistoryEntriesByPlanned[i].activityHistory[i2].feedback = newFeedback;
+                            if (activityHistoryEntriesByPlanned[i].activityHistory[i2].nofComments < newNofComments) {
+//                                activityHistoryEntriesByPlanned[i].activityHistory[i2].comments.push(newComments[newComments.length - 1]);
+                                activityHistoryEntriesByPlanned[i].activityHistory[i2].nofComments = newNofComments;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            for (i = 0; i < activityHistoryEntriesByTime.length; i++) {
+                if (activityHistoryEntriesByTime[i].id === updatedActivity &&
+                    activityHistoryEntriesByTime[i].historyEntryId === updatedActivityHistoryEntry) {
+                    activityHistoryEntriesByTime[i].status = newStatus;
+                    activityHistoryEntriesByTime[i].feedback = newFeedback;
+                    activityHistoryEntriesByTime[i].nofComments = newNofComments;
+                    activityHistoryEntriesByTime[i].comments = newComments;
+                }
+                var x = 77;
+            }
+
+
         };
 
         return ActivityLogService;
@@ -269,11 +316,11 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
     }])
 
-    .controller('ActivityDoneCtrl', ['$scope', function ($scope) {
+    .controller('ActivityDoneCtrl', ['$scope', 'ActivityLogService', function ($scope, ActivityLogService) {
 
-        $scope.openDialog = function (activityTitle, activityHistoryEntry) {
-//            $scope.activityID = activityId;
-            $scope.activityTitle = activityTitle;
+        $scope.openDialog = function (activity, activityHistoryEntry) {
+            $scope.activityID = activity.id;
+            $scope.activityTitle = activity.title;
             $scope.activityHistoryEntry = activityHistoryEntry;
 
             if ($scope.activityHistoryEntry.status === "done") {
@@ -298,8 +345,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         };
 
         $scope.getActivityInfo = function () {
-            return $scope.activityTitle;
-//            return $scope.activityID + ": " + $scope.activityTitle;
+            return $scope.activityID + ": " + $scope.activityTitle;
         };
 
         $scope.getActivityWhen = function () {
@@ -320,13 +366,15 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
             if ($scope.newComment.length > 0) {
 
                 var comment = {};
-                comment.id = activityHistoryEntry.nofComments + 1;
+                var newId = parseInt(activityHistoryEntry.nofComments,10) + 1;
+                    comment.id = newId.toString();
                 comment.text = $scope.newComment;
+                comment.date = new Date().toISOString();
 
                 // currently just UBAU
 
                 var author = {};
-                author.id = 1;
+                author.id = "1";
                 author.fullname = "Urs Baumeler";
                 author.pic = "assets/img/UBAU.jpeg";
                 author.link = "#/u/UBAU";
@@ -337,6 +385,9 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
                 activityHistoryEntry.nofComments++;
 
             }
+
+            ActivityLogService.updateActivity($scope.activityID, activityHistoryEntry);
+
             $scope.hideDialog();
         };
 

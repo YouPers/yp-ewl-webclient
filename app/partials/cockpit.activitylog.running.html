@@ -1,7 +1,7 @@
 <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
     <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityHistoryEntriesByTime">
         <div class="row">
-            <div ng-include="'partials/cockpit.activity.done.html'" onload="dialogTitle = activityHistoryEntry.id + ': ' + activityHistoryEntry.title"></div>
+            <div ng-include="'partials/cockpit.activity.done.html'" onload="dialogTitle = { id: activityHistoryEntry.id, title: activityHistoryEntry.title}"></div>
             <div class="col-xs-7 col-md-7">
                 <a href="#" class="activity-log title">{{activityHistoryEntry.title}}</br></a>
                 {{ activityHistoryEntry.planType | uppercase | translate }}&nbsp;|&nbsp;

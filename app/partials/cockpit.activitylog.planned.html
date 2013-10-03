@@ -16,7 +16,7 @@
                 <!--{{ activityPlannedEntry.visibility | uppercase | translate }}-->
             </div>
             <div class="col-xs-2 col-md-2">
-                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" data-container="body" ng-repeat="activityField in activityPlannedEntry.activityFields">
+                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" ng-repeat="activityField in activityPlannedEntry.activityFields">
                     <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
                 </div>
 
@@ -35,15 +35,15 @@
                 <div class="row">
                     <div class="col-xs-2 col-md-2">
                     </div>
-                    <div class="col-xs-1 col-md-1" ng-controller="ActivityDoneCtrl">
+                    <div class="col-xs-2 col-md-2" ng-controller="ActivityDoneCtrl">
                         <div class="activity-log status">
-                            <div ng-include="'partials/cockpit.activity.done.html'" onload="dialogTitle = activityPlannedEntry.id + ': ' + activityPlannedEntry.title"></div>
+                            <div ng-include="'partials/cockpit.activity.done.html'" onload="dialogTitle = { id: activityPlannedEntry.id, title: activityPlannedEntry.title}"></div>
                         </div>
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
                     </div>
-                    <div class="col-xs-4 col-md-4">
+                    <div class="col-xs-3 col-md-3">
                         <!--<a href="" ng-click="toggleComments()" class="activity-log comments">{{ "COMMENTS" | translate }} </a>-->
                         <a href="" ng-click="toggleComments()" class="glyphicon glyphicon-comment"> </a>
                         <a href="" ng-click="toggleComments()" class="badge">{{activityHistoryEntry.nofComments}}</a>
