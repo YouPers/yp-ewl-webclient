@@ -177,7 +177,7 @@
                 </div>
                 <div class="col-md-2">
                     <div popover="{{ getClusterName(cluster)}}" popover-trigger="mouseenter"
-                         ng-repeat="cluster in activity.field">
+                         ng-repeat="cluster in activity.field" popover-placement="left" popover-append-to-body="true">
                         <img ng-src="/assets/ico/{{cluster}}.gif" class="activityListClusterIcon">
                     </div>
                 </div>
