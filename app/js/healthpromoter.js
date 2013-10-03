@@ -116,7 +116,9 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             function stopVideo() {
+                if (player) {
                 player.stopVideo();
+                }
             }
         }])
 

@@ -1139,6 +1139,8 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
       };
 
       // popup element used to display calendar
+      // TODO: (rblu) remove patch for datepickerpopup in angular 1.2 rc2 when not needed anymore
+        /*
       var popupEl = angular.element('<datepicker-popup-wrap><datepicker></datepicker></datepicker-popup-wrap>');
       popupEl.attr({
         'ng-model': 'date',
@@ -1148,6 +1150,21 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
       if (attrs.datepickerOptions) {
         datepickerEl.attr(angular.extend({}, originalScope.$eval(attrs.datepickerOptions)));
       }
+      */
+
+        // popup element used to display calendar
+        var popupEl = angular.element('<datepicker-popup-wrap><datepicker></datepicker></datepicker-popup-wrap>');
+        var datepickerEl = popupEl.find('datepicker');
+        datepickerEl.attr({
+            'ng-model': '$parent.$parent.date',
+            'ng-change': '$parent.$parent.dateSelection()'
+        });
+        if (attrs.datepickerOptions) {
+            datepickerEl.attr(angular.extend({}, originalScope.$eval(attrs.datepickerOptions)));
+        }
+
+
+      // End: patch for datepickerpopup in angular 1.2 rc2
 
       // TODO: reverse from dateFilter string to Date object
       function parseDate(viewValue) {

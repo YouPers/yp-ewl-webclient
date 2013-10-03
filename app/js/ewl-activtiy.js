@@ -48,6 +48,30 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 });
         }])
 
+    // Object methods for all Assessment related objects
+    .run(['Restangular', function (Restangular) {
+        Restangular.extendCollection('activities', function (activities) {
+                activities.enrichWithUserData = function (plans, recommendations, campaigns) {
+                    _.forEach(activities, function (act) {
+
+                        var matchingPlan = _.find(plans, function (plan) {
+                            return (act.id === plan.activity.id);
+                        });
+
+                        act.plan = matchingPlan;
+
+                        act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
+
+                        act.isRecommended = (recommendations.indexOf(act.id) !== -1);
+                    });
+                };
+
+
+                return activities;
+            }
+        );
+    }])
+
 
     .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
         var activities = Restangular.all('activities');
@@ -103,13 +127,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return activities;
             }
 
-
             angular.forEach(query.cluster, function (value, key) {
                 if (value) {
                     allClusters = false;
                 }
             });
-
 
             angular.forEach(query.topic, function (value, key) {
                 if (value) {
@@ -117,13 +139,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
             });
 
-
             angular.forEach(query.rating, function (value, key) {
                 if (value) {
                     allRatings = false;
                 }
             });
-
 
             angular.forEach(query.times, function (value, key) {
                 if (value) {
@@ -154,9 +174,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         (allExecutiontypes || query.executiontype[activity.defaultexecutiontype]) &&
                         (allTimes || query.time[activity.time]
                             ) &&
-                        (subSetAll || (query.subset==='campaign' && activity.isCampaign) ||
-                                      (query.subset==='recommendations' && activity.isRecommended)) &&
-                        (!query.fulltext || (activity.title.toUpperCase()+activity.id.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
+                        (subSetAll || (query.subset === 'campaign' && activity.isCampaign) ||
+                            (query.subset === 'recommendations' && activity.isRecommended)) &&
+                        (!query.fulltext || (activity.title.toUpperCase() + activity.id.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
                         ) {
                         out.push(activity);
                     }
@@ -257,27 +277,14 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         }])
 
     .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities',
-        function ($scope,  $filter, $state, allActivities, plannedActivities) {
+        function ($scope, $filter, $state, allActivities, plannedActivities) {
 
-            // mock recommendations, should be loaded from server later...
-            var recommendations = ['Act-25','Act-45', 'Act-89', 'Act-105', 'Act-157'];
+            // mock recommendations for this user, should be loaded from server later...
+            var recommendations = ['Act-25', 'Act-45', 'Act-89', 'Act-105', 'Act-157'];
+            // mock campaigns, that this user has an active goal for, should be loaded from server later...
+            var campaigns = ['Campaign-1'];
 
-            // enrich plain activities with users data (planning Data, recommendations, campaign-info)
-            _.forEach(allActivities, function (act) {
-
-                var matchingPlan = _.find(plannedActivities, function (plan) {
-                    return (act.id === plan.activity.id);
-                });
-
-                act.plan = matchingPlan;
-
-                if (act.source === 'Schindler AG') {
-                    act.isCampaign = true;
-                }
-
-                act.isRecommended = (recommendations.indexOf(act.id) !== -1);
-            });
-
+            allActivities.enrichWithUserData(plannedActivities, recommendations, campaigns);
 
             $scope.activities = allActivities;
             $scope.filteredActivities = allActivities;
@@ -338,8 +345,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 $state.go('activityDetail.' + activity.defaultexecutiontype, {activityId: activity.id});
             };
 
-            $scope.setListTab = function(tabId) {
-              $scope.query.subset = tabId;
+            $scope.setListTab = function (tabId) {
+                $scope.query.subset = tabId;
             };
 
             $scope.query = {
