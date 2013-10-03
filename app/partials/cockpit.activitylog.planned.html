@@ -10,8 +10,10 @@
             <div class="col-xs-7 col-md-7">
                 <a href="" ng-click="gotoActivityDetail(activityPlannedEntry)" class="activity-log title">{{activityPlannedEntry.title}}</br></a>
                 {{ activityPlannedEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
-                {{ activityPlannedEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
-                {{ activityPlannedEntry.visibility | uppercase | translate }}
+                <span popover="{{ activityPlannedEntry.executionType | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(activityPlannedEntry.executionType)}}" ></span>&nbsp;|&nbsp;
+                <!--{{ activityPlannedEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;-->
+                <span popover="{{ activityPlannedEntry.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(activityPlannedEntry.visibility)}}" ></span>
+                <!--{{ activityPlannedEntry.visibility | uppercase | translate }}-->
             </div>
             <div class="col-xs-2 col-md-2">
                 <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" data-container="body" ng-repeat="activityField in activityPlannedEntry.activityFields">

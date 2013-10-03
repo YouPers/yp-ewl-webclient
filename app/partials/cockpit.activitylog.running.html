@@ -1,7 +1,7 @@
 <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
     <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityHistoryEntriesByTime">
         <div class="row" ng-controller="ActivityDoneCtrl">
-            <div class="col-xs-2 col-md-2">
+            <div class="col-xs-1 col-md-1">
                 <button class="btn btn-default" ng-click="openDialog(activityHistoryEntry.id, activityHistoryEntry.title, activityHistoryEntry)">
                     <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" ></span>
                 </button>
@@ -73,17 +73,20 @@
             <div class="col-xs-7 col-md-7">
                 <a href="#" class="activity-log title">{{activityHistoryEntry.title}}</br></a>
                 {{ activityHistoryEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
-                {{ activityHistoryEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;
-                {{ activityHistoryEntry.visibility | uppercase | translate }}&nbsp;|&nbsp;
+                <span popover="{{ activityHistoryEntry.executionType | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(activityHistoryEntry.executionType)}}" ></span>&nbsp;|&nbsp;
+                <!--{{ activityHistoryEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;-->
+                <span popover="{{ activityHistoryEntry.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(activityHistoryEntry.visibility)}}" ></span>&nbsp;|&nbsp;
+                <!--{{ activityHistoryEntry.visibility | uppercase | translate }}&nbsp;|&nbsp;-->
 
-                <a href="" ng-click="toggleComments()" class="glyphicon glyphicon-comment"> </a>
-                <a href="" ng-click="toggleComments()" class="badge">{{activityHistoryEntry.nofComments}}</a>
+                <!--ToDo irig: Popover-Text auslagern und in verschiedenen Sprachen implementieren-->
+                <a href="" ng-click="toggleComments()" popover="Kommentare: Zum öffnen bitte anklicken" popover-trigger="mouseenter" class="glyphicon glyphicon-comment"> </a>
+                <a href="" ng-click="toggleComments()" popover="Anzahl Kommentare: Zum öffnen bitte anklicken" popover-trigger="mouseenter" class="badge">{{activityHistoryEntry.nofComments}}</a>
 
             </div>
             <div class="col-xs-2 col-md-2">
                 <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
             </div>
-            <div class="col-xs-1 col-md-1">
+            <div class="col-xs-2 col-md-2">
                 <div class="activity-log time-box">
                     <span class="activity-log time-box timestamp">
                         {{activityHistoryEntry.on | fromNowFake}}</br>

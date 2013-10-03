@@ -129,7 +129,31 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         $scope.activityHistoryEntriesByPlanned = ActivityLogService.getActivityHistoryByPlanned();
         $scope.activityHistoryEntriesByTime = ActivityLogService.getActivityHistoryByTime();
 
-            $scope.getGlyphicon = function(status) {
+        $scope.getGlyphiconForExecutionType = function(executionType) {
+            var icon = "";
+            if (executionType === "self") {
+                icon = "user";
+            } else if (executionType === "group") {
+                icon = "globe";
+            } else {
+                icon = "question-sign";
+            }
+            return icon;
+        };
+
+        $scope.getGlyphiconForVisibility = function(visibility) {
+            var icon = "";
+            if (visibility === "private") {
+                icon = "lock";
+            } else if (visibility === "campaign") {
+                icon = "globe";
+            } else {
+                icon = "question-sign";
+            }
+            return icon;
+        };
+
+        $scope.getGlyphicon = function(status) {
             var icon = "";
             if (status === "newMessage") {
                 icon = "envelope";
