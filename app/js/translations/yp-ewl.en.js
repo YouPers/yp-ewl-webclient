@@ -64,6 +64,7 @@ angular.module('yp-ewl').
             ON: 'on',
             COMMENT: 'Comment',
             SAVE: 'Save',
+            CANCEL: 'Cancel',
             YES: 'Yes',
             NO: 'No',
             FIRSTNAME: 'Firstname',

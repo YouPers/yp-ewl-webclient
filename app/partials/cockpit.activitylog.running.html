@@ -1,14 +1,15 @@
 <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
+
     <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityHistoryEntriesByTime" ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
         <div class="row">
-            <div ng-include="'partials/cockpit.activity.done.html'" onload="dialogTitle = { id: activityHistoryEntry.id, title: activityHistoryEntry.title}"></div>
+
+            <div ng-include="'partials/cockpit.activity.done2.html'" onload="dialogTitle = { id: activityHistoryEntry.id, title: activityHistoryEntry.title}"></div>
+
             <div class="col-xs-7 col-md-7">
                 <a href="#" class="activity-log title">{{activityHistoryEntry.title}}</br></a>
                 {{ activityHistoryEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
                 <span popover="{{ activityHistoryEntry.executionType | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(activityHistoryEntry.executionType)}}" ></span>&nbsp;|&nbsp;
-                <!--{{ activityHistoryEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;-->
                 <span popover="{{ activityHistoryEntry.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(activityHistoryEntry.visibility)}}" ></span>&nbsp;|&nbsp;
-                <!--{{ activityHistoryEntry.visibility | uppercase | translate }}&nbsp;|&nbsp;-->
 
                 <!--ToDo irig: Popover-Text auslagern und in verschiedenen Sprachen implementieren-->
                 <a href="" ng-click="toggleComments()" popover="Kommentare: Zum öffnen bitte anklicken" popover-trigger="mouseenter" class="glyphicon glyphicon-comment"> </a>

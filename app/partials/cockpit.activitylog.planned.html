@@ -3,6 +3,7 @@
     <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityPlannedEntry in activityHistoryEntriesByPlanned" ng-controller="activityHistoryByPlannedCtrl" ng-switch on="isSelected()">
 
         <div class="row">
+
             <div class="col-xs-2 col-md-2">
                 <a href="" ng-click="gotoActivityDetail(activityPlannedEntry)" class="activity-log title">{{ activityPlannedEntry.id }}</br></a>
                 <span class="glyphicon controls glyphicon-{{getControlGlyphicon()}}" ng-click="toggleSelected()"></span></td>
@@ -11,9 +12,7 @@
                 <a href="" ng-click="gotoActivityDetail(activityPlannedEntry)" class="activity-log title">{{activityPlannedEntry.title}}</br></a>
                 {{ activityPlannedEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
                 <span popover="{{ activityPlannedEntry.executionType | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(activityPlannedEntry.executionType)}}" ></span>&nbsp;|&nbsp;
-                <!--{{ activityPlannedEntry.executionType | uppercase | translate }}&nbsp;|&nbsp;-->
                 <span popover="{{ activityPlannedEntry.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(activityPlannedEntry.visibility)}}" ></span>
-                <!--{{ activityPlannedEntry.visibility | uppercase | translate }}-->
             </div>
             <div class="col-xs-2 col-md-2">
                 <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" ng-repeat="activityField in activityPlannedEntry.activityFields">
@@ -49,6 +48,7 @@
                         <a href="" ng-click="toggleComments()" popover="Anzahl Kommentare: Zum öffnen bitte anklicken" popover-trigger="mouseenter"class="badge">{{activityHistoryEntry.nofComments}}</a>
                     </div>
                     <div class="col-xs-3 col-md-3">
+
                         <div class="activity-log time-box">
                                                                 <span class="activity-log time-box timestamp">{{activityHistoryEntry.on | fromNowFake}}</br>
                                                                     <!--<span class="activity-log time-box info">{{activityHistoryEntry.recurringInfo}}&nbsp;&nbsp;-->
@@ -61,6 +61,7 @@
                 <div class="row" ng-switch-when="true">
                     <div class="list-group-item" ng-repeat="comment in activityHistoryEntry.comments">
                         <div class="row">
+
                             <div class="col-xs-2 col-md-2">
                                 <a href="">
                                     <img ng-src="{{comment.author.pic}}" class="social-log author-avatar"/>

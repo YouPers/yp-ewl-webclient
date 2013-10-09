@@ -369,7 +369,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
                 var comment = {};
                 var newId = parseInt(activityHistoryEntry.nofComments,10) + 1;
-                    comment.id = newId.toString();
+                comment.id = newId.toString();
                 comment.text = $scope.newComment;
                 comment.date = new Date().toISOString();
 
@@ -391,6 +391,117 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
             ActivityLogService.updateActivity($scope.activityID, activityHistoryEntry);
 
             $scope.hideDialog();
+        };
+
+    }])
+
+    .controller('ModalDemoCtrl', ['$scope', '$modal', '$log', 'ActivityLogService', function ($scope, $modal, $log, ActivityLogService) {
+
+        $scope.open = function (activity, activityHistoryEntry) {
+
+            $scope.activity = activity;
+            $scope.activityHistoryEntry = activityHistoryEntry;
+
+            var modalInstance = $modal.open({
+                templateUrl: "partials/cockpit.activity.done2.html",
+                controller: "ModalInstanceCtrl",
+                resolve: {
+                    activity: function () {
+                        return $scope.activity;
+                    },
+                    activityHistoryEntry: function () {
+                        return $scope.activityHistoryEntry;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (returnedValue) {
+                $scope.returnedValue = returnedValue;
+                if (returnedValue.done === "yes") {
+                    $scope.activityHistoryEntry.status = "done";
+                } else {
+                    $scope.activityHistoryEntry.status = "not done";
+                }
+
+                $scope.activityHistoryEntry.feedback = returnedValue.rating;
+
+
+                if (returnedValue.comment.length > 0) {
+
+                    var comment = {};
+                    var newId = parseInt($scope.activityHistoryEntry.nofComments,10) + 1;
+                    comment.id = newId.toString();
+                    comment.text = returnedValue.comment;
+                    comment.date = new Date().toISOString();
+
+                    // currently just UBAU
+
+                    var author = {};
+                    author.id = "1";
+                    author.fullname = "Urs Baumeler";
+                    author.pic = "assets/img/UBAU.jpeg";
+                    author.link = "#/u/UBAU";
+
+                    comment.author = author;
+
+                    $scope.activityHistoryEntry.comments.push(comment);
+                    $scope.activityHistoryEntry.nofComments++;
+
+                }
+
+                ActivityLogService.updateActivity($scope.activity.id, activityHistoryEntry);
+
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+    }])
+
+    .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'activity', 'activityHistoryEntry', function ($scope, $modalInstance, activity, activityHistoryEntry) {
+
+        if (activityHistoryEntry.status === "done") {
+            $scope.done = 1;
+        } else {
+            $scope.done = 2;
+        }
+
+        $scope.doneText = "";
+
+        $scope.rating = parseInt(activityHistoryEntry.feedback,10);
+        $scope.newComment = "";
+
+        $scope.getActivityInfo = function () {
+            return activity.id + ": " + activity.title;
+        };
+
+        $scope.getActivityWhen = function () {
+            var date = new Date(activityHistoryEntry.on);
+            return date.toLocaleDateString() + ", " + date.toLocaleTimeString();
+        };
+
+        $scope.isDone = function (doneText) {
+            $scope.feedbackDone = doneText;
+        };
+
+        $scope.givenRating = function (rating) {
+            $scope.feedbackRating = rating;
+        };
+
+        $scope.givenComment = function (comment) {
+            $scope.feedbackComment = comment;
+        };
+
+        $scope.ok = function () {
+            var returnValue = {
+                done: $scope.feedbackDone,
+                rating: $scope.feedbackRating,
+                comment: $scope.feedbackComment
+            };
+            $modalInstance.close(returnValue);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
         };
 
     }]);

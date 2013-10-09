@@ -64,6 +64,7 @@ angular.module('yp-ewl').
             ON: 'am',
             COMMENT: 'Kommentar',
             SAVE: 'Abspeichern',
+            CANCEL: 'Abbrechen',
             YES: 'Ja',
             NO: 'Nein',
             FIRSTNAME: 'Vorname',
