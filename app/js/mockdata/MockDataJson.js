@@ -144,86 +144,6 @@ mock.users = [
 
 ];
 
-mock.sociallog = [
-    {
-        "type": "community",
-        "status": "newMessage",
-        "avatar": "assets/img/UBAU.jpeg",
-        "authorFirstName": "Urs",
-        "authorFamilyName": "Baumeler",
-        "area": "Bewegung",
-        "activity": "Joggen über Mittag",
-        "comment": "Bin auch dabei",
-        "timestamp": "2013-08-20T11:25:00.000Z"
-    },
-    {
-        "type": "community",
-        "status": "newMessage",
-        "avatar": "assets/img/IRIG.jpeg",
-        "authorFirstName": "Ivan",
-        "authorFamilyName": "Rigamonti",
-        "area": "Bewegung",
-        "activity": "Joggen über Mittag",
-        "comment": "Kann leider nicht, bin ausser Haus.",
-        "timestamp": "2013-08-20T11:22:00.000Z"
-    },
-    {
-        "type": "youpers",
-        "status": "newMessage",
-        "avatar": "assets/img/YouPersAvatar.png",
-        "authorFirstName": "YouPers",
-        "authorFamilyName": "Tipps",
-        "area": "Ernährung",
-        "activity": "Kohlenhydratarme Kost",
-        "comment": "Neue attraktive Ernährungsvorschläge!",
-        "timestamp": "2013-08-20T09:15:00.000Z"
-    },
-    {
-        "type": "community",
-        "status": "newMessage",
-        "avatar": "assets/img/RBLU.jpeg",
-        "authorFirstName": "Reto",
-        "authorFamilyName": "Blunschi",
-        "area": "Bewegung",
-        "activity": "Joggen über Mittag",
-        "comment": "Welche Route heute?",
-        "timestamp": "2013-08-20T09:07:00.000Z"
-    },
-    {
-        "type": "community",
-        "status": "newMessage",
-        "avatar": "assets/img/SMUE.jpeg",
-        "authorFirstName": "Stefan",
-        "authorFamilyName": "Müller",
-        "area": "Bewegung",
-        "activity": "Joggen über Mittag",
-        "comment": "Wer ist mit von der Partie?",
-        "timestamp": "2013-08-20T08:15:00.000Z"
-    },
-    {
-        "type": "community",
-        "status": "readMessage",
-        "avatar": "assets/img/UBAU.jpeg",
-        "authorFirstName": "Urs",
-        "authorFamilyName": "Baumeler",
-        "area": "Bewegung",
-        "activity": "Joggen über Mittag",
-        "comment": "Kann dir nur zustimmen!",
-        "timestamp": "2013-08-17T16:35:00.000Z"
-    },
-    {
-        "type": "community",
-        "status": "readMessage",
-        "avatar": "assets/img/SMUE.jpeg",
-        "authorFirstName": "Stefan",
-        "authorFamilyName": "Müller",
-        "area": "Bewegung",
-        "activity": "Joggen über Mittag",
-        "comment": "Wetter und Strecke waren einfach genial heute!",
-        "timestamp": "2013-08-17T14:22:00.000Z"
-    }
-];
-
 mock.activityComments = [
     {
         "id": "1",
@@ -685,129 +605,6 @@ mock.assessment = {
 
 mock.assessmentAnswers = [];
 
-mock.activitylog = [
-    {
-        "status": "done",
-        "type": "past",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "7",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "2",
-        "timestamp": "2013-07-16T12:15:00.000Z"
-    },
-    {
-        "status": "done",
-        "type": "past",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "7",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "3",
-        "timestamp": "2013-07-23T12:15:00.000Z"
-    },
-    {
-        "status": "done",
-        "type": "past",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "7",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "4",
-        "timestamp": "2013-07-30T12:15:00.000Z"
-    },
-    {
-        "status": "not done",
-        "type": "past",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "2",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "1",
-        "timestamp": "2013-08-06T11:45:00.000Z"
-    },
-    {
-        "status": "done",
-        "type": "past",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "7",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "5",
-        "timestamp": "2013-08-13T12:15:00.000Z"
-    },
-    {
-        "status": "open",
-        "type": "current",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "3",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "0",
-        "timestamp": "2013-08-20T12:00:00.000Z"
-    },
-    {
-        "status": "open",
-        "type": "future",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "0",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "0",
-        "timestamp": "2013-08-27T12:00:00.000Z"
-    },
-    {
-        "status": "open",
-        "type": "future",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "0",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "0",
-        "timestamp": "2013-09-03T12:00:00.000Z"
-    },
-    {
-        "status": "open",
-        "type": "future",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "0",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "0",
-        "timestamp": "2013-09-10T12:00:00.000Z"
-    },
-    {
-        "status": "open",
-        "type": "future",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "0",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "0",
-        "timestamp": "2013-09-17T12:00:00.000Z"
-    },
-    {
-        "status": "open",
-        "type": "future",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "0",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "0",
-        "timestamp": "2013-09-24T12:00:00.000Z"
-    },
-    {
-        "status": "open",
-        "type": "future",
-        "activity": "Joggen über Mittag",
-        "nofcomments": "0",
-        "recurring": "yes",
-        "recurringinfo": "jeden Dienstag",
-        "rating": "0",
-        "timestamp": "2013-10-01T12:00:00.000Z"
-    }
-];
-
 mock.activitystats = {};
 
 mock.activitystats.yearly =
@@ -1072,4 +869,580 @@ mock.campaigns = [
         }
 
     }
+];
+
+mock.socialLog = [
+    {
+        "type": "community",
+        "status": "newMessage",
+        "avatar": "assets/img/UBAU.jpeg",
+        "authorFirstName": "Urs",
+        "authorFamilyName": "Baumeler",
+        "area": "Bewegung",
+        "activity": "Joggen über Mittag",
+        "comment": "Bin auch dabei",
+        "timestamp": "2013-08-20T11:25:00.000Z"
+    },
+    {
+        "type": "community",
+        "status": "newMessage",
+        "avatar": "assets/img/IRIG.jpeg",
+        "authorFirstName": "Ivan",
+        "authorFamilyName": "Rigamonti",
+        "area": "Bewegung",
+        "activity": "Joggen über Mittag",
+        "comment": "Kann leider nicht, bin ausser Haus.",
+        "timestamp": "2013-08-20T11:22:00.000Z"
+    },
+    {
+        "type": "youpers",
+        "status": "newMessage",
+        "avatar": "assets/img/YouPersAvatar.png",
+        "authorFirstName": "YouPers",
+        "authorFamilyName": "Tipps",
+        "area": "Ernährung",
+        "activity": "Kohlenhydratarme Kost",
+        "comment": "Neue attraktive Ernährungsvorschläge!",
+        "timestamp": "2013-08-20T09:15:00.000Z"
+    },
+    {
+        "type": "community",
+        "status": "newMessage",
+        "avatar": "assets/img/RBLU.jpeg",
+        "authorFirstName": "Reto",
+        "authorFamilyName": "Blunschi",
+        "area": "Bewegung",
+        "activity": "Joggen über Mittag",
+        "comment": "Welche Route heute?",
+        "timestamp": "2013-08-20T09:07:00.000Z"
+    },
+    {
+        "type": "community",
+        "status": "newMessage",
+        "avatar": "assets/img/SMUE.jpeg",
+        "authorFirstName": "Stefan",
+        "authorFamilyName": "Müller",
+        "area": "Bewegung",
+        "activity": "Joggen über Mittag",
+        "comment": "Wer ist mit von der Partie?",
+        "timestamp": "2013-08-20T08:15:00.000Z"
+    },
+    {
+        "type": "community",
+        "status": "readMessage",
+        "avatar": "assets/img/UBAU.jpeg",
+        "authorFirstName": "Urs",
+        "authorFamilyName": "Baumeler",
+        "area": "Bewegung",
+        "activity": "Joggen über Mittag",
+        "comment": "Kann dir nur zustimmen!",
+        "timestamp": "2013-08-17T16:35:00.000Z"
+    },
+    {
+        "type": "community",
+        "status": "readMessage",
+        "avatar": "assets/img/SMUE.jpeg",
+        "authorFirstName": "Stefan",
+        "authorFamilyName": "Müller",
+        "area": "Bewegung",
+        "activity": "Joggen über Mittag",
+        "comment": "Wetter und Strecke waren einfach genial heute!",
+        "timestamp": "2013-08-17T14:22:00.000Z"
+    }
+];
+
+mock.activityLog = [
+    {
+        "id": "Act-1",
+        "title": "Tägliche Selbsteinschätzung des aktuellen Stresslevels",
+        "source": "community",
+        "planType": "daily",
+        "executionType": "self",
+        "visibility": "private",
+        "topics": [
+            "workLifeBalance"
+        ],
+        "activityFields": [
+            "AwarenessAbility"
+        ],
+        "activityHistory": [
+            {
+                "id": "1",
+                "status": "done",
+                "type": "past",
+                "nofComments": "1",
+                "feedback": "2",
+                "on": "2013-08-06T18:30:00.000Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "1",
+                            "fullname": "Urs Baumeler",
+                            "pic": "assets/img/UBAU.jpeg",
+                            "link": "#/u/UBAU"
+                        },
+                        "date": "2013-08-06T18:00:00.000Z",
+                        "text": "Na ja, mein Stresslevel sieht nicht allzu positiv aus, leider."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "Act-04",
+        "title": "Durchführung Stress Self Assessment um Stressursachen zu eruieren ",
+        "source": "community",
+        "planType": "once",
+        "executionType": "self",
+        "visibility": "private",
+        "topics": [
+            "workLifeBalance"
+        ],
+        "activityFields": [
+            "AwarenessAbility"
+        ],
+        "activityHistory": [
+            {
+                "id": "1",
+                "status": "done",
+                "type": "past",
+                "nofComments": "1",
+                "feedback": "4",
+                "on": "2013-08-04T18:33:50.558Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "1",
+                            "fullname": "Urs Baumeler",
+                            "pic": "assets/img/UBAU.jpeg",
+                            "link": "#/u/UBAU"
+                        },
+                        "date": "2013-08-04T18:33:50.558Z",
+                        "text": "Ich glaube, alle für mich relevanten Stressursachen gefunden zu haben."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "Act-05",
+        "title": "Durchführung Stress Self Assessment um stressfördernde Haltungen zu erkennen",
+        "source": "community",
+        "planType": "once",
+        "executionType": "self",
+        "visibility": "private",
+        "topics": [
+            "workLifeBalance"
+        ],
+        "activityFields": [
+            "AwarenessAbility"
+        ],
+        "activityHistory": [
+            {
+                "id": "1",
+                "status": "done",
+                "type": "past",
+                "nofComments": "1",
+                "feedback": "2",
+                "on": "2013-08-04T18:33:50.558Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "1",
+                            "fullname": "Urs Baumeler",
+                            "pic": "assets/img/UBAU.jpeg",
+                            "link": "#/u/UBAU"
+                        },
+                        "date": "2013-08-04T18:33:50.558Z",
+                        "text": "Das ist aber gar nicht einfach!"
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "status": "done",
+                "type": "past",
+                "nofComments": "1",
+                "feedback": "4",
+                "on": "2013-07-23T12:15:00.000Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "1",
+                            "fullname": "Urs Baumeler",
+                            "pic": "assets/img/UBAU.jpeg",
+                            "link": "#/u/UBAU"
+                        },
+                        "date": "2013-08-04T18:33:50.558Z",
+                        "text": "Jetzt glaube ich, diesbezüglich weitergekommen zu sein."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "Act-66",
+        "title": "Jogging mit Kollegen über Mittag",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
+        "source": "youpers",
+        "planType": "weekly_on_Thursday",
+        "executionType": "group",
+        "visibility": "campaign",
+        "topics": [
+            "workLifeBalance"
+        ],
+        "activityFields": [
+            "Breaks",
+            "SocialInteraction"
+        ],
+        "activityHistory": [
+            {
+                "id": "1",
+                "status": "done",
+                "type": "past",
+                "nofComments": "2",
+                "feedback": "2",
+                "on": "2013-07-16T18:33:50.558Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "2",
+                            "fullname": "Ivan Rigamonti",
+                            "pic": "assets/img/IRIG.jpeg",
+                            "link": "#/u/IRIG"
+                        },
+                        "date": "2013-07-16T18:33:50.558Z",
+                        "text": "Keine Zeit am Mittwoch"
+                    },
+                    {
+                        "id": "2",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-07-16T18:33:50.558Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "status": "done",
+                "type": "past",
+                "nofComments": "3",
+                "feedback": "3",
+                "on": "2013-07-23T12:15:00.000Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "2",
+                            "fullname": "Ivan Rigamonti",
+                            "pic": "assets/img/IRIG.jpeg",
+                            "link": "#/u/IRIG"
+                        },
+                        "date": "2013-07-23T12:15:00.000Z",
+                        "text": "Keine Zeit am Mittwoch"
+                    },
+                    {
+                        "id": "2",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-07-23T12:15:00.000Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    },
+                    {
+                        "id": "3",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-07-23T12:15:00.000Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "status": "done",
+                "type": "past",
+                "nofComments": "3",
+                "feedback": "4",
+                "on": "2013-07-30T12:15:00.000Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "2",
+                            "fullname": "Ivan Rigamonti",
+                            "pic": "assets/img/IRIG.jpeg",
+                            "link": "#/u/IRIG"
+                        },
+                        "date": "2013-07-30T12:15:00.000Z",
+                        "text": "Keine Zeit am Mittwoch"
+                    },
+                    {
+                        "id": "2",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-07-30T12:15:00.000Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    },
+                    {
+                        "id": "3",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-07-30T12:15:00.000Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    },
+                    {
+                        "id": "4",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-07-30T12:15:00.000Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    }
+                ]
+            },
+            {
+                "id": "4",
+                "status": "not done",
+                "type": "past",
+                "nofComments": "1",
+                "feedback": "1",
+                "on": "2013-08-06T11:45:00.000Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Urs Baumeler",
+                            "pic": "assets/img/UBAU.jpeg",
+                            "link": "#/u/UBAU"
+                        },
+                        "date": "2013-08-06T18:33:50.558Z",
+                        "text": "Schade, dass ich verletzt bin..."
+                    }
+                ]
+
+            },
+            {
+                "id": "5",
+                "status": "done",
+                "type": "past",
+                "nofComments": "7",
+                "feedback": "5",
+                "on": "2013-08-13T12:15:00.000Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "2",
+                            "fullname": "Ivan Rigamonti",
+                            "pic": "assets/img/IRIG.jpeg",
+                            "link": "#/u/IRIG"
+                        },
+                        "date": "2013-08-04T18:33:50.558Z",
+                        "text": "Keine Zeit am Mittwoch"
+                    },
+                    {
+                        "id": "2",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-08-05T18:33:50.558Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    },
+                    {
+                        "id": "3",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-08-05T18:33:50.558Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    },
+                    {
+                        "id": "4",
+                        "author": {
+                            "id": "2",
+                            "fullname": "Ivan Rigamonti",
+                            "pic": "assets/img/IRIG.jpeg",
+                            "link": "#/u/IRIG"
+                        },
+                        "date": "2013-08-04T18:33:50.558Z",
+                        "text": "Keine Zeit am Mittwoch"
+                    },
+                    {
+                        "id": "5",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-08-05T18:33:50.558Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    },
+                    {
+                        "id": "6",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-08-05T18:33:50.558Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    },
+                    {
+                        "id": "7",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-08-06T18:33:50.558Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    }
+                ]
+            },
+            {
+                "id": "6",
+                "status": "open",
+                "type": "future",
+                "nofComments": "3",
+                "feedback": "0",
+                "on": "2013-08-20T12:00:00.000Z",
+                "comments": [
+                    {
+                        "id": "1",
+                        "author": {
+                            "id": "2",
+                            "fullname": "Ivan Rigamonti",
+                            "pic": "assets/img/IRIG.jpeg",
+                            "link": "#/u/IRIG"
+                        },
+                        "date": "2013-08-04T18:33:50.558Z",
+                        "text": "Keine Zeit am Mittwoch"
+                    },
+                    {
+                        "id": "2",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-08-05T18:33:50.558Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    },
+                    {
+                        "id": "3",
+                        "author": {
+                            "id": "3",
+                            "fullname": "Stefan Müller",
+                            "pic": "assets/img/SMUE.jpeg",
+                            "link": "#/u/SMUE"
+                        },
+                        "date": "2013-08-06T18:33:50.558Z",
+                        "text": "Ist mir zu langsam mit dir ;-)"
+                    }
+                ]
+            },
+            {
+                "id": "7",
+                "status": "open",
+                "type": "future",
+                "nofComments": "0",
+                "feedback": "0",
+                "on": "2013-08-27T12:00:00.000Z",
+                "comments": [
+                ]
+            },
+            {
+                "id": "8",
+                "status": "open",
+                "type": "future",
+                "nofComments": "0",
+                "feedback": "0",
+                "on": "2013-09-03T12:00:00.000Z",
+                "comments": [
+                ]
+            },
+            {
+                "id": "9",
+                "status": "open",
+                "type": "future",
+                "nofComments": "0",
+                "feedback": "0",
+                "on": "2013-09-10T12:00:00.000Z",
+                "comments": [
+                ]
+            },
+            {
+                "id": "10",
+                "status": "open",
+                "type": "future",
+                "nofComments": "0",
+                "feedback": "0",
+                "on": "2013-09-17T12:00:00.000Z",
+                "comments": [
+                ]
+            },
+            {
+                "id": "11",
+                "status": "open",
+                "type": "future",
+                "nofComments": "0",
+                "feedback": "0",
+                "on": "2013-09-24T12:00:00.000Z",
+                "comments": [
+                ]
+            },
+            {
+                "id": "12",
+                "status": "open",
+                "type": "future",
+                "nofComments": "0",
+                "feedback": "0",
+                "on": "2013-10-01T12:00:00.000Z",
+                "comments": [
+                ]
+            }
+        ]
+
+    }
+
 ];

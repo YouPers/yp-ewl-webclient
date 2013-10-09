@@ -13,12 +13,14 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         var activityHistoryEntriesByPlanned = [];
 
         var tabs = [
-            { title:"Laufende Aktivitäten", content:"partials/cockpit.activitylog.running.html" },
+            // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
+            { title:"nach Datum", content:"partials/cockpit.activitylog.running.html" },
             { title:"Geplante Aktivitäten", content:"partials/cockpit.activitylog.planned.html" }
 //            { title:"Geplante Aktivitäten", content:"partials/cockpit.activitylog.planned.html", disabled: true }
         ];
 
-        var activityHistoryEntries = $http.get('js/mockdata/test-activitylog.json').then(function (result) {
+//        var activityHistoryEntries = $http.get('js/mockdata/test-activitylog.json').then(function (result) {
+        var activityHistoryEntries = $http.get('activityLog').then(function (result) {
 
             // create array structured by time
             for (var i = 0; i < result.data.length; i++) {

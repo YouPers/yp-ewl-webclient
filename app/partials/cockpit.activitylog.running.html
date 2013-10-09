@@ -1,5 +1,5 @@
 <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
-    <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityHistoryEntriesByTime">
+    <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityHistoryEntriesByTime" ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
         <div class="row">
             <div ng-include="'partials/cockpit.activity.done.html'" onload="dialogTitle = { id: activityHistoryEntry.id, title: activityHistoryEntry.title}"></div>
             <div class="col-xs-7 col-md-7">
@@ -26,6 +26,33 @@
                 </div>
             </div>
         </div>
+        <div class="row" ng-switch-when="true">
+            <div class="list-group-item" ng-repeat="comment in activityHistoryEntry.comments">
+                <div class="row">
+                    <div class="col-xs-2 col-md-2">
+                        <a href="">
+                            <img ng-src="{{comment.author.pic}}" class="social-log author-avatar"/>
+                        </a>
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                        <a href="">
+                            <span class="social-log author-name">{{comment.author.fullname}}</span>
+                        </a>
+                    </div>
+                    <div class="col-xs-5 col-md-5">
+                        <span class="social-log comment">{{comment.text}}</span>
+                    </div>
+                    <div class="col-xs-2 col-md-2">
+                        <div class="social-log time-box">
+                                                                            <span class="activity-log time-box timestamp">
+                                                                                   {{comment.date | fromNowFake}}</br>
+                                                                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

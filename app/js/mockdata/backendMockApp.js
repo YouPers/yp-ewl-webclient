@@ -18,7 +18,6 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
             return [201, '', {location: '/activitiesPlanned/' + plan.id}];
         });
 
-
         $httpBackend.whenGET('/assessments/1').respond(mock.assessment);
         $httpBackend.whenGET(/\/users\/\w+\/assessmentresults\/[\w+]/).respond(mock.assessmentAnswers);
 
@@ -42,8 +41,8 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET('activitystats?range=monthly').respond(mock.activitystats.monthly);
         $httpBackend.whenGET('activitystats?range=yearly').respond(mock.activitystats.yearly);
 
-        $httpBackend.whenGET('activitylog').respond(mock.activitylog);
-        $httpBackend.whenGET('sociallog').respond(mock.sociallog);
+        $httpBackend.whenGET('activityLog').respond(mock.activityLog);
+        $httpBackend.whenGET('socialLog').respond(mock.socialLog);
 
         $httpBackend.whenGET('/campaigns').respond(mock.campaigns);
 
