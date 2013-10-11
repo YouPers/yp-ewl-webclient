@@ -27,6 +27,9 @@
 
 @youpers-brand-colors-page-background-highlighted: #eeeeee;
 @youpers-brand-colors-page-background-normal: #ffffff;
+@youpers-brand-colors-cockpit-background: #eeeeee;
+@youpers-brand-colors-cockpit-section-title: rgb(248, 184, 120);
+//@youpers-brand-colors-cockpit-section-title: rgb(248, 221, 9);
 @youpers-brand-colors-font-inversed: #ffffff;
 @youpers-brand-colors-border: #cccccc;
 @youpers-brand-colors-border-rgba: rgba(0, 0, 0, 0.15);
@@ -684,8 +687,42 @@ input[type="range"].answered::-ms-thumb {
 
 //////////////////////////////////
 
-.background-test {
-  background-color: @youpers-brand-colors-page-background-normal;
+
+// cockpit styles
+.container.cockpit {
+//  background-color: @youpers-brand-colors-cockpit-background;
+}
+
+.panel.cockpit {
+  background-color: @youpers-brand-colors-cockpit-background;
+
+  margin-left: -6px;
+//  margin-right: -15px;
+  border-radius: 0px;
+  padding-left: 5px;
+//  padding-top: 2px;
+//  padding-bottom: 2px;
+}
+
+.panel.cockpit.section-title {
+  background-color: @youpers-brand-colors-cockpit-section-title;
+  font-size: @youpers-font-size-3;
+  font-family: @youpers-brand-font-family;
+  line-height: 40px;
+}
+
+.cockpit.section-title {
+  font-size: @youpers-font-size-3;
+  font-family: @youpers-brand-font-family;
+  line-height: 40px;
+//  margin: 50px;
+}
+
+.cockpit.new-activity {
+  position: relative;
+  float: right;
+  margin-top: 5px;
+  margin-right: 5px;
 }
 
 // bootstrap.css:list-group-item
@@ -719,7 +756,7 @@ input[type="range"].answered::-ms-thumb {
 .list-group.social-log {
   clear: both;
   overflow: auto;
-  height: 500px;
+  height: 560px;
 }
 
 @social-log-status-indent: -15px;
@@ -954,7 +991,7 @@ input[type="range"].answered::-ms-thumb {
 }
 
 .glyphicon.controls {
-  font-size: @youpers-font-size-3;
+  color: @youpers-brand-colors-tertiary;
 }
 
 .glyphicon.button-controls {
@@ -995,12 +1032,6 @@ pre{
   width: 300px;
   min-width: 200px;
 }
-
-.cockpit-sub-title {
-  font-size: @youpers-font-size-4;
-  font-family: @youpers-brand-font-family;
-}
-
 
 //////////////////////////
 // HealthPromoter Pages
