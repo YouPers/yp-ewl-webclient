@@ -3,7 +3,11 @@
     <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityHistoryEntriesByTime" ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
         <div class="row">
 
-            <div ng-include="'partials/cockpit.activity.done2.html'" onload="dialogTitle = { id: activityHistoryEntry.id, title: activityHistoryEntry.title}"></div>
+            <div class="col-xs-1 col-md-1" ng-controller="ActivityDoneModalCtrl">
+                <button class="btn btn-default" ng-click="open({ id: activityHistoryEntry.id, title: activityHistoryEntry.title}, activityHistoryEntry)">
+                    <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" ></span>
+                </button>
+            </div>
 
             <div class="col-xs-7 col-md-7">
                 <a href="#" class="activity-log title">{{activityHistoryEntry.title}}</br></a>

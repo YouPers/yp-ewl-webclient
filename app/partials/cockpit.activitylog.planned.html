@@ -35,8 +35,10 @@
                     <div class="col-xs-2 col-md-2">
                     </div>
                     <div class="col-xs-2 col-md-2">
-                        <div class="activity-log status">
-                            <div ng-include="'partials/cockpit.activity.done.html'" onload="dialogTitle = { id: activityPlannedEntry.id, title: activityPlannedEntry.title}"></div>
+                        <div class="activity-log status" ng-controller="ActivityDoneModalCtrl">
+                            <button class="btn btn-default" ng-click="open({ id: activityPlannedEntry.id, title: activityPlannedEntry.title}, activityHistoryEntry)">
+                                <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" ></span>
+                            </button>
                         </div>
                     </div>
                     <div class="col-xs-2 col-md-2">

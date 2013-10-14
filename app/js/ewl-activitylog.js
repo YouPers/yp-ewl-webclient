@@ -318,84 +318,84 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
 
     }])
 
-    .controller('ActivityDoneCtrl', ['$scope', 'ActivityLogService', function ($scope, ActivityLogService) {
+//    .controller('ActivityDoneCtrl', ['$scope', 'ActivityLogService', function ($scope, ActivityLogService) {
+//
+//        $scope.openDialog = function (activity, activityHistoryEntry) {
+//            $scope.activityID = activity.id;
+//            $scope.activityTitle = activity.title;
+//            $scope.activityHistoryEntry = activityHistoryEntry;
+//
+//            if ($scope.activityHistoryEntry.status === "done") {
+//                $scope.done = 1;
+//            } else {
+//                $scope.done = 2;
+//            }
+//
+//            $scope.rating = parseInt($scope.activityHistoryEntry.feedback,10);
+//            $scope.newComment = "";
+//
+//            $scope.doneDialogOpen = true;
+//
+//        };
+//
+//        $scope.hideDialog = function () {
+//            $scope.doneDialogOpen = false;
+//        };
+//
+//        $scope.isDoneDialogOpen = function () {
+//            return $scope.doneDialogOpen;
+//        };
+//
+//        $scope.getActivityInfo = function () {
+//            return $scope.activityID + ": " + $scope.activityTitle;
+//        };
+//
+//        $scope.getActivityWhen = function () {
+//            var date = new Date($scope.activityHistoryEntry.on);
+//            return date.toLocaleDateString() + ", " + date.toLocaleTimeString();
+//        };
+//
+//        $scope.storeFeedback = function (activityHistoryEntry) {
+//
+//            if ($scope.done === 1) {
+//                activityHistoryEntry.status = "done";
+//            } else {
+//                activityHistoryEntry.status = "not done";
+//            }
+//
+//            activityHistoryEntry.feedback = $scope.rating;
+//
+//            if ($scope.newComment.length > 0) {
+//
+//                var comment = {};
+//                var newId = parseInt(activityHistoryEntry.nofComments,10) + 1;
+//                comment.id = newId.toString();
+//                comment.text = $scope.newComment;
+//                comment.date = new Date().toISOString();
+//
+//                // currently just UBAU
+//
+//                var author = {};
+//                author.id = "1";
+//                author.fullname = "Urs Baumeler";
+//                author.pic = "assets/img/UBAU.jpeg";
+//                author.link = "#/u/UBAU";
+//
+//                comment.author = author;
+//
+//                activityHistoryEntry.comments.push(comment);
+//                activityHistoryEntry.nofComments++;
+//
+//            }
+//
+//            ActivityLogService.updateActivity($scope.activityID, activityHistoryEntry);
+//
+//            $scope.hideDialog();
+//        };
+//
+//    }])
 
-        $scope.openDialog = function (activity, activityHistoryEntry) {
-            $scope.activityID = activity.id;
-            $scope.activityTitle = activity.title;
-            $scope.activityHistoryEntry = activityHistoryEntry;
-
-            if ($scope.activityHistoryEntry.status === "done") {
-                $scope.done = 1;
-            } else {
-                $scope.done = 2;
-            }
-
-            $scope.rating = parseInt($scope.activityHistoryEntry.feedback,10);
-            $scope.newComment = "";
-
-            $scope.doneDialogOpen = true;
-
-        };
-
-        $scope.hideDialog = function () {
-            $scope.doneDialogOpen = false;
-        };
-
-        $scope.isDoneDialogOpen = function () {
-            return $scope.doneDialogOpen;
-        };
-
-        $scope.getActivityInfo = function () {
-            return $scope.activityID + ": " + $scope.activityTitle;
-        };
-
-        $scope.getActivityWhen = function () {
-            var date = new Date($scope.activityHistoryEntry.on);
-            return date.toLocaleDateString() + ", " + date.toLocaleTimeString();
-        };
-
-        $scope.storeFeedback = function (activityHistoryEntry) {
-
-            if ($scope.done === 1) {
-                activityHistoryEntry.status = "done";
-            } else {
-                activityHistoryEntry.status = "not done";
-            }
-
-            activityHistoryEntry.feedback = $scope.rating;
-
-            if ($scope.newComment.length > 0) {
-
-                var comment = {};
-                var newId = parseInt(activityHistoryEntry.nofComments,10) + 1;
-                comment.id = newId.toString();
-                comment.text = $scope.newComment;
-                comment.date = new Date().toISOString();
-
-                // currently just UBAU
-
-                var author = {};
-                author.id = "1";
-                author.fullname = "Urs Baumeler";
-                author.pic = "assets/img/UBAU.jpeg";
-                author.link = "#/u/UBAU";
-
-                comment.author = author;
-
-                activityHistoryEntry.comments.push(comment);
-                activityHistoryEntry.nofComments++;
-
-            }
-
-            ActivityLogService.updateActivity($scope.activityID, activityHistoryEntry);
-
-            $scope.hideDialog();
-        };
-
-    }])
-
-    .controller('ModalDemoCtrl', ['$scope', '$modal', '$log', 'ActivityLogService', function ($scope, $modal, $log, ActivityLogService) {
+    .controller('ActivityDoneModalCtrl', ['$scope', '$modal', '$log', 'ActivityLogService', function ($scope, $modal, $log, ActivityLogService) {
 
         $scope.open = function (activity, activityHistoryEntry) {
 
@@ -403,8 +403,9 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
             $scope.activityHistoryEntry = activityHistoryEntry;
 
             var modalInstance = $modal.open({
-                templateUrl: "partials/cockpit.activity.done2.html",
-                controller: "ModalInstanceCtrl",
+                templateUrl: "partials/cockpit.activity.done.html",
+                controller: "ActivityDoneModalInstanceCtrl",
+                backdrop: true,
                 resolve: {
                     activity: function () {
                         return $scope.activity;
@@ -457,7 +458,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         };
     }])
 
-    .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'activity', 'activityHistoryEntry', function ($scope, $modalInstance, activity, activityHistoryEntry) {
+    .controller('ActivityDoneModalInstanceCtrl', ['$scope', '$modalInstance', 'activity', 'activityHistoryEntry', function ($scope, $modalInstance, activity, activityHistoryEntry) {
 
         if (activityHistoryEntry.status === "done") {
             $scope.done = 1;
