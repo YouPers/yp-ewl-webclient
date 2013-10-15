@@ -10,6 +10,12 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
                     templateUrl: "partials/healthpromoter.html",
                     controller: "HealthPromoterCtrl",
                     access: accessLevels.all
+                })
+                .state('newcampaign', {
+                    url: "/newcampaign",
+                    templateUrl: "partials/campaign.new.html",
+                    controller: "CampaignCtrl",
+                    access: accessLevels.all
                 });
         }])
 
@@ -31,43 +37,42 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.healthpromoter =
 
-            $scope.welcomeMsgOpen = function() {
+                $scope.welcomeMsgOpen = function () {
 
-                var modalInstance = $modal.open({
-                    templateUrl: 'partials/healthpromoter.welcome.html',
-                    controller: 'HealthPromoterWelcomeCtrl',
-                    backdrop: true
-                });
+                    var modalInstance = $modal.open({
+                        templateUrl: 'partials/healthpromoter.welcome.html',
+                        controller: 'HealthPromoterWelcomeCtrl',
+                        backdrop: true
+                    });
 
-                modalInstance.result.then(function (doNotShowAgain) {
-                    $log.info('doNotShowAgain(healthPromoterWelcome): ' + doNotShowAgain);
-                    if (doNotShowAgain && $scope.principal.isAuthenticated()) {
-                        var user = $scope.principal.getUser();
-                        user.preferences.dismissedDialogs.push('HealthPromoterWelcome');
-                        user.put();
-                    }
-                });
-            };
+                    modalInstance.result.then(function (doNotShowAgain) {
+                        $log.info('doNotShowAgain(healthPromoterWelcome): ' + doNotShowAgain);
+                        if (doNotShowAgain && $scope.principal.isAuthenticated()) {
+                            var user = $scope.principal.getUser();
+                            user.preferences.dismissedDialogs.push('HealthPromoterWelcome');
+                            user.put();
+                        }
+                    });
+                };
             if ((!$scope.principal.isAuthenticated()) || ($scope.principal.getUser().preferences.dismissedDialogs.indexOf('HealthPromoterWelcome') === -1)) {
                 $scope.welcomeMsgOpen();
             }
 
-                HealthPromoterService.campaigns.then(function (data) {
-                    $scope.campaigns = data;
-                });
-
+            HealthPromoterService.campaigns.then(function (data) {
+                $scope.campaigns = data;
+            });
 
 
         }])
 
-    .controller('HealthPromoterWelcomeCtrl', ['$scope', '$modalInstance','$window',
+    .controller('HealthPromoterWelcomeCtrl', ['$scope', '$modalInstance', '$window',
         function ($scope, $modalInstance, $window) {
 
             $scope.formModel = {
                 doNotShowAgain: false
             };
 
-            $scope.ok = function() {
+            $scope.ok = function () {
                 stopVideo();
                 $modalInstance.close($scope.formModel.doNotShowAgain);
             };
@@ -93,7 +98,7 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
                     videoId: 'lBoaMTwZisU',
                     events: {
                         'onReady': onPlayerReady,
-                        'onStateChange':onPlayerStateChange
+                        'onStateChange': onPlayerStateChange
                     }
                 });
             };
@@ -108,7 +113,7 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
             //    the player should play for six seconds and then stop.
             //var done = false;
 
-             var onPlayerStateChange = function (event) {
+            var onPlayerStateChange = function (event) {
                 //if (event.data == YT.PlayerState.PLAYING && !done) {
                 //    setTimeout(stopVideo, 6000);
                 //    done = true;
@@ -117,9 +122,28 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
 
             function stopVideo() {
                 if (player) {
-                player.stopVideo();
+                    player.stopVideo();
                 }
             }
+        }])
+
+    .controller('CampaignCtrl', ['$scope',
+        function ($scope) {
+
+            $scope.getCssClasses = function(ngModelContoller) {
+                return {
+                    error: ngModelContoller.$invalid && ngModelContoller.$dirty,
+                    success: ngModelContoller.$valid && ngModelContoller.$dirty
+                };
+            };
+
+            $scope.showError = function(ngModelController, error) {
+                return ngModelController.$error[error];
+            };
+
+            $scope.canSave = function() {
+                return $scope.newCampaignForm.$dirty && $scope.newCampaignForm.$valid;
+            };
         }])
 
 ;
