@@ -605,6 +605,33 @@ mock.assessment = {
 
 mock.assessmentAnswers = [];
 
+mock.stressLevelStatus =
+{
+    "cols": [
+    {"id": "stressSection", "label": "Bereich", "type": "string"},
+    {"id": "stressValue", "label": "Wert", "type": "number"}
+],
+    "rows": [
+    {"c": [
+        {"v": "Allgemein"},
+        {"v": 3}
+    ]},
+    {"c": [
+        {"v": "Arbeitsplatz"},
+        {"v": 4}
+    ]},
+    {"c": [
+        {"v": "Typ"},
+        {"v": 2}
+
+    ]},
+    {"c": [
+        {"v": "Bewältigung"},
+        {"v": 1}
+
+    ]}
+]};
+
 mock.activitystats = {};
 
 mock.activitystats.yearly =
@@ -643,7 +670,8 @@ mock.activitystats.yearly =
     ]}
 ]};
 
-mock.activitystats.monthly = {"cols": [
+mock.activitystats.monthly =
+{"cols": [
     {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
     {"id": "done-id", "label": "durchgeführt", "type": "number"},
     {"id": "missed-id", "label": "verpasst", "type": "number"}
@@ -678,7 +706,8 @@ mock.activitystats.monthly = {"cols": [
     ]}
 ]};
 
-mock.activitystats.weekly = {"cols": [
+mock.activitystats.weekly =
+{"cols": [
     {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
     {"id": "done-id", "label": "durchgeführt", "type": "number"},
     {"id": "missed-id", "label": "verpasst", "type": "number"}

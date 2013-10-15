@@ -19,9 +19,24 @@
                     <p>Wie hat sich dein Stresslevel entwickelt? </p>
 
                     <p><a class="btn btn-default" href="#/assessment/1" data-toggle="button">Zum Fragebogen &raquo;</a></p>
+
+                    <div ng-controller="yp.ewl.status.controller">
+                        <div class="panel cockpit">
+
+                            <div class="panel cockpit section-title">
+                                Status
+                            </div>
+
+                            <p>Wie sieht dein aktueller Stress Level aus? </p>
+
+                            <div google-chart chart="chart"></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="col-md-6" ng-cloak="" ng-controller="yp.ewl.activity.chart.controller">
+            <!--</div>-->
+            <div class="col-md-6" ng-controller="yp.ewl.activity.chart.controller">
                 <div class="panel cockpit">
 
                     <div class="panel cockpit section-title">
@@ -47,115 +62,114 @@
 
                     </div>
                     <!--<div google-chart chart="chart" style="{{chart.cssStyle}}"/>-->
-                    <div google-chart chart="chart"/>
+                    <div google-chart chart="chart"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6" ng-controller="ActivityLogVisibilityCtrl">
-            <div class="panel cockpit">
+        <!--</div>-->
+        <div class="row">
+            <div class="col-md-6" ng-controller="ActivityLogVisibilityCtrl">
+                <div class="panel cockpit">
 
-                <div class="panel cockpit section-title">
+                    <div class="panel cockpit section-title">
                     <span class="glyphicon controls glyphicon-{{getVisibilityGlyphicon(activityLogVisible)}}" ng-click="activityLogVisible = !activityLogVisible">
                     </span>
-                    Aktivitätslog
-                </div>
-
-                <div ng-switch on="activityLogVisible">
-
-                    <div ng-switch-when="true">
-
-                        <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
-
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12">
-
-                                <div class="cockpit new-activity">
-                                    <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
-                                </div>
-                                <tabset>
-                                    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
-                                        <div ng-include="tab.content"></div>
-                                    </tab>
-                                </tabset>
-
-                            </div>
-                        </div>
-
+                        Aktivitätslog
                     </div>
-                    <div ng-switch-when="false">
 
-                        </br>
-                        <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+                    <div ng-switch on="activityLogVisible">
 
-                    </div>
-                </div>
+                        <div ng-switch-when="true">
 
-            </div>
-        </div>
-        <div class="col-md-6" ng-controller="SocialLogCtrl">
+                            <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
-            <div class="panel cockpit">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
 
-                <div class="panel cockpit section-title">
-
-                    <span class="glyphicon controls glyphicon-{{getControlGlyphicon(socialLogVisible)}}" ng-click="socialLogVisible = !socialLogVisible"></span>
-                    Social Ticker
-                </div>
-
-                <div ng-switch on="socialLogVisible">
-                    <div ng-switch-when="true">
-
-                        <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
-
-                        <div class="list-group social-log">
-
-                            <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
-                                <div class="row">
-                                    <div class="col-xs-10 col-md-10">
-                                        <div class="col-xs-6 col-md-5">
-                                            <div class="social-log status">
-                                                <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
-                                            </div>
-                                            <a href="#/u/ubau">
-                                                <img ng-src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
-                                                <strong class="social-log author-name">{{socialLogEntry.authorFirstName}}</br>{{socialLogEntry.authorFamilyName}}</strong>
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-6 col-md-7">
-                                            <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
-                                            <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
-                                            <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
-                                        </div>
+                                    <div class="cockpit new-activity">
+                                        <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{ "NEW_ACTIVITY" | translate }}</button>
                                     </div>
-                                    <div class="col-xs-2 col-md-2">
-                                        <!--<div class="col-xs-6 col-md-4">-->
-                                        <div class="social-log time-box">
+                                    <tabset>
+                                        <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+                                            <div ng-include="tab.content"></div>
+                                        </tab>
+                                    </tabset>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div ng-switch-when="false">
+
+                            </br>
+                            <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6" ng-controller="SocialLogCtrl">
+
+                <div class="panel cockpit">
+
+                    <div class="panel cockpit section-title">
+
+                        <span class="glyphicon controls glyphicon-{{getControlGlyphicon(socialLogVisible)}}" ng-click="socialLogVisible = !socialLogVisible"></span>
+                        Social Ticker
+                    </div>
+
+                    <div ng-switch on="socialLogVisible">
+                        <div ng-switch-when="true">
+
+                            <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+                            <div class="list-group social-log">
+
+                                <div class="list-group-item {{socialLogEntry.type}}" ng-repeat="socialLogEntry in socialLogEntries">
+                                    <div class="row">
+                                        <div class="col-xs-10 col-md-10">
+                                            <div class="col-xs-6 col-md-5">
+                                                <div class="social-log status">
+                                                    <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
+                                                </div>
+                                                <a href="#/u/ubau">
+                                                    <img ng-src="{{socialLogEntry.avatar}}" class="social-log author-avatar"/>
+                                                    <strong class="social-log author-name">{{socialLogEntry.authorFirstName}}</br>{{socialLogEntry.authorFamilyName}}</strong>
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-6 col-md-7">
+                                                <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
+                                                <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
+                                                <a href="#" class="social-log comment">{{socialLogEntry.comment}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <!--<div class="col-xs-6 col-md-4">-->
+                                            <div class="social-log time-box">
                                                 <span class="activity-log time-box timestamp">
                                                     {{socialLogEntry.timestamp | fromNowFake}}</br>
                                                 </span>
+                                            </div>
+                                            <!--</div>-->
                                         </div>
-                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+                        <div ng-switch-when="false">
 
+                            </br>
+                            <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+                        </div>
                     </div>
-                    <div ng-switch-when="false">
 
-                        </br>
-                        <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
-
-                    </div>
                 </div>
 
             </div>
-
         </div>
+        <!--<hr>-->
     </div>
-    <hr>
 </div>
-</div>
-

@@ -88,7 +88,7 @@
                             draw.triggered = true;
                             $timeout(function () {
                                 draw.triggered = false;
-                                var dataTable = new google.visualization.DataTable($scope.chart.data, 0.5);
+                                var dataTable = new google.visualization.DataTable($scope.chart.data, 0.6);
 
                                 var chartWrapperArgs = {
                                     chartType: $scope.chart.type,

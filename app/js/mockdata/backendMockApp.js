@@ -37,6 +37,8 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
             return [200, data, {}];
         });
 
+        $httpBackend.whenGET('stressLevelStatus').respond(mock.stressLevelStatus);
+
         $httpBackend.whenGET('activitystats?range=weekly').respond(mock.activitystats.weekly);
         $httpBackend.whenGET('activitystats?range=monthly').respond(mock.activitystats.monthly);
         $httpBackend.whenGET('activitystats?range=yearly').respond(mock.activitystats.yearly);
