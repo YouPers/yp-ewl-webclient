@@ -20,7 +20,7 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
         ];
 
 //        var activityHistoryEntries = $http.get('js/mockdata/test-activitylog.json').then(function (result) {
-        var activityHistoryEntries = $http.get('activityLog').then(function (result) {
+        $http.get('activityLog').then(function (result) {
 
             // create array structured by time
             for (var i = 0; i < result.data.length; i++) {
@@ -143,7 +143,6 @@ angular.module('yp.activitylog', ['ui.bootstrap'])
                     activityHistoryEntriesByTime[i].nofComments = newNofComments;
                     activityHistoryEntriesByTime[i].comments = newComments;
                 }
-                var x = 77;
             }
 
 
