@@ -47,7 +47,7 @@
     "node": "0.10.17"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt"
   },
   "repository": {
     "type": "git",
