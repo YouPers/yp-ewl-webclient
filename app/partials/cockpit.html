@@ -13,11 +13,6 @@
                         Massgeschneiderte Vorschläge
                     </div>
 
-                    <div ng-controller="yp.ewl.activity.chart2.controller">
-                        <d3-horizontal-bar-chart data="data" label="name" on-click="onClick(item)" height="250" width="99%" d3-height-compress="yes"></d3-horizontal-bar-chart>
-
-                    </div>
-
                     <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur Stressreduktion vorzuschlagen. </p>
                     <p>Wie hat sich dein Stresslevel entwickelt? </p>
 
@@ -66,7 +61,15 @@
                     </div>
                     <!--<div google-chart chart="chart" style="{{chart.cssStyle}}"/>-->
                     <div google-chart chart="chart"></div>
+
+                    </br>
+
+                    <div ng-controller="yp.ewl.activity.chart2.controller">
+                        <d3-horizontal-bar-chart data="data" label="name" on-click="onClick(item)" height="250" width="99%" d3-height-compress="yes"></d3-horizontal-bar-chart>
+                    </div>
+
                 </div>
+
             </div>
         </div>
         <!--</div>-->
