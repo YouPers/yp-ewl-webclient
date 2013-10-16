@@ -1,5 +1,3 @@
-<!--Version mit Tabellen als Bootstrap List Group Components -->
-
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
     <!-- Page header  -->
@@ -13,6 +11,11 @@
                 <div class="panel cockpit">
                     <div class="panel cockpit section-title">
                         Massgeschneiderte Vorschläge
+                    </div>
+
+                    <div ng-controller="yp.ewl.activity.chart2.controller">
+                        <d3-horizontal-bar-chart data="data" label="name" on-click="onClick(item)" width="80%" height="200"></d3-horizontal-bar-chart>
+
                     </div>
 
                     <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur Stressreduktion vorzuschlagen. </p>
