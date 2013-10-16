@@ -147,8 +147,7 @@
                         authority.deauthorize();
                     },
                     submitNewUser: function (newuser, successCallback) {
-                        newuser.id = getNewUUID();
-                        newuser.role = userRoles.user;
+                        newuser.role = userRoles.individual;
                         newuser.fullname = newuser.firstname + ' ' + newuser.lastname;
                         users.post(newuser).then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'New Account successfully created', 'success', 3000);
