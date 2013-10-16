@@ -32,10 +32,11 @@ angular.module('yp.ewl.activity.chart2', [])
     .controller('yp.ewl.activity.chart2.controller', ['$scope', 'yp.ewl.activity.chart2.service', function ($scope, ActivityChartService) {
 
         $scope.data = [
-            {label: "Greg", value: 202},
-            {label: "Ari", value: 96},
-            {label: 'Quarky', value: 75},
-            {label: "Loser", value: 48}
+            {label: "Allgemein", value: 122},
+            {label: "Fitness", value: 205},
+            {label: 'Konsum', value: 96},
+            {label: "Wohlbefinden", value: 66},
+            {label: "Behandlungen", value: 42}
         ];
 
         $scope.chart = {};
