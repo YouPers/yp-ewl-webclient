@@ -26,7 +26,9 @@ angular.module('yp.sociallog', []).
 
     .controller('SocialLogCtrl', ['$scope', 'SocialLogService', function ($scope, SocialLogService) {
 
-        $scope.socialLogEntries = SocialLogService.getSocialLog();
+       SocialLogService.getSocialLog().then(function (result) {
+           $scope.socialLogEntries = result;
+       });
 
         $scope.socialLogVisible = SocialLogService.getSocialLogVisibility();
 
