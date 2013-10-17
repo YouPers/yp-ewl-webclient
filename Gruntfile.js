@@ -345,8 +345,7 @@ module.exports = function (grunt) {
                 'coffee',
                 'recess:dist',
                 'copy:styles',
-// TODO (RBLU): 18.10.2013: commented out imagemin here and in package.json because it breaks heroku build, check again later:
-//               'imagemin',
+                'imagemin',
                 'svgmin',
                 'htmlmin'
             ]
