@@ -163,7 +163,7 @@
             <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity)"
                  ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
                 <div class="col-md-1">
-                    {{ activity.id }}
+                    {{ activity.number }}
                     <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld">
                         gemacht
                     </div>

@@ -55,14 +55,14 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     _.forEach(activities, function (act) {
 
                         var matchingPlan = _.find(plans, function (plan) {
-                            return (act.id === plan.activity.id);
+                            return (act.id === plan.activity);
                         });
 
                         act.plan = matchingPlan;
 
                         act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
 
-                        act.isRecommended = (recommendations.indexOf(act.id) !== -1);
+                        act.isRecommended = (recommendations.indexOf(act.number) !== -1);
                     });
                 };
 
@@ -207,7 +207,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
 
                 var currentPlan = _.find(plannedActivities, function (obj) {
-                    return obj.activity_id === activityId;
+                    return obj.activity === activityId;
                 });
 
                 if (!currentPlan) {

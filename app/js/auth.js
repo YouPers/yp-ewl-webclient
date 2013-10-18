@@ -61,7 +61,7 @@
                     if (userRole) {
                         currentUserRole = userRole;
                     } else if (_currentUser && ('role' in _currentUser)) {
-                        currentUserRole = _currentUser.role;
+                        currentUserRole = userRoles[_currentUser.role];
                     }
                     return reqAccessLevel & currentUserRole;
                 }
@@ -86,7 +86,7 @@
                         authorize: function (currentUser) {
                             // check argument and mandatory keys
                             if (!(currentUser && ('username' in currentUser) && ('role' in currentUser) && ('id' in currentUser))) {
-                                throw new Error('Authorize user: incorrect type: ' + angular.toJSON(currentUser));
+                                throw new Error('Authorize user: incorrect type: ' + angular.toJson(currentUser));
                             }
 
                             _authenticated = true;

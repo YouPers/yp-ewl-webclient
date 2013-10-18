@@ -219,8 +219,9 @@ module.exports = function (grunt) {
             }
         },
         useminPrepare: {
-            html: '<%= yeoman.app %>/index.html',
+            html: '.tmp/index.html',
             options: {
+                root: 'app',
                 dest: '<%= yeoman.dist %>'
             }
         },
@@ -272,22 +273,23 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     removeCommentsFromCDATA: true,
-                     // https://github.com/yeoman/grunt-usemin/issues/44
-                     // collapseWhitespace: true,
-                     collapseBooleanAttributes: true,
-                     removeAttributeQuotes: true,
-                     removeRedundantAttributes: true,
-                     useShortDoctype: true,
-                     removeEmptyAttributes: true,
-                     removeOptionalTags: true
+                    // https://github.com/yeoman/grunt-usemin/issues/44
+                    // collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeOptionalTags: true
                 },
                 files: [
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
-                        src: ['*.html', 'partials/*.html'],
+                        src: ['partials/*.html'],
                         dest: '<%= yeoman.dist %>'
-                    }
+                    },
+                    {'dist/index.html': '.tmp/index.html'}
                 ]
             }
         },
@@ -346,7 +348,7 @@ module.exports = function (grunt) {
                 'recess:dist',
                 'copy:styles',
 // TODO (RBLU): 18.10.2013: commented out imagemin here and in package.json because it breaks heroku build, check again later:
-//               'imagemin',
+               'imagemin',
                 'svgmin',
                 'htmlmin'
             ]
@@ -376,6 +378,35 @@ module.exports = function (grunt) {
         },
         uglify: {
 
+        },
+        'template': {
+            'options': {
+                // Task-specific options go here
+            },
+            'mock': {
+                'options': {
+                    'data': {mockscripts: "<script src='js/mockdata/backendMockApp.js'></script>" +
+                                    "<script src='lib/angular/angular-mocks.js'></script>" +
+                                    "<script src='js/mockdata/MockDataJson.js'></script>" +
+                                    "<script src='js/mockdata/testactivities.js'></script>",
+                             ngappsuffix: "-devmock"
+                            }
+                },
+                'files': {
+                    '.tmp/index.html': ['app/index.html']
+                }
+            },
+            'server': {
+                'options': {
+                    'data': {mockscripts: "",
+                        ngappsuffix: ""
+                    }
+                },
+                'files': {
+                    '.tmp/index.html': ['app/index.html']
+                }
+            }
+
         }
     });
 
@@ -387,6 +418,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'concurrent:server',
+            'template:server',
             'autoprefixer',
             'connect:livereload',
             'open',
@@ -394,9 +426,20 @@ module.exports = function (grunt) {
         ]);
     });
 
+    grunt.registerTask('mock', [
+            'clean:server',
+            'concurrent:server',
+            'template:mock',
+            'autoprefixer',
+            'connect:livereload',
+            'open',
+            'watch'
+    ]);
+
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
+        'template:mock',
         'autoprefixer',
         'connect:test',
         'karma'
@@ -404,6 +447,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
+        'template:server',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',

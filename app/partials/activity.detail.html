@@ -66,7 +66,7 @@
                     <div class="row social-thread" ng-repeat="thread in threads">
                         <div class="social-thread-header">
                             <a href="{{ thread.author.link }}">
-                                <img ng-src="{{ thread.author.pic }}" class="avatar-icon"/>
+                                <img ng-src="{{ thread.author.avatar }}" class="avatar-icon"/>
                                 <strong class="fullname">{{ thread.author.fullname }}</strong>
                             </a>
                             <span class="thread-time">{{ thread.date | fromNow}}</span>
@@ -85,7 +85,7 @@
                             <div class="row social-thread" ng-repeat="comment in thread.comments">
                                 <div class="social-thread-header">
                                     <a href="{{ comment.author.link }}">
-                                        <img ng-src="{{ comment.author.pic }}" class="avatar-icon"/>
+                                        <img ng-src="{{ comment.author.avatar }}" class="avatar-icon"/>
                                         <strong class="fullname">{{ comment.author.fullname }}</strong>
                                     </a>
                                     <span class="thread-time">{{ comment.date | fromNow}}</span>

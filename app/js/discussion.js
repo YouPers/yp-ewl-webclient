@@ -1,21 +1,25 @@
 'use strict';
 
 
-angular.module('yp.discussion', []).
+angular.module('yp.discussion', ['restangular']).
 
 
-    factory('CommentService', ['$http', function ($http) {
+    factory('CommentService', ['$http','Restangular', '$rootScope' , function ($http, Restangular, $rootScope) {
         var commentService = {};
+        var comments = Restangular.all('comments');
 
-        var comments = $http.get('comments').then(function (result) {
-            return result.data;
-        });
 
-        commentService.getThreadsFor = function (objectType, objectId) {
-            // return the testcomments we have loaded without checking object...
-            return comments;
+        commentService.getThreadsFor = function (objectId) {
+            return comments.getList({refObj: objectId, populate: 'author', sort: 'date:-1'});
         };
 
+        commentService.submitNewComment =  function (comment, successCallback) {
+            comments.post(comment).then(function (result) {
+                $rootScope.$broadcast('globalUserMsg', 'Comment saved', 'success', 3000);
+            }, function(err) {
+                $rootScope.$broadcast('globalUserMsg', err.data.message, 'warning', 3000);
+            }).then(successCallback);
+        };
         return commentService;
     }
     ])
@@ -24,7 +28,7 @@ angular.module('yp.discussion', []).
 
         $scope.$watch($scope.currentActivity, function () {
             if ($scope.currentActivity) {
-                CommentService.getThreadsFor('Activity', $scope.currentActivity.id).then(function (data) {
+                CommentService.getThreadsFor($scope.currentActivity.id).then(function (data) {
                     $scope.threads = data;
                 });
             }
@@ -32,38 +36,29 @@ angular.module('yp.discussion', []).
 
         $scope.submitNewComment = function (thread) {
             var newComment = {
-                thread_id: thread.id,
-                author: {
-                    "id": principal.getUser().id,
-                    "fullname": principal.getUser().fullname,
-                    "pic": principal.getUser().avatar,
-                    "link": ""
-                },
+                refObj: thread.id,
+                author: principal.getUser().id,
                 date: new Date(),
                 text: thread.newComment
             };
-            thread.newComment = null;
+            CommentService.submitNewComment(newComment);
+            newComment.author = principal.getUser();
             thread.comments.push(newComment);
+            thread.newComment = null;
         };
 
         $scope.submitNewThread = function (threads) {
-            var newThread = {
-                "ref_obj_id": "1",
-                "ref_obj": "activity",
-                "author": {
-                    "id": principal.getUser().id,
-                    "fullname": principal.getUser().fullname,
-                    "pic": principal.getUser().avatar,
-                    "link": ""
-                },
+            var newComment = {
+                "refObj": $scope.currentActivity.id,
+                "author":  principal.getUser().id,
                 "date": new Date(),
-                "type": "generic",
-                "text": threads.newThread,
-                "comments": []
+                "text": threads.newThread
             };
+            CommentService.submitNewComment(newComment);
+            newComment.author = principal.getUser();
             threads.newThread = '';
             threads.showNewThread = false;
-            threads.unshift(newThread);
+            threads.unshift(newComment);
         };
 
     }]);

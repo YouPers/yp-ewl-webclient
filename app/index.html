@@ -59,16 +59,12 @@
     <script src="js/translations/yp-ewl.en.js"></script>
     <!-- endbuild -->
 
-
-    <script src="js/mockdata/backendMockApp.js"></script>
-    <script src="lib/angular/angular-mocks.js"></script>
-    <script src="js/mockdata/MockDataJson.js"></script>
-    <script src="js/mockdata/testactivities.js"></script>
+    <%= mockscripts %>
 
 </head>
 
 
-<body ng-app="yp-ewl-devmock" ng-controller="MainCtrl">
+<body ng-app="yp-ewl<%- ngappsuffix %>" ng-controller="MainCtrl">
 
 
 <div class="navbar navbar-inverse">

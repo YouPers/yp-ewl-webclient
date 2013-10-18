@@ -4,10 +4,10 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
         'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.status', 'd3', 'd3.directives', 'yp.topic', 'ui.router', 'ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'yp.auth', 'yp.healthpromoter']).
+        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'yp.auth', 'yp.healthpromoter', 'restangular']).
 
-    config(['$stateProvider','$urlRouterProvider','accessLevels',
-        function ($stateProvider, $urlRouterProvider, accessLevels) {
+    config(['$stateProvider','$urlRouterProvider','accessLevels','RestangularProvider',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider) {
         //
         // For any unmatched url, send to /home
         $urlRouterProvider.otherwise("/home");
@@ -23,10 +23,9 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 url: "/cockpit",
                 templateUrl: "partials/cockpit.html",
                 access: accessLevels.individual
-            })
+            });
 
-
-        ;
+        RestangularProvider.setBaseUrl("http://localhost:8000/api/v1");
     }])
 
 /**

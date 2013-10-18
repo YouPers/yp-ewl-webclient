@@ -19,13 +19,21 @@ Build commands:
 tests, compiles and builds the distribution version of the whole project, is used by CI
 is executing "grunt jshint", "grunt test", and "grunt build"
 
-    grunt server
+    grunt mock
 does all needed css compilation and starts a development server and opens default browser.
-Watches all files and recompiles and reloads when changes occur
+All REST call go to the angular BackendMock implementation, no local backend needed.
 
     grunt server
-dist: builds the distribution version of the project, starts a local server and opens a browser to
+does all needed css compilation and starts a development server and opens default browser.
+all REST calls go to localhost:8000, so start you local backend before using this task
+Watches all files and recompiles and reloads when changes occur
+
+    grunt server:dist
+builds the distribution version of the project, starts a local server and opens a browser to
 test the distribution Version.
+
+    grunt build
+builds the distribution version, without tests
 
 
 Continuous Deployment to Heroku:

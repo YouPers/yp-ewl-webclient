@@ -51,97 +51,61 @@ mock.plannedActivities = [
 
 mock.users = [
     {
-        "id": "9u230u23f",
-        "href": "users/ubau",
-        "avatar": "assets/img/UBAU.jpeg",
-        "username": "urs",
-        "firstname": "Urs",
-        "lastname": "Baumeler",
-        "fullname": "Urs Baumeler",
-        "roles": [2],
-        "subscriptions": [],
-        "individual": {
-            "id": "98723498713245",
-            "href": "/individual/98723498713245",
-            "birthDate": "1963-05-27T00:00:00.000Z",
-            "sex": "m",
-            "maritalStatus": "married"
-        },
-        preferences: {
-            dismissedDialogs: []
-        },
-        assessmentAnswers: []
-
-    },
-    {
-        "id": "234509uldfssdv",
-        "href": "users/rblu",
         "avatar": "assets/img/RBLU.jpeg",
-        "username": "reto",
+        "email": "reto@blunschi.ch",
+        "emailValidatedFlag": true,
         "firstname": "Reto",
-        "lastname": "Blunschi",
         "fullname": "Reto Blunschi",
-        "role": 2,
-        "subscriptions": [],
-        "individual": {
-            "id": "asvaevwwevew",
-            "href": "/individual/asvaevwwevew",
-            "birthDate": "1974-07-07T00:00:00.000Z",
-            "sex": "m",
-            "maritalStatus": "married"
-        },
-        preferences: {
-            dismissedDialogs: ['HealthPromoterWelcome']
-        },
-        assessmentAnswers: []
-
+        "hashed_password": "cc92b76ae74392ba23606345757ad5514715ed4a",
+        "id": "525fb247101e330000000005",
+        "lastname": "Blunschi",
+        "role": "admin",
+        "tempPasswordFlag": false,
+        "username": "reto",
+        "version": 0
     },
     {
-        "id": "fwefwevv232323",
-        "href": "users/irig",
         "avatar": "assets/img/IRIG.jpeg",
-        "username": "ivan",
+        "email": "ivan@rigamonti.me",
+        "emailValidatedFlag": true,
         "firstname": "Ivan",
-        "lastname": "Rigamonti",
         "fullname": "Ivan Rigamonti",
-        "role": 2,
-        "subscriptions": [],
-        "individual": {
-            "id": "lkdsjvkldjsf",
-            "href": "/individual/lkdsjvkldjsf",
-            "birthDate": "1963-01-01T00:00:00.000Z",
-            "sex": "m",
-            "maritalStatus": "married"
-        },
-        preferences: {
-            dismissedDialogs: []
-        },
-        assessmentAnswers: []
-
+        "hashed_password": "8f7e90c4a6f292e73bba8d4b83f335cbde0c61a2",
+        "id": "525fb247101e330000000006",
+        "lastname": "Rigamonti",
+        "role": "admin",
+        "tempPasswordFlag": false,
+        "username": "ivan",
+        "version": 0
     },
     {
-        "id": "xcyvsvsdvsdv",
-        "href": "users/smue",
+        "avatar": "assets/img/UBAU.jpeg",
+        "email": "urs@baumeler.com",
+        "emailValidatedFlag": true,
+        "firstname": "Urs",
+        "fullname": "Urs Baumeler",
+        "hashed_password": "5c50a547afa365a64cf6a0bbd364ef02ee3799a6",
+        "id": "525fb247101e330000000007",
+        "lastname": "Baumeler",
+        "role": "healthpromoter",
+        "tempPasswordFlag": false,
+        "username": "urs",
+        "version": 0
+    },
+    {
         "avatar": "assets/img/SMUE.jpeg",
-        "username": "stefan",
+        "email": "stefan.mueller@romus.ch",
+        "emailValidatedFlag": true,
         "firstname": "Stefan",
-        "lastname": "Müller",
         "fullname": "Stefan Müller",
-        "role": 2,
-        "subscriptions": [],
-        "individual": {
-            "id": "ewvwevewvyxcvxv",
-            "href": "/individual/lkdsjvkldjsf",
-            "birthDate": "1974-07-07T00:00:00.000Z",
-            "sex": "m",
-            "maritalStatus": "married"
-        },
-        preferences: {
-            dismissedDialogs: []
-        },
-        assessmentAnswers: []
+        "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
+        "id": "525fb247101e330000000008",
+        "lastname": "Müller",
+        "role": "individual",
+        "tempPasswordFlag": false,
+        "username": "stefan",
+        "version": 0
     }
-
 ];
 
 mock.activityComments = [
