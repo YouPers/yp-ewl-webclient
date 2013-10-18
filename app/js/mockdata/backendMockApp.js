@@ -19,7 +19,7 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
             return [201, '', {location: '/activitiesPlanned/' + plan.id}];
         });
 
-        $httpBackend.whenGET(baseURL + '/assessments/1').respond(mock.assessment);
+        $httpBackend.whenGET(baseURL + '/assessments/525faf0ac558d40000000005').respond(mock.assessment);
         $httpBackend.whenGET(/\/users\/\w+\/assessmentresults\/[\w+]/).respond(mock.assessmentAnswers);
 
         $httpBackend.whenGET(baseURL + 'comments').respond(mock.activityComments);
