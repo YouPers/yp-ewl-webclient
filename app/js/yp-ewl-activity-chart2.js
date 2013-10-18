@@ -31,13 +31,19 @@ angular.module('yp.ewl.activity.chart2', [])
 
     .controller('yp.ewl.activity.chart2.controller', ['$scope', 'yp.ewl.activity.chart2.service', function ($scope, ActivityChartService) {
 
-        $scope.data = [
+        $scope.d3Data = [
             {label: "Allgemein", value: 122},
             {label: "Fitness", value: 205},
             {label: 'Konsum', value: 96},
             {label: "Wohlbefinden", value: 66},
             {label: "Behandlungen", value: 42}
         ];
+
+        $scope.d3Options = {
+//            compressed: "no",
+//            chartHeight: "250",
+            chartWidth: "99%"
+        };
 
         $scope.chart = {};
 

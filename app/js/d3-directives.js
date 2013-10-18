@@ -8,38 +8,124 @@
                 scope: {
                     data: "=",
                     label: "@",
-                    onClick: "&"
+                    onClick: "&",
+                    options: "="
                 },
                 link: function(scope, iElement, iAttrs) {
                     d3Service.d3().then(function(d3){
 
-                        var barHeight = 30;         // height of a horizontal bar
-                        var barMargin = 5;          // margin between horizontal bars
-                        var xScaleTopHeight = 15;   // Height to store the top x scale
-                        var marginTop = 5;          // top margin
-                        var marginLeft = 5;         // left margin
-                        var marginBottom = 10;      // bottom margin
-                        var marginRight = 10;       // right margin
+                        var d3Options = {};
 
-                        var actualHeightCompressed = (scope.data.length * (barHeight + barMargin)) - barMargin + xScaleTopHeight + marginBottom;
+                        if (typeof scope.options === 'undefined') {
+                        } else {
+                            d3Options = scope.options;
+                        }
+
+                        // generating defaults, if options are not set
+
+                        // d3Options.compressed
+                        // - "yes": calculate height based on number of bars and other parameters -> best fit of a chart
+                        // - "no": value of d3Options.chartHeight is taken
+
+                        if (typeof d3Options.compressed === 'undefined') {
+                            d3Options.compressed = "yes";
+                        }
+
+                        // d3Options.chartHeight
+                        // height of chart in px
+                        // - string containing a number without 'px'
+                        // - ignored if d3Options.compressed is set to "yes"
+
+                        if (typeof d3Options.chartHeight === 'undefined') {
+                            d3Options.chartHeight = "200";
+                        }
+
+                        // d3Options.chartWidth
+                        // width of chart
+                        // - ideally set as %-value to elastically fit into the parent container of the chart
+
+                        if (typeof d3Options.chartWidth === 'undefined') {
+                            d3Options.chartWidth = "100%";
+                        }
+
+                        // d3Options.xScaleTopHeight
+                        // height of the space containing the x scale on top of the chart
+
+                        if (typeof d3Options.xScaleTopHeight === 'undefined') {
+                            d3Options.xScaleTopHeight = 15;
+                        }
+
+                        // d3Options.marginTop
+                        // top margin of the complete chart
+                        // - ideally set to a minimum of 5 to avoid cropping of x scale values on top of the chart
+
+                        if (typeof d3Options.marginTop === 'undefined') {
+                            d3Options.marginTop = 5;
+                        }
+
+                        // d3Options.marginLeft
+                        // left margin of the complete chart
+                        // - ideally set to a minimum of 5 to avoid cropping of the first x scale value on top of the chart
+
+                        if (typeof d3Options.marginLeft === 'undefined') {
+                            d3Options.marginLeft = 5;
+                        }
+
+                        // d3Options.marginBottom
+                        // bottom margin of the complete chart
+
+                        if (typeof d3Options.marginBottom === 'undefined') {
+                            d3Options.marginBottom = 10;
+                        }
+
+                        // d3Options.marginRight
+                        // right margin of the complete chart
+
+                        if (typeof d3Options.marginRight === 'undefined') {
+                            d3Options.marginRight = 10;
+                        }
+
+                        // d3Options.barHeight
+                        // height of a horizontal bar
+
+                        if (typeof d3Options.barHeight === 'undefined') {
+                            d3Options.barHeight = 30;
+                        }
+
+                        // d3Options.barMargin
+                        // margin between horizontal bars
+
+                        if (typeof d3Options.barMargin === 'undefined') {
+                            d3Options.barMargin = 5;
+                        }
+
+                        // d3Options.insetThreshold
+                        // - bars smaller than this value have their value displayed outside of the bar
+                        // - bars equal and larger than this value have heir value displayed inside of the bar
+
+                        if (typeof d3Options.insetThreshold === 'undefined') {
+                            d3Options.insetThreshold = 200;
+                        }
+
+                        var actualHeightCompressed = (scope.data.length * (d3Options.barHeight + d3Options.barMargin)) - d3Options.barMargin + d3Options.xScaleTopHeight + d3Options.marginBottom;
 
                         // svgCanvas: Container with n g-containers
                         // only chartCanvas is stored in this container
 
                         var svgCanvas = d3.select(iElement[0])
                             .append("svg")
-                            .attr("width", iAttrs.width)        // width as set in the <d3-bars width=...
-                            .attr("height", iAttrs.height)      // height as set in the <d3-bars height=...
+                            .attr("width", d3Options.chartWidth)        // width as set in the <d3-bars width=...
+                            .attr("height", d3Options.chartHeight)      // height as set in the <d3-bars height=...
                             .attr("class", "youpers-chart");    // set class to link appropriate CSS
 
-                        if (iAttrs.d3HeightCompress === "yes") {  //
+                        if (d3Options.compressed === "yes") {  //
                             svgCanvas.attr('height', actualHeightCompressed);
                         }
 
                         // chartCanvas: the only element stored in svgCanvas
 
                         var chartCanvas = svgCanvas.append("g")
-                            .attr("transform", "translate(" + marginTop + "," + marginLeft + ")")    // top/left margin to avoid cropped elements
+                            .attr("transform", "translate(" + d3Options.marginTop + "," + d3Options.marginLeft + ")")    // top/left margin to avoid cropped elements
                             .attr("height", "100%")                 // fills the complete height of the parent container
                             .attr("width", "100%");                 // fills the complete width of the parent container
 
@@ -83,19 +169,19 @@
                             var currentWidth,       // current width in px taking resizing into account
                                 actualHeightFinal;  // height if d3-height-compress="no"
 
-                            currentWidth = d3.select(iElement[0])[0][0].offsetWidth - (marginLeft + marginRight);
-                            actualHeightCompressed = (scope.data.length * (barHeight + barMargin)) - barMargin;
+                            currentWidth = d3.select(iElement[0])[0][0].offsetWidth - (d3Options.marginLeft + d3Options.marginRight);
+                            actualHeightCompressed = (scope.data.length * (d3Options.barHeight + d3Options.barMargin)) - d3Options.barMargin;
 //                            maxValue = d3.max(data, function (d) { return d.value;});
 
                             // set the height
 
-                            if (iAttrs.d3HeightCompress === "yes") {
+                            if (d3Options.compressed === "yes") {
                                 actualHeightFinal = actualHeightCompressed;
                                 chartCanvas.attr('height', actualHeightCompressed);
                             } else {
-                                actualHeightFinal = iAttrs.height - marginTop - xScaleTopHeight - (marginBottom / 2);
-                                barHeight = (barHeight * iAttrs.height / actualHeightCompressed);
-                                barHeight = ((actualHeightFinal + barMargin) / scope.data.length) - barMargin;
+                                actualHeightFinal = d3Options.chartHeight - d3Options.marginTop - d3Options.xScaleTopHeight - (d3Options.marginBottom / 2);
+                                d3Options.barHeight = (d3Options.barHeight * d3Options.chartHeight / actualHeightCompressed);
+                                d3Options.barHeight = ((actualHeightFinal + d3Options.barMargin) / scope.data.length) - d3Options.barMargin;
                             }
 
                             // the x and y scales
@@ -106,13 +192,13 @@
 
                             var y = d3.scale.ordinal()
                                 .domain(d3.range(scope.data.length))
-                                .rangeRoundBands([0, actualHeightFinal], (barMargin /barHeight), (marginTop /barHeight));
+                                .rangeRoundBands([0, actualHeightFinal], (d3Options.barMargin / d3Options.barHeight), (d3Options.marginTop / d3Options.barHeight));
 //                                .rangeBands([0, actualHeightFinal]);
 
                             // Canvas for the top x scale
 
                             var xScaleTopCanvas = chartCanvas.append("g")      //
-                                .attr("height", xScaleTopHeight)
+                                .attr("height", d3Options.xScaleTopHeight)
                                 .attr("width", "100%");
 
                             // Canvas for the all elements on the chart grid
@@ -157,11 +243,11 @@
                                 .attr("class", function(d, i) {
                                     return i % 2 ? "youpers-chart-even" : "youpers-chart-uneven";
                                 })
-                                .attr("height", barHeight)  // height of each bar
+                                .attr("height", d3Options.barHeight)  // height of each bar
                                 .attr("width", 0)           // initial width of 0 for transition
                                 .attr("x", 0)
                                 .attr('y', function(d,i) {
-                                    return i * (barHeight + barMargin);
+                                    return i * (d3Options.barHeight + d3Options.barMargin);
                                 })
                                 .transition()
                                 .duration(1000)             // time of duration
@@ -175,16 +261,29 @@
                                 .enter()
                                 .append("text")
                                 .attr("y", function(d,i) {
-                                    return i * (barHeight + barMargin);
+                                    return i * (d3Options.barHeight + d3Options.barMargin);
                                 })
                                 .attr("dy", "1.35em")
-                                .attr("dx", -5)
                                 .attr("x", function (d) {
                                     return x(d);
                                 })
+                                .attr("dx", function (d,i) {
+                                    if (x(d) < d3Options.insetThreshold) {
+                                        return +20;
+                                    } else {
+                                        return -5;
+                                    }
+                                })
                                 .attr("text-anchor", "end")
                                 .attr("class", "youpers-chart-value")
-                                .text(function(d) {
+                                .style("fill", function (d,i) {
+                                    if (x(d) < d3Options.insetThreshold) {
+                                        return "#000";
+                                    } else {
+                                        return "#fff";
+                                    }
+                                })
+                            .text(function(d) {
                                     return d.toString();
                                 });
 
@@ -195,10 +294,17 @@
                                 .attr("dy", "1.35em")
                                 .attr("y", y)   // does not work, that's why I overwrite it!!
                                 .attr("y", function(d,i) {
-                                    return i * (barHeight + barMargin);
+                                    return i * (d3Options.barHeight + d3Options.barMargin);
+                                })
+//                                .attr("dx", 5)
+                                .attr("dx", function (d,i) {
+                                    if (x(d) < d3Options.insetThreshold) {
+                                        return d3Options.insetThreshold + 45;
+                                    } else {
+                                        return 5;
+                                    }
                                 })
                                 .attr("x", 0)
-                                .attr("dx", 5)
                                 .attr("class", "youpers-chart-label")
                                 .text(function(d) {
                                     return d;
