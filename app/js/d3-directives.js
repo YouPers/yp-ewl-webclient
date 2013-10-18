@@ -16,12 +16,12 @@
 
                         var d3Options = {};
 
+                        // generating defaults, if options are not set
+
                         if (typeof scope.options === 'undefined') {
                         } else {
                             d3Options = scope.options;
                         }
-
-                        // generating defaults, if options are not set
 
                         // d3Options.compressed
                         // - "yes": calculate height based on number of bars and other parameters -> best fit of a chart
