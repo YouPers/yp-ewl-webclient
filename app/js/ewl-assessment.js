@@ -60,7 +60,8 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                 var neededCalls = [assessmentBase.get()];
                 if (principal.isAuthenticated()) {
                     neededCalls.push(
-                        Restangular.one('users', principal.getUser().username).one('assessmentresults', assessmentId).get()
+                        assessmentBase.one('results/newest').get()
+                        //Restangular.one('users', principal.getUser().username).one('assessmentresults', assessmentId).get()
                     );
                 }
                 // run the one/two calls in parallel and then processes the results
