@@ -113,9 +113,6 @@
 
         .factory("yp.user.UserService", ['userRoles', '$cookieStore', 'authority', '$rootScope', 'Restangular', '$state',
             function (userRoles, $cookieStore, authority, $rootScope, Rest, $state) {
-                var getNewUUID = function () {
-                    return 'asdfaf32241234';
-                };
                 var users = Rest.all('users');
 
 
@@ -147,8 +144,7 @@
                         authority.deauthorize();
                     },
                     submitNewUser: function (newuser, successCallback) {
-                        newuser.id = getNewUUID();
-                        newuser.role = userRoles.user;
+                        newuser.role = userRoles.individual;
                         newuser.fullname = newuser.firstname + ' ' + newuser.lastname;
                         users.post(newuser).then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'New Account successfully created', 'success', 3000);
