@@ -509,5 +509,7 @@ module.exports = function (grunt) {
         'autoprefixer']);
     grunt.registerTask('heroku:development', ['concurrent:server','template:server',
         'autoprefixer']);
+    grunt.registerTask('heroku:ci', ['concurrent:server','template:server',
+        'autoprefixer']);
 
 };
