@@ -6,6 +6,27 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
+var clientconfig = {
+        mock: {
+            backendUrl: 'http://localhost:8000/api/v1'
+        },
+        dev: {
+            backendUrl: 'http://localhost:8000/api/v1'
+        },
+        ci: {
+            backendUrl: 'http://yp-backend-ci.herokuapp.com/api/v1'
+        },
+        test: {
+            backendUrl: 'http://yp-backend-test.herokuapp.com/api/v1'
+        },
+        uat: {
+            backendUrl: 'https://test.youpers.com/v1'
+        },
+        prod: {
+            backendUrl: 'https://api.youpers.com/v1'
+        }
+};
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -45,6 +66,10 @@ module.exports = function (grunt) {
             styles: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
+            },
+            template: {
+                files: ['<%= yeoman.app %>/index.html'],
+                tasks: ['template:<%=clientMode%>']
             },
             livereload: {
                 options: {
@@ -347,8 +372,7 @@ module.exports = function (grunt) {
                 'coffee',
                 'recess:dist',
                 'copy:styles',
-// TODO (RBLU): 18.10.2013: commented out imagemin here and in package.json because it breaks heroku build, check again later:
-               'imagemin',
+                'imagemin',
                 'svgmin',
                 'htmlmin'
             ]
@@ -385,12 +409,14 @@ module.exports = function (grunt) {
             },
             'mock': {
                 'options': {
-                    'data': {mockscripts: "<script src='js/mockdata/backendMockApp.js'></script>" +
-                                    "<script src='lib/angular/angular-mocks.js'></script>" +
-                                    "<script src='js/mockdata/MockDataJson.js'></script>" +
-                                    "<script src='js/mockdata/testactivities.js'></script>",
-                             ngappsuffix: "-devmock"
-                            }
+                    'data': {
+                        mockscripts: "<script src='js/mockdata/backendMockApp.js'></script>" +
+                                      "<script src='lib/angular/angular-mocks.js'></script>" +
+                                      "<script src='js/mockdata/MockDataJson.js'></script>" +
+                                      "<script src='js/mockdata/testactivities.js'></script>",
+                        ngappsuffix: '-devmock',
+                        config:     clientconfig.mock
+                    }
                 },
                 'files': {
                     '.tmp/index.html': ['app/index.html']
@@ -398,8 +424,10 @@ module.exports = function (grunt) {
             },
             'server': {
                 'options': {
-                    'data': {mockscripts: "",
-                        ngappsuffix: ""
+                    'data': {
+                        mockscripts: "",
+                        ngappsuffix: '',
+                        config: clientconfig[process.env.NODE_ENV || 'dev']
                     }
                 },
                 'files': {
@@ -411,29 +439,39 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('server', function (target) {
+        grunt.config('clientMode', target || 'server');
+
         if (target === 'dist') {
-            return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+            return grunt.task.run(
+                ['build',
+                 'open',
+                 'connect:dist:keepalive']);
+        } else if (target === 'mock') {
+            return grunt.task.run([
+                'clean:server',
+                'concurrent:server',
+                'template:' +  grunt.config('clientMode'),
+                'autoprefixer',
+                'connect:livereload',
+                'open',
+                'watch'
+            ]);
+        } else {
+            return grunt.task.run([
+                'clean:server',
+                'concurrent:server',
+                'template:'+  grunt.config('clientMode'),
+                'autoprefixer',
+                'connect:livereload',
+                'open',
+                'watch'
+            ]);
         }
 
-        grunt.task.run([
-            'clean:server',
-            'concurrent:server',
-            'template:server',
-            'autoprefixer',
-            'connect:livereload',
-            'open',
-            'watch'
-        ]);
     });
 
     grunt.registerTask('mock', [
-            'clean:server',
-            'concurrent:server',
-            'template:mock',
-            'autoprefixer',
-            'connect:livereload',
-            'open',
-            'watch'
+        'server:mock'
     ]);
 
     grunt.registerTask('test', [

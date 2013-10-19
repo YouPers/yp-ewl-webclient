@@ -23,8 +23,6 @@
     <link rel="stylesheet" href="lib/elements/elements.css">
     <!-- endbuild -->
 
-
-
     <!-- build:js js/app.js -->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/i18n/angular-locale_de-ch.js"></script>
@@ -58,8 +56,13 @@
     <script src="js/translations/yp-ewl.de.js"></script>
     <script src="js/translations/yp-ewl.en.js"></script>
     <!-- endbuild -->
+    <script>
+        angular.module('ypconfig', [])
+                .constant('ypconfig', <%= JSON.stringify(config) %>);
+    </script>
 
     <%= mockscripts %>
+
 
 </head>
 
@@ -104,7 +107,7 @@
                 <li class="dropdown" ng-controller="i18nCtrl">
                     <a class="dropdown-toggle" data-toggle="dropdown">{{ 'LANGUAGE' | translate }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="" ng-click="changeLang('en')">english</a></li>
+                        <li><a href="" ng-click="changeLang('en')">englishhhh</a></li>
                         <li><a href="" ng-click="changeLang('de')">deutsch</a></li>
                         <li class="disabled"><a href="">espanol</a></li>
                         <li class="disabled"><a href="">francais</a></li>

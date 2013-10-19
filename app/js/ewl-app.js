@@ -1,13 +1,15 @@
 'use strict';
 /*global angular:true */
+angular.module('ypconfig', [])
+    .constant('ypconfig', {"backendUrl":"http://localhost:8000/api/v1"});
 
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
         'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.status', 'd3', 'd3.directives', 'yp.topic', 'ui.router', 'ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'yp.auth', 'yp.healthpromoter', 'restangular']).
+        'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'yp.auth', 'yp.healthpromoter', 'restangular', 'ypconfig']).
 
-    config(['$stateProvider','$urlRouterProvider','accessLevels','RestangularProvider',
-        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider) {
+    config(['$stateProvider','$urlRouterProvider','accessLevels','RestangularProvider','ypconfig',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, ypconfig) {
         //
         // For any unmatched url, send to /home
         $urlRouterProvider.otherwise("/home");
@@ -25,7 +27,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 access: accessLevels.individual
             });
 
-        RestangularProvider.setBaseUrl("http://localhost:8000/api/v1");
+        RestangularProvider.setBaseUrl(ypconfig && ypconfig.backendUrl || "");
     }])
 
 /**
