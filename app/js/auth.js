@@ -16,7 +16,7 @@
 
 
 
-    angular.module('yp.auth', ['ui.router', 'restangular'])
+    angular.module('yp.auth', ['ui.router', 'restangular', 'Base64'])
 
     // authentication
     // ==============
@@ -111,32 +111,28 @@
 
 
 
-        .factory("yp.user.UserService", ['userRoles', '$cookieStore', 'authority', '$rootScope', 'Restangular', '$state',
-            function (userRoles, $cookieStore, authority, $rootScope, Rest, $state) {
+        .factory("yp.user.UserService", ['userRoles', '$cookieStore', 'authority', '$rootScope', 'Restangular', '$state','$http', 'base64codec',
+            function (userRoles, $cookieStore, authority, $rootScope, Rest, $state, $http, base64codec) {
                 var users = Rest.all('users');
-
+                var login = Rest.all('login');
 
                 var UserService = {
                     encodeCredentials: function (username, password) {
                         return ({username: username, password: password});
                     },
-                    fakeLogin: function (cred, successCallback) {
-                        users.getList().then(function (knownUsers) {
-                                var foundUser = _.find(knownUsers, function (value, key) {
-                                    return value.username === cred.username;
-                                });
-                                if ((foundUser) && (cred.password)) {
-                                    // $http.defaults.headers.common.Authorization = 'Basic ' + username;
-                                    $cookieStore.put('authdata', cred);
-                                    authority.authorize(foundUser);
-                                    if (successCallback) {
-                                        successCallback();
-                                    }
-                                } else {
-                                    $rootScope.$broadcast('globalUserMsg', 'Login / password not valid, please try again or register', 'danger', 3000);
-                                }
+                    login: function (cred, successCallback) {
+                        $http.defaults.headers.common.Authorization = 'Basic ' + base64codec.encode(cred.username + ':' + cred.password);
+
+                        login.post({username: cred.username}).then(function success(result) {
+                            $cookieStore.put('authdata', cred);
+                            authority.authorize(result);
+                            if (successCallback) {
+                                successCallback();
                             }
-                        );
+
+                        }, function error(err) {
+                            $rootScope.$broadcast('globalUserMsg', 'Login / password not valid, please try again or register', 'danger', 3000);
+                        });
                     },
                     logout: function () {
                         $cookieStore.remove('authdata');
@@ -144,7 +140,7 @@
                         authority.deauthorize();
                     },
                     submitNewUser: function (newuser, successCallback) {
-                        newuser.role = userRoles.individual;
+                        newuser.role = 'individual';
                         newuser.fullname = newuser.firstname + ' ' + newuser.lastname;
                         users.post(newuser).then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'New Account successfully created', 'success', 3000);
@@ -155,7 +151,7 @@
                 var credentialsFromCookie = $cookieStore.get('authdata');
 
                 if (credentialsFromCookie) {
-                    UserService.fakeLogin(credentialsFromCookie, function () {
+                    UserService.login(credentialsFromCookie, function () {
                     });
                 }
 
@@ -165,7 +161,7 @@
         .controller('yp.user.MenuLoginCtrl', [ '$scope', 'yp.user.UserService', '$state', function ($scope, UserService, $state) {
 
             $scope.loginSubmit = function () {
-                UserService.fakeLogin(UserService.encodeCredentials($scope.username, $scope.password), function () {
+                UserService.login(UserService.encodeCredentials($scope.username, $scope.password), function () {
                     $scope.username = '';
                     $scope.password = '';
                     $state.go('cockpit');
@@ -197,7 +193,7 @@
 
                 $scope.loginSubmit = function () {
                     // loginBasicAuth();
-                    UserService.fakeLogin(UserService.encodeCredentials($scope.username, $scope.password), function () {
+                    UserService.login(UserService.encodeCredentials($scope.username, $scope.password), function () {
                         $scope.username = '';
                         $scope.password = '';
                         $scope.showLoginDialog = false;
@@ -209,19 +205,11 @@
                     UserService.logout();
                 };
 
-                $scope.getUsername = function () {
-                    if ($scope.principal.isAuthenticated()) {
-                        return $scope.principal.identity.username;
-                    } else {
-                        return '';
-                    }
-                };
-
                 $scope.newuser = {};
 
                 $scope.registrationSubmit = function () {
                     UserService.submitNewUser($scope.newuser, function () {
-                        UserService.fakeLogin(UserService.encodeCredentials($scope.newuser.username, $scope.newuser.password), function () {
+                        UserService.login(UserService.encodeCredentials($scope.newuser.username, $scope.newuser.password), function () {
                             if ($scope.nextStateAfterLogin) {
                                 $state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
                                 $scope.nextStateAfterLogin = null;

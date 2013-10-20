@@ -29,6 +29,12 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
             return [201, '', {location: '/users/' + data.username}];
         });
 
+        $httpBackend.whenPOST(baseURL + '/login').respond(function (method, url, data, headers) {
+
+            return [200, mock.users[1], {}];
+        });
+
+
         $httpBackend.whenPUT(/\/users\//).respond(function (method, url, data, headers) {
             var index = _.findIndex(mock.users, function(obj) {
                 return obj.id === data.id;
