@@ -280,7 +280,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             $scope.planActivityDone = function (successCallback, errorCallback) {
-                ActivityService.savePlan($scope.currentActivityPlan)
+                ActivityService.savePlan($scope.currentActivityPlan);
             };
 
 
