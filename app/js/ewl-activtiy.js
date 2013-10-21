@@ -95,11 +95,21 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
                 return false;
             },
-            savePlan: function (plan) {
+            savePlan: function (plan, callback) {
                 if (plan.id) {
                     plannedActivities.put(plan);
                 } else {
-                    plannedActivities.post(plan);
+                    plannedActivities.post(plan).then(function success(result){
+                        console.log("plan saved" + result);
+                        if (callback) {
+                            return callback(null, result);
+                        }
+                    }, function error(err){
+                        console.log("error on plan post" + err);
+                        if (callback) {
+                            return callback(err);
+                        }
+                    });
                 }
             }
 
@@ -212,7 +222,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                 if (!currentPlan) {
                     currentPlan = {
-                        "activity": $scope.currentActivity,
+                        "owner": $scope.principal.getUser().id,
+                        "activity": $scope.currentActivity.id,
                         "planType": $scope.currentActivity.defaultplantype,
                         "privacyType": $scope.currentActivity.defaultprivacy,
                         "executionType": $scope.currentActivity.defaultexecutiontype,
@@ -268,9 +279,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return ActivityService.isActivityPlanned(plannedActivities, activityId);
             };
 
-            $scope.planActivityDone = function () {
-                ActivityService.savePlan($scope.currentActivityPlan);
-                $state.go('cockpit');
+            $scope.planActivityDone = function (successCallback, errorCallback) {
+                ActivityService.savePlan($scope.currentActivityPlan)
             };
 
 
