@@ -22,26 +22,27 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
     // Object methods for all Assessment related objects
     .run(['Restangular', function (Restangular) {
-        Restangular.extendModel('assessments', function (assessment) {
+        Restangular.extendModel('assessments', function (assessment, user) {
 
-            assessment.getDefaultAnswers = function () {
-                var defaultAnswers = [];
-                var nextId = 1;
+            assessment.getNewEmptyAssResult = function () {
+                var emptyResult = {
+                    assessment: assessment.id,
+                    answers: []
+                };
                 for (var i = 0; i < assessment.questionCats.length; i++) {
                     var questionCat = assessment.questionCats[i];
                     for (var j = 0; j < questionCat.questions.length; j++) {
                         var question = questionCat.questions[j];
                         var answer = {
-                            id: nextId++,
-                            assessment_id: assessment.id,
-                            question_id: question.id,
+                            assessment: assessment.id,
+                            question: question.id,
                             answer: 0,
                             answered: false
                         };
-                        defaultAnswers.push(answer);
+                        emptyResult.answers.push(answer);
                     }
                 }
-                return defaultAnswers;
+                return emptyResult;
 
             };
             return assessment;
@@ -54,14 +55,12 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
         var assService = {
             getAssessmentData: function (assessmentId) {
                 var assessmentBase = Restangular.one('assessments', assessmentId);
-
                 // if the user is authenticated we try to get his previous answers from the server,
                 // if unauthenticated, we only get the assessment
                 var neededCalls = [assessmentBase.get()];
                 if (principal.isAuthenticated()) {
                     neededCalls.push(
                         assessmentBase.one('results/newest').get()
-                        //Restangular.one('users', principal.getUser().username).one('assessmentresults', assessmentId).get()
                     );
                 }
                 // run the one/two calls in parallel and then processes the results
@@ -69,28 +68,34 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                     var assessment = results[0];
 
                     // check whether we got saved answers for this user and this assessment
-                    var answersAsArray;
-                    if (results[1] && (results[1]) && (results[1].size > 0)) {
-                        answersAsArray = results[1];
+                    var assResult;
+                    if (results[1]) {
+                        assResult = results[1];
+                        // convert into a new Result, otherwise we overwrite the old one
+                        delete assResult.id;
                     } else {
                         // got no answers from server, need to generate default answers
-                        answersAsArray = assessment.getDefaultAnswers();
+                        assResult = assessment.getNewEmptyAssResult();
                     }
 
                     // sort answers into keyed object (by question_id) to ease access by view
-                    var answers = {};
-                    _.forEach(answersAsArray, function (myAnswer) {
-                        answers[myAnswer.question_id] = myAnswer;
+                    assResult.keyedAnswers = {};
+                    _.forEach(assResult.answers, function (myAnswer) {
+                        assResult.keyedAnswers[myAnswer.question] = myAnswer;
                     });
 
-                    // return both, assessment and answers in an simple object
+                    // return both, assessment and assResult in a simple object
                     return {
                         assessment: assessment,
-                        answers: answers
+                        result: assResult
                     };
                 });
 
 
+             },
+            postResults: function (assResult, callback) {
+                var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
+                assessmentResultBase.post(assResult).then(callback);
             }
         };
 
@@ -99,26 +104,32 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
     // Controller to display an assessment and process the answers
     // assessmentData is resolved on stateTransfer
-    .controller('AssessmentCtrl', ['$scope', '$rootScope', '$state', 'assessmentData',
-        function ($scope, $rootScope, $state, assessmentData) {
+    .controller('AssessmentCtrl', ['$scope', '$rootScope', '$state', 'assessmentData','AssessmentService',
+        function ($scope, $rootScope, $state, assessmentData, AssessmentService) {
 
             $scope.assessment = assessmentData.assessment;
-            $scope.assAnswersByQuestionId = assessmentData.answers;
+            $scope.result = assessmentData.result;
+            $scope.assAnswersByQuestionId = assessmentData.result.keyedAnswers;
 
             $scope.assessmentDone = function () {
                 if (!$scope.principal.isAuthenticated()) {
                     $rootScope.$broadcast('loginMessageShow');
                 } else {
-                    assessmentData.answers.timestamp = new Date();
-                    // Todo (rblu): save assessmentAnswers
-                    //
-                    $state.go('cockpit');
+                    assessmentData.result.timestamp = new Date();
+                    assessmentData.result.owner = $scope.principal.getUser().id;
+                    delete assessmentData.result.id;
+
+                    AssessmentService.postResults(assessmentData.result, function(result) {
+                        console.log("result posted: " + result);
+                    });
+
+                    // $state.go('cockpit');
 
                 }
             };
 
             $scope.setQuestionAnswered = function (questionid) {
-                $scope.assAnswersByQuestionId[questionid].answered = true;
+                $scope.assAnswersByQuestionId[questionid].dirty = true;
             };
 
         }]);

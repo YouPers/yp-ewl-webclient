@@ -2,6 +2,7 @@
     <!-- Page header  -->
     <div class="page-header">
         <h1>{{ assessment.name | translate }}</h1>
+        <div>{{result.timestamp ? 'letzte Beurteilung: ' + (result.timestamp | fromNow) : 'Das ist deine erste Beurteilung'}}</div>
     </div>
     <div class="ass-done-button ass-done-button-top">
         <button type="button" class="btn btn-primary btn-sm" ng-click="assessmentDone()">speichern</button>
@@ -24,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-3 ass-min-text">{{ question.mintext | translate}}</div>
                     <div class="col-md-6">
-                        <input ng-class="[question.type, assAnswersByQuestionId[question.id].answered ? 'answered' : '']"
+                        <input ng-class="[question.type, assAnswersByQuestionId[question.id].dirty ? 'answered' : '']"
                                type="range" min="-100"
                                max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
                                ng-model="assAnswersByQuestionId[question.id].answer"
