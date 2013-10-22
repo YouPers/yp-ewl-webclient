@@ -2,14 +2,9 @@
 
 angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activity'])
 
-    .factory('ActivityLogService', ['Restangular', '$q', function (Restangular, $q) {
+    .factory('ActivityLogService', ['Restangular', function (Restangular) {
         var ActivityLogService = {};
         var actEventsByTime = [];
-        var tabs = [
-            // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
-            { title: "nach Datum", content: "partials/cockpit.activitylog.running.html" },
-            { title: "Geplante Aktivitäten", content: "partials/cockpit.activitylog.planned.html" }
-        ];
 
         var activitiesPlannedBase = Restangular.all('activitiesPlanned');
         var actPlans = activitiesPlannedBase.getList({populate: 'joiningUsers events.comments activity', populatedeep: 'events.comments.author'})
@@ -27,22 +22,12 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 return actPlanList;
             });
 
-        var activityLogVisible = true;
-
         ActivityLogService.getActPlans = function () {
             return actPlans;
         };
 
         ActivityLogService.getActivityHistoryByTime = function () {
             return actEventsByTime;
-        };
-
-        ActivityLogService.getActivityLogVisibility = function () {
-            return activityLogVisible;
-        };
-
-        ActivityLogService.getTabs = function () {
-            return tabs;
         };
 
         ActivityLogService.updateActivityEvent = function (planId, actEvent) {
@@ -53,23 +38,13 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
     }
     ])
 
-    .controller('ActivityLogVisibilityCtrl', ['$scope', 'ActivityLogService', '$filter', '$state', function ($scope, ActivityLogService, $filter, $state) {
-        $scope.activityLogVisible = ActivityLogService.getActivityLogVisibility();
-
-        $scope.getVisibilityGlyphicon = function (visibilty) {
-            if (visibilty) {
-                return "collapse-down";
-            } else {
-                return "expand";
-            }
-        };
-
-        $scope.tabs = ActivityLogService.getTabs();
-
-    }])
-
-    .controller('ActivityLogCtrl', ['$scope', 'ActivityLogService', '$filter', '$state', 'activityFields',
-        function ($scope, ActivityLogService, $filter, $state, activityFields) {
+    .controller('ActivityLogCtrl', ['$scope', 'ActivityLogService', '$state', 'activityFields',
+        function ($scope, ActivityLogService, $state, activityFields) {
+            $scope.tabs = [
+                // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
+                { title: "nach Datum", content: "partials/cockpit.activitylog.running.html" },
+                { title: "Geplante Aktivitäten", content: "partials/cockpit.activitylog.planned.html" }
+            ];
 
             $scope.activityFields = activityFields;
 
@@ -108,6 +83,10 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 $state.go('activityDetail.' + activityLogEntry.executionType, {activityId: activityLogEntry.id});
             };
 
+            $scope.gotoActivityList = function () {
+                $state.go('activitylist');
+            };
+
             $scope.getActivityFieldName = function (activityFieldId) {
                 var activityField = _.find($scope.activityFields, function (obj) {
                     return obj.id === activityFieldId;
@@ -117,10 +96,6 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 } else {
                     return undefined;
                 }
-            };
-
-            $scope.gotoActivityList = function () {
-                $state.go('activitylist');
             };
 
             $scope.getActivityTimeType = function (status) {
