@@ -274,16 +274,17 @@
                                     return i * (d3Options.barHeight + d3Options.barMargin);
                                 })
                                 .attr("dy", "1.35em")
-                                .attr("x", 5)
-                                .attr("dx", function (d,i) {
+//                                .attr("x", 5)
+                                .attr("x", function (d,i) {
+                                    var xPos = 5; // starting x position
                                     if (x(values[i]) < d3Options.insetThreshold) {
                                         if (x(values[i]) < 20) {
-                                            return x(values[i]) + 20;
+                                            return xPos + x(values[i]) + 20;
                                         } else {
-                                            return x(values[i]);
+                                            return xPos + x(values[i]);
                                         }
                                     } else {
-                                        return 0;
+                                        return xPos;
                                     }
                                 })
                                 .attr("class", "youpers-chart-label")
@@ -306,17 +307,14 @@
                                     return i * (d3Options.barHeight + d3Options.barMargin);
                                 })
                                 .attr("dy", "1.35em")
-                                .attr("x", function (d) {
-                                    return x(d);
-                                })
-                                .attr("dx", function (d,i) {
+                                .attr("x", function (d,i) {
+                                    var xPos = x(d); // x starting position
                                     if (x(d) < 20) {
-                                        return +15;
+                                        return xPos + 15;
                                     } else {
-                                        return -5;
+                                        return xPos - 5;
                                     }
                                 })
-//                                .attr("dx", -5)
                                 .attr("text-anchor", "end")
                                 .attr("class", "youpers-chart-value")
                                 .style("fill", function (d,i) {
