@@ -65,7 +65,22 @@
                     </br>
 
                     <div ng-controller="yp.ewl.activity.chart2.controller">
-                        <d3-horizontal-bar-chart data="d3Data" options="d3Options" label="name" on-click="onClick(item)"></d3-horizontal-bar-chart>
+                        <div class="btn-group">
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}" name="timespanoption" id="optionweek"> Woche
+                                <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}" name="timespanoption" id="optionmonth"> Monat
+                                <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}" name="timespanoption" id="optionyear"> Jahr
+                                <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
+                            </label>
+
+                        </div>
+                        <d3-horizontal-bar-chart data="chart.data" options="d3Options" label="name" on-click="onClick(item)"></d3-horizontal-bar-chart>
                     </div>
 
                 </div>
