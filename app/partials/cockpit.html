@@ -89,22 +89,21 @@
         </div>
         <!--</div>-->
         <div class="row">
-            <div class="col-md-6" ng-controller="ActivityLogVisibilityCtrl">
+            <div class="col-md-6">
                 <div class="panel cockpit">
 
                     <div class="panel cockpit section-title">
-                    <span class="glyphicon controls glyphicon-{{getVisibilityGlyphicon(activityLogVisible)}}" ng-click="activityLogVisible = !activityLogVisible">
+                    <span class="glyphicon controls glyphicon-{{activityLogVisible ? 'collapse-down' : 'expand'}}" ng-init="activityLogVisible=true" ng-click="activityLogVisible = !activityLogVisible">
                     </span>
                         Aktivitätslog
                     </div>
 
-                    <div ng-switch on="activityLogVisible">
 
-                        <div ng-switch-when="true">
+                        <div ng-show="activityLogVisible" ng-controller="ActivityLogCtrl">
 
                             <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-xs-12 col-md-12">
 
                                     <div class="cockpit new-activity">
@@ -120,13 +119,12 @@
                             </div>
 
                         </div>
-                        <div ng-switch-when="false">
+                        <div ng-hide="activityLogVisible">
 
                             </br>
                             <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
                         </div>
-                    </div>
 
                 </div>
             </div>
