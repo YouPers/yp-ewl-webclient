@@ -149,8 +149,8 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
 
         }])
 
-    .controller('ActivityDoneModalCtrl', ['$scope', '$modal', '$log', 'ActivityLogService', 'principal',
-        function ($scope, $modal, $log, ActivityLogService, principal) {
+    .controller('ActivityDoneModalCtrl', ['$rootScope','$scope', '$modal', '$log', 'ActivityLogService', 'principal',
+        function ($rootScope, $scope, $modal, $log, ActivityLogService, principal) {
 
             $scope.open = function (actEvent, activity, actPlanId) {
 
@@ -186,6 +186,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                             $log.info("ActEvent updated: " + JSON.stringify(result));
                         }, function (err) {
                             $log.info("ActEvent update failed: " + err);
+                            $rootScope.$broadcast('globalUserMsg', 'Error while Saving: ' + err, 'warning', 3000);
                         }
                     );
 
