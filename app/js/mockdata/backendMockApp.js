@@ -11,7 +11,8 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET(/^js\/mockdata/).passThrough();
 
         $httpBackend.whenGET(baseURL + '/activities').respond(mock.activities);
-        $httpBackend.whenGET(baseURL + '/activitiesPlanned').respond(mock.plannedActivities);
+        $httpBackend.whenGET(/activitiesPlanned/).respond(mock.plannedActivities);
+
         $httpBackend.whenPOST(baseURL + '/activitiesPlanned').respond(function(method, url, data, headers) {
             var plan = angular.fromJson(data);
             plan.id = '12341234';

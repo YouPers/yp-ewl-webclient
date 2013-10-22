@@ -1,8 +1,8 @@
 <div class="doneActivityDialog panel panel-default">
 
     <div class="modal-header">
-        <h3>{{ getActivityInfo() }}</h3>
-        <h4>{{ 'ON' | translate }} {{ getActivityWhen() }}</h4>
+        <h3>{{ activity.number +': ' + activity.title}}</h3>
+        <h4>{{ 'ON' | translate }} {{ actEvent.begin | orderBy:'medium' }}</h4>
     </div>
     <div class="modal-body">
 
@@ -11,19 +11,19 @@
 
                 <div class="btn-group">
                     Ausgeführt?</br>
-                    <button class="btn btn-default" ng-click="isDone('yes')" ng-model="done" btn-radio="1">{{ 'YES' | translate }}</button>
-                    <button class="btn btn-default" ng-click="isDone('no')" ng-model="done" btn-radio="2">{{ 'NO' | translate }}</button>
+                    <button class="btn btn-default" ng-model="dialogResults.done" btn-radio="'done'">{{ 'YES' | translate }}</button>
+                    <button class="btn btn-default" ng-model="dialogResults.done" btn-radio="'missed'">{{ 'NO' | translate }}</button>
                 </div>
             </div>
 
             <div class="col-lg-8">
                 <div class="btn-group">
                     Wie hast du dich gefühlt?</br>
-                    <button class="btn btn-default" ng-click="givenRating(1)" ng-model="rating" btn-radio="1"><div class="activity-feedback-1-small"></div></button>
-                    <button class="btn btn-default" ng-click="givenRating(2)" ng-model="rating" btn-radio="2"><div class="activity-feedback-2-small"></div></button>
-                    <button class="btn btn-default" ng-click="givenRating(3)" ng-model="rating" btn-radio="3"><div class="activity-feedback-3-small"></div></button>
-                    <button class="btn btn-default" ng-click="givenRating(4)" ng-model="rating" btn-radio="4"><div class="activity-feedback-4-small"></div></button>
-                    <button class="btn btn-default" ng-click="givenRating(5)" ng-model="rating" btn-radio="5"><div class="activity-feedback-5-small"></div></button>
+                    <button class="btn btn-default" ng-model="dialogResults.feedback" btn-radio="1"><div class="activity-feedback-1-small"></div></button>
+                    <button class="btn btn-default" ng-model="dialogResults.feedback" btn-radio="2"><div class="activity-feedback-2-small"></div></button>
+                    <button class="btn btn-default" ng-model="dialogResults.feedback" btn-radio="3"><div class="activity-feedback-3-small"></div></button>
+                    <button class="btn btn-default" ng-model="dialogResults.feedback" btn-radio="4"><div class="activity-feedback-4-small"></div></button>
+                    <button class="btn btn-default" ng-model="dialogResults.feedback" btn-radio="5"><div class="activity-feedback-5-small"></div></button>
                 </div>
                 </br>
                 </br>
@@ -34,7 +34,7 @@
             <div class="col-lg-12">
 
                 <input type="text" placeholder="{{ 'COMMENT' | translate }}" class="form-control comment"
-                       ng-model="newComment" ng-change="givenComment(newComment)">
+                       ng-model="dialogResults.doneText">
 
             </div>
         </div>

@@ -55,6 +55,7 @@ angular.module('yp-ewl').
             SELF: 'Alleine',
             DAILY: 'Täglich',
             WEEKLY_ON_THURSDAY: 'Jeden Donnerstag',
+            WEEKLY: 'Jede Woche',
             ONCE: 'Einmalig',
             CAMPAIGN: 'Kampagne',
             PRIVATE: 'Privat',

@@ -1,42 +1,48 @@
 <div class="list-group activity-log" ng-controller="ActivityLogCtrl">
 
-    <div class="list-group-item {{getActivityTimeType(activityHistoryEntry.type)}}" ng-repeat="activityHistoryEntry in activityHistoryEntriesByTime" ng-controller="ActivityCommentCtrl" ng-switch on="isComments()">
+    <div class="list-group-item {{getActivityTimeType(actEvent.event.type)}}"
+         ng-repeat="actEvent in actEventsByTime | orderBy:'-event.begin'">
         <div class="row">
 
             <div class="col-xs-1 col-md-1" ng-controller="ActivityDoneModalCtrl">
-                <button class="btn btn-default" ng-click="open({ id: activityHistoryEntry.id, title: activityHistoryEntry.title}, activityHistoryEntry)">
-                    <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(activityHistoryEntry.status)}}" ></span>
+                <button class="btn btn-default" ng-click="open(actEvent.event, actEvent.activity)">
+                    <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(actEvent.event.status)}}"></span>
                 </button>
             </div>
 
             <div class="col-xs-7 col-md-7">
-                <a href="#" class="activity-log title">{{activityHistoryEntry.title}}</br></a>
-                {{ activityHistoryEntry.planType | uppercase | translate }}&nbsp;|&nbsp;
-                <span popover="{{ activityHistoryEntry.executionType | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(activityHistoryEntry.executionType)}}" ></span>&nbsp;|&nbsp;
-                <span popover="{{ activityHistoryEntry.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(activityHistoryEntry.visibility)}}" ></span>&nbsp;|&nbsp;
+                <a href="#" class="activity-log title">{{actEvent.activity.title}}</br></a>
+                {{ actEvent.planType | uppercase | translate }}&nbsp;|&nbsp;
+                <span popover="{{ actEvent.plan.executionType | uppercase | translate }}" popover-trigger="mouseenter"
+                      class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(actEvent.plan.executionType)}}"></span>&nbsp;|&nbsp;
+                <span popover="{{ actEvent.plan.visibility | uppercase | translate }}" popover-trigger="mouseenter"
+                      class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(actEvent.plan.visibility)}}"></span>&nbsp;|&nbsp;
 
-                <!--ToDo irig: Popover-Text auslagern und in verschiedenen Sprachen implementieren-->
-                <a href="" ng-click="toggleComments()" popover="Kommentare: Zum öffnen bitte anklicken" popover-trigger="mouseenter" class="glyphicon glyphicon-comment"> </a>
-                <a href="" ng-click="toggleComments()" popover="Anzahl Kommentare: Zum öffnen bitte anklicken" popover-trigger="mouseenter" class="badge">{{activityHistoryEntry.nofComments}}</a>
+                <!--ToDo irig: Popover-Text auslagern und in verschiedenen Sprachen implementieren
+                    $parent is needed because tooltip creates a new child scope, and the attributs commentsShown lives in its parent-->
+                <a href="" ng-click="$parent.commentsShown= !$parent.commentsShown" popover="Kommentare: Zum öffnen bitte anklicken"
+                   popover-trigger="mouseenter" class="glyphicon glyphicon-comment"> </a>
+                <a href="" ng-click="$parent.commentsShown= !$parent.commentsShown" popover="Anzahl Kommentare: Zum öffnen bitte anklicken"
+                   popover-trigger="mouseenter" class="badge">{{actEvent.event.comments.length}}</a>
 
             </div>
             <div class="col-xs-2 col-md-2">
-                <div class="activity-feedback-{{activityHistoryEntry.feedback}}-small"></div>
+                <div class="activity-feedback-{{actEvent.event.feedback}}-small"></div>
             </div>
             <div class="col-xs-2 col-md-2">
                 <div class="activity-log time-box">
                     <span class="activity-log time-box timestamp">
-                        {{activityHistoryEntry.on | fromNowFake}}</br>
+                        {{actEvent.event.begin | fromNow}}</br>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="row" ng-switch-when="true">
-            <div class="list-group-item" ng-repeat="comment in activityHistoryEntry.comments">
+        <div class="row" ng-show="commentsShown">
+            <div class="list-group-item" ng-repeat="comment in actEvent.event.comments | orderBy:'-created'">
                 <div class="row">
                     <div class="col-xs-2 col-md-2">
                         <a href="">
-                            <img ng-src="{{comment.author.pic}}" class="social-log author-avatar"/>
+                            <img ng-src="{{comment.author.avatar}}" class="social-log author-avatar"/>
                         </a>
                     </div>
                     <div class="col-xs-3 col-md-3">
@@ -49,9 +55,9 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <div class="social-log time-box">
-                                                                            <span class="activity-log time-box timestamp">
-                                                                                   {{comment.date | fromNowFake}}</br>
-                                                                            </span>
+                            <span class="activity-log time-box timestamp">
+                                {{comment.created | fromNow}}</br>
+                            </span>
                         </div>
                     </div>
                 </div>

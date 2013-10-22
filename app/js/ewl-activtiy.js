@@ -48,6 +48,46 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 });
         }])
 
+    // TODO: (RBLU) refactor into keyed object to ease access to text!
+    .constant('activityFields', [
+        {
+            "id": "AwarenessAbility",
+            "beschreibungdt": "Bewusstsein und Fähigkeit"
+        },
+        {
+            "id": "TimeManagement",
+            "beschreibungdt": "Zeitmanagement"
+        },
+        {
+            "id": "WorkStructuring",
+            "beschreibungdt": "Arbeitsgestaltung"
+        },
+        {
+            "id": "PhysicalActivity",
+            "beschreibungdt": "Körperliche Aktivität"
+        },
+        {
+            "id": "Nutrition",
+            "beschreibungdt": "Ernährung"
+        },
+        {
+            "id": "LeisureActivity",
+            "beschreibungdt": "Freizeitaktivität"
+        },
+        {
+            "id": "Breaks",
+            "beschreibungdt": "Pausen"
+        },
+        {
+            "id": "Relaxation",
+            "beschreibungdt": "Entspannung"
+        },
+        {
+            "id": "SocialInteraction",
+            "beschreibungdt": "Sozialer Austausch"
+        }
+    ])
+
     // Object methods for all Assessment related objects
     .run(['Restangular', function (Restangular) {
         Restangular.extendCollection('activities', function (activities) {
@@ -59,19 +99,14 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         });
 
                         act.plan = matchingPlan;
-
                         act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-
                         act.isRecommended = (recommendations.indexOf(act.number) !== -1);
                     });
                 };
-
-
                 return activities;
             }
         );
     }])
-
 
     .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
         var activities = Restangular.all('activities');
@@ -112,7 +147,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     });
                 }
             }
-
         };
 
         return actService;
@@ -282,12 +316,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.planActivityDone = function (successCallback, errorCallback) {
                 ActivityService.savePlan($scope.currentActivityPlan);
             };
-
-
         }])
 
-    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities',
-        function ($scope, $filter, $state, allActivities, plannedActivities) {
+    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities', 'activityFields',
+        function ($scope, $filter, $state, allActivities, plannedActivities, activityFields) {
 
             // mock recommendations for this user, should be loaded from server later...
             var recommendations = ['Act-25', 'Act-45', 'Act-89', 'Act-105', 'Act-157'];
@@ -301,44 +333,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.plannedActivities = plannedActivities;
 
 
-            $scope.clusters = [
-                {
-                    "id": "AwarenessAbility",
-                    "beschreibungdt": "Bewusstsein und Fähigkeit"
-                },
-                {
-                    "id": "TimeManagement",
-                    "beschreibungdt": "Zeitmanagement"
-                },
-                {
-                    "id": "WorkStructuring",
-                    "beschreibungdt": "Arbeitsgestaltung"
-                },
-                {
-                    "id": "PhysicalActivity",
-                    "beschreibungdt": "Körperliche Aktivität"
-                },
-                {
-                    "id": "Nutrition",
-                    "beschreibungdt": "Ernährung"
-                },
-                {
-                    "id": "LeisureActivity",
-                    "beschreibungdt": "Freizeitaktivität"
-                },
-                {
-                    "id": "Breaks",
-                    "beschreibungdt": "Pausen"
-                },
-                {
-                    "id": "Relaxation",
-                    "beschreibungdt": "Entspannung"
-                },
-                {
-                    "id": "SocialInteraction",
-                    "beschreibungdt": "Sozialer Austausch"
-                }
-            ];
+            $scope.clusters = activityFields;
 
             $scope.getClusterName = function (clusterId) {
                 var cluster = _.find($scope.clusters, function (obj) {
