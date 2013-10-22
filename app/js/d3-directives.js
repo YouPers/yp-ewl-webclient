@@ -14,6 +14,9 @@
                 link: function(scope, iElement, iAttrs) {
                     d3Service.d3().then(function(d3){
 
+                        var labels = [];
+                        var values = [];
+
                         var d3Options = {};
 
                         // generating defaults, if options are not set
@@ -104,7 +107,7 @@
                         // - bars equal and larger than this value have heir value displayed inside of the bar
 
                         if (typeof d3Options.insetThreshold === 'undefined') {
-                            d3Options.insetThreshold = 200;
+                            d3Options.insetThreshold = 100;
                         }
 
                         var series = scope.data.series;
@@ -155,14 +158,12 @@
                         // define render function
                         scope.render = function(data){
 
-//                            var fuck = angular.fromJson(data);
-
                             var series = data.series;
 
                             // segregate values from labels
 
-                            var labels = [];
-                            var values = [];
+                            labels = [];
+                            values = [];
 
                             for (var i = 0; i < series.length; i++) {
                                 labels.push(series[i].label);
@@ -206,7 +207,7 @@
 
                             // Canvas for the top x scale
 
-                            var xScaleTopCanvas = chartCanvas.append("g")      //
+                            var xScaleTopCanvas = chartCanvas.append("g")
                                 .attr("height", d3Options.xScaleTopHeight)
                                 .attr("width", "100%");
 
@@ -265,6 +266,38 @@
                                 })
                             ;
 
+                            gridCanvas.selectAll("label")
+                                .data(labels)
+                                .enter()
+                                .append("text")
+                                .attr("y", function(d,i) {
+                                    return i * (d3Options.barHeight + d3Options.barMargin);
+                                })
+                                .attr("dy", "1.35em")
+                                .attr("x", 5)
+                                .attr("dx", function (d,i) {
+                                    if (x(values[i]) < d3Options.insetThreshold) {
+                                        if (x(values[i]) < 20) {
+                                            return x(values[i]) + 20;
+                                        } else {
+                                            return x(values[i]);
+                                        }
+                                    } else {
+                                        return 0;
+                                    }
+                                })
+                                .attr("class", "youpers-chart-label")
+                                .style("fill", function (d,i) {
+                                    if (x(values[i]) < d3Options.insetThreshold) {
+                                        return "#000";
+                                    } else {
+                                        return "#fff";
+                                    }
+                                })
+                                .text(function(d) {
+                                    return d;
+                                });
+
                             gridCanvas.selectAll("value")
                                 .data(values)
                                 .enter()
@@ -277,46 +310,24 @@
                                     return x(d);
                                 })
                                 .attr("dx", function (d,i) {
-                                    if (x(d) < d3Options.insetThreshold) {
-                                        return +20;
+                                    if (x(d) < 20) {
+                                        return +15;
                                     } else {
                                         return -5;
                                     }
                                 })
+//                                .attr("dx", -5)
                                 .attr("text-anchor", "end")
                                 .attr("class", "youpers-chart-value")
                                 .style("fill", function (d,i) {
-                                    if (x(d) < d3Options.insetThreshold) {
+                                    if (x(d) < 20) {
                                         return "#000";
                                     } else {
                                         return "#fff";
                                     }
                                 })
-                            .text(function(d) {
-                                    return d.toString();
-                                });
-
-                            gridCanvas.selectAll("label")
-                                .data(labels)
-                                .enter()
-                                .append("text")
-                                .attr("dy", "1.35em")
-                                .attr("y", y)   // does not work, that's why I overwrite it!!
-                                .attr("y", function(d,i) {
-                                    return i * (d3Options.barHeight + d3Options.barMargin);
-                                })
-//                                .attr("dx", 5)
-                                .attr("dx", function (d,i) {
-                                    if (x(d) < d3Options.insetThreshold) {
-                                        return d3Options.insetThreshold + 45;
-                                    } else {
-                                        return 5;
-                                    }
-                                })
-                                .attr("x", 0)
-                                .attr("class", "youpers-chart-label")
                                 .text(function(d) {
-                                    return d;
+                                    return d.toString();
                                 });
 
                             gridCanvas.append("line")
@@ -522,7 +533,6 @@
                             var y = d3.scale.ordinal()
                                 .domain(d3.range(scope.data.length))
                                 .rangeRoundBands([0, actualHeightFinal], (d3Options.barMargin / d3Options.barHeight), (d3Options.marginTop / d3Options.barHeight));
-//                                .rangeBands([0, actualHeightFinal]);
 
                             // Canvas for the top x scale
 
@@ -612,7 +622,7 @@
                                         return "#fff";
                                     }
                                 })
-                            .text(function(d) {
+                                .text(function(d) {
                                     return d.toString();
                                 });
 
