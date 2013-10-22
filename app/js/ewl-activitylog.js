@@ -3,13 +3,8 @@
 angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activity'])
 
     .factory('ActivityLogService', ['Restangular', '$q', function (Restangular, $q) {
-
         var ActivityLogService = {};
-
         var actEventsByTime = [];
-
-        var actPlans = [];
-
         var tabs = [
             // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
             { title: "nach Datum", content: "partials/cockpit.activitylog.running.html" },
@@ -17,7 +12,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
         ];
 
         var activitiesPlannedBase = Restangular.all('activitiesPlanned');
-        actPlans = activitiesPlannedBase.getList({populate: 'joiningUsers events.comments activity', populatedeep: 'events.comments.author'})
+        var actPlans = activitiesPlannedBase.getList({populate: 'joiningUsers events.comments activity', populatedeep: 'events.comments.author'})
             .then(function (actPlanList) {
                 // create array structured by time
                 for (var i = 0; i < actPlanList.length; i++) {
@@ -32,6 +27,8 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 return actPlanList;
             });
 
+        var activityLogVisible = true;
+
         ActivityLogService.getActPlans = function () {
             return actPlans;
         };
@@ -40,14 +37,16 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
             return actEventsByTime;
         };
 
-        var activityLogVisible = true;
-
         ActivityLogService.getActivityLogVisibility = function () {
             return activityLogVisible;
         };
 
         ActivityLogService.getTabs = function () {
             return tabs;
+        };
+
+        ActivityLogService.updateActivityEvent = function (planId, actEvent) {
+            return Restangular.restangularizeElement(null, actEvent, 'activitiesPlanned/'+ planId + '/events').put();
         };
 
         return ActivityLogService;
@@ -153,7 +152,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
     .controller('ActivityDoneModalCtrl', ['$scope', '$modal', '$log', 'ActivityLogService', 'principal',
         function ($scope, $modal, $log, ActivityLogService, principal) {
 
-            $scope.open = function (actEvent, activity) {
+            $scope.open = function (actEvent, activity, actPlanId) {
 
                 var modalInstance = $modal.open({
                     templateUrl: "partials/cockpit.activity.done.html",
@@ -183,7 +182,12 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                         actEvent.comments.push(comment);
                     }
 
-                    // TODO: (RBLU) save done data to Backend
+                    ActivityLogService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
+                            $log.info("ActEvent updated: " + JSON.stringify(result));
+                        }, function (err) {
+                            $log.info("ActEvent update failed: " + err);
+                        }
+                    );
 
                 }, function () {
                     $log.info('Modal dismissed at: ' + new Date());

@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-xs-1 col-md-1" ng-controller="ActivityDoneModalCtrl">
-                <button class="btn btn-default" ng-click="open(actEvent.event, actEvent.activity)">
+                <button class="btn btn-default" ng-click="open(actEvent.event, actEvent.activity, actEvent.plan.id)">
                     <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(actEvent.event.status)}}"></span>
                 </button>
             </div>
