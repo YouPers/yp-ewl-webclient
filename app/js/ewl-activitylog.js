@@ -183,7 +183,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                         actEvent.comments.push(comment);
                     }
 
-                    // ActivityLogService.updateActivity($scope.activity.id, actEventByTime.event);
+                    // TODO: (RBLU) save done data to Backend
 
                 }, function () {
                     $log.info('Modal dismissed at: ' + new Date());
