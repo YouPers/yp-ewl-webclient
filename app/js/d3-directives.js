@@ -24,15 +24,15 @@
 
                     // on window resize, re-render d3 canvas
 
-                    window.onresize = function() {
-                        return scope.$apply();
-                    };
+//                    window.onresize = function() {
+//                        return scope.$apply();
+//                    };
 
                     // Redraw the chart if the window is resized
                     $rootScope.$on('resizeMsg', function (e) {
                         $timeout(function () {
-                            scope.render(scope.data);
-                        });
+                            draw(angular.fromJson(scope.data));
+                        }, 1000);
                     });
 
                     function draw (data) {
@@ -265,7 +265,11 @@
                                 .transition()
                                 .duration(1000)             // time of duration
                                 .attr("width", function(d) {
-                                    return x(d);
+                                    if (x(d) > 0) {
+                                        return x(d);
+                                } else {
+                                        return 0;
+                                    }
                                 })
                             ;
 
