@@ -5,7 +5,7 @@ angular.module('yp.ewl.activity.chart2', [])
     .factory('yp.ewl.activity.chart2.service', ['$http', function($http) {
 
         var convertDataSeries = function (data) {
-            var cols = data.cols;
+//            var cols = data.cols;
             var rows = data.rows;
             var chartData = {};
             chartData.series = [];

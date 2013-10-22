@@ -200,9 +200,9 @@
                                 .domain([0, d3.max(values)])
                                 .range([0, currentWidth]);
 
-                            var y = d3.scale.ordinal()
-                                .domain(d3.range(series.length))
-                                .rangeRoundBands([0, actualHeightFinal], (d3Options.barMargin / d3Options.barHeight), (d3Options.marginTop / d3Options.barHeight));
+//                            var y = d3.scale.ordinal()
+//                                .domain(d3.range(series.length))
+//                                .rangeRoundBands([0, actualHeightFinal], (d3Options.barMargin / d3Options.barHeight), (d3Options.marginTop / d3Options.barHeight));
 //                                .rangeBands([0, actualHeightFinal]);
 
                             // Canvas for the top x scale
