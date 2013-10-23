@@ -10,7 +10,7 @@
             </div>
             <div class="col-xs-7 col-md-7">
                 <a href="" ng-click="gotoActivityDetail(actPlan)" class="activity-log title">{{actPlan.activity.title}}</br></a>
-                {{ actPlan.planType | uppercase | translate }}&nbsp;|&nbsp;
+                {{ actPlan.mainEvent.frequency | uppercase | translate }}&nbsp;|&nbsp;
                 <span popover="{{ actPlan.executionType | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(actPlan.executionType)}}" ></span>&nbsp;|&nbsp;
                 <span popover="{{ actPlan.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(actPlan.visibility)}}" ></span>
             </div>
