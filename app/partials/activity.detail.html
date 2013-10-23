@@ -83,7 +83,7 @@
                                                             ng-click="thread.showComments = !thread.showComments">kommentieren</a></span>
                         </div>
                         <div class="container" ng-show="thread.showComments">
-                            <div class="row social-thread" ng-repeat="comment in thread.comments">
+                            <div class="row social-thread" ng-repeat="comment in thread.subcomments">
                                 <div class="social-thread-header">
                                     <a href="{{ comment.author.link }}">
                                         <img ng-src="{{ comment.author.avatar }}" class="avatar-icon"/>

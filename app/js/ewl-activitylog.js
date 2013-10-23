@@ -7,7 +7,9 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
         var actEventsByTime = [];
 
         var activitiesPlannedBase = Restangular.all('activitiesPlanned');
-        var actPlans = activitiesPlannedBase.getList({populate: 'joiningUsers events.comments activity', populatedeep: 'events.comments.author'})
+        var actPlans = activitiesPlannedBase.getList(
+            {populate: 'joiningUsers events.comments activity',
+            populatedeep: 'events.comments.author'})
             .then(function (actPlanList) {
                 // create array structured by time
                 for (var i = 0; i < actPlanList.length; i++) {
