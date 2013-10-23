@@ -10,13 +10,13 @@
             </div>
             <div class="col-xs-7 col-md-7">
                 <a href="" ng-click="gotoActivityDetail(actPlan)" class="activity-log title">{{actPlan.activity.title}}</br></a>
-                {{ actPlan.planType | uppercase | translate }}&nbsp;|&nbsp;
+                {{ actPlan.mainEvent.frequency | uppercase | translate }}&nbsp;|&nbsp;
                 <span popover="{{ actPlan.executionType | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(actPlan.executionType)}}" ></span>&nbsp;|&nbsp;
                 <span popover="{{ actPlan.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(actPlan.visibility)}}" ></span>
             </div>
             <div class="col-xs-2 col-md-2">
-                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" ng-repeat="activityField in actPlan.activity.field">
-                    <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
+                <div popover="{{ activityFields[fieldId]}}" popover-trigger="mouseenter" ng-repeat="fieldId in actPlan.activity.fields">
+                    <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListClusterIcon">
                 </div>
 
             </div>

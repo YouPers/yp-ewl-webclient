@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row panel panel-primary">
+        <div class="col-md-1">{{activity.number}}</div>
+        <div class="col-md-5"><textarea type="text" class="form-control" ng-model="activity.title"></textarea></div>
+
+        <div class="btn-group col-md-2">
+            Default Exceution</br>
+            <button class="btn btn-default btn-sm" ng-model="activity.defaultexecutiontype" btn-radio="'self'">alleine</button>
+            <button class="btn btn-default btn-sm" ng-model="activity.defaultexecutiontype" btn-radio="'group'">Gruppe</button>
+        </div>
+        <div class="btn-group col-md-4">
+            Default Frequency</br>
+            <button class="btn btn-default btn-sm" ng-model="activity.defaultfrequency" btn-radio="'once'">einmalig</button>
+            <button class="btn btn-default btn-sm" ng-model="activity.defaultfrequency" btn-radio="'day'">täglich</button>
+            <button class="btn btn-default btn-sm" ng-model="activity.defaultfrequency" btn-radio="'week'">wöchentlich</button>
+            <button class="btn btn-default btn-sm" ng-model="activity.defaultfrequency" btn-radio="'month'">monatlich</button>
+        </div>
+        <div class="btn-group col-md-3">
+        Default Visibility</br>
+        <button class="btn btn-default btn-sm" ng-model="activity.defaultvisibility" btn-radio="'public'">öffentlich</button>
+        <button class="btn btn-default btn-sm" ng-model="activity.defaultvisibility" btn-radio="'campaign'">Kampagne</button>
+        <button class="btn btn-default btn-sm" ng-model="activity.defaultvisibility" btn-radio="'private'">privat</button>
+    </div>
+        <div class="btn-group col-md-3">
+            Source</br>
+            <button class="btn btn-default btn-sm" ng-model="activity.source" btn-radio="'community'">öffentlich</button>
+            <button class="btn btn-default btn-sm" ng-model="activity.source" btn-radio="'youpers'">Kampagne</button>
+            <button class="btn btn-default btn-sm" ng-model="activity.source" btn-radio="'campaign'">privat</button>
+        </div>
+        <div class="btn-group col-md-6">
+            Aktivitäts-Felder</br>
+            <button class="btn btn-default btn-sm" ng-repeat="(fieldId, fieldName) in activityFields"
+                    ng-model="actFieldsModel[fieldId]" btn-checkbox>{{fieldName}}</button>
+        </div>
+
+        <div class="col-md-2 col-md-offset-10">
+            <button class="btn btn-default" ng-click="cancel()">cancel</button>
+            <button class="btn btn-success" ng-click="save()">save</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Matrix zu AssessmentFragen für Empfehlungen für: {{activity.number}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            Empfehlung<br>
+            Slider links
+        </div>
+        <div class="col-md-1">
+            Empfehlung <br>
+            Slider rechts
+        </div>
+        <div class="col-md-4 col-md-offset-2 panel panel-danger">
+            Alle Werte zwischen 0 und 100<br>
+            0 = Aktivität nicht empfehlen, 100 = Aktivität empfehlen
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="row" ng-repeat="cat in assessment.questionCats">
+                    <div class="col-md-12"><h5>{{ cat.category | translate}}</h5>
+                        <div class="row  panel panel-default" ng-repeat="question in cat.questions">
+                            <div class="col-md-1">
+                                <Input type="number" ng-init=1 ng-model="recWeights[question.id].positiveAnswerWeight" class="form-control">
+                                {{question.mintext}}
+                            </div>
+                            <div class="col-md-3 col-md-offset-1"><h5>{{question.title}}</h5>
+                                {{question.midtext}}</div>
+                            <div class="col-md-1">
+                                <Input type="number" ng-model="recWeights[question.id].negativeAnswerWeight" class="form-control">
+                                {{question.maxtext}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

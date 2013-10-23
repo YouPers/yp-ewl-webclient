@@ -19,6 +19,20 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }]
                     }
                 })
+                .state('activityAdmin', {
+                    url: "/activities/:activityId/admin",
+                    templateUrl: "partials/activity.admin.html",
+                    controller: "ActivityAdminCtrl",
+                    access: accessLevels.individual,
+                    resolve: {
+                        activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
+                            return ActivityService.getActivity($stateParams.activityId);
+                        }],
+                        assessment: ['AssessmentService', function (AssessmentService) {
+                            return AssessmentService.getAssessment('525faf0ac558d40000000005');
+                        }]
+                    }
+                })
                 .state('activityDetail', {
                     url: "/activities/:activityId",
                     templateUrl: "partials/activity.detail.html",
@@ -48,45 +62,17 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 });
         }])
 
-    // TODO: (RBLU) refactor into keyed object to ease access to text!
-    .constant('activityFields', [
-        {
-            "id": "AwarenessAbility",
-            "beschreibungdt": "Bewusstsein und Fähigkeit"
-        },
-        {
-            "id": "TimeManagement",
-            "beschreibungdt": "Zeitmanagement"
-        },
-        {
-            "id": "WorkStructuring",
-            "beschreibungdt": "Arbeitsgestaltung"
-        },
-        {
-            "id": "PhysicalActivity",
-            "beschreibungdt": "Körperliche Aktivität"
-        },
-        {
-            "id": "Nutrition",
-            "beschreibungdt": "Ernährung"
-        },
-        {
-            "id": "LeisureActivity",
-            "beschreibungdt": "Freizeitaktivität"
-        },
-        {
-            "id": "Breaks",
-            "beschreibungdt": "Pausen"
-        },
-        {
-            "id": "Relaxation",
-            "beschreibungdt": "Entspannung"
-        },
-        {
-            "id": "SocialInteraction",
-            "beschreibungdt": "Sozialer Austausch"
-        }
-    ])
+    .constant('activityFields', {
+        AwarenessAbility:     "Bewusstsein und Fähigkeit",
+        TimeManagement: "Zeitmanagement",
+        WorkStructuring:    "Arbeitsgestaltung",
+        PhysicalActivity:   "Körperliche Aktivität",
+        Nutrition:  "Ernährung",
+        LeisureActivity:    "Freizeitaktivität",
+        Breaks: "Pausen",
+        Relaxation: "Entspannung",
+        SocialInteraction:   "Sozialer Austausch"
+        })
 
     // Object methods for all Assessment related objects
     .run(['Restangular', function (Restangular) {
@@ -106,6 +92,53 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return activities;
             }
         );
+
+        Restangular.extendModel('activities', function(activity) {
+
+            activity.getDefaultPlan = function () {
+                var now = moment();
+                var newMainEvent = {
+                    "allDay": false
+                };
+                if (activity.defaultfrequency === 'once') {
+                    newMainEvent.start =  moment(now).add('d',7);
+                    newMainEvent.end = moment(now).add('d',7).add('h',1);
+                    newMainEvent.frequency = 'once';
+                } else if (activity.defaultfrequency === 'week') {
+                    newMainEvent.start = moment(now);
+                    newMainEvent.end = moment(now).add('h',1);
+                    newMainEvent.frequency = 'week';
+                    newMainEvent.recurrence = {
+                        "end-by": {
+                            "type": "after",
+                            "after": 6
+                        },
+                        every: 1
+                    };
+                } else if (activity.defaultfrequency === 'day') {
+                    newMainEvent.start = moment(now).add('d',1);
+                    newMainEvent.end = moment(newMainEvent.start).add('h',1);
+                    newMainEvent.frequency = 'day';
+                    newMainEvent.recurrence = {
+                        "end-by": {
+                            "type": "after",
+                            "after": 42
+                        },
+                        every: 1
+                    };
+                }
+
+
+                return {
+                    activity: activity,
+                    status: 'active',
+                    mainEvent: newMainEvent,
+                    executionType: activity.defaultexecutiontype,
+                    visibility: activity.defaultvisibility
+                };
+            };
+            return activity;
+        });
     }])
 
     .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
@@ -114,9 +147,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
         var actService = {
             getActivities: function () {
-                return activities.getList();
+                return activities.getList({limit: 1000});
             },
 
+            getActivity: function(activityId) {
+                return Restangular.one('activities', activityId).get();
+            },
             getPlannedActivities: function () {
                 return plannedActivities.getList();
             },
@@ -207,10 +243,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             angular.forEach(activities, function (activity, key) {
 
-                    if ((allClusters || _.any(activity.field, function (value) {
+                    if ((allClusters || _.any(activity.fields, function (value) {
                         return query.cluster[value];
                     })) &&
-                        (allTopics || _.any(activity.topic, function (value) {
+                        (allTopics || _.any(activity.topics, function (value) {
                             return query.topic[value];
                         })) &&
                         (allRatings || query.rating[ratingsMapping[activity.rating]]
@@ -220,7 +256,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             ) &&
                         (subSetAll || (query.subset === 'campaign' && activity.isCampaign) ||
                             (query.subset === 'recommendations' && activity.isRecommended)) &&
-                        (!query.fulltext || (activity.title.toUpperCase() + activity.id.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
+                        (!query.fulltext || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
                         ) {
                         out.push(activity);
                     }
@@ -255,17 +291,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 });
 
                 if (!currentPlan) {
-                    currentPlan = {
-                        "owner": $scope.principal.getUser().id,
-                        "activity": $scope.currentActivity.id,
-                        "planType": $scope.currentActivity.defaultplantype,
-                        "privacyType": $scope.currentActivity.defaultprivacy,
-                        "executionType": $scope.currentActivity.defaultexecutiontype,
-                        "visibility": $scope.currentActivity.defaultvisibility,
-                        "duration": 15,
-                        "repeatWeeks": 6,
-                        "status": 'active'
-                    };
+                    currentPlan = $scope.currentActivity.getDefaultPlan();
                 }
 
                 $scope.currentActivityPlan = currentPlan;
@@ -298,7 +324,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 'starting-day': 1
             };
 
-            // weeklyplanning using dayselector
+            // weekplanning using dayselector
             $scope.availableDays = [
                 {label: 'MONDAY'},
                 {label: 'TUESDAY'},
@@ -333,18 +359,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.plannedActivities = plannedActivities;
 
 
-            $scope.clusters = activityFields;
-
-            $scope.getClusterName = function (clusterId) {
-                var cluster = _.find($scope.clusters, function (obj) {
-                    return obj.id === clusterId;
-                });
-                if (cluster) {
-                    return cluster.beschreibungdt;
-                } else {
-                    return undefined;
-                }
-            };
+            $scope.activityFields = activityFields;
 
             $scope.gotoActivityDetail = function (activity) {
                 $state.go('activityDetail.' + activity.defaultexecutiontype, {activityId: activity.id});
@@ -396,4 +411,50 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 $scope.currentPage = 1;
                 $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
             }, true);
-        }]);
+        }])
+
+    .controller('ActivityAdminCtrl', ['$scope','activity','assessment','ActivityService','activityFields','Restangular','$state',
+        function($scope, activity, assessment, ActivityService, activityFields, Restangular, $state) {
+
+            $scope.activity = activity;
+            $scope.assessment = assessment;
+            $scope.activityFields = activityFields;
+
+            $scope.actFieldsModel = {};
+
+            _.forEach(activityFields,function( fieldDesc, fieldId) {
+                $scope.actFieldsModel[fieldId] = (activity.fields.indexOf(fieldId) !== -1);
+            });
+
+            $scope.$watch('actFieldsModel', function(newValue, oldValue, scope) {
+                var newFields = [];
+                _.forEach(newValue, function(value,key) {
+                    if (value) {
+                        newFields.push(key);
+                    }
+                });
+                activity.fields = newFields;
+            }, true);
+
+            var recWeights = {};
+            _.forEach(assessment.questionCats, function(cat) {
+                _.forEach(cat.questions, function (question) {
+                    recWeights[question.id] = {negativeAnswerWeight: 0, positiveAnswerWeight:0};
+                });
+            });
+
+            $scope.recWeights = recWeights;
+
+            $scope.save = function() {
+                activity.put().then(function(result) {
+                    $scope.$emit('globalUserMsg', 'activity saved successfully', 'success', 5000);
+                    $state.go('activitylist');
+                },function(err) {
+                    $scope.$emit('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
+                });
+            };
+
+            $scope.cancel = function () {
+                $state.go('activitylist');
+            };
+    }]);

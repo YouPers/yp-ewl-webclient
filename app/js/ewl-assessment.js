@@ -90,9 +90,10 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                         result: assResult
                     };
                 });
-
-
              },
+            getAssessment: function(assessmentId) {
+                return Restangular.one('assessments', assessmentId).get();
+            },
             postResults: function (assResult, callback) {
                 var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
                 assessmentResultBase.post(assResult).then(callback);

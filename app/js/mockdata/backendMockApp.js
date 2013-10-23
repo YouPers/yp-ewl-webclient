@@ -23,7 +23,7 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
         $httpBackend.whenGET(baseURL + '/assessments/525faf0ac558d40000000005').respond(mock.assessment);
         $httpBackend.whenGET(baseURL +  '/assessments/525faf0ac558d40000000005/results/newest').respond(mock.assessmentAnswers);
 
-        $httpBackend.whenGET(baseURL + 'comments').respond(mock.activityComments);
+        $httpBackend.whenGET(/comments/).respond(mock.activityComments);
         $httpBackend.whenGET(baseURL + '/users').respond(mock.users);
         $httpBackend.whenPOST(baseURL + '/users').respond(function (method, url, data, headers) {
             mock.users.push(angular.fromJson(data));

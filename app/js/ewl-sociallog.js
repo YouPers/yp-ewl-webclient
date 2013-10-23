@@ -1,23 +1,16 @@
 'use strict';
 
-angular.module('yp.sociallog', []).
+angular.module('yp.sociallog', ['restangular']).
 
-    factory('SocialLogService', ['$http', function ($http) {
+    factory('SocialLogService', ['Restangular', function (Restangular) {
 
         var SocialLogService = {};
 
-        var socialLogEntries = $http.get('socialLog').then(function (result) {
-            return result.data;
-        });
+        var commentsBase = Restangular.all('comments');
+        var socialLogEntries = commentsBase.getList({populate: 'author'});
 
         SocialLogService.getSocialLog = function () {
             return socialLogEntries;
-        };
-
-        var socialLogVisible = true;
-
-        SocialLogService.getSocialLogVisibility = function () {
-            return socialLogVisible;
         };
 
         return SocialLogService;
@@ -26,21 +19,11 @@ angular.module('yp.sociallog', []).
 
     .controller('SocialLogCtrl', ['$scope', 'SocialLogService', function ($scope, SocialLogService) {
 
-       SocialLogService.getSocialLog().then(function (result) {
-           $scope.socialLogEntries = result;
-       });
+        SocialLogService.getSocialLog().then(function (result) {
+            $scope.socialLogEntries = result;
+        });
 
-        $scope.socialLogVisible = SocialLogService.getSocialLogVisibility();
-
-        $scope.toggleInstruction = function () {
-            if ($scope.socialLogVisible === true) {
-                return "HIDE_SOCIAL_LOG";
-            } else {
-                return "SHOW_SOCIAL_LOG";
-            }
-        };
-
-        $scope.getGlyphicon = function(status) {
+        $scope.getGlyphicon = function (status) {
             var icon = "";
             if (status === "newMessage") {
                 icon = "envelope";
@@ -52,13 +35,6 @@ angular.module('yp.sociallog', []).
             return icon;
         };
 
-        $scope.getControlGlyphicon = function (visibilty) {
-            if (visibilty) {
-                return "collapse-down";
-            } else {
-                return "expand";
-            }
-        };
 
     }]);
     

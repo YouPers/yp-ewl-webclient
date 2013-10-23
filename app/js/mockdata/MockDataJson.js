@@ -104,431 +104,6 @@ mock.plannedActivities = [
                 "feedback": 2,
                 "id": "525fde3797dd4e0000000009",
                 "status": "done"
-            },
-            {
-                "begin": "2013-07-23T18:33:50.558Z",
-                "comments": [
-                    {
-                        "author": {
-                            "avatar": "assets/img/UBAU.jpeg",
-                            "email": "urs@baumeler.com",
-                            "emailValidatedFlag": true,
-                            "firstname": "Urs",
-                            "fullname": "Urs Baumeler",
-                            "id": "525fb247101e330000000007",
-                            "lastname": "Baumeler",
-                            "role": "healthpromoter",
-                            "username": "urs",
-                            "version": 0
-                        },
-                        "created": "2013-04-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000009",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Montag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/SMUE.jpeg",
-                            "email": "stefan.mueller@romus.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Stefan",
-                            "fullname": "Stefan Müller",
-                            "id": "525fb247101e330000000008",
-                            "lastname": "Müller",
-                            "role": "individual",
-                            "username": "stefan",
-                            "version": 0
-                        },
-                        "created": "2013-05-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000010",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Dienstag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/IRIG.jpeg",
-                            "email": "ivan@rigamonti.me",
-                            "emailValidatedFlag": true,
-                            "firstname": "Ivan",
-                            "fullname": "Ivan Rigamonti",
-                            "id": "525fb247101e330000000006",
-                            "lastname": "Rigamonti",
-                            "role": "admin",
-                            "username": "ivan",
-                            "version": 0
-                        },
-                        "created": "2013-06-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000011",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Mittwoch",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/RBLU.jpeg",
-                            "email": "reto@blunschi.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Reto",
-                            "fullname": "Reto Blunschi",
-                            "id": "525fb247101e330000000005",
-                            "lastname": "Blunschi",
-                            "role": "admin",
-                            "username": "reto",
-                            "version": 0
-                        },
-                        "created": "2013-07-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000012",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Donnerstag",
-                        "version": 0
-                    }
-                ],
-                "doneTs": "2013-07-24T13:34:50.558Z",
-                "end": "2013-07-23T19:33:50.558Z",
-                "id": "525fde3797dd4e0000000008",
-                "status": "missed"
-            },
-            {
-                "begin": "2013-07-30T18:33:50.558Z",
-                "comments": [
-                    {
-                        "author": {
-                            "avatar": "assets/img/UBAU.jpeg",
-                            "email": "urs@baumeler.com",
-                            "emailValidatedFlag": true,
-                            "firstname": "Urs",
-                            "fullname": "Urs Baumeler",
-                            "id": "525fb247101e330000000007",
-                            "lastname": "Baumeler",
-                            "role": "healthpromoter",
-                            "username": "urs",
-                            "version": 0
-                        },
-                        "created": "2013-04-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000009",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Montag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/SMUE.jpeg",
-                            "email": "stefan.mueller@romus.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Stefan",
-                            "fullname": "Stefan Müller",
-                            "id": "525fb247101e330000000008",
-                            "lastname": "Müller",
-                            "role": "individual",
-                            "username": "stefan",
-                            "version": 0
-                        },
-                        "created": "2013-05-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000010",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Dienstag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/IRIG.jpeg",
-                            "email": "ivan@rigamonti.me",
-                            "emailValidatedFlag": true,
-                            "firstname": "Ivan",
-                            "fullname": "Ivan Rigamonti",
-                            "id": "525fb247101e330000000006",
-                            "lastname": "Rigamonti",
-                            "role": "admin",
-                            "username": "ivan",
-                            "version": 0
-                        },
-                        "created": "2013-06-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000011",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Mittwoch",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/RBLU.jpeg",
-                            "email": "reto@blunschi.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Reto",
-                            "fullname": "Reto Blunschi",
-                            "id": "525fb247101e330000000005",
-                            "lastname": "Blunschi",
-                            "role": "admin",
-                            "username": "reto",
-                            "version": 0
-                        },
-                        "created": "2013-07-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000012",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Donnerstag",
-                        "version": 0
-                    }
-                ],
-                "doneTs": "2013-07-31T13:34:50.558Z",
-                "end": "2013-07-30T19:33:50.558Z",
-                "feedback": 1,
-                "id": "525fde3797dd4e0000000007",
-                "status": "done"
-            },
-            {
-                "begin": "2013-08-07T18:33:50.558Z",
-                "comments": [
-                    {
-                        "author": {
-                            "avatar": "assets/img/UBAU.jpeg",
-                            "email": "urs@baumeler.com",
-                            "emailValidatedFlag": true,
-                            "firstname": "Urs",
-                            "fullname": "Urs Baumeler",
-                            "id": "525fb247101e330000000007",
-                            "lastname": "Baumeler",
-                            "role": "healthpromoter",
-                            "username": "urs",
-                            "version": 0
-                        },
-                        "created": "2013-04-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000009",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Montag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/SMUE.jpeg",
-                            "email": "stefan.mueller@romus.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Stefan",
-                            "fullname": "Stefan Müller",
-                            "id": "525fb247101e330000000008",
-                            "lastname": "Müller",
-                            "role": "individual",
-                            "username": "stefan",
-                            "version": 0
-                        },
-                        "created": "2013-05-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000010",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Dienstag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/IRIG.jpeg",
-                            "email": "ivan@rigamonti.me",
-                            "emailValidatedFlag": true,
-                            "firstname": "Ivan",
-                            "fullname": "Ivan Rigamonti",
-                            "id": "525fb247101e330000000006",
-                            "lastname": "Rigamonti",
-                            "role": "admin",
-                            "username": "ivan",
-                            "version": 0
-                        },
-                        "created": "2013-06-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000011",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Mittwoch",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/RBLU.jpeg",
-                            "email": "reto@blunschi.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Reto",
-                            "fullname": "Reto Blunschi",
-                            "id": "525fb247101e330000000005",
-                            "lastname": "Blunschi",
-                            "role": "admin",
-                            "username": "reto",
-                            "version": 0
-                        },
-                        "created": "2013-07-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000012",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Donnerstag",
-                        "version": 0
-                    }
-                ],
-                "doneTs": "2013-08-09T13:34:50.558Z",
-                "end": "2013-08-07T19:33:50.558Z",
-                "feedback": 4,
-                "id": "525fde3797dd4e0000000006",
-                "status": "done"
-            },
-            {
-                "begin": "2013-11-07T18:33:50.558Z",
-                "comments": [
-                    {
-                        "author": {
-                            "avatar": "assets/img/UBAU.jpeg",
-                            "email": "urs@baumeler.com",
-                            "emailValidatedFlag": true,
-                            "firstname": "Urs",
-                            "fullname": "Urs Baumeler",
-                            "id": "525fb247101e330000000007",
-                            "lastname": "Baumeler",
-                            "role": "healthpromoter",
-                            "username": "urs",
-                            "version": 0
-                        },
-                        "created": "2013-04-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000009",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Montag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/SMUE.jpeg",
-                            "email": "stefan.mueller@romus.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Stefan",
-                            "fullname": "Stefan Müller",
-                            "id": "525fb247101e330000000008",
-                            "lastname": "Müller",
-                            "role": "individual",
-                            "username": "stefan",
-                            "version": 0
-                        },
-                        "created": "2013-05-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000010",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Dienstag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/IRIG.jpeg",
-                            "email": "ivan@rigamonti.me",
-                            "emailValidatedFlag": true,
-                            "firstname": "Ivan",
-                            "fullname": "Ivan Rigamonti",
-                            "id": "525fb247101e330000000006",
-                            "lastname": "Rigamonti",
-                            "role": "admin",
-                            "username": "ivan",
-                            "version": 0
-                        },
-                        "created": "2013-06-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000011",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Mittwoch",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/RBLU.jpeg",
-                            "email": "reto@blunschi.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Reto",
-                            "fullname": "Reto Blunschi",
-                            "id": "525fb247101e330000000005",
-                            "lastname": "Blunschi",
-                            "role": "admin",
-                            "username": "reto",
-                            "version": 0
-                        },
-                        "created": "2013-07-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000012",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Donnerstag",
-                        "version": 0
-                    }
-                ],
-                "end": "2013-11-07T19:33:50.558Z",
-                "id": "525fde3797dd4e0000000005",
-                "status": "open"
-            },
-            {
-                "begin": "2013-11-14T18:33:50.558Z",
-                "comments": [
-                    {
-                        "author": {
-                            "avatar": "assets/img/UBAU.jpeg",
-                            "email": "urs@baumeler.com",
-                            "emailValidatedFlag": true,
-                            "firstname": "Urs",
-                            "fullname": "Urs Baumeler",
-                            "id": "525fb247101e330000000007",
-                            "lastname": "Baumeler",
-                            "role": "healthpromoter",
-                            "username": "urs",
-                            "version": 0
-                        },
-                        "created": "2013-04-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000009",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Montag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/SMUE.jpeg",
-                            "email": "stefan.mueller@romus.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Stefan",
-                            "fullname": "Stefan Müller",
-                            "id": "525fb247101e330000000008",
-                            "lastname": "Müller",
-                            "role": "individual",
-                            "username": "stefan",
-                            "version": 0
-                        },
-                        "created": "2013-05-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000010",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Dienstag",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/IRIG.jpeg",
-                            "email": "ivan@rigamonti.me",
-                            "emailValidatedFlag": true,
-                            "firstname": "Ivan",
-                            "fullname": "Ivan Rigamonti",
-                            "id": "525fb247101e330000000006",
-                            "lastname": "Rigamonti",
-                            "role": "admin",
-                            "username": "ivan",
-                            "version": 0
-                        },
-                        "created": "2013-06-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000011",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Mittwoch",
-                        "version": 0
-                    },
-                    {
-                        "author": {
-                            "avatar": "assets/img/RBLU.jpeg",
-                            "email": "reto@blunschi.ch",
-                            "emailValidatedFlag": true,
-                            "firstname": "Reto",
-                            "fullname": "Reto Blunschi",
-                            "id": "525fb247101e330000000005",
-                            "lastname": "Blunschi",
-                            "role": "admin",
-                            "username": "reto",
-                            "version": 0
-                        },
-                        "created": "2013-07-30T12:15:00.000Z",
-                        "id": "525ff6143fceba0000000012",
-                        "refObj": "525fb247101e330000000007",
-                        "text": "Keine Zeit am Donnerstag",
-                        "version": 0
-                    }
-                ],
-                "end": "2013-11-14T19:33:50.558Z",
-                "id": "525fde3797dd4e0000000004",
-                "status": "open"
             }
         ],
         "executionType": "group",
@@ -559,10 +134,16 @@ mock.plannedActivities = [
                 "version": 0
             }
         ],
-        "onceDate": null,
-        "onceTime": null,
         "owner": "525fb247101e330000000005",
-        "planType": "weekly",
+        "mainEvent": {
+            "allDay": false,
+            "start": "2013-10-30T11:02:35.173Z",
+            "end": "2013-10-30T12:02:35.173Z",
+            "frequency": "once",
+            "recurrence": {
+                "exceptions": []
+            }
+        },
         "status": "active",
         "version": 0
     },
@@ -1100,10 +681,20 @@ mock.plannedActivities = [
         "executionType": "group",
         "id": "525fde3797dd4e0000000015",
         "joiningUsers": [],
-        "onceDate": null,
-        "onceTime": null,
         "owner": "525fb247101e330000000005",
-        "planType": "daily",
+        "mainEvent": {
+            "allDay": false,
+            "start": "2013-10-30T11:02:35.173Z",
+            "end": "2013-10-30T12:02:35.173Z",
+            "frequency": "week",
+            "recurrence": {
+                "end-by": {
+                    "type": "after",
+                    "after": 6
+                },
+                "exceptions": []
+            }
+        },
         "status": "active",
         "version": 0
     }
@@ -1176,25 +767,37 @@ mock.activityComments = [
         "ref_obj_id": "1",
         "ref_obj": "activity",
         "author": {
-            "id": "1",
-            "fullname": "Urs Baumeler",
-            "pic": "assets/img/UBAU.jpeg",
-            "link": "#/u/UBAU"
+            "_id": "525fb247101e330000000005",
+            "firstname": "Reto",
+            "lastname": "Blunschi",
+            "fullname": "Reto Blunschi",
+            "avatar": "assets/img/RBLU.jpeg",
+            "email": "reto@blunschi.ch",
+            "emailValidatedFlag": true,
+            "username": "reto",
+            "role": "admin",
+            "password": "reto"
         },
         "date": "2013-08-03T18:33:50.558Z",
         "type": "generic",
         "text": "Wer kommt mit, jeweils Mittwochs 11:45 ab Bahnhof Stettbach, easy jogging?",
-        "comments": [
+        "subcomments": [
             {
                 "id": "1",
                 "ref_id": "1",
                 "ref_obj": "activity",
                 "thread_id": "1",
                 "author": {
-                    "id": "2",
-                    "fullname": "Ivan Rigamonti",
-                    "pic": "assets/img/IRIG.jpeg",
-                    "link": "#/u/IRIG"
+                    "_id": "525fb247101e330000000005",
+                    "firstname": "Reto",
+                    "lastname": "Blunschi",
+                    "fullname": "Reto Blunschi",
+                    "avatar": "assets/img/RBLU.jpeg",
+                    "email": "reto@blunschi.ch",
+                    "emailValidatedFlag": true,
+                    "username": "reto",
+                    "role": "admin",
+                    "password": "reto"
                 },
                 "date": "2013-08-04T18:33:50.558Z",
                 "text": "Keine Zeit am Mittwoch"
@@ -1205,10 +808,18 @@ mock.activityComments = [
                 "ref_obj": "activity",
                 "thread_id": "1",
                 "author": {
-                    "id": "3",
+                    "avatar": "assets/img/SMUE.jpeg",
+                    "email": "stefan.mueller@romus.ch",
+                    "emailValidatedFlag": true,
+                    "firstname": "Stefan",
                     "fullname": "Stefan Müller",
-                    "pic": "assets/img/SMUE.jpeg",
-                    "link": "#/u/SMUE"
+                    "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
+                    "id": "525fb247101e330000000008",
+                    "lastname": "Müller",
+                    "role": "individual",
+                    "tempPasswordFlag": false,
+                    "username": "stefan",
+                    "version": 0
                 },
                 "date": "2013-08-05T18:33:50.558Z",
                 "text": "Ist mir zu langsam mit dir ;-)"
@@ -1219,10 +830,18 @@ mock.activityComments = [
                 "ref_obj": "activity",
                 "thread_id": "1",
                 "author": {
-                    "id": "3",
+                    "avatar": "assets/img/SMUE.jpeg",
+                    "email": "stefan.mueller@romus.ch",
+                    "emailValidatedFlag": true,
+                    "firstname": "Stefan",
                     "fullname": "Stefan Müller",
-                    "pic": "assets/img/SMUE.jpeg",
-                    "link": "#/u/SMUE"
+                    "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
+                    "id": "525fb247101e330000000008",
+                    "lastname": "Müller",
+                    "role": "individual",
+                    "tempPasswordFlag": false,
+                    "username": "stefan",
+                    "version": 0
                 },
                 "date": "2013-08-06T18:33:50.558Z",
                 "text": "Ist mir zu langsam mit dir ;-)"
@@ -1234,25 +853,41 @@ mock.activityComments = [
         "ref_obj_id": "1",
         "ref_obj": "activity",
         "author": {
-            "id": "1",
+            "avatar": "assets/img/SMUE.jpeg",
+            "email": "stefan.mueller@romus.ch",
+            "emailValidatedFlag": true,
+            "firstname": "Stefan",
             "fullname": "Stefan Müller",
-            "pic": "assets/img/SMUE.jpeg",
-            "link": "#/u/SMUE"
+            "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
+            "id": "525fb247101e330000000008",
+            "lastname": "Müller",
+            "role": "individual",
+            "tempPasswordFlag": false,
+            "username": "stefan",
+            "version": 0
         },
         "date": "2013-07-03T18:33:50.558Z",
         "type": "generic",
         "text": "Heute 17 Km gemacht, war supercool",
-        "comments": [
+        "subcomments": [
             {
                 "id": "4",
                 "ref_id": "1",
                 "ref_obj": "activity",
                 "thread_id": "1",
                 "author": {
-                    "id": "2",
+                    "avatar": "assets/img/IRIG.jpeg",
+                    "email": "ivan@rigamonti.me",
+                    "emailValidatedFlag": true,
+                    "firstname": "Ivan",
                     "fullname": "Ivan Rigamonti",
-                    "pic": "assets/img/IRIG.jpeg",
-                    "link": "#/u/IRIG"
+                    "hashed_password": "8f7e90c4a6f292e73bba8d4b83f335cbde0c61a2",
+                    "id": "525fb247101e330000000006",
+                    "lastname": "Rigamonti",
+                    "role": "admin",
+                    "tempPasswordFlag": false,
+                    "username": "ivan",
+                    "version": 0
                 },
                 "date": "2013-07-04T18:33:50.558Z",
                 "text": "Gratulation, nicht schlecht, morgen gehen wir zusammen oder?"
@@ -1263,10 +898,18 @@ mock.activityComments = [
                 "ref_obj": "activity",
                 "thread_id": "1",
                 "author": {
-                    "id": "3",
+                    "avatar": "assets/img/SMUE.jpeg",
+                    "email": "stefan.mueller@romus.ch",
+                    "emailValidatedFlag": true,
+                    "firstname": "Stefan",
                     "fullname": "Stefan Müller",
-                    "pic": "assets/img/SMUE.jpeg",
-                    "link": "#/u/SMUE"
+                    "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
+                    "id": "525fb247101e330000000008",
+                    "lastname": "Müller",
+                    "role": "individual",
+                    "tempPasswordFlag": false,
+                    "username": "stefan",
+                    "version": 0
                 },
                 "date": "2013-07-05T18:33:50.558Z",
                 "text": "Ist mir zu langsam mit dir ;-)"
@@ -1278,26 +921,42 @@ mock.activityComments = [
         "ref_obj_id": "1",
         "ref_obj": "activity",
         "author": {
-            "id": "1",
+            "avatar": "assets/img/SMUE.jpeg",
+            "email": "stefan.mueller@romus.ch",
+            "emailValidatedFlag": true,
+            "firstname": "Stefan",
             "fullname": "Stefan Müller",
-            "pic": "assets/img/SMUE.jpeg",
-            "link": "#/u/SMUE"
+            "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
+            "id": "525fb247101e330000000008",
+            "lastname": "Müller",
+            "role": "individual",
+            "tempPasswordFlag": false,
+            "username": "stefan",
+            "version": 0
         },
         "date": "2012-09-03T18:33:50.558Z",
         "type": "rating",
         "text": "Heute 17 Km gemacht, war supercool",
         "ratingValue": 4,
-        "comments": [
+        "subcomments": [
             {
                 "id": "4",
                 "ref_id": "1",
                 "ref_obj": "activity",
                 "thread_id": "1",
                 "author": {
-                    "id": "2",
+                    "avatar": "assets/img/IRIG.jpeg",
+                    "email": "ivan@rigamonti.me",
+                    "emailValidatedFlag": true,
+                    "firstname": "Ivan",
                     "fullname": "Ivan Rigamonti",
-                    "pic": "assets/img/IRIG.jpeg",
-                    "link": "#/u/IRIG"
+                    "hashed_password": "8f7e90c4a6f292e73bba8d4b83f335cbde0c61a2",
+                    "id": "525fb247101e330000000006",
+                    "lastname": "Rigamonti",
+                    "role": "admin",
+                    "tempPasswordFlag": false,
+                    "username": "ivan",
+                    "version": 0
                 },
                 "date": "2012-09-03T18:33:50.558Z",
                 "text": "Gratulation, nicht schlecht, morgen gehen wir zusammen oder?"
@@ -1308,10 +967,18 @@ mock.activityComments = [
                 "ref_obj": "activity",
                 "thread_id": "1",
                 "author": {
-                    "id": "3",
+                    "avatar": "assets/img/SMUE.jpeg",
+                    "email": "stefan.mueller@romus.ch",
+                    "emailValidatedFlag": true,
+                    "firstname": "Stefan",
                     "fullname": "Stefan Müller",
-                    "pic": "assets/img/SMUE.jpeg",
-                    "link": "#/u/SMUE"
+                    "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
+                    "id": "525fb247101e330000000008",
+                    "lastname": "Müller",
+                    "role": "individual",
+                    "tempPasswordFlag": false,
+                    "username": "stefan",
+                    "version": 0
                 },
                 "date": "16.05.2013",
                 "text": "Ist mir zu langsam mit dir ;-)"

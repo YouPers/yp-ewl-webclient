@@ -131,7 +131,13 @@
                             }
 
                         }, function error(err) {
-                            $rootScope.$broadcast('globalUserMsg', 'Login / password not valid, please try again or register', 'danger', 3000);
+                            var msg;
+                            if (err && err.status === 0) {
+                                msg = 'YouPers Backend Server not reachable, please try again later, Code: ' + err.status;
+                            } else {
+                                msg = 'Login / password not valid, please try again or register, Code: ' + err.status;
+                            }
+                            $rootScope.$broadcast('globalUserMsg', msg, 'danger', 3000);
                         });
                     },
                     logout: function () {
