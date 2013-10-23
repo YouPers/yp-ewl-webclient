@@ -21,8 +21,8 @@ describe('ewl activity', function () {
                 "id": "1",
                 "title": "Iss täglich einen Apfel",
                 "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-                "field": ["nutrition"],
-                "topic": ["workLifeBalance", "nutrition"],
+                "fields": ["nutrition"],
+                "topics": ["workLifeBalance", "nutrition"],
                 "defaultPlanType": "daily",
                 "defaultExecutionType": "self",
                 "defaultPrivacy": "public",
@@ -32,8 +32,8 @@ describe('ewl activity', function () {
                 "id": "2",
                 "title": "Joggen über Mittag",
                 "text": "Run forest, Run...",
-                "field": ["fitness"],
-                "topic": ["workLifeBalance", "physicalFitness"],
+                "fields": ["fitness"],
+                "topics": ["workLifeBalance", "physicalFitness"],
                 "defaultPlanType": "weekly",
                 "defaultExecutionType": "group",
                 "defaultPrivacy": "public",
@@ -43,8 +43,8 @@ describe('ewl activity', function () {
                 "id": "3",
                 "title": "Iss täglich einen Apfel",
                 "text": "Früchte sind superduper und darum sollte man immer eine essen...",
-                "field": ["nutrition"],
-                "topic": ["workLifeBalance", "nutrition"],
+                "fields": ["nutrition"],
+                "topics": ["workLifeBalance", "nutrition"],
                 "defaultPlanType": "daily",
                 "defaultExecutionType": "self",
                 "defaultPrivacy": "public",
@@ -186,13 +186,6 @@ describe('ewl activity', function () {
         it('should have access to all activities and the planned activities', inject(function () {
 
             expect($scope.plannedActivities.length).toEqual(2);
-        }));
-
-
-        it('should return the cluster name for an id', inject(function () {
-            expect($scope.getClusterName('Nutrition')).toBeDefined();
-            expect(typeof $scope.getClusterName('Nutrition')).toEqual('string');
-            expect($scope.getClusterName('Nutrition').length).toBeGreaterThan(0);
         }));
 
     });

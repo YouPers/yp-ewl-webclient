@@ -15,8 +15,8 @@
                 <span popover="{{ actPlan.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(actPlan.visibility)}}" ></span>
             </div>
             <div class="col-xs-2 col-md-2">
-                <div popover="{{ getActivityFieldName(activityField)}}" popover-trigger="mouseenter" ng-repeat="activityField in actPlan.activity.field">
-                    <img ng-src="/assets/ico/{{activityField}}.gif" class="activityListClusterIcon">
+                <div popover="{{ activityFields[fieldId]}}" popover-trigger="mouseenter" ng-repeat="fieldId in actPlan.activity.fields">
+                    <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListClusterIcon">
                 </div>
 
             </div>

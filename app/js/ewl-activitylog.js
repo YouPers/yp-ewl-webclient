@@ -89,17 +89,6 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 $state.go('activitylist');
             };
 
-            $scope.getActivityFieldName = function (activityFieldId) {
-                var activityField = _.find($scope.activityFields, function (obj) {
-                    return obj.id === activityFieldId;
-                });
-                if (activityField) {
-                    return activityField.beschreibungdt;
-                } else {
-                    return undefined;
-                }
-            };
-
             $scope.getActivityTimeType = function (status) {
                 var icon = "";
                 if (status === "past") {
