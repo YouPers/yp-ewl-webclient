@@ -106,6 +106,53 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return activities;
             }
         );
+
+        Restangular.extendModel('activities', function(activity) {
+
+            activity.getDefaultPlan = function () {
+                var now = moment();
+                var newMainEvent = {
+                    "allDay": false
+                };
+                if (activity.defaultplantype === 'once') {
+                    newMainEvent.start =  moment(now).add('d',7);
+                    newMainEvent.end = moment(now).add('d',7).add('h',1);
+                    newMainEvent.frequency = 'once';
+                } else if (activity.defaultplantype === 'weekly') {
+                    newMainEvent.start = moment(now);
+                    newMainEvent.end = moment(now).add('h',1);
+                    newMainEvent.frequency = 'week';
+                    newMainEvent.recurrence = {
+                        "end-by": {
+                            "type": "after",
+                            "after": 6
+                        },
+                        every: 1
+                    };
+                } else if (activity.defaultplantype === 'daily') {
+                    newMainEvent.start = moment(now).add('d',1);
+                    newMainEvent.end = moment(newMainEvent.start).add('h',1);
+                    newMainEvent.frequency = 'day';
+                    newMainEvent.recurrence = {
+                        "end-by": {
+                            "type": "after",
+                            "after": 42
+                        },
+                        every: 1
+                    };
+                }
+
+
+                return {
+                    activity: activity,
+                    status: 'active',
+                    mainEvent: newMainEvent,
+                    executionType: activity.defaultexecutiontype,
+                    visibility: activity.defaultvisibility
+                };
+            };
+            return activity;
+        });
     }])
 
     .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
@@ -255,17 +302,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 });
 
                 if (!currentPlan) {
-                    currentPlan = {
-                        "owner": $scope.principal.getUser().id,
-                        "activity": $scope.currentActivity.id,
-                        "planType": $scope.currentActivity.defaultplantype,
-                        "privacyType": $scope.currentActivity.defaultprivacy,
-                        "executionType": $scope.currentActivity.defaultexecutiontype,
-                        "visibility": $scope.currentActivity.defaultvisibility,
-                        "duration": 15,
-                        "repeatWeeks": 6,
-                        "status": 'active'
-                    };
+                    currentPlan = $scope.currentActivity.getDefaultPlan();
                 }
 
                 $scope.currentActivityPlan = currentPlan;

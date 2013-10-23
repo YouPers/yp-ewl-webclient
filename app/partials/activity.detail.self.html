@@ -3,16 +3,16 @@
         <div class="col-xs-6">
 
             <div class="planning-option"
-                 ng-class="{planningOptionActive: currentActivityPlan.planType=='once'}"
-                 ng-click="currentActivityPlan.planType = 'once'">
+                 ng-class="{planningOptionActive: currentActivityPlan.mainEvent.frequency=='once'}"
+                 ng-click="currentActivityPlan.mainEvent.frequency = 'once'">
                 <div class="radio-inline">
                     <label>
                         <input type="radio" name="planTypes" id="planTypeOnce" value="once"
-                               ng-model="currentActivityPlan.planType">
-                        Einmalig bis am:
+                               ng-model="currentActivityPlan.mainEvent.frequency">
+                        Einmalig am:
                     </label>
                 </div>
-                <fieldset ng-disabled="currentActivityPlan.planType!='once'">
+                <fieldset ng-disabled="currentActivityPlan.mainEvent.frequency!='once'">
                     <div class="input-group input-group-sm">
                         <input class="form-control" type="text" id="datePickerOnce"
                                datepicker-popup="dd-MMMM-yyyy"
@@ -32,17 +32,17 @@
             </div>
 
             <div class="planning-option"
-                 ng-class="{planningOptionActive: currentActivityPlan.planType=='daily'}"
-                 ng-click="currentActivityPlan.planType = 'daily'">
+                 ng-class="{planningOptionActive: currentActivityPlan.mainEvent.frequency == 'day'}"
+                 ng-click="currentActivityPlan.mainEvent.frequency = 'day'">
                 <div class="radio-inline">
                     <label>
-                        <input type="radio" name="planTypes" id="planTypeDaily" value="daily"
-                               ng-model="currentActivityPlan.planType">
+                        <input type="radio" name="planTypes" id="planTypeDaily" value="day"
+                               ng-model="currentActivityPlan.mainEvent.frequency">
                         Täglich um:
                     </label>
                 </div>
 
-                <fieldset ng-disabled="currentActivityPlan.planType!='daily'">
+                <fieldset ng-disabled="currentActivityPlan.mainEvent.frequency!='day'">
 
                     <div ng-model="currentActivityPlan.dailyTime" class="col-md-12">
                         <timepicker id="timePickerDaily" minute-step="15"
@@ -52,17 +52,17 @@
             </div>
 
             <div class="planning-option"
-                 ng-class="{planningOptionActive: currentActivityPlan.planType=='weekly'}"
-                 ng-click="currentActivityPlan.planType = 'weekly'">
+                 ng-class="{planningOptionActive: currentActivityPlan.mainEvent.frequency=='week'}"
+                 ng-click="currentActivityPlan.mainEvent.frequency = 'week'">
                 <div class="radio-inline">
 
                     <label>
-                        <input type="radio" name="planTypes" id="planTypeWeekly" value="weekly"
-                               ng-model="currentActivityPlan.planType">
+                        <input type="radio" name="planTypes" id="planTypeWeekly" value="week"
+                               ng-model="currentActivityPlan.mainEvent.frequency">
                         Wöchentlich am:
                     </label>
                 </div>
-                <fieldset ng-disabled="currentActivityPlan.planType!='weekly'">
+                <fieldset ng-disabled="currentActivityPlan.mainEvent.frequency!='week'">
                     <select ng-model="currentActivityPlan.weeklyDay"
                             name="weeklyDay"
                             id="weeklyDay"
@@ -110,7 +110,7 @@
             <div ng-show="currentActivityPlan.planType=='weekly' || currentActivityPlan.planType=='daily'">
                 <label>
                     während
-                    <input type="text" size="5" class="form-control" ng-model="currentActivityPlan.repeatWeeks">
+                    <input type="text" size="5" class="form-control" ng-model="currentActivityPlan.mainEvent['end-by'].after">
                 </label>
                 Wochen
             </div>
