@@ -89,7 +89,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                         act.plan = matchingPlan;
                         act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                        act.isRecommended = (recommendations.indexOf(act.id) !== -1);
+                        var rec = _.find(recommendations, {'activity': act.id});
+                        if (rec) {
+                            act.isRecommended = true;
+                            act.recWeight = rec.weight;
+                        }
                     });
                 };
                 return activities;
@@ -457,7 +461,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 activity.fields = newFields;
             }, true);
 
+            if (!activity.qualityFactor) {
+                activity.qualityFactor = 1;
+            }
             // Weihting to generate recommendation of activity based on answers of this assessment
+            // initialize weights if they do not yet exist
             if (!activity.recWeights || activity.recWeights.length === 0) {
                 activity.recWeights = [];
                 _.forEach(assessment.questionCats, function (cat) {
