@@ -179,13 +179,14 @@ describe('ewl activity', function () {
                 $filter: $filter,
                 $state: $state,
                 allActivities: mock.activities,
-            plannedActivities: mock.plannedActivities
+            plannedActivities: mock.plannedActivities,
+                recommendations: []
             });
         }));
 
         it('should have access to all activities and the planned activities', inject(function () {
 
-            expect($scope.plannedActivities.length).toEqual(2);
+            expect($scope.activities.length).toBeGreaterThan(150);
         }));
 
     });
