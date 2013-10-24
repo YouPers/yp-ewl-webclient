@@ -17,6 +17,7 @@
                     scope.$watch('data', function(newVals, oldVals) {
 
                         if (typeof newVals !== 'undefined') {
+
                             d3Service.d3().then(function(d3){
 
                                 if (!gaugeDrawn) {
@@ -26,7 +27,9 @@
                                 $timeout(function () {
                                     drawGauge(angular.fromJson(newVals));
                                 }, 500);
+
                             });
+
                         }
 
                     }, true);
@@ -70,6 +73,8 @@
                     };
 
                     var initParameters = function () {
+
+                        // generating defaults, if options are not set
 
                         scope.options = typeof scope.options !== 'undefined' ? scope.options : {};
 

@@ -16,9 +16,13 @@
                     // watch for data changes and re-render
                     scope.$watch('data', function(newVals, oldVals) {
 
-                        if (typeof newVals !== 'undefined') {
-                            draw(angular.fromJson(newVals));
-                        }
+                        d3Service.d3().then(function(d3){
+
+                            if (typeof newVals !== 'undefined') {
+                                draw(d3, angular.fromJson(newVals));
+                            }
+
+                        });
 
                     }, true);
 
@@ -30,114 +34,94 @@
 
                     // Redraw the chart if the window is resized
                     $rootScope.$on('resizeMsg', function (e) {
-                        $timeout(function () {
-                            draw(angular.fromJson(scope.data));
-                        }, 1000);
+
+                        d3Service.d3().then(function(d3){
+
+                            $timeout(function () {
+                                draw(d3, angular.fromJson(scope.data));
+                            }, 1000);
+
+                        });
                     });
 
-                    function draw (data) {
-
-                        var labels = [];
-                        var values = [];
-
-                        var d3Options = {};
-
-                        // generating defaults, if options are not set
-
-                        if (typeof scope.options === 'undefined') {
-                        } else {
-                            d3Options = scope.options;
-                        }
-
-                        // d3Options.compressed
-                        // - "yes": calculate height based on number of bars and other parameters -> best fit of a chart
-                        // - "no": value of d3Options.chartHeight is taken
-
-                        if (typeof d3Options.compressed === 'undefined') {
-                            d3Options.compressed = "yes";
-                        }
-
-                        // d3Options.chartHeight
-                        // height of chart in px
-                        // - string containing a number without 'px'
-                        // - ignored if d3Options.compressed is set to "yes"
-
-                        if (typeof d3Options.chartHeight === 'undefined') {
-                            d3Options.chartHeight = "200";
-                        }
-
-                        // d3Options.chartWidth
-                        // width of chart
-                        // - ideally set as %-value to elastically fit into the parent container of the chart
-
-                        if (typeof d3Options.chartWidth === 'undefined') {
-                            d3Options.chartWidth = "100%";
-                        }
-
-                        // d3Options.xScaleTopHeight
-                        // height of the space containing the x scale on top of the chart
-
-                        if (typeof d3Options.xScaleTopHeight === 'undefined') {
-                            d3Options.xScaleTopHeight = 15;
-                        }
-
-                        // d3Options.marginTop
-                        // top margin of the complete chart
-                        // - ideally set to a minimum of 5 to avoid cropping of x scale values on top of the chart
-
-                        if (typeof d3Options.marginTop === 'undefined') {
-                            d3Options.marginTop = 5;
-                        }
-
-                        // d3Options.marginLeft
-                        // left margin of the complete chart
-                        // - ideally set to a minimum of 5 to avoid cropping of the first x scale value on top of the chart
-
-                        if (typeof d3Options.marginLeft === 'undefined') {
-                            d3Options.marginLeft = 5;
-                        }
-
-                        // d3Options.marginBottom
-                        // bottom margin of the complete chart
-
-                        if (typeof d3Options.marginBottom === 'undefined') {
-                            d3Options.marginBottom = 10;
-                        }
-
-                        // d3Options.marginRight
-                        // right margin of the complete chart
-
-                        if (typeof d3Options.marginRight === 'undefined') {
-                            d3Options.marginRight = 10;
-                        }
-
-                        // d3Options.barHeight
-                        // height of a horizontal bar
-
-                        if (typeof d3Options.barHeight === 'undefined') {
-                            d3Options.barHeight = 30;
-                        }
-
-                        // d3Options.barMargin
-                        // margin between horizontal bars
-
-                        if (typeof d3Options.barMargin === 'undefined') {
-                            d3Options.barMargin = 5;
-                        }
-
-                        // d3Options.insetThreshold
-                        // - bars smaller than this value have their value displayed outside of the bar
-                        // - bars equal and larger than this value have heir value displayed inside of the bar
-
-                        if (typeof d3Options.insetThreshold === 'undefined') {
-                            d3Options.insetThreshold = 100;
-                        }
+                    function draw (d3, data) {
 
                         var series = data.series;
 
-                        var actualHeightCompressed = (series.length * (d3Options.barHeight + d3Options.barMargin)) - d3Options.barMargin + d3Options.xScaleTopHeight + d3Options.marginBottom;
+                        var initParameters = function () {
 
-                        d3Service.d3().then(function(d3){
+                            // generating defaults, if options are not set
+
+                            scope.options = typeof scope.options !== 'undefined' ? scope.options : {};
+
+                            // scope.options.compressed
+                            // - "yes": calculate height based on number of bars and other parameters -> best fit of a chart
+                            // - "no": value of scope.options.chartHeight is taken
+
+                            scope.options.compressed = typeof scope.options.compressed !== 'undefined' ? scope.options.compressed : "yes";
+
+                            // scope.options.chartHeight
+                            // height of chart in px
+                            // - string containing a number without 'px'
+                            // - ignored if scope.options.compressed is set to "yes"
+
+                            scope.options.chartHeight = typeof scope.options.chartHeight !== 'undefined' ? scope.options.chartHeight : "200";
+
+                            // scope.options.chartWidth
+                            // width of chart
+                            // - ideally set as %-value to elastically fit into the parent container of the chart
+
+                            scope.options.chartWidth = typeof scope.options.chartWidth !== 'undefined' ? scope.options.chartWidth : "100%";
+
+                            // scope.options.xScaleTopHeight
+                            // height of the space containing the x scale on top of the chart
+
+                            scope.options.xScaleTopHeight = typeof scope.options.xScaleTopHeight !== 'undefined' ? scope.options.xScaleTopHeight : 15;
+
+                            // scope.options.marginTop
+                            // top margin of the complete chart
+                            // - ideally set to a minimum of 5 to avoid cropping of x scale values on top of the chart
+
+                            scope.options.marginTop = typeof scope.options.marginTop !== 'undefined' ? scope.options.marginTop : 5;
+
+                            // scope.options.marginLeft
+                            // left margin of the complete chart
+                            // - ideally set to a minimum of 5 to avoid cropping of the first x scale value on top of the chart
+
+                            scope.options.marginLeft = typeof scope.options.marginLeft !== 'undefined' ? scope.options.marginLeft : 5;
+
+                            // scope.options.marginBottom
+                            // bottom margin of the complete chart
+
+                            scope.options.marginBottom = typeof scope.options.marginBottom !== 'undefined' ? scope.options.marginBottom : 10;
+
+                            // scope.options.marginRight
+                            // right margin of the complete chart
+
+                            scope.options.marginRight = typeof scope.options.marginRight !== 'undefined' ? scope.options.marginRight : 10;
+
+                            // scope.options.barHeight
+                            // height of a horizontal bar
+
+                            scope.options.barHeight = typeof scope.options.barHeight !== 'undefined' ? scope.options.barHeight : 30;
+
+                            // scope.options.barMargin
+                            // margin between horizontal bars
+
+                            scope.options.barMargin = typeof scope.options.barMargin !== 'undefined' ? scope.options.barMargin : 5;
+
+                            // scope.options.insetThreshold
+                            // - bars smaller than this value have their value displayed outside of the bar
+                            // - bars equal and larger than this value have heir value displayed inside of the bar
+
+                            scope.options.insetThreshold = typeof scope.options.insetThreshold !== 'undefined' ? scope.options.insetThreshold : 100;
+
+                            scope.options.actualHeightCompressed = (series.length * (scope.options.barHeight + scope.options.barMargin)) - scope.options.barMargin + scope.options.xScaleTopHeight + scope.options.marginBottom;
+                        };
+
+                        initParameters();
+
+                        var createBarChart = function () {
 
                             // svgCanvas: Main container containing chartCanvas
 
@@ -147,25 +131,25 @@
 
                             var svgCanvas = d3.select(iElement[0])
                                 .append("svg")
-                                .attr("width", d3Options.chartWidth)
-                                .attr("height", d3Options.chartHeight)
+                                .attr("width", scope.options.chartWidth)
+                                .attr("height", scope.options.chartHeight)
                                 .attr("class", "youpers-chart");    // set class to link appropriate CSS
 
-                            if (d3Options.compressed === "yes") {  //
-                                svgCanvas.attr('height', actualHeightCompressed);
+                            if (scope.options.compressed === "yes") {  //
+                                svgCanvas.attr('height', scope.options.actualHeightCompressed);
                             }
 
                             // chartCanvas: the only element stored in svgCanvas
 
                             var chartCanvas = svgCanvas.append("g")
-                                .attr("transform", "translate(" + d3Options.marginTop + "," + d3Options.marginLeft + ")")    // top/left margin to avoid cropped elements
+                                .attr("transform", "translate(" + scope.options.marginTop + "," + scope.options.marginLeft + ")")    // top/left margin to avoid cropped elements
                                 .attr("height", "100%")                 // fills the complete height of the parent container
                                 .attr("width", "100%");                 // fills the complete width of the parent container
 
                             // segregate values from labels
 
-                            labels = [];
-                            values = [];
+                            var labels = [];
+                            var values = [];
 
                             for (var i = 0; i < series.length; i++) {
                                 labels.push(series[i].label);
@@ -181,19 +165,19 @@
                             var currentWidth,       // current width in px taking resizing into account
                                 actualHeightFinal;  // height if d3-height-compress="no"
 
-                            currentWidth = d3.select(iElement[0])[0][0].offsetWidth - (d3Options.marginLeft + d3Options.marginRight);
-                            actualHeightCompressed = (series.length * (d3Options.barHeight + d3Options.barMargin)) - d3Options.barMargin;
+                            currentWidth = d3.select(iElement[0])[0][0].offsetWidth - (scope.options.marginLeft + scope.options.marginRight);
+                            scope.options.actualHeightCompressed = (series.length * (scope.options.barHeight + scope.options.barMargin)) - scope.options.barMargin;
 //                            maxValue = d3.max(data, function (d) { return d.value;});
 
                             // set the height
 
-                            if (d3Options.compressed === "yes") {
-                                actualHeightFinal = actualHeightCompressed;
-                                chartCanvas.attr('height', actualHeightCompressed);
+                            if (scope.options.compressed === "yes") {
+                                actualHeightFinal = scope.options.actualHeightCompressed;
+                                chartCanvas.attr('height', scope.options.actualHeightCompressed);
                             } else {
-                                actualHeightFinal = d3Options.chartHeight - d3Options.marginTop - d3Options.xScaleTopHeight - (d3Options.marginBottom / 2);
-                                d3Options.barHeight = (d3Options.barHeight * d3Options.chartHeight / actualHeightCompressed);
-                                d3Options.barHeight = ((actualHeightFinal + d3Options.barMargin) / series.length) - d3Options.barMargin;
+                                actualHeightFinal = scope.options.chartHeight - scope.options.marginTop - scope.options.xScaleTopHeight - (scope.options.marginBottom / 2);
+                                scope.options.barHeight = (scope.options.barHeight * scope.options.chartHeight / scope.options.actualHeightCompressed);
+                                scope.options.barHeight = ((actualHeightFinal + scope.options.barMargin) / series.length) - scope.options.barMargin;
                             }
 
                             // the x and y scales
@@ -204,13 +188,13 @@
 
 //                            var y = d3.scale.ordinal()
 //                                .domain(d3.range(series.length))
-//                                .rangeRoundBands([0, actualHeightFinal], (d3Options.barMargin / d3Options.barHeight), (d3Options.marginTop / d3Options.barHeight));
+//                                .rangeRoundBands([0, actualHeightFinal], (scope.options.barMargin / scope.options.barHeight), (scope.options.marginTop / scope.options.barHeight));
 //                                .rangeBands([0, actualHeightFinal]);
 
                             // Canvas for the top x scale
 
                             var xScaleTopCanvas = chartCanvas.append("g")
-                                .attr("height", d3Options.xScaleTopHeight)
+                                .attr("height", scope.options.xScaleTopHeight)
                                 .attr("width", "100%");
 
                             // Canvas for the all elements on the chart grid
@@ -255,11 +239,11 @@
                                 .attr("class", function(d, i) {
                                     return i % 2 ? "youpers-chart-even" : "youpers-chart-uneven";
                                 })
-                                .attr("height", d3Options.barHeight)  // height of each bar
+                                .attr("height", scope.options.barHeight)  // height of each bar
                                 .attr("width", 0)           // initial width of 0 for transition
                                 .attr("x", 0)
                                 .attr('y', function(d,i) {
-                                    return i * (d3Options.barHeight + d3Options.barMargin);
+                                    return i * (scope.options.barHeight + scope.options.barMargin);
                                 })
                                 .transition()
                                 .duration(1000)             // time of duration
@@ -277,13 +261,13 @@
                                 .enter()
                                 .append("text")
                                 .attr("y", function(d,i) {
-                                    return i * (d3Options.barHeight + d3Options.barMargin);
+                                    return i * (scope.options.barHeight + scope.options.barMargin);
                                 })
                                 .attr("dy", "1.35em")
 //                                .attr("x", 5)
                                 .attr("x", function (d,i) {
                                     var xPos = 5; // starting x position
-                                    if (x(values[i]) < d3Options.insetThreshold) {
+                                    if (x(values[i]) < scope.options.insetThreshold) {
                                         if (x(values[i]) < 20) {
                                             return xPos + x(values[i]) + 20;
                                         } else {
@@ -295,7 +279,7 @@
                                 })
                                 .attr("class", "youpers-chart-label")
                                 .style("fill", function (d,i) {
-                                    if (x(values[i]) < d3Options.insetThreshold) {
+                                    if (x(values[i]) < scope.options.insetThreshold) {
                                         return "#000";
                                     } else {
                                         return "#fff";
@@ -310,7 +294,7 @@
                                 .enter()
                                 .append("text")
                                 .attr("y", function(d,i) {
-                                    return i * (d3Options.barHeight + d3Options.barMargin);
+                                    return i * (scope.options.barHeight + scope.options.barMargin);
                                 })
                                 .attr("dy", "1.35em")
                                 .attr("x", function (d,i) {
@@ -339,7 +323,9 @@
                                 .attr("y2", actualHeightFinal)
                                 .style("stroke", "#000");
 
-                        });
+                        };
+
+                        createBarChart();
 
                     }
 
