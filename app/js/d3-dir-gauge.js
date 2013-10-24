@@ -360,7 +360,7 @@
 
                             var targetRotation = toDegrees(needleValue) - 90;
 
-                            var currentRotation = typeof _currentRotation !== 'undefined' ? _currentRotation : targetRotation;
+                            var currentRotation = _currentRotation || targetRotation;
 
                             _currentRotation = targetRotation;
 
