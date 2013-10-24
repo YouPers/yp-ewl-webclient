@@ -56,6 +56,37 @@
             </div>
 
         </div>
+
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
+                Aktivitäten
+            </div>
+
+            <p>xx</p>
+
+            <div ng-controller="yp.ewl.activity.vchart.controller">
+                <div class="btn-group">
+                    <label class="btn btn-default">
+                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}" name="timespanoption" id="optionweek"> Woche
+                        <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}" name="timespanoption" id="optionmonth"> Monat
+                        <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}" name="timespanoption" id="optionyear"> Jahr
+                        <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
+                    </label>
+                </div>
+                <div>
+                    <d3-vertical-bar-chart data="chart.data" options="d3Options" label="name"
+                                             on-click="onClick(item)"></d3-vertical-bar-chart>
+                </div>
+            </div>
+
+        </div>
     </div>
     <div class="col-md-6" ng-controller="yp.ewl.activity.chart.controller">
         <div class="panel cockpit">
