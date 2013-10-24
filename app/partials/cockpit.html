@@ -1,9 +1,9 @@
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
-    <!-- Page header  -->
-    <!--<div class="page-header">-->
-    <!--<h1>Cockpit</h1>-->
-    <!--</div>-->
+<!-- Page header  -->
+<!--<div class="page-header">-->
+<!--<h1>Cockpit</h1>-->
+<!--</div>-->
 
 <div class="container cockpit">
 <div class="row">
@@ -18,50 +18,45 @@
 
             <p>Wie hat sich dein Stresslevel entwickelt? </p>
 
-                    <p><a class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >Zum Fragebogen &raquo;</a>
-                    </p>
+            <p><a class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >Zum Fragebogen &raquo;</a>
+            </p>
 
-            <div class="panel cockpit">
+        </div>
 
-                <div class="panel cockpit section-title">
-                    Status
-                </div>
+        <div class="panel cockpit">
 
-                <p>Wie sieht dein aktueller Stress Level aus? </p>
-
-                <div ng-controller="yp.ewl.stresslevel.gauge.controller">
-                    <!--<div class="btn-group">-->
-                        <!--<label class="btn btn-default">-->
-                            <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelWorkPlace}}" name="timespanoption" id="optionweek"> Woche-->
-                            <!--&lt;!&ndash; ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
-                        <!--</label>-->
-                        <!--<label class="btn btn-default">-->
-                            <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelTimeOff}}" name="timespanoption" id="optionmonth"> Monat-->
-                            <!--&lt;!&ndash; ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
-                        <!--</label>-->
-                        <!--<label class="btn btn-default">-->
-                            <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelMastery}}" name="timespanoption" id="optionyear"> Jahr-->
-                            <!--&lt;!&ndash; ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
-                        <!--</label>-->
-
-                    <!--</div>-->
-                    <div>
-                        <d3-gauge data="stressLevelGeneral" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                        <d3-gauge data="stressLevelWorkPlace" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                        <d3-gauge data="stressLevelTimeOff" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                        <d3-gauge data="stressLevelType" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                        <d3-gauge data="stressLevelMastery" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                    </div>
-                </div>
-
+            <div class="panel cockpit section-title">
+                Status
             </div>
-            <!--</div>-->
-            <div class="col-md-6" ng-controller="yp.ewl.activity.chart.controller">
-                <div class="panel cockpit">
+
+            <p>Wie sieht dein aktueller Stress Level aus? </p>
+
+            <div ng-controller="yp.ewl.stresslevel.gauge.controller">
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-default">-->
+                <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelWorkPlace}}" name="timespanoption" id="optionweek"> Woche-->
+                <!--&lt;!&ndash; ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                <!--</label>-->
+                <!--<label class="btn btn-default">-->
+                <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelTimeOff}}" name="timespanoption" id="optionmonth"> Monat-->
+                <!--&lt;!&ndash; ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                <!--</label>-->
+                <!--<label class="btn btn-default">-->
+                <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelMastery}}" name="timespanoption" id="optionyear"> Jahr-->
+                <!--&lt;!&ndash; ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                <!--</label>-->
+                <!--</div>-->
+                <div>
+                    <d3-gauge data="stressLevelGeneral" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    <d3-gauge data="stressLevelWorkPlace" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    <d3-gauge data="stressLevelTimeOff" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    <d3-gauge data="stressLevelType" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    <d3-gauge data="stressLevelMastery" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                </div>
+            </div>
 
         </div>
     </div>
-    <!--</div>-->
     <div class="col-md-6" ng-controller="yp.ewl.activity.chart.controller">
         <div class="panel cockpit">
 
@@ -123,7 +118,7 @@
 
     </div>
 </div>
-<!--</div>-->
+
 <div class="row">
     <div class="col-md-6">
         <div class="panel cockpit">
@@ -135,7 +130,6 @@
                 Aktivitätslog
             </div>
 
-
             <div ng-show="activityLogVisible" ng-controller="ActivityLogCtrl">
 
                 <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
@@ -143,19 +137,10 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
 
-                                <div class="cockpit new-activity">
-                                    <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{
-                                        "NEW_ACTIVITY" | translate }}
-                                    </button>
-                                </div>
-                                <tabset>
-                                    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
-                                         disabled="tab.disabled">
-                                        <div ng-include="tab.content"></div>
-                                    </tab>
-                                </tabset>
-
-                            </div>
+                        <div class="cockpit new-activity">
+                            <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{
+                                "NEW_ACTIVITY" | translate }}
+                            </button>
                         </div>
                         <tabset>
                             <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
@@ -175,9 +160,10 @@
                     2013. </p>
 
             </div>
-
         </div>
+
     </div>
+
     <div class="col-md-6" ng-controller="SocialLogCtrl">
 
         <div class="panel cockpit">
@@ -242,6 +228,6 @@
 
     </div>
 </div>
-<!--<hr>-->
+
 </div>
 </div>
