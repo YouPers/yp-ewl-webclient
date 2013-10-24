@@ -183,20 +183,19 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
                 return false;
             },
-            savePlan: function (plan, callback) {
+            savePlan: function (plan) {
                 if (plan.id) {
-                    plannedActivities.put(plan);
+                    console.log("updating of existing plans not yet supported!");
+                    return {then: function (suc, err) {
+                        return err("updating of existing plans not yet supported!");
+                    }};
                 } else {
-                    plannedActivities.post(plan).then(function success(result) {
+                    return plannedActivities.post(plan).then(function success(result) {
                         console.log("plan saved" + result);
-                        if (callback) {
-                            return callback(null, result);
-                        }
+                        return result;
                     }, function error(err) {
                         console.log("error on plan post" + err);
-                        if (callback) {
-                            return callback(err);
-                        }
+                        return err;
                     });
                 }
             }
@@ -356,8 +355,15 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return ActivityService.isActivityPlanned(plannedActivities, activityId);
             };
 
-            $scope.planActivityDone = function (successCallback, errorCallback) {
-                ActivityService.savePlan($scope.currentActivityPlan);
+            $scope.planActivityDone = function () {
+                ActivityService.savePlan($scope.currentActivityPlan).then(function(result){
+                    $scope.$emit('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
+                    $state.go('cockpit');
+                }, function(err){
+                    console.log(JSON.stringify(err));
+                    $scope.$emit('globalUserMsg', 'Aktivität nicht gespeichert, Code: '+ err , 'danger', '5000');
+
+                });
             };
         }])
 

@@ -18,7 +18,7 @@
 
                     <p>Wie hat sich dein Stresslevel entwickelt? </p>
 
-                    <p><a class="btn btn-default" href="#/assessment/1" data-toggle="button">Zum Fragebogen &raquo;</a>
+                    <p><a class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >Zum Fragebogen &raquo;</a>
                     </p>
 
                     <div ng-controller="yp.ewl.status.controller">
@@ -119,9 +119,7 @@
                             <div class="col-xs-12 col-md-12">
 
                                 <div class="cockpit new-activity">
-                                    <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{
-                                        "NEW_ACTIVITY" | translate }}
-                                    </button>
+                                    <a ui-sref="activitylist" class="btn btn-primary">{{"NEW_ACTIVITY" | translate }}</a>
                                 </div>
                                 <tabset>
                                     <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"

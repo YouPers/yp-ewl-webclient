@@ -124,7 +124,7 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                         console.log("result posted: " + result);
                     });
 
-                    // $state.go('cockpit');
+                     $state.go('activitylist');
 
                 }
             };
