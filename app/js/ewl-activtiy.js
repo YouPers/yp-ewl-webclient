@@ -16,6 +16,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }],
                         plannedActivities: ['ActivityService', function (ActivityService) {
                             return ActivityService.getPlannedActivities();
+                        }],
+                        recommendations: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getRecommendations();
                         }]
                     }
                 })
@@ -63,16 +66,16 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         }])
 
     .constant('activityFields', {
-        AwarenessAbility:     "Bewusstsein und Fähigkeit",
+        AwarenessAbility: "Bewusstsein und Fähigkeit",
         TimeManagement: "Zeitmanagement",
-        WorkStructuring:    "Arbeitsgestaltung",
-        PhysicalActivity:   "Körperliche Aktivität",
-        Nutrition:  "Ernährung",
-        LeisureActivity:    "Freizeitaktivität",
+        WorkStructuring: "Arbeitsgestaltung",
+        PhysicalActivity: "Körperliche Aktivität",
+        Nutrition: "Ernährung",
+        LeisureActivity: "Freizeitaktivität",
         Breaks: "Pausen",
         Relaxation: "Entspannung",
-        SocialInteraction:   "Sozialer Austausch"
-        })
+        SocialInteraction: "Sozialer Austausch"
+    })
 
     // Object methods for all Assessment related objects
     .run(['Restangular', function (Restangular) {
@@ -86,14 +89,18 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                         act.plan = matchingPlan;
                         act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                        act.isRecommended = (recommendations.indexOf(act.number) !== -1);
+                        var rec = _.find(recommendations, {'activity': act.id});
+                        if (rec) {
+                            act.isRecommended = true;
+                            act.recWeight = rec.weight;
+                        }
                     });
                 };
                 return activities;
             }
         );
 
-        Restangular.extendModel('activities', function(activity) {
+        Restangular.extendModel('activities', function (activity) {
 
             activity.getDefaultPlan = function () {
                 var now = moment();
@@ -101,12 +108,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     "allDay": false
                 };
                 if (activity.defaultfrequency === 'once') {
-                    newMainEvent.start =  moment(now).add('d',7);
-                    newMainEvent.end = moment(now).add('d',7).add('h',1);
+                    newMainEvent.start = moment(now).add('d', 7);
+                    newMainEvent.end = moment(now).add('d', 7).add('h', 1);
                     newMainEvent.frequency = 'once';
                 } else if (activity.defaultfrequency === 'week') {
                     newMainEvent.start = moment(now);
-                    newMainEvent.end = moment(now).add('h',1);
+                    newMainEvent.end = moment(now).add('h', 1);
                     newMainEvent.frequency = 'week';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -116,8 +123,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         every: 1
                     };
                 } else if (activity.defaultfrequency === 'day') {
-                    newMainEvent.start = moment(now).add('d',1);
-                    newMainEvent.end = moment(newMainEvent.start).add('h',1);
+                    newMainEvent.start = moment(now).add('d', 1);
+                    newMainEvent.end = moment(newMainEvent.start).add('h', 1);
                     newMainEvent.frequency = 'day';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -137,8 +144,19 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     visibility: activity.defaultvisibility
                 };
             };
+
+
+            activity.getRecWeightsByQuestionId = function () {
+                var byId = {};
+                _.forEach(activity.recWeights, function (obj) {
+                    byId[obj.question] = obj;
+                });
+                return byId;
+            };
+
             return activity;
         });
+
     }])
 
     .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
@@ -150,11 +168,14 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return activities.getList({limit: 1000});
             },
 
-            getActivity: function(activityId) {
+            getActivity: function (activityId) {
                 return Restangular.one('activities', activityId).get();
             },
             getPlannedActivities: function () {
                 return plannedActivities.getList();
+            },
+            getRecommendations: function () {
+                return Restangular.all('activities/recommendations').getList();
             },
             isActivityPlanned: function (plannedActivities, activityId) {
                 if (typeof (plannedActivities) !== 'undefined') {
@@ -166,20 +187,19 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
                 return false;
             },
-            savePlan: function (plan, callback) {
+            savePlan: function (plan) {
                 if (plan.id) {
-                    plannedActivities.put(plan);
+                    console.log("updating of existing plans not yet supported!");
+                    return {then: function (suc, err) {
+                        return err("updating of existing plans not yet supported!");
+                    }};
                 } else {
-                    plannedActivities.post(plan).then(function success(result){
+                    return plannedActivities.post(plan).then(function success(result) {
                         console.log("plan saved" + result);
-                        if (callback) {
-                            return callback(null, result);
-                        }
-                    }, function error(err){
+                        return result;
+                    }, function error(err) {
                         console.log("error on plan post" + err);
-                        if (callback) {
-                            return callback(err);
-                        }
+                        return err;
                     });
                 }
             }
@@ -339,25 +359,30 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return ActivityService.isActivityPlanned(plannedActivities, activityId);
             };
 
-            $scope.planActivityDone = function (successCallback, errorCallback) {
-                ActivityService.savePlan($scope.currentActivityPlan);
+            $scope.planActivityDone = function () {
+                ActivityService.savePlan($scope.currentActivityPlan).then(function(result){
+                    $scope.$emit('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
+                    $state.go('cockpit');
+                }, function(err){
+                    console.log(JSON.stringify(err));
+                    $scope.$emit('globalUserMsg', 'Aktivität nicht gespeichert, Code: '+ err , 'danger', '5000');
+
+                });
             };
         }])
 
-    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities', 'activityFields',
-        function ($scope, $filter, $state, allActivities, plannedActivities, activityFields) {
+    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities', 'activityFields', 'recommendations',
+        function ($scope, $filter, $state, allActivities, plannedActivities, activityFields, recommendations) {
 
-            // mock recommendations for this user, should be loaded from server later...
-            var recommendations = ['Act-25', 'Act-45', 'Act-89', 'Act-105', 'Act-157'];
             // mock campaigns, that this user has an active goal for, should be loaded from server later...
             var campaigns = ['Campaign-1'];
+
+            $scope.hasRecommendations = (recommendations.length > 0);
 
             allActivities.enrichWithUserData(plannedActivities, recommendations, campaigns);
 
             $scope.activities = allActivities;
             $scope.filteredActivities = allActivities;
-            $scope.plannedActivities = plannedActivities;
-
 
             $scope.activityFields = activityFields;
 
@@ -413,8 +438,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }, true);
         }])
 
-    .controller('ActivityAdminCtrl', ['$scope','activity','assessment','ActivityService','activityFields','Restangular','$state',
-        function($scope, activity, assessment, ActivityService, activityFields, Restangular, $state) {
+    .controller('ActivityAdminCtrl', ['$scope', 'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular', '$state',
+        function ($scope, activity, assessment, ActivityService, activityFields, Restangular, $state) {
 
             $scope.activity = activity;
             $scope.assessment = assessment;
@@ -422,13 +447,13 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.actFieldsModel = {};
 
-            _.forEach(activityFields,function( fieldDesc, fieldId) {
+            _.forEach(activityFields, function (fieldDesc, fieldId) {
                 $scope.actFieldsModel[fieldId] = (activity.fields.indexOf(fieldId) !== -1);
             });
 
-            $scope.$watch('actFieldsModel', function(newValue, oldValue, scope) {
+            $scope.$watch('actFieldsModel', function (newValue, oldValue, scope) {
                 var newFields = [];
-                _.forEach(newValue, function(value,key) {
+                _.forEach(newValue, function (value, key) {
                     if (value) {
                         newFields.push(key);
                     }
@@ -436,20 +461,28 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 activity.fields = newFields;
             }, true);
 
-            var recWeights = {};
-            _.forEach(assessment.questionCats, function(cat) {
-                _.forEach(cat.questions, function (question) {
-                    recWeights[question.id] = {negativeAnswerWeight: 0, positiveAnswerWeight:0};
+            if (!activity.qualityFactor) {
+                activity.qualityFactor = 1;
+            }
+            // Weihting to generate recommendation of activity based on answers of this assessment
+            // initialize weights if they do not yet exist
+            if (!activity.recWeights || activity.recWeights.length === 0) {
+                activity.recWeights = [];
+                _.forEach(assessment.questionCats, function (cat) {
+                    _.forEach(cat.questions, function (question) {
+                        activity.recWeights.push({question: question.id, negativeAnswerWeight: 0, positiveAnswerWeight: 0});
+                    });
                 });
-            });
+            }
 
-            $scope.recWeights = recWeights;
+            $scope.recWeights = activity.getRecWeightsByQuestionId();
 
-            $scope.save = function() {
-                activity.put().then(function(result) {
+            $scope.save = function () {
+
+                activity.put().then(function (result) {
                     $scope.$emit('globalUserMsg', 'activity saved successfully', 'success', 5000);
                     $state.go('activitylist');
-                },function(err) {
+                }, function (err) {
                     $scope.$emit('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
                 });
             };
@@ -457,4 +490,4 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.cancel = function () {
                 $state.go('activitylist');
             };
-    }]);
+        }]);

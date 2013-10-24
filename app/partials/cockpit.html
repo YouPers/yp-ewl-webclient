@@ -1,9 +1,9 @@
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
-<!-- Page header  -->
-<!--<div class="page-header">-->
-<!--<h1>Cockpit</h1>-->
-<!--</div>-->
+    <!-- Page header  -->
+    <!--<div class="page-header">-->
+    <!--<h1>Cockpit</h1>-->
+    <!--</div>-->
 
 <div class="container cockpit">
 <div class="row">
@@ -18,8 +18,8 @@
 
             <p>Wie hat sich dein Stresslevel entwickelt? </p>
 
-            <p><a class="btn btn-default" href="#/assessment/1" data-toggle="button">Zum Fragebogen &raquo;</a>
-            </p>
+                    <p><a class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >Zum Fragebogen &raquo;</a>
+                    </p>
 
             <div class="panel cockpit">
 
@@ -55,6 +55,9 @@
                 </div>
 
             </div>
+            <!--</div>-->
+            <div class="col-md-6" ng-controller="yp.ewl.activity.chart.controller">
+                <div class="panel cockpit">
 
         </div>
     </div>
@@ -140,10 +143,19 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
 
-                        <div class="cockpit new-activity">
-                            <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{
-                                "NEW_ACTIVITY" | translate }}
-                            </button>
+                                <div class="cockpit new-activity">
+                                    <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{
+                                        "NEW_ACTIVITY" | translate }}
+                                    </button>
+                                </div>
+                                <tabset>
+                                    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
+                                         disabled="tab.disabled">
+                                        <div ng-include="tab.content"></div>
+                                    </tab>
+                                </tabset>
+
+                            </div>
                         </div>
                         <tabset>
                             <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
