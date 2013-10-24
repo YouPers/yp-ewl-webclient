@@ -63,16 +63,16 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         }])
 
     .constant('activityFields', {
-        AwarenessAbility:     "Bewusstsein und Fähigkeit",
+        AwarenessAbility: "Bewusstsein und Fähigkeit",
         TimeManagement: "Zeitmanagement",
-        WorkStructuring:    "Arbeitsgestaltung",
-        PhysicalActivity:   "Körperliche Aktivität",
-        Nutrition:  "Ernährung",
-        LeisureActivity:    "Freizeitaktivität",
+        WorkStructuring: "Arbeitsgestaltung",
+        PhysicalActivity: "Körperliche Aktivität",
+        Nutrition: "Ernährung",
+        LeisureActivity: "Freizeitaktivität",
         Breaks: "Pausen",
         Relaxation: "Entspannung",
-        SocialInteraction:   "Sozialer Austausch"
-        })
+        SocialInteraction: "Sozialer Austausch"
+    })
 
     // Object methods for all Assessment related objects
     .run(['Restangular', function (Restangular) {
@@ -93,7 +93,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }
         );
 
-        Restangular.extendModel('activities', function(activity) {
+        Restangular.extendModel('activities', function (activity) {
 
             activity.getDefaultPlan = function () {
                 var now = moment();
@@ -101,12 +101,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     "allDay": false
                 };
                 if (activity.defaultfrequency === 'once') {
-                    newMainEvent.start =  moment(now).add('d',7);
-                    newMainEvent.end = moment(now).add('d',7).add('h',1);
+                    newMainEvent.start = moment(now).add('d', 7);
+                    newMainEvent.end = moment(now).add('d', 7).add('h', 1);
                     newMainEvent.frequency = 'once';
                 } else if (activity.defaultfrequency === 'week') {
                     newMainEvent.start = moment(now);
-                    newMainEvent.end = moment(now).add('h',1);
+                    newMainEvent.end = moment(now).add('h', 1);
                     newMainEvent.frequency = 'week';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -116,8 +116,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         every: 1
                     };
                 } else if (activity.defaultfrequency === 'day') {
-                    newMainEvent.start = moment(now).add('d',1);
-                    newMainEvent.end = moment(newMainEvent.start).add('h',1);
+                    newMainEvent.start = moment(now).add('d', 1);
+                    newMainEvent.end = moment(newMainEvent.start).add('h', 1);
                     newMainEvent.frequency = 'day';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -137,8 +137,19 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     visibility: activity.defaultvisibility
                 };
             };
+
+
+            activity.getRecWeightsByQuestionId = function () {
+                var byId = {};
+                _.forEach(activity.recWeights, function (obj) {
+                    byId[obj.question] = obj;
+                });
+                return byId;
+            };
+
             return activity;
         });
+
     }])
 
     .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
@@ -150,7 +161,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return activities.getList({limit: 1000});
             },
 
-            getActivity: function(activityId) {
+            getActivity: function (activityId) {
                 return Restangular.one('activities', activityId).get();
             },
             getPlannedActivities: function () {
@@ -170,12 +181,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 if (plan.id) {
                     plannedActivities.put(plan);
                 } else {
-                    plannedActivities.post(plan).then(function success(result){
+                    plannedActivities.post(plan).then(function success(result) {
                         console.log("plan saved" + result);
                         if (callback) {
                             return callback(null, result);
                         }
-                    }, function error(err){
+                    }, function error(err) {
                         console.log("error on plan post" + err);
                         if (callback) {
                             return callback(err);
@@ -413,8 +424,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }, true);
         }])
 
-    .controller('ActivityAdminCtrl', ['$scope','activity','assessment','ActivityService','activityFields','Restangular','$state',
-        function($scope, activity, assessment, ActivityService, activityFields, Restangular, $state) {
+    .controller('ActivityAdminCtrl', ['$scope', 'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular', '$state',
+        function ($scope, activity, assessment, ActivityService, activityFields, Restangular, $state) {
 
             $scope.activity = activity;
             $scope.assessment = assessment;
@@ -422,13 +433,13 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.actFieldsModel = {};
 
-            _.forEach(activityFields,function( fieldDesc, fieldId) {
+            _.forEach(activityFields, function (fieldDesc, fieldId) {
                 $scope.actFieldsModel[fieldId] = (activity.fields.indexOf(fieldId) !== -1);
             });
 
-            $scope.$watch('actFieldsModel', function(newValue, oldValue, scope) {
+            $scope.$watch('actFieldsModel', function (newValue, oldValue, scope) {
                 var newFields = [];
-                _.forEach(newValue, function(value,key) {
+                _.forEach(newValue, function (value, key) {
                     if (value) {
                         newFields.push(key);
                     }
@@ -436,20 +447,24 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 activity.fields = newFields;
             }, true);
 
-            var recWeights = {};
-            _.forEach(assessment.questionCats, function(cat) {
-                _.forEach(cat.questions, function (question) {
-                    recWeights[question.id] = {negativeAnswerWeight: 0, positiveAnswerWeight:0};
+            // Weihting to generate recommendation of activity based on answers of this assessment
+            if (!activity.recWeights || activity.recWeights.length === 0) {
+                activity.recWeights = [];
+                _.forEach(assessment.questionCats, function (cat) {
+                    _.forEach(cat.questions, function (question) {
+                        activity.recWeights.push({question: question.id, negativeAnswerWeight: 0, positiveAnswerWeight: 0});
+                    });
                 });
-            });
+            }
 
-            $scope.recWeights = recWeights;
+            $scope.recWeights = activity.getRecWeightsByQuestionId();
 
-            $scope.save = function() {
-                activity.put().then(function(result) {
+            $scope.save = function () {
+
+                activity.put().then(function (result) {
                     $scope.$emit('globalUserMsg', 'activity saved successfully', 'success', 5000);
                     $state.go('activitylist');
-                },function(err) {
+                }, function (err) {
                     $scope.$emit('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
                 });
             };
@@ -457,4 +472,4 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.cancel = function () {
                 $state.go('activitylist');
             };
-    }]);
+        }]);
