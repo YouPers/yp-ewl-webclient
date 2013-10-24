@@ -16,6 +16,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }],
                         plannedActivities: ['ActivityService', function (ActivityService) {
                             return ActivityService.getPlannedActivities();
+                        }],
+                        recommendations: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getRecommendations();
                         }]
                     }
                 })
@@ -86,7 +89,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                         act.plan = matchingPlan;
                         act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                        act.isRecommended = (recommendations.indexOf(act.number) !== -1);
+                        act.isRecommended = (recommendations.indexOf(act.id) !== -1);
                     });
                 };
                 return activities;
@@ -166,6 +169,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             getPlannedActivities: function () {
                 return plannedActivities.getList();
+            },
+            getRecommendations: function () {
+                return Restangular.all('activities/recommendations').getList();
             },
             isActivityPlanned: function (plannedActivities, activityId) {
                 if (typeof (plannedActivities) !== 'undefined') {
@@ -355,20 +361,18 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
         }])
 
-    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities', 'activityFields',
-        function ($scope, $filter, $state, allActivities, plannedActivities, activityFields) {
+    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities', 'activityFields', 'recommendations',
+        function ($scope, $filter, $state, allActivities, plannedActivities, activityFields, recommendations) {
 
-            // mock recommendations for this user, should be loaded from server later...
-            var recommendations = ['Act-25', 'Act-45', 'Act-89', 'Act-105', 'Act-157'];
             // mock campaigns, that this user has an active goal for, should be loaded from server later...
             var campaigns = ['Campaign-1'];
+
+            $scope.hasRecommendations = (recommendations.length > 0);
 
             allActivities.enrichWithUserData(plannedActivities, recommendations, campaigns);
 
             $scope.activities = allActivities;
             $scope.filteredActivities = allActivities;
-            $scope.plannedActivities = plannedActivities;
-
 
             $scope.activityFields = activityFields;
 

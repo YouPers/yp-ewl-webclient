@@ -1097,3 +1097,10 @@ pre{
 .youpers-chart-uneven {
   fill: @youpers-brand-colors-secondary;
 }
+
+// disable spinner for input type number in chrome
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

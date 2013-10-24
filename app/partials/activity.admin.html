@@ -80,7 +80,7 @@
                             <form name="myForm" novalidate>
                                 <div class="col-md-1 control-group" ng-class="{'has-error': myForm.leftWeight.$dirty && myForm.leftWeight.$invalid}">
                                     <Input type="number" name="leftWeight" ng-init=1 min=0 max=100
-                                           ng-model="recWeights[question.id].positiveAnswerWeight" class="form-control">
+                                           ng-model="recWeights[question.id].positiveAnswerWeight" class="form-control actWeightInput">
                                     {{question.mintext}}
                                 </div>
                                 <div class="col-md-3 col-md-offset-1"><h5>{{question.title}}</h5>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="col-md-1 control-group" ng-class="{'has-error': myForm.rightWeight.$dirty && myForm.rightWeight.$invalid}">
                                     <Input type="number" name="rightWeight" min=0 max=100
-                                           ng-model="recWeights[question.id].negativeAnswerWeight" class="form-control">
+                                           ng-model="recWeights[question.id].negativeAnswerWeight" class="form-control actWeightInput">
                                     {{question.maxtext}}
                                 </div>
                             </form>
