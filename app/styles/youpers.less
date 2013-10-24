@@ -1099,6 +1099,70 @@ pre{
   fill: @youpers-brand-colors-secondary;
 }
 
+.youpers-gauge.simple .outer-circle {
+  fill         :  @youpers-brand-colors-primary;
+  stroke       :  #000;
+  stroke-width :  0px;
+}
+
+.youpers-gauge.simple .inner-circle {
+  fill         :  #fff;
+  stroke       :  #E0E0E0;
+  stroke-width :  0px;
+}
+
+.youpers-gauge.simple .label {
+  font-family: @youpers-brand-font-family;
+  font-weight: normal;
+  fill      :  #333;
+  font-size :  @youpers-font-size-7;
+}
+
+.youpers-gauge.simple .major-tick {
+  stroke       :  #333;
+  stroke-width :  2px;
+}
+
+.youpers-gauge.simple .minor-tick {
+  stroke       :  #666;
+  stroke-width :  1px;
+}
+
+.youpers-gauge.simple .major-tick-label {
+  fill         :  #333;
+  stroke-width :  2px;
+  font-size    :  @youpers-font-size-8;
+}
+
+.youpers-gauge.simple .needle {
+  fill         :  #dc3912;
+  stroke       :  #c63310;
+  fill-opacity :  0.7;
+}
+
+.youpers-gauge.simple .needle-container {
+  fill         :  #4684EE;
+  stroke       :  #666;
+  fill-opacity :  1;
+}
+
+.youpers-gauge.simple .current-value {
+  fill         :  #000;
+  stroke-width :  0px;
+}
+
+.youpers-gauge.simple .green-zone {
+  fill : @youpers-brand-colors-secondary;
+}
+
+.youpers-gauge.simple .yellow-zone {
+  fill :  #FF9900;
+}
+
+.youpers-gauge.simple .red-zone {
+  fill :  #DC3912;
+}
+
 // disable spinner for input type number in chrome
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {

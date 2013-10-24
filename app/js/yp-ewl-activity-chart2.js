@@ -63,26 +63,4 @@ angular.module('yp.ewl.activity.chart2', [])
             $scope.chart.dataCurrentYear = data;
         });
 
-        $scope.chart.type = "ColumnChart";
-        $scope.chart.displayed = false;
-        $scope.chart.cssStyle = "height:250px; width:100%;";
-
-        $scope.chart.options = {
-            "title": "Aktivitäten je Bereich",
-            "isStacked": "true",
-            "fontName": "Dosis",
-            "fill": 20,
-            "displayExactValues": true,
-            "vAxis": {
-                "title": "Anzahl Aktivitäten",
-                "gridlines": {"count": 5},
-                "titleTextStyle": {italic: false}
-            },
-            "hAxis": {
-                "title": "Bereiche",
-                "titleTextStyle": {italic: false},
-                "slantedText": true
-            }
-        };
-
     }]);

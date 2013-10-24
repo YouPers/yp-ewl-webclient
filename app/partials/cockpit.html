@@ -1,211 +1,233 @@
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
-    <!-- Page header  -->
-    <!--<div class="page-header">-->
-    <!--<h1>Cockpit</h1>-->
-    <!--</div>-->
+<!-- Page header  -->
+<!--<div class="page-header">-->
+<!--<h1>Cockpit</h1>-->
+<!--</div>-->
 
-    <div class="container cockpit">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel cockpit">
-                    <div class="panel cockpit section-title">
-                        Massgeschneiderte Vorschläge
-                    </div>
-
-                    <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur
-                        Stressreduktion vorzuschlagen. </p>
-
-                    <p>Wie hat sich dein Stresslevel entwickelt? </p>
-
-                    <p><a class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >Zum Fragebogen &raquo;</a>
-                    </p>
-
-                    <div ng-controller="yp.ewl.status.controller">
-                        <div class="panel cockpit">
-
-                            <div class="panel cockpit section-title">
-                                Status
-                            </div>
-
-                            <p>Wie sieht dein aktueller Stress Level aus? </p>
-
-                            <div google-chart chart="chart"></div>
-                        </div>
-                    </div>
-
-                </div>
+<div class="container cockpit">
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel cockpit">
+            <div class="panel cockpit section-title">
+                Massgeschneiderte Vorschläge
             </div>
-            <!--</div>-->
-            <div class="col-md-6" ng-controller="yp.ewl.activity.chart.controller">
-                <div class="panel cockpit">
 
-                    <div class="panel cockpit section-title">
-                        Aktivitäten
-                    </div>
+            <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur
+                Stressreduktion vorzuschlagen. </p>
 
-                    <p>Wieviele der geplanten Aktivitäten hast du durchgeführt und wieviele verpasst? </p>
+            <p>Wie hat sich dein Stresslevel entwickelt? </p>
 
-                    <p><a class="btn btn-default" href="#">Ausführliche Darstellung &raquo;</a></p>
+            <p><a class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >Zum Fragebogen &raquo;</a>
+            </p>
 
-                    <div class="btn-group">
-                        <label class="btn btn-default">
-                            <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
-                                   name="timespanoption" id="optionweek" checked="checked"> Woche
-                            <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
-                                   name="timespanoption" id="optionmonth"> Monat
-                            <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
-                                   name="timespanoption" id="optionyear"> Jahr
-                            <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
-                        </label>
-
-                    </div>
-                    <!--<div google-chart chart="chart" style="{{chart.cssStyle}}"/>-->
-                    <div google-chart chart="chart"></div>
-
-                    </br>
-
-                    <div ng-controller="yp.ewl.activity.chart2.controller">
-                        <div class="btn-group">
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
-                                       name="timespanoption" id="optionweek"> Woche
-                                <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
-                            </label>
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
-                                       name="timespanoption" id="optionmonth"> Monat
-                                <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
-                            </label>
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
-                                       name="timespanoption" id="optionyear"> Jahr
-                                <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
-                            </label>
-
-                        </div>
-                        <d3-horizontal-bar-chart data="chart.data" options="d3Options" label="name"
-                                                 on-click="onClick(item)"></d3-horizontal-bar-chart>
-                    </div>
-
-                </div>
-
-            </div>
         </div>
-        <!--</div>-->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel cockpit">
 
-                    <div class="panel cockpit section-title">
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
+                Status
+            </div>
+
+            <p>Wie sieht dein aktueller Stress Level aus? </p>
+
+            <div ng-controller="yp.ewl.stresslevel.gauge.controller">
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-default">-->
+                <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelWorkPlace}}" name="timespanoption" id="optionweek"> Woche-->
+                <!--&lt;!&ndash; ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                <!--</label>-->
+                <!--<label class="btn btn-default">-->
+                <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelTimeOff}}" name="timespanoption" id="optionmonth"> Monat-->
+                <!--&lt;!&ndash; ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                <!--</label>-->
+                <!--<label class="btn btn-default">-->
+                <!--<input type="radio" ng-model="stressLevelGeneral" value="{{stressLevelMastery}}" name="timespanoption" id="optionyear"> Jahr-->
+                <!--&lt;!&ndash; ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                <!--</label>-->
+                <!--</div>-->
+                <div>
+                    <d3-gauge data="stressLevelGeneral" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    <d3-gauge data="stressLevelWorkPlace" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    <d3-gauge data="stressLevelTimeOff" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    <d3-gauge data="stressLevelType" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    <d3-gauge data="stressLevelMastery" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-6" ng-controller="yp.ewl.activity.chart.controller">
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
+                Aktivitäten
+            </div>
+
+            <p>Wieviele der geplanten Aktivitäten hast du durchgeführt und wieviele verpasst? </p>
+
+            <p><a class="btn btn-default" href="#">Ausführliche Darstellung &raquo;</a></p>
+
+            <div class="btn-group">
+                <label class="btn btn-default">
+                    <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
+                           name="timespanoption" id="optionweek" checked="checked"> Woche
+                    <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
+                           name="timespanoption" id="optionmonth"> Monat
+                    <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
+                           name="timespanoption" id="optionyear"> Jahr
+                    <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
+                </label>
+
+            </div>
+            <!--<div google-chart chart="chart" style="{{chart.cssStyle}}"/>-->
+            <div google-chart chart="chart"></div>
+
+            </br>
+
+            <div ng-controller="yp.ewl.activity.chart2.controller">
+                <div class="btn-group">
+                    <label class="btn btn-default">
+                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
+                               name="timespanoption" id="optionweek"> Woche
+                        <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
+                               name="timespanoption" id="optionmonth"> Monat
+                        <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
+                               name="timespanoption" id="optionyear"> Jahr
+                        <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
+                    </label>
+
+                </div>
+                <d3-horizontal-bar-chart data="chart.data" options="d3Options" label="name"
+                                         on-click="onClick(item)"></d3-horizontal-bar-chart>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
                     <span class="glyphicon controls glyphicon-{{activityLogVisible ? 'collapse-down' : 'expand'}}"
                           ng-init="activityLogVisible=true" ng-click="activityLogVisible = !activityLogVisible">
                     </span>
-                        Aktivitätslog
-                    </div>
-
-
-                    <div ng-show="activityLogVisible" ng-controller="ActivityLogCtrl">
-
-                        <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
-
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12">
-
-                                <div class="cockpit new-activity">
-                                    <a ui-sref="activitylist" class="btn btn-primary">{{"NEW_ACTIVITY" | translate }}</a>
-                                </div>
-                                <tabset>
-                                    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
-                                         disabled="tab.disabled">
-                                        <div ng-include="tab.content"></div>
-                                    </tab>
-                                </tabset>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div ng-hide="activityLogVisible">
-
-                        </br>
-                        <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August
-                            2013. </p>
-
-                    </div>
-
-                </div>
+                Aktivitätslog
             </div>
-            <div class="col-md-6" ng-controller="SocialLogCtrl">
 
-                <div class="panel cockpit">
+            <div ng-show="activityLogVisible" ng-controller="ActivityLogCtrl">
 
-                    <div class="panel cockpit section-title">
+                <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+
+                        <div class="cockpit new-activity">
+                            <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{
+                                "NEW_ACTIVITY" | translate }}
+                            </button>
+                        </div>
+                        <tabset>
+                            <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
+                                 disabled="tab.disabled">
+                                <div ng-include="tab.content"></div>
+                            </tab>
+                        </tabset>
+
+                    </div>
+                </div>
+
+            </div>
+            <div ng-hide="activityLogVisible">
+
+                </br>
+                <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August
+                    2013. </p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6" ng-controller="SocialLogCtrl">
+
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
 
                         <span class="glyphicon controls glyphicon-{{socialLogVisible ? 'collapse-down' : 'expand' }}"
                               ng-init="socialLogVisible=true"
                               ng-click="socialLogVisible = !socialLogVisible"></span>
-                        Social Ticker
-                    </div>
+                Social Ticker
+            </div>
 
-                    <div ng-show="socialLogVisible">
+            <div ng-show="socialLogVisible">
 
-                        <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+                <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
 
-                        <div class="list-group social-log">
+                <div class="list-group social-log">
 
-                            <div class="list-group-item {{socialLogEntry.type}}"
-                                 ng-repeat="socialLogEntry in socialLogEntries">
-                                <div class="row">
-                                    <div class="col-xs-10 col-md-10">
-                                        <div class="col-xs-6 col-md-5">
-                                            <div class="social-log status">
-                                                <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
-                                            </div>
-                                            <a href="#/u/ubau">
-                                                <img ng-src="{{socialLogEntry.author.avatar}}"
-                                                     class="social-log author-avatar"/>
-                                                <strong class="social-log author-name">{{socialLogEntry.author.firstname}}</br>
-                                                    {{socialLogEntry.author.lastname}}</strong>
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-6 col-md-7">
-                                            <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
-                                            <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
-                                            <a href="#" class="social-log comment">{{socialLogEntry.text}}</a>
-                                        </div>
+                    <div class="list-group-item {{socialLogEntry.type}}"
+                         ng-repeat="socialLogEntry in socialLogEntries">
+                        <div class="row">
+                            <div class="col-xs-10 col-md-10">
+                                <div class="col-xs-6 col-md-5">
+                                    <div class="social-log status">
+                                        <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
                                     </div>
-                                    <div class="col-xs-2 col-md-2">
-                                        <!--<div class="col-xs-6 col-md-4">-->
-                                        <div class="social-log time-box">
+                                    <a href="#/u/ubau">
+                                        <img ng-src="{{socialLogEntry.author.avatar}}"
+                                             class="social-log author-avatar"/>
+                                        <strong class="social-log author-name">{{socialLogEntry.author.firstname}}</br>
+                                            {{socialLogEntry.author.lastname}}</strong>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-md-7">
+                                    <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
+                                    <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
+                                    <a href="#" class="social-log comment">{{socialLogEntry.text}}</a>
+                                </div>
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                                <!--<div class="col-xs-6 col-md-4">-->
+                                <div class="social-log time-box">
                                                 <span class="activity-log time-box timestamp">
                                                     {{socialLogEntry.created | fromNow}}</br>
                                                 </span>
-                                        </div>
-                                        <!--</div>-->
-                                    </div>
                                 </div>
+                                <!--</div>-->
                             </div>
                         </div>
-
                     </div>
-                    <div ng-hide="socialLogVisible">
-
-                        </br>
-                        <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
-
-                    </div>
-
                 </div>
 
             </div>
+            <div ng-hide="socialLogVisible">
+
+                </br>
+                <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+            </div>
+
         </div>
-        <!--<hr>-->
+
     </div>
+</div>
+
+</div>
 </div>
