@@ -12,14 +12,16 @@
             <div class="panel cockpit section-title">
                 Massgeschneiderte Vorschläge
             </div>
-
-            <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur
-                Stressreduktion vorzuschlagen. </p>
-
-            <p>Wie hat sich dein Stresslevel entwickelt? </p>
-
-            <p><a class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >Zum Fragebogen &raquo;</a>
-            </p>
+            <div class="row">
+                <div class="col-xs-9 col-md-9">
+                    <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur
+                        Stressreduktion vorzuschlagen. </p>
+                </div>
+                <div class="col-xs-3 col-md-3">
+                    <p><a class="cockpit assessment btn btn-primary" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >{{"TO_THE_ASSESSMENT" | translate }} &raquo;</a>
+                    </p>
+                </div>
+            </div>
 
         </div>
 
@@ -29,7 +31,7 @@
                 Status
             </div>
 
-            <p>Wie sieht dein aktueller Stress Level aus? </p>
+            <p>Wie hat sich dein Stresslevel entwickelt? Wie sieht dein aktueller Stress Level aus? </p>
 
             <div ng-controller="yp.ewl.stresslevel.gauge.controller">
                 <!--<div class="btn-group">-->
@@ -66,23 +68,35 @@
             <p>xx</p>
 
             <div ng-controller="yp.ewl.activity.vchart.controller">
-                <div class="btn-group">
-                    <label class="btn btn-default">
-                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}" name="timespanoption" id="optionweek"> Woche
-                        <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}" name="timespanoption" id="optionmonth"> Monat
-                        <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}" name="timespanoption" id="optionyear"> Jahr
-                        <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
-                    </label>
+                <div class="row">
+                    <div class="col-xs-8 col-md-8">
+                        <div class="btn-group">
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
+                                       name="timespanoption" id="optionweek" checked="checked"> Woche
+                                <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
+                                       name="timespanoption" id="optionmonth"> Monat
+                                <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
+                                       name="timespanoption" id="optionyear"> Jahr
+                                <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                        <p><a class="cockpit detail-charts btn btn-primary" href="#" >{{"DETAIL_CHARTS" | translate }} &raquo;</a>
+                        </p>
+                    </div>
                 </div>
                 <div>
                     <d3-vertical-bar-chart data="chart.data" options="d3Options" label="name"
-                                             on-click="onClick(item)"></d3-vertical-bar-chart>
+                                           on-click="onClick(item)"></d3-vertical-bar-chart>
                 </div>
             </div>
 
@@ -97,25 +111,31 @@
 
             <p>Wieviele der geplanten Aktivitäten hast du durchgeführt und wieviele verpasst? </p>
 
-            <p><a class="btn btn-default" href="#">Ausführliche Darstellung &raquo;</a></p>
+            <div class="row">
+                <div class="col-xs-8 col-md-8">
+                    <div class="btn-group">
+                        <label class="btn btn-default">
+                            <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
+                                   name="timespanoption" id="optionweek" checked="checked"> Woche
+                            <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
+                                   name="timespanoption" id="optionmonth"> Monat
+                            <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
+                                   name="timespanoption" id="optionyear"> Jahr
+                            <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
+                        </label>
 
-            <div class="btn-group">
-                <label class="btn btn-default">
-                    <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
-                           name="timespanoption" id="optionweek" checked="checked"> Woche
-                    <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
-                </label>
-                <label class="btn btn-default">
-                    <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
-                           name="timespanoption" id="optionmonth"> Monat
-                    <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
-                </label>
-                <label class="btn btn-default">
-                    <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
-                           name="timespanoption" id="optionyear"> Jahr
-                    <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
-                </label>
-
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <p><a class="cockpit detail-charts btn btn-primary" href="#" >{{"DETAIL_CHARTS" | translate }} &raquo;</a>
+                    </p>
+                </div>
             </div>
             <!--<div google-chart chart="chart" style="{{chart.cssStyle}}"/>-->
             <div google-chart chart="chart"></div>
@@ -123,23 +143,31 @@
             </br>
 
             <div ng-controller="yp.ewl.activity.chart2.controller">
-                <div class="btn-group">
-                    <label class="btn btn-default">
-                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
-                               name="timespanoption" id="optionweek"> Woche
-                        <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
-                               name="timespanoption" id="optionmonth"> Monat
-                        <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
-                               name="timespanoption" id="optionyear"> Jahr
-                        <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
-                    </label>
+                <div class="row">
+                    <div class="col-xs-8 col-md-8">
+                        <div class="btn-group">
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
+                                       name="timespanoption" id="optionweek"> Woche
+                                <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
+                                       name="timespanoption" id="optionmonth"> Monat
+                                <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
+                                       name="timespanoption" id="optionyear"> Jahr
+                                <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
+                            </label>
 
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                        <p><a class="cockpit detail-charts btn btn-primary" href="#" >{{"DETAIL_CHARTS" | translate }} &raquo;</a>
+                        </p>
+                    </div>
                 </div>
                 <d3-horizontal-bar-chart data="chart.data" options="d3Options" label="name"
                                          on-click="onClick(item)"></d3-horizontal-bar-chart>
@@ -170,7 +198,7 @@
 
                         <div class="cockpit new-activity">
                             <button ng-click="gotoActivityList()" type="button" class="btn btn-primary">{{
-                                "NEW_ACTIVITY" | translate }}
+                                "NEW_ACTIVITY" | translate }} &raquo;
                             </button>
                         </div>
                         <tabset>
