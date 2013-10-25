@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('yp.ewl.activity.chart2', [])
+angular.module('yp.ewl.activity.chart2', ['restangular'])
 
-    .factory('yp.ewl.activity.chart2.service', ['$http', function($http) {
+    .factory('yp.ewl.activity.chart2.service', ['Restangular', function(Restangular) {
 
         var convertDataSeries = function (data) {
 //            var cols = data.cols;
@@ -15,19 +15,19 @@ angular.module('yp.ewl.activity.chart2', [])
             return chartData;
         };
 
-        var valuesThisWeek = $http.get('activitystats?range=weekly')
+        var valuesThisWeek = Restangular.one('activitystats?range=weekly').get()
             .then(function (result) {
-                return convertDataSeries(result.data);
+                return convertDataSeries(result);
             });
 
-        var valuesThisMonth = $http.get('activitystats?range=monthly')
+        var valuesThisMonth = Restangular.one('activitystats?range=monthly').get()
             .then(function (result) {
-                return convertDataSeries(result.data);
+                return convertDataSeries(result);
             });
 
-        var valuesThisYear = $http.get('activitystats?range=yearly')
+        var valuesThisYear = Restangular.one('activitystats?range=yearly').get()
             .then(function (result) {
-                return convertDataSeries(result.data);
+                return convertDataSeries(result);
             });
 
         var ActivityChartService = {

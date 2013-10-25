@@ -56,12 +56,9 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
         $httpBackend.whenGET('stressLevelStatus').respond(mock.stressLevelStatus);
 
-        $httpBackend.whenGET('activitystats?range=weekly').respond(mock.activitystats.weekly);
-        $httpBackend.whenGET('activitystats?range=monthly').respond(mock.activitystats.monthly);
-        $httpBackend.whenGET('activitystats?range=yearly').respond(mock.activitystats.yearly);
-
-        $httpBackend.whenGET('activityLog').respond(mock.activityLog);
-        $httpBackend.whenGET('socialLog').respond(mock.socialLog);
+        $httpBackend.whenGET(baseURL + '/activitystats?range=weekly').respond(mock.activitystats.weekly);
+        $httpBackend.whenGET(baseURL + '/activitystats?range=monthly').respond(mock.activitystats.monthly);
+        $httpBackend.whenGET(baseURL + '/activitystats?range=yearly').respond(mock.activitystats.yearly);
 
         $httpBackend.whenGET('/campaigns').respond(mock.campaigns);
 
