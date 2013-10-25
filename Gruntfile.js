@@ -16,7 +16,7 @@ var clientconfig = {
         ci: {
             backendUrl: 'http://yp-backend-ci.herokuapp.com/api/v1'
         },
-        test: {
+        herokutest: {
             backendUrl: 'http://yp-backend-test.herokuapp.com/api/v1'
         },
         uat: {

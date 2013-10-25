@@ -152,7 +152,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 };
             };
 
-
             activity.getRecWeightsByQuestionId = function () {
                 var byId = {};
                 _.forEach(activity.recWeights, function (obj) {
