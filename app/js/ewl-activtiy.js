@@ -159,7 +159,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
     }])
 
-    .factory('ActivityService', ['$http', 'Restangular', function ($http, Restangular) {
+    .factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', function ($http, Restangular, $q, principal) {
         var activities = Restangular.all('activities');
         var plannedActivities = Restangular.all('activitiesPlanned');
 
@@ -172,10 +172,19 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return Restangular.one('activities', activityId).get();
             },
             getPlannedActivities: function () {
-                return plannedActivities.getList();
+                if (principal.isAuthenticated()) {
+                    return plannedActivities.getList();
+                } else {
+                    return [];
+                }
             },
             getRecommendations: function () {
-                return Restangular.all('activities/recommendations').getList();
+                if (principal.isAuthenticated()) {
+                    return Restangular.all('activities/recommendations').getList();
+                } else {
+                    return [];
+                }
+
             },
             isActivityPlanned: function (plannedActivities, activityId) {
                 if (typeof (plannedActivities) !== 'undefined') {
@@ -360,12 +369,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             $scope.planActivityDone = function () {
-                ActivityService.savePlan($scope.currentActivityPlan).then(function(result){
+                ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
                     $scope.$emit('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
                     $state.go('cockpit');
-                }, function(err){
+                }, function (err) {
                     console.log(JSON.stringify(err));
-                    $scope.$emit('globalUserMsg', 'Aktivität nicht gespeichert, Code: '+ err , 'danger', '5000');
+                    $scope.$emit('globalUserMsg', 'Aktivität nicht gespeichert, Code: ' + err, 'danger', '5000');
 
                 });
             };

@@ -7,25 +7,24 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
         var actEventsByTime = [];
 
         var activitiesPlannedBase = Restangular.all('activitiesPlanned');
-        var actPlans = activitiesPlannedBase.getList(
-            {populate: 'joiningUsers events.comments activity',
-            populatedeep: 'events.comments.author'})
-            .then(function (actPlanList) {
-                // create array structured by time
-                for (var i = 0; i < actPlanList.length; i++) {
-                    for (var i2 = 0; i2 < actPlanList[i].events.length; i2++) {
-                        actEventsByTime.push({
-                            event: actPlanList[i].events[i2],
-                            plan: actPlanList[i],
-                            activity: actPlanList[i].activity
-                        });
-                    }
-                }
-                return actPlanList;
-            });
 
         ActivityLogService.getActPlans = function () {
-            return actPlans;
+            return activitiesPlannedBase.getList(
+                {populate: 'joiningUsers events.comments activity',
+                    populatedeep: 'events.comments.author'})
+                .then(function (actPlanList) {
+                    // create array structured by time
+                    for (var i = 0; i < actPlanList.length; i++) {
+                        for (var i2 = 0; i2 < actPlanList[i].events.length; i2++) {
+                            actEventsByTime.push({
+                                event: actPlanList[i].events[i2],
+                                plan: actPlanList[i],
+                                activity: actPlanList[i].activity
+                            });
+                        }
+                    }
+                    return actPlanList;
+                });
         };
 
         ActivityLogService.getActivityHistoryByTime = function () {
