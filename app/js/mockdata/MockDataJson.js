@@ -1,5 +1,29 @@
 var mock = {};
 
+mock.recommendations = [
+    {
+        "activity": "5268e8bca8bae500000000b1",
+        "weight": 1
+    },
+    {
+        "activity": "5268e8bca8bae500000000b2",
+        "weight": 1
+    },
+    {
+        "activity": "5268e8bca8bae500000000b4",
+        "weight": 4.2
+    },
+    {
+        "activity": "5268e8bca8bae50000000076",
+        "weight": 7.12
+    },
+    {
+        "activity": "5268e8bca8bae50000000078",
+        "weight": 11.400000000000002
+    }
+];
+
+
 mock.plannedActivities = [
     {
         "activity": {

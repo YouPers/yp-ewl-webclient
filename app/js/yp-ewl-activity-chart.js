@@ -1,23 +1,14 @@
 'use strict';
 
-angular.module('yp.ewl.activity.chart', ['googlechart'])
+angular.module('yp.ewl.activity.chart', ['googlechart', 'restangular'])
 
-    .factory('yp.ewl.activity.chart.service', ['$http', function($http) {
+    .factory('yp.ewl.activity.chart.service', ['Restangular', function(Restangular) {
 
-        var valuesThisWeek = $http.get('activitystats?range=weekly')
-            .then(function (result) {
-                return result.data;
-            });
+        var valuesThisWeek = Restangular.one('activitystats').get({range: 'weekly'});
 
-        var valuesThisMonth = $http.get('activitystats?range=monthly')
-            .then(function (result) {
-                return result.data;
-            });
+        var valuesThisMonth = Restangular.one('activitystats').get({range: 'monthly'});
 
-        var valuesThisYear = $http.get('activitystats?range=yearly')
-            .then(function (result) {
-                return result.data;
-            });
+        var valuesThisYear = Restangular.one('activitystats').get({range: 'yearly'});
 
         var ActivityChartService = {
             activitiesThisWeek: valuesThisWeek,

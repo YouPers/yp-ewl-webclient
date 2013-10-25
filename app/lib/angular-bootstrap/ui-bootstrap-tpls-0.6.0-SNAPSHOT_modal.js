@@ -3570,13 +3570,12 @@ angular.module("template/timepicker/timepicker.html", []).run(["$templateCache",
     "    <div class=\"row\">\n" +
     "        <div class=\"col-xs-4\">\n" +
     "            <div class=\"form-group\" ng-class=\"{'has-error': invalidHours}\" style=\"margin-bottom: 0px\">\n" +
-    "                <input type=\"text\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center\" ng-mousewheel=\"incrementHours()\" ng-readonly=\"readonlyInput\" maxlength=\"2\"> \n" +
+    "                <input type=\"text\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center input-sm\" ng-mousewheel=\"incrementHours()\" ng-readonly=\"readonlyInput\" maxlength=\"2\"> \n" +
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"col-xs-6\">\n" +
     "            <div class=\"input-group\" ng-class=\"{'has-error': invalidMinutes}\">\n" +
-    "                <span class=\"input-group-addon\">:</span>\n" +
-    "                <input type=\"text\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\">\n" +
+    "                <input type=\"text\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center input-sm\" ng-readonly=\"readonlyInput\" maxlength=\"2\">\n" +
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"col-xs-2\">\n" +

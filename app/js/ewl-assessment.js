@@ -69,7 +69,7 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
                     // check whether we got saved answers for this user and this assessment
                     var assResult;
-                    if (results[1]) {
+                    if (results[1] && results[1].length >0) {
                         assResult = results[1];
                         // convert into a new Result, otherwise we overwrite the old one
                         delete assResult.id;

@@ -12,6 +12,8 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
         $httpBackend.whenGET(baseURL + '/activities').respond(mock.activities);
         $httpBackend.whenGET(/activitiesPlanned/).respond(mock.plannedActivities);
+        $httpBackend.whenGET(baseURL + '/activities/recommendations').respond(mock.recommendations);
+        $httpBackend.whenGET(/activities/).respond(mock.activities);
 
         $httpBackend.whenPOST(baseURL + '/activitiesPlanned').respond(function(method, url, data, headers) {
             var plan = angular.fromJson(data);
@@ -22,6 +24,13 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
         $httpBackend.whenGET(baseURL + '/assessments/525faf0ac558d40000000005').respond(mock.assessment);
         $httpBackend.whenGET(baseURL +  '/assessments/525faf0ac558d40000000005/results/newest').respond(mock.assessmentAnswers);
+
+        $httpBackend.whenPOST(baseURL +  '/assessments/525faf0ac558d40000000005/results').respond(function(method, url, data, headers) {
+            var result = angular.fromJson(data);
+            result.id = '12341234';
+            mock.assessmentAnswers.push(result);
+            return [201, '', {location: '/assessments/525faf0ac558d40000000005/results/' + result.id}];
+        });
 
         $httpBackend.whenGET(/comments/).respond(mock.activityComments);
         $httpBackend.whenGET(baseURL + '/users').respond(mock.users);
@@ -47,12 +56,9 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
         $httpBackend.whenGET('stressLevelStatus').respond(mock.stressLevelStatus);
 
-        $httpBackend.whenGET('activitystats?range=weekly').respond(mock.activitystats.weekly);
-        $httpBackend.whenGET('activitystats?range=monthly').respond(mock.activitystats.monthly);
-        $httpBackend.whenGET('activitystats?range=yearly').respond(mock.activitystats.yearly);
-
-        $httpBackend.whenGET('activityLog').respond(mock.activityLog);
-        $httpBackend.whenGET('socialLog').respond(mock.socialLog);
+        $httpBackend.whenGET(baseURL + '/activitystats?range=weekly').respond(mock.activitystats.weekly);
+        $httpBackend.whenGET(baseURL + '/activitystats?range=monthly').respond(mock.activitystats.monthly);
+        $httpBackend.whenGET(baseURL + '/activitystats?range=yearly').respond(mock.activitystats.yearly);
 
         $httpBackend.whenGET('/campaigns').respond(mock.campaigns);
 
