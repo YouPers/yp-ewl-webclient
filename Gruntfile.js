@@ -6,6 +6,7 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
+// define the valid URL for each env
 var clientconfig = {
         mock: {
             backendUrl: 'http://localhost:8000/api/v1'
