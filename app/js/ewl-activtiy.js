@@ -107,11 +107,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 var newMainEvent = {
                     "allDay": false
                 };
-                if (activity.defaultfrequency === 'once') {
-                    newMainEvent.start = moment(now).add('d', 7);
-                    newMainEvent.end = moment(now).add('d', 7).add('h', 1);
-                    newMainEvent.frequency = 'once';
-                } else if (activity.defaultfrequency === 'week') {
+                if (activity.defaultfrequency === 'week') {
                     newMainEvent.start = moment(now);
                     newMainEvent.end = moment(now).add('h', 1);
                     newMainEvent.frequency = 'week';
@@ -129,14 +125,25 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     newMainEvent.recurrence = {
                         "end-by": {
                             "type": "after",
-                            "after": 42
+                            "after": 6
+                        },
+                        every: 1
+                    };
+                } else { // default is "once"
+                    newMainEvent.start = moment(now).add('d', 7);
+                    newMainEvent.end = moment(now).add('d', 7).add('h', 1);
+                    newMainEvent.frequency = 'once';
+                    newMainEvent.recurrence = {
+                        "end-by": {
+                            "type": "after",
+                            "after": 6
                         },
                         every: 1
                     };
                 }
 
 
-                return {
+                    return {
                     activity: activity,
                     status: 'active',
                     mainEvent: newMainEvent,
