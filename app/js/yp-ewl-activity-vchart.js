@@ -17,17 +17,20 @@ angular.module('yp.ewl.activity.vchart', [])
 
         var valuesThisWeek = $http.get('activitystats?range=weekly')
             .then(function (result) {
-                return convertDataSeries(result.data);
+//                return convertDataSeries(result.data);
+                return result.data;
             });
 
         var valuesThisMonth = $http.get('activitystats?range=monthly')
             .then(function (result) {
-                return convertDataSeries(result.data);
+//                return convertDataSeries(result.data);
+                return result.data;
             });
 
         var valuesThisYear = $http.get('activitystats?range=yearly')
             .then(function (result) {
-                return convertDataSeries(result.data);
+//                return convertDataSeries(result.data);
+                return result.data;
             });
 
         var ActivityChartService = {
@@ -45,7 +48,7 @@ angular.module('yp.ewl.activity.vchart', [])
         $scope.d3Options = {
 //            compressed: "no",
 //            chartHeight: "250",
-            chartWidth: "99%"
+            chartWidth: 450
         };
 
         $scope.chart = {};
