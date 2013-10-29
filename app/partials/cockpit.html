@@ -72,23 +72,28 @@
             <div ng-controller="yp.ewl.activity.vchart.controller">
                 <div class="row">
                     <div class="col-xs-8 col-md-8">
-                        <div class="btn-group">
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"
-                                       name="timespanoption" id="optionweek" checked="checked"> Woche
-                                <!-- ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren -->
-                            </label>
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"
-                                       name="timespanoption" id="optionmonth"> Monat
-                                <!-- ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren -->
-                            </label>
-                            <label class="btn btn-default">
-                                <input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"
-                                       name="timespanoption" id="optionyear"> Jahr
-                                <!-- ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren -->
-                            </label>
+                        <!--<div class="btn-group">-->
+                            <!--<label class="btn btn-default">-->
+                                <!--<input type="radio" ng-model="chart.data" value="{{chart.dataCurrentWeek}}"-->
+                                       <!--name="timespanoption" id="optionweek" checked="checked" ng-class="active"> Woche-->
+                                <!--&lt;!&ndash; ToDo (irig) Begriff Woche mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                            <!--</label>-->
+                            <!--<label class="btn btn-default">-->
+                                <!--<input type="radio" ng-model="chart.data" value="{{chart.dataCurrentMonth}}"-->
+                                       <!--name="timespanoption" id="optionmonth"> Monat-->
+                                <!--&lt;!&ndash; ToDo (irig) Begriff Monat mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                            <!--</label>-->
+                            <!--<label class="btn btn-default">-->
+                                <!--<input type="radio" ng-model="chart.data" value="{{chart.dataCurrentYear}}"-->
+                                       <!--name="timespanoption" id="optionyear"> Jahr-->
+                                <!--&lt;!&ndash; ToDo (irig) Begriff Jahr mittels TRANSLATE-Filter implementieren &ndash;&gt;-->
+                            <!--</label>-->
 
+                        <!--</div>-->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-class="getActive('week')" ng-click="setData('week')">Woche</button>
+                            <button type="button" class="btn btn-default" ng-class="getActive('month')" ng-click="setData('month')">Monat</button>
+                            <button type="button" class="btn btn-default" ng-class="getActive('year')" ng-click="setData('year')">Jahr</button>
                         </div>
                     </div>
                     <div class="col-xs-4 col-md-4">

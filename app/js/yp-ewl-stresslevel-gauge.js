@@ -27,7 +27,7 @@ angular.module('yp.ewl.stresslevel.gauge', [])
             }
         ];
 
-        var StressLevelGaugeService = {
+        return {
             stressLevelGeneral: stressLevels[0],
             stressLevelWorkPlace: stressLevels[1],
             stressLevelTimeOff: stressLevels[2],
@@ -35,7 +35,7 @@ angular.module('yp.ewl.stresslevel.gauge', [])
             stressLevelMastery: stressLevels[4]
         };
 
-        return StressLevelGaugeService;
+//        return StressLevelGaugeService;
 
     }])
 

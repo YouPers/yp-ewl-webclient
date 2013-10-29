@@ -48,6 +48,29 @@ angular.module('yp.ewl.activity.vchart', ['restangular'])
 //            chartWidth: 450
         };
 
+        $scope.selectedValue = "week";
+
+        $scope.getActive = function (value) {
+            if (value === $scope.selectedValue) {
+                return "active";
+            } else {
+                return "";
+            }
+        };
+
+        $scope.setData = function (value) {
+            $scope.selectedValue = value;
+            if (value === "week") {
+                $scope.chart.data = $scope.chart.dataCurrentWeek;
+            }
+            if (value === "month") {
+                $scope.chart.data = $scope.chart.dataCurrentMonth;
+            }
+            if (value === "year") {
+                $scope.chart.data = $scope.chart.dataCurrentYear;
+            }
+        };
+
         $scope.chart = {};
 
         ActivityChartService.activitiesThisWeek.then(function (data) {
