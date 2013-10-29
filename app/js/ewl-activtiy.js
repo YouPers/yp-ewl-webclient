@@ -108,8 +108,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     "allDay": false
                 };
                 if (activity.defaultfrequency === 'week') {
-                    newMainEvent.start = moment(now);
-                    newMainEvent.end = moment(now).add('h', 1);
+                    newMainEvent.start = moment(now).startOf('hour');
+                    newMainEvent.end = moment(newMainEvent.start).add('h', 1);
                     newMainEvent.frequency = 'week';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -119,7 +119,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         every: 1
                     };
                 } else if (activity.defaultfrequency === 'day') {
-                    newMainEvent.start = moment(now).add('d', 1);
+                    newMainEvent.start = moment(now).add('d', 1).startOf('hour');
                     newMainEvent.end = moment(newMainEvent.start).add('h', 1);
                     newMainEvent.frequency = 'day';
                     newMainEvent.recurrence = {
@@ -130,8 +130,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         every: 1
                     };
                 } else { // default is "once"
-                    newMainEvent.start = moment(now).add('d', 7);
-                    newMainEvent.end = moment(now).add('d', 7).add('h', 1);
+                    newMainEvent.start = moment(now).add('d', 7).startOf('hour');
+                    newMainEvent.end = moment(newMainEvent.start).add('h', 1);
                     newMainEvent.frequency = 'once';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -151,7 +151,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     visibility: activity.defaultvisibility
                 };
             };
-
 
             activity.getRecWeightsByQuestionId = function () {
                 var byId = {};

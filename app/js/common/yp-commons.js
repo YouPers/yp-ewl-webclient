@@ -3,15 +3,22 @@
 angular.module('yp.commons', []).
     filter('fromNow',function () {
         return function (dateString) {
-            return moment(new Date(dateString)).fromNow();
+            var myMoment = moment(dateString);
+
+            if (myMoment.isBefore(moment().subtract('day', 3)) || myMoment.isAfter(moment().add('day', 3))) {
+                return myMoment.format('L');
+            } else {
+                return myMoment.fromNow();
+            }
+        };
+    }).
+    filter('time',function () {
+        return function (dateString) {
+            var myMoment = moment(dateString);
+                return myMoment.format('LT');
         };
     }).
 
-    filter('fromNowFake',function () {
-        return function (dateString) {
-            return moment(new Date(dateString)).from(new Date(2013, 7, 20, 13, 30));
-        };
-    }).
 
 
     directive('setfocus', ['$timeout', function ($timeout) {

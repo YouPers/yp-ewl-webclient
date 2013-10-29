@@ -33,7 +33,9 @@
                 <div class="activity-log time-box">
                     <span class="activity-log time-box timestamp">
                         {{actEvent.event.begin | fromNow}}</br>
+                        {{actEvent.event.begin | time }} - {{actEvent.event.end | time }}
                     </span>
+
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
+// define the valid URL for each env
 var clientconfig = {
         mock: {
             backendUrl: 'http://localhost:8000/api/v1'
@@ -16,7 +17,7 @@ var clientconfig = {
         ci: {
             backendUrl: 'http://yp-backend-ci.herokuapp.com/api/v1'
         },
-        test: {
+        herokutest: {
             backendUrl: 'http://yp-backend-test.herokuapp.com/api/v1'
         },
         uat: {
@@ -510,6 +511,8 @@ module.exports = function (grunt) {
     grunt.registerTask('heroku:development', ['concurrent:server','template:server',
         'autoprefixer']);
     grunt.registerTask('heroku:ci', ['concurrent:server','template:server',
+        'autoprefixer']);
+    grunt.registerTask('heroku:herokutest', ['concurrent:server','template:server',
         'autoprefixer']);
 
 };
