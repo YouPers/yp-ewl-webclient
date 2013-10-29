@@ -2804,10 +2804,8 @@ angular.module('ui.bootstrap.timepicker', [])
       if ( !ngModel ) {
         return; // do nothing if no ng-model
       }
-
-      var selected = new Date(), meridians = timepickerConfig.meridians;
-      selected.setHours(12);
-      selected.setMinutes(0);
+      // RBLU: patched initialization of selected!!!
+      var selected = ngModel.$modelValue, meridians = timepickerConfig.meridians;
 
       var hourStep = timepickerConfig.hourStep;
       if (attrs.hourStep) {
