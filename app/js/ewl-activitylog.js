@@ -12,12 +12,18 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
 
             $scope.activityFields = activityFields;
 
+            // check whether we already have a plan in the current scope
+            // if yes, use this one to display the events for, if not, load all from server
+            if ($scope.currentActivityPlan) {
+                $scope.actPlans = [$scope.currentActivityPlan];
+                $scope.actEventsByTime = $scope.currentActivityPlan.getEventsByTime();
+            } else {
             ActivityService.getPlannedActivities({populate: 'joiningUsers events.comments activity',
                 populatedeep: 'events.comments.author'}).then(function (plans) {
                     $scope.actPlans = plans;
                     $scope.actEventsByTime = plans.getEventsByTime();
                 });
-
+            }
 
             $scope.getGlyphiconForExecutionType = function (executionType) {
                 var icon = "";

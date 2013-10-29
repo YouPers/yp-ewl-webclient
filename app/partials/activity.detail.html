@@ -1,9 +1,12 @@
 <div class="container">
 
 <!-- Page header  -->
-<div class="page-header">
-    <h1>Plane diese Aktivität:</h1>
+<div class="page-header" ng-if="!isActivityPlanned()">
+    <h1>Plane diese Aktivität: {{ currentActivity.number }}</h1>
 </div>
+    <div class="page-header" ng-if="isActivityPlanned()">
+        <h1>Geplante Aktivität - heute schon ausgeführt?  {{ currentActivity.number }}</h1>
+    </div>
 <div class="container">
 
 <div class="row">
@@ -123,7 +126,7 @@
 
 </div>
 <!-- Einplanung, falls noch nicht geplant -->
-<div class="col-md-6">
+<div class="col-md-6" ng-if="!isActivityPlanned()">
     <div class="tabbable">
         <ul class="nav nav-tabs">
             <li ng-class="{active: isActive('self')}">
@@ -136,6 +139,10 @@
         <div class="tab-content yp-activity-planning-tab" ui-view></div>
     </div>
 </div>
+<div class="col-md-6" ng-controller="ActivityLogCtrl" ng-if="isActivityPlanned()">
+    <div ng-include="'partials/cockpit.activitylog.running.html'"></div>
+</div>
+
 </div>
 </div>
 </div>

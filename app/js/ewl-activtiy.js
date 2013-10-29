@@ -43,11 +43,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     access: accessLevels.individual,
                     abstract: true,
                     resolve: {
-                        allActivities: ['ActivityService', function (ActivityService) {
-                            return ActivityService.getActivities();
+                        activity: ['ActivityService','$stateParams', function (ActivityService, $stateParams) {
+                            return ActivityService.getActivity($stateParams.activityId);
                         }],
-                        plannedActivities: ['ActivityService', function (ActivityService) {
-                            return ActivityService.getPlannedActivities();
+                        plan: ['ActivityService','$stateParams', function (ActivityService, $stateParams) {
+                            return ActivityService.getPlanForActivity($stateParams.activityId, {populate: 'activity'});
                         }]
                     }
                 })
@@ -103,20 +103,32 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         Restangular.extendCollection('activitiesPlanned', function (actPlanList) {
             actPlanList.getEventsByTime = function () {
                 var actEventsByTime = [];
-                // create array structured by time
+                // concat array for every plan
                 for (var i = 0; i < actPlanList.length; i++) {
-                    for (var i2 = 0; i2 < actPlanList[i].events.length; i2++) {
-                        actEventsByTime.push({
-                            event: actPlanList[i].events[i2],
-                            plan: actPlanList[i],
-                            activity: actPlanList[i].activity
-                        });
-                    }
+                    actEventsByTime = actEventsByTime.concat(actPlanList[i].getEventsByTime());
                 }
 
                 return actEventsByTime;
             };
+
             return actPlanList;
+        });
+
+        Restangular.extendModel('activitiesPlanned', function (actPlan) {
+            actPlan.getEventsByTime = function () {
+                var actEventsByTime = [];
+                for (var i = 0; i < actPlan.events.length; i++) {
+                    actEventsByTime.push({
+                        event: actPlan.events[i],
+                        plan: actPlan,
+                        activity: actPlan.activity
+                    });
+                }
+
+                return actEventsByTime;
+            };
+
+            return actPlan;
         });
 
         Restangular.extendModel('activities', function (activity) {
@@ -203,6 +215,21 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 } else {
                     return [];
                 }
+            },
+            getPlanForActivity: function (activityId, options) {
+                if (!options) {
+                    options = {};
+                }
+                _.merge(options, {'filter[activity]': activityId});
+                return Restangular.all('activitiesPlanned').getList(options).then(function (result) {
+                    if (result.length === 0) {
+                        return null;
+                    } else if (result.length > 1) {
+                        throw new Error('only one plan expected per activity and user');
+                    } else {
+                        return result[0];
+                    }
+                });
             },
             getRecommendations: function () {
                 if (principal.isAuthenticated()) {
@@ -323,40 +350,16 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         };
     }])
 
-    .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', '$state', '$stateParams', 'allActivities', 'plannedActivities',
-        function ($scope, ActivityService, $timeout, $state, $stateParams, allActivities, plannedActivities) {
+    .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', '$state', '$stateParams', 'activity', 'plan',
+        function ($scope, ActivityService, $timeout, $state, $stateParams, activity, plan) {
 
+            $scope.currentActivity = activity;
 
-            //////////////
-            // private functions
-
-            function setSelectedActivity(activityId) {
-                $scope.currentActivity = getActivityFromId(activityId);
-
-
-                var currentPlan = _.find(plannedActivities, function (obj) {
-                    return obj.activity === activityId;
-                });
-
-                if (!currentPlan) {
-                    currentPlan = $scope.currentActivity.getDefaultPlan();
-                }
-
-                $scope.currentActivityPlan = currentPlan;
+            if (plan) {
+                $scope.currentActivityPlan = plan;
+            } else {
+                $scope.currentActivityPlan = $scope.currentActivity.getDefaultPlan();
             }
-
-            function getActivityFromId(activityId) {
-                var act = _.find(allActivities, function (obj) {
-                    return obj.id === activityId;
-                });
-                if (!act) {
-                    throw new Error('no activity found for id ') + activityId;
-                }
-                return   act;
-            }
-
-            // set the selected activity from the URL params
-            setSelectedActivity($stateParams.activityId);
 
             // one time planning using daypicker
             $scope.showWeeks = false;
