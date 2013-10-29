@@ -13,13 +13,14 @@
                 },
                 link: function(scope, iElement) {
 
-                    // watch for data changes and re-render
+                    // watch for data changes and (re-)render
                     scope.$watch('data', function(newVals) {
 
                         d3Service.d3().then(function(d3){
 
                             if (typeof newVals !== 'undefined') {
                                 draw(d3, angular.fromJson(newVals));
+                                scope.svgClientWidth = d3.select(iElement[0])[0][0].offsetWidth; // store new width after having drawn the new chart
                             }
 
                         });
@@ -28,98 +29,24 @@
 
                     $rootScope.$watch('windowWidth', function() {
                         // Browser window width changed, so check if chart needs to be redrawn
+                        d3Service.d3().then(function(d3){
 
-                        var currentChild = iElement[0].children[0];
+                            var currentWidth = d3.select(iElement[0])[0][0].offsetWidth;
 
-                        if (typeof currentChild !== 'undefined') {
-                            if (typeof scope.svgClientHeight === 'undefined') {
-                                // first time here, so draw it
-                                d3Service.d3().then(function(d3){
+                            if (currentWidth !== 0) { // if 0, then the chart has never been drawn so far, which causes $watch('data'... to be triggered
+                                    // nth time here
+                                    if (scope.svgClientWidth !== currentWidth) {
+                                        // width where the chart is drawn has changed, so redraw it
 
-                                    $timeout(function () {
                                         draw(d3, angular.fromJson(scope.data));
-                                    }, 500);
+                                        scope.svgClientWidth = d3.select(iElement[0])[0][0].offsetWidth; // store new width after having drawn the new chart
 
-                                });
-                                scope.svgClientHeight = currentChild.clientHeight;
-                                scope.svgClientWidth = currentChild.clientWidth;
-                            } else {
-                                // nth time here
-                                if (scope.svgClientWidth !== currentChild.clientWidth) {
-                                    // width where the chart is drawn has changed, so redraw it
-                                    d3Service.d3().then(function(d3){
-
-                                        $timeout(function () {
-                                            draw(d3, angular.fromJson(scope.data));
-                                        }, 500);
-
-                                    });
-                                    scope.svgClientWidth = currentChild.clientWidth;
+                                    }
                                 }
-                            }
-                        }
+                        });
+
 
                     }, true);
-
-                    $rootScope.$watch('windowHeight', function() {
-                        // Browser window height changed, so check if chart needs to be redrawn
-
-                        var currentChild = iElement[0].children[0];
-
-                        if (typeof currentChild !== 'undefined') {
-                            if (typeof scope.svgClientHeight === 'undefined') {
-                                // first time here, so draw it
-                                d3Service.d3().then(function(d3){
-
-                                    $timeout(function () {
-                                        draw(d3, angular.fromJson(scope.data));
-                                    }, 500);
-
-                                });
-                                scope.svgClientHeight = currentChild.clientHeight;
-                                scope.svgClientWidth = currentChild.clientWidth;
-                            } else {
-                                // nth time here
-                                if (scope.svgClientHeight !== currentChild.clientHeight) {
-                                    // width where the chart is drawn has changed, so redraw it
-                                    d3Service.d3().then(function(d3){
-
-                                        $timeout(function () {
-                                            draw(d3, angular.fromJson(scope.data));
-                                        }, 500);
-
-                                    });
-                                    scope.svgClientHeight = currentChild.clientHeight;
-                                }
-                            }
-                        }
-
-                    }, true);
-
-                    // on window resize, re-render d3 canvas
-
-//                    window.onresize = function() {
-//                        d3Service.d3().then(function(d3){
-//
-//                            $timeout(function () {
-//                                draw(d3, angular.fromJson(scope.data));
-//                            }, 1000);
-//
-//                        });
-//                        return;
-//                    };
-
-                    // Redraw the chart if the window is resized
-//                    $rootScope.$on('resizeMsg2', function (e) {
-//
-//                        d3Service.d3().then(function(d3){
-//
-//                            $timeout(function () {
-//                                draw(d3, angular.fromJson(scope.data));
-//                            }, 1000);
-//
-//                        });
-//                    });
 
                     function draw (d3, data) {
 
@@ -144,16 +71,10 @@
 
                             scope.options.chartType = typeof scope.options.chartType !== 'undefined' ? scope.options.chartType : "stacked";
 
-                            // scope.options.compressed
-                            // - "yes": calculate width based on number of bars and other parameters -> best fit of a chart
-                            // - "no": value of scope.options.chartWidth is taken
-
-                            scope.options.compressed = typeof scope.options.compressed !== 'undefined' ? scope.options.compressed : "yes";
-
                             // scope.options.chartHeight
                             // height of chart in px
                             // - string containing a number without 'px'
-                            // - ignored if scope.options.compressed is set to "yes"
+                            // - ignored if scope.options.relative is set to "yes"
 
                             scope.options.chartHeight = typeof scope.options.chartHeight !== 'undefined' ? scope.options.chartHeight : 150;
 
@@ -161,7 +82,7 @@
                             // width of chart
                             // - ideally set as %-value to elastically fit into the parent container of the chart
 
-                            scope.options.chartWidth = typeof scope.options.chartWidth !== 'undefined' ? scope.options.chartWidth : 500;
+                            scope.options.chartWidth = typeof scope.options.chartWidth !== 'undefined' ? scope.options.chartWidth : "99.5%";
 
                             // scope.options.xScaleTopHeight
                             // height of the space containing the x scale on top of the chart
@@ -193,7 +114,7 @@
                             // scope.options.marginRight
                             // right margin of the complete chart
 
-                            scope.options.marginRight = typeof scope.options.marginRight !== 'undefined' ? scope.options.marginRight : 10;
+                            scope.options.marginRight = typeof scope.options.marginRight !== 'undefined' ? scope.options.marginRight : 15;
 
                             // scope.options.barHeight
                             // height of a horizontal bar
@@ -205,13 +126,18 @@
 
                             scope.options.barMargin = typeof scope.options.barMargin !== 'undefined' ? scope.options.barMargin : 5;
 
+                            // scope.options.LegendWidth
+                            // space (width) for the legend
+
+                            scope.options.legendWidth = typeof scope.options.legendWidth !== 'undefined' ? scope.options.legendWidth : 86;
+
                             // scope.options.insetThreshold
                             // - bars smaller than this value have their value displayed outside of the bar
                             // - bars equal and larger than this value have heir value displayed inside of the bar
 
                             scope.options.insetThreshold = typeof scope.options.insetThreshold !== 'undefined' ? scope.options.insetThreshold : 100;
 
-                            scope.options.actualWidthCompressed = (rows.length * (scope.options.barWidth + scope.options.barMargin)) - scope.options.barMargin + scope.options.xScaleBottomHeight + scope.options.marginBottom;
+                            scope.options.actualWidthrelative = (rows.length * (scope.options.barWidth + scope.options.barMargin)) - scope.options.barMargin + scope.options.xScaleBottomHeight + scope.options.marginBottom;
                         };
 
                         initParameters();
@@ -229,30 +155,6 @@
                             return series;
 
                         };
-
-//                        var bumpLayer = function (n, o) {
-//
-//                            function bump(a) {
-//                                var x = 1 / (0.1 + Math.random()),
-//                                    y = 2 * Math.random() - 0.5,
-//                                    z = 10 / (0.1 + Math.random());
-//                                for (var i = 0; i < n; i++) {
-//                                    var w = (i / n - y) * z;
-//                                    a[i] += x * Math.exp(-w * w);
-//                                }
-//                            }
-//
-//                            var a = [], i;
-//                            for (i = 0; i < n; ++i) {
-//                                a[i] = o + o * Math.random();
-//                            }
-//                            for (i = 0; i < 5; ++i) {
-//                                bump(a);
-//                            }
-//                            return a.map(function(d, i) {
-//                                return {x: i, y: Math.max(0, d)};
-//                            });
-//                        };
 
                         var timeout = setTimeout(function() {
                             d3.select("input[value=\"grouped\"]").property("checked", true).each(change);
@@ -276,14 +178,23 @@
 
                             rect.transition()
                                 .duration(500)
-                                .delay(function(d, i) { return i * 10; })
-                                .attr("y", function(d) { return y(d.y0 + d.y); })
-                                .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
+                                .delay(function(d, i) {
+                                    return i * 10;
+                                })
+                                .attr("y", function(d) {
+                                    return y(d.y0 + d.y);
+                                })
+                                .attr("height", function(d) {
+                                    return y(d.y0) - y(d.y0 + d.y);
+                                })
                                 .transition()
                                 .attr("x", function(d) {
                                     return x(d.x);
                                 })
-                                .attr("width", x.rangeBand());
+                                .attr("width", function(d) {
+                                    var fuck = x.rangeBand();
+                                    return x.rangeBand();
+                                });
                         };
 
                         var change = function (y, x, yGroupMax, yStackMax, rect, height) {
@@ -321,9 +232,15 @@
                                 left: scope.options.marginLeft
                             };
 
-                            var width = scope.options.chartWidth - margin.left - margin.right;
 
-                            var height = scope.options.chartHeight - margin.top - margin.bottom;
+                            var chartInnerHeight = scope.options.chartHeight - margin.top - margin.bottom - scope.options.xScaleBottomHeight;
+
+                            var svgCanvas = d3.select(iElement[0]).append("svg")
+                                .attr("width", scope.options.chartWidth)
+                                .attr("height", scope.options.chartHeight)
+                                .attr("class", "youpers-chart");
+
+                            var width = d3.select(iElement[0])[0][0].offsetWidth - (scope.options.marginLeft + scope.options.marginRight + scope.options.legendWidth);
 
                             var xDomain = [];
 
@@ -339,7 +256,7 @@
                             var y = d3.scale.linear()
                                 .domain([0, yStackMax])
                                 .nice(10)
-                                .range([height, 0]);
+                                .range([chartInnerHeight, 0]);
 
                             var colors = ["#7f981d", "#aec71e"];
 
@@ -359,11 +276,6 @@
                                 .tickSize(1)
                                 .tickPadding(5)
                                 .orient("left");
-
-                            var svgCanvas = d3.select(iElement[0]).append("svg")
-                                .attr("width", "99.5%")
-                                .attr("height", (height + margin.top + margin.bottom) + scope.options.xScaleBottomHeight)
-                                .attr("class", "youpers-chart");
 
                             // Canvas for the all elements on the chart grid
 
@@ -423,7 +335,7 @@
                                 .data(function(d) { return d; })
                                 .enter().append("rect")
                                 .attr("x", function(d) { return x(d.x); })
-                                .attr("y", height)
+                                .attr("y", chartInnerHeight)
                                 .attr("width", x.rangeBand())
                                 .attr("height", 0);
 
@@ -434,7 +346,7 @@
 
                             gridCanvas.append("g")
                                 .attr("class", "x axis")
-                                .attr("transform", "translate(0," + height + ")")
+                                .attr("transform", "translate(0," + chartInnerHeight + ")")
                                 .call(xAxis);
 
                             gridCanvas.append("g")
@@ -442,7 +354,7 @@
 //                                .attr("transform", "translate(0," - height + ")")
                                 .call(yAxis);
 
-                            d3.selectAll("input").on("change", change(y, x, yGroupMax, yStackMax, rect, height));
+                            d3.selectAll("input").on("change", change(y, x, yGroupMax, yStackMax, rect, chartInnerHeight));
 
                         };
 
@@ -456,12 +368,9 @@
 
         .run(['$rootScope','$window',function ($rootScope, $window) {
             $rootScope.windowWidth = $window.innerWidth;
-            $rootScope.windowHeight = $window.innerHeight;
             angular.element($window).bind('resize',function(){
                 $rootScope.windowWidth = $window.innerWidth;
-                $rootScope.windowHeight = $window.innerHeight;
                 $rootScope.$apply('windowWidth');
-                $rootScope.$apply('windowHeight');
             });
 
         }]);

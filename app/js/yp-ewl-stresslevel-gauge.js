@@ -75,15 +75,15 @@ angular.module('yp.ewl.stresslevel.gauge', [])
             }
 
         };
-
-        $timeout(function someWork () {
-            updateGauge($scope.stressLevelGeneral, stressLevelGeneralO);
-            updateGauge($scope.stressLevelWorkPlace, stressLevelWorkPlaceO);
-            updateGauge($scope.stressLevelTimeOff, stressLevelTimeOffO);
-            updateGauge($scope.stressLevelType, stressLevelTypeO);
-            updateGauge($scope.stressLevelMastery, stressLevelMasteryO);
-            $timeout(someWork, 200);
-        }, 200);
+//
+//        $timeout(function someWork () {
+//            updateGauge($scope.stressLevelGeneral, stressLevelGeneralO);
+//            updateGauge($scope.stressLevelWorkPlace, stressLevelWorkPlaceO);
+//            updateGauge($scope.stressLevelTimeOff, stressLevelTimeOffO);
+//            updateGauge($scope.stressLevelType, stressLevelTypeO);
+//            updateGauge($scope.stressLevelMastery, stressLevelMasteryO);
+//            $timeout(someWork, 200);
+//        }, 200);
 
 
 //        setInterval(updateGauge($scope.stressLevelGeneral, $scope.stressLevelGeneralO), 500);

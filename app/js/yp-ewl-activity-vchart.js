@@ -44,8 +44,8 @@ angular.module('yp.ewl.activity.vchart', ['restangular'])
 
         $scope.d3Options = {
 //            compressed: "no",
-//            chartHeight: "250",
-            chartWidth: 450
+            chartHeight: 193
+//            chartWidth: 450
         };
 
         $scope.chart = {};
