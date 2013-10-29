@@ -164,7 +164,7 @@
                 return UserService;
             }])
 
-        .controller('yp.user.MenuLoginCtrl', [ '$scope', 'yp.user.UserService', '$state', function ($scope, UserService, $state) {
+        .controller('yp.user.MenuLoginCtrl', [ '$scope', 'yp.user.UserService', '$state','$location', function ($scope, UserService, $state, $location) {
 
             $scope.loginSubmit = function () {
                 UserService.login(UserService.encodeCredentials($scope.username, $scope.password), function () {
@@ -176,13 +176,12 @@
 
             $scope.logout = function () {
                 UserService.logout();
+                $location.path("/");
             };
-
-
         }])
 
-        .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$rootScope', '$state', 'yp.user.UserService',
-            function ($scope, $rootScope, $state, UserService) {
+        .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$rootScope', '$state', 'yp.user.UserService', '$location',
+            function ($scope, $rootScope, $state, UserService, $location) {
 
                 $scope.$on('loginMessageShow', function (event, data) {
                     $scope.showLoginDialog = true;
@@ -196,9 +195,7 @@
                     }
                 });
 
-
                 $scope.loginSubmit = function () {
-                    // loginBasicAuth();
                     UserService.login(UserService.encodeCredentials($scope.username, $scope.password), function () {
                         $scope.username = '';
                         $scope.password = '';
@@ -209,6 +206,7 @@
 
                 $scope.logout = function () {
                     UserService.logout();
+                    $location.path("/");
                 };
 
                 $scope.newuser = {};
