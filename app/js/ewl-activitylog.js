@@ -21,7 +21,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
             ActivityService.getPlannedActivities({populate: 'joiningUsers events.comments activity',
                 populatedeep: 'events.comments.author'}).then(function (plans) {
                     $scope.actPlans = plans;
-                    $scope.actEventsByTime = plans.getEventsByTime();
+                    $scope.actEventsByTime = plans.length > 0 ? plans.getEventsByTime() : [];
                 });
             }
 
