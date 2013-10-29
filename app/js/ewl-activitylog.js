@@ -2,45 +2,8 @@
 
 angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activity'])
 
-    .factory('ActivityLogService', ['Restangular', function (Restangular) {
-        var ActivityLogService = {};
-        var actEventsByTime = [];
-
-        var activitiesPlannedBase = Restangular.all('activitiesPlanned');
-
-        ActivityLogService.getActPlans = function () {
-            return activitiesPlannedBase.getList(
-                {populate: 'joiningUsers events.comments activity',
-                    populatedeep: 'events.comments.author'})
-                .then(function (actPlanList) {
-                    // create array structured by time
-                    for (var i = 0; i < actPlanList.length; i++) {
-                        for (var i2 = 0; i2 < actPlanList[i].events.length; i2++) {
-                            actEventsByTime.push({
-                                event: actPlanList[i].events[i2],
-                                plan: actPlanList[i],
-                                activity: actPlanList[i].activity
-                            });
-                        }
-                    }
-                    return actPlanList;
-                });
-        };
-
-        ActivityLogService.getActivityHistoryByTime = function () {
-            return actEventsByTime;
-        };
-
-        ActivityLogService.updateActivityEvent = function (planId, actEvent) {
-            return Restangular.restangularizeElement(null, actEvent, 'activitiesPlanned/'+ planId + '/events').put();
-        };
-
-        return ActivityLogService;
-    }
-    ])
-
-    .controller('ActivityLogCtrl', ['$scope', 'ActivityLogService', '$state', 'activityFields',
-        function ($scope, ActivityLogService, $state, activityFields) {
+    .controller('ActivityLogCtrl', ['$scope', 'ActivityService', '$state', 'activityFields',
+        function ($scope, ActivityService, $state, activityFields) {
             $scope.tabs = [
                 // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
                 { title: "nach Datum", content: "partials/cockpit.activitylog.running.html" },
@@ -49,11 +12,12 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
 
             $scope.activityFields = activityFields;
 
-            ActivityLogService.getActPlans().then(function (plans) {
-                $scope.actPlans = plans;
-            });
+            ActivityService.getPlannedActivities({populate: 'joiningUsers events.comments activity',
+                populatedeep: 'events.comments.author'}).then(function (plans) {
+                    $scope.actPlans = plans;
+                    $scope.actEventsByTime = plans.getEventsByTime();
+                });
 
-            $scope.actEventsByTime = ActivityLogService.getActivityHistoryByTime();
 
             $scope.getGlyphiconForExecutionType = function (executionType) {
                 var icon = "";
@@ -114,8 +78,8 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
 
         }])
 
-    .controller('ActivityDoneModalCtrl', ['$rootScope','$scope', '$modal', '$log', 'ActivityLogService', 'principal',
-        function ($rootScope, $scope, $modal, $log, ActivityLogService, principal) {
+    .controller('ActivityDoneModalCtrl', ['$rootScope', '$scope', '$modal', '$log', 'ActivityService', 'principal',
+        function ($rootScope, $scope, $modal, $log, ActivityService, principal) {
 
             $scope.open = function (actEvent, activity, actPlanId) {
 
@@ -147,7 +111,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                         actEvent.comments.push(comment);
                     }
 
-                    ActivityLogService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
+                    ActivityService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
                             $log.info("ActEvent updated: " + JSON.stringify(result));
                         }, function (err) {
                             $log.info("ActEvent update failed: " + err);

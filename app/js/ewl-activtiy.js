@@ -100,6 +100,25 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }
         );
 
+        Restangular.extendCollection('activitiesPlanned', function (actPlanList) {
+            actPlanList.getEventsByTime = function () {
+                var actEventsByTime = [];
+                // create array structured by time
+                for (var i = 0; i < actPlanList.length; i++) {
+                    for (var i2 = 0; i2 < actPlanList[i].events.length; i2++) {
+                        actEventsByTime.push({
+                            event: actPlanList[i].events[i2],
+                            plan: actPlanList[i],
+                            activity: actPlanList[i].activity
+                        });
+                    }
+                }
+
+                return actEventsByTime;
+            };
+            return actPlanList;
+        });
+
         Restangular.extendModel('activities', function (activity) {
 
             activity.getDefaultPlan = function () {
@@ -143,7 +162,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
 
 
-                    return {
+                return {
                     activity: activity,
                     status: 'active',
                     mainEvent: newMainEvent,
@@ -165,7 +184,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
     }])
 
-    .factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', function ($http, Restangular, $q, principal) {
+    .
+    factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', function ($http, Restangular, $q, principal) {
         var activities = Restangular.all('activities');
         var plannedActivities = Restangular.all('activitiesPlanned');
 
@@ -177,9 +197,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             getActivity: function (activityId) {
                 return Restangular.one('activities', activityId).get();
             },
-            getPlannedActivities: function () {
+            getPlannedActivities: function (options) {
                 if (principal.isAuthenticated()) {
-                    return plannedActivities.getList();
+                    return plannedActivities.getList(options);
                 } else {
                     return [];
                 }
@@ -191,16 +211,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     return [];
                 }
 
-            },
-            isActivityPlanned: function (plannedActivities, activityId) {
-                if (typeof (plannedActivities) !== 'undefined') {
-                    for (var i = 0; i < plannedActivities.length; i++) {
-                        if (plannedActivities[i].activity_id === activityId) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
             },
             savePlan: function (plan) {
                 if (plan.id) {
@@ -217,6 +227,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         return err;
                     });
                 }
+            },
+            updateActivityEvent: function (planId, actEvent) {
+                return Restangular.restangularizeElement(null, actEvent, 'activitiesPlanned/' + planId + '/events').put();
             }
         };
 
@@ -370,8 +383,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 {label: 'SUNDAY'}
             ];
 
-            $scope.isActivityPlanned = function (activityId) {
-                return ActivityService.isActivityPlanned(plannedActivities, activityId);
+            $scope.isActivityPlanned = function () {
+                return $scope.currentActivityPlan.id;
             };
 
             $scope.planActivityDone = function () {
