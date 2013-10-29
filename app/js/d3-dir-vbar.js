@@ -11,10 +11,10 @@
                     onClick: "&",
                     options: "="
                 },
-                link: function(scope, iElement, iAttrs) {
+                link: function(scope, iElement) {
 
                     // watch for data changes and re-render
-                    scope.$watch('data', function(newVals, oldVals) {
+                    scope.$watch('data', function(newVals) {
 
                         d3Service.d3().then(function(d3){
 
@@ -26,23 +26,100 @@
 
                     }, true);
 
+                    $rootScope.$watch('windowWidth', function() {
+                        // Browser window width changed, so check if chart needs to be redrawn
+
+                        var currentChild = iElement[0].children[0];
+
+                        if (typeof currentChild !== 'undefined') {
+                            if (typeof scope.svgClientHeight === 'undefined') {
+                                // first time here, so draw it
+                                d3Service.d3().then(function(d3){
+
+                                    $timeout(function () {
+                                        draw(d3, angular.fromJson(scope.data));
+                                    }, 500);
+
+                                });
+                                scope.svgClientHeight = currentChild.clientHeight;
+                                scope.svgClientWidth = currentChild.clientWidth;
+                            } else {
+                                // nth time here
+                                if (scope.svgClientWidth !== currentChild.clientWidth) {
+                                    // width where the chart is drawn has changed, so redraw it
+                                    d3Service.d3().then(function(d3){
+
+                                        $timeout(function () {
+                                            draw(d3, angular.fromJson(scope.data));
+                                        }, 500);
+
+                                    });
+                                    scope.svgClientWidth = currentChild.clientWidth;
+                                }
+                            }
+                        }
+
+                    }, true);
+
+                    $rootScope.$watch('windowHeight', function() {
+                        // Browser window height changed, so check if chart needs to be redrawn
+
+                        var currentChild = iElement[0].children[0];
+
+                        if (typeof currentChild !== 'undefined') {
+                            if (typeof scope.svgClientHeight === 'undefined') {
+                                // first time here, so draw it
+                                d3Service.d3().then(function(d3){
+
+                                    $timeout(function () {
+                                        draw(d3, angular.fromJson(scope.data));
+                                    }, 500);
+
+                                });
+                                scope.svgClientHeight = currentChild.clientHeight;
+                                scope.svgClientWidth = currentChild.clientWidth;
+                            } else {
+                                // nth time here
+                                if (scope.svgClientHeight !== currentChild.clientHeight) {
+                                    // width where the chart is drawn has changed, so redraw it
+                                    d3Service.d3().then(function(d3){
+
+                                        $timeout(function () {
+                                            draw(d3, angular.fromJson(scope.data));
+                                        }, 500);
+
+                                    });
+                                    scope.svgClientHeight = currentChild.clientHeight;
+                                }
+                            }
+                        }
+
+                    }, true);
+
                     // on window resize, re-render d3 canvas
 
 //                    window.onresize = function() {
-//                        return scope.$apply();
+//                        d3Service.d3().then(function(d3){
+//
+//                            $timeout(function () {
+//                                draw(d3, angular.fromJson(scope.data));
+//                            }, 1000);
+//
+//                        });
+//                        return;
 //                    };
 
                     // Redraw the chart if the window is resized
-                    $rootScope.$on('resizeMsg', function (e) {
-
-                        d3Service.d3().then(function(d3){
-
-                            $timeout(function () {
-                                draw(d3, angular.fromJson(scope.data));
-                            }, 1000);
-
-                        });
-                    });
+//                    $rootScope.$on('resizeMsg2', function (e) {
+//
+//                        d3Service.d3().then(function(d3){
+//
+//                            $timeout(function () {
+//                                draw(d3, angular.fromJson(scope.data));
+//                            }, 1000);
+//
+//                        });
+//                    });
 
                     function draw (d3, data) {
 
@@ -320,8 +397,7 @@
                                 .attr("width", 10)
                                 .attr("height", 10)
                                 .style("fill", function(d, i) {
-                                    var color = colors[i];
-                                    return color;
+                                    return colors[i];
                                 });
 
                             legend.selectAll('text')
@@ -334,8 +410,7 @@
                                     return i *  20 + 9;
                                 })
                                 .text(function(d, i) {
-                                    var text = legends[i];
-                                    return text;
+                                    return legends[i];
                                 });
 
                             var layer = gridCanvas.selectAll(".layer")
@@ -380,9 +455,15 @@
         }])
 
         .run(['$rootScope','$window',function ($rootScope, $window) {
-            angular.element($window).bind('resize', function () {
-                $rootScope.$emit('resizeMsg');
+            $rootScope.windowWidth = $window.innerWidth;
+            $rootScope.windowHeight = $window.innerHeight;
+            angular.element($window).bind('resize',function(){
+                $rootScope.windowWidth = $window.innerWidth;
+                $rootScope.windowHeight = $window.innerHeight;
+                $rootScope.$apply('windowWidth');
+                $rootScope.$apply('windowHeight');
             });
+
         }]);
 
 }());
