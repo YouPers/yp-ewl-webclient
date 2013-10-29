@@ -191,8 +191,7 @@
                                 .attr("x", function(d) {
                                     return x(d.x);
                                 })
-                                .attr("width", function(d) {
-                                    var fuck = x.rangeBand();
+                                .attr("width", function() {
                                     return x.rangeBand();
                                 });
                         };
