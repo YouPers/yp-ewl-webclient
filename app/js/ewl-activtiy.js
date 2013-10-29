@@ -43,10 +43,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     access: accessLevels.individual,
                     abstract: true,
                     resolve: {
-                        activity: ['ActivityService','$stateParams', function (ActivityService, $stateParams) {
+                        activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                             return ActivityService.getActivity($stateParams.activityId);
                         }],
-                        plan: ['ActivityService','$stateParams', function (ActivityService, $stateParams) {
+                        plan: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                             return ActivityService.getPlanForActivity($stateParams.activityId, {populate: 'activity'});
                         }]
                     }
@@ -54,13 +54,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 .state('activityDetail.self', {
                     url: "",
                     templateUrl: "partials/activity.detail.self.html",
-                    controller: "ActivityCtrl",
                     access: accessLevels.individual
                 })
                 .state('activityDetail.group', {
                     url: "/group",
                     templateUrl: "partials/activity.detail.group.html",
-                    controller: "ActivityCtrl",
                     access: accessLevels.individual
                 });
         }])
@@ -101,18 +99,19 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         );
 
         Restangular.extendCollection('activitiesPlanned', function (actPlanList) {
-            actPlanList.getEventsByTime = function () {
-                var actEventsByTime = [];
-                // concat array for every plan
-                for (var i = 0; i < actPlanList.length; i++) {
-                    actEventsByTime = actEventsByTime.concat(actPlanList[i].getEventsByTime());
-                }
+                actPlanList.getEventsByTime = function () {
+                    var actEventsByTime = [];
+                    // concat array for every plan
+                    for (var i = 0; i < actPlanList.length; i++) {
+                        actEventsByTime = actEventsByTime.concat(actPlanList[i].getEventsByTime());
+                    }
 
-                return actEventsByTime;
-            };
+                    return actEventsByTime;
+                };
 
-            return actPlanList;
-        });
+                return actPlanList;
+            }
+        );
 
         Restangular.extendModel('activitiesPlanned', function (actPlan) {
             actPlan.getEventsByTime = function () {
@@ -139,8 +138,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     "allDay": false
                 };
                 if (activity.defaultfrequency === 'week') {
-                    newMainEvent.start = moment(now).startOf('hour');
-                    newMainEvent.end = moment(newMainEvent.start).add('h', 1);
+                    newMainEvent.start = moment(now).startOf('hour').toDate();
+                    newMainEvent.end = moment(newMainEvent.start).add('h', 1).toDate();
                     newMainEvent.frequency = 'week';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -150,8 +149,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         every: 1
                     };
                 } else if (activity.defaultfrequency === 'day') {
-                    newMainEvent.start = moment(now).add('d', 1).startOf('hour');
-                    newMainEvent.end = moment(newMainEvent.start).add('h', 1);
+                    newMainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
+                    newMainEvent.end = moment(newMainEvent.start).add('h', 1).toDate();
                     newMainEvent.frequency = 'day';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -161,8 +160,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         every: 1
                     };
                 } else { // default is "once"
-                    newMainEvent.start = moment(now).add('d', 7).startOf('hour');
-                    newMainEvent.end = moment(newMainEvent.start).add('h', 1);
+                    newMainEvent.start = moment(now).add('d', 7).startOf('hour').toDate();
+                    newMainEvent.end = moment(newMainEvent.start).add('h', 1).toDate();
                     newMainEvent.frequency = 'once';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -360,6 +359,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             } else {
                 $scope.currentActivityPlan = $scope.currentActivity.getDefaultPlan();
             }
+
 
             // one time planning using daypicker
             $scope.showWeeks = false;
