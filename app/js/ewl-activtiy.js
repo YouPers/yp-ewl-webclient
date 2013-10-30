@@ -128,6 +128,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 };
                 if (activity.defaultfrequency === 'week') {
                     newMainEvent.start = moment(now).startOf('hour').toDate();
+                    //TODO: rublu: use activity.defaultduration when it is set!
                     newMainEvent.end = moment(newMainEvent.start).add('h', 1).toDate();
                     newMainEvent.frequency = 'week';
                     newMainEvent.recurrence = {

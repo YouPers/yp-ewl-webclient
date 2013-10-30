@@ -46,11 +46,12 @@
             </button>
         </div>
         <div class="col-md-1 control-group">
-            Qualitäts-Faktor</br>
+            Qualitäts-Faktor (1-10)</br>
            <input type="number" min=1 max=10 ng-model="activity.qualityFactor" class="form-control">
         </div>
-        <div class="col-md-2">
-            Qualitäts-Faktor: <br>zwischen 1 und 10
+        <div class="col-md-1 control-group">
+            Benötigte Zeit: <br>
+            <input type="number" min=0 ng-model="activity.defaultduration" class="form-control">
         </div>
 
         <div class="col-md-2 col-md-offset-10">
