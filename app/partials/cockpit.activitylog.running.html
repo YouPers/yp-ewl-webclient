@@ -11,7 +11,7 @@
             </div>
 
             <div class="col-xs-7 col-md-7">
-                <a href="#" class="activity-log title">{{actEvent.activity.title}}</br></a>
+                <a ui-sref="activityDetail({activityId: actEvent.activity.id})" class="activity-log title">{{actEvent.activity.title}}</br></a>
                 {{ actEvent.plan.mainEvent.frequency | uppercase | translate }}&nbsp;|&nbsp;
                 <span popover="{{ actEvent.plan.executionType | uppercase | translate }}" popover-trigger="mouseenter"
                       class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(actEvent.plan.executionType)}}"></span>&nbsp;|&nbsp;

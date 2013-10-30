@@ -41,7 +41,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     templateUrl: "partials/activity.detail.html",
                     controller: "ActivityCtrl",
                     access: accessLevels.individual,
-                    abstract: true,
                     resolve: {
                         activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                             return ActivityService.getActivity($stateParams.activityId);
@@ -50,16 +49,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             return ActivityService.getPlanForActivity($stateParams.activityId, {populate: 'activity'});
                         }]
                     }
-                })
-                .state('activityDetail.self', {
-                    url: "",
-                    templateUrl: "partials/activity.detail.self.html",
-                    access: accessLevels.individual
-                })
-                .state('activityDetail.group', {
-                    url: "/group",
-                    templateUrl: "partials/activity.detail.group.html",
-                    access: accessLevels.individual
                 });
         }])
 
@@ -353,6 +342,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         function ($scope, ActivityService, $timeout, $state, $stateParams, activity, plan) {
 
             $scope.currentActivity = activity;
+            $scope.currentExecutionType = activity.defaultexecutiontype;
 
             if (plan) {
                 $scope.currentActivityPlan = plan;
@@ -418,7 +408,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.activityFields = activityFields;
 
             $scope.gotoActivityDetail = function (activity) {
-                $state.go('activityDetail.' + activity.defaultexecutiontype, {activityId: activity.id});
+                $state.go('activityDetail', {activityId: activity.id});
             };
 
             $scope.setListTab = function (tabId) {
