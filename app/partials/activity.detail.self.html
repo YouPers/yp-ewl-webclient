@@ -83,7 +83,7 @@
                             <select ng-model="currentActivityPlan.weeklyDay"
                                     name="weeklyDay"
                                     id="weeklyDay"
-                                    ng-options="availableDays.indexOf(d) as d.label | translate for d in availableDays"
+                                    ng-options="d.value as d.label | translate for d in availableDays"
                                     class="form-control">
                             </select>
 

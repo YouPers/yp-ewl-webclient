@@ -368,14 +368,29 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             // weekplanning using dayselector
             $scope.availableDays = [
-                {label: 'MONDAY'},
-                {label: 'TUESDAY'},
-                {label: 'WEDNESDAY'},
-                {label: 'THURSDAY'},
-                {label: 'FRIDAY'},
-                {label: 'SATURDAY'},
-                {label: 'SUNDAY'}
+                {label: 'MONDAY', value: "1"},
+                {label: 'TUESDAY', value: "2"},
+                {label: 'WEDNESDAY', value: "3"},
+                {label: 'THURSDAY', value: "4"},
+                {label: 'FRIDAY', value: "5"},
+                {label: 'SATURDAY', value: "6"},
+                {label: 'SUNDAY', value: "0"}
             ];
+
+            function nextWeekday(date, weekday) {
+                var input = moment(date);
+                var output = input.day(weekday);
+                return output > moment(date) ? output : output.add('week', 1);
+            }
+
+
+            $scope.$watch('currentActivityPlan.weeklyDay', function(newValue, oldValue) {
+                var duration = $scope.currentActivityPlan.mainEvent.end - $scope.currentActivityPlan.mainEvent.start;
+                $scope.currentActivityPlan.mainEvent.start = nextWeekday(new Date(), newValue).toDate();
+                $scope.currentActivityPlan.mainEvent.end = moment($scope.currentActivityPlan.mainEvent.start).add(duration);
+            });
+
+
 
             $scope.isActivityPlanned = function () {
                 return $scope.currentActivityPlan.id;
