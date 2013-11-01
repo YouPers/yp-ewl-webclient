@@ -259,9 +259,9 @@
 
                             var colors = ["#FF9900", "#7f981d", "#DC3912"];
 
-                            var color = d3.scale.linear()
-                                .domain([0, (cols.length - 1)])
-                                .range(colors);
+//                            var color = d3.scale.linear()
+//                                .domain([0, (cols.length - 1)])
+//                                .range(colors);
 
                             var xAxis = d3.svg.axis()
                                 .scale(x)
