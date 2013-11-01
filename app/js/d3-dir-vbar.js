@@ -257,10 +257,10 @@
                                 .nice(10)
                                 .range([chartInnerHeight, 0]);
 
-                            var colors = ["#7f981d", "#aec71e"];
+                            var colors = ["#FF9900", "#7f981d", "#DC3912"];
 
                             var color = d3.scale.linear()
-                                .domain([0, (cols.length - 1) - 1])
+                                .domain([0, (cols.length - 1)])
                                 .range(colors);
 
                             var xAxis = d3.svg.axis()
@@ -328,10 +328,14 @@
                                 .data(layers)
                                 .enter().append("g")
                                 .attr("class", "layer")
-                                .style("fill", function(d, i) { return color(i); });
+                                .style("fill", function(d, i) {
+                                    return colors[i];
+                                });
 
                             var rect = layer.selectAll("rect")
-                                .data(function(d) { return d; })
+                                .data(function(d) {
+                                    return d;
+                                })
                                 .enter().append("rect")
                                 .attr("x", function(d) { return x(d.x); })
                                 .attr("y", chartInnerHeight)

@@ -1,41 +1,64 @@
 <div class="list-group activity-log">
 
-    <div class="list-group-item {{getActivityTimeType(actEvent.event.type)}}"
+    <div class="cockpit list-group-item {{getActivityTimeType(actEvent.event.type)}}"
          ng-repeat="actEvent in actEventsByTime | orderBy:'-event.begin'">
         <div class="row">
+            <div class="row activity-log">
 
-            <div class="col-xs-1 col-md-1" ng-controller="ActivityDoneModalCtrl">
-                <button class="btn btn-default" ng-click="open(actEvent.event, actEvent.activity, actEvent.plan.id)">
-                    <span class="glyphicon button-controls glyphicon-{{getGlyphiconStatus(actEvent.event.status)}}"></span>
-                </button>
-            </div>
+                <div class="col-xs-2 col-md-2">
 
-            <div class="col-xs-7 col-md-7">
-                <a ui-sref="activityDetail({activityId: actEvent.activity.id})" class="activity-log title">{{actEvent.activity.title}}</br></a>
-                {{ actEvent.plan.mainEvent.frequency | uppercase | translate }}&nbsp;|&nbsp;
-                <span popover="{{ actEvent.plan.executionType | uppercase | translate }}" popover-trigger="mouseenter"
-                      class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(actEvent.plan.executionType)}}"></span>&nbsp;|&nbsp;
-                <span popover="{{ actEvent.plan.visibility | uppercase | translate }}" popover-trigger="mouseenter"
-                      class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(actEvent.plan.visibility)}}"></span>&nbsp;|&nbsp;
+                    <div class="btn-group btn-group-done-yes-no" ng-controller="ActivityDoneModalCtrl">
+                        <!--<button type="button" class="btn btn-default btn-done-yes-no open cockpit" ng-class="getOpenStatus(actEvent.event.status)" ng-click="setStatus('open')">-->
+                        <!--<span class="glyphicon glyphicon-unchecked"></span> offen-->
+                        <!--</button>-->
+                        <button type="button" class="btn btn-default btn-done-yes-no done cockpit" ng-class="getDoneStatus(actEvent.event.status)" ng-click="open(actEvent.event, actEvent.activity, actEvent.plan.id)">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <!--<span class="glyphicon glyphicon-ok"></span> durchgeführt-->
+                        </button>
+                        <button type="button" class="btn btn-default btn-done-yes-no missed cockpit" ng-class="getMissedStatus(actEvent.event.status)" ng-click="setStatus('missed')">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <!--<span class="glyphicon glyphicon-remove"></span> verpasst-->
+                        </button>
+                    </div>
+                </div>
+                <div class="col-xs-7 col-md-7">
+                    <a ui-sref="activityDetail({activityId: actEvent.activity.id})" class="activity-log title">{{actEvent.activity.title}}</a></br>
+                    {{ actEvent.plan.mainEvent.frequency | uppercase | translate }}&nbsp;,&nbsp;
+                    <span popover="{{ actEvent.plan.executionType | uppercase | translate }}" popover-trigger="mouseenter"
+                          class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(actEvent.plan.executionType)}}"></span>&nbsp;,&nbsp;
+                    <span popover="{{ actEvent.plan.visibility | uppercase | translate }}" popover-trigger="mouseenter"
+                          class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(actEvent.plan.visibility)}}"></span>
+                </div>
 
-                <!--ToDo irig: Popover-Text auslagern und in verschiedenen Sprachen implementieren
-                    $parent is needed because tooltip creates a new child scope, and the attributs commentsShown lives in its parent-->
-                <a href="" ng-click="$parent.commentsShown= !$parent.commentsShown" popover="Kommentare: Zum öffnen bitte anklicken"
-                   popover-trigger="mouseenter" class="glyphicon glyphicon-comment"> </a>
-                <a href="" ng-click="$parent.commentsShown= !$parent.commentsShown" popover="Anzahl Kommentare: Zum öffnen bitte anklicken"
-                   popover-trigger="mouseenter" class="badge">{{actEvent.event.comments.length}}</a>
-
-            </div>
-            <div class="col-xs-2 col-md-2">
-                <div class="activity-feedback-{{actEvent.event.feedback}}-small"></div>
-            </div>
-            <div class="col-xs-2 col-md-2">
-                <div class="activity-log time-box">
+                <div class="col-xs-3 col-md-3">
+                    <div class="activity-log time-box">
                     <span class="activity-log time-box timestamp">
-                        {{actEvent.event.begin | fromNow}}</br>
-                        {{actEvent.event.begin | time }} - {{actEvent.event.end | time }}
+                        {{actEvent.event.begin | fromNow}}</br>{{actEvent.event.begin | time | stripUhr }} - {{actEvent.event.end | time | stripUhr  }}
                     </span>
 
+                    </div>
+                </div>
+
+            </div>
+            <div class="row activity-log">
+                <div class="col-xs-2 col-md-2">
+                </div>
+                <div class="col-xs-8 col-md-8">
+                    <!--ToDo irig: Popover-Text auslagern und in verschiedenen Sprachen implementieren
+                        $parent is needed because tooltip creates a new child scope, and the attributs commentsShown lives in its parent-->
+                    <div class="btn-group btn-group-done-yes-no" popover="Kommentare: Zum öffnen bitte anklicken"
+                         popover-trigger="mouseenter">
+                        <!--<button type="button" class="btn btn-default btn-comments cockpit" ng-click="$parent.commentsShown= !$parent.commentsShown">-->
+                            <!--Kommentare: {{actEvent.event.comments.length}}-->
+                        <!--</button>-->
+                        <a href="" ng-click="$parent.commentsShown= !$parent.commentsShown">
+                            Kommentare: {{actEvent.event.comments.length}}
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-xs-2 col-md-2">
+                    <div class="activity-feedback-{{actEvent.event.feedback}}-small"></div>
                 </div>
             </div>
         </div>

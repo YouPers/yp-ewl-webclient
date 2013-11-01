@@ -23,13 +23,33 @@
 @youpers-brand-colors-tertiary:  #4a5d14;
 @youpers-brand-colors-bright:    #cef73e;
 
-@youpers-brand-colors-blue-primary: rgba(66,139,202, 1);
+@youpers-brand-colors-blue-primary: #4684EE;
 
 @youpers-brand-colors-page-background-highlighted: #eeeeee;
 @youpers-brand-colors-page-background-normal: #ffffff;
-@youpers-brand-colors-cockpit-background: #eeeeee;
-@youpers-brand-colors-cockpit-section-title: rgb(248, 184, 120);
-//@youpers-brand-colors-cockpit-section-title: rgb(248, 221, 9);
+
+//@youpers-brand-colors-cockpit-background: #eeeeee;
+//@youpers-brand-colors-cockpit: rgb(248, 184, 120);
+//@youpers-brand-colors-cockpit: rgb(248, 221, 9);
+@youpers-brand-colors-cockpit-r01: #a71d0f;
+@youpers-brand-colors-cockpit-r02: #DC3912;
+@youpers-brand-colors-cockpit-r03: #ff6700;
+@youpers-brand-colors-cockpit-r04: #FF9900;
+@youpers-brand-colors-cockpit-y01: rgb(248, 224, 27);
+@youpers-brand-colors-cockpit-y02: rgba(248, 224, 27, 0.5);
+@youpers-brand-colors-cockpit-b01: #3369e8;
+@youpers-brand-colors-cockpit-g01: @youpers-brand-colors-tertiary;
+@youpers-brand-colors-cockpit-g02: @youpers-brand-colors-secondary;
+@youpers-brand-colors-cockpit-g03: @youpers-brand-colors-primary;
+
+
+@youpers-brand-colors-yellow-element: #FF9900;
+@youpers-brand-colors-red-element: #DC3912;
+@youpers-brand-colors-dark-red-element: #c63310;
+@youpers-brand-colors-blue-element: #4684EE;
+@youpers-brand-colors-green-element: @youpers-brand-colors-secondary;
+
+
 @youpers-brand-colors-font-inversed: #ffffff;
 @youpers-brand-colors-border: #cccccc;
 @youpers-brand-colors-border-rgba: rgba(0, 0, 0, 0.15);
@@ -274,6 +294,45 @@ fieldset[disabled] .btn-success.active {
   padding-bottom: 20px;
   width: 80%;
 }
+
+//
+// Buttons for yes/no on activity log
+// ----------------------------------
+
+.btn-group-done-yes-no {
+//  margin-left: 15px;
+  margin-bottom: 7px;
+}
+
+.btn-done-yes-no {
+  padding: 1px 3px 1px;
+  width: 30px;
+}
+
+.btn-comments,
+.btn-comments.active {
+  margin-top: 10px;
+  padding: 1px 5px 1px;
+  width: 110px;
+  text-align: left;
+}
+
+.cockpit.btn-done-yes-no.done.active {
+//  background-color : rgba(127, 152, 29, 0.49);
+  color: #ffffff;
+  background-color : @youpers-brand-colors-cockpit-g02;
+  box-shadow: inset 0 3px 5px @youpers-brand-colors-cockpit-g01;
+}
+
+.cockpit.btn-done-yes-no.open.active {
+  background-color : rgba(255, 150, 0, 0.49);
+}
+
+.cockpit.btn-done-yes-no.missed.active {
+  background-color : rgba(220, 57, 18, 0.49);
+  box-shadow: inset 0 3px 5px @youpers-brand-colors-cockpit-r03;
+}
+
 
 .goalSettingDialog {
   position: absolute;
@@ -728,14 +787,59 @@ input[type="range"].answered::-ms-thumb {
 
 
 // cockpit styles
+.cockpit-tab > a,
+a.activity-log.title,
+.social-log.author-name,
+a.social-log.comment {
+  color: @youpers-brand-colors-cockpit-r01;
+}
+
 .container.cockpit {
 //  background-color: @youpers-brand-colors-cockpit-background;
 }
 
-.panel.cockpit {
-  background-color: @youpers-brand-colors-cockpit-background;
+.btn-primary.cockpit {
+  color: #000000;
+  background-color:  @youpers-brand-colors-cockpit-r04;
+  border-color: @youpers-brand-colors-cockpit-r02;
+}
 
-  margin-left: -6px;
+.btn-primary.cockpit:hover,
+.btn-primary.cockpit:focus,
+.btn-primary.cockpit:active,
+.btn-primary.cockpit.active {
+  color: #ffffff;
+  background-color: @youpers-brand-colors-cockpit-r02;
+  border-color: @youpers-brand-colors-cockpit-r01;
+}
+
+.btn.cockpit {
+  border-radius: 0px;
+}
+
+.btn.cockpit:active,
+.btn.cockpit.active {
+  background-image: none;
+  outline: 0;
+  box-shadow: inset 0 3px 5px @youpers-brand-colors-cockpit-r03;
+}
+
+.btn-default.cockpit {
+  border-color: @youpers-brand-colors-cockpit-r02;
+}
+.btn-default.cockpit:hover,
+.btn-default.cockpit:focus,
+btn-default.cockpit:active, .btn-default.cockpit.active {
+  background-color: @youpers-brand-colors-cockpit-r04;
+  border-color: @youpers-brand-colors-cockpit-r02;
+}
+
+.panel.cockpit {
+//  background-color: @youpers-brand-colors-cockpit-background;
+  border: 1px solid;
+  border-color: @youpers-brand-colors-cockpit-y01;
+
+  margin-left: -5px;
 //  margin-right: -15px;
   border-radius: 0px;
   padding-left: 5px;
@@ -744,10 +848,12 @@ input[type="range"].answered::-ms-thumb {
 }
 
 .panel.cockpit.section-title {
-  background-color: @youpers-brand-colors-cockpit-section-title;
+  background-color: @youpers-brand-colors-cockpit-y01;
   font-size: @youpers-font-size-3;
   font-family: @youpers-brand-font-family;
   line-height: 40px;
+  box-shadow: 0 0px 0px @youpers-brand-colors-cockpit-y02;
+  border: 0px;
 }
 
 .cockpit.section-title {
@@ -757,12 +863,37 @@ input[type="range"].answered::-ms-thumb {
 //  margin: 50px;
 }
 
+.cockpit.list-group-item {
+  border: 1px solid;
+  border-radius: 0px;
+  border-color: @youpers-brand-colors-cockpit-y01;
+}
+
+
+.cockpit-tabs .nav-tabs {
+  border-bottom: 1px solid @youpers-brand-colors-cockpit-r02;
+}
+
+.nav-tabs > li.cockpit-tab > a {
+  border: 1px solid transparent;
+  border-radius: 0px;
+}
+
+.nav-tabs > li.cockpit-tab > a:hover {
+  background-color: @youpers-brand-colors-cockpit-r04;
+}
+
+.nav-tabs > li.cockpit-tab.active > a {
+  border:  1px solid @youpers-brand-colors-cockpit-r02;
+  border-bottom-color: transparent;
+  border-radius: 0px;
+}
+
 .cockpit.assessment,
 .cockpit.new-activity,
 .cockpit.detail-charts {
   position: relative;
   float: right;
-//  margin-top: 5px;
   margin-right: 5px;
   z-index: 100;
 }
@@ -779,6 +910,7 @@ input[type="range"].answered::-ms-thumb {
 .list-group-item {
   background-color: @youpers-brand-colors-page-background-normal;
   border: 1px solid @youpers-brand-colors-page-background-highlighted;
+  padding: 5px 5px;
 }
 
 .list-group-item:hover,
@@ -846,8 +978,8 @@ input[type="range"].answered::-ms-thumb {
   margin-left: @social-log-title-indent;
 }
 
-@activity-log-indent: 7px;
-@activity-log-title-indent: 0px;
+@activity-log-indent: 15px;
+@activity-log-title-indent: 15px;
 
 .social-log.feedback-box {
   margin-left: @activity-log-title-indent;
@@ -879,14 +1011,19 @@ input[type="range"].answered::-ms-thumb {
 //  cursor: pointer;
 }
 
+.row.activity-log {
+  margin-left: 0px;
+}
 .activity-log.title {
-//  margin-left: -@activity-log-indent;
-  margin-left: 0;
+//  margin-left: 30px;
+//  padding-top: 40px;
+//  margin-left: 0;
 }
 
 .social-log.title,
 .activity-log.title {
   font-size: @youpers-font-size-6;
+
   font-weight:600;
 }
 
@@ -914,6 +1051,7 @@ input[type="range"].answered::-ms-thumb {
 .activity-log.time-box {
   float: right;
   margin-top: 1px;
+  margin-right: 8px;
   position: relative;
 }
 
@@ -970,10 +1108,10 @@ input[type="range"].answered::-ms-thumb {
 .activity-feedback-3-small,
 .activity-feedback-4-small,
 .activity-feedback-5-small {
-  margin-top: 3px;
-  background-image: url(../assets/img/runtastic.png);
-  width: 30px;
-  height: 30px;
+  margin-top: 13px;
+  background-image: url(../assets/img/rt.png);
+  width: 20px;
+  height: 20px;
 }
 
 .activity-feedback-5 {
@@ -985,7 +1123,7 @@ input[type="range"].answered::-ms-thumb {
 }
 
 .activity-feedback-5-small {
-  background-position: 0px -3807px;
+  background-position: 0px -177px;
 }
 
 .activity-feedback-4 {
@@ -997,7 +1135,7 @@ input[type="range"].answered::-ms-thumb {
 }
 
 .activity-feedback-4-small {
-  background-position: 0px -3305px;
+  background-position: 0px -117px;
 }
 
 .activity-feedback-3 {
@@ -1009,7 +1147,7 @@ input[type="range"].answered::-ms-thumb {
 }
 
 .activity-feedback-3-small {
-  background-position: 0px -4923px;
+  background-position: 0px -257px;
 }
 
 .activity-feedback-2 {
@@ -1021,7 +1159,7 @@ input[type="range"].answered::-ms-thumb {
 }
 
 .activity-feedback-2-small {
-  background-position: 0px -3696px;
+  background-position: 0px -137px;
 }
 
 .activity-feedback-1 {
@@ -1033,7 +1171,7 @@ input[type="range"].answered::-ms-thumb {
 }
 
 .activity-feedback-1-small {
-  background-position: 0px -3149px;
+  background-position: 0px -157px;
 }
 
 [ng-cloak] {
@@ -1042,6 +1180,9 @@ input[type="range"].answered::-ms-thumb {
 
 .glyphicon.controls {
   color: @youpers-brand-colors-tertiary;
+  margin-top: 4px;
+  margin-right: 8px;
+  float: right;
 }
 
 .glyphicon.button-controls {
@@ -1184,13 +1325,13 @@ pre{
 }
 
 .youpers-gauge.simple .needle {
-  fill         :  #dc3912;
-  stroke       :  #c63310;
+  fill         :  @youpers-brand-colors-red-element;
+  stroke       :  @youpers-brand-colors-dark-red-element;
   fill-opacity :  0.7;
 }
 
 .youpers-gauge.simple .needle-container {
-  fill         :  #4684EE;
+  fill         :  @youpers-brand-colors-blue-element;
   stroke       :  #666;
   fill-opacity :  1;
 }
@@ -1201,15 +1342,15 @@ pre{
 }
 
 .youpers-gauge.simple .green-zone {
-  fill : @youpers-brand-colors-secondary;
+  fill : @youpers-brand-colors-green-element;
 }
 
 .youpers-gauge.simple .yellow-zone {
-  fill :  #FF9900;
+  fill :  @youpers-brand-colors-yellow-element;
 }
 
 .youpers-gauge.simple .red-zone {
-  fill :  #DC3912;
+  fill :  @youpers-brand-colors-red-element;
 }
 
 // disable spinner for input type number in chrome

@@ -1351,33 +1351,39 @@ mock.activitystats = {};
 mock.activitystats.yearly =
 {"cols": [
     {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
+    {"id": "open-id", "label": "offen", "type": "number"},
     {"id": "done-id", "label": "durchgeführt", "type": "number"},
     {"id": "missed-id", "label": "verpasst", "type": "number"}
 ], "rows": [
     {"c": [
         {"v": "Allgemein"},
         {"v": 182, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+        {"v": 91, "f": "Alle geplanten Aktivitäten durchgeführt!"},
         {"v": 22}
     ]},
     {"c": [
         {"v": "Fitness"},
-        {"v": 510, "f": "Vorbildiche Fitness!"},
+        {"v": 205, "f": "Vorbildiche Fitness!"},
+        {"v": 102, "f": "Vorbildiche Fitness!"},
         {"v": 51, "f": "Möglicherweise wolltest du zuviel?"}
     ]},
     {"c": [
         {"v": "Konsum"},
+        {"v": 48, "f": "Weiter so!"},
         {"v": 96, "f": "Weiter so!"},
         {"v": 22, "f": "Weniger ist oft mehr..."}
 
     ]},
     {"c": [
         {"v": "Wohlbefinden"},
+        {"v": 21},
         {"v": 16},
         {"v": 8}
 
     ]},
     {"c": [
         {"v": "Behandlungen"},
+        {"v": 42},
         {"v": 12},
         {"v": 2}
 
@@ -1387,35 +1393,41 @@ mock.activitystats.yearly =
 mock.activitystats.monthly =
 {"cols": [
     {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
+    {"id": "open-id", "label": "offen", "type": "number"},
     {"id": "done-id", "label": "durchgeführt", "type": "number"},
     {"id": "missed-id", "label": "verpasst", "type": "number"}
 ], "rows": [
     {"c": [
         {"v": "Allgemein"},
         {"v": 18, "f": "Alle geplanten Aktivitäten durchgeführt!"},
-        {"v": 0}
+        {"v": 9, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+        {"v": 4}
     ]},
     {"c": [
         {"v": "Fitness"},
         {"v": 50, "f": "Vorbildiche Fitness!"},
+        {"v": 25, "f": "Vorbildiche Fitness!"},
         {"v": 5, "f": "Möglicherweise wolltest du zuviel?"}
     ]},
     {"c": [
         {"v": "Konsum"},
         {"v": 24, "f": "Weiter so!"},
+        {"v": 12, "f": "Weiter so!"},
         {"v": 12, "f": "Weniger ist oft mehr..."}
 
     ]},
     {"c": [
         {"v": "Wohlbefinden"},
-        {"v": 4},
-        {"v": 8}
+        {"v": 11},
+        {"v": 8},
+        {"v": 4}
 
     ]},
     {"c": [
         {"v": "Behandlungen"},
-        {"v": 2},
-        {"v": 0}
+        {"v": 22},
+        {"v": 11},
+        {"v": 1}
 
     ]}
 ]};
@@ -1423,35 +1435,41 @@ mock.activitystats.monthly =
 mock.activitystats.weekly =
 {"cols": [
     {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
+    {"id": "open-id", "label": "offen", "type": "number"},
     {"id": "done-id", "label": "durchgeführt", "type": "number"},
     {"id": "missed-id", "label": "verpasst", "type": "number"}
 ], "rows": [
     {"c": [
         {"v": "Allgemein"},
-        {"v": 9, "f": "Alle geplanten Aktivitäten durchgeführt!"},
-        {"v": 0}
+        {"v": 19, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+        {"v": 14, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+        {"v": 3}
     ]},
     {"c": [
         {"v": "Fitness"},
         {"v": 25, "f": "Vorbildiche Fitness!"},
+        {"v": 12, "f": "Vorbildiche Fitness!"},
         {"v": 5, "f": "Möglicherweise wolltest du zuviel?"}
     ]},
     {"c": [
         {"v": "Konsum"},
         {"v": 12, "f": "Weiter so!"},
-        {"v": 12, "f": "Weniger ist oft mehr..."}
+        {"v": 8, "f": "Weiter so!"},
+        {"v": 4, "f": "Weniger ist oft mehr..."}
 
     ]},
     {"c": [
         {"v": "Wohlbefinden"},
-        {"v": 2},
-        {"v": 8}
+        {"v": 8},
+        {"v": 4},
+        {"v": 1}
 
     ]},
     {"c": [
         {"v": "Behandlungen"},
-        {"v": 2},
-        {"v": 0}
+        {"v": 12},
+        {"v": 6},
+        {"v": 2}
 
     ]}
 ]};

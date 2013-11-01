@@ -6,7 +6,8 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
         function ($scope, ActivityService, $state, activityFields) {
             $scope.tabs = [
                 // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
-                { title: "nach Datum", content: "partials/cockpit.activitylog.running.html" },
+                { title: "nächste", content: "partials/cockpit.activitylog.running.html" },
+                { title: "vergangene", content: "partials/cockpit.activitylog.running.html" },
                 { title: "Geplante Aktivitäten", content: "partials/cockpit.activitylog.planned.html" }
             ];
 
@@ -18,11 +19,11 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 $scope.actPlans = [$scope.currentActivityPlan];
                 $scope.actEventsByTime = $scope.currentActivityPlan.getEventsByTime();
             } else {
-            ActivityService.getPlannedActivities({populate: 'joiningUsers events.comments activity',
-                populatedeep: 'events.comments.author'}).then(function (plans) {
-                    $scope.actPlans = plans;
-                    $scope.actEventsByTime = plans.length > 0 ? plans.getEventsByTime() : [];
-                });
+                ActivityService.getPlannedActivities({populate: 'joiningUsers events.comments activity',
+                    populatedeep: 'events.comments.author'}).then(function (plans) {
+                        $scope.actPlans = plans;
+                        $scope.actEventsByTime = plans.length > 0 ? plans.getEventsByTime() : [];
+                    });
             }
 
             $scope.getGlyphiconForExecutionType = function (executionType) {
@@ -82,7 +83,46 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 return icon;
             };
 
+            $scope.getOpenStatus = function (status) {
+                if (status === "open") {
+                    return "active";
+                } else {
+                    return "";
+                }
+            };
+
+            $scope.getDoneStatus = function (status) {
+                if (status === "done") {
+                    return "active";
+                } else {
+                    return "";
+                }
+            };
+
+            $scope.getMissedStatus = function (status) {
+                if (status === "missed") {
+                    return "active";
+                } else {
+                    return "";
+                }
+            };
+
+            $scope.setStatus = function (status) {
+                if (status === "missed") {
+                    return "active";
+                } else {
+                    return "";
+                }
+            };
+
         }])
+
+    // Hack, um den String "Uhr" aus den generierten Zeiten zu entfernen
+    .filter('stripUhr', function () {
+        return function (input) {
+            return input.replace("Uhr", "");
+        };
+    })
 
     .controller('ActivityDoneModalCtrl', ['$rootScope', '$scope', '$modal', '$log', 'ActivityService', 'principal',
         function ($rootScope, $scope, $modal, $log, ActivityService, principal) {
