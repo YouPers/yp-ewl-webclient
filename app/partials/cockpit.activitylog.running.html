@@ -8,9 +8,11 @@
                 <div class="col-xs-2 col-md-2">
 
                     <div class="btn-group btn-group-done-yes-no" ng-controller="ActivityDoneModalCtrl">
+
                         <!--<button type="button" class="btn btn-default btn-done-yes-no open cockpit" ng-class="getOpenStatus(actEvent.event.status)" ng-click="setStatus('open')">-->
                         <!--<span class="glyphicon glyphicon-unchecked"></span> offen-->
                         <!--</button>-->
+
                         <button type="button" class="btn btn-default btn-done-yes-no done cockpit" ng-class="getDoneStatus(actEvent.event.status)" ng-click="open(actEvent.event, actEvent.activity, actEvent.plan.id)">
                             <span class="glyphicon glyphicon-ok"></span>
                             <!--<span class="glyphicon glyphicon-ok"></span> durchgeführt-->
