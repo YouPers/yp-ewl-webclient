@@ -126,10 +126,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 var newMainEvent = {
                     "allDay": false
                 };
+                var duration = activity.defaultduration ? activity.defaultduration : 60;
                 if (activity.defaultfrequency === 'week') {
                     newMainEvent.start = moment(now).startOf('hour').toDate();
-                    //TODO: rublu: use activity.defaultduration when it is set!
-                    newMainEvent.end = moment(newMainEvent.start).add('h', 1).toDate();
+                    newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                     newMainEvent.frequency = 'week';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -140,7 +140,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     };
                 } else if (activity.defaultfrequency === 'day') {
                     newMainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
-                    newMainEvent.end = moment(newMainEvent.start).add('h', 1).toDate();
+                    newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                     newMainEvent.frequency = 'day';
                     newMainEvent.recurrence = {
                         "end-by": {
@@ -151,7 +151,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     };
                 } else { // default is "once"
                     newMainEvent.start = moment(now).add('d', 7).startOf('hour').toDate();
-                    newMainEvent.end = moment(newMainEvent.start).add('h', 1).toDate();
+                    newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                     newMainEvent.frequency = 'once';
                     newMainEvent.recurrence = {
                         "end-by": {
