@@ -2,23 +2,23 @@ var mock = {};
 
 mock.recommendations = [
     {
-        "activity": "5268e8bca8bae500000000b1",
+        "activity": "5278c04ed24d2df20d000006",
         "weight": 1
     },
     {
-        "activity": "5268e8bca8bae500000000b2",
+        "activity": "5278c04ed24d2df20d000007",
         "weight": 1
     },
     {
-        "activity": "5268e8bca8bae500000000b4",
+        "activity": "5278c04ed24d2df20d000008",
         "weight": 4.2
     },
     {
-        "activity": "5268e8bca8bae50000000076",
+        "activity": "5278c04ed24d2df20d000009",
         "weight": 7.12
     },
     {
-        "activity": "5268e8bca8bae50000000078",
+        "activity": "5278c04ed24d2df20d000010",
         "weight": 11.400000000000002
     }
 ];
@@ -33,7 +33,7 @@ mock.plannedActivities = [
             "field": [
                 "TimeManagement"
             ],
-            "id": "525d88c58d8a1dc841000013",
+            "id": "5278c04ed24d2df20d000006",
             "number": "Act-19",
             "source": "community",
             "title": "Lese ein Buch zum Thema „persönliches Zeitmanagement“ oder erkundige dich im Internet",
@@ -180,7 +180,7 @@ mock.plannedActivities = [
                 "Relaxation",
                 "LeisureActivity"
             ],
-            "id": "525d88c68d8a1dc841000064",
+            "id": "5278c04ed24d2df20d000007",
             "number": "Act-100",
             "source": "community",
             "title": "Besuche ein Humorfestival",
@@ -788,7 +788,7 @@ mock.users = [
 mock.activityComments = [
     {
         "id": "1",
-        "ref_obj_id": "1",
+        "ref_obj_id": "5278c04ed24d2df20d000006",
         "ref_obj": "activity",
         "author": {
             "_id": "525fb247101e330000000005",
@@ -874,7 +874,7 @@ mock.activityComments = [
     },
     {
         "id": "2",
-        "ref_obj_id": "1",
+        "ref_obj_id": "5278c04ed24d2df20d000007",
         "ref_obj": "activity",
         "author": {
             "avatar": "assets/img/SMUE.jpeg",
@@ -942,7 +942,7 @@ mock.activityComments = [
     },
     {
         "id": "3",
-        "ref_obj_id": "1",
+        "ref_obj_id": "5278c04ed24d2df20d000009",
         "ref_obj": "activity",
         "author": {
             "avatar": "assets/img/SMUE.jpeg",
