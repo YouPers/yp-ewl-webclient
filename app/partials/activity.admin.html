@@ -39,7 +39,9 @@
             <button class="btn btn-default btn-sm" ng-model="activity.source" btn-radio="'youpers'">Kampagne</button>
             <button class="btn btn-default btn-sm" ng-model="activity.source" btn-radio="'campaign'">privat</button>
         </div>
-        <div class="btn-group col-md-6">
+        <div class="col-md-6"><textarea type="text" class="form-control" ng-model="activity.text"></textarea></div>
+
+        <div class="btn-group col-md-4">
             Aktivitäts-Felder</br>
             <button class="btn btn-default btn-sm" ng-repeat="(fieldId, fieldName) in activityFields"
                     ng-model="actFieldsModel[fieldId]" btn-checkbox>{{fieldName}}
@@ -58,6 +60,7 @@
             <button class="btn btn-default" ng-click="cancel()">cancel</button>
             <button class="btn btn-success" ng-click="save()">save</button>
         </div>
+
     </div>
     <div class="row activity-admin-matrix">
         <div class="col-md-12">

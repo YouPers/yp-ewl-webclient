@@ -5,7 +5,7 @@
     <h1>Plane diese Aktivität: {{ currentActivity.number }}</h1>
 </div>
     <div class="page-header" ng-if="isActivityPlanned()">
-        <h1>Geplante Aktivität - heute schon ausgeführt?  {{ currentActivity.number }}</h1>
+        <h1>Aktivität ist eingeplant</h1>
     </div>
 <div class="container">
 
@@ -16,7 +16,7 @@
 
 
         <div class="col-md-8">
-            <p>{{ currentActivity.title }}</p>
+            <p>{{ currentActivity.number }}: {{ currentActivity.title }}</p>
 
         </div>
         <div class="col-md-4">
@@ -26,6 +26,11 @@
             <a href="">(34)</a>
         </div>
 
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ currentActivity.text }}
+        </div>
     </div>
     <!-- activityProposal Description and overall Rating -->
 
@@ -141,6 +146,7 @@
     </div>
 </div>
 <div class="col-md-6" ng-controller="ActivityLogCtrl" ng-if="isActivityPlanned()">
+    <div>In persönlichen Kalender eintragen: <a href="{{ getiCalUrl() }}" class="btn btn-sm btn-primary">iCal</a></div>
     <div ng-include="'partials/cockpit.activitylog.running.html'"></div>
 </div>
 
