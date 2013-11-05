@@ -189,12 +189,17 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', function ($http, Restangular, $q, principal) {
         var activities = Restangular.all('activities');
         var plannedActivities = Restangular.all('activitiesPlanned');
+        var cachedActivitiesPromise;
 
         var actService = {
             getActivities: function () {
-                return activities.getList({limit: 1000});
+                // we assume, that activities are static / will not be changed on the server within a
+                // reasonable timeframe, therefore we cache it on the client as long as the page is not refreshed
+                if (!cachedActivitiesPromise) {
+                    cachedActivitiesPromise = activities.getList({limit: 1000});
+                }
+                return cachedActivitiesPromise;
             },
-
             getActivity: function (activityId) {
                 return Restangular.one('activities', activityId).get();
             },
@@ -246,6 +251,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             updateActivityEvent: function (planId, actEvent) {
                 return Restangular.restangularizeElement(null, actEvent, 'activitiesPlanned/' + planId + '/events').put();
+            },
+            getiCalUrl: function (planId) {
+                return Restangular.one('activitiesPlanned', planId).getRestangularUrl() + '/ical.ics';
             }
         };
 
@@ -264,7 +272,18 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 allRatings = true,
                 allExecutiontypes = true,
                 subSetAll = true,
-                ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'];
+                ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'],
+                durationMapping = function(duration) {
+                    if (duration < 15) {
+                        return 't15';
+                    } else if (duration <=30) {
+                        return 't30';
+                    }  else if (duration <= 60) {
+                        return 't60';
+                    } else {
+                        return 'more';
+                    }
+                };
 
             // if we do not get a query, we return the full set of answers
             if (!query) {
@@ -289,7 +308,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
             });
 
-            angular.forEach(query.times, function (value, key) {
+            angular.forEach(query.time, function (value, key) {
                 if (value) {
                     allTimes = false;
                 }
@@ -316,7 +335,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         (allRatings || query.rating[ratingsMapping[activity.rating]]
                             ) &&
                         (allExecutiontypes || query.executiontype[activity.defaultexecutiontype]) &&
-                        (allTimes || query.time[activity.time]
+                        (allTimes || !activity.defaultduration || query.time[durationMapping(activity.defaultduration)]
                             ) &&
                         (subSetAll || (query.subset === 'campaign' && activity.isCampaign) ||
                             (query.subset === 'recommendations' && activity.isRecommended)) &&
@@ -384,13 +403,16 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }
 
 
-            $scope.$watch('currentActivityPlan.weeklyDay', function(newValue, oldValue) {
+            $scope.$watch('currentActivityPlan.weeklyDay', function (newValue, oldValue) {
                 var duration = $scope.currentActivityPlan.mainEvent.end - $scope.currentActivityPlan.mainEvent.start;
                 $scope.currentActivityPlan.mainEvent.start = nextWeekday(new Date(), newValue).toDate();
                 $scope.currentActivityPlan.mainEvent.end = moment($scope.currentActivityPlan.mainEvent.start).add(duration);
             });
 
+            $scope.getiCalUrl = function () {
+                return ActivityService.getiCalUrl($scope.currentActivityPlan.id);
 
+            };
 
             $scope.isActivityPlanned = function () {
                 return $scope.currentActivityPlan.id;
