@@ -397,15 +397,18 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             ];
 
             function nextWeekday(date, weekday) {
+                if (!weekday) {
+                    return date;
+                }
                 var input = moment(date);
                 var output = input.day(weekday);
-                return output > moment(date) ? output : output.add('week', 1);
+                return output > moment(date) ? output.toDate() : output.add('week', 1).toDate();
             }
 
 
             $scope.$watch('currentActivityPlan.weeklyDay', function (newValue, oldValue) {
                 var duration = $scope.currentActivityPlan.mainEvent.end - $scope.currentActivityPlan.mainEvent.start;
-                $scope.currentActivityPlan.mainEvent.start = nextWeekday(new Date(), newValue).toDate();
+                $scope.currentActivityPlan.mainEvent.start = nextWeekday(new Date(), newValue);
                 $scope.currentActivityPlan.mainEvent.end = moment($scope.currentActivityPlan.mainEvent.start).add(duration);
             });
 
