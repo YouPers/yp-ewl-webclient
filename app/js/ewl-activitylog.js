@@ -79,7 +79,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 } else {
                     return "'-event.begin'";
                 }
-            }
+            };
 
             $scope.getActivityTimeType = function (status) {
                 var icon = "";
