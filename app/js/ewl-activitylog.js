@@ -6,8 +6,8 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
         function ($scope, ActivityService, $state, activityFields) {
             $scope.tabs = [
                 // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
-                { title: "nächste", content: "partials/cockpit.activitylog.running.html" },
-                { title: "vergangene", content: "partials/cockpit.activitylog.running.html" },
+                { title: "nächste", content: "partials/cockpit.activitylog.running.html", orderBy: "asc", filter: "nextEvents" },
+                { title: "vergangene", content: "partials/cockpit.activitylog.running.html", orderBy: "des", filter: "passedEvents" },
                 { title: "Geplante Aktivitäten", content: "partials/cockpit.activitylog.planned.html" }
             ];
 
@@ -58,6 +58,28 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
             $scope.gotoActivityList = function () {
                 $state.go('activitylist');
             };
+
+            $scope.setFilter = function (filter) {
+                $scope.activityFilter = filter;
+            };
+
+            $scope.setOrderBy = function (orderBy) {
+                $scope.activityOrderBy = orderBy;
+            };
+
+            $scope.getFilter = function () {
+                return $scope.activityFilter;
+            };
+
+            $scope.getOrderBy = function () {
+                if ($scope.activityOrderBy === "asc") {
+                    return "'event.begin'";
+                } else if ($scope.activityOrderBy === "des") {
+                    return "'-event.begin'";
+                } else {
+                    return "'-event.begin'";
+                }
+            }
 
             $scope.getActivityTimeType = function (status) {
                 var icon = "";
@@ -116,6 +138,51 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
             };
 
         }])
+
+    .filter('nextEvents', function () {
+        return function (input) {
+            var onlyPassed = [];
+            for (var i = 0; i < input.length; i++) {
+                if (input[i].event.status === "done" ||
+                    input[i].event.status === "missed") {
+                    onlyPassed.push(input[i]);
+                }
+            }
+            return onlyPassed;
+        };
+    })
+
+    .filter('filterEvents', function () {
+        return function (input, filter) {
+            var filteredEvents = [];
+            var currentTimeStamp = new Date();
+            var currentDate = new Date(
+                currentTimeStamp.getFullYear(),
+                currentTimeStamp.getMonth(),
+                currentTimeStamp.getDate());
+            currentDate = new Date(2013, 9,20);
+            if (typeof filter === 'undefined') {
+                return input;
+            }
+            if (filter !== "passedEvents" &&
+                filter !== "nextEvents") {
+                return input;
+            }
+            for (var i = 0; i < input.length; i++) {
+                var eventBeginnDate = new Date(input[i].event.begin);
+                if (filter === "passedEvents" &&
+                    eventBeginnDate < currentDate) {
+                    filteredEvents.push(input[i]);
+                } else if (filter === "nextEvents" &&
+                    eventBeginnDate >= currentDate) {
+                    filteredEvents.push(input[i]);
+
+                }
+            }
+
+            return filteredEvents;
+        };
+    })
 
     // Hack, um den String "Uhr" aus den generierten Zeiten zu entfernen
     .filter('stripUhr', function () {

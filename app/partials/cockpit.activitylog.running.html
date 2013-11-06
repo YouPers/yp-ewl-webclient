@@ -1,7 +1,7 @@
 <div class="list-group activity-log">
 
     <div class="cockpit list-group-item {{getActivityTimeType(actEvent.event.type)}}"
-         ng-repeat="actEvent in actEventsByTime | orderBy:'-event.begin'">
+         ng-repeat="actEvent in actEventsByTime | orderBy: getOrderBy() | filterEvents: getFilter()">
         <div class="row">
             <div class="row activity-log">
 

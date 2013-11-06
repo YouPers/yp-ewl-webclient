@@ -8,22 +8,22 @@
 <div class="container cockpit">
 <div class="row">
     <div class="col-md-6">
-        <div class="panel cockpit">
-            <div class="panel cockpit section-title">
-                Massgeschneiderte Vorschläge
-            </div>
-            <div class="row">
-                <div class="col-xs-9 col-md-9">
-                    <p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur
-                        Stressreduktion vorzuschlagen. </p>
-                </div>
-                <div class="col-xs-3 col-md-3">
-                    <p><a class="cockpit assessment btn btn-primary" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >{{"TO_THE_ASSESSMENT" | translate }} &raquo;</a>
-                    </p>
-                </div>
-            </div>
+        <!--<div class="panel cockpit">-->
+            <!--<div class="panel cockpit section-title">-->
+                <!--Massgeschneiderte Vorschläge-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<div class="col-xs-9 col-md-9">-->
+                    <!--<p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur-->
+                        <!--Stressreduktion vorzuschlagen. </p>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 col-md-3">-->
+                    <!--<p><a class="cockpit assessment btn btn-primary" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >{{"TO_THE_ASSESSMENT" | translate }} &raquo;</a>-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
 
-        </div>
+        <!--</div>-->
 
         <div class="panel cockpit">
 
@@ -106,6 +106,7 @@
                         <tabset class="cockpit-tabs">
                             <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
                                  disabled="tab.disabled" class="cockpit-tab">
+                                <OPTION ng-selected="setFilter(tab.filter); setOrderBy(tab.orderBy)"></OPTION>
                                 <div ng-include="tab.content"></div>
                             </tab>
                         </tabset>
