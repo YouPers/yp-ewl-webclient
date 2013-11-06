@@ -77,7 +77,45 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Zeitaufwand</h3>
 
+                <div class="container panel panel-default">
+                    <div class="checkbox filter-option"
+                         ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
+                        <label>
+                            <input type="checkbox" value="" ng-model="query.time.t15">
+                            &lt; 15 min
+                        </label>
+                    </div>
+                    <div class="checkbox filter-option"
+                         ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
+                        <label>
+                            <input type="checkbox" value="" ng-model="query.time.t30">
+                            15 - 30 min
+                        </label>
+                    </div>
+                    <div class="checkbox filter-option"
+                         ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
+                        <label>
+                            <input type="checkbox" value="" ng-model="query.time.t60">
+                            30 min - 1 Stunde
+                        </label>
+                    </div>
+                    <div class="checkbox filter-option"
+                         ng-class="query.time.more ? 'filter-option-active' : 'filter-option-inactive'">
+                        <label>
+                            <input type="checkbox" value="" ng-model="query.time.more">
+                            mehr als 1 Stunde
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <h3>Rating</h3>
@@ -121,45 +159,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Zeitaufwand</h3>
 
-                <div class="container panel panel-default">
-                    <div class="checkbox filter-option"
-                         ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.time.t15">
-                            &lt; 15 Minuten
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.time.t30">
-                            &lt; 30 Minuten
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.time.t60">
-                            &lt; 1 Stunde
-                        </label>
-                    </div>
-                    <div class="checkbox filter-option"
-                         ng-class="query.time.more ? 'filter-option-active' : 'filter-option-inactive'">
-                        <label>
-                            <input type="checkbox" value="" ng-model="query.time.more">
-                            mehr als 1 Stunde
-                        </label>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
     </div>
     <!-- die eigentliche Liste -->
     <div class="col-md-10" ng-hide="query.subset=='recommendations' && !hasRecommendations">
