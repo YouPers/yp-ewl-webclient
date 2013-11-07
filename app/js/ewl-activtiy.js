@@ -36,10 +36,17 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }]
                     }
                 })
-                .state('activityDetail', {
+                .state('detail', {
                     url: "/activities/:activityId",
-                    templateUrl: "partials/activity.detail.html",
-                    controller: "ActivityCtrl",
+                    views: {
+                        '': {
+                            template: "="
+                        },
+                        modal: {
+                            templateUrl: "partials/activity.detail.html",
+                            controller: "ActivityDetailCtrl"
+                        }
+                    },
                     access: accessLevels.individual,
                     resolve: {
                         activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
@@ -358,8 +365,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         };
     }])
 
-    .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan',
-        function ($scope, ActivityService, $timeout, activity, plan) {
+    .controller('ActivityDetailCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan', '$state', '$rootScope',
+        function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope) {
 
             $scope.currentActivity = activity;
             $scope.currentExecutionType = activity.defaultexecutiontype;
@@ -421,14 +428,17 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 return $scope.currentActivityPlan.id;
             };
 
+            $scope.planActivityCancel = function () {
+                $state.go('activitylist');
+            };
+
             $scope.planActivityDone = function () {
                 ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
-                    $scope.$emit('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
-                    $scope.$state.go('cockpit');
+                    $rootScope.$broadcast('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
+                    $state.go('activitylist');
                 }, function (err) {
                     console.log(JSON.stringify(err));
-                    $scope.$emit('globalUserMsg', 'Aktivität nicht gespeichert, Code: ' + err, 'danger', '5000');
-
+                    $rootScope.$broadcast('globalUserMsg', 'Aktivität nicht gespeichert, Code: ' + err, 'danger', '5000');
                 });
             };
         }])
@@ -449,7 +459,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.activityFields = activityFields;
 
             $scope.gotoActivityDetail = function (activity) {
-                $scope.$state.go('activityDetail', {activityId: activity.id});
+                $scope.$state.go('detail', {activityId: activity.id});
             };
 
             $scope.setListTab = function (tabId) {

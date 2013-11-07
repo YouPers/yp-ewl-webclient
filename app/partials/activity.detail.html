@@ -1,168 +1,183 @@
-<div class="container">
-
-<!-- Page header  -->
-<div class="page-header" ng-if="!isActivityPlanned()">
-    <h1>Plane diese Aktivität: {{ currentActivity.number }}</h1>
+<div class="modal-header">
+    <h3>Plane diese Aktivität: {{ currentActivity.number }}</h3>
 </div>
-    <div class="page-header" ng-if="isActivityPlanned()">
-        <h1>Aktivität ist eingeplant</h1>
-    </div>
-<div class="container">
+<div class="modal-body">
 
-<div class="row">
-<div class="col-md-6 panel panel-default">
+    <div class="container">
 
-    <div class="row">    <!-- Activity Description and overall Rating -->
+        <div class="row">
+            <div class="col-md-6 panel panel-default">
+
+                <div class="row">    <!-- Activity Description and overall Rating -->
 
 
-        <div class="col-md-8">
-            <p>{{ currentActivity.number }}: {{ currentActivity.title }}</p>
+                    <div class="col-md-8">
+                        <p>{{ currentActivity.number }}: {{ currentActivity.title }}</p>
 
-        </div>
-        <div class="col-md-4">
-            <p>3453 mal geplant<br/>
-                2320 mal ausgeführt</p>
-            <rating max="5" value="currentActivity.rating"></rating>
-            <a href="">(34)</a>
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            {{ currentActivity.text }}
-        </div>
-    </div>
-    <!-- activityProposal Description and overall Rating -->
-
-    <div class="row"> <!-- Kommentare für Activity -->
-        <div class="col-md-12" ng-controller="CommentCtrl">
-
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>Kommentare</h2>
-                </div>
-                <div class="col-md-6">
-                    <a class="activity-social-comment-link" href=""
-                       ng-click="threads.showNewThread = !threads.showNewThread">neuer
-                        Kommentar</a>
-                </div>
-            </div>
-            <div class="row activity-social-content">
-                <div class="col-md-12">
-
-                    <div class="row social-thread" ng-show="threads.showNewThread">
-                        <div class="social-thread-header">
-                            <a href="">
-                                <img ng-src="{{ principal.getUser().avatar }}" class="avatar-icon"/>
-                                <strong class="fullname">{{ principal.getUser().fullname }}</strong>
-                            </a>
-                            <span class="thread-time"> </span>
-                        </div>
-                        <div class="social-thread-text">
-                            <form ng-submit="submitNewThread(threads)">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" ng-model="threads.newThread">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
-                            </span>
-                                </div>
-                            </form>
-                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <p>3453 mal geplant<br/>
+                            2320 mal ausgeführt</p>
+                        <rating max="5" value="currentActivity.rating"></rating>
+                        <a href="">(34)</a>
                     </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ currentActivity.text }}
+                    </div>
+                </div>
+                <!-- activityProposal Description and overall Rating -->
 
-                    <div class="row social-thread" ng-repeat="thread in threads">
-                        <div class="social-thread-header">
-                            <a href="{{ thread.author.link }}">
-                                <img ng-src="{{ thread.author.avatar }}" class="avatar-icon"/>
-                                <strong class="fullname">{{ thread.author.fullname }}</strong>
-                            </a>
-                            <span class="thread-time">{{ thread.date | fromNow}}</span>
-                        </div>
-                        <div class="social-thread-text">
-                            {{ thread.text }}
-                        </div>
-                        <div class="social-thread-footer">
-                            <a href="" ng-click="thread.showComments = !thread.showComments">{{ thread.comments.length +
-                                '
-                                Kommentare' }}</a>
-                            <span class="thread-activities"><a href=""
-                                                            ng-click="thread.showComments = !thread.showComments">kommentieren</a></span>
-                        </div>
-                        <div class="container" ng-show="thread.showComments">
-                            <div class="row social-thread" ng-repeat="comment in thread.subcomments">
-                                <div class="social-thread-header">
-                                    <a href="{{ comment.author.link }}">
-                                        <img ng-src="{{ comment.author.avatar }}" class="avatar-icon"/>
-                                        <strong class="fullname">{{ comment.author.fullname }}</strong>
-                                    </a>
-                                    <span class="thread-time">{{ comment.date | fromNow}}</span>
-                                </div>
-                                <div class="social-thread-text">
-                                    {{ comment.text }}
-                                </div>
-                                <div class="social-thread-footer">
-                                </div>
+                <div class="row"> <!-- Kommentare für Activity -->
+                    <div class="col-md-12" ng-controller="CommentCtrl">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Kommentare</h2>
                             </div>
-                            <div class="row social-thread">
-                                <div class="social-thread-header">
-                                    <a href="#/u/RBLU">
-                                        <img ng-src="{{ principal.getUser().avatar }}" class="avatar-icon"/>
-                                        <strong class="fullname">{{ principal.getUser().fullname }}</strong>
-                                    </a>
-                                    <span class="thread-time"> </span>
-                                </div>
-                                <form ng-submit="submitNewComment(thread)">
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" ng-model="thread.newComment">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
-                            </span>
+                            <div class="col-md-6">
+                                <a class="activity-social-comment-link" href=""
+                                   ng-click="threads.showNewThread = !threads.showNewThread">neuer
+                                    Kommentar</a>
+                            </div>
+                        </div>
+                        <div class="row activity-social-content">
+                            <div class="col-md-12">
+
+                                <div class="row social-thread" ng-show="threads.showNewThread">
+                                    <div class="social-thread-header">
+                                        <a href="">
+                                            <img ng-src="{{ principal.getUser().avatar }}" class="avatar-icon"/>
+                                            <strong class="fullname">{{ principal.getUser().fullname }}</strong>
+                                        </a>
+                                        <span class="thread-time"> </span>
                                     </div>
-                                </form>
-                            </div>
+                                    <div class="social-thread-text">
+                                        <form ng-submit="submitNewThread(threads)">
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" ng-model="threads.newThread">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                            </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
 
+
+                                <div class="row social-thread" ng-repeat="thread in threads">
+                                    <div class="social-thread-header">
+                                        <a href="{{ thread.author.link }}">
+                                            <img ng-src="{{ thread.author.avatar }}" class="avatar-icon"/>
+                                            <strong class="fullname">{{ thread.author.fullname }}</strong>
+                                        </a>
+                                        <span class="thread-time">{{ thread.date | fromNow}}</span>
+                                    </div>
+                                    <div class="social-thread-text">
+                                        {{ thread.text }}
+                                    </div>
+                                    <div class="social-thread-footer">
+                                        <a href="" ng-click="thread.showComments = !thread.showComments">{{
+                                            thread.comments.length +
+                                            '
+                                            Kommentare' }}</a>
+                            <span class="thread-activities"><a href=""
+                                                               ng-click="thread.showComments = !thread.showComments">kommentieren</a></span>
+                                    </div>
+                                    <div class="container" ng-show="thread.showComments">
+                                        <div class="row social-thread" ng-repeat="comment in thread.subcomments">
+                                            <div class="social-thread-header">
+                                                <a href="{{ comment.author.link }}">
+                                                    <img ng-src="{{ comment.author.avatar }}" class="avatar-icon"/>
+                                                    <strong class="fullname">{{ comment.author.fullname }}</strong>
+                                                </a>
+                                                <span class="thread-time">{{ comment.date | fromNow}}</span>
+                                            </div>
+                                            <div class="social-thread-text">
+                                                {{ comment.text }}
+                                            </div>
+                                            <div class="social-thread-footer">
+                                            </div>
+                                        </div>
+                                        <div class="row social-thread">
+                                            <div class="social-thread-header">
+                                                <a href="#/u/RBLU">
+                                                    <img ng-src="{{ principal.getUser().avatar }}" class="avatar-icon"/>
+                                                    <strong class="fullname">{{ principal.getUser().fullname }}</strong>
+                                                </a>
+                                                <span class="thread-time"> </span>
+                                            </div>
+                                            <form ng-submit="submitNewComment(thread)">
+                                                <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control"
+                                                           ng-model="thread.newComment">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                            </span>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+            <!-- Einplanung, falls noch nicht geplant -->
+            <div class="col-md-6" ng-if="!isActivityPlanned()">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li ng-class="{active: currentExecutionType=='self'}">
+                            <a href="" ng-click="currentExecutionType='self'">Selber planen</a>
+                        </li>
+                        <li ng-class="{active: currentExecutionType=='group'}">
+                            <a href="" ng-click="currentExecutionType='group'">Bei andern mitmachen</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content yp-activity-planning-tab" ng-include="'partials/activity.detail.self.html'"
+                         ng-show="currentExecutionType=='self'"></div>
+                    <div class="tab-content yp-activity-planning-tab" ng-include="'partials/activity.detail.group.html'"
+                         ng-show="currentExecutionType=='group'"></div>
+                </div>
+            </div>
+            <div class="col-md-6" ng-controller="ActivityLogCtrl" ng-if="isActivityPlanned()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>Du hast diese Aktivität eingeplant: {{ currentActivityPlan.mainEvent.frequency
+                            | translate}}
+                        </div>
+                        <div>erstmals am: {{ currentActivityPlan.mainEvent.start | fromNow }}</div>
+                    </div>
+                    <div class="col-md-6">In persönlichen Kalender eintragen: <a href="{{ getiCalUrl() }}"
+                                                                                 class="btn btn-sm btn-primary">iCal</a>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Nächste Ausführungen:</h3>
+                    </div>
+                </div>
+                <div ng-include="'partials/cockpit.activitylog.running.html'"></div>
+
+            </div>
+
         </div>
     </div>
-
 </div>
-<!-- Einplanung, falls noch nicht geplant -->
-<div class="col-md-6" ng-if="!isActivityPlanned()">
-    <div class="tabbable">
-        <ul class="nav nav-tabs">
-            <li ng-class="{active: currentExecutionType=='self'}">
-                <a href="" ng-click="currentExecutionType='self'">Selber planen</a>
-            </li>
-            <li ng-class="{active: currentExecutionType=='group'}">
-                <a href="" ng-click="currentExecutionType='group'">Bei andern mitmachen</a>
-            </li>
-        </ul>
-        <div class="tab-content yp-activity-planning-tab" ng-include="'partials/activity.detail.self.html'" ng-show="currentExecutionType=='self'"></div>
-        <div class="tab-content yp-activity-planning-tab" ng-include="'partials/activity.detail.group.html'" ng-show="currentExecutionType=='group'"></div>
-    </div>
-</div>
-<div class="col-md-6" ng-controller="ActivityLogCtrl" ng-if="isActivityPlanned()">
-    <div class="row">
-    <div class="col-md-6">
-        <div>Du hast diese Aktivität eingeplant: {{ currentActivityPlan.mainEvent.frequency | translate}}</div>
-        <div>erstmals am: {{ currentActivityPlan.mainEvent.start | fromNow }}</div>
-    </div>
-    <div class="col-md-6">In persönlichen Kalender eintragen: <a href="{{ getiCalUrl() }}" class="btn btn-sm btn-primary">iCal</a>
-    </div>
-
-
-    </div>
-    <div class="row"><div class="col-md-12">
-        <h3>Nächste Ausführungen:</h3>
-    </div></div>
-    <div ng-include="'partials/cockpit.activitylog.running.html'"></div>
-
-</div>
-
-</div>
-</div>
+<div class="modal-footer">
+        <div>
+            <button type="button" ng-click="planActivityCancel()" class="btn btn-default">
+                abbrechen
+            </button>
+            <button type="button" ng-click="planActivityDone()" class="btn btn-primary">
+                einplanen!
+            </button>
+        </div>
 </div>

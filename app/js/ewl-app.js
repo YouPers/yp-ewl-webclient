@@ -61,8 +61,8 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
  * - highlighting global menu option according to currently active state
  * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope',  '$state', '$stateParams', '$timeout', 'principal',
-        function ($scope, $state, $stateParams, $timeout, principal) {
+    .controller('MainCtrl', ['$scope',  '$state', '$stateParams', '$timeout', 'principal', '$log',
+        function ($scope, $state, $stateParams, $timeout, principal, $log) {
 
             $scope.$state = $state;
             $scope.$stateParams = $stateParams;
@@ -97,9 +97,84 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 }
             });
 
+            $scope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+                $scope.$broadcast('globalUserMsg', 'error during state transition from ' + fromState.name + ' to ' + toState.name + ": " + error.data || error.message, 'warning');
+                $log.error("error during state transition" + error.data);
+            });
+
             $scope.closeUserMsg = function () {
                 $scope.globalUserMsg = null;
             };
 
 
-        }]);
+        }])
+
+    .directive('myModal', [
+        '$modal', '$state', function($modal, $state) {
+
+            // Link function
+            //
+            return function(scope, elem, attr) {
+                var lastParams, lastState, modalInstance;
+
+                /*
+                 These will be populated when modal is shown, and be reset
+                 when the modal dismisses.
+                 */
+                lastState = null;
+                lastParams = null;
+                modalInstance = null;
+
+
+                scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+                    var dismiss, m;
+
+                    // Entering "detail" state...
+                    //
+                    if (toState.name === 'detail') {
+
+                        /*
+                         If we get here from another "detail" page or from a direct link,
+                         don't open a new modalInstance.
+                         Just let ui-router update ui-view!
+                         */
+                        if (fromState.name === 'detail' || fromState.name === '') {
+                            return;
+                        }
+
+
+                        elem.html(''); // Remove the ui-view we put inside my-modal.
+
+
+                        lastState = fromState;
+                        lastParams = fromParams;
+                        modalInstance = $modal.open({
+                            template: '<div ui-view="modal"></div>',
+                            windowClass: 'editModal'
+                        });
+                        dismiss = function() {
+                            var p, s;
+
+                            if (modalInstance) { // If not resetted yet
+                                s = lastState;
+                                p = lastParams;
+                                modalInstance = lastState = lastParams = null; // Reset!
+                                $state.go(s, p); // Do state transition
+                            }
+                        };
+                        return modalInstance.result.then(dismiss, dismiss);
+
+                        // Leaving the detail state...
+                        //
+                    } else if (fromState.name === 'detail') {
+                        if (modalInstance) { // If not resetted yet
+                            m = modalInstance;
+                            modalInstance = lastState = lastParams = null; // Reset!
+                            m.dismiss();  // Do dismission
+                        }
+                    }
+                });
+            };
+        }
+    ]);
+

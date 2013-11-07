@@ -62,7 +62,7 @@
     <!-- endbuild -->
     <script>
         angular.module('ypconfig', [])
-                .constant('ypconfig', < %= JSON.stringify(config) % >
+                .constant('ypconfig', <%= JSON.stringify(config) %>
         )
         ;
     </script>
@@ -83,7 +83,9 @@
     </alert>
 
     <div ui-view></div>
-
+    <div my-modal>
+        <div ui-view="modal"></div>
+    </div>
     <ng-include src="'partials/footer.html'"></ng-include>
 
 </body>

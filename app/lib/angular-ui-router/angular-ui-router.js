@@ -1,9 +1,15 @@
 /**
  * State-based routing for AngularJS
- * @version v0.0.2-dev-2013-08-26
+ * @version v0.2.0-dev-2013-11-07
  * @link http://angular-ui.github.com/
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
+
+/* commonjs package manager support (eg componentjs) */
+if (typeof module !== "undefined" && typeof exports !== "undefined" && module.exports === exports){
+  module.exports = 'ui.router';
+}
+
 (function (window, angular, undefined) {
 /*jshint globalstrict:true*/
 /*global angular:false*/
@@ -22,15 +28,6 @@ function inherit(parent, extra) {
   return extend(new (extend(function() {}, { prototype: parent }))(), extra);
 }
 
-/**
- * Extends the destination object `dst` by copying all of the properties from the `src` object(s)
- * to `dst` if the `dst` object has no own property of the same name. You can specify multiple
- * `src` objects.
- *
- * @param {Object} dst Destination object.
- * @param {...Object} src Source object(s).
- * @see angular.extend
- */
 function merge(dst) {
   forEach(arguments, function(obj) {
     if (obj !== dst) {
@@ -90,6 +87,222 @@ angular.module('ui.router.router', ['ui.router.util']);
 angular.module('ui.router.state', ['ui.router.router', 'ui.router.util']);
 angular.module('ui.router', ['ui.router.state']);
 angular.module('ui.router.compat', ['ui.router']);
+
+
+/**
+ * Service (`ui-util`). Manages resolution of (acyclic) graphs of promises.
+ * @module $resolve
+ * @requires $q
+ * @requires $injector
+ */
+$Resolve.$inject = ['$q', '$injector'];
+function $Resolve(  $q,    $injector) {
+  
+  var VISIT_IN_PROGRESS = 1,
+      VISIT_DONE = 2,
+      NOTHING = {},
+      NO_DEPENDENCIES = [],
+      NO_LOCALS = NOTHING,
+      NO_PARENT = extend($q.when(NOTHING), { $$promises: NOTHING, $$values: NOTHING });
+  
+
+  /**
+   * Studies a set of invocables that are likely to be used multiple times.
+   *      $resolve.study(invocables)(locals, parent, self)
+   * is equivalent to
+   *      $resolve.resolve(invocables, locals, parent, self)
+   * but the former is more efficient (in fact `resolve` just calls `study` internally).
+   * See {@link module:$resolve/resolve} for details.
+   * @function
+   * @param {Object} invocables
+   * @return {Function}
+   */
+  this.study = function (invocables) {
+    if (!isObject(invocables)) throw new Error("'invocables' must be an object");
+    
+    // Perform a topological sort of invocables to build an ordered plan
+    var plan = [], cycle = [], visited = {};
+    function visit(value, key) {
+      if (visited[key] === VISIT_DONE) return;
+      
+      cycle.push(key);
+      if (visited[key] === VISIT_IN_PROGRESS) {
+        cycle.splice(0, cycle.indexOf(key));
+        throw new Error("Cyclic dependency: " + cycle.join(" -> "));
+      }
+      visited[key] = VISIT_IN_PROGRESS;
+      
+      if (isString(value)) {
+        plan.push(key, [ function() { return $injector.get(value); }], NO_DEPENDENCIES);
+      } else {
+        var params = $injector.annotate(value);
+        forEach(params, function (param) {
+          if (param !== key && invocables.hasOwnProperty(param)) visit(invocables[param], param);
+        });
+        plan.push(key, value, params);
+      }
+      
+      cycle.pop();
+      visited[key] = VISIT_DONE;
+    }
+    forEach(invocables, visit);
+    invocables = cycle = visited = null; // plan is all that's required
+    
+    function isResolve(value) {
+      return isObject(value) && value.then && value.$$promises;
+    }
+    
+    return function (locals, parent, self) {
+      if (isResolve(locals) && self === undefined) {
+        self = parent; parent = locals; locals = null;
+      }
+      if (!locals) locals = NO_LOCALS;
+      else if (!isObject(locals)) {
+        throw new Error("'locals' must be an object");
+      }       
+      if (!parent) parent = NO_PARENT;
+      else if (!isResolve(parent)) {
+        throw new Error("'parent' must be a promise returned by $resolve.resolve()");
+      }
+      
+      // To complete the overall resolution, we have to wait for the parent
+      // promise and for the promise for each invokable in our plan.
+      var resolution = $q.defer(),
+          result = resolution.promise,
+          promises = result.$$promises = {},
+          values = extend({}, locals),
+          wait = 1 + plan.length/3,
+          merged = false;
+          
+      function done() {
+        // Merge parent values we haven't got yet and publish our own $$values
+        if (!--wait) {
+          if (!merged) merge(values, parent.$$values); 
+          result.$$values = values;
+          result.$$promises = true; // keep for isResolve()
+          resolution.resolve(values);
+        }
+      }
+      
+      function fail(reason) {
+        result.$$failure = reason;
+        resolution.reject(reason);
+      }
+      
+      // Short-circuit if parent has already failed
+      if (isDefined(parent.$$failure)) {
+        fail(parent.$$failure);
+        return result;
+      }
+      
+      // Merge parent values if the parent has already resolved, or merge
+      // parent promises and wait if the parent resolve is still in progress.
+      if (parent.$$values) {
+        merged = merge(values, parent.$$values);
+        done();
+      } else {
+        extend(promises, parent.$$promises);
+        parent.then(done, fail);
+      }
+      
+      // Process each invocable in the plan, but ignore any where a local of the same name exists.
+      for (var i=0, ii=plan.length; i<ii; i+=3) {
+        if (locals.hasOwnProperty(plan[i])) done();
+        else invoke(plan[i], plan[i+1], plan[i+2]);
+      }
+      
+      function invoke(key, invocable, params) {
+        // Create a deferred for this invocation. Failures will propagate to the resolution as well.
+        var invocation = $q.defer(), waitParams = 0;
+        function onfailure(reason) {
+          invocation.reject(reason);
+          fail(reason);
+        }
+        // Wait for any parameter that we have a promise for (either from parent or from this
+        // resolve; in that case study() will have made sure it's ordered before us in the plan).
+        forEach(params, function (dep) {
+          if (promises.hasOwnProperty(dep) && !locals.hasOwnProperty(dep)) {
+            waitParams++;
+            promises[dep].then(function (result) {
+              values[dep] = result;
+              if (!(--waitParams)) proceed();
+            }, onfailure);
+          }
+        });
+        if (!waitParams) proceed();
+        function proceed() {
+          if (isDefined(result.$$failure)) return;
+          try {
+            invocation.resolve($injector.invoke(invocable, self, values));
+            invocation.promise.then(function (result) {
+              values[key] = result;
+              done();
+            }, onfailure);
+          } catch (e) {
+            onfailure(e);
+          }
+        }
+        // Publish promise synchronously; invocations further down in the plan may depend on it.
+        promises[key] = invocation.promise;
+      }
+      
+      return result;
+    };
+  };
+  
+  /**
+   * Resolves a set of invocables. An invocable is a function to be invoked via `$injector.invoke()`,
+   * and can have an arbitrary number of dependencies. An invocable can either return a value directly,
+   * or a `$q` promise. If a promise is returned it will be resolved and the resulting value will be
+   * used instead. Dependencies of invocables are resolved (in this order of precedence)
+   *
+   * - from the specified `locals`
+   * - from another invocable that is part of this `$resolve` call
+   * - from an invocable that is inherited from a `parent` call to `$resolve` (or recursively
+   *   from any ancestor `$resolve` of that parent).
+   *
+   * The return value of `$resolve` is a promise for an object that contains (in this order of precedence)
+   *
+   * - any `locals` (if specified)
+   * - the resolved return values of all injectables
+   * - any values inherited from a `parent` call to `$resolve` (if specified)
+   *
+   * The promise will resolve after the `parent` promise (if any) and all promises returned by injectables
+   * have been resolved. If any invocable (or `$injector.invoke`) throws an exception, or if a promise
+   * returned by an invocable is rejected, the `$resolve` promise is immediately rejected with the same error.
+   * A rejection of a `parent` promise (if specified) will likewise be propagated immediately. Once the
+   * `$resolve` promise has been rejected, no further invocables will be called.
+   * 
+   * Cyclic dependencies between invocables are not permitted and will caues `$resolve` to throw an
+   * error. As a special case, an injectable can depend on a parameter with the same name as the injectable,
+   * which will be fulfilled from the `parent` injectable of the same name. This allows inherited values
+   * to be decorated. Note that in this case any other injectable in the same `$resolve` with the same
+   * dependency would see the decorated value, not the inherited value.
+   *
+   * Note that missing dependencies -- unlike cyclic dependencies -- will cause an (asynchronous) rejection
+   * of the `$resolve` promise rather than a (synchronous) exception.
+   *
+   * Invocables are invoked eagerly as soon as all dependencies are available. This is true even for
+   * dependencies inherited from a `parent` call to `$resolve`.
+   *
+   * As a special case, an invocable can be a string, in which case it is taken to be a service name
+   * to be passed to `$injector.get()`. This is supported primarily for backwards-compatibility with the
+   * `resolve` property of `$routeProvider` routes.
+   *
+   * @function
+   * @param {Object.<string, Function|string>} invocables  functions to invoke or `$injector` services to fetch.
+   * @param {Object.<string, *>} [locals]  values to make available to the injectables
+   * @param {Promise.<Object>} [parent]  a promise returned by another call to `$resolve`.
+   * @param {Object} [self]  the `this` for the invoked methods
+   * @return {Promise.<Object>}  Promise for an object that contains the resolved return value
+   *    of all invocables, as well as any inherited and local values.
+   */
+  this.resolve = function (invocables, locals, parent, self) {
+    return this.study(invocables)(locals, parent, self);
+  };
+}
+
+angular.module('ui.router.util').service('$resolve', $Resolve);
 
 
 /**
@@ -244,7 +457,7 @@ function UrlMatcher(pattern) {
       params = this.params = [];
 
   function addParameter(id) {
-    if (!/^\w+$/.test(id)) throw new Error("Invalid parameter name '" + id + "' in pattern '" + pattern + "'");
+    if (!/^\w+(-+\w+)*$/.test(id)) throw new Error("Invalid parameter name '" + id + "' in pattern '" + pattern + "'");
     if (names[id]) throw new Error("Duplicate parameter name '" + id + "' in pattern '" + pattern + "'");
     names[id] = true;
     params.push(id);
@@ -558,7 +771,7 @@ angular.module('ui.router.router').provider('$urlRouter', $UrlRouterProvider);
 $StateProvider.$inject = ['$urlRouterProvider', '$urlMatcherFactoryProvider', '$locationProvider'];
 function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $locationProvider) {
 
-  var root, states = {}, $state;
+  var root, states = {}, $state, queue = {};
 
   // Builds state properties from definition passed to registerState()
   var stateBuilder = {
@@ -577,7 +790,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
     // inherit 'data' from parent and override by own values (if any)
     data: function(state) {
       if (state.parent && state.parent.data) {
-        state.data = state.self.data = angular.extend({}, state.parent.data, state.data);
+        state.data = state.self.data = extend({}, state.parent.data, state.data);
       }
       return state.data;
     },
@@ -659,14 +872,19 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
       var includes = state.parent ? extend({}, state.parent.includes) : {};
       includes[state.name] = true;
       return includes;
-    }
+    },
+
+    $delegates: {}
   };
 
+  function isRelative(stateName) {
+    return stateName.indexOf(".") === 0 || stateName.indexOf("^") === 0;
+  }
 
   function findState(stateOrName, base) {
     var isStr = isString(stateOrName),
         name  = isStr ? stateOrName : stateOrName.name,
-        path  = name.indexOf(".") === 0 || name.indexOf("^") === 0;
+        path  = isRelative(name);
 
     if (path) {
       if (!base) throw new Error("No reference point given for path '"  + name + "'");
@@ -695,6 +913,12 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
     return undefined;
   }
 
+  function queueState(parentName, state) {
+    if (!queue[parentName]) {
+      queue[parentName] = [];
+    }
+    queue[parentName].push(state);
+  }
 
   function registerState(state) {
     // Wrap a new object around the state so we can store our private details easily.
@@ -706,10 +930,20 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
 
     var name = state.name;
     if (!isString(name) || name.indexOf('@') >= 0) throw new Error("State must have a valid name");
-    if (states[name]) throw new Error("State '" + name + "'' is already defined");
+    if (states.hasOwnProperty(name)) throw new Error("State '" + name + "'' is already defined");
+
+    // Get parent name
+    var parentName = (name.indexOf('.') !== -1) ? name.substring(0, name.lastIndexOf('.'))
+        : (isString(state.parent)) ? state.parent
+        : '';
+
+    // If parent is not registered yet, add state to queue and register later
+    if (parentName && !states[parentName]) {
+      return queueState(parentName, state.self);
+    }
 
     for (var key in stateBuilder) {
-      state[key] = stateBuilder[key](state);
+      if (isFunction(stateBuilder[key])) state[key] = stateBuilder[key](state, stateBuilder.$delegates[key]);
     }
     states[name] = state;
 
@@ -721,6 +955,14 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
         }
       }]);
     }
+
+    // Register any queued children
+    if (queue[name]) {
+      for (var i = 0; i < queue[name].length; i++) {
+        registerState(queue[name][i]);
+      }
+    }
+
     return state;
   }
 
@@ -732,9 +974,27 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
     views: null,
     'abstract': true
   });
-  root.locals = { globals: { $stateParams: {} } };
   root.navigable = null;
 
+
+  // .decorator()
+  // .decorator(name)
+  // .decorator(name, function)
+  this.decorator = decorator;
+  function decorator(name, func) {
+    /*jshint validthis: true */
+    if (isString(name) && !isDefined(func)) {
+      return stateBuilder[name];
+    }
+    if (!isFunction(func) || !isString(name)) {
+      return this;
+    }
+    if (stateBuilder[name] && !stateBuilder.$delegates[name]) {
+      stateBuilder.$delegates[name] = stateBuilder[name];
+    }
+    stateBuilder[name] = func;
+    return this;
+  }
 
   // .state(state)
   // .state(name, state)
@@ -749,12 +1009,23 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
 
   // $urlRouter is injected just to ensure it gets instantiated
   this.$get = $get;
-  $get.$inject = ['$rootScope', '$q', '$view', '$injector', '$stateParams', '$location', '$urlRouter'];
-  function $get(   $rootScope,   $q,   $view,   $injector,   $stateParams,   $location,   $urlRouter) {
+  $get.$inject = ['$rootScope', '$q', '$view', '$injector', '$resolve', '$stateParams', '$location', '$urlRouter'];
+  function $get(   $rootScope,   $q,   $view,   $injector,   $resolve,   $stateParams,   $location,   $urlRouter) {
 
     var TransitionSuperseded = $q.reject(new Error('transition superseded'));
     var TransitionPrevented = $q.reject(new Error('transition prevented'));
+    var TransitionAborted = $q.reject(new Error('transition aborted'));
+    var TransitionFailed = $q.reject(new Error('transition failed'));
+    var currentLocation = $location.url();
 
+    function syncUrl() {
+      if ($location.url() !== currentLocation) {
+        $location.url(currentLocation);
+        $location.replace();
+      }
+    }
+
+    root.locals = { resolve: null, globals: { $stateParams: {} } };
     $state = {
       params: {},
       current: root.self,
@@ -762,27 +1033,71 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
       transition: null
     };
 
+    $state.reload = function reload() {
+      $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: false });
+    };
+
     $state.go = function go(to, params, options) {
       return this.transitionTo(to, params, extend({ inherit: true, relative: $state.$current }, options));
     };
 
     $state.transitionTo = function transitionTo(to, toParams, options) {
-      if (!isDefined(options)) options = (options === true || options === false) ? { location: options } : {};
-      options = extend({ location: true, inherit: false, relative: null }, options);
+      toParams = toParams || {};
+      options = extend({
+        location: true, inherit: false, relative: null, notify: true, reload: false, $retry: false
+      }, options || {});
 
-      var toState = findState(to, options.relative);
-      if (!isDefined(toState)) throw new Error("No such state " + toState);
+      var from = $state.$current, fromParams = $state.params, fromPath = from.path;
+      var evt, toState = findState(to, options.relative);
+
+      if (!isDefined(toState)) {
+        // Broadcast not found event and abort the transition if prevented
+        var redirect = { to: to, toParams: toParams, options: options };
+        evt = $rootScope.$broadcast('$stateNotFound', redirect, from.self, fromParams);
+        if (evt.defaultPrevented) {
+          syncUrl();
+          return TransitionAborted;
+        }
+
+        // Allow the handler to return a promise to defer state lookup retry
+        if (evt.retry) {
+          if (options.$retry) {
+            syncUrl();
+            return TransitionFailed;
+          }
+          var retryTransition = $state.transition = $q.when(evt.retry);
+          retryTransition.then(function() {
+            if (retryTransition !== $state.transition) return TransitionSuperseded;
+            redirect.options.$retry = true;
+            return $state.transitionTo(redirect.to, redirect.toParams, redirect.options);
+          }, function() {
+            return TransitionAborted;
+          });
+          syncUrl();
+          return retryTransition;
+        }
+
+        // Always retry once if the $stateNotFound was not prevented
+        // (handles either redirect changed or state lazy-definition)
+        to = redirect.to;
+        toParams = redirect.toParams;
+        options = redirect.options;
+        toState = findState(to, options.relative);
+        if (!isDefined(toState)) {
+          if (options.relative) throw new Error("Could not resolve '" + to + "' from state '" + options.relative + "'");
+          throw new Error("No such state '" + to + "'");
+        }
+      }
       if (toState['abstract']) throw new Error("Cannot transition to abstract state '" + to + "'");
       if (options.inherit) toParams = inheritParams($stateParams, toParams || {}, $state.$current, toState);
       to = toState;
 
-      var toPath = to.path,
-          from = $state.$current, fromParams = $state.params, fromPath = from.path;
+      var toPath = to.path;
 
       // Starting from the root of the path, keep all levels that haven't changed
       var keep, state, locals = root.locals, toLocals = [];
       for (keep = 0, state = toPath[keep];
-           state && state === fromPath[keep] && equalForKeys(toParams, fromParams, state.ownParams);
+           state && state === fromPath[keep] && equalForKeys(toParams, fromParams, state.ownParams) && !options.reload;
            keep++, state = toPath[keep]) {
         locals = toLocals[keep] = state.locals;
       }
@@ -791,7 +1106,8 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
       // But clear 'transition', as we still want to cancel any other pending transitions.
       // TODO: We may not want to bump 'transition' if we're called from a location change that we've initiated ourselves,
       // because we might accidentally abort a legitimate transition initiated from code?
-      if (to === from && locals === from.locals) {
+      if (to === from && locals === from.locals && !options.reload) {
+        syncUrl();
         $state.transition = null;
         return $q.when($state.current);
       }
@@ -800,8 +1116,13 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
       toParams = normalize(to.params, toParams || {});
 
       // Broadcast start event and cancel the transition if requested
-      var evt = $rootScope.$broadcast('$stateChangeStart', to.self, toParams, from.self, fromParams);
-      if (evt.defaultPrevented) return TransitionPrevented;
+      if (options.notify) {
+        evt = $rootScope.$broadcast('$stateChangeStart', to.self, toParams, from.self, fromParams);
+        if (evt.defaultPrevented) {
+          syncUrl();
+          return TransitionPrevented;
+        }
+      }
 
       // Resolve locals for the remaining states, but don't update any global state just
       // yet -- if anything fails to resolve the current state needs to remain untouched.
@@ -843,6 +1164,9 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
           }
         }
 
+        // Run it again, to catch any transitions in callbacks
+        if ($state.transition !== transition) return TransitionSuperseded;
+
         // Update globals in $state
         $state.$current = to;
         $state.current = to.self;
@@ -854,9 +1178,16 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
         var toNav = to.navigable;
         if (options.location && toNav) {
           $location.url(toNav.url.format(toNav.locals.globals.$stateParams));
+
+          if (options.location === 'replace') {
+            $location.replace();
+          }
         }
 
-        $rootScope.$broadcast('$stateChangeSuccess', to.self, toParams, from.self, fromParams);
+        if (options.notify) {
+          $rootScope.$broadcast('$stateChangeSuccess', to.self, toParams, from.self, fromParams);
+        }
+        currentLocation = $location.url();
 
         return $state.current;
       }, function (error) {
@@ -864,6 +1195,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
 
         $state.transition = null;
         $rootScope.$broadcast('$stateChangeError', to.self, toParams, from.self, fromParams, error);
+        syncUrl();
 
         return $q.reject(error);
       });
@@ -871,37 +1203,71 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
       return transition;
     };
 
-    $state.is = function is(stateOrName) {
+    $state.is = function is(stateOrName, params) {
       var state = findState(stateOrName);
-      return (isDefined(state)) ? $state.$current === state : undefined;
+
+      if (!isDefined(state)) {
+        return undefined;
+      }
+
+      if ($state.$current !== state) {
+        return false;
+      }
+
+      return isDefined(params) ? angular.equals($stateParams, params) : true;
     };
 
-    $state.includes = function includes(stateOrName) {
+    $state.includes = function includes(stateOrName, params) {
       var state = findState(stateOrName);
-      return (isDefined(state)) ? isDefined($state.$current.includes[state.name]) : undefined;
+      if (!isDefined(state)) {
+        return undefined;
+      }
+
+      if (!isDefined($state.$current.includes[state.name])) {
+        return false;
+      }
+
+      var validParams = true;
+      angular.forEach(params, function(value, key) {
+        if (!isDefined($stateParams[key]) || $stateParams[key] !== value) {
+          validParams = false;
+        }
+      });
+      return validParams;
     };
 
     $state.href = function href(stateOrName, params, options) {
-      options = extend({ lossy: true, inherit: false, relative: $state.$current }, options || {});
+      options = extend({ lossy: true, inherit: false, absolute: false, relative: $state.$current }, options || {});
       var state = findState(stateOrName, options.relative);
       if (!isDefined(state)) return null;
 
       params = inheritParams($stateParams, params || {}, $state.$current, state);
       var nav = (state && options.lossy) ? state.navigable : state;
       var url = (nav && nav.url) ? nav.url.format(normalize(state.params, params || {})) : null;
-      return !$locationProvider.html5Mode() && url ? "#" + url : url;
+      if (!$locationProvider.html5Mode() && url) {
+        url = "#" + $locationProvider.hashPrefix() + url;
+      }
+      if (options.absolute && url) {
+        url = $location.protocol() + '://' + 
+              $location.host() + 
+              ($location.port() == 80 || $location.port() == 443 ? '' : ':' + $location.port()) + 
+              (!$locationProvider.html5Mode() && url ? '/' : '') + 
+              url;
+      }
+      return url;
     };
 
     $state.get = function (stateOrName) {
+      if (!isDefined(stateOrName)) {
+        var list = [];
+        forEach(states, function(state) { list.push(state.self); });
+        return list;
+      }
       var state = findState(stateOrName);
       return (state && state.self) ? state.self : null;
     };
 
     function resolveState(state, params, paramsAreFiltered, inherited, dst) {
-      // We need to track all the promises generated during the resolution process.
-      // The first of these is for the fully resolved parent locals.
-      var promises = [inherited];
-
       // Make a restricted $stateParams with only the parameters that apply to this state if
       // necessary. In addition to being available to the controller and onEnter/onExit callbacks,
       // we also need $stateParams to be available for any $injector calls we make during the
@@ -909,56 +1275,39 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
       var $stateParams = (paramsAreFiltered) ? params : filterByKeys(state.params, params);
       var locals = { $stateParams: $stateParams };
 
-      // Resolves the values from an individual 'resolve' dependency spec
-      function resolve(deps, dst) {
-        forEach(deps, function (value, key) {
-          promises.push($q
-            .when(isString(value) ?
-                $injector.get(value) :
-                $injector.invoke(value, state.self, locals))
-            .then(function (result) {
-              dst[key] = result;
-            }));
-        });
-      }
-
       // Resolve 'global' dependencies for the state, i.e. those not specific to a view.
       // We're also including $stateParams in this; that way the parameters are restricted
       // to the set that should be visible to the state, and are independent of when we update
       // the global $state and $stateParams values.
-      var globals = dst.globals = { $stateParams: $stateParams };
-      resolve(state.resolve, globals);
-      globals.$$state = state; // Provide access to the state itself for internal use
+      dst.resolve = $resolve.resolve(state.resolve, locals, dst.resolve, state);
+      var promises = [ dst.resolve.then(function (globals) {
+        dst.globals = globals;
+      }) ];
+      if (inherited) promises.push(inherited);
 
       // Resolve template and dependencies for all views.
       forEach(state.views, function (view, name) {
-        // References to the controller (only instantiated at link time)
-        var _$view = dst[name] = {
-          $$controller: view.controller
-        };
+        var injectables = (view.resolve && view.resolve !== state.resolve ? view.resolve : {});
+        injectables.$template = [ function () {
+          return $view.load(name, { view: view, locals: locals, params: $stateParams, notify: false }) || '';
+        }];
 
-        // Template
-        promises.push($q
-          .when($view.load(name, { view: view, locals: locals, params: $stateParams, notify: false }) || '')
-          .then(function (result) {
-            _$view.$template = result;
-          }));
-
-        // View-local dependencies. If we've reused the state definition as the default
-        // view definition in .state(), we can end up with state.resolve === view.resolve.
-        // Avoid resolving everything twice in that case.
-        if (view.resolve !== state.resolve) resolve(view.resolve, _$view);
+        promises.push($resolve.resolve(injectables, locals, dst.resolve, state).then(function (result) {
+          // References to the controller (only instantiated at link time)
+          if (isFunction(view.controllerProvider) || isArray(view.controllerProvider)) {
+            var injectLocals = angular.extend({}, injectables, locals);
+            result.$$controller = $injector.invoke(view.controllerProvider, null, injectLocals);
+          } else {
+            result.$$controller = view.controller;
+          }
+          // Provide access to the state itself for internal use
+          result.$$state = state;
+          dst[name] = result;
+        }));
       });
 
-      // Once we've resolved all the dependencies for this state, merge
-      // in any inherited dependencies, and merge common state dependencies
-      // into the dependency set for each view. Finally return a promise
-      // for the fully popuplated state dependencies.
+      // Wait for all the promises and then return the activation object
       return $q.all(promises).then(function (values) {
-        merge(dst.globals, values[0].globals); // promises[0] === inherited
-        forEach(state.views, function (view, name) {
-          merge(dst[name], dst.globals);
-        });
         return dst;
       });
     }
@@ -1044,13 +1393,15 @@ function $ViewDirective(   $state,   $compile,   $controller,   $injector,   $an
   var directive = {
     restrict: 'ECA',
     terminal: true,
+    priority: 1000,
     transclude: true,
     compile: function (element, attr, transclude) {
       return function(scope, element, attr) {
         var viewScope, viewLocals,
             name = attr[directive.name] || attr.name || '',
             onloadExp = attr.onload || '',
-            animate = isDefined($animator) && $animator(scope, attr);
+            animate = isDefined($animator) && $animator(scope, attr),
+            initialView = transclude(scope);
 
         // Returns a set of DOM manipulation functions based on whether animation
         // should be performed
@@ -1077,7 +1428,7 @@ function $ViewDirective(   $state,   $compile,   $controller,   $injector,   $an
         };
 
         // Put back the compiled initial view
-        element.append(transclude(scope));
+        element.append(initialView);
 
         // Find the details of the parent view directive (if any) and use it
         // to derive our own qualified view name, then hang our own details
@@ -1103,10 +1454,19 @@ function $ViewDirective(   $state,   $compile,   $controller,   $injector,   $an
         updateView(false);
 
         function updateView(doAnimate) {
-          var locals = $state.$current && $state.$current.locals[name];
-          if (locals === viewLocals) return; // nothing to do
-          var render = renderer(animate && doAnimate);
+              var locals = $state.$current && $state.$current.locals[name];
 
+              // Nothing to do if previous locals is exactly the same as currert locals.
+              if (locals === viewLocals || /* fast-check the obj references */
+                  (locals && viewLocals && /* deep-comparing essential elements */
+                      angular.equals(locals, viewLocals) &&
+                      angular.equals(locals.$$state, viewLocals.$$state) &&
+                      angular.equals(locals.$stateParams, viewLocals.$stateParams)) ) return;
+
+              // Preserving current view and scope if current $template is '='.
+              if (locals && locals.$template === '=') return;
+
+              var render = renderer(animate && doAnimate);
           // Remove existing content
           render.remove(element);
 
@@ -1121,7 +1481,7 @@ function $ViewDirective(   $state,   $compile,   $controller,   $injector,   $an
             view.state = null;
 
             // Restore the initial view
-            return render.restore(transclude(scope), element);
+            return render.restore(initialView, element);
           }
 
           viewLocals = locals;
@@ -1152,7 +1512,7 @@ function $ViewDirective(   $state,   $compile,   $controller,   $injector,   $an
 angular.module('ui.router.state').directive('uiView', $ViewDirective);
 
 function parseStateRef(ref) {
-  var parsed = ref.match(/^([^(]+?)\s*(\((.*)\))?$/);
+  var parsed = ref.replace(/\n/g, " ").match(/^([^(]+?)\s*(\((.*)\))?$/);
   if (!parsed || parsed.length !== 4) throw new Error("Invalid state ref '" + ref + "'");
   return { state: parsed[1], paramExpr: parsed[3] || null };
 }
@@ -1163,15 +1523,21 @@ function $StateRefDirective($state) {
     restrict: 'A',
     link: function(scope, element, attrs) {
       var ref = parseStateRef(attrs.uiSref);
-      var params = null, url = null;
+      var params = null, url = null, base = $state.$current;
       var isForm = element[0].nodeName === "FORM";
       var attr = isForm ? "action" : "href", nav = true;
+
+      var stateData = element.parent().inheritedData('$uiView');
+
+      if (stateData && stateData.state && stateData.state.name) {
+        base = stateData.state;
+      }
 
       var update = function(newVal) {
         if (newVal) params = newVal;
         if (!nav) return;
 
-        var newHref = $state.href(ref.state, params);
+        var newHref = $state.href(ref.state, params, { relative: base });
 
         if (!newHref) {
           nav = false;
@@ -1182,7 +1548,7 @@ function $StateRefDirective($state) {
 
       if (ref.paramExpr) {
         scope.$watch(ref.paramExpr, function(newVal, oldVal) {
-          if (newVal !== oldVal) update(newVal);
+          if (newVal !== params) update(newVal);
         }, true);
         params = scope.$eval(ref.paramExpr);
       }
@@ -1191,8 +1557,10 @@ function $StateRefDirective($state) {
       if (isForm) return;
 
       element.bind("click", function(e) {
-        if ((e.which == 1) && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
-          $state.go(ref.state, params);
+        var button = e.which || e.button;
+
+        if ((button == 1) && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+          $state.go(ref.state, params, { relative: base });
           scope.$apply();
           e.preventDefault();
         }

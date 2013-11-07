@@ -154,6 +154,9 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
 
     .filter('filterEvents', function () {
         return function (input, filter) {
+            if (!input) {
+                return input;
+            }
             var filteredEvents = [];
             var currentTimeStamp = new Date();
             var currentDate = new Date(

@@ -193,7 +193,7 @@
                 {{ activity.defaultexecutiontype | translate }}
                 <div ng-if="principal.getUser().role=='admin'"><a class="btn btn-sm btn-primary"
                                                                   ng-href="{{'/#/activities/'+activity.id + '/admin'}}">admin</a>
-                      Gewicht: {{activity.recWeight}}
+                    Gewicht: {{activity.recWeight}}
                 </div>
             </div>
         </div>
@@ -205,8 +205,10 @@
     <div class="col-md-10" ng-show="query.subset=='recommendations' && !hasRecommendations">
         <div class="row top-buffer">
             <div class="col-md-6 col-md-offset-3 panel panel-default">
-                <h3>Wenn du das Assessment ausfüllst, empfiehlt dir YouPers individuell die für dich passendsten Aktivitäten</h3>
-                <a ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" class="btn btn-primary">zum Assessment</a>
+                <h3>Wenn du das Assessment ausfüllst, empfiehlt dir YouPers individuell die für dich passendsten
+                    Aktivitäten</h3>
+                <a ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" class="btn btn-primary">zum
+                    Assessment</a>
                 <a href="" ng-click="query.subset='all'" class="btn btn-primary">alle Aktivitäten anzeigen</a>
             </div>
         </div>
