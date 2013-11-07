@@ -162,10 +162,12 @@ describe('ewl activity', function () {
          * this is where we're setting up the $scope and
          * calling the controller function on it, injecting
          * all the important bits, like our mockService */
-        beforeEach(inject(function ($rootScope, $controller, $state, $filter) {
+        beforeEach(inject(function ($rootScope, $controller, $state, $stateParams, $filter) {
 
             //create a scope object for us to use.
             $scope = $rootScope.$new();
+            $scope.$state = $state;
+            $scope.$stateParams = $stateParams;
 
             // add activities-methods:
             mock.activities.enrichWithUserData = function(arg1, arg2, arg3, arg4) {

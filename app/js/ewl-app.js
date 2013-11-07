@@ -132,14 +132,14 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
                     // Entering "detail" state...
                     //
-                    if (toState.name === 'detail') {
+                    if (toState.name.indexOf('modal') === 0) {
 
                         /*
                          If we get here from another "detail" page or from a direct link,
                          don't open a new modalInstance.
                          Just let ui-router update ui-view!
                          */
-                        if (fromState.name === 'detail' || fromState.name === '') {
+                        if (fromState.name.indexOf('modal') === 0 || fromState.name === '') {
                             return;
                         }
 
@@ -167,7 +167,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 
                         // Leaving the detail state...
                         //
-                    } else if (fromState.name === 'detail') {
+                    } else if (fromState.name.indexOf('modal') === 0) {
                         if (modalInstance) { // If not resetted yet
                             m = modalInstance;
                             modalInstance = lastState = lastParams = null; // Reset!

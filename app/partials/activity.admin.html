@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="row panel panel-primary activity-admin-toppanel">
+    <div class="row panel panel-primary">
+        <div class="col-md-12"><h3>Admin Edit Activity</h3></div>
         <div class="col-md-1">{{activity.number}}</div>
         <div class="col-md-5"><textarea type="text" class="form-control" ng-model="activity.title"></textarea></div>
 
@@ -49,7 +50,7 @@
         </div>
         <div class="col-md-1 control-group">
             Qualitäts-Faktor (1-10)</br>
-           <input type="number" min=1 max=10 ng-model="activity.qualityFactor" class="form-control">
+            <input type="number" min=1 max=10 ng-model="activity.qualityFactor" class="form-control">
         </div>
         <div class="col-md-1 control-group">
             Benötigte Zeit: <br>
@@ -63,46 +64,52 @@
 
     </div>
     <div class="row activity-admin-matrix">
-        <div class="col-md-12">
-            <h3>Matrix zu AssessmentFragen für Empfehlungen für: {{activity.number}}</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-1">
-            Empfehlung<br>
-            Slider links
-        </div>
-        <div class="col-md-1">
-            Empfehlung <br>
-            Slider rechts
-        </div>
-        <div class="col-md-4 col-md-offset-2 panel panel-danger">
-            Alle Werte zwischen 0 und 10<br>
-            0 = Aktivität nicht empfehlen, 10 = Aktivität empfehlen
-        </div>
-    </div>
-    <div class="row">
-        <div class="container">
+        <div>
             <div class="col-md-12">
-                <div class="row" ng-repeat="cat in assessment.questionCats">
-                    <div class="col-md-12"><h5>{{ cat.category | translate}}</h5>
+                <h3>Matrix zu AssessmentFragen für Empfehlungen für: {{activity.number}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                Empfehlung<br>
+                Slider links
+            </div>
+            <div class="col-md-1">
+                Empfehlung <br>
+                Slider rechts
+            </div>
+            <div class="col-md-4 col-md-offset-2 panel panel-danger">
+                Alle Werte zwischen 0 und 10<br>
+                0 = Aktivität nicht empfehlen, 10 = Aktivität empfehlen
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="row" ng-repeat="cat in assessment.questionCats">
+                        <div class="col-md-12"><h5>{{ cat.category | translate}}</h5>
 
-                        <div class="row  panel panel-default" ng-repeat="question in cat.questions">
-                            <form name="myForm" novalidate>
-                                <div class="col-md-1 control-group" ng-class="{'has-error': myForm.leftWeight.$dirty && myForm.leftWeight.$invalid}">
-                                    <Input type="number" name="leftWeight" min=0 max=10
-                                           ng-model="recWeights[question.id].negativeAnswerWeight" class="form-control actWeightInput">
-                                    {{question.mintext}}
-                                </div>
-                                <div class="col-md-3 col-md-offset-1"><h5>{{question.title}}</h5>
-                                    {{question.midtext}}
-                                </div>
-                                <div class="col-md-1 control-group" ng-class="{'has-error': myForm.rightWeight.$dirty && myForm.rightWeight.$invalid}">
-                                    <Input type="number" name="rightWeight" min=0 max=10
-                                           ng-model="recWeights[question.id].positiveAnswerWeight" class="form-control actWeightInput">
-                                    {{question.maxtext}}
-                                </div>
-                            </form>
+                            <div class="row  panel panel-default" ng-repeat="question in cat.questions">
+                                <form name="myForm" novalidate>
+                                    <div class="col-md-1 control-group"
+                                         ng-class="{'has-error': myForm.leftWeight.$dirty && myForm.leftWeight.$invalid}">
+                                        <Input type="number" name="leftWeight" min=0 max=10
+                                               ng-model="recWeights[question.id].negativeAnswerWeight"
+                                               class="form-control actWeightInput">
+                                        {{question.mintext}}
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1"><h5>{{question.title}}</h5>
+                                        {{question.midtext}}
+                                    </div>
+                                    <div class="col-md-1 control-group"
+                                         ng-class="{'has-error': myForm.rightWeight.$dirty && myForm.rightWeight.$invalid}">
+                                        <Input type="number" name="rightWeight" min=0 max=10
+                                               ng-model="recWeights[question.id].positiveAnswerWeight"
+                                               class="form-control actWeightInput">
+                                        {{question.maxtext}}
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

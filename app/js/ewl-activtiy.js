@@ -22,10 +22,17 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }]
                     }
                 })
-                .state('activityAdmin', {
-                    url: "/activities/:activityId/admin",
-                    templateUrl: "partials/activity.admin.html",
-                    controller: "ActivityAdminCtrl",
+                .state('modal_activityAdmin', {
+                    url: "/activities/:activityId/admin?tab",
+                    views: {
+                        '': {
+                            template: "="
+                        },
+                        modal: {
+                            templateUrl: "partials/activity.admin.html",
+                            controller: "ActivityAdminCtrl"
+                        }
+                    },
                     access: accessLevels.individual,
                     resolve: {
                         activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
@@ -36,7 +43,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }]
                     }
                 })
-                .state('detail', {
+                .state('modal_activityPlan', {
                     url: "/activities/:activityId?tab",
                     views: {
                         '': {
@@ -459,9 +466,14 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.activityFields = activityFields;
 
             $scope.gotoActivityDetail = function (activity) {
-                $scope.$state.go('detail', {activityId: activity.id, tab: $scope.$stateParams.tab});
+                // goto detail state, keep active tab around as stateparameter
+                $scope.$state.go('modal_activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab});
             };
 
+            $scope.gotoActivityAdmin = function (activity, event) {
+                // goto detail state, keep active tab around as stateparameter
+                $scope.$state.go('modal_activityAdmin', {activityId: activity.id, tab: $scope.$stateParams.tab});
+            };
 
             $scope.query = {
                 subset: 'recommendations',
@@ -519,8 +531,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }, true);
         }])
 
-    .controller('ActivityAdminCtrl', ['$scope', 'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular',
-        function ($scope, activity, assessment, ActivityService, activityFields, Restangular) {
+    .controller('ActivityAdminCtrl', ['$scope', '$rootScope', '$state','activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular',
+        function ($scope, $rootScope, $state, activity, assessment, ActivityService, activityFields, Restangular) {
 
             $scope.activity = activity;
             $scope.assessment = assessment;
@@ -559,16 +571,15 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.recWeights = activity.getRecWeightsByQuestionId();
 
             $scope.save = function () {
-
                 activity.put().then(function (result) {
-                    $scope.$emit('globalUserMsg', 'activity saved successfully', 'success', 5000);
-                    $scope.$state.go('activitylist');
+                    $rootScope.$broadcast('globalUserMsg', 'activity saved successfully', 'success', 5000);
+                    $state.go('activitylist', $rootScope.$stateParams);
                 }, function (err) {
-                    $scope.$emit('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
+                    $rootScope.$broadcast('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
                 });
             };
 
             $scope.cancel = function () {
-                $scope.$state.go('activitylist');
+                $state.go('activitylist');
             };
         }]);
