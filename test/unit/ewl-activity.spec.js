@@ -182,7 +182,8 @@ describe('ewl activity', function () {
                 $state: $state,
                 allActivities: mock.activities,
             plannedActivities: mock.plannedActivities,
-                recommendations: []
+                recommendations: [],
+                'yp.user.UserService': {}
             });
         }));
 
