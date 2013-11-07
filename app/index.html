@@ -80,63 +80,6 @@
 
 <div ui-view></div>
 
-<div class="loginReminderBox panel panel-default" ng-show="showLoginDialog" ng-controller="yp.user.DialogLoginRegisterCtrl">
-    <a class="close" ng-click="showLoginDialog=false">×</a>
-    
-    <div ng-hide="showRegistrationForm">
-    Für diese Seite ist es notwendig, dass du dich einloggst. <br>
-    Sonst gehen deine Daten verloren.
-    <form class="navbar-form" ng-submit="loginSubmit()">
-        <div class="form-group">
-            <input type="text" placeholder="{{ 'EMAIL' | translate }}" class="form-control" ng-model="username" setfocus="showLoginDialog">
-        </div>
-        <div class="form-group">
-            <input type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control"
-                   ng-model="password">
-        </div>
-        <button type="submit" class="btn btn-success btn-sm">{{ 'LOGIN' | translate }}</button>
-        <div ><a href="" ng-click="showRegistrationForm = true">Neu Registrieren</a></div>
-    </form></div>
-    <div ng-show="showRegistrationForm">
-        Neuen Account registrieren:
-        <form name="registerform" class="form" role="form" ng-submit="registrationSubmit()" novalidate>
-            <div class="form-group">
-                <label>{{ 'FIRSTNAME' | translate }}</label>
-                <input name="firstname" type="text" placeholder="{{ 'FIRSTNAME' | translate }}" class="form-control" ng-model="newuser.firstname" setfocus="showRegistrationForm" required>
-                <span ng-show="registerform.firstname.$dirty && registerform.firstname.$invalid" class="help-inline">Something may have gone wrong</span>
-            </div>
-            <div class="form-group">
-                <label>{{ 'LASTNAME' | translate }}</label>
-                <input name="lastname" type="text" placeholder="{{ 'LASTNAME' | translate }}" class="form-control" ng-model="newuser.lastname" required>
-                <span ng-show="registerform.lastname.$dirty && registerform.lastname.$invalid" class="help-inline">Something may have gone wrong</span>
-            </div>
-            <div class="form-group">
-                <label>{{ 'USERNAME' | translate }}</label>
-                <input name="username" type="text" placeholder="{{ 'FIRSTNAME' | translate }}" class="form-control" ng-model="newuser.username" required>
-                <span ng-show="registerform.username.$dirty && registerform.username.$invalid" class="help-inline">Something may have gone wrong</span>
-            </div>
-            <div class="form-group" ng-class="{'has-error': registerform.email.$dirty && registerform.email.$invalid}">
-                <label>{{ 'EMAIL' | translate }}</label>
-                <input name="email" type="email" placeholder="{{ 'EMAIL' | translate }}" class="form-control" ng-model="newuser.email" required>
-                <span ng-show="registerform.email.$dirty && registerform.email.$invalid" class="help-inline">Bitte gültige Email Adresse angeben</span>
-            </div>
-            <div class="form-group">
-                <label>{{ 'PASSWORD' | translate }}</label>
-                <input name="password" id="password" type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control"
-                       ng-model="newuser.password" required ng-minlength="6">
-                <span ng-show="registerform.password.$dirty && registerform.password.$invalid" class="help-inline">Passwort mindestens 6 Buchstaben</span>
-            </div>
-            <div class="form-group"  ng-class="{'has-error': registerform.password2.$dirty && registerform.password2.$invalid}">
-                <label>{{ 'PASSWORD_AGAIN' | translate }}</label>
-                <input type="password" name="password2" id="password2" placeholder="{{ 'PASSWORD_AGAIN' | translate }}" class="form-control"
-                       ng-model="newuser.password2" required password-match="newuser.password">
-                        <span ng-show="registerform.password2.$dirty && registerform.password2.$invalid" class="help-inline">Passwort nicht identisch</span>
-
-            </div>
-            <button type="submit" class="btn btn-success btn-sm" ng-disabled="registerform.$invalid">{{ 'REGISTER' | translate }}</button>
-        </form>
-    </div>
-</div>
 <!-- Footer -->
 
 <footer class="row">
