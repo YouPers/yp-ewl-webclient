@@ -149,6 +149,9 @@
                         users.post(newuser).then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'New Account successfully created', 'success', 3000);
                         }).then(successCallback);
+                    },
+                    putUser: function (user) {
+                        //TODO: does not yet work users.one(user.id).put(user.);
                     }
                 };
 

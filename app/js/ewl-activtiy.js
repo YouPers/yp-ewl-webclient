@@ -352,7 +352,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         (allTimes || !activity.defaultduration || query.time[durationMapping(activity.defaultduration)]
                             ) &&
                         (subSetAll || (query.subset === 'campaign' && activity.isCampaign) ||
-                            (query.subset === 'recommendations' && activity.isRecommended)) &&
+                            (query.subset === 'recommendations' && activity.isRecommended) ||
+                            (query.subset === 'starred' && activity.starred)) &&
                         (!query.fulltext || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
                         ) {
                         out.push(activity);
@@ -450,8 +451,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
         }])
 
-    .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'plannedActivities', 'activityFields', 'recommendations',
-        function ($scope, $filter, allActivities, plannedActivities, activityFields, recommendations) {
+    .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'plannedActivities', 'activityFields', 'recommendations', 'yp.user.UserService',
+        function ($scope, $filter, allActivities, plannedActivities, activityFields, recommendations, UserService) {
 
             // mock campaigns, that this user has an active goal for, should be loaded from server later...
             var campaigns = ['Campaign-1'];
@@ -473,6 +474,26 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.gotoActivityAdmin = function (activity, event) {
                 // goto detail state, keep active tab around as stateparameter
                 $scope.$state.go('modal_activityAdmin', {activityId: activity.id, tab: $scope.$stateParams.tab});
+            };
+
+            $scope.toggleStar = function(activity, event) {
+                event.stopPropagation();
+                activity.starred = !activity.starred;
+                var user = $scope.principal.getUser();
+                if (!user.preferences) {
+                    user.preferences = {};
+                }
+                if (!user.preferences.starredActivities) {
+                    user.preferences.starredActivities = {};
+                }
+
+                if (activity.id in user.preferences.starredActivities ) {
+                    delete user.preferences.starredActivities[activity.id];
+                } else {
+                    user.preferences.starredActivities[activity.id] = true;
+                }
+                UserService.putUser(user);
+
             };
 
             $scope.query = {
