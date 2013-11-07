@@ -62,7 +62,9 @@
     <!-- endbuild -->
     <script>
         angular.module('ypconfig', [])
-                .constant('ypconfig', <%= JSON.stringify(config) %>);
+                .constant('ypconfig', < %= JSON.stringify(config) % >
+        )
+        ;
     </script>
 
     <%= mockscripts %>
@@ -74,23 +76,15 @@
 <body ng-app="yp-ewl<%- ngappsuffix %>" ng-controller="MainCtrl">
 
 
-<ng-include src="'partials/topmenu.html'"></ng-include>
+    <ng-include src="'partials/topmenu.html'"></ng-include>
 
-<alert type='globalUserMsg.type' close="closeUserMsg()" class="yp-globalUserMsg" ng-hide="$parent.globalUserMsg == null">{{ globalUserMsg.text }}</alert>
+    <alert type='globalUserMsg.type' close="closeUserMsg()" class="yp-globalUserMsg"
+       ng-hide="$parent.globalUserMsg == null">{{ globalUserMsg.text }}
+    </alert>
 
-<div ui-view></div>
+    <div ui-view></div>
 
-<!-- Footer -->
+    <ng-include src="'partials/footer.html'"></ng-include>
 
-<footer class="row">
-    <div class="col-md-12">
-        <hr/>
-        <div class="row">
-            <div class="col-md-12">
-                <p>&copy; YouPers 2013</p>
-            </div>
-        </div>
-    </div>
-</footer>
 </body>
 </html>
