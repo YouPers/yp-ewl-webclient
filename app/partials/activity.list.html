@@ -164,7 +164,7 @@
     <!-- die eigentliche Liste -->
     <div class="col-md-10" ng-hide="query.subset=='recommendations' && !hasRecommendations">
         <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity)"
-             ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
+             ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-recWeight', '-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
             <div class="col-md-1">
                 {{ activity.number }}
                 <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld">
