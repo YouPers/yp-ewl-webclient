@@ -358,8 +358,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         };
     }])
 
-    .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', '$state', '$stateParams', 'activity', 'plan',
-        function ($scope, ActivityService, $timeout, $state, $stateParams, activity, plan) {
+    .controller('ActivityCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan',
+        function ($scope, ActivityService, $timeout, activity, plan) {
 
             $scope.currentActivity = activity;
             $scope.currentExecutionType = activity.defaultexecutiontype;
@@ -424,7 +424,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.planActivityDone = function () {
                 ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
                     $scope.$emit('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
-                    $state.go('cockpit');
+                    $scope.$state.go('cockpit');
                 }, function (err) {
                     console.log(JSON.stringify(err));
                     $scope.$emit('globalUserMsg', 'Aktivität nicht gespeichert, Code: ' + err, 'danger', '5000');
@@ -433,8 +433,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
         }])
 
-    .controller('ActivityListCtrl', ['$scope', '$filter', '$state', 'allActivities', 'plannedActivities', 'activityFields', 'recommendations',
-        function ($scope, $filter, $state, allActivities, plannedActivities, activityFields, recommendations) {
+    .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'plannedActivities', 'activityFields', 'recommendations',
+        function ($scope, $filter, allActivities, plannedActivities, activityFields, recommendations) {
 
             // mock campaigns, that this user has an active goal for, should be loaded from server later...
             var campaigns = ['Campaign-1'];
@@ -449,7 +449,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.activityFields = activityFields;
 
             $scope.gotoActivityDetail = function (activity) {
-                $state.go('activityDetail', {activityId: activity.id});
+                $scope.$state.go('activityDetail', {activityId: activity.id});
             };
 
             $scope.setListTab = function (tabId) {
@@ -500,8 +500,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }, true);
         }])
 
-    .controller('ActivityAdminCtrl', ['$scope', 'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular', '$state',
-        function ($scope, activity, assessment, ActivityService, activityFields, Restangular, $state) {
+    .controller('ActivityAdminCtrl', ['$scope', 'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular',
+        function ($scope, activity, assessment, ActivityService, activityFields, Restangular) {
 
             $scope.activity = activity;
             $scope.assessment = assessment;
@@ -543,13 +543,13 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                 activity.put().then(function (result) {
                     $scope.$emit('globalUserMsg', 'activity saved successfully', 'success', 5000);
-                    $state.go('activitylist');
+                    $scope.$state.go('activitylist');
                 }, function (err) {
                     $scope.$emit('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
                 });
             };
 
             $scope.cancel = function () {
-                $state.go('activitylist');
+                $scope.$state.go('activitylist');
             };
         }]);

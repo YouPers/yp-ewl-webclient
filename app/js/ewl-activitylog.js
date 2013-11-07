@@ -2,8 +2,8 @@
 
 angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activity'])
 
-    .controller('ActivityLogCtrl', ['$scope', 'ActivityService', '$state', 'activityFields',
-        function ($scope, ActivityService, $state, activityFields) {
+    .controller('ActivityLogCtrl', ['$scope', 'ActivityService', 'activityFields',
+        function ($scope, ActivityService, activityFields) {
             $scope.tabs = [
                 // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
                 { title: "nächste", content: "partials/cockpit.activitylog.running.html", orderBy: "asc", filter: "nextEvents" },
@@ -52,11 +52,11 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
             };
 
             $scope.gotoActivityDetail = function (activityLogEntry) {
-                $state.go('activityDetail.' + activityLogEntry.executionType, {activityId: activityLogEntry.id});
+                $scope.$state.go('activityDetail.' + activityLogEntry.executionType, {activityId: activityLogEntry.id});
             };
 
             $scope.gotoActivityList = function () {
-                $state.go('activitylist');
+                $scope.$state.go('activitylist');
             };
 
             $scope.setFilter = function (filter) {

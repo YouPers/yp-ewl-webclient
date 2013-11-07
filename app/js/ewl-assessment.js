@@ -105,8 +105,8 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
     // Controller to display an assessment and process the answers
     // assessmentData is resolved on stateTransfer
-    .controller('AssessmentCtrl', ['$scope', '$rootScope', '$state', 'assessmentData','AssessmentService',
-        function ($scope, $rootScope, $state, assessmentData, AssessmentService) {
+    .controller('AssessmentCtrl', ['$scope', '$rootScope',  'assessmentData','AssessmentService',
+        function ($scope, $rootScope, assessmentData, AssessmentService) {
 
             $scope.assessment = assessmentData.assessment;
             $scope.result = assessmentData.result;
@@ -124,7 +124,7 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                         console.log("result posted: " + result);
                     });
 
-                     $state.go('activitylist');
+                     $scope.$state.go('activitylist');
 
                 }
             };

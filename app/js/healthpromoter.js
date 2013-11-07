@@ -32,8 +32,8 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
         return myService;
     }])
 
-    .controller('HealthPromoterCtrl', ['$scope', 'yp.healthpromoter.HealthPromoterService', '$state', '$stateParams', '$modal', '$log',
-        function ($scope, HealthPromoterService, $state, $stateParams, $modal, $log) {
+    .controller('HealthPromoterCtrl', ['$scope', 'yp.healthpromoter.HealthPromoterService', '$modal', '$log',
+        function ($scope, HealthPromoterService, $modal, $log) {
 
             $scope.healthpromoter =
 

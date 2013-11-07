@@ -23,7 +23,7 @@ angular.module('yp.topic', ['ui.router'])
         };
     }])
 
-    .controller('TopicController', ['$scope', '$state', function ($scope, $state) {
+    .controller('TopicController', ['$scope', function ($scope) {
 
         $scope.selectedTopic = null;
 
@@ -36,7 +36,7 @@ angular.module('yp.topic', ['ui.router'])
         };
 
         $scope.setGoal = function () {
-            $state.go('activitylist');
+            $scope.$state.go('activitylist');
         };
 
     }]);

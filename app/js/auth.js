@@ -164,13 +164,14 @@
                 return UserService;
             }])
 
-        .controller('yp.user.MenuLoginCtrl', [ '$scope', 'yp.user.UserService', '$state','$location', function ($scope, UserService, $state, $location) {
+        .controller('yp.user.MenuLoginCtrl', [ '$scope', 'yp.user.UserService', '$location',
+            function ($scope, UserService, $location) {
 
             $scope.loginSubmit = function () {
                 UserService.login(UserService.encodeCredentials($scope.username, $scope.password), function () {
                     $scope.username = '';
                     $scope.password = '';
-                    $state.go('cockpit');
+                    $scope.$state.go('cockpit');
                 });
             };
 
