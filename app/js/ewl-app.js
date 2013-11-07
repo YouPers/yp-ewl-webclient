@@ -33,7 +33,11 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', 'principal', function ($rootScope, $state, principal) {
+    .run(['$rootScope', '$state', '$stateParams', 'principal',
+        function ($rootScope, $state, $stateParams, principal) {
+
+       $rootScope.$state = $state;
+       $rootScope.$stateParams = $stateParams;
 
         // handle routing authentication
        $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
@@ -61,23 +65,20 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
  * - highlighting global menu option according to currently active state
  * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope',  '$state', '$stateParams', '$timeout', 'principal', '$log',
-        function ($scope, $state, $stateParams, $timeout, principal, $log) {
-
-            $scope.$state = $state;
-            $scope.$stateParams = $stateParams;
+    .controller('MainCtrl', ['$scope',  '$timeout', 'principal', '$log',
+        function ($scope, $timeout, principal, $log) {
 
             $scope.principal = principal;
 
             // handle Menu Highlighting
             $scope.isActive = function (viewLocation) {
-                return ($state.current.name.indexOf(viewLocation) !== -1);
+                return ($scope.$state.current.name.indexOf(viewLocation) !== -1);
             };
 
             $scope.getTopMenu = function () {
-                if ($state.current.url.indexOf('hp') !== -1) {
+                if ($scope.$state.current.url.indexOf('hp') !== -1) {
                     return 'healthpromoter';
-                } else if ($state.current.url.indexOf('home') !== -1) {
+                } else if ($scope.$state.current.url.indexOf('home') !== -1) {
                     return 'home';
                 } else {
                     return 'individual';

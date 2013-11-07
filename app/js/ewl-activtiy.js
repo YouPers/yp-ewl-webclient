@@ -6,7 +6,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         function ($stateProvider, $urlRouterProvider, accessLevels) {
             $stateProvider
                 .state('activitylist', {
-                    url: "/activities",
+                    url: "/activities?tab",
                     templateUrl: "partials/activity.list.html",
                     controller: "ActivityListCtrl",
                     access: accessLevels.all,
@@ -37,7 +37,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     }
                 })
                 .state('detail', {
-                    url: "/activities/:activityId",
+                    url: "/activities/:activityId?tab",
                     views: {
                         '': {
                             template: "="
@@ -435,7 +435,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.planActivityDone = function () {
                 ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
                     $rootScope.$broadcast('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
-                    $state.go('activitylist');
+                    $state.go('activitylist', $rootScope.$stateParams);
                 }, function (err) {
                     console.log(JSON.stringify(err));
                     $rootScope.$broadcast('globalUserMsg', 'Aktivität nicht gespeichert, Code: ' + err, 'danger', '5000');
@@ -459,12 +459,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.activityFields = activityFields;
 
             $scope.gotoActivityDetail = function (activity) {
-                $scope.$state.go('detail', {activityId: activity.id});
+                $scope.$state.go('detail', {activityId: activity.id, tab: $scope.$stateParams.tab});
             };
 
-            $scope.setListTab = function (tabId) {
-                $scope.query.subset = tabId;
-            };
 
             $scope.query = {
                 subset: 'recommendations',
@@ -495,6 +492,18 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     group: false
                 }
             };
+
+            function setListTab(tabId) {
+                $scope.query.subset = tabId;
+                $scope.$stateParams.tab = tabId;
+            }
+
+            if ($scope.$stateParams.tab) {
+                setListTab($scope.$stateParams.tab);
+            }
+
+            $scope.setListTab = setListTab;
+
 
 
             $scope.pageSize = 20;
