@@ -241,7 +241,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             getRecommendations: function () {
                 if (principal.isAuthenticated()) {
-                    return Restangular.all('activities/recommendations').getList();
+                    return Restangular.all('activities/recommendations').getList({limit: 1000});
                 } else {
                     return [];
                 }
