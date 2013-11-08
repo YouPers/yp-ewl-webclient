@@ -238,8 +238,8 @@ module.exports = function (grunt) {
                 files: {
                     src: [
                         '<%= yeoman.dist %>/js/{,*/}*.js',
-                        '<%= yeoman.dist %>/styles/{,*/}*.css'
-//                        '<%= yeoman.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                        '<%= yeoman.dist %>/styles/{,*/}*.css',
+//                      ' <%= yeoman.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                     ]
                 }
             }
@@ -496,7 +496,7 @@ module.exports = function (grunt) {
         //'ngmin',
         'cssmin',
         'uglify',
-        //'rev',
+        'rev',
         'usemin'
     ]);
 
