@@ -10,7 +10,23 @@ angular.module('yp.topic', ['ui.router'])
                     templateUrl: "partials/topic.html",
                     controller: "TopicController",
                     access: accessLevels.all
+                })
+                .state('modal_topicsetgoal', {
+                    url: "/topics/setgoal",
+                    views: {
+                        '': {
+                            template: "="
+                        },
+                        modal: {
+                            templateUrl: "partials/topic.setgoal.html",
+                            controller: "TopicSetGoalCtrl"
+                        }
+                    },
+                    access: accessLevels.individual,
+                    resolve: {
+                    }
                 });
+
         }
     ])
 
@@ -39,4 +55,11 @@ angular.module('yp.topic', ['ui.router'])
             $scope.$state.go('activitylist');
         };
 
+    }])
+
+    .controller('TopicSetGoalCtrl', ['$scope', function($scope) {
+
+
+
     }]);
+
