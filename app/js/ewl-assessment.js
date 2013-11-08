@@ -111,19 +111,28 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                         result: assResult
                     };
                 });
-             },
-            getAssessment: function(assessmentId) {
-                return Restangular.one('assessments', assessmentId).get();
+            },
+            getAssessment: function (assessmentId) {
+                return Restangular.one('assessments', assessmentId).get().then(function (assessment) {
+                    if (assessment) {
+                        // sort questions into keyed lookup so all controllers can easily get the question for a given
+                        // questionId
+                        assessment.questionLookup = {};
+                        _.forEach(assessment.questionCats, function (questionCat) {
+                            _.forEach(questionCat.questions, function (question) {
+                                assessment.questionLookup[question.id] = question;
+                            });
+                        });
+                    }
+                    return assessment;
+                });
             },
             postResults: function (assResult, callback) {
                 var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
                 assessmentResultBase.post(assResult).then(callback);
             },
-            getAssessmentResults: function(assessmentId) {
-              return {
-                latest: {},
-                trend: [{}]
-              };
+            getAssessmentResults: function (assessmentId) {
+                return Restangular.one('assessments', assessmentId).all('results').getList({sort: 'timestamp:-1'});
             }
         };
 
@@ -132,7 +141,7 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
     // Controller to display an assessment and process the answers
     // assessmentData is resolved on stateTransfer
-    .controller('AssessmentCtrl', ['$scope', '$rootScope',  'assessmentData','AssessmentService',
+    .controller('AssessmentCtrl', ['$scope', '$rootScope', 'assessmentData', 'AssessmentService',
         function ($scope, $rootScope, assessmentData, AssessmentService) {
 
             $scope.assessment = assessmentData.assessment;
@@ -147,11 +156,11 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                     assessmentData.result.owner = $scope.principal.getUser().id;
                     delete assessmentData.result.id;
 
-                    AssessmentService.postResults(assessmentData.result, function(result) {
+                    AssessmentService.postResults(assessmentData.result, function (result) {
                         console.log("result posted: " + result);
                     });
 
-                     $scope.$state.go('modal_assessmentResult', {assessmentId: $scope.assessment.id});
+                    $scope.$state.go('modal_assessmentResult', {assessmentId: $scope.assessment.id});
 
                 }
             };
@@ -163,8 +172,20 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
         }])
 
     // Controller to display assessment Results
-    .controller('AssessmentResultCtrl', ['$scope', '$rootScope',  'assessment','assessmentResults',
+    .controller('AssessmentResultCtrl', ['$scope', '$rootScope', 'assessment', 'assessmentResults',
         function ($scope, $rootScope, assessment, assessmentResults) {
+            if (!assessmentResults[0]) {
+                var msg = "no result found, should be impossible at this place";
+                console.log(msg);
+                throw new Error(msg);
+            }
+
+            // sort the answers of the first result into order
+            assessmentResults[0].answers = _.sortBy(assessmentResults[0].answers, function (answer) {
+                return -Math.abs(answer.answer);
+            });
+            $scope.results = assessmentResults;
+            $scope.assessment = assessment;
 
         }
     ]);
