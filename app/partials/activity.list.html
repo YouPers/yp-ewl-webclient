@@ -1,10 +1,14 @@
 <div class="container">
 
 <!-- Page header  -->
-<div class="page-header">
-    <h1>Plane eine für dich passende Aktivität</h1>
+<div class="row">
+    <div class="page-header col-md-6">
+        <h2>Plane eine Aktivität </h2>
+    </div>
+    <div class="col-md-6">
+        <img src="/assets/img/5steps.png">
+    </div>
 </div>
-
 <!-- die top row - sorter und empfehlungen -->
 <div class="row">
     <div class="col-md-6 col-md-offset-2">
@@ -36,7 +40,8 @@
             <li ng-class="{active: query.subset=='campaign'}"><a href="" ng-click="setListTab('campaign')">Kampagnen-Aktionen</a>
             </li>
             <li ng-class="{active: query.subset=='all'}"><a href="" ng-click="setListTab('all')">alle</a></li>
-            <li ng-class="{active: query.subset=='starred'}"><a href="" ng-click="setListTab('starred')">vorgemerkt <span class="glyphicon glyphicon-star"></span></a></li>
+            <li ng-class="{active: query.subset=='starred'}"><a href="" ng-click="setListTab('starred')">vorgemerkt
+                <span class="glyphicon glyphicon-star"></span></a></li>
         </ul>
     </div>
 </div>
@@ -175,7 +180,8 @@
                     empfohlen
                 </div>
                 <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge">geplant</div>
-                <div class="activityListStarred glyphicon" ng-click="toggleStar(activity, $event)" ng-class="(activity.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
+                <div class="activityListStarred glyphicon" ng-click="toggleStar(activity, $event)"
+                     ng-class="(activity.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
             </div>
             <div class="col-md-6">
                 {{ activity.title }}
@@ -193,7 +199,8 @@
             </div>
             <div class="col-md-2">
                 {{ activity.defaultexecutiontype | translate }}
-                <div ng-if="principal.getUser().role=='admin'"><a class="btn btn-sm btn-primary" ui-sref="modal_activityAdmin({activityId: activity.id})"
+                <div ng-if="principal.getUser().role=='admin'"><a class="btn btn-sm btn-primary"
+                                                                  ui-sref="modal_activityAdmin({activityId: activity.id})"
                                                                   ng-click="$event.stopPropagation()">admin</a>
                     Gewicht: {{activity.recWeight}}
                 </div>
