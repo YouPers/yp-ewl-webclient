@@ -151,7 +151,7 @@
                         }).then(successCallback);
                     },
                     putUser: function (user) {
-                        //TODO: does not yet work users.one(user.id).put(user.);
+                        Rest.restangularizeElement(null, user, "users").put();
                     }
                 };
 

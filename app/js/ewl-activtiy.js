@@ -81,7 +81,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     // Object methods for all Assessment related objects
     .run(['Restangular', function (Restangular) {
         Restangular.extendCollection('activities', function (activities) {
-                activities.enrichWithUserData = function (plans, recommendations, campaigns) {
+                activities.enrichWithUserData = function (plans, recommendations, campaigns, starredActivities) {
                     _.forEach(activities, function (act) {
 
                         var matchingPlan = _.find(plans, function (plan) {
@@ -90,6 +90,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                         act.plan = matchingPlan;
                         act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
+                        if (starredActivities[act.id]) {
+                            act.starred = true;
+                        }
                         var rec = _.find(recommendations, {'activity': act.id});
                         if (rec) {
                             act.isRecommended = true;
@@ -459,7 +462,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.hasRecommendations = (recommendations.length > 0);
 
-            allActivities.enrichWithUserData(plannedActivities, recommendations, campaigns);
+            var starredActs =  $scope.principal &&
+                $scope.principal.getUser() &&
+                $scope.principal.getUser().preferences &&
+                $scope.principal.getUser().preferences.starredActivities || {};
+
+            allActivities.enrichWithUserData(plannedActivities, recommendations, campaigns, starredActs);
 
             $scope.activities = allActivities;
             $scope.filteredActivities = allActivities;
