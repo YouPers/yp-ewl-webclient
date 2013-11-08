@@ -17,6 +17,27 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                                 return AssessmentService.getAssessmentData($stateParams.assessmentId);
                             }]
                     }
+                })
+                .state('modal_assessmentResult', {
+                    url: "/assessment/:assessmentId/result",
+                    views: {
+                        '': {
+                            template: "="
+                        },
+                        modal: {
+                            templateUrl: "partials/assessment.result.html",
+                            controller: "AssessmentResultCtrl"
+                        }
+                    },
+                    access: accessLevels.individual,
+                    resolve: {
+                        assessment: ['AssessmentService', function (AssessmentService) {
+                            return AssessmentService.getAssessment('525faf0ac558d40000000005');
+                        }],
+                        assessmentResults: ['AssessmentService', function (AssessmentService) {
+                            return AssessmentService.getAssessmentResults('525faf0ac558d40000000005');
+                        }]
+                    }
                 });
         }])
 
@@ -97,6 +118,12 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
             postResults: function (assResult, callback) {
                 var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
                 assessmentResultBase.post(assResult).then(callback);
+            },
+            getAssessmentResults: function(assessmentId) {
+              return {
+                latest: {},
+                trend: [{}]
+              };
             }
         };
 
@@ -124,7 +151,7 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                         console.log("result posted: " + result);
                     });
 
-                     $scope.$state.go('activitylist');
+                     $scope.$state.go('modal_assessmentResult', {assessmentId: $scope.assessment.id});
 
                 }
             };
@@ -133,4 +160,11 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                 $scope.assAnswersByQuestionId[questionid].dirty = true;
             };
 
-        }]);
+        }])
+
+    // Controller to display assessment Results
+    .controller('AssessmentResultCtrl', ['$scope', '$rootScope',  'assessment','assessmentResults',
+        function ($scope, $rootScope, assessment, assessmentResults) {
+
+        }
+    ]);
