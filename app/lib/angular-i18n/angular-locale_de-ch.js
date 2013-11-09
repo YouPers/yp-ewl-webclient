@@ -1,70 +1,71 @@
+'use strict';
 angular.module("ngLocale", [], ["$provide", function($provide) {
 var PLURAL_CATEGORY = {ZERO: "zero", ONE: "one", TWO: "two", FEW: "few", MANY: "many", OTHER: "other"};
 $provide.value("$locale", {
   "DATETIME_FORMATS": {
     "AMPMS": [
-      "AM",
-      "PM"
+      "vorm.",
+      "nachm."
     ],
     "DAY": [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag"
     ],
     "MONTH": [
-      "January",
-      "February",
-      "March",
+      "Januar",
+      "Februar",
+      "M\u00e4rz",
       "April",
-      "May",
-      "June",
-      "July",
+      "Mai",
+      "Juni",
+      "Juli",
       "August",
       "September",
-      "October",
+      "Oktober",
       "November",
-      "December"
+      "Dezember"
     ],
     "SHORTDAY": [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat"
+      "So.",
+      "Mo.",
+      "Di.",
+      "Mi.",
+      "Do.",
+      "Fr.",
+      "Sa."
     ],
     "SHORTMONTH": [
       "Jan",
       "Feb",
-      "Mar",
+      "M\u00e4r",
       "Apr",
-      "May",
+      "Mai",
       "Jun",
       "Jul",
       "Aug",
       "Sep",
-      "Oct",
+      "Okt",
       "Nov",
-      "Dec"
+      "Dez"
     ],
-    "fullDate": "EEEE, MMMM d, y",
-    "longDate": "MMMM d, y",
-    "medium": "MMM d, y h:mm:ss a",
-    "mediumDate": "MMM d, y",
-    "mediumTime": "h:mm:ss a",
-    "short": "M/d/yy h:mm a",
-    "shortDate": "M/d/yy",
-    "shortTime": "h:mm a"
+    "fullDate": "EEEE, d. MMMM y",
+    "longDate": "d. MMMM y",
+    "medium": "dd.MM.yyyy HH:mm:ss",
+    "mediumDate": "dd.MM.yyyy",
+    "mediumTime": "HH:mm:ss",
+    "short": "dd.MM.yy HH:mm",
+    "shortDate": "dd.MM.yy",
+    "shortTime": "HH:mm"
   },
   "NUMBER_FORMATS": {
-    "CURRENCY_SYM": "$",
+    "CURRENCY_SYM": "CHF",
     "DECIMAL_SEP": ".",
-    "GROUP_SEP": ",",
+    "GROUP_SEP": "'",
     "PATTERNS": [
       {
         "gSize": 3,
@@ -85,14 +86,14 @@ $provide.value("$locale", {
         "maxFrac": 2,
         "minFrac": 2,
         "minInt": 1,
-        "negPre": "(\u00a4",
-        "negSuf": ")",
-        "posPre": "\u00a4",
+        "negPre": "\u00a4-",
+        "negSuf": "",
+        "posPre": "\u00a4\u00a0",
         "posSuf": ""
       }
     ]
   },
-  "id": "en-gu",
+  "id": "de-ch",
   "pluralCat": function (n) {  if (n == 1) {   return PLURAL_CATEGORY.ONE;  }  return PLURAL_CATEGORY.OTHER;}
 });
 }]);

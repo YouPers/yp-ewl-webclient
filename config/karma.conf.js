@@ -5,7 +5,7 @@ module.exports = function (config) {
         files: [
             'app/lib/angular/angular.js',
             'app/lib/lowdash/lodash.js',
-            'app/lib/angular/angular-cookies.js',
+            'app/lib/angular-cookies/angular-cookies.js',
             'app/lib/angular-translate/*min.js',
             'app/lib/angular-translate-storage-cookie/*min.js',
             'app/lib/angular-ui-router/angular-ui-router.js',
