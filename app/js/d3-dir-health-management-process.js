@@ -34,15 +34,15 @@
                             var currentWidth = d3.select(iElement[0])[0][0].offsetWidth;
 
                             if (currentWidth !== 0) { // if 0, then the chart has never been drawn so far, which causes $watch('data'... to be triggered
-                                    // nth time here
-                                    if (scope.svgClientWidth !== currentWidth) {
-                                        // width where the chart is drawn has changed, so redraw it
+                                // nth time here
+                                if (scope.svgClientWidth !== currentWidth) {
+                                    // width where the chart is drawn has changed, so redraw it
 
-                                        draw(d3, angular.fromJson(scope.data));
-                                        scope.svgClientWidth = d3.select(iElement[0])[0][0].offsetWidth; // store new width after having drawn the new chart
+                                    draw(d3, angular.fromJson(scope.data));
+                                    scope.svgClientWidth = d3.select(iElement[0])[0][0].offsetWidth; // store new width after having drawn the new chart
 
-                                    }
                                 }
+                            }
                         });
 
 
@@ -122,14 +122,13 @@
                             scope.options.elementPaddingLeft = typeof scope.options.elementPaddingLeft !== 'undefined' ? scope.options.elementPaddingLeft : 5;
 
                             // scope.options.displayType
-                            // "cockpit": uses processData to highlight, which steps have already been done
                             // "commit": highlights first process step
                             // "assess": highlights second process step
                             // "plan": highlights third process step
                             // "do": highlights fourth process step
                             // "evaluate": highlights fifth process step
 
-                            scope.options.displayType = typeof scope.options.displayType !== 'undefined' ? scope.options.displayType : "cockpit";
+                            scope.options.displayType = typeof scope.options.displayType !== 'undefined' ? scope.options.displayType : "do";
 
                         };
 
@@ -161,14 +160,6 @@
                             return stepStatus;
                         };
 
-                        var getElementColorForCockpit = function (processStep) {
-                            if (isDone(processStep)) {
-                                return "#aec71e";
-                            } else {
-                                return "#eeeeee";
-                            }
-                        };
-
                         var getElementColorForOtherPages = function (processStep) {
                             if (stepToHighlight[processStep]) {
                                 return "#aec71e";
@@ -182,18 +173,13 @@
                         var createHealthManagementProcess = function () {
 
                             // svgCanvas: Main container containing chartCanvas
-
                             // first, remove any old main containers
-                            
+
                             var elements = [];
-                            
+                            var statusSymbols = [];
+
                             for (var i = 0; i < steps.length; i++) {
-                                var x;
-//                                if (i === 0) { // first element does not need a margin in between
-                                    x = 0;
-//                                } else {
-                                    x = (i * scope.options.elementWidth) + (i *scope.options.elementMargin);
-//                                }
+                                var x = (i * scope.options.elementWidth) + (i *scope.options.elementMargin);
                                 var lineData = [
                                     {"x": x, "y": 0},
                                     {"x": x + scope.options.elementWidth - scope.options.arrowHeadWidth, "y": 0},
@@ -226,34 +212,45 @@
 
                             var elementColor;
 
-                            if (scope.options.displayType === "cockpit") {
-                                // display health management process with status per process step
+                            stepToHighlight = setCurrentStep(scope.options.displayType);
 
-                                for (var i2 = 0; i2 < steps.length; i2++) {
-                                    elementColor = getElementColorForCockpit(i2);
+                            for (var i2 = 0; i2 < steps.length; i2++) {
+                                elementColor = getElementColorForOtherPages(i2);
 
-                                    svgCanvas.append("svg:a")
+                                svgCanvas.append("svg:a")
+                                    .attr("xlink:href", steps[i2].url)
+                                    .append("path")
+                                    .attr("id", steps[i2].name)
+                                    .attr("d", lineFunction(elements[i2]))
+                                    .attr("fill", elementColor);
+
+
+                                if (isDone(i2)) {
+
+                                    var sign = svgCanvas.append("g")
+                                        .attr("transform", "translate(" + ((i2 * scope.options.elementWidth) + (i2 *scope.options.elementMargin) + (scope.options.elementWidth * 0.6)) + ", -5)");
+
+                                    sign.append("svg:a")
                                         .attr("xlink:href", steps[i2].url)
-                                        .append("path")
-                                        .attr("id", steps[i2].name)
-                                        .attr("d", lineFunction(elements[i2]))
-                                        .attr("fill", elementColor);
+                                        .append("line")
+                                        .attr("x1", "5")
+                                        .attr("y1", scope.options.elementHeight-5)
+                                        .attr("x2", "10")
+                                        .attr("y2", scope.options.elementHeight)
+                                        .attr("stroke-width", "1")
+                                        .attr("stroke", "#DC3912");
 
+                                    sign.append("svg:a")
+                                        .attr("xlink:href", steps[i2].url)
+                                        .append("line")
+                                        .attr("x1", "10")
+                                        .attr("y1", scope.options.elementHeight)
+                                        .attr("x2", "25")
+                                        .attr("y2", scope.options.elementHeight-15)
+                                        .attr("stroke-width", "1")
+                                        .attr("stroke", "#DC3912");
                                 }
-                            } else {
-                                // highlight actual process step of page
-                                stepToHighlight = setCurrentStep(scope.options.displayType);
 
-                                for (var i3 = 0; i3 < steps.length; i3++) {
-                                    elementColor = getElementColorForOtherPages(i3);
-
-                                    svgCanvas.append("svg:a")
-                                        .attr("xlink:href", steps[i3].url)
-                                        .append("path")
-                                        .attr("d", lineFunction(elements[i3]))
-                                        .attr("fill", elementColor);
-
-                                }
                             }
 
                             for (var i4 = 0; i4 < steps.length; i4++) {
