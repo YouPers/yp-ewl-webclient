@@ -6,190 +6,204 @@
 <!--</div>-->
 
 <div class="container cockpit">
-<div class="row">
-    <div class="col-md-6">
-        <!--<div class="panel cockpit">-->
+    <div ng-controller="yp.health-management-process.controller">
+
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+
+            <div class="col-md-6">
+                <d3-health-management-process data="processData" options="d3Options"></d3-health-management-process>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <!--<div class="panel cockpit">-->
             <!--<div class="panel cockpit section-title">-->
-                <!--Massgeschneiderte Vorschläge-->
+            <!--Massgeschneiderte Vorschläge-->
             <!--</div>-->
             <!--<div class="row">-->
-                <!--<div class="col-xs-9 col-md-9">-->
-                    <!--<p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur-->
-                        <!--Stressreduktion vorzuschlagen. </p>-->
-                <!--</div>-->
-                <!--<div class="col-xs-3 col-md-3">-->
-                    <!--<p><a class="cockpit assessment btn btn-primary" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >{{"TO_THE_ASSESSMENT" | translate }} &raquo;</a>-->
-                    <!--</p>-->
-                <!--</div>-->
+            <!--<div class="col-xs-9 col-md-9">-->
+            <!--<p>Dein komplett ausgefüllter Fragebogen ermöglicht uns, dir massgeschneiderte Aktivitäten zur-->
+            <!--Stressreduktion vorzuschlagen. </p>-->
+            <!--</div>-->
+            <!--<div class="col-xs-3 col-md-3">-->
+            <!--<p><a class="cockpit assessment btn btn-primary" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" >{{"TO_THE_ASSESSMENT" | translate }} &raquo;</a>-->
+            <!--</p>-->
+            <!--</div>-->
             <!--</div>-->
 
-        <!--</div>-->
+            <!--</div>-->
 
-        <div class="panel cockpit">
+            <div class="panel cockpit">
 
-            <div class="panel cockpit section-title">
-                Status
-            </div>
-
-            <p>Wie hat sich dein Stresslevel entwickelt? Wie sieht dein aktueller Stress Level aus? </p>
-
-            <div ng-controller="yp.ewl.stresslevel.gauge.controller">
-                <div>
-                    <d3-gauge data="stressLevelGeneral" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                    <d3-gauge data="stressLevelWorkPlace" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                    <d3-gauge data="stressLevelTimeOff" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                    <d3-gauge data="stressLevelType" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                    <d3-gauge data="stressLevelMastery" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                <div class="panel cockpit section-title">
+                    Status
                 </div>
+
+                <p>Wie hat sich dein Stresslevel entwickelt? Wie sieht dein aktueller Stress Level aus? </p>
+
+                <div ng-controller="yp.ewl.stresslevel.gauge.controller">
+                    <div>
+                        <d3-gauge data="stressLevelGeneral" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                        <d3-gauge data="stressLevelWorkPlace" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                        <d3-gauge data="stressLevelTimeOff" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                        <d3-gauge data="stressLevelType" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                        <d3-gauge data="stressLevelMastery" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
+                    </div>
+                </div>
+
             </div>
 
         </div>
+        <div class="col-md-6">
+            <div class="panel cockpit">
 
-    </div>
-    <div class="col-md-6">
-        <div class="panel cockpit">
+                <div class="panel cockpit section-title">
+                    Aktivitäten
+                </div>
 
-            <div class="panel cockpit section-title">
-                Aktivitäten
-            </div>
+                <p>Verfolge die Aktivitäten deiner Arbeitskollegen in der Kampagne.</p>
 
-            <p>Verfolge die Aktivitäten deiner Arbeitskollegen in der Kampagne.</p>
-
-            <div ng-controller="yp.ewl.activity.vchart.controller">
-                <div class="row">
-                    <div class="col-xs-8 col-md-8">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default cockpit" ng-class="getActive('week')" ng-click="setData('week')">Heute</button>
-                            <button type="button" class="btn btn-default cockpit" ng-class="getActive('month')" ng-click="setData('month')">Diese Woche</button>
-                            <button type="button" class="btn btn-default cockpit" ng-class="getActive('year')" ng-click="setData('year')">Kampagne bisher</button>
+                <div ng-controller="yp.ewl.activity.vchart.controller">
+                    <div class="row">
+                        <div class="col-xs-8 col-md-8">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('week')" ng-click="setData('week')">Heute</button>
+                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('month')" ng-click="setData('month')">Diese Woche</button>
+                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('year')" ng-click="setData('year')">Kampagne bisher</button>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <p><a class="cockpit detail-charts btn btn-primary" href="#" >{{"DETAIL_CHARTS" | translate }} &raquo;</a>
+                            </p>
                         </div>
                     </div>
-                    <div class="col-xs-4 col-md-4">
-                        <p><a class="cockpit detail-charts btn btn-primary" href="#" >{{"DETAIL_CHARTS" | translate }} &raquo;</a>
-                        </p>
+                    <div>
+                        <d3-vertical-bar-chart data="chart.data" options="d3Options" label="name"
+                                               on-click="onClick(item)"></d3-vertical-bar-chart>
                     </div>
                 </div>
-                <div>
-                    <d3-vertical-bar-chart data="chart.data" options="d3Options" label="name"
-                                           on-click="onClick(item)"></d3-vertical-bar-chart>
-                </div>
+
             </div>
 
         </div>
-
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="panel cockpit">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel cockpit">
 
-            <div class="panel cockpit section-title">
+                <div class="panel cockpit section-title">
                     <span class="glyphicon controls glyphicon-{{activityLogVisible ? 'minus' : 'plus'}}"
                           ng-init="activityLogVisible=true" ng-click="activityLogVisible = !activityLogVisible">
                     </span>
-                Aktivitätslog
-            </div>
-
-            <div ng-show="activityLogVisible" ng-controller="ActivityLogCtrl">
-
-                <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
-
-                <div class="row">
-                    <div class="col-xs-12 col-md-12">
-
-                        <div class="cockpit new-activity">
-                            <button ng-click="gotoActivityList()" type="button" class="btn btn-primary cockpit">{{
-                                "NEW_ACTIVITY" | translate }} &raquo;
-                            </button>
-                        </div>
-                        <tabset class="cockpit-tabs">
-                            <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
-                                 disabled="tab.disabled" class="cockpit-tab">
-                                <OPTION ng-selected="setFilter(tab.filter); setOrderBy(tab.orderBy)"></OPTION>
-                                <div ng-include="tab.content"></div>
-                            </tab>
-                        </tabset>
-
-                    </div>
+                    Aktivitätslog
                 </div>
 
-            </div>
-            <div ng-hide="activityLogVisible">
+                <div ng-show="activityLogVisible" ng-controller="ActivityLogCtrl">
 
-                </br>
-                <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August
-                    2013. </p>
+                    <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
 
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+
+                            <div class="cockpit new-activity">
+                                <button ng-click="gotoActivityList()" type="button" class="btn btn-primary cockpit">{{
+                                    "NEW_ACTIVITY" | translate }} &raquo;
+                                </button>
+                            </div>
+                            <tabset class="cockpit-tabs">
+                                <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
+                                     disabled="tab.disabled" class="cockpit-tab">
+                                    <OPTION ng-selected="setFilter(tab.filter); setOrderBy(tab.orderBy)"></OPTION>
+                                    <div ng-include="tab.content"></div>
+                                </tab>
+                            </tabset>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div ng-hide="activityLogVisible">
+
+                    </br>
+                    <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August
+                        2013. </p>
+
+                </div>
             </div>
+
         </div>
 
-    </div>
+        <div class="col-md-6" ng-controller="SocialLogCtrl">
 
-    <div class="col-md-6" ng-controller="SocialLogCtrl">
+            <div class="panel cockpit">
 
-        <div class="panel cockpit">
-
-            <div class="panel cockpit section-title">
-                Social Ticker
+                <div class="panel cockpit section-title">
+                    Social Ticker
 
                         <span class="glyphicon controls glyphicon-{{socialLogVisible ? 'minus' : 'plus' }}"
                               ng-init="socialLogVisible=true"
                               ng-click="socialLogVisible = !socialLogVisible"></span>
-            </div>
+                </div>
 
-            <div ng-show="socialLogVisible">
+                <div ng-show="socialLogVisible">
 
-                <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+                    <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
 
-                <div class="list-group social-log">
+                    <div class="list-group social-log">
 
-                    <div class="list-group-item {{socialLogEntry.type}}"
-                         ng-repeat="socialLogEntry in socialLogEntries">
-                        <div class="row">
-                            <div class="col-xs-10 col-md-10">
-                                <div class="col-xs-6 col-md-5">
-                                    <div class="social-log status">
-                                        <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
+                        <div class="list-group-item {{socialLogEntry.type}}"
+                             ng-repeat="socialLogEntry in socialLogEntries">
+                            <div class="row">
+                                <div class="col-xs-10 col-md-10">
+                                    <div class="col-xs-6 col-md-5">
+                                        <div class="social-log status">
+                                            <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
+                                        </div>
+                                        <a href="#/u/ubau">
+                                            <img ng-src="{{socialLogEntry.author.avatar}}"
+                                                 class="social-log author-avatar"/>
+                                            <strong class="social-log author-name">{{socialLogEntry.author.firstname}}</br>
+                                                {{socialLogEntry.author.lastname}}</strong>
+                                        </a>
                                     </div>
-                                    <a href="#/u/ubau">
-                                        <img ng-src="{{socialLogEntry.author.avatar}}"
-                                             class="social-log author-avatar"/>
-                                        <strong class="social-log author-name">{{socialLogEntry.author.firstname}}</br>
-                                            {{socialLogEntry.author.lastname}}</strong>
-                                    </a>
+                                    <div class="col-xs-6 col-md-7">
+                                        <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
+                                        <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
+                                        <a href="#" class="social-log comment">{{socialLogEntry.text}}</a>
+                                    </div>
                                 </div>
-                                <div class="col-xs-6 col-md-7">
-                                    <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
-                                    <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
-                                    <a href="#" class="social-log comment">{{socialLogEntry.text}}</a>
-                                </div>
-                            </div>
-                            <div class="col-xs-2 col-md-2">
-                                <!--<div class="col-xs-6 col-md-4">-->
-                                <div class="social-log time-box">
+                                <div class="col-xs-2 col-md-2">
+                                    <!--<div class="col-xs-6 col-md-4">-->
+                                    <div class="social-log time-box">
                                                 <span class="activity-log time-box timestamp">
                                                     {{socialLogEntry.created | fromNow}}</br>
                                                 </span>
+                                    </div>
+                                    <!--</div>-->
                                 </div>
-                                <!--</div>-->
                             </div>
                         </div>
                     </div>
+
                 </div>
+                <div ng-hide="socialLogVisible">
 
-            </div>
-            <div ng-hide="socialLogVisible">
+                    </br>
+                    <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
 
-                </br>
-                <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+                </div>
 
             </div>
 
         </div>
-
     </div>
-</div>
 
 </div>
 </div>

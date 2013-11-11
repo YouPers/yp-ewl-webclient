@@ -163,7 +163,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 currentTimeStamp.getFullYear(),
                 currentTimeStamp.getMonth(),
                 currentTimeStamp.getDate());
-//            currentDate = new Date(2013, 9,20);
+            currentDate = new Date(2013, 9,20);
             if (typeof filter === 'undefined') {
                 return input;
             }

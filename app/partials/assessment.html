@@ -7,7 +7,8 @@
             <div>{{result.timestamp ? 'letzte Beurteilung: ' + (result.timestamp | fromNow) : 'Das ist deine erste Beurteilung'}}</div>
         </div>
         <div class="col-md-6">
-            <img src="/assets/img/5steps.png">
+            <!--<img src="/assets/img/5steps.png">-->
+            <d3-health-management-process data="{}" options="{'displayType': 'assess'}"></d3-health-management-process>
         </div>
     </div>    <!-- Page header  -->
     <div class="ass-done-button ass-done-button-top">
