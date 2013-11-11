@@ -176,7 +176,6 @@
                             // first, remove any old main containers
 
                             var elements = [];
-                            var statusSymbols = [];
 
                             for (var i = 0; i < steps.length; i++) {
                                 var x = (i * scope.options.elementWidth) + (i *scope.options.elementMargin);
