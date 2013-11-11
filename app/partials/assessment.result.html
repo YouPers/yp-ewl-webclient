@@ -15,7 +15,7 @@
 
         Deine Top 5 Stressverursacher:
         <div ng-repeat="stressor in results[0].answers | limitTo:'5'">
-            {{ assessment.questionLookup[stressor.question].category }} {{ assessment.questionLookup[stressor.question].title }} {{ stressor.answer }}
+            {{ assessment.questionLookup[stressor.question].category }} {{ assessment.questionLookup[stressor.question].title }} {{ stressor.answer }} {{ stressor.question }}
         </div>
 
         <a type="button" class="btn btn-primary" ui-sref="activitylist">weiter zum nächsten Schritt</a>
