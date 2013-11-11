@@ -15,33 +15,45 @@
     </div>
     <div class="row ass-questioncat-title" ng-repeat="questioncat in assessment.questionCats">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
                 <h2>{{ questioncat.category | translate}}</h2>
             </div>
         </div>
         <!-- popover placement: always 'bottom', only at the bottom question at the top (otherwise it is outside of the page).
             Because of nested ng-Repeat we need to get the $last of inner loop and $last of outer loop.
             $parent.$parent is needed to get out of the popover scope to the inner loop and then to the outer loop. -->
-        <div class="row" ng-repeat="question in questioncat.questions" popover="{{ question.exptext }}"
-             popover-trigger="mouseenter" popover-placement="{{ $parent.$parent.$last && $last ? 'top' : 'bottom' }}">
-            <div class="col-md-10 col-md-offset-1" ng-class="{mainAssQuestion: question.category=='general'}">
-                <div class="row ass-question">
-                    <div class="col-md-4 col-md-offset-4"><h4>{{ question.title | translate}}</h4></div>
-                </div>
+        <div class="row" ng-repeat="question in questioncat.questions">
+            <div class="col-md-12" ng-class="{mainAssQuestion: question.category=='general', panel: question.category!=='general'}">
                 <div class="row">
-                    <div class="col-md-3 ass-min-text">{{ question.mintext | translate}}</div>
                     <div class="col-md-6">
-                        <input ng-class="[question.type, assAnswersByQuestionId[question.id].dirty ? 'answered' : '']"
-                               type="range" min="-100"
-                               max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
-                               ng-model="assAnswersByQuestionId[question.id].answer"
-                               ng-mousedown="setQuestionAnswered(question.id)"/>
+
+                        <div class="row ass-question">
+                            <div class="col-md-8 col-md-offset-2"><h4>{{ question.title | translate}}</h4></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 ass-min-text" popover="{{ question.mintextexample }}"
+                                 popover-trigger="mouseenter" popover-placement="right">{{ question.mintext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                            <div class="col-md-8">
+                                <input ng-class="[question.type, assAnswersByQuestionId[question.id].dirty ? 'answered' : '']"
+                                       type="range" min="-100"
+                                       max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
+                                       ng-model="assAnswersByQuestionId[question.id].answer"
+                                       ng-mousedown="setQuestionAnswered(question.id)"/>
+                            </div>
+                            <div class="col-md-2 ass-max-text" popover="{{ question.maxtextexample }}"
+                                 popover-trigger="mouseenter">{{ question.maxtext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                        </div>
+                        <div class="row ass-mid-text">
+                            <div class="col-md-8 col-md-offset-2" popover="{{ question.midtextexample }}"
+                                 popover-trigger="mouseenter">{{ question.midtext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                        </div>
                     </div>
-                    <div class="col-md-3 ass-max-text">{{ question.maxtext | translate}}</div>
+                    <div class="col-md-4">
+                        {{ question.exptext }}
+                    </div>
+
                 </div>
-                <div class="row ass-mid-text">
-                    <div class="col-md-4 col-md-offset-4">{{ question.midtext | translate}}</div>
-                </div>
+
             </div>
         </div>
     </div>
