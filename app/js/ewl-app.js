@@ -1,34 +1,34 @@
 'use strict';
 /*global angular:true */
 angular.module('ypconfig', [])
-    .constant('ypconfig', {"backendUrl":"http://localhost:8000/api/v1"});
+    .constant('ypconfig', {"backendUrl": "http://localhost:8000/api/v1"});
 
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
         'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.activity.vchart', 'yp.ewl.stresslevel.gauge', 'yp.health-management-process', 'd3.dir-health-management-process', 'd3', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'yp.topic', 'ui.router', 'ui.bootstrap',
         'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'yp.auth', 'yp.healthpromoter', 'restangular', 'ypconfig']).
 
-    config(['$stateProvider','$urlRouterProvider','accessLevels','RestangularProvider','ypconfig',
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'ypconfig',
         function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, ypconfig) {
-        //
-        // For any unmatched url, send to /home
-        $urlRouterProvider.otherwise("/home");
-        //
-        // Now set up the states
-        $stateProvider
-            .state('home', {
-                url: "/home",
-                templateUrl: "partials/home.html",
-                access: accessLevels.all
-            })
-            .state('cockpit', {
-                url: "/cockpit",
-                templateUrl: "partials/cockpit.html",
-                access: accessLevels.individual
-            });
+            //
+            // For any unmatched url, send to /home
+            $urlRouterProvider.otherwise("/home");
+            //
+            // Now set up the states
+            $stateProvider
+                .state('home', {
+                    url: "/home",
+                    templateUrl: "partials/home.html",
+                    access: accessLevels.all
+                })
+                .state('cockpit', {
+                    url: "/cockpit",
+                    templateUrl: "partials/cockpit.html",
+                    access: accessLevels.individual
+                });
 
-        RestangularProvider.setBaseUrl(ypconfig && ypconfig.backendUrl || "");
-    }])
+            RestangularProvider.setBaseUrl(ypconfig && ypconfig.backendUrl || "");
+        }])
 
 /**
  * setup checking of access levels for logged in user.
@@ -36,23 +36,23 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
     .run(['$rootScope', '$state', '$stateParams', 'principal',
         function ($rootScope, $state, $stateParams, principal) {
 
-       $rootScope.$state = $state;
-       $rootScope.$stateParams = $stateParams;
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
 
-        // handle routing authentication
-       $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+            // handle routing authentication
+            $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
-            var requiredAccessLevel = toState.access;
+                var requiredAccessLevel = toState.access;
 
-           // check whether user is authorized to access the desired access-Level
-            if (!(principal.isAuthorized(requiredAccessLevel))) {
-                event.preventDefault();
-                $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
-            }
+                // check whether user is authorized to access the desired access-Level
+                if (!(principal.isAuthorized(requiredAccessLevel))) {
+                    event.preventDefault();
+                    $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
+                }
 
-        });
+            });
 
-    }]).
+        }]).
 
     config(['$translateProvider', function ($translateProvider) {
         $translateProvider.preferredLanguage('de');
@@ -65,7 +65,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
  * - highlighting global menu option according to currently active state
  * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope',  '$timeout', 'principal', '$log',
+    .controller('MainCtrl', ['$scope', '$timeout', 'principal', '$log',
         function ($scope, $timeout, principal, $log) {
 
             $scope.principal = principal;
@@ -93,12 +93,12 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 };
                 if (duration) {
                     $timeout(function () {
-                         $scope.globalUserMsg = null;
+                        $scope.globalUserMsg = null;
                     }, duration);
                 }
             });
 
-            $scope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+            $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 $scope.$broadcast('globalUserMsg', 'error during state transition from ' + fromState.name + ' to ' + toState.name + ": " + error.data || error.message, 'warning');
                 $log.error("error during state transition" + error.data);
             });
@@ -111,11 +111,11 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
         }])
 
     .directive('myModal', [
-        '$modal', '$state', function($modal, $state) {
+        '$modal', '$state', function ($modal, $state) {
 
             // Link function
             //
-            return function(scope, elem, attr) {
+            return function (scope, elem, attr) {
                 var lastParams, lastState, modalInstance;
 
                 /*
@@ -127,7 +127,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                 modalInstance = null;
 
 
-                scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+                scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                     var dismiss, m;
 
                     // Entering "detail" state...
@@ -135,17 +135,17 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                     if (toState.name.indexOf('modal') === 0) {
 
                         /*
-                         If we get here from another "detail" page or from a direct link,
-                         don't open a new modalInstance.
+                         If we get here from another "detail" page
                          Just let ui-router update ui-view!
                          */
-                        if (fromState.name.indexOf('modal') === 0 || fromState.name === '') {
+                        if (fromState.name.indexOf('modal') === 0 || fromState.name === '' || fromState.name === 'home') {
                             return;
                         }
 
 
-                        elem.html(''); // Remove the ui-view we put inside my-modal.
-
+                        // we got here from another (non modal state),
+                        // so we clean up the ui-modal in the div we might have added before.
+                        elem.html = '';
 
                         lastState = fromState;
                         lastParams = fromParams;
@@ -153,7 +153,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                             template: '<div ui-view="modal"></div>',
                             windowClass: 'editModal'
                         });
-                        dismiss = function() {
+                        dismiss = function () {
                             var p, s;
 
                             if (modalInstance) { // If not resetted yet

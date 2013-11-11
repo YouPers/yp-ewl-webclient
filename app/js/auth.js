@@ -161,7 +161,7 @@
                     var targetLocation = $location.path();
                     $location.path('/');
                     UserService.login(credentialsFromCookie, function () {
-                        if (targetLocation === '/home') {
+                        if (targetLocation === '/home' || targetLocation === '/') {
                             $location.path('/cockpit');
                         } else {
                             $location.path(targetLocation);
