@@ -224,7 +224,7 @@
                             var svgCanvas = svg.append("g")
                                 .attr("transform", "translate(" + scope.options.marginLeft + "," + scope.options.marginTop + ")");
 
-                            var elementColor, lineGraph;
+                            var elementColor;
 
                             if (scope.options.displayType === "cockpit") {
                                 // display health management process with status per process step
