@@ -412,7 +412,7 @@ module.exports = function (grunt) {
                 'options': {
                     'data': {
                         mockscripts: "<script src='js/mockdata/backendMockApp.js'></script>" +
-                                      "<script src='lib/angular/angular-mocks.js'></script>" +
+                                      "<script src='lib/angular-mocks/angular-mocks.js'></script>" +
                                       "<script src='js/mockdata/MockDataJson.js'></script>" +
                                       "<script src='js/mockdata/testactivities.js'></script>",
                         ngappsuffix: '-devmock',
