@@ -183,7 +183,9 @@ describe('ewl activity', function () {
                 allActivities: mock.activities,
             plannedActivities: mock.plannedActivities,
                 recommendations: [],
-                'yp.user.UserService': {}
+                'yp.user.UserService': {},
+                assessment: {},
+                topStressors: []
             });
         }));
 
