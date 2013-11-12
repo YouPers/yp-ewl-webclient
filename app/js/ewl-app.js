@@ -99,8 +99,9 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
             });
 
             $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-                $scope.$broadcast('globalUserMsg', 'error during state transition from ' + fromState.name + ' to ' + toState.name + ": " + error.data || error.message, 'warning');
-                $log.error("error during state transition" + error.data);
+                var msg = 'error during state transition from ' + fromState.name + ' to ' + toState.name + ": " + (error.data || error.message ||error.toString() || error);
+                $scope.$broadcast('globalUserMsg',msg, 'danger');
+                $log.error(msg);
             });
 
             $scope.closeUserMsg = function () {

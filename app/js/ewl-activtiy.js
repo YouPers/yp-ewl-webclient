@@ -19,7 +19,22 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }],
                         recommendations: ['ActivityService', function (ActivityService) {
                             return ActivityService.getRecommendations();
+                        }],
+                        topStressors: ['AssessmentService', function (AssessmentService) {
+                            return AssessmentService.getAssessmentResults('525faf0ac558d40000000005').then(function (result) {
+                                if (!result || !result[0]) {
+                                    return null;
+                                } else {
+                                    return _.sortBy(result[0].answers,function (answer) {
+                                        return -Math.abs(answer.answer);
+                                    }).slice(0, 3);
+                                }
+                            });
+                        }],
+                        assessment: ['AssessmentService', function (AssessmentService) {
+                            return AssessmentService.getAssessment('525faf0ac558d40000000005');
                         }]
+
                     }
                 })
                 .state('modal_activityAdmin', {
@@ -224,7 +239,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 if (principal.isAuthenticated()) {
                     return plannedActivities.getList(options);
                 } else {
-                    return [];
+                    var deferred = $q.defer();
+                    deferred.resolve([]);
+                    return deferred.promise;
                 }
             },
             getPlanForActivity: function (activityId, options) {
@@ -242,9 +259,15 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     }
                 });
             },
-            getRecommendations: function () {
+            getRecommendations: function (focusQuestionId) {
+                var params = {
+                    limit: 1000
+                };
+                if (focusQuestionId) {
+                    params.fokus = focusQuestionId;
+                }
                 if (principal.isAuthenticated()) {
-                    return Restangular.all('activities/recommendations').getList({limit: 1000});
+                    return Restangular.all('activities/recommendations').getList(params);
                 } else {
                     return [];
                 }
@@ -290,12 +313,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 allExecutiontypes = true,
                 subSetAll = true,
                 ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'],
-                durationMapping = function(duration) {
+                durationMapping = function (duration) {
                     if (duration < 15) {
                         return 't15';
-                    } else if (duration <=30) {
+                    } else if (duration <= 30) {
                         return 't30';
-                    }  else if (duration <= 60) {
+                    } else if (duration <= 60) {
                         return 't60';
                     } else {
                         return 'more';
@@ -454,15 +477,16 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
         }])
 
-    .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'plannedActivities', 'activityFields', 'recommendations', 'yp.user.UserService',
-        function ($scope, $filter, allActivities, plannedActivities, activityFields, recommendations, UserService) {
+    .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'plannedActivities', 'activityFields',
+        'recommendations', 'yp.user.UserService', 'topStressors', 'assessment', 'ActivityService',
+        function ($scope, $filter, allActivities, plannedActivities, activityFields, recommendations, UserService, topStressors, assessment, ActivityService) {
 
             // mock campaigns, that this user has an active goal for, should be loaded from server later...
             var campaigns = ['Campaign-1'];
 
             $scope.hasRecommendations = (recommendations.length > 0);
 
-            var starredActs =  $scope.principal &&
+            var starredActs = $scope.principal &&
                 $scope.principal.getUser() &&
                 $scope.principal.getUser().preferences &&
                 $scope.principal.getUser().preferences.starredActivities || {};
@@ -471,8 +495,30 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.activities = allActivities;
             $scope.filteredActivities = allActivities;
-
             $scope.activityFields = activityFields;
+
+
+            _.forEach(topStressors, function (stressor) {
+                stressor.title = assessment.questionLookup[stressor.question].title;
+            });
+            $scope.topStressors = topStressors;
+
+            $scope.focusOnStressor = function (stressor) {
+                var focusQuestion = null;
+                if (stressor.focussed) {
+                    focusQuestion = stressor.question;
+                    _.forEach($scope.topStressors, function(myStressor) {
+                        if (myStressor !== stressor) {
+                            myStressor.focussed = false;
+                        }
+                    });
+                }
+                ActivityService.getRecommendations(focusQuestion).then(function (newRecs) {
+                    allActivities.enrichWithUserData(plannedActivities, newRecs, campaigns, starredActs);
+                    $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
+                });
+
+            };
 
             $scope.gotoActivityDetail = function (activity) {
                 // goto detail state, keep active tab around as stateparameter
@@ -484,7 +530,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 $scope.$state.go('modal_activityAdmin', {activityId: activity.id, tab: $scope.$stateParams.tab});
             };
 
-            $scope.toggleStar = function(activity, event) {
+            $scope.toggleStar = function (activity, event) {
                 event.stopPropagation();
                 activity.starred = !activity.starred;
                 var user = $scope.principal.getUser();
@@ -495,7 +541,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     user.preferences.starredActivities = {};
                 }
 
-                if (activity.id in user.preferences.starredActivities ) {
+                if (activity.id in user.preferences.starredActivities) {
                     delete user.preferences.starredActivities[activity.id];
                 } else {
                     user.preferences.starredActivities[activity.id] = true;
@@ -546,7 +592,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.setListTab = setListTab;
 
 
-
             $scope.pageSize = 20;
             $scope.maxSize = 10;
             $scope.currentPage = 1;
@@ -560,7 +605,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }, true);
         }])
 
-    .controller('ActivityAdminCtrl', ['$scope', '$rootScope', '$state','activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular',
+    .controller('ActivityAdminCtrl', ['$scope', '$rootScope', '$state', 'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular',
         function ($scope, $rootScope, $state, activity, assessment, ActivityService, activityFields, Restangular) {
 
             $scope.activity = activity;

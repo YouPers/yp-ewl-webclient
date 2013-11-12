@@ -132,7 +132,13 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                 assessmentResultBase.post(assResult).then(callback);
             },
             getAssessmentResults: function (assessmentId) {
-                return Restangular.one('assessments', assessmentId).all('results').getList({sort: 'timestamp:-1'});
+                if (principal.isAuthenticated()) {
+                    return Restangular.one('assessments', assessmentId).all('results').getList({sort: 'timestamp:-1'});
+                } else {
+                    var deferred = $q.defer();
+                    deferred.resolve([]);
+                    return deferred.promise;
+                }
             }
         };
 

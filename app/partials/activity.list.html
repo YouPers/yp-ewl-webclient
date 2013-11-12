@@ -48,12 +48,28 @@
 </div>
 
 <!-- die filter auf der Seite -->
+
 <div class="row">
     <div class="col-md-2">
         <div class="row">
-            <div class="col-md-12">
-                <h3>AktvitätsCluster</h3>
+            <div class="col-md-12" ng-hide="query.subset=='recommendations' && !hasRecommendations">
+                <h4>Fokus setzen</h4>
+                <div class="container panel panel-default">
+                    <div class="checkbox filter-option"
+                         ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'"
+                         ng-repeat="stressor in topStressors" ng-click="focusOnStressor(stressor)">
+                        <label>
+                            <input type="checkbox" name ="stressorFocus" ng-model="stressor.focussed">
+                            {{ stressor.title }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <h4>AktvitätsCluster</h4>
                 <div class="container panel panel-default">
                     <div ng-repeat="(fieldId, fieldDesc) in activityFields" class="filter-option"
                          ng-class="query.cluster[fieldId] ? 'filter-option-active' : 'filter-option-inactive'"
@@ -86,8 +102,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3>Zeitaufwand</h3>
-
+                <h4>Zeitaufwand</h4>
                 <div class="container panel panel-default">
                     <div class="checkbox filter-option"
                          ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
@@ -125,8 +140,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3>Rating</h3>
-
+                <h4>Rating</h4>
                 <div class="container panel panel-default">
                     <div class="checkbox filter-option"
                          ng-class="query.rating.five ? 'filter-option-active' : 'filter-option-inactive'">
