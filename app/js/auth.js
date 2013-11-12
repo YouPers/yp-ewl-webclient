@@ -231,19 +231,22 @@
                     }
                 };
 
+                $scope.registerShown = false;
                 $scope.result = result;
 
-                $scope.showRegistrationForm = function () {
+                // passing in a reference to "registerform" and saving it on our scope
+                // this is a workaround for current issue: https://github.com/angular-ui/bootstrap/issues/969
+                $scope.showRegistrationForm = function (registerform) {
                     delete result.login;
                     result.newuser = {};
-                    $scope.showRegistrationForm = true;
+                    $scope.registerShown = true;
+                    $scope.registerform = registerform;
                 };
 
                 $scope.$watchCollection('[result.newuser.firstname, result.newuser.lastname]', function () {
-                    if (!$scope.registerform.username.$dirty && $scope.result.newuser.firstname) {
+                    if ($scope.registerform && !$scope.registerform.username.$dirty && $scope.result.newuser.firstname) {
                         $scope.result.newuser.username = ($scope.result.newuser.firstname.substr(0, 1) || '').toLowerCase() + ($scope.result.newuser.lastname || '').toLowerCase();
                     }
-
                 });
 
                 $scope.done = function () {
