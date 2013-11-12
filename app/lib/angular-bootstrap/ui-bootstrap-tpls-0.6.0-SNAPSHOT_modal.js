@@ -2796,7 +2796,7 @@ angular.module('ui.bootstrap.timepicker', [])
 .directive('timepicker', ['$parse', '$log', 'timepickerConfig', function ($parse, $log, timepickerConfig) {
   return {
     restrict: 'EA',
-    require:'?^ngModel',
+    require:'ngModel', // patched RBLU: to allow setting the model directly on the element
     replace: true,
     scope: {},
     templateUrl: 'template/timepicker/timepicker.html',

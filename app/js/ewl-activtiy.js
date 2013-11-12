@@ -448,9 +448,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
 
             $scope.$watch('currentActivityPlan.weeklyDay', function (newValue, oldValue) {
-                var duration = $scope.currentActivityPlan.mainEvent.end - $scope.currentActivityPlan.mainEvent.start;
-                $scope.currentActivityPlan.mainEvent.start = nextWeekday(new Date(), newValue);
-                $scope.currentActivityPlan.mainEvent.end = moment($scope.currentActivityPlan.mainEvent.start).add(duration);
+                if (newValue && $scope.currentActivityPlan.mainEvent.frequency === 'week') {
+                    var duration = $scope.currentActivityPlan.mainEvent.end - $scope.currentActivityPlan.mainEvent.start;
+                    $scope.currentActivityPlan.mainEvent.start = nextWeekday(new Date(), newValue);
+                    $scope.currentActivityPlan.mainEvent.end = moment($scope.currentActivityPlan.mainEvent.start).add(duration);
+                }
             });
 
             $scope.getiCalUrl = function () {
@@ -507,7 +509,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 var focusQuestion = null;
                 if (stressor.focussed) {
                     focusQuestion = stressor.question;
-                    _.forEach($scope.topStressors, function(myStressor) {
+                    _.forEach($scope.topStressors, function (myStressor) {
                         if (myStressor !== stressor) {
                             myStressor.focussed = false;
                         }
