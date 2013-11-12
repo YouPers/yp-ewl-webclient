@@ -2,8 +2,8 @@
 
 angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activity'])
 
-    .controller('ActivityLogCtrl', ['$scope', 'ActivityService', 'activityFields',
-        function ($scope, ActivityService, activityFields) {
+    .controller('ActivityLogCtrl', ['$scope', '$rootScope','ActivityService', 'activityFields', '$modal', '$log',
+        function ($scope, $rootScope, ActivityService, activityFields, $modal, $log) {
             $scope.tabs = [
                 // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
                 { title: "nächste", content: "partials/cockpit.activitylog.running.html", orderBy: "asc", filter: "nextEvents" },
@@ -105,36 +105,58 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 return icon;
             };
 
-            $scope.getOpenStatus = function (status) {
-                if (status === "open") {
-                    return "active";
-                } else {
-                    return "";
-                }
+            $scope.setStatus = function (actPlanId, actEvent, status) {
+                actEvent.status = status;
+                ActivityService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
+                        $log.info("ActEvent updated: " + JSON.stringify(result));
+                    }, function (err) {
+                        $log.info("ActEvent update failed: " + err);
+                        $rootScope.$broadcast('globalUserMsg', 'Error while Saving: ' + err, 'danger', 3000);
+                    }
+                );
             };
 
-            $scope.getDoneStatus = function (status) {
-                if (status === "done") {
-                    return "active";
-                } else {
-                    return "";
-                }
-            };
+            $scope.open = function (actEvent, activity, actPlanId) {
 
-            $scope.getMissedStatus = function (status) {
-                if (status === "missed") {
-                    return "active";
-                } else {
-                    return "";
-                }
-            };
+                var modalInstance = $modal.open({
+                    templateUrl: "partials/cockpit.activity.done.html",
+                    controller: "ActivityDoneModalInstanceCtrl",
+                    backdrop: true,
+                    resolve: {
+                        activity: function () {
+                            return activity;
+                        },
+                        actEvent: function () {
+                            return actEvent;
+                        }
+                    }
+                });
 
-            $scope.setStatus = function (status) {
-                if (status === "missed") {
-                    return "active";
-                } else {
-                    return "";
-                }
+                modalInstance.result.then(function (returnedValue) {
+
+                    actEvent.status = returnedValue.done;
+                    actEvent.feedback = returnedValue.feedback;
+
+                    if (returnedValue.doneText.length > 0) {
+                        var comment = {
+                            text: returnedValue.doneText,
+                            created: new Date().toISOString(),
+                            author: $scope.principal.getUser()
+                        };
+                        actEvent.comments.push(comment);
+                    }
+
+                    ActivityService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
+                            $log.info("ActEvent updated: " + JSON.stringify(result));
+                        }, function (err) {
+                            $log.info("ActEvent update failed: " + err);
+                            $rootScope.$broadcast('globalUserMsg', 'Error while Saving: ' + err, 'warning', 3000);
+                        }
+                    );
+
+                }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
             };
 
         }])
@@ -193,53 +215,6 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
         };
     })
 
-    .controller('ActivityDoneModalCtrl', ['$rootScope', '$scope', '$modal', '$log', 'ActivityService', 'principal',
-        function ($rootScope, $scope, $modal, $log, ActivityService, principal) {
-
-            $scope.open = function (actEvent, activity, actPlanId) {
-
-                var modalInstance = $modal.open({
-                    templateUrl: "partials/cockpit.activity.done.html",
-                    controller: "ActivityDoneModalInstanceCtrl",
-                    backdrop: true,
-                    resolve: {
-                        activity: function () {
-                            return activity;
-                        },
-                        actEvent: function () {
-                            return actEvent;
-                        }
-                    }
-                });
-
-                modalInstance.result.then(function (returnedValue) {
-
-                    actEvent.status = returnedValue.done;
-                    actEvent.feedback = returnedValue.feedback;
-
-                    if (returnedValue.doneText.length > 0) {
-                        var comment = {
-                            text: returnedValue.doneText,
-                            created: new Date().toISOString(),
-                            author: principal.getUser()
-                        };
-                        actEvent.comments.push(comment);
-                    }
-
-                    ActivityService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
-                            $log.info("ActEvent updated: " + JSON.stringify(result));
-                        }, function (err) {
-                            $log.info("ActEvent update failed: " + err);
-                            $rootScope.$broadcast('globalUserMsg', 'Error while Saving: ' + err, 'warning', 3000);
-                        }
-                    );
-
-                }, function () {
-                    $log.info('Modal dismissed at: ' + new Date());
-                });
-            };
-        }])
-
     .controller('ActivityDoneModalInstanceCtrl', ['$scope', '$modalInstance', 'activity', 'actEvent',
         function ($scope, $modalInstance, activity, actEvent) {
 
@@ -247,7 +222,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
             $scope.actEvent = actEvent;
 
             $scope.dialogResults = {
-                done: actEvent.status,
+                done: 'done',
                 doneText: "",
                 feedback: actEvent.feedback
             };

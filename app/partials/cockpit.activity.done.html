@@ -2,18 +2,13 @@
 
     <div class="modal-header">
         <h3>{{ activity.number +': ' + activity.title}}</h3>
-        <h4>{{ 'ON' | translate }} {{ actEvent.begin | orderBy:'medium' }}</h4>
+        <h4>geplant am {{ actEvent.begin | date:'medium' }}</h4>
     </div>
     <div class="modal-body">
 
         <div class="row">
             <div class="col-lg-4">
-
-                <div class="btn-group">
-                    Ausgeführt?</br>
-                    <button class="btn btn-default" ng-model="dialogResults.done" btn-radio="'done'">{{ 'YES' | translate }}</button>
-                    <button class="btn btn-default" ng-model="dialogResults.done" btn-radio="'missed'">{{ 'NO' | translate }}</button>
-                </div>
+                Gratulation! Du hast eine weitere Aktivität ausgeführt und kommst deinem Ziel näher!
             </div>
 
             <div class="col-lg-8">
@@ -46,8 +41,8 @@
             <div class="col-lg-6">
             </div>
             <div class="col-lg-6">
-                <button class="btn btn-success btn-sm" ng-click="ok({{ rating }})">{{ 'SAVE' | translate }}</button>
-                <button class="btn btn-warning btn-sm" ng-click="cancel()">{{ 'CANCEL' | translate }}</button>
+                <button class="btn btn-default btn-sm" ng-click="cancel()">{{ 'CANCEL' | translate }}</button>
+                <button class="btn btn-success btn-sm" ng-click="ok(rating)">{{ 'SAVE' | translate }}</button>
                 </br>
                 </br>
             </div>
