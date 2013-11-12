@@ -81,7 +81,7 @@
     <ng-include src="'partials/topmenu.html'"></ng-include>
 
     <alert type='globalUserMsg.type' close="closeUserMsg()" class="yp-globalUserMsg"
-       ng-hide="$parent.globalUserMsg == null">{{ globalUserMsg.text }}
+       ng-hide="!globalUserMsg">{{ globalUserMsg.text }}
     </alert>
 
     <div ui-view></div>
