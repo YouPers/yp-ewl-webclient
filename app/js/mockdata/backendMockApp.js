@@ -24,6 +24,7 @@ angular.module('yp-ewl-devmock', ['yp-ewl', 'ngMockE2E'])
 
         $httpBackend.whenGET(baseURL + '/assessments/525faf0ac558d40000000005').respond(mock.assessment);
         $httpBackend.whenGET(baseURL +  '/assessments/525faf0ac558d40000000005/results/newest').respond(mock.assessmentAnswers);
+        $httpBackend.whenGET(baseURL +  '/assessments/525faf0ac558d40000000005/results?sort=timestamp:-1').respond(mock.assessmentAnswers);
 
         $httpBackend.whenPOST(baseURL +  '/assessments/525faf0ac558d40000000005/results').respond(function(method, url, data, headers) {
             var result = angular.fromJson(data);
