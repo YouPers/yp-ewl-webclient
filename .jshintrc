@@ -22,6 +22,7 @@ noempty:true, nonew:true, undef:true, strict:true, globalstrict:true, browser:tr
       "moment": false,
       "_": false,
       "mock": true,
-      "YT": false
+      "YT": false,
+      "markdown": false
   }
 }
