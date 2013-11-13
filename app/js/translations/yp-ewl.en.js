@@ -22,7 +22,7 @@ angular.module('yp-ewl').
             FOR: 'for',
             CHOOSE_A_TOPIC: 'Choose a health topic and set a goal',
             ASSESS_YOUR_STRESS_LEVEL: 'Assess your personal stress level',
-            GENERAL_STRESSLEVEL: 'General stresslevel',
+            GENERAL_STRESSLEVEL: 'General stress level',
             HOW_PERCEIVE_CURRENT_LEVEL: 'How do you perceive your  stress level in this very moment?',
             I_AM_UNDER_CHALLENGED: 'I am bored and totally under challenged',
             I_AM_OVERLOADED: 'I am totally freaking out, cannot cope with everything',
@@ -75,6 +75,10 @@ angular.module('yp-ewl').
             LASTNAME: 'Lastname',
             USERNAME: 'Username',
             PASSWORD_AGAIN: "repeat password",
-            REGISTER: "register"
+            REGISTER: "register",
+            YOUR_ASSESSMENT_RESULTS: "Your Assessment Results",
+            GENERAL: "General stress level",
+            HANDLING: "Stress handling",
+            STRESSTYPUS: "Stress typus"
         });
     }]);

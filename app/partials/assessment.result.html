@@ -1,24 +1,57 @@
-<h1>hier werden die Resultate des Assessments angezeigt</h1>
-        <p>bestehend aus:</p>
-        <ul>
-        <li>Auflistung der Top-3 Stressoren und pro Stressor ein Erklärungstextli</li>
-        <li>erster Vergleich mit Kampagnen-Community und Welt</li>
-        </ul>
+<div class="doneAssessmentDialog panel panel-default">
 
-        <p>und dann erklärt, dass:</p>
-            <ul>
-                <li>daraus Vorschläge für Aktivitäten entstehen, die _HIER>_ eingeplant werden können</li>
-                <li>das Asssessment regelmässig neu beurteilt werden sollte (z.B. wöchentlich) _HIER_ </li>
-                <li>Vergleiche mit der gesamten Firma und dem YouPers allgemeinen Durchschnitt vom _Cockpit_ aus einsehbar sind
-                <li>... und vieles mehr
-             </ul>
+    <div class="modal-header">
+        <h3>{{ 'YOUR_ASSESSMENT_RESULTS' | translate }}</h3>
+    </div>
+    <div class="modal-body">
 
-        Deine Top 5 Stressverursacher:
-        <div ng-repeat="stressor in results[0].answers | limitTo:'5'">
-            {{ assessment.questionLookup[stressor.question].category }} {{ assessment.questionLookup[stressor.question].title }} {{ stressor.answer }} {{ stressor.question }}
+        <p>Gemäss deiner Selbstbeurteilung sind dies deine drei grössten Stressverursacher:</p>
+        <div class="row assessmentResultHeader">
+            <div class="col-md-3">
+                Stressor
+            </div>
+            <div class="col-md-2">
+                deine Antwort
+            </div>
+            <div class="col-md-2">
+                Antworten Kampagne</br>im Vergleich
+            </div>
+            <div class="col-md-5">
+                Kommentar
+            </div>
         </div>
+            </br>
+        <div ng-repeat="stressor in results[0].answers | limitTo:'3'">
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="assessmentResultTitle">{{ assessment.questionLookup[stressor.question].title }}</span></br>
+                    <span class="assessmentResultCategory">Kategorie: {{ assessment.questionLookup[stressor.question].category.toUpperCase() | translate}}</span>
+                </div>
+                <div class="col-md-2">
+                    {{ stressor.answer < 0 ? assessment.questionLookup[stressor.question].mintext : assessment.questionLookup[stressor.question].maxtext }}</br>
+                    (Wert: {{ stressor.answer }})</br>
+                    <!--{{ stressor.question }}-->
+                </div>
+                <div class="col-md-2">
+                    {{ assessment.questionLookup[stressor.question].midtext }}</br>
+                    (Wert: 0)</br>
+                    <!--{{ stressor.question }}-->
+                </div>
+                <div class="col-md-5">
+                    {{ stressor.answer < 0 ? assessment.questionLookup[stressor.question].mintextresult : assessment.questionLookup[stressor.question].maxtextresult }}
+                </div>
+            </div>
+            </br>
+        </div>
+        <p></p>
 
+        <p>Aufgrund deiner Selbsbeurteilung werden dir im nächsten Schritt Aktivitäten vorgeschlagen, die du gleich einplanen kannst.</p>
+        <p>Idealerweise wiederholst du während der Kampagne wöchentlich deine Selbstbeurteilung, damit du siehst, wie sich dein Stresslevel entwickelt.</p>
+    </div>
+
+    <div class="modal-footer">
         <a type="button" class="btn btn-primary" ui-sref="activitylist">weiter zum nächsten Schritt</a>
         <a type="button" class="btn btn-default" ui-sref="assessment">zurück zur Selbstbeurteilung</a>
         <a type="button" class="btn btn-default" ui-sref="cockpit">zum Cockpit</a>
-
+    </div>
+</div>

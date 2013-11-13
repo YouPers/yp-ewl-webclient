@@ -76,6 +76,10 @@ angular.module('yp-ewl').
             LASTNAME: 'Nachname',
             USERNAME: "Username",
             PASSWORD_AGAIN: "Passwort wiederholen",
-            REGISTER: "registrieren"
+            REGISTER: "registrieren",
+            YOUR_ASSESSMENT_RESULTS: "Die Ergebnisse zu deinem Assessment",
+            GENERAL: "Allgemeiner Stresslevel",
+            HANDLING: "Stressbewältigung",
+            STRESSTYPUS: "Stresstyp"
         });
     }]);
