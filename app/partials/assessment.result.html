@@ -10,13 +10,13 @@
             <div class="col-md-3">
                 Stressor
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 deine Antwort
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 Antworten Kampagne</br>im Vergleich
             </div>
-            <div class="col-md-5">
+            <div class="col-md-3">
                 Kommentar
             </div>
         </div>
@@ -27,17 +27,17 @@
                     <span class="assessmentResultTitle">{{ assessment.questionLookup[stressor.question].title }}</span></br>
                     <span class="assessmentResultCategory">Kategorie: {{ assessment.questionLookup[stressor.question].category.toUpperCase() | translate}}</span>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     {{ 0 > stressor.answer ? assessment.questionLookup[stressor.question].mintext : assessment.questionLookup[stressor.question].maxtext }}</br>
                     (Wert: {{ stressor.answer }})</br>
                     <!--{{ stressor.question }}-->
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     {{ assessment.questionLookup[stressor.question].midtext }}</br>
                     (Wert: 0)</br>
                     <!--{{ stressor.question }}-->
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     {{ 0 > stressor.answer ? assessment.questionLookup[stressor.question].mintextresult : assessment.questionLookup[stressor.question].maxtextresult }}
                 </div>
             </div>
