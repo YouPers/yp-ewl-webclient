@@ -21,7 +21,7 @@ var clientconfig = {
             backendUrl: 'http://yp-backend-test.herokuapp.com/api/v1'
         },
         uat: {
-            backendUrl: 'http://uat.youpers.com/api/v1'
+            backendUrl: 'https://uat.youpers.com/api/v1'
         },
         prod: {
             backendUrl: 'https://api.youpers.com/api/v1'
