@@ -409,8 +409,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         };
     }])
 
-    .controller('ActivityDetailCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan', '$state', '$rootScope',
-        function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope) {
+    .controller('ActivityDetailCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan',
+        '$state', '$rootScope', '$sce',
+        function ($scope, ActivityService, $timeout, activity, plan,
+                  $state, $rootScope, $sce) {
 
             $scope.currentActivity = activity;
             $scope.currentExecutionType = activity.defaultexecutiontype;
@@ -468,6 +470,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.getiCalUrl = function () {
                 return ActivityService.getiCalUrl($scope.currentActivityPlan.id);
 
+            };
+
+            $scope.getRenderedText = function(activity) {
+                return $sce.trustAsHtml(markdown.toHTML(activity.text));
             };
 
             $scope.isActivityPlanned = function () {
