@@ -20,7 +20,7 @@
                 Kommentar
             </div>
         </div>
-            </br>
+        </br>
         <div ng-repeat="stressor in results[0].answers | limitTo:'3'">
             <div class="row">
                 <div class="col-md-3">
@@ -28,7 +28,7 @@
                     <span class="assessmentResultCategory">Kategorie: {{ assessment.questionLookup[stressor.question].category.toUpperCase() | translate}}</span>
                 </div>
                 <div class="col-md-2">
-                    {{ stressor.answer < 0 ? assessment.questionLookup[stressor.question].mintext : assessment.questionLookup[stressor.question].maxtext }}</br>
+                    {{ 0 > stressor.answer ? assessment.questionLookup[stressor.question].mintext : assessment.questionLookup[stressor.question].maxtext }}</br>
                     (Wert: {{ stressor.answer }})</br>
                     <!--{{ stressor.question }}-->
                 </div>
@@ -38,7 +38,7 @@
                     <!--{{ stressor.question }}-->
                 </div>
                 <div class="col-md-5">
-                    {{ stressor.answer < 0 ? assessment.questionLookup[stressor.question].mintextresult : assessment.questionLookup[stressor.question].maxtextresult }}
+                    {{ 0 > stressor.answer ? assessment.questionLookup[stressor.question].mintextresult : assessment.questionLookup[stressor.question].maxtextresult }}
                 </div>
             </div>
             </br>
