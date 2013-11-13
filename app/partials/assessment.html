@@ -11,54 +11,62 @@
             <d3-health-management-process data="processData" options="d3OptionsAssess"></d3-health-management-process>
         </div>
     </div>    <!-- Page header  -->
-    <div class="ass-done-button ass-done-button-top">
-        <button type="button" class="btn btn-primary btn-sm" ng-click="assessmentDone()">speichern</button>
-    </div>
+    <!--<div class="ass-done-button ass-done-button-top">-->
+    <!--<button type="button" class="btn btn-primary btn-sm" ng-click="assessmentDone()">speichern</button>-->
+    <!--</div>-->
     <div class="row ass-questioncat-title" ng-repeat="questioncat in assessment.questionCats">
-        <div class="row">
-            <div class="col-md-8">
-                <h2>{{ questioncat.category | translate}}</h2>
-            </div>
-        </div>
-        <!-- popover placement: always 'bottom', only at the bottom question at the top (otherwise it is outside of the page).
-            Because of nested ng-Repeat we need to get the $last of inner loop and $last of outer loop.
-            $parent.$parent is needed to get out of the popover scope to the inner loop and then to the outer loop. -->
-        <div class="row" ng-repeat="question in questioncat.questions">
-            <div class="col-md-12" ng-class="{mainAssQuestion: question.category=='general', panel: question.category!=='general'}">
+        <div class="col-md-11">
+            <div class="panel cockpit" ng-class="{mainAssQuestion: questioncat.category=='GENERAL_STRESSLEVEL', otherAssQuestion: questioncat.category!='GENERAL_STRESSLEVEL'}">
+
                 <div class="row">
-                    <div class="col-md-6">
-
-                        <div class="row ass-question">
-                            <div class="col-md-8 col-md-offset-2"><h4>{{ question.title | translate}}</h4></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2 ass-min-text" popover="{{ question.mintextexample }}"
-                                 popover-trigger="mouseenter" popover-placement="right">{{ question.mintext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
-                            <div class="col-md-8">
-                                <input ng-class="[question.type, assAnswersByQuestionId[question.id].dirty ? 'answered' : '']"
-                                       type="range" min="-100"
-                                       max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
-                                       ng-model="assAnswersByQuestionId[question.id].answer"
-                                       ng-mousedown="setQuestionAnswered(question.id)"/>
-                            </div>
-                            <div class="col-md-2 ass-max-text" popover="{{ question.maxtextexample }}"
-                                 popover-trigger="mouseenter">{{ question.maxtext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
-                        </div>
-                        <div class="row ass-mid-text">
-                            <div class="col-md-8 col-md-offset-2" popover="{{ question.midtextexample }}"
-                                 popover-trigger="mouseenter">{{ question.midtext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                    <div class="col-md-12">
+                        <div class="panel cockpit section-title">
+                            {{ questioncat.category | translate}}
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        {{ question.exptext }}
-                    </div>
-
                 </div>
+                <!-- popover placement: always 'bottom', only at the bottom question at the top (otherwise it is outside of the page).
+                    Because of nested ng-Repeat we need to get the $last of inner loop and $last of outer loop.
+                    $parent.$parent is needed to get out of the popover scope to the inner loop and then to the outer loop. -->
+                <div class="row" ng-repeat="question in questioncat.questions">
+                    <!--<div class="col-md-12" ng-class="{mainAssQuestion: question.category=='general', panel: question.category!=='general'}">-->
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-7">
 
+                                <div class="row ass-question">
+                                    <div class="col-md-8 col-md-offset-2"><h4>{{ question.title | translate}}</h4></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 ass-min-text" popover="{{ question.mintextexample }}"
+                                         popover-trigger="mouseenter" popover-placement="right">{{ question.mintext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                                    <div class="col-md-8">
+                                        <input ng-class="[question.type, assAnswersByQuestionId[question.id].dirty ? 'answered' : '']"
+                                               type="range" min="-100"
+                                               max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
+                                               ng-model="assAnswersByQuestionId[question.id].answer"
+                                               ng-mousedown="setQuestionAnswered(question.id)"/>
+                                    </div>
+                                    <div class="col-md-2 ass-max-text" popover="{{ question.maxtextexample }}"
+                                         popover-trigger="mouseenter">{{ question.maxtext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                                </div>
+                                <div class="row ass-mid-text">
+                                    <div class="col-md-8 col-md-offset-2" popover="{{ question.midtextexample }}"
+                                         popover-trigger="mouseenter">{{ question.midtext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 assessmentText">
+                                {{ question.exptext }}
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="ass-done-button ass-done-button-bottom">
-        <button type="button" class="btn btn-primary btn-sm" ng-click="assessmentDone()">speichern</button>
+        <button type="button" class="cockpit btn btn-primary btn-sm" ng-click="assessmentDone()">speichern</button>
     </div>
 </div>

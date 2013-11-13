@@ -437,11 +437,18 @@ ul.small-icons:hover {
 }
 
 .mainAssQuestion {
-  .rounded(5px);
-  border-style: solid;
-  border-width: 1px;
-  background: #f3fba3;
-  border-color: #89bb3e;
+//  .rounded(5px);
+//  border-style: solid;
+//  border-width: 1px;
+//  background: #f3fba3;
+//  border-color: #89bb3e;
+
+  background-color: @youpers-brand-colors-cockpit-y02;
+//  font-size: @youpers-font-size-3;
+  font-family: @youpers-brand-font-family;
+//  line-height: 40px;
+  border: 0px;
+
 }
 
 .ass-done-button {
@@ -853,6 +860,19 @@ btn-default.cockpit:active, .btn-default.cockpit.active {
   padding-left: 5px;
 //  padding-top: 2px;
 //  padding-bottom: 2px;
+}
+
+.panel.cockpit.mainAssQuestion,
+.panel.cockpit.otherAssQuestion {
+  padding-bottom: 15px;
+}
+
+.panel.cockpit.mainAssQuestion {
+  background-color: @youpers-brand-colors-page-background-highlighted;
+}
+
+.assessmentText {
+  padding-right: 20px;
 }
 
 .panel.cockpit.section-title {
