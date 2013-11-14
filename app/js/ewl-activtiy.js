@@ -112,6 +112,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         if (rec) {
                             act.isRecommended = true;
                             act.recWeight = rec.weight;
+                        } else {
+                            delete act.isRecommended;
+                            delete act.recWeight;
                         }
                     });
                 };
