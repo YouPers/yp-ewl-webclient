@@ -43,7 +43,7 @@ angular.module('yp.ewl.stresslevel.gauge', ['yp.ewl.assessment'])
 
         $scope.currentStressLevel = 0;
 
-        var latestResult1 = AssessmentService.getAssessmentResults('525faf0ac558d40000000005')
+        AssessmentService.getAssessmentResults('525faf0ac558d40000000005')
             .then(function (result) {
                 var currentStressLevel = 0;
                 if (result) {
