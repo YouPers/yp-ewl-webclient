@@ -112,6 +112,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         if (rec) {
                             act.isRecommended = true;
                             act.recWeight = rec.weight;
+                        } else {
+                            delete act.isRecommended;
+                            delete act.recWeight;
                         }
                     });
                 };
@@ -232,7 +235,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
                 return cachedActivitiesPromise;
             },
-            reloadActivities: function() {
+            reloadActivities: function () {
                 cachedActivitiesPromise = activities.getList({limit: 1000});
                 return cachedActivitiesPromise;
             },
@@ -411,8 +414,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
     .controller('ActivityDetailCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan',
         '$state', '$rootScope', '$sce',
-        function ($scope, ActivityService, $timeout, activity, plan,
-                  $state, $rootScope, $sce) {
+        function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope, $sce) {
 
             $scope.currentActivity = activity;
             $scope.currentExecutionType = activity.defaultexecutiontype;
@@ -472,7 +474,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             };
 
-            $scope.getRenderedText = function(activity) {
+            $scope.getRenderedText = function (activity) {
                 return $sce.trustAsHtml(markdown.toHTML(activity.text));
             };
 
@@ -674,14 +676,16 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $scope.save = function () {
                 if (activity.id) {
                     activity.put().then(function (result) {
-                        $rootScope.$broadcast('globalUserMsg', 'activity saved successfully', 'success', 5000);
-                        $state.go('activitylist', $rootScope.$stateParams);
+                        ActivityService.reloadActivities().then(function () {
+                            $rootScope.$broadcast('globalUserMsg', 'activity saved successfully', 'success', 5000);
+                            $state.go('activitylist', $rootScope.$stateParams);
+                        });
                     }, function (err) {
                         $rootScope.$broadcast('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
                     });
                 } else {
                     activity.post().then(function (result) {
-                        ActivityService.reloadActivities().then(function() {
+                        ActivityService.reloadActivities().then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'activity saved successfully', 'success', 5000);
                             $state.go('activitylist', $rootScope.$stateParams);
                         });
