@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yp.ewl.stresslevel.gauge', [])
+angular.module('yp.ewl.stresslevel.gauge', ['yp.ewl.assessment'])
 
     .factory('yp.ewl.stresslevel.gauge.service', [function() {
 
@@ -39,7 +39,30 @@ angular.module('yp.ewl.stresslevel.gauge', [])
 
     }])
 
-    .controller('yp.ewl.stresslevel.gauge.controller', ['$scope', '$timeout', 'yp.ewl.stresslevel.gauge.service', function ($scope, $timeout, StressLevelGaugeService) {
+    .controller('yp.ewl.stresslevel.gauge.controller', ['$scope', '$timeout', 'yp.ewl.stresslevel.gauge.service', 'AssessmentService', function ($scope, $timeout, StressLevelGaugeService, AssessmentService) {
+
+        $scope.currentStressLevel = 0;
+
+        var latestResult1 = AssessmentService.getAssessmentResults('525faf0ac558d40000000005')
+            .then(function (result) {
+                var currentStressLevel = 0;
+                if (result) {
+                    if (result.length > 0) {
+                        $scope.latestAssessment = result[0];
+                        angular.forEach($scope.latestAssessment.answers, function (question) {
+                            if (question.question === "5278c51a6166f2de240000df") {
+                                currentStressLevel = question.answer;
+                            }
+                        });
+                    }
+                }
+                $scope.currentStressLevel = currentStressLevel;
+
+                $scope.stressLevelGeneral = { "label" : "Allgemein", "level" : $scope.currentStressLevel};
+
+                $scope.variance = false;
+
+            });
 
         $scope.d3Options = {
             size: 100
@@ -53,13 +76,11 @@ angular.module('yp.ewl.stresslevel.gauge', [])
 //        var stressLevelTypeO = StressLevelGaugeService.stressLevelType.level;
 //        var stressLevelMasteryO = StressLevelGaugeService.stressLevelMastery.level;
 
-        $scope.stressLevelGeneral = StressLevelGaugeService.stressLevelGeneral;
-        $scope.stressLevelWorkPlace = StressLevelGaugeService.stressLevelWorkPlace;
-        $scope.stressLevelTimeOff = StressLevelGaugeService.stressLevelTimeOff;
-        $scope.stressLevelType = StressLevelGaugeService.stressLevelType;
-        $scope.stressLevelMastery = StressLevelGaugeService.stressLevelMastery;
-
-        $scope.variance = false;
+//        $scope.stressLevelGeneral = StressLevelGaugeService.stressLevelGeneral;
+//        $scope.stressLevelWorkPlace = StressLevelGaugeService.stressLevelWorkPlace;
+//        $scope.stressLevelTimeOff = StressLevelGaugeService.stressLevelTimeOff;
+//        $scope.stressLevelType = StressLevelGaugeService.stressLevelType;
+//        $scope.stressLevelMastery = StressLevelGaugeService.stressLevelMastery;
 
 //        var updateGauge = function (gauge, gaugeOrig) {
 //            if (gauge.level < (gaugeOrig - 0.1)) {

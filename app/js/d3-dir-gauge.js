@@ -76,43 +76,45 @@
 
                         // generating defaults, if options are not set
 
-                        scope.options = typeof scope.options !== 'undefined' ? scope.options : {};
+                        scope.options = scope.options || {};
 
-                        scope.options.size = typeof scope.options.size !== 'undefined' ? scope.options.size : 100;
+                        scope.options.size = scope.options.size || 100;
 
                         scope.options.radius = scope.options.size * 0.9 / 2;
 
                         scope.options.cx = scope.options.size / 2;
                         scope.options.cy = scope.options.size / 2;
 
-                        scope.options.min = typeof scope.options.min !== 'undefined' ? scope.options.min : 0;
-                        scope.options.max = typeof scope.options.max !== 'undefined' ? scope.options.max : 10;
+                        scope.options.min = scope.options.min || -100;
+                        scope.options.max = scope.options.max || 100;
                         scope.options.range = scope.options.max - scope.options.min;
 
-                        scope.options.majorTicks = typeof scope.options.majorTicks !== 'undefined' ? scope.options.majorTicks : 5;
-                        scope.options.minorTicks = typeof scope.options.minorTicks !== 'undefined' ? scope.options.minorTicks : 2;
+                        scope.options.drawMajorTickLabels = scope.options.drawMajorTickLabels || "no";
 
-                        scope.options.needleWidthRatio = typeof scope.options.needleWidthRatio !== 'undefined' ? scope.options.needleWidthRatio : 0.6;
-                        scope.options.needleContainerRadiusRatio = typeof scope.options.needleContainerRadiusRatio !== 'undefined' ? scope.options.needleContainerRadiusRatio : 0.7;
+                        scope.options.majorTicks = scope.options.majorTicks || 5;
+                        scope.options.minorTicks = scope.options.minorTicks || 2;
 
-                        scope.options.colorBackground = typeof scope.options.colorBackground !== 'undefined' ? scope.options.colorBackground : "#FFFFFF";
-                        scope.options.colorNormal = typeof scope.options.colorNormal !== 'undefined' ? scope.options.colorNormal : "#109618";
-                        scope.options.colorWarnLevel1 = typeof scope.options.colorWarnLevel1 !== 'undefined' ? scope.options.colorWarnLevel1 : "#FF9900";
-                        scope.options.colorWarnLevel2 = typeof scope.options.colorWarnLevel2 !== 'undefined' ? scope.options.colorWarnLevel2 : "#DC3912";
+                        scope.options.needleWidthRatio = scope.options.needleWidthRatio || 0.6;
+                        scope.options.needleContainerRadiusRatio = scope.options.needleContainerRadiusRatio || 0.7;
 
-                        scope.options.transitionDuration = typeof scope.options.transitionDuration !== 'undefined' ? scope.options.transitionDuration : 500;
+                        scope.options.colorBackground = scope.options.colorBackground || "#FFFFFF";
+                        scope.options.colorNormal = scope.options.colorNormal || "#109618";
+                        scope.options.colorWarnLevel1 = scope.options.colorWarnLevel1 || "#FF9900";
+                        scope.options.colorWarnLevel2 = scope.options.colorWarnLevel2 || "#DC3912";
 
-                        scope.options.greenZone = typeof scope.options.greenZone !== 'undefined' ?
-                            scope.options.greenZone :
-                            [{ from: scope.options.min + scope.options.range*0.5, to: scope.options.min + scope.options.range*0.75 }];
+                        scope.options.transitionDuration = scope.options.transitionDuration || 500;
 
-                        scope.options.yellowZone = typeof scope.options.yellowZone !== 'undefined' ?
-                            scope.options.yellowZone :
-                            [{ from: scope.options.min + scope.options.range*0.75, to: scope.options.min + scope.options.range*0.87 }];
+                        scope.options.greenZone =
+                            scope.options.greenZone ||
+                                [{ from: scope.options.min + scope.options.range*0.5, to: scope.options.min + scope.options.range*0.75 }];
 
-                        scope.options.redZone = typeof scope.options.redZone !== 'undefined' ?
-                            scope.options.redZone :
-                            [{ from: scope.options.min + scope.options.range*0.87, to: scope.options.min + scope.options.max }];
+                        scope.options.yellowZone =
+                            scope.options.yellowZone ||
+                                [{ from: scope.options.min + scope.options.range*0.75, to: scope.options.min + scope.options.range*0.87 }];
+
+                        scope.options.redZone =
+                            scope.options.redZone ||
+                                [{ from: scope.options.min + scope.options.range*0.87, to: scope.options.min + scope.options.max }];
 
                         var defaultZones = [
                             { clazz: 'red-zone', from: 0.0, to: 0.13 },
@@ -122,8 +124,8 @@
                             { clazz: 'red-zone', from: 0.87, to: 1.0 }
                         ];
 
-                        scope.options.zones = typeof scope.options.zones !== 'undefined' ? scope.options.zones : defaultZones;
-                        scope.options.clazz = typeof scope.options.clazz !== 'undefined' ? scope.options.clazz : "simple";
+                        scope.options.zones = scope.options.zones || defaultZones;
+                        scope.options.clazz = scope.options.clazz || "simple";
 
                     };
 
@@ -135,8 +137,14 @@
                             .append('svg:svg')
                             .attr('class'  ,  'youpers-gauge' + (scope.options.clazz ? ' ' + scope.options.clazz : ''))
                             .attr('width'  ,  scope.options.size)
-                            .attr('height' ,  scope.options.size);
+                            .attr('height' ,  scope.options.size)
+                            .append("svg:a")
+                            .attr("xlink:href", "#/assessment/525faf0ac558d40000000005")
+                            .append("g");
                     };
+
+//                    scope.svgCanvas.append("svg:a")
+//                        .append("g");
 
                     var drawOuterCircle = function () {
                         scope.svgCanvas
@@ -236,7 +244,8 @@
 
                             drawLine(toPoint(major, 0.7), toPoint(major, 0.85), 'major-tick');
 
-                            if (major === scope.options.min || major === scope.options.max) {
+                            if ((major === scope.options.min || major === scope.options.max) &&
+                                (scope.options.drawMajorTickLabels !== "no")) {
                                 point = toPoint(major, 0.63);
                                 scope.svgCanvas
                                     .append('svg:text')
