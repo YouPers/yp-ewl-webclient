@@ -72,13 +72,32 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
     // provides methods to get Assessment Information from the server
     .factory('AssessmentService', ['$http', '$q', 'Restangular', 'principal', function ($http, $q, Restangular, principal) {
+        var cachedAssessmentPromise;
 
         var assService = {
+            getAssessment: function (assessmentId) {
+                // assessments are static from a users perspective, therefore we only load once and cache the promise
+                // in the service.
+                if (!cachedAssessmentPromise) {
+                    cachedAssessmentPromise = Restangular.one('assessments', assessmentId).get().then(function (assessment) {
+                        // sort questions into keyed lookup so all controllers can easily get the question for a given
+                        // questionId
+                        assessment.questionLookup = {};
+                        _.forEach(assessment.questionCats, function (questionCat) {
+                            _.forEach(questionCat.questions, function (question) {
+                                assessment.questionLookup[question.id] = question;
+                            });
+                        });
+                        return assessment;
+                    });
+                }
+                return cachedAssessmentPromise;
+            },
             getAssessmentData: function (assessmentId) {
                 var assessmentBase = Restangular.one('assessments', assessmentId);
                 // if the user is authenticated we try to get his previous answers from the server,
                 // if unauthenticated, we only get the assessment
-                var neededCalls = [assessmentBase.get()];
+                var neededCalls = [assService.getAssessment(assessmentId)];
                 if (principal.isAuthenticated()) {
                     neededCalls.push(
                         assessmentBase.one('results/newest').get()
@@ -110,21 +129,6 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                         assessment: assessment,
                         result: assResult
                     };
-                });
-            },
-            getAssessment: function (assessmentId) {
-                return Restangular.one('assessments', assessmentId).get().then(function (assessment) {
-                    if (assessment) {
-                        // sort questions into keyed lookup so all controllers can easily get the question for a given
-                        // questionId
-                        assessment.questionLookup = {};
-                        _.forEach(assessment.questionCats, function (questionCat) {
-                            _.forEach(questionCat.questions, function (question) {
-                                assessment.questionLookup[question.id] = question;
-                            });
-                        });
-                    }
-                    return assessment;
                 });
             },
             postResults: function (assResult, callback) {
