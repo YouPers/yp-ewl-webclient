@@ -6,7 +6,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         function ($stateProvider, $urlRouterProvider, accessLevels) {
             $stateProvider
                 .state('activitylist', {
-                    url: "/activities?tab",
+                    url: "/activities?tab&page",
                     templateUrl: "partials/activity.list.html",
                     controller: "ActivityListCtrl",
                     access: accessLevels.all,
@@ -38,7 +38,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     }
                 })
                 .state('modal_activityAdmin', {
-                    url: "/activities/:activityId/admin?tab",
+                    url: "/activities/:activityId/admin?tab&page",
                     views: {
                         '': {
                             template: "="
@@ -59,7 +59,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     }
                 })
                 .state('modal_activityPlan', {
-                    url: "/activities/:activityId?tab",
+                    url: "/activities/:activityId?tab&page",
                     views: {
                         '': {
                             template: "="
@@ -499,7 +499,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
     .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'plannedActivities', 'activityFields',
         'recommendations', 'yp.user.UserService', 'topStressors', 'assessment', 'ActivityService',
-        function ($scope, $filter, allActivities, plannedActivities, activityFields, recommendations, UserService, topStressors, assessment, ActivityService) {
+        function ($scope, $filter, allActivities, plannedActivities, activityFields,
+                  recommendations, UserService, topStressors, assessment, ActivityService) {
 
             // mock campaigns, that this user has an active goal for, should be loaded from server later...
             var campaigns = ['Campaign-1'];
@@ -542,13 +543,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.gotoActivityDetail = function (activity) {
                 // goto detail state, keep active tab around as stateparameter
-                $scope.$state.go('modal_activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab});
+                $scope.$state.go('modal_activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
             };
 
-            $scope.gotoActivityAdmin = function (activity, event) {
-                // goto detail state, keep active tab around as stateparameter
-                $scope.$state.go('modal_activityAdmin', {activityId: activity.id, tab: $scope.$stateParams.tab});
-            };
 
             $scope.toggleStar = function (activity, event) {
                 event.stopPropagation();
@@ -601,12 +598,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             function setListTab(tabId) {
-                $scope.query.subset = tabId;
-                $scope.$stateParams.tab = tabId;
+                $scope.$state.go('activitylist', {tab: tabId});
             }
 
+            // initialize correct Tab from state Params
             if ($scope.$stateParams.tab) {
-                setListTab($scope.$stateParams.tab);
+               $scope.query.subset = $scope.$stateParams.tab;
             }
 
             $scope.setListTab = setListTab;
@@ -614,13 +611,14 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.pageSize = 20;
             $scope.maxSize = 10;
-            $scope.currentPage = 1;
+
+            $scope.currentPage = $scope.$stateParams.page || 1;
 
             // watch for changes on the query object and reapply filter, use deep watch=true
             // whenever the query changes, update the filtered List of activities to the new query and
-            // jump back to page on of pagination
+            // jump back to first page of pagination
             $scope.$watch('query', function (newQuery) {
-                $scope.currentPage = 1;
+                // $scope.currentPage = 1;
                 $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
             }, true);
         }])
