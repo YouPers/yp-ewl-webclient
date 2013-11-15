@@ -139,7 +139,7 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                          If we get here from another "detail" page
                          Just let ui-router update ui-view!
                          */
-                        if (fromState.name.indexOf('modal') === 0 || fromState.name === '' || fromState.name === 'home') {
+                        if (fromState.name.indexOf('modal') === 0) {
                             return;
                         }
 

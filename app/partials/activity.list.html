@@ -217,7 +217,7 @@
             <div class="col-md-2">
                 {{ activity.defaultexecutiontype | translate }}
                 <div ng-if="principal.getUser().role=='admin'"><a class="btn btn-sm btn-primary"
-                                                                  ui-sref="modal_activityAdmin({activityId: activity.id})"
+                                                                  ui-sref="modal_activityAdmin({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
                                                                   ng-click="$event.stopPropagation()">admin</a>
                     Gewicht: {{activity.recWeight}}
                 </div>
