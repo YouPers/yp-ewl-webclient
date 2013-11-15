@@ -10,13 +10,10 @@
             <div class="col-md-3">
                 Stressor
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 deine Antwort
             </div>
-            <div class="col-md-3">
-                Antworten Kampagne</br>im Vergleich
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-7">
                 Kommentar
             </div>
         </div>
@@ -27,23 +24,23 @@
                     <span class="assessmentResultTitle">{{ assessment.questionLookup[stressor.question].title }}</span></br>
                     <span class="assessmentResultCategory">Kategorie: {{ assessment.questionLookup[stressor.question].category.toUpperCase() | translate}}</span>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {{ 0 > stressor.answer ? assessment.questionLookup[stressor.question].mintext : assessment.questionLookup[stressor.question].maxtext }}</br>
-                    Wert: {{ stressor.answer }}</br>
-                    <!--{{ stressor.question }}-->
                 </div>
-                <div class="col-md-3">
-                    {{ assessment.questionLookup[stressor.question].midtext }}</br>
-                    Wert: 0</br>
-                    <!--{{ stressor.question }}-->
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-7">
                     {{ 0 > stressor.answer ? assessment.questionLookup[stressor.question].mintextresult : assessment.questionLookup[stressor.question].maxtextresult }}
                 </div>
             </div>
             </br>
         </div>
-        <p></p>
+
+        <p>In dieser Kampagne wurden bisher folgende Stressoren am häufigsten als grösste Stressoren genannt:</br>
+                <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000dd"].title }}</span>
+                <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup["5278c51a6166f2de240000dd"].category.toUpperCase() | translate}}), </span>
+                <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000dc"].title }}</span>
+                <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup["5278c51a6166f2de240000dc"].category.toUpperCase() | translate}}), </span>
+                <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000c5"].title }}</span>
+                <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup["5278c51a6166f2de240000c5"].category.toUpperCase() | translate}})</span></p>
 
         <p>Aufgrund deiner Selbsbeurteilung werden dir im nächsten Schritt Aktivitäten vorgeschlagen, die du gleich einplanen kannst.</p>
         <p>Idealerweise wiederholst du während der Kampagne wöchentlich deine Selbstbeurteilung, damit du siehst, wie sich dein Stresslevel entwickelt.</p>

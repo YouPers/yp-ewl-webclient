@@ -90,6 +90,7 @@
                         scope.options.range = scope.options.max - scope.options.min;
 
                         scope.options.drawMajorTickLabels = scope.options.drawMajorTickLabels || "no";
+                        scope.options.drawCurrentValue = scope.options.drawCurrentValue || "no";
 
                         scope.options.majorTicks = scope.options.majorTicks || 5;
                         scope.options.minorTicks = scope.options.minorTicks || 2;
@@ -381,10 +382,12 @@
 
                         var needleContainer = scope.svgCanvas.select('.needle-container');
 
+                        var currentValue = scope.options.drawCurrentValue !== "no" ? Math.round(value) : "";
+
                         needleContainer
                             .selectAll('text')
                             .attr('class', 'current-value')
-                            .text(Math.round(value));
+                            .text(currentValue);
 
                         var needle = needleContainer.selectAll('path');
                         needle
