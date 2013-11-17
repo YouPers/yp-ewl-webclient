@@ -18,7 +18,7 @@
             </div>
         </div>
         </br>
-        <div ng-repeat="stressor in results[0].answers | limitTo:'3'">
+        <div ng-repeat="stressor in results[0].answers | stripGeneralLevel | limitTo:'3'">
             <div class="row">
                 <div class="col-md-3">
                     <span class="assessmentResultTitle">{{ assessment.questionLookup[stressor.question].title }}</span></br>

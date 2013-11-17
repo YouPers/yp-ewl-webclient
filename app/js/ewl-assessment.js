@@ -151,6 +151,20 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
         return assService;
     }])
 
+    // hardcoded filtering out of general stress level
+    // todo: replacing hardcoded question id
+    .filter('stripGeneralLevel', function () {
+        return function (input) {
+            var output = [];
+            for (var i = 0; i < input.length; i++) {
+                if (input[i].question !== "5278c51a6166f2de240000df") {
+                    output.push(input[i]);
+                }
+            }
+            return output;
+        };
+    })
+
     // Controller to display an assessment and process the answers
     // assessmentData is resolved on stateTransfer
     .controller('AssessmentCtrl', ['$scope', '$rootScope', 'assessmentData', 'AssessmentService',
