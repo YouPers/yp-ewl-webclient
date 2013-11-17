@@ -333,12 +333,12 @@
                         initGauge(d3);
                         drawOuterCircle();
                         drawInnerCircle();
-                        drawLabel(label);
 
                         drawZones(d3);
                         drawTicks();
 
                         drawNeedle(d3);
+                        drawLabel(label);
                         write(scope.options.min, 0);
                     };
 

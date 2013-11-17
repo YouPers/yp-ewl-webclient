@@ -2,56 +2,32 @@
 
 angular.module('yp.ewl.stresslevel.gauge', ['yp.ewl.assessment'])
 
-    .factory('yp.ewl.stresslevel.gauge.service', [function() {
-
-        var stressLevels = [
-            {
-                label: "Allgemein",
-                level: 6
-            },
-            {
-                label: "Arbeit",
-                level: 2
-            },
-            {
-                label: "Freizeit",
-                level: 4
-            },
-            {
-                label: "Typ",
-                level: 8
-            },
-            {
-                label: "Ausgleich",
-                level: 10
-            }
-        ];
-
-        return {
-            stressLevelGeneral: stressLevels[0],
-            stressLevelWorkPlace: stressLevels[1],
-            stressLevelTimeOff: stressLevels[2],
-            stressLevelType: stressLevels[3],
-            stressLevelMastery: stressLevels[4]
-        };
-
-//        return StressLevelGaugeService;
-
-    }])
-
-    .controller('yp.ewl.stresslevel.gauge.controller', ['$scope', '$timeout', 'yp.ewl.stresslevel.gauge.service', 'AssessmentService', function ($scope, $timeout, StressLevelGaugeService, AssessmentService) {
+    .controller('yp.ewl.stresslevel.gauge.controller', ['$scope', '$timeout', 'AssessmentService', function ($scope, $timeout, AssessmentService) {
 
         $scope.currentStressLevel = 0;
+        $scope.latestAssessment = {};
 
         AssessmentService.getAssessmentResults('525faf0ac558d40000000005')
             .then(function (result) {
                 var currentStressLevel = 0;
+                $scope.topStressFactors = [];
+                var nOfTopStressFactorsToShow = 3;
                 if (result) {
                     if (result.length > 0) {
                         $scope.latestAssessment = result[0];
                         angular.forEach($scope.latestAssessment.answers, function (question) {
                             if (question.question === "5278c51a6166f2de240000df") {
                                 currentStressLevel = question.answer;
+                            } else {
+                                if ($scope.topStressFactors.length < nOfTopStressFactorsToShow) {
+                                    AssessmentService.getAssessment('525faf0ac558d40000000005')
+                                        .then(function (result) {
+                                            if (result) {
+                                                var xy = result.questionLookup[question.question].title;
+                                                $scope.topStressFactors.push({ "label": xy, "level": question.answer});
+                                            }
+                                        });
+                                }
                             }
                         });
                     }
@@ -69,44 +45,5 @@ angular.module('yp.ewl.stresslevel.gauge', ['yp.ewl.assessment'])
         };
 
         $scope.gauge = {};
-
-//        var stressLevelGeneralO = StressLevelGaugeService.stressLevelGeneral.level;
-//        var stressLevelWorkPlaceO = StressLevelGaugeService.stressLevelWorkPlace.level;
-//        var stressLevelTimeOffO = StressLevelGaugeService.stressLevelTimeOff.level;
-//        var stressLevelTypeO = StressLevelGaugeService.stressLevelType.level;
-//        var stressLevelMasteryO = StressLevelGaugeService.stressLevelMastery.level;
-
-//        $scope.stressLevelGeneral = StressLevelGaugeService.stressLevelGeneral;
-//        $scope.stressLevelWorkPlace = StressLevelGaugeService.stressLevelWorkPlace;
-//        $scope.stressLevelTimeOff = StressLevelGaugeService.stressLevelTimeOff;
-//        $scope.stressLevelType = StressLevelGaugeService.stressLevelType;
-//        $scope.stressLevelMastery = StressLevelGaugeService.stressLevelMastery;
-
-//        var updateGauge = function (gauge, gaugeOrig) {
-//            if (gauge.level < (gaugeOrig - 0.1)) {
-//                $scope.variance = true;
-//            }
-//            if (gauge.level > (gaugeOrig + 0.1)) {
-//                $scope.variance = false;
-//            }
-//            if ($scope.variance) {
-//                gauge.level = gauge.level + 0.05;
-//            } else {
-//                gauge.level = gauge.level - 0.05;
-//            }
-//
-//        };
-//
-//        $timeout(function someWork () {
-//            updateGauge($scope.stressLevelGeneral, stressLevelGeneralO);
-//            updateGauge($scope.stressLevelWorkPlace, stressLevelWorkPlaceO);
-//            updateGauge($scope.stressLevelTimeOff, stressLevelTimeOffO);
-//            updateGauge($scope.stressLevelType, stressLevelTypeO);
-//            updateGauge($scope.stressLevelMastery, stressLevelMasteryO);
-//            $timeout(someWork, 200);
-//        }, 200);
-
-
-//        setInterval(updateGauge($scope.stressLevelGeneral, $scope.stressLevelGeneralO), 500);
 
     }]);

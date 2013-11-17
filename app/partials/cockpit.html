@@ -41,17 +41,20 @@
                     Status
                 </div>
 
-                <p>Wie hat sich dein Stresslevel entwickelt? Wie sieht dein aktueller Stress Level aus? </p>
+                <p>Dein allgemeiner Stresslevel sowie die drei grössten Stressverursacher</p>
 
                 <div ng-controller="yp.ewl.stresslevel.gauge.controller">
                     <div>
-                        <d3-gauge data="stressLevelGeneral" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>
-                        <!--<d3-gauge data="stressLevelWorkPlace" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>-->
-                        <!--<d3-gauge data="stressLevelTimeOff" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>-->
-                        <!--<d3-gauge data="stressLevelType" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>-->
-                        <!--<d3-gauge data="stressLevelMastery" options="d3Options" label="name" on-click="onClick(item)"></d3-gauge>-->
+                        <d3-gauge data="stressLevelGeneral" options="d3Options" label="name"></d3-gauge>
+                        <d3-gauge data="topStressFactors[0]" options="d3Options" label="name"></d3-gauge>
+                        <d3-gauge data="topStressFactors[1]" options="d3Options" label="name"></d3-gauge>
+                        <d3-gauge data="topStressFactors[2]" options="d3Options" label="name"></d3-gauge>
+
                     </div>
                 </div>
+                <!--<div ng-repeat="stressor in results[0].answers | stripGeneralLevel | limitTo:'3'">-->
+                    <!--<span class="assessmentResultTitle">{{ assessment.questionLookup[stressor.question].title }}</span></br>-->
+                <!--</div>-->
 
                 <!--<div ng-controller="yp.ewl.stresslevel.linechart.controller">-->
                     <!--<div>-->
