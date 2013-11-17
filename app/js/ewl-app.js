@@ -5,7 +5,7 @@ angular.module('ypconfig', [])
 
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
-        'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.activity.vchart', 'yp.ewl.stresslevel.gauge', 'yp.health-management-process', 'd3.dir-health-management-process', 'd3', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'yp.topic', 'ui.router', 'ui.bootstrap',
+        'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.activity.vchart', 'yp.ewl.stresslevel.gauge', 'yp.ewl.stresslevel.linechart', 'yp.health-management-process', 'd3.dir-health-management-process', 'd3', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'd3.dir-line-chart', 'yp.topic', 'ui.router', 'ui.bootstrap',
         'ngCookies', 'i18n', 'yp.commons', 'googlechart', 'yp.auth', 'yp.healthpromoter', 'restangular', 'ypconfig']).
 
     config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'ypconfig',

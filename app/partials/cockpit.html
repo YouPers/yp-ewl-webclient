@@ -41,7 +41,7 @@
                     Status
                 </div>
 
-                <p>Dein allgemeiner Stresslevel sowie die drei grössten Stressverursacher</p>
+                <p>Dein allgemeiner Stresslevel (inkl. Entwicklung) sowie die drei grössten Stressverursacher</p>
 
                 <div ng-controller="yp.ewl.stresslevel.gauge.controller">
                     <div>
@@ -52,15 +52,12 @@
 
                     </div>
                 </div>
-                <!--<div ng-repeat="stressor in results[0].answers | stripGeneralLevel | limitTo:'3'">-->
-                    <!--<span class="assessmentResultTitle">{{ assessment.questionLookup[stressor.question].title }}</span></br>-->
-                <!--</div>-->
 
-                <!--<div ng-controller="yp.ewl.stresslevel.linechart.controller">-->
-                    <!--<div>-->
-                        <!--<d3-line-chart data="stressLevelGeneral" options="d3Options" label="name" on-click="onClick(item)"></d3-line-chart>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div ng-controller="yp.ewl.stresslevel.linechart.controller">
+                    <div>
+                        <d3-line-chart data="generalStressLevelValues" options="d3Options" label="name""></d3-line-chart>
+                    </div>
+                </div>
 
             </div>
 

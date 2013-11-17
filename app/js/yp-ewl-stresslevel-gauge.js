@@ -23,8 +23,8 @@ angular.module('yp.ewl.stresslevel.gauge', ['yp.ewl.assessment'])
                                     AssessmentService.getAssessment('525faf0ac558d40000000005')
                                         .then(function (result) {
                                             if (result) {
-                                                var xy = result.questionLookup[question.question].title;
-                                                $scope.topStressFactors.push({ "label": xy, "level": question.answer});
+                                                var title = result.questionLookup[question.question].title;
+                                                $scope.topStressFactors.push({ "label": title, "level": question.answer});
                                             }
                                         });
                                 }
