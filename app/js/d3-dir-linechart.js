@@ -196,18 +196,6 @@
                                 .attr("y2", y)
                                 .style("stroke", "#ccc");
 
-//                            var xAxis = d3.svg.axis()
-//                                .scale(x)
-//                                .orient("bottom");
-
-                            var yAxis = d3.svg.axis()
-                                .scale(y)
-                                .orient("left");
-
-//                            gridCanvas.append("g")
-//                                .attr("class", "y axis")
-//                                .call(yAxis);
-
                             var line = d3.svg.line()
                                 .x(function(d,i) {
                                     return x(i);
