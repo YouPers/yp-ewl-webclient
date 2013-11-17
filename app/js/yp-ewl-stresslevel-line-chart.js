@@ -4,7 +4,7 @@ angular.module('yp.ewl.stresslevel.linechart', ['yp.ewl.assessment'])
 
     .controller('yp.ewl.stresslevel.linechart.controller', ['$scope', '$timeout', 'AssessmentService', function ($scope, $timeout, AssessmentService) {
 
-        AssessmentService.getAssessmentResults('525faf0ac558d40000000005')
+        AssessmentService.getAssessmentResults('525faf0ac558d40000000005', 'timestamp:1')
             .then(function (result) {
                 $scope.generalStressLevelValues = [];
                 if (result) {
