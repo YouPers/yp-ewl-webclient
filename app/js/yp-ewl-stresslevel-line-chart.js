@@ -6,7 +6,6 @@ angular.module('yp.ewl.stresslevel.linechart', ['yp.ewl.assessment'])
 
         AssessmentService.getAssessmentResults('525faf0ac558d40000000005')
             .then(function (result) {
-                var currentStressLevel = 0;
                 $scope.generalStressLevelValues = [];
                 if (result) {
                     if (result.length > 0) {
