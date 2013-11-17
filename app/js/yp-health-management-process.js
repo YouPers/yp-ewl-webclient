@@ -5,9 +5,9 @@ angular.module('yp.health-management-process', ['restangular'])
     .factory('yp.health-management-process.service', ['Restangular', function(Restangular) {
 
         var HealthManagementProcessService = {
-            statusCommit: true,
+            statusCommit: false,
             statusAssess: false,
-            statusPlan: true,
+            statusPlan: false,
             statusDo: false,
             statusEvaluate: false
         };
