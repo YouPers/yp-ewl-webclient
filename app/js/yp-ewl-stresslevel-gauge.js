@@ -10,6 +10,7 @@ angular.module('yp.ewl.stresslevel.gauge', ['yp.ewl.assessment'])
         AssessmentService.getAssessmentResults('525faf0ac558d40000000005')
             .then(function (result) {
                 var currentStressLevel = 0;
+                $scope.currentStressLevelTitle = "";
                 $scope.topStressFactors = [];
                 var nOfTopStressFactorsToShow = 3;
                 if (result) {
@@ -18,6 +19,13 @@ angular.module('yp.ewl.stresslevel.gauge', ['yp.ewl.assessment'])
                         angular.forEach($scope.latestAssessment.answers, function (question) {
                             if (question.question === "5278c51a6166f2de240000df") {
                                 currentStressLevel = question.answer;
+                                AssessmentService.getAssessment('525faf0ac558d40000000005')
+                                    .then(function (result) {
+                                        if (result) {
+                                            $scope.currentStressLevelTitle = result.questionLookup[question.question].title;
+                                            $scope.stressLevelGeneral = { "label" : $scope.currentStressLevelTitle, "level" : currentStressLevel};
+                                        }
+                                    });
                             } else {
                                 if ($scope.topStressFactors.length < nOfTopStressFactorsToShow) {
                                     AssessmentService.getAssessment('525faf0ac558d40000000005')
@@ -32,11 +40,6 @@ angular.module('yp.ewl.stresslevel.gauge', ['yp.ewl.assessment'])
                         });
                     }
                 }
-                $scope.currentStressLevel = currentStressLevel;
-
-                $scope.stressLevelGeneral = { "label" : "Allgemein", "level" : $scope.currentStressLevel};
-
-                $scope.variance = false;
 
             });
 
