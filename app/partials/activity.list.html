@@ -219,7 +219,7 @@
                 <div ng-if="principal.getUser().role=='admin'"><a class="btn btn-sm btn-primary"
                                                                   ui-sref="modal_activityAdmin({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
                                                                   ng-click="$event.stopPropagation()">admin</a>
-                    Gewicht: {{activity.recWeight | number}}
+                    Gewicht: {{activity.recWeight | number: 0}}
                 </div>
             </div>
         </div>
