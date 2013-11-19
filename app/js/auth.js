@@ -172,8 +172,8 @@
                 return UserService;
             }])
 
-        .controller('yp.user.MenuLoginCtrl', [ '$scope', 'yp.user.UserService', '$location', '$modal',
-            function ($scope, UserService, $location, $modal) {
+        .controller('yp.user.MenuLoginCtrl', [ '$scope', 'yp.user.UserService', '$location', '$modal', '$window',
+            function ($scope, UserService, $location, $modal, $window) {
 
                 var loginDialogOpen = function () {
                     var modalInstance = $modal.open({
@@ -205,6 +205,7 @@
                 $scope.logout = function () {
                     UserService.logout();
                     $location.path("/");
+                    $window.location.reload();
                 };
 
                 $scope.$on('loginMessageShow', function (event, data) {
