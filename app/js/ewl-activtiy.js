@@ -21,15 +21,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             return ActivityService.getRecommendations();
                         }],
                         topStressors: ['AssessmentService', function (AssessmentService) {
-                            return AssessmentService.getAssessmentResults('525faf0ac558d40000000005').then(function (result) {
-                                if (!result || !result[0]) {
-                                    return null;
-                                } else {
-                                    return _.sortBy(result[0].answers,function (answer) {
-                                        return -Math.abs(answer.answer);
-                                    }).slice(0, 3);
-                                }
-                            });
+                            return AssessmentService.topStressors();
                         }],
                         assessment: ['AssessmentService', function (AssessmentService) {
                             return AssessmentService.getAssessment('525faf0ac558d40000000005');
@@ -224,7 +216,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', function ($http, Restangular, $q, principal) {
         var activities = Restangular.all('activities');
         var plannedActivities = Restangular.all('activitiesPlanned');
+
         var cachedActivitiesPromise;
+        var cachedRecommendationsPromises = {};
 
         var actService = {
             getActivities: function () {
@@ -237,6 +231,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             reloadActivities: function () {
                 cachedActivitiesPromise = activities.getList({limit: 1000});
+                cachedRecommendationsPromises = {};
                 return cachedActivitiesPromise;
             },
             getActivity: function (activityId) {
@@ -280,11 +275,17 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     params.fokus = focusQuestionId;
                 }
                 if (principal.isAuthenticated()) {
-                    return Restangular.all('activities/recommendations').getList(params);
+                    if (!cachedRecommendationsPromises[focusQuestionId || 'default']) {
+                        cachedRecommendationsPromises[focusQuestionId || 'default'] = Restangular.all('activities/recommendations').getList(params);
+                    }
+                    return cachedRecommendationsPromises[focusQuestionId || 'default'];
                 } else {
                     return [];
                 }
 
+            },
+            invalidateRecommendations: function() {
+                cachedRecommendationsPromises = {};
             },
             savePlan: function (plan) {
                 if (plan.id) {

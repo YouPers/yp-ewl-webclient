@@ -4,6 +4,7 @@
 
 describe('ewl-assessment', function() {
   beforeEach(module('yp.ewl.assessment'));
+  beforeEach(module('yp.ewl.activity'));
 
   describe('assessment ', function() {
     it('should be defined', inject(function(AssessmentService) {
