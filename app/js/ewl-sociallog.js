@@ -7,7 +7,7 @@ angular.module('yp.sociallog', ['restangular']).
         var SocialLogService = {};
 
         var commentsBase = Restangular.all('comments');
-        var socialLogEntries = commentsBase.getList({populate: 'author'});
+        var socialLogEntries = commentsBase.getList({populate: 'author', sort: 'created:-1'});
 
         SocialLogService.getSocialLog = function () {
             return socialLogEntries;
