@@ -4,51 +4,38 @@ angular.module('yp.ewl.activity.vchart', ['restangular'])
 
     .factory('yp.ewl.activity.vchart.service', ['Restangular', function(Restangular) {
 
-//        var convertDataSeries = function (data) {
-//            var cols = data.cols;
-//            var rows = data.rows;
-//            var chartData = {};
-//            chartData.series = [];
-//            for (var i = 0; i < rows.length; i++) {
-//                chartData.series.push( {label: rows[i].c[0].v, value: rows[i].c[1].v});
-//            }
-//            return chartData;
-//        };
-
-        var valuesThisWeek = Restangular.one('activitystats?range=weekly').get()
+        var valuesToday = Restangular.one('activitystats?range=today').get()
             .then(function (result) {
                 return result;
             });
 
-        var valuesThisMonth = Restangular.one('activitystats?range=monthly').get()
+        var valuesThisWeek = Restangular.one('activitystats?range=thisWeek').get()
             .then(function (result) {
                 return result;
             });
 
-        var valuesThisYear = Restangular.one('activitystats?range=yearly').get()
+        var valuesCampaign = Restangular.one('activitystats?range=campaign').get()
             .then(function (result) {
                 return result;
             });
 
         var ActivityChartService = {
+            activitiesToday: valuesToday,
             activitiesThisWeek: valuesThisWeek,
-            activitiesThisMonth: valuesThisMonth,
-            activitiesThisYear: valuesThisYear
+            activitiesCampaign: valuesCampaign
         };
 
         return ActivityChartService;
 
     }])
 
-    .controller('yp.ewl.activity.vchart.controller', ['$scope', 'yp.ewl.activity.vchart.service', function ($scope, ActivityChartService) {
+    .controller('yp.ewl.activity.vchart.controller', ['$scope', 'yp.ewl.activity.vchart.service', 'activityFields', function ($scope, ActivityChartService, ActivityFields) {
 
-        $scope.d3Options = {
-//            compressed: "no",
-            chartHeight: 193
-//            chartWidth: 450
+        $scope.chart = {
+            ActivityFields: ActivityFields
         };
 
-        $scope.selectedValue = "week";
+        $scope.selectedValue = "today";
 
         $scope.getActive = function (value) {
             if (value === $scope.selectedValue) {
@@ -60,30 +47,32 @@ angular.module('yp.ewl.activity.vchart', ['restangular'])
 
         $scope.setData = function (value) {
             $scope.selectedValue = value;
-            if (value === "week") {
+            if (value === "today") {
+                $scope.chart.data = $scope.chart.dataToday;
+            }
+            if (value === "thisWeek") {
                 $scope.chart.data = $scope.chart.dataCurrentWeek;
             }
-            if (value === "month") {
-                $scope.chart.data = $scope.chart.dataCurrentMonth;
-            }
-            if (value === "year") {
-                $scope.chart.data = $scope.chart.dataCurrentYear;
+            if (value === "campaign") {
+                $scope.chart.data = $scope.chart.dataCampaign;
             }
         };
 
-        $scope.chart = {};
-
-        ActivityChartService.activitiesThisWeek.then(function (data) {
-            $scope.chart.dataCurrentWeek = data;
+        ActivityChartService.activitiesToday.then(function (data) {
+            $scope.chart.dataToday = data;
             $scope.chart.data = data; // default value
         });
 
-        ActivityChartService.activitiesThisMonth.then(function (data) {
-            $scope.chart.dataCurrentMonth = data;
+        ActivityChartService.activitiesThisWeek.then(function (data) {
+            $scope.chart.dataCurrentWeek = data;
         });
 
-        ActivityChartService.activitiesThisYear.then(function (data) {
-            $scope.chart.dataCurrentYear = data;
+        ActivityChartService.activitiesCampaign.then(function (data) {
+            $scope.chart.dataCampaign = data;
         });
+
+        $scope.d3Options = {
+            chartHeight: 193
+        };
 
     }]);

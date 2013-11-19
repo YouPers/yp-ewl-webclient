@@ -50,8 +50,10 @@
 
                     function draw (d3, data) {
 
-                        var cols = data.cols;
-                        var rows = data.rows;
+                        var cols = data.data.cols;
+                        var rows = data.data.rows;
+
+                        var activityFields = data.ActivityFields;
 
                         var legends = [];
 
@@ -347,14 +349,36 @@
                                 .attr("y", function(d) { return y(d.y0 + d.y); })
                                 .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
 
-                            gridCanvas.append("g")
+                            var xLegend = gridCanvas.append("g")
                                 .attr("class", "x axis")
                                 .attr("transform", "translate(0," + chartInnerHeight + ")")
                                 .call(xAxis);
 
+                            xLegend.selectAll("g")
+                                .attr("fill", "transparent")
+
+                                .append("svg:a")
+                                .attr("xlink:href", "#/activities")
+                                .append("svg:image")
+                                .attr("width", "20")
+                                .attr("transform", "translate(-10,5)")
+                                .attr("onmouseover", "event.target.parentNode.parentNode.setAttribute('fill', 'black'); event.target.setAttribute('opacity', 0.1)")
+                                .attr("onmouseout", "event.target.parentNode.parentNode.setAttribute('fill', 'transparent'); event.target.setAttribute('opacity', 1.0)")
+                                .attr("height", "20")
+                                .attr("xlink:href", function (d) {
+                                    return "../assets/ico/" + d + ".gif";
+                                })
+                            ;
+
+                            xLegend.selectAll("text")
+                                .attr("transform", "rotate(-90) translate(5,-10)")
+                                .text(function (d,i) {
+                                    return activityFields[d];
+                                })
+                                .style("text-anchor", "start");
+
                             gridCanvas.append("g")
                                 .attr("class", "y axis")
-//                                .attr("transform", "translate(0," - height + ")")
                                 .call(yAxis);
 
                             d3.selectAll("input").on("change", change(y, x, yGroupMax, yStackMax, rect, chartInnerHeight));

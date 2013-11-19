@@ -75,9 +75,9 @@
                     <div class="row">
                         <div class="col-xs-8 col-md-8">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('week')" ng-click="setData('week')">Heute</button>
-                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('month')" ng-click="setData('month')">Diese Woche</button>
-                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('year')" ng-click="setData('year')">Kampagne bisher</button>
+                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('today')" ng-click="setData('today')">Heute</button>
+                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('thisWeek')" ng-click="setData('thisWeek')">Diese Woche</button>
+                                <button type="button" class="btn btn-default cockpit" ng-class="getActive('campaign')" ng-click="setData('campaign')">Kampagne bisher</button>
                             </div>
                         </div>
                         <div class="col-xs-4 col-md-4">
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div>
-                        <d3-vertical-bar-chart data="chart.data" options="d3Options" label="name"
+                        <d3-vertical-bar-chart data="chart" options="d3Options" label="name"
                                                on-click="onClick(item)"></d3-vertical-bar-chart>
                     </div>
                 </div>
