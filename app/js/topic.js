@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('yp.topic', ['ui.router'])
+angular.module('yp.topic', ['ui.router', 'restangular'])
 
     .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
         function ($stateProvider, $urlRouterProvider, accessLevels) {
@@ -11,8 +11,8 @@ angular.module('yp.topic', ['ui.router'])
                     controller: "TopicController",
                     access: accessLevels.all
                 })
-                .state('modal_topicsetgoal', {
-                    url: "/topics/setgoal",
+                .state('modal_startCampaign', {
+                    url: "/campaigns/:campaignId/start",
                     views: {
                         '': {
                             template: "="
@@ -22,8 +22,11 @@ angular.module('yp.topic', ['ui.router'])
                             controller: "TopicSetGoalCtrl"
                         }
                     },
-                    access: accessLevels.individual,
+                    access: accessLevels.all,
                     resolve: {
+                        campaign: ['Restangular', '$stateParams',function(Restangular, $stateParams) {
+                            return Restangular.one('campaigns', $stateParams.campaignId);
+                        }]
                     }
                 });
 
@@ -57,9 +60,7 @@ angular.module('yp.topic', ['ui.router'])
 
     }])
 
-    .controller('TopicSetGoalCtrl', ['$scope', function($scope) {
-
-
-
+    .controller('TopicSetGoalCtrl', ['$scope', 'campaign',function($scope, campaign) {
+        $scope.campaign = campaign;
     }]);
 
