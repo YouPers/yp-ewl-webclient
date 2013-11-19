@@ -38,14 +38,14 @@
                             </div>
                             <div class="col-md-6">
                                 <a class="activity-social-comment-link" href=""
-                                   ng-click="threads.showNewThread = !threads.showNewThread">neuer
+                                   ng-click="showNewComment= !showNewComment">neuer
                                     Kommentar</a>
                             </div>
                         </div>
                         <div class="row activity-social-content">
                             <div class="col-md-12">
 
-                                <div class="row social-thread" ng-show="threads.showNewThread">
+                                <div class="row social-thread" ng-show="showNewComment">
                                     <div class="social-thread-header">
                                         <a href="">
                                             <img ng-src="{{ principal.getUser().avatar }}" class="avatar-icon"/>
@@ -54,9 +54,9 @@
                                         <span class="thread-time"> </span>
                                     </div>
                                     <div class="social-thread-text">
-                                        <form ng-submit="submitNewThread(threads)">
+                                        <form ng-submit="submitNewComment(newText)">
                                             <div class="input-group input-group-sm">
-                                                <input type="text" class="form-control" ng-model="threads.newThread">
+                                                <input type="text" class="form-control" ng-model="newText">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary btn-sm" type="submit">submit</button>
                             </span>
@@ -66,59 +66,18 @@
                                 </div>
 
 
-                                <div class="row social-thread" ng-repeat="thread in threads">
+                                <div class="row social-thread" ng-repeat="comment in comments">
                                     <div class="social-thread-header">
-                                        <a href="{{ thread.author.link }}">
-                                            <img ng-src="{{ thread.author.avatar }}" class="avatar-icon"/>
-                                            <strong class="fullname">{{ thread.author.fullname }}</strong>
+                                        <a href="{{ comment.author.link }}">
+                                            <img ng-src="{{ comment.author.avatar }}" class="avatar-icon"/>
+                                            <strong class="fullname">{{ comment.author.fullname }}</strong>
                                         </a>
-                                        <span class="thread-time">{{ thread.date | fromNow}}</span>
+                                        <span class="thread-time">{{ comment.created | fromNow}}</span>
                                     </div>
                                     <div class="social-thread-text">
-                                        {{ thread.text }}
+                                        {{ comment.text }}
                                     </div>
                                     <div class="social-thread-footer">
-                                        <a href="" ng-click="thread.showComments = !thread.showComments">{{
-                                            thread.comments.length +
-                                            '
-                                            Kommentare' }}</a>
-                            <span class="thread-activities"><a href=""
-                                                               ng-click="thread.showComments = !thread.showComments">kommentieren</a></span>
-                                    </div>
-                                    <div class="container" ng-show="thread.showComments">
-                                        <div class="row social-thread" ng-repeat="comment in thread.subcomments">
-                                            <div class="social-thread-header">
-                                                <a href="{{ comment.author.link }}">
-                                                    <img ng-src="{{ comment.author.avatar }}" class="avatar-icon"/>
-                                                    <strong class="fullname">{{ comment.author.fullname }}</strong>
-                                                </a>
-                                                <span class="thread-time">{{ comment.date | fromNow}}</span>
-                                            </div>
-                                            <div class="social-thread-text">
-                                                {{ comment.text }}
-                                            </div>
-                                            <div class="social-thread-footer">
-                                            </div>
-                                        </div>
-                                        <div class="row social-thread">
-                                            <div class="social-thread-header">
-                                                <a href="#/u/RBLU">
-                                                    <img ng-src="{{ principal.getUser().avatar }}" class="avatar-icon"/>
-                                                    <strong class="fullname">{{ principal.getUser().fullname }}</strong>
-                                                </a>
-                                                <span class="thread-time"> </span>
-                                            </div>
-                                            <form ng-submit="submitNewComment(thread)">
-                                                <div class="input-group input-group-sm">
-                                                    <input type="text" class="form-control"
-                                                           ng-model="thread.newComment">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
-                            </span>
-                                                </div>
-                                            </form>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>

@@ -9,8 +9,8 @@ angular.module('yp.discussion', ['restangular']).
         var comments = Restangular.all('comments');
 
 
-        commentService.getThreadsFor = function (objectId) {
-            return comments.getList({refObj: objectId, populate: 'author', sort: 'date:-1'});
+        commentService.getCommentsFor = function (objectId) {
+            return comments.getList({'filter[refDoc]': objectId, populate: 'author', sort: 'created:-1'});
         };
 
         commentService.submitNewComment =  function (comment, successCallback) {
@@ -25,40 +25,30 @@ angular.module('yp.discussion', ['restangular']).
     ])
 
     .controller('CommentCtrl', ['$scope', 'CommentService', 'principal', function ($scope, CommentService, principal) {
+        $scope.principal = principal;
 
         $scope.$watch($scope.currentActivity, function () {
             if ($scope.currentActivity) {
-                CommentService.getThreadsFor($scope.currentActivity.id).then(function (data) {
-                    $scope.threads = data;
+                CommentService.getCommentsFor($scope.currentActivity.id).then(function (data) {
+                    $scope.comments = data || [];
                 });
             }
         });
 
-        $scope.submitNewComment = function (thread) {
-            var newComment = {
-                refObj: thread.id,
-                author: principal.getUser().id,
-                date: new Date(),
-                text: thread.newComment
-            };
-            CommentService.submitNewComment(newComment);
-            newComment.author = principal.getUser();
-            thread.comments.push(newComment);
-            thread.newComment = null;
-        };
 
-        $scope.submitNewThread = function (threads) {
+        $scope.submitNewComment = function (text) {
             var newComment = {
-                "refObj": $scope.currentActivity.id,
+                "refDoc": $scope.currentActivity.id,
+                "refDocModel":'Activity',
                 "author":  principal.getUser().id,
-                "date": new Date(),
-                "text": threads.newThread
+                "created": new Date(),
+                "text": text
             };
             CommentService.submitNewComment(newComment);
+            $scope.comments.unshift(newComment);
             newComment.author = principal.getUser();
-            threads.newThread = '';
-            threads.showNewThread = false;
-            threads.unshift(newComment);
+            $scope.showNewComment = false;
+            $scope.newText = '';
         };
 
     }]);
