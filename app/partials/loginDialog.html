@@ -47,7 +47,7 @@
             <div class="form-group"  ng-class="{'has-error': registerform.password2.$dirty && registerform.password2.$invalid}">
                 <label>{{ 'PASSWORD_AGAIN' | translate }}</label>
                 <input type="password" name="password2" id="password2" placeholder="{{ 'PASSWORD_AGAIN' | translate }}" class="form-control"
-                       ng-model="result.newuser.password2" required password-match="newuser.password">
+                       ng-model="result.newuser.password2" required password-match="result.newuser.password">
                 <span ng-show="registerform.password2.$dirty && registerform.password2.$invalid" class="help-inline">Passwort nicht identisch</span>
 
             </div>
