@@ -148,7 +148,9 @@
                         newuser.fullname = newuser.firstname + ' ' + newuser.lastname;
                         users.post(newuser).then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'New Account successfully created', 'success', 3000);
-                        }).then(successCallback);
+                        }).then(successCallback, function(err) {
+                                $rootScope.$broadcast('globalUserMsg', 'Account not created: Error: ' + err.data.message, 'danger', 3000);
+                            });
                     },
                     putUser: function (user) {
                         Rest.restangularizeElement(null, user, "users").put();
@@ -186,8 +188,8 @@
                         if (result.login) {
                             UserService.login(UserService.encodeCredentials(result.login.username, result.login.password));
                         } else if (result.newuser) {
-                            UserService.submitNewUser(result.registration.newuser, function () {
-                                UserService.login(UserService.encodeCredentials(result.registration.newuser.username, result.registration.newuser.password));
+                            UserService.submitNewUser(result.newuser, function () {
+                                UserService.login(UserService.encodeCredentials(result.newuser.username, result.newuser.password));
                             });
                         } else {
 
