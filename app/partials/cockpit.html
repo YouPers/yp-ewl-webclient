@@ -176,9 +176,9 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <a href="#" class="social-log area">{{socialLogEntry.area}}</br></a>
-                                        <a href="#" class="social-log title">{{socialLogEntry.activity}}</br></a>
-                                        <a href="#" class="social-log comment">{{socialLogEntry.text}}</a>
+                                        <a href="#{{ socialLogEntry.refDocLink }}" class="social-log area">{{socialLogEntry.refDocModel}}</br></a>
+                                        <a href="#{{ socialLogEntry.refDocLink }}" class="social-log title">{{socialLogEntry.refDocTitle | limitTo:35 }}...</br></a>
+                                        <a href="#{{ socialLogEntry.refDocLink }}" class="social-log comment">{{socialLogEntry.text}}</a>
                                     </div>
                                 </div>
                                 <div class="col-xs-2 col-md-2">

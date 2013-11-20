@@ -4,7 +4,7 @@
 angular.module('yp.discussion', ['restangular']).
 
 
-    factory('CommentService', ['$http','Restangular', '$rootScope' , function ($http, Restangular, $rootScope) {
+    factory('CommentService', ['$http','Restangular', '$rootScope', function ($http, Restangular, $rootScope) {
         var commentService = {};
         var comments = Restangular.all('comments');
 
@@ -24,7 +24,7 @@ angular.module('yp.discussion', ['restangular']).
     }
     ])
 
-    .controller('CommentCtrl', ['$scope', 'CommentService', 'principal', function ($scope, CommentService, principal) {
+    .controller('CommentCtrl', ['$scope', 'CommentService', 'principal', '$location', function ($scope, CommentService, principal, $location) {
         $scope.principal = principal;
 
         $scope.$watch($scope.currentActivity, function () {
@@ -40,6 +40,8 @@ angular.module('yp.discussion', ['restangular']).
             var newComment = {
                 "refDoc": $scope.currentActivity.id,
                 "refDocModel":'Activity',
+                "refDocTitle": $scope.currentActivity.number + ": " + $scope.currentActivity.title,
+                "refDocLink": $location.path(), // api URL $scope.currentActivity.getRestangularUrl(),
                 "author":  principal.getUser().id,
                 "created": new Date(),
                 "text": text
