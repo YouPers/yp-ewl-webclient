@@ -207,9 +207,8 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
                     AssessmentService.postResults(assessmentData.result, function (result) {
                         console.log("result posted: " + result);
+                        $scope.$state.go('modal_assessmentResult', {assessmentId: $scope.assessment.id});
                     });
-
-                    $scope.$state.go('modal_assessmentResult', {assessmentId: $scope.assessment.id});
 
                 }
             };
