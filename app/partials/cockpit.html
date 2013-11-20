@@ -177,7 +177,7 @@
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <a href="#{{ socialLogEntry.refDocLink }}" class="social-log area">{{socialLogEntry.refDocModel}}</br></a>
-                                        <a href="#{{ socialLogEntry.refDocLink }}" class="social-log title">{{socialLogEntry.refDocTitle | limitTo:35 }}...</br></a>
+                                        <a href="#{{ socialLogEntry.refDocLink }}" class="social-log title" tooltip-placement="left" tooltip="{{socialLogEntry.refDocTitle}}">{{socialLogEntry.refDocTitle | limitTo:35 }}...</br></a>
                                         <a href="#{{ socialLogEntry.refDocLink }}" class="social-log comment">{{socialLogEntry.text}}</a>
                                     </div>
                                 </div>
