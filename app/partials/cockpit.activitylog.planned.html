@@ -9,7 +9,8 @@
                 <span class="glyphicon controls glyphicon-{{eventsShown ? 'minus' : 'plus'}}" ng-click="eventsShown = !eventsShown"></span></td>
             </div>
             <div class="col-xs-7 col-md-7">
-                <a ui-sref="activityDetail({activityId: actPlan.activity.id})" class="activity-log title">{{actPlan.activity.title}}</br></a>
+                <span ng-click="gotoActivityDetail(actPlan.activity)" class="activity-log title">{{actPlan.activity.title}}</span></br>
+                <!--<a ui-sref="activityDetail({activityId: actPlan.activity.id})" class="activity-log title">{{actPlan.activity.title}}</br></a>-->
                 {{ actPlan.mainEvent.frequency | uppercase | translate }}&nbsp;|&nbsp;
                 <span popover="{{ actPlan.executionType | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(actPlan.executionType)}}" ></span>&nbsp;|&nbsp;
                 <span popover="{{ actPlan.visibility | uppercase | translate }}" popover-trigger="mouseenter" class="glyphicon button-controls glyphicon-{{getGlyphiconForVisibility(actPlan.visibility)}}" ></span>
