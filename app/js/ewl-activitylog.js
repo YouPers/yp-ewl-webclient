@@ -52,7 +52,8 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
             };
 
             $scope.gotoActivityDetail = function (activityLogEntry) {
-                $scope.$state.go('activityDetail.' + activityLogEntry.executionType, {activityId: activityLogEntry.id});
+//                $scope.$state.go('activityDetail.' + activityLogEntry.executionType, {activityId: activityLogEntry.id});
+                $scope.$state.go('modal_activityPlan', {activityId: activityLogEntry.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
             };
 
             $scope.gotoActivityList = function () {

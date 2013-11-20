@@ -8,24 +8,18 @@
                 <div class="col-xs-2 col-md-2">
 
                     <div class="btn-group btn-group-done-yes-no">
-
-                        <!--<button type="button" class="btn btn-default btn-done-yes-no open cockpit" ng-class="getOpenStatus(actEvent.event.status)" ng-click="setStatus('open')">-->
-                        <!--<span class="glyphicon glyphicon-unchecked"></span> offen-->
-                        <!--</button>-->
-
                         <button type="button" class="btn btn-default btn-done-yes-no done cockpit" ng-class="actEvent.event.status == 'done' ? 'active' :'' " ng-click="open(actEvent.event, actEvent.activity, actEvent.plan.id)">
                             <span class="glyphicon glyphicon-ok"></span>
-                            <!--<span class="glyphicon glyphicon-ok"></span> durchgeführt-->
                         </button>
                         <button type="button" class="btn btn-default btn-done-yes-no missed cockpit" ng-class="actEvent.event.status == 'missed' ? 'active':'' " ng-click="setStatus(actEvent.plan.id, actEvent.event, 'missed')">
                             <span class="glyphicon glyphicon-remove"></span>
-                            <!--<span class="glyphicon glyphicon-remove"></span> verpasst-->
                         </button>
                     </div>
                 </div>
                 <div class="col-xs-7 col-md-7">
-                    <a ui-sref="activityDetail({activityId: actEvent.activity.id})" class="activity-log title">{{actEvent.activity.title}}</a></br>
-                    {{ actEvent.plan.mainEvent.frequency | uppercase | translate }}&nbsp;,&nbsp;
+                    <span ng-click="gotoActivityDetail(actEvent.activity)" class="activity-log title">{{actEvent.activity.title}}</span></br>
+                    <!--<a ui-sref="activityDetail({activityId: actEvent.activity.id})" ng-click="gotoActivityDetail(actEvent.activity)" class="activity-log title">{{actEvent.activity.title}}</a></br>-->
+                    {{ actEvent.plan.mainEvent.frequency | uppercase | translate }}&nbsp;,&nbsp;</br>
                     <span popover="{{ actEvent.plan.executionType | uppercase | translate }}" popover-trigger="mouseenter"
                           class="glyphicon button-controls glyphicon-{{getGlyphiconForExecutionType(actEvent.plan.executionType)}}"></span>&nbsp;,&nbsp;
                     <span popover="{{ actEvent.plan.visibility | uppercase | translate }}" popover-trigger="mouseenter"

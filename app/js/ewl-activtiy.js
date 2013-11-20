@@ -484,6 +484,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             $scope.planActivityCancel = function () {
+                // todo: go back to screen which called this modal dialog. calling screen could be passed with a parameter
+                // called not only by activitylist but also by activitylog
                 $state.go('activitylist');
             };
 
