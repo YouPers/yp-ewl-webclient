@@ -152,7 +152,13 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                         lastParams = fromParams;
                         modalInstance = $modal.open({
                             template: '<div ui-view="modal"></div>',
-                            windowClass: 'editModal'
+                            windowClass: 'editModal',
+                            // create a controller and set the modalInstance to the scope,
+                            // with this any child controller (e.g. the state controller can access the
+                            // the modalInstance on its $scope to call dismiss(reason) or close(result)
+                            controller: ['$scope','$modalInstance', function($scope, $modalInstance) {
+                                $scope.$modalInstance = $modalInstance;
+                            }]
                         });
                         dismiss = function () {
                             var p, s;
@@ -161,9 +167,10 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
                                 s = lastState;
                                 p = lastParams;
                                 modalInstance = lastState = lastParams = null; // Reset!
-                                $state.go(s, p); // Do state transition
+                                $state.go(s || 'home', p); // Do state transition
                             }
                         };
+
                         return modalInstance.result.then(dismiss, dismiss);
 
                         // Leaving the detail state...

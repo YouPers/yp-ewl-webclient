@@ -484,15 +484,21 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             $scope.planActivityCancel = function () {
-                // todo: go back to screen which called this modal dialog. calling screen could be passed with a parameter
-                // called not only by activitylist but also by activitylog
-                $state.go('activitylist');
+                if ($scope.$modalInstance) {
+                    $scope.$modalInstance.dismiss();
+                } else {
+                    $state.go('activitylist',$rootScope.$stateParams);
+                }
             };
 
             $scope.planActivityDone = function () {
                 ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
                     $rootScope.$broadcast('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
-                    $state.go('activitylist', $rootScope.$stateParams);
+                    if ($scope.$modalInstance) {
+                        $scope.$modalInstance.dismiss();
+                    } else {
+                        $state.go('activitylist',$rootScope.$stateParams);
+                    }
                 }, function (err) {
                     console.log(JSON.stringify(err));
                     $rootScope.$broadcast('globalUserMsg', 'Aktivität nicht gespeichert, Code: ' + err, 'danger', '5000');
