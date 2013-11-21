@@ -31,6 +31,8 @@
 //@youpers-brand-colors-cockpit-background: #eeeeee;
 //@youpers-brand-colors-cockpit: rgb(248, 184, 120);
 //@youpers-brand-colors-cockpit: rgb(248, 221, 9);
+@youpers-brand-colors-cockpit-bw01: #555555;
+@youpers-brand-colors-cockpit-bw02: #eeeeee;
 @youpers-brand-colors-cockpit-r01: #a71d0f;
 @youpers-brand-colors-cockpit-r02: #DC3912;
 @youpers-brand-colors-cockpit-r03: #ff6700;
@@ -596,14 +598,20 @@ input[type="range"].answered::-ms-thumb {
 /////////////////////////
 // activity list
 
-.filter-option {
+.filter-option,
+.search-option {
   padding-left: 20px;
   margin: 5px;
-  .rounded(5px);
+  .rounded(2px);
+}
+
+.search-option {
+  padding-left: 0px;
 }
 
 .filter-option:hover {
-  background: @youpers-brand-colors-secondary-dimmed;
+  background: @youpers-brand-colors-cockpit-bw02;
+  cursor: pointer;
 }
 
 .filter-option:active {
@@ -640,12 +648,18 @@ input[type="range"].answered::-ms-thumb {
 .activityListItem {
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-bottom: 5px;
+  margin-left: -6px;
+  margin-right: -1px;
+  margin-bottom: -1px;
   overflow: hidden;
+  border: 1px solid;
+  border-radius: 0px;
+  border-color: @youpers-brand-colors-cockpit-y01;
+
 }
 
 .activityListItem:hover {
-  background: @youpers-brand-colors-secondary-dimmed;
+  background: @youpers-brand-colors-cockpit-bw02;
   cursor: pointer;
 }
 
@@ -683,6 +697,21 @@ input[type="range"].answered::-ms-thumb {
 
 .pagination {
   margin: 0px;
+}
+
+//.pagination.youpers,
+.pagination.youpers > li > a,
+.pagination.youpers > li:first-child > a,
+.pagination.youpers > li:last-child > a {
+//  border: 1px solid @youpers-brand-colors-cockpit-r02;
+  border: 1px solid @youpers-brand-colors-cockpit-y01;
+  border-radius: 0px;
+}
+
+.pagination.youpers > li > a:hover,
+.pagination.youpers > li:first-child > a:hover,
+.pagination.youpers > li:last-child > a:hover {
+    cursor: pointer;
 }
 
 
@@ -812,7 +841,8 @@ a.activity-log.title,
 .social-log.author-name,
 a.social-log.comment,
 a.cockpit.comments {
-  color: @youpers-brand-colors-cockpit-r01;
+//  color: @youpers-brand-colors-cockpit-r01;
+  color: @youpers-brand-colors-cockpit-bw01;
 }
 
 .container.cockpit {
@@ -821,8 +851,10 @@ a.cockpit.comments {
 
 .btn-primary.cockpit {
   color: #000000;
-  background-color:  @youpers-brand-colors-cockpit-r04;
-  border-color: @youpers-brand-colors-cockpit-r02;
+//  background-color:  @youpers-brand-colors-cockpit-r04;
+  background-color:  @youpers-brand-colors-cockpit-g03;
+//  border-color: @youpers-brand-colors-cockpit-r02;
+  border-color: @youpers-brand-colors-cockpit-g02;
 }
 
 .btn-primary.cockpit:hover,
@@ -830,8 +862,10 @@ a.cockpit.comments {
 .btn-primary.cockpit:active,
 .btn-primary.cockpit.active {
   color: #ffffff;
-  background-color: @youpers-brand-colors-cockpit-r02;
-  border-color: @youpers-brand-colors-cockpit-r01;
+//  background-color: @youpers-brand-colors-cockpit-r02;
+  background-color: @youpers-brand-colors-cockpit-g02;
+//  border-color: @youpers-brand-colors-cockpit-r01;
+  border-color: @youpers-brand-colors-cockpit-g01;
 }
 
 .btn.cockpit {
@@ -842,30 +876,34 @@ a.cockpit.comments {
 .btn.cockpit.active {
   background-image: none;
   outline: 0;
-  box-shadow: inset 0 3px 5px @youpers-brand-colors-cockpit-r03;
+//  box-shadow: inset 0 3px 5px @youpers-brand-colors-cockpit-r03;
+  box-shadow: inset 0 3px 5px @youpers-brand-colors-cockpit-g02;
 }
 
 .btn-default.cockpit {
-  border-color: @youpers-brand-colors-cockpit-r02;
+//  border-color: @youpers-brand-colors-cockpit-r02;
+  border-color: @youpers-brand-colors-cockpit-y01;
 }
 .btn-default.cockpit:hover,
 .btn-default.cockpit:focus,
 btn-default.cockpit:active, .btn-default.cockpit.active {
-  background-color: @youpers-brand-colors-cockpit-r04;
-  border-color: @youpers-brand-colors-cockpit-r02;
+//  background-color: @youpers-brand-colors-cockpit-r04;
+  background-color: @youpers-brand-colors-cockpit-g03;
+//  border-color: @youpers-brand-colors-cockpit-r02;
+  border-color: @youpers-brand-colors-cockpit-g02;
 }
 
-.panel.cockpit {
-//  background-color: @youpers-brand-colors-cockpit-background;
+.panel.cockpit,
+.panel.sidebar {
   border: 1px solid;
   border-color: @youpers-brand-colors-cockpit-y01;
-
   margin-left: -5px;
-//  margin-right: -15px;
   border-radius: 0px;
   padding-left: 5px;
-//  padding-top: 2px;
-//  padding-bottom: 2px;
+}
+
+.panel.sidebar {
+  margin-bottom: 10px;
 }
 
 .panel.cockpit.mainAssQuestion,
@@ -882,7 +920,8 @@ btn-default.cockpit:active, .btn-default.cockpit.active {
   padding-right: 20px;
 }
 
-.panel.cockpit.section-title {
+.panel.cockpit.section-title,
+.panel.sidebar.section-title {
   background-color: @youpers-brand-colors-cockpit-y01;
   font-size: @youpers-font-size-3;
   font-family: @youpers-brand-font-family;
@@ -891,11 +930,15 @@ btn-default.cockpit:active, .btn-default.cockpit.active {
   border: 0px;
 }
 
+.panel.sidebar.section-title {
+  font-size: @youpers-font-size-4;
+  margin-bottom: 0px;
+}
+
 .cockpit.section-title {
   font-size: @youpers-font-size-3;
   font-family: @youpers-brand-font-family;
   line-height: 40px;
-//  margin: 50px;
 }
 
 .cockpit.list-group-item {
@@ -904,9 +947,9 @@ btn-default.cockpit:active, .btn-default.cockpit.active {
   border-color: @youpers-brand-colors-cockpit-y01;
 }
 
-
 .cockpit-tabs .nav-tabs {
-  border-bottom: 1px solid @youpers-brand-colors-cockpit-r02;
+//  border-bottom: 1px solid @youpers-brand-colors-cockpit-r02;
+  border-bottom: 1px solid @youpers-brand-colors-cockpit-y01;
 }
 
 .nav-tabs > li.cockpit-tab > a {
@@ -915,11 +958,13 @@ btn-default.cockpit:active, .btn-default.cockpit.active {
 }
 
 .nav-tabs > li.cockpit-tab > a:hover {
-  background-color: @youpers-brand-colors-cockpit-r04;
+//  background-color: @youpers-brand-colors-cockpit-r04;
+  background-color: @youpers-brand-colors-cockpit-bw02;
 }
 
 .nav-tabs > li.cockpit-tab.active > a {
-  border:  1px solid @youpers-brand-colors-cockpit-r02;
+//  border:  1px solid @youpers-brand-colors-cockpit-r02;
+  border:  1px solid @youpers-brand-colors-cockpit-y01;
   border-bottom-color: transparent;
   border-radius: 0px;
 }

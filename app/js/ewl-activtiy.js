@@ -619,7 +619,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
 
             $scope.pageSize = 20;
-            $scope.maxSize = 10;
+            $scope.maxSize = 8;
 
             $scope.currentPage = $scope.$stateParams.page || 1;
 
