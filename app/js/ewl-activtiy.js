@@ -195,7 +195,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     status: 'active',
                     mainEvent: newMainEvent,
                     executionType: activity.defaultexecutiontype,
-                    visibility: activity.defaultvisibility
+                    visibility: activity.defaultvisibility,
+                    fields: activity.fields,
+                    topics: activity.topics
                 };
             };
 
