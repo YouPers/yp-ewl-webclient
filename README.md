@@ -4,14 +4,18 @@ yp-ewl-webclient
 
 Webclient of the YouPers eWorkLife service
 
+## Prerequisites
+
+Installed local mongoDb: http://www.mongodb.org/downloads
+Installed nodejs und npm: http://nodejs.org/
+Installed grunt cli: npm install -g grunt-cli
 
 To build this project:
 -----------------------
 
-- git clone https://github.com/YouPers/yp-ewl-webclient.git
-- cd yp-ewl-webclient
-
-- npm install   (installs all needed software for build system: defined in package.json)
+    git clone https://github.com/YouPers/yp-ewl-webclient.git
+    cd yp-ewl-webclient
+    npm install   // installs all needed software for build system: defined in package.json)
 
 Build commands:
 
