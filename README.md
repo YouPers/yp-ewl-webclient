@@ -8,7 +8,7 @@ Webclient of the YouPers eWorkLife service
 To build this project:
 -----------------------
 
-- git clone "project url"
+- git clone https://github.com/YouPers/yp-ewl-webclient.git
 - cd yp-ewl-webclient
 
 - npm install   (installs all needed software for build system: defined in package.json)
@@ -19,14 +19,15 @@ Build commands:
 tests, compiles and builds the distribution version of the whole project, is used by CI
 is executing "grunt jshint", "grunt test", and "grunt build"
 
-    grunt mock
-does all needed css compilation and starts a development server and opens default browser.
-All REST call go to the angular BackendMock implementation, no local backend needed.
-
     grunt server
 does all needed css compilation and starts a development server and opens default browser.
-all REST calls go to localhost:8000, so start you local backend before using this task
-Watches all files and recompiles and reloads when changes occur
+all REST calls go to localhost:8000, so start your local backend before using this task.
+Watches all files, recompiles and reloads browser when changes occur
+
+    grunt mock
+**Not supported anymore, may or may not work!!!** does all needed css compilation and starts a development server and
+ opens default browser. All REST call go to the angular BackendMock implementation, no local backend needed.
+
 
     grunt server:dist
 builds the distribution version of the project, starts a local server and opens a browser to
