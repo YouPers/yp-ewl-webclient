@@ -33,8 +33,8 @@ angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.discussion
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'principal',
-        function ($rootScope, $state, $stateParams, principal) {
+    .run(['$rootScope', '$state', '$stateParams', 'principal', 'yp.user.UserService',
+        function ($rootScope, $state, $stateParams, principal, UserService) {
 
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
