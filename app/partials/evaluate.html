@@ -11,8 +11,78 @@
     </div>
 
 
-    <div>
-        Dummy
+    <div ng-controller="EvaluateCtrl">
+
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
+                assUpdatesPerDay
+            </div>
+
+            <ul>
+                <li ng-repeat="item in assUpdatesPerDay">
+                    {{ item.day | date:'yyyy-MM-dd' }} {{ item.updatesPerDay }}
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
+                assTotals
+            </div>
+
+            <ul>
+                <li ng-repeat="item in assTotals">
+                    totalUsers: {{ item.totalUsers }}, avgStress: {{ item.avgStress }}
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
+                topStressors
+            </div>
+
+            <ul>
+                <li ng-repeat="item in topStressors">
+                    <pre>{{ item | json }}</pre>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
+                activitiesPlanned
+            </div>
+
+            <ul>
+                <li ng-repeat="item in activitiesPlanned">
+                    {{ item.activityResolved.title }}
+                    {{ item.count }}
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="panel cockpit">
+
+            <div class="panel cockpit section-title">
+                activityEvents
+            </div>
+
+            <ul>
+                <li ng-repeat="item in activityEvents">
+                    <pre>{{ item | json }}</pre>
+                </li>
+            </ul>
+
+        </div>
     </div>
 
 
