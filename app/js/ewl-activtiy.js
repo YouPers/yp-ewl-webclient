@@ -577,6 +577,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 UserService.putUser(user);
 
             };
+            $scope.countStarredActivities = function() {
+                return _.size($scope.principal.getUser().preferences.starredActivities);
+            }
 
             $scope.query = {
                 subset: 'recommendations',
