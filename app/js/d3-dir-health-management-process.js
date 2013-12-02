@@ -64,62 +64,62 @@
 
                             // generating defaults, if options are not set
 
-                            scope.options = typeof scope.options !== 'undefined' ? scope.options : {};
+                            scope.options = scope.options || {};
 
                             // scope.options.elementHeight
                             // height of chart in px
                             // - string containing a number without 'px'
                             // - ignored if scope.options.relative is set to "yes"
 
-                            scope.options.elementHeight = typeof scope.options.elementHeight !== 'undefined' ? scope.options.elementHeight : 50;
+                            scope.options.elementHeight = scope.options.elementHeight || 50;
 
                             // scope.options.chartWidth
                             // width of chart
                             // - ideally set as %-value to elastically fit into the parent container of the chart
 
-                            scope.options.chartWidth = typeof scope.options.chartWidth !== 'undefined' ? scope.options.chartWidth : "99.5%";
+                            scope.options.chartWidth = scope.options.chartWidth || "99.5%";
 
                             // scope.options.marginTop
                             // top margin of the complete chart
                             // - ideally set to a minimum of 5 to avoid cropping of x scale values on top of the chart
 
-                            scope.options.marginTop = typeof scope.options.marginTop !== 'undefined' ? scope.options.marginTop : 10;
+                            scope.options.marginTop = scope.options.marginTop || 10;
 
                             // scope.options.marginLeft
                             // left margin of the complete chart
                             // - ideally set to a minimum of 5 to avoid cropping of the first x scale value on top of the chart
 
-                            scope.options.marginLeft = typeof scope.options.marginLeft !== 'undefined' ? scope.options.marginLeft : 10;
+                            scope.options.marginLeft = scope.options.marginLeft || 10;
 
                             // scope.options.marginBottom
                             // bottom margin of the complete chart
 
-                            scope.options.marginBottom = typeof scope.options.marginBottom !== 'undefined' ? scope.options.marginBottom : 10;
+                            scope.options.marginBottom = scope.options.marginBottom || 10;
 
                             // scope.options.marginRight
                             // right margin of the complete chart
 
-                            scope.options.marginRight = typeof scope.options.marginRight !== 'undefined' ? scope.options.marginRight : 15;
+                            scope.options.marginRight = scope.options.marginRight || 15;
 
                             // scope.options.elementWidth
                             // width of an element
 
-                            scope.options.elementWidth = typeof scope.options.elementWidth !== 'undefined' ? scope.options.elementWidth : 100;
+                            scope.options.elementWidth = scope.options.elementWidth || 100;
 
                             // scope.options.arrowHeadWidth
                             // width of an element's arrowhead
 
-                            scope.options.arrowHeadWidth = typeof scope.options.arrowHeadWidth !== 'undefined' ? scope.options.arrowHeadWidth : 15;
+                            scope.options.arrowHeadWidth = scope.options.arrowHeadWidth || 15;
 
                             // scope.options.elementMargin
                             // margin between the five elements
 
-                            scope.options.elementMargin = typeof scope.options.elementMargin !== 'undefined' ? scope.options.elementMargin : -5;
+                            scope.options.elementMargin = scope.options.elementMargin || -5;
 
                             // scope.options.elementPaddingLeft
                             // left margin for element's text
 
-                            scope.options.elementPaddingLeft = typeof scope.options.elementPaddingLeft !== 'undefined' ? scope.options.elementPaddingLeft : 5;
+                            scope.options.elementPaddingLeft = scope.options.elementPaddingLeft || 5;
 
                             // scope.options.displayType
                             // "commit": highlights first process step
@@ -128,7 +128,7 @@
                             // "do": highlights fourth process step
                             // "evaluate": highlights fifth process step
 
-                            scope.options.displayType = typeof scope.options.displayType !== 'undefined' ? scope.options.displayType : "do";
+                            scope.options.displayType = scope.options.displayType || "do";
 
                         };
 
