@@ -4,6 +4,7 @@ angular.module('yp.commons', [])
     .directive('header', function () {
         return {
             restrict: 'EA',
+            transclude: true,
             templateUrl: 'js/directives/header.html',
             scope: { }, // isolated
             link: function (scope, elem, attrs) {
