@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('yp.commons', [])
     .directive('header', function () {
         return {
@@ -18,5 +20,5 @@ angular.module('yp.commons', [])
                     return attrs.name === scope.items[index].name;
                 };
             }
-        }
+        };
     });
