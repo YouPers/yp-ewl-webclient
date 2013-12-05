@@ -9,22 +9,22 @@ var mountFolder = function (connect, dir) {
 // define the valid URL for each env
 var clientconfig = {
         mock: {
-            backendUrl: 'http://localhost:8000/api/v1'
+            backendUrl: 'http://localhost:8000'
         },
         dev: {
-            backendUrl: 'http://localhost:8000/api/v1'
+            backendUrl: 'http://localhost:8000'
         },
         ci: {
-            backendUrl: 'http://yp-backend-ci.herokuapp.com/api/v1'
+            backendUrl: 'http://yp-backend-ci.herokuapp.com'
         },
         herokutest: {
-            backendUrl: 'http://yp-backend-test.herokuapp.com/api/v1'
+            backendUrl: 'http://yp-backend-test.herokuapp.com'
         },
         uat: {
-            backendUrl: 'https://uat.youpers.com/api/v1'
+            backendUrl: 'https://uat.youpers.com'
         },
         prod: {
-            backendUrl: 'https://api.youpers.com/api/v1'
+            backendUrl: 'https://api.youpers.com'
         }
 };
 
