@@ -68,6 +68,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }],
                         plan: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                             return ActivityService.getPlanForActivity($stateParams.activityId, {populate: 'activity'});
+                        }],
+                        actPlansToJoin: ['ActivityService', '$stateParams', function(ActivityService, $stateParams) {
+                            return ActivityService.getPlansToJoin($stateParams.activityId);
                         }]
                     }
                 });
@@ -253,6 +256,15 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     deferred.resolve([]);
                     return deferred.promise;
                 }
+            },
+            getPlansToJoin: function (activityId) {
+                var params = {
+                    'filter[activity]': activityId,
+                    'filter[executionType]': 'group',
+                    'filter[status]': 'active',
+                    sort: 'mainEvent.start:-1'
+                };
+                return Restangular.all('activitiesPlanned/joinOffers').getList(params);
             },
             getPlanForActivity: function (activityId, options) {
                 if (!options) {
