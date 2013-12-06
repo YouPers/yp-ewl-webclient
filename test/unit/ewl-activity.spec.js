@@ -11,7 +11,7 @@ describe('ewl activity', function () {
 
         it('allActivities should be defined and loadable', inject(function (ActivityService) {
             expect(ActivityService.getActivities).toBeDefined();
-            expect(ActivityService.getPlannedActivities).toBeDefined();
+            expect(ActivityService.getActivityPlans).toBeDefined();
         }));
     });
 
@@ -181,7 +181,7 @@ describe('ewl activity', function () {
                 $filter: $filter,
                 $state: $state,
                 allActivities: mock.activities,
-            plannedActivities: mock.plannedActivities,
+            activityPlans: mock.activityPlans,
                 recommendations: [],
                 'yp.user.UserService': {},
                 assessment: {},

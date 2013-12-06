@@ -14,8 +14,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         allActivities: ['ActivityService', function (ActivityService) {
                             return ActivityService.getActivities();
                         }],
-                        plannedActivities: ['ActivityService', function (ActivityService) {
-                            return ActivityService.getPlannedActivities();
+                        activityPlans: ['ActivityService', function (ActivityService) {
+                            return ActivityService.getActivityPlans();
                         }],
                         recommendations: ['ActivityService', function (ActivityService) {
                             return ActivityService.getRecommendations();
@@ -117,7 +117,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }
         );
 
-        Restangular.extendCollection('activitiesPlanned', function (actPlanList) {
+        Restangular.extendCollection('activityplans', function (actPlanList) {
                 actPlanList.getEventsByTime = function () {
                     var actEventsByTime = [];
                     // concat array for every plan
@@ -132,7 +132,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }
         );
 
-        Restangular.extendModel('activitiesPlanned', function (actPlan) {
+        Restangular.extendModel('activityplans', function (actPlan) {
             actPlan.getEventsByTime = function () {
                 var actEventsByTime = [];
                 for (var i = 0; i < actPlan.events.length; i++) {
@@ -220,7 +220,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     .
     factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', function ($http, Restangular, $q, principal) {
         var activities = Restangular.all('activities');
-        var plannedActivities = Restangular.all('activitiesPlanned');
+        var activityPlans = Restangular.all('activityplans');
 
         var cachedActivitiesPromise;
         var cachedRecommendationsPromises = {};
@@ -248,9 +248,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     return deferred.promise;
                 }
             },
-            getPlannedActivities: function (options) {
+            getActivityPlans: function (options) {
                 if (principal.isAuthenticated()) {
-                    return plannedActivities.getList(options);
+                    return activityPlans.getList(options);
                 } else {
                     var deferred = $q.defer();
                     deferred.resolve([]);
@@ -264,14 +264,14 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     'filter[status]': 'active',
                     sort: 'mainEvent.start:-1'
                 };
-                return Restangular.all('activitiesPlanned/joinOffers').getList(params);
+                return Restangular.all('activityplans/joinOffers').getList(params);
             },
             getPlanForActivity: function (activityId, options) {
                 if (!options) {
                     options = {};
                 }
                 _.merge(options, {'filter[activity]': activityId});
-                return Restangular.all('activitiesPlanned').getList(options).then(function (result) {
+                return Restangular.all('activityplans').getList(options).then(function (result) {
                     if (result.length === 0) {
                         return null;
                     } else if (result.length > 1) {
@@ -308,7 +308,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         return err("updating of existing plans not yet supported!");
                     }};
                 } else {
-                    return plannedActivities.post(plan).then(function success(result) {
+                    return activityPlans.post(plan).then(function success(result) {
                         console.log("plan saved" + result);
                         return result;
                     }, function error(err) {
@@ -318,10 +318,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
             },
             updateActivityEvent: function (planId, actEvent) {
-                return Restangular.restangularizeElement(null, actEvent, 'activitiesPlanned/' + planId + '/events').put();
+                return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
             },
             getiCalUrl: function (planId) {
-                return Restangular.one('activitiesPlanned', planId).getRestangularUrl() + '/ical.ics';
+                return Restangular.one('activityplans', planId).getRestangularUrl() + '/ical.ics';
             }
         };
 
@@ -520,9 +520,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
         }])
 
-    .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'plannedActivities', 'activityFields',
+    .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans', 'activityFields',
         'recommendations', 'yp.user.UserService', 'topStressors', 'assessment', 'ActivityService',
-        function ($scope, $filter, allActivities, plannedActivities, activityFields,
+        function ($scope, $filter, allActivities, activityPlans, activityFields,
                   recommendations, UserService, topStressors, assessment, ActivityService) {
 
             // mock campaigns, that this user has an active goal for, should be loaded from server later...
@@ -535,7 +535,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 $scope.principal.getUser().preferences &&
                 $scope.principal.getUser().preferences.starredActivities || {};
 
-            allActivities.enrichWithUserData(plannedActivities, recommendations, campaigns, starredActs);
+            allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, starredActs);
 
             $scope.activities = allActivities;
             $scope.filteredActivities = allActivities;
@@ -558,7 +558,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     });
                 }
                 ActivityService.getRecommendations(focusQuestion).then(function (newRecs) {
-                    allActivities.enrichWithUserData(plannedActivities, newRecs, campaigns, starredActs);
+                    allActivities.enrichWithUserData(activityPlans, newRecs, campaigns, starredActs);
                     $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
                 });
 

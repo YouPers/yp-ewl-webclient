@@ -19,7 +19,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
                 $scope.actPlans = [$scope.currentActivityPlan];
                 $scope.actEventsByTime = $scope.currentActivityPlan.getEventsByTime();
             } else {
-                ActivityService.getPlannedActivities({populate: 'joiningUsers events.comments activity',
+                ActivityService.getActivityPlans({populate: 'joiningUsers events.comments activity',
                     populatedeep: 'events.comments.author'}).then(function (plans) {
                         $scope.actPlans = plans;
                         $scope.actEventsByTime = plans.length > 0 ? plans.getEventsByTime() : [];

@@ -24,7 +24,7 @@ mock.recommendations = [
 ];
 
 
-mock.plannedActivities = [
+mock.activityPlans = [
     {
         "activity": {
             "defaultexecutiontype": "self",
