@@ -20,6 +20,9 @@ var clientconfig = {
         herokutest: {
             backendUrl: 'http://yp-backend-test.herokuapp.com'
         },
+        nb: {
+            backendUrl: 'https://nb.youpers.com/api'
+        },
         uat: {
             backendUrl: 'https://uat.youpers.com/api'
         },
