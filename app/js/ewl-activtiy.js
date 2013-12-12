@@ -259,8 +259,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             getPlansToJoin: function (activityId) {
                 var params = {
-                    'filter[activity]': activityId,
-                    'filter[executionType]': 'group',
+                    'activity': activityId,
                     'filter[status]': 'active',
                     sort: 'mainEvent.start:-1'
                 };
