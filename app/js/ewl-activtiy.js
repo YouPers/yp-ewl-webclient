@@ -162,7 +162,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                     newMainEvent.frequency = 'week';
                     newMainEvent.recurrence = {
-                        "end-by": {
+                        "endby": {
                             "type": "after",
                             "after": 6
                         },
@@ -173,7 +173,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                     newMainEvent.frequency = 'day';
                     newMainEvent.recurrence = {
-                        "end-by": {
+                        "endby": {
                             "type": "after",
                             "after": 6
                         },
@@ -184,7 +184,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                     newMainEvent.frequency = 'once';
                     newMainEvent.recurrence = {
-                        "end-by": {
+                        "endby": {
                             "type": "after",
                             "after": 6
                         },

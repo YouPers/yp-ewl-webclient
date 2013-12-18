@@ -712,7 +712,7 @@ mock.activityPlans = [
             "end": "2013-10-30T12:02:35.173Z",
             "frequency": "week",
             "recurrence": {
-                "end-by": {
+                "endby": {
                     "type": "after",
                     "after": 6
                 },
