@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yp.commons', [])
+angular.module('yp.commons')
     .directive('header', function () {
         return {
             restrict: 'EA',

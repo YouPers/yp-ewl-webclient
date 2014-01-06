@@ -15,8 +15,8 @@ angular.module('yp.ewl.evaluate', ['restangular', 'ui.router', 'yp.auth'])
                     }
                 });
         }])
-    .controller('EvaluateCtrl', ['$scope', '$filter', 'yp.user.UserService', 'ActivityService', 'AssessmentService', 'StatsService',
-        function ($scope, $filter, UserService, ActivityService, AssessmentService, StatsService) {
+    .controller('EvaluateCtrl', ['$scope', 'yp.user.UserService', 'ActivityService', 'AssessmentService', 'StatsService',
+        function ($scope, UserService, ActivityService, AssessmentService, StatsService) {
 
             // TODO: enum?
             $scope.statTypes = 'assUpdatesPerDay assTotals topStressors activitiesPlanned activityEvents'.split(' ');
