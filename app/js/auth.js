@@ -7,11 +7,28 @@
     // Stores whether the user has been authenticated
         _authenticated = false,
 
-        userRoles = {
+        _userRoles = {
             anonymous: 1,
             individual: 2,
             healthpromoter: 4,
-            admin: 8
+            productadmin: 8,
+            systemadmin: 16
+        },
+
+        _accessLevels = {
+            all: _userRoles.anonymous | // 11111
+                _userRoles.individual |
+                _userRoles.healthpromoter |
+                _userRoles.productadmin |
+                _userRoles.systemadmin,
+            anonymous: _userRoles.anonymous,  // 10000  nur zugänglich,  wenn nicht eingeloggt
+            individual: _userRoles.individual |   // 01011
+                _userRoles.productadmin |
+                _userRoles.systemadmin,
+            healthpromoter: _userRoles.healthpromoter | // 00111
+                _userRoles.productadmin |
+                _userRoles.systemadmin,
+            admin: _userRoles.productadmin | _userRoles.systemadmin  // 00011
         };
 
 
@@ -28,20 +45,9 @@
         .constant('version', '0.0.1')
 
         // authorization levels and user Roles
-        .constant('userRoles', userRoles)
+        .constant('userRoles', _userRoles)
 
-        .constant('accessLevels', {
-            all: userRoles.anonymous | // 1111
-                userRoles.individual |
-                userRoles.healthpromoter |
-                userRoles.admin,
-            anononymous: userRoles.anonymous,  // 1000  nur zugänglich,  wenn nicht eingeloggt
-            individual: userRoles.individual |   // 0101
-                userRoles.admin,
-            healthpromoter: userRoles.healthpromoter | // 0011
-                userRoles.admin,
-            admin: userRoles.admin  // 0001
-        })
+        .constant('accessLevels', _accessLevels)
 
 
         // principal
@@ -55,14 +61,26 @@
                 isAuthenticated: function () {
                     return _authenticated;
                 },
-                isAuthorized: function (reqAccessLevel, userRole) {
-                    var currentUserRole = userRoles.anonymous;
-                    if (userRole) {
-                        currentUserRole = userRole;
-                    } else if (_currentUser && ('role' in _currentUser)) {
-                        currentUserRole = userRoles[_currentUser.role];
+                isAuthorized: function (reqAccessLevel, rolesToCheck) {
+                    var roles = 1;
+                    if (_.isNumber(rolesToCheck)) {
+                        roles = rolesToCheck;
+                    } else if (Array.isArray(rolesToCheck)) {
+                        roles = _.reduce(rolesToCheck, function(sum, role) {
+                            return sum | _userRoles[role];
+                        }, 0);
+                    } else if (_currentUser && ('roles' in _currentUser) && Array.isArray(_currentUser.roles)) {
+                        roles = _.reduce(_currentUser.roles, function(sum, role) {
+                            return sum | _userRoles[role];
+                        }, 0);
+                    } else if (_currentUser && ('roles' in _currentUser) && _.isNumber(_currentUser.roles)) {
+                        roles = _currentUser.role;
                     }
-                    return reqAccessLevel & currentUserRole;
+
+                    if (_.isString(reqAccessLevel)) {
+                        reqAccessLevel = _accessLevels[reqAccessLevel];
+                    }
+                    return reqAccessLevel & roles;
                 }
 
             };
@@ -84,8 +102,12 @@
                         // `authority-authorized` event from the `$rootScope`
                         authorize: function (currentUser) {
                             // check argument and mandatory keys
-                            if (!(currentUser && ('username' in currentUser) && ('role' in currentUser) && ('id' in currentUser))) {
+                            if (!(currentUser && ('username' in currentUser) && (('roles' in currentUser) || ('role' in currentUser)) && ('id' in currentUser))) {
                                 throw new Error('Authorize user: incorrect type: ' + angular.toJson(currentUser));
+                            }
+
+                            if (!currentUser.roles || currentUser.roles.length === 0) {
+                                currentUser.roles = [currentUser.role];
                             }
 
                             _authenticated = true;

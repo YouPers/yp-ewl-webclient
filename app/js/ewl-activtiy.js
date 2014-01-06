@@ -100,7 +100,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                         act.plan = matchingPlan;
                         act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                        if (starredActivities[act.id]) {
+                        if (_.contains(starredActivities,act.id)) {
                             act.starred = true;
                         }
                         var rec = _.find(recommendations, {'activity': act.id});
@@ -577,13 +577,13 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     user.preferences = {};
                 }
                 if (!user.preferences.starredActivities) {
-                    user.preferences.starredActivities = {};
+                    user.preferences.starredActivities = [];
                 }
 
-                if (activity.id in user.preferences.starredActivities) {
-                    delete user.preferences.starredActivities[activity.id];
+                if (_.contains(user.preferences.starredActivities, activity.id)) {
+                    _.remove(user.preferences.starredActivities, activity.id);
                 } else {
-                    user.preferences.starredActivities[activity.id] = true;
+                    user.preferences.starredActivities.push(activity.id);
                 }
                 UserService.putUser(user);
 
