@@ -588,6 +588,13 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 UserService.putUser(user);
 
             };
+            $scope.countStarredActivities = function() {
+                //TODO: consider initialization at an earlier point to prevent checks like this
+                if(_.isUndefined($scope.principal.getUser().preferences)) {
+                    return '';
+                }
+                return _.size($scope.principal.getUser().preferences.starredActivities);
+            };
 
             $scope.query = {
                 subset: 'recommendations',

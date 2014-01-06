@@ -212,7 +212,7 @@
                     </li>
                     <li class="cockpit-tab" ng-class="{active: query.subset=='all'}"><a href="" ng-click="setListTab('all')">alle</a></li>
                     <li class="cockpit-tab" ng-class="{active: query.subset=='starred'}"><a href="" ng-click="setListTab('starred')">vorgemerkt
-                        <span class="glyphicon glyphicon-star"></span></a></li>
+                        <span class="glyphicon glyphicon-star"></span><span>{{countStarredActivities()}}</span></a></li>
                 </tabset>
             </div>
             <div class="col-md-5">
