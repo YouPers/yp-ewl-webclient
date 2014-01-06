@@ -1,16 +1,11 @@
 <div class="container">
 
-    <!-- Page header  -->
-    <div class="row">
-        <div class="col-md-6">
-            <h2>{{ assessment.name | translate }}</h2>
-            <div>{{result.timestamp ? 'letzte Beurteilung: ' + (result.timestamp | fromNow) : 'Das ist deine erste Beurteilung'}}</div>
-        </div>
-        <div class="col-md-6" ng-controller="yp.health-management-process.controller">
-            <!--<img src="/assets/img/5steps.png">-->
-            <d3-health-management-process data="processData" options="d3OptionsAssess"></d3-health-management-process>
-        </div>
-    </div>    <!-- Page header  -->
+
+    <header name="assess">
+        <span>{{ assessment.name | translate }}</span>
+        <div>{{result.timestamp ? 'letzte Beurteilung: ' + (result.timestamp | fromNow) : 'Das ist deine erste Beurteilung'}}</div>
+    </header>
+
     <!--<div class="ass-done-button ass-done-button-top">-->
     <!--<button type="button" class="btn btn-primary btn-sm" ng-click="assessmentDone()">speichern</button>-->
     <!--</div>-->

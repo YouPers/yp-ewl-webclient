@@ -1,18 +1,11 @@
 <div class="container cockpit">
 
-<!-- Page header  -->
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Plane eine Aktivität </h2>
-    </div>
+<header name="plan">
+    <div class="col-md-6">Plane eine Aktivität </div>
     <div class="col-md-2">
         <a class="btn btn-default" ui-sref="modal_activityAdmin" ng-if="principal.isAuthorized('admin')">Neue Aktivität erfassen</a>
     </div>
-    <div class="col-md-6" ng-controller="yp.health-management-process.controller">
-        <d3-health-management-process data="processData" options="d3OptionsPlan"></d3-health-management-process>
-    </div>
-</div>
+</header>
 
 <!-- Page body  -->
 
