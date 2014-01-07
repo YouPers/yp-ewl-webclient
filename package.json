@@ -42,13 +42,15 @@
     "karma-phantomjs-launcher": "~0.1.x",
     "karma": "~0.10.x",
     "karma-ng-html2js-preprocessor": "~0.1.x",
-    "grunt-recess": "~0.4.x"
+    "grunt-recess": "~0.4.x",
+    "bower": "~1.2.8"
   },
   "engines": {
     "node": "0.10.x"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "postinstall" : "node_modules/.bin/bower install"
   },
   "repository": {
     "type": "git",

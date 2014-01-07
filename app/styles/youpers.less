@@ -4,7 +4,7 @@
 // Imports
 //
 // importing common less mixins (for gradients, borders, round edges ...
-@import "../lib/elements/elements";
+@import "../lib/less-elements/elements";
 
 //
 // Variables
@@ -1481,4 +1481,59 @@ input[type=number]::-webkit-outer-spin-button {
   width: 90%;
 }
 
+// active state header
 
+header {
+  position: relative;
+}
+
+.item {
+  display: inline-block;
+  position: relative;
+  width: 95px;
+  height: 50px;
+}
+.item div {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.item .triangle {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 25px 0 25px 15px;
+}
+.item .square {
+  background-color: #eeeeee;
+  width: 85px;
+  height: 50px;
+}
+.item.active .square {
+  background-color: #aec71e;
+}
+.item .i1 {
+  border-color: transparent transparent transparent #ffffff;
+  z-index: 1;
+}
+.item .i2 {
+}
+.item.active .i3 {
+  border-color: transparent transparent transparent #aec71e;
+}
+.item .i3 {
+  border-color: transparent transparent transparent #eeeeee;
+  left: 85px;
+  z-index: 2;
+}
+.item.active span {
+  color: #ffffff;
+}
+.item span {
+  color: #000000;
+  position: absolute;
+  margin: 14px auto auto 10px;
+  text-align: center;
+  width: 100%;
+}

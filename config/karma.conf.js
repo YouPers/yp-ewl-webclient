@@ -4,18 +4,19 @@ module.exports = function (config) {
 
         files: [
             'app/lib/angular/angular.js',
-            'app/lib/lowdash/lodash.js',
             'app/lib/angular-cookies/angular-cookies.js',
             'app/lib/angular-translate/*min.js',
             'app/lib/angular-translate-storage-cookie/*min.js',
-            'app/lib/angular-ui-router/angular-ui-router.js',
+            'app/lib/angular-ui-router/release/angular-ui-router.js',
             'app/lib/angular-bootstrap/ui-bootstrap-*.js',
-            'app/lib/ng-google-chart/*.js',
+            'app/lib/angular-google-chart/*.js',
             'app/lib/momentjs/moment.js',
-            'app/lib/momentjs/lang-de.js',
-            'app/lib/restangular/restangular.js',
-            'test/lib/angular/angular-mocks.js',
+            'app/lib/momentjs/lang/de.js',
+            'app/lib/restangular/dist/restangular.js',
+            'app/lib/lodash/dist/lodash.js',
             'app/js/**/*.js',
+
+            'test/lib/angular/angular-mocks.js',
             'test/unit/**/*.js'
         ],
 
