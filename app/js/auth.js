@@ -274,6 +274,10 @@
                     }
                 });
 
+                $scope.cancel = function () {
+                    $modalInstance.dismiss();
+                };
+
                 $scope.done = function () {
                     $modalInstance.close(result);
                 };
