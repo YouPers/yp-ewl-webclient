@@ -14,7 +14,7 @@ results
 .bin
 npm-debug.log
 node_modules
-app/vendor
+app/lib
 dist
 .tmp
 ToDos*.txt
