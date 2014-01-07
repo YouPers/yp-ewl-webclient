@@ -9,7 +9,6 @@ module.exports = function (config) {
             'app/lib/angular-translate-storage-cookie/*min.js',
             'app/lib/angular-ui-router/release/angular-ui-router.js',
             'app/lib/angular-bootstrap/ui-bootstrap-*.js',
-            'app/lib/angular-google-chart/*.js',
             'app/lib/momentjs/moment.js',
             'app/lib/momentjs/lang/de.js',
             'app/lib/restangular/dist/restangular.js',

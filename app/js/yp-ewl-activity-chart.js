@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yp.ewl.activity.chart', ['googlechart', 'restangular'])
+angular.module('yp.ewl.activity.chart', ['restangular'])
 
     .factory('yp.ewl.activity.chart.service', ['Restangular', function(Restangular) {
 
