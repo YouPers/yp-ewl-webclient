@@ -582,7 +582,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                 if (_.contains(user.preferences.starredActivities, activity.id)) {
                     _.remove(user.preferences.starredActivities, function(id) {
-                        return id == activity.id;
+                        return id === activity.id;
                     });
                 } else {
                     user.preferences.starredActivities.push(activity.id);
