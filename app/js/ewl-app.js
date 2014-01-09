@@ -4,9 +4,19 @@ angular.module('ypconfig', [])
     .constant('ypconfig', {"backendUrl": "http://localhost:8000/api/v1"});
 
 // Declare app level module which depends on filters, and services
-angular.module('yp-ewl', ['yp.ewl.assessment', 'yp.ewl.activity', 'yp.ewl.evaluate', 'yp.discussion', 'yp.sociallog', 'yp.activitylog',
-        'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.activity.vchart', 'yp.ewl.stresslevel.gauge', 'yp.ewl.stresslevel.linechart', 'yp.health-management-process', 'd3.dir-health-management-process', 'd3', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'd3.dir-line-chart', 'yp.topic', 'ui.router', 'ui.bootstrap',
-        'ngCookies', 'i18n', 'yp.commons', 'yp.auth', 'yp.healthpromoter', 'restangular', 'ypconfig']).
+angular.module('yp-ewl',
+        [
+            'restangular', 'ui.router', 'ui.bootstrap',
+            'ypconfig','ngCookies', 'i18n', 'yp.commons', 'yp.auth', 'yp.email-verification',
+            'yp.healthpromoter',
+            'yp.ewl.assessment',
+            'yp.topic',
+            'yp.ewl.activity', 'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.activity.vchart',
+            'yp.ewl.evaluate',
+            'yp.discussion', 'yp.sociallog', 'yp.activitylog',
+            'yp.ewl.stresslevel.gauge', 'yp.ewl.stresslevel.linechart', 'yp.health-management-process',
+            'd3', 'd3.dir-health-management-process', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'd3.dir-line-chart'
+        ]).
 
     config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'ypconfig',
         function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, ypconfig) {
