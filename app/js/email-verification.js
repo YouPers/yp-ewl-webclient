@@ -39,7 +39,7 @@
 
             EmailVerificationService.verify($state.params.token).then(function (result) {
                 $scope.result = result;
-            });;
+            });
 
         }]);
 
