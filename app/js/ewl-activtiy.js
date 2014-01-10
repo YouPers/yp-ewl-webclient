@@ -318,9 +318,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             updateActivityEvent: function (planId, actEvent) {
                 return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
-            },
-            getiCalUrl: function (planId) {
-                return Restangular.one('activityplans', planId).getRestangularUrl() + '/ical.ics';
             }
         };
 
@@ -482,11 +479,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     $scope.currentActivityPlan.mainEvent.end = moment($scope.currentActivityPlan.mainEvent.start).add(duration);
                 }
             });
-
-            $scope.getiCalUrl = function () {
-                return ActivityService.getiCalUrl($scope.currentActivityPlan.id);
-
-            };
 
             $scope.getRenderedText = function (activity) {
                 return $sce.trustAsHtml(markdown.toHTML(activity.text));
