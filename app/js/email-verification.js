@@ -12,13 +12,14 @@
                         url: "/email_verification/:token",
                         templateUrl: "partials/email.verification.html",
                         controller: "EmailVerificationCtrl",
-                        access: accessLevels.all,
+                        access: accessLevels.individual,
                         resolve: {
 
                         }
                     });
             }])
-        .factory('EmailVerificationService', ['$http', 'Restangular', 'principal', function ($http, Restangular, principal) {
+        .factory('EmailVerificationService', ['$http', 'Restangular', 'principal',
+            function ($http, Restangular, principal) {
 
             var users = Restangular.one("users", principal.getUser().id);
 
@@ -34,11 +35,15 @@
 
         }])
 
-        .controller('EmailVerificationCtrl', ['$scope', 'EmailVerificationService', 'principal', '$state', function ($scope, EmailVerificationService, principal, $state) {
+        .controller('EmailVerificationCtrl', ['$scope', 'EmailVerificationService', 'principal', '$state', 'yp.user.UserService', '$window',
+            function ($scope, EmailVerificationService, principal, $state, UserService, $window) {
             $scope.principal = principal;
 
             EmailVerificationService.verify($state.params.token).then(function (result) {
-                $scope.result = result;
+                $scope.emailValid = true;
+            }, function(err) {
+                UserService.logout();
+                $window.location.reload();
             });
 
         }]);
