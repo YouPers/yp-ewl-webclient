@@ -100,7 +100,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                         act.plan = matchingPlan;
                         act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                        if (_.contains(starredActivities,act.id)) {
+                        if (_.contains(starredActivities, act.id)) {
                             act.starred = true;
                         }
                         var rec = _.find(recommendations, {'activity': act.id});
@@ -118,15 +118,17 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         );
 
         Restangular.extendCollection('activityplans', function (actPlanList) {
-                actPlanList.getEventsByTime = function () {
-                    var actEventsByTime = [];
-                    // concat array for every plan
-                    for (var i = 0; i < actPlanList.length; i++) {
-                        actEventsByTime = actEventsByTime.concat(actPlanList[i].getEventsByTime());
-                    }
+                if (actPlanList) {  // Issue WL-136: Safari does not like assigning function to undefined when using 'use strict'; at top of file.
+                    actPlanList.getEventsByTime = function () {
+                        var actEventsByTime = [];
+                        // concat array for every plan
+                        for (var i = 0; i < actPlanList.length; i++) {
+                            actEventsByTime = actEventsByTime.concat(actPlanList[i].getEventsByTime());
+                        }
 
-                    return actEventsByTime;
-                };
+                        return actEventsByTime;
+                    };
+                }
 
                 return actPlanList;
             }
@@ -297,7 +299,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
 
             },
-            invalidateRecommendations: function() {
+            invalidateRecommendations: function () {
                 cachedRecommendationsPromises = {};
             },
             savePlan: function (plan) {
@@ -318,9 +320,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             updateActivityEvent: function (planId, actEvent) {
                 return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
-            },
-            getiCalUrl: function (planId) {
-                return Restangular.one('activityplans', planId).getRestangularUrl() + '/ical.ics';
             }
         };
 
@@ -483,11 +482,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
             });
 
-            $scope.getiCalUrl = function () {
-                return ActivityService.getiCalUrl($scope.currentActivityPlan.id);
-
-            };
-
             $scope.getRenderedText = function (activity) {
                 return $sce.trustAsHtml(markdown.toHTML(activity.text));
             };
@@ -500,7 +494,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 if ($scope.$modalInstance) {
                     $scope.$modalInstance.dismiss();
                 } else {
-                    $state.go('activitylist',$rootScope.$stateParams);
+                    $state.go('activitylist', $rootScope.$stateParams);
                 }
             };
 
@@ -510,7 +504,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     if ($scope.$modalInstance) {
                         $scope.$modalInstance.dismiss();
                     } else {
-                        $state.go('activitylist',$rootScope.$stateParams);
+                        $state.go('activitylist', $rootScope.$stateParams);
                     }
                 }, function (err) {
                     console.log(JSON.stringify(err));
@@ -521,8 +515,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
     .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans', 'activityFields',
         'recommendations', 'yp.user.UserService', 'topStressors', 'assessment', 'ActivityService',
-        function ($scope, $filter, allActivities, activityPlans, activityFields,
-                  recommendations, UserService, topStressors, assessment, ActivityService) {
+        function ($scope, $filter, allActivities, activityPlans, activityFields, recommendations, UserService, topStressors, assessment, ActivityService) {
 
             // mock campaigns, that this user has an active goal for, should be loaded from server later...
             var campaigns = ['Campaign-1'];
@@ -581,7 +574,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }
 
                 if (_.contains(user.preferences.starredActivities, activity.id)) {
-                    _.remove(user.preferences.starredActivities, function(id) {
+                    _.remove(user.preferences.starredActivities, function (id) {
                         return id === activity.id;
                     });
                 } else {
@@ -590,9 +583,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 UserService.putUser(user);
 
             };
-            $scope.countStarredActivities = function() {
+            $scope.countStarredActivities = function () {
                 //TODO: consider initialization at an earlier point to prevent checks like this
-                if(_.isUndefined($scope.principal.getUser().preferences)) {
+                if (_.isUndefined($scope.principal.getUser().preferences)) {
                     return '';
                 }
                 return _.size($scope.principal.getUser().preferences.starredActivities);
@@ -634,7 +627,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             // initialize correct Tab from state Params
             if ($scope.$stateParams.tab) {
-               $scope.query.subset = $scope.$stateParams.tab;
+                $scope.query.subset = $scope.$stateParams.tab;
             }
 
             $scope.setListTab = setListTab;
