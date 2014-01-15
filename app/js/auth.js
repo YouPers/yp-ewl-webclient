@@ -175,7 +175,7 @@
                             });
                     },
                     putUser: function (user) {
-                        Rest.restangularizeElement(null, user, "users").put();
+                        return Rest.restangularizeElement(null, user, "users").put();
                     }
                 };
 

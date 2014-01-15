@@ -1,6 +1,26 @@
 'use strict';
 
 angular.module('yp.commons', []).
+
+
+    directive('form', [function () {
+        return {
+            restrict: 'E',
+            require: 'form',
+            link: function (scope, element, attrs, ctrl) {
+                scope.$watch(attrs.name + '.$dirty',
+                    function (newValue, oldValue) {
+                        if (newValue != oldValue && newValue === true) {
+                            scope.$emit('formDirty', attrs.name);
+                        }
+                    });
+                scope.$on('formClean', function () {
+                    ctrl.$setPristine();
+                });
+            }
+        };
+    }]).
+
     filter('fromNow',function () {
         return function (dateString) {
             var myMoment = moment(dateString);
