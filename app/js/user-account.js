@@ -49,7 +49,7 @@
                         UserService.login($scope.passwordUserObj, function() {
 
                             $scope.passwordUserObjReset();
-                            $scope.$broadcast('formClean');
+                            $scope.$broadcast('formPristine');
                             
                             $rootScope.$broadcast('globalUserMsg', 'Your password has been changed', 'success', 3000);
                         });
