@@ -44,14 +44,12 @@
 
         .controller('UserAccountCtrl', ['$scope', '$rootScope', 'principal', 'authority', 'yp.user.UserService',
             function ($scope, $rootScope, principal, authority, UserService) {
-                $scope.principal = principal;
-
 
                 $scope.accountUserObjReset = function () {
                     $scope.accountUserObj = _.clone(principal.getUser());
                 };
-                $scope.accountUserObjReset();
 
+                $scope.accountUserObjReset();
 
                 $scope.saveAccount = function () {
                     UserService.putUser($scope.accountUserObj).then(function (user) {
