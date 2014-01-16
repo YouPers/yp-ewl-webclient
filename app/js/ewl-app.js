@@ -6,8 +6,9 @@ angular.module('ypconfig', [])
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl',
         [
-            'restangular', 'ui.router', 'ui.bootstrap',
-            'ypconfig','ngCookies', 'i18n', 'yp.commons', 'yp.auth', 'yp.email-verification',
+            'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
+            'ypconfig', 'yp.commons',
+            'yp.auth', 'yp.user', 'yp.email-verification',
             'yp.healthpromoter',
             'yp.ewl.assessment',
             'yp.topic',
