@@ -8,7 +8,7 @@ angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
             'ypconfig', 'yp.commons',
-            'yp.auth', 'yp.user', 'yp.email-verification',
+            'yp.auth', 'yp.user',
             'yp.healthpromoter',
             'yp.ewl.assessment',
             'yp.topic',
@@ -149,8 +149,8 @@ angular.module('yp-ewl',
         }])
 
 
-    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance',
-        function ($scope, $modalInstance) {
+    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance','$state',
+        function ($scope, $modalInstance, $state) {
 
             var result = {
                 login: {
@@ -183,6 +183,11 @@ angular.module('yp-ewl',
 
             $scope.done = function () {
                 $modalInstance.close(result);
+            };
+
+            $scope.gotoPasswordReset = function() {
+                $modalInstance.dismiss();
+                $state.go('requestPasswordReset');
             };
 
         }])

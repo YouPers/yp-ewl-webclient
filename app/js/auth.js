@@ -176,6 +176,15 @@
                     },
                     putUser: function (user) {
                         return Rest.restangularizeElement(null, user, "users").put();
+                    },
+                    verifyEmail: function (userid, token) {
+                        return users.one(userid).all("email_verification").post({token: token});
+                    },
+                    requestPasswordReset: function (usernameOrEmail) {
+                        return users.all("request_password_reset").post({usernameOrEmail: usernameOrEmail});
+                    },
+                    passwordReset: function (token, newPassword) {
+                        return users.all("password_reset").post({token: token, password: newPassword});
                     }
                 };
 
