@@ -1,0 +1,121 @@
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <!--<pre>-->
+            <!--{{ profileUserObj | json }}-->
+            <!--</pre>-->
+
+        </div>
+
+        <div class="col-md-6">
+
+            <h2>{{ 'PROFILE' | translate }}</h2>
+
+            <accordion close-others="true">
+
+                <accordion-group heading="{{ 'PROFILE' | translate }}" is-open="true">
+
+                    <form name="profileForm" class="form" role="form" ng-submit="saveProfile()" novalidate>
+
+                        <div class="form-group">
+                            <label>{{ 'GENDER' | translate }}</label>
+                            <input name="gender" type="text" placeholder="{{ 'GENDER' | translate }}" class="form-control" ng-model="profileUserObj.gender" required>
+                            <span ng-show="profileForm.gender.$dirty && profileForm.gender.$invalid" class="help-inline">Something may have gone wrong</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'BIRTHDATE' | translate }}</label>
+                            <input name="birthDate" type="text" placeholder="{{ 'BIRTHDATE' | translate }}" class="form-control" ng-model="profileUserObj.birthDate" required>
+                            <span ng-show="profileForm.birthDate.$dirty && profileForm.birthDate.$invalid" class="help-inline">Something may have gone wrong</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'MARITALSTATUS' | translate }}</label>
+                            <input name="maritalStatus" type="text" placeholder="{{ 'MARITALSTATUS' | translate }}" class="form-control" ng-model="profileUserObj.maritalStatus" required>
+                            <span ng-show="profileForm.maritalStatus.$dirty && profileForm.maritalStatus.$invalid" class="help-inline">Something may have gone wrong</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'HOMEADDRESS' | translate }}</label>
+                            <input name="homeAddressStreet" type="text" placeholder="{{ 'STREET' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.street" required>
+                            <span ng-show="profileUserObj.homeAddress.street.$dirty && profileUserObj.homeAddress.street.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="homeAddressHouseNumber" type="text" placeholder="{{ 'HOUSENUMBER' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.houseNumber" required>
+                            <span ng-show="profileForm.homeAddress.houseNumber.$dirty && profileForm.homeAddress.houseNumber.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="homeAddressZipCode" type="text" placeholder="{{ 'ZIPCODE' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.zipCode" required>
+                            <span ng-show="profileForm.homeAddress.zipCode.$dirty && profileForm.homeAddress.zipCode.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="homeAddressCity" type="text" placeholder="{{ 'CITY' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.city" required>
+                            <span ng-show="profileForm.homeAddress.city.$dirty && profileForm.homeAddress.city.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="homeAddressCountryr" type="text" placeholder="{{ 'COUNTRY' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.country" required>
+                            <span ng-show="profileForm.homeAddress.country.$dirty && profileForm.homeAddress.country.$invalid" class="help-inline">Something may have gone wrong</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'WORKADDRESS' | translate }}</label>
+                            <input name="workAddressStreet" type="text" placeholder="{{ 'STREET' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.street" required>
+                            <span ng-show="profileUserObj.workAddress.street.$dirty && profileUserObj.workAddress.street.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="workAddressHouseNumber" type="text" placeholder="{{ 'HOUSENUMBER' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.houseNumber" required>
+                            <span ng-show="profileForm.workAddress.houseNumber.$dirty && profileForm.workAddress.houseNumber.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="workAddressZipCode" type="text" placeholder="{{ 'ZIPCODE' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.zipCode" required>
+                            <span ng-show="profileForm.workAddress.zipCode.$dirty && profileForm.workAddress.zipCode.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="workAddressCity" type="text" placeholder="{{ 'CITY' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.city" required>
+                            <span ng-show="profileForm.workAddress.city.$dirty && profileForm.workAddress.city.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="workAddressCountryr" type="text" placeholder="{{ 'COUNTRY' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.country" required>
+                            <span ng-show="profileForm.workAddress.country.$dirty && profileForm.workAddress.country.$invalid" class="help-inline">Something may have gone wrong</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'PREFERENCES' | translate }}</label>
+                            <div class="form-group">
+                                <label>{{ 'DEFAULTUSERWEEKFORSCHEDULING' | translate }}</label>
+                                <input name="defWeekForSchedulingMonday" type="text" placeholder="{{ 'MONDAY' | translate }}" class="form-control" ng-model="profileUserObj.defWeekForScheduling.monday" required>
+                                <span ng-show="profileUserObj.defWeekForScheduling.monday.$dirty && profileUserObj.defWeekForScheduling.monday.$invalid" class="help-inline">Something may have gone wrong</span>
+                                <input name="defWeekForSchedulingTuesday" type="text" placeholder="{{ 'TUESDAY' | translate }}" class="form-control" ng-model="profileUserObj.defWeekForScheduling.tuesday" required>
+                                <span ng-show="profileUserObj.defWeekForScheduling.tuesday.$dirty && profileUserObj.defWeekForScheduling.tuesday.$invalid" class="help-inline">Something may have gone wrong</span>
+                                <input name="defWeekForSchedulingWednesday" type="text" placeholder="{{ 'WEDNESDAY' | translate }}" class="form-control" ng-model="profileUserObj.defWeekForScheduling.wednesday" required>
+                                <span ng-show="profileUserObj.defWeekForScheduling.wednesday.$dirty && profileUserObj.defWeekForScheduling.wednesday.$invalid" class="help-inline">Something may have gone wrong</span>
+                                <input name="defWeekForSchedulingThursday" type="text" placeholder="{{ 'THURSDAY' | translate }}" class="form-control" ng-model="profileUserObj.defWeekForScheduling.thursday" required>
+                                <span ng-show="profileUserObj.defWeekForScheduling.thursday.$dirty && profileUserObj.defWeekForScheduling.thursday.$invalid" class="help-inline">Something may have gone wrong</span>
+                                <input name="defWeekForSchedulingFriday" type="text" placeholder="{{ 'FRIDAY' | translate }}" class="form-control" ng-model="profileUserObj.defWeekForScheduling.friday" required>
+                                <span ng-show="profileUserObj.defWeekForScheduling.friday.$dirty && profileUserObj.defWeekForScheduling.friday.$invalid" class="help-inline">Something may have gone wrong</span>
+                                <input name="defWeekForSchedulingSaturday" type="text" placeholder="{{ 'SATURDAY' | translate }}" class="form-control" ng-model="profileUserObj.defWeekForScheduling.saturday" required>
+                                <span ng-show="profileUserObj.defWeekForScheduling.saturday.$dirty && profileUserObj.defWeekForScheduling.saturday.$invalid" class="help-inline">Something may have gone wrong</span>
+                                <input name="defWeekForSchedulingSunday" type="text" placeholder="{{ 'SUNDAY' | translate }}" class="form-control" ng-model="profileUserObj.defWeekForScheduling.sunday" required>
+                                <span ng-show="profileUserObj.defWeekForScheduling.sunday.$dirty && profileUserObj.defWeekForScheduling.sunday.$invalid" class="help-inline">Something may have gone wrong</span>
+                            </div>
+
+                            <input name="firstDayOfWeek" type="text" placeholder="{{ 'FIRSTDAYOFWEEK' | translate }}" class="form-control" ng-model="profileUserObj.firstDayOfWeek" required>
+                            <span ng-show="profileForm.firstDayOfWeek.$dirty && profileForm.firstDayOfWeek.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="languageUI" type="text" placeholder="{{ 'LANGUAGEUI' | translate }}" class="form-control" ng-model="profileUserObj.languageUI" required>
+                            <span ng-show="profileForm.languageUI.$dirty && profileForm.languageUI.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                            <input name="timezone" type="text" placeholder="{{ 'TIMEZONE' | translate }}" class="form-control" ng-model="profileUserObj.timezone" required>
+                            <span ng-show="profileForm.timezone.$dirty && profileForm.timezone.$invalid" class="help-inline">Something may have gone wrong</span>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="profileForm.$invalid">Save</button>
+
+                    </form>
+
+                </accordion-group>
+
+            </accordion>
+
+        </div>
+    </div>
+
+
+</div>

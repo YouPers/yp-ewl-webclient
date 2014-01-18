@@ -79,6 +79,20 @@ angular.module('yp-ewl').
             YOUR_ASSESSMENT_RESULTS: "Your Assessment Results",
             GENERAL: "General stress level",
             HANDLING: "Stress handling",
-            STRESSTYPUS: "Stress typus"
+            STRESSTYPUS: "Stress typus",
+            PROFILE: "Profile",
+            GENDER: "Gender",
+            BIRTHDATE: "Birthdate",
+            MARITALSTATUS: "Marital Status",
+            HOMEADDRESS: "Home Address",
+            STREET: "Street",
+            HOUSENUMBER: "No.",
+            ZIPCODE: "Zip Code",
+            CITY: "City",
+            COUNTRY: "Country",
+            DEFAULTUSERWEEKFORSCHEDULING: "Days to consider for scheduling.",
+            FIRSTDAYOFWEEK: "First day of week",
+            LANGUAGEUI: "Language",
+            TIMEZONE: "Timezone"
         });
     }]);
