@@ -12,7 +12,7 @@
                         controller: "UserProfileCtrl",
                         access: accessLevels.individual,
                         resolve: { }
-                    })
+                    });
 
             }])
 
