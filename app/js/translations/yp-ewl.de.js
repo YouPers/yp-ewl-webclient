@@ -85,7 +85,16 @@ angular.module('yp-ewl').
             GENDER: "Geschlecht",
             BIRTHDATE: "Geburtstag",
             MARITALSTATUS: "Zivilstand",
+            UNDEFINED: "nicht definiert",
+            SINGLE: "Single",
+            UNMARRIED: "unverheiratet",
+            MARRIED: "verheiratet",
+            SEPARATED: "getrennt",
+            DIVORCED: "geschieden",
+            WIDOWED: "verwitwet",
             HOMEADDRESS: "Wohnadresse",
+            WORKADDRESS: "Geschäftsadresse",
+            PREFERENCES: "Einstellungen",
             STREET: "Strasse",
             HOUSENUMBER: "Nr.",
             ZIPCODE: "PLZ",
@@ -94,7 +103,10 @@ angular.module('yp-ewl').
             DEFAULTUSERWEEKFORSCHEDULING: "Tage, die für die Planung berücksicht werden sollen.",
             FIRSTDAYOFWEEK: "Erster Tag einer Woche",
             LANGUAGEUI: "Sprache",
-            TIMEZONE: "Zeitzone"
-
+            GERMAN: "Deutsch",
+            ENGLISH: "Englisch",
+            ITALIAN: "Italienisch",
+            TIMEZONE: "Zeitzone",
+            SETTINGS: "Einstellungen"
         });
     }]);

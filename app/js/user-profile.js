@@ -45,8 +45,8 @@
                 });
 
                 $scope.saveProfile = function () {
-                    UserProfileService.putUserProfile($scope.accountUserProfileObj).then(function (user) {
-                        $rootScope.$broadcast('globalUserMsg', 'Your account has been saved', 'success', 3000);
+                    UserProfileService.putUserProfile($scope.profileUserObj).then(function (profile) {
+                        $rootScope.$broadcast('globalUserMsg', 'Your user profile has been saved', 'success', 3000);
                     });
 
                 };
