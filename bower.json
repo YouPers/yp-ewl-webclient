@@ -2,19 +2,20 @@
     "name": "YouPers Webclient",
     "version": "0.0.1",
     "dependencies": {
-        "angular": "~1.2.9",
-        "angular-animate": "~1.2.9",
-        "angular-bootstrap": "~0.10.0",
-        "angular-cookies": "~1.2.9",
-        "angular-i18n": "~1.2.9",
-        "angular-resource": "~1.2.9",
-        "angular-sanitize": "~1.2.9",
+        "angular": "~1.2.7",
+        "angular-animate": "~1.2.7",
+        "angular-bootstrap": "~0.9.0",
+        "angular-cookies": "~1.2.7",
+        "angular-i18n": "~1.2.7",
+        "angular-resource": "~1.2.7",
+        "angular-sanitize": "~1.2.7",
         "angular-translate": "~1.1.1",
         "angular-translate-storage-cookie": "~0.1.6",
-        "angular-ui-router": "0.2.7",
+        "angular-ui-router": "0.2.8-bowratic-tedium",
         "bootstrap": "~3.0.3",
-        "d3": "~3.4.1",
-        "less": "~1.6.1",
+        "d3": "~3.3.13",
+        "jquery": "~2.0.3",
+        "less": "~1.6.0",
         "less-elements": "",
         "lodash": "~2.4.1",
         "markdown": "",
@@ -23,12 +24,12 @@
 
     },
     "devDependencies": {
-        "angular-mocks": "~1.2.9",
-        "angular-scenario": "~1.2.9"
+        "angular-mocks": "~1.2.7",
+        "angular-scenario": "~1.2.7"
     },
     "resolutions": {
-        "angular": "~1.2.9",
-        "angular-cookies": "~1.2.9"
+        "angular": "~1.2.7",
+        "angular-cookies": "~1.2.7"
     }
 }
 

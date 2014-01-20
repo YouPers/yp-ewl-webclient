@@ -8,7 +8,7 @@ angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
             'ypconfig', 'yp.commons',
-            'yp.auth', 'yp.user',
+            'yp.auth', 'yp.user', 'yp.user.profile',
             'yp.healthpromoter',
             'yp.ewl.assessment',
             'yp.topic',
