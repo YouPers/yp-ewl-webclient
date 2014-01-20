@@ -20,13 +20,6 @@
             function ($rootScope, Rest, principal) {
                 var UserProfileService = {
 
-                    getUserProfile: function () {
-                        if (principal.isAuthenticated()) {
-                            return Rest.one('profiles').get();
-                        }
-                        //ToDo else case needed?
-                    },
-
                     putUserProfile: function (userProfile) {
                         return Rest.restangularizeElement(null, userProfile, "profiles").put();
                     }
@@ -35,18 +28,17 @@
                 return UserProfileService;
             }])
 
+        .controller('UserProfileCtrl', ['$scope', '$rootScope', 'yp.user.UserProfileService',
+            function ($scope, $rootScope, UserProfileService) {
 
-        .controller('UserProfileCtrl', ['$scope', '$rootScope', 'principal', 'yp.user.UserProfileService',
-            function ($scope, $rootScope, principal, UserProfileService) {
-
-                UserProfileService.getUserProfile().then(function (result) {
-                    // result delivers an array with one element, thus store this single array element
-                    $scope.profileUserObj = result[0];
-                });
+                $scope.profileUserObj = _.clone($scope.principal.getUser().profile);
 
                 $scope.saveProfile = function () {
                     UserProfileService.putUserProfile($scope.profileUserObj).then(function (profile) {
                         $rootScope.$broadcast('globalUserMsg', 'Your user profile has been saved', 'success', 3000);
+                        $scope.principal.getUser().profile = profile;
+                    }, function (error) {
+                        $rootScope.$broadcast('globalUserMsg', 'Error while saving: ' + error, 'danger', 3000);
                     });
 
                 };
