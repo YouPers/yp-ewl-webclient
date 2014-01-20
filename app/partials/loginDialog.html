@@ -14,7 +14,11 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-sm">{{ 'LOGIN' | translate }}</button>
-            </div> <a href="" ng-click="gotoPasswordReset()"> Ich weiss mein Passwort nicht mehr</a>
+            </div>
+            <a href="" ng-click="gotoPasswordReset()"> Ich weiss mein Passwort nicht mehr</a>
+            <label class="checkbox">Angemeldet bleiben
+                <input type="checkbox" ng-model="result.login.keepMeLoggedIn">
+            </label>
         </form>
         <div>
             oder <button class="btn btn-sm btn-primary" ng-click="showRegistrationForm(registerform)">Neu Registrieren</button>
