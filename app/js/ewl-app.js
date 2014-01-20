@@ -131,7 +131,12 @@ angular.module('yp-ewl',
             });
 
             $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-                var msg = 'error during state transition from ' + fromState.name + ' to ' + toState.name + ": " + (error.data || error.message ||error.toString() || error);
+                var msg = 'error during state transition from ' + fromState.name + ' to ' + toState.name + ": " +
+                    (error.data || error.message ||error.toString() || error.status || error);
+
+                if (error && error.status === 404) {
+                     msg = 'YouPers Server not reachable, please try again later, code: ' + error.status;
+                }
                 $scope.$broadcast('globalUserMsg',msg, 'danger');
                 $log.error(msg);
             });
