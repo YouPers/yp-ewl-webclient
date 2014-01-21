@@ -8,7 +8,7 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
             $stateProvider
                 .state('assessment', {
                     url: "/assessment/:assessmentId",
-                    templateUrl: "partials/assessment.html",
+                    templateUrl: "yp.assessment/assessment.html",
                     controller: "AssessmentCtrl",
                     access: accessLevels.all,
                     resolve: {
@@ -25,7 +25,7 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                             template: "="
                         },
                         modal: {
-                            templateUrl: "partials/assessment.result.html",
+                            templateUrl: "yp.assessment/assessment.result.html",
                             controller: "AssessmentResultCtrl"
                         }
                     },

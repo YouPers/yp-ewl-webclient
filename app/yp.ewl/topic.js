@@ -7,7 +7,7 @@ angular.module('yp.topic', ['ui.router', 'restangular'])
             $stateProvider
                 .state('topics', {
                     url: "/topics",
-                    templateUrl: "partials/topic.html",
+                    templateUrl: "yp.ewl/topic.html",
                     controller: "TopicController",
                     access: accessLevels.all
                 })
@@ -18,7 +18,7 @@ angular.module('yp.topic', ['ui.router', 'restangular'])
                             template: "="
                         },
                         modal: {
-                            templateUrl: "partials/topic.setgoal.html",
+                            templateUrl: "yp.ewl/topic.setgoal.html",
                             controller: "TopicSetGoalCtrl"
                         }
                     },

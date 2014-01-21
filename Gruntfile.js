@@ -80,10 +80,10 @@ module.exports = function (grunt) {
                     livereload: LIVERELOAD_PORT
                 },
                 files: [
-                    '<%= yeoman.app %>/{,*/}*.html',
+                    '<%= yeoman.app %>/**/*.html',
                     '.tmp/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/js/{,*/}*.js', '{.tmp,<%= yeoman.app %>}/js/{,*/}*.json',
-                    '<%= yeoman.app %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '{.tmp,<%= yeoman.app %>}/**/*.js', '{.tmp,<%= yeoman.app %>}/**/*.json',
+                    '<%= yeoman.app %>/assets/**/*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -173,7 +173,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= yeoman.app %>/js/{,*/}*.js'
+                ['<%= yeoman.app %>/**/*.js', '!<%= yeoman.app %>/**/lib/**']
             ]
         },
         coffee: {
@@ -240,7 +240,7 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%= yeoman.dist %>/js/{,*/}*.js',
+                        '<%= yeoman.dist %>/**/*.js',
                         '<%= yeoman.dist %>/styles/{,*/}*.css'
 //                      ' <%= yeoman.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                     ]
@@ -255,7 +255,7 @@ module.exports = function (grunt) {
             }
         },
         usemin: {
-            html: ['<%= yeoman.dist %>/{,*/}*.html'],
+            html: ['<%= yeoman.dist %>/**/*.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
                 dirs: ['<%= yeoman.dist %>']
@@ -315,7 +315,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
-                        src: ['partials/*.html'],
+                        src: ['**/*.html'],
                         dest: '<%= yeoman.dist %>'
                     },
                     {'dist/index.html': '.tmp/index.html'}
@@ -336,8 +336,7 @@ module.exports = function (grunt) {
                             '.htaccess',
                             'lib/**/*',
                             'assets/{,*/}*.{gif,webp}',
-                            'styles/fonts/{,*/}*.woff',
-                            'js/mockdata/*'
+                            'styles/fonts/{,*/}*.woff'
                         ]
                     },
                     {
@@ -411,21 +410,6 @@ module.exports = function (grunt) {
             'options': {
                 // Task-specific options go here
             },
-            'mock': {
-                'options': {
-                    'data': {
-                        mockscripts: "<script src='js/mockdata/backendMockApp.js'></script>" +
-                                      "<script src='lib/angular-mocks/angular-mocks.js'></script>" +
-                                      "<script src='js/mockdata/MockDataJson.js'></script>" +
-                                      "<script src='js/mockdata/testactivities.js'></script>",
-                        ngappsuffix: '-devmock',
-                        config:     clientconfig.mock
-                    }
-                },
-                'files': {
-                    '.tmp/index.html': ['app/index.html']
-                }
-            },
             'server': {
                 'options': {
                     'data': {
@@ -474,14 +458,10 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.registerTask('mock', [
-        'server:mock'
-    ]);
-
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
-        'template:mock',
+//        'template:mock',
         'autoprefixer',
         'connect:test',
         'karma'

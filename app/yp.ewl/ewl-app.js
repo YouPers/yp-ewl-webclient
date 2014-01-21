@@ -15,8 +15,8 @@ angular.module('yp-ewl',
             'yp.ewl.activity', 'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.activity.vchart',
             'yp.ewl.evaluate',
             'yp.discussion', 'yp.sociallog', 'yp.activitylog',
-            'yp.ewl.stresslevel.gauge', 'yp.ewl.stresslevel.linechart', 'yp.health-management-process',
-            'd3', 'd3.dir-health-management-process', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'd3.dir-line-chart'
+            'yp.ewl.stresslevel.gauge', 'yp.ewl.stresslevel.linechart',
+            'd3', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'd3.dir-line-chart'
         ]).
 
     config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'ypconfig',
@@ -29,12 +29,12 @@ angular.module('yp-ewl',
             $stateProvider
                 .state('home', {
                     url: "/home",
-                    templateUrl: "partials/home.html",
+                    templateUrl: "yp.ewl/home.html",
                     access: accessLevels.all
                 })
                 .state('cockpit', {
                     url: "/cockpit",
-                    templateUrl: "partials/cockpit.html",
+                    templateUrl: "yp.cockpit/cockpit.html",
                     access: accessLevels.individual
                 });
 
@@ -81,7 +81,7 @@ angular.module('yp-ewl',
 
             var loginDialogOpen = function () {
                 var modalInstance = $modal.open({
-                    templateUrl: 'partials/loginDialog.html',
+                    templateUrl: 'yp.ewl/loginDialog.html',
                     controller: 'yp.user.DialogLoginRegisterCtrl',
                     backdrop: true
                 });

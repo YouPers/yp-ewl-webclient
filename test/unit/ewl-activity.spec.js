@@ -169,10 +169,17 @@ describe('ewl activity', function () {
             $scope.$state = $state;
             $scope.$stateParams = $stateParams;
 
-            // add activities-methods:
-            mock.activities.enrichWithUserData = function(arg1, arg2, arg3, arg4) {
+            // create some fake activities add activities-methods:
+            var activities = [
+                {
+                    id: "2341234"
+                }
+            ];
+            activities.enrichWithUserData = function(arg1, arg2, arg3, arg4) {
 
-            }
+            };
+
+            var activityPlans = {};
 
             //now run that scope through the controller function,
             //injecting any services or other injectables we need.
@@ -180,8 +187,8 @@ describe('ewl activity', function () {
                 $scope: $scope,
                 $filter: $filter,
                 $state: $state,
-                allActivities: mock.activities,
-            activityPlans: mock.activityPlans,
+                allActivities: activities,
+            activityPlans: activityPlans,
                 recommendations: [],
                 'yp.user.UserService': {},
                 assessment: {},
@@ -191,7 +198,7 @@ describe('ewl activity', function () {
 
         it('should have access to all activities and the planned activities', inject(function () {
 
-            expect($scope.activities.length).toBeGreaterThan(150);
+            expect($scope.activities.length).toEqual(1);
         }));
 
     });

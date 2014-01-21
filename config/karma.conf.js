@@ -13,7 +13,8 @@ module.exports = function (config) {
             'app/lib/momentjs/lang/de.js',
             'app/lib/restangular/dist/restangular.js',
             'app/lib/lodash/dist/lodash.js',
-            'app/js/**/*.js',
+            'app/yp*/*.js',
+            'app/yp*/**/*.js',
 
             'test/lib/angular/angular-mocks.js',
             'test/unit/**/*.js'

@@ -7,13 +7,13 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
             $stateProvider
                 .state('healthpromoter', {
                     url: "/hp",
-                    templateUrl: "partials/healthpromoter.html",
+                    templateUrl: "yp.healthpromoter/healthpromoter.html",
                     controller: "HealthPromoterCtrl",
                     access: accessLevels.all
                 })
                 .state('newcampaign', {
                     url: "/newcampaign",
-                    templateUrl: "partials/campaign.new.html",
+                    templateUrl: "yp.healthpromoter/campaign.new.html",
                     controller: "CampaignCtrl",
                     access: accessLevels.all
                 });
@@ -40,7 +40,7 @@ angular.module('yp.healthpromoter', ['restangular', 'ui.router', 'yp.auth'])
                 $scope.welcomeMsgOpen = function () {
 
                     var modalInstance = $modal.open({
-                        templateUrl: 'partials/healthpromoter.welcome.html',
+                        templateUrl: 'yp.healthpromoter/healthpromoter.welcome.html',
                         controller: 'HealthPromoterWelcomeCtrl',
                         backdrop: true
                     });

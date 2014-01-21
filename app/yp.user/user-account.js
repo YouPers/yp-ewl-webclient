@@ -10,7 +10,7 @@
                 $stateProvider
                     .state('account', {
                         url: "/account",
-                        templateUrl: "partials/user.account.html",
+                        templateUrl: "yp.user/user.account.html",
                         controller: "UserAccountCtrl",
                         access: accessLevels.individual,
                         resolve: { }
@@ -18,7 +18,7 @@
 
                     .state('emailVerification', {
                         url: "/email_verification/:token",
-                        templateUrl: "partials/email.verification.html",
+                        templateUrl: "yp.user/email.verification.html",
                         controller: "EmailVerificationCtrl",
                         access: accessLevels.individual,
                         resolve: { }
@@ -26,7 +26,7 @@
 
                     .state('requestPasswordReset', {
                         url: "/requestPasswordReset",
-                        templateUrl: "partials/user.requestpasswordreset.html",
+                        templateUrl: "yp.user/user.requestpasswordreset.html",
                         controller: "RequestPasswordResetCtrl",
                         access: accessLevels.anonymous,
                         resolve: { }
@@ -34,7 +34,7 @@
 
                     .state('passwordReset', {
                         url: "/password_reset/:token?firstname&lastname",
-                        templateUrl: "partials/user.passwordreset.html",
+                        templateUrl: "yp.user/user.passwordreset.html",
                         controller: "PasswordResetCtrl",
                         access: accessLevels.anonymous,
                         resolve: { }
