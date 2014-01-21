@@ -247,6 +247,21 @@ fieldset[disabled] .btn-success.active {
     border-color: #4cae4c;
 }
 
+
+//////////////////////
+// login modifications
+.form-control.login {
+  width: 120px;
+  min-width: 80px;
+  font-size:  @youpers-font-size-7;
+}
+.checkbox.login,
+.navbar-link.login {
+  font-size:  @youpers-font-size-8;
+  text-transform: none;
+  font-weight: normal;
+}
+
 /////////////////////////////
 // login message box
 .loginReminderBox {
@@ -256,7 +271,7 @@ fieldset[disabled] .btn-success.active {
   padding: 10px;
   z-index: 1000;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  min-width: 300px;
+  min-width: 400px;
   border-color: @youpers-brand-colors-secondary-dimmed;
 }
 
@@ -267,6 +282,10 @@ fieldset[disabled] .btn-success.active {
   position: absolute;
   left: 25%;
   z-index: 1000;
+}
+
+.modal-content {
+  border: none;
 }
 
 
