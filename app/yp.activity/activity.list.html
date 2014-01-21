@@ -3,7 +3,7 @@
 <header name="plan">
     <div class="col-md-6">Plane eine Aktivität </div>
     <div class="col-md-2">
-        <a class="btn btn-default" ui-sref="modal_activityAdmin" ng-if="principal.isAuthorized('admin')">Neue Aktivität erfassen</a>
+        <a class="btn btn-default" ui-sref="activityAdmin" ng-if="principal.isAuthorized('admin')">Neue Aktivität erfassen</a>
     </div>
 </header>
 
@@ -251,7 +251,7 @@
                     <div class="col-md-2">
                         {{ activity.defaultexecutiontype | translate }}
                         <div ng-if="principal.isAuthorized('admin')"><a class="btn btn-sm btn-primary cockpit"
-                                                                          ui-sref="modal_activityAdmin({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
+                                                                          ui-sref="activityAdmin({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
                                                                           ng-click="$event.stopPropagation()">admin</a>
                             Gewicht: {{activity.recWeight | number: 0}}
                         </div>
