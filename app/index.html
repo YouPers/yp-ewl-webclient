@@ -39,36 +39,34 @@
     <script src="lib/momentjs/lang/de.js"></script>
     <script src="lib/restangular/dist/restangular.js"></script>
 
-    <script src="js/d3.js"></script>
-    <script src="js/d3-dir-hbar.js"></script>
-    <script src="js/d3-dir-vbar.js"></script>
-    <script src="js/d3-dir-linechart.js"></script>
-    <script src="js/d3-dir-gauge.js"></script>
-    <script src="js/d3-dir-health-management-process.js"></script>
-    <script src="js/common/base64.js"></script>
-    <script src="js/common/yp-commons.js"></script>
-    <script src="js/ewl-activtiy.js"></script>
-    <script src="js/ewl-assessment.js"></script>
-    <script src="js/ewl-evaluate.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/user-account.js"></script>
-    <script src="js/user-profile.js"></script>
-    <script src="js/discussion.js"></script>
-    <script src="js/topic.js"></script>
-    <script src="js/ewl-sociallog.js"></script>
-    <script src="js/ewl-activitylog.js"></script>
-    <script src="js/healthpromoter.js"></script>
-    <script src="js/i18n.js"></script>
-    <script src="js/yp-ewl-activity-chart.js"></script>
-    <script src="js/yp-ewl-activity-chart2.js"></script>
-    <script src="js/yp-ewl-activity-vchart.js"></script>
-    <script src="js/yp-ewl-stresslevel-gauge.js"></script>
-    <script src="js/yp-ewl-stresslevel-line-chart.js"></script>
-    <script src="js/yp-health-management-process.js"></script>
-    <script src="js/ewl-app.js"></script>
-    <script src="js/translations/yp-ewl.de.js"></script>
-    <script src="js/translations/yp-ewl.en.js"></script>
-    <script src="js/directives/header.js"></script>
+    <script src="yp.cockpit/d3/d3.js"></script>
+    <script src="yp.cockpit/d3/d3-dir-hbar.js"></script>
+    <script src="yp.cockpit/d3/d3-dir-vbar.js"></script>
+    <script src="yp.cockpit/d3/d3-dir-linechart.js"></script>
+    <script src="yp.cockpit/d3/d3-dir-gauge.js"></script>
+    <script src="yp.commons/base64.js"></script>
+    <script src="yp.commons/yp-commons.js"></script>
+    <script src="yp.activity/ewl-activtiy.js"></script>
+    <script src="yp.assessment/ewl-assessment.js"></script>
+    <script src="yp.evaluate/ewl-evaluate.js"></script>
+    <script src="yp.user/auth.js"></script>
+    <script src="yp.user/user-account.js"></script>
+    <script src="yp.user/user-profile.js"></script>
+    <script src="yp.commons/discussion.js"></script>
+    <script src="yp.ewl/topic.js"></script>
+    <script src="yp.cockpit/ewl-sociallog.js"></script>
+    <script src="yp.activity/ewl-activitylog.js"></script>
+    <script src="yp.healthpromoter/healthpromoter.js"></script>
+    <script src="yp.commons/i18n.js"></script>
+    <script src="yp.cockpit/yp-ewl-activity-chart.js"></script>
+    <script src="yp.cockpit/yp-ewl-activity-chart2.js"></script>
+    <script src="yp.cockpit/yp-ewl-activity-vchart.js"></script>
+    <script src="yp.cockpit/yp-ewl-stresslevel-gauge.js"></script>
+    <script src="yp.cockpit/yp-ewl-stresslevel-line-chart.js"></script>
+    <script src="yp.ewl/ewl-app.js"></script>
+    <script src="yp.commons/translations/yp-ewl.de.js"></script>
+    <script src="yp.commons/translations/yp-ewl.en.js"></script>
+    <script src="yp.ewl/header.js"></script>
     <!-- endbuild -->
     <script>
         angular.module('ypconfig', [])
@@ -76,9 +74,6 @@
         )
         ;
     </script>
-
-    <%= mockscripts %>
-
 
 </head>
 
@@ -96,7 +91,7 @@
 
     <div my-modal>
     </div>
-    <ng-include src="'partials/footer.html'"></ng-include>
+    <ng-include src="'yp.ewl/footer.html'"></ng-include>
 
 </body>
 </html>

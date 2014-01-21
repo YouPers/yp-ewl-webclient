@@ -5,7 +5,7 @@ angular.module('yp.commons')
         return {
             restrict: 'EA',
             transclude: true,
-            templateUrl: 'partials/header.html',
+            templateUrl: 'yp.ewl/header.html',
             scope: { }, // isolated
             link: function (scope, elem, attrs) {
 

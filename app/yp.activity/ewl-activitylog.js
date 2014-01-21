@@ -6,9 +6,9 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
         function ($scope, $rootScope, ActivityService, activityFields, $modal, $log) {
             $scope.tabs = [
                 // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
-                { title: "nächste", content: "partials/cockpit.activitylog.running.html", orderBy: "asc", filter: "nextEvents" },
-                { title: "vergangene", content: "partials/cockpit.activitylog.running.html", orderBy: "des", filter: "passedEvents" },
-                { title: "Geplante Aktivitäten", content: "partials/cockpit.activitylog.planned.html" }
+                { title: "nächste", content: "yp.cockpit/cockpit.activitylog.running.html", orderBy: "asc", filter: "nextEvents" },
+                { title: "vergangene", content: "yp.cockpit/cockpit.activitylog.running.html", orderBy: "des", filter: "passedEvents" },
+                { title: "Geplante Aktivitäten", content: "yp.cockpit/cockpit.activitylog.planned.html" }
             ];
 
             $scope.activityFields = activityFields;
@@ -120,7 +120,7 @@ angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.ewl.activit
             $scope.open = function (actEvent, activity, actPlanId) {
 
                 var modalInstance = $modal.open({
-                    templateUrl: "partials/cockpit.activity.done.html",
+                    templateUrl: "yp.cockpit/cockpit.activity.done.html",
                     controller: "ActivityDoneModalInstanceCtrl",
                     backdrop: true,
                     resolve: {

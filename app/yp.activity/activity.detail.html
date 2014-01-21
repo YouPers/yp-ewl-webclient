@@ -97,9 +97,9 @@
                             <a href="" ng-click="currentExecutionType='group'">Bei andern mitmachen</a>
                         </li>
                     </ul>
-                    <div class="tab-content yp-activity-planning-tab" ng-include="'partials/activity.detail.self.html'"
+                    <div class="tab-content yp-activity-planning-tab" ng-include="'yp.activity/activity.detail.self.html'"
                          ng-show="currentExecutionType=='self'"></div>
-                    <div class="tab-content yp-activity-planning-tab" ng-include="'partials/activity.detail.group.html'"
+                    <div class="tab-content yp-activity-planning-tab" ng-include="'yp.activity/activity.detail.group.html'"
                          ng-show="currentExecutionType=='group'"></div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                         <h3>Nächste Ausführungen:</h3>
                     </div>
                 </div>
-                <div ng-include="'partials/cockpit.activitylog.running.html'"></div>
+                <div ng-include="'yp.activity/cockpit.activitylog.running.html'"></div>
 
             </div>
 

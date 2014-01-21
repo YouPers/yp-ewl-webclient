@@ -8,7 +8,7 @@
                 $stateProvider
                     .state('profile', {
                         url: "/profile",
-                        templateUrl: "partials/user.profile.html",
+                        templateUrl: "yp.user/user.profile.html",
                         controller: "UserProfileCtrl",
                         access: accessLevels.individual,
                         resolve: { }

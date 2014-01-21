@@ -7,7 +7,7 @@ angular.module('yp.ewl.evaluate', ['restangular', 'ui.router', 'yp.auth'])
             $stateProvider
                 .state('evaluate', {
                     url: "/evaluate",
-                    templateUrl: "partials/evaluate.html",
+                    templateUrl: "yp.evaluate/evaluate.html",
                     controller: "EvaluateCtrl",
                     access: accessLevels.all,
                     resolve: {
