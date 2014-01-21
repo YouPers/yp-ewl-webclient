@@ -103,6 +103,7 @@
                          ng-show="currentExecutionType=='group'"></div>
                 </div>
             </div>
+            <!-- display plan falls schon eingeplant -->
             <div class="col-md-6" ng-controller="ActivityLogCtrl" ng-if="isActivityPlanned()">
                 <div class="row">
                     <div class="col-md-6">
@@ -110,6 +111,18 @@
                             | translate}}
                         </div>
                         <div>erstmals am: {{ currentActivityPlan.mainEvent.start | fromNow }}</div>
+                        <div>Ort: {{currentActivityPlan.location}}</div>
+                    </div>
+                </div>
+                <div class="row" ng-if="currentActivityPlan.executionType=='group'">
+                    <div class="col-md-6" ng-if="currentActivityPlan.joiningUsers.length==0">
+                        Du hast andere eingeladen an dieser Aktivität teilzunehmen. <br> Es hat noch niemand zugesagt.
+                    </div>
+                    <div class="col-md-6" ng-if="currentActivityPlan.joiningUsers.length!=0">
+                        Weitere Teilnehmer:
+                        <div ng-repeat="joiningUser in currentActivityPlan.joiningUsers">
+                            {{joiningUser.fullname}}
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -117,6 +130,7 @@
                         <h3>Nächste Ausführungen:</h3>
                     </div>
                 </div>
+
                 <div ng-include="'yp.cockpit/cockpit.activitylog.running.html'"></div>
 
             </div>
