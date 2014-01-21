@@ -1,7 +1,8 @@
 <div class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+            <button type="button" class="navbar-toggle" ng-init="navCollapsed = true"
+                    ng-click="navCollapsed = !navCollapsed">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -53,21 +54,38 @@
                         </li>
 
                         <li class="nav navbar-nav" ng-show="!principal.isAuthenticated()">
-                            <form class="navbar-form" ng-submit="loginSubmit()">
-                                <div class="form-group">
-                                    <input type="text" placeholder="username/email" class="form-control" ng-model="username">
+                            <form class="navbar-form form-horizontal" ng-submit="loginSubmit()">
+                                <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder="username/email" class="form-control login"
+                                                   ng-model="username">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="password" placeholder="{{ 'PASSWORD' | translate }}"
+                                                   class="form-control login"
+                                                   ng-model="password">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-success btn-sm">{{ 'LOGIN' | translate }}</button>
+                                        </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control"
-                                           ng-model="password">
-                                </div>
-                                <button type="submit" class="btn btn-success btn-sm">{{ 'LOGIN' | translate }}</button>
+                                <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="checkbox login">angemeldet bleiben
+                                                <input type="checkbox" ng-model="keepMeLoggedIn">
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a ui-sref="requestPasswordReset" class="navbar-link login"> Passwort vergessen</a>
+                                        </div>
+                                    </div>
                             </form>
                         </li>
 
                         <ul class="nav navbar-nav">
                             <li class="dropdown" ng-controller="i18nCtrl">
-                                <a class="dropdown-toggle" data-toggle="dropdown">{{ 'LANGUAGE' | translate }} <b class="caret"></b></a>
+                                <a class="dropdown-toggle" data-toggle="dropdown">{{ 'LANGUAGE' | translate }} <b
+                                        class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="" ng-click="changeLang('en')">english</a></li>
                                     <li><a href="" ng-click="changeLang('de')">deutsch</a></li>

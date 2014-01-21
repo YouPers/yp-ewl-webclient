@@ -88,7 +88,9 @@ angular.module('yp-ewl',
 
                 modalInstance.result.then(function (result) {
                     if (result.login) {
-                        UserService.login(UserService.encodeCredentials(result.login.username, result.login.password));
+                        UserService.login(UserService.encodeCredentials(result.login.username,
+                            result.login.password),
+                            result.login.keepMeLoggedIn);
                     } else if (result.newuser) {
                         UserService.submitNewUser(result.newuser, function () {
                             UserService.login(UserService.encodeCredentials(result.newuser.username, result.newuser.password));
@@ -98,7 +100,6 @@ angular.module('yp-ewl',
                     }
                 });
             };
-
 
             $scope.principal = principal;
 
