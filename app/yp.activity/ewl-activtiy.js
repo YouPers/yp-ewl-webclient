@@ -7,7 +7,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             $stateProvider
                 .state('activitylist', {
                     url: "/activities?tab&page",
-                    templateUrl: "partials/activity.list.html",
+                    templateUrl: "yp.activity/activity.list.html",
                     controller: "ActivityListCtrl",
                     access: accessLevels.all,
                     resolve: {
@@ -36,7 +36,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             template: "="
                         },
                         modal: {
-                            templateUrl: "partials/activity.admin.html",
+                            templateUrl: "yp.activity/activity.admin.html",
                             controller: "ActivityAdminCtrl"
                         }
                     },
@@ -57,7 +57,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             template: "="
                         },
                         modal: {
-                            templateUrl: "partials/activity.detail.html",
+                            templateUrl: "yp.activity/activity.detail.html",
                             controller: "ActivityDetailCtrl"
                         }
                     },
