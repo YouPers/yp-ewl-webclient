@@ -158,6 +158,7 @@
                             }
 
                         }, function error(err) {
+                            $http.defaults.headers.common.Authorization = '';
                             var msg;
                             if (err && (err.status === 0 || err.status === 404)) {
                                 msg = 'YouPers Backend Server not reachable, please try again later, Code: ' + err.status;
@@ -169,7 +170,7 @@
                     },
                     logout: function () {
                         $cookieStore.remove('authdata');
-                        // $http.defaults.headers.common.Authorization = '';
+                        $http.defaults.headers.common.Authorization = '';
                         authority.deauthorize();
                     },
                     submitNewUser: function (newuser, successCallback) {
