@@ -18,17 +18,10 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
                             }]
                     }
                 })
-                .state('modal_assessmentResult', {
+                .state('assessmentResult', {
                     url: "/assessment/:assessmentId/result",
-                    views: {
-                        '': {
-                            template: "="
-                        },
-                        modal: {
-                            templateUrl: "yp.assessment/assessment.result.html",
-                            controller: "AssessmentResultCtrl"
-                        }
-                    },
+                    templateUrl: "yp.assessment/assessment.result.html",
+                    controller: "AssessmentResultCtrl",
                     access: accessLevels.individual,
                     resolve: {
                         assessment: ['AssessmentService', function (AssessmentService) {
@@ -207,7 +200,7 @@ angular.module('yp.ewl.assessment', ['ui.router', 'yp.auth', 'restangular'])
 
                     AssessmentService.postResults(assessmentData.result, function (result) {
                         console.log("result posted: " + result);
-                        $scope.$state.go('modal_assessmentResult', {assessmentId: $scope.assessment.id});
+                        $scope.$state.go('assessmentResult', {assessmentId: $scope.assessment.id});
                     });
 
                 }
