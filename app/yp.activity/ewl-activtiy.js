@@ -29,17 +29,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
                     }
                 })
-                .state('modal_activityAdmin', {
+                .state('activityAdmin', {
                     url: "/activities/:activityId/admin?tab&page",
-                    views: {
-                        '': {
-                            template: "="
-                        },
-                        modal: {
-                            templateUrl: "yp.activity/activity.admin.html",
-                            controller: "ActivityAdminCtrl"
-                        }
-                    },
+                    templateUrl: "yp.activity/activity.admin.html",
+                    controller: "ActivityAdminCtrl",
                     access: accessLevels.individual,
                     resolve: {
                         activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
@@ -50,17 +43,10 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         }]
                     }
                 })
-                .state('modal_activityPlan', {
+                .state('activityPlan', {
                     url: "/activities/:activityId?tab&page",
-                    views: {
-                        '': {
-                            template: "="
-                        },
-                        modal: {
-                            templateUrl: "yp.activity/activity.detail.html",
-                            controller: "ActivityDetailCtrl"
-                        }
-                    },
+                    templateUrl: "yp.activity/activity.detail.html",
+                    controller: "ActivityDetailCtrl",
                     access: accessLevels.individual,
                     resolve: {
                         activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
@@ -69,7 +55,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         plan: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                             return ActivityService.getPlanForActivity($stateParams.activityId, {populate: 'activity'});
                         }],
-                        actPlansToJoin: ['ActivityService', '$stateParams', function(ActivityService, $stateParams) {
+                        actPlansToJoin: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                             return ActivityService.getPlansToJoin($stateParams.activityId);
                         }]
                     }
@@ -558,7 +544,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.gotoActivityDetail = function (activity) {
                 // goto detail state, keep active tab around as stateparameter
-                $scope.$state.go('modal_activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
+                $scope.$state.go('activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
             };
 
 
