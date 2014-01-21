@@ -53,7 +53,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             return ActivityService.getActivity($stateParams.activityId);
                         }],
                         plan: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
-                            return ActivityService.getPlanForActivity($stateParams.activityId, {populate: 'activity'});
+                            return ActivityService.getPlanForActivity($stateParams.activityId, {populate: ['activity', 'joiningUsers']});
                         }],
                         actPlansToJoin: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                             return ActivityService.getPlansToJoin($stateParams.activityId);
@@ -247,6 +247,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             getPlansToJoin: function (activityId) {
                 var params = {
+                    'populate': ['owner', 'joiningUsers'],
                     'activity': activityId,
                     'filter[status]': 'active',
                     sort: 'mainEvent.start:-1'
@@ -412,11 +413,12 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     }])
 
     .controller('ActivityDetailCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan',
-        '$state', '$rootScope', '$sce',
-        function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope, $sce) {
+        '$state', '$rootScope', '$sce', 'actPlansToJoin',
+        function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope, $sce, actPlansToJoin) {
 
             $scope.currentActivity = activity;
             $scope.currentExecutionType = activity.defaultexecutiontype;
+            $scope.actPlansToJoin = actPlansToJoin;
 
             if (plan) {
                 $scope.currentActivityPlan = plan;
@@ -474,6 +476,26 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 } else {
                     return "";
                 }
+            };
+
+            $scope.joinPlan = function (planToJoin) {
+                var slavePlan = _.clone(planToJoin);
+                delete slavePlan.id;
+                slavePlan.joiningUsers = [];
+                slavePlan.owner = $scope.principal.getUser().id;
+                slavePlan.masterPlan = planToJoin.id;
+                ActivityService.savePlan(slavePlan).then(function (slavePlanReloaded) {
+                        $rootScope.$broadcast('globalUserMsg', 'Successfully joined the group activity', 'success', '5000');
+
+                        // The post call returns the updated activityPlan, but does not populate the activity property,
+                        // no problem, we already have the activity in the session
+                        slavePlanReloaded.activity = $scope.currentActivity;
+                        $scope.currentActivityPlan = slavePlanReloaded;
+                    },
+                    function (err) {
+                        $rootScope.$broadcast('globalUserMsg', 'Unable to join group activity: ' + err, 'danger', '5000');
+
+                    });
             };
 
             $scope.isActivityPlanned = function () {
