@@ -469,7 +469,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             });
 
             $scope.getRenderedText = function (activity) {
-                return $sce.trustAsHtml(markdown.toHTML(activity.text));
+                if (activity.text) {
+                    return $sce.trustAsHtml(markdown.toHTML(activity.text));
+                } else {
+                    return "";
+                }
             };
 
             $scope.isActivityPlanned = function () {
