@@ -24,8 +24,8 @@
 
         <div ng-controller="AvatarUploadCtrl" class="row">
 
-            <div avatar class="avatar" onclick="document.getElementById('avatarUpload').click()"/>
-            <input id="avatarUpload" ng-file-select type="file" ng-hide="true"/>
+            <div avatar class="avatar" ng-class="{placeholder: !avatar}" onclick="document.getElementById('avatarUpload').click()"></div>
+            <input id="avatarUpload" ng-file-select type="file" ng-hide="true">
 
 
             <div class="progress" ng-show="uploader.isUploading">
