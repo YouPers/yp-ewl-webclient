@@ -307,6 +307,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             updateActivityEvent: function (planId, actEvent) {
                 return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
+            },
+            inviteEmailToJoinPlan: function (email, plan) {
+                return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
             }
         };
 
@@ -500,6 +503,18 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         $rootScope.$broadcast('globalUserMsg', 'Unable to join group activity: ' + err, 'danger', '5000');
 
                     });
+            };
+
+            $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                $scope.inviteEmail = '';
+                ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(
+                    function success (result) {
+                        $rootScope.$broadcast('globalUserMsg', email +' erfolgreich eingeladen!', 'success', 5000);
+                    },
+                    function error (err) {
+                        $rootScope.$broadcast('globalUserMsg', 'Einladung konnte nicht versendet werden: '+ err.status, 'danger', 5000);
+                    }
+                );
             };
 
             $scope.isActivityPlanned = function () {
