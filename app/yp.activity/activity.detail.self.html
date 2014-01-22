@@ -95,16 +95,6 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12 btn-group">
-                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
-                            btn-radio="'self'">alleine machen
-                    </button>
-                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
-                            btn-radio="'group'">andere einladen
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 btn-group">
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.privacyType"
                             btn-radio="'public'">öffentlich
                     </button>
@@ -114,6 +104,20 @@
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.privacyType"
                             btn-radio="'private'">privat
                     </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 btn-group">
+                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
+                            btn-radio="'self'">alleine machen
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
+                            btn-radio="'group'">andere einladen
+                    </button>
+                    <label>Wo:
+                        <input type="text" class="form-control" ng-model="currentActivityPlan.location">
+                    </label>
+
                 </div>
             </div>
         </div>
