@@ -51,8 +51,8 @@
 
             }])
 
-        .controller('AvatarUploadCtrl', ['$scope', '$http', 'yp.user.UserProfileService', '$fileUploader', 'ypconfig',
-            function($scope, $http, UserProfileService, $fileUploader, ypconfig) {
+        .controller('AvatarUploadCtrl', ['$scope', '$http', '$element', 'yp.user.UserProfileService', '$fileUploader', 'ypconfig',
+            function($scope, $http, $element, UserProfileService, $fileUploader, ypconfig) {
 
                 var user = $scope.principal.getUser();
                 var url = ypconfig.backendUrl + "/users/" + user.id + "/avatar";
@@ -66,10 +66,7 @@
                     }
                 });
 
-
-                // ADDING FILTERS
-
-                // Images only
+                // images only filter
                 uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {
                     var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
                     type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
@@ -77,13 +74,18 @@
                 });
 
 
+                $scope.avatar = user.profile.avatarImage;
 
-
+                // on file upload complete
+                uploader.bind('success', function (event, xhr, item, response) {
+                    $scope.avatar = user.profile.avatarImage = response.avatarImage;
+                });
             }])
         .directive('avatar', function() {
             return function(scope, element, attrs) {
-                var image = scope.principal.getUser().profile.avatarImage;
-                element[0].src = image;
+                scope.$watch('avatar', function(avatar) {
+                    element.css("background-image", "url(data:image/gif;base64," + avatar + ")");
+                });
             };
         });
 

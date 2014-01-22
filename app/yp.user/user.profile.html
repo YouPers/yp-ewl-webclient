@@ -24,17 +24,16 @@
 
         <div ng-controller="AvatarUploadCtrl" class="row">
 
+            <div avatar class="avatar" onclick="document.getElementById('avatarUpload').click()"/>
+            <input id="avatarUpload" ng-file-select type="file" ng-hide="true"/>
 
-            <input ng-file-select type="file" />
 
-
-            <div class="progress" style="">
+            <div class="progress" ng-show="uploader.isUploading">
                 <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
             </div>
 
-            <button ng-click="upload.abort()">Cancel Upload</button>
+            <button ng-click="upload.abort()" ng-show="uploader.isUploading">Cancel Upload</button>
 
-            <!--<img src="" avatar>preview</img>-->
 
         </div>
 
