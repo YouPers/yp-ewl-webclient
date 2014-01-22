@@ -4,13 +4,12 @@ angular.module('yp.sociallog', ['restangular']).
 
     factory('SocialLogService', ['Restangular', function (Restangular) {
 
+        var socialLogBase = Restangular.all('socialevents');
+
         var SocialLogService = {};
 
-        var commentsBase = Restangular.all('comments');
-        var socialLogEntries = commentsBase.getList({populate: 'author', sort: 'created:-1'});
-
         SocialLogService.getSocialLog = function () {
-            return socialLogEntries;
+            return socialLogBase.getList();
         };
 
         return SocialLogService;
