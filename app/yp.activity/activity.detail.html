@@ -90,17 +90,17 @@
             <div class="col-md-6" ng-if="!isActivityPlanned()">
                 <div class="tabbable">
                     <ul class="nav nav-tabs">
-                        <li ng-class="{active: currentExecutionType=='self'}">
-                            <a href="" ng-click="currentExecutionType='self'">Selber planen</a>
+                        <li ng-class="{active: model.currentExecutionType=='self'}">
+                            <a href="" ng-click="model.currentExecutionType='self'">Selber planen</a>
                         </li>
-                        <li ng-class="{active: currentExecutionType=='group'}">
-                            <a href="" ng-click="currentExecutionType='group'">Bei andern mitmachen</a>
+                        <li ng-class="{active: model.currentExecutionType=='group'}">
+                            <a href="" ng-click="model.currentExecutionType='group'">Bei andern mitmachen</a>
                         </li>
                     </ul>
                     <div class="tab-content yp-activity-planning-tab" ng-include="'yp.activity/activity.detail.self.html'"
-                         ng-show="currentExecutionType=='self'"></div>
+                         ng-show="model.currentExecutionType=='self'"></div>
                     <div class="tab-content yp-activity-planning-tab" ng-include="'yp.activity/activity.detail.group.html'"
-                         ng-show="currentExecutionType=='group'"></div>
+                         ng-show="model.currentExecutionType=='group'"></div>
                 </div>
             </div>
             <!-- display plan falls schon eingeplant -->

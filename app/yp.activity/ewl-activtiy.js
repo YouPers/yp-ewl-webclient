@@ -417,7 +417,11 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
         function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope, $sce, actPlansToJoin) {
 
             $scope.currentActivity = activity;
-            $scope.currentExecutionType = activity.defaultexecutiontype;
+            // using a model.xxxx to have writable access to this porperty in child scopes (e.g. in the two tabs)
+            $scope.model = {
+                currentExecutionType:  actPlansToJoin.length > 0 ? 'group' : 'self'
+            };
+
             $scope.actPlansToJoin = actPlansToJoin;
 
             if (plan) {
