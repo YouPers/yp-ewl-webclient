@@ -24,10 +24,7 @@
                         return Rest.restangularizeElement(null, userProfile, "profiles").put();
                     },
                     postAvatar: function(data) {
-                        return Rest.one('users', principal.getUser().id).all("avatar").post({"data":data}, {}, {
-                                'Content-Type': ''
-                            }
-                        );
+                        return Rest.one('users', principal.getUser().id).all("avatar").post({"data":data});
                     }
 
                 };
