@@ -66,11 +66,11 @@
                     if (_.isNumber(rolesToCheck)) {
                         roles = rolesToCheck;
                     } else if (Array.isArray(rolesToCheck)) {
-                        roles = _.reduce(rolesToCheck, function(sum, role) {
+                        roles = _.reduce(rolesToCheck, function (sum, role) {
                             return sum | _userRoles[role];
                         }, 0);
                     } else if (_currentUser && ('roles' in _currentUser) && Array.isArray(_currentUser.roles)) {
-                        roles = _.reduce(_currentUser.roles, function(sum, role) {
+                        roles = _.reduce(_currentUser.roles, function (sum, role) {
                             return sum | _userRoles[role];
                         }, 0);
                     } else if (_currentUser && ('roles' in _currentUser) && _.isNumber(_currentUser.roles)) {
@@ -140,19 +140,27 @@
                     encodeCredentials: function (username, password) {
                         return ({username: username, password: password});
                     },
-                    login: function (cred, successCallback) {
+                    login: function (cred, successCallback, keepMeLoggedIn) {
+                        if (successCallback && !_.isFunction(successCallback) && !keepMeLoggedIn) {
+                            keepMeLoggedIn = successCallback;
+                            successCallback = undefined;
+                        }
+
                         $http.defaults.headers.common.Authorization = 'Basic ' + base64codec.encode(cred.username + ':' + cred.password);
 
                         login.post({username: cred.username}).then(function success(result) {
-                            $cookieStore.put('authdata', cred);
+                            if (keepMeLoggedIn) {
+                                $cookieStore.put('authdata', cred);
+                            }
                             authority.authorize(result);
                             if (successCallback) {
                                 successCallback();
                             }
 
                         }, function error(err) {
+                            $http.defaults.headers.common.Authorization = '';
                             var msg;
-                            if (err && (err.status === 0|| err.status === 404)) {
+                            if (err && (err.status === 0 || err.status === 404)) {
                                 msg = 'YouPers Backend Server not reachable, please try again later, Code: ' + err.status;
                             } else {
                                 msg = 'Login / password not valid, please try again or register, Code: ' + err.status;
@@ -162,7 +170,7 @@
                     },
                     logout: function () {
                         $cookieStore.remove('authdata');
-                        // $http.defaults.headers.common.Authorization = '';
+                        $http.defaults.headers.common.Authorization = '';
                         authority.deauthorize();
                     },
                     submitNewUser: function (newuser, successCallback) {
@@ -170,7 +178,7 @@
                         newuser.fullname = newuser.firstname + ' ' + newuser.lastname;
                         users.post(newuser).then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'New Account successfully created', 'success', 3000);
-                        }).then(successCallback, function(err) {
+                        }).then(successCallback, function (err) {
                                 $rootScope.$broadcast('globalUserMsg', 'Account not created: Error: ' + err.data.message, 'danger', 3000);
                             });
                     },
@@ -211,9 +219,12 @@
 
                 $scope.loginSubmit = function () {
                     UserService.login(UserService.encodeCredentials($scope.username, $scope.password), function () {
-                        $scope.username = '';
-                        $scope.password = '';
-                    });
+                            $scope.username = '';
+                            $scope.password = '';
+                        },
+                        $scope.keepMeLoggedIn
+                    );
+
                 };
 
                 $scope.logout = function () {
