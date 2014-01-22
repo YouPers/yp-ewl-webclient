@@ -31,6 +31,7 @@
     <script src="lib/angular-translate/angular-translate.js"></script>
     <script src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/angular-file-upload/angular-file-upload.js"></script>
     <script src="lib/d3/d3.js"></script>
 
     <script src="lib/lodash/dist/lodash.js"></script>
@@ -81,7 +82,7 @@
 <body ng-app="yp-ewl<%- ngappsuffix %>" ng-controller="MainCtrl">
 
 
-    <ng-include src="'partials/topmenu.html'"></ng-include>
+    <ng-include src="'yp.ewl/topmenu.html'"></ng-include>
 
     <alert type='globalUserMsg.type' close="closeUserMsg()" class="yp-globalUserMsg"
        ng-hide="!globalUserMsg">{{ globalUserMsg.text }}
