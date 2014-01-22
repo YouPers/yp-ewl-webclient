@@ -74,17 +74,17 @@
                 });
 
 
-                $scope.avatar = user.profile.avatarImage;
+                $scope.avatar = user.avatar;
 
                 // on file upload complete
                 uploader.bind('success', function (event, xhr, item, response) {
-                    $scope.avatar = user.profile.avatarImage = response.avatarImage;
+                    $scope.avatar = user.avatar = response.avatar;
                 });
             }])
         .directive('avatar', function() {
             return function(scope, element, attrs) {
                 scope.$watch('avatar', function(avatar) {
-                    element.css("background-image", "url(data:image/gif;base64," + avatar + ")");
+                    element.css("background-image", "url(" + avatar + ")");
                 });
             };
         });
