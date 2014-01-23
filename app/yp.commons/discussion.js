@@ -24,8 +24,8 @@ angular.module('yp.discussion', ['restangular']).
     }
     ])
 
-    .controller('CommentCtrl', ['$scope', 'CommentService', 'principal', '$location', function ($scope, CommentService, principal, $location) {
-        $scope.principal = principal;
+    .controller('CommentCtrl', ['$scope', 'CommentService', '$location',
+        function ($scope, CommentService,  $location) {
 
         $scope.$watch($scope.currentActivity, function () {
             if ($scope.currentActivity) {
@@ -42,13 +42,13 @@ angular.module('yp.discussion', ['restangular']).
                 "refDocModel":'Activity',
                 "refDocTitle": $scope.currentActivity.number + ": " + $scope.currentActivity.title,
                 "refDocLink": $location.path(), // api URL $scope.currentActivity.getRestangularUrl(),
-                "author":  principal.getUser().id,
+                "author":  $scope.principal.getUser().id,
                 "created": new Date(),
                 "text": text
             };
             CommentService.submitNewComment(newComment);
             $scope.comments.unshift(newComment);
-            newComment.author = principal.getUser();
+            newComment.author = $scope.principal.getUser();
             $scope.showNewComment = false;
             $scope.newText = '';
         };

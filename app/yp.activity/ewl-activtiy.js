@@ -59,6 +59,20 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                             return ActivityService.getPlansToJoin($stateParams.activityId);
                         }]
                     }
+                })
+                .state('activityPlanInvite', {
+                    url: "/activities/:activityId/invitation?invitingUserId",
+                    templateUrl: "yp.activity/activity.activityplaninvite.html",
+                    controller: "ActivityPlanInviteCtrl",
+                    access: accessLevels.all,
+                    resolve: {
+                        activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
+                            return ActivityService.getActivity($stateParams.activityId);
+                        }],
+                        invitingUser: ['yp.user.UserService', '$stateParams', function (UserService, $stateParams) {
+                            return UserService.getUser($stateParams.invitingUserId);
+                        } ]
+                    }
                 });
         }])
 
@@ -307,6 +321,9 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             },
             updateActivityEvent: function (planId, actEvent) {
                 return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
+            },
+            inviteEmailToJoinPlan: function (email, plan) {
+                return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
             }
         };
 
@@ -413,8 +430,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     }])
 
     .controller('ActivityDetailCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan',
-        '$state', '$rootScope', '$sce', 'actPlansToJoin',
-        function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope, $sce, actPlansToJoin) {
+         '$rootScope', '$sce', 'actPlansToJoin',
+        function ($scope, ActivityService, $timeout, activity, plan, $rootScope, $sce, actPlansToJoin) {
 
             $scope.currentActivity = activity;
             // using a model.xxxx to have writable access to this porperty in child scopes (e.g. in the two tabs)
@@ -502,6 +519,19 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     });
             };
 
+            $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                $scope.inviteEmail = '';
+                $scope.$broadcast('formPristine');
+                ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(
+                    function success (result) {
+                        $rootScope.$broadcast('globalUserMsg', email +' erfolgreich eingeladen!', 'success', 5000);
+                    },
+                    function error (err) {
+                        $rootScope.$broadcast('globalUserMsg', 'Einladung konnte nicht versendet werden: '+ err.status, 'danger', 5000);
+                    }
+                );
+            };
+
             $scope.isActivityPlanned = function () {
                 return $scope.currentActivityPlan.id;
             };
@@ -510,7 +540,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 if ($scope.$modalInstance) {
                     $scope.$modalInstance.dismiss();
                 } else {
-                    $state.go('activitylist', $rootScope.$stateParams);
+                    $scope.$state.go('activitylist', $rootScope.$stateParams);
                 }
             };
 
@@ -520,7 +550,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     if ($scope.$modalInstance) {
                         $scope.$modalInstance.dismiss();
                     } else {
-                        $state.go('activitylist', $rootScope.$stateParams);
+                        $scope.$state.go('activitylist', $rootScope.$stateParams);
                     }
                 }, function (err) {
                     console.log(JSON.stringify(err));
@@ -663,8 +693,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             }, true);
         }])
 
-    .controller('ActivityAdminCtrl', ['$scope', '$rootScope', '$state', 'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular',
-        function ($scope, $rootScope, $state, activity, assessment, ActivityService, activityFields, Restangular) {
+    .controller('ActivityAdminCtrl', ['$scope', '$rootScope',  'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular',
+        function ($scope, $rootScope, activity, assessment, ActivityService, activityFields, Restangular) {
 
             if (!activity) {
                 activity = Restangular.restangularizeElement(null, {
@@ -716,7 +746,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     activity.put().then(function (result) {
                         ActivityService.reloadActivities().then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'activity saved successfully', 'success', 5000);
-                            $state.go('activitylist', $rootScope.$stateParams);
+                            $scope.$state.go('activitylist', $rootScope.$stateParams);
                         });
                     }, function (err) {
                         $rootScope.$broadcast('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
@@ -725,7 +755,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     activity.post().then(function (result) {
                         ActivityService.reloadActivities().then(function () {
                             $rootScope.$broadcast('globalUserMsg', 'activity saved successfully', 'success', 5000);
-                            $state.go('activitylist', $rootScope.$stateParams);
+                            $scope.$state.go('activitylist', $rootScope.$stateParams);
                         });
                     }, function (err) {
                         $rootScope.$broadcast('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
@@ -734,6 +764,24 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             $scope.cancel = function () {
-                $state.go('activitylist');
+                $scope.$state.go('activitylist');
             };
-        }]);
+        }])
+
+    .controller('ActivityPlanInviteCtrl', ['$scope', 'ActivityService', 'activity', 'invitingUser', '$rootScope',
+        function ($scope, ActivityService, activity, invitingUser, $rootScope) {
+
+
+            // if the user is authenticated we immediatly go to the corresponding activity so he can join
+            if ($scope.principal.isAuthenticated()) {
+                $scope.$state.go('activityPlan' , {activityId: activity.id});
+            }
+
+            $scope.activity = activity;
+            $scope.invitingUser = invitingUser;
+
+            $scope.showRegistrationDialog = function() {
+                $rootScope.$broadcast('loginMessageShow', {toState: 'activityPlan', toParams: {activityId: activity.id}, registration: true});
+            };
+        }
+    ]);

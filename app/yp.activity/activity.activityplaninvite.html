@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Herzlich willkommen - YouPers Digital Health Plattform</h1>
+            <p>{{invitingUser.fullname}} hat Dich eingeladen an einer Aktivität teilzunehmen.</p>
+            <br>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 panel panel-default">
+                        <h4>{{activity.number +': '+ activity.title}}</h4>
+                    </div>
+                    <div class="col-md-8 col-md-offset-2">
+                    <p>Um teilzunehmen <a ui-sref="activityPlan({activityId: activity.id})">logge Dich ein</a>
+                        oder<a href="" ng-click="showRegistrationDialog()"> registriere dich</a></p>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
