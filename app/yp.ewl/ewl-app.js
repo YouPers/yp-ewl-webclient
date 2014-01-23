@@ -80,8 +80,8 @@ angular.module('yp-ewl',
  * - highlighting global menu option according to currently active state
  * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope', '$timeout', 'principal', '$log','yp.user.UserService','$modal',
-        function ($scope, $timeout, principal, $log, UserService, $modal) {
+    .controller('MainCtrl', ['$scope', '$timeout', '$log','yp.user.UserService','$modal',
+        function ($scope, $timeout, $log, UserService, $modal) {
 
 
             var loginDialogOpen = function () {

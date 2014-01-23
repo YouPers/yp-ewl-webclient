@@ -42,11 +42,11 @@
             }])
 
 
-        .controller('UserAccountCtrl', ['$scope', '$rootScope', 'principal', 'authority', 'yp.user.UserService',
-            function ($scope, $rootScope, principal, authority, UserService) {
+        .controller('UserAccountCtrl', ['$scope', '$rootScope', 'authority', 'yp.user.UserService',
+            function ($scope, $rootScope,  authority, UserService) {
 
                 $scope.accountUserObjReset = function () {
-                    $scope.accountUserObj = _.clone(principal.getUser());
+                    $scope.accountUserObj = _.clone($scope.principal.getUser());
                 };
 
                 $scope.accountUserObjReset();
@@ -60,7 +60,7 @@
                 };
 
                 $scope.passwordUserObjReset = function () {
-                    $scope.passwordUserObj = _.clone(principal.getUser());
+                    $scope.passwordUserObj = _.clone($scope.principal.getUser());
                 };
                 $scope.passwordUserObjReset();
 
