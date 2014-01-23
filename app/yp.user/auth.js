@@ -193,6 +193,9 @@
                     },
                     passwordReset: function (token, newPassword) {
                         return users.all("password_reset").post({token: token, password: newPassword});
+                    },
+                    getUser: function(userId) {
+                        return users.one(userId).get();
                     }
                 };
 

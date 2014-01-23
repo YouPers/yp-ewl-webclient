@@ -76,14 +76,25 @@ angular.module('yp-ewl',
  * - highlighting global menu option according to currently active state
  * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope', '$timeout', 'principal', '$log','yp.user.UserService','$modal',
-        function ($scope, $timeout, principal, $log, UserService, $modal ) {
+    .controller('MainCtrl', ['$scope', '$timeout', 'principal', '$log','yp.user.UserService','$modal', '$state', '$stateParams',
+        function ($scope, $timeout, principal, $log, UserService, $modal, $state, $stateParams ) {
+
+            // setup globally available objects on the top most scope, so all other controllers
+            // do not have to inject them
+            $scope.principal = principal;
+            $scope.$state = $state;
+            $scope.$stateParams = $stateParams;
 
             var loginDialogOpen = function () {
                 var modalInstance = $modal.open({
                     templateUrl: 'yp.ewl/loginDialog.html',
                     controller: 'yp.user.DialogLoginRegisterCtrl',
-                    backdrop: true
+                    backdrop: true,
+                    resolve: {
+                        registerShown: function() {
+                            return $scope.registerShown;
+                        }
+                    }
                 });
 
                 modalInstance.result.then(function (result) {
@@ -100,8 +111,6 @@ angular.module('yp-ewl',
                     }
                 });
             };
-
-            $scope.principal = principal;
 
             // handle Menu Highlighting
             $scope.isActive = function (viewLocation) {
@@ -143,6 +152,7 @@ angular.module('yp-ewl',
             });
 
             $scope.$on('loginMessageShow', function (event, data) {
+                $scope.registerShown = data.registration;
                 loginDialogOpen();
                 $scope.nextStateAfterLogin = data;
             });
@@ -155,8 +165,10 @@ angular.module('yp-ewl',
         }])
 
 
-    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance','$state',
-        function ($scope, $modalInstance, $state) {
+    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance', 'registerShown',
+        function ($scope, $modalInstance, registerShown) {
+
+            $scope.registerShownInitially = registerShown;
 
             var result = {
                 login: {
@@ -164,13 +176,12 @@ angular.module('yp-ewl',
                     password: ''
                 }
             };
-
-            $scope.registerShown = false;
             $scope.result = result;
 
             // passing in a reference to "registerform" and saving it on our scope
             // this is a workaround for current issue: https://github.com/angular-ui/bootstrap/issues/969
             $scope.showRegistrationForm = function (registerform) {
+                $scope.registerShownInitially = false;
                 delete result.login;
                 result.newuser = {};
                 $scope.registerShown = true;
@@ -193,7 +204,7 @@ angular.module('yp-ewl',
 
             $scope.gotoPasswordReset = function() {
                 $modalInstance.dismiss();
-                $state.go('requestPasswordReset');
+                $scope.$state.go('requestPasswordReset');
             };
 
         }]);

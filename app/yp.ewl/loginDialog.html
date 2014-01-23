@@ -41,6 +41,7 @@
     <div ng-show="registerShown">
         Neuen Account registrieren:
         <form name="registerform" class="form" role="form" ng-submit="done()" novalidate>
+            {{registerShownInitially ? showRegistrationForm(registerform) :''}}
             <div class="form-group">
                 <label>{{ 'FIRSTNAME' | translate }}</label>
                 <input name="firstname" type="text" placeholder="{{ 'FIRSTNAME' | translate }}" class="form-control" ng-model="result.newuser.firstname" setfocus="showRegistrationForm" required>
