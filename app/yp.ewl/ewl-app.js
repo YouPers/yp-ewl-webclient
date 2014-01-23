@@ -203,7 +203,7 @@ angular.module('yp-ewl',
             link: function(scope, elm, attrs, ctrl) {
 
                 // onchange instead of onblur is nice, but we should not hit the server all the time
-                var validate = _.throttle(function(value) {
+                var validate = function(value) {
 
                     var user = {};
                     user[attrs.name] = value; // currently only username and email are checked in the backend
@@ -212,16 +212,23 @@ angular.module('yp-ewl',
                         return;
                     }
 
-                    // validate and use a "unique" postfix to have different error messages
-                    UserService.validateUser(user, function (res) {
-                        scope.registerform.$setValidity(attrs.name+"unique", true);
-                    }, function(err) {
-                        scope.registerform.$setValidity(attrs.name+"unique", false);
-                    });
+                    _.throttle(function() {
+
+                        // validate and use a "unique" postfix to have different error messages
+
+                        UserService.validateUser(user, function (res) {
+                            scope.registerform.$setValidity(attrs.name+"unique", true);
+                        }, function(err) {
+                            scope.registerform.$setValidity(attrs.name+"unique", false);
+                        });
+
+                    }, 500)();
+
+
 
                     // we can't return undefined for invalid values as it is validated asynchronously
                     return value;
-                }, 500);
+                };
 
                 ctrl.$parsers.unshift(validate); // user input
                 ctrl.$formatters.unshift(validate); // model change
