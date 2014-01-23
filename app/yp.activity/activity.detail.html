@@ -142,7 +142,8 @@
                                 <div class="form-group"
                                      ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
                                     <label class="sr-only">lade noch jemanden ein! </label>
-                                    <input class="form-control email-field"  name="email" type="email" ng-model="inviteEmail" placeholder="Email" required>
+                                    <input class="form-control email-field"  name="email" type="text" ng-model="inviteEmail"
+                                           placeholder="one or more emails"  multiple-Emails required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary" ng-disabled="inviteEmailForm.$invalid">einladen</button>
