@@ -164,8 +164,8 @@ angular.module('yp-ewl',
         }])
 
 
-    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance', 'registerShown',
-        function ($scope, $modalInstance, registerShown) {
+    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance', 'registerShown','yp.user.UserService',
+        function ($scope, $modalInstance, registerShown, UserService) {
 
             $scope.registerShownInitially = registerShown;
 
@@ -206,4 +206,44 @@ angular.module('yp-ewl',
                 $scope.$state.go('requestPasswordReset');
             };
 
-        }]);
+        }])
+    .directive('uniqueUserField', ['yp.user.UserService', function(UserService) {
+        return {
+            require: 'ngModel',
+            link: function(scope, elm, attrs, ctrl) {
+
+                // onchange instead of onblur is nice, but we should not hit the server all the time
+                var validate = function(value) {
+
+                    var user = {};
+                    user[attrs.name] = value; // currently only username and email are checked in the backend
+
+                    if(!value) {
+                        return;
+                    }
+
+                    _.throttle(function() {
+
+                        // validate and use a "unique" postfix to have different error messages
+
+                        UserService.validateUser(user, function (res) {
+                            scope.registerform.$setValidity(attrs.name+"unique", true);
+                        }, function(err) {
+                            scope.registerform.$setValidity(attrs.name+"unique", false);
+                        });
+
+                    }, 500)();
+
+
+
+                    // we can't return undefined for invalid values as it is validated asynchronously
+                    return value;
+                };
+
+                ctrl.$parsers.unshift(validate); // user input
+                ctrl.$formatters.unshift(validate); // model change
+
+            }
+        };
+    }]);
+
