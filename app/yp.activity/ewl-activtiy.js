@@ -782,6 +782,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
 
             $scope.showRegistrationDialog = function() {
                 $rootScope.$broadcast('loginMessageShow', {toState: 'activityPlan', toParams: {activityId: activity.id}, registration: true});
-            }
+            };
         }
     ]);
