@@ -137,7 +137,7 @@
                             <h3>Lade noch jemanden ein:</h3>
                             <form class="form-inline"
                                   role="form"
-                                  ng-submit="inviteEmailToJoinPlan(model.inviteEmail,currentActivityPlan)"
+                                  ng-submit="model.inviteEmailForm.$valid && inviteEmailToJoinPlan(model.inviteEmail,currentActivityPlan)"
                                   name="model.inviteEmailForm">
                                 <div class="form-group"
                                      ng-class="{'has-error': model.inviteEmailForm.email.$dirty && model.inviteEmailForm.email.$invalid}">

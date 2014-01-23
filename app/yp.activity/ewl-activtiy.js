@@ -520,10 +520,6 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
             };
 
             $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
-                if (!$scope.model.inviteEmailForm.$valid) {
-                    return;
-                }
-
                 $scope.model.inviteEmail = "";
 
                 $scope.$broadcast('formPristine');
