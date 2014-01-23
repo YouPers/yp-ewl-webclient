@@ -135,6 +135,7 @@
             function (userRoles, $cookieStore, authority, $rootScope, Rest, $location, $http, base64codec) {
                 var users = Rest.all('users');
                 var login = Rest.all('login');
+                var validateUser = Rest.all('/users/validate');
 
                 var UserService = {
                     encodeCredentials: function (username, password) {
@@ -172,6 +173,9 @@
                         $cookieStore.remove('authdata');
                         $http.defaults.headers.common.Authorization = '';
                         authority.deauthorize();
+                    },
+                    validateUser: function(user, success,error) {
+                        validateUser.post(user).then(success,error);
                     },
                     submitNewUser: function (newuser, successCallback) {
                         newuser.role = 'individual';
