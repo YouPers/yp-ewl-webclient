@@ -219,13 +219,13 @@ angular.module('yp-ewl',
                         scope.registerform.$setValidity(attrs.name+"unique", false);
                     });
 
+                    // we can't return undefined for invalid values as it is validated asynchronously
+                    return value;
                 }, 500);
 
                 ctrl.$parsers.unshift(validate); // user input
                 ctrl.$formatters.unshift(validate); // model change
 
-                // we can't return undefined for invalid values as it is validated asynchronously
-                return value;
             }
         };
     }]);
