@@ -50,7 +50,7 @@
     },
     "scripts": {
         "test": "grunt",
-        "postinstall": "node_modules/.bin/bower install --force-latest || node_modules/.bin/bower install --force-latest || node_modules/.bin/bower install --force-latest"
+        "postinstall": "node_modules/.bin/bower install --force-latest"
     },
     "repository": {
         "type": "git",
