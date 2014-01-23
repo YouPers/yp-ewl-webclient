@@ -80,10 +80,10 @@
                 };
             }])
 
-        .controller('EmailVerificationCtrl', ['$scope', '$state', 'yp.user.UserService', '$window',
-            function ($scope, $state, UserService, $window) {
+        .controller('EmailVerificationCtrl', ['$scope', 'yp.user.UserService', '$window',
+            function ($scope, UserService, $window) {
 
-                UserService.verifyEmail($scope.principal.getUser().id, $state.params.token).then(function (result) {
+                UserService.verifyEmail($scope.principal.getUser().id, $scope.$stateParams.token).then(function (result) {
                     $scope.emailValid = true;
                 }, function (err) {
                     // the only possible good case why the token is not valid would be that a different user is already logged in
@@ -93,11 +93,11 @@
 
             }])
 
-        .controller('PasswordResetCtrl', ['$scope', '$state', '$rootScope', 'authority', 'yp.user.UserService',
-            function ($scope, $state, $rootScope, authority, UserService) {
+        .controller('PasswordResetCtrl', ['$scope', '$rootScope', 'authority', 'yp.user.UserService',
+            function ($scope,  $rootScope, authority, UserService) {
 
-                $scope.firstname = $state.params.firstname;
-                $scope.lastname = $state.params.lastname;
+                $scope.firstname = $scope.$stateParams.firstname;
+                $scope.lastname = $scope.$stateParams.lastname;
 
                 $scope.passwordResetObjReset = function () {
                     $scope.passwordResetObj = {password: '', password2: ''};
@@ -106,7 +106,7 @@
                 $scope.passwordResetObjReset();
 
                 $scope.passwordReset = function () {
-                    UserService.passwordReset($state.params.token, $scope.passwordResetObj.password).then(function () {
+                    UserService.passwordReset($scope.$stateParams.token, $scope.passwordResetObj.password).then(function () {
                         $scope.resetSuccessful = true;
                     }, function (err) {
                         $rootScope.$broadcast('globalUserMsg', "Passwort konnte nicht gesetzt werden.", 'danger', 3000);

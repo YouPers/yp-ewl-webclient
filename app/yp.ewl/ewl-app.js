@@ -47,8 +47,12 @@ angular.module('yp-ewl',
     .run(['$rootScope', '$state', '$stateParams', 'principal', 'yp.user.UserService',
         function ($rootScope, $state, $stateParams, principal, UserService) {
 
+            // setup globally available objects on the top most scope, so all other controllers
+            // do not have to inject them
+
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
+            $rootScope.principal = principal;
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
@@ -76,14 +80,9 @@ angular.module('yp-ewl',
  * - highlighting global menu option according to currently active state
  * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope', '$timeout', 'principal', '$log','yp.user.UserService','$modal', '$state', '$stateParams',
-        function ($scope, $timeout, principal, $log, UserService, $modal, $state, $stateParams ) {
+    .controller('MainCtrl', ['$scope', '$timeout', 'principal', '$log','yp.user.UserService','$modal',
+        function ($scope, $timeout, principal, $log, UserService, $modal) {
 
-            // setup globally available objects on the top most scope, so all other controllers
-            // do not have to inject them
-            $scope.principal = principal;
-            $scope.$state = $state;
-            $scope.$stateParams = $stateParams;
 
             var loginDialogOpen = function () {
                 var modalInstance = $modal.open({
