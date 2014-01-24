@@ -44,7 +44,7 @@
         "bower": "~1.2.8"
     },
     "engines": {
-        "node": "0.10.x"
+        "node": "0.10.25"
     },
     "scripts": {
         "test": "grunt"
