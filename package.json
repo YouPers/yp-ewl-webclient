@@ -49,8 +49,7 @@
         "node": "0.10.x"
     },
     "scripts": {
-        "test": "grunt",
-        "postinstall": "node_modules/.bin/bower install --force-latest"
+        "test": "grunt"
     },
     "repository": {
         "type": "git",
