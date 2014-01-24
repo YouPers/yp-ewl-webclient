@@ -23,7 +23,7 @@
         "grunt-open": "~0.2.x",
         "grunt-concurrent": "~0.3.x",
         "grunt-template": "*",
-        "load-grunt-tasks": "~0.1.x",
+        "load-grunt-tasks": "~0.2.x",
         "connect-livereload": "~0.2.x",
         "grunt-google-cdn": "~0.2.x",
         "grunt-ngmin": "~0.0.x",
