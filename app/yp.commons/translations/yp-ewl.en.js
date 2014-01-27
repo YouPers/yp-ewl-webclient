@@ -106,6 +106,9 @@ angular.module('yp-ewl').
             ENGLISH: "English",
             ITALIAN: "Italian",
             TIMEZONE: "Timezone",
-            SETTINGS: "Settings"
+            SETTINGS: "Settings",
+            ACTIVITYPLAN_DELETE_NO: "Attention: This planned activity cannot be deleted due to joined users.",
+            ACTIVITYPLAN_DELETE_YES: "Delete planned activity",
+            ACTIVITYPLAN_DELETE_ONLYFUTUREEVENTS: "Delete future events of planned activity"
         });
     }]);

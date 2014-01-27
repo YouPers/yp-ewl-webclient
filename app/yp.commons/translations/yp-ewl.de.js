@@ -107,6 +107,9 @@ angular.module('yp-ewl').
             ENGLISH: "Englisch",
             ITALIAN: "Italienisch",
             TIMEZONE: "Zeitzone",
-            SETTINGS: "Einstellungen"
+            SETTINGS: "Einstellungen",
+            ACTIVITYPLAN_DELETE_NO: "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil andere Benutzer daran teilnehmen",
+            ACTIVITYPLAN_DELETE_YES: "Eingeplante Aktivität löschen",
+            ACTIVITYPLAN_DELETE_ONLYFUTUREEVENTS: "Zukünftige Ausführungen löschen"
         });
     }]);

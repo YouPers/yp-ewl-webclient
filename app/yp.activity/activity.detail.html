@@ -167,10 +167,16 @@
 </div>
 <div class="modal-footer">
     <div>
+        <div ng-show="currentActivityPlan.deleteStatus == 'ACTIVITYPLAN_DELETE_NO'">
+            {{ currentActivityPlan.deleteStatus | translate }}
+        </div>
         <button type="button" ng-click="planActivityCancel()" class="btn btn-default">
             abbrechen
         </button>
-        <button type="button" ng-click="planActivityDone()" class="btn btn-primary">
+        <button type="button" ng-click="planActivityDelete()" ng-show="currentActivityPlan.deleteStatus && currentActivityPlan.deleteStatus != 'ACTIVITYPLAN_DELETE_NO'" class="btn btn-danger">
+            {{ currentActivityPlan.deleteStatus | translate }}
+        </button>
+        <button type="button" ng-click="planActivityDone()" ng-hide="currentActivityPlan.deleteStatus" class="btn btn-primary">
             einplanen!
         </button>
     </div>
