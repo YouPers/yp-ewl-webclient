@@ -137,16 +137,16 @@
                             <h3>Lade noch jemanden ein:</h3>
                             <form class="form-inline"
                                   role="form"
-                                  ng-submit="inviteEmailToJoinPlan(inviteEmail,currentActivityPlan)"
-                                  name="inviteEmailForm">
+                                  ng-submit="model.inviteEmailForm.$valid && inviteEmailToJoinPlan(model.inviteEmail,currentActivityPlan)"
+                                  name="model.inviteEmailForm">
                                 <div class="form-group"
-                                     ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
+                                     ng-class="{'has-error': model.inviteEmailForm.email.$dirty && model.inviteEmailForm.email.$invalid}">
                                     <label class="sr-only">lade noch jemanden ein! </label>
-                                    <input class="form-control email-field"  name="email" type="text" ng-model="inviteEmail"
+                                    <input class="form-control email-field"  name="email" type="text" ng-model="model.inviteEmail"
                                            placeholder="one or more emails"  multiple-Emails required>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" ng-disabled="inviteEmailForm.$invalid">einladen</button>
+                                    <button type="submit" class="btn btn-primary" ng-disabled="model.inviteEmailForm.$invalid">einladen</button>
                                 </div>
                             </form>
                         </div>
