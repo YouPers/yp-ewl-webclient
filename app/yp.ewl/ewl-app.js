@@ -46,11 +46,16 @@ angular.module('yp-ewl',
             RestangularProvider.setBaseUrl(ypconfig && ypconfig.backendUrl || "");
         }])
 
+    .config(['$translateProvider', function ($translateProvider) {
+        $translateProvider.preferredLanguage('de');
+        $translateProvider.useCookieStorage();
+    }])
+
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'principal', 'yp.user.UserService',
-        function ($rootScope, $state, $stateParams, principal, UserService) {
+    .run(['$rootScope', '$state', '$stateParams', 'principal', 'yp.user.UserService', '$http', '$translate',
+        function ($rootScope, $state, $stateParams, principal, UserService, $http, $translate) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -58,6 +63,10 @@ angular.module('yp-ewl',
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.principal = principal;
+
+            // set the language to use for backend calls to be equal to the current GUI language
+            $http.defaults.headers.common['yp-language'] =  $translate.uses();
+
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
@@ -72,12 +81,8 @@ angular.module('yp-ewl',
 
             });
 
-        }]).
+        }])
 
-    config(['$translateProvider', function ($translateProvider) {
-        $translateProvider.preferredLanguage('de');
-        $translateProvider.useCookieStorage();
-    }])
 
 /**
  * main controller, responsible for
