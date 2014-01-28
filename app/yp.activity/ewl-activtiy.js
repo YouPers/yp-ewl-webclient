@@ -569,7 +569,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 });
             };
 
-            $scope.planActivityDelete = function () {
+            $scope.deleteActivityPlan = function () {
                 ActivityService.deletePlan($scope.currentActivityPlan).then(function (result) {
                     $rootScope.$broadcast('globalUserMsg', 'Aktivität erfolgreich gelöscht', 'success', '5000');
                     if ($scope.$modalInstance) {
