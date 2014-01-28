@@ -40,38 +40,68 @@
     <script src="lib/momentjs/lang/de.js"></script>
     <script src="lib/restangular/dist/restangular.js"></script>
 
+
+<!--commons-->
+    <script src="yp.commons/yp.commons.js"></script>
+    <script src="yp.commons/yp.discussion.js"></script>
+    <script src="yp.commons/base64.js"></script>
+
+<!--topic-->
+    <script src="yp.ewl/yp.topic.js"></script>
+<!--assessment-->
+    <script src="yp.assessment/yp.assessment.js"></script>
+    <script src="yp.assessment/yp.assessment.controller.js"></script>
+    <script src="yp.assessment/yp.assessment.service.js"></script>
+<!--activity-->
+    <script src="yp.activity/yp.activity.js"></script>
+    <script src="yp.activity/yp.activity.list.js"></script>
+    <script src="yp.activity/yp.activity.detail.js"></script>
+    <script src="yp.activity/yp.activity.admin.js"></script>
+    <script src="yp.activity/yp.activity.activityplaninvite.js"></script>
+
+    <script src="yp.activity/yp.activitylog.js"></script>
+    <script src="yp.activity/yp.activitylog.controller.js"></script>
+    <script src="yp.activity/yp.activitylog.filter.js"></script>
+<!--cockpit-->
+    <script src="yp.cockpit/yp.cockpit.js"></script>
+    <script src="yp.cockpit/yp.cockpit.activitychart.js"></script>
+    <script src="yp.cockpit/yp.cockpit.activitychart2.js"></script>
+    <script src="yp.cockpit/yp.cockpit.activityvchart.js"></script>
+    <script src="yp.cockpit/yp.cockpit.stresslevel.gauge.js"></script>
+    <script src="yp.cockpit/yp.cockpit.stresslevel.linechart.js"></script>
+    <script src="yp.cockpit/yp.cockpit.sociallog.js"></script>
+
     <script src="yp.cockpit/d3/d3.js"></script>
     <script src="yp.cockpit/d3/d3-dir-hbar.js"></script>
     <script src="yp.cockpit/d3/d3-dir-vbar.js"></script>
     <script src="yp.cockpit/d3/d3-dir-linechart.js"></script>
     <script src="yp.cockpit/d3/d3-dir-gauge.js"></script>
-    <script src="yp.commons/base64.js"></script>
-    <script src="yp.commons/yp-commons.js"></script>
-    <script src="yp.activity/ewl-activtiy.js"></script>
-    <script src="yp.assessment/ewl-assessment.js"></script>
-    <script src="yp.evaluate/ewl-evaluate.js"></script>
-    <script src="yp.user/auth.js"></script>
-    <script src="yp.user/user-account.js"></script>
-    <script src="yp.user/user-profile.js"></script>
-    <script src="yp.commons/discussion.js"></script>
-    <script src="yp.ewl/topic.js"></script>
-    <script src="yp.cockpit/ewl-sociallog.js"></script>
-    <script src="yp.activity/ewl-activitylog.js"></script>
-    <script src="yp.healthpromoter/healthpromoter.js"></script>
+<!--evaluate-->
+    <script src="yp.evaluate/yp.evaluate.js"></script>
+<!--healthpromoter-->
+    <script src="yp.healthpromoter/yp.healthpromoter.js"></script>
+    <script src="yp.healthpromoter/yp.healthpromoter.welcome.js"></script>
+    <script src="yp.healthpromoter/yp.healthpromoter.campaign.new.js"></script>
+<!--user-->
+    <script src="yp.user/yp.user.js"></script>
+    <script src="yp.user/yp.user.service.js"></script>
+    <script src="yp.user/yp.user.account.js"></script>
+    <script src="yp.user/yp.user.profile.js"></script>
+    <script src="yp.user/yp.user.emailverification.js"></script>
+    <script src="yp.user/yp.user.passwordreset.js"></script>
+<!--ewl-->
+    <script src="yp.ewl/yp.config.js"></script>
+    <script src="yp.ewl/header.js"></script>
+    <script src="yp.ewl/yp.ewl.js"></script>
+<!--i18n-->
     <script src="yp.commons/i18n.js"></script>
-    <script src="yp.cockpit/yp-ewl-activity-chart.js"></script>
-    <script src="yp.cockpit/yp-ewl-activity-chart2.js"></script>
-    <script src="yp.cockpit/yp-ewl-activity-vchart.js"></script>
-    <script src="yp.cockpit/yp-ewl-stresslevel-gauge.js"></script>
-    <script src="yp.cockpit/yp-ewl-stresslevel-line-chart.js"></script>
-    <script src="yp.ewl/ewl-app.js"></script>
     <script src="yp.commons/translations/yp-ewl.de.js"></script>
     <script src="yp.commons/translations/yp-ewl.en.js"></script>
-    <script src="yp.ewl/header.js"></script>
+
     <!-- endbuild -->
     <script>
-        angular.module('ypconfig', [])
-                .constant('ypconfig', <%= JSON.stringify(config) %>
+        angular.module('yp.config', [])
+                .constant('yp.config', <%= JSON.stringify(config) %>
         )
         ;
     </script>

@@ -14,6 +14,14 @@ module.exports = function (config) {
             'app/lib/momentjs/lang/de.js',
             'app/lib/restangular/dist/restangular.js',
             'app/lib/lodash/dist/lodash.js',
+
+            'app/yp.activity/yp.activity.js',
+            'app/yp.activity/yp.activitylog.js',
+            'app/yp.assessment/yp.assessment.js',
+            'app/yp.cockpit/yp.cockpit.js',
+            'app/yp.healthpromoter/yp.healthpromoter.js',
+            'app/yp.user/yp.user.js',
+
             'app/yp*/*.js',
             'app/yp*/**/*.js',
 

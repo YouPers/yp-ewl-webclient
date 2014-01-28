@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('yp.ewl.evaluate', ['restangular', 'ui.router', 'yp.auth'])
+angular.module('yp.evaluate', ['restangular', 'ui.router', 'yp.user', 'yp.activity'])
 
     .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
         function ($stateProvider, $urlRouterProvider, accessLevels) {
             $stateProvider
                 .state('evaluate', {
                     url: "/evaluate",
-                    templateUrl: "yp.evaluate/evaluate.html",
+                    templateUrl: "yp.evaluate/yp.evaluate.html",
                     controller: "EvaluateCtrl",
                     access: accessLevels.all,
                     resolve: {
@@ -15,7 +15,7 @@ angular.module('yp.ewl.evaluate', ['restangular', 'ui.router', 'yp.auth'])
                     }
                 });
         }])
-    .controller('EvaluateCtrl', ['$scope', 'yp.user.UserService', 'ActivityService', 'AssessmentService', 'StatsService',
+    .controller('EvaluateCtrl', ['$scope', 'UserService', 'ActivityService', 'AssessmentService', 'StatsService',
         function ($scope, UserService, ActivityService, AssessmentService, StatsService) {
 
             // TODO: enum?

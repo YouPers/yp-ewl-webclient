@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yp.sociallog', ['restangular']).
+angular.module('yp.cockpit').
 
     factory('SocialLogService', ['Restangular', function (Restangular) {
 

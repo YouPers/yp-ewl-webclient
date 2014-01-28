@@ -97,10 +97,10 @@
                         </li>
                     </ul>
                     <div class="tab-content yp-activity-planning-tab"
-                         ng-include="'yp.activity/activity.detail.self.html'"
+                         ng-include="'yp.activity/yp.activity.detail.self.html'"
                          ng-show="model.currentExecutionType=='self'"></div>
                     <div class="tab-content yp-activity-planning-tab"
-                         ng-include="'yp.activity/activity.detail.group.html'"
+                         ng-include="'yp.activity/yp.activity.detail.group.html'"
                          ng-show="model.currentExecutionType=='group'"></div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
                     </div>
                 </div>
 
-                <div ng-include="'yp.cockpit/cockpit.activitylog.running.html'"></div>
+                <div ng-include="'yp.activity/yp.activitylog.running.html'"></div>
 
             </div>
 
