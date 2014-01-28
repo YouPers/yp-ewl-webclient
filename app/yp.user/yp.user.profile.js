@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('yp.user.profile', ['ui.router', 'yp.auth', 'ypconfig', 'restangular', 'angularFileUpload'])
+    angular.module('yp.user')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
             function ($stateProvider, $urlRouterProvider, accessLevels) {
                 $stateProvider
                     .state('profile', {
                         url: "/profile",
-                        templateUrl: "yp.user/user.profile.html",
+                        templateUrl: "yp.user/yp.user.profile.html",
                         controller: "UserProfileCtrl",
                         access: accessLevels.individual,
                         resolve: { }
@@ -16,7 +16,7 @@
 
             }])
 
-        .factory("yp.user.UserProfileService", ['$rootScope', 'Restangular', 'principal',
+        .factory("UserProfileService", ['$rootScope', 'Restangular', 'principal',
             function ($rootScope, Rest, principal) {
                 var UserProfileService = {
 
@@ -31,7 +31,7 @@
                 return UserProfileService;
             }])
 
-        .controller('UserProfileCtrl', ['$scope', '$rootScope', 'yp.user.UserProfileService',
+        .controller('UserProfileCtrl', ['$scope', '$rootScope', 'UserProfileService',
             function ($scope, $rootScope, UserProfileService) {
 
                 $scope.profileUserObj = _.clone($scope.principal.getUser().profile);
@@ -48,11 +48,11 @@
 
             }])
 
-        .controller('AvatarUploadCtrl', ['$scope', '$http', '$element', 'yp.user.UserProfileService', '$fileUploader', 'ypconfig',
-            function($scope, $http, $element, UserProfileService, $fileUploader, ypconfig) {
+        .controller('AvatarUploadCtrl', ['$scope', '$http', '$element', 'UserProfileService', '$fileUploader', 'yp.config',
+            function($scope, $http, $element, UserProfileService, $fileUploader, config) {
 
                 var user = $scope.principal.getUser();
-                var url = ypconfig.backendUrl + "/users/" + user.id + "/avatar";
+                var url = config.backendUrl + "/users/" + user.id + "/avatar";
 
                 var uploader = $scope.uploader = $fileUploader.create({
                     scope: $scope,

@@ -1,32 +1,28 @@
 'use strict';
 /*global angular:true */
-angular.module('ypconfig', [])
-    .constant('ypconfig', {"backendUrl": "http://localhost:8000/api/v1"});
+
 
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
-            'ypconfig', 'yp.commons',
-            'yp.auth', 'yp.user', 'yp.user.profile',
+            'yp.config', 'yp.commons',
 
-            'yp.activity',
+            'yp.user',
+
+            'yp.topic',
             'yp.assessment',
+            'yp.activity',
             'yp.cockpit',
+            'yp.evaluate',
 
             'yp.healthpromoter',
-            'yp.topic',
-
-
-
-            'yp.ewl.evaluate',
             'yp.discussion'
-
 
         ]).
 
-    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'ypconfig',
-        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, ypconfig) {
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config) {
             //
             // For any unmatched url, send to /home
             $urlRouterProvider.otherwise("/home");
@@ -49,13 +45,13 @@ angular.module('yp-ewl',
                     access: accessLevels.individual
                 });
 
-            RestangularProvider.setBaseUrl(ypconfig && ypconfig.backendUrl || "");
+            RestangularProvider.setBaseUrl(config && config.backendUrl || "");
         }])
 
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'principal', 'yp.user.UserService',
+    .run(['$rootScope', '$state', '$stateParams', 'principal', 'UserService',
         function ($rootScope, $state, $stateParams, principal, UserService) {
 
             // setup globally available objects on the top most scope, so all other controllers
@@ -91,13 +87,13 @@ angular.module('yp-ewl',
  * - highlighting global menu option according to currently active state
  * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope', '$timeout', '$log','yp.user.UserService','$modal',
+    .controller('MainCtrl', ['$scope', '$timeout', '$log','UserService','$modal',
         function ($scope, $timeout, $log, UserService, $modal) {
 
 
             var loginDialogOpen = function () {
                 var modalInstance = $modal.open({
-                    templateUrl: 'yp.ewl/loginDialog.html',
+                    templateUrl: 'yp.ewl/logindialog.html',
                     controller: 'yp.user.DialogLoginRegisterCtrl',
                     backdrop: true,
                     resolve: {
@@ -175,7 +171,7 @@ angular.module('yp-ewl',
         }])
 
 
-    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance', 'registerShown','yp.user.UserService',
+    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance', 'registerShown','UserService',
         function ($scope, $modalInstance, registerShown, UserService) {
 
             $scope.registerShownInitially = registerShown;
@@ -218,7 +214,7 @@ angular.module('yp-ewl',
             };
 
         }])
-    .directive('uniqueUserField', ['yp.user.UserService', function(UserService) {
+    .directive('uniqueUserField', ['UserService', function(UserService) {
         return {
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {

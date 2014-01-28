@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.activity', ['restangular', 'ui.router', 'yp.auth'])
+    angular.module('yp.activity', ['restangular', 'ui.router', 'yp.user'])
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
             function ($stateProvider, $urlRouterProvider, accessLevels) {
@@ -70,7 +70,7 @@
                             activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                                 return ActivityService.getActivity($stateParams.activityId);
                             }],
-                            invitingUser: ['yp.user.UserService', '$stateParams', function (UserService, $stateParams) {
+                            invitingUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
                                 return UserService.getUser($stateParams.invitingUserId);
                             } ]
                         }

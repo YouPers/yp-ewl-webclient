@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.assessment', ['ui.router', 'restangular', 'yp.auth', 'yp.activity' ])
+    angular.module('yp.assessment', ['ui.router', 'restangular', 'yp.user', 'yp.activity' ])
 
         // configuration of routes for all assessment module pages
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',

@@ -5,7 +5,7 @@
     angular.module('yp.activity')
 
         .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans', 'activityFields',
-            'recommendations', 'yp.user.UserService', 'topStressors', 'assessment', 'ActivityService',
+            'recommendations', 'UserService', 'topStressors', 'assessment', 'ActivityService',
             function ($scope, $filter, allActivities, activityPlans, activityFields, recommendations, UserService, topStressors, assessment, ActivityService) {
 
                 // mock campaigns, that this user has an active goal for, should be loaded from server later...

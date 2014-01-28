@@ -5,8 +5,8 @@
     angular.module('yp.assessment')
 
         // provides methods to get Assessment Information from the server
-        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'principal', 'ActivityService',
-            function ($http, $q, Restangular, principal, ActivityService) {
+        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'principal',
+            function ($http, $q, Restangular, principal) {
                 var cachedAssessmentPromise;
 
                 var assService = {
@@ -67,7 +67,7 @@
                         });
                     },
                     postResults: function (assResult, callback) {
-                        ActivityService.invalidateRecommendations();
+//                        ActivityService.invalidateRecommendations();
                         var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
                         assessmentResultBase.post(assResult).then(callback);
                     },
