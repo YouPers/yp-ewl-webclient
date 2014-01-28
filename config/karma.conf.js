@@ -17,6 +17,8 @@ module.exports = function (config) {
 
             'app/yp.activity/yp.activity.js',
             'app/yp.activity/yp.activitylog.js',
+            'app/yp.assessment/yp.assessment.js',
+            'app/yp.cockpit/yp.cockpit.js',
 
             'app/yp*/*.js',
             'app/yp*/**/*.js',

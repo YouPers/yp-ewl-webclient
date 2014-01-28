@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.activitylog')
+    angular.module('yp.activity')
 
         .filter('nextEvents', function () {
             return function (input) {

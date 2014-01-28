@@ -1,6 +1,6 @@
 (function () {
     'use strict';
 
-    angular.module('yp.activitylog', ['ui.bootstrap', 'restangular', 'yp.activity']);
+    angular.module('yp.activity', ['ui.bootstrap', 'restangular']);
 
 }());

@@ -30,7 +30,7 @@
 
                 <p>Dein allgemeiner Stresslevel (inkl. Entwicklung) sowie die drei grössten Stressverursacher</p>
 
-                <div ng-controller="yp.ewl.stresslevel.gauge.controller">
+                <div ng-controller="StresslevelGaugeController">
                     <div>
                         <d3-gauge data="stressLevelGeneral" options="d3Options" label="name"></d3-gauge>
                         <d3-gauge data="topStressFactors[0]" options="d3Options" label="name"></d3-gauge>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div ng-controller="yp.ewl.stresslevel.linechart.controller">
+                <div ng-controller="StresslevelLinechartController">
                     <div>
                         <d3-line-chart data="generalStressLevelValues" options="d3Options" label="name""></d3-line-chart>
                     </div>
@@ -58,7 +58,7 @@
 
                 <p>Verfolge die Aktivitäten deiner Arbeitskollegen in der Kampagne.</p>
 
-                <div ng-controller="yp.activity.vchart.controller">
+                <div ng-controller="ActivityVChartController">
                     <div class="row">
                         <div class="col-xs-8 col-md-8">
                             <div class="btn-group">

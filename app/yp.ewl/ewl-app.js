@@ -9,14 +9,20 @@ angular.module('yp-ewl',
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
             'ypconfig', 'yp.commons',
             'yp.auth', 'yp.user', 'yp.user.profile',
+
+            'yp.activity',
+            'yp.assessment',
+            'yp.cockpit',
+
             'yp.healthpromoter',
-            'yp.ewl.assessment',
             'yp.topic',
-            'yp.activity', 'yp.activitylog', 'yp.activity.chart', 'yp.activity.chart2', 'yp.activity.vchart',
+
+
+
             'yp.ewl.evaluate',
-            'yp.discussion', 'yp.sociallog',
-            'yp.ewl.stresslevel.gauge', 'yp.ewl.stresslevel.linechart',
-            'd3', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'd3.dir-line-chart'
+            'yp.discussion'
+
+
         ]).
 
     config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'ypconfig',
@@ -39,7 +45,7 @@ angular.module('yp-ewl',
                 })
                 .state('cockpit', {
                     url: "/cockpit",
-                    templateUrl: "yp.cockpit/cockpit.html",
+                    templateUrl: "yp.cockpit/yp.cockpit.html",
                     access: accessLevels.individual
                 });
 
