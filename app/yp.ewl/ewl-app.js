@@ -32,6 +32,11 @@ angular.module('yp-ewl',
                     templateUrl: "yp.ewl/home.html",
                     access: accessLevels.all
                 })
+                .state('terms', {
+                    url: "/terms",
+                    templateUrl: "yp.ewl/terms.html",
+                    access: accessLevels.all
+                })
                 .state('cockpit', {
                     url: "/cockpit",
                     templateUrl: "yp.cockpit/cockpit.html",
