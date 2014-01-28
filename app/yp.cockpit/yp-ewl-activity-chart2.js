@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('yp.ewl.activity.chart2', ['restangular'])
+angular.module('yp.activity.chart2', ['restangular'])
 
-    .factory('yp.ewl.activity.chart2.service', ['Restangular', function(Restangular) {
+    .factory('yp.activity.chart2.service', ['Restangular', function(Restangular) {
 
         var convertDataSeries = function (data) {
 //            var cols = data.cols;
@@ -40,7 +40,7 @@ angular.module('yp.ewl.activity.chart2', ['restangular'])
 
     }])
 
-    .controller('yp.ewl.activity.chart2.controller', ['$scope', 'yp.ewl.activity.chart2.service', function ($scope, ActivityChartService) {
+    .controller('yp.activity.chart2.controller', ['$scope', 'yp.activity.chart2.service', function ($scope, ActivityChartService) {
 
         $scope.d3Options = {
 //            compressed: "no",

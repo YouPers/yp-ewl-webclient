@@ -12,9 +12,9 @@ angular.module('yp-ewl',
             'yp.healthpromoter',
             'yp.ewl.assessment',
             'yp.topic',
-            'yp.ewl.activity', 'yp.ewl.activity.chart', 'yp.ewl.activity.chart2', 'yp.ewl.activity.vchart',
+            'yp.activity', 'yp.activitylog', 'yp.activity.chart', 'yp.activity.chart2', 'yp.activity.vchart',
             'yp.ewl.evaluate',
-            'yp.discussion', 'yp.sociallog', 'yp.activitylog',
+            'yp.discussion', 'yp.sociallog',
             'yp.ewl.stresslevel.gauge', 'yp.ewl.stresslevel.linechart',
             'd3', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'd3.dir-line-chart'
         ]).

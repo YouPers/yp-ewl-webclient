@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('yp.ewl.activity.chart', ['restangular'])
+angular.module('yp.activity.chart', ['restangular'])
 
-    .factory('yp.ewl.activity.chart.service', ['Restangular', function(Restangular) {
+    .factory('yp.activity.chart.service', ['Restangular', function(Restangular) {
 
         var valuesThisWeek = Restangular.one('activitystats').get({range: 'weekly'});
 
@@ -20,7 +20,7 @@ angular.module('yp.ewl.activity.chart', ['restangular'])
 
     }])
 
-    .controller('yp.ewl.activity.chart.controller', ['$scope', 'yp.ewl.activity.chart.service', function ($scope, ActivityChartService) {
+    .controller('yp.activity.chart.controller', ['$scope', 'yp.activity.chart.service', function ($scope, ActivityChartService) {
 
         $scope.chart = {};
 

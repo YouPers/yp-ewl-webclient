@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('yp.ewl.activity.vchart', ['restangular'])
+angular.module('yp.activity.vchart', ['restangular'])
 
-    .factory('yp.ewl.activity.vchart.service', ['Restangular', function(Restangular) {
+    .factory('yp.activity.vchart.service', ['Restangular', function(Restangular) {
 
         var valuesToday = Restangular.one('activitystats?range=today').get()
             .then(function (result) {
@@ -29,7 +29,7 @@ angular.module('yp.ewl.activity.vchart', ['restangular'])
 
     }])
 
-    .controller('yp.ewl.activity.vchart.controller', ['$scope', 'yp.ewl.activity.vchart.service', 'activityFields', function ($scope, ActivityChartService, ActivityFields) {
+    .controller('yp.activity.vchart.controller', ['$scope', 'yp.activity.vchart.service', 'activityFields', function ($scope, ActivityChartService, ActivityFields) {
 
         $scope.chart = {
             ActivityFields: ActivityFields
