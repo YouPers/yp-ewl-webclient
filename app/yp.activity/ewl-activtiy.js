@@ -279,6 +279,7 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                     } else if (result.length > 1) {
                         throw new Error('only one plan expected per activity and user');
                     } else {
+//                        result[0].deleteStatus = "ACTIVITYPLAN_DELETE_NO";
                         return result[0];
                     }
                 });
@@ -318,6 +319,15 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                         return err;
                     });
                 }
+            },
+            deletePlan: function (plan) {
+                console.log("try to delete current plan");
+                return activityPlans.one(plan.id).remove().then(function success(result) {
+                    return result;
+                }, function error(err) {
+                    console.log("error on plan remove" + err);
+                    return err;
+                });
             },
             updateActivityEvent: function (planId, actEvent) {
                 return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
@@ -430,8 +440,8 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
     }])
 
     .controller('ActivityDetailCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan',
-         '$rootScope', '$sce', 'actPlansToJoin',
-        function ($scope, ActivityService, $timeout, activity, plan, $rootScope, $sce, actPlansToJoin) {
+        '$state', '$rootScope', '$sce', 'actPlansToJoin',
+        function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope, $sce, actPlansToJoin) {
 
             $scope.currentActivity = activity;
             // using a model.xxxx to have writable access to this porperty in child scopes (e.g. in the two tabs)
@@ -556,6 +566,20 @@ angular.module('yp.ewl.activity', ['restangular', 'ui.router', 'yp.auth'])
                 }, function (err) {
                     console.log(JSON.stringify(err));
                     $rootScope.$broadcast('globalUserMsg', 'Aktivität nicht gespeichert, Code: ' + err, 'danger', '5000');
+                });
+            };
+
+            $scope.deleteActivityPlan = function () {
+                ActivityService.deletePlan($scope.currentActivityPlan).then(function (result) {
+                    $rootScope.$broadcast('globalUserMsg', 'Aktivität erfolgreich gelöscht', 'success', '5000');
+                    if ($scope.$modalInstance) {
+                        $scope.$modalInstance.dismiss();
+                    } else {
+                        $state.go('activitylist', $rootScope.$stateParams);
+                    }
+                }, function (err) {
+                    console.log(JSON.stringify(err));
+                    $rootScope.$broadcast('globalUserMsg', 'Aktivität nicht gelöscht, Code: ' + err, 'danger', '5000');
                 });
             };
         }])
