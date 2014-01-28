@@ -280,6 +280,7 @@
                         } else if (result.length > 1) {
                             throw new Error('only one plan expected per activity and user');
                         } else {
+//                        result[0].deleteStatus = "ACTIVITYPLAN_DELETE_NO";
                             return result[0];
                         }
                     });
@@ -319,6 +320,15 @@
                             return err;
                         });
                     }
+                },
+                deletePlan: function (plan) {
+                    console.log("try to delete current plan");
+                    return activityPlans.one(plan.id).remove().then(function success(result) {
+                        return result;
+                    }, function error(err) {
+                        console.log("error on plan remove" + err);
+                        return err;
+                    });
                 },
                 updateActivityEvent: function (planId, actEvent) {
                     return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();

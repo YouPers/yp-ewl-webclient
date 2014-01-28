@@ -139,7 +139,6 @@
             }])
 
 
-
     /**
      * filters an array of activities by a given query, returns an array with all activities that match the query
      */
