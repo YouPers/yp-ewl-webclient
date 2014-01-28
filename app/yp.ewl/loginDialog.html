@@ -75,7 +75,10 @@
                 <input type="password" name="password2" id="password2" placeholder="{{ 'PASSWORD_AGAIN' | translate }}" class="form-control"
                        ng-model="result.newuser.password2" required password-match="result.newuser.password">
                 <span ng-show="registerform.password2.$dirty && registerform.password2.$invalid" class="help-inline">Passwort nicht identisch</span>
+            </div>
 
+            <div class="form-group"  ng-class="{'has-error': registerform.termsAccepted.$dirty && registerform.termsAccepted.$invalid}">
+                <input type="checkbox" required>
             </div>
             <button type="submit" class="btn btn-success btn-sm" ng-disabled="registerform.$invalid">{{ 'REGISTER' | translate }}</button>
         </form>
