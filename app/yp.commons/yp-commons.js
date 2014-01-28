@@ -126,6 +126,18 @@
                     });
                 }
             };
+        })
+        .directive('toggleValue', function() {
+            return {
+                restrict: 'A',
+                link: function (scope, elm, attrs, ctrl) {
+                    elm.bind('click', function() {
+                        if(attrs.toggleValue) {
+                            scope[attrs.toggleValue] = !scope[attrs.toggleValue];
+                        }
+                    });
+                }
+            };
         });
 
 
