@@ -38,12 +38,8 @@ angular.module('yp-ewl',
                     url: "/terms",
                     templateUrl: "yp.ewl/terms.html",
                     access: accessLevels.all
-                })
-                .state('cockpit', {
-                    url: "/cockpit",
-                    templateUrl: "yp.cockpit/yp.cockpit.html",
-                    access: accessLevels.individual
                 });
+
 
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
         }])
