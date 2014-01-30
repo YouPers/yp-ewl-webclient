@@ -151,14 +151,8 @@
                         <div class="col-md-6" ng-if="currentActivityPlan.joiningUsers.length!=0"
                              class="activity-social-content">
                             Weitere Teilnehmer:
-                            <div ng-repeat="joiningUser in currentActivityPlan.joiningUsers" class="row social-thread">
-                                <div class="social-thread-header">
-                                    <a href="">
-                                        <img ng-src="{{ joiningUser.avatar }}" class="avatar-icon"/>
-                                        <strong class="fullname">{{ joiningUser.fullname }}</strong>
-                                    </a>
-                                    <span class="thread-time"> </span>
-                                </div>
+                            <div ng-repeat="joiningUser in currentActivityPlan.joiningUsers" class="row">
+                                <div user="joiningUser"></div>
                             </div>
                         </div>
                         <div class="col-md-6">

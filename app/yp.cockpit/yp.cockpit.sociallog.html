@@ -1,0 +1,56 @@
+
+<div class="panel cockpit section-title">
+    Social Ticker
+
+                        <span class="glyphicon controls glyphicon-{{socialLogVisible ? 'minus' : 'plus' }}"
+                              ng-init="socialLogVisible=true"
+                              ng-click="socialLogVisible = !socialLogVisible"></span>
+</div>
+
+<div ng-show="socialLogVisible">
+
+    <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+    <div class="list-group social-log">
+
+        <div class="list-group-item {{socialLogEntry.type}}"
+             ng-repeat="socialLogEntry in socialLogEntries">
+            <div class="row">
+                <div class="col-xs-10 col-md-10">
+                    <div class="col-xs-6 col-md-5">
+                        <div class="social-log status">
+                            <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
+                        </div>
+                        <a href="#/u/ubau">
+                            <img ng-src="{{socialLogEntry.author.avatar}}"
+                                 class="social-log author-avatar"/>
+                            <strong class="social-log author-name">{{socialLogEntry.author.firstname}}</br>
+                                {{socialLogEntry.author.lastname}}</strong>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-7">
+                        <a href="#{{ socialLogEntry.refDocLink }}" class="social-log area">{{socialLogEntry.refDocModel}}</a><br/>
+                        <a href="#{{ socialLogEntry.refDocLink }}" class="social-log title" tooltip-placement="left" tooltip="{{socialLogEntry.refDocTitle}}">{{socialLogEntry.refDocTitle | limitTo:35 }}...</a><br/>
+                        <a href="#{{ socialLogEntry.refDocLink }}" class="social-log comment">{{socialLogEntry.text}}</a>
+                    </div>
+                </div>
+                <div class="col-xs-2 col-md-2">
+                    <!--<div class="col-xs-6 col-md-4">-->
+                    <div class="social-log time-box">
+                                                <span class="activity-log time-box timestamp">
+                                                    {{socialLogEntry.created | fromNow}}</br>
+                                                </span>
+                    </div>
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div ng-hide="socialLogVisible">
+
+    </br>
+    <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+
+</div>
