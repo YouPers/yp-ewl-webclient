@@ -5,8 +5,8 @@
     angular.module('yp.activity')
 
         .controller('ActivityDetailCtrl', ['$scope', 'ActivityService', '$timeout', 'activity', 'plan',
-            '$rootScope', '$sce', 'actPlansToJoin',
-            function ($scope, ActivityService, $timeout, activity, plan, $rootScope, $sce, actPlansToJoin) {
+            '$state', '$rootScope', '$sce', 'actPlansToJoin',
+            function ($scope, ActivityService, $timeout, activity, plan, $state, $rootScope, $sce, actPlansToJoin) {
 
                 $scope.currentActivity = activity;
                 // using a model.xxxx to have writable access to this porperty in child scopes (e.g. in the two tabs)
@@ -133,6 +133,21 @@
                         $rootScope.$broadcast('globalUserMsg', 'Aktivität nicht gespeichert, Code: ' + err, 'danger', '5000');
                     });
                 };
+
+                $scope.deleteActivityPlan = function () {
+                    ActivityService.deletePlan($scope.currentActivityPlan).then(function (result) {
+                        $rootScope.$broadcast('globalUserMsg', 'Aktivität erfolgreich gelöscht', 'success', '5000');
+                        if ($scope.$modalInstance) {
+                            $scope.$modalInstance.dismiss();
+                        } else {
+                            $state.go('activitylist', $rootScope.$stateParams);
+                        }
+                    }, function (err) {
+                        console.log(JSON.stringify(err));
+                        $rootScope.$broadcast('globalUserMsg', 'Aktivität nicht gelöscht, Code: ' + err, 'danger', '5000');
+                    });
+                };
             }]);
+
 
 }());

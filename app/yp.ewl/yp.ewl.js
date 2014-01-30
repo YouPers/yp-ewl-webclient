@@ -40,6 +40,7 @@ angular.module('yp-ewl',
                     access: accessLevels.all
                 });
 
+
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
         }])
 
