@@ -307,10 +307,7 @@
                 },
                 savePlan: function (plan) {
                     if (plan.id) {
-                        console.log("updating of existing plans not yet supported!");
-                        return {then: function (suc, err) {
-                            return err("updating of existing plans not yet supported!");
-                        }};
+                        return Restangular.restangularizeElement(null, plan, "activityplans").put();
                     } else {
                         return activityPlans.post(plan).then(function success(result) {
                             console.log("plan saved" + result);

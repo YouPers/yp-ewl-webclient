@@ -112,6 +112,10 @@ angular.module('yp-ewl').
             ACTIVITYPLAN_NOT_DELETABLE_JOINED_PLAN: "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
             ACTIVITYPLAN_NOT_DELETABLE_NO_FUTURE_EVENTS: "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil alle Ausführungen in der Vergangenheit liegen.",
             ACTIVITYPLAN_DELETABLE: "Eingeplante Aktivität löschen",
-            ACTIVITYPLAN_DELETABLE_ONLY_FUTURE_EVENTS: "Zukünftige Ausführungen löschen"
+            ACTIVITYPLAN_DELETABLE_ONLY_FUTURE_EVENTS: "Zukünftige Ausführungen löschen",
+            ACTIVITYPLAN_PLAN: "einplanen",
+            ACTIVITYPLAN_CANCEL: "abbrechen",
+            ACTIVITYPLAN_EDIT: "ändern",
+            ACTIVITYPLAN_UPDATE: "sichern"
         });
     }]);
