@@ -2,38 +2,13 @@
 
 angular.module('yp.cockpit')
 
-    .factory('ActivityVChartService', ['Restangular', function(Restangular) {
 
-        var valuesToday = Restangular.one('activitystats?range=today').get()
-            .then(function (result) {
-                return result;
-            });
+    .controller('ActivityVChartController', ['$scope', 'activityFields', 'chart', function ($scope, ActivityFields, chart) {
 
-        var valuesThisWeek = Restangular.one('activitystats?range=thisWeek').get()
-            .then(function (result) {
-                return result;
-            });
-
-        var valuesCampaign = Restangular.one('activitystats?range=campaign').get()
-            .then(function (result) {
-                return result;
-            });
-
-        var ActivityChartService = {
-            activitiesToday: valuesToday,
-            activitiesThisWeek: valuesThisWeek,
-            activitiesCampaign: valuesCampaign
-        };
-
-        return ActivityChartService;
-
-    }])
-
-    .controller('ActivityVChartController', ['$scope', 'ActivityVChartService', 'activityFields', function ($scope, ActivityChartService, ActivityFields) {
-
-        $scope.chart = {
+        $scope.chart = chart;
+        $scope.chart = _.extend($scope.chart,{
             ActivityFields: ActivityFields
-        };
+        });
 
         $scope.selectedValue = "today";
 
@@ -47,32 +22,43 @@ angular.module('yp.cockpit')
 
         $scope.setData = function (value) {
             $scope.selectedValue = value;
-            if (value === "today") {
-                $scope.chart.data = $scope.chart.dataToday;
-            }
-            if (value === "thisWeek") {
-                $scope.chart.data = $scope.chart.dataCurrentWeek;
-            }
-            if (value === "campaign") {
-                $scope.chart.data = $scope.chart.dataCampaign;
-            }
+            $scope.chart.data = $scope.chart[value];
         };
 
-        ActivityChartService.activitiesToday.then(function (data) {
-            $scope.chart.dataToday = data;
-            $scope.chart.data = data; // default value
-        });
-
-        ActivityChartService.activitiesThisWeek.then(function (data) {
-            $scope.chart.dataCurrentWeek = data;
-        });
-
-        ActivityChartService.activitiesCampaign.then(function (data) {
-            $scope.chart.dataCampaign = data;
-        });
+        $scope.setData($scope.selectedValue);
 
         $scope.d3Options = {
             chartHeight: 193
         };
+
+    }])
+    .factory('ActivityChartService', ['Restangular', '$q', function(Restangular, $q) {
+
+        var getActivityStatsByRange = function(range) {
+            return Restangular.one('activitystats?range=' + range).get();
+        };
+
+
+        var ActivityChartService = {
+
+            getActivityStats: function () {
+
+                var chart = $q.all([
+                        getActivityStatsByRange('today'),
+                        getActivityStatsByRange('thisWeek'),
+                        getActivityStatsByRange('campaign')
+                    ]).then(function(r) {
+                        return {
+                            today: r[0],
+                            thisWeek: r[1],
+                            campaign: r[2]
+                        };
+                    });
+
+                return chart;
+            }
+        };
+
+        return ActivityChartService;
 
     }]);
