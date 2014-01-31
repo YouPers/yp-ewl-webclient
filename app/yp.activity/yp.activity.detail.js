@@ -108,6 +108,36 @@
                     );
                 };
 
+                $scope.displayEditInstruction = function () {
+                    if (!$scope.editToggleValue) {
+                        return "ACTIVITYPLAN_EDIT";
+                    } else {
+                        return "ACTIVITYPLAN_UPDATE";
+                    }
+                };
+
+                $scope.toggleEdit = function () {
+                    if ($scope.editToggleValue) {
+                        // user wants to save the edited values
+                        $scope.planActivityDone();
+                    }
+                    $scope.editToggleValue = !$scope.editToggleValue;
+                };
+
+                $scope.isEditActive = function () {
+                    return $scope.editToggleValue;
+                };
+
+                $scope.isEditable = function () {
+                    // currently, only single activity plans (i.e. no master and/or joined plans)
+                    // with a single and not yet past event are editable
+                    if ($scope.currentActivityPlan.editStatus === "ACTIVITYPLAN_EDITABLE") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                };
+
                 $scope.isActivityPlanned = function () {
                     return $scope.currentActivityPlan.id;
                 };
@@ -121,6 +151,15 @@
                 };
 
                 $scope.planActivityDone = function () {
+                    // currently start and end day is the same as only one date can be entered
+                    // hack to ensure
+                    // - that start and end is on the same day
+                    var dateToBeUsed = new Date($scope.currentActivityPlan.mainEvent.start);
+                    var dateEnd = new Date($scope.currentActivityPlan.mainEvent.end);
+                    dateEnd.setYear(dateToBeUsed.getFullYear());
+                    dateEnd.setMonth(dateToBeUsed.getMonth());
+                    dateEnd.setDate(dateToBeUsed.getDate());
+                    $scope.currentActivityPlan.mainEvent.end = dateEnd;
                     ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
                         $rootScope.$broadcast('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
                         if ($scope.$modalInstance) {
