@@ -128,11 +128,13 @@
                     return $scope.editToggleValue;
                 };
 
-                $scope.hasSingleEvent = function () {
-                    if ($scope.currentActivityPlan.events.length > 1) {
-                        return false;
-                    } else {
+                $scope.isEditable = function () {
+                    // currently, only single activity plans (i.e. no master and/or joined plans)
+                    // with a single and not yet past event are editable
+                    if ($scope.currentActivityPlan.editStatus === "ACTIVITYPLAN_EDITABLE") {
                         return true;
+                    } else {
+                        return false;
                     }
                 };
 

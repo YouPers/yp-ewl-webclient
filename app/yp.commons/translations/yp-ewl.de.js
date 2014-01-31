@@ -108,11 +108,19 @@ angular.module('yp-ewl').
             ITALIAN: "Italienisch",
             TIMEZONE: "Zeitzone",
             SETTINGS: "Einstellungen",
+
+            ACTIVITYPLAN_EDITABLE: "Eingeplante Aktivität ändern",
+            ACTIVITYPLAN_NOT_EDITABLE_JOINED_PLAN: "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil andere Benutzer daran teilnehmen.",
+            ACTIVITYPLAN_NOT_EDITABLE_JOINED_USERS: "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
+            ACTIVITYPLAN_NOT_EDITABLE_NOT_SINGLE_EVENT: "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil es eine Aktivität mit mehreren Ausführungen ist.",
+            ACTIVITYPLAN_NOT_EDITABLE_PAST_EVENT: "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil die Ausführung in der Vergangenheit ist.",
+
             ACTIVITYPLAN_NOT_DELETABLE_JOINED_USERS: "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil andere Benutzer daran teilnehmen.",
             ACTIVITYPLAN_NOT_DELETABLE_JOINED_PLAN: "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
             ACTIVITYPLAN_NOT_DELETABLE_NO_FUTURE_EVENTS: "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil alle Ausführungen in der Vergangenheit liegen.",
             ACTIVITYPLAN_DELETABLE: "Eingeplante Aktivität löschen",
             ACTIVITYPLAN_DELETABLE_ONLY_FUTURE_EVENTS: "Zukünftige Ausführungen löschen",
+
             ACTIVITYPLAN_PLAN: "einplanen",
             ACTIVITYPLAN_CANCEL: "abbrechen",
             ACTIVITYPLAN_EDIT: "ändern",
