@@ -271,6 +271,9 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/assets'
                     }
                 ]
+            },
+            options: {
+                cache: false
             }
         },
         svgmin: {
