@@ -21,12 +21,7 @@
                         <div class="social-log status">
                             <span class="glyphicon glyphicon-{{getGlyphicon(socialLogEntry.status)}}"></span></td>
                         </div>
-                        <a href="#/u/ubau">
-                            <img ng-src="{{socialLogEntry.author.avatar}}"
-                                 class="social-log author-avatar"/>
-                            <strong class="social-log author-name">{{socialLogEntry.author.firstname}}</br>
-                                {{socialLogEntry.author.lastname}}</strong>
-                        </a>
+                        <div user="socialLogEntry.author"></div>
                     </div>
                     <div class="col-xs-6 col-md-7">
                         <a href="#{{ socialLogEntry.refDocLink }}" class="social-log area">{{socialLogEntry.refDocModel}}</a><br/>
