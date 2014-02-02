@@ -14,10 +14,10 @@
                     encodeCredentials: function (username, password) {
                         return ({username: username, password: password});
                     },
-                    login: function (cred, successCallback, keepMeLoggedIn) {
-                        if (successCallback && !_.isFunction(successCallback) && !keepMeLoggedIn) {
-                            keepMeLoggedIn = successCallback;
-                            successCallback = undefined;
+                    login: function (cred, callback, keepMeLoggedIn) {
+                        if (callback && !_.isFunction(callback) && !keepMeLoggedIn) {
+                            keepMeLoggedIn = callback;
+                            callback = undefined;
                         }
 
                         $http.defaults.headers.common.Authorization = 'Basic ' + base64codec.encode(cred.username + ':' + cred.password);
@@ -27,8 +27,8 @@
                                 $cookieStore.put('authdata', cred);
                             }
                             authority.authorize(result);
-                            if (successCallback) {
-                                successCallback();
+                            if (callback) {
+                                callback();
                             }
 
                         }, function error(err) {
@@ -40,6 +40,9 @@
                                 msg = 'Login / password not valid, please try again or register, Code: ' + err.status;
                             }
                             $rootScope.$broadcast('globalUserMsg', msg, 'danger', 3000);
+                            if (callback) {
+                                callback();
+                            }
                         });
                     },
                     logout: function () {
@@ -73,21 +76,18 @@
                     },
                     getUser: function(userId) {
                         return users.one(userId).get();
-                    }
+                    },
+                    initialized: false
                 };
 
                 var credentialsFromCookie = $cookieStore.get('authdata');
 
                 if (credentialsFromCookie) {
-                    var targetLocation = $location.path();
-                    $location.path('/');
                     UserService.login(credentialsFromCookie, function () {
-                        if (targetLocation === '/home' || targetLocation === '/') {
-                            $location.path('/cockpit');
-                        } else {
-                            $location.path(targetLocation);
-                        }
+                        UserService.initialized = true;
                     });
+                } else {
+                    UserService.initialized = true;
                 }
 
                 return UserService;

@@ -47,8 +47,8 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'principal', 'UserService',
-        function ($rootScope, $state, $stateParams, principal, UserService) {
+    .run(['$rootScope', '$state', '$stateParams', 'principal', 'UserService', '$timeout',
+        function ($rootScope, $state, $stateParams, principal, UserService, $timeout) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -62,12 +62,18 @@ angular.module('yp-ewl',
 
                 var requiredAccessLevel = toState.access;
 
-                // check whether user is authorized to access the desired access-Level
-                if (!(principal.isAuthorized(requiredAccessLevel))) {
+                if (UserService.initialized) {
+                    if (!(principal.isAuthorized(requiredAccessLevel))) {
+                        event.preventDefault();
+                        $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
+                    }
+                } else {
+                    // if the UserService is not done initializing we cancel the stateChange and schedule it again in 100ms
                     event.preventDefault();
-                    $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
+                    $timeout(function () {
+                        $state.go(toState, toParams)
+                    }, 100);
                 }
-
             });
 
         }]).
@@ -83,7 +89,7 @@ angular.module('yp-ewl',
  * - highlighting global menu option according to currently active state
  * - setting principal to the scope, so all other scopes inherit it
  */
-    .controller('MainCtrl', ['$scope', '$timeout', '$log','UserService','$modal',
+    .controller('MainCtrl', ['$scope', '$timeout', '$log', 'UserService', '$modal',
         function ($scope, $timeout, $log, UserService, $modal) {
 
 
@@ -93,7 +99,7 @@ angular.module('yp-ewl',
                     controller: 'yp.user.DialogLoginRegisterCtrl',
                     backdrop: true,
                     resolve: {
-                        registerShown: function() {
+                        registerShown: function () {
                             return $scope.registerShown;
                         }
                     }
@@ -144,12 +150,12 @@ angular.module('yp-ewl',
 
             $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 var msg = 'error during state transition from ' + fromState.name + ' to ' + toState.name + ": " +
-                    (error.data || error.message ||error.toString() || error.status || error);
+                    (error.data || error.message || error.toString() || error.status || error);
 
                 if (error && error.status === 404) {
-                     msg = 'YouPers Server not reachable, please try again later, code: ' + error.status;
+                    msg = 'YouPers Server not reachable, please try again later, code: ' + error.status;
                 }
-                $scope.$broadcast('globalUserMsg',msg, 'danger');
+                $scope.$broadcast('globalUserMsg', msg, 'danger');
                 $log.error(msg);
             });
 
@@ -167,7 +173,7 @@ angular.module('yp-ewl',
         }])
 
 
-    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance', 'registerShown','UserService',
+    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance', 'registerShown', 'UserService',
         function ($scope, $modalInstance, registerShown, UserService) {
 
             $scope.registerShownInitially = registerShown;
@@ -204,39 +210,38 @@ angular.module('yp-ewl',
                 $modalInstance.close(result);
             };
 
-            $scope.gotoPasswordReset = function() {
+            $scope.gotoPasswordReset = function () {
                 $modalInstance.dismiss();
                 $scope.$state.go('requestPasswordReset');
             };
 
         }])
-    .directive('uniqueUserField', ['UserService', function(UserService) {
+    .directive('uniqueUserField', ['UserService', function (UserService) {
         return {
             require: 'ngModel',
-            link: function(scope, elm, attrs, ctrl) {
+            link: function (scope, elm, attrs, ctrl) {
 
                 // onchange instead of onblur is nice, but we should not hit the server all the time
-                var validate = function(value) {
+                var validate = function (value) {
 
                     var user = {};
                     user[attrs.name] = value; // currently only username and email are checked in the backend
 
-                    if(!value) {
+                    if (!value) {
                         return;
                     }
 
-                    _.throttle(function() {
+                    _.throttle(function () {
 
                         // validate and use a "unique" postfix to have different error messages
 
                         UserService.validateUser(user, function (res) {
-                            scope.registerform.$setValidity(attrs.name+"unique", true);
-                        }, function(err) {
-                            scope.registerform.$setValidity(attrs.name+"unique", false);
+                            scope.registerform.$setValidity(attrs.name + "unique", true);
+                        }, function (err) {
+                            scope.registerform.$setValidity(attrs.name + "unique", false);
                         });
 
                     }, 500)();
-
 
 
                     // we can't return undefined for invalid values as it is validated asynchronously
