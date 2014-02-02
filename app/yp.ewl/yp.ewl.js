@@ -71,7 +71,7 @@ angular.module('yp-ewl',
                     // if the UserService is not done initializing we cancel the stateChange and schedule it again in 100ms
                     event.preventDefault();
                     $timeout(function () {
-                        $state.go(toState, toParams)
+                        $state.go(toState, toParams);
                     }, 100);
                 }
             });
