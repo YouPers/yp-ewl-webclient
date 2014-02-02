@@ -8,7 +8,7 @@
             <div class="col-md-4">
                 {{planToJoin.location}}<br>
                 {{ planToJoin.mainEvent.frequency | translate}}
-                <span ng-if="planToJoin.mainEvent.frequency == 'week'">jeweils am: {{moment(planToJoin.mainEvent.start).weekday()}}</span><br>
+                <span ng-if="planToJoin.mainEvent.frequency == 'week'">jeweils am: {{getWeekday(planToJoin.mainEvent.start)}}</span><br>
                 erstmals am: {{ planToJoin.mainEvent.start | fromNow }} <br>
                 von: {{ planToJoin.mainEvent.start | time }} bis: {{planToJoin.mainEvent.end | time }}
             </div>

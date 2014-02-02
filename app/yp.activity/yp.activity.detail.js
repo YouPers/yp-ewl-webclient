@@ -108,6 +108,10 @@
                     );
                 };
 
+                $scope.getWeekday = function (date) {
+                    return moment(date).format('dddd');
+                }
+
                 $scope.displayEditInstruction = function () {
                     if (!$scope.editModeActive) {
                         return "ACTIVITYPLAN_EDIT";
