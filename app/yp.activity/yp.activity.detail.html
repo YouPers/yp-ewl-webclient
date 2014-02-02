@@ -6,11 +6,13 @@
         <div class="col-md-6">
             <div class="modal-footer">
                 <div>
-                    <div ng-show="currentActivityPlan.editStatus.indexOf('ACTIVITYPLAN_NOT_EDITABLE') == 0">
-                        {{ currentActivityPlan.editStatus | translate }}
+                    <div ng-show="currentActivityPlan.editStatus.indexOf('ACTIVITYPLAN_NOT_EDITABLE') == 0"
+                         class="glyphicon glyphicon-info-sign"
+                         tooltip="{{currentActivityPlan.editStatus | translate}}">
                     </div>
-                    <div ng-show="currentActivityPlan.deleteStatus.indexOf('ACTIVITYPLAN_NOT_DELETABLE') == 0">
-                        {{ currentActivityPlan.deleteStatus | translate }}
+                    <div ng-show="currentActivityPlan.deleteStatus.indexOf('ACTIVITYPLAN_NOT_DELETABLE') == 0"
+                            class="glyphicon glyphicon-info-sign"
+                            tooltip="{{ currentActivityPlan.deleteStatus | translate }}">
                     </div>
                     <button type="button" ng-click="toggleEdit()" ng-show="isActivityPlanned() && isEditable()" class="btn btn-primary">
                         {{ displayEditInstruction() | translate }}
@@ -115,7 +117,7 @@
             </div>
 
             <!-- Einplanung, falls noch nicht geplant oder falls "ändern" angeklickt -->
-            <div class="col-md-6" ng-if="!isActivityPlanned() || isEditActive()">
+            <div class="col-md-6" ng-if="!isActivityPlanned() || editModeActive">
                 <div class="tabbable">
                     <ul class="nav nav-tabs">
                         <li ng-class="{active: model.currentExecutionType=='self'}">
@@ -133,7 +135,7 @@
                          ng-show="model.currentExecutionType=='group'"></div>
                 </div>
             </div>
-            <div class="col-md-6" ng-if="isEditActive()">
+            <div class="col-md-6" ng-if="editModeActive">
             </div>
             <!-- display plan falls schon eingeplant -->
             <div class="col-md-6" ng-controller="ActivityLogCtrl" ng-if="isActivityPlanned()">

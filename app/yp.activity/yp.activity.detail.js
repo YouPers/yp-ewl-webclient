@@ -109,7 +109,7 @@
                 };
 
                 $scope.displayEditInstruction = function () {
-                    if (!$scope.editToggleValue) {
+                    if (!$scope.editModeActive) {
                         return "ACTIVITYPLAN_EDIT";
                     } else {
                         return "ACTIVITYPLAN_UPDATE";
@@ -117,16 +117,13 @@
                 };
 
                 $scope.toggleEdit = function () {
-                    if ($scope.editToggleValue) {
+                    if ($scope.editModeActive) {
                         // user wants to save the edited values
                         $scope.planActivityDone();
                     }
-                    $scope.editToggleValue = !$scope.editToggleValue;
+                    $scope.editModeActive = !$scope.editModeActive;
                 };
 
-                $scope.isEditActive = function () {
-                    return $scope.editToggleValue;
-                };
 
                 $scope.isEditable = function () {
                     // currently, only single activity plans (i.e. no master and/or joined plans)
