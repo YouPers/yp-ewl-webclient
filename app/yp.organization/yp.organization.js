@@ -12,7 +12,7 @@
                         url: '/organization',
                         templateUrl: 'yp.organization/yp.organization.create.html',
                         controller: 'CreateOrganizationController',
-                        access: accessLevels.individual,
+                        access: accessLevels.user,
                         resolve: {
 
                         }
