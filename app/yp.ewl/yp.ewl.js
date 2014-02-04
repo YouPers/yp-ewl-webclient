@@ -16,7 +16,7 @@ angular.module('yp-ewl',
             'yp.cockpit',
             'yp.evaluate',
 
-            'yp.healthpromoter',
+            'yp.organization',
             'yp.discussion'
 
         ]).
@@ -103,7 +103,7 @@ angular.module('yp-ewl',
 
             var loginDialogOpen = function () {
                 var modalInstance = $modal.open({
-                    templateUrl: 'yp.ewl/loginDialog.html',
+                    templateUrl: 'yp.ewl/logindialog.html',
                     controller: 'yp.user.DialogLoginRegisterCtrl',
                     backdrop: true,
                     resolve: {

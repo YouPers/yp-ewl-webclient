@@ -136,16 +136,6 @@
             function ($scope, UserService, $location, $modal, $window) {
 
 
-                $scope.loginSubmit = function () {
-                    UserService.login(UserService.encodeCredentials($scope.username, $scope.password), function () {
-                            $scope.username = '';
-                            $scope.password = '';
-                        },
-                        $scope.keepMeLoggedIn
-                    );
-
-                };
-
                 $scope.logout = function () {
                     UserService.logout();
                     $location.path("/");
