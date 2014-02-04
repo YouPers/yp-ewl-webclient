@@ -1,0 +1,81 @@
+<div class="container">
+
+
+    <div class="row" >
+
+        <div class="col-md-6">
+
+            <div ng-show="organization">
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{organization.name}}
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Address</th>
+                                <th>Sector</th>
+                                <th>Number of Employees</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{organization.address}}</td>
+                                <td>{{organization.sector}}</td>
+                                <td>{{organization.nrOfEmployees}}</td>
+                            </tr>
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div ng-hide="organization">
+
+
+                <h2>Create Organization</h2>
+
+                <form name="organizationForm" yp-model="organizationObj" class="form" role="form" ng-submit="createOrganization()" novalidate>
+
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input name="name" type="text" placeholder="Name" class="form-control" ng-model="organizationObj.name" required>
+                        <span ng-show="organizationForm.name.$dirty && organizationForm.name.$invalid" class="help-inline">Something may have gone wrong</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input name="address" type="text" placeholder="Address" class="form-control" ng-model="organizationObj.address" >
+                        <span ng-show="organizationForm.address.$dirty && organizationForm.address.$invalid" class="help-inline">Something may have gone wrong</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sector</label>
+                        <input name="sector" type="text" placeholder="Sector" class="form-control" ng-model="organizationObj.sector" >
+                        <span ng-show="organizationForm.sector.$dirty && organizationForm.sector.$invalid" class="help-inline">Something may have gone wrong</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Number of Employees</label>
+                        <input name="nrOfEmployees" type="text" placeholder="Number of Employees" class="form-control" ng-model="organizationObj.nrOfEmployees" >
+                        <span ng-show="organizationForm.nrOfEmployees.$dirty && organizationForm.nrOfEmployees.$invalid" class="help-inline">Something may have gone wrong</span>
+                    </div>
+
+
+                    <button type="reset" class="btn btn-sm" >Reset</button>
+                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="organizationForm.$invalid">Save</button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
