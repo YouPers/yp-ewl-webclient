@@ -10,22 +10,33 @@
         _userRoles = {
             anonymous: 1,
             individual: 2,
-            healthpromoter: 4,
-            productadmin: 8,
-            systemadmin: 16
+            orgadmin: 4,
+            campaignlead: 8,
+            productadmin: 16,
+            systemadmin: 32
         },
 
         _accessLevels = {
             all: _userRoles.anonymous | // 11111
                 _userRoles.individual |
-                _userRoles.healthpromoter |
+                _userRoles.orgadmin |
+                _userRoles.campaignlead |
                 _userRoles.productadmin |
                 _userRoles.systemadmin,
             anonymous: _userRoles.anonymous,  // 10000  nur zugänglich,  wenn nicht eingeloggt
-            individual: _userRoles.individual |   // 01011
+            user: _userRoles.individual |
+                _userRoles.orgadmin |
+                _userRoles.campaignlead |
+                _userRoles.productadmin |
+                _userRoles.systemadmin,  // 10000  nur zugänglich,  wenn nicht eingeloggt
+            individual: _userRoles.individual |
                 _userRoles.productadmin |
                 _userRoles.systemadmin,
-            healthpromoter: _userRoles.healthpromoter | // 00111
+            orgadmin: _userRoles.orgadmin |
+                _userRoles.productadmin |
+                _userRoles.systemadmin,
+            campaignlead: _userRoles.campaignlead |
+                 _userRoles.orgadmin |
                 _userRoles.productadmin |
                 _userRoles.systemadmin,
             admin: _userRoles.productadmin | _userRoles.systemadmin  // 00011

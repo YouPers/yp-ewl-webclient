@@ -10,7 +10,7 @@
                         url: "/profile",
                         templateUrl: "yp.user/yp.user.profile.html",
                         controller: "UserProfileCtrl",
-                        access: accessLevels.individual,
+                        access: accessLevels.user,
                         resolve: { }
                     });
 

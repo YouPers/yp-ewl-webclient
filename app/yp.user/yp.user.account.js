@@ -12,7 +12,7 @@
                         url: "/account",
                         templateUrl: "yp.user/yp.user.account.html",
                         controller: "UserAccountCtrl",
-                        access: accessLevels.individual,
+                        access: accessLevels.user,
                         resolve: { }
                     });
             }])
