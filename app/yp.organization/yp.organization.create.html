@@ -17,14 +17,14 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Address</th>
+                                <th>Location</th>
                                 <th>Sector</th>
                                 <th>Number of Employees</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{organization.address}}</td>
+                                <td>{{organization.location}}</td>
                                 <td>{{organization.sector}}</td>
                                 <td>{{organization.nrOfEmployees}}</td>
                             </tr>
@@ -52,9 +52,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Address</label>
-                        <input name="address" type="text" placeholder="Address" class="form-control" ng-model="organizationObj.address" >
-                        <span ng-show="organizationForm.address.$dirty && organizationForm.address.$invalid" class="help-inline">Something may have gone wrong</span>
+                        <label>Location</label>
+                        <input name="location" type="text" placeholder="Location" class="form-control" ng-model="organizationObj.location" >
+                        <span ng-show="organizationForm.location.$dirty && organizationForm.location.$invalid" class="help-inline">Something may have gone wrong</span>
                     </div>
 
                     <div class="form-group">
