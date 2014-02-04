@@ -103,7 +103,7 @@ angular.module('yp-ewl',
 
             var loginDialogOpen = function () {
                 var modalInstance = $modal.open({
-                    templateUrl: 'yp.ewl/logindialog.html',
+                    templateUrl: 'yp.ewl/loginDialog.html',
                     controller: 'yp.user.DialogLoginRegisterCtrl',
                     backdrop: true,
                     resolve: {
