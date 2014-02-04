@@ -48,8 +48,8 @@
 
             }])
 
-        .controller('AvatarUploadCtrl', ['$scope', '$http', '$element', 'UserProfileService', '$fileUploader', 'yp.config',
-            function($scope, $http, $element, UserProfileService, $fileUploader, config) {
+        .controller('AvatarUploadCtrl', ['$scope', '$rootScope', '$http', '$element', 'UserProfileService', '$fileUploader', 'yp.config',
+            function($scope, $rootScope, $http, $element, UserProfileService, $fileUploader, config) {
 
                 var user = $scope.principal.getUser();
                 var url = config.backendUrl + "/users/" + user.id + "/avatar";
@@ -63,16 +63,30 @@
                     }
                 });
 
-                // images only filter
+//                images only filter
                 uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {
                     var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
                     type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
-                    return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+                    var valid = '|jpg|png|jpeg|bmp|gif|tif|tiff'.indexOf(type) !== -1;
+                    if(!valid) {
+                        $scope.$apply(function() {
+                            $rootScope.$broadcast('globalUserMsg', "invalid image file", 'danger', 3000);
+
+                        });
+                    }
+                    return  valid;
                 });
 
 
                 $scope.avatar = user.avatar;
 
+                // on file upload complete
+                uploader.bind('error', function (event, xhr, item, response) {
+                    $scope.$apply(function() {
+                        $rootScope.$broadcast('globalUserMsg', "error while processing image file", 'danger', 3000);
+
+                    });
+                });
                 // on file upload complete
                 uploader.bind('success', function (event, xhr, item, response) {
                     $scope.avatar = user.avatar = response.avatar;
