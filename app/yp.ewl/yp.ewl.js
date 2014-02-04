@@ -65,15 +65,23 @@ angular.module('yp-ewl',
                 if (UserService.initialized) {
                     if (!(principal.isAuthorized(requiredAccessLevel))) {
                         event.preventDefault();
+                        console.log('preventing state change, because user is not authorized');
                         $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
                     }
                 } else {
                     // if the UserService is not done initializing we cancel the stateChange and schedule it again in 100ms
                     event.preventDefault();
+                    console.log('preventing state change, because UserService not ready to check Authorization');
                     $timeout(function () {
                         $state.go(toState, toParams);
                     }, 100);
                 }
+            });
+
+            // log stateChangeErrors
+            $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+
+              console.log('Error on StateChange: '+ JSON.stringify(error));
             });
 
         }]).
