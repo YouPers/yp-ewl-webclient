@@ -54,32 +54,9 @@
                         </li>
 
                         <li class="nav navbar-nav" ng-show="!principal.isAuthenticated()">
-                            <form class="navbar-form form-horizontal" ng-submit="loginSubmit()">
-                                <div class="row">
-                                        <div class="col-md-4">
-                                            <input type="text" placeholder="username/email" class="form-control login"
-                                                   ng-model="username">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="password" placeholder="{{ 'PASSWORD' | translate }}"
-                                                   class="form-control login"
-                                                   ng-model="password">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="submit" class="btn btn-success btn-sm">{{ 'LOGIN' | translate }}</button>
-                                        </div>
-                                </div>
-                                <div class="row">
-                                        <div class="col-md-4">
-                                            <label class="checkbox login">angemeldet bleiben
-                                                <input type="checkbox" ng-model="keepMeLoggedIn">
-                                            </label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <a ui-sref="requestPasswordReset" class="navbar-link login"> Passwort vergessen</a>
-                                        </div>
-                                    </div>
-                            </form>
+
+                            <login></login>
+
                         </li>
 
                         <ul class="nav navbar-nav">
