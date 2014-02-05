@@ -123,6 +123,16 @@ angular.module('yp-ewl').
             ACTIVITYPLAN_PLAN: "plan",
             ACTIVITYPLAN_CANCEL: "cancel",
             ACTIVITYPLAN_EDIT: "edit",
-            ACTIVITYPLAN_UPDATE: "save"
+            ACTIVITYPLAN_UPDATE: "save",
+
+            CAMPAIGNS: "Campaigns",
+            CAMPAIGN_NEW: "New Campaign",
+            CAMPAIGN_TITLE: "Title",
+            CAMPAIGN_START: "Start",
+            CAMPAIGN_END: "End",
+            CAMPAIGN_RELATED_SERVICE: "Service",
+            CAMPAIGN_LOCATION: "Location",
+            CAMPAIGN_SLOGAN: "Slogan",
+            CAMPAIGN_PAYMENT_STATUS: "Payment Status"
         });
     }]);

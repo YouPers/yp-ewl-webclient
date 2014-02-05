@@ -77,5 +77,109 @@
             </div>
 
         </div>
+
+        <div class="col-md-6">
+            <div ng-show="organization">
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row" >
+
+                            <div class="col-md-9">
+
+                                {{"CAMPAIGNS" | translate}}
+                            </div>
+                            <!--<div class="col-md-3">-->
+                            <!--<button type="button" ng-click="planActivityDone()" class="btn btn-primary">-->
+                            <!--{{ "CAMPAIGN_NEW" | translate }}-->
+                            <!--</button>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>{{ "CAMPAIGN_TITLE" | translate }}</th>
+                                <th>{{ "CAMPAIGN_START" | translate }}</th>
+                                <th>{{ "CAMPAIGN_END" | translate }}</th>
+                                <th>{{ "CAMPAIGN_RELATED_SERVICE" | translate }}</th>
+                                <th>{{ "CAMPAIGN_LOCATION" | translate }}</th>
+                                <th>{{ "CAMPAIGN_SLOGAN" | translate }}</th>
+                                <th>{{ "CAMPAIGN_PAYMENT_STATUS" | translate }}</th>
+                            </tr>
+                            </thead>
+                            <tbody ng-repeat="campaign in campaigns">
+                            <tr>
+                                <td>{{campaign.title}}</td>
+                                <td>{{formatDate(campaign.start)}}</td>
+                                <td>{{formatDate(campaign.end)}}</td>
+                                <td>{{campaign.relatedService}}</td>
+                                <td>{{campaign.location}}</td>
+                                <td>{{campaign.slogan}}</td>
+                                <td>{{campaign.paymentStatus}}</td>
+                            </tr>
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <h4>{{ "CAMPAIGN_NEW" | translate }}</h4>
+
+                <form name="campaignForm" yp-model="campaignObj" class="form" role="form" ng-submit="createCampaign()" novalidate>
+
+
+                    <div class="form-group">
+                        <label>{{ "CAMPAIGN_TITLE" | translate }}</label>
+                        <input name="title" type="text" placeholder="{{ 'CAMPAIGN_TITLE' | translate }}" class="form-control" ng-model="campaignObj.title" required>
+                        <span ng-show="campaignObj.title.$dirty && campaignObj.title.$invalid" class="help-inline">Something may have gone wrong</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ "CAMPAIGN_START" | translate }}</label>
+                        <input class="form-control" type="text" id="datePickerStart"
+                               datepicker-popup="dd.MM.yyyy"
+                               ng-model="campaignObj.start"
+                               is-open="startOpened" min="minDate" max="'2015-06-22'"
+                               datepicker-options="dateOptions"
+                               date-disabled="disabled(date, mode)" ng-required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ "CAMPAIGN_END" | translate }}</label>
+                        <input class="form-control" type="text" id="datePickerEnd"
+                               datepicker-popup="dd.MM.yyyy"
+                               ng-model="campaignObj.end"
+                               is-open="endOpened" min="minDate" max="'2015-06-22'"
+                               datepicker-options="dateOptions"
+                               date-disabled="disabled(date, mode)" ng-required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ "CAMPAIGN_LOCATION" | translate }}</label>
+                        <input name="location" type="text" placeholder="{{ 'CAMPAIGN_LOCATION' | translate }}" class="form-control" ng-model="campaignObj.location" required>
+                        <span ng-show="campaignObj.location.$dirty && campaignObj.location.$invalid" class="help-inline">Something may have gone wrong</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ "CAMPAIGN_SLOGAN" | translate }}</label>
+                        <input name="slogan" type="text" placeholder="{{ 'CAMPAIGN_SLOGAN' | translate }}" class="form-control" ng-model="campaignObj.slogan" required>
+                        <span ng-show="campaignObj.slogan.$dirty && campaignObj.slogan.$invalid" class="help-inline">Something may have gone wrong</span>
+                    </div>
+
+
+                    <button type="reset" class="btn btn-sm" >Reset</button>
+                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid">Save</button>
+
+                </form>
+            </div>
+
+        </div>
     </div>
 </div>

@@ -124,6 +124,17 @@ angular.module('yp-ewl').
             ACTIVITYPLAN_PLAN: "einplanen",
             ACTIVITYPLAN_CANCEL: "abbrechen",
             ACTIVITYPLAN_EDIT: "ändern",
-            ACTIVITYPLAN_UPDATE: "sichern"
+            ACTIVITYPLAN_UPDATE: "sichern",
+
+            CAMPAIGNS: "Kampagnen",
+            CAMPAIGN_NEW: "Neue Kampagne",
+            CAMPAIGN_TITLE: "Titel",
+            CAMPAIGN_START: "Start",
+            CAMPAIGN_END: "Ende",
+            CAMPAIGN_RELATED_SERVICE: "Service",
+            CAMPAIGN_LOCATION: "Ort",
+            CAMPAIGN_SLOGAN: "Slogan",
+            CAMPAIGN_PAYMENT_STATUS: "Status"
+
         });
     }]);
