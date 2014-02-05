@@ -36,7 +36,7 @@
                 $scope.showWeeks = false;
                 $scope.minDateStart = moment();
                 // we assume, that a campaign ideally lasts at least 3 weeks
-                $scope.minDateEnd = moment($scope.minDateStart).add('week',3);;
+                $scope.minDateEnd = moment($scope.minDateStart).add('week',3);
 
                 $scope.openStart = function () {
                     $timeout(function () {
