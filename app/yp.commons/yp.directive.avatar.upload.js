@@ -27,7 +27,7 @@
                         var uploader;
 
                         if(!scope.avatarObject && (!attrs.avatarObject || !scope[attrs.avatarObject])) {
-                            throw "avatar-upload: avatarObject not found or specified"
+                            throw "avatar-upload: avatarObject not found or specified";
                         } else {
                             var avatarObject = scope.avatarObject ? 'avatarObject' : attrs.avatarObject;
                             scope.$watch(avatarObject, function(avatarObject) {
