@@ -35,8 +35,8 @@
                 // one time planning using daypicker
                 $scope.showWeeks = false;
                 $scope.minDateStart = moment();
-                // we assume, that a campaign ideally lasts at least 3 weeks
-                $scope.minDateEnd = moment($scope.minDateStart).add('week',3);
+                // we assume, that a campaign ideally lasts at least 6 weeks
+                $scope.minDateEnd = moment($scope.minDateStart).add('week',6);
 
                 $scope.openStart = function () {
                     $timeout(function () {
