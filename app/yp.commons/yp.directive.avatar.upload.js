@@ -8,13 +8,14 @@
          * directive: avatar-upload
          *
          * dependencies: avatarObject in parent scope, with the avatar at avatarObject.avatar
+         *               or a custum object specified as attribute
          *
          * default: user avatar for the authenticated user
          *
          * optional attributes:
          *
          *  - type: [ 'organization' ]
-         *  - objectId: the object id for the specified model type
+         *  - avatarObject: the object where the avatar is located, avatarObject.avatar
          *
          */
         .directive('avatarUpload', ['$rootScope', '$http', '$fileUploader', 'yp.config',
