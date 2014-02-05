@@ -86,16 +86,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row" >
-
                             <div class="col-md-9">
-
                                 {{"CAMPAIGNS" | translate}}
                             </div>
-                            <!--<div class="col-md-3">-->
-                            <!--<button type="button" ng-click="planActivityDone()" class="btn btn-primary">-->
-                            <!--{{ "CAMPAIGN_NEW" | translate }}-->
-                            <!--</button>-->
-                            <!--</div>-->
                         </div>
                     </div>
 
@@ -129,12 +122,9 @@
                     </div>
                 </div>
 
-
-
                 <h4>{{ "CAMPAIGN_NEW" | translate }}</h4>
 
                 <form name="campaignForm" yp-model="campaignObj" class="form" role="form" ng-submit="createCampaign()" novalidate>
-
 
                     <div class="form-group">
                         <label>{{ "CAMPAIGN_TITLE" | translate }}</label>
@@ -147,7 +137,7 @@
                         <input class="form-control" type="text" id="datePickerStart"
                                datepicker-popup="dd.MM.yyyy"
                                ng-model="campaignObj.start"
-                               is-open="startOpened" min="minDate" max="'2015-06-22'"
+                               is-open="startOpened" min="minDateStart" max="'2015-06-22'"
                                datepicker-options="dateOptions"
                                date-disabled="disabled(date, mode)" ng-required="true"/>
                     </div>
@@ -157,7 +147,7 @@
                         <input class="form-control" type="text" id="datePickerEnd"
                                datepicker-popup="dd.MM.yyyy"
                                ng-model="campaignObj.end"
-                               is-open="endOpened" min="minDate" max="'2015-06-22'"
+                               is-open="endOpened" min="minDateEnd" max="'2015-06-22'"
                                datepicker-options="dateOptions"
                                date-disabled="disabled(date, mode)" ng-required="true"/>
                     </div>
