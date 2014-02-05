@@ -56,7 +56,7 @@
 
                 $scope.formatDate = function (dateToBeFormatted) {
                     return moment(dateToBeFormatted).format("DD.MM.YYYY");
-                }
+                };
 
                 $scope.campaignObj = {};
 
