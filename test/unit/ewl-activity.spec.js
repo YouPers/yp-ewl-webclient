@@ -3,7 +3,7 @@
 /* jasmine specs for filters go here */
 
 describe('ewl activity', function () {
-    beforeEach(angular.mock.module('yp.ewl.activity'));
+    beforeEach(angular.mock.module('yp.activity'));
     beforeEach(module('ui.router'));
 
 

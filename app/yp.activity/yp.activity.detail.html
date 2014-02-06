@@ -1,0 +1,195 @@
+<div class="modal-header">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Plane diese Aktivität: {{ currentActivity.number }}</h3>
+        </div>
+        <div class="col-md-6">
+            <div class="modal-footer">
+                <div>
+                    <div ng-show="currentActivityPlan.editStatus.indexOf('ACTIVITYPLAN_NOT_EDITABLE') == 0"
+                         class="glyphicon glyphicon-info-sign"
+                         tooltip="{{currentActivityPlan.editStatus | translate}}">
+                    </div>
+                    <div ng-show="currentActivityPlan.deleteStatus.indexOf('ACTIVITYPLAN_NOT_DELETABLE') == 0"
+                            class="glyphicon glyphicon-info-sign"
+                            tooltip="{{ currentActivityPlan.deleteStatus | translate }}">
+                    </div>
+                    <button type="button" ng-click="toggleEdit()" ng-show="isActivityPlanned() && isEditable()" class="btn btn-primary">
+                        {{ displayEditInstruction() | translate }}
+                    </button>
+                    <button type="button" ng-click="deleteActivityPlan()" ng-show="currentActivityPlan.deleteStatus && currentActivityPlan.deleteStatus.indexOf('ACTIVITYPLAN_NOT_DELETABLE') !== 0" class="btn btn-danger">
+                        {{ currentActivityPlan.deleteStatus | translate }}
+                    </button>
+                    <button type="button" ng-click="planActivityDone()" ng-hide="currentActivityPlan.deleteStatus" class="btn btn-primary">
+                        {{ "ACTIVITYPLAN_PLAN" | translate }}
+                    </button>
+                    <button type="button" ng-click="planActivityCancel()" class="btn btn-default">
+                        {{ "ACTIVITYPLAN_CANCEL" | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 panel panel-default">
+
+                <div class="row">    <!-- Activity Description and overall Rating -->
+
+
+                    <div class="col-md-8">
+                        <p>{{ currentActivity.number }}: {{ currentActivity.title }}</p>
+
+                    </div>
+                    <div class="col-md-4">
+                        <p>3453 mal geplant<br/>
+                            2320 mal ausgeführt</p>
+                        <rating max="5" value="currentActivity.rating"></rating>
+                        <a href="">(34)</a>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 activityDetailText" ng-bind-html="getRenderedText(currentActivity)">
+                    </div>
+                </div>
+                <!-- activityProposal Description and overall Rating -->
+
+                <div class="row"> <!-- Kommentare für Activity -->
+                    <div class="col-md-12" ng-controller="CommentCtrl">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Kommentare</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="activity-social-comment-link" href=""
+                                   ng-click="showNewComment= !showNewComment">neuer
+                                    Kommentar</a>
+                            </div>
+                        </div>
+                        <div class="row activity-social-content">
+                            <div class="col-md-12">
+
+                                <div class="row social-thread" ng-show="showNewComment">
+                                    <div class="social-thread-header">
+                                        <a href="">
+                                            <img ng-src="{{ principal.getUser().avatar }}" class="avatar-icon"/>
+                                            <strong class="fullname">{{ principal.getUser().fullname }}</strong>
+                                        </a>
+                                        <span class="thread-time"> </span>
+                                    </div>
+                                    <div class="social-thread-text">
+                                        <form ng-submit="submitNewComment(newText)">
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" ng-model="newText">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
+                            </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+                                <div class="row social-thread" ng-repeat="comment in comments">
+                                    <div class="social-thread-header">
+                                        <a href="{{ comment.author.link }}">
+                                            <img ng-src="{{ comment.author.avatar }}" class="avatar-icon"/>
+                                            <strong class="fullname">{{ comment.author.fullname }}</strong>
+                                        </a>
+                                        <span class="thread-time">{{ comment.created | fromNow}}</span>
+                                    </div>
+                                    <div class="social-thread-text">
+                                        {{ comment.text }}
+                                    </div>
+                                    <div class="social-thread-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Einplanung, falls noch nicht geplant oder falls "ändern" angeklickt -->
+            <div class="col-md-6" ng-if="!isActivityPlanned() || editModeActive">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li ng-class="{active: model.currentExecutionType=='self'}">
+                            <a href="" ng-click="model.currentExecutionType='self'">Selber planen</a>
+                        </li>
+                        <li ng-class="{active: model.currentExecutionType=='group'}">
+                            <a href="" ng-click="model.currentExecutionType='group'">Bei andern mitmachen</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content yp-activity-planning-tab"
+                         ng-include="'yp.activity/yp.activity.detail.self.html'"
+                         ng-show="model.currentExecutionType=='self'"></div>
+                    <div class="tab-content yp-activity-planning-tab"
+                         ng-include="'yp.activity/yp.activity.detail.group.html'"
+                         ng-show="model.currentExecutionType=='group'"></div>
+                </div>
+            </div>
+            <div class="col-md-6" ng-if="editModeActive">
+            </div>
+            <!-- display plan falls schon eingeplant -->
+            <div class="col-md-6" ng-controller="ActivityLogCtrl" ng-if="isActivityPlanned()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>Du hast diese Aktivität eingeplant: {{ currentActivityPlan.mainEvent.frequency
+                            | translate}}
+                        </div>
+                        <span ng-if="currentActivityPlan.mainEvent.frequency == 'week'">jeweils am: {{getWeekday(currentActivityPlan.mainEvent.start)}}</span><br>
+                        <div>erstmals am: {{ currentActivityPlan.mainEvent.start | fromNow }}</div>
+                        <div ng-if="currentActivityPlan.location">Ort: {{currentActivityPlan.location}}</div>
+                    </div>
+                    <!-- if this is a group activity-->
+                    <div ng-if="currentActivityPlan.executionType=='group'">
+                        <div class="col-md-6" ng-if="currentActivityPlan.joiningUsers.length==0">
+                            Du hast andere eingeladen an dieser Aktivität teilzunehmen. <br> Es hat noch niemand
+                            zugesagt.
+                        </div>
+                        <div class="col-md-6" ng-if="currentActivityPlan.joiningUsers.length!=0"
+                             class="activity-social-content">
+                            Weitere Teilnehmer:
+                            <div ng-repeat="joiningUser in currentActivityPlan.joiningUsers" class="row">
+                                <div user="joiningUser"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Lade noch jemanden ein:</h3>
+                            <form class="form-inline"
+                                  role="form"
+                                  ng-submit="model.inviteEmailForm.$valid && inviteEmailToJoinPlan(model.inviteEmail,currentActivityPlan)"
+                                  name="model.inviteEmailForm">
+                                <div class="form-group"
+                                     ng-class="{'has-error': model.inviteEmailForm.email.$dirty && model.inviteEmailForm.email.$invalid}">
+                                    <label class="sr-only">lade noch jemanden ein! </label>
+                                    <input class="form-control email-field"  name="email" type="text" ng-model="model.inviteEmail"
+                                           placeholder="one or more emails"  multiple-Emails required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" ng-disabled="model.inviteEmailForm.$invalid">einladen</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Nächste Ausführungen:</h3>
+                    </div>
+                </div>
+
+                <div ng-include="'yp.activity/yp.activitylog.running.html'"></div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

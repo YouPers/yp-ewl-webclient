@@ -1064,33 +1064,29 @@ btn-default.cockpit:active, .btn-default.cockpit.active {
 @social-log-area-indent: 0px;
 @social-log-title-indent: 0px;
 
-.social-log.status{
+.social-log .status{
   float: left;
   margin-left: @social-log-status-indent;
 //  margin-top: 3px;
 }
 
-.social-log.author-avatar {
+.social-log .avatar {
   float: left;
   margin-left: @social-log-author-avatar-indent;
-//  margin-top: 3px;
-  height: 48px;
-  width: 48px;
-  .rounded(3px);
 }
 
-.social-log.author-name {
+.social-log .name {
   float: left;
   margin-left: @social-log-author-name-indent;
 //  width: 90px;
 }
 
-.social-log.area {
+.social-log .area {
 //  float: left;
   margin-left: @social-log-area-indent;
 }
 
-.social-log.title {
+.social-log .title {
 //  float: left;
   margin-left: @social-log-title-indent;
 }
@@ -1098,18 +1094,18 @@ btn-default.cockpit:active, .btn-default.cockpit.active {
 @activity-log-indent: 15px;
 @activity-log-title-indent: 15px;
 
-.social-log.feedback-box {
+.social-log .feedback-box {
   margin-left: @activity-log-title-indent;
   margin-top: 10px;
 }
 
-.social-log.comment {
+.social-log .comment {
 //  float: left;
 //  position: relative;
   margin-left: @social-log-title-indent;
 }
 
-.social-log.time-box {
+.social-log .time-box {
   float: right;
   margin-top: 1px;
   position: relative;
@@ -1573,10 +1569,17 @@ header {
 }
 
 // avatar
-.avatar.placeholder {
+.avatar {
+  margin: 5px;
+  width: 48px;
+  height: 48px;
+  .rounded(3px);
+}
+
+.avatar-upload .avatar.placeholder {
   border: 1px dashed greenyellow;
 }
-.avatar {
+.avatar-upload .avatar {
   width: 100px;
   height: 100px;
 }

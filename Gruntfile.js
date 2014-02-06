@@ -240,7 +240,7 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%= yeoman.dist %>/**/*.js',
+                        '<%= yeoman.dist %>/js/*.js',
                         '<%= yeoman.dist %>/styles/{,*/}*.css'
 //                      ' <%= yeoman.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                     ]
@@ -271,6 +271,9 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/assets'
                     }
                 ]
+            },
+            options: {
+                cache: false
             }
         },
         svgmin: {
@@ -315,7 +318,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
-                        src: ['**/*.html'],
+                        src: ['yp*/*.html', 'yp*/**/*.html'],
                         dest: '<%= yeoman.dist %>'
                     },
                     {'dist/index.html': '.tmp/index.html'}

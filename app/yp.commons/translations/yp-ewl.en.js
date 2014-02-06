@@ -107,10 +107,32 @@ angular.module('yp-ewl').
             ITALIAN: "Italian",
             TIMEZONE: "Timezone",
             SETTINGS: "Settings",
+
+            ACTIVITYPLAN_EDITABLE: "Edit planned activity",
+            ACTIVITYPLAN_NOT_EDITABLE_JOINED_PLAN: "Attention: This planned activity cannot be edited because it is a joined activity.",
+            ACTIVITYPLAN_NOT_EDITABLE_JOINED_USERS: "Attention: This planned activity cannot be edited due to joined users.",
+            ACTIVITYPLAN_NOT_EDITABLE_NOT_SINGLE_EVENT: "Attention: This planned activity cannot be edited because it has more than one event.",
+            ACTIVITYPLAN_NOT_EDITABLE_PAST_EVENT: "Attention: This planned activity cannot be edited because its event is in the past.",
+
             ACTIVITYPLAN_NOT_DELETABLE_JOINED_USERS: "Attention: This planned activity cannot be deleted due to joined users.",
             ACTIVITYPLAN_NOT_DELETABLE_JOINED_PLAN: "Attention: This planned activity cannot be deleted because it is a joined activity.",
             ACTIVITYPLAN_NOT_DELETABLE_NO_FUTURE_EVENTS: "Attention: This activity cannot be deleted because there are no future (deletable) events.",
             ACTIVITYPLAN_DELETABLE: "Delete planned activity",
-            ACTIVITYPLAN_DELETABLE_ONLY_FUTURE_EVENTS: "Delete future events of planned activity"
+            ACTIVITYPLAN_DELETABLE_ONLY_FUTURE_EVENTS: "Delete future events of planned activity",
+
+            ACTIVITYPLAN_PLAN: "plan",
+            ACTIVITYPLAN_CANCEL: "cancel",
+            ACTIVITYPLAN_EDIT: "edit",
+            ACTIVITYPLAN_UPDATE: "save",
+
+            CAMPAIGNS: "Campaigns",
+            CAMPAIGN_NEW: "New Campaign",
+            CAMPAIGN_TITLE: "Title",
+            CAMPAIGN_START: "Start",
+            CAMPAIGN_END: "End",
+            CAMPAIGN_RELATED_SERVICE: "Service",
+            CAMPAIGN_LOCATION: "Location",
+            CAMPAIGN_SLOGAN: "Slogan",
+            CAMPAIGN_PAYMENT_STATUS: "Payment Status"
         });
     }]);

@@ -3,8 +3,8 @@
 /* jasmine specs for directives go here */
 
 describe('ewl-assessment', function() {
-  beforeEach(module('yp.ewl.assessment'));
-  beforeEach(module('yp.ewl.activity'));
+  beforeEach(module('yp.activity'));
+  beforeEach(module('yp.assessment'));
 
   describe('assessment ', function() {
     it('should be defined', inject(function(AssessmentService) {

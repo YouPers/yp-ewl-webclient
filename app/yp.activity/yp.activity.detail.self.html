@@ -1,0 +1,125 @@
+<form class="form-horizontal" role="form">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>
+                                Einplanen am:
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 input-group input-group-sm">
+                            <input class="form-control" type="text" id="datePickerStart"
+                                   datepicker-popup="dd.MM.yyyy"
+                                   ng-model="currentActivityPlan.mainEvent.start"
+                                   is-open="opened" min="minDate"
+                                   datepicker-options="dateOptions"
+                                   date-disabled="disabled(date, mode)" ng-required="true"/>
+
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info " ng-click="open()">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </button>
+                                    </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 yp-activity-planning-spacer">Von: </div>
+                <div class="col-md-3">
+                    <timepicker ng-model="currentActivityPlan.mainEvent.start"  id="timePickerStart" minute-step="15"
+                                show-meridian="false"></timepicker>
+                </div>
+                <div class="col-md-1 yp-activity-planning-spacer">Bis: </div>
+                <div class="col-md-3">
+                    <timepicker ng-model="currentActivityPlan.mainEvent.end"  id="timePickerEnd" minute-step="15"
+                                show-meridian="false"></timepicker>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row activity-planning">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.mainEvent.frequency"
+                                btn-radio="'once'">Einmalig
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.mainEvent.frequency"
+                                btn-radio="'day'">Täglich
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.mainEvent.frequency"
+                                btn-radio="'week'">Wöchentlich
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" ng-if="currentActivityPlan.mainEvent.frequency=='day'">
+                <div class="col-md-6">
+                    <label>
+                        Anzahl Wiederholungen:
+                        <input type=number class="form-control input-sm"
+                               ng-model="currentActivityPlan.mainEvent.recurrence['endby'].after">
+                    </label>
+                </div>
+
+            </div>
+            <div class="row" ng-if="currentActivityPlan.mainEvent.frequency=='week'">
+                <div class="col-md-6">
+                    <label>
+                        Anzahl Wiederholungen:
+                        <input type=number class="form-control input-sm"
+                               ng-model="currentActivityPlan.mainEvent.recurrence['endby'].after">
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <label>
+                        Jeweils am:
+                        <fieldset ng-disabled="currentActivityPlan.mainEvent.frequency!='week'">
+                            <select ng-model="currentActivityPlan.weeklyDay"
+                                    name="weeklyDay"
+                                    id="weeklyDay"
+                                    ng-options="d.value as d.label | translate for d in availableDays"
+                                    class="form-control">
+                            </select>
+
+                        </fieldset>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 btn-group">
+                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
+                            btn-radio="'public'">öffentlich
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
+                            btn-radio="'campaign'">Betrieb
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
+                            btn-radio="'private'">privat
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 btn-group">
+                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
+                            btn-radio="'self'">alleine machen
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
+                            btn-radio="'group'">andere einladen
+                    </button>
+                    <label>Wo:
+                        <input type="text" class="form-control" ng-model="currentActivityPlan.location">
+                    </label>
+
+                </div>
+            </div>
+        </div>
+</div>
+</form>
