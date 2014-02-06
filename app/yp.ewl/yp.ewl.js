@@ -38,8 +38,21 @@ angular.module('yp-ewl',
                     url: "/terms",
                     templateUrl: "yp.ewl/terms.html",
                     access: accessLevels.all
-                });
+                })
 
+                // temporary bounce state while we wait for this bug to be fixed: https://github.com/angular-ui/ui-router/issues/76
+                .state('bounce', {
+                params: ['state', 'params'],
+                template: '<h4>Loading stuff...</h4>', // you can even put some loading template here, wow!
+                controller: ['$state', '$stateParams', function($state, $stateParams) {
+                    // just redirect to caller
+                    $state.go(
+                        $stateParams.state,
+                        JSON.parse($stateParams.params)
+                    );
+                }],
+                access:  accessLevels.all
+            });
 
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
 

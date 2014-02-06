@@ -28,6 +28,9 @@
                         }
                         return cachedAssessmentPromise;
                     },
+                    reloadAssessment: function() {
+                        cachedAssessmentPromise = undefined;
+                    },
                     getAssessmentData: function (assessmentId) {
                         var assessmentBase = Restangular.one('assessments', assessmentId);
                         // if the user is authenticated we try to get his previous answers from the server,
