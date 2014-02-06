@@ -15,9 +15,15 @@ angular.module('yp.cockpit').
         return SocialLogService;
     }])
 
-    .controller('SocialLogCtrl', ['$scope', 'socialLogEntries', function ($scope, socialLogEntries) {
+    .controller('SocialLogCtrl', ['$scope', '$socket', 'socialLogEntries', function ($scope, $socket, socialLogEntries) {
 
         $scope.socialLogEntries = socialLogEntries;
+
+        $socket.on('social', function (socialLog) {
+            console.log('social');
+            console.log(socialLog);
+            $scope.socialLogEntries.unshift(socialLog);
+        });
 
         $scope.getGlyphicon = function (status) {
             var icon = "";

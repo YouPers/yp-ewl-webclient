@@ -6,7 +6,7 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
-            'yp.config', 'yp.commons',
+            'yp.config', 'yp.commons', 'yp.socket',
 
             'yp.user',
 

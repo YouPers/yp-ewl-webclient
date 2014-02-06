@@ -4,7 +4,7 @@
 
     angular.module('yp.cockpit',
             [
-                'restangular', 'ui.router',
+                'restangular', 'ui.router', 'yp.socket',
 
                 'yp.assessment',
 
