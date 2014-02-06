@@ -9,12 +9,14 @@ describe('yp-common: ', function () {
         var ctrl = null;
 
         beforeEach(module('i18n'));
+        beforeEach(module('yp.activity'));
+        beforeEach(module('yp.assessment'));
 
         /* IMPORTANT!
          * this is where we're setting up the $scope and
          * calling the controller function on it, injecting
          * all the important bits, like our mockService */
-        beforeEach(inject(function ($rootScope, $controller) {
+        beforeEach(inject(function ($rootScope, $controller, $http) {
 
             //create a scope object for us to use.
             $scope = $rootScope.$new();
