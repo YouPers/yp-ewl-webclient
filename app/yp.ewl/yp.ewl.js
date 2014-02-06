@@ -21,8 +21,8 @@ angular.module('yp-ewl',
 
         ]).
 
-    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config',
-        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config) {
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider) {
             //
             // For any unmatched url, send to /home
             $urlRouterProvider.otherwise("/home");
@@ -42,12 +42,10 @@ angular.module('yp-ewl',
 
 
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
-        }])
 
-    .config(['$translateProvider', function ($translateProvider) {
-        $translateProvider.preferredLanguage('de');
-        $translateProvider.useCookieStorage();
-    }])
+            $translateProvider.preferredLanguage('de');
+            $translateProvider.useCookieStorage();
+        }])
 
 /**
  * setup checking of access levels for logged in user.
