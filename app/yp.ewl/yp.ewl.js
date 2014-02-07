@@ -21,8 +21,8 @@ angular.module('yp-ewl',
 
         ]).
 
-    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider',
-        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider) {
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translatePartialLoaderProvider',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translatePartialLoaderProvider) {
             //
             // For any unmatched url, send to /home
             $urlRouterProvider.otherwise("/home");
@@ -58,6 +58,10 @@ angular.module('yp-ewl',
 
             $translateProvider.preferredLanguage('de');
             $translateProvider.useCookieStorage();
+            $translateProvider.useLoader('$translatePartialLoader', {
+                urlTemplate: '/{part}/{part}.translations.{lang}.json'
+            });
+            $translatePartialLoaderProvider.addPart('yp.ewl');
         }])
 
 /**
@@ -74,8 +78,11 @@ angular.module('yp-ewl',
             $rootScope.principal = principal;
 
             // set the language to use for backend calls to be equal to the current GUI language
-            $http.defaults.headers.common['yp-language'] =  $translate.uses();
+            // translate.uses() returns undefined until the partial async loader has found the "proposedLanguage"
+            // therefore we use in this case $translate.proposedLanguage()
+            $http.defaults.headers.common['yp-language'] =  $translate.uses() || $translate.proposedLanguage();
 
+            $translate.refresh();
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
@@ -100,16 +107,11 @@ angular.module('yp-ewl',
 
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
-
-              console.log('Error on StateChange: '+ JSON.stringify(error));
+                console.log('Error on StateChange: '+ JSON.stringify(error));
             });
 
-        }]).
+        }])
 
-    config(['$translateProvider', function ($translateProvider) {
-        $translateProvider.preferredLanguage('de');
-        $translateProvider.useCookieStorage();
-    }])
 
 /**
  * main controller, responsible for

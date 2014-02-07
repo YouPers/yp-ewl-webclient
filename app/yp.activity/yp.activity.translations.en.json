@@ -1,0 +1,35 @@
+{
+    "list": {
+        "planAnActivity": "Plan an activity",
+        "createNewActivity": "Create new activity",
+        "search": "Search",
+        "setFocus": "Set a focus",
+        "areas": "Areas",
+        "togetherWith?": "Together with?",
+        "alone": "alone",
+        "asAGroup": "as a group",
+        "duration": "Duration",
+        "lt15min": "< 15 min",
+        "15-30min": "15-30 min",
+        "30-60min": "30 min - 1 hour",
+        "mt60min": "more than 1 hour",
+        "rating": "Rating",
+        "activities": "Activities",
+        "recommendedForYou": "Recommended for You",
+        "campaignActivities": "Campaign Activities",
+        "all": "all",
+        "ofTotal": "of totally ",
+        "done": "done",
+        "recommended": "recommended",
+        "planned": "planned",
+        "ifYouFillAssessment": "By filling out the assessment we will provide you with personal recommendations...",
+        "toAssessment": "Assessment",
+        "showAllActivities": "show all activities"
+    },
+    "detail": {
+
+    },
+    "admin": {
+
+    }
+}

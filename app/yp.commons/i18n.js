@@ -9,6 +9,7 @@ angular.module('i18n', ['pascalprecht.translate'])
             moment.lang(key);
             $http.defaults.headers.common['yp-language'] =  key;
             $translate.uses(key).then(function (key) {
+                $translate.refresh();
                 ActivityService.reloadActivities();
                 AssessmentService.reloadAssessment();
                 $scope.$state.go('bounce', {state: $scope.$state.current.name, params: JSON.stringify($scope.$stateParams)});
