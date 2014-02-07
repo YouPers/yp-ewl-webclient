@@ -116,8 +116,8 @@ module.exports = function (grunt) {
                         return [
                             lrSnippet,
                             function(req, res, next) {
-                                if  (req.url.indexOf('/locales/') != -1 || (req.url.indexOf('/api/projects/') != -1 )) {
-                                    proxy.web(req, res, {target: 'https://webtranslateit.com'})
+                                if  (req.url.indexOf('/locales/') !== -1 || (req.url.indexOf('/api/projects/') !== -1 )) {
+                                    proxy.web(req, res, {target: 'https://webtranslateit.com'});
                                 } else {
                                     return next();
                                 }

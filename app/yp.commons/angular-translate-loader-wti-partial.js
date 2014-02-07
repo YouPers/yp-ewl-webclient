@@ -1,3 +1,4 @@
+'use strict';
 angular.module('pascalprecht.translate').provider('$translateWtiPartialLoader', [function () {
     function Part(name) {
         this.name = name;
@@ -26,11 +27,13 @@ angular.module('pascalprecht.translate').provider('$translateWtiPartialLoader', 
                     }, function () {
                         deferred.reject(self.name);
                     });
-                } else
+                } else {
                     deferred.reject(self.name);
+                }
             });
-        } else
+        } else {
             deferred.resolve(this.tables[lang]);
+        }
         return deferred.promise;
     };
     var parts = {};
@@ -55,7 +58,7 @@ angular.module('pascalprecht.translate').provider('$translateWtiPartialLoader', 
         for (var property in src) {
             if (src[property] && src[property].constructor && src[property].constructor === Object) {
                 dst[property] = dst[property] || {};
-                arguments.callee(dst[property], src[property]);
+                deepExtend(dst[property], src[property]);
             } else {
                 dst[property] = src[property];
             }
@@ -123,8 +126,9 @@ angular.module('pascalprecht.translate').provider('$translateWtiPartialLoader', 
                 if (errorHandler !== undefined) {
                     if (!angular.isString(errorHandler)) {
                         throw new Error('Unable to load data, a loadFailureHandler is not a string.');
-                    } else
+                    } else {
                         errorHandler = $injector.get(errorHandler);
+                    }
                 }
 
                 var loaders = [], tables = [], deferred = $q.defer();
@@ -155,22 +159,21 @@ angular.module('pascalprecht.translate').provider('$translateWtiPartialLoader', 
 
 
                 return wtiProject.then(function (wtiProjectData) {
-                    for (var part in parts) {
+                    _.forEach(parts, function(value, part)  {
                         if (hasPart(part) && parts[part].isActive) {
+                            var myWtiUrl;
                             if (wtiProjectData) {
                                 var mySourceUrl = parts[part].parseUrl(options.urlTemplate, options.key).slice(1);
                                 var myFileObj = _.find(wtiProjectData.project.project_files, function (file) {
                                     return file.name === mySourceUrl;
                                 });
+                                if (myFileObj) {
+                                    myWtiUrl = "/api/projects/" + options.wtiPublicApiToken + "/files/" + myFileObj.id + "/locales/" + options.key;
+                                }
                             }
-                            var myWtiUrl;
-                            if (myFileObj) {
-                                myWtiUrl = "/api/projects/" + options.wtiPublicApiToken + "/files/" + myFileObj.id + "/locales/" + options.key;
-                            }
-
                             loaders.push(parts[part].getTable(options.key, $q, $http, myWtiUrl || options.urlTemplate, errorHandler).then(addTablePart));
                         }
-                    }
+                    });
                     if (loaders.length) {
                         $q.all(loaders).then(function () {
                             var table = {};
