@@ -27,9 +27,9 @@
                             assessment: ['AssessmentService', function (AssessmentService) {
                                 return AssessmentService.getAssessment('525faf0ac558d40000000005');
                             }],
-                            translations: ['$translatePartialLoader', '$translate',
-                                function($translatePartialLoader, $translate ) {
-                                $translatePartialLoader.addPart('yp.activity');
+                            translations: ['$translateWtiPartialLoader', '$translate',
+                                function($translateWtiPartialLoader, $translate ) {
+                                $translateWtiPartialLoader.addPart('yp.activity');
                                 return $translate.refresh();
                             }]
 

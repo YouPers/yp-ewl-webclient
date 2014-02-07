@@ -21,8 +21,8 @@ angular.module('yp-ewl',
 
         ]).
 
-    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translatePartialLoaderProvider',
-        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translatePartialLoaderProvider) {
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translateWtiPartialLoaderProvider',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider) {
             //
             // For any unmatched url, send to /home
             $urlRouterProvider.otherwise("/home");
@@ -58,10 +58,13 @@ angular.module('yp-ewl',
 
             $translateProvider.preferredLanguage('de');
             $translateProvider.useCookieStorage();
-            $translateProvider.useLoader('$translatePartialLoader', {
-                urlTemplate: '/{part}/{part}.translations.{lang}.json'
+            $translateProvider.useLoader('$translateWtiPartialLoader', {
+                urlTemplate: '/{part}/{part}.translations.{lang}.json',
+                wtiProjectId: '8233-eWL',
+                wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
+                fromWti: true
             });
-            $translatePartialLoaderProvider.addPart('yp.ewl');
+            $translateWtiPartialLoaderProvider.addPart('yp.ewl');
         }])
 
 /**

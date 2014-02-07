@@ -2,6 +2,10 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
+
+var httpProxy = require('http-proxy');
+var proxy = httpProxy.createProxyServer({});
+
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
@@ -111,6 +115,13 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             lrSnippet,
+                            function(req, res, next) {
+                                if  (req.url.indexOf('/locales/') != -1 || (req.url.indexOf('/api/projects/') != -1 )) {
+                                    proxy.web(req, res, {target: 'https://webtranslateit.com'})
+                                } else {
+                                    return next();
+                                }
+                            },
                             mountFolder(connect, '.tmp'),
                             mountFolder(connect, yeomanConfig.app)
                         ];

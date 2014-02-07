@@ -33,6 +33,8 @@ angular.module('pascalprecht.translate').provider('$translatePartialLoader', [fu
       return deferred.promise;
     };
     var parts = {};
+    var wtiProject;
+
     function hasPart(name) {
       return parts.hasOwnProperty(name);
     }
@@ -106,6 +108,12 @@ angular.module('pascalprecht.translate').provider('$translatePartialLoader', [fu
           if (!isStringValid(options.urlTemplate)) {
             throw new TypeError('Unable to load data, a urlTemplate is not a non-empty string.');
           }
+          if (!isStringValid(options.wtiProjectId)) {
+            throw new TypeError('Unable to access wti, wtiProjectIt is not a non-empty string');
+          }
+          if (!isStringValid(options.wtiPublicApiToken)) {
+            throw new TypeError('Unable to access wti, wtiPublicApiToken is not a non-empty string');
+          }
           var errorHandler = options.loadFailureHandler;
           if (errorHandler !== undefined) {
             if (!angular.isString(errorHandler)) {
@@ -113,29 +121,61 @@ angular.module('pascalprecht.translate').provider('$translatePartialLoader', [fu
             } else
               errorHandler = $injector.get(errorHandler);
           }
+
           var loaders = [], tables = [], deferred = $q.defer();
           function addTablePart(table) {
             tables.push(table);
           }
-          for (var part in parts) {
-            if (hasPart(part) && parts[part].isActive) {
-              loaders.push(parts[part].getTable(options.key, $q, $http, options.urlTemplate, errorHandler).then(addTablePart));
-            }
+
+          if (!wtiProject) {
+              var wtiDeferred = $q.defer();
+              $http({method: 'GET',
+                  url: '/api/projects/'+options.wtiPublicApiToken + '.json',
+              headers: {'X-Client-Name': 'yp-angular-translate-wti-loader',
+                        'X-Client-Version': '0.0.1'
+              }})
+                  .success(function(data) {
+                      wtiDeferred.resolve(data);
+                  })
+                  .error(function(err) {
+                      wtiDeferred.reject(err);
+                  });
+              wtiProject = wtiDeferred.promise;
           }
-          if (loaders.length) {
-            $q.all(loaders).then(function () {
-              var table = {};
-              for (var i = 0; i < tables.length; i++) {
-                deepExtend(table, tables[i]);
+
+
+          return wtiProject.then(function(wtiProjectData) {
+              for (var part in parts) {
+                  if (hasPart(part) && parts[part].isActive) {
+                      var myPart = parts[part];
+                      var mySourceUrl = myPart.parseUrl(options.urlTemplate, options.key).slice(1);
+                      var myFileObj = _.find(wtiProjectData.project.project_files, function(file) {
+                          return file.name === mySourceUrl;
+                      });
+                      var myWtiUrl;
+                      if (myFileObj) {
+                           myWtiUrl = "/api/projects/"+options.wtiPublicApiToken + "/files/"+myFileObj.id +"/locales/"+options.key;
+                      }
+
+                      loaders.push(parts[part].getTable(options.key, $q, $http, myWtiUrl || options.urlTemplate, errorHandler).then(addTablePart));
+                  }
               }
-              deferred.resolve(table);
-            }, function () {
-              deferred.reject(options.key);
-            });
-          } else {
-            deferred.resolve({});
-          }
-          return deferred.promise;
+              if (loaders.length) {
+                  $q.all(loaders).then(function () {
+                      var table = {};
+                      for (var i = 0; i < tables.length; i++) {
+                          deepExtend(table, tables[i]);
+                      }
+                      deferred.resolve(table);
+                  }, function () {
+                      deferred.reject(options.key);
+                  });
+              } else {
+                  deferred.resolve({});
+              }
+              return deferred.promise;
+          });
+
         };
         service.addPart = function (name) {
           if (!isStringValid(name)) {
