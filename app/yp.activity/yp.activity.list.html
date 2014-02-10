@@ -1,9 +1,9 @@
 <div class="container cockpit">
 
 <header name="plan">
-    <div class="col-md-6">Plane eine Aktivität </div>
+    <div class="col-md-6" translate>list.planAnActivity</div>
     <div class="col-md-2">
-        <a class="btn btn-default" ui-sref="activityAdmin" ng-if="principal.isAuthorized('admin')">Neue Aktivität erfassen</a>
+        <a class="btn btn-default" ui-sref="activityAdmin" ng-if="principal.isAuthorized('admin')" translate>list.createNewActivity</a>
     </div>
 </header>
 
@@ -17,8 +17,8 @@
 
     <!-- Suche -->
     <div class="panel sidebar">
-        <div class="panel sidebar section-title">
-            Suchen
+        <div class="panel sidebar section-title" translate>
+            list.search
         </div>
 
         <div class="row">
@@ -35,8 +35,8 @@
 
     <!-- Fokus -->
     <div class="panel sidebar">
-        <div class="panel sidebar section-title">
-            Fokus setzen
+        <div class="panel sidebar section-title" translate>
+            list.setFocus
         </div>
 
         <div class="row">
@@ -55,8 +55,8 @@
 
     <!-- Aktivitätsbereiche -->
     <div class="panel sidebar">
-        <div class="panel sidebar section-title">
-            Bereiche
+        <div class="panel sidebar section-title" translate>
+            list.areas
         </div>
 
         <div class="row">
@@ -73,8 +73,8 @@
 
     <!-- Alleine/Gruppe -->
     <div class="panel sidebar">
-        <div class="panel sidebar section-title">
-            Mit wem?
+        <div class="panel sidebar section-title" translate>
+            list.togetherWith?
         </div>
 
         <div class="row">
@@ -83,14 +83,14 @@
                      ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.executiontype.self">
-                        alleine
+                        <translate>list.alone</translate>
                     </label>
                 </div>
                 <div class="checkbox filter-option"
                      ng-class="query.executiontype.group ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.executiontype.group">
-                        in der Gruppe
+                        <translate>list.asAGroup</translate>
                     </label>
                 </div>
             </div>
@@ -99,8 +99,8 @@
 
     <!-- Zeitaufwand -->
     <div class="panel sidebar">
-        <div class="panel sidebar section-title">
-            Zeitaufwand
+        <div class="panel sidebar section-title" translate>
+            list.duration
         </div>
 
         <div class="row">
@@ -109,28 +109,28 @@
                      ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.time.t15">
-                        &lt; 15 min
+                        <translate>list.lt15min</translate>
                     </label>
                 </div>
                 <div class="checkbox filter-option"
                      ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.time.t30">
-                        15 - 30 min
+                        <translate>list.15-30min</translate>
                     </label>
                 </div>
                 <div class="checkbox filter-option"
                      ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.time.t60">
-                        30 min - 1 Stunde
+                        <translate>list.30-60min</translate>
                     </label>
                 </div>
                 <div class="checkbox filter-option"
                      ng-class="query.time.more ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.time.more">
-                        mehr als 1 Stunde
+                        <translate>list.mt60min</translate>
                     </label>
                 </div>
             </div>
@@ -139,8 +139,8 @@
 
     <!-- Rating -->
     <div class="panel sidebar">
-        <div class="panel sidebar section-title">
-            Rating
+        <div class="panel sidebar section-title" translate>
+            list.rating
         </div>
 
         <div class="row">
@@ -190,26 +190,29 @@
 
 <div class="col-md-10">
     <div class="panel cockpit">
-        <div class="panel cockpit section-title">
-            Aktivitäten
+        <div class="panel cockpit section-title" translate>
+            list.activities
         </div>
 
         <!-- Tabs und Paginierung -->
         <div class="row">
             <div class="col-md-7">
                 <tabset class="cockpit-tabs">
-                    <li class="cockpit-tab" ng-class="{active: query.subset=='recommendations'}"><a href=""
-                                                                                                    ng-click="setListTab('recommendations')">Empfohlen
-                        für Dich</a></li>
-                    <li class="cockpit-tab" ng-class="{active: query.subset=='campaign'}"><a href="" ng-click="setListTab('campaign')">Kampagnen-Aktionen</a>
+                    <li class="cockpit-tab" ng-class="{active: query.subset=='recommendations'}">
+                        <a href="" ng-click="setListTab('recommendations')" translate>list.recommendedForYou</a></li>
+                    <li class="cockpit-tab" ng-class="{active: query.subset=='campaign'}">
+                        <a href="" ng-click="setListTab('campaign')" translate>list.campaignActivities</a>
                     </li>
-                    <li class="cockpit-tab" ng-class="{active: query.subset=='all'}"><a href="" ng-click="setListTab('all')">alle</a></li>
-                    <li class="cockpit-tab" ng-class="{active: query.subset=='starred'}"><a href="" ng-click="setListTab('starred')">vorgemerkt
-                        <span class="glyphicon glyphicon-star"></span><span>{{countStarredActivities()}}</span></a></li>
+                    <li class="cockpit-tab" ng-class="{active: query.subset=='all'}">
+                        <a href="" ng-click="setListTab('all')" translate>list.all</a>
+                    </li>
+                    <li class="cockpit-tab" ng-class="{active: query.subset=='starred'}">
+                        <a href="" ng-click="setListTab('starred')">
+                        <span class="glyphicon glyphicon-star"></span><span>({{countStarredActivities()}})</span></a></li>
                 </tabset>
             </div>
             <div class="col-md-5">
-                <div> {{filteredActivities.length}} von total {{activities.length}}</div>
+                <div> {{filteredActivities.length}} <translate>list.ofTotal</translate> {{activities.length}}</div>
                     <span ng-hide="filteredActivities.length < maxSize">
                         <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
                                     max-size="maxSize" class="pagination youpers" boundary-links="false" previous-text="<" next-text=">"/>
@@ -224,13 +227,15 @@
                      ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-recWeight', '-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
                     <div class="col-md-1">
                         {{ activity.number }}
-                        <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld">
-                            gemacht
+                        <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld" translate>
+                            list.done
                         </div>
-                        <div ng-if="activity.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended">
-                            empfohlen
+                        <div ng-if="activity.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended" translate>
+                            list.recommended
                         </div>
-                        <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge">geplant</div>
+                        <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge" translate>
+                            list.planned
+                        </div>
                         <div class="activityListStarred glyphicon" ng-click="toggleStar(activity, $event)"
                              ng-class="(activity.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
                     </div>
@@ -249,7 +254,7 @@
                              class="activityListClusterIcon">
                     </div>
                     <div class="col-md-2">
-                        {{ activity.defaultexecutiontype | translate }}
+                        {{ activity.defaultexecutiontype | translate}}
                         <div ng-if="principal.isAuthorized('admin')"><a class="btn btn-sm btn-primary cockpit"
                                                                           ui-sref="activityAdmin({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
                                                                           ng-click="$event.stopPropagation()">admin</a>
@@ -261,11 +266,9 @@
             <div class="col-md-12" ng-show="query.subset=='recommendations' && !hasRecommendations">
                 <div class="row top-buffer">
                     <div class="col-md-6 col-md-offset-3 panel panel-default">
-                        <h3>Wenn du das Assessment ausfüllst, empfiehlt dir YouPers individuell die für dich passendsten
-                            Aktivitäten</h3>
-                        <a ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" class="btn btn-primary">zum
-                            Assessment</a>
-                        <a href="" ng-click="query.subset='all'" class="btn btn-primary">alle Aktivitäten anzeigen</a>
+                        <h3 translate>list.ifYouFillAssessment</h3>
+                        <a ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" class="btn btn-primary" translate>list.toAssessment</a>
+                        <a href="" ng-click="query.subset='all'" class="btn btn-primary" translate>list.showAllActivities</a>
                     </div>
                 </div>
 
