@@ -4,7 +4,7 @@
 
     angular.module('yp.socket', ['yp.config'])
         .factory('$socket', ['$rootScope', '$timeout', 'yp.config', function ($rootScope, $timeout, config) {
-            var socket = io.connect('http://localhost:8000');
+            var socket = io.connect(config.backendUrl);
             return {
                 on: function (eventName, callback) {
                     socket.on(eventName, function () {
