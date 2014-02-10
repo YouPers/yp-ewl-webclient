@@ -26,8 +26,12 @@
                             }],
                             assessment: ['AssessmentService', function (AssessmentService) {
                                 return AssessmentService.getAssessment('525faf0ac558d40000000005');
+                            }],
+                            translations: ['$translateWtiPartialLoader', '$translate',
+                                function($translateWtiPartialLoader, $translate ) {
+                                $translateWtiPartialLoader.addPart('yp.activity');
+                                return $translate.refresh();
                             }]
-
                         }
                     })
                     .state('activityAdmin', {
@@ -221,12 +225,17 @@
         }])
 
 
-        .factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', function ($http, Restangular, $q, principal) {
+        .factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', '$rootScope',
+            function ($http, Restangular, $q, principal, $rootScope) {
             var activities = Restangular.all('activities');
             var activityPlans = Restangular.all('activityplans');
 
             var cachedActivitiesPromise;
             var cachedRecommendationsPromises = {};
+
+            $rootScope.$on('$translateChangeStart', function() {
+                actService.reloadActivities();
+            });
 
             var actService = {
                 getActivities: function () {

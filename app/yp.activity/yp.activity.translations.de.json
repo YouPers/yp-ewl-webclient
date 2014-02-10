@@ -1,0 +1,35 @@
+{
+    "list": {
+        "planAnActivity": "Plane eine Aktivität",
+        "createNewActivity": "Neue Aktivität erfassen",
+        "search": "Suchen",
+        "setFocus": "Fokus setzen",
+        "areas": "Bereiche",
+        "togetherWith?": "Mit wem?",
+        "alone": "Alleine",
+        "asAGroup": "in der Gruppe",
+        "duration": "Zeitdauer",
+        "lt15min": "< 15 min",
+        "15-30min": "15-30 min",
+        "30-60min": "30 min - 1 Stunde",
+        "mt60min": "mehr als 1 Stunde",
+        "rating": "Bewertung",
+        "activities": "Aktivitäten",
+        "recommendedForYou": "Empfohlen für Dich",
+        "campaignActivities": "Kampagnen-Aktionen",
+        "all": "Alle",
+        "ofTotal": "von total",
+        "done": "gemacht",
+        "recommended": "empfohlen",
+        "planned": "geplant",
+        "ifYouFillAssessment": "Wenn du das Assessment ausfüllst, empfiehlt dir YouPers individuell die für dich passendsten Aktivitäten",
+        "toAssessment": "zum Assessment",
+        "showAllActivities": "alle Aktivitäten zeigen"
+    },
+    "detail": {
+
+    },
+    "admin": {
+
+    }
+}
