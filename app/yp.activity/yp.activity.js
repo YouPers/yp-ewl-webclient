@@ -32,7 +32,6 @@
                                 $translateWtiPartialLoader.addPart('yp.activity');
                                 return $translate.refresh();
                             }]
-
                         }
                     })
                     .state('activityAdmin', {
