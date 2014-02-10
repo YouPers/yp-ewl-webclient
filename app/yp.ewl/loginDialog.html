@@ -80,7 +80,7 @@
             <div class="form-group"  ng-class="{'has-error': registerform.termsAccepted.$dirty && registerform.termsAccepted.$invalid}">
 
                 <input name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
-                <div toggle-value="termsAccepted" >Ich hab die <a href="#/terms" target="_blank">Allgemeinen Geschäftsbedingungen und die Datenschutzbestimmung</a> gelesen und stimme ihnen zu</div>
+                <div toggle-value="termsAccepted">Ich hab die <a href="#/terms" target="_blank" toggle-value="termsAccepted">Allgemeinen Geschäftsbedingungen und die Datenschutzbestimmung</a> gelesen und stimme ihnen zu</div>
                 <span ng-show="registerform.termsAccepted.$error.required" class="help-inline">Bitte akzeptiere die Geschäftsbedingungen</span>
             </div>
             <button type="submit" class="btn btn-success btn-sm" ng-disabled="registerform.$invalid">{{ 'REGISTER' | translate }}</button>
