@@ -80,6 +80,7 @@
             <div class="form-group"  ng-class="{'has-error': registerform.termsAccepted.$dirty && registerform.termsAccepted.$invalid}">
 
                 <input name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
+                <!-- toggle-value="termsAccepted" is used again in the <a> to revert the checkbox change -->
                 <div toggle-value="termsAccepted">Ich hab die <a href="#/terms" target="_blank" toggle-value="termsAccepted">Allgemeinen Geschäftsbedingungen und die Datenschutzbestimmung</a> gelesen und stimme ihnen zu</div>
                 <span ng-show="registerform.termsAccepted.$error.required" class="help-inline">Bitte akzeptiere die Geschäftsbedingungen</span>
             </div>
