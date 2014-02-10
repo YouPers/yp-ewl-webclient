@@ -2,16 +2,14 @@
 
 angular.module('i18n', ['pascalprecht.translate'])
 
-    .controller('i18nCtrl', ['$scope', '$translate','$http', 'ActivityService', 'AssessmentService',
-        function ($scope, $translate, $http, ActivityService, AssessmentService) {
+    .controller('i18nCtrl', ['$scope', '$translate','$http',
+        function ($scope, $translate, $http) {
 
         $scope.changeLang = function (key) {
             moment.lang(key);
             $http.defaults.headers.common['yp-language'] =  key;
             $translate.uses(key).then(function (key) {
                 $translate.refresh();
-                ActivityService.reloadActivities();
-                AssessmentService.reloadAssessment();
                 $scope.$state.go('bounce', {state: $scope.$state.current.name, params: JSON.stringify($scope.$stateParams)});
             }, function (key) {
             });

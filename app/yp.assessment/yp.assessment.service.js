@@ -5,9 +5,13 @@
     angular.module('yp.assessment')
 
         // provides methods to get Assessment Information from the server
-        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'principal',
-            function ($http, $q, Restangular, principal) {
+        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'principal','$rootScope',
+            function ($http, $q, Restangular, principal, $rootScope) {
                 var cachedAssessmentPromise;
+
+                $rootScope.$on('$translateChangeStart', function() {
+                   cachedAssessmentPromise = null;
+                });
 
                 var assService = {
                     getAssessment: function (assessmentId) {
