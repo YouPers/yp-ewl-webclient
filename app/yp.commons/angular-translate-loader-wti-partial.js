@@ -10,7 +10,7 @@ angular.module('pascalprecht.translate')
  * directly during the configuration phase of your application's lifetime. All parts you add by
  * using this provider would be loaded by the angular-translate at the startup as soon as possible.
  */
-    .provider('$translatePartialLoader', [function() {
+    .provider('$translateWtiPartialLoader', [function() {
 
         function Part(name) {
             this.name = name;
