@@ -193,7 +193,7 @@ angular.module('yp-ewl',
             });
 
             $scope.$on('loginMessageShow', function (event, data) {
-                $scope.registerShown = data.registration;
+                $scope.registerShown = data && data.registration;
                 loginDialogOpen();
                 $scope.nextStateAfterLogin = data;
             });
