@@ -5,7 +5,7 @@
         "search": "Search",
         "setFocus": "Set a focus",
         "areas": "Areas",
-        "togetherWith?": "Together with?",
+        "togetherWith": "Together with?",
         "alone": "alone",
         "asAGroup": "as a group",
         "duration": "Duration",
@@ -31,5 +31,20 @@
     },
     "admin": {
 
+    },
+    "activityField": {
+        "awarenessAbility": "Awareness Ability",
+        "timeManagement": "Time Management",
+        "workStructuring": "Work Structuring",
+        "physicalActivity": "Physical Activity",
+        "nutrition": "Nutrition",
+        "leisureActivity": "Leisure Activity",
+        "breaks": "Breaks",
+        "relaxation": "Relaxation",
+        "socialInteraction": "Social Interaction"
+    },
+    "executiontype": {
+        "self": "self",
+        "group": "group"
     }
 }

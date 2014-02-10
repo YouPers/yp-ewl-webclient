@@ -5,9 +5,9 @@
         "search": "Suchen",
         "setFocus": "Fokus setzen",
         "areas": "Bereiche",
-        "togetherWith?": "Mit wem?",
-        "alone": "Alleine",
-        "asAGroup": "in der Gruppe",
+        "togetherWith": "Mit wem?",
+        "alone": "Selber",
+        "asAGroup": "In der Gruppe",
         "duration": "Zeitdauer",
         "lt15min": "< 15 min",
         "15-30min": "15-30 min",
@@ -31,5 +31,20 @@
     },
     "admin": {
 
+    },
+    "activityField": {
+        "awarenessAbility": "Bewusstsein und Fähigkeit",
+        "timeManagement": "Zeitmanagement",
+        "workStructuring": "Arbeitsgestaltung",
+        "physicalActivity": "Körperliche Aktivität",
+        "nutrition": "Ernährung",
+        "leisureActivity": "Freizeitaktivität",
+        "breaks": "Pausen",
+        "relaxation": "Entspannung",
+        "socialInteraction": "Sozialer Austausch"
+    },
+    "executiontype": {
+        "self": "Selber",
+        "group": "Gruppe"
     }
 }

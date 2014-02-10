@@ -81,17 +81,17 @@
                     });
             }])
 
-        .constant('activityFields', {
-            AwarenessAbility: "Bewusstsein und Fähigkeit",
-            TimeManagement: "Zeitmanagement",
-            WorkStructuring: "Arbeitsgestaltung",
-            PhysicalActivity: "Körperliche Aktivität",
-            Nutrition: "Ernährung",
-            LeisureActivity: "Freizeitaktivität",
-            Breaks: "Pausen",
-            Relaxation: "Entspannung",
-            SocialInteraction: "Sozialer Austausch"
-        })
+        .constant('activityFields', [
+            'awarenessAbility',
+            'timeManagement',
+            'workStructuring',
+            'physicalActivity',
+            'nutrition',
+            'leisureActivity',
+            'breaks',
+            'relaxation',
+            'socialInteraction'
+        ])
 
         // Object methods for all Assessment related objects
         .run(['Restangular', function (Restangular) {

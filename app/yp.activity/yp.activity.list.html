@@ -61,11 +61,11 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div ng-repeat="(fieldId, fieldDesc) in activityFields" class="filter-option"
+                <div ng-repeat="fieldId in activityFields" class="filter-option"
                      ng-class="query.cluster[fieldId] ? 'filter-option-active' : 'filter-option-inactive'"
                      ng-click="query.cluster[fieldId] = !query.cluster[fieldId]">
                     <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListFilterClusterIcon">
-                    {{ fieldDesc }}
+                    {{ 'activityField.' + fieldId | translate }}
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
     <!-- Alleine/Gruppe -->
     <div class="panel sidebar">
         <div class="panel sidebar section-title" translate>
-            list.togetherWith?
+            list.togetherWith
         </div>
 
         <div class="row">
@@ -254,7 +254,7 @@
                              class="activityListClusterIcon">
                     </div>
                     <div class="col-md-2">
-                        {{ activity.defaultexecutiontype | translate}}
+                        {{ 'executiontype.' + activity.defaultexecutiontype | translate}}
                         <div ng-if="principal.isAuthorized('admin')"><a class="btn btn-sm btn-primary cockpit"
                                                                           ui-sref="activityAdmin({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
                                                                           ng-click="$event.stopPropagation()">admin</a>
