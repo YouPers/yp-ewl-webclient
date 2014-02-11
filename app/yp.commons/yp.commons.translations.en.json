@@ -8,8 +8,8 @@
         "male": "male",
         "female": "female"
     },
-    "maritialStatus": {
-        "maritialStatus": "Maritial Status",
+    "maritalStatus": {
+        "maritalStatus": "Marital Status",
         "undefined": "unknown",
         "single": "single",
         "unmarried": "unmarried",
@@ -17,5 +17,19 @@
         "separated": "separated",
         "divorced": "divorced",
         "widowed": "widowed"
+    },
+    "weekday": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+    },
+    "timezone": {
+        "00:00": "UTC",
+        "+01:00": "Zurich (+01:00)",
+        "+03:00": "Sotchi (+03:00)"
     }
 }

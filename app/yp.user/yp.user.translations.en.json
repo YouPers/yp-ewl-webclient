@@ -44,11 +44,47 @@
         "emailValid": "Email address successfully validated!",
         "thankYou": "Thank you for verifying your email address. You can now continue"
     },
+    "passwordResetRequest": {
+        "resetPasswordFor": "Reset password for",
+        "identification": "Identification"
+    },
+    "passwordResetRequestForm": {
+        "usernameOrEmail": "Username or Email",
+        "$invalid": "Please enter a valid Username or Email",
+        "submit": "Submit",
+        "reset": "reset"
+    },
     "passwordReset": {
         "hello": "Hello",
         "setNewPassword": "You can set a new password here:",
         "newPassword": "New Password",
         "success": "New password successfully set",
         "loginAgainWithNewPassword": "please login with your new password..."
+    },
+    "profile": {
+        "profile": "Profile",
+        "homeAddress": "Home Address",
+        "workAddress": "Work Address",
+        "settings": "Settings"
+    },
+    "profileForm": {
+        "submit": "Submit",
+        "gender": {
+            "label": "Gender"
+        },
+        "birthdate": {
+            "label": "Birthdate",
+            "$invalid": "Please enter a valid Birthdate"
+        },
+        "street": "Street",
+        "number": "Nr.",
+        "zip": "zip",
+        "city": "city",
+        "country": "country",
+        "defaultWorkWeek": "Base setting for work week",
+        "firstDayOfWeek": "First day of week",
+        "timeZone": "Timezone",
+        "$invalid": "Please enter a valid value"
     }
+
 }

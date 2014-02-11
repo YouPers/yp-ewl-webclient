@@ -71,8 +71,8 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'principal', 'UserService', '$timeout', '$http', '$translate',
-        function ($rootScope, $state, $stateParams, principal, UserService, $timeout, $http, $translate) {
+    .run(['$rootScope', '$state', '$stateParams', 'principal', 'UserService', '$timeout', '$http', '$translate', 'enums',
+        function ($rootScope, $state, $stateParams, principal, UserService, $timeout, $http, $translate, enums) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -81,6 +81,7 @@ angular.module('yp-ewl',
             $rootScope.$stateParams = $stateParams;
             $rootScope.principal = principal;
             $rootScope.currentLocale = $translate.uses() || $translate.proposedLanguage();
+            $rootScope.enums = enums;
 
             // set the language to use for backend calls to be equal to the current GUI language
             // translate.uses() returns undefined until the partial async loader has found the "proposedLanguage"

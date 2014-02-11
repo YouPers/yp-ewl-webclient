@@ -8,7 +8,9 @@
     </div>
     <div class="col-md-1">
         </br>
-        <button type="submit" class="btn btn-success btn-sm" ng-disabled="profileForm.$invalid" translate>profileForm.submit</button>
+        <button type="submit" class="btn btn-success btn-sm" ng-disabled="profileForm.$invalid" translate>
+            profileForm.submit
+        </button>
     </div>
 </div>
 
@@ -37,8 +39,12 @@
                 </div>
                 <div class="col-md-8">
                     <div class="btn-group" data-toggle="buttons-radio">
-                        <input type="radio" value="female" ng-model="profileUserObj.gender" ng-click="profileUserObj.gender = 'female'">&NonBreakingSpace;{{ 'gender.male' | translate }} </input></br>
-                        <input type="radio" value="male" ng-model="profileUserObj.gender" ng-click="profileUserObj.gender = 'male'">&NonBreakingSpace;{{ 'gender.female' | translate }} </input></br>
+                        <input type="radio" value="female" ng-model="profileUserObj.gender"
+                               ng-click="profileUserObj.gender = 'female'">&NonBreakingSpace;{{ 'gender.male' |
+                        translate }} </input></br>
+                        <input type="radio" value="male" ng-model="profileUserObj.gender"
+                               ng-click="profileUserObj.gender = 'male'">&NonBreakingSpace;{{ 'gender.female' |
+                        translate }} </input></br>
                     </div>
                 </div>
             </div>
@@ -52,8 +58,10 @@
                 </div>
                 <div class="col-md-4">
                     <!--ToDo internationalized date check and or date Picker-->
-                    <input name="birthDate" type="text" placeholder="tt.mm.jjjj" class="form-control" ng-model="profileUserObj.birthDate">
-                    <span ng-show="profileForm.birthDate.$dirty && profileForm.birthDate.$invalid" class="help-inline" translate>profileForm.birthdate.$invalid</span>
+                    <input name="birthDate" type="text" placeholder="tt.mm.jjjj" class="form-control"
+                           ng-model="profileUserObj.birthDate">
+                    <span ng-show="profileForm.birthDate.$dirty && profileForm.birthDate.$invalid" class="help-inline"
+                          translate>profileForm.birthdate.$invalid</span>
                 </div>
             </div>
         </div>
@@ -65,13 +73,9 @@
             </div>
             <div class="col-md-4">
                 <select ng-model="profileUserObj.maritalStatus">
-                    <option value="undefined" translate>maritalStatus.undefined</option>
-                    <option value="single" translate>maritalStatus.single</option>
-                    <option value="unmarried" translate>maritalStatus.unmarried</option>
-                    <option value="married" translate>maritalStatus.married</option>
-                    <option value="separated" translate>maritalStatus.separated</option>
-                    <option value="divorced" translate>maritalStatus.divorced</option>
-                    <option value="widowed" translate>maritalStatus.widowed</option>
+                    <option value="{{value}}" ng-repeat="value in enums.maritalStatus ">{{'maritalStatus.' + value |
+                        translate}}
+                    </option>
                 </select>
             </div>
         </div>
@@ -85,30 +89,41 @@
 
             <div class="row">
                 <div class="col-md-9">
-                    <input name="homeAddressStreet" type="text" placeholder="{{ 'profileForm.street' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.street">
-                    <span ng-show="profileUserObj.homeAddress.street.$dirty && profileUserObj.homeAddress.street.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+                    <input name="homeAddressStreet" type="text" placeholder="{{ 'profileForm.street' | translate }}"
+                           class="form-control" ng-model="profileUserObj.homeAddress.street">
+                    <span ng-show="profileUserObj.homeAddress.street.$dirty && profileUserObj.homeAddress.street.$invalid"
+                          class="help-inline" translate>profileForm.$invalid</span>
                 </div>
 
                 <div class="col-md-3">
-                    <input name="homeAddressHouseNumber" type="text" placeholder="{{ 'profileForm.number' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.houseNumber">
-                    <span ng-show="profileForm.homeAddress.houseNumber.$dirty && profileForm.homeAddress.houseNumber.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+                    <input name="homeAddressHouseNumber" type="text"
+                           placeholder="{{ 'profileForm.number' | translate }}" class="form-control"
+                           ng-model="profileUserObj.homeAddress.houseNumber">
+                    <span ng-show="profileForm.homeAddress.houseNumber.$dirty && profileForm.homeAddress.houseNumber.$invalid"
+                          class="help-inline" translate>profileForm.$invalid</span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-3">
-                    <input name="homeAddressZipCode" type="text" placeholder="{{ 'profileForm.zip' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.zipCode">
-                    <span ng-show="profileForm.homeAddress.zipCode.$dirty && profileForm.homeAddress.zipCode.$invalid" class="help-inline" tranlsate>profileForm.$invalid</span>
+                    <input name="homeAddressZipCode" type="text" placeholder="{{ 'profileForm.zip' | translate }}"
+                           class="form-control" ng-model="profileUserObj.homeAddress.zipCode">
+                    <span ng-show="profileForm.homeAddress.zipCode.$dirty && profileForm.homeAddress.zipCode.$invalid"
+                          class="help-inline" tranlsate>profileForm.$invalid</span>
                 </div>
 
                 <div class="col-md-9">
-                    <input name="homeAddressCity" type="text" placeholder="{{ 'profileForm.city' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.city">
-                    <span ng-show="profileForm.homeAddress.city.$dirty && profileForm.homeAddress.city.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+                    <input name="homeAddressCity" type="text" placeholder="{{ 'profileForm.city' | translate }}"
+                           class="form-control" ng-model="profileUserObj.homeAddress.city">
+                    <span ng-show="profileForm.homeAddress.city.$dirty && profileForm.homeAddress.city.$invalid"
+                          class="help-inline" translate>profileForm.$invalid</span>
                 </div>
             </div>
 
-            <input name="homeAddressCountry" type="text" placeholder="{{ 'profileForm.country' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.country">
-            <span ng-show="profileForm.homeAddress.country.$dirty && profileForm.homeAddress.country.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+            <input name="homeAddressCountry" type="text" placeholder="{{ 'profileForm.country' | translate }}"
+                   class="form-control" ng-model="profileUserObj.homeAddress.country">
+            <span ng-show="profileForm.homeAddress.country.$dirty && profileForm.homeAddress.country.$invalid"
+                  class="help-inline" translate>profileForm.$invalid</span>
         </div>
 
         <div class="form-group">
@@ -116,30 +131,41 @@
 
             <div class="row">
                 <div class="col-md-9">
-                    <input name="workAddressStreet" type="text" placeholder="{{ 'profileForm.street' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.street">
-                    <span ng-show="profileUserObj.workAddress.street.$dirty && profileUserObj.workAddress.street.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+                    <input name="workAddressStreet" type="text" placeholder="{{ 'profileForm.street' | translate }}"
+                           class="form-control" ng-model="profileUserObj.workAddress.street">
+                    <span ng-show="profileUserObj.workAddress.street.$dirty && profileUserObj.workAddress.street.$invalid"
+                          class="help-inline" translate>profileForm.$invalid</span>
                 </div>
 
                 <div class="col-md-3">
-                    <input name="workAddressHouseNumber" type="text" placeholder="{{ 'profileForm.number' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.houseNumber">
-                    <span ng-show="profileForm.workAddress.houseNumber.$dirty && profileForm.workAddress.houseNumber.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+                    <input name="workAddressHouseNumber" type="text"
+                           placeholder="{{ 'profileForm.number' | translate }}" class="form-control"
+                           ng-model="profileUserObj.workAddress.houseNumber">
+                    <span ng-show="profileForm.workAddress.houseNumber.$dirty && profileForm.workAddress.houseNumber.$invalid"
+                          class="help-inline" translate>profileForm.$invalid</span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-3">
-                    <input name="workAddressZipCode" type="text" placeholder="{{ 'profileForm.zip' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.zipCode">
-                    <span ng-show="profileForm.workAddress.zipCode.$dirty && profileForm.workAddress.zipCode.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+                    <input name="workAddressZipCode" type="text" placeholder="{{ 'profileForm.zip' | translate }}"
+                           class="form-control" ng-model="profileUserObj.workAddress.zipCode">
+                    <span ng-show="profileForm.workAddress.zipCode.$dirty && profileForm.workAddress.zipCode.$invalid"
+                          class="help-inline" translate>profileForm.$invalid</span>
                 </div>
 
                 <div class="col-md-9">
-                    <input name="workAddressCity" type="text" placeholder="{{ 'profileForm.city' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.city">
-                    <span ng-show="profileForm.workAddress.city.$dirty && profileForm.workAddress.city.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+                    <input name="workAddressCity" type="text" placeholder="{{ 'profileForm.city' | translate }}"
+                           class="form-control" ng-model="profileUserObj.workAddress.city">
+                    <span ng-show="profileForm.workAddress.city.$dirty && profileForm.workAddress.city.$invalid"
+                          class="help-inline" translate>profileForm.$invalid</span>
                 </div>
             </div>
 
-            <input name="workAddressCountryr" type="text" placeholder="{{ 'profileForm.country' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.country">
-            <span ng-show="profileForm.workAddress.country.$dirty && profileForm.workAddress.country.$invalid" class="help-inline" translate>profileForm.$invalid</span>
+            <input name="workAddressCountryr" type="text" placeholder="{{ 'profileForm.country' | translate }}"
+                   class="form-control" ng-model="profileUserObj.workAddress.country">
+            <span ng-show="profileForm.workAddress.country.$dirty && profileForm.workAddress.country.$invalid"
+                  class="help-inline" translate>profileForm.$invalid</span>
         </div>
 
     </div>
@@ -147,137 +173,58 @@
 
 </accordion-group>
 
-<accordion-group heading="{{ 'SETTINGS' | translate }}" is-open="true">
+<accordion-group heading="{{ 'profile.settings' | translate }}" is-open="true">
 
     <div class="col-md-6">
 
         <div class="form-group">
-            <label>{{ 'DEFAULTUSERWEEKFORSCHEDULING' | translate }}</label>
+            <label translate>profileForm.defaultWorkWeek</label>
+
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3" ng-repeat="weekday in enums.weekday">
                     <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input name="defWeekForSchedulingMonday" type="checkbox" ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling.monday">&NonBreakingSpace;{{ 'MONDAY' | translate }}
-                                            </span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input name="defWeekForSchedulingTuesday" type="checkbox" ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling.tuesday">&NonBreakingSpace;{{ 'TUESDAY' | translate }}
-                                            </span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input name="defWeekForSchedulingWednesday" type="checkbox" ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling.wednesday">&NonBreakingSpace;{{ 'WEDNESDAY' | translate }}
-                                            </span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input name="defWeekForSchedulingThursday" type="checkbox" ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling.thursday">&NonBreakingSpace;{{ 'THURSDAY' | translate }}
-                                            </span>
+                         <span class="input-group-addon">
+                              <input name="{{'defWeekForScheduling'+weekday}}" type="checkbox"
+                                     ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling[weekday]">&NonBreakingSpace;{{ 'weekday.'+weekday | translate }}
+                         </span>
                     </div>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-md-3">
-                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input name="defWeekForSchedulingFriday" type="checkbox" ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling.friday">&NonBreakingSpace;{{ 'FRIDAY' | translate }}
-                                            </span>
-                    </div>
+                <div class="col-md-4">
+                    <label translate>profileForm.firstDayOfWeek</label>
                 </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input name="defWeekForSchedulingSaturday" type="checkbox" ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling.saturday">&NonBreakingSpace;{{ 'SATURDAY' | translate }}
-                                            </span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input name="defWeekForSchedulingSunday" type="checkbox" ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling.sunday">&NonBreakingSpace;{{ 'SUNDAY' | translate }}
-                                            </span>
+                <div class="col-md-8">
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <input type="radio" value="Monday" ng-model="profileUserObj.userPreferences.firstDayOfWeek"
+                               ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'Monday'">&NonBreakingSpace;{{
+                        'weekday.sunday' | translate }} <br/></input>
+                        <input type="radio" value="Sunday" ng-model="profileUserObj.userPreferences.firstDayOfWeek"
+                               ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'Sunday'">&NonBreakingSpace;{{
+                        'weekday.monday' | translate }}</input>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <label>{{ 'FIRSTDAYOFWEEK' | translate }}</label>
-            </div>
-            <div class="col-md-8">
-                <div class="btn-group" data-toggle="buttons-radio">
-                    <input type="radio" value="Monday" ng-model="profileUserObj.userPreferences.firstDayOfWeek" ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'Monday'">&NonBreakingSpace;{{ 'MONDAY' | translate }} <br/></input>
-                    <input type="radio" value="Sunday" ng-model="profileUserObj.userPreferences.firstDayOfWeek" ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'Sunday'">&NonBreakingSpace;{{ 'SUNDAY' | translate }}</input>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <label translate>profileForm.timeZone</label>
                 </div>
+
+                <div class="col-md-6">
+                    <select ng-model="profileUserObj.userPreferences.timezone">
+                        <option ng-repeat="timezone in enums.timezone" value="timezone">{{'timezone.'+timezone | translate}}
+                        </option>
+                    </select>
+                </div>
+
             </div>
         </div>
-
-    </div>
-
-    <div class="col-md-6">
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-
-            <div class="col-md-4">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <label>{{ 'LANGUAGEUI' | translate }}&NonBreakingSpace;</label><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <!--ToDo dynamic list based on backend domain values (e.g. enums)-->
-                        <li><input type="radio" value="German" ng-model="profileUserObj.userPreferences.languageUI" ng-click="profileUserObj.userPreferences.languageUI = 'German'">&NonBreakingSpace;{{ 'GERMAN' | translate }}</input></li>
-                        <li><input type="radio" value="English" ng-model="profileUserObj.userPreferences.languageUI" ng-click="profileUserObj.userPreferences.languageUI = 'English'">&NonBreakingSpace;{{ 'ENGLISH' | translate }}</input></li>
-                        <li><input type="radio" value="Italian" ng-model="profileUserObj.userPreferences.languageUI" ng-click="profileUserObj.userPreferences.languageUI = 'Italian'">&NonBreakingSpace;{{ 'ITALIAN' | translate }}</input></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                {{ profileUserObj.userPreferences.languageUI | translate  }}
-            </div>
-        </div>
-        </br>
-
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-
-            <div class="col-md-4">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <label>{{ 'TIMEZONE' | translate }}&NonBreakingSpace;</label><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <!--ToDo dynamic list based on backend domain values (e.g. enums)-->
-                        <li><input type="radio" value="(GMT+01:00) Zürich" ng-model="profileUserObj.userPreferences.timezone" ng-click="profileUserObj.userPreferences.timezone = '(GMT+01:00) Zürich'">&NonBreakingSpace;(GMT+01:00) Zürich</input></li>
-                        <li><input type="radio" value="(GRM+00:00) London" ng-model="profileUserObj.userPreferences.timezone" ng-click="profileUserObj.userPreferences.timezone = '(GRM+00:00) London'">&NonBreakingSpace;(GRM+00:00) London</input></li>
-                        <li><input type="radio" value="(GMT-08:00) U.S. Pacific" ng-model="profileUserObj.userPreferences.timezone" ng-click="profileUserObj.userPreferences.timezone = '(GMT-08:00) U.S. Pacific'">&NonBreakingSpace;(GMT-08:00) U.S. Pacific</input></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                {{ profileUserObj.userPreferences.timezone }}
-            </div>
-        </div>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-    </div>
+     </div>
 </accordion-group>
 </accordion>
 </div>

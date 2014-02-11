@@ -45,6 +45,16 @@
         "emailValid": "Email-Adresse bestätigt!",
         "thankYou": "Vielen für die Bestätigung der Email-Adresse - sie können nun fortfahren."
     },
+    "passwordResetRequest": {
+        "resetPasswordFor": "Passwort zurücksetzen für",
+        "identification": "Identifikation"
+    },
+    "passwordResetRequestForm": {
+        "usernameOrEmail": "Username oder Email",
+        "$invalid": "Bitte gültigen Username oder Email eingeben",
+        "submit": "Übermitteln",
+        "reset": "zurücksetzen"
+    },
     "passwordReset": {
         "hello": "Hallo",
         "setNewPassword": "Du kannst Dir nun ein neues Passwort setzen:",
@@ -55,7 +65,8 @@
     "profile": {
         "profile": "Profil",
         "homeAddress": "Heimadresse",
-        "workAddress": "Arbeitsort"
+        "workAddress": "Arbeitsort",
+        "settings": "Einstellungen"
     },
     "profileForm": {
         "submit": "Übermitteln",
@@ -71,6 +82,9 @@
         "zip": "PLZ",
         "city": "Ort",
         "country": "Land",
+        "defaultWorkWeek": "Grundeinstellung für Arbeitswoche",
+        "firstDayOfWeek": "Erster Tag der Woche",
+        "timeZone": "Zeitzone",
         "$invalid": "Bitte gültigen Wert eintragen"
     }
 
