@@ -3,8 +3,8 @@
 
     angular.module('yp.activity', ['restangular', 'ui.router', 'yp.user'])
 
-        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
-            function ($stateProvider, $urlRouterProvider, accessLevels) {
+        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('activitylist', {
                         url: "/activities?tab&page",
@@ -26,11 +26,6 @@
                             }],
                             assessment: ['AssessmentService', function (AssessmentService) {
                                 return AssessmentService.getAssessment('525faf0ac558d40000000005');
-                            }],
-                            translations: ['$translateWtiPartialLoader', '$translate',
-                                function($translateWtiPartialLoader, $translate ) {
-                                $translateWtiPartialLoader.addPart('yp.activity');
-                                return $translate.refresh();
                             }]
                         }
                     })
@@ -79,6 +74,8 @@
                             } ]
                         }
                     });
+
+                    $translateWtiPartialLoaderProvider.addPart('yp.activity');
             }])
 
         .constant('activityFields', [
