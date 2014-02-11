@@ -1,0 +1,37 @@
+{
+    "assessment": {
+        "header": "Evaluate your personal stresslevel",
+        "subheader": {
+            "first": "Evaluation",
+            "recurring": "Last evaluation: "
+        },
+        "save": "Save",
+
+        "result": {
+            "header": "Results for your Assessment",
+            "topStressors": {
+                "header": "Your most significant stresslevel causes",
+                "name": "Stressor",
+                "answer": "Your answer",
+                "comment": "Comment",
+                "campaignStatistics": {
+                    "header": "The most common stressors in this campaign:",
+                    "category": "Category: "
+                }
+            },
+            "nextSteps": "In the next step you will be offered selected activities based on your evaluation <br/>You can repeat this evaluation later on to track the progression of your stresslevels.",
+            "next": "Next",
+            "back": "Back to Evaluation",
+            "backToCockpit": "To the Cockpit"
+        }
+    },
+
+    "questionCategory": {
+        "generalStresslevel": "General stresslevel",
+        "atWork": "At work",
+        "leisureTime": "Stress at home (jobexteral factors)",
+        "stressType": "Stresstype (Stress enhancer)",
+        "stressMeasures": "Stresshandling (leisure/recreation)"
+    }
+
+}

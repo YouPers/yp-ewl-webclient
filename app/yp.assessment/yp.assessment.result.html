@@ -1,20 +1,20 @@
 <div class="doneAssessmentDialog panel panel-default">
 
     <div class="modal-header">
-        <h3>{{ 'YOUR_ASSESSMENT_RESULTS' | translate }}</h3>
+        <h3 translate>assessment.result.header</h3>
     </div>
     <div class="modal-body">
 
-        <p>Gemäss deiner Selbstbeurteilung sind dies deine drei grössten Stressverursacher:</p>
+        <p translate>assessment.result.topStressors.header</p>
         <div class="row assessmentResultHeader">
-            <div class="col-md-3">
-                Stressor
+            <div class="col-md-3" translate>
+                assessment.result.topStressors.name
             </div>
-            <div class="col-md-2">
-                deine Antwort
+            <div class="col-md-2" translate>
+                assessment.result.topStressors.answer
             </div>
-            <div class="col-md-7">
-                Kommentar
+            <div class="col-md-7" translate>
+                assessment.result.topStressors.comment
             </div>
         </div>
         </br>
@@ -34,21 +34,21 @@
             </br>
         </div>
 
-        <p>In dieser Kampagne wurden bisher folgende Stressoren am häufigsten als grösste Stressoren genannt:</br>
+        <p translate>assessment.result.topStressors.campaignStatistics.header</p>
                 <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000dd"].title }}</span>
-                <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup["5278c51a6166f2de240000dd"].category.toUpperCase() | translate}}), </span>
+                <span class="assessmentResultCategory">({{'assessment.result.topStressors.campaignStatistics.category' | translate }}{{ assessment.questionLookup["5278c51a6166f2de240000dd"].category.toUpperCase() | translate}}), </span>
                 <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000dc"].title }}</span>
                 <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup["5278c51a6166f2de240000dc"].category.toUpperCase() | translate}}), </span>
                 <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000c5"].title }}</span>
                 <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup["5278c51a6166f2de240000c5"].category.toUpperCase() | translate}})</span></p>
 
-        <p>Aufgrund deiner Selbsbeurteilung werden dir im nächsten Schritt Aktivitäten vorgeschlagen, die du gleich einplanen kannst.</p>
-        <p>Idealerweise wiederholst du während der Kampagne wöchentlich deine Selbstbeurteilung, damit du siehst, wie sich dein Stresslevel entwickelt.</p>
+        <p translate>assessment.result.nextSteps</p>
+        <p></p>
     </div>
 
     <div class="modal-footer">
-        <a type="button" class="btn btn-primary" ui-sref="activitylist">weiter zum nächsten Schritt</a>
-        <a type="button" class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})">zurück zur Selbstbeurteilung</a>
-        <a type="button" class="btn btn-default" ui-sref="cockpit">zum Cockpit</a>
+        <a type="button" class="btn btn-primary" ui-sref="activitylist" translate>assessment.result.next</a>
+        <a type="button" class="btn btn-default" ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" translate>assessment.result.back</a>
+        <a type="button" class="btn btn-default" ui-sref="cockpit" translate>assessment.result.backToCockpit</a>
     </div>
 </div>
