@@ -79,6 +79,7 @@ angular.module('yp-ewl',
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.principal = principal;
+            $rootScope.currentLocale = $translate.uses() || $translate.proposedLanguage();
 
             // set the language to use for backend calls to be equal to the current GUI language
             // translate.uses() returns undefined until the partial async loader has found the "proposedLanguage"

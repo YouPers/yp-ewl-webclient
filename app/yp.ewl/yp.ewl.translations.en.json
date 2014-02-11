@@ -4,7 +4,11 @@
         "assess": "assess",
         "plan": "plan",
         "do": "do",
-        "evaluate": "evaluate"
+        "evaluate": "evaluate",
+        "logout": "Logout",
+        "account": "Account",
+        "profile": "Profile",
+        "language": "Language"
     },
     "home": {
         "for": "for",
