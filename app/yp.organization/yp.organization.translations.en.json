@@ -1,0 +1,86 @@
+{
+    "organizationForm": {
+        "header": "Create Organization",
+
+        "name": {
+            "label": "Name",
+            "placeholder": "Name",
+            "$invalid": "Please enter a valid name"
+        },
+        "location": {
+            "label": "Location",
+            "placeholder": "Location",
+            "$invalid": "Please enter a valid location"
+        },
+        "sector": {
+            "label": "sector",
+            "placeholder": "sector",
+            "$invalid": "Please enter a valid sector"
+        },
+        "nrOfEmployees": {
+            "label": "Number of employees",
+            "placeholder": "Number of employees",
+            "$invalid": "Please enter a valid number"
+        },
+
+        "reset": "Reset",
+        "save": "Create"
+    },
+
+    "campaignForm": {
+        "header": "Create campaign",
+
+        "title": {
+            "label": "Title",
+            "placeholder": "Title",
+            "$invalid": "Please enter a valid title"
+        },
+        "start": {
+            "label": "Start"
+        },
+        "end": {
+            "label": "End"
+        },
+        "relatedService": {
+            "label": "Service",
+            "placeholder": "Service",
+            "$invalid": "Please enter a valid service"
+        },
+        "location": {
+            "label": "Location",
+            "placeholder": "Location",
+            "$invalid": "Please enter a valid location"
+        },
+        "slogan": {
+            "label": "Slogan",
+            "placeholder": "Slogan",
+            "$invalid": "Please enter a valid slogan"
+        },
+        "paymentStatus": "Status",
+
+        "reset": "Reset",
+        "save": "Create"
+    },
+
+    "organization": {
+        "list": {
+            "name": "Name",
+            "location": "Location",
+            "sector": "Sector",
+            "nrOfEmployees": "Employees"
+        }
+    },
+    "campaign": {
+        "list": {
+            "header": "Campaigns",
+
+            "title": "Title",
+            "start": "Start",
+            "end": "End",
+            "relatedService": "Service",
+            "location": "Location",
+            "slogan": "Slogan",
+            "paymentStatus": "Status"
+        }
+    }
+}

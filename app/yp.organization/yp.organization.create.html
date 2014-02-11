@@ -18,9 +18,9 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Location</th>
-                                <th>Sector</th>
-                                <th>Number of Employees</th>
+                                <th translate>organization.list.name</th>
+                                <th translate>organization.list.sector</th>
+                                <th translate>organization.list.nrOfEmployees</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,38 +41,38 @@
             <div ng-hide="organization">
 
 
-                <h2>Create Organization</h2>
+                <h2 translate>organizationForm.header</h2>
 
                 <form name="organizationForm" yp-model="organizationObj" class="form" role="form" ng-submit="createOrganization()" novalidate>
 
 
                     <div class="form-group">
-                        <label>Name</label>
-                        <input name="name" type="text" placeholder="Name" class="form-control" ng-model="organizationObj.name" required>
-                        <span ng-show="organizationForm.name.$dirty && organizationForm.name.$invalid" class="help-inline">Something may have gone wrong</span>
+                        <label translate>organizationForm.name.label</label>
+                        <input name="name" type="text" placeholder="{{organizationForm.name.placeholder | translate}}" class="form-control" ng-model="organizationObj.name" required>
+                        <span ng-show="organizationForm.name.$dirty && organizationForm.name.$invalid" class="help-inline" translate>organizationForm.name.$invalid</span>
                     </div>
 
                     <div class="form-group">
-                        <label>Location</label>
-                        <input name="location" type="text" placeholder="Location" class="form-control" ng-model="organizationObj.location" >
-                        <span ng-show="organizationForm.location.$dirty && organizationForm.location.$invalid" class="help-inline">Something may have gone wrong</span>
+                        <label translate>organizationForm.location.label</label>
+                        <input name="location" type="text" placeholder="{{organizationForm.location.placeholder | translate}}" class="form-control" ng-model="organizationObj.location" >
+                        <span ng-show="organizationForm.location.$dirty && organizationForm.location.$invalid" class="help-inline" translate>organizationForm.location.$invalid</span>
                     </div>
 
                     <div class="form-group">
-                        <label>Sector</label>
-                        <input name="sector" type="text" placeholder="Sector" class="form-control" ng-model="organizationObj.sector" >
-                        <span ng-show="organizationForm.sector.$dirty && organizationForm.sector.$invalid" class="help-inline">Something may have gone wrong</span>
+                        <label translate>organizationForm.sector.label</label>
+                        <input name="sector" type="text" placeholder="{{organizationForm.sector.placeholder | translate}}" class="form-control" ng-model="organizationObj.sector" >
+                        <span ng-show="organizationForm.sector.$dirty && organizationForm.sector.$invalid" class="help-inline" translate>organizationForm.sector.$invalid</span>
                     </div>
 
                     <div class="form-group">
-                        <label>Number of Employees</label>
-                        <input name="nrOfEmployees" type="text" placeholder="Number of Employees" class="form-control" ng-model="organizationObj.nrOfEmployees" >
-                        <span ng-show="organizationForm.nrOfEmployees.$dirty && organizationForm.nrOfEmployees.$invalid" class="help-inline">Something may have gone wrong</span>
+                        <label translate>organizationForm.nrOfEmployees.label</label>
+                        <input name="nrOfEmployees" type="text" placeholder="{{organizationForm.nrOfEmployees.placeholder | translate}}" class="form-control" ng-model="organizationObj.nrOfEmployees" >
+                        <span ng-show="organizationForm.nrOfEmployees.$dirty && organizationForm.nrOfEmployees.$invalid" class="help-inline" translate>organizationForm.nrOfEmployees.$invalid</span>
                     </div>
 
 
-                    <button type="reset" class="btn btn-sm" >Reset</button>
-                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="organizationForm.$invalid">Save</button>
+                    <button type="reset" class="btn btn-sm"><span translate>organizationForm.reset</span></button>
+                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="organizationForm.$invalid"><span translate>organizationForm.save</span></button>
 
                 </form>
             </div>
@@ -86,8 +86,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row" >
-                            <div class="col-md-9">
-                                {{"CAMPAIGNS" | translate}}
+                            <div class="col-md-9" translate>
+                                campaign.list.header
                             </div>
                         </div>
                     </div>
@@ -96,13 +96,13 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>{{ "CAMPAIGN_TITLE" | translate }}</th>
-                                <th>{{ "CAMPAIGN_START" | translate }}</th>
-                                <th>{{ "CAMPAIGN_END" | translate }}</th>
-                                <th>{{ "CAMPAIGN_RELATED_SERVICE" | translate }}</th>
-                                <th>{{ "CAMPAIGN_LOCATION" | translate }}</th>
-                                <th>{{ "CAMPAIGN_SLOGAN" | translate }}</th>
-                                <th>{{ "CAMPAIGN_PAYMENT_STATUS" | translate }}</th>
+                                <th translate>campaign.list.title</th>
+                                <th translate>campaign.list.start</th>
+                                <th translate>campaign.list.end</th>
+                                <th translate>campaign.list.relatedService</th>
+                                <th translate>campaign.list.location</th>
+                                <th translate>campaign.list.slogan</th>
+                                <th translate>campaign.list.paymentStatus</th>
                             </tr>
                             </thead>
                             <tbody ng-repeat="campaign in campaigns">
@@ -122,18 +122,18 @@
                     </div>
                 </div>
 
-                <h4>{{ "CAMPAIGN_NEW" | translate }}</h4>
+                <h4 translate>campaignForm.header</h4>
 
                 <form name="campaignForm" yp-model="campaignObj" class="form" role="form" ng-submit="createCampaign()" novalidate>
 
                     <div class="form-group">
-                        <label>{{ "CAMPAIGN_TITLE" | translate }}</label>
-                        <input name="title" type="text" placeholder="{{ 'CAMPAIGN_TITLE' | translate }}" class="form-control" ng-model="campaignObj.title" required>
-                        <span ng-show="campaignObj.title.$dirty && campaignObj.title.$invalid" class="help-inline">Something may have gone wrong</span>
+                        <label translate>campaignForm.title.label</label>
+                        <input name="title" type="text" placeholder="{{ 'campaignForm.title.placeholder' | translate }}" class="form-control" ng-model="campaignObj.title" required>
+                        <span ng-show="campaignObj.title.$dirty && campaignObj.title.$invalid" class="help-inline" translate>campaignForm.title.$invalid</span>
                     </div>
 
                     <div class="form-group">
-                        <label>{{ "CAMPAIGN_START" | translate }}</label>
+                        <label translate>campaignForm.start.label</label>
                         <input class="form-control" type="text" id="datePickerStart"
                                datepicker-popup="dd.MM.yyyy"
                                ng-model="campaignObj.start"
@@ -143,7 +143,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>{{ "CAMPAIGN_END" | translate }}</label>
+                        <label translate>campaignForm.end.label</label>
                         <input class="form-control" type="text" id="datePickerEnd"
                                datepicker-popup="dd.MM.yyyy"
                                ng-model="campaignObj.end"
@@ -153,20 +153,20 @@
                     </div>
 
                     <div class="form-group">
-                        <label>{{ "CAMPAIGN_LOCATION" | translate }}</label>
-                        <input name="location" type="text" placeholder="{{ 'CAMPAIGN_LOCATION' | translate }}" class="form-control" ng-model="campaignObj.location" required>
-                        <span ng-show="campaignObj.location.$dirty && campaignObj.location.$invalid" class="help-inline">Something may have gone wrong</span>
+                        <label translate>campaignForm.location.label</label>
+                        <input name="location" type="text" placeholder="{{ 'campaignForm.location.placeholder' | translate }}" class="form-control" ng-model="campaignObj.location" required>
+                        <span ng-show="campaignObj.location.$dirty && campaignObj.location.$invalid" class="help-inline" translate>campaignForm.location.$invalid</span>
                     </div>
 
                     <div class="form-group">
-                        <label>{{ "CAMPAIGN_SLOGAN" | translate }}</label>
-                        <input name="slogan" type="text" placeholder="{{ 'CAMPAIGN_SLOGAN' | translate }}" class="form-control" ng-model="campaignObj.slogan" required>
-                        <span ng-show="campaignObj.slogan.$dirty && campaignObj.slogan.$invalid" class="help-inline">Something may have gone wrong</span>
+                        <label translate>campaignForm.slogan.label</label>
+                        <input name="slogan" type="text" placeholder="{{ 'campaignForm.slogan.placeholder' | translate }}" class="form-control" ng-model="campaignObj.slogan" required>
+                        <span ng-show="campaignObj.slogan.$dirty && campaignObj.slogan.$invalid" class="help-inline" translate>campaignForm.slogan.$invalid</span>
                     </div>
 
 
-                    <button type="reset" class="btn btn-sm" >Reset</button>
-                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid">Save</button>
+                    <button type="reset" class="btn btn-sm"><span translate>campaignForm.reset</span></button>
+                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.save</span></button>
 
                 </form>
             </div>
