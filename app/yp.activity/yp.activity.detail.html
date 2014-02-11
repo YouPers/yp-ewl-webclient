@@ -6,25 +6,27 @@
         <div class="col-md-6">
             <div class="modal-footer">
                 <div>
-                    <div ng-show="currentActivityPlan.editStatus.indexOf('ACTIVITYPLAN_NOT_EDITABLE') == 0"
+
+                    <div ng-show="currentActivityPlan.editStatus && currentActivityPlan.editStatus !== 'editable'"
                          class="glyphicon glyphicon-info-sign"
-                         tooltip="{{currentActivityPlan.editStatus | translate}}">
+                         tooltip="{{ 'activityPlanEditable.' + currentActivityPlan.editStatus | translate}}">
                     </div>
-                    <div ng-show="currentActivityPlan.deleteStatus.indexOf('ACTIVITYPLAN_NOT_DELETABLE') == 0"
+                    <div ng-show="currentActivityPlan.deleteStatus && currentActivityPlan.deleteStatus !== 'deletable'"
                             class="glyphicon glyphicon-info-sign"
-                            tooltip="{{ currentActivityPlan.deleteStatus | translate }}">
+                            tooltip="{{ 'activityPlanDeletable.' + currentActivityPlan.deleteStatus | translate }}">
                     </div>
                     <button type="button" ng-click="toggleEdit()" ng-show="isActivityPlanned() && isEditable()" class="btn btn-primary">
-                        {{ displayEditInstruction() | translate }}
+                        <span ng-show="editModeActive" translate>detail.edit</span>
+                        <span ng-hide="editModeActive" translate>detail.save</span>
                     </button>
                     <button type="button" ng-click="deleteActivityPlan()" ng-show="currentActivityPlan.deleteStatus && currentActivityPlan.deleteStatus.indexOf('ACTIVITYPLAN_NOT_DELETABLE') !== 0" class="btn btn-danger">
-                        {{ currentActivityPlan.deleteStatus | translate }}
+                        {{ 'activityPlanDeletable.' + currentActivityPlan.deleteStatus | translate }}
                     </button>
                     <button type="button" ng-click="planActivityDone()" ng-hide="currentActivityPlan.deleteStatus" class="btn btn-primary">
-                        {{ "ACTIVITYPLAN_PLAN" | translate }}
+                        <span translate>detail.plan</span>
                     </button>
                     <button type="button" ng-click="planActivityCancel()" class="btn btn-default">
-                        {{ "ACTIVITYPLAN_CANCEL" | translate }}
+                        <span translate>detail.cancel</span>
                     </button>
                 </div>
             </div>
@@ -46,8 +48,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <p>3453 mal geplant<br/>
-                            2320 mal ausgeführt</p>
+                        <p translate>detail.statistics</p>
                         <rating max="5" value="currentActivity.rating"></rating>
                         <a href="">(34)</a>
                     </div>
@@ -64,12 +65,11 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <h2>Kommentare</h2>
+                                <h2 translate>detail.comment.header</h2>
                             </div>
                             <div class="col-md-6">
                                 <a class="activity-social-comment-link" href=""
-                                   ng-click="showNewComment= !showNewComment">neuer
-                                    Kommentar</a>
+                                   ng-click="showNewComment= !showNewComment" translate>detail.comment.new</a>
                             </div>
                         </div>
                         <div class="row activity-social-content">
@@ -87,9 +87,9 @@
                                         <form ng-submit="submitNewComment(newText)">
                                             <div class="input-group input-group-sm">
                                                 <input type="text" class="form-control" ng-model="newText">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary btn-sm" type="submit">submit</button>
-                            </span>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary btn-sm" type="submit" translate>detail.comment.submit</button>
+                                                </span>
                                             </div>
                                         </form>
                                     </div>
@@ -121,10 +121,10 @@
                 <div class="tabbable">
                     <ul class="nav nav-tabs">
                         <li ng-class="{active: model.currentExecutionType=='self'}">
-                            <a href="" ng-click="model.currentExecutionType='self'">Selber planen</a>
+                            <a href="" ng-click="model.currentExecutionType='self'" translate>detail.executiontype.self</a>
                         </li>
                         <li ng-class="{active: model.currentExecutionType=='group'}">
-                            <a href="" ng-click="model.currentExecutionType='group'">Bei andern mitmachen</a>
+                            <a href="" ng-click="model.currentExecutionType='group'" translate>detail.executiontype.group</a>
                         </li>
                     </ul>
                     <div class="tab-content yp-activity-planning-tab"
@@ -141,40 +141,36 @@
             <div class="col-md-6" ng-controller="ActivityLogCtrl" ng-if="isActivityPlanned()">
                 <div class="row">
                     <div class="col-md-6">
-                        <div>Du hast diese Aktivität eingeplant: {{ currentActivityPlan.mainEvent.frequency
-                            | translate}}
-                        </div>
-                        <span ng-if="currentActivityPlan.mainEvent.frequency == 'week'">jeweils am: {{getWeekday(currentActivityPlan.mainEvent.start)}}</span><br>
-                        <div>erstmals am: {{ currentActivityPlan.mainEvent.start | fromNow }}</div>
-                        <div ng-if="currentActivityPlan.location">Ort: {{currentActivityPlan.location}}</div>
+                        <div><span translate>detail.activityLog.header</span> {{ 'activityPlanFrequency.' + currentActivityPlan.mainEvent.frequency | translate}}</div>
+                            <span ng-if="currentActivityPlan.mainEvent.frequency == 'week'"><span translate>detail.activityPlanFrequency.week</span> {{getWeekday(currentActivityPlan.mainEvent.start)}}</span><br>
+                        <div><span translate>detail.activityPlanFrequency.once</span> {{ currentActivityPlan.mainEvent.start | fromNow }}</div>
+                        <div ng-if="currentActivityPlan.location"><span translate>detail.activityLog.location</span> {{currentActivityPlan.location}}</div>
                     </div>
                     <!-- if this is a group activity-->
                     <div ng-if="currentActivityPlan.executionType=='group'">
                         <div class="col-md-6" ng-if="currentActivityPlan.joiningUsers.length==0">
-                            Du hast andere eingeladen an dieser Aktivität teilzunehmen. <br> Es hat noch niemand
-                            zugesagt.
+                            <span translate>detail.activityLog.executiontype.group.header</span>
                         </div>
-                        <div class="col-md-6" ng-if="currentActivityPlan.joiningUsers.length!=0"
-                             class="activity-social-content">
-                            Weitere Teilnehmer:
+                        <div class="col-md-6" ng-if="currentActivityPlan.joiningUsers.length!=0" class="activity-social-content">
+                            <span translate>detail.activityLog.executiontype.group.joiningUsers</span>
                             <div ng-repeat="joiningUser in currentActivityPlan.joiningUsers" class="row">
                                 <div user="joiningUser"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h3>Lade noch jemanden ein:</h3>
+                            <h3 translate>detail.activityLog.executiontype.group.inviteUsers</h3>
                             <form class="form-inline"
                                   role="form"
                                   ng-submit="model.inviteEmailForm.$valid && inviteEmailToJoinPlan(model.inviteEmail,currentActivityPlan)"
                                   name="model.inviteEmailForm">
                                 <div class="form-group"
                                      ng-class="{'has-error': model.inviteEmailForm.email.$dirty && model.inviteEmailForm.email.$invalid}">
-                                    <label class="sr-only">lade noch jemanden ein! </label>
+                                    <label class="sr-only" translate>detail.activityLog.executiontype.group.inviteUsers</label>
                                     <input class="form-control email-field"  name="email" type="text" ng-model="model.inviteEmail"
                                            placeholder="one or more emails"  multiple-Emails required>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" ng-disabled="model.inviteEmailForm.$invalid">einladen</button>
+                                    <button type="submit" class="btn btn-primary" ng-disabled="model.inviteEmailForm.$invalid" translate>detail.activityLog.executiontype.group.inviteSubmit</button>
                                 </div>
                             </form>
                         </div>
@@ -182,7 +178,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>Nächste Ausführungen:</h3>
+                        <h3 translate>detail.activityLog.nextExecutions</h3>
                     </div>
                 </div>
 

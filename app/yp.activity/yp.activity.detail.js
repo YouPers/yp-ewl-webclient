@@ -132,7 +132,7 @@
                 $scope.isEditable = function () {
                     // currently, only single activity plans (i.e. no master and/or joined plans)
                     // with a single and not yet past event are editable
-                    if ($scope.currentActivityPlan.editStatus === "ACTIVITYPLAN_EDITABLE") {
+                    if ($scope.currentActivityPlan.editStatus === "editable") {
                         return true;
                     } else {
                         return false;

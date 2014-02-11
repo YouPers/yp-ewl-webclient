@@ -27,10 +27,63 @@
         "showAllActivities": "alle Aktivitäten zeigen"
     },
     "detail": {
+        "edit": "ändern",
+        "save": "sichern",
+        "plan": "einplanen",
+        "cancel": "abbrechen",
+
+        "statistics": "3453 mal geplant<br/>2320 mal ausgeführt",
+        "comment": {
+            "header": "Kommentare",
+            "new": "Neuer Kommentar",
+            "submit": "Speichern"
+        },
+        "executiontype": {
+            "self": "Selber planen",
+            "group": "Bei andern mitmachen"
+        },
+        "activityLog": {
+            "header": "Du hast diese Aktivität eingeplant: ",
+            "location": "Ort: ",
+            "executiontype": {
+                "group": {
+                    "header": "Du hast andere eingeladen an dieser Aktivität teilzunehmen. <br/> Es hat noch niemand zugesagt.",
+                    "joiningUsers": "Weitere Teilnehmer:",
+                    "inviteUsers": "Lade noch jemanden ein:",
+                    "inviteSubmit": "einladen"
+                }
+            },
+            "nextExecutions": "Nächste Ausführungen:"
+        },
+        "activityPlanFrequency": {
+            "week": "jeweils am: ",
+            "once": "erstmals am: "
+        }
 
     },
     "admin": {
 
+    },
+    "activityPlanFrequency": {
+        "once": "Einmalig",
+        "day": "Täglich",
+        "week": "Wöchentlich",
+        "month": "Monatlich",
+        "year": "Jährlich"
+    },
+    "activityPlanEditable": {
+        "editable": "Eingeplante Aktivität ändern",
+        "notEditableJoinedPlans": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil andere Benutzer daran teilnehmen.",
+        "notEditableJoinedUsers": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
+        "notEditableNotSingleEvent": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil es eine Aktivität mit mehreren Ausführungen ist.",
+        "notEditablePastEvent": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil die Ausführung in der Vergangenheit ist."
+    },
+    "activityPlanDeletable": {
+        "deletable": "Eingeplante Aktivität löschen",
+        "deletableOnlyFutureEvents": "Zukünftige Ausführungen löschen",
+        "notDeletableJoinedUsers": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil andere Benutzer daran teilnehmen.",
+        "notDeletableJoinedPlans": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
+        "notDeletableNoFutureEvents": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil alle Ausführungen in der Vergangenheit liegen."
     },
     "activityField": {
         "awarenessAbility": "Bewusstsein und Fähigkeit",
