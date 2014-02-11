@@ -62,7 +62,7 @@ angular.module('yp-ewl',
                 urlTemplate: '/{part}/{part}.translations.{lang}.json',
                 wtiProjectId: '8233-eWL',
                 wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
-                fromWti: true
+                fromWti: false
             });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl');
         }])
@@ -156,16 +156,6 @@ angular.module('yp-ewl',
             // handle Menu Highlighting
             $scope.isActive = function (viewLocation) {
                 return ($scope.$state.current.name.indexOf(viewLocation) !== -1);
-            };
-
-            $scope.getTopMenu = function () {
-                if ($scope.$state.current.url.indexOf('hp') !== -1) {
-                    return 'healthpromoter';
-                } else if ($scope.$state.current.url.indexOf('home') !== -1) {
-                    return 'home';
-                } else {
-                    return 'individual';
-                }
             };
 
             $scope.$on('globalUserMsg', function (event, msg, type, duration) {

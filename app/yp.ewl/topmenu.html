@@ -10,32 +10,22 @@
             <a class="navbar-logo" href="http://www.youpers.com/en/"><img src="assets/img/logo.png" alt="YouPers"
                                                                           height="50"></a>
         </div>
-        <div class="navbar-collapse collapse" collapse="navCollapsed" ng-switch on="getTopMenu()">
-            <ul class="nav navbar-nav" ng-switch-default>
-            </ul>
-            <ul class="nav navbar-nav" ng-switch-when="individual">
+        <div class="navbar-collapse collapse" collapse="navCollapsed">
+            <ul class="nav navbar-nav" >
                 <li ng-class="{ active: isActive('campaign')}">
-                    <a href="#/topics">{{ 'COMMIT' | translate }}</a>
+                    <a href="#/topics" translate>topmenu.commit</a>
                 </li>
                 <li ng-class="{ active: isActive('assessment')}">
-                    <a href="#/assessment/525faf0ac558d40000000005">{{ 'ASSESS' | translate }}</a>
+                    <a href="#/assessment/525faf0ac558d40000000005" translate>topmenu.assess</a>
                 </li>
                 <li ng-class="{ active: isActive('activitylist') || isActive('activityDetail')}">
-                    <a href="#/activities">{{ 'PLAN' | translate }}</a>
+                    <a href="#/activities" translate>topmenu.plan</a>
                 </li>
                 <li ng-class="{ active: isActive('cockpit')}">
-                    <a href="#/cockpit">{{ 'DO' | translate }}</a>
+                    <a href="#/cockpit" translate>topmenu.do</a>
                 </li>
                 <li ng-class="{ active: isActive('evaluate')}">
-                    <a href="#/evaluate">{{ 'EVALUATE' | translate }}</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav" ng-switch-when="healthpromoter">
-                <li ng-class="{ active: isActive('campaign')}">
-                    <a href="#/healthpromoter/campaign">{{ 'CAMPAIGN' | translate }}</a>
-                </li>
-                <li ng-class="{ active: isActive('sponsoring')}">
-                    <a href="#/healthpromoter/sponsoring">{{ 'SPONSORING' | translate }}</a>
+                    <a href="#/evaluate" translate>topmenu.evaluate</a>
                 </li>
             </ul>
 

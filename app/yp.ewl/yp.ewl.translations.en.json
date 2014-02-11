@@ -1,0 +1,77 @@
+{
+    "topmenu": {
+        "commit": "commit",
+        "assess": "assess",
+        "plan": "plan",
+        "do": "do",
+        "evaluate": "evaluate"
+    },
+    "home": {
+        "for": "for",
+        "individuals": "Individuals",
+        "healthPromoters": "Health Promoters"
+    },
+
+    "loginDialog": {
+        "pleaseLoginOrRegister": "Please login or register",
+        "loginReason": "so we can store your data",
+        "register": "register new account",
+        "registerNewAccount": "Register new account",
+        "passwordForgotten": "Cannot remember your password?"
+    },
+
+    "loginform": {
+        "usernameOrEmail": {
+            "label": "username/email",
+            "$invalid": "please enter a valid username/email"
+        },
+        "password": {
+            "label": "password",
+            "$invalid": "please enter a valid password"
+        },
+        "login": "login",
+        "rememberMe": {
+            "label": "Remember me"
+        }
+    },
+
+    "registerform": {
+        "$error": {
+            "emailunique": "This email address is already registered, please login",
+            "usernameunique": "This username is not available"
+        },
+        "firstname": {
+            "label": "First Name",
+            "$invalid": "Please enter a valid first name"
+        },
+        "lastname": {
+            "label": "Last Name",
+            "$invalid": "Please enter a valid last name"
+        },
+        "username": {
+            "label": "Username",
+            "$invalid": "Please enter a valid username"
+        },
+        "email": {
+            "label": "Email",
+            "$invalid": "Please enter a valid email address"
+        },
+        "password": {
+            "label": "password",
+            "$invalid": "password needs at least 6 characters"
+        },
+        "password2": {
+            "label": "repeat your password",
+            "$invalid": "passwords are not identical"
+        },
+        "termsAccepted": {
+            "label1": "I have read the ",
+            "label2": "Terms & Conditions and the Data Privacy Statement ",
+            "label3": " und I agree",
+            "$error": {
+                "required": "Please accept the Terms and Conditions"
+            }
+        },
+        "register": "register"
+    }
+}

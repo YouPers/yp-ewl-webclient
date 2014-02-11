@@ -1,0 +1,77 @@
+{
+    "topmenu": {
+        "commit": "commit",
+        "assess": "assess",
+        "plan": "plan",
+        "do": "do",
+        "evaluate": "evaluate"
+    },
+    "home": {
+        "for": "für",
+        "Individuals": "Privatpersonen",
+        "healthPromoters": "Gesundheits-Promotoren"
+    },
+
+    "loginDialog": {
+        "pleaseLoginOrRegister": "Bitte logge Dich ein oder registriere Dich.",
+        "loginReason": "Sonst gehen deine Daten verloren.",
+        "register": "Neu registrieren",
+        "registerNewAccount": "Neuer Account registrieren",
+        "passwordForgotten": "Passwort vergessen?"
+    },
+
+    "loginform": {
+        "usernameOrEmail": {
+            "label": "Username/Email",
+            "$invalid": "Bitte gültigen Usernamen oder Email eingeben"
+        },
+        "password": {
+            "label": "Passwort",
+            "$invalid": "Bitte gültiges Passwort eingeben"
+        },
+        "login": "anmelden",
+        "rememberMe": {
+            "label": "Angemeldet bleiben"
+        }
+    },
+
+    "registerform": {
+        "$error": {
+            "emailunique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein",
+            "usernameunique": "Dieser Username ist nicht verfügbar"
+        },
+        "firstname": {
+            "label": "Vorname",
+            "$invalid": "Bitte einen gültigen Vornamen eingeben."
+        },
+        "lastname": {
+            "label": "Nachname",
+            "$invalid": "Bitte einen gültigen Nachnamen eingeben."
+        },
+        "username": {
+            "label": "Username",
+            "$invalid": "Bitte einen gültigen Usernamen eingeben"
+        },
+        "email": {
+            "label": "Email",
+            "$invalid": "Bitte eine gültige EMail-Adresse eingeben"
+        },
+        "password": {
+            "label": "Passwort",
+            "$invalid": "Passwort mit mindestens 6 Buchstaben"
+        },
+        "password2": {
+            "label": "Passwort wiederholen",
+            "$invalid": "Passwort nicht identisch"
+        },
+        "termsAccepted": {
+            "label1": "Ich hab die ",
+            "label2": "Allgemeinen Geschäftsbedingungen und die Datenschutzbestimmung ",
+            "label3": "gelesen und stimme ihnen zu",
+            "$error": {
+                "required": "Bitte akzeptiere die Geschäftsbedingungen"
+            }
+        },
+        "register": "registrieren"
+    }
+}
