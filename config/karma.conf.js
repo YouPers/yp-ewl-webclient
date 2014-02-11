@@ -15,6 +15,7 @@ module.exports = function (config) {
             'app/lib/restangular/dist/restangular.js',
             'app/lib/lodash/dist/lodash.js',
 
+            'app/yp.commons/angular-translate-loader-wti-partial.js',
             'app/yp.activity/yp.activity.js',
             'app/yp.activity/yp.activitylog.js',
             'app/yp.assessment/yp.assessment.js',
