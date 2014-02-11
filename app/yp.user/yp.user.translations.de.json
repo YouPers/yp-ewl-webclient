@@ -47,7 +47,9 @@
     },
     "passwordResetRequest": {
         "resetPasswordFor": "Passwort zurücksetzen für",
-        "identification": "Identifikation"
+        "identification": "Identifikation",
+        "checkYourEmails": "Überprüfe deine Emails",
+        "weSentALink": "Wir haben ein Email an dich versendet mit einem Link um dein Passwort zurückzusetzen. Bitte überprüfe deine Mailbox"
     },
     "passwordResetRequestForm": {
         "usernameOrEmail": "Username oder Email",

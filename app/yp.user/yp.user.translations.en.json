@@ -46,7 +46,9 @@
     },
     "passwordResetRequest": {
         "resetPasswordFor": "Reset password for",
-        "identification": "Identification"
+        "identification": "Identification",
+        "checkYourEmails": "Please check your Email",
+        "weSentALink": "We sent an email to you with a link where you can reset your password within the next 10 minutes. <br>Please check your inbox."
     },
     "passwordResetRequestForm": {
         "usernameOrEmail": "Username or Email",

@@ -61,7 +61,7 @@
         .constant('accessLevels', _accessLevels)
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('yp.user')
+            $translateWtiPartialLoaderProvider.addPart('yp.user');
         }])
 
         // principal

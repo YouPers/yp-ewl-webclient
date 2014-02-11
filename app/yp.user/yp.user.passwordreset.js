@@ -10,7 +10,7 @@
                 $stateProvider
                     .state('requestPasswordReset', {
                         url: "/requestPasswordReset",
-                        templateUrl: "yp.user/yp.user.requestpasswordreset.html",
+                        templateUrl: "yp.user/yp.user.passwordresetrequest.html",
                         controller: "RequestPasswordResetCtrl",
                         access: accessLevels.anonymous,
                         resolve: { }
