@@ -13,18 +13,11 @@ angular.module('yp.topic', ['ui.router', 'restangular'])
                 })
                 .state('modal_startCampaign', {
                     url: "/campaigns/:campaignId/start",
-                    views: {
-                        '': {
-                            template: "="
-                        },
-                        modal: {
-                            templateUrl: "yp.ewl/yp.topic.setgoal.html",
-                            controller: "TopicSetGoalCtrl"
-                        }
-                    },
+                    templateUrl: "yp.ewl/yp.topic.setgoal.html",
+                    controller: "TopicSetGoalCtrl",
                     access: accessLevels.all,
                     resolve: {
-                        campaign: ['Restangular', '$stateParams',function(Restangular, $stateParams) {
+                        campaign: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
                             return Restangular.one('campaigns', $stateParams.campaignId);
                         }]
                     }
@@ -33,7 +26,8 @@ angular.module('yp.topic', ['ui.router', 'restangular'])
         }
     ])
 
-    .factory('TopicService', [function () {
+    .
+    factory('TopicService', [function () {
         var myTopicService = {};
         var goals = [];
 
@@ -60,7 +54,7 @@ angular.module('yp.topic', ['ui.router', 'restangular'])
 
     }])
 
-    .controller('TopicSetGoalCtrl', ['$scope', 'campaign',function($scope, campaign) {
+    .controller('TopicSetGoalCtrl', ['$scope', 'campaign', function ($scope, campaign) {
         $scope.campaign = campaign;
     }]);
 
