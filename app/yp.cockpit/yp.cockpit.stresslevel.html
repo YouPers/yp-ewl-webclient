@@ -1,9 +1,9 @@
 
-<div class="panel cockpit section-title">
-    Status
+<div class="panel cockpit section-title" translate>
+    cockpit.stresslevel.header
 </div>
 
-<p>Dein allgemeiner Stresslevel (inkl. Entwicklung) sowie die drei grössten Stressverursacher</p>
+<p translate>cockpit.stresslevel.subheader</p>
 
 <div ng-controller="StresslevelGaugeController">
     <div>
@@ -17,6 +17,6 @@
 
 <div ng-controller="StresslevelLinechartController">
     <div>
-        <d3-line-chart data="generalStressLevelValues" options="d3Options" label="name""></d3-line-chart>
+        <d3-line-chart data="generalStressLevelValues" options="d3Options" label="name"></d3-line-chart>
     </div>
 </div>

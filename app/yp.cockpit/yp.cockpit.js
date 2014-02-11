@@ -11,8 +11,8 @@
                 'd3', 'd3.dir-hbar', 'd3.dir-vbar', 'd3.gauge', 'd3.dir-line-chart'
             ])
 
-        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
-            function ($stateProvider, $urlRouterProvider, accessLevels) {
+        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 //
 
                 // Now set up the states
@@ -50,6 +50,9 @@
                             }]
                         }
                     });
+
+
+                $translateWtiPartialLoaderProvider.addPart('yp.cockpit');
             }]);
 
 
