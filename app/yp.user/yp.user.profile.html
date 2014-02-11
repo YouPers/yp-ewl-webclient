@@ -4,11 +4,11 @@
 
 <div class="row">
     <div class="col-md-11">
-        <h2>{{ 'PROFILE' | translate }}</h2>
+        <h2 translate>profile.profile</h2>
     </div>
     <div class="col-md-1">
         </br>
-        <button type="submit" class="btn btn-success btn-sm" ng-disabled="profileForm.$invalid">Save</button>
+        <button type="submit" class="btn btn-success btn-sm" ng-disabled="profileForm.$invalid" translate>profileForm.submit</button>
     </div>
 </div>
 
@@ -18,7 +18,7 @@
 
 <accordion close-others="true">
 
-<accordion-group heading="{{ 'PROFILE' | translate }}" is-open="true" class="user-profile">
+<accordion-group heading="{{ 'profile.profile' | translate }}" is-open="true" class="user-profile">
 
     <div class="col-md-6">
 
@@ -33,13 +33,12 @@
 
             <div class="form-group">
                 <div class="col-md-4">
-                    <label>{{ 'GENDER' | translate }}</label>
+                    <label translate>profileForm.gender.label</label>
                 </div>
                 <div class="col-md-8">
                     <div class="btn-group" data-toggle="buttons-radio">
-                        <input type="radio" value="undefined" ng-model="profileUserObj.gender" ng-click="profileUserObj.gender = 'undefined'">&NonBreakingSpace;{{ 'UNDEFINED' | translate }}</input></br>
-                        <input type="radio" value="female" ng-model="profileUserObj.gender" ng-click="profileUserObj.gender = 'female'">&NonBreakingSpace;{{ 'FEMALE' | translate }} </input></br>
-                        <input type="radio" value="male" ng-model="profileUserObj.gender" ng-click="profileUserObj.gender = 'male'">&NonBreakingSpace;{{ 'MALE' | translate }} </input></br>
+                        <input type="radio" value="female" ng-model="profileUserObj.gender" ng-click="profileUserObj.gender = 'female'">&NonBreakingSpace;{{ 'gender.male' | translate }} </input></br>
+                        <input type="radio" value="male" ng-model="profileUserObj.gender" ng-click="profileUserObj.gender = 'male'">&NonBreakingSpace;{{ 'gender.female' | translate }} </input></br>
                     </div>
                 </div>
             </div>
@@ -49,12 +48,12 @@
         <div class="row">
             <div class="form-group">
                 <div class="col-md-4">
-                    <label>{{ 'BIRTHDATE' | translate }}</label>
+                    <label translate>profileForm.birthdate.label</label>
                 </div>
                 <div class="col-md-4">
-                    <!--ToDo internationalized date check-->
+                    <!--ToDo internationalized date check and or date Picker-->
                     <input name="birthDate" type="text" placeholder="tt.mm.jjjj" class="form-control" ng-model="profileUserObj.birthDate">
-                    <span ng-show="profileForm.birthDate.$dirty && profileForm.birthDate.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <span ng-show="profileForm.birthDate.$dirty && profileForm.birthDate.$invalid" class="help-inline" translate>profileForm.birthdate.$invalid</span>
                 </div>
             </div>
         </div>
@@ -62,24 +61,18 @@
         <div class="row">
             </br>
             <div class="col-md-4">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <label>{{ 'MARITALSTATUS' | translate }}&NonBreakingSpace;</label><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <!--ToDo dynamic list based on backend domain values (e.g. enums)-->
-                        <li><input type="radio" value="undefined" ng-model="profileUserObj.maritalStatus" ng-click="profileUserObj.maritalStatus = 'undefined'">&NonBreakingSpace;{{ 'UNDEFINED' | translate }}</input></li>
-                        <li><input type="radio" value="single" ng-model="profileUserObj.maritalStatus" ng-click="profileUserObj.maritalStatus = 'single'">&NonBreakingSpace;{{ 'SINGLE' | translate }}</input></li>
-                        <li><input type="radio" value="unmarried" ng-model="profileUserObj.maritalStatus" ng-click="profileUserObj.maritalStatus = 'unmarried'">&NonBreakingSpace;{{ 'UNMARRIED' | translate }}</input></li>
-                        <li><input type="radio" value="married" ng-model="profileUserObj.maritalStatus" ng-click="profileUserObj.maritalStatus = 'married'">&NonBreakingSpace;{{ 'MARRIED' | translate }}</input></li>
-                        <li><input type="radio" value="separated" ng-model="profileUserObj.maritalStatus" ng-click="profileUserObj.maritalStatus = 'separated'">&NonBreakingSpace;{{ 'SEPARATED' | translate }}</input></li>
-                        <li><input type="radio" value="divorced" ng-model="profileUserObj.maritalStatus" ng-click="profileUserObj.maritalStatus = 'divorced'">&NonBreakingSpace;{{ 'DIVORCED' | translate }}</input></li>
-                        <li><input type="radio" value="widowed" ng-model="profileUserObj.maritalStatus" ng-click="profileUserObj.maritalStatus = 'widowed'">&NonBreakingSpace;{{ 'WIDOWED' | translate }}</input></li>
-                    </ul>
-                </div>
+                <label translate>maritalStatus</label>
             </div>
             <div class="col-md-4">
-                {{ profileUserObj.maritalStatus | translate  }}
+                <select ng-model="profileUserObj.maritalStatus">
+                    <option value="undefined" translate>maritalStatus.undefined</option>
+                    <option value="single" translate>maritalStatus.single</option>
+                    <option value="unmarried" translate>maritalStatus.unmarried</option>
+                    <option value="married" translate>maritalStatus.married</option>
+                    <option value="separated" translate>maritalStatus.separated</option>
+                    <option value="divorced" translate>maritalStatus.divorced</option>
+                    <option value="widowed" translate>maritalStatus.widowed</option>
+                </select>
             </div>
         </div>
         </br>
@@ -88,65 +81,65 @@
     <div class="col-md-6">
 
         <div class="form-group">
-            <label>{{ 'HOMEADDRESS' | translate }}</label>
+            <label translate>profile.homeAddress</label>
 
             <div class="row">
                 <div class="col-md-9">
-                    <input name="homeAddressStreet" type="text" placeholder="{{ 'STREET' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.street">
-                    <span ng-show="profileUserObj.homeAddress.street.$dirty && profileUserObj.homeAddress.street.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <input name="homeAddressStreet" type="text" placeholder="{{ 'profileForm.street' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.street">
+                    <span ng-show="profileUserObj.homeAddress.street.$dirty && profileUserObj.homeAddress.street.$invalid" class="help-inline" translate>profileForm.$invalid</span>
                 </div>
 
                 <div class="col-md-3">
-                    <input name="homeAddressHouseNumber" type="text" placeholder="{{ 'HOUSENUMBER' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.houseNumber">
-                    <span ng-show="profileForm.homeAddress.houseNumber.$dirty && profileForm.homeAddress.houseNumber.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <input name="homeAddressHouseNumber" type="text" placeholder="{{ 'profileForm.number' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.houseNumber">
+                    <span ng-show="profileForm.homeAddress.houseNumber.$dirty && profileForm.homeAddress.houseNumber.$invalid" class="help-inline" translate>profileForm.$invalid</span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-3">
-                    <input name="homeAddressZipCode" type="text" placeholder="{{ 'ZIPCODE' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.zipCode">
-                    <span ng-show="profileForm.homeAddress.zipCode.$dirty && profileForm.homeAddress.zipCode.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <input name="homeAddressZipCode" type="text" placeholder="{{ 'profileForm.zip' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.zipCode">
+                    <span ng-show="profileForm.homeAddress.zipCode.$dirty && profileForm.homeAddress.zipCode.$invalid" class="help-inline" tranlsate>profileForm.$invalid</span>
                 </div>
 
                 <div class="col-md-9">
-                    <input name="homeAddressCity" type="text" placeholder="{{ 'CITY' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.city">
-                    <span ng-show="profileForm.homeAddress.city.$dirty && profileForm.homeAddress.city.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <input name="homeAddressCity" type="text" placeholder="{{ 'profileForm.city' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.city">
+                    <span ng-show="profileForm.homeAddress.city.$dirty && profileForm.homeAddress.city.$invalid" class="help-inline" translate>profileForm.$invalid</span>
                 </div>
             </div>
 
-            <input name="homeAddressCountry" type="text" placeholder="{{ 'COUNTRY' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.country">
-            <span ng-show="profileForm.homeAddress.country.$dirty && profileForm.homeAddress.country.$invalid" class="help-inline">Something may have gone wrong</span>
+            <input name="homeAddressCountry" type="text" placeholder="{{ 'profileForm.country' | translate }}" class="form-control" ng-model="profileUserObj.homeAddress.country">
+            <span ng-show="profileForm.homeAddress.country.$dirty && profileForm.homeAddress.country.$invalid" class="help-inline" translate>profileForm.$invalid</span>
         </div>
 
         <div class="form-group">
-            <label>{{ 'WORKADDRESS' | translate }}</label>
+            <label translate>profile.workAddress</label>
 
             <div class="row">
                 <div class="col-md-9">
-                    <input name="workAddressStreet" type="text" placeholder="{{ 'STREET' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.street">
-                    <span ng-show="profileUserObj.workAddress.street.$dirty && profileUserObj.workAddress.street.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <input name="workAddressStreet" type="text" placeholder="{{ 'profileForm.street' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.street">
+                    <span ng-show="profileUserObj.workAddress.street.$dirty && profileUserObj.workAddress.street.$invalid" class="help-inline" translate>profileForm.$invalid</span>
                 </div>
 
                 <div class="col-md-3">
-                    <input name="workAddressHouseNumber" type="text" placeholder="{{ 'HOUSENUMBER' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.houseNumber">
-                    <span ng-show="profileForm.workAddress.houseNumber.$dirty && profileForm.workAddress.houseNumber.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <input name="workAddressHouseNumber" type="text" placeholder="{{ 'profileForm.number' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.houseNumber">
+                    <span ng-show="profileForm.workAddress.houseNumber.$dirty && profileForm.workAddress.houseNumber.$invalid" class="help-inline" translate>profileForm.$invalid</span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-3">
-                    <input name="workAddressZipCode" type="text" placeholder="{{ 'ZIPCODE' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.zipCode">
-                    <span ng-show="profileForm.workAddress.zipCode.$dirty && profileForm.workAddress.zipCode.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <input name="workAddressZipCode" type="text" placeholder="{{ 'profileForm.zip' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.zipCode">
+                    <span ng-show="profileForm.workAddress.zipCode.$dirty && profileForm.workAddress.zipCode.$invalid" class="help-inline" translate>profileForm.$invalid</span>
                 </div>
 
                 <div class="col-md-9">
-                    <input name="workAddressCity" type="text" placeholder="{{ 'CITY' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.city">
-                    <span ng-show="profileForm.workAddress.city.$dirty && profileForm.workAddress.city.$invalid" class="help-inline">Something may have gone wrong</span>
+                    <input name="workAddressCity" type="text" placeholder="{{ 'profileForm.city' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.city">
+                    <span ng-show="profileForm.workAddress.city.$dirty && profileForm.workAddress.city.$invalid" class="help-inline" translate>profileForm.$invalid</span>
                 </div>
             </div>
 
-            <input name="workAddressCountryr" type="text" placeholder="{{ 'COUNTRY' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.country">
-            <span ng-show="profileForm.workAddress.country.$dirty && profileForm.workAddress.country.$invalid" class="help-inline">Something may have gone wrong</span>
+            <input name="workAddressCountryr" type="text" placeholder="{{ 'profileForm.country' | translate }}" class="form-control" ng-model="profileUserObj.workAddress.country">
+            <span ng-show="profileForm.workAddress.country.$dirty && profileForm.workAddress.country.$invalid" class="help-inline" translate>profileForm.$invalid</span>
         </div>
 
     </div>

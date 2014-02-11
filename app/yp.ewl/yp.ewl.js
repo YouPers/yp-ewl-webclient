@@ -65,6 +65,7 @@ angular.module('yp-ewl',
                 fromWti: false
             });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl');
+            $translateWtiPartialLoaderProvider.addPart('yp.commons');
         }])
 
 /**

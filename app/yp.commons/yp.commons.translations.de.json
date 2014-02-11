@@ -2,5 +2,20 @@
     "executiontype": {
         "self": "Selber",
         "group": "Gruppe"
+    },
+    "gender": {
+        "undefined": "unbekannt",
+        "male": "männlich",
+        "female": "weiblich"
+    },
+    "maritalStatus": {
+        "maritalStatus": "Zivilstand",
+        "undefined": "unbekannt",
+        "single": "single",
+        "unmarried": "in Partnerschaft",
+        "married": "verheiratet",
+        "separated": "getrennt",
+        "divorced": "geschieden",
+        "widowed": "verwitwet"
     }
 }

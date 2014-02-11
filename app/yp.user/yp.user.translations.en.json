@@ -1,0 +1,54 @@
+{
+    "account": {
+        "account": "Account",
+        "changeAccount": "Change Account",
+        "changePassword": "Change Password"
+    },
+
+    "accountForm": {
+        "firstname": {
+            "label": "First name",
+            "$invalid": "Please enter a valid first name"
+        },
+        "lastname": {
+            "label": "Last name",
+            "$invalid": "Please enter a valid last name"
+        },
+        "username": {
+            "label": "Username",
+            "$invalid": "Please enter a valid username"
+        },
+        "email": {
+            "label": "Email",
+            "$invalid": "Please enter a valid email address"
+        },
+        "save": "save",
+        "reset": "reset"
+    },
+    "passwordForm": {
+        "password_old": {
+            "label": "Current Password",
+            "$invalid": "Your current password"
+        },
+        "password": {
+            "label": "New Password",
+            "$invalid": "At least 6 characters"
+        },
+        "password2": {
+            "label": "Confirm Password",
+            "$invalid": "The passwords do not match"
+        },
+        "save": "Change"
+    },
+    "emailVerification": {
+        "emailValid": "Email address successfully validated!",
+        "thankYou": "Thank you for verifying your email address. You can now continue"
+    },
+    "passwordReset": {
+        "hello": "Hello",
+        "setNewPassword": "You can set a new password here:",
+        "newPassword": "New Password",
+        "success": "New password successfully set",
+        "loginAgainWithNewPassword": "please login with your new password..."
+    }
+}

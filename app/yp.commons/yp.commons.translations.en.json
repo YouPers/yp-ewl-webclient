@@ -2,5 +2,20 @@
     "executiontype": {
         "self": "self",
         "group": "group"
+    },
+    "gender": {
+        "undefined": "unknown",
+        "male": "male",
+        "female": "female"
+    },
+    "maritialStatus": {
+        "maritialStatus": "Maritial Status",
+        "undefined": "unknown",
+        "single": "single",
+        "unmarried": "unmarried",
+        "married": "married",
+        "separated": "separated",
+        "divorced": "divorced",
+        "widowed": "widowed"
     }
 }

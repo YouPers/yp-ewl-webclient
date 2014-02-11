@@ -1,0 +1,78 @@
+{
+    "account": {
+        "account": "Konto",
+        "changeAccount": "Konto ändern",
+        "changePassword": "Passwort ändern"
+    },
+
+    "accountForm": {
+        "firstname": {
+            "label": "Vorname",
+            "$invalid": "Bitte gültigen Vornamen eingeben"
+        },
+        "lastname": {
+            "label": "Nachname",
+            "$invalid": "Bitte gültigen Nachnamen eingeben"
+        },
+        "username": {
+            "label": "Username",
+            "$invalid": "Bitte gültigen Usernamen eingeben"
+        },
+        "email": {
+            "label": "Email",
+            "$invalid": "Bitte gültige Emailadresse eingeben"
+        },
+        "save": "speichern",
+        "reset": "zurücksetzen"
+
+    },
+    "passwordForm": {
+        "password_old": {
+            "label": "Aktuelles Passwort",
+            "$invalid": "Dein aktuelles Passwort"
+        },
+        "password": {
+            "label": "Neues Passwort",
+            "$invalid": "Mindestens 6 Zeichen"
+        },
+        "password2": {
+            "label": "Passwort bestätigen",
+            "$invalid": "Die Passwörter stimmen nicht überein"
+        },
+        "save": "Ändern"
+    },
+    "emailVerification": {
+        "emailValid": "Email-Adresse bestätigt!",
+        "thankYou": "Vielen für die Bestätigung der Email-Adresse - sie können nun fortfahren."
+    },
+    "passwordReset": {
+        "hello": "Hallo",
+        "setNewPassword": "Du kannst Dir nun ein neues Passwort setzen:",
+        "newPassword": "Neues Passwort",
+        "success": "Passwort erfolgreich gesetzt",
+        "loginAgainWithNewPassword": "Logge Dich mit deinem neuen Passwort ein..."
+    },
+    "profile": {
+        "profile": "Profil",
+        "homeAddress": "Heimadresse",
+        "workAddress": "Arbeitsort"
+    },
+    "profileForm": {
+        "submit": "Übermitteln",
+        "gender": {
+            "label": "Geschlecht"
+        },
+        "birthdate": {
+            "label": "Geburtstag",
+            "$invalid": "Bitte einen gültigen Geburtstag eingeben."
+        },
+        "street":  "Strasse",
+        "number": "Nr.",
+        "zip": "PLZ",
+        "city": "Ort",
+        "country": "Land",
+        "$invalid": "Bitte gültigen Wert eintragen"
+    }
+
+
+}

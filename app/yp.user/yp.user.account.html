@@ -13,73 +13,70 @@
 
         <div class="col-md-6">
 
-            <h2>Account</h2>
+            <h2 translate>account.account</h2>
 
             <accordion close-others="true">
                 
-                <accordion-group heading="Account" is-open="true">
+                <accordion-group heading="{{'account.changeAccount' | translate}}" is-open="true">
 
                     <form name="accountForm" class="form" role="form" ng-submit="saveAccount()" novalidate>
 
-
                         <div class="form-group">
-                            <label>Firstname</label>
-                            <input name="firstname" type="text" placeholder="Firstname" class="form-control" ng-model="accountUserObj.firstname" required>
-                            <span ng-show="accountForm.firstname.$dirty && accountForm.firstname.$invalid" class="help-inline">Something may have gone wrong</span>
+                            <label translate>accountForm.firstname.label</label>
+                            <input name="firstname" type="text" placeholder="{{'accountForm.firstname.label' | translate}}" class="form-control" ng-model="accountUserObj.firstname" required>
+                            <span ng-show="accountForm.firstname.$dirty && accountForm.firstname.$invalid" class="help-inline" translate>accountForm.firstname.$invalid</span>
                         </div>
                         <div class="form-group">
-                            <label>Lastname</label>
-                            <input name="lastname" type="text" placeholder="Lastname" class="form-control" ng-model="accountUserObj.lastname" required>
-                            <span ng-show="accountForm.firstname.$dirty && accountForm.lastname.$invalid" class="help-inline">Something may have gone wrong</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input name="username" type="text" placeholder="Username" class="form-control" ng-model="accountUserObj.username" required>
-                            <span ng-show="accountForm.username.$dirty && accountForm.username.$invalid" class="help-inline">Something may have gone wrong</span>
+                            <label translate>accountForm.lastname.label</label>
+                            <input name="lastname" type="text" placeholder="{{'accountForm.lastname.label' | translate}}" class="form-control" ng-model="accountUserObj.lastname" required>
+                            <span ng-show="accountForm.firstname.$dirty && accountForm.lastname.$invalid" class="help-inline" translate>accountForm.lastname.$invalid</span>
                         </div>
 
                         <div class="form-group">
-                            <label>Email</label>
-                            <input name="email" type="text" placeholder="Email" class="form-control" ng-model="accountUserObj.email" required>
-                            <span ng-show="accountForm.email.$dirty && accountForm.email.$invalid" class="help-inline">Something may have gone wrong</span>
+                            <label translate>accountForm.username.label</label>
+                            <input name="username" type="text" placeholder="{{'accountForm.username.label' | translate}}" class="form-control" ng-model="accountUserObj.username" required>
+                            <span ng-show="accountForm.username.$dirty && accountForm.username.$invalid" class="help-inline" translate>accountForm.username.$invalid</span>
                         </div>
 
+                        <div class="form-group">
+                            <label translate>accountForm.email.label</label>
+                            <input name="email" type="text" placeholder="{{'accountForm.email.label' | translate}}" class="form-control" ng-model="accountUserObj.email" required>
+                            <span ng-show="accountForm.email.$dirty && accountForm.email.$invalid" class="help-inline" translate>accountForm.email.$invalid</span>
+                        </div>
 
-
-                        <button type="button" class="btn btn-sm" ng-click="accountUserObjReset()">Reset</button>
-                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="accountForm.$invalid">Save</button>
+                        <button type="button" class="btn btn-sm" ng-click="accountUserObjReset()" translate>accountForm.reset</button>
+                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="accountForm.$invalid" translate>accountForm.save</button>
 
                     </form>
                     
                 </accordion-group>
 
-                <accordion-group heading="Change Password">
+                <accordion-group heading="{{'account.changePassword' | translate}}">
                     
                     <form name="passwordForm" class="form" role="form" ng-submit="changePassword()" novalidate>
 
                         <div class="form-group">
-                            <label>Current Password</label>
-                            <input name="password" id="password_old" type="password" placeholder="Password" class="form-control"
+                            <label translate>passwordForm.password_old.label</label>
+                            <input name="password_old" id="password_old" type="password" placeholder="{{'passwordForm.password_old.label' | translate}}" class="form-control"
                                    ng-model="passwordUserObj.password_old" required >
-                            <span ng-show="passwordForm.password.$dirty && passwordForm.password.$invalid" class="help-inline">Your current password</span>
+                            <span ng-show="passwordForm.password_old.$dirty && passwordForm.password_old.$invalid" class="help-inline" translate>passwordForm.password_old.$invalid</span>
                         </div>
 
                         <div class="form-group">
-                            <label>New Password</label>
-                            <input name="password" id="password" type="password" placeholder="New Password" class="form-control"
+                            <label translate>passwordForm.password.label</label>
+                            <input name="password" id="password" type="password" placeholder="{{'passwordForm.password.label' | translate}}" class="form-control"
                                    ng-model="passwordUserObj.password" required ng-minlength="6">
-                            <span ng-show="passwordForm.password.$dirty && passwordForm.password.$invalid" class="help-inline">At least 6 characters</span>
+                            <span ng-show="passwordForm.password.$dirty && passwordForm.password.$invalid" class="help-inline" translate>passwordForm.password.$invalid</span>
                         </div>
                         <div class="form-group"  ng-class="{'has-error': passwordForm.password2.$dirty && passwordForm.password2.$invalid}">
-                            <label>Confirm Password</label>
-                            <input name="password2" id="password2" type="password" placeholder="Password confirmation" class="form-control"
+                            <label translate>passwordForm.password2.label</label>
+                            <input name="password2" id="password2" type="password" placeholder="{{'passwordForm.password2.label' | translate}}" class="form-control"
                                    ng-model="passwordUserObj.password2" required password-match="passwordUserObj.password">
-                            <span ng-show="passwordForm.password2.$dirty && passwordForm.password2.$invalid" class="help-inline">The passwords do not match</span>
+                            <span ng-show="passwordForm.password2.$dirty && passwordForm.password2.$invalid" class="help-inline" translate>passwordForm.password2.$invalid</span>
 
                         </div>
 
-                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="passwordForm.$invalid">Change</button>
+                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="passwordForm.$invalid" translate>passwordForm.save</button>
 
                     </form>
                     
