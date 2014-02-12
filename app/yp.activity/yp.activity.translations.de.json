@@ -107,6 +107,10 @@
         "cancel": "Zurück",
         "save": "Weiter"
     },
+    "activityLog": {
+        "comments": "Kommentare: ",
+        "commentsPopover": "Kommentare: Zum öffnen bitte anklicken"
+    },
     "admin": {
         "header": "Aktivität bearbeiten",
         "executiontype": "Standard Ausführung",
