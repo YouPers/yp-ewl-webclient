@@ -1,6 +1,6 @@
 
 <div class="panel cockpit section-title">
-    Social Ticker
+    <span translate>cockpit.sociallog.header</span>
 
                         <span class="glyphicon controls glyphicon-{{socialLogVisible ? 'minus' : 'plus' }}"
                               ng-init="socialLogVisible=true"
@@ -9,7 +9,7 @@
 
 <div ng-show="socialLogVisible">
 
-    <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+    <p translate>cockpit.sociallog.subheader</p>
 
     <div class="list-group social-log">
 
@@ -30,13 +30,11 @@
                     </div>
                 </div>
                 <div class="col-xs-2 col-md-2">
-                    <!--<div class="col-xs-6 col-md-4">-->
                     <div class="social-log time-box">
-                                                <span class="activity-log time-box timestamp">
-                                                    {{socialLogEntry.created | fromNow}}</br>
-                                                </span>
+                        <span class="activity-log time-box timestamp">
+                            {{socialLogEntry.created | fromNow}}</br>
+                        </span>
                     </div>
-                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -46,6 +44,6 @@
 <div ng-hide="socialLogVisible">
 
     </br>
-    <p>Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen. </p>
+    <p translate>cockpit.sociallog.placeholder</p>
 
 </div>

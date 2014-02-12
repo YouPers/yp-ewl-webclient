@@ -3,8 +3,8 @@
 
     angular.module('yp.activity', ['restangular', 'ui.router', 'yp.user'])
 
-        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
-            function ($stateProvider, $urlRouterProvider, accessLevels) {
+        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('activitylist', {
                         url: "/activities?tab&page",
@@ -27,7 +27,6 @@
                             assessment: ['AssessmentService', function (AssessmentService) {
                                 return AssessmentService.getAssessment('525faf0ac558d40000000005');
                             }]
-
                         }
                     })
                     .state('activityAdmin', {
@@ -75,19 +74,21 @@
                             } ]
                         }
                     });
+
+                    $translateWtiPartialLoaderProvider.addPart('yp.activity');
             }])
 
-        .constant('activityFields', {
-            AwarenessAbility: "Bewusstsein und Fähigkeit",
-            TimeManagement: "Zeitmanagement",
-            WorkStructuring: "Arbeitsgestaltung",
-            PhysicalActivity: "Körperliche Aktivität",
-            Nutrition: "Ernährung",
-            LeisureActivity: "Freizeitaktivität",
-            Breaks: "Pausen",
-            Relaxation: "Entspannung",
-            SocialInteraction: "Sozialer Austausch"
-        })
+        .constant('activityFields', [
+            'awarenessAbility',
+            'timeManagement',
+            'workStructuring',
+            'physicalActivity',
+            'nutrition',
+            'leisureActivity',
+            'breaks',
+            'relaxation',
+            'socialInteraction'
+        ])
 
         // Object methods for all Assessment related objects
         .run(['Restangular', function (Restangular) {
@@ -221,12 +222,17 @@
         }])
 
 
-        .factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', function ($http, Restangular, $q, principal) {
+        .factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', '$rootScope',
+            function ($http, Restangular, $q, principal, $rootScope) {
             var activities = Restangular.all('activities');
             var activityPlans = Restangular.all('activityplans');
 
             var cachedActivitiesPromise;
             var cachedRecommendationsPromises = {};
+
+            $rootScope.$on('$translateChangeStart', function() {
+                actService.reloadActivities();
+            });
 
             var actService = {
                 getActivities: function () {

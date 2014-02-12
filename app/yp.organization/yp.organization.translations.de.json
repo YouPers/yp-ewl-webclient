@@ -1,0 +1,86 @@
+{
+    "organizationForm": {
+        "header": "Neue Organization",
+
+        "name": {
+            "label": "Name",
+            "placeholder": "Name",
+            "$invalid": "Bitte einen gültigen Namen eingeben"
+        },
+        "location": {
+            "label": "Ort",
+            "placeholder": "Ort",
+            "$invalid": "Bitte einen gültigen Ort eingeben"
+        },
+        "sector": {
+            "label": "Sektor",
+            "placeholder": "Sektor",
+            "$invalid": "Bitte einen gültigen Sektor eingeben"
+        },
+        "nrOfEmployees": {
+            "label": "Anzahl der Mitarbeiter",
+            "placeholder": "Anzahl der Mitarbeiter",
+            "$invalid": "Bitte eine gültige Anzahl eingeben"
+        },
+
+        "reset": "Zurücksetzen",
+        "save": "Erstellen"
+    },
+
+    "campaignForm": {
+        "header": "Neue Kampagne",
+
+        "title": {
+            "label": "Titel",
+            "placeholder": "Titel",
+            "$invalid": "Bitte einen gültigen Title eingeben"
+        },
+        "start": {
+            "label": "Start"
+        },
+        "end": {
+            "label": "Ende"
+        },
+        "relatedService": {
+            "label": "Service",
+            "placeholder": "Service",
+            "$invalid": "Bitte einen gültigen Service eingeben"
+        },
+        "location": {
+            "label": "Ort",
+            "placeholder": "Ort",
+            "$invalid": "Bitte einen gültigen Ort eingeben"
+        },
+        "slogan": {
+            "label": "Slogan",
+            "placeholder": "Slogan",
+            "$invalid": "Bitte einen gültigen Slogan eingeben"
+        },
+        "paymentStatus": "Status",
+
+        "reset": "Zurücksetzen",
+        "save": "Erstellen"
+    },
+
+    "organization": {
+        "list": {
+            "name": "Name",
+            "location": "Ort",
+            "sector": "Sektor",
+            "nrOfEmployees": "Mitarbeiter"
+        }
+    },
+    "campaign": {
+        "list": {
+            "header": "Kampagnen",
+
+            "title": "Titel",
+            "start": "Start",
+            "end": "Ende",
+            "relatedService": "Service",
+            "location": "Ort",
+            "slogan": "Slogan",
+            "paymentStatus": "Status"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "cockpit": {
+        "header": "Cockpit",
+
+        "activitylog": {
+            "header": "Aktivitätslog",
+            "subheader": "Alle deine vergangenen und zukünftigen Aktivitäten",
+            "newActivity": "Neue Aktivität &raquo;",
+            "placeholder": "Anzeigen aller vergangenen und zukünftigen Aktivitäten"
+        },
+
+        "activitychart": {
+            "header": "Aktivitäten",
+            "subheader": "Verfolge die Aktivitäten deiner Arbeitskollegen in der Kampagne.",
+            "today": "Heute",
+            "thisWeek": "Diese Woche",
+            "campaign": "Kampagne bisher",
+            "detailedChart": "Ausführliche Darstellung &raquo;"
+        },
+        "sociallog": {
+            "header": "Social Ticker",
+            "subheader": "Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen.",
+            "placeholder": "Verfolge deine Interessensgebiete und teile deine Erfahrungen mit anderen."
+        },
+        "stresslevel": {
+            "header": "Status",
+            "subheader": "Dein allgemeiner Stresslevel (inkl. Entwicklung) sowie die drei grössten Stressverursacher"
+        }
+
+    },
+
+    "activitylog": {
+        "upcoming": "nächste",
+        "recent": "vergangene",
+        "planned": "geplant"
+    }
+}

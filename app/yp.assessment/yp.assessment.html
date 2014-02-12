@@ -2,8 +2,9 @@
 
 
     <header name="assess">
-        <span>{{ assessment.name | translate }}</span>
-        <div>{{result.timestamp ? 'letzte Beurteilung: ' + (result.timestamp | fromNow) : 'Das ist deine erste Beurteilung'}}</div>
+        <div translate>assessment.header</div>
+        <span ng-show="!result.timestamp"><span translate>assessment.subheader.first</span></span>
+        <span ng-hide="!result.timestamp"><span translate>{{'assessment.subheader.recurring' | translate}}</span><span>{{result.timestamp | fromNow}}</span></span>
     </header>
 
     <!--<div class="ass-done-button ass-done-button-top">-->
@@ -11,26 +12,25 @@
     <!--</div>-->
     <div class="row ass-questioncat-title" ng-repeat="questioncat in assessment.questionCats">
         <div class="col-md-11">
-            <div class="panel cockpit" ng-class="{mainAssQuestion: questioncat.category=='GENERAL_STRESSLEVEL', otherAssQuestion: questioncat.category!='GENERAL_STRESSLEVEL'}">
+            <div class="panel cockpit" ng-class="{mainAssQuestion: questioncat.category=='generalStresslevel', otherAssQuestion: questioncat.category!='generalStresslevel'}">
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel cockpit section-title">
-                            {{ questioncat.category | translate}}
+                            {{ 'questionCategory.' + questioncat.category | translate }}
                         </div>
                     </div>
                 </div>
                 <div class="row" ng-repeat="question in questioncat.questions">
-                    <!--<div class="col-md-12" ng-class="{mainAssQuestion: question.category=='general', panel: question.category!=='general'}">-->
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="row ass-question">
-                                    <div class="col-md-8 col-md-offset-2"><h4>{{ question.title | translate}}</h4></div>
+                                    <div class="col-md-8 col-md-offset-2"><h4>{{ question.title }}</h4></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 ass-min-text" popover="{{ question.mintextexample }}"
-                                         popover-trigger="mouseenter" popover-placement="right">{{ question.mintext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                                         popover-trigger="mouseenter" popover-placement="right">{{ question.mintext }} <span class="glyphicon glyphicon-info-sign"></span></div>
                                     <div class="col-md-6">
                                         <input ng-class="[question.type, assAnswersByQuestionId[question.id].dirty ? 'answered' : '']"
                                                type="range" min="-100"
@@ -39,12 +39,12 @@
                                                ng-mousedown="setQuestionAnswered(question.id)"/>
                                     </div>
                                     <div ng-hide="question.maxtext == 'n/a'" class="col-md-3 ass-max-text" popover="{{ question.maxtextexample }}"
-                                         popover-trigger="mouseenter">{{ question.maxtext | translate}} <span class="glyphicon glyphicon-info-sign"></span>
+                                         popover-trigger="mouseenter">{{ question.maxtext }} <span class="glyphicon glyphicon-info-sign"></span>
                                     </div>
                                 </div>
                                 <div class="row ass-mid-text">
                                     <div class="col-md-8 col-md-offset-2" popover="{{ question.midtextexample }}"
-                                         popover-trigger="mouseenter">{{ question.midtext | translate}} <span class="glyphicon glyphicon-info-sign"></span></div>
+                                         popover-trigger="mouseenter">{{ question.midtext }} <span class="glyphicon glyphicon-info-sign"></span></div>
                                 </div>
                             </div>
                             <div class="col-md-5 assessmentText">
@@ -59,6 +59,6 @@
         </div>
     </div>
     <div class="ass-done-button ass-done-button-bottom">
-        <button type="button" class="cockpit btn btn-primary" ng-click="assessmentDone()">speichern</button>
+        <button type="button" class="cockpit btn btn-primary" ng-click="assessmentDone()">{{ 'assessment.save' | translate }}</button>
     </div>
 </div>

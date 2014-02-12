@@ -10,32 +10,22 @@
             <a class="navbar-logo" href="http://www.youpers.com/en/"><img src="assets/img/logo.png" alt="YouPers"
                                                                           height="50"></a>
         </div>
-        <div class="navbar-collapse collapse" collapse="navCollapsed" ng-switch on="getTopMenu()">
-            <ul class="nav navbar-nav" ng-switch-default>
-            </ul>
-            <ul class="nav navbar-nav" ng-switch-when="individual">
+        <div class="navbar-collapse collapse" collapse="navCollapsed">
+            <ul class="nav navbar-nav" >
                 <li ng-class="{ active: isActive('campaign')}">
-                    <a href="#/topics">{{ 'COMMIT' | translate }}</a>
+                    <a href="#/topics" translate>topmenu.commit</a>
                 </li>
                 <li ng-class="{ active: isActive('assessment')}">
-                    <a href="#/assessment/525faf0ac558d40000000005">{{ 'ASSESS' | translate }}</a>
+                    <a href="#/assessment/525faf0ac558d40000000005" translate>topmenu.assess</a>
                 </li>
                 <li ng-class="{ active: isActive('activitylist') || isActive('activityDetail')}">
-                    <a href="#/activities">{{ 'PLAN' | translate }}</a>
+                    <a href="#/activities" translate>topmenu.plan</a>
                 </li>
                 <li ng-class="{ active: isActive('cockpit')}">
-                    <a href="#/cockpit">{{ 'DO' | translate }}</a>
+                    <a href="#/cockpit" translate>topmenu.do</a>
                 </li>
                 <li ng-class="{ active: isActive('evaluate')}">
-                    <a href="#/evaluate">{{ 'EVALUATE' | translate }}</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav" ng-switch-when="healthpromoter">
-                <li ng-class="{ active: isActive('campaign')}">
-                    <a href="#/healthpromoter/campaign">{{ 'CAMPAIGN' | translate }}</a>
-                </li>
-                <li ng-class="{ active: isActive('sponsoring')}">
-                    <a href="#/healthpromoter/sponsoring">{{ 'SPONSORING' | translate }}</a>
+                    <a href="#/evaluate" translate>topmenu.evaluate</a>
                 </li>
             </ul>
 
@@ -44,12 +34,13 @@
                 <div class="nav navbar-right">
                     <ul class="nav navbar-nav">
                         <li class="dropdown" ng-show="principal.isAuthenticated()">
-                            <a class="dropdown-toggle" data-toggle="dropdown">{{ principal.getUser().fullname }}<b
-                                    class="caret"></b></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown">{{ principal.getUser().fullname }}
+                                <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="" ng-click="logout()">Logout</a></li>
-                                <li><a href="#/account">Account</a></li>
-                                <li><a href="#/profile">{{ 'PROFILE' | translate }}</a></li>
+                                <li><a href="" ng-click="logout()" translate>topmenu.logout</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#/account" translate>topmenu.account</a></li>
+                                <li><a href="#/profile" translate>topmenu.profile</a></li>
                             </ul>
                         </li>
 
@@ -61,17 +52,13 @@
 
                         <ul class="nav navbar-nav">
                             <li class="dropdown" ng-controller="i18nCtrl">
-                                <a class="dropdown-toggle" data-toggle="dropdown">{{ 'LANGUAGE' | translate }} <b
-                                        class="caret"></b></a>
+                                <a class="dropdown-toggle" data-toggle="dropdown"><translate>topmenu.language</translate>
+                                    <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="" ng-click="changeLang('en')">english</a></li>
-                                    <li><a href="" ng-click="changeLang('de')">deutsch</a></li>
-                                    <li class="disabled"><a href="">espanol</a></li>
-                                    <li class="disabled"><a href="">francais</a></li>
-                                    <li class="divider"></li>
-                                    <li class="dropdown-header">Falls noch nicht genug</li>
-                                    <li><a href="#">Und noch mehr</a></li>
-                                    <li><a href="#">Und noch noch mehr</a></li>
+                                    <li ng-class="{active: currentLocale=='en'}" ><a href="" ng-click="changeLang('en')">english</a></li>
+                                    <li ng-class="{active: currentLocale=='de'}"><a href="" ng-click="changeLang('de')">deutsch</a></li>
+                                    <li ng-class="{active: currentLocale=='it'}"><a href="" ng-click="changeLang('it')">italiano</a></li>
+                                    <li ng-class="{active: currentLocale=='fr'}"><a href="" ng-click="changeLang('fr')">français</a></li>
                                 </ul>
                             </li>
                         </ul>

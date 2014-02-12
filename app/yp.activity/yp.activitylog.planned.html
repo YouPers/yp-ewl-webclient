@@ -46,16 +46,17 @@
                         <div class="activity-feedback-{{actEvent.feedback}}-small"></div>
                     </div>
                     <div class="col-xs-3 col-md-3">
-                        <!--ToDo irig: Popover-Text auslagern und in verschiedenen Sprachen implementieren-->
-                        <a href="" ng-click="$parent.commentsShown = !$parent.commentsShown" popover="Kommentare: Zum öffnen bitte anklicken" popover-trigger="mouseenter" class="glyphicon glyphicon-comment"> </a>
-                        <a href="" ng-click="$parent.commentsShown = !$parent.commentsShown" popover="Anzahl Kommentare: Zum öffnen bitte anklicken" popover-trigger="mouseenter"class="badge">{{actEvent.comments.length}}</a>
+                        <a href="" ng-click="$parent.commentsShown = !$parent.commentsShown" popover="{{ 'activityLog.commentsPopover' | translate }}" popover-trigger="mouseenter" class="glyphicon glyphicon-comment">
+                            <span translate>activityLog.comments</span>
+                        </a>
+                        <a href="" ng-click="$parent.commentsShown = !$parent.commentsShown" popover="{{ 'activityLog.commentsPopover' | translate }}" popover-trigger="mouseenter"class="badge">{{actEvent.comments.length}}</a>
                     </div>
                     <div class="col-xs-3 col-md-3">
 
                         <div class="activity-log time-box">
-                                                                <span class="activity-log time-box timestamp">{{actEvent.begin | fromNow}}</br>
-                                                                    {{actEvent.begin | time}} - {{actEvent.end | time}}
-                                                                </span>
+                            <span class="activity-log time-box timestamp">{{actEvent.begin | fromNow}}</br>
+                                {{actEvent.begin | time}} - {{actEvent.end | time}}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -78,9 +79,9 @@
                             </div>
                             <div class="col-xs-2 col-md-2">
                                 <div class="social-log time-box">
-                                                                            <span class="activity-log time-box timestamp">
-                                                                                   {{comment.created | fromNow}}</br>
-                                                                            </span>
+                                    <span class="activity-log time-box timestamp">
+                                           {{comment.created | fromNow}}</br>
+                                    </span>
                                 </div>
                             </div>
                         </div>

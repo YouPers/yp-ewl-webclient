@@ -7,9 +7,9 @@
             function ($scope, $rootScope, ActivityService, activityFields, $modal, $log) {
                 $scope.tabs = [
                     // ToDo irig: Tab-Beschreibungen durch Config-Texte mit Translate ersetzen
-                    { title: "nächste", content: "yp.activity/yp.activitylog.running.html", orderBy: "asc", filter: "nextEvents" },
-                    { title: "vergangene", content: "yp.activity/yp.activitylog.running.html", orderBy: "des", filter: "passedEvents" },
-                    { title: "Geplante Aktivitäten", content: "yp.activity/yp.activitylog.planned.html" }
+                    { title: "upcoming", content: "yp.activity/yp.activitylog.running.html", orderBy: "asc", filter: "nextEvents" },
+                    { title: "recent", content: "yp.activity/yp.activitylog.running.html", orderBy: "des", filter: "passedEvents" },
+                    { title: "planned", content: "yp.activity/yp.activitylog.planned.html" }
                 ];
 
                 $scope.activityFields = activityFields;

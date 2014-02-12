@@ -2,29 +2,29 @@
     <a class="close" ng-click="cancel()">×</a>
 
     <div ng-hide="registerShown">
-        Für diese Seite ist es notwendig, dass du dich einloggst. <br>
-        Sonst gehen deine Daten verloren.
-        <form class="navbar-form" ng-submit="done()">
+        <translate>loginDialog.pleaseLoginOrRegister</translate><br>
+        <translate>loginDialog.loginReason</translate>
+        <form class="navbar-form" ng-submit="done()" name="loginform">
             <div class="row">
                 <div class="col-md-4">
-                    <input type="text" placeholder="username/email" class="form-control login" ng-model="result.login.username" setfocus="showLoginDialog">
+                    <input type="text" placeholder="{{'loginform.usernameOrEmail.label' | translate}}" class="form-control login" ng-model="result.login.username" setfocus="showLoginDialog">
                 </div>
                 <div class="col-md-4">
-                    <input type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control login"
+                    <input type="password" placeholder="{{ 'loginform.password.label' | translate }}" class="form-control login"
                            ng-model="result.login.password">
                 </div>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-success btn-sm">{{ 'LOGIN' | translate }}</button>
+                    <button type="submit" class="btn btn-success btn-sm" translate>loginform.login</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <label class="checkbox login">Angemeldet bleiben
+                    <label class="checkbox login"><translate>loginform.rememberMe.label</translate>
                         <input type="checkbox" ng-model="result.login.keepMeLoggedIn">
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <a href="" ng-click="gotoPasswordReset()">Passwort vergessen</a>
+                    <a href="" ng-click="gotoPasswordReset()" translate>loginDialog.passwordForgotten</a>
                 </div>
             </div>
         </form>
@@ -33,57 +33,58 @@
                 <!--<div class="col-md-8">-->
                 <!--</div>-->
                 <div class="col-md-4">
-                    <button class="btn btn-sm btn-primary" ng-click="showRegistrationForm(registerform)">Neu registrieren</button>
+                    <button class="btn btn-sm btn-primary" ng-click="showRegistrationForm(registerform)" translate>loginDialog.register</button>
                 </div>
             </div>
         </div>
     </div>
     <div ng-show="registerShown">
-        Neuen Account registrieren:
+        <translate>loginDialog.registerNewAccount</translate>
         <form name="registerform" class="form" role="form" ng-submit="done()" novalidate>
             {{registerShownInitially ? showRegistrationForm(registerform) :''}}
             <div class="form-group">
-                <label>{{ 'FIRSTNAME' | translate }}</label>
-                <input name="firstname" type="text" placeholder="{{ 'FIRSTNAME' | translate }}" class="form-control" ng-model="result.newuser.firstname" setfocus="showRegistrationForm" required>
-                <span ng-show="registerform.firstname.$dirty && registerform.firstname.$invalid" class="help-inline">Something may have gone wrong</span>
+                <label translate>registerform.firstname.label</label>
+                <input name="firstname" type="text" placeholder="{{ 'registerform.firstname.label' | translate }}" class="form-control" ng-model="result.newuser.firstname" setfocus="showRegistrationForm" required>
+                <span ng-show="registerform.firstname.$dirty && registerform.firstname.$invalid" class="help-inline" translate>registerform.firstname.$invalid</span>
             </div>
             <div class="form-group">
-                <label>{{ 'LASTNAME' | translate }}</label>
-                <input name="lastname" type="text" placeholder="{{ 'LASTNAME' | translate }}" class="form-control" ng-model="result.newuser.lastname" required>
-                <span ng-show="registerform.lastname.$dirty && registerform.lastname.$invalid" class="help-inline">Something may have gone wrong</span>
+                <label translate>registerform.lastname.label</label>
+                <input name="lastname" type="text" placeholder="{{ 'registerform.lastname.label' | translate }}" class="form-control" ng-model="result.newuser.lastname" required>
+                <span ng-show="registerform.lastname.$dirty && registerform.lastname.$invalid" class="help-inline" translate>registerform.lastname.$invalid</span>
             </div>
             <div class="form-group" ng-class="{'has-error': registerform.username.$dirty && registerform.username.$invalid || registerform.$error.usernameunique}">
-                <label>{{ 'USERNAME' | translate }}</label>
-                <input name="username" type="text" placeholder="{{ 'FIRSTNAME' | translate }}" class="form-control" ng-model="result.newuser.username" required unique-user-field>
-                <span ng-show="registerform.username.$dirty && registerform.username.$invalid" class="help-inline">Something may have gone wrong</span>
-                <span ng-show="registerform.$error.usernameunique" class="help-inline">Wird schon verwendet</span>
+                <label translate>registerform.username.label</label>
+                <input name="username" type="text" placeholder="{{ 'registerform.username.label' | translate }}" class="form-control" ng-model="result.newuser.username" required unique-user-field>
+                <span ng-show="registerform.username.$dirty && registerform.username.$invalid" class="help-inline" translate>registerform.username.$invalid</span>
+                <span ng-show="registerform.$error.usernameunique" class="help-inline" translate>registerform.$error.usernameunique</span>
             </div>
             <div class="form-group" ng-class="{'has-error': registerform.email.$dirty && registerform.email.$invalid || registerform.$error.emailunique}">
-                <label>{{ 'EMAIL' | translate }}</label>
-                <input name="email" type="email" placeholder="{{ 'EMAIL' | translate }}" class="form-control" ng-model="result.newuser.email" required unique-user-field>
-                <span ng-show="registerform.email.$dirty && registerform.email.$invalid" class="help-inline">Bitte gültige Email Adresse angeben</span>
-                <span ng-show="registerform.$error.emailunique" class="help-inline">Du bist schon mit dieser Email Adresse registriert, bitte logge dich ein</span>
+                <label translate>registerform.email.label</label>
+                <input name="email" type="email" placeholder="{{ 'registerform.email.label' | translate }}" class="form-control" ng-model="result.newuser.email" required unique-user-field>
+                <span ng-show="registerform.email.$dirty && registerform.email.$invalid" class="help-inline" translate>registerform.email.$invalid</span>
+                <span ng-show="registerform.$error.emailunique" class="help-inline" translate>registerform.$error.emailunique</span>
             </div>
             <div class="form-group">
-                <label>{{ 'PASSWORD' | translate }}</label>
-                <input name="password" id="password" type="password" placeholder="{{ 'PASSWORD' | translate }}" class="form-control"
+                <label translate>registerform.password.label</label>
+                <input name="password" id="password" type="password" placeholder="{{ 'registerform.password.label' | translate }}" class="form-control"
                        ng-model="result.newuser.password" required ng-minlength="6">
-                <span ng-show="registerform.password.$dirty && registerform.password.$invalid" class="help-inline">Passwort mindestens 6 Buchstaben</span>
+                <span ng-show="registerform.password.$dirty && registerform.password.$invalid" class="help-inline" translate>registerform.password.$invalid</span>
             </div>
             <div class="form-group"  ng-class="{'has-error': registerform.password2.$dirty && registerform.password2.$invalid}">
-                <label>{{ 'PASSWORD_AGAIN' | translate }}</label>
-                <input type="password" name="password2" id="password2" placeholder="{{ 'PASSWORD_AGAIN' | translate }}" class="form-control"
+                <label translate>registerform.password2.label</label>
+                <input type="password" name="password2" id="password2" placeholder="{{ 'registerform.password2.label' | translate }}" class="form-control"
                        ng-model="result.newuser.password2" required password-match="result.newuser.password">
-                <span ng-show="registerform.password2.$dirty && registerform.password2.$invalid" class="help-inline">Passwort nicht identisch</span>
+                <span ng-show="registerform.password2.$dirty && registerform.password2.$invalid" class="help-inline" translate>registerform.password2.$invalid</span>
             </div>
 
             <div class="form-group"  ng-class="{'has-error': registerform.termsAccepted.$dirty && registerform.termsAccepted.$invalid}">
 
                 <input name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
-                <div toggle-value="termsAccepted" >Ich hab die <a href="#/terms" target="_blank">Allgemeinen Geschäftsbedingungen und die Datenschutzbestimmung</a> gelesen und stimme ihnen zu</div>
-                <span ng-show="registerform.termsAccepted.$error.required" class="help-inline">Bitte akzeptiere die Geschäftsbedingungen</span>
+                <!-- toggle-value="termsAccepted" is used again in the <a> to revert the checkbox change when clicking on the link-->
+                <div toggle-value="termsAccepted"><translate>registerform.termsAccepted.label1</translate> <a href="#/terms" target="_blank" toggle-value="termsAccepted" translate>registerform.termsAccepted.label2</a><translate>registerform.termsAccepted.label3</translate></div>
+                <span ng-show="registerform.termsAccepted.$error.required" class="help-inline" translate>registerform.termsAccepted.$error.required</span>
             </div>
-            <button type="submit" class="btn btn-success btn-sm" ng-disabled="registerform.$invalid">{{ 'REGISTER' | translate }}</button>
+            <button type="submit" class="btn btn-success btn-sm" ng-disabled="registerform.$invalid" translate>registerform.register</button>
         </form>
     </div>
 </div>

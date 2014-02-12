@@ -10,7 +10,7 @@
         <a name="{{item.name}}" class="item" ng-class="{active: isActive($index)}" ng-href="{{item.url}}" ng-repeat="item in items">
             <div class="i1 triangle"></div>
             <div class="i2 square">
-                <span>{{ item.name }}</span>
+                <span>{{ 'topmenu.'+item.name | translate}}</span>
             </div>
             <div class="i3 triangle"></div>
         </a>

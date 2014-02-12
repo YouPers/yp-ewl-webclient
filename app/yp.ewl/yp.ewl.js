@@ -21,8 +21,8 @@ angular.module('yp-ewl',
 
         ]).
 
-    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config',
-        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config) {
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translateWtiPartialLoaderProvider',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider) {
             //
             // For any unmatched url, send to /home
             $urlRouterProvider.otherwise("/home");
@@ -38,17 +38,41 @@ angular.module('yp-ewl',
                     url: "/terms",
                     templateUrl: "yp.ewl/terms.html",
                     access: accessLevels.all
-                });
+                })
 
+                // temporary bounce state while we wait for this bug to be fixed: https://github.com/angular-ui/ui-router/issues/76
+                .state('bounce', {
+                params: ['state', 'params'],
+                template: '<h4>Loading stuff...</h4>', // you can even put some loading template here, wow!
+                controller: ['$state', '$stateParams', function($state, $stateParams) {
+                    // just redirect to caller
+                    $state.go(
+                        $stateParams.state,
+                        JSON.parse($stateParams.params)
+                    );
+                }],
+                access:  accessLevels.all
+            });
 
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
+
+            $translateProvider.preferredLanguage('de');
+            $translateProvider.useCookieStorage();
+            $translateProvider.useLoader('$translateWtiPartialLoader', {
+                urlTemplate: '/{part}/{part}.translations.{lang}.json',
+                wtiProjectId: '8233-eWL',
+                wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
+                fromWti: false
+            });
+            $translateWtiPartialLoaderProvider.addPart('yp.ewl');
+            $translateWtiPartialLoaderProvider.addPart('yp.commons');
         }])
 
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'principal', 'UserService', '$timeout',
-        function ($rootScope, $state, $stateParams, principal, UserService, $timeout) {
+    .run(['$rootScope', '$state', '$stateParams', 'principal', 'UserService', '$timeout', '$http', '$translate', 'enums',
+        function ($rootScope, $state, $stateParams, principal, UserService, $timeout, $http, $translate, enums) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -56,6 +80,15 @@ angular.module('yp-ewl',
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.principal = principal;
+            $rootScope.currentLocale = $translate.uses() || $translate.proposedLanguage();
+            $rootScope.enums = enums;
+
+            // set the language to use for backend calls to be equal to the current GUI language
+            // translate.uses() returns undefined until the partial async loader has found the "proposedLanguage"
+            // therefore we use in this case $translate.proposedLanguage()
+            $http.defaults.headers.common['yp-language'] =  $translate.uses() || $translate.proposedLanguage();
+
+            $translate.refresh();
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
@@ -80,16 +113,11 @@ angular.module('yp-ewl',
 
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
-
-              console.log('Error on StateChange: '+ JSON.stringify(error));
+                console.log('Error on StateChange: '+ JSON.stringify(error));
             });
 
-        }]).
+        }])
 
-    config(['$translateProvider', function ($translateProvider) {
-        $translateProvider.preferredLanguage('de');
-        $translateProvider.useCookieStorage();
-    }])
 
 /**
  * main controller, responsible for
@@ -133,16 +161,6 @@ angular.module('yp-ewl',
                 return ($scope.$state.current.name.indexOf(viewLocation) !== -1);
             };
 
-            $scope.getTopMenu = function () {
-                if ($scope.$state.current.url.indexOf('hp') !== -1) {
-                    return 'healthpromoter';
-                } else if ($scope.$state.current.url.indexOf('home') !== -1) {
-                    return 'home';
-                } else {
-                    return 'individual';
-                }
-            };
-
             $scope.$on('globalUserMsg', function (event, msg, type, duration) {
                 $scope.globalUserMsg = {
                     text: msg,
@@ -168,7 +186,7 @@ angular.module('yp-ewl',
             });
 
             $scope.$on('loginMessageShow', function (event, data) {
-                $scope.registerShown = data.registration;
+                $scope.registerShown = data && data.registration;
                 loginDialogOpen();
                 $scope.nextStateAfterLogin = data;
             });

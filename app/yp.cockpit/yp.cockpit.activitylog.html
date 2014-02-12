@@ -3,23 +3,23 @@
                     <span class="glyphicon controls glyphicon-{{activityLogVisible ? 'minus' : 'plus'}}"
                           ng-init="activityLogVisible=true" ng-click="activityLogVisible = !activityLogVisible">
                     </span>
-        Aktivitätslog
+        <span translate>cockpit.activitylog.header</span>
     </div>
 
     <div ng-show="activityLogVisible" ng-controller="ActivityLogCtrl">
 
-        <p>Alle deine vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August 2013. </p>
+        <p translate>cockpit.activitylog.subheader</p>
 
         <div class="row">
             <div class="col-xs-12 col-md-12">
 
                 <div class="cockpit new-activity">
-                    <button ng-click="gotoActivityList()" type="button" class="btn btn-primary cockpit">{{
-                        "NEW_ACTIVITY" | translate }} &raquo;
+                    <button ng-click="gotoActivityList()" type="button" class="btn btn-primary cockpit">
+                        <span translate>cockpit.activitylog.newActivity</span>
                     </button>
                 </div>
                 <tabset class="cockpit-tabs">
-                    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active"
+                    <tab ng-repeat="tab in tabs" heading="{{'activitylog.' + tab.title | translate}}" active="tab.active"
                          disabled="tab.disabled" class="cockpit-tab">
                         <OPTION ng-selected="setFilter(tab.filter); setOrderBy(tab.orderBy)"></OPTION>
                         <div ng-include="tab.content"></div>
@@ -33,7 +33,6 @@
     <div ng-hide="activityLogVisible">
 
         </br>
-        <p>Anzeigen aller vergangenen und zukünftigen Aktivitäten, Stand: Dienstag, 20. August
-            2013. </p>
+        <p translate>cockpit.activitylog.placeholder</p>
 
     </div>

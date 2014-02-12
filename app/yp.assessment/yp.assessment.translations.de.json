@@ -1,0 +1,37 @@
+{
+    "assessment": {
+        "header": "Beurteile deinen persönlichen Stresslevel",
+        "subheader": {
+            "first": "Beurteilung",
+            "recurring": "Letzte Beurteilung: "
+        },
+        "save": "Speichern",
+        "mytestKey": "Mein deutscher Test Schlüssellli",
+        "result": {
+            "header": "Die Ergebnisse zu deinem Assessment",
+            "topStressors": {
+                "header": "Gemäss deiner Selbstbeurteilung sind dies deine drei grössten Stressverursacher:",
+                "name": "Stressor",
+                "answer": "Deine Antwort",
+                "comment": "Kommentar",
+                "campaignStatistics": {
+                    "header": "In dieser Kampagne wurden bisher folgende Stressoren am häufigsten als grösste Stressoren genannt:",
+                    "category": "Kategorie: "
+                }
+            },
+            "nextSteps": "Aufgrund deiner Selbsbeurteilung werden dir im nächsten Schritt Aktivitäten vorgeschlagen, die du gleich einplanen kannst. <br/>Idealerweise wiederholst du während der Kampagne wöchentlich deine Selbstbeurteilung, damit du siehst, wie sich dein Stresslevel entwickelt.",
+            "next": "Weiter zum nächsten Schritt",
+            "back": "Zurück zur Selbstbeurteilung",
+            "backToCockpit": "Zum Cockpit"
+        }
+    },
+
+    "questionCategory": {
+        "generalStresslevel": "Allgemeiner Stresslevel",
+        "atWork": "Stress am Arbeitsplatz",
+        "leisureTime": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
+        "stressType": "Stresstyp (Stressverstärker)",
+        "stressMeasures": "Stressbewältigung (Entspannung/Ausgleich)"
+    }
+
+}

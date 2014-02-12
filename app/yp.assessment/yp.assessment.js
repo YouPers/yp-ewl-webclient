@@ -4,8 +4,8 @@
     angular.module('yp.assessment', ['ui.router', 'restangular', 'yp.user', 'yp.activity' ])
 
         // configuration of routes for all assessment module pages
-        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
-            function ($stateProvider, $urlRouterProvider, accessLevels) {
+        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('assessment', {
                         url: "/assessment/:assessmentId",
@@ -33,6 +33,8 @@
                             }]
                         }
                     });
+
+                $translateWtiPartialLoaderProvider.addPart('yp.assessment');
             }])
 
         // Object methods for all Assessment related objects
