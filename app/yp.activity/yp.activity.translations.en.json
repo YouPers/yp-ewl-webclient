@@ -27,10 +27,144 @@
         "showAllActivities": "show all activities"
     },
     "detail": {
+        "header": "Plan this activity: ",
+
+        "edit": "change",
+        "save": "save",
+        "plan": "plan",
+        "cancel": "cancel",
+
+        "statistics": "3453x planned<br/>2320x accomplished",
+        "comment": {
+            "header": "Comments",
+            "new": "New Comment",
+            "submit": "Save"
+        },
+        "executiontype": {
+            "self": "Myself",
+            "group": "Join others"
+        },
+        "activityLog": {
+            "header": "You have planned this activity: ",
+            "location": "Location: ",
+            "executiontype": {
+                "group": {
+                    "header": "You have invited others to participate. <br/> Nobody has joined yet.",
+                    "joiningUsers": "Other participants:",
+                    "inviteUsers": "Invite someone else:",
+                    "inviteSubmit": "Invite"
+                }
+            },
+            "nextExecutions": "Upcoming executions:"
+        },
+        "activityPlanFrequency": {
+            "week": "every: ",
+            "once": "starting on: "
+        },
+        "group": {
+            "noPlansToJoin": {
+                "message": "Nobody has started this activity yet.",
+                "link": "Do it yourself!"
+            },
+            "joinPlan": {
+                "join": "Join",
+                "frequency": "every: ",
+                "start": "starting on: ",
+                "time": {
+                    "start": "from: ",
+                    "end": " to: "
+                },
+                "owner": "organized by: ",
+                "joiningUsers": " others are participating:"
+            }
+        },
+        "self": {
+            "header": "Plan on:",
+            "start": "From: ",
+            "end": "To: ",
+            "location": "Where:",
+            "recurrence": {
+                "day": "Recurrance:",
+                "week": "Recurrance",
+                "weeklyDay": "Every:"
+            },
+            "visibility": {
+                "public": "Public",
+                "campaign": "Campaign",
+                "private": "Private"
+            },
+            "executionType": {
+                "self": "Myself",
+                "group": "Invite others"
+            }
+        }
 
     },
+    "done": {
+        "date": "planned on",
+        "message": "Congratulations! You have accomplished another activity and are a step closer to your goal!",
+        "feedback": "How did you feel?",
+        "cancel": "Back",
+        "save": "Continue"
+    },
+    "activityLog": {
+        "comments": "Comments: ",
+        "commentsPopover": "Show comments"
+    },
     "admin": {
+        "header": "Edit Activity",
+        "executiontype": "Default Execution",
+        "frequency": "Default Frequency",
+        "visibility": "Default Visibility",
+        "source": "Source",
+        "activityField": "Activity Fields",
+        "qualityFactor": "Quality Factor (1-10)",
+        "duration": "Duration:",
+        "cancel": "Cancel",
+        "save": "Save",
+        "matrix": {
+            "header": "Assessment Matrix, Recommendations for questions: ",
+            "recommendationSliderLeft": "Recommendation <br/>Left Slider",
+            "recommendationSliderRight": "Recommendation <br/>Right Slider",
+            "valueRangeHint": "Value range from 0 to 10<br/>0 = not recommended, 10 = recommended"
+        }
+    },
+    "visibility": {
+        "public": "Puplic",
+        "campaign": "Campaign",
+        "private": "Private"
+    },
+    "source": {
+        "youpers": "YouPers",
+        "community": "Community",
+        "campaign": "Campaign"
+    },
+    "activityPlanInvite": {
+        "header": "Welcome - YouPers Digital Health Plattform",
+        "subheader": " has invited you to join an activity.",
 
+        "inviteMessage": "To join this activity please <a {{loginLinkAttribute}}>sign in</a> or <a href='' {{registerLinkAttribute}}>register</a>"
+    },
+    "activityPlanFrequency": {
+        "once": "Once",
+        "day": "Daily",
+        "week": "Weekly",
+        "month": "Monthly",
+        "year": "Yearly"
+    },
+    "activityPlanEditable": {
+        "editable": "Change a planned activity",
+        "notEditableJoinedPlans": "Hint: This activity can not be edited, because other users have already joined.",
+        "notEditableJoinedUsers": "Hint: This activity can not be edited, because it was created by another user.",
+        "notEditableNotSingleEvent": "Hint: This activity can not be edited, because multiple executions have been planned.",
+        "notEditablePastEvent": "Hint: This activity can not be edited, it's in the past."
+    },
+    "activityPlanDeletable": {
+        "deletable": "Delete a planned activity",
+        "deletableOnlyFutureEvents": "Delete future events",
+        "notDeletableJoinedUsers": "Hint: This activity can not be deleted, because other users have already joined.",
+        "notDeletableJoinedPlans": "Hint: This activity can not be deleted, because it was created by another user.",
+        "notDeletableNoFutureEvents": "Hint: This activity can not be deleted, all events are in the past."
     },
     "activityField": {
         "awarenessAbility": "Awareness Ability",

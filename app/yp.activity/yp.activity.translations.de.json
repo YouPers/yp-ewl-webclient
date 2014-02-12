@@ -109,7 +109,7 @@
     },
     "activityLog": {
         "comments": "Kommentare: ",
-        "commentsPopover": "Kommentare: Zum öffnen bitte anklicken"
+        "commentsPopover": "Kommentare anzeigen"
     },
     "admin": {
         "header": "Aktivität bearbeiten",
