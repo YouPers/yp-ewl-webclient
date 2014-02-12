@@ -2,18 +2,19 @@
 
     <div class="modal-header">
         <h3>{{ activity.number +': ' + activity.title}}</h3>
-        <h4>geplant am {{ actEvent.begin | date:'medium' }}</h4>
+        <h4><span translate>done.date</span> {{ actEvent.begin | date:'medium' }}</h4>
     </div>
     <div class="modal-body">
 
         <div class="row">
-            <div class="col-lg-4">
-                Gratulation! Du hast eine weitere Aktivität ausgeführt und kommst deinem Ziel näher!
+            <div class="col-lg-4" translate>
+                done.message
             </div>
 
             <div class="col-lg-8">
                 <div class="btn-group">
-                    Wie hast du dich gefühlt?</br>
+                    <span translate>done.feedback</span>
+                    </br>
                     <button class="btn btn-default" ng-model="dialogResults.feedback" btn-radio="1"><div class="activity-feedback-1-small"></div></button>
                     <button class="btn btn-default" ng-model="dialogResults.feedback" btn-radio="2"><div class="activity-feedback-2-small"></div></button>
                     <button class="btn btn-default" ng-model="dialogResults.feedback" btn-radio="3"><div class="activity-feedback-3-small"></div></button>
@@ -41,8 +42,8 @@
             <div class="col-lg-6">
             </div>
             <div class="col-lg-6">
-                <button class="btn btn-default btn-sm" ng-click="cancel()">{{ 'CANCEL' | translate }}</button>
-                <button class="btn btn-success btn-sm" ng-click="ok(rating)">{{ 'SAVE' | translate }}</button>
+                <button class="btn btn-default btn-sm" ng-click="cancel()" translate>done.cancel</button>
+                <button class="btn btn-success btn-sm" ng-click="ok(rating)" translate>done.save</button>
                 </br>
                 </br>
             </div>
