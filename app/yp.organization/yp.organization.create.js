@@ -15,7 +15,6 @@
                 };
                 getOrganizations();
 
-
                 $scope.organization = {};
 
                 $scope.createOrganization = function() {
@@ -24,19 +23,35 @@
                     });
                 };
 
-
+                // Campaign specifics
                 var getCampaigns = function() {
                     CampaignService.getCampaigns().then(function(campaigns) {
                         $scope.campaigns = campaigns;
                     });
                 };
+
                 getCampaigns();
 
-                // one time planning using daypicker
-                $scope.showWeeks = false;
-                $scope.minDateStart = moment();
-                // we assume, that a campaign ideally lasts at least 6 weeks
-                $scope.minDateEnd = moment($scope.minDateStart).add('week',6);
+                $scope.formatDate = function (dateToBeFormatted) {
+                    return moment(dateToBeFormatted).format("DD.MM.YYYY");
+                };
+
+                var initCampaign = function() {
+
+                    $scope.minDateStart = new Date(moment().hour(8).minutes(0).seconds(0));
+                    // we assume, that a campaign ideally lasts at least 6 weeks
+                    $scope.minDateEnd = new Date(moment().hour(17).minutes(0).seconds(0).add('week',6));
+
+                    $scope.campaignObj = {
+                        start: $scope.minDateStart,
+                        end: $scope.minDateEnd
+                    };
+
+                };
+
+                initCampaign();
+
+                // date picker and date picker pop up settings
 
                 $scope.openStart = function () {
                     $timeout(function () {
@@ -54,11 +69,7 @@
                     'starting-day': 1
                 };
 
-                $scope.formatDate = function (dateToBeFormatted) {
-                    return moment(dateToBeFormatted).format("DD.MM.YYYY");
-                };
-
-                $scope.campaignObj = {};
+                // validate and store a new campaign
 
                 $scope.createCampaign = function() {
                     var startDate = moment($scope.campaignObj.start);
@@ -70,7 +81,7 @@
                         CampaignService.postCampaign($scope.campaignObj, function(campaign, campaignObj) {
                             $scope.campaigns.push (campaign);
                             $scope.campaignObj = null;
-                            $scope.campaignObj = {};
+                            initCampaign();
                         });
                     } else {
                         $rootScope.$broadcast('globalUserMsg', 'Campaign not created: Campaign end date must be later than campaign start date ');
