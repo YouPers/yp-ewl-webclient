@@ -6,6 +6,7 @@
             "recurring": "Last evaluation: "
         },
         "save": "Save",
+        "mytestKey": "My Test Key Value",
 
         "result": {
             "header": "Results for your Assessment",
