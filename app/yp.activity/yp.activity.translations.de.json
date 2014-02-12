@@ -60,6 +60,23 @@
         "activityPlanFrequency": {
             "week": "jeweils am: ",
             "once": "erstmals am: "
+        },
+        "group": {
+            "noPlansToJoin": {
+                "message": "Noch hat niemand in deinem Umfeld diese Aktivität geplant. ",
+                "link": "Plane sie selber ein!"
+            },
+            "joinPlan": {
+                "join": "Ich mache mit",
+                "frequency": "jeweils am: ",
+                "start": "erstmals am: ",
+                "time": {
+                    "start": "von: ",
+                    "end": " bis: "
+                },
+                "owner": "Organisiert von: ",
+                "joiningUsers": " andere aus deinem Betrieb sind dabei:"
+            }
         }
 
     },
