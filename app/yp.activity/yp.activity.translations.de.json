@@ -77,6 +77,26 @@
                 "owner": "Organisiert von: ",
                 "joiningUsers": " andere aus deinem Betrieb sind dabei:"
             }
+        },
+        "self": {
+            "header": "Einplanen am:",
+            "start": "Von: ",
+            "end": "Bis: ",
+            "location": "Wo:",
+            "recurrence": {
+                "day": "Anzahl Wiederholungen:",
+                "week": "Anzahl Wiederholungen:",
+                "weeklyDay": "Jeweils am:"
+            },
+            "visibility": {
+                "public": "Öffentlich",
+                "campaign": "Betrieb",
+                "private": "Privat"
+            },
+            "executionType": {
+                "self": "Alleine machen",
+                "group": "Andere einladen"
+            }
         }
 
     },

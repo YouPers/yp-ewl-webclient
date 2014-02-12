@@ -5,9 +5,7 @@
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-12">
-                            <label>
-                                Einplanen am:
-                            </label>
+                            <label translate>detail.self.header</label>
                         </div>
                     </div>
                     <div class="row">
@@ -27,15 +25,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1 yp-activity-planning-spacer">Von: </div>
+                <div class="col-md-1 yp-activity-planning-spacer" translate>detail.self.start</div>
                 <div class="col-md-3">
-                    <timepicker ng-model="currentActivityPlan.mainEvent.start"  id="timePickerStart" minute-step="15"
-                                show-meridian="false"></timepicker>
+                    <timepicker ng-model="currentActivityPlan.mainEvent.start"  id="timePickerStart" minute-step="15" show-meridian="false"></timepicker>
                 </div>
-                <div class="col-md-1 yp-activity-planning-spacer">Bis: </div>
+                <div class="col-md-1 yp-activity-planning-spacer" translate>detail.self.end</div>
                 <div class="col-md-3">
-                    <timepicker ng-model="currentActivityPlan.mainEvent.end"  id="timePickerEnd" minute-step="15"
-                                show-meridian="false"></timepicker>
+                    <timepicker ng-model="currentActivityPlan.mainEvent.end"  id="timePickerEnd" minute-step="15" show-meridian="false"></timepicker>
                 </div>
             </div>
         </div>
@@ -46,13 +42,13 @@
                 <div class="col-md-12">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.mainEvent.frequency"
-                                btn-radio="'once'">Einmalig
+                                btn-radio="'once'" translate>activityPlanFrequency.once
                         </button>
                         <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.mainEvent.frequency"
-                                btn-radio="'day'">Täglich
+                                btn-radio="'day'" translate>activityPlanFrequency.day
                         </button>
                         <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.mainEvent.frequency"
-                                btn-radio="'week'">Wöchentlich
+                                btn-radio="'week'" translate>activityPlanFrequency.week
                         </button>
                     </div>
                 </div>
@@ -61,7 +57,7 @@
             <div class="row" ng-if="currentActivityPlan.mainEvent.frequency=='day'">
                 <div class="col-md-6">
                     <label>
-                        Anzahl Wiederholungen:
+                        <span translate>detail.self.recurrence.day</span>
                         <input type=number class="form-control input-sm"
                                ng-model="currentActivityPlan.mainEvent.recurrence['endby'].after">
                     </label>
@@ -71,14 +67,14 @@
             <div class="row" ng-if="currentActivityPlan.mainEvent.frequency=='week'">
                 <div class="col-md-6">
                     <label>
-                        Anzahl Wiederholungen:
+                        <span translate>detail.self.recurrence.week</span>
                         <input type=number class="form-control input-sm"
                                ng-model="currentActivityPlan.mainEvent.recurrence['endby'].after">
                     </label>
                 </div>
                 <div class="col-md-6">
                     <label>
-                        Jeweils am:
+                        <span translate>detail.self.recurrence.weeklyDay</span>
                         <fieldset ng-disabled="currentActivityPlan.mainEvent.frequency!='week'">
                             <select ng-model="currentActivityPlan.weeklyDay"
                                     name="weeklyDay"
@@ -96,25 +92,26 @@
             <div class="row">
                 <div class="col-md-12 btn-group">
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
-                            btn-radio="'public'">öffentlich
+                            btn-radio="'public'" translate>detail.self.visibility.public
                     </button>
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
-                            btn-radio="'campaign'">Betrieb
+                            btn-radio="'campaign'" translate>detail.self.visibility.campaign
                     </button>
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
-                            btn-radio="'private'">privat
+                            btn-radio="'private'" translate>detail.self.visibility.private
                     </button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 btn-group">
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
-                            btn-radio="'self'">alleine machen
+                            btn-radio="'self'" translate>detail.self.executionType.self
                     </button>
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
-                            btn-radio="'group'">andere einladen
+                            btn-radio="'group'" translate>detail.self.executionType.group
                     </button>
-                    <label>Wo:
+                    <label>
+                        <span translate>detail.self.location</span>
                         <input type="text" class="form-control" ng-model="currentActivityPlan.location">
                     </label>
 
