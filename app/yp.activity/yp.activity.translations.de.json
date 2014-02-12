@@ -27,6 +27,8 @@
         "showAllActivities": "alle Aktivitäten zeigen"
     },
     "detail": {
+        "header": "Plane diese Aktivität: ",
+
         "edit": "ändern",
         "save": "sichern",
         "plan": "einplanen",
@@ -62,7 +64,38 @@
 
     },
     "admin": {
+        "header": "Aktivität bearbeiten",
+        "executiontype": "Standard Ausführung",
+        "frequency": "Standard Frequenz",
+        "visibility": "Standard Sichtbarkeit",
+        "source": "Quelle",
+        "activityField": "Aktivitäts Felder",
+        "qualityFactor": "Qualitäts-Faktor (1-10)",
+        "duration": "Benötigte Zeit: ",
+        "cancel": "Abbrechen",
+        "save": "Sichern",
+        "matrix": {
+            "header": "Matrix zu Assessment, Fragen für Empfehlungen für: ",
+            "recommendationSliderLeft": "Empfehlung <br/>Slider links",
+            "recommendationSliderRight": "Empfehlung <br/>Slider rechts",
+            "valueRangeHint": "Alle Werte zwischen 0 und 10<br/>0 = Aktivität nicht empfehlen, 10 = Aktivität empfehlen"
+        }
+    },
+    "visibility": {
+        "public": "Öffentlich",
+        "campaign": "Kampagne",
+        "private": "Privat"
+    },
+    "source": {
+        "youpers": "YouPers",
+        "community": "Community",
+        "campaign": "Kampagne"
+    },
+    "activityPlanInvite": {
+        "header": "Herzlich willkommen - YouPers Digital Health Plattform",
+        "subheader": " hat Dich eingeladen an einer Aktivität teilzunehmen.",
 
+        "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}>logge Dich ein</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
     },
     "activityPlanFrequency": {
         "once": "Einmalig",
