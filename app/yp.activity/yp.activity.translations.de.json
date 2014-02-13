@@ -27,6 +27,8 @@
         "showAllActivities": "alle Aktivitäten zeigen"
     },
     "detail": {
+        "header": "Plane diese Aktivität: ",
+
         "edit": "ändern",
         "save": "sichern",
         "plan": "einplanen",
@@ -58,11 +60,90 @@
         "activityPlanFrequency": {
             "week": "jeweils am: ",
             "once": "erstmals am: "
+        },
+        "group": {
+            "noPlansToJoin": {
+                "message": "Noch hat niemand in deinem Umfeld diese Aktivität geplant. ",
+                "link": "Plane sie selber ein!"
+            },
+            "joinPlan": {
+                "join": "Ich mache mit",
+                "frequency": "jeweils am: ",
+                "start": "erstmals am: ",
+                "time": {
+                    "start": "von: ",
+                    "end": " bis: "
+                },
+                "owner": "Organisiert von: ",
+                "joiningUsers": " andere aus deinem Betrieb sind dabei:"
+            }
+        },
+        "self": {
+            "header": "Einplanen am:",
+            "start": "Von: ",
+            "end": "Bis: ",
+            "location": "Wo:",
+            "recurrence": {
+                "day": "Anzahl Wiederholungen:",
+                "week": "Anzahl Wiederholungen:",
+                "weeklyDay": "Jeweils am:"
+            },
+            "visibility": {
+                "public": "Öffentlich",
+                "campaign": "Betrieb",
+                "private": "Privat"
+            },
+            "executionType": {
+                "self": "Alleine machen",
+                "group": "Andere einladen"
+            }
         }
 
     },
+    "done": {
+        "date": "geplant am ",
+        "message": "Gratulation! Du hast eine weitere Aktivität ausgeführt und kommst deinem Ziel näher!",
+        "feedback": "Wie hast du dich gefühlt?",
+        "cancel": "Zurück",
+        "save": "Weiter"
+    },
+    "activityLog": {
+        "comments": "Kommentare: ",
+        "commentsPopover": "Kommentare anzeigen"
+    },
     "admin": {
+        "header": "Aktivität bearbeiten",
+        "executiontype": "Standard Ausführung",
+        "frequency": "Standard Frequenz",
+        "visibility": "Standard Sichtbarkeit",
+        "source": "Quelle",
+        "activityField": "Aktivitäts Felder",
+        "qualityFactor": "Qualitäts-Faktor (1-10)",
+        "duration": "Benötigte Zeit: ",
+        "cancel": "Abbrechen",
+        "save": "Sichern",
+        "matrix": {
+            "header": "Matrix zu Assessment, Fragen für Empfehlungen für: ",
+            "recommendationSliderLeft": "Empfehlung <br/>Slider links",
+            "recommendationSliderRight": "Empfehlung <br/>Slider rechts",
+            "valueRangeHint": "Alle Werte zwischen 0 und 10<br/>0 = Aktivität nicht empfehlen, 10 = Aktivität empfehlen"
+        }
+    },
+    "visibility": {
+        "public": "Öffentlich",
+        "campaign": "Kampagne",
+        "private": "Privat"
+    },
+    "source": {
+        "youpers": "YouPers",
+        "community": "Community",
+        "campaign": "Kampagne"
+    },
+    "activityPlanInvite": {
+        "header": "Herzlich willkommen - YouPers Digital Health Plattform",
+        "subheader": " hat Dich eingeladen an einer Aktivität teilzunehmen.",
 
+        "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}>logge Dich ein</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
     },
     "activityPlanFrequency": {
         "once": "Einmalig",
