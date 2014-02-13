@@ -65,6 +65,29 @@
         }])
 
 
+        .run(['enums', function (enums) {
+            _.merge(enums, {
+                maritalStatus: [
+                    'undefined',
+                    'single',
+                    'unmarried',
+                    'married',
+                    "separated",
+                    "divorced",
+                    "widowed"
+                ],
+                gender: [
+                    "undefined",
+                    "male",
+                    "female"
+                ],
+                timezone: [
+                    '00:00',
+                    '+01:00',
+                    '+03:00'
+                ]
+            });
+        }])
 
         // principal
         // ---------
