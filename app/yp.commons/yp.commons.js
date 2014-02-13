@@ -45,20 +45,6 @@
     angular.module('yp.commons', [])
 
         .constant('enums', {
-            maritalStatus: [
-                'undefined',
-                'single',
-                'unmarried',
-                'married',
-                "separated",
-                "divorced",
-                "widowed"
-            ],
-            gender: [
-                "undefined",
-                "male",
-                "female"
-            ],
             weekday: [
                 'monday',
                 'tuesday',
@@ -68,10 +54,18 @@
                 'saturday',
                 'sunday'
             ],
-            timezone: [
-                '00:00',
-                '+01:00',
-                '+03:00'
+
+            // used in activity & cockpit
+            activityFields: [
+                'awarenessAbility',
+                'timeManagement',
+                'workStructuring',
+                'physicalActivity',
+                'nutrition',
+                'leisureActivity',
+                'breaks',
+                'relaxation',
+                'socialInteraction'
             ]
         })
 
