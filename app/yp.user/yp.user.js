@@ -64,6 +64,8 @@
             $translateWtiPartialLoaderProvider.addPart('yp.user');
         }])
 
+
+
         // principal
         // ---------
         // The authenticated entity.

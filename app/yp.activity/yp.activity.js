@@ -75,7 +75,9 @@
                         }
                     });
 
-                    $translateWtiPartialLoaderProvider.addPart('yp.activity');
+                $translateWtiPartialLoaderProvider.addPart('yp.activity');
+
+
             }])
 
         .constant('activityFields', [
@@ -90,6 +92,31 @@
             'socialInteraction'
         ])
 
+        .run(['enums', function (enums) {
+            _.merge(enums, {
+                executiontype: [
+                    'self',
+                    'group'
+                ],
+                activityPlanFrequency: [
+                    'once',
+                    'day',
+                    'week',
+                    'month',
+                    'year'
+                ],
+                visibility: [
+                    'public',
+                    'campaign',
+                    'private'
+                ],
+                source: [
+                    'youpers',
+                    'community',
+                    'campaign'
+                ]
+            });
+        }])
         // Object methods for all Assessment related objects
         .run(['Restangular', function (Restangular) {
             Restangular.extendCollection('activities', function (activities) {
@@ -255,6 +282,25 @@
                         var deferred = $q.defer();
                         deferred.resolve(null);
                         return deferred.promise;
+                    }
+                },
+                saveActivity: function(activity, success, error) {
+                    if (activity.id) {
+                        activity.put().then(function (result) {
+                            actService.reloadActivities().then(function () {
+                                if(success) { success(result); }
+                            });
+                        }, function (err) {
+                            if(error) { error(err); }
+                        });
+                    } else {
+                        activity.post().then(function (result) {
+                            actService.reloadActivities().then(function () {
+                                if(success) { success(result); }
+                            });
+                        }, function (err) {
+                            if(error) { error(err); }
+                        });
                     }
                 },
                 getActivityPlans: function (options) {

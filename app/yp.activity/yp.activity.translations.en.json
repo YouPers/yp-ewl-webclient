@@ -119,7 +119,7 @@
         "source": "Source",
         "activityField": "Activity Fields",
         "qualityFactor": "Quality Factor (1-10)",
-        "duration": "Duration:",
+        "duration": "Duration (min)",
         "cancel": "Cancel",
         "save": "Save",
         "matrix": {
