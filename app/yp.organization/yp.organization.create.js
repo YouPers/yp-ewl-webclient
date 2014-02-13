@@ -26,9 +26,18 @@
 
 
                 var getCampaigns = function() {
-                    CampaignService.getCampaigns().then(function(campaigns) {
-                        $scope.campaigns = campaigns;
-                    });
+
+                    if(_.contains($scope.principal.getUser().roles, 'orgadmin')) {
+                        CampaignService.getCampaigns().then(function(campaigns) {
+                            $scope.campaigns = campaigns;
+                        }, function(err) {
+                            $rootScope.$broadcast('globalUserMsg', 'getCampaigns: not authorized');
+                        });
+                    } else {
+                        $scope.campaigns = [];
+                    }
+
+
                 };
                 getCampaigns();
 
