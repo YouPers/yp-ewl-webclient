@@ -16,6 +16,7 @@ module.exports = function (config) {
             'app/lib/lodash/dist/lodash.js',
 
             'app/yp.commons/angular-translate-loader-wti-partial.js',
+            'app/yp.commons/yp.commons.js',
             'app/yp.activity/yp.activity.js',
             'app/yp.activity/yp.activitylog.js',
             'app/yp.assessment/yp.assessment.js',
