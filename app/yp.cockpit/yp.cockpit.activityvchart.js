@@ -3,11 +3,11 @@
 angular.module('yp.cockpit')
 
 
-    .controller('ActivityVChartController', ['$scope', 'activityFields', 'chart', function ($scope, ActivityFields, chart) {
+    .controller('ActivityVChartController', ['$scope', 'chart', function ($scope, chart) {
 
         $scope.chart = chart;
         $scope.chart = _.extend($scope.chart,{
-            ActivityFields: ActivityFields
+            ActivityFields: $scope.enums.activityFields
         });
 
         $scope.selectedValue = "today";

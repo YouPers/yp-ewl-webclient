@@ -32,7 +32,7 @@
 
 <div class="btn-group col-md-4">
     <span translate>admin.activityField</span> </br>
-    <button class="btn btn-default btn-sm" ng-repeat="fieldId in activityFields"
+    <button class="btn btn-default btn-sm" ng-repeat="fieldId in enums.activityFields"
             ng-model="actFieldsModel[fieldId]" btn-checkbox data-toggle="button">{{ 'activityField.' + fieldId | translate }}
     </button>
 </div>

@@ -4,8 +4,8 @@
 
     angular.module('yp.activity')
 
-        .controller('ActivityAdminCtrl', ['$scope', '$rootScope',  'activity', 'assessment', 'ActivityService', 'activityFields', 'Restangular',
-            function ($scope, $rootScope, activity, assessment, ActivityService, activityFields, Restangular) {
+        .controller('ActivityAdminCtrl', ['$scope', '$rootScope',  'activity', 'assessment', 'ActivityService', 'Restangular',
+            function ($scope, $rootScope, activity, assessment, ActivityService, Restangular) {
 
                 if (!activity) {
                     activity = Restangular.restangularizeElement(null, {
@@ -17,7 +17,6 @@
                 }
                 $scope.activity = activity;
                 $scope.assessment = assessment;
-                $scope.activityFields = activityFields;
 
 
                 // Weihting to generate recommendation of activity based on answers of this assessment

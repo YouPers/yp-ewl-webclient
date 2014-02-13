@@ -80,17 +80,6 @@
 
             }])
 
-        .constant('activityFields', [
-            'awarenessAbility',
-            'timeManagement',
-            'workStructuring',
-            'physicalActivity',
-            'nutrition',
-            'leisureActivity',
-            'breaks',
-            'relaxation',
-            'socialInteraction'
-        ])
 
         .run(['enums', function (enums) {
             _.merge(enums, {

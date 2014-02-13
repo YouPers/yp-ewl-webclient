@@ -53,7 +53,21 @@
                 'friday',
                 'saturday',
                 'sunday'
-            ]})
+            ],
+
+            // used in activity & cockpit
+            activityFields: [
+                'awarenessAbility',
+                'timeManagement',
+                'workStructuring',
+                'physicalActivity',
+                'nutrition',
+                'leisureActivity',
+                'breaks',
+                'relaxation',
+                'socialInteraction'
+            ]
+        })
 
         .directive('form', [function () {
             return {
