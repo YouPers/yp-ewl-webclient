@@ -21,6 +21,9 @@
                             if(error) {error(errorResult);}
                         });
                     },
+                    getCampaign: function(campaignId) {
+                        return campaigns.one(campaignId).get();
+                    },
                     getCampaigns: function() {
                         return campaigns.getList();
                     },

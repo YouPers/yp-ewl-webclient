@@ -14,6 +14,15 @@
                         controller: 'CreateOrganizationController',
                         access: accessLevels.user
                     })
+                    .state('campaign', {
+                        url: '/campaign/{id}',
+                        templateUrl: 'yp.organization/yp.campaign.html',
+                        controller: 'CampaignController',
+                        access: accessLevels.campaignlead,
+                        resolve: {
+                            campaign: []
+                        }
+                    })
 
                     .state('assignCampaignLead', {
                         url: '/campaigns/{id}/becomeCampaignLead?token',
@@ -22,7 +31,6 @@
                             function($state, $stateParams, CampaignService, principal, $rootScope) {
                             var campaignId = $stateParams.id;
                             var token = $stateParams.token;
-                            var user = principal.getUser();
                             CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
                                 $rootScope.$broadcast('globalUserMsg', 'You are now a Campaign Lead of this campaign', 'success', 5000);
                                 $state.go('organization', {id: campaignId});
@@ -33,7 +41,7 @@
                             });
                         }]
 
-                    })
+                    });
 
                 $translateWtiPartialLoaderProvider.addPart('yp.organization');
             }]);
