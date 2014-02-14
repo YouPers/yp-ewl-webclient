@@ -62,7 +62,7 @@ angular.module('yp-ewl',
                 urlTemplate: '/{part}/{part}.translations.{lang}.json',
                 wtiProjectId: '8233-eWL',
                 wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
-                fromWti: false
+                fromWti: true
             });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl');
             $translateWtiPartialLoaderProvider.addPart('yp.commons');
