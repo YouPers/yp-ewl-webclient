@@ -22,7 +22,7 @@
                         });
                     },
                     getCampaign: function(campaignId) {
-                        return campaigns.one(campaignId).get();
+                        return campaigns.one(campaignId).get({populate: 'organization campaignLeads'});
                     },
                     getCampaigns: function() {
                         return campaigns.getList();

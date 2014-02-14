@@ -20,7 +20,9 @@
                         controller: 'CampaignController',
                         access: accessLevels.campaignlead,
                         resolve: {
-                            campaign: []
+                            campaign: ['CampaignService', '$stateParams', function(CampaignService, $stateParams) {
+                                return CampaignService.getCampaign($stateParams.id);
+                            }]
                         }
                     })
 
@@ -33,7 +35,7 @@
                             var token = $stateParams.token;
                             CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
                                 $rootScope.$broadcast('globalUserMsg', 'You are now a Campaign Lead of this campaign', 'success', 5000);
-                                $state.go('organization', {id: campaignId});
+                                $state.go('campaign', {id: campaignId});
                             }, function(err) {
                                 $rootScope.$broadcast('globalUserMsg', 'error', 'danger');
                                 console.log(JSON.stringify(err));
@@ -44,5 +46,19 @@
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('yp.organization');
-            }]);
+            }])
+
+        .controller('CampaignController', ['campaign', 'CampaignService', '$scope', '$rootScope',
+            function (campaign, CampaignService, $scope, $rootScope) {
+                $scope.campaign = campaign;
+
+                $scope.inviteCampaignLead = function(emails,campaign) {
+                    CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
+                        $scope.invitationSent = true;
+                    }, function(err) {
+                        $rootScope.$broadcast('globalUserMsg', 'Error sending invitation: '+ JSON.stringify(err), 'danger', 5000);
+                    });
+                };
+            }
+        ]);
 }());

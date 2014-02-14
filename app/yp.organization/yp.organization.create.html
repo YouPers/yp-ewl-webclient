@@ -105,9 +105,9 @@
                                 <th translate>campaign.list.paymentStatus</th>
                             </tr>
                             </thead>
-                            <tbody ng-repeat="campaign in campaigns">
-                            <tr>
-                                <td>{{campaign.title}}</td>
+                            <tbody>
+                            <tr ng-repeat="campaign in campaigns">
+                                <td><a ui-sref="campaign({id: campaign.id})">{{campaign.title}}</a></td>
                                 <td>{{formatDate(campaign.start)}}</td>
                                 <td>{{formatDate(campaign.end)}}</td>
                                 <td>{{campaign.relatedService}}</td>

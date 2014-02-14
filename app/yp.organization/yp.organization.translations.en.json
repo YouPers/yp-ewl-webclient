@@ -82,5 +82,16 @@
             "slogan": "Slogan",
             "paymentStatus": "Status"
         }
+    },
+    "campaignDetail": {
+        "inviteCampaignLead": "add campaignlead(s)",
+        "invitationSent": "Invitation email sent, the new campaignlead need to confirm their campaign leadership",
+
+        "inviteCampaignLeadForm": {
+            "email": {
+                "label": "one or more email-adresses"
+            },
+            "inviteSubmit": "Add"
+        }
     }
 }

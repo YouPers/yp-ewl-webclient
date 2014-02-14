@@ -8,8 +8,8 @@
         .controller('CreateOrganizationController', ['$rootScope', '$scope', '$timeout', 'OrganizationService', 'CampaignService',
             function ($rootScope, $scope, $timeout, OrganizationService, CampaignService) {
 
-                var getOrganizations = function() {
-                    OrganizationService.getOrganizations().then(function(organizations) {
+                var getOrganizations = function () {
+                    OrganizationService.getOrganizations().then(function (organizations) {
                         $scope.organization = organizations[0];
                     });
                 };
@@ -18,15 +18,15 @@
 
                 $scope.organization = {};
 
-                $scope.createOrganization = function() {
-                    OrganizationService.postOrganization($scope.organizationObj, function(organization) {
+                $scope.createOrganization = function () {
+                    OrganizationService.postOrganization($scope.organizationObj, function (organization) {
                         $scope.organization = organization;
                     });
                 };
 
 
-                var getCampaigns = function() {
-                    CampaignService.getCampaigns().then(function(campaigns) {
+                var getCampaigns = function () {
+                    CampaignService.getCampaigns().then(function (campaigns) {
                         $scope.campaigns = campaigns;
                     });
                 };
@@ -36,7 +36,7 @@
                 $scope.showWeeks = false;
                 $scope.minDateStart = moment();
                 // we assume, that a campaign ideally lasts at least 6 weeks
-                $scope.minDateEnd = moment($scope.minDateStart).add('week',6);
+                $scope.minDateEnd = moment($scope.minDateStart).add('week', 6);
 
                 $scope.openStart = function () {
                     $timeout(function () {
@@ -60,15 +60,15 @@
 
                 $scope.campaignObj = {};
 
-                $scope.createCampaign = function() {
+                $scope.createCampaign = function () {
                     var startDate = moment($scope.campaignObj.start);
                     var endDate = moment($scope.campaignObj.end);
                     if (startDate.diff(endDate) < 0) {
                         // start date is earlier than end date, so we try to create the campaign
 
                         $scope.campaignObj.organization = $scope.organization.id;
-                        CampaignService.postCampaign($scope.campaignObj, function(campaign, campaignObj) {
-                            $scope.campaigns.push (campaign);
+                        CampaignService.postCampaign($scope.campaignObj, function (campaign, campaignObj) {
+                            $scope.campaigns.push(campaign);
                             $scope.campaignObj = null;
                             $scope.campaignObj = {};
                         });
@@ -77,5 +77,5 @@
                     }
                 };
 
-            }]);
+            }])
 }());
