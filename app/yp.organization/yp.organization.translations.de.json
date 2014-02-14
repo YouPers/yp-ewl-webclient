@@ -82,5 +82,16 @@
             "slogan": "Slogan",
             "paymentStatus": "Status"
         }
+    },
+    "campaignDetail": {
+        "inviteCampaignLead": "Kampagnen-Leiter hinzufügen",
+        "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen",
+
+        "inviteCampaignLeadForm": {
+            "email": {
+                "label": "Ein oder mehrere Email-Adressen"
+            },
+            "inviteSubmit": "Hinzufügen"
+        }
     }
 }

@@ -273,7 +273,7 @@ angular.module('pascalprecht.translate')
                     if (options.fromWti && !wtiProject) {
 
                         $http({method: 'GET',
-                            url: '/api/projects/' + options.wtiPublicApiToken + '.json',
+                            url: 'https://webtranslateit.com/api/projects/' + options.wtiPublicApiToken + '.json',
                             headers: {'X-Client-Name': 'yp-angular-translate-wti-loader',
                                 'X-Client-Version': '0.0.1'
                             }})
@@ -296,14 +296,14 @@ angular.module('pascalprecht.translate')
                                 if (wtiProjectData) {
 
                                     // Path under which this part is stored
-                                    var mySourceUrl = parts[part].parseUrl(options.urlTemplate, options.key).slice(1);
+                                    var mySourceUrl = 'app/'+parts[part].parseUrl(options.urlTemplate, options.key).slice(1);
                                     // find the corresponding wti file object for this path
                                     var myFileObj = _.find(wtiProjectData.project.project_files, function (file) {
                                         return file.name === mySourceUrl;
                                     });
                                     // construct the WtiURL for this fileId
                                     if (myFileObj) {
-                                        myWtiUrl = "/api/projects/" + options.wtiPublicApiToken + "/files/" + myFileObj.id + "/locales/" + options.key;
+                                        myWtiUrl = "https://webtranslateit.com/api/projects/" + options.wtiPublicApiToken + "/files/" + myFileObj.id + "/locales/" + options.key;
                                     }
                                 }
 

@@ -21,10 +21,18 @@
                             if(error) {error(errorResult);}
                         });
                     },
+                    getCampaign: function(campaignId) {
+                        return campaigns.one(campaignId).get({populate: 'organization campaignLeads'});
+                    },
                     getCampaigns: function() {
                         return campaigns.getList();
+                    },
+                    inviteCampaignLead: function (email, campaignId) {
+                        return campaigns.one(campaignId).all('/inviteCampaignLeadEmail').post({email: email});
+                    },
+                    assignCampaignLead: function (campaignId, token) {
+                        return campaigns.one(campaignId).all('/assignCampaignLead').post('', {token: token});
                     }
-
                 };
 
                 return CampaignService;

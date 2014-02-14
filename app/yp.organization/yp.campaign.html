@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <pre>{{campaign | json}}</pre>
+        </div>
+
+        <div class="col-md-6">
+            <h3 translate>campaignDetail.inviteCampaignLead</h3>
+
+            <form class="form-inline" ng-if="!invitationSent"
+                  role="form"
+                  ng-submit="model.inviteCampaignLeadForm.$valid && inviteCampaignLead(model.inviteCampaignLead,campaign)"
+                  name="model.inviteCampaignLeadForm">
+                <div class="form-group"
+                     ng-class="{'has-error': model.inviteCampaignLeadForm.email.$dirty && model.inviteCampaignLeadForm.email.$invalid}">
+                    <label class="sr-only" translate>campaignDetail.inviteCampaignLeadForm.email.label</label>
+                    <input class="form-control email-field" name="email" type="text" ng-model="model.inviteCampaignLead"
+                           placeholder="{{'campaignDetail.inviteCampaignLeadForm.email.label' | translate}}"
+                           multiple-Emails required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-disabled="model.inviteCampaignLeadForm.$invalid"
+                            translate>campaignDetail.inviteCampaignLeadForm.inviteSubmit
+                    </button>
+                </div>
+            </form>
+            <div ng-if="invitationSent" translate>campaignDetail.invitationSent</div>
+        </div>
+    </div>
+</div>
