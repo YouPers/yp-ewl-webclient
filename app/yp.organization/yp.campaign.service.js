@@ -5,8 +5,8 @@
     angular.module('yp.organization')
 
 
-        .factory("CampaignService", ['$rootScope', 'Restangular',
-            function ($rootScope, Rest) {
+        .factory("CampaignService", ['$rootScope', 'Restangular', 'UserService',
+            function ($rootScope, Rest, UserService) {
 
                 var campaigns = Rest.all('campaigns');
 
@@ -31,7 +31,9 @@
                         return campaigns.one(campaignId).all('/inviteCampaignLeadEmail').post({email: email});
                     },
                     assignCampaignLead: function (campaignId, token) {
-                        return campaigns.one(campaignId).all('/assignCampaignLead').post('', {token: token});
+                        return campaigns.one(campaignId).all('/assignCampaignLead').post('', {token: token}).then(function success(result) {
+                            UserService.reload();
+                        });
                     }
                 };
 
