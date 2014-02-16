@@ -48,7 +48,7 @@
                     reload: function() {
                         login.post({}).then(function succss(result) {
                             authority.authorize(result);
-                        })
+                        });
                     },
                     logout: function () {
                         $cookieStore.remove('authdata');
