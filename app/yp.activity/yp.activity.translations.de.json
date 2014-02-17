@@ -52,7 +52,8 @@
                     "header": "Du hast andere eingeladen an dieser Aktivität teilzunehmen. <br/> Es hat noch niemand zugesagt.",
                     "joiningUsers": "Weitere Teilnehmer:",
                     "inviteUsers": "Lade noch jemanden ein:",
-                    "inviteSubmit": "einladen"
+                    "inviteSubmit": "einladen",
+                    "label": "Ein oder mehrere Email-Adressen"
                 }
             },
             "nextExecutions": "Nächste Ausführungen:"
@@ -119,7 +120,7 @@
         "source": "Quelle",
         "activityField": "Aktivitäts Felder",
         "qualityFactor": "Qualitäts-Faktor (1-10)",
-        "duration": "Benötigte Zeit: ",
+        "duration": "Benötigte Zeit (min) ",
         "cancel": "Abbrechen",
         "save": "Sichern",
         "matrix": {

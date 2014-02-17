@@ -1,6 +1,7 @@
 'use strict';
 
 /* jasmine specs for services go here */
+beforeEach(angular.mock.module('yp.commons'));
 
 describe('yp-common: ', function () {
 

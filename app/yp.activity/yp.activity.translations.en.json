@@ -52,7 +52,8 @@
                     "header": "You have invited others to participate. <br/> Nobody has joined yet.",
                     "joiningUsers": "Other participants:",
                     "inviteUsers": "Invite someone else:",
-                    "inviteSubmit": "Invite"
+                    "inviteSubmit": "Invite",
+                    "label": "One or multiple emails"
                 }
             },
             "nextExecutions": "Upcoming executions:"
@@ -119,7 +120,7 @@
         "source": "Source",
         "activityField": "Activity Fields",
         "qualityFactor": "Quality Factor (1-10)",
-        "duration": "Duration:",
+        "duration": "Duration (min)",
         "cancel": "Cancel",
         "save": "Save",
         "matrix": {
