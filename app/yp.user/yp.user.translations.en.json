@@ -1,0 +1,92 @@
+{
+    "account": {
+        "account": "Account",
+        "changeAccount": "Change Account",
+        "changePassword": "Change Password"
+    },
+
+    "accountForm": {
+        "firstname": {
+            "label": "First name",
+            "$invalid": "Please enter a valid first name"
+        },
+        "lastname": {
+            "label": "Last name",
+            "$invalid": "Please enter a valid last name"
+        },
+        "username": {
+            "label": "Username",
+            "$invalid": "Please enter a valid username"
+        },
+        "email": {
+            "label": "Email",
+            "$invalid": "Please enter a valid email address"
+        },
+        "save": "save",
+        "reset": "reset"
+    },
+    "passwordForm": {
+        "password_old": {
+            "label": "Current Password",
+            "$invalid": "Your current password"
+        },
+        "password": {
+            "label": "New Password",
+            "$invalid": "At least 6 characters"
+        },
+        "password2": {
+            "label": "Confirm Password",
+            "$invalid": "The passwords do not match"
+        },
+        "save": "Change"
+    },
+    "emailVerification": {
+        "emailValid": "Email address successfully validated!",
+        "thankYou": "Thank you for verifying your email address. You can now continue"
+    },
+    "passwordResetRequest": {
+        "resetPasswordFor": "Reset password for",
+        "identification": "Identification",
+        "checkYourEmails": "Please check your Email",
+        "weSentALink": "We sent an email to you with a link where you can reset your password within the next 10 minutes. <br>Please check your inbox."
+    },
+    "passwordResetRequestForm": {
+        "usernameOrEmail": "Username or Email",
+        "$invalid": "Please enter a valid Username or Email",
+        "submit": "Submit",
+        "reset": "reset"
+    },
+    "passwordReset": {
+        "hello": "Hello",
+        "setNewPassword": "You can set a new password here:",
+        "newPassword": "New Password",
+        "success": "New password successfully set",
+        "loginAgainWithNewPassword": "please login with your new password..."
+    },
+    "profile": {
+        "profile": "Profile",
+        "homeAddress": "Home Address",
+        "workAddress": "Work Address",
+        "settings": "Settings"
+    },
+    "profileForm": {
+        "submit": "Submit",
+        "gender": {
+            "label": "Gender"
+        },
+        "birthdate": {
+            "label": "Birthdate",
+            "$invalid": "Please enter a valid Birthdate"
+        },
+        "street": "Street",
+        "number": "Nr.",
+        "zip": "zip",
+        "city": "city",
+        "country": "country",
+        "defaultWorkWeek": "Base setting for work week",
+        "firstDayOfWeek": "First day of week",
+        "timeZone": "Timezone",
+        "$invalid": "Please enter a valid value"
+    }
+
+}

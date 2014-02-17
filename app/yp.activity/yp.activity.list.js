@@ -4,9 +4,9 @@
 
     angular.module('yp.activity')
 
-        .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans', 'activityFields',
+        .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans',
             'recommendations', 'UserService', 'topStressors', 'assessment', 'ActivityService',
-            function ($scope, $filter, allActivities, activityPlans, activityFields, recommendations, UserService, topStressors, assessment, ActivityService) {
+            function ($scope, $filter, allActivities, activityPlans, recommendations, UserService, topStressors, assessment, ActivityService) {
 
                 // mock campaigns, that this user has an active goal for, should be loaded from server later...
                 var campaigns = ['Campaign-1'];
@@ -22,8 +22,6 @@
 
                 $scope.activities = allActivities;
                 $scope.filteredActivities = allActivities;
-                $scope.activityFields = activityFields;
-
 
                 _.forEach(topStressors, function (stressor) {
                     stressor.title = assessment.questionLookup[stressor.question].title;

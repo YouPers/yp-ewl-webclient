@@ -4,8 +4,8 @@
 
     angular.module('yp.activity')
 
-        .controller('ActivityPlanInviteCtrl', ['$scope', 'ActivityService', 'activity', 'invitingUser', '$rootScope',
-            function ($scope, ActivityService, activity, invitingUser, $rootScope) {
+        .controller('ActivityPlanInviteCtrl', ['$scope', '$compile', 'ActivityService', 'activity', 'invitingUser', '$rootScope',
+            function ($scope, $compile, ActivityService, activity, invitingUser, $rootScope) {
 
 
                 // if the user is authenticated we immediatly go to the corresponding activity so he can join
@@ -18,6 +18,11 @@
 
                 $scope.showRegistrationDialog = function() {
                     $rootScope.$broadcast('loginMessageShow', {toState: 'activityPlan', toParams: {activityId: activity.id}, registration: true});
+                };
+
+                $scope.inviteMessageParams = {
+                    loginLinkAttribute: 'href="/#/activities/'+$scope.activity.id+'"',
+                    registerLinkAttribute: 'ng-click="showRegistrationDialog()"'
                 };
             }
         ]);

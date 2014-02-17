@@ -12,7 +12,7 @@
      * @param s
      * @returns {*}
      */
-    Object.byString = function(o, s) {
+    Object.byString = function (o, s) {
         s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
         s = s.replace(/^\./, '');           // strip a leading dot
         var a = s.split('.');
@@ -43,6 +43,31 @@
     }
 
     angular.module('yp.commons', [])
+
+        .constant('enums', {
+            weekday: [
+                'monday',
+                'tuesday',
+                'wednesday',
+                'thursday',
+                'friday',
+                'saturday',
+                'sunday'
+            ],
+
+            // used in activity & cockpit
+            activityFields: [
+                'awarenessAbility',
+                'timeManagement',
+                'workStructuring',
+                'physicalActivity',
+                'nutrition',
+                'leisureActivity',
+                'breaks',
+                'relaxation',
+                'socialInteraction'
+            ]
+        })
 
         .directive('form', [function () {
             return {
@@ -157,12 +182,12 @@
                 }
             };
         })
-        .directive('toggleValue', function() {
+        .directive('toggleValue', function () {
             return {
                 restrict: 'A',
                 link: function (scope, elm, attrs, ctrl) {
-                    elm.bind('click', function() {
-                        if(attrs.toggleValue) {
+                    elm.bind('click', function () {
+                        if (attrs.toggleValue) {
                             scope[attrs.toggleValue] = !scope[attrs.toggleValue];
                         }
                     });

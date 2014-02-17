@@ -3,7 +3,9 @@
 /* jasmine specs for filters go here */
 
 describe('ewl activity', function () {
+
     beforeEach(module('pascalprecht.translate'));
+    beforeEach(angular.mock.module('yp.commons'));
     beforeEach(angular.mock.module('yp.activity'));
     beforeEach(module('ui.router'));
 
