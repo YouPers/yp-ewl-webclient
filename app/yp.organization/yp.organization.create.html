@@ -82,93 +82,89 @@
         <div class="col-md-6">
             <div ng-show="organization">
 
+                <accordion close-others="false">
+                    <accordion-group heading="{{'campaign.list.header' | translate}}" is-open="true">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="row" >
-                            <div class="col-md-9" translate>
-                                campaign.list.header
-                            </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th translate>campaign.list.title</th>
+                                    <th translate>campaign.list.start</th>
+                                    <th translate>campaign.list.end</th>
+                                    <th translate>campaign.list.relatedService</th>
+                                    <th translate>campaign.list.location</th>
+                                    <th translate>campaign.list.slogan</th>
+                                    <th translate>campaign.list.paymentStatus</th>
+                                </tr>
+                                </thead>
+                                <tbody ng-repeat="campaign in campaigns">
+                                <tr>
+                                    <td>{{campaign.title}}</td>
+                                    <td>{{formatDate(campaign.start)}}</td>
+                                    <td>{{formatDate(campaign.end)}}</td>
+                                    <td>{{campaign.relatedService}}</td>
+                                    <td>{{campaign.location}}</td>
+                                    <td>{{campaign.slogan}}</td>
+                                    <td>{{campaign.paymentStatus}}</td>
+                                </tr>
+                                </tbody>
+
+
+                            </table>
                         </div>
-                    </div>
+                    </accordion-group>
+                    <accordion-group heading="{{'campaignForm.header' | translate}}" is-open="false">
 
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th translate>campaign.list.title</th>
-                                <th translate>campaign.list.start</th>
-                                <th translate>campaign.list.end</th>
-                                <th translate>campaign.list.relatedService</th>
-                                <th translate>campaign.list.location</th>
-                                <th translate>campaign.list.slogan</th>
-                                <th translate>campaign.list.paymentStatus</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="campaign in campaigns">
-                                <td><a ui-sref="campaign({id: campaign.id})">{{campaign.title}}</a></td>
-                                <td>{{formatDate(campaign.start)}}</td>
-                                <td>{{formatDate(campaign.end)}}</td>
-                                <td>{{campaign.relatedService}}</td>
-                                <td>{{campaign.location}}</td>
-                                <td>{{campaign.slogan}}</td>
-                                <td>{{campaign.paymentStatus}}</td>
-                            </tr>
-                            </tbody>
+                        <h4 translate>campaignForm.header</h4>
 
+                        <form name="campaignForm" yp-model="campaignObj" class="form" role="form" ng-submit="createCampaign()" novalidate>
 
-                        </table>
-                    </div>
-                </div>
+                            <div class="form-group">
+                                <label translate>campaignForm.title.label</label>
+                                <input name="title" type="text" placeholder="{{ 'campaignForm.title.placeholder' | translate }}" class="form-control" ng-model="campaignObj.title" required>
+                                <span ng-show="campaignObj.title.$dirty && campaignObj.title.$invalid" class="help-inline" translate>campaignForm.title.$invalid</span>
+                            </div>
 
-                <h4 translate>campaignForm.header</h4>
+                            <div class="form-group">
+                                <label translate>campaignForm.start.label</label>
+                                <input class="form-control" type="text" id="datePickerStart"
+                                       datepicker-popup="dd.MM.yyyy"
+                                       ng-model="campaignObj.start"
+                                       is-open="startOpened" min="minDateStart"
+                                       datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true"/>
+                            </div>
 
-                <form name="campaignForm" yp-model="campaignObj" class="form" role="form" ng-submit="createCampaign()" novalidate>
+                            <div class="form-group">
+                                <label translate>campaignForm.end.label</label>
+                                <input class="form-control" type="text" id="datePickerEnd"
+                                       datepicker-popup="dd.MM.yyyy"
+                                       ng-model="campaignObj.end"
+                                       is-open="endOpened" min="minDateEnd"
+                                       datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true"/>
+                            </div>
 
-                    <div class="form-group">
-                        <label translate>campaignForm.title.label</label>
-                        <input name="title" type="text" placeholder="{{ 'campaignForm.title.placeholder' | translate }}" class="form-control" ng-model="campaignObj.title" required>
-                        <span ng-show="campaignObj.title.$dirty && campaignObj.title.$invalid" class="help-inline" translate>campaignForm.title.$invalid</span>
-                    </div>
+                            <div class="form-group">
+                                <label translate>campaignForm.location.label</label>
+                                <input name="location" type="text" placeholder="{{ 'campaignForm.location.placeholder' | translate }}" class="form-control" ng-model="campaignObj.location" required>
+                                <span ng-show="campaignObj.location.$dirty && campaignObj.location.$invalid" class="help-inline" translate>campaignForm.location.$invalid</span>
+                            </div>
 
-                    <div class="form-group">
-                        <label translate>campaignForm.start.label</label>
-                        <input class="form-control" type="text" id="datePickerStart"
-                               datepicker-popup="dd.MM.yyyy"
-                               ng-model="campaignObj.start"
-                               is-open="startOpened" min="minDateStart"
-                               datepicker-options="dateOptions"
-                               date-disabled="disabled(date, mode)" ng-required="true"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label translate>campaignForm.end.label</label>
-                        <input class="form-control" type="text" id="datePickerEnd"
-                               datepicker-popup="dd.MM.yyyy"
-                               ng-model="campaignObj.end"
-                               is-open="endOpened" min="minDateEnd"
-                               datepicker-options="dateOptions"
-                               date-disabled="disabled(date, mode)" ng-required="true"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label translate>campaignForm.location.label</label>
-                        <input name="location" type="text" placeholder="{{ 'campaignForm.location.placeholder' | translate }}" class="form-control" ng-model="campaignObj.location" required>
-                        <span ng-show="campaignObj.location.$dirty && campaignObj.location.$invalid" class="help-inline" translate>campaignForm.location.$invalid</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label translate>campaignForm.slogan.label</label>
-                        <input name="slogan" type="text" placeholder="{{ 'campaignForm.slogan.placeholder' | translate }}" class="form-control" ng-model="campaignObj.slogan" required>
-                        <span ng-show="campaignObj.slogan.$dirty && campaignObj.slogan.$invalid" class="help-inline" translate>campaignForm.slogan.$invalid</span>
-                    </div>
+                            <div class="form-group">
+                                <label translate>campaignForm.slogan.label</label>
+                                <input name="slogan" type="text" placeholder="{{ 'campaignForm.slogan.placeholder' | translate }}" class="form-control" ng-model="campaignObj.slogan" required>
+                                <span ng-show="campaignObj.slogan.$dirty && campaignObj.slogan.$invalid" class="help-inline" translate>campaignForm.slogan.$invalid</span>
+                            </div>
 
 
-                    <button type="reset" class="btn btn-sm"><span translate>campaignForm.reset</span></button>
-                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.save</span></button>
+                            <button type="reset" class="btn btn-sm"><span translate>campaignForm.reset</span></button>
+                            <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.save</span></button>
 
-                </form>
+                        </form>
+                    </accordion-group>
+                </accordion>
             </div>
 
         </div>
