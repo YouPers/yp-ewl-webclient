@@ -30,6 +30,7 @@
         "header": "Plan this activity: ",
 
         "edit": "change",
+        "delete": "delete",
         "save": "save",
         "plan": "plan",
         "cancel": "cancel",
