@@ -16,15 +16,15 @@
 
             }])
 
-        .factory("UserProfileService", ['$rootScope', 'Restangular', 'principal',
-            function ($rootScope, Rest, principal) {
+        .factory("UserProfileService", ['$rootScope', 'Restangular', 'UserService',
+            function ($rootScope, Rest, UserService) {
                 var UserProfileService = {
 
                     putUserProfile: function (userProfile) {
                         return Rest.restangularizeElement(null, userProfile, "profiles").put();
                     },
                     postAvatar: function(data) {
-                        return Rest.one('users', principal.getUser().id).all("avatar").post({"data":data});
+                        return Rest.one('users', UserService.principal.getUser().id).all("avatar").post({"data":data});
                     }
 
                 };
