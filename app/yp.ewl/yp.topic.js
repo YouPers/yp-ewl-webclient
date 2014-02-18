@@ -27,6 +27,8 @@ angular.module('yp.topic', ['ui.router', 'restangular', 'yp.user'])
 
                                     // if this is an authenticated user (e.g. a stored one, that already exists on the backend)
                                     // we need to save it, because we have just updated it.
+                                    // if it is NOT an authenticated user we cannot save this change at this moment, so we
+                                    // just leave it in the client principal and store it when the user eventually register on our site.
                                     if (UserService.principal.isAuthenticated()) {
 
                                         UserService.putUser(UserService.principal.getUser()).then(function sucess(result){
