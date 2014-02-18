@@ -80,10 +80,6 @@
 
                         CampaignService.getCampaignStats($scope.campaign.id, 'assUpdatesPerDay').then(function(result) {
                             $scope.campaignStats.assUpdatesPerDay = result.length;
-//                            _.forEach($scope.campaignStats.assUpdatesPerDay, function(item) {
-                                // TODO: find better solution, private fields are not accessible in angular, Date object would be more convenient to use
-//                                item.day = new Date(item._id.year, item._id.month, item._id.day);
-//                            });
                         });
                         CampaignService.getCampaignStats($scope.campaign.id, 'assTotals').then(function(result) {
                             $scope.campaignStats.assTotals = result.length;
