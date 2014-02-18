@@ -100,7 +100,7 @@
                                 </thead>
                                 <tbody ng-repeat="campaign in campaigns">
                                 <tr>
-                                    <td>{{campaign.title}}</td>
+                                    <td><a ui-sref="campaign({id: campaign.id})">{{campaign.title}}</a></td>
                                     <td>{{formatDate(campaign.start)}}</td>
                                     <td>{{formatDate(campaign.end)}}</td>
                                     <td>{{campaign.relatedService}}</td>
@@ -115,8 +115,6 @@
                         </div>
                     </accordion-group>
                     <accordion-group heading="{{'campaignForm.header' | translate}}" is-open="false">
-
-                        <h4 translate>campaignForm.header</h4>
 
                         <form name="campaignForm" yp-model="campaignObj" class="form" role="form" ng-submit="createCampaign()" novalidate>
 
