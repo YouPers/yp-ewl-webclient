@@ -31,17 +31,17 @@
                         access: accessLevels.user,
                         onEnter:['$state','$stateParams','CampaignService', '$rootScope',
                             function($state, $stateParams, CampaignService, $rootScope) {
-                            var campaignId = $stateParams.id;
-                            var token = $stateParams.token;
-                            CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
-                                $rootScope.$broadcast('globalUserMsg', 'You are now a Campaign Lead of this campaign', 'success', 5000);
-                                $state.go('campaign', {id: campaignId});
-                            }, function(err) {
-                                $rootScope.$broadcast('globalUserMsg', 'error', 'danger');
-                                console.log(JSON.stringify(err));
-                                $state.go('home');
-                            });
-                        }]
+                                var campaignId = $stateParams.id;
+                                var token = $stateParams.token;
+                                CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
+                                    $rootScope.$broadcast('globalUserMsg', 'You are now a Campaign Lead of this campaign', 'success', 5000);
+                                    $state.go('campaign', {id: campaignId});
+                                }, function(err) {
+                                    $rootScope.$broadcast('globalUserMsg', 'error', 'danger');
+                                    console.log(JSON.stringify(err));
+                                    $state.go('home');
+                                });
+                            }]
 
                     });
 
@@ -72,6 +72,35 @@
                         $rootScope.$broadcast('globalUserMsg', 'Campaign not updated: Campaign end date must be later than campaign start date ');
                     }
                 };
+
+                var getCampaignStats = function() {
+                    if ($scope.campaign.id) {
+
+                        $scope.campaignStats = {};
+
+                        CampaignService.getCampaignStats($scope.campaign.id, 'assUpdatesPerDay').then(function(result) {
+                            $scope.campaignStats.assUpdatesPerDay = result.length;
+//                            _.forEach($scope.campaignStats.assUpdatesPerDay, function(item) {
+                                // TODO: find better solution, private fields are not accessible in angular, Date object would be more convenient to use
+//                                item.day = new Date(item._id.year, item._id.month, item._id.day);
+//                            });
+                        });
+                        CampaignService.getCampaignStats($scope.campaign.id, 'assTotals').then(function(result) {
+                            $scope.campaignStats.assTotals = result.length;
+                        });
+                        CampaignService.getCampaignStats($scope.campaign.id, 'topStressors').then(function(result) {
+                            $scope.campaignStats.topStressors = result.length;
+                        });
+                        CampaignService.getCampaignStats($scope.campaign.id, 'activitiesPlanned').then(function(result) {
+                            $scope.campaignStats.activitiesPlanned = result.length;
+                        });
+                        CampaignService.getCampaignStats($scope.campaign.id, 'activityEvents').then(function(result) {
+                            $scope.campaignStats.activityEvents = result.length;
+                        });
+                    }
+                };
+
+                getCampaignStats();
             }
         ]);
 }());

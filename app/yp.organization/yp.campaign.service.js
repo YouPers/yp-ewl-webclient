@@ -43,6 +43,12 @@
                         return campaigns.one(campaignId).all('/assignCampaignLead').post('', {token: token}).then(function success(result) {
                             UserService.reload();
                         });
+                    },
+                    getCampaignStats: function (campaignId, type) {
+                        var stats = Rest.all('campaigns/' + campaignId + '/stats');
+
+                        return stats.getList({ type: type} );
+
                     }
                 };
 

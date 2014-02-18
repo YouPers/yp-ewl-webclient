@@ -139,6 +139,32 @@
                     </div>
 
                 </accordion-group>
+                <accordion-group heading="{{'campaignStats.header' | translate}}" is-open="true">
+
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <th translate>campaignStats.assUpdatesPerDay</th>
+                            <th translate>campaignStats.assTotals</th>
+                            <th translate>campaignStats.topStressors</th>
+                            <th translate>campaignStats.activitiesPlanned</th>
+                            <th translate>campaignStats.activityEvents</th>
+                            </thead>
+                            <tbody ng-repeat="campaignLead in campaign.campaignLeads">
+                            <tr>
+                                <td>{{campaignStats.assUpdatesPerDay}}</td>
+                                <td>{{campaignStats.assTotals}}</td>
+                                <td>{{campaignStats.topStressors}}</td>
+                                <td>{{campaignStats.activitiesPlanned}}</td>
+                                <td>{{campaignStats.activityEvents}}</td>
+                            </tr>
+                            </tbody>
+
+
+                        </table>
+                    </div>
+
+                </accordion-group>
             </accordion>
 
         </div>

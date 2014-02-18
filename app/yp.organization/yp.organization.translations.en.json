@@ -122,6 +122,14 @@
 
         "changeProductType": "Change Product Type",
         "pay": "Pay"
+    },
+    "campaignStats": {
+        "header": "Statistics",
+        "assUpdatesPerDay": "Ass.Upd./Day",
+        "assTotals": "Ass. Tot.",
+        "topStressors": "Top Stress.",
+        "activitiesPlanned": "Planned Activities",
+        "activityEvents": "Events"
     }
 
 }

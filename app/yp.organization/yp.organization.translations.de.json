@@ -122,6 +122,14 @@
 
         "changeProductType": "Produkttyp ändern",
         "pay": "Bezahlen"
+    },
+    "campaignStats": {
+        "header": "Statistiken",
+        "assUpdatesPerDay": "Ass.Upd./Tag",
+        "assTotals": "Ass. Tot.",
+        "topStressors": "Top Stress.",
+        "activitiesPlanned": "gepl. Aktivitäten",
+        "activityEvents": "Events"
     }
 
 }
