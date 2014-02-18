@@ -2,32 +2,41 @@
     'use strict';
 
     angular.module('yp.commons')
-        .directive('ypInput', [function (UserService) {
+        .directive('ypInput', ['$compile', '$filter', function ($compile, $filter) {
             return {
                 scope: {
-                    ngModel: "=",
-                    ypFormName: "="
+                    ngModel: "="
+//                    ypFormName: "="
                 },
                 restrict: 'E',
                 templateUrl: 'yp.commons/yp.commons.directive.ypinput.html',
-                link: function (scope, elem, attrs) {
 
-                    var name = attrs['name'];
+                link: function ($scope, $element, $attrs) {
+
+                    var name = $attrs['name'];
                     if(!name) {
                         throw 'ypInput: name is required';
                     }
 
+                    var ypInputName = name;
+                    var ypFormName = $element.parent('form').attr('name');
+                    var ypModel = $element.parent('form').attr('ypModel');
 
-                    var input = elem.find('input');
-                    _.forEach(attrs.$attr, function(key) {
-                        input.attr(key, attrs[key]);
+                    var input = $element.find('input');
+                    _.forEach($attrs.$attr, function(key) {
+                        input.attr(key, $attrs[key]);
                     });
 
-                    scope.ypInputName = name;
-//                    scope.model = scope[scope.ypModel][name];
-//                    input.attr('ng-model', scope.ypModel + '.' + name);
+                    input.attr('ng-model', ypModel + '.' + name);
+                    input.attr('placeholder', $filter('translate')(ypFormName + '.' + name + '.placeholder'));
 
-                    var span = elem.find('span');
+                    var html = $element.html();
+
+                    var compiled = $compile(html)($scope);
+                    $element.replaceWith(compiled);
+
+
+                    var span = $element.find('span');
 
                 }
             };

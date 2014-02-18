@@ -43,8 +43,11 @@
 
                 <h2 translate>organizationForm.header</h2>
 
-                <form name="organizationForm" yp-model="organizationObj" class="form" role="form" ng-submit="createOrganization()" novalidate>
+                <form name="organizationForm" ypModel="organizationObj" class="form" role="form" ng-submit="createOrganization()" novalidate>
 
+                    <yp-input name="name" required></yp-input>
+
+                    {{organizationObj.name}}
 
                     <div class="form-group">
                         <label translate>organizationForm.name.label</label>
