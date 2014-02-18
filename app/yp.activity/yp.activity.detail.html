@@ -19,8 +19,8 @@
                         <span ng-show="editModeActive" translate>detail.edit</span>
                         <span ng-hide="editModeActive" translate>detail.save</span>
                     </button>
-                    <button type="button" ng-click="deleteActivityPlan()" ng-show="currentActivityPlan.deleteStatus && currentActivityPlan.deleteStatus.indexOf('ACTIVITYPLAN_NOT_DELETABLE') !== 0" class="btn btn-danger">
-                        {{ 'activityPlanDeletable.' + currentActivityPlan.deleteStatus | translate }}
+                    <button type="button" ng-click="deleteActivityPlan()" ng-show="currentActivityPlan.deleteStatus && currentActivityPlan.deleteStatus.indexOf('ACTIVITYPLAN_NOT_DELETABLE') !== 0" class="btn btn-danger" translate>
+                        detail.delete
                     </button>
                     <button type="button" ng-click="planActivityDone()" ng-hide="currentActivityPlan.deleteStatus" class="btn btn-primary">
                         <span translate>detail.plan</span>
