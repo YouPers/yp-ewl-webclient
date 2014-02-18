@@ -5,7 +5,8 @@
         "changePassword": "Passwort ändern",
         "currentCampaign": "Aktuelle Kampagne",
         "start": "Begann am",
-        "end": "Endet am"
+        "end": "Endet am",
+        "noCurrentCampaign": "Du hast keine laufende Kampagne, starte eine hier"
     },
 
     "accountForm": {

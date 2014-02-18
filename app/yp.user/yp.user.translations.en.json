@@ -5,7 +5,8 @@
         "changePassword": "Change Password",
         "currentCampaign": "Current Campaign",
         "start": "Started",
-        "end": "Ends on"
+        "end": "Ends on",
+        "noCurrentCampaign": "You are currently not part of a campaign, join or start a campaign here"
     },
 
     "accountForm": {
