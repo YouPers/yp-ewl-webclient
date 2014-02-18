@@ -2,7 +2,10 @@
     "account": {
         "account": "Account",
         "changeAccount": "Change Account",
-        "changePassword": "Change Password"
+        "changePassword": "Change Password",
+        "currentCampaign": "Current Campaign",
+        "start": "Started",
+        "end": "Ends on"
     },
 
     "accountForm": {
