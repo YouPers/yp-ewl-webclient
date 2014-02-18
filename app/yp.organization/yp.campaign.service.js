@@ -24,10 +24,8 @@
                     putCampaign: function(campaign) {
                         return Rest.restangularizeElement(null, campaign, "campaigns").put().then(function(successResult) {
                             $rootScope.$broadcast('globalUserMsg', 'Campaign ' + successResult.title + ' successfully updated', 'success', 3000);
-                            if(success) {success(successResult);}
                         }, function(errorResult) {
                             $rootScope.$broadcast('globalUserMsg', 'Campaign not updated: Error: ' + errorResult.data.message, 'danger', 3000);
-                            if(error) {error(errorResult);}
                         });
                     },
                     getCampaign: function(campaignId) {
