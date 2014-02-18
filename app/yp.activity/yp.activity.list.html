@@ -243,7 +243,7 @@
                         {{ activity.title }}
                     </div>
                     <div class="col-md-2">
-                        <div popover="{{ enums.activityFields[fieldId]}}" popover-trigger="mouseenter"
+                        <div popover="{{ 'activityField.'+ fieldId | translate}}" popover-trigger="mouseenter"
                              ng-repeat="fieldId in activity.fields" popover-placement="left" popover-append-to-body="true">
                             <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListClusterIcon">
                         </div>
