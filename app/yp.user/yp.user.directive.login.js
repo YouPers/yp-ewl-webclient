@@ -10,11 +10,11 @@
 
 
                     scope.loginSubmit = function () {
-                        UserService.login(UserService.encodeCredentials(scope.username, scope.password), function () {
+                        UserService.login(UserService.encodeCredentials(scope.username, scope.password),  scope.keepMeLoggedIn)
+                            .then(function () {
                                 scope.username = '';
                                 scope.password = '';
-                            },
-                            scope.keepMeLoggedIn
+                            }
                         );
 
                     };

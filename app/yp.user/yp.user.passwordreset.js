@@ -26,8 +26,8 @@
             }])
 
 
-        .controller('PasswordResetCtrl', ['$scope', '$rootScope', 'authority', 'UserService',
-            function ($scope,  $rootScope, authority, UserService) {
+        .controller('PasswordResetCtrl', ['$scope', '$rootScope', 'UserService',
+            function ($scope,  $rootScope, UserService) {
 
                 $scope.firstname = $scope.$stateParams.firstname;
                 $scope.lastname = $scope.$stateParams.lastname;
@@ -48,8 +48,8 @@
 
             }])
 
-        .controller('RequestPasswordResetCtrl', ['$scope', '$rootScope', 'authority', 'UserService',
-            function ($scope, $rootScope, authority, UserService) {
+        .controller('RequestPasswordResetCtrl', ['$scope', '$rootScope', 'UserService',
+            function ($scope, $rootScope, UserService) {
 
 
                 $scope.passwordResetObjReset = function () {

@@ -29,8 +29,8 @@
                     .state('assignCampaignLead', {
                         url: '/campaigns/{id}/becomeCampaignLead?token',
                         access: accessLevels.user,
-                        onEnter:['$state','$stateParams','CampaignService', 'principal', '$rootScope',
-                            function($state, $stateParams, CampaignService, principal, $rootScope) {
+                        onEnter:['$state','$stateParams','CampaignService', '$rootScope',
+                            function($state, $stateParams, CampaignService, $rootScope) {
                             var campaignId = $stateParams.id;
                             var token = $stateParams.token;
                             CampaignService.assignCampaignLead(campaignId, token).then(function(data) {

@@ -65,9 +65,8 @@ angular.module('yp.evaluate', ['restangular', 'ui.router', 'yp.user', 'yp.activi
 
 
         }])
-    .factory('StatsService', ['$http', 'Restangular', '$q', 'principal',
-        function ($http, Restangular, $q, principal) {
-
+    .factory('StatsService', ['$http', 'Restangular',
+        function ($http, Restangular ) {
             var stats = Restangular.all('stats');
 
             function getStats(type) {
