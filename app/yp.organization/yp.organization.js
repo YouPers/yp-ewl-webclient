@@ -59,6 +59,19 @@
                         $rootScope.$broadcast('globalUserMsg', 'Error sending invitation: '+ JSON.stringify(err), 'danger', 5000);
                     });
                 };
+
+                // validate and store a updated campaign
+
+                $scope.updateCampaign = function() {
+                    var startDate = moment($scope.campaign.start);
+                    var endDate = moment($scope.campaign.end);
+                    if (startDate.diff(endDate) < 0) {
+                        // start date is earlier than end date, so we try to create the campaign
+                        CampaignService.putCampaign($scope.campaign);
+                    } else {
+                        $rootScope.$broadcast('globalUserMsg', 'Campaign not updated: Campaign end date must be later than campaign start date ');
+                    }
+                };
             }
         ]);
 }());

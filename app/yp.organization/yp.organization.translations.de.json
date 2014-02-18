@@ -28,8 +28,11 @@
     },
 
     "campaignForm": {
-        "header": "Neue Kampagne",
 
+        "header": {
+            "newCampaign": "Neue Kampagne",
+            "campaignAttributes": "Kampagnendetails"
+        },
         "title": {
             "label": "Titel",
             "placeholder": "Titel",
@@ -59,6 +62,7 @@
         "paymentStatus": "Status",
 
         "reset": "Zurücksetzen",
+        "edit": "Ändern",
         "save": "Erstellen"
     },
 
@@ -93,5 +97,31 @@
             },
             "inviteSubmit": "Hinzufügen"
         }
+    },
+    "campaignLead": {
+        "header": "Kampagnenleiter",
+        "lastname": "Name",
+        "firstname": "Vorname",
+        "fullname": "Voller Name",
+        "email": "eMail",
+        "avatar": "Avatar"
+    },
+    "campaignPaymentForm": {
+
+        "header": "Zahlungsdetails",
+        "paymentStatus": {
+            "label": "Zahlungsstatus",
+            "placeholder": "Zahlungsstatus",
+            "$invalid": "Bitte einen gültigen Zahlungscode eingeben"
+        },
+        "productType": {
+            "label": "Produkttyp",
+            "placeholder": "Produkttyp",
+            "$invalid": "Bitte einen gültigen Produkttyp auswählen"
+        },
+
+        "changeProductType": "Produkttyp ändern",
+        "pay": "Bezahlen"
     }
+
 }
