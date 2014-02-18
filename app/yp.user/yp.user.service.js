@@ -71,7 +71,7 @@
                         // the profile data we already have in the session. It would be overwritten by
                         // the String on merge.
                         // We also need to have an object instead of a ref in case we want to set some profile values
-                        authenticatedUser.profile = {id: authenticatedUser.profile}
+                        authenticatedUser.profile = {id: authenticatedUser.profile};
                     }
 
                     _currentUser = _.merge(authenticatedUser, _currentUser);
@@ -79,7 +79,7 @@
 
                     // Broadcast the authorized event
                     $rootScope.$broadcast('event:authority-authorized');
-                }
+                };
 
                 // `deauthorize` resets the `principal` and `identity`
                 var _deauthorize = function () {
@@ -88,7 +88,7 @@
 
                     // Broadcast the deauthorized event
                     $rootScope.$broadcast('event:authority-deauthorized');
-                }
+                };
 
                 var UserService = {
                     encodeCredentials: function (username, password) {

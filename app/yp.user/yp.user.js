@@ -44,7 +44,7 @@
 
                 $scope.logout = function () {
                     UserService.logout();
-                    $scope.$state.go('home')
+                    $scope.$state.go('home');
                 };
 
 
