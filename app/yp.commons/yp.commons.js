@@ -77,13 +77,6 @@
                     scope.$on('formPristine', function () {
                         ctrl.$setPristine();
                     });
-
-                    if(attrs['name']) {
-                        scope.ypFormName = attrs['name'];
-                    }
-                    if(attrs['ypModel']) {
-                        scope.ypModel = attrs['ypModel'];
-                    }
                 }
             };
         }])

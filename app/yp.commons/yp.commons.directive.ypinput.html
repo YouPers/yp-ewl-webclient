@@ -1,4 +1,7 @@
-<div class="form-group">
-    <label>Name</label>
-    <input name="default" type="text" placeholder="" class="form-control" >
+<div class="form-group" ng-non-bindable>
+    <label>{{ypFormName + '.' + ypInputName + '.label' | translate}}</label>
+    <input name="{{ypFormName}}" type="text" placeholder="{{ypFormName + '.' + ypInputName + '.placeholder' | translate}}"
+           class="form-control" >
+
+    <span ng-show="{{ypFormName}}.{{ypInputName}}.$dirty && {{ypFormName}}.{{ypInputName}}.$invalid" class="help-inline">{{ypFormName + '.' + ypInputName + '.$invalid' | translate}}</span>
 </div>

@@ -5,8 +5,7 @@
         .directive('ypInput', ['$compile', '$filter', function ($compile, $filter) {
             return {
                 scope: {
-                    ngModel: "="
-//                    ypFormName: "="
+                    // isolated
                 },
                 restrict: 'E',
                 templateUrl: 'yp.commons/yp.commons.directive.ypinput.html',
@@ -15,28 +14,39 @@
 
                     var name = $attrs['name'];
                     if(!name) {
-                        throw 'ypInput: name is required';
+                        throw 'ypInput: input "name" is required';
                     }
 
-                    var ypInputName = name;
-                    var ypFormName = $element.parent('form').attr('name');
-                    var ypModel = $element.parent('form').attr('ypModel');
+                    $scope.ypInputName = name;
 
+                    // get name and model object from parent form
+                    var form = $element.parent('form');
+                    $scope.ypFormName = form.attr('name');
+                    if(!$scope.ypFormName) {
+                        throw 'ypInput: attribute "name" is required in the parent form';
+                    }
+                    $scope[$scope.ypFormName] = $scope.$parent[$scope.ypFormName];
+                    $scope.ypModel = form.attr('ypModel');
+                    if(!$scope.ypModel) {
+                        throw 'ypInput: attribute "ypModel" is required in the parent form';
+                    }
+
+
+                    // load contents of the element to compile it, which was prevented by 'ng-non-bindable'
+                    var contents = $element.contents();
+
+                    // include all attributes from parent input
                     var input = $element.find('input');
                     _.forEach($attrs.$attr, function(key) {
-                        input.attr(key, $attrs[key]);
+                        input.attr(key, $attrs[key] ? $attrs[key] : true);
                     });
 
-                    input.attr('ng-model', ypModel + '.' + name);
-                    input.attr('placeholder', $filter('translate')(ypFormName + '.' + name + '.placeholder'));
-
-                    var html = $element.html();
-
-                    var compiled = $compile(html)($scope);
-                    $element.replaceWith(compiled);
+                    // modify ng-model, interpolation does not work here
+                    input.attr('ng-model', $scope.ypModel + '.' + name);
 
 
-                    var span = $element.find('span');
+                    $element.children().removeAttr('ng-non-bindable');
+                    $compile(contents)($scope);
 
                 }
             };

@@ -5,7 +5,7 @@
 
         <div class="col-md-6">
 
-            <div ng-show="organization">
+            <div ng-if="organization">
 
 
                 <div class="panel panel-default">
@@ -45,34 +45,12 @@
 
                 <form name="organizationForm" ypModel="organizationObj" class="form" role="form" ng-submit="createOrganization()" novalidate>
 
-                    <yp-input name="name" required></yp-input>
+                    {{ organizationObj.name }}
 
-                    {{organizationObj.name}}
-
-                    <div class="form-group">
-                        <label translate>organizationForm.name.label</label>
-                        <input name="name" type="text" placeholder="{{organizationForm.name.placeholder | translate}}" class="form-control" ng-model="organizationObj.name" required>
-                        <span ng-show="organizationForm.name.$dirty && organizationForm.name.$invalid" class="help-inline" translate>organizationForm.name.$invalid</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label translate>organizationForm.location.label</label>
-                        <input name="location" type="text" placeholder="{{organizationForm.location.placeholder | translate}}" class="form-control" ng-model="organizationObj.location" >
-                        <span ng-show="organizationForm.location.$dirty && organizationForm.location.$invalid" class="help-inline" translate>organizationForm.location.$invalid</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label translate>organizationForm.sector.label</label>
-                        <input name="sector" type="text" placeholder="{{organizationForm.sector.placeholder | translate}}" class="form-control" ng-model="organizationObj.sector" >
-                        <span ng-show="organizationForm.sector.$dirty && organizationForm.sector.$invalid" class="help-inline" translate>organizationForm.sector.$invalid</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label translate>organizationForm.nrOfEmployees.label</label>
-                        <input name="nrOfEmployees" type="text" placeholder="{{organizationForm.nrOfEmployees.placeholder | translate}}" class="form-control" ng-model="organizationObj.nrOfEmployees" >
-                        <span ng-show="organizationForm.nrOfEmployees.$dirty && organizationForm.nrOfEmployees.$invalid" class="help-inline" translate>organizationForm.nrOfEmployees.$invalid</span>
-                    </div>
-
+                    <yp-input name="name" model="organizationObj" required></yp-input>
+                    <yp-input name="location" required></yp-input>
+                    <yp-input name="sector" required></yp-input>
+                    <yp-input name="nrOfEmployees" required></yp-input>
 
                     <button type="reset" class="btn btn-sm"><span translate>organizationForm.reset</span></button>
                     <button type="submit" class="btn btn-success btn-sm" ng-disabled="organizationForm.$invalid"><span translate>organizationForm.save</span></button>
@@ -83,7 +61,7 @@
         </div>
 
         <div class="col-md-6">
-            <div ng-show="organization">
+            <div ng-if="organization">
 
 
                 <div class="panel panel-default">
