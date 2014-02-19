@@ -52,7 +52,7 @@
 
                         <ul class="nav navbar-nav">
                             <li class="dropdown" ng-controller="i18nCtrl">
-                                <a class="dropdown-toggle" data-toggle="dropdown"><translate>topmenu.language</translate>
+                                <a class="dropdown-toggle" data-toggle="dropdown">{{currentLocale}}
                                     <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li ng-class="{active: currentLocale=='en'}" ><a href="" ng-click="changeLang('en')">english</a></li>

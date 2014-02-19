@@ -72,7 +72,9 @@
         "profile": "Profil",
         "homeAddress": "Heimadresse",
         "workAddress": "Arbeitsort",
-        "settings": "Einstellungen"
+        "settings": "Einstellungen",
+        "emailNotificationsSettings": "E-Mailbenachrichtigungen erhalten?",
+        "calendarNotificationSettings": "Hinweise im Bürokalendar"
     },
     "profileForm": {
         "submit": "Übermitteln",
@@ -91,7 +93,13 @@
         "defaultWorkWeek": "Grundeinstellung für Arbeitswoche",
         "firstDayOfWeek": "Erster Tag der Woche",
         "timeZone": "Zeitzone",
-        "$invalid": "Bitte gültigen Wert eintragen"
+        "language": "Sprache",
+        "$invalid": "Bitte gültigen Wert eintragen",
+        "email": {
+            "actPlanInvites": "Einladungen zu Aktivitäten ",
+            "dailyUserMail": "Tägliche Zusammenfassung",
+            "iCalInvites": "Kalender-Einträge per Email"
+        }
     }
 
 

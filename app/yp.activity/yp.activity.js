@@ -103,6 +103,18 @@
                     'youpers',
                     'community',
                     'campaign'
+                ],
+                calendarNotifications: [
+                    'none',
+                    '0M',
+                    '5M',
+                    '10M',
+                    '15M',
+                    '30M',
+                    '1H',
+                    '2H',
+                    '1D',
+                    '2D'
                 ]
             });
         }])
