@@ -18,8 +18,8 @@
             }])
 
 
-        .controller('UserAccountCtrl', ['$scope', '$rootScope', 'authority', 'UserService',
-            function ($scope, $rootScope,  authority, UserService) {
+        .controller('UserAccountCtrl', ['$scope', '$rootScope', 'UserService',
+            function ($scope, $rootScope, UserService) {
 
                 $scope.accountUserObjReset = function () {
                     $scope.accountUserObj = _.clone($scope.principal.getUser());
@@ -29,7 +29,6 @@
 
                 $scope.saveAccount = function () {
                     UserService.putUser($scope.accountUserObj).then(function (user) {
-                        authority.authorize(user);
                         $rootScope.$broadcast('globalUserMsg', 'Your account has been saved', 'success', 3000);
                     });
 
@@ -43,7 +42,7 @@
                 $scope.changePassword = function () {
                     UserService.putUser($scope.passwordUserObj).then(function (user) {
 
-                        UserService.login($scope.passwordUserObj, function () {
+                        UserService.login($scope.passwordUserObj).then(function () {
 
                             $scope.passwordUserObjReset();
                             $scope.$broadcast('formPristine');

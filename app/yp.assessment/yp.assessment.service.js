@@ -5,8 +5,8 @@
     angular.module('yp.assessment')
 
         // provides methods to get Assessment Information from the server
-        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'principal','$rootScope',
-            function ($http, $q, Restangular, principal, $rootScope) {
+        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'UserService','$rootScope',
+            function ($http, $q, Restangular, UserService, $rootScope) {
                 var cachedAssessmentPromise;
 
                 $rootScope.$on('$translateChangeStart', function() {
@@ -40,7 +40,7 @@
                         // if the user is authenticated we try to get his previous answers from the server,
                         // if unauthenticated, we only get the assessment
                         var neededCalls = [assService.getAssessment(assessmentId)];
-                        if (principal.isAuthenticated()) {
+                        if (UserService.principal.isAuthenticated()) {
                             neededCalls.push(
                                 assessmentBase.one('results/newest').get()
                             );
@@ -81,7 +81,7 @@
                     getAssessmentResults: function (assessmentId, sortBy) {
                         sortBy = sortBy || 'timestamp:-1';
 
-                        if (principal.isAuthenticated()) {
+                        if (UserService.principal.isAuthenticated()) {
                             return Restangular.one('assessments', assessmentId).all('results').getList({sort: sortBy});
                         } else {
                             var deferred = $q.defer();
@@ -90,7 +90,7 @@
                         }
                     },
                     getNewestAssessmentResults: function (assessmentId) {
-                        if (principal.isAuthenticated()) {
+                        if (UserService.principal.isAuthenticated()) {
                             return Restangular.one('assessments', assessmentId).one('results/newest').get();
                         } else {
                             var deferred = $q.defer();

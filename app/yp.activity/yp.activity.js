@@ -238,8 +238,8 @@
         }])
 
 
-        .factory('ActivityService', ['$http', 'Restangular', '$q', 'principal', '$rootScope',
-            function ($http, Restangular, $q, principal, $rootScope) {
+        .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',
+            function ($http, Restangular, $q, UserService, $rootScope) {
             var activities = Restangular.all('activities');
             var activityPlans = Restangular.all('activityplans');
 
@@ -293,7 +293,7 @@
                     }
                 },
                 getActivityPlans: function (options) {
-                    if (principal.isAuthenticated()) {
+                    if (UserService.principal.isAuthenticated()) {
                         return activityPlans.getList(options);
                     } else {
                         var deferred = $q.defer();
@@ -333,7 +333,7 @@
                     if (focusQuestionId) {
                         params.fokus = focusQuestionId;
                     }
-                    if (principal.isAuthenticated()) {
+                    if (UserService.principal.isAuthenticated()) {
                         if (!cachedRecommendationsPromises[focusQuestionId || 'default']) {
                             cachedRecommendationsPromises[focusQuestionId || 'default'] = Restangular.all('activities/recommendations').getList(params);
                         }

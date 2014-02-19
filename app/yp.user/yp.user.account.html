@@ -5,9 +5,32 @@
 
         <div class="col-md-6">
 
-            <!--<pre>-->
-                <!--{{ accountUserObj | json }}-->
-            <!--</pre>-->
+            <h2 translate>account.currentCampaign</h2>
+
+            <div class="panel panel-default row" ng-if="principal.getUser().campaign">
+                <div class="col-md-12">
+                    <h3>{{principal.getUser().campaign.title}}</h3>
+                </div>
+
+                <div class="col-md-3">
+                    <label translate>account.start</label>
+                </div>
+                <div class="col-md-3">
+                    {{principal.getUser().campaign.start | date}}
+                </div>
+                <div class="col-md-3">
+                    <label translate>account.end</label>
+                </div>
+                <div class="col-md-3">
+                    {{principal.getUser().campaign.end | date}}
+                </div>
+            </div>
+            <div class="row" ng-if="!principal.getUser().campaign">
+                <div class="col-md-12" translate>
+                    account.noCurrentCampaign
+                </div>
+            </div>
+
 
         </div>
 

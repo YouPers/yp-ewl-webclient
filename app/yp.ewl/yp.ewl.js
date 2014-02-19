@@ -62,7 +62,7 @@ angular.module('yp-ewl',
                 urlTemplate: '/{part}/{part}.translations.{lang}.json',
                 wtiProjectId: '8233-eWL',
                 wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
-                fromWti: true
+                fromWti: false
             });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl');
             $translateWtiPartialLoaderProvider.addPart('yp.commons');
@@ -71,15 +71,15 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'principal', 'UserService', '$timeout', '$http', '$translate', 'enums',
-        function ($rootScope, $state, $stateParams, principal, UserService, $timeout, $http, $translate, enums) {
+    .run(['$rootScope', '$state', '$stateParams', 'UserService', '$timeout', '$http', '$translate', 'enums',
+        function ($rootScope, $state, $stateParams, UserService, $timeout, $http, $translate, enums) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
 
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
-            $rootScope.principal = principal;
+            $rootScope.principal = UserService.principal;
             $rootScope.currentLocale = $translate.uses() || $translate.proposedLanguage();
             $rootScope.enums = enums;
 
@@ -96,7 +96,7 @@ angular.module('yp-ewl',
                 var requiredAccessLevel = toState.access;
 
                 if (UserService.initialized) {
-                    if (!(principal.isAuthorized(requiredAccessLevel))) {
+                    if (!(UserService.principal.isAuthorized(requiredAccessLevel))) {
                         event.preventDefault();
                         console.log('preventing state change, because user is not authorized');
                         $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
@@ -143,15 +143,22 @@ angular.module('yp-ewl',
 
                 modalInstance.result.then(function (result) {
                     if (result.login) {
-                        UserService.login(UserService.encodeCredentials(result.login.username,
-                            result.login.password),
-                            result.login.keepMeLoggedIn);
+                        UserService.login(UserService.encodeCredentials(result.login.username, result.login.password),
+                                result.login.keepMeLoggedIn).then(function(){
+                                if ($scope.nextStateAfterLogin) {
+                                    $scope.$state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
+                                }
+                            });
                     } else if (result.newuser) {
-                        UserService.submitNewUser(result.newuser, function () {
-                            UserService.login(UserService.encodeCredentials(result.newuser.username, result.newuser.password));
+                        UserService.submitNewUser(result.newuser).then(function (newUser) {
+                            UserService.login(UserService.encodeCredentials(result.newuser.username, result.newuser.password)).then(function() {
+                                if ($scope.nextStateAfterLogin) {
+                                    $scope.$state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
+                                }
+                            });
                         });
                     } else {
-
+                        // user dismissed the dialog without result - we do nothing
                     }
                 });
             };
