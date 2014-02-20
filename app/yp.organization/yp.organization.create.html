@@ -45,12 +45,10 @@
 
                 <form name="organizationForm" ypModel="organizationObj" class="form" role="form" ng-submit="createOrganization()" novalidate>
 
-                    {{ organizationObj.name }}
-
-                    <yp-input name="name" model="organizationObj" required></yp-input>
+                    <yp-input name="name" required></yp-input>
                     <yp-input name="location" required></yp-input>
-                    <yp-input name="sector" required></yp-input>
-                    <yp-input name="nrOfEmployees" required></yp-input>
+                    <yp-input name="sector"></yp-input>
+                    <yp-input name="nrOfEmployees"></yp-input>
 
                     <button type="reset" class="btn btn-sm"><span translate>organizationForm.reset</span></button>
                     <button type="submit" class="btn btn-success btn-sm" ng-disabled="organizationForm.$invalid"><span translate>organizationForm.save</span></button>
@@ -99,13 +97,9 @@
 
                         <h4 translate>campaignForm.header</h4>
 
-                        <form name="campaignForm" yp-model="campaignObj" class="form" role="form" ng-submit="createCampaign()" novalidate>
+                        <form name="campaignForm" ypModel="campaignObj" class="form" role="form" ng-submit="createCampaign()" novalidate>
 
-                            <div class="form-group">
-                                <label translate>campaignForm.title.label</label>
-                                <input name="title" type="text" placeholder="{{ 'campaignForm.title.placeholder' | translate }}" class="form-control" ng-model="campaignObj.title" required>
-                                <span ng-show="campaignObj.title.$dirty && campaignObj.title.$invalid" class="help-inline" translate>campaignForm.title.$invalid</span>
-                            </div>
+                            <yp-input name="title" required></yp-input>
 
                             <div class="form-group">
                                 <label translate>campaignForm.start.label</label>
@@ -127,18 +121,9 @@
                                        date-disabled="disabled(date, mode)" ng-required="true"/>
                             </div>
 
-                            <div class="form-group">
-                                <label translate>campaignForm.location.label</label>
-                                <input name="location" type="text" placeholder="{{ 'campaignForm.location.placeholder' | translate }}" class="form-control" ng-model="campaignObj.location" required>
-                                <span ng-show="campaignObj.location.$dirty && campaignObj.location.$invalid" class="help-inline" translate>campaignForm.location.$invalid</span>
-                            </div>
+                            <yp-input name="location" required></yp-input>
 
-                            <div class="form-group">
-                                <label translate>campaignForm.slogan.label</label>
-                                <input name="slogan" type="text" placeholder="{{ 'campaignForm.slogan.placeholder' | translate }}" class="form-control" ng-model="campaignObj.slogan" required>
-                                <span ng-show="campaignObj.slogan.$dirty && campaignObj.slogan.$invalid" class="help-inline" translate>campaignForm.slogan.$invalid</span>
-                            </div>
-
+                            <yp-input name="slogan" required></yp-input>
 
                             <button type="reset" class="btn btn-sm"><span translate>campaignForm.reset</span></button>
                             <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.save</span></button>

@@ -12,19 +12,33 @@
     "accountForm": {
         "firstname": {
             "label": "Vorname",
-            "$invalid": "Bitte gültigen Vornamen eingeben"
+            "placeholder": "Vorname",
+            "error": {
+                "required": "Bitte einen Vornamen eingeben"
+            }
         },
         "lastname": {
             "label": "Nachname",
-            "$invalid": "Bitte gültigen Nachnamen eingeben"
+            "placeholder": "Nachname",
+            "error": {
+                "required": "Bitte einen Nachnamen eingeben"
+            }
         },
         "username": {
             "label": "Username",
-            "$invalid": "Bitte gültigen Usernamen eingeben"
+            "placeholder": "Username",
+            "error": {
+                "required": "Bitte einen Usernamen eingeben"
+            }
         },
         "email": {
             "label": "Email",
-            "$invalid": "Bitte gültige Emailadresse eingeben"
+            "placeholder": "Email",
+            "error": {
+                "required": "Bitte eine EMail-Adresse eingeben",
+                "email": "Bitte eine gültige EMail-Adresse eingeben",
+                "unique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein"
+            }
         },
         "save": "speichern",
         "reset": "zurücksetzen"
@@ -33,15 +47,25 @@
     "passwordForm": {
         "password_old": {
             "label": "Aktuelles Passwort",
-            "$invalid": "Dein aktuelles Passwort"
+            "placeholder": "Aktuelles Passwort",
+            "error": {
+                "required": "Dein aktuelles Passwort"
+            }
         },
         "password": {
             "label": "Neues Passwort",
-            "$invalid": "Mindestens 6 Zeichen"
+            "placeholder": "Neues Passwort",
+            "error": {
+                "minlength": "Mindestens 6 Zeichen",
+                "required": "Dein neues Passwort"
+            }
         },
         "password2": {
             "label": "Passwort bestätigen",
-            "$invalid": "Die Passwörter stimmen nicht überein"
+            "placeholder": "Passwort bestätigen",
+            "error": {
+                "unique": "Die Passwörter stimmen nicht überein"
+            }
         },
         "save": "Ändern"
     },
