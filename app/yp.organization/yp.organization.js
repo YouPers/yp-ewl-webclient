@@ -113,6 +113,7 @@
                 // validate and store a new campaign activity
 
                 $scope.save = function() {
+                    // validations
                     CampaignService.putCampaignActivity($scope.activity);
                 };
 
