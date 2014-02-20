@@ -33,9 +33,9 @@ describe('yp-common: ', function () {
             it('should set correct language', inject(function ($translate) {
                 expect(ctrl).toBeDefined();
                 $scope.changeLang('DE');
-                expect($translate.uses()).toEqual('DE');
+                expect($translate.use()).toEqual('DE');
                 $scope.changeLang('EN');
-                expect($translate.uses()).toEqual('EN');
+                expect($translate.use()).toEqual('EN');
             }));
         });
     });
