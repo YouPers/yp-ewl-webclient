@@ -31,17 +31,17 @@
                         access: accessLevels.user,
                         onEnter:['$state','$stateParams','CampaignService', '$rootScope',
                             function($state, $stateParams, CampaignService, $rootScope) {
-                            var campaignId = $stateParams.id;
-                            var token = $stateParams.token;
-                            CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
-                                $rootScope.$broadcast('globalUserMsg', 'You are now a Campaign Lead of this campaign', 'success', 5000);
-                                $state.go('campaign', {id: campaignId});
-                            }, function(err) {
-                                $rootScope.$broadcast('globalUserMsg', 'error', 'danger');
-                                console.log(JSON.stringify(err));
-                                $state.go('home');
-                            });
-                        }]
+                                var campaignId = $stateParams.id;
+                                var token = $stateParams.token;
+                                CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
+                                    $rootScope.$broadcast('globalUserMsg', 'You are now a Campaign Lead of this campaign', 'success', 5000);
+                                    $state.go('campaign', {id: campaignId});
+                                }, function(err) {
+                                    $rootScope.$broadcast('globalUserMsg', 'error', 'danger');
+                                    console.log(JSON.stringify(err));
+                                    $state.go('home');
+                                });
+                            }]
 
                     });
 
@@ -59,6 +59,45 @@
                         $rootScope.$broadcast('globalUserMsg', 'Error sending invitation: '+ JSON.stringify(err), 'danger', 5000);
                     });
                 };
+
+                // validate and store a updated campaign
+
+                $scope.updateCampaign = function() {
+                    var startDate = moment($scope.campaign.start);
+                    var endDate = moment($scope.campaign.end);
+                    if (startDate.diff(endDate) < 0) {
+                        // start date is earlier than end date, so we try to create the campaign
+                        CampaignService.putCampaign($scope.campaign);
+                    } else {
+                        $rootScope.$broadcast('globalUserMsg', 'Campaign not updated: Campaign end date must be later than campaign start date ');
+                    }
+                };
+
+                var getCampaignStats = function() {
+                    if ($scope.campaign.id) {
+
+                        $scope.campaignStats = {};
+
+                        CampaignService.getCampaignStats($scope.campaign.id, 'assUpdatesTotal').then(function(result) {
+                            $scope.campaignStats.assUpdatesTotal = result[0].updatesTotal;
+                        });
+
+                        CampaignService.getCampaignStats($scope.campaign.id, 'assTotals').then(function(result) {
+                            $scope.campaignStats.assTotals = result[0].totalUsers;
+                        });
+                        CampaignService.getCampaignStats($scope.campaign.id, 'activitiesPlannedTotal').then(function(result) {
+                            $scope.campaignStats.activitiesPlannedTotal = result[0].activitiesPlannedTotal;
+                        });
+                        CampaignService.getCampaignStats($scope.campaign.id, 'activityEventsTotal').then(function(result) {
+                            $scope.campaignStats.activityEventsTotal = result[0].eventsTotal;
+                        });
+                        CampaignService.getCampaignStats($scope.campaign.id, 'usersTotal').then(function(result) {
+                            $scope.campaignStats.usersTotal = result[0].usersTotal;
+                        });
+                    }
+                };
+
+                getCampaignStats();
             }
         ]);
 }());
