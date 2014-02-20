@@ -99,12 +99,7 @@
         }
     },
     "campaignLead": {
-        "header": "Campaign Leads",
-        "lastname": "Last Name",
-        "firstname": "First Name",
-        "fullname": "Full Name",
-        "email": "eMail",
-        "avatar": "Avatar"
+        "header": "Campaign Leads"
     },
     "campaignPaymentForm": {
 
@@ -125,11 +120,11 @@
     },
     "campaignStats": {
         "header": "Statistics",
-        "assUpdatesPerDay": "Ass.Upd./Day",
-        "assTotals": "Ass. Tot.",
-        "topStressors": "Top Stress.",
-        "activitiesPlanned": "Planned Activities",
-        "activityEvents": "Events"
+        "assUpdatesTotal": "Assessment Updates",
+        "assTotals": "Assessments Total",
+        "activitiesPlannedTotal": "planned. Aktivitäten Total",
+        "activityEventsTotal": "Events Total",
+        "usersTotal": "User Total"
     }
 
 }

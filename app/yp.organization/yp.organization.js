@@ -78,20 +78,21 @@
 
                         $scope.campaignStats = {};
 
-                        CampaignService.getCampaignStats($scope.campaign.id, 'assUpdatesPerDay').then(function(result) {
-                            $scope.campaignStats.assUpdatesPerDay = result.length;
+                        CampaignService.getCampaignStats($scope.campaign.id, 'assUpdatesTotal').then(function(result) {
+                            $scope.campaignStats.assUpdatesTotal = result[0].updatesTotal;
                         });
+
                         CampaignService.getCampaignStats($scope.campaign.id, 'assTotals').then(function(result) {
-                            $scope.campaignStats.assTotals = result.length;
+                            $scope.campaignStats.assTotals = result[0].totalUsers;
                         });
-                        CampaignService.getCampaignStats($scope.campaign.id, 'topStressors').then(function(result) {
-                            $scope.campaignStats.topStressors = result.length;
+                        CampaignService.getCampaignStats($scope.campaign.id, 'activitiesPlannedTotal').then(function(result) {
+                            $scope.campaignStats.activitiesPlannedTotal = result[0].activitiesPlannedTotal;
                         });
-                        CampaignService.getCampaignStats($scope.campaign.id, 'activitiesPlanned').then(function(result) {
-                            $scope.campaignStats.activitiesPlanned = result.length;
+                        CampaignService.getCampaignStats($scope.campaign.id, 'activityEventsTotal').then(function(result) {
+                            $scope.campaignStats.activityEventsTotal = result[0].eventsTotal;
                         });
-                        CampaignService.getCampaignStats($scope.campaign.id, 'activityEvents').then(function(result) {
-                            $scope.campaignStats.activityEvents = result.length;
+                        CampaignService.getCampaignStats($scope.campaign.id, 'usersTotal').then(function(result) {
+                            $scope.campaignStats.usersTotal = result[0].usersTotal;
                         });
                     }
                 };

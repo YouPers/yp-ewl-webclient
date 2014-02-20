@@ -113,27 +113,8 @@
                 </accordion-group>
                 <accordion-group heading="{{'campaignLead.header' | translate}}" is-open="true">
 
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                            <th translate>campaignLead.lastname</th>
-                            <th translate>campaignLead.firstname</th>
-                            <th translate>campaignLead.fullname</th>
-                            <th translate>campaignLead.email</th>
-                            <th translate>campaignLead.avatar</th>
-                            </thead>
-                            <tbody ng-repeat="campaignLead in campaign.campaignLeads">
-                            <tr>
-                                <td>{{campaignLead.lastname}}</td>
-                                <td>{{campaignLead.firstname}}</td>
-                                <td>{{campaignLead.fullname}}</td>
-                                <td>{{campaignLead.email}}</td>
-                                <td><img ng-src="{{campaignLead.avatar}}" class="avatar-icon-plain"/></td>
-                            </tr>
-                            </tbody>
-
-
-                        </table>
+                    <div ng-repeat="campaignLead in campaign.campaignLeads" class="row">
+                        <div user="campaignLead"></div>
                     </div>
 
                 </accordion-group>
@@ -142,19 +123,19 @@
                     <div class="panel-body">
                         <table class="table">
                             <thead>
-                            <th translate>campaignStats.assUpdatesPerDay</th>
+                            <th translate>campaignStats.assUpdatesTotal</th>
                             <th translate>campaignStats.assTotals</th>
-                            <th translate>campaignStats.topStressors</th>
-                            <th translate>campaignStats.activitiesPlanned</th>
-                            <th translate>campaignStats.activityEvents</th>
+                            <th translate>campaignStats.activitiesPlannedTotal</th>
+                            <th translate>campaignStats.activityEventsTotal</th>
+                            <th translate>campaignStats.usersTotal</th>
                             </thead>
-                            <tbody ng-repeat="campaignLead in campaign.campaignLeads">
+                            <tbody>
                             <tr>
-                                <td>{{campaignStats.assUpdatesPerDay}}</td>
+                                <td>{{campaignStats.assUpdatesTotal}}</td>
                                 <td>{{campaignStats.assTotals}}</td>
-                                <td>{{campaignStats.topStressors}}</td>
-                                <td>{{campaignStats.activitiesPlanned}}</td>
-                                <td>{{campaignStats.activityEvents}}</td>
+                                <td>{{campaignStats.activitiesPlannedTotal}}</td>
+                                <td>{{campaignStats.activityEventsTotal}}</td>
+                                <td>{{campaignStats.usersTotal}}</td>
                             </tr>
                             </tbody>
 
