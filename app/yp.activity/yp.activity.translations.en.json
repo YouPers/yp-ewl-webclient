@@ -141,6 +141,18 @@
         "community": "Community",
         "campaign": "Campaign"
     },
+    "calendarNotification": {
+        "none": "none",
+        "0M": "time of event",
+        "5M": "5 minutes before",
+        "10M": "10 minutes before",
+        "15M": "15 minutes before",
+        "30M": "30 minutes before",
+        "1H": "1 hour before",
+        "2H": "2 hours before",
+        "1D": "1 day before",
+        "2D": "2 days before"
+    },
     "activityPlanInvite": {
         "header": "Welcome - YouPers Digital Health Plattform",
         "subheader": " has invited you to join an activity.",

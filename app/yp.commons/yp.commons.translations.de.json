@@ -31,5 +31,11 @@
         "00:00": "UTC",
         "+01:00": "Zürich (+01:00)",
         "+03:00": "Sotschi (+03:00)"
+    },
+    "language": {
+        "de": "Deutsch",
+        "en": "English",
+        "fr": "Français",
+        "it": "Italiano"
     }
 }

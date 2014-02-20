@@ -71,7 +71,9 @@
         "profile": "Profile",
         "homeAddress": "Home Address",
         "workAddress": "Work Address",
-        "settings": "Settings"
+        "settings": "Settings",
+        "emailNotificationsSettings": "receive email notifications",
+        "calendarNotificationSettings": "calendar alerts"
     },
     "profileForm": {
         "submit": "Submit",
@@ -90,7 +92,14 @@
         "defaultWorkWeek": "Base setting for work week",
         "firstDayOfWeek": "First day of week",
         "timeZone": "Timezone",
-        "$invalid": "Please enter a valid value"
+        "language": "Language",
+        "$invalid": "Please enter a valid value",
+        "email": {
+            "actPlanInvites": "Invitations for activities",
+            "dailyUserMail": "Daily Summary",
+            "iCalInvites": "Calendar events for Office Calendar"
+        }
+
     }
 
 }
