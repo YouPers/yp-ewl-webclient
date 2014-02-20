@@ -9,7 +9,6 @@
             function ($rootScope, Rest, UserService) {
 
                 var campaigns = Rest.all('campaigns');
-                var activities = Rest.all('activities');
 
                 var CampaignService = {
 
