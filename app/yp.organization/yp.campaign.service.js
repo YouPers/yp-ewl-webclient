@@ -9,6 +9,7 @@
             function ($rootScope, Rest, UserService) {
 
                 var campaigns = Rest.all('campaigns');
+                var activities = Rest.all('activities');
 
                 var CampaignService = {
 
@@ -48,6 +49,16 @@
                         var stats = Rest.all('campaigns/' + campaignId + '/stats');
 
                         return stats.getList({ type: type} );
+
+                    },
+                    putCampaignActivity: function (activity, success, error) {
+                        activities.post(activity).then(function(successResult) {
+                            $rootScope.$broadcast('globalUserMsg', 'Campaign activity' + successResult.title + ' successfully created', 'success', 3000);
+                            if(success) {success(successResult);}
+                        }, function(errorResult) {
+                            $rootScope.$broadcast('globalUserMsg', 'Campaign activity not created: Error: ' + errorResult.data.message, 'danger', 3000);
+                            if(error) {error(errorResult);}
+                        });
 
                     }
                 };

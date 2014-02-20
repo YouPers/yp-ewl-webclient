@@ -98,6 +98,24 @@
                 };
 
                 getCampaignStats();
+
+                $scope.activity = {};
+
+                var initCampaignActivity = function() {
+
+                    $scope.activity.title = "Mustertitel";
+                    $scope.activity.text = "Mustertext";
+
+                };
+
+                initCampaignActivity();
+
+                // validate and store a new campaign activity
+
+                $scope.save = function() {
+                    CampaignService.putCampaignActivity($scope.activity);
+                };
+
             }
         ]);
 }());
