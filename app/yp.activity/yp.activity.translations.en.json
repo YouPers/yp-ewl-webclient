@@ -142,8 +142,8 @@
         "campaign": "Campaign"
     },
     "calendarNotification": {
-        "none": "No Notification",
-        "0M": "Bei Ereignistart",
+        "none": "none",
+        "0M": "time of event",
         "5M": "5 minutes before",
         "10M": "10 minutes before",
         "15M": "15 minutes before",
