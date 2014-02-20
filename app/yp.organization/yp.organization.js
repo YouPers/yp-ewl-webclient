@@ -113,7 +113,13 @@
                 // validate and store a new campaign activity
 
                 $scope.save = function() {
-                    // validations
+
+                    // use as Number (for the time being) the value "NEW_C to distinguish it from new YouPers Activities (number = "NEW"), until a numbering specification exists
+                    $scope.activity.number = "NEW_C";
+
+                    // web client needs to forward the campaign id, this new activity belongs to
+                    // if not, the backend will not execute the save
+                    $scope.activity.campaign = $scope.campaign.id;
                     CampaignService.putCampaignActivity($scope.activity);
                 };
 

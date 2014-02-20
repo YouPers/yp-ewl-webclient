@@ -52,7 +52,9 @@
 
                     },
                     putCampaignActivity: function (activity, success, error) {
-                        activities.post(activity).then(function(successResult) {
+
+                        var campaignActivity = Rest.all('/activities/campaign');
+                        campaignActivity.post(activity).then(function(successResult) {
                             $rootScope.$broadcast('globalUserMsg', 'Campaign activity' + successResult.title + ' successfully created', 'success', 3000);
                             if(success) {success(successResult);}
                         }, function(errorResult) {
