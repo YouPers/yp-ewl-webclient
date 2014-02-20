@@ -85,6 +85,33 @@
                     </div>
 
                 </accordion-group>
+                <accordion-group heading="{{'campaignStats.header' | translate}}" is-open="true">
+
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <th translate>campaignStats.assUpdatesTotal</th>
+                            <th translate>campaignStats.assTotals</th>
+                            <th translate>campaignStats.activitiesPlannedTotal</th>
+                            <th translate>campaignStats.activityEventsTotal</th>
+                            <th translate>campaignStats.usersTotal</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{campaignStats.assUpdatesTotal}}</td>
+                                <td>{{campaignStats.assTotals}}</td>
+                                <td>{{campaignStats.activitiesPlannedTotal}}</td>
+                                <td>{{campaignStats.activityEventsTotal}}</td>
+                                <td>{{campaignStats.usersTotal}}</td>
+                            </tr>
+                            </tbody>
+
+
+                        </table>
+                    </div>
+
+                </accordion-group>
+
             </accordion>
         </div>
 
@@ -118,32 +145,29 @@
                     </div>
 
                 </accordion-group>
-                <accordion-group heading="{{'campaignStats.header' | translate}}" is-open="true">
+                <accordion-group heading="{{'campaignActivity.list.header' | translate}}" is-open="false">
 
                     <div class="panel-body">
                         <table class="table">
                             <thead>
-                            <th translate>campaignStats.assUpdatesTotal</th>
-                            <th translate>campaignStats.assTotals</th>
-                            <th translate>campaignStats.activitiesPlannedTotal</th>
-                            <th translate>campaignStats.activityEventsTotal</th>
-                            <th translate>campaignStats.usersTotal</th>
-                            </thead>
-                            <tbody>
                             <tr>
-                                <td>{{campaignStats.assUpdatesTotal}}</td>
-                                <td>{{campaignStats.assTotals}}</td>
-                                <td>{{campaignStats.activitiesPlannedTotal}}</td>
-                                <td>{{campaignStats.activityEventsTotal}}</td>
-                                <td>{{campaignStats.usersTotal}}</td>
+                                <th translate>campaignActivity.list.title</th>
+                            </tr>
+                            </thead>
+                            <tbody ng-repeat="campaignActivity in campaignActivities">
+                            <tr>
+                                <td><a ui-sref="campaignActivity({id: campaignActivity.id})">{{campaignActivity.title}}</a></td>
                             </tr>
                             </tbody>
-
-
                         </table>
                     </div>
-
                 </accordion-group>
+                <accordion-group heading="{{'campaignActivityForm.header.newCampaignActivity' | translate}}" is-open="true">
+                    <div class="row panel panel-primary">
+                        <activity-edit></activity-edit>
+                    </div>
+                </accordion-group>
+
             </accordion>
 
         </div>

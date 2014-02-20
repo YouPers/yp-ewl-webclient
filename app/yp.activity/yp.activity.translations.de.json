@@ -115,6 +115,8 @@
     },
     "admin": {
         "header": "Aktivität bearbeiten",
+        "title": "Titel",
+        "text": "Text",
         "executiontype": "Standard Ausführung",
         "frequency": "Standard Frequenz",
         "visibility": "Standard Sichtbarkeit",

@@ -125,6 +125,24 @@
         "activitiesPlannedTotal": "gepl. Aktivitäten Total",
         "activityEventsTotal": "Events Total",
         "usersTotal": "User Total"
+    },
+
+    "campaignActivity": {
+        "list": {
+            "header": "Kampagnenaktivitäten",
+
+            "title": "Titel"
+        }
+    },
+
+    "campaignActivityForm": {
+
+        "header": {
+            "newCampaignActivity": "Neue Kampagnenaktivität"
+        },
+        "reset": "Zurücksetzen",
+        "edit": "Ändern",
+        "save": "Erstellen"
     }
 
 }
