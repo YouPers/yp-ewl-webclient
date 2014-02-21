@@ -13,16 +13,7 @@
             </div>
             <div class="col-md-4">
                 <span translate>detail.group.joinPlan.owner</span> <br>
-
-                <div class="row social-thread">
-                    <div class="social-thread-header">
-                        <a href="">
-                            <img ng-src="{{ planToJoin.owner.avatar }}" class="avatar-icon"/>
-                            <strong class="fullname">{{ planToJoin.owner.fullname }}</strong>
-                        </a>
-                        <span class="thread-time"> </span>
-                    </div>
-                </div>
+                <div user="planToJoin.owner"></div>
             </div>
             <div class="col-md-4">
 
@@ -32,14 +23,7 @@
 
                 <div ng-show="showJoiners">
                     <div ng-repeat="joiningUser in planToJoin.joiningUsers" class="row social-thread">
-                        <div class="social-thread-header">
-                            <a href="">
-                                <img ng-src="{{ joiningUser.avatar }}" class="avatar-icon"/>
-                                <strong class="fullname">{{ joiningUser.fullname }}</strong>
-                            </a>
-                            <span class="thread-time"> </span>
-                        </div>
-
+                        <div user="joiningUser"></div>
                     </div>
                 </div>
             </div>
