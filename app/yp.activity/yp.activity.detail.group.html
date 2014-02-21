@@ -1,17 +1,17 @@
 <div class="row">
     <div class="col-md-12" ng-if="actPlansToJoin.length>0">
         <div class="row" ng-repeat="planToJoin in actPlansToJoin">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <button type="button" ng-click="joinPlan(planToJoin)" class="btn btn-sm btn-primary" translate>detail.group.joinPlan.join</button>
+                {{ 'activityPlanFrequency.' + planToJoin.mainEvent.frequency | translate}} <span ng-if="planToJoin.mainEvent.frequency == 'week'"><translate>detail.group.joinPlan.frequency</translate> {{getWeekday(planToJoin.mainEvent.start)}}</span><br>
+                <span translate>detail.group.joinPlan.start</span>{{ planToJoin.mainEvent.start | fromNow }} <br>
+                <span translate>detail.group.joinPlan.time.start</span>{{ planToJoin.mainEvent.start | time }}<translate>detail.group.joinPlan.time.end</translate>{{planToJoin.mainEvent.end | time }}
+            </div>
+            <div class="col-md-5">
+                {{planToJoin.location}}<br>
+                {{planToJoin.title}}
             </div>
             <div class="col-md-4">
-                {{planToJoin.location}}<br>
-                {{ 'activityPlanFrequency.' + planToJoin.mainEvent.frequency | translate}}
-                <span ng-if="planToJoin.mainEvent.frequency == 'week'"><span translate>detail.group.joinPlan.frequency</span> {{getWeekday(planToJoin.mainEvent.start)}}</span><br>
-                <span translate>detail.group.joinPlan.start</span>{{ planToJoin.mainEvent.start | fromNow }} <br>
-                <span translate>detail.group.joinPlan.time.start</span>{{ planToJoin.mainEvent.start | time }}<span translate>detail.group.joinPlan.time.end</span>{{planToJoin.mainEvent.end | time }}
-            </div>
-            <div class="col-md-6">
                 <span translate>detail.group.joinPlan.owner</span> <br>
 
                 <div class="row social-thread">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
 
                 <a href="" ng-click="showJoiners = !showJoiners">{{planToJoin.joiningUsers.length}}
                     <span translate>detail.group.joinPlan.joiningUsers</span>

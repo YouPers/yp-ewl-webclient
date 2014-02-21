@@ -232,7 +232,9 @@
                         executionType: activity.defaultexecutiontype,
                         visibility: activity.defaultvisibility,
                         fields: activity.fields,
-                        topics: activity.topics
+                        topics: activity.topics,
+                        title: activity.title,
+                        number: activity.number
                     };
                 };
 

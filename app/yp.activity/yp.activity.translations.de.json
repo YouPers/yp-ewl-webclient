@@ -82,6 +82,8 @@
         },
         "self": {
             "header": "Einplanen am:",
+            "title": "Titel",
+            "text": "Beschreibung",
             "start": "Von: ",
             "end": "Bis: ",
             "location": "Wo:",
