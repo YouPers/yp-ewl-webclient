@@ -106,15 +106,15 @@
                 ],
                 calendarNotifications: [
                     'none',
-                    '0M',
-                    '5M',
-                    '10M',
-                    '15M',
-                    '30M',
-                    '1H',
-                    '2H',
-                    '1D',
-                    '2D'
+                    '0',
+                    '300',
+                    '600',
+                    '900',
+                    '1800',
+                    '3600',
+                    '7200',
+                    '86400',
+                    '172800'
                 ]
             });
         }])
@@ -232,7 +232,9 @@
                         executionType: activity.defaultexecutiontype,
                         visibility: activity.defaultvisibility,
                         fields: activity.fields,
-                        topics: activity.topics
+                        topics: activity.topics,
+                        title: activity.title,
+                        number: activity.number
                     };
                 };
 
