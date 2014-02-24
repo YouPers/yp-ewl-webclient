@@ -7,6 +7,8 @@
                 scope: {
                     // isolated
                 },
+                priority: 100, // higher = earlier, needed to move attributes to child input first
+                replace: true, // replace the element itself, not just the content
                 restrict: 'E',
                 templateUrl: 'yp.commons/yp.commons.directive.ypinput.html',
 
@@ -44,15 +46,13 @@
 
 
                     var input = $element.find('input');
-
-                    // modify ng-model, interpolation does not work here
                     input.attr('ng-model', $scope.ypModel + '.' + name);
 
-                    // include all attributes from parent input
+                    // move all attributes from parent input to child input
                     _.forEach($attrs.$attr, function(value, key, list) {
+                        $element.removeAttr($attrs.$attr[key]);
                         input.attr($attrs.$attr[key], $attrs[key] ? $attrs[key] : true);
                     });
-
 
                     $scope.$watch($scope.ypFormName + '.' + name, function(input) {
                         if(input) {
