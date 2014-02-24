@@ -269,9 +269,9 @@ angular.module('yp-ewl',
                         // validate and use a "unique" postfix to have different error messages
 
                         UserService.validateUser(user, function (res) {
-                            scope.registerform.$setValidity(attrs.name + "unique", true);
+                            ctrl.$setValidity("unique", true);
                         }, function (err) {
-                            scope.registerform.$setValidity(attrs.name + "unique", false);
+                            ctrl.$setValidity("unique", false);
                         });
 
                     }, 500)();
