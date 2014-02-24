@@ -11,20 +11,34 @@
 
     "accountForm": {
         "firstname": {
-            "label": "First name",
-            "$invalid": "Please enter a valid first name"
+            "label": "First Name",
+            "placeholder": "First Name",
+            "error": {
+                "required": "Please enter your first name"
+            }
         },
         "lastname": {
-            "label": "Last name",
-            "$invalid": "Please enter a valid last name"
+            "label": "Last Name",
+            "placeholder": "Last Name",
+            "error": {
+                "required": "Please enter your last name"
+            }
         },
         "username": {
             "label": "Username",
-            "$invalid": "Please enter a valid username"
+            "placeholder": "Username",
+            "error": {
+                "required": "Please enter a username"
+            }
         },
         "email": {
             "label": "Email",
-            "$invalid": "Please enter a valid email address"
+            "placeholder": "Email",
+            "error": {
+                "required": "Please enter your email address",
+                "email": "Please enter a valid email address",
+                "unique": "This email address is already registered, please login"
+            }
         },
         "save": "save",
         "reset": "reset"
@@ -32,15 +46,25 @@
     "passwordForm": {
         "password_old": {
             "label": "Current Password",
-            "$invalid": "Your current password"
+            "placeholder": "Current Password",
+            "error": {
+                "required": "Your current password"
+            }
         },
         "password": {
             "label": "New Password",
-            "$invalid": "At least 6 characters"
+            "placeholder": "New Password",
+            "error": {
+                "minlength": "At least 6 characters",
+                "required": "Your new password"
+            }
         },
         "password2": {
             "label": "Confirm Password",
-            "$invalid": "The passwords do not match"
+            "placeholder": "Confirm Password",
+            "error": {
+                "unique": "The passwords do not match"
+            }
         },
         "save": "Change"
     },
@@ -67,26 +91,69 @@
         "success": "New password successfully set",
         "loginAgainWithNewPassword": "please login with your new password..."
     },
-    "profile": {
-        "profile": "Profile",
-        "homeAddress": "Home Address",
-        "workAddress": "Work Address",
-        "settings": "Settings"
-    },
+
+
     "profileForm": {
-        "submit": "Submit",
+        "profile": {
+            "header": "Profile"
+        },
+
         "gender": {
             "label": "Gender"
         },
         "birthdate": {
             "label": "Birthdate",
-            "$invalid": "Please enter a valid Birthdate"
+            "$invalid": "Please enter a valid date of birth"
         },
-        "street": "Street",
-        "number": "Nr.",
-        "zip": "zip",
-        "city": "city",
-        "country": "country",
+        "maritalStatus": {
+            "label": "Material Status"
+        },
+
+        "homeAddress": {
+            "header": "Home Address",
+
+            "street": {
+                "placeholder": "Street"
+            },
+            "houseNumber": {
+                "placeholder": "No."
+            },
+            "zipCode": {
+                "placeholder": "Zip"
+            },
+            "city": {
+                "placeholder": "City"
+            },
+            "country": {
+                "placeholder": "Country"
+            }
+        },
+        "workAddress": {
+            "header": "Work Address",
+
+            "street": {
+                "placeholder": "Street"
+            },
+            "houseNumber": {
+                "placeholder": "No."
+            },
+            "zipCode": {
+                "placeholder": "Zip"
+            },
+            "city": {
+                "placeholder": "City"
+            },
+            "country": {
+                "placeholder": "Country"
+            }
+        },
+
+        "settings": {
+            "header": "Settings"
+        },
+
+        "submit": "Submit",
+
         "defaultWorkWeek": "Base setting for work week",
         "firstDayOfWeek": "First day of week",
         "timeZone": "Timezone",

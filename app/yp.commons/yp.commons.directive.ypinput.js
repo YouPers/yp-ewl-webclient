@@ -14,15 +14,16 @@
 
                 link: function ($scope, $element, $attrs) {
 
-                    var name = $attrs['name'];
+                    var name = $attrs.name;
                     if(!name) {
                         throw 'ypInput: input "name" is required';
                     }
 
                     $scope.ypInputName = name;
+                    var input = $element.find('input');
 
                     // get name and model object from parent form
-                    var form = $element.parent('form');
+                    var form = angular.element(input[0].form);
                     $scope.ypFormName = form.attr('name');
                     if(!$scope.ypFormName) {
                         throw 'ypInput: attribute "name" is required in the parent form';
@@ -44,9 +45,9 @@
                     // load contents of the element to compile it, which was prevented by 'ng-non-bindable'
                     var contents = $element.contents();
 
-
-                    var input = $element.find('input');
                     input.attr('ng-model', $scope.ypModel + '.' + name);
+
+                    $scope.showLabel = _.isUndefined($attrs.label) ? true : $attrs.label;
 
                     // move all attributes from parent input to child input
                     _.forEach($attrs.$attr, function(value, key, list) {

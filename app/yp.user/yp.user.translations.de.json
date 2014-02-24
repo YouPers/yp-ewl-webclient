@@ -92,14 +92,12 @@
         "success": "Passwort erfolgreich gesetzt",
         "loginAgainWithNewPassword": "Logge Dich mit deinem neuen Passwort ein..."
     },
-    "profile": {
-        "profile": "Profil",
-        "homeAddress": "Heimadresse",
-        "workAddress": "Arbeitsort",
-        "settings": "Einstellungen"
-    },
+
     "profileForm": {
-        "submit": "Übermitteln",
+        "profile": {
+            "header": "Profil"
+        },
+
         "gender": {
             "label": "Geschlecht"
         },
@@ -107,11 +105,56 @@
             "label": "Geburtstag",
             "$invalid": "Bitte einen gültigen Geburtstag eingeben."
         },
-        "street":  "Strasse",
-        "number": "Nr.",
-        "zip": "PLZ",
-        "city": "Ort",
-        "country": "Land",
+        "maritalStatus": {
+            "label": "Zivilstand"
+        },
+
+        "homeAddress": {
+            "header": "Heimadresse",
+
+            "street": {
+                "placeholder": "Strasse"
+            },
+            "houseNumber": {
+                "placeholder": "Nr."
+            },
+            "zipCode": {
+                "placeholder": "PLZ"
+            },
+            "city": {
+                "placeholder": "Ort"
+            },
+            "country": {
+                "placeholder": "Land"
+            }
+        },
+        "workAddress": {
+            "header": "Arbeitsort",
+
+            "street": {
+                "placeholder": "Strasse"
+            },
+            "houseNumber": {
+                "placeholder": "Nr."
+            },
+            "zipCode": {
+                "placeholder": "PLZ"
+            },
+            "city": {
+                "placeholder": "Ort"
+            },
+            "country": {
+                "placeholder": "Land"
+            }
+        },
+
+        "settings": {
+            "header": "Einstellungen"
+        },
+
+        "submit": "Übermitteln",
+
+
         "defaultWorkWeek": "Grundeinstellung für Arbeitswoche",
         "firstDayOfWeek": "Erster Tag der Woche",
         "timeZone": "Zeitzone",

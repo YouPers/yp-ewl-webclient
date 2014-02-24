@@ -1,10 +1,10 @@
 <div class="container">
 
-<form name="profileForm" class="form" role="form" ng-submit="saveProfile()" novalidate>
+<form name="profileForm" ypModel="profileUserObj" class="form" role="form" ng-submit="saveProfile()" novalidate>
 
 <div class="row">
     <div class="col-md-11">
-        <h2 translate>profile.profile</h2>
+        <h2 translate>profileForm.header</h2>
     </div>
     <div class="col-md-1">
         </br>
@@ -20,7 +20,7 @@
 
 <accordion close-others="true">
 
-<accordion-group heading="{{ 'profile.profile' | translate }}" is-open="true" class="user-profile">
+<accordion-group heading="{{ 'profileForm.profile.header' | translate }}" is-open="true" class="user-profile">
 
     <div class="col-md-6">
 
@@ -40,11 +40,9 @@
                 <div class="col-md-8">
                     <div class="btn-group" data-toggle="buttons-radio">
                         <input type="radio" value="female" ng-model="profileUserObj.gender"
-                               ng-click="profileUserObj.gender = 'female'">&NonBreakingSpace;{{ 'gender.male' |
-                        translate }} </input></br>
+                               ng-click="profileUserObj.gender = 'female'">&NonBreakingSpace;{{ 'gender.male' | translate }} </input></br>
                         <input type="radio" value="male" ng-model="profileUserObj.gender"
-                               ng-click="profileUserObj.gender = 'male'">&NonBreakingSpace;{{ 'gender.female' |
-                        translate }} </input></br>
+                               ng-click="profileUserObj.gender = 'male'">&NonBreakingSpace;{{ 'gender.female' | translate }} </input></br>
                     </div>
                 </div>
             </div>
@@ -69,12 +67,11 @@
         <div class="row">
             </br>
             <div class="col-md-4">
-                <label translate>maritalStatus</label>
+                <label translate>profileForm.maritalStatus.label</label>
             </div>
             <div class="col-md-4">
                 <select ng-model="profileUserObj.maritalStatus">
-                    <option value="{{value}}" ng-repeat="value in enums.maritalStatus ">{{'maritalStatus.' + value |
-                        translate}}
+                    <option value="{{value}}" ng-repeat="value in enums.maritalStatus ">{{'maritalStatus.' + value | translate}}
                     </option>
                 </select>
             </div>
@@ -85,87 +82,57 @@
     <div class="col-md-6">
 
         <div class="form-group">
-            <label translate>profile.homeAddress</label>
+            <label translate>profileForm.homeAddress.header</label>
 
             <div class="row">
                 <div class="col-md-9">
-                    <input name="homeAddressStreet" type="text" placeholder="{{ 'profileForm.street' | translate }}"
-                           class="form-control" ng-model="profileUserObj.homeAddress.street">
-                    <span ng-show="profileUserObj.homeAddress.street.$dirty && profileUserObj.homeAddress.street.$invalid"
-                          class="help-inline" translate>profileForm.$invalid</span>
+                    <yp-input name="homeAddress.street" label="false"></yp-input>
                 </div>
 
                 <div class="col-md-3">
-                    <input name="homeAddressHouseNumber" type="text"
-                           placeholder="{{ 'profileForm.number' | translate }}" class="form-control"
-                           ng-model="profileUserObj.homeAddress.houseNumber">
-                    <span ng-show="profileForm.homeAddress.houseNumber.$dirty && profileForm.homeAddress.houseNumber.$invalid"
-                          class="help-inline" translate>profileForm.$invalid</span>
+                    <yp-input name="homeAddress.houseNumber" label="false"></yp-input>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-3">
-                    <input name="homeAddressZipCode" type="text" placeholder="{{ 'profileForm.zip' | translate }}"
-                           class="form-control" ng-model="profileUserObj.homeAddress.zipCode">
-                    <span ng-show="profileForm.homeAddress.zipCode.$dirty && profileForm.homeAddress.zipCode.$invalid"
-                          class="help-inline" tranlsate>profileForm.$invalid</span>
+                    <yp-input name="homeAddress.zipCode" label="false"></yp-input>
                 </div>
 
                 <div class="col-md-9">
-                    <input name="homeAddressCity" type="text" placeholder="{{ 'profileForm.city' | translate }}"
-                           class="form-control" ng-model="profileUserObj.homeAddress.city">
-                    <span ng-show="profileForm.homeAddress.city.$dirty && profileForm.homeAddress.city.$invalid"
-                          class="help-inline" translate>profileForm.$invalid</span>
+                    <yp-input name="homeAddress.city" label="false"></yp-input>
                 </div>
             </div>
 
-            <input name="homeAddressCountry" type="text" placeholder="{{ 'profileForm.country' | translate }}"
-                   class="form-control" ng-model="profileUserObj.homeAddress.country">
-            <span ng-show="profileForm.homeAddress.country.$dirty && profileForm.homeAddress.country.$invalid"
-                  class="help-inline" translate>profileForm.$invalid</span>
+
+            <yp-input name="homeAddress.country" label="false"></yp-input>
+
         </div>
 
         <div class="form-group">
-            <label translate>profile.workAddress</label>
+            <label translate>profileForm.workAddress.header</label>
 
             <div class="row">
                 <div class="col-md-9">
-                    <input name="workAddressStreet" type="text" placeholder="{{ 'profileForm.street' | translate }}"
-                           class="form-control" ng-model="profileUserObj.workAddress.street">
-                    <span ng-show="profileUserObj.workAddress.street.$dirty && profileUserObj.workAddress.street.$invalid"
-                          class="help-inline" translate>profileForm.$invalid</span>
+                    <yp-input name="workAddress.street" label="false"></yp-input>
                 </div>
 
                 <div class="col-md-3">
-                    <input name="workAddressHouseNumber" type="text"
-                           placeholder="{{ 'profileForm.number' | translate }}" class="form-control"
-                           ng-model="profileUserObj.workAddress.houseNumber">
-                    <span ng-show="profileForm.workAddress.houseNumber.$dirty && profileForm.workAddress.houseNumber.$invalid"
-                          class="help-inline" translate>profileForm.$invalid</span>
+                    <yp-input name="workAddress.houseNumber" label="false"></yp-input>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-3">
-                    <input name="workAddressZipCode" type="text" placeholder="{{ 'profileForm.zip' | translate }}"
-                           class="form-control" ng-model="profileUserObj.workAddress.zipCode">
-                    <span ng-show="profileForm.workAddress.zipCode.$dirty && profileForm.workAddress.zipCode.$invalid"
-                          class="help-inline" translate>profileForm.$invalid</span>
+                    <yp-input name="workAddress.zipCode" label="false"></yp-input>
                 </div>
 
                 <div class="col-md-9">
-                    <input name="workAddressCity" type="text" placeholder="{{ 'profileForm.city' | translate }}"
-                           class="form-control" ng-model="profileUserObj.workAddress.city">
-                    <span ng-show="profileForm.workAddress.city.$dirty && profileForm.workAddress.city.$invalid"
-                          class="help-inline" translate>profileForm.$invalid</span>
+                    <yp-input name="workAddress.city" label="false"></yp-input>
                 </div>
             </div>
 
-            <input name="workAddressCountryr" type="text" placeholder="{{ 'profileForm.country' | translate }}"
-                   class="form-control" ng-model="profileUserObj.workAddress.country">
-            <span ng-show="profileForm.workAddress.country.$dirty && profileForm.workAddress.country.$invalid"
-                  class="help-inline" translate>profileForm.$invalid</span>
+            <yp-input name="workAddress.country" label="false"></yp-input>
         </div>
 
     </div>
@@ -173,7 +140,7 @@
 
 </accordion-group>
 
-<accordion-group heading="{{ 'profile.settings' | translate }}" is-open="true">
+<accordion-group heading="{{ 'profileForm.settings.header' | translate }}" is-open="true">
 
     <div class="col-md-6">
 
