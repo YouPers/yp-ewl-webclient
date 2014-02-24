@@ -59,7 +59,12 @@
         },
         "email": {
             "label": "Email",
-            "$invalid": "Bitte eine gültige EMail-Adresse eingeben"
+            "placeholder": "Email",
+            "error": {
+                "required": "Bitte eine EMail-Adresse eingeben",
+                "email": "Bitte eine gültige EMail-Adresse eingeben",
+                "unique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein"
+            }
         },
         "password": {
             "label": "Passwort",
