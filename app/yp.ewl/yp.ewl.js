@@ -17,7 +17,8 @@ angular.module('yp-ewl',
             'yp.evaluate',
 
             'yp.organization',
-            'yp.discussion'
+            'yp.discussion',
+            'yp.feedback'
 
         ]).
 

@@ -1,0 +1,30 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <form name="feedbackForm" ypModel="feedback" class="form" role="form" ng-submit="submitFeedback()" novalidate>
+
+                <div>
+                    <label for="anonymous" translate>feedbackForm.anonymous.label</label>
+                    <input id="anonymous" type="checkbox" ng-model="anonymous">
+                </div>
+
+
+                <div ng-show="!anonymous && contactInfo">
+                    <span ng-bind="contactInfo"></span>
+                </div>
+                <div ng-show="!anonymous && !contactInfo">
+                    <yp-input name="contactInfo" type="email"></yp-input>
+                </div>
+
+                <select ng-model="feedback.feedbackCategory" ng-options="'feedbackCategory.'+ feedbackCategory | translate for feedbackCategory in enums.feedbackCategory"></select>
+
+                <textarea ng-model="description"></textarea>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
