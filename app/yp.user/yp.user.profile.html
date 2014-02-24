@@ -70,9 +70,7 @@
                 <label translate>profileForm.maritalStatus.label</label>
             </div>
             <div class="col-md-4">
-                <select ng-model="profileUserObj.maritalStatus">
-                    <option value="{{value}}" ng-repeat="value in enums.maritalStatus ">{{'maritalStatus.' + value | translate}}
-                    </option>
+                <select ng-model="profileUserObj.maritalStatus" ng-options="'maritalStatus.' + value | translate for value in enums.maritalStatus">
                 </select>
             </div>
         </div>
@@ -183,15 +181,51 @@
                 </div>
 
                 <div class="col-md-6">
-                    <select ng-model="profileUserObj.userPreferences.timezone">
-                        <option ng-repeat="timezone in enums.timezone" value="timezone">{{'timezone.'+timezone | translate}}
-                        </option>
+                    <select ng-model="profileUserObj.userPreferences.timezone" ng-options="'timezone.'+value | translate for value in enums.timezone">
                     </select>
                 </div>
 
             </div>
         </div>
-     </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <label translate>profileForm.language</label>
+                </div>
+
+                <div class="col-md-6">
+                    <select ng-model="profileUserObj.language" ng-options="'language.'+value | translate for value in enums.language">
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label translate>profile.emailNotificationsSettings</label>
+            <div class="row">
+                <div class="col-md-6" ng-repeat="(emailsetting, value) in profileUserObj.userPreferences.email">
+                    <div class="input-group">
+                         <span class="input-group-addon">
+                              <input name="{{'email.'+emailsetting}}" type="checkbox"
+                                     ng-model="profileUserObj.userPreferences.email[emailsetting]">&NonBreakingSpace;{{ 'profileForm.email.'+emailsetting | translate }}
+                         </span>
+                    </div>
+                </div>
+            </div>
+            <label translate>profile.calendarNotificationSettings</label>
+            <div class="row">
+                <div class="col-md-6">
+                    <select ng-model="profileUserObj.userPreferences.calendarNotification" ng-options="'calendarNotification.'+ setting | translate for setting in enums.calendarNotifications">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </accordion-group>
 </accordion>
 </div>
@@ -199,5 +233,6 @@
 
 </div>
 </form>
+
 
 </div>

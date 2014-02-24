@@ -28,8 +28,11 @@
     },
 
     "campaignForm": {
-        "header": "Create campaign",
 
+        "header": {
+            "newCampaign": "New Campaign",
+            "campaignAttributes": "Campaign Details"
+        },
         "title": {
             "label": "Title",
             "placeholder": "Title",
@@ -59,6 +62,7 @@
         "paymentStatus": "Status",
 
         "reset": "Reset",
+        "edit": "Edit",
         "save": "Create"
     },
 
@@ -93,5 +97,34 @@
             },
             "inviteSubmit": "Add"
         }
+    },
+    "campaignLead": {
+        "header": "Campaign Leads"
+    },
+    "campaignPaymentForm": {
+
+        "header": "Payment Details",
+        "paymentStatus": {
+            "label": "Payment Status",
+            "placeholder": "Payment Status",
+            "$invalid": "Please enter a valid payment code"
+        },
+        "productType": {
+            "label": "Product Type",
+            "placeholder": "Product Type",
+            "$invalid": "Please choose a valid product type"
+        },
+
+        "changeProductType": "Change Product Type",
+        "pay": "Pay"
+    },
+    "campaignStats": {
+        "header": "Statistics",
+        "assUpdatesTotal": "Assessment Updates",
+        "assTotals": "Assessments Total",
+        "activitiesPlannedTotal": "planned. Aktivitäten Total",
+        "activityEventsTotal": "Events Total",
+        "usersTotal": "User Total"
     }
+
 }

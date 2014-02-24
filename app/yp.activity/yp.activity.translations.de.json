@@ -82,6 +82,8 @@
         },
         "self": {
             "header": "Einplanen am:",
+            "title": "Titel",
+            "text": "Beschreibung",
             "start": "Von: ",
             "end": "Bis: ",
             "location": "Wo:",
@@ -140,6 +142,18 @@
         "youpers": "YouPers",
         "community": "Community",
         "campaign": "Kampagne"
+    },
+    "calendarNotification": {
+        "none": "Kein Hinweis",
+        "0": "Bei Ereignistart",
+        "300": "5 Minuten vorher",
+        "600": "10 Minuten vorher",
+        "900": "15 Minuten vorher",
+        "1800": "30 Minuten vorher",
+        "3600": "1 Stunde vorher",
+        "7200": "2 Stunden vorher",
+        "86400": "1 Tag vorher",
+        "172800": "2 Tage vorher"
     },
     "activityPlanInvite": {
         "header": "Herzlich willkommen - YouPers Digital Health Plattform",

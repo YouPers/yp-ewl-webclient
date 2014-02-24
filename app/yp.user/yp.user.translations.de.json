@@ -92,7 +92,10 @@
         "success": "Passwort erfolgreich gesetzt",
         "loginAgainWithNewPassword": "Logge Dich mit deinem neuen Passwort ein..."
     },
-
+    "profile": {
+        "emailNotificationsSettings": "E-Mailbenachrichtigungen erhalten?",
+        "calendarNotificationSettings": "Hinweise im Bürokalendar"
+    },
     "profileForm": {
         "profile": {
             "header": "Profil"
@@ -158,7 +161,13 @@
         "defaultWorkWeek": "Grundeinstellung für Arbeitswoche",
         "firstDayOfWeek": "Erster Tag der Woche",
         "timeZone": "Zeitzone",
-        "$invalid": "Bitte gültigen Wert eintragen"
+        "language": "Sprache",
+        "$invalid": "Bitte gültigen Wert eintragen",
+        "email": {
+            "actPlanInvites": "Einladungen zu Aktivitäten ",
+            "dailyUserMail": "Tägliche Zusammenfassung",
+            "iCalInvites": "Kalender-Einträge per Email"
+        }
     }
 
 

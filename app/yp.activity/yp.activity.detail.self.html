@@ -1,39 +1,56 @@
-<form class="form-horizontal" role="form">
+<form role="form">
     <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label translate>detail.self.header</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 input-group input-group-sm">
-                            <input class="form-control" type="text" id="datePickerStart"
-                                   datepicker-popup="dd.MM.yyyy"
-                                   ng-model="currentActivityPlan.mainEvent.start"
-                                   is-open="opened" min="minDate"
-                                   datepicker-options="dateOptions"
-                                   date-disabled="disabled(date, mode)" ng-required="true"/>
+        <div class="col-md-12 form-group">
+            <label>
+                <span translate>detail.self.title</span>
+            </label>
+            <input type="text" class="form-control" ng-model="currentActivityPlan.title">
 
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-info " ng-click="open()">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </button>
-                                    </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-1 yp-activity-planning-spacer" translate>detail.self.start</div>
-                <div class="col-md-3">
-                    <timepicker ng-model="currentActivityPlan.mainEvent.start"  id="timePickerStart" minute-step="15" show-meridian="false"></timepicker>
-                </div>
-                <div class="col-md-1 yp-activity-planning-spacer" translate>detail.self.end</div>
-                <div class="col-md-3">
-                    <timepicker ng-model="currentActivityPlan.mainEvent.end"  id="timePickerEnd" minute-step="15" show-meridian="false"></timepicker>
-                </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>
+                <span translate>detail.self.location</span>
+            </label>
+            <input type="text" class="form-control" ng-model="currentActivityPlan.location">
+        </div>
+        <div class="col-md-6 form-group">
+            <label>
+                <span translate>detail.self.text</span>
+            </label>
+            <textarea class="form-control" ng-model="currentActivityPlan.text"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label translate>detail.self.header</label>
+
+            <div class="input-group">
+                <input class="form-control" type="text" id="datePickerStart"
+                       datepicker-popup="dd.MM.yyyy"
+                       ng-model="currentActivityPlan.mainEvent.start"
+                       is-open="opened" min="minDate"
+                       datepicker-options="dateOptions"
+                       date-disabled="disabled(date, mode)" ng-required="true"/>
+
+                <span class="input-group-btn">
+                    <button class="btn btn-info " ng-click="open()">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </button>
+                </span>
             </div>
+        </div>
+        <div class="col-md-3">
+
+            <timepicker ng-model="currentActivityPlan.mainEvent.start" id="timePickerStart" minute-step="15"
+                        show-meridian="false"></timepicker>
+        </div>
+        <div class="col-md-3">
+
+            <timepicker ng-model="currentActivityPlan.mainEvent.end" id="timePickerEnd" minute-step="15"
+                        show-meridian="false"></timepicker>
         </div>
     </div>
     <div class="row activity-planning">
@@ -110,13 +127,8 @@
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.executionType"
                             btn-radio="'group'" translate>detail.self.executionType.group
                     </button>
-                    <label>
-                        <span translate>detail.self.location</span>
-                        <input type="text" class="form-control" ng-model="currentActivityPlan.location">
-                    </label>
-
                 </div>
             </div>
         </div>
-</div>
+    </div>
 </form>

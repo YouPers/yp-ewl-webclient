@@ -91,8 +91,10 @@
         "success": "New password successfully set",
         "loginAgainWithNewPassword": "please login with your new password..."
     },
-
-
+    "profile": {
+        "emailNotificationsSettings": "receive email notifications",
+        "calendarNotificationSettings": "calendar alerts"
+    },
     "profileForm": {
         "profile": {
             "header": "Profile"
@@ -157,7 +159,14 @@
         "defaultWorkWeek": "Base setting for work week",
         "firstDayOfWeek": "First day of week",
         "timeZone": "Timezone",
-        "$invalid": "Please enter a valid value"
+        "language": "Language",
+        "$invalid": "Please enter a valid value",
+        "email": {
+            "actPlanInvites": "Invitations for activities",
+            "dailyUserMail": "Daily Summary",
+            "iCalInvites": "Calendar events for Office Calendar"
+        }
+
     }
 
 }

@@ -45,6 +45,12 @@
     angular.module('yp.commons', [])
 
         .constant('enums', {
+            language: [
+            'de',
+            'en',
+            'fr',
+            'it'],
+
             weekday: [
                 'monday',
                 'tuesday',
