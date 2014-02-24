@@ -91,10 +91,6 @@
         "success": "New password successfully set",
         "loginAgainWithNewPassword": "please login with your new password..."
     },
-    "profile": {
-        "emailNotificationsSettings": "receive email notifications",
-        "calendarNotificationSettings": "calendar alerts"
-    },
     "profileForm": {
         "profile": {
             "header": "Profile"
@@ -165,7 +161,9 @@
             "actPlanInvites": "Invitations for activities",
             "dailyUserMail": "Daily Summary",
             "iCalInvites": "Calendar events for Office Calendar"
-        }
+        },
+        "emailNotificationsSettings": "receive email notifications",
+        "calendarNotificationSettings": "calendar alerts"
 
     }
 

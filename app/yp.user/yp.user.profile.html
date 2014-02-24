@@ -205,7 +205,7 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label translate>profile.emailNotificationsSettings</label>
+            <label translate>profileForm.emailNotificationsSettings</label>
             <div class="row">
                 <div class="col-md-6" ng-repeat="(emailsetting, value) in profileUserObj.userPreferences.email">
                     <div class="input-group">
@@ -216,7 +216,7 @@
                     </div>
                 </div>
             </div>
-            <label translate>profile.calendarNotificationSettings</label>
+            <label translate>profileForm.calendarNotificationSettings</label>
             <div class="row">
                 <div class="col-md-6">
                     <select ng-model="profileUserObj.userPreferences.calendarNotification" ng-options="'calendarNotification.'+ setting | translate for setting in enums.calendarNotifications">

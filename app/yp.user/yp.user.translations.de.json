@@ -92,10 +92,6 @@
         "success": "Passwort erfolgreich gesetzt",
         "loginAgainWithNewPassword": "Logge Dich mit deinem neuen Passwort ein..."
     },
-    "profile": {
-        "emailNotificationsSettings": "E-Mailbenachrichtigungen erhalten?",
-        "calendarNotificationSettings": "Hinweise im Bürokalendar"
-    },
     "profileForm": {
         "profile": {
             "header": "Profil"
@@ -167,7 +163,9 @@
             "actPlanInvites": "Einladungen zu Aktivitäten ",
             "dailyUserMail": "Tägliche Zusammenfassung",
             "iCalInvites": "Kalender-Einträge per Email"
-        }
+        },
+        "emailNotificationsSettings": "E-Mailbenachrichtigungen erhalten?",
+        "calendarNotificationSettings": "Hinweise im Bürokalendar"
     }
 
 
