@@ -264,6 +264,10 @@
                 actService.reloadActivities();
             });
 
+            $rootScope.$on('newAssessmentResultsPosted', function(assResult) {
+                actService.invalidateRecommendations();
+            });
+
             var actService = {
                 getActivities: function () {
                     // we assume, that activities are static / will not be changed on the server within a
@@ -377,9 +381,6 @@
                     console.log("try to delete current plan");
                     return activityPlans.one(plan.id).remove().then(function success(result) {
                         return result;
-                    }, function error(err) {
-                        console.log("error on plan remove" + err);
-                        return err;
                     });
                 },
                 updateActivityEvent: function (planId, actEvent) {

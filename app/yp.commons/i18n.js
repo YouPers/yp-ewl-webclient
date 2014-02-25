@@ -2,8 +2,8 @@
 
 angular.module('i18n', ['pascalprecht.translate'])
 
-    .controller('i18nCtrl', ['$scope', '$translate','$http', '$rootScope', 'UserProfileService',
-        function ($scope, $translate, $http, $rootScope, UserProfileService) {
+    .controller('i18nCtrl', ['$scope', '$translate','$http', '$rootScope', 'ProfileService',
+        function ($scope, $translate, $http, $rootScope, ProfileService) {
 
         $scope.currentLang = $translate.use();
 
@@ -16,7 +16,7 @@ angular.module('i18n', ['pascalprecht.translate'])
                 $rootScope.currentLocale = $translate.use() || $translate.proposedLanguage();
                 var profile = $scope.principal.getUser().profile;
                 profile.language = key;
-                UserProfileService.putUserProfile(profile).then(function success() {
+                ProfileService.putProfile(profile).then(function success() {
                     console.log('successfully updated user profile');
                 }, function error(err) {
                     console.log(err);
