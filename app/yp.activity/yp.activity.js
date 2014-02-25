@@ -381,9 +381,6 @@
                     console.log("try to delete current plan");
                     return activityPlans.one(plan.id).remove().then(function success(result) {
                         return result;
-                    }, function error(err) {
-                        console.log("error on plan remove" + err);
-                        return err;
                     });
                 },
                 updateActivityEvent: function (planId, actEvent) {
