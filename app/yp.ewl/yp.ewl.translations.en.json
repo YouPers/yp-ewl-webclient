@@ -8,7 +8,8 @@
         "logout": "Logout",
         "account": "Account",
         "profile": "Profile",
-        "language": "Language"
+        "language": "Language",
+        "feedback": "Feedback"
     },
     "home": {
         "for": "for",
