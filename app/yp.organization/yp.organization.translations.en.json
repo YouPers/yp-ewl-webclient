@@ -125,6 +125,33 @@
         "activitiesPlannedTotal": "planned. Aktivitäten Total",
         "activityEventsTotal": "Events Total",
         "usersTotal": "User Total"
+    },
+    "feedbackForm": {
+        "anonymous": {
+            "label": "Anonymous Feedback"
+        },
+        "username": {
+            "label": "Username"
+        },
+        "contactInfo": {
+            "label": "Email",
+            "placeholder": "Email",
+            "error": {
+                "email": "Please enter a valid email address, or select to send your feedback anonymously"
+            }
+        },
+        "feedbackCategory": {
+            "label": "Category"
+        },
+        "description": {
+            "label": "Description"
+        },
+        "submit": "Submit"
+    },
+    "feedbackCategory": {
+        "bug": "Bug",
+        "improvement": "Improvement",
+        "question": "Question",
+        "support": "Support"
     }
-
 }

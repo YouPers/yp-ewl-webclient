@@ -1,26 +1,42 @@
 <div class="container">
 
     <div class="row">
+
+        <div class="col-md-6">
+
+        </div>
+
         <div class="col-md-6">
 
             <form name="feedbackForm" ypModel="feedback" class="form" role="form" ng-submit="submitFeedback()" novalidate>
 
-                <div>
-                    <label for="anonymous" translate>feedbackForm.anonymous.label</label>
+                <div class="form-group">
                     <input id="anonymous" type="checkbox" ng-model="anonymous">
+                    <label for="anonymous" translate>feedbackForm.anonymous.label</label>
                 </div>
 
-
-                <div ng-show="!anonymous && contactInfo">
-                    <span ng-bind="contactInfo"></span>
+                <div ng-show="!anonymous && contactInfo" class="form-group">
+                    <label for="username" translate>feedbackForm.username.label</label>
+                    <span id="username" ng-bind="contactInfo" class="form-control"></span>
                 </div>
+
                 <div ng-show="!anonymous && !contactInfo">
                     <yp-input name="contactInfo" type="email"></yp-input>
                 </div>
 
-                <select ng-model="feedback.feedbackCategory" ng-options="'feedbackCategory.'+ feedbackCategory | translate for feedbackCategory in enums.feedbackCategory"></select>
+                <div class="form-group">
+                    <label for="feedbackCategory" translate>feedbackForm.feedbackCategory.label</label>
+                    <select id="feedbackCategory" ng-model="feedback.feedbackCategory" ng-options="'feedbackCategory.'+ feedbackCategory | translate for feedbackCategory in enums.feedbackCategory" class="form-control"></select>
+                </div>
 
-                <textarea ng-model="description"></textarea>
+                <div class="form-group">
+                    <label for="description" translate>feedbackForm.description.label</label>
+                    <br/>
+                    <textarea id="description" ng-model="feedback.description" class="form-control"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-sm" ng-disabled="feedbackForm.$invalid"><span translate>feedbackForm.submit</span></button>
+
 
             </form>
 
