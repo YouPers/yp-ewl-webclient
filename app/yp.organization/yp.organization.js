@@ -73,6 +73,11 @@
                     });
                 };
 
+                $scope.dateOptions = {
+                    'year-format': "'yy'",
+                    'starting-day': 1
+                };
+
                 // validate and store a updated campaign
 
                 $scope.updateCampaign = function() {
