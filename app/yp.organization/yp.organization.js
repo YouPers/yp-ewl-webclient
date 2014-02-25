@@ -35,8 +35,7 @@
                         resolve: {
                             activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                                 return ActivityService.getActivity($stateParams.activityId);
-                            }]
-                            ,
+                            }],
                             activityType: [function () {
                                 return "campaign";
                             }]

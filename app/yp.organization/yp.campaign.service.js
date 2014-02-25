@@ -9,7 +9,6 @@
             function ($rootScope, Rest, UserService) {
 
                 var campaigns = Rest.all('campaigns');
-                var activities = Rest.all('activities');
 
                 var CampaignService = {
 
@@ -51,37 +50,6 @@
                         return stats.getList({ type: type} );
 
                     }
-//                    postCampaignActivity: function (activity, success, error) {
-//
-//                        var campaignActivity = Rest.all('/activities/campaign');
-//                        campaignActivity.post(activity).then(function(successResult) {
-//                            $rootScope.$broadcast('globalUserMsg', 'Campaign activity' + successResult.title + ' successfully created', 'success', 3000);
-//                            if(success) {success(successResult);}
-//                        }, function(errorResult) {
-//                            $rootScope.$broadcast('globalUserMsg', 'Campaign activity not created: Error: ' + errorResult.data.message, 'danger', 3000);
-//                            if(error) {error(errorResult);}
-//                        });
-//
-//                    },
-//                    putCampaignActivity: function (activity, success, error) {
-//
-//                        var campaignActivity = Rest.all('/activities');
-//                        campaignActivity.put(activity).then(function(successResult) {
-//                            $rootScope.$broadcast('globalUserMsg', 'Campaign activity' + successResult.title + ' successfully updated', 'success', 3000);
-//                            if(success) {success(successResult);}
-//                        }, function(errorResult) {
-//                            $rootScope.$broadcast('globalUserMsg', 'Campaign activity not updated: Error: ' + errorResult.data.message, 'danger', 3000);
-//                            if(error) {error(errorResult);}
-//                        });
-//
-//                    },
-//                    getCampaignActivities: function() {
-//                        return activities.getList();
-//                    },
-//                    getCampaignActivity: function(campaignActivityId) {
-//                        return activities.one(campaignActivityId).get();
-//                    }
-
 
                 };
 
