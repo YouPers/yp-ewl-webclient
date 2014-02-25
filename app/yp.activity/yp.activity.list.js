@@ -5,8 +5,9 @@
     angular.module('yp.activity')
 
         .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans',
-            'recommendations', 'UserService', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
-            function ($scope, $filter, allActivities, activityPlans, recommendations, UserService, topStressors, assessment, ActivityService, ProfileService) {
+                    'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
+            function ($scope, $filter, allActivities, activityPlans,
+                      recommendations, topStressors, assessment, ActivityService, ProfileService) {
 
                 // mock campaigns, that this user has an active goal for, should be loaded from server later...
                 var campaigns = ['Campaign-1'];
@@ -15,7 +16,7 @@
 
                 var starredActs = $scope.principal &&
                     $scope.principal.getUser() &&
-                    $scope.principal.getUser().profile.userPreferences.starredActivities || {};
+                    $scope.principal.getUser().profile.userPreferences.starredActivities || [];
 
                 allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, starredActs);
 
