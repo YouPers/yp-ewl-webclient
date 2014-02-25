@@ -5,8 +5,8 @@
     angular.module('yp.activity')
 
         .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans',
-            'recommendations', 'UserService', 'topStressors', 'assessment', 'ActivityService',
-            function ($scope, $filter, allActivities, activityPlans, recommendations, UserService, topStressors, assessment, ActivityService) {
+            'recommendations', 'UserService', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
+            function ($scope, $filter, allActivities, activityPlans, recommendations, UserService, topStressors, assessment, ActivityService, ProfileService) {
 
                 // mock campaigns, that this user has an active goal for, should be loaded from server later...
                 var campaigns = ['Campaign-1'];
@@ -15,8 +15,7 @@
 
                 var starredActs = $scope.principal &&
                     $scope.principal.getUser() &&
-                    $scope.principal.getUser().preferences &&
-                    $scope.principal.getUser().preferences.starredActivities || {};
+                    $scope.principal.getUser().profile.userPreferences.starredActivities || {};
 
                 allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, starredActs);
 
@@ -58,26 +57,26 @@
                     if (!user.preferences) {
                         user.preferences = {};
                     }
-                    if (!user.preferences.starredActivities) {
-                        user.preferences.starredActivities = [];
+                    if (!user.profile.userPreferences.starredActivities) {
+                        user.profile.userPreferences.starredActivities = [];
                     }
 
-                    if (_.contains(user.preferences.starredActivities, activity.id)) {
-                        _.remove(user.preferences.starredActivities, function (id) {
+                    if (_.contains(user.profile.userPreferences.starredActivities, activity.id)) {
+                        _.remove(user.profile.userPreferences.starredActivities, function (id) {
                             return id === activity.id;
                         });
                     } else {
-                        user.preferences.starredActivities.push(activity.id);
+                        user.profile.userPreferences.starredActivities.push(activity.id);
                     }
-                    UserService.putUser(user);
+                    ProfileService.putProfile(user.profile);
 
                 };
                 $scope.countStarredActivities = function () {
                     //TODO: consider initialization at an earlier point to prevent checks like this
-                    if (_.isUndefined($scope.principal.getUser().preferences)) {
+                    if (_.isUndefined($scope.principal.getUser())) {
                         return '';
                     }
-                    return _.size($scope.principal.getUser().preferences.starredActivities);
+                    return _.size($scope.principal.getUser().profile.userPreferences.starredActivities);
                 };
 
                 $scope.query = {
