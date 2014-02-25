@@ -22,7 +22,7 @@
                     'improvement',
                     'question',
                     'support'
-                ]})
+                ]});
         }])
         .controller('FeedbackController', [ '$scope', '$rootScope', 'FeedbackService', 'UserService',
             function ($scope, $rootScope, FeedbackService, UserService) {
