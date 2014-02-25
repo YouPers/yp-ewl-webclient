@@ -22,7 +22,7 @@
             </div>
             <div class="col-xs-1 col-md-1">
                 <div class="activity-log time-box">
-                    <div class="col-md-1" popover="{{ actPlan.source | uppercase | translate }}"
+                    <div class="col-md-1" popover="{{ actPlan.activity.source | uppercase | translate }}"
                          popover-trigger="mouseenter">
                         <img ng-src="/assets/img/YouPersAvatar.png" ng-if="actPlan.source == 'youpers'" class="activityListClusterIcon">
                     </div>
