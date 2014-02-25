@@ -264,6 +264,10 @@
                 actService.reloadActivities();
             });
 
+            $rootScope.$on('newAssessmentResultsPosted', function(assResult) {
+                actService.invalidateRecommendations();
+            });
+
             var actService = {
                 getActivities: function () {
                     // we assume, that activities are static / will not be changed on the server within a
