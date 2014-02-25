@@ -6,7 +6,7 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
-            'yp.config', 'yp.commons',
+            'yp.config', 'yp.commons', 'yp.notification',
 
             'yp.user',
 
@@ -169,18 +169,6 @@ angular.module('yp-ewl',
                 return ($scope.$state.current.name.indexOf(viewLocation) !== -1);
             };
 
-            $scope.$on('globalUserMsg', function (event, msg, type, duration) {
-                $scope.globalUserMsg = {
-                    text: msg,
-                    type: type,
-                    duration: duration
-                };
-                if (duration) {
-                    $timeout(function () {
-                        $scope.globalUserMsg = null;
-                    }, duration);
-                }
-            });
 
             $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 var msg = 'error during state transition from ' + fromState.name + ' to ' + toState.name + ": " +
@@ -189,7 +177,7 @@ angular.module('yp-ewl',
                 if (error && error.status === 404) {
                     msg = 'YouPers Server not reachable, please try again later, code: ' + error.status;
                 }
-                $scope.$broadcast('globalUserMsg', msg, 'danger');
+                $scope.$broadcast('notification:error', msg, error);
                 $log.error(msg);
             });
 
@@ -198,11 +186,6 @@ angular.module('yp-ewl',
                 loginDialogOpen();
                 $scope.nextStateAfterLogin = data;
             });
-
-            $scope.closeUserMsg = function () {
-                $scope.globalUserMsg = null;
-            };
-
 
         }])
 
