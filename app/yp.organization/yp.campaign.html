@@ -149,14 +149,11 @@
 
                     <div class="panel-body">
                         <table class="table">
-                            <thead>
-                            <tr>
-                                <th translate>campaignActivity.list.title</th>
-                            </tr>
-                            </thead>
                             <tbody ng-repeat="campaignActivity in campaignActivities">
                             <tr>
-                                <td><a ui-sref="campaignActivity({id: campaignActivity.id})">{{campaignActivity.title}}</a></td>
+                                <td>
+                                    <a ui-sref="editCampaignActivity({activityId: campaignActivity.id})">{{campaignActivity.title}}</a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

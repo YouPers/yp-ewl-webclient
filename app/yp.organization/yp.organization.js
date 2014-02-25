@@ -14,6 +14,7 @@
                         controller: 'CreateOrganizationController',
                         access: accessLevels.user
                     })
+
                     .state('campaign', {
                         url: '/campaign/{id}',
                         templateUrl: 'yp.organization/yp.campaign.html',
@@ -22,6 +23,18 @@
                         resolve: {
                             campaign: ['CampaignService', '$stateParams', function(CampaignService, $stateParams) {
                                 return CampaignService.getCampaign($stateParams.id);
+                            }]
+                        }
+                    })
+
+                    .state('editCampaignActivity', {
+                        url: '/activities/:activityId',
+                        templateUrl: "yp.organization/yp.activity.admin.campaign.html",
+                        controller: 'CampaignController',
+                        access: accessLevels.campaignlead,
+                        resolve: {
+                            activity: ['CampaignService', '$stateParams', function (CampaignService, $stateParams) {
+                                return CampaignService.getCampaignActivity($stateParams.activityId);
                             }]
                         }
                     })
@@ -48,8 +61,8 @@
                 $translateWtiPartialLoaderProvider.addPart('yp.organization');
             }])
 
-        .controller('CampaignController', ['campaign', 'CampaignService', '$scope', '$rootScope',
-            function (campaign, CampaignService, $scope, $rootScope) {
+        .controller('CampaignController', ['campaign', 'CampaignService', '$scope', '$rootScope', '$filter',
+            function (campaign, CampaignService, $scope, $rootScope, $filter) {
                 $scope.campaign = campaign;
 
                 $scope.inviteCampaignLead = function(emails,campaign) {
@@ -114,15 +127,66 @@
 
                 $scope.save = function() {
 
-                    // use as Number (for the time being) the value "NEW_C to distinguish it from new YouPers Activities (number = "NEW"), until a numbering specification exists
-                    $scope.activity.number = "NEW_C";
+                    if ($scope.activity.id) {
+                        // we are updating an existing campaign activity
+                        CampaignService.putCampaignActivity($scope.activity);
+                    } else {
+                        // we are creating a new campaign activity
 
-                    // web client needs to forward the campaign id, this new activity belongs to
-                    // if not, the backend will not execute the save
-                    $scope.activity.campaign = $scope.campaign.id;
-                    CampaignService.putCampaignActivity($scope.activity);
+                        // use as Number (for the time being) the value "NEW_C to distinguish it from new YouPers Activities (number = "NEW"), until a numbering specification exists
+                        $scope.activity.number = "NEW_C";
+
+                        // web client needs to forward the campaign id, this new activity belongs to
+                        // if not, the backend will not execute the save
+                        $scope.activity.campaign = $scope.campaign.id;
+                        CampaignService.postCampaignActivity($scope.activity, function(campaignActivity) {
+                            $scope.campaignActivities.push(campaignActivity);
+                            initCampaignActivity();
+                        });
+
+                    }
                 };
 
+                var getCampaignActivities = function() {
+
+                    if(_.contains($scope.principal.getUser().roles, 'orgadmin')) {
+                        CampaignService.getCampaignActivities({limit:1000}).then(function(campaignActivities) {
+                            var allActivities = campaignActivities;
+                            $scope.campaignActivities = $filter('CampaignActivityFilter')(allActivities, $scope.campaign.id);
+                        }, function(err) {
+                            $rootScope.$broadcast('globalUserMsg', 'getCampaignActivitiess: not authorized');
+                        });
+                    } else {
+                        $scope.campaignActivities = [];
+                    }
+
+
+                };
+
+                getCampaignActivities();
+
             }
-        ]);
+        ])
+        .filter('CampaignActivityFilter', [function () {
+            return function (activities, campaignId) {
+                var out = [];
+
+                // if we do not get a campaign ID, we return an empty array
+                if (!campaignId) {
+                    return out;
+                }
+
+                angular.forEach(activities, function (activity, key) {
+
+                        if (activity.campaign && activity.campaign === campaignId) {
+                            out.push(activity);
+                        }
+
+                    }
+                );
+                return out;
+
+            };
+        }]
+        );
 }());
