@@ -15,7 +15,7 @@ module.exports = function (config) {
             'app/lib/restangular/dist/restangular.js',
             'app/lib/lodash/dist/lodash.js',
             'app/lib/angulartics/src/angulartics.js',
-            'lib/angulartics/src/angulartics-ga.js',
+            'app/lib/angulartics/src/angulartics-ga.js',
 
             'app/yp.commons/angular-translate-loader-wti-partial.js',
             'app/yp.commons/yp.commons.js',
