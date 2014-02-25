@@ -28,13 +28,17 @@
                     })
 
                     .state('editCampaignActivity', {
-                        url: '/activities/:activityId',
+                        url: '/activities/:activityId/edit',
                         templateUrl: "yp.activity/yp.activity.campaign.html",
                         controller: 'ActivityEditCtrl',
                         access: accessLevels.campaignlead,
                         resolve: {
                             activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                                 return ActivityService.getActivity($stateParams.activityId);
+                            }]
+                            ,
+                            activityType: [function () {
+                                return "campaign";
                             }]
                         }
                     })
@@ -131,9 +135,15 @@
 
                     $scope.activity = Rest.restangularizeElement(null, {
                         number: 'NEW_C',
-                        title: "Mustertitel",
-                        text: "Mustertext"
+                        source: "campaign",
+                        defaultfrequency: "once",
+                        "defaultexecutiontype": "self",
+                        "defaultvisibility": "private",
+                        "defaultduration": 60,
+                        topics: ['workLifeBalance']
                     }, 'activities');
+
+                    $scope.activityType = "campaign";
 
                 };
 
