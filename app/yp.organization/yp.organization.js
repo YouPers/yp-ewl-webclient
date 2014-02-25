@@ -29,12 +29,12 @@
 
                     .state('editCampaignActivity', {
                         url: '/activities/:activityId',
-                        templateUrl: "yp.organization/yp.activity.admin.campaign.html",
-                        controller: 'CampaignController',
+                        templateUrl: "yp.activity/yp.activity.campaign.html",
+                        controller: 'ActivityEditCtrl',
                         access: accessLevels.campaignlead,
                         resolve: {
-                            activity: ['CampaignService', '$stateParams', function (CampaignService, $stateParams) {
-                                return CampaignService.getCampaignActivity($stateParams.activityId);
+                            activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
+                                return ActivityService.getActivity($stateParams.activityId);
                             }]
                         }
                     })
@@ -61,8 +61,8 @@
                 $translateWtiPartialLoaderProvider.addPart('yp.organization');
             }])
 
-        .controller('CampaignController', ['campaign', 'CampaignService', '$scope', '$rootScope', '$filter',
-            function (campaign, CampaignService, $scope, $rootScope, $filter) {
+        .controller('CampaignController', ['campaign', 'CampaignService', 'ActivityService', 'Restangular', '$scope', '$rootScope', '$filter',
+            function (campaign, CampaignService, ActivityService, Rest, $scope, $rootScope, $filter) {
                 $scope.campaign = campaign;
 
                 $scope.inviteCampaignLead = function(emails,campaign) {
@@ -104,7 +104,7 @@
 
                         CampaignService.getCampaignStats($scope.campaign.id, 'assTotals').then(function(result) {
                             if (result.length > 0) {
-                                $scope.campaignStats.assTotals = result[0].totalUsers;
+                                $scope.campaignStats.assTotals = result[0].totalAssessments;
                             }
                         });
                         CampaignService.getCampaignStats($scope.campaign.id, 'activitiesPlannedTotal').then(function(result) {
@@ -127,12 +127,13 @@
 
                 getCampaignStats();
 
-                $scope.activity = {};
-
                 var initCampaignActivity = function() {
 
-                    $scope.activity.title = "Mustertitel";
-                    $scope.activity.text = "Mustertext";
+                    $scope.activity = Rest.restangularizeElement(null, {
+                        number: 'NEW_C',
+                        title: "Mustertitel",
+                        text: "Mustertext"
+                    }, 'activities');
 
                 };
 
@@ -154,7 +155,7 @@
                         // web client needs to forward the campaign id, this new activity belongs to
                         // if not, the backend will not execute the save
                         $scope.activity.campaign = $scope.campaign.id;
-                        CampaignService.postCampaignActivity($scope.activity, function(campaignActivity) {
+                        ActivityService.saveActivity($scope.activity, function(campaignActivity) {
                             $scope.campaignActivities.push(campaignActivity);
                             initCampaignActivity();
                         });
@@ -165,7 +166,7 @@
                 var getCampaignActivities = function() {
 
                     if(_.contains($scope.principal.getUser().roles, 'orgadmin')) {
-                        CampaignService.getCampaignActivities({limit:1000}).then(function(campaignActivities) {
+                        ActivityService.getActivities({limit:1000}).then(function(campaignActivities) {
                             var allActivities = campaignActivities;
                             $scope.campaignActivities = $filter('CampaignActivityFilter')(allActivities, $scope.campaign.id);
                         }, function(err) {

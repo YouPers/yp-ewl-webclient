@@ -38,5 +38,38 @@
 
                     }
                 };
+            }])
+
+        .controller('ActivityEditCtrl', ['$scope', '$rootScope',  'activity', 'ActivityService', 'Restangular',
+            function ($scope, $rootScope, activity, ActivityService, Restangular) {
+
+                if (!activity) {
+                    activity = Restangular.restangularizeElement(null, {
+                        number: 'NEW',
+                        fields: [],
+                        recWeights: [],
+                        topics: ['workLifeBalance']
+                    }, 'activities');
+                }
+                $scope.activity = activity;
+
+                $scope.save = function () {
+
+                    var saveSuccess = function(result) {
+                        $rootScope.$broadcast('globalUserMsg', 'activity saved successfully', 'success', 5000);
+                        $scope.$state.go('activitylist', $rootScope.$stateParams);
+                    };
+                    var saveError = function(err) {
+                        $rootScope.$broadcast('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
+                    };
+
+                    ActivityService.saveActivity(activity, saveSuccess, saveError);
+                };
+
+                $scope.cancel = function () {
+                    $scope.$state.go('activitylist');
+                };
             }]);
+
+
 })();
