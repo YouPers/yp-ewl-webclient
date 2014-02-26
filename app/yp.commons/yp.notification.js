@@ -8,36 +8,52 @@
             // custom event names for error and success notifications
             $rootScope.$on('notification:error', function (event, error, options) {
 
-                var message;
+                var prefix = 'notification.error.';
+                var msg;
 
                 if(typeof error === 'string') {
-                    message = error;
+                    msg = error;
                 } else {
                     var errorCode = error.code || error.statusCode || error.status || 'default';
-                    message = 'notification.error.' + errorCode;
+                    msg = errorCode;
+                }
+
+                if(msg.indexOf(prefix) < 0) {
+                    msg = prefix + msg;
                 }
 
                 // TODO: localize error
 
-                $rootScope.$emit('notification', message, _.extend(options || {}, { type: 'error', error: error }));
+                $rootScope.$emit('notification', msg, _.extend(options || {}, { type: 'error', error: error }));
             });
 
             $rootScope.$on('notification:success', function (event, message, options) {
-                $rootScope.$emit('notification', message, _.extend(options, { type: 'success'}));
+
+                var prefix = 'notification.success.';
+                var msg = 'default';
+
+                if(typeof message === 'string') {
+                    msg = message;
+                }
+
+                if(msg.indexOf(prefix) < 0) {
+                    msg = prefix + msg;
+                }
+
+                $rootScope.$emit('notification', msg, _.extend(options || {}, { type: 'success'}));
 
             });
 
             // log notification, don't show notification to user
             $rootScope.$on('notification:log', function (event, message, options) {
-                $rootScope.$emit('notification', message, _.extend(options, { type: 'log'}));
-
+                $rootScope.$emit('notification', message, _.extend(options || {}, { type: 'log'}));
             });
 
 
 
             // clear notifications on state change
             $rootScope.$on("$stateChangeStart", function () {
-                $rootScope.notifications = [];
+//                $rootScope.notifications = [];
             });
 
             $rootScope.$on('notification', function (event, message, options) {
@@ -45,6 +61,7 @@
                 var defaults = {
                     id: _.uniqueId(),
                     message: message,
+                    values: {},
 
                     type: 'info',
                     duration: 3000
@@ -64,7 +81,7 @@
 
 
                 // log notification
-                notificationService.notification(opts.type);
+                notificationService.notification(opts.type)(message, options);
 
                 if(opts.type === 'log') {
                     return false; // skip user feedback below
@@ -104,11 +121,12 @@
 
 
                 var notificationFn = function(type) {
-                    return function (){
+
+                    var fn = function () {
 
                         type = type || 'log';
                         if(!_.contains(['log', 'debug', 'info', 'warn', 'error'], type)) {
-                            type = 'log';
+                            type = 'info';
                         }
 
                         // log to console
@@ -119,11 +137,13 @@
                         }
 
                     };
+
+                    return fn;
                 };
 
                 return {
 
-                    notification: notificationFn(),
+                    notification: notificationFn,
                     log: notificationFn('log'),
                     debug: notificationFn('debug'),
                     info: notificationFn('info'),

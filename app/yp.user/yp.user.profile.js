@@ -38,12 +38,11 @@
 
                 $scope.saveProfile = function () {
                     UserProfileService.putUserProfile($scope.profileUserObj).then(function (profile) {
-                        $rootScope.$broadcast('globalUserMsg', 'Your user profile has been saved', 'success', 3000);
+                        $rootScope.$emit('notification:success', 'profile.save');
                         $scope.principal.getUser().profile = profile;
-                    }, function (error) {
-                        $rootScope.$broadcast('globalUserMsg', 'Error while saving: ' + error, 'danger', 3000);
+                    }, function (err) {
+                        $rootScope.$emit('notification:error', err);
                     });
-
                 };
 
                 $scope.avatarObject = $scope.principal.getUser();

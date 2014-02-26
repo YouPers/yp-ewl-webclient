@@ -34,11 +34,10 @@
                                 var campaignId = $stateParams.id;
                                 var token = $stateParams.token;
                                 CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
-                                    $rootScope.$broadcast('globalUserMsg', 'You are now a Campaign Lead of this campaign', 'success', 5000);
+                                    $rootScope.$emit('notification:success', 'campaign.lead');
                                     $state.go('campaign', {id: campaignId});
                                 }, function(err) {
-                                    $rootScope.$broadcast('globalUserMsg', 'error', 'danger');
-                                    console.log(JSON.stringify(err));
+                                    $rootScope.$emit('notification:error', err);
                                     $state.go('home');
                                 });
                             }]
@@ -56,7 +55,7 @@
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
                         $scope.invitationSent = true;
                     }, function(err) {
-                        $rootScope.$broadcast('globalUserMsg', 'Error sending invitation: '+ JSON.stringify(err), 'danger', 5000);
+                        $rootScope.$emit('notification:error', err);
                     });
                 };
 
@@ -69,7 +68,7 @@
                         // start date is earlier than end date, so we try to create the campaign
                         CampaignService.putCampaign($scope.campaign);
                     } else {
-                        $rootScope.$broadcast('globalUserMsg', 'Campaign not updated: Campaign end date must be later than campaign start date ');
+                        $rootScope.$emit('notification:error', 'campaign.dateRange');
                     }
                 };
 

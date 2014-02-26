@@ -1,4 +1,24 @@
 {
+    "notification": {
+        "success": {
+            "account": {
+                "save": "Konto gespeichert"
+            },
+            "password": {
+                "save": "Passwort geändert"
+            },
+            "profile": {
+                "save": "Profil gespeichert"
+            }
+        },
+        "error": {
+            "password": {
+                "invalid": "Das aktuelle Passwort ist nicht korrekt",
+                "reset": "Benutzer/Email ist uns nicht bekannt"
+            }
+        }
+    },
+
     "account": {
         "account": "Konto",
         "changeAccount": "Konto ändern",

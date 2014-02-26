@@ -108,10 +108,10 @@
                 $scope.setStatus = function (actPlanId, actEvent, status) {
                     actEvent.status = status;
                     ActivityService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
-                            $log.info("ActEvent updated: " + JSON.stringify(result));
+                            $rootScope.$emit('notification:log', 'activity.updated');
+                            $rootScope.$emit('notification:log', result);
                         }, function (err) {
-                            $log.info("ActEvent update failed: " + err);
-                            $rootScope.$broadcast('globalUserMsg', 'Error while Saving: ' + err, 'danger', 3000);
+                            $rootScope.$emit('notification:error', err);
                         }
                     );
                 };
@@ -147,15 +147,15 @@
                         }
 
                         ActivityService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
-                                $log.info("ActEvent updated: " + JSON.stringify(result));
+                                $rootScope.$emit('notification:log', 'activity.updated');
+                                $rootScope.$emit('notification:log', result);
                             }, function (err) {
-                                $log.info("ActEvent update failed: " + err);
-                                $rootScope.$broadcast('globalUserMsg', 'Error while Saving: ' + err, 'warning', 3000);
+                                $rootScope.$emit('notification:error', err);
                             }
                         );
 
                     }, function () {
-                        $log.info('Modal dismissed at: ' + new Date());
+                        // dismissed
                     });
                 };
 

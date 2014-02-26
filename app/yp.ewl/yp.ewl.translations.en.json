@@ -2,6 +2,8 @@
     "notification": {
 
         "success": {
+            "save": "Saved",
+            "submit": "Submitted",
             "feedback": "Thank you for your feedback!"
         },
         "error": {

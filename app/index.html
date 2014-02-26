@@ -117,9 +117,11 @@
 
     <ng-include src="'yp.ewl/topmenu.html'"></ng-include>
 
-    <alert ng-repeat="notification in notifications" type='notification.alertType' close="closeNotification(notification.id)" class="yp-notification" >
-        {{ notification.message | translate }}
-    </alert>
+    <div class="yp-notification">
+        <alert ng-repeat="notification in notifications" type='notification.alertType' close="closeNotification(notification.id)" >
+            {{ notification.message | translate:notification.values }}
+        </alert>
+    </div>
 
     <div ui-view autoscroll="false"></div>
 

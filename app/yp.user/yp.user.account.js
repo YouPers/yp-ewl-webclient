@@ -29,7 +29,7 @@
 
                 $scope.saveAccount = function () {
                     UserService.putUser($scope.accountUserObj).then(function (user) {
-                        $rootScope.$broadcast('globalUserMsg', 'Your account has been saved', 'success', 3000);
+                        $rootScope.$emit('notification:success', 'account.save');
                     });
 
                 };
@@ -47,10 +47,10 @@
                             $scope.passwordUserObjReset();
                             $scope.$broadcast('formPristine');
 
-                            $rootScope.$broadcast('globalUserMsg', 'Your password has been changed', 'success', 3000);
+                            $rootScope.$emit('notification:success', 'password.save');
                         });
                     }, function (err) {
-                        $rootScope.$broadcast('globalUserMsg', "Current password is invalid", 'danger', 3000);
+                        $rootScope.$emit('notification:error', 'password.invalid');
                     });
                 };
             }]);

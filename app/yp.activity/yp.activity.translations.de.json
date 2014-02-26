@@ -1,4 +1,24 @@
 {
+    "notification": {
+
+        "success": {
+            "activity": {
+                "save": "Aktivität gespeichert"
+            },
+            "activityPlan": {
+                "save": "Aktivität eingeplant",
+                "join": "Aktivität eingeplant",
+                "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
+                "delete": "Aktivität gelöscht"
+            }
+        },
+        "error": {
+            "activity": {
+                "join": "Diese Aktivität konnte nicht eingeplant werden"
+            }
+        }
+    },
+
     "list": {
         "planAnActivity": "Plane eine Aktivität",
         "createNewActivity": "Neue Aktivität erfassen",

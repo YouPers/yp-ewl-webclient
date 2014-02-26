@@ -1,4 +1,24 @@
 {
+    "notification": {
+
+        "success": {
+            "activity": {
+                "save": "Activity saved"
+            },
+            "activityPlan": {
+                "save": "Activity planned",
+                "join": "Activity planned",
+                "invite": "You've invited {{email}} to this activity",
+                "delete": "Activity deleted"
+            }
+        },
+        "error": {
+            "activity": {
+                "join": "This activity could not be planned"
+            }
+        }
+    },
+
     "list": {
         "planAnActivity": "Plan an activity",
         "createNewActivity": "Create new activity",

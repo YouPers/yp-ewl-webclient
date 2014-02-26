@@ -15,9 +15,9 @@ angular.module('yp.discussion', ['restangular']).
 
         commentService.submitNewComment =  function (comment, successCallback) {
             comments.post(comment).then(function (result) {
-                $rootScope.$broadcast('globalUserMsg', 'Comment saved', 'success', 3000);
+                $rootScope.$emit('notification:success', 'comment.save');
             }, function(err) {
-                $rootScope.$broadcast('globalUserMsg', err.data.message, 'warning', 3000);
+                $rootScope.$emit('notification:error', err);
             }).then(successCallback);
         };
         return commentService;

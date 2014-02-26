@@ -2,6 +2,8 @@
     "notification": {
 
         "success": {
+            "save": "Gespeichert",
+            "submit": "Gesendet",
             "feedback": "Danke für dein Feedback!"
         },
         "error": {

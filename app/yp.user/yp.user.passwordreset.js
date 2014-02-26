@@ -42,7 +42,7 @@
                     UserService.passwordReset($scope.$stateParams.token, $scope.passwordResetObj.password).then(function () {
                         $scope.resetSuccessful = true;
                     }, function (err) {
-                        $rootScope.$broadcast('globalUserMsg', "Passwort konnte nicht gesetzt werden.", 'danger', 3000);
+                        $rootScope.$emit('notification:error', err);
                     });
                 };
 
@@ -61,7 +61,7 @@
                     UserService.requestPasswordReset($scope.passwordResetObj.usernameOrEmail).then(function () {
                         $scope.requestSent = true;
                     }, function (err) {
-                        $rootScope.$broadcast('globalUserMsg', "Dieser Username/Email ist uns nicht bekannt", 'danger', 3000);
+                        $rootScope.$emit('notification', 'password.reset');
                     });
                 };
 
