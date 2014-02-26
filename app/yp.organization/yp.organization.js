@@ -175,9 +175,11 @@
                 var getCampaignActivities = function() {
 
                     if(_.contains($scope.principal.getUser().roles, 'orgadmin')) {
-                        ActivityService.getActivities({limit:1000}).then(function(campaignActivities) {
-                            var allActivities = campaignActivities;
-                            $scope.campaignActivities = $filter('CampaignActivityFilter')(allActivities, $scope.campaign.id);
+                        var params = {
+                            'filter[campaign]': $scope.campaign.id
+                        }
+                        $scope.campaignActivities = ActivityService.getActivities(params).then(function(campaignActivities) {
+                            $scope.campaignActivities = campaignActivities;
                         }, function(err) {
                             $rootScope.$broadcast('globalUserMsg', 'getCampaignActivitiess: not authorized');
                         });
@@ -191,27 +193,5 @@
                 getCampaignActivities();
 
             }
-        ])
-        .filter('CampaignActivityFilter', [function () {
-            return function (activities, campaignId) {
-                var out = [];
-
-                // if we do not get a campaign ID, we return an empty array
-                if (!campaignId) {
-                    return out;
-                }
-
-                angular.forEach(activities, function (activity, key) {
-
-                        if (activity.campaign && activity.campaign === campaignId) {
-                            out.push(activity);
-                        }
-
-                    }
-                );
-                return out;
-
-            };
-        }]
-        );
+        ]);
 }());
