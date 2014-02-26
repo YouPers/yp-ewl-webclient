@@ -137,6 +137,14 @@
     },
     "admin": {
         "header": "Aktivität bearbeiten",
+        "title": {
+            "label": "Titel",
+            "placeholder": "Hier einen aussagekräftigen Titel erfassen"
+        },
+        "text": {
+            "label": "Text",
+            "placeholder": "Die ausführliche Beschreibung der Aktivität"
+        },
         "executiontype": "Standard Ausführung",
         "frequency": "Standard Frequenz",
         "visibility": "Standard Sichtbarkeit",

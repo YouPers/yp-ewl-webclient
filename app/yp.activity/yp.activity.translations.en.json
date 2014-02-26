@@ -135,6 +135,8 @@
     },
     "admin": {
         "header": "Edit Activity",
+        "title": "Title",
+        "text": "Text",
         "executiontype": "Default Execution",
         "frequency": "Default Frequency",
         "visibility": "Default Visibility",

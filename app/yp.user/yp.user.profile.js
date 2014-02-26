@@ -9,35 +9,35 @@
                     .state('profile', {
                         url: "/profile",
                         templateUrl: "yp.user/yp.user.profile.html",
-                        controller: "UserProfileCtrl",
+                        controller: "profileCtrl",
                         access: accessLevels.user,
                         resolve: { }
                     });
 
             }])
 
-        .factory("UserProfileService", ['$rootScope', 'Restangular', 'UserService',
+        .factory("ProfileService", ['$rootScope', 'Restangular', 'UserService',
             function ($rootScope, Rest, UserService) {
-                var UserProfileService = {
+                var ProfileService = {
 
-                    putUserProfile: function (userProfile) {
-                        return Rest.restangularizeElement(null, userProfile, "profiles").put();
+                    putProfile: function (profile) {
+                        return Rest.restangularizeElement(null, profile, "profiles").put();
                     },
                     postAvatar: function(data) {
                         return Rest.one('users', UserService.principal.getUser().id).all("avatar").post({"data":data});
                     }
 
                 };
-                return UserProfileService;
+                return ProfileService;
             }])
 
-        .controller('UserProfileCtrl', ['$scope', '$rootScope', 'UserProfileService',
-            function ($scope, $rootScope, UserProfileService) {
+        .controller('profileCtrl', ['$scope', '$rootScope', 'ProfileService',
+            function ($scope, $rootScope, ProfileService) {
 
                 $scope.profileUserObj = _.clone($scope.principal.getUser().profile);
 
                 $scope.saveProfile = function () {
-                    UserProfileService.putUserProfile($scope.profileUserObj).then(function (profile) {
+                    ProfileService.putProfile($scope.profileUserObj).then(function (profile) {
                         $rootScope.$emit('notification:success', 'profile.save');
                         $scope.principal.getUser().profile = profile;
                     }, function (err) {

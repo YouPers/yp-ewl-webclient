@@ -162,11 +162,12 @@
                     $scope.currentActivityPlan.mainEvent.end = dateEnd;
                     ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
                         $rootScope.$emit('notification:success', 'activityPlan.save');
-                        if ($scope.$modalInstance) {
-                            $scope.$modalInstance.dismiss();
-                        } else {
-                            $scope.$state.go('activitylist', $rootScope.$stateParams);
-                        }
+
+                        // the result is not populated with the activity, so we populate manually and update the plan
+                        // we have in our $scope -> this updates the view to show the planning.
+                        result.activity = $scope.currentActivity;
+                        $scope.currentActivityPlan = result;
+
                     }, function (err) {
                         $rootScope.$emit('notification:error', err);
                     });

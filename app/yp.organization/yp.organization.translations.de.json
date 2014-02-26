@@ -143,6 +143,24 @@
         "activityEventsTotal": "Events Total",
         "usersTotal": "User Total"
     },
+
+    "campaignActivity": {
+        "list": {
+            "header": "Kampagnenaktivitäten",
+
+            "title": "Titel"
+        }
+    },
+
+    "campaignActivityForm": {
+
+        "header": {
+            "newCampaignActivity": "Neue Kampagnenaktivität"
+        },
+        "reset": "Zurücksetzen",
+        "edit": "Ändern",
+        "save": "Erstellen"
+    },
     "feedbackForm": {
         "anonymous": {
             "label": "Anonymes Feedback"
@@ -171,4 +189,5 @@
         "question": "Frage",
         "support": "Hilfe"
     }
+
 }

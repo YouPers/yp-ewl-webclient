@@ -264,12 +264,18 @@
                 actService.reloadActivities();
             });
 
+            $rootScope.$on('newAssessmentResultsPosted', function(assResult) {
+                actService.invalidateRecommendations();
+            });
+
             var actService = {
-                getActivities: function () {
+                getActivities: function (params) {
                     // we assume, that activities are static / will not be changed on the server within a
                     // reasonable timeframe, therefore we cache it on the client as long as the page is not refreshed
+                    params = params || {};
+                    params.limit = 1000;
                     if (!cachedActivitiesPromise) {
-                        cachedActivitiesPromise = activities.getList({limit: 1000});
+                        cachedActivitiesPromise = activities.getList(params);
                     }
                     return cachedActivitiesPromise;
                 },
@@ -377,9 +383,6 @@
                     console.log("try to delete current plan");
                     return activityPlans.one(plan.id).remove().then(function success(result) {
                         return result;
-                    }, function error(err) {
-                        console.log("error on plan remove" + err);
-                        return err;
                     });
                 },
                 updateActivityEvent: function (planId, actEvent) {

@@ -6,7 +6,7 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
-            'yp.config', 'yp.commons', 'yp.notification',
+            'yp.config', 'yp.commons', 'yp.notification', 'angulartics','angulartics.google.analytics',
 
             'yp.user',
 
@@ -198,7 +198,8 @@ angular.module('yp-ewl',
             var result = {
                 login: {
                     username: '',
-                    password: ''
+                    password: '',
+                    keepMeLoggedIn: true
                 }
             };
             $scope.result = result;

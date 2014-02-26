@@ -37,7 +37,7 @@
             admin: _userRoles.productadmin | _userRoles.systemadmin  // 00011
         };
 
-    var _currentUser = {profile: {}};
+    var _currentUser = {profile: {userPreferences: {}}};
     var _authenticated = false;
 
 
