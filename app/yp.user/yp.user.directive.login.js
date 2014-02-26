@@ -8,7 +8,7 @@
                 templateUrl: 'yp.user/yp.user.directive.login.html',
                 link: function (scope, elem, attrs) {
 
-
+                    scope.keepMeLoggedIn = true;
                     scope.loginSubmit = function () {
                         UserService.login(UserService.encodeCredentials(scope.username, scope.password),  scope.keepMeLoggedIn)
                             .then(function () {

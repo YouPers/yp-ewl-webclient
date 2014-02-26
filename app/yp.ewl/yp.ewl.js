@@ -215,7 +215,8 @@ angular.module('yp-ewl',
             var result = {
                 login: {
                     username: '',
-                    password: ''
+                    password: '',
+                    keepMeLoggedIn: true
                 }
             };
             $scope.result = result;

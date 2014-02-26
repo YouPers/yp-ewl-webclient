@@ -74,7 +74,7 @@
                         });
                     },
                     postResults: function (assResult, callback) {
-//                        ActivityService.invalidateRecommendations();
+                        $rootScope.$emit('newAssessmentResultsPosted', assResult);
                         var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
                         assessmentResultBase.post(assResult).then(callback);
                     },
