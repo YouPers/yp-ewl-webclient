@@ -177,7 +177,7 @@
                     if(_.contains($scope.principal.getUser().roles, 'orgadmin')) {
                         var params = {
                             'filter[campaign]': $scope.campaign.id
-                        }
+                        };
                         $scope.campaignActivities = ActivityService.getActivities(params).then(function(campaignActivities) {
                             $scope.campaignActivities = campaignActivities;
                         }, function(err) {
