@@ -10,6 +10,11 @@
                 if (!activity) {
                     activity = Restangular.restangularizeElement(null, {
                         number: 'NEW',
+                        source: "youpers",
+                        defaultfrequency: "once",
+                        "defaultexecutiontype": "self",
+                        "defaultvisibility": "private",
+                        "defaultduration": 60,
                         fields: [],
                         recWeights: [],
                         topics: ['workLifeBalance']

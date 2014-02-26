@@ -36,7 +36,49 @@
                             activity.qualityFactor = 1;
                         }
 
+                        $scope.validate = function () {
+                            if (!activity.title || activity.title === "" ||
+                                !activity.text || activity.text === "") {
+                                return true;
+                            }
+                        };
+
+                    }
+                };
+            }])
+
+        .controller('ActivityEditCtrl', ['$scope', '$rootScope',  'activity', 'ActivityService', 'activityType',
+            function ($scope, $rootScope, activity, ActivityService, activityType) {
+
+                $scope.activity = activity;
+
+                $scope.activityType = activityType;
+
+                $scope.save = function () {
+
+                    var saveSuccess = function(result) {
+                        $rootScope.$broadcast('globalUserMsg', "activity '" + $scope.activity.title + "' saved successfully", 'success', 5000);
+                        if ($scope.activityType === "campaign") {
+                            $scope.$state.go('campaign', {id: $scope.activity.campaign});
+                        } else  {
+                            $scope.$state.go('activitylist', $rootScope.$stateParams);
+                        }
+                    };
+                    var saveError = function(err) {
+                        $rootScope.$broadcast('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
+                    };
+
+                    ActivityService.saveActivity(activity, saveSuccess, saveError);
+                };
+
+                $scope.cancel = function () {
+                    if ($scope.activityType === "campaign") {
+                        $scope.$state.go('campaign', {id: $scope.activity.campaign});
+                    } else  {
+                        $scope.$state.go('activitylist');
                     }
                 };
             }]);
+
+
 })();

@@ -50,6 +50,7 @@
                         return stats.getList({ type: type} );
 
                     }
+
                 };
 
                 return CampaignService;

@@ -269,11 +269,12 @@
             });
 
             var actService = {
-                getActivities: function () {
+                getActivities: function (params) {
                     // we assume, that activities are static / will not be changed on the server within a
                     // reasonable timeframe, therefore we cache it on the client as long as the page is not refreshed
+                    params.limit = 1000;
                     if (!cachedActivitiesPromise) {
-                        cachedActivitiesPromise = activities.getList({limit: 1000});
+                        cachedActivitiesPromise = activities.getList(params);
                     }
                     return cachedActivitiesPromise;
                 },
