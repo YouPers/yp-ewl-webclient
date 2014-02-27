@@ -171,9 +171,7 @@ angular.module('yp-ewl',
 
 
             $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-
                 $scope.$emit('notification:error', error);
-                $log.error(msg);
             });
 
             $scope.$on('loginMessageShow', function (event, data) {
