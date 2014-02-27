@@ -64,8 +64,8 @@
                 $translateWtiPartialLoaderProvider.addPart('yp.organization');
             }])
 
-        .controller('CampaignController', ['campaign', 'CampaignService', 'ActivityService', 'Restangular', '$scope', '$rootScope', '$filter',
-            function (campaign, CampaignService, ActivityService, Rest, $scope, $rootScope, $filter) {
+        .controller('CampaignController', ['campaign', 'CampaignService', 'ActivityService', 'Restangular', '$scope', '$rootScope',
+            function (campaign, CampaignService, ActivityService, Rest, $scope, $rootScope) {
                 $scope.campaign = campaign;
 
                 $scope.inviteCampaignLead = function(emails,campaign) {
@@ -154,7 +154,7 @@
 
                     if ($scope.activity.id) {
                         // we are updating an existing campaign activity
-                        CampaignService.putCampaignActivity($scope.activity);
+                        ActivityService.saveActivity($scope.activity);
                     } else {
                         // we are creating a new campaign activity
 
@@ -174,7 +174,7 @@
 
                 var getCampaignActivities = function() {
 
-                    if(_.contains($scope.principal.getUser().roles, 'orgadmin')) {
+                    if(_.contains($scope.principal.getUser().roles, 'campaignlead')) {
                         var params = {
                             'filter[campaign]': $scope.campaign.id
                         };
