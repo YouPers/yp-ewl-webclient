@@ -108,7 +108,7 @@
 
                             }, function error(err) {
                                 $http.defaults.headers.common.Authorization = '';
-                                $rootScope.$broadcast('notification:error', err);
+                                $rootScope.$broadcast('notification:error', 'loginFailed', { error: err });
                                 return err;
                             });
                     },

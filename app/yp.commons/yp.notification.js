@@ -55,6 +55,7 @@
 
                 if(typeof error === 'string') {
                     msg = error;
+                    error = options.error;
 
                     if(msg.indexOf(prefix) < 0) {
                         msg = prefix + msg;
@@ -180,8 +181,10 @@
 
                     if(typeof arguments[1] === 'object') {
                         var error = arguments[1].error || arguments[1];
-                        client.headers = error.headers();
-                        client.requestId = client.headers['request-id'];
+                        if(error.headers) {
+                            client.headers = error.headers();
+                            client.requestId = client.headers['request-id'];
+                        }
 
                         if(error.data) {
                             client.error = error.data;
