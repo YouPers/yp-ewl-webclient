@@ -1,6 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
+
+
+            <div class="panel-heading row">
+
+                <div class="col-md-3">
+                    <avatar-upload type="campaign" avatar-object="campaign"></avatar-upload>
+                </div>
+                <div class="col-md-8">
+                    <h2>{{campaign.title}}</h2>
+                </div>
+            </div>
+
             <accordion close-others="false">
                 <accordion-group heading="{{'campaignForm.header.campaignAttributes' | translate}}" is-open="true">
 
@@ -55,7 +67,7 @@
                         </div>
 
                         <button type="reset" class="btn btn-sm"><span translate>campaignForm.reset</span></button>
-                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.edit</span></button>
+                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.save</span></button>
 
                     </form>
 
