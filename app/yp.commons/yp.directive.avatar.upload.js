@@ -43,6 +43,8 @@
 
                                 if(attrs.type && attrs.type === 'organization') {
                                     url = config.backendUrl + "/organizations/" + scope.avatarObject.id + "/avatar";
+                                } else if(attrs.type && attrs.type === 'campaign') {
+                                    url = config.backendUrl + "/campaigns/" + scope.avatarObject.id + "/avatar";
                                 } else {
                                     url = config.backendUrl + "/users/" + scope.avatarObject.id + "/avatar";
                                 }
@@ -97,7 +99,9 @@
             return function(scope, element, attrs) {
 
                 scope.$watch('avatarObject.avatar', function(avatar) {
-                    element.css("background-image", "url(" + avatar + ")");
+                    if(avatar) {
+                        element.css("background-image", "url(" + avatar + ")");
+                    }
                 });
             };
         });
