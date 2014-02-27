@@ -9,7 +9,8 @@
                 "save": "Activity planned",
                 "join": "Activity planned",
                 "invite": "You've invited {{email}} to this activity",
-                "delete": "Activity deleted"
+                "delete": "Activity deleted",
+                "sampleInvitationSent": "Invitation mail sent to {{email}}"
             }
         },
         "error": {
