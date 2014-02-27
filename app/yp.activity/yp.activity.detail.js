@@ -174,10 +174,10 @@
                             $scope.$broadcast('formPristine');
                             ActivityService.inviteEmailToJoinPlan($scope.principal.getUser().email, result).then(
                                 function success (result) {
-                                    $rootScope.$broadcast('globalUserMsg', 'Mustereinladung erfolgreich an ' + $scope.principal.getUser().email +' verschickt!', 'success', 5000);
+                                    $rootScope.$emit('notification:success', 'activityPlan.sampleInvitationSent', { values: { email: $scope.principal.getUser().email }});
                                 },
                                 function error (err) {
-                                    $rootScope.$broadcast('globalUserMsg', 'Mustereinladung konnte nicht verschickt werden: '+ err.status, 'danger', 5000);
+                                    $rootScope.$emit('notification:error', err);
                                 }
                             );
                         }

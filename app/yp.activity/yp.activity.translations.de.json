@@ -9,7 +9,8 @@
                 "save": "Aktivität eingeplant",
                 "join": "Aktivität eingeplant",
                 "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
-                "delete": "Aktivität gelöscht"
+                "delete": "Aktivität gelöscht",
+                "sampleInvitationSent": "Einladung versendet {{email}}"
             }
         },
         "error": {
