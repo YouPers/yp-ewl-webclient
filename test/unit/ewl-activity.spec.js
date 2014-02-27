@@ -192,7 +192,7 @@ describe('ewl activity', function () {
                 $filter: $filter,
                 $state: $state,
                 allActivities: activities,
-            activityPlans: activityPlans,
+                activityPlans: activityPlans,
                 recommendations: [],
                 'yp.user.UserService': {},
                 assessment: {},

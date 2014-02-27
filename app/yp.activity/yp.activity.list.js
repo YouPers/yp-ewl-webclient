@@ -12,7 +12,9 @@
                 // mock campaigns, that this user has an active goal for, should be loaded from server later...
                 var campaigns = [];
 
-                if ($scope.principal.getUser().campaign) {
+                if ($scope.principal &&
+                    $scope.principal.getUser() &&
+                    $scope.principal.getUser().campaign) {
                     campaigns = [$scope.principal.getUser().campaign.id];
                 }
 
