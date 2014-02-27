@@ -224,8 +224,5 @@
     "executiontype": {
         "self": "self",
         "group": "group"
-    },
-    "source": {
-        "campaign": "Plan as campaign event(s)"
     }
 }
