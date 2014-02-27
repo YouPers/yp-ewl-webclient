@@ -8,7 +8,7 @@
         },
         "error": {
             "default": "An error has occurred. Sorry about that.",
-            "401": "Username or Password are not correct",
+            "UnauthorizedError": "Username or Password are not correct",
             "404": "Our server is not reachable right now, please try again later"
         }
     },

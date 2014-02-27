@@ -8,7 +8,7 @@
         },
         "error": {
             "default": "Ein Fehler ist aufgetreten",
-            "401": "Der Benutzername oder das Passwort ist nicht korrekt",
+            "UnauthorizedError": "Der Benutzername oder das Passwort ist nicht korrekt",
             "404": "Unser Server ist gerade nicht erreichbar, versuche es später erneut"
         }
     },

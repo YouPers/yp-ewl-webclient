@@ -16,23 +16,25 @@
             $provide.decorator('$exceptionHandler', ['$delegate', 'stacktraceService', '$injector',
                 function ($delegate, stacktraceService, $injector) {
 
+                    var notificationService = null;
 
-                return function(exception, cause) {
+                    return function(exception, cause) {
 
+                        if(!notificationService) {
+                            notificationService = $injector.get('notificationService');
+                        }
 
-                    var notificationService = $injector.get('notificationService');
+                        // call the original $exceptionHandler.
+                        $delegate(exception, cause);
 
-                    // call the original $exceptionHandler.
-                    $delegate(exception, cause);
+                        // log to server
 
-                    // log to server
+                        var error = exception.toString();
+                        var trace = stacktraceService.print({ e: exception });
 
-                    var error = exception.toString();
-                    var trace = stacktraceService.print({ e: exception });
-
-                    notificationService.error({ error: error, trace: trace, cause: cause });
-                };
-            }]);
+                        notificationService.error({ error: error, trace: trace, cause: cause });
+                    };
+                }]);
         }])
 
 
@@ -44,16 +46,18 @@
                 var prefix = 'notification.error.';
                 var msg;
 
+
                 if(typeof error === 'string') {
                     msg = error;
+
+                    if(msg.indexOf(prefix) < 0) {
+                        msg = prefix + msg;
+                    }
                 } else {
-                    var errorCode = error.code || error.statusCode || error.status || 'default';
-                    msg = errorCode;
+                    var errorCode = (error.data && error.data.code) || error.statusCode || error.status || 'default';
+                    msg = prefix + errorCode;
                 }
 
-                if(msg.indexOf(prefix) < 0) {
-                    msg = prefix + msg;
-                }
 
                 // TODO: localize error
 
@@ -67,10 +71,10 @@
 
                 if(typeof message === 'string') {
                     msg = message;
-                }
 
-                if(msg.indexOf(prefix) < 0) {
-                    msg = prefix + msg;
+                    if(msg.indexOf(prefix) < 0) {
+                        msg = prefix + msg;
+                    }
                 }
 
                 $rootScope.$emit('notification', msg, _.extend(options || {}, { type: 'success'}));
@@ -150,7 +154,7 @@
             };
         }])
 
-        .factory("notificationService", [ '$log', '$window', '$injector', 'Restangular', function( $log, $window, $injector, Restangular ) {
+        .factory("notificationService", [ '$log', '$window', 'Restangular', function( $log, $window, Restangular) {
 
 
 
@@ -166,11 +170,40 @@
                         type = 'info';
                     }
 
+
+
+                    var client = {
+                        location: $window.location.href,
+                        userAgent: navigator.userAgent
+                    };
+
+                    if(typeof arguments[1] === 'object') {
+                        var error = arguments[1].error || arguments[1];
+                        client.headers = error.headers();
+                        client.requestId = client.headers['request-id'];
+
+                        if(error.data) {
+                            client.error = error.data;
+                        }
+                        $log[type].apply( $log, [client.requestId, client.location, client.error] );
+
+                    }
+
+
                     // log to console
+
                     $log[type].apply( $log, arguments );
 
+
+                    var args = {
+                        error: arguments,
+                        client: client
+                    };
+
                     if(_.contains(['warn', 'error'], type)) {
-                        errorResource.post(arguments);
+
+
+                        errorResource.post(args);
                     }
 
                 };
