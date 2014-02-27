@@ -5,6 +5,9 @@
 
     angular.module('yp.notification', [])
 
+        /**
+         * stacktrace.js - print stacktraces from exceptions
+         */
         .factory("stacktraceService", function() {
 
             // "printStackTrace" is a global object.
@@ -12,6 +15,9 @@
 
         })
 
+    /**
+     * decorate exceptionHandler, log uncaught exceptions to backend
+     */
         .config(['$provide', function ($provide) {
             $provide.decorator('$exceptionHandler', ['$delegate', 'stacktraceService', '$injector',
                 function ($delegate, stacktraceService, $injector) {
@@ -40,7 +46,7 @@
 
         .run(['$rootScope', 'notificationService', '$timeout', function($rootScope, notificationService, $timeout) {
 
-            // custom event names for error and success notifications
+            // distinct event name for error notifications
             $rootScope.$on('notification:error', function (event, error, options) {
 
                 var prefix = 'notification.error.';
@@ -64,6 +70,7 @@
                 $rootScope.$emit('notification', msg, _.extend(options || {}, { type: 'error', error: error }));
             });
 
+            // distinct event name for success notifications
             $rootScope.$on('notification:success', function (event, message, options) {
 
                 var prefix = 'notification.success.';
@@ -81,14 +88,12 @@
 
             });
 
-            // log notification, don't show notification to user
+            // distinct event name for log notifications, logging only without user feedback
             $rootScope.$on('notification:log', function (event, message, options) {
                 $rootScope.$emit('notification', message, _.extend(options || {}, { type: 'log'}));
             });
 
-
-
-            // clear notifications on state change
+            // clear list of notifications on state change
             $rootScope.$on("$stateChangeStart", function () {
 //                $rootScope.notifications = [];
             });
@@ -156,9 +161,6 @@
 
         .factory("notificationService", [ '$log', '$window', 'Restangular', function( $log, $window, Restangular) {
 
-
-
-
             var errorResource = Restangular.all('error');
 
             var notificationFn = function(type) {
@@ -170,8 +172,7 @@
                         type = 'info';
                     }
 
-
-
+                    // gather client and response info
                     var client = {
                         location: $window.location.href,
                         userAgent: navigator.userAgent
@@ -194,15 +195,12 @@
 
                     $log[type].apply( $log, arguments );
 
-
-                    var args = {
-                        error: arguments,
-                        client: client
-                    };
-
+                    // post to backend
                     if(_.contains(['warn', 'error'], type)) {
-
-
+                        var args = {
+                            error: arguments,
+                            client: client
+                        };
                         errorResource.post(args);
                     }
 
