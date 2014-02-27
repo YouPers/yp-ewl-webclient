@@ -94,12 +94,19 @@
             },
             "visibility": {
                 "public": "Öffentlich",
-                "campaign": "Betrieb",
+                "campaign": "Kampagne",
                 "private": "Privat"
             },
             "executionType": {
                 "self": "Alleine machen",
                 "group": "Andere einladen"
+            },
+            "source": {
+                "label": "Planen als",
+                "sourceType": {
+                    "community": "persönlicher Event",
+                    "campaign": "Kampagnen-Event"
+                }
             }
         }
 

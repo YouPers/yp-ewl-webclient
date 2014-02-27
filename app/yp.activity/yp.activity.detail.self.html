@@ -106,16 +106,29 @@
             </div>
         </div>
         <div class="col-md-6">
+            <div class="row" ng-show="principal.isAuthorized('campaignlead')">
+                <div class="col-md-12 form-group">
+                    <label for="sourceType" translate>detail.self.source.label</label>
+                    <div id="sourceType" class="btn-group">
+                        <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.source"
+                                btn-radio="'community'" translate>detail.self.source.sourceType.community
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.source"
+                                btn-radio="'campaign'" translate>detail.self.source.sourceType.campaign
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12 btn-group">
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
-                            btn-radio="'public'" translate>detail.self.visibility.public
+                            ng-disabled="currentActivityPlan.source=='campaign'" btn-radio="'public'" translate>detail.self.visibility.public
                     </button>
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
                             btn-radio="'campaign'" translate>detail.self.visibility.campaign
                     </button>
                     <button type="button" class="btn btn-primary" ng-model="currentActivityPlan.visibility"
-                            btn-radio="'private'" translate>detail.self.visibility.private
+                            ng-disabled="currentActivityPlan.source=='campaign'" btn-radio="'private'" translate>detail.self.visibility.private
                     </button>
                 </div>
             </div>

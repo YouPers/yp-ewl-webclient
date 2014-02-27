@@ -98,6 +98,13 @@
             "executionType": {
                 "self": "Myself",
                 "group": "Invite others"
+            },
+            "source": {
+                "label": "Plan as",
+                "sourceType": {
+                    "community": "personal event",
+                    "campaign": "campaign event"
+                }
             }
         }
 
@@ -196,5 +203,8 @@
     "executiontype": {
         "self": "self",
         "group": "group"
+    },
+    "source": {
+        "campaign": "Plan as campaign event(s)"
     }
 }

@@ -57,6 +57,12 @@
                     return output > moment(date) ? output.toDate() : output.add('week', 1).toDate();
                 }
 
+                $scope.$watch('currentActivityPlan.source', function (newValue, oldValue) {
+                    if (newValue && newValue === 'campaign') {
+                        $scope.currentActivityPlan.executionType = 'group';
+                        $scope.currentActivityPlan.visibility = 'campaign';
+                    }
+                });
 
                 $scope.$watch('currentActivityPlan.weeklyDay', function (newValue, oldValue) {
                     if (newValue && $scope.currentActivityPlan.mainEvent.frequency === 'week') {
@@ -163,6 +169,19 @@
                     $scope.currentActivityPlan.mainEvent.end = dateEnd;
                     ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
                         $rootScope.$broadcast('globalUserMsg', 'Aktivität erfolgreich eingeplant', 'success', '5000');
+
+                        // if a campaign activity Plan has been created, send sample invite to the autor
+                        if (_.contains($scope.principal.getUser().roles, 'campaignlead') && result.source === 'campaign') {
+                            $scope.$broadcast('formPristine');
+                            ActivityService.inviteEmailToJoinPlan($scope.principal.getUser().email, result).then(
+                                function success (result) {
+                                    $rootScope.$broadcast('globalUserMsg', 'Mustereinladung erfolgreich an ' + $scope.principal.getUser().email +' verschickt!', 'success', 5000);
+                                },
+                                function error (err) {
+                                    $rootScope.$broadcast('globalUserMsg', 'Mustereinladung konnte nicht verschickt werden: '+ err.status, 'danger', 5000);
+                                }
+                            );
+                        }
 
                         // the result is not populated with the activity, so we populate manually and update the plan
                         // we have in our $scope -> this updates the view to show the planning.

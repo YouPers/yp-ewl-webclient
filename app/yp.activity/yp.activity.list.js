@@ -10,7 +10,11 @@
                       recommendations, topStressors, assessment, ActivityService, ProfileService) {
 
                 // mock campaigns, that this user has an active goal for, should be loaded from server later...
-                var campaigns = [$scope.principal.getUser().campaign.id];
+                var campaigns = [];
+
+                if ($scope.principal.getUser().campaign) {
+                    campaigns = [$scope.principal.getUser().campaign.id];
+                }
 
                 $scope.hasRecommendations = (recommendations.length > 0);
 
