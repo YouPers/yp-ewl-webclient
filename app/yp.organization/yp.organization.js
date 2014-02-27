@@ -180,7 +180,7 @@
                         $scope.campaignActivities = ActivityService.getActivities(params).then(function(campaignActivities) {
                             $scope.campaignActivities = campaignActivities;
                         }, function(err) {
-                            $rootScope.$broadcast('globalUserMsg', 'getCampaignActivitiess: not authorized');
+                            $rootScope.$emit('notification:error', err);
                         });
                     } else {
                         $scope.campaignActivities = [];
