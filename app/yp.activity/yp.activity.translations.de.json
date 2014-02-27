@@ -9,7 +9,8 @@
                 "save": "Aktivität eingeplant",
                 "join": "Aktivität eingeplant",
                 "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
-                "delete": "Aktivität gelöscht"
+                "delete": "Aktivität gelöscht",
+                "sampleInvitationSent": "Einladung versendet {{email}}"
             }
         },
         "error": {
@@ -114,12 +115,19 @@
             },
             "visibility": {
                 "public": "Öffentlich",
-                "campaign": "Betrieb",
+                "campaign": "Kampagne",
                 "private": "Privat"
             },
             "executionType": {
                 "self": "Alleine machen",
                 "group": "Andere einladen"
+            },
+            "source": {
+                "label": "Planen als",
+                "sourceType": {
+                    "community": "persönlicher Event",
+                    "campaign": "Kampagnen-Event"
+                }
             }
         }
 

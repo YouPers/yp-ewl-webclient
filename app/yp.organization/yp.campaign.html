@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-md-6">
 
-
             <div class="panel-heading row">
 
                 <div class="col-md-3">
@@ -14,6 +13,7 @@
             </div>
 
             <accordion close-others="false">
+
                 <accordion-group heading="{{'campaignForm.header.campaignAttributes' | translate}}" is-open="true">
 
                     <form name="campaignForm" yp-model="campaign" class="form-horizontal" role="form" ng-submit="updateCampaign()" novalidate>
@@ -66,12 +66,12 @@
                             </div>
                         </div>
 
-                        <button type="reset" class="btn btn-sm"><span translate>campaignForm.reset</span></button>
-                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.save</span></button>
+                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.edit</span></button>
 
                     </form>
 
                 </accordion-group>
+
                 <accordion-group heading="{{'campaignPaymentForm.header' | translate}}" is-open="true">
 
                     <div class="row form-group">
@@ -97,6 +97,7 @@
                     </div>
 
                 </accordion-group>
+
                 <accordion-group heading="{{'campaignStats.header' | translate}}" is-open="true">
 
                     <div class="panel-body">
@@ -128,9 +129,10 @@
         </div>
 
         <div class="col-md-6">
-            <accordion close-others="false">
-                <accordion-group heading="{{'campaignDetail.inviteCampaignLead' | translate}}" is-open="true">
 
+            <accordion close-others="false">
+
+                <accordion-group heading="{{'campaignLead.header' | translate}}" is-open="true">
                     <form class="form-inline" ng-if="!invitationSent"
                           role="form"
                           ng-submit="model.inviteCampaignLeadForm.$valid && inviteCampaignLead(model.inviteCampaignLead,campaign)"
@@ -149,29 +151,26 @@
                         </div>
                     </form>
                     <div ng-if="invitationSent" translate>campaignDetail.invitationSent</div>
-                </accordion-group>
-                <accordion-group heading="{{'campaignLead.header' | translate}}" is-open="true">
 
                     <div ng-repeat="campaignLead in campaign.campaignLeads" class="row">
-                        <div user="campaignLead"></div>
+                        <div class="col-md-12">
+                            <div user="campaignLead"></div>
+                        </div>
                     </div>
 
                 </accordion-group>
-                <accordion-group heading="{{'campaignActivity.list.header' | translate}}" is-open="false">
 
-                    <div class="panel-body">
-                        <table class="table">
-                            <tbody ng-repeat="campaignActivity in campaignActivities">
-                            <tr>
-                                <td>
-                                    <a ui-sref="editCampaignActivity({activityId: campaignActivity.id})">{{campaignActivity.title}}</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                <accordion-group heading="{{'campaignActivity.list.header' | translate}}" is-open="true">
+
+                    <div ng-repeat="campaignActivity in campaignActivities" class="row">
+                        <div class="col-md-12">
+                            <a ui-sref="editCampaignActivity({activityId: campaignActivity.id})">{{campaignActivity.title}}</a>
+                        </div>
                     </div>
+
                 </accordion-group>
-                <accordion-group heading="{{'campaignActivityForm.header.newCampaignActivity' | translate}}" is-open="true">
+
+                <accordion-group heading="{{'campaignActivityForm.header.newCampaignActivity' | translate}}" is-open="false">
                     <div class="row panel panel-primary">
                         <activity-edit></activity-edit>
                     </div>
