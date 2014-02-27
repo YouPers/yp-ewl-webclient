@@ -1,5 +1,7 @@
 (function () {
     'use strict';
+    /*global printStackTrace:true */
+
 
     angular.module('yp.notification', [])
 
