@@ -43,6 +43,8 @@
 
                                 if(attrs.type && attrs.type === 'organization') {
                                     url = config.backendUrl + "/organizations/" + scope.avatarObject.id + "/avatar";
+                                } else if(attrs.type && attrs.type === 'campaign') {
+                                    url = config.backendUrl + "/campaigns/" + scope.avatarObject.id + "/avatar";
                                 } else {
                                     url = config.backendUrl + "/users/" + scope.avatarObject.id + "/avatar";
                                 }
@@ -64,7 +66,7 @@
                                     var valid = '|jpg|png|jpeg|bmp|gif|tif|tiff'.indexOf(type) !== -1;
                                     if(!valid) {
                                         scope.$apply(function() {
-                                            $rootScope.$broadcast('globalUserMsg', "invalid image file", 'danger', 3000);
+                                            $rootScope.$emit('notification:error', 'avatar.invalid');
 
                                         });
                                     }
@@ -75,14 +77,13 @@
                                 // on file upload complete
                                 uploader.bind('error', function (event, xhr, item, response) {
                                     scope.$apply(function() {
-                                        $rootScope.$broadcast('globalUserMsg', "error while processing image file", 'danger', 3000);
+                                        $rootScope.$emit('notification:error', 'avatar.error');
 
                                     });
                                 });
                                 // on file upload complete
                                 uploader.bind('success', function (event, xhr, item, response) {
                                     if(scope.avatarObject) {
-
                                         scope.avatarObject.avatar = response.avatar;
                                     }
                                 });
@@ -97,7 +98,9 @@
             return function(scope, element, attrs) {
 
                 scope.$watch('avatarObject.avatar', function(avatar) {
-                    element.css("background-image", "url(" + avatar + ")");
+                    if(avatar) {
+                        element.css("background-image", "url(" + avatar + ")");
+                    }
                 });
             };
         });

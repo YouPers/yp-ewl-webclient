@@ -40,11 +40,11 @@
                 $scope.save = function () {
 
                     var saveSuccess = function(result) {
-                        $rootScope.$broadcast('globalUserMsg', 'activity saved successfully', 'success', 5000);
+                        $rootScope.$emit('notification:success', 'activity.save');
                         $scope.$state.go('activitylist', $rootScope.$stateParams);
                     };
                     var saveError = function(err) {
-                        $rootScope.$broadcast('globalUserMsg', 'Error while saving Activity, Code: ' + err.status, 'danger', 5000);
+                        $rootScope.$emit('notification:error', err);
                     };
 
                     ActivityService.saveActivity(activity, saveSuccess, saveError);

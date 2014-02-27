@@ -14,11 +14,11 @@
 
                     postOrganization: function(organization, success, error) {
                         organizations.post(organization).then(function(successResult) {
-                            $rootScope.$broadcast('globalUserMsg', 'Organization ' + successResult.name + 'successfully created', 'success', 3000);
+                            $rootScope.$emit('notification:success', 'organization.save', { values: { organization: successResult.name }});
                             UserService.reload();
                             if(success) {success(successResult);}
                         }, function(errorResult) {
-                            $rootScope.$broadcast('globalUserMsg', 'Organization not created: Error: ' + errorResult.data.message, 'danger', 3000);
+                            $rootScope.$emit('notification:error', errorResult);
                             if(error) {error(errorResult);}
                         });
                     },

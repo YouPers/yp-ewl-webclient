@@ -29,6 +29,12 @@
 
                 $scope.contactInfo = UserService.principal.isAuthenticated() ? UserService.principal.getUser().username : false;
 
+                $scope.$watch('anonymous', function(val) {
+                    if($scope.anonymous) {
+                        $scope.feedback.contactInfo = "";
+                    }
+                });
+
                 $scope.submitFeedback = function() {
 
                     // copy username
@@ -39,9 +45,12 @@
                     $scope.feedback.navigator = JSON.stringify(_.pick(navigator, ['appCodeName','appName','appVersion','cookieEnabled',
                         'doNotTrack','language','onLine','platform','product','userAgent','vendor','vendorSub']));
 
-                    FeedbackService.postFeedback($scope.feedback, function() {
-                        $scope.feedback = {};
-                    });
+
+                    // optimistic posting, don't wait for response
+                    FeedbackService.postFeedback($scope.feedback);
+
+                    $scope.feedback = {};
+                    $rootScope.$emit('notification:success', 'notification.success.feedback');
                 };
             }
         ])
@@ -55,10 +64,9 @@
 
                     postFeedback: function(feedback, success, error) {
                         feedbackResource.post(feedback).then(function(successResult) {
-                            $rootScope.$broadcast('globalUserMsg', 'Thank you! Your feedback was sent.', 'success', 3000);
                             if(success) {success(successResult);}
                         }, function(errorResult) {
-                            $rootScope.$broadcast('globalUserMsg', 'Error: ' + errorResult.data.message, 'danger', 3000);
+                            $rootScope.$emit('notification:error', errorResult);
                             if(error) {error(errorResult);}
                         });
                     }

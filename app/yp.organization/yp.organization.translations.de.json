@@ -1,4 +1,21 @@
 {
+    "notification": {
+        "success": {
+            "campaign": {
+                "save": "Kampagne {{campaign}} gespeichert",
+                "lead": "Du leitest jetzt diese Kampagne"
+            },
+            "organization": {
+                "save": "Organisation {{organization}} gespeichert"
+            }
+        },
+        "error": {
+            "campagin": {
+                "dateRange": "Das Startdatum muss früher als das Enddatum liegen"
+            }
+        }
+    },
+
     "organizationForm": {
         "header": "Neue Organization",
 
@@ -63,7 +80,7 @@
 
         "reset": "Zurücksetzen",
         "edit": "Ändern",
-        "save": "Erstellen"
+        "save": "Speichern"
     },
 
     "organization": {
