@@ -14,19 +14,19 @@
 
                     postCampaign: function(campaign, success, error) {
                         campaigns.post(campaign).then(function(successResult) {
-                            $rootScope.$broadcast('globalUserMsg', 'Campaign ' + successResult.title + ' successfully created', 'success', 3000);
+                            $rootScope.$emit('notification:success', 'campaign.save', { values: { campaign: successResult.title }});
                             if(success) {success(successResult);}
                         }, function(errorResult) {
-                            $rootScope.$broadcast('globalUserMsg', 'Campaign not created: Error: ' + errorResult.data.message, 'danger', 3000);
+                            $rootScope.$emit('notification:error', errorResult);
                             if(error) {error(errorResult);}
                         });
                     },
                     putCampaign: function(campaign, success, error) {
                         return Rest.restangularizeElement(null, campaign, "campaigns").put().then(function(successResult) {
-                            $rootScope.$broadcast('globalUserMsg', 'Campaign ' + successResult.title + ' successfully updated', 'success', 3000);
+                            $rootScope.$emit('notification:success', 'campaign.save', { values: { campaign: successResult.title }});
                             if(success) {success(successResult);}
                         }, function(errorResult) {
-                            $rootScope.$broadcast('globalUserMsg', 'Campaign not updated: Error: ' + errorResult.data.message, 'danger', 3000);
+                            $rootScope.$emit('notification:error', errorResult);
                             if(error) {error(errorResult);}
                         });
                     },

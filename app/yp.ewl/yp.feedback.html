@@ -20,7 +20,7 @@
                     <span id="username" ng-bind="contactInfo" class="form-control"></span>
                 </div>
 
-                <div ng-show="!anonymous && !contactInfo">
+                <div ng-show="!anonymous && !contactInfo" >
                     <yp-input name="contactInfo" type="email"></yp-input>
                 </div>
 
@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label for="description" translate>feedbackForm.description.label</label>
                     <br/>
-                    <textarea id="description" ng-model="feedback.description" class="form-control"></textarea>
+                    <textarea id="description" ng-model="feedback.description" class="form-control" required></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-success btn-sm" ng-disabled="feedbackForm.$invalid"><span translate>feedbackForm.submit</span></button>

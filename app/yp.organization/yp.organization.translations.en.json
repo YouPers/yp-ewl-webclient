@@ -1,4 +1,20 @@
 {
+    "notification": {
+        "success": {
+            "campaign": {
+                "save": "Campaign {{campaign}} saved",
+                "lead": "You are now a leader of this campaign"
+            },
+            "organization": {
+                "save": "Organization {{organization}} saved"
+            }
+        },
+        "error": {
+            "campagin": {
+                "dateRange": "The end date must be later than the start date"
+            }
+        }
+    },
     "organizationForm": {
         "header": "Create Organization",
 

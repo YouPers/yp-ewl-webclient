@@ -1,4 +1,18 @@
 {
+    "notification": {
+
+        "success": {
+            "comment": {
+                "save": "Kommentar gespeichert"
+            }
+        },
+        "error": {
+            "avatar": {
+                "invalid": "Kein gültiges Avatar Bild",
+                "error": "Ein Fehler ist aufgetreten"
+            }
+        }
+    },
     "executiontype": {
         "self": "Selber",
         "group": "Gruppe"
