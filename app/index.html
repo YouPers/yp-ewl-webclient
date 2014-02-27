@@ -42,11 +42,14 @@
     <script src="lib/momentjs/lang/de.js"></script>
     <script src="lib/restangular/dist/restangular.js"></script>
 
+    <script src="lib/stacktrace.js"></script>
+
 
 <!--commons-->
     <script src="yp.commons/yp.commons.js"></script>
     <script src="yp.commons/yp.commons.directive.ypinput.js"></script>
     <script src="yp.commons/yp.discussion.js"></script>
+    <script src="yp.commons/yp.notification.js"></script>
     <script src="yp.commons/base64.js"></script>
     <script src="yp.commons/yp.directive.avatar.upload.js"></script>
 
@@ -125,9 +128,11 @@
 
     <ng-include src="'yp.ewl/topmenu.html'"></ng-include>
 
-    <alert type='globalUserMsg.type' close="closeUserMsg()" class="yp-globalUserMsg"
-       ng-hide="!globalUserMsg">{{ globalUserMsg.text }}
-    </alert>
+    <div class="yp-notification">
+        <alert ng-repeat="notification in notifications" type='notification.alertType' close="closeNotification(notification.id)" >
+            {{ notification.message | translate:notification.values }}
+        </alert>
+    </div>
 
     <div ui-view autoscroll="false"></div>
 

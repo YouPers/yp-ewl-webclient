@@ -1,4 +1,23 @@
 {
+    "notification": {
+        "success": {
+            "account": {
+                "save": "Account saved"
+            },
+            "password": {
+                "save": "Password changed"
+            },
+            "profile": {
+                "save": "Profile saved"
+            }
+        },
+        "error": {
+            "password": {
+                "invalid": "The current password is not valid",
+                "reset": "Username/Email was not found"
+            }
+        }
+    },
     "account": {
         "account": "Account",
         "changeAccount": "Change Account",

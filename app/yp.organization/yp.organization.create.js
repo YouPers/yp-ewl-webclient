@@ -30,7 +30,7 @@
                         CampaignService.getCampaigns().then(function(campaigns) {
                             $scope.campaigns = campaigns;
                         }, function(err) {
-                            $rootScope.$broadcast('globalUserMsg', 'getCampaigns: not authorized');
+                            $rootScope.$emit('notification:error', err);
                         });
                     } else {
                         $scope.campaigns = [];
@@ -93,7 +93,7 @@
                             initCampaign();
                         });
                     } else {
-                        $rootScope.$broadcast('globalUserMsg', 'Campaign not created: Campaign end date must be later than campaign start date ');
+                        $rootScope.$emit('notification:error', 'campaign.dateRange');
                     }
                 };
 

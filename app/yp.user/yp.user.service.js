@@ -108,13 +108,7 @@
 
                             }, function error(err) {
                                 $http.defaults.headers.common.Authorization = '';
-                                var msg;
-                                if (err && (err.status === 0 || err.status === 404)) {
-                                    msg = 'YouPers Backend Server not reachable, please try again later, Code: ' + err.status;
-                                } else {
-                                    msg = 'Login / password not valid, please try again or register, Code: ' + err.status;
-                                }
-                                $rootScope.$broadcast('globalUserMsg', msg, 'danger', 5000);
+                                $rootScope.$emit('notification:error', 'loginFailed', { error: err });
                                 return err;
                             });
                     },
