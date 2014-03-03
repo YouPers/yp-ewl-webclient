@@ -391,6 +391,15 @@ module.exports = function (grunt) {
                 singleRun: true
             }
         },
+        protractor: {
+            options: {
+                keepAlive: false,
+                configFile: "config/protractor.conf.js"
+            },
+            run: {
+
+            }
+        },
         cdnify: {
             dist: {
                 html: ['<%= yeoman.dist %>/*.html']
@@ -469,6 +478,7 @@ module.exports = function (grunt) {
 //        'template:mock',
         'autoprefixer',
         'connect:test',
+        'protractor:run',
         'karma'
     ]);
 
