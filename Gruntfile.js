@@ -123,6 +123,7 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             mountFolder(connect, '.tmp'),
+                            mountFolder(connect, yeomanConfig.app),
                             mountFolder(connect, 'test')
                         ];
                     }
@@ -475,11 +476,18 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
-//        'template:mock',
         'autoprefixer',
         'connect:test',
-        'protractor:run',
         'karma'
+    ]);
+
+    grunt.registerTask('e2e', [
+        'clean:server',
+        'concurrent:test',
+        'template:server',
+        'autoprefixer',
+        'connect:test',
+        'protractor:run'
     ]);
 
     grunt.registerTask('build', [
