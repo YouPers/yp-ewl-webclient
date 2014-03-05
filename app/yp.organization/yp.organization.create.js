@@ -18,7 +18,7 @@
                 $scope.organization = {};
 
                 $scope.createOrganization = function() {
-                    OrganizationService.postOrganization($scope.organizationObj, function(organization) {
+                    OrganizationService.postOrganization($scope.organizationObj).then(function(organization) {
                         $scope.organization = organization;
                     });
                 };
