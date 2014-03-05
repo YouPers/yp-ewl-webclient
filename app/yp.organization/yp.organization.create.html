@@ -62,6 +62,36 @@
             <div ng-if="organization">
 
                 <accordion close-others="false">
+
+
+                    <accordion-group heading="{{'organization.inviteOrganizationAdminForm.header' | translate}}" is-open="true">
+                        <form class="form-inline" ng-if="!invitationSent"
+                              role="form"
+                              ng-submit="inviteOrganizationAdmin(model.inviteOrganizationAdmin, organization)"
+                              name="model.inviteOrganizationAdminForm">
+                            <div class="form-group"
+                                 ng-class="{'has-error': model.inviteOrganizationAdminForm.email.$dirty && model.inviteOrganizationAdminForm.email.$invalid}">
+                                <label class="sr-only" translate>organization.inviteOrganizationAdminForm.email.label</label>
+                                <input class="form-control email-field" name="email" type="text" ng-model="model.inviteOrganizationAdmin"
+                                       placeholder="{{'organization.inviteOrganizationAdminForm.email.label' | translate}}"
+                                       multiple-Emails required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" ng-disabled="model.inviteOrganizationAdminForm.$invalid"
+                                        translate>organization.inviteOrganizationAdminForm.inviteSubmit
+                                </button>
+                            </div>
+                        </form>
+                        <div ng-if="invitationSent" translate>organization.inviteOrganizationAdminForm.invitationSent</div>
+
+                        <div ng-repeat="orgAdmin in organization.administrators" class="row">
+                            <div class="col-md-12">
+                                <div user="orgAdmin"></div>
+                            </div>
+                        </div>
+
+                    </accordion-group>
+
                     <accordion-group heading="{{'campaign.list.header' | translate}}" is-open="true">
 
                         <div class="panel-body">
