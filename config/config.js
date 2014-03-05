@@ -45,6 +45,9 @@ var environmentConfig = {
         translationSource: 'wti',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-2'
+        },
+        ui: {
+            showUserFeedbackLink: true
         }
     },
     prod: {
