@@ -78,6 +78,6 @@
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('yp.organization');
-            }])
+            }]);
 
 }());
