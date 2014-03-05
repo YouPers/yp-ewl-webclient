@@ -123,6 +123,16 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             mountFolder(connect, '.tmp'),
+                            mountFolder(connect, 'test')
+                        ];
+                    }
+                }
+            },
+            e2e: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            mountFolder(connect, '.tmp'),
                             mountFolder(connect, yeomanConfig.app),
                             mountFolder(connect, 'test')
                         ];
@@ -486,7 +496,7 @@ module.exports = function (grunt) {
         'concurrent:test',
         'template:server',
         'autoprefixer',
-        'connect:test',
+        'connect:e2e',
         'protractor:run'
     ]);
 
