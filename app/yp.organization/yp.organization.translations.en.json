@@ -6,7 +6,8 @@
                 "lead": "You are now a leader of this campaign"
             },
             "organization": {
-                "save": "Organization {{organization}} saved"
+                "save": "Organization {{organization}} saved",
+                "lead": "You are now an administrator of this organization"
             }
         },
         "error": {

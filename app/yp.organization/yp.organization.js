@@ -62,16 +62,21 @@
                     .state('assignOrganizationAdmin', {
                         url: '/organizations/{id}/becomeOrganizationAdmin?token',
                         access: accessLevels.user,
-                        onEnter:['$state','$stateParams','OrganizationService', '$rootScope',
-                            function($state, $stateParams, OrganizationService, $rootScope) {
+                        onEnter:['$state','$stateParams','OrganizationService', 'UserService', '$rootScope', '$window',
+                            function($state, $stateParams, OrganizationService, UserService, $rootScope, $window) {
                                 var organizationId = $stateParams.id;
                                 var token = $stateParams.token;
                                 OrganizationService.assignOrganizationAdmin(organizationId, token).then(function(data) {
                                     $rootScope.$emit('notification:success', 'organization.lead');
                                     $state.go('organization', {id: organizationId});
                                 }, function(err) {
-                                    $rootScope.$emit('notification:error', err);
-                                    $state.go('home');
+                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data['userId'] || err.data.data['email'])) {
+                                        UserService.logout();
+                                        $window.location.reload();
+                                    } else {
+                                        $rootScope.$emit('notification:error', err);
+                                        $state.go('home');
+                                    }
                                 });
                             }]
 
