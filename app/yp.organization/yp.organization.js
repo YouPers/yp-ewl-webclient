@@ -54,7 +54,7 @@
                                     $state.go('campaign', {id: campaignId});
                                 }, function(err) {
 
-                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data['userId'] || err.data.data['email'])) {
+                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {
                                         UserService.logout();
                                         $window.location.reload();
                                     } else {
