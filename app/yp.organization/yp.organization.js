@@ -45,16 +45,22 @@
                     .state('assignCampaignLead', {
                         url: '/campaigns/{id}/becomeCampaignLead?token',
                         access: accessLevels.user,
-                        onEnter:['$state','$stateParams','CampaignService', '$rootScope',
-                            function($state, $stateParams, CampaignService, $rootScope) {
+                        onEnter:['$state','$stateParams','CampaignService', 'UserService', '$rootScope', '$window',
+                            function($state, $stateParams, CampaignService, UserService, $rootScope, $window) {
                                 var campaignId = $stateParams.id;
                                 var token = $stateParams.token;
                                 CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
                                     $rootScope.$emit('notification:success', 'campaign.lead');
                                     $state.go('campaign', {id: campaignId});
                                 }, function(err) {
-                                    $rootScope.$emit('notification:error', err);
-                                    $state.go('home');
+
+                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data['userId'] || err.data.data['email'])) {
+                                        UserService.logout();
+                                        $window.location.reload();
+                                    } else {
+                                        $rootScope.$emit('notification:error', err);
+                                        $state.go('home');
+                                    }
                                 });
                             }]
 
