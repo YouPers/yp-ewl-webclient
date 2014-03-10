@@ -12,8 +12,6 @@
                 $scope.inviteCampaignLead = function(emails,campaign) {
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
                         $scope.invitationSent = true;
-                    }, function(err) {
-                        $rootScope.$emit('notification:error', err);
                     });
                 };
 
@@ -105,7 +103,7 @@
                         // web client needs to forward the campaign id, this new activity belongs to
                         // if not, the backend will not execute the save
                         $scope.activity.campaign = $scope.campaign.id;
-                        ActivityService.saveActivity($scope.activity, function(campaignActivity) {
+                        ActivityService.saveActivity($scope.activity).then(function(campaignActivity) {
                             $scope.campaignActivities.push(campaignActivity);
                             initCampaignActivity();
                         });
@@ -121,8 +119,6 @@
                         };
                         $scope.campaignActivities = ActivityService.getActivities(params).then(function(campaignActivities) {
                             $scope.campaignActivities = campaignActivities;
-                        }, function(err) {
-                            $rootScope.$emit('notification:error', err);
                         });
                     } else {
                         $scope.campaignActivities = [];
