@@ -4,8 +4,8 @@
     angular.module('yp.activity')
 
 
-        .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope', 'ErrorService',
-            function ($http, Restangular, $q, UserService, $rootScope, ErrorService) {
+        .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',
+            function ($http, Restangular, $q, UserService, $rootScope) {
                 var activities = Restangular.all('activities');
                 var activityPlans = Restangular.all('activityplans');
 
