@@ -123,16 +123,6 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test')
-                        ];
-                    }
-                }
-            },
-            e2e: {
-                options: {
-                    middleware: function (connect) {
-                        return [
-                            mountFolder(connect, '.tmp'),
                             mountFolder(connect, yeomanConfig.app),
                             mountFolder(connect, 'test')
                         ];
@@ -483,20 +473,13 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.registerTask('test:karma', [
-        'clean:server',
-        'concurrent:test',
-        'autoprefixer',
-        'connect:test',
-        'karma'
-    ]);
-
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
         'template:server',
         'autoprefixer',
-        'connect:e2e',
+        'connect:test',
+        'karma',
         'protractor:run'
     ]);
 
