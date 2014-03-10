@@ -8,6 +8,15 @@
         .controller('CreateOrganizationController', ['$rootScope', '$scope', '$timeout', 'OrganizationService', 'CampaignService',
             function ($rootScope, $scope, $timeout, OrganizationService, CampaignService) {
 
+
+                $scope.inviteOrganizationAdmin = function(emails,organization) {
+                    OrganizationService.inviteOrganizationAdmin(emails, organization.id).then(function() {
+                        $scope.invitationSent = true;
+                    }, function(err) {
+                        $rootScope.$emit('notification:error', err);
+                    });
+                };
+
                 var getOrganizations = function() {
                     OrganizationService.getOrganizations().then(function(organizations) {
                         $scope.organization = organizations[0];
