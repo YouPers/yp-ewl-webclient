@@ -7,30 +7,7 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
-// define the valid URL for each env
-var clientconfig = {
-        mock: {
-            backendUrl: 'http://localhost:8000'
-        },
-        dev: {
-            backendUrl: 'http://localhost:8000'
-        },
-        ci: {
-            backendUrl: 'http://yp-backend-ci.herokuapp.com'
-        },
-        herokutest: {
-            backendUrl: 'http://yp-backend-test.herokuapp.com'
-        },
-        nb: {
-            backendUrl: 'https://nb.youpers.com/api'
-        },
-        uat: {
-            backendUrl: 'https://uat.youpers.com/api'
-        },
-        prod: {
-            backendUrl: 'https://api.youpers.com/api'
-        }
-};
+var environmentConfig = require('./config/config.js').environmentConfig;
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -420,7 +397,7 @@ module.exports = function (grunt) {
                     'data': {
                         mockscripts: "",
                         ngappsuffix: '',
-                        config: clientconfig[process.env.NODE_ENV || 'dev']
+                        config: environmentConfig[process.env.NODE_ENV || 'dev']
                     }
                 },
                 'files': {
