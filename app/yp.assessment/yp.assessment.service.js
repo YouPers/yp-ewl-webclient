@@ -75,10 +75,9 @@
                     },
                     postResults: function (assResult) {
 
+                        $rootScope.$emit('newAssessmentResultsPosted', assResult);
                         var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
-                        return assessmentResultBase.post(assResult).then(function() {
-                            $rootScope.$emit('newAssessmentResultsPosted', assResult);
-                        });
+                        return assessmentResultBase.post(assResult);
                     },
                     getAssessmentResults: function (assessmentId, sortBy) {
                         sortBy = sortBy || 'timestamp:-1';
