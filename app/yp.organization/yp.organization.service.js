@@ -11,7 +11,14 @@
                 var organizations = Rest.all('organizations');
 
                 var OrganizationService = {
-
+                    inviteOrganizationAdmin: function (email, organizationId) {
+                        return organizations.one(organizationId).all('/inviteOrganizationAdminEmail').post({email: email});
+                    },
+                    assignOrganizationAdmin: function (organizationId, token) {
+                        return organizations.one(organizationId).all('/assignOrganizationAdmin').post('', {token: token}).then(function success(result) {
+                            UserService.reload();
+                        });
+                    },
                     postOrganization: function(organization, success, error) {
                         organizations.post(organization).then(function(successResult) {
                             $rootScope.$emit('notification:success', 'organization.save', { values: { organization: successResult.name }});

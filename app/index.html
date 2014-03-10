@@ -88,6 +88,7 @@
     <script src="yp.organization/yp.organization.js"></script>
     <script src="yp.organization/yp.organization.service.js"></script>
     <script src="yp.organization/yp.organization.create.js"></script>
+    <script src="yp.organization/yp.campaign.js"></script>
     <script src="yp.organization/yp.campaign.service.js"></script>
 <!--user-->
     <script src="yp.user/yp.user.js"></script>
@@ -117,7 +118,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-39309635-2', 'youpers.com');
+        ga('create', '<%= config.googleAnalytics.webPropertyId %>', 'auto');
     </script>
 
 </head>
