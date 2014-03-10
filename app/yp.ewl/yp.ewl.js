@@ -6,7 +6,7 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
-            'yp.config', 'yp.commons', 'yp.notification', 'angulartics','angulartics.google.analytics',
+            'yp.config', 'yp.commons', 'yp.notification', 'yp.error', 'angulartics','angulartics.google.analytics',
 
             'yp.user',
 

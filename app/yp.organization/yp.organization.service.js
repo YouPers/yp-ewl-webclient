@@ -5,8 +5,8 @@
     angular.module('yp.organization')
 
 
-        .factory("OrganizationService", ['$q', '$rootScope', 'Restangular','UserService',
-            function ($q, $rootScope, Rest, UserService) {
+        .factory("OrganizationService", ['ErrorService', 'Restangular','UserService',
+            function (ErrorService, Rest, UserService) {
 
                 var organizations = Rest.all('organizations');
 
@@ -22,12 +22,9 @@
                                 return result; // don't forget to return the result
                             },
 
-                            // error: display error notification, don't forget to return the rejected promise.
-                            // we will have a problem of multiple errors if we want to display a more customized error later on
-                            function(reason) {
-                                $rootScope.$emit('notification:error', reason);
-                                return $q.reject(reason); // unfortunately, we have to include a dependency to $q in every service
-                            });
+                            ErrorService.defaultErrorCallback
+
+                        );
                     },
                     getOrganizations: function() {
                         return organizations.getList();
