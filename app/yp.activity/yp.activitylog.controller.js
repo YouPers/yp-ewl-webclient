@@ -107,13 +107,7 @@
 
                 $scope.setStatus = function (actPlanId, actEvent, status) {
                     actEvent.status = status;
-                    ActivityService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
-                            $rootScope.$emit('notification:log', 'activity.updated');
-                            $rootScope.$emit('notification:log', result);
-                        }, function (err) {
-                            $rootScope.$emit('notification:error', err);
-                        }
-                    );
+                    ActivityService.updateActivityEvent(actPlanId, actEvent);
                 };
 
                 $scope.open = function (actEvent, activity, actPlanId) {
@@ -146,13 +140,7 @@
                             actEvent.comments.push(comment);
                         }
 
-                        ActivityService.updateActivityEvent(actPlanId, actEvent).then(function (result) {
-                                $rootScope.$emit('notification:log', 'activity.updated');
-                                $rootScope.$emit('notification:log', result);
-                            }, function (err) {
-                                $rootScope.$emit('notification:error', err);
-                            }
-                        );
+                        ActivityService.updateActivityEvent(actPlanId, actEvent);
 
                     }, function () {
                         // dismissed

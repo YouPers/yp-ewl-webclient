@@ -73,10 +73,12 @@
                             };
                         });
                     },
-                    postResults: function (assResult, callback) {
-                        $rootScope.$emit('newAssessmentResultsPosted', assResult);
+                    postResults: function (assResult) {
+
                         var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
-                        assessmentResultBase.post(assResult).then(callback);
+                        return assessmentResultBase.post(assResult).then(function() {
+                            $rootScope.$emit('newAssessmentResultsPosted', assResult);
+                        });
                     },
                     getAssessmentResults: function (assessmentId, sortBy) {
                         sortBy = sortBy || 'timestamp:-1';

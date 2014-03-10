@@ -62,13 +62,8 @@
 
                 var FeedbackService = {
 
-                    postFeedback: function(feedback, success, error) {
-                        feedbackResource.post(feedback).then(function(successResult) {
-                            if(success) {success(successResult);}
-                        }, function(errorResult) {
-                            $rootScope.$emit('notification:error', errorResult);
-                            if(error) {error(errorResult);}
-                        });
+                    postFeedback: function(feedback) {
+                        return feedbackResource.post(feedback);
                     }
 
                 };

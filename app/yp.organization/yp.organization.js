@@ -53,7 +53,6 @@
                                     $rootScope.$emit('notification:success', 'campaign.lead');
                                     $state.go('campaign', {id: campaignId});
                                 }, function(err) {
-                                    $rootScope.$emit('notification:error', err);
                                     $state.go('home');
                                 });
                             }]
@@ -70,8 +69,6 @@
                 $scope.inviteCampaignLead = function(emails,campaign) {
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
                         $scope.invitationSent = true;
-                    }, function(err) {
-                        $rootScope.$emit('notification:error', err);
                     });
                 };
 
@@ -179,8 +176,6 @@
                         };
                         $scope.campaignActivities = ActivityService.getActivities(params).then(function(campaignActivities) {
                             $scope.campaignActivities = campaignActivities;
-                        }, function(err) {
-                            $rootScope.$emit('notification:error', err);
                         });
                     } else {
                         $scope.campaignActivities = [];

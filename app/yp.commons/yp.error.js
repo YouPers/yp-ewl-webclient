@@ -3,16 +3,20 @@
 
     angular.module('yp.error', [])
 
-        .factory("ErrorService", ['$q', '$rootScope', function($q, $rootScope) {
+        .run(['ErrorService', 'Restangular', function (ErrorService, Restangular) {
 
+            Restangular.setErrorInterceptor(ErrorService.defaultErrorCallback);
+        }])
+
+        .factory("ErrorService", ['$q', '$rootScope', function($q, $rootScope) {
 
             return({
                 defaultErrorCallback: function(reason) {
-                    $rootScope.$emit('notification:log', reason);
+                    $rootScope.$emit('notification:error', reason);
                     return $q.reject(reason);
                 }
             });
 
-        }])
+        }]);
 
 }());

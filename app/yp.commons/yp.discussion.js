@@ -13,12 +13,8 @@ angular.module('yp.discussion', ['restangular']).
             return comments.getList({'filter[refDoc]': objectId, populate: 'author', sort: 'created:-1'});
         };
 
-        commentService.submitNewComment =  function (comment, successCallback) {
-            comments.post(comment).then(function (result) {
-                $rootScope.$emit('notification:success', 'comment.save');
-            }, function(err) {
-                $rootScope.$emit('notification:error', err);
-            }).then(successCallback);
+        commentService.submitNewComment =  function (comment) {
+            return comments.post(comment);
         };
         return commentService;
     }

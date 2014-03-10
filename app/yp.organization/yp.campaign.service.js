@@ -12,23 +12,11 @@
 
                 var CampaignService = {
 
-                    postCampaign: function(campaign, success, error) {
-                        campaigns.post(campaign).then(function(successResult) {
-                            $rootScope.$emit('notification:success', 'campaign.save', { values: { campaign: successResult.title }});
-                            if(success) {success(successResult);}
-                        }, function(errorResult) {
-                            $rootScope.$emit('notification:error', errorResult);
-                            if(error) {error(errorResult);}
-                        });
+                    postCampaign: function(campaign) {
+                        return campaigns.post(campaign);
                     },
-                    putCampaign: function(campaign, success, error) {
-                        return Rest.restangularizeElement(null, campaign, "campaigns").put().then(function(successResult) {
-                            $rootScope.$emit('notification:success', 'campaign.save', { values: { campaign: successResult.title }});
-                            if(success) {success(successResult);}
-                        }, function(errorResult) {
-                            $rootScope.$emit('notification:error', errorResult);
-                            if(error) {error(errorResult);}
-                        });
+                    putCampaign: function(campaign) {
+                        return Rest.restangularizeElement(null, campaign, "campaigns").put();
                     },
                     getCampaign: function(campaignId) {
                         return campaigns.one(campaignId).get({populate: 'organization campaignLeads'});
@@ -46,9 +34,7 @@
                     },
                     getCampaignStats: function (campaignId, type) {
                         var stats = Rest.all('campaigns/' + campaignId + '/stats');
-
-                        return stats.getList({ type: type} );
-
+                        return stats.getList({ type: type });
                     }
 
                 };

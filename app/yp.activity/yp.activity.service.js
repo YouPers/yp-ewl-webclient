@@ -29,24 +29,24 @@
                         if (params) {
                             // we do not use the cached activity list
                             params.limit = 1000;
-                            return activities.getList(params).catch(ErrorService.defaultErrorCallback);
+                            return activities.getList(params);
                         } else {
                             params = {};
                             params.limit = 1000;
                             if (!cachedActivitiesPromise) {
-                                cachedActivitiesPromise = activities.getList(params).catch(ErrorService.defaultErrorCallback);
+                                cachedActivitiesPromise = activities.getList(params);
                             }
                             return cachedActivitiesPromise;
                         }
                     },
                     reloadActivities: function () {
-                        cachedActivitiesPromise = activities.getList({limit: 1000}).catch(ErrorService.defaultErrorCallback);
+                        cachedActivitiesPromise = activities.getList({limit: 1000});
                         cachedRecommendationsPromises = {};
                         return cachedActivitiesPromise;
                     },
                     getActivity: function (activityId) {
                         if (activityId) {
-                            return Restangular.one('activities', activityId).get().catch(ErrorService.defaultErrorCallback);
+                            return Restangular.one('activities', activityId).get();
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve(null);
@@ -55,18 +55,18 @@
                     },
                     saveActivity: function(activity) {
                         if (activity.id) {
-                            activity.put().then(function (result) {
+                            return activity.put().then(function (result) {
                                 return actService.reloadActivities();
-                            }, ErrorService.defaultErrorCallback());
+                            });
                         } else {
-                            activity.post().then(function (result) {
+                            return activity.post().then(function (result) {
                                 return actService.reloadActivities();
-                            }, ErrorService.defaultErrorCallback());
+                            });
                         }
                     },
                     getActivityPlans: function (options) {
                         if (UserService.principal.isAuthenticated()) {
-                            return activityPlans.getList(options).catch(ErrorService.defaultErrorCallback);
+                            return activityPlans.getList(options);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);
@@ -80,7 +80,7 @@
                             'filter[status]': 'active',
                             sort: 'mainEvent.start:-1'
                         };
-                        return Restangular.all('activityplans/joinOffers').getList(params).catch(ErrorService.defaultErrorCallback);
+                        return Restangular.all('activityplans/joinOffers').getList(params);
                     },
                     getPlanForActivity: function (activityId, options) {
                         if (!options) {
@@ -107,12 +107,11 @@
                             params.fokus = focusQuestionId;
                         }
                         if (UserService.principal.isAuthenticated()) {
-                            var cachedRecommendationsPromise = cachedRecommendationsPromises[focusQuestionId || 'default'];
-                            if (!cachedRecommendationsPromise) {
+                            if (!cachedRecommendationsPromises[focusQuestionId || 'default']) {
                                 cachedRecommendationsPromises[focusQuestionId || 'default'] =
-                                    Restangular.all('activities/recommendations').getList(params).catch(ErrorService.defaultErrorCallback);
+                                    Restangular.all('activities/recommendations').getList(params);
                             }
-                            return cachedRecommendationsPromise;
+                            return cachedRecommendationsPromises[focusQuestionId || 'default'];
                         } else {
                             return [];
                         }
@@ -123,19 +122,19 @@
                     },
                     savePlan: function (plan) {
                         if (plan.id) {
-                            return Restangular.restangularizeElement(null, plan, "activityplans").put().catch(ErrorService.defaultErrorCallback);
+                            return Restangular.restangularizeElement(null, plan, "activityplans").put();
                         } else {
-                            return activityPlans.post(plan).catch(ErrorService.defaultErrorCallback);
+                            return activityPlans.post(plan);
                         }
                     },
                     deletePlan: function (plan) {
-                        return activityPlans.one(plan.id).remove().catch(ErrorService.defaultErrorCallback);
+                        return activityPlans.one(plan.id).remove();
                     },
                     updateActivityEvent: function (planId, actEvent) {
-                        return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put().catch(ErrorService.defaultErrorCallback);
+                        return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
                     },
                     inviteEmailToJoinPlan: function (email, plan) {
-                        return activityPlans.one(plan.id).all('/inviteEmail').post({email: email}).catch(ErrorService.defaultErrorCallback);
+                        return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
                     }
                 };
 

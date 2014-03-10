@@ -50,8 +50,8 @@
 
         .constant('accessLevels', _accessLevels)
 
-        .factory("UserService", ['userRoles', '$cookieStore', '$rootScope', 'Restangular', '$location', '$http', 'base64codec',
-            function (userRoles, $cookieStore, $rootScope, Rest, $location, $http, base64codec) {
+        .factory("UserService", ['userRoles', '$cookieStore', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
+            function (userRoles, $cookieStore, $rootScope, Rest, $location, $http, base64codec, $q) {
                 var users = Rest.all('users');
                 var login = Rest.all('login');
                 var validateUser = Rest.all('/users/validate');
@@ -59,7 +59,7 @@
                 var _authorize = function authorize(authenticatedUser) {
                     // check argument and mandatory keys
                     if (!(authenticatedUser && ('username' in authenticatedUser) && (('roles' in authenticatedUser) || ('role' in authenticatedUser)) && ('id' in authenticatedUser))) {
-                        throw new Error('Authorize user: incorrect type: ' + angular.toJson(authenticatedUser));
+                        return $q.reject('Authorize user: incorrect type: ' + angular.toJson(authenticatedUser));
                     }
 
                     if (!authenticatedUser.roles || authenticatedUser.roles.length === 0) {
@@ -79,6 +79,7 @@
 
                     // Broadcast the authorized event
                     $rootScope.$broadcast('event:authority-authorized');
+                    return authenticatedUser;
                 };
 
                 // `deauthorize` resets the `principal` and `identity`
@@ -103,8 +104,7 @@
                                 if (keepMeLoggedIn) {
                                     $cookieStore.put('authdata', cred);
                                 }
-                                _authorize(user);
-                                return user;
+                                return _authorize(user);
 
                             }, function error(err) {
                                 $http.defaults.headers.common.Authorization = '';
@@ -114,7 +114,7 @@
                     },
                     reload: function () {
                         return login.post({}).then(function success(result) {
-                            _authorize(result);
+                            return _authorize(result);
                         });
                     },
                     logout: function () {
@@ -122,8 +122,8 @@
                         $http.defaults.headers.common.Authorization = '';
                         _deauthorize();
                     },
-                    validateUser: function (user, success, error) {
-                        validateUser.post(user).then(success, error);
+                    validateUser: function (user) {
+                        return validateUser.post(user);
                     },
                     submitNewUser: function (newuser) {
                         newuser.roles = ['individual'];
@@ -135,11 +135,7 @@
                             newuser = _.merge(newuser, _currentUser);
                         }
 
-                        return users.post(newuser).then(function (postedUser) {
-                            return postedUser;
-                        }, function (err) {
-                            console.log(err);
-                        });
+                        return users.post(newuser);
                     },
                     putUser: function (user) {
                         return Rest.restangularizeElement(null, user, "users").put().then(function success(updatedUser) {
@@ -201,7 +197,7 @@
                         .then(function success () {
                             UserService.initialized = true;
                         }, function error(err) {
-                            console.log(err);
+                            $rootScope.$emit('notification:error', err);
                             UserService.initialized = true;
                         });
                 } else {
