@@ -153,6 +153,7 @@
             "label": "Text",
             "placeholder": "Die ausführliche Beschreibung der Aktivität"
         },
+        "number": "Aktivitätsnummer",
         "executiontype": "Standard Ausführung",
         "frequency": "Standard Frequenz",
         "visibility": "Standard Sichtbarkeit",
