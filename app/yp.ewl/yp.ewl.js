@@ -63,7 +63,7 @@ angular.module('yp-ewl',
                 urlTemplate: '/{part}/{part}.translations.{lang}.json',
                 wtiProjectId: '8233-eWL',
                 wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
-                fromWti: false
+                fromWti: config.translationSource === 'wti'
             });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl');
             $translateWtiPartialLoaderProvider.addPart('yp.commons');
@@ -72,8 +72,8 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'UserService', '$timeout', '$http', '$translate', 'enums',
-        function ($rootScope, $state, $stateParams, UserService, $timeout, $http, $translate, enums) {
+    .run(['$rootScope', '$state', '$stateParams', 'UserService', '$timeout', '$http', '$translate', 'enums', 'yp.config',
+        function ($rootScope, $state, $stateParams, UserService, $timeout, $http, $translate, enums, config) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -83,6 +83,7 @@ angular.module('yp-ewl',
             $rootScope.principal = UserService.principal;
             $rootScope.currentLocale = $translate.use() || $translate.proposedLanguage();
             $rootScope.enums = enums;
+            $rootScope.config = config;
 
             // set the language to use for backend calls to be equal to the current GUI language
             // translate.use() returns undefined until the partial async loader has found the "proposedLanguage"

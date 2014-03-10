@@ -145,6 +145,7 @@
         "header": "Edit Activity",
         "title": "Title",
         "text": "Text",
+        "number": "Activity-Number",
         "executiontype": "Default Execution",
         "frequency": "Default Frequency",
         "visibility": "Default Visibility",

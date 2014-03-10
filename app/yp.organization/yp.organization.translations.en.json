@@ -6,7 +6,8 @@
                 "lead": "You are now a leader of this campaign"
             },
             "organization": {
-                "save": "Organization {{organization}} saved"
+                "save": "Organization {{organization}} saved",
+                "lead": "You are now an administrator of this organization"
             }
         },
         "error": {
@@ -159,34 +160,6 @@
         "reset": "Reset",
         "edit": "Change",
         "save": "Create"
-    },
-    "feedbackForm": {
-        "anonymous": {
-            "label": "Anonymous Feedback"
-        },
-        "username": {
-            "label": "Username"
-        },
-        "contactInfo": {
-            "label": "Email",
-            "placeholder": "Email",
-            "error": {
-                "email": "Please enter a valid email address, or select to send your feedback anonymously"
-            }
-        },
-        "feedbackCategory": {
-            "label": "Category"
-        },
-        "description": {
-            "label": "Description"
-        },
-        "submit": "Submit"
-    },
-    "feedbackCategory": {
-        "bug": "Bug",
-        "improvement": "Improvement",
-        "question": "Question",
-        "support": "Support"
     }
 
 }
