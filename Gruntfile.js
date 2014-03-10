@@ -100,6 +100,7 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             mountFolder(connect, '.tmp'),
+                            mountFolder(connect, yeomanConfig.app),
                             mountFolder(connect, 'test')
                         ];
                     }
@@ -368,6 +369,15 @@ module.exports = function (grunt) {
                 singleRun: true
             }
         },
+        protractor: {
+            options: {
+                keepAlive: false,
+                configFile: "config/protractor.conf.js"
+            },
+            run: {
+
+            }
+        },
         cdnify: {
             dist: {
                 html: ['<%= yeoman.dist %>/*.html']
@@ -443,10 +453,11 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
-//        'template:mock',
+        'template:server',
         'autoprefixer',
         'connect:test',
-        'karma'
+        'karma',
+        'protractor:run'
     ]);
 
     grunt.registerTask('build', [

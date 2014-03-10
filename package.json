@@ -41,13 +41,16 @@
         "karma": "~0.10.x",
         "karma-ng-html2js-preprocessor": "~0.1.x",
         "grunt-recess": "~0.5.1",
-        "bower": "~1.2.8"
+        "bower": "~1.2.8",
+        "grunt-protractor-runner": "~0.2.3",
+        "protractor": "~0.19.0"
     },
     "engines": {
         "node": "0.10.22"
     },
     "scripts": {
-        "test": "grunt"
+        "test": "grunt",
+        "postinstall": "node ./node_modules/protractor/bin/webdriver-manager update"
     },
     "repository": {
         "type": "git",
