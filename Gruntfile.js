@@ -483,7 +483,7 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.registerTask('test', [
+    grunt.registerTask('test:karma', [
         'clean:server',
         'concurrent:test',
         'autoprefixer',
@@ -491,7 +491,7 @@ module.exports = function (grunt) {
         'karma'
     ]);
 
-    grunt.registerTask('test:protractor', [
+    grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
         'template:server',
