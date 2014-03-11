@@ -15,6 +15,9 @@
                     },
                     validatePaymentCode: function(code) {
                         return paymentResource.post('validate', { code: code });
+                    },
+                    redeemPaymentCode: function(code, campaign) {
+                        return paymentResource.post('redeem', { code: code, campaign: campaign });
                     }
                 };
                 return PaymentCodeService;
