@@ -41,8 +41,6 @@
                 $scope.passwordReset = function () {
                     UserService.passwordReset($scope.$stateParams.token, $scope.passwordResetObj.password).then(function () {
                         $scope.resetSuccessful = true;
-                    }, function (err) {
-                        $rootScope.$emit('notification:error', err);
                     });
                 };
 
@@ -60,8 +58,6 @@
                 $scope.requestPasswordReset = function () {
                     UserService.requestPasswordReset($scope.passwordResetObj.usernameOrEmail).then(function () {
                         $scope.requestSent = true;
-                    }, function (err) {
-                        $rootScope.$emit('notification', 'password.reset');
                     });
                 };
 

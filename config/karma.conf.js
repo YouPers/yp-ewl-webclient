@@ -19,6 +19,7 @@ module.exports = function (config) {
             'app/lib/stacktrace.js',
 
             'app/yp.commons/angular-translate-loader-wti-partial.js',
+            'app/yp.commons/yp.error.js',
             'app/yp.commons/yp.commons.js',
             'app/yp.activity/yp.activity.js',
             'app/yp.activity/yp.activitylog.js',

@@ -93,9 +93,6 @@
                             // no problem, we already have the activity in the session
                             slavePlanReloaded.activity = $scope.currentActivity;
                             $scope.currentActivityPlan = slavePlanReloaded;
-                        },
-                        function (err) {
-                            $rootScope.$emit('notification:error', err);
                         });
                 };
 
@@ -103,14 +100,9 @@
                     $scope.model.inviteEmail = "";
 
                     $scope.$broadcast('formPristine');
-                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(
-                        function success (result) {
+                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
                             $rootScope.$emit('notification:success', 'activityPlan.invite', { values: { email: email } });
-                        },
-                        function error (err) {
-                            $rootScope.$emit('notification:error', err);
-                        }
-                    );
+                        });
                 };
 
                 $scope.getWeekday = function (date) {
@@ -172,14 +164,9 @@
                         // if a campaign activity Plan has been created, send sample invite to the autor
                         if (_.contains($scope.principal.getUser().roles, 'campaignlead') && result.source === 'campaign') {
                             $scope.$broadcast('formPristine');
-                            ActivityService.inviteEmailToJoinPlan($scope.principal.getUser().email, result).then(
-                                function success (result) {
+                            ActivityService.inviteEmailToJoinPlan($scope.principal.getUser().email, result).then(function (result) {
                                     $rootScope.$emit('notification:success', 'activityPlan.sampleInvitationSent', { values: { email: $scope.principal.getUser().email }});
-                                },
-                                function error (err) {
-                                    $rootScope.$emit('notification:error', err);
-                                }
-                            );
+                                });
                         }
 
                         // the result is not populated with the activity, so we populate manually and update the plan
@@ -187,8 +174,6 @@
                         result.activity = $scope.currentActivity;
                         $scope.currentActivityPlan = result;
 
-                    }, function (err) {
-                        $rootScope.$emit('notification:error', err);
                     });
                 };
 
@@ -200,8 +185,6 @@
                         } else {
                             $state.go('activitylist', $rootScope.$stateParams);
                         }
-                    }, function (err) {
-                        $rootScope.$emit('notification:error', err);
                     });
                 };
             }]);

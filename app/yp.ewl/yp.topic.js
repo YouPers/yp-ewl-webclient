@@ -30,19 +30,12 @@ angular.module('yp.topic', ['ui.router', 'restangular', 'yp.user'])
                                     // if it is NOT an authenticated user we cannot save this change at this moment, so we
                                     // just leave it in the client principal and store it when the user eventually register on our site.
                                     if (UserService.principal.isAuthenticated()) {
-
-                                        UserService.putUser(UserService.principal.getUser()).then(function sucess(result){
+                                        UserService.putUser(UserService.principal.getUser()).then(function (result){
                                             return result;
-                                        }, function error (err) {
-                                            console.log(err);
-                                            return err;
                                         });
                                     }
                                 }
                                 return campaign;
-                            }, function error (err) {
-                                console.log(err);
-                                return;
                             });
                         }]
                     }

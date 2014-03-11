@@ -21,8 +21,7 @@
                         assessmentData.result.owner = $scope.principal.getUser().id;
                         delete assessmentData.result.id;
 
-                        AssessmentService.postResults(assessmentData.result, function (result) {
-                            console.log("result posted: " + result);
+                        AssessmentService.postResults(assessmentData.result).then(function (result) {
                             $scope.$state.go('assessmentResult', {assessmentId: $scope.assessment.id});
                         });
 
