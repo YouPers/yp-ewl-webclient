@@ -80,8 +80,15 @@
                             <input id="paymentStatus" name="paymentStatus" type="text" placeholder="{{ 'campaignPaymentForm.paymentStatus.placeholder' | translate }}" class="form-control" ng-model="campaign.paymentStatus" readonly>
                             <span ng-show="campaignPaymentForm.paymentStatus.$dirty && campaignPaymentForm.paymentStatus.$invalid" class="help-inline" translate>campaignPaymentForm.paymentStatus.$invalid</span>
                         </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="paymentStatus" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.paymentCode.label</label>
+                        <div class="col-md-5 col-sm-5">
+                            <input id="paymentCode" name="paymentCode" type="text" placeholder="{{ 'campaignPaymentForm.paymentCode.placeholder' | translate }}" class="form-control" ng-model="campaign.paymentCode" readonly>
+                            <span ng-show="campaignPaymentForm.paymentCode.$dirty && campaignPaymentForm.paymentCode.$invalid" class="help-inline" translate>campaignPaymentForm.paymentCode.$invalid</span>
+                        </div>
                         <div class="col-md-4 col-sm-4">
-                            <button class="btn btn-sm"ng-disabled="true"><span translate>campaignPaymentForm.pay</span></button>
+                            <button class="btn btn-sm"ng-disabled="true" ng-click="redeemCode(campaign.paymentCode)"><span translate>campaignPaymentForm.redeem</span></button>
                         </div>
                     </div>
 

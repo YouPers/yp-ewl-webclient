@@ -123,8 +123,12 @@
         "header": "Zahlungsdetails",
         "paymentStatus": {
             "label": "Zahlungsstatus",
-            "placeholder": "Zahlungsstatus",
-            "$invalid": "Bitte einen gültigen Zahlungscode eingeben"
+            "placeholder": "Zahlungsstatus"
+        },
+        "paymentCode": {
+            "label": "Code",
+            "placeholder": "Code",
+            "$invalid": "Bitte einen gültigen Code eingeben"
         },
         "productType": {
             "label": "Produkttyp",
@@ -133,7 +137,7 @@
         },
 
         "changeProductType": "Produkttyp ändern",
-        "pay": "Bezahlen"
+        "redeem": "Bezahlen"
     },
     "campaignStats": {
         "header": "Statistiken",
