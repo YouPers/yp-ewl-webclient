@@ -18,7 +18,7 @@
                         $rootScope.$emit('notification:success', result);
                     });
 
-                }
+                };
 
                 $scope.inviteCampaignLead = function(emails,campaign) {
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
