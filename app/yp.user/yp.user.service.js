@@ -108,6 +108,8 @@
 
                             }, function error(err) {
                                 $http.defaults.headers.common.Authorization = '';
+
+                                // TODO: find a way to suppress default error message
                                 $rootScope.$emit('notification:error', 'loginFailed', { error: err });
                                 return err;
                             });
@@ -197,7 +199,6 @@
                         .then(function success () {
                             UserService.initialized = true;
                         }, function error(err) {
-                            $rootScope.$emit('notification:error', err);
                             UserService.initialized = true;
                         });
                 } else {
