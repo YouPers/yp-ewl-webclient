@@ -1,8 +1,14 @@
 <div class="col-md-12">
     <h4 translate>admin.header</h4>
-    <h5>{{activity.number}}</h5>
 </div>
 <!--<div class="col-md-1">{{activity.number}}</div>-->
+
+<div class="form-group">
+    <label for="number" class="col-md-3 col-sm-3 col-xs-3 control-label" translate>admin.number</label>
+    <div class="col-md-9 col-sm-9 col-xs-9">
+        <input id="number" type="text" ng-model="activity.number" class="form-control">
+    </div>
+</div>
 
 <div class="form-group">
     <label for="title" class="col-md-3 col-sm-3 col-xs-3 control-label" translate>admin.title.label</label>

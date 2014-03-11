@@ -18,8 +18,6 @@ angular.module('i18n', ['pascalprecht.translate'])
                 profile.language = key;
                 ProfileService.putProfile(profile).then(function success() {
                     console.log('successfully updated user profile');
-                }, function error(err) {
-                    console.log(err);
                 });
             }, function (key) {
             });

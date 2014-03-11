@@ -8,6 +8,13 @@
         .controller('CreateOrganizationController', ['$rootScope', '$scope', '$timeout', 'OrganizationService', 'CampaignService',
             function ($rootScope, $scope, $timeout, OrganizationService, CampaignService) {
 
+
+                $scope.inviteOrganizationAdmin = function(emails,organization) {
+                    OrganizationService.inviteOrganizationAdmin(emails, organization.id).then(function() {
+                        $scope.invitationSent = true;
+                    });
+                };
+
                 var getOrganizations = function() {
                     OrganizationService.getOrganizations().then(function(organizations) {
                         $scope.organization = organizations[0];
@@ -18,7 +25,7 @@
                 $scope.organization = {};
 
                 $scope.createOrganization = function() {
-                    OrganizationService.postOrganization($scope.organizationObj, function(organization) {
+                    OrganizationService.postOrganization($scope.organizationObj).then(function(organization) {
                         $scope.organization = organization;
                     });
                 };
@@ -29,8 +36,6 @@
                     if(_.contains($scope.principal.getUser().roles, 'orgadmin')) {
                         CampaignService.getCampaigns().then(function(campaigns) {
                             $scope.campaigns = campaigns;
-                        }, function(err) {
-                            $rootScope.$emit('notification:error', err);
                         });
                     } else {
                         $scope.campaigns = [];
@@ -87,7 +92,7 @@
                         // start date is earlier than end date, so we try to create the campaign
 
                         $scope.campaignObj.organization = $scope.organization.id;
-                        CampaignService.postCampaign($scope.campaignObj, function(campaign, campaignObj) {
+                        CampaignService.postCampaign($scope.campaignObj).then(function(campaign) {
                             $scope.campaigns.push (campaign);
                             $scope.campaignObj = null;
                             initCampaign();

@@ -6,7 +6,8 @@
                 "lead": "Du leitest jetzt diese Kampagne"
             },
             "organization": {
-                "save": "Organisation {{organization}} gespeichert"
+                "save": "Organisation {{organization}} gespeichert",
+                "lead": "Du bist jetzt ein Administrator dieser Organisation"
             }
         },
         "error": {
@@ -16,6 +17,23 @@
         }
     },
 
+    "organization": {
+        "list": {
+            "name": "Name",
+            "location": "Ort",
+            "sector": "Sektor",
+            "nrOfEmployees": "Mitarbeiter"
+        },
+        "inviteOrganizationAdminForm": {
+            "header": "Organisations-Administrator",
+            "email": {
+                "label": "Email",
+                "paceholder": "Email"
+            },
+            "inviteSubmit": "Hinzufügen",
+            "invitationSent": "Einladung via Email versandt, der neue Organizations-Administrator muss nun bestätigen"
+        }
+    },
     "organizationForm": {
         "header": "Neue Organization",
 
@@ -83,14 +101,6 @@
         "save": "Speichern"
     },
 
-    "organization": {
-        "list": {
-            "name": "Name",
-            "location": "Ort",
-            "sector": "Sektor",
-            "nrOfEmployees": "Mitarbeiter"
-        }
-    },
     "campaign": {
         "list": {
             "header": "Kampagnen",
@@ -164,34 +174,6 @@
         "reset": "Zurücksetzen",
         "edit": "Ändern",
         "save": "Erstellen"
-    },
-    "feedbackForm": {
-        "anonymous": {
-            "label": "Anonymes Feedback"
-        },
-        "username": {
-            "label": "Username"
-        },
-        "contactInfo": {
-            "label": "Email",
-            "placeholder": "Email",
-            "error": {
-                "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
-            }
-        },
-        "feedbackCategory": {
-            "label": "Kategorie"
-        },
-        "description": {
-            "label": "Beschreibung"
-        },
-        "submit": "Abschicken"
-    },
-    "feedbackCategory": {
-        "bug": "Fehler",
-        "improvement": "Verbesserung",
-        "question": "Frage",
-        "support": "Hilfe"
     }
 
 }
