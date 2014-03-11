@@ -28,6 +28,11 @@ var environmentConfig = {
         translationSource: 'wti',
         googleAnalytics: {}
     },
+    cimaster: {
+        backendUrl: 'https://10.111.1.80/api',
+        translationSource: 'local',
+        googleAnalytics: {}
+    },
     herokutest: {
         backendUrl: 'http://yp-backend-test.herokuapp.com',
         translationSource: 'wti',
