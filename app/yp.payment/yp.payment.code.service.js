@@ -10,8 +10,8 @@
 
                 var PaymentCodeService = {
 
-                    generatePaymentCode: function(value) {
-                        return paymentResource.post('generate', { value: value });
+                    generatePaymentCode: function(paymentCode) {
+                        return paymentResource.post('generate', paymentCode);
                     },
                     validatePaymentCode: function(code) {
                         return paymentResource.post('validate', { code: code });

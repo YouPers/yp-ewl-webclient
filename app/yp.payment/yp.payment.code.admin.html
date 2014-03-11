@@ -8,7 +8,7 @@
             <div class="input-group">
 
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="generate(value)">generate</button>
+                    <button class="btn btn-default" type="button" ng-click="generate(paymentCode)">generate</button>
                     <button class="btn btn-default" type="button" ng-click="validate(code)">validate</button>
                 </span>
 
@@ -21,13 +21,31 @@
             </div>
 
             <div class="input-group">
-
                 <span class="input-group-addon">
-                    <span>value</span>
+                    <span>service</span>
                 </span>
-
-                <input ng-model="value" type="text" class="form-control">
+                <input ng-model="paymentCode.service" type="text" class="form-control">
             </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>productType</span>
+                </span>
+                <input ng-model="paymentCode.productType" type="text" class="form-control">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>users</span>
+                </span>
+                <input ng-model="paymentCode.users" type="text" class="form-control">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>campaign</span>
+                </span>
+                <select ng-model="paymentCode.campaign" ng-options="campaign.id as campaign.title for campaign in campaigns" class="form-control">
+            </div>
+
+
         </div>
 
         <div class="col-md-6">
