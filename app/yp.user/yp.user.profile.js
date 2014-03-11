@@ -40,8 +40,6 @@
                     ProfileService.putProfile($scope.profileUserObj).then(function (profile) {
                         $rootScope.$emit('notification:success', 'profile.save');
                         $scope.principal.getUser().profile = profile;
-                    }, function (err) {
-                        $rootScope.$emit('notification:error', err);
                     });
                 };
 

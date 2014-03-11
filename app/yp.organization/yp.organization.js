@@ -58,7 +58,6 @@
                                         UserService.logout();
                                         $window.location.reload();
                                     } else {
-                                        $rootScope.$emit('notification:error', err);
                                         $state.go('home');
                                     }
                                 });
@@ -80,7 +79,6 @@
                                         UserService.logout();
                                         $window.location.reload();
                                     } else {
-                                        $rootScope.$emit('notification:error', err);
                                         $state.go('home');
                                     }
                                 });

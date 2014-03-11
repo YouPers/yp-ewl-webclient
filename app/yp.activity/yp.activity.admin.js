@@ -39,15 +39,10 @@
 
                 $scope.save = function () {
 
-                    var saveSuccess = function(result) {
+                    ActivityService.saveActivity(activity).then(function(result) {
                         $rootScope.$emit('notification:success', 'activity.save');
                         $scope.$state.go('activitylist', $rootScope.$stateParams);
-                    };
-                    var saveError = function(err) {
-                        $rootScope.$emit('notification:error', err);
-                    };
-
-                    ActivityService.saveActivity(activity, saveSuccess, saveError);
+                    });
                 };
 
                 $scope.cancel = function () {

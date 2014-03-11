@@ -5,8 +5,8 @@
     angular.module('yp.organization')
 
 
-        .factory("OrganizationService", ['$rootScope', 'Restangular','UserService',
-            function ($rootScope, Rest, UserService) {
+        .factory("OrganizationService", ['ErrorService', 'Restangular','UserService',
+            function (ErrorService, Rest, UserService) {
 
                 var organizations = Rest.all('organizations');
 
@@ -19,24 +19,18 @@
                             UserService.reload();
                         });
                     },
-                    postOrganization: function(organization, success, error) {
-                        organizations.post(organization).then(function(successResult) {
-                            $rootScope.$emit('notification:success', 'organization.save', { values: { organization: successResult.name }});
-                            UserService.reload();
-                            if(success) {success(successResult);}
-                        }, function(errorResult) {
-                            $rootScope.$emit('notification:error', errorResult);
-                            if(error) {error(errorResult);}
-                        });
+                    postOrganization: function(organization) {
+
+                        return organizations.post(organization).then(function(result) {
+                                UserService.reload();
+                                return result; // don't forget to return the result
+                            }
+                        );
                     },
                     getOrganizations: function() {
                         return organizations.getList();
                     }
-
                 };
-
                 return OrganizationService;
-
             }]);
-
 }());
