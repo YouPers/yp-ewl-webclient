@@ -8,7 +8,7 @@ angular.module('yp-ewl',
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
             'yp.config', 'yp.commons', 'yp.notification', 'angulartics','angulartics.google.analytics',
 
-            'yp.user',
+            'yp.user', 'yp.payment',
 
             'yp.topic',
             'yp.assessment',

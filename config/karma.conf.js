@@ -26,6 +26,7 @@ module.exports = function (config) {
             'app/yp.cockpit/yp.cockpit.js',
             'app/yp.organization/yp.organization.js',
             'app/yp.user/yp.user.js',
+            'app/yp.payment/yp.payment.js',
 
             'app/yp*/*.js',
             'app/yp*/**/*.js',
