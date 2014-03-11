@@ -23,13 +23,8 @@ var environmentConfig = {
             showUserFeedbackLink: true
         }
     },
-    ci: {
-        backendUrl: 'http://yp-backend-ci.herokuapp.com',
-        translationSource: 'wti',
-        googleAnalytics: {}
-    },
     cimaster: {
-        backendUrl: 'https://10.111.1.80/api',
+        backendUrl: 'https://cimaster.youpers.com/api',
         translationSource: 'local',
         googleAnalytics: {}
     },
