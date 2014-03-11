@@ -58,6 +58,7 @@ angular.module('yp-ewl',
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
 
             $translateProvider.preferredLanguage('de');
+            $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
             $translateProvider.useCookieStorage();
             $translateProvider.useLoader('$translateWtiPartialLoader', {
                 urlTemplate: '/{part}/{part}.translations.{lang}.json',
