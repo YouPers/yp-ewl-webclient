@@ -23,7 +23,7 @@
 
                     PaymentCodeService.generatePaymentCode(paymentCode).then(function(result) {
                         $scope.codes = $scope.codes || [];
-                        if(!_.contains($scope.codes, function(pc) { return pc.code === result.code })) {
+                        if(!_.contains($scope.codes, function(pc) { return pc.code === result.code; })) {
                             $scope.codes.push(result);
                         }
 
