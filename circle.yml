@@ -2,13 +2,14 @@ machine:
   node:
     version: 0.10.22
 deployment:
-  staging:
-    branch: production
-    heroku:
-      appname: yp-ewl
-  devbuild:
+  uat:
+    branch: uat
+    commands:
+    - ssh youpers@uat.youpers.com 'bash -s' < bin/deploy.sh
+
+  cimaster:
     branch: master
-    heroku:
-      appname: yp-ewl-webclient-dev
+    commands:
+    - ssh youpers@cimaster.youpers.com 'bash -s' < bin/deploy.sh
 
 
