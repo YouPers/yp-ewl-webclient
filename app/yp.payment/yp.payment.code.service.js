@@ -6,7 +6,7 @@
         .factory("PaymentCodeService", ['$rootScope', 'Restangular',
             function ($rootScope, Rest) {
 
-                var paymentResource = Rest.one('paymentcode');
+                var paymentResource = Rest.one('paymentcodes');
 
                 var PaymentCodeService = {
 
@@ -18,6 +18,9 @@
                     },
                     redeemPaymentCode: function(code, campaign) {
                         return paymentResource.post('redeem', { code: code, campaign: campaign });
+                    },
+                    getPaymentCodes: function() {
+                        return paymentResource.get();
                     }
                 };
                 return PaymentCodeService;
