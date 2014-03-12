@@ -33,14 +33,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
         watch: {
-            coffee: {
-                files: ['<%= yeoman.app %>/js/{,*/}*.coffee'],
-                tasks: ['coffee:dist']
-            },
-            coffeeTest: {
-                files: ['test/spec/{,*/}*.coffee'],
-                tasks: ['coffee:test']
-            },
             recess: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
                 tasks: ['recess:server', 'autoprefixer']
@@ -154,34 +146,6 @@ module.exports = function (grunt) {
                 'Gruntfile.js',
                 ['<%= yeoman.app %>/**/*.js', '!<%= yeoman.app %>/**/lib/**']
             ]
-        },
-        coffee: {
-            options: {
-                sourceMap: true,
-                sourceRoot: ''
-            },
-            dist: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: '<%= yeoman.app %>/js',
-                        src: '{,*/}*.coffee',
-                        dest: '.tmp/js',
-                        ext: '.js'
-                    }
-                ]
-            },
-            test: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'test/spec',
-                        src: '{,*/}*.coffee',
-                        dest: '.tmp/spec',
-                        ext: '.js'
-                    }
-                ]
-            }
         },
         recess: {
             options: {
@@ -304,8 +268,8 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        // Put files not handled in other tasks here
         copy: {
+            // copies files from app to dist, which are not moved there by other tasks like cssmin, htmlmin, ...
             dist: {
                 files: [
                     {
@@ -324,38 +288,41 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '.tmp/assets',
-                        dest: '<%= yeoman.dist %>/assets',
-                        src: [
-                            'generated/*'
-                        ]
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/lib/bootstrap/dist/',
+                        src: ['fonts/*'],
+                        dest: '<%= yeoman.dist %>'
                     }
                 ]
             },
+            // copies css files from app/lib to .tmp which are not handled by recess
             styles: {
                 files: [
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>/styles',
                         dest: '.tmp/styles/',
-                        src: '{,*/}*.{css,woff}'
+                        src: '**/*.{css,woff}'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/lib/bootstrap/dist/css/',
+                        dest: '.tmp/lib/bootstrap/dist/css/',
+                        src: 'bootstrap.css'
                     }
                 ]
             }
         },
         concurrent: {
             server: [
-                'coffee:dist',
                 'recess:server',
                 'copy:styles'
             ],
             test: [
-                'coffee',
                 'recess',
                 'copy:styles'
             ],
             dist: [
-                'coffee',
                 'recess:dist',
                 'copy:styles',
                 'imagemin',
