@@ -6,12 +6,8 @@
 
 
         .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'CampaignService',
-            function ($rootScope, $scope, PaymentCodeService, CampaignService) {
+            function ($rootScope, $scope, PaymentCodeService) {
 
-                CampaignService.getCampaigns().then(function(campaigns) {
-                    $scope.campaigns = campaigns;
-                    $scope.paymentCode.campaign = campaigns[0].id || undefined;
-                })
 
                 $scope.validate = function(code) {
                     PaymentCodeService.validatePaymentCode(code).then(function(result) {
@@ -34,6 +30,9 @@
                     });
                 };
 
-                $scope.paymentCode = {};
+                $scope.paymentCode = {
+                    productType: $rootScope.enums.productType[0],
+                    relatedService: $rootScope.enums.relatedService[0]
+                };
             }]);
 }());

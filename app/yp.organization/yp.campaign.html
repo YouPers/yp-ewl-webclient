@@ -81,7 +81,8 @@
                             <span ng-show="campaignPaymentForm.paymentStatus.$dirty && campaignPaymentForm.paymentStatus.$invalid" class="help-inline" translate>campaignPaymentForm.paymentStatus.$invalid</span>
                         </div>
                     </div>
-                    <div class="row form-group" ng-show="campaign.paymentStatus == 'open'">
+
+                    <div class="row form-group" ng-show="campaign.paymentStatus === 'open'">
                         <label for="paymentStatus" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.paymentCode.label</label>
                         <div class="col-md-5 col-sm-5">
                             <input id="paymentCode" name="paymentCode" type="text" placeholder="{{ 'campaignPaymentForm.paymentCode.placeholder' | translate }}" class="form-control" ng-model="campaign.paymentCode">
@@ -92,14 +93,11 @@
                         </div>
                     </div>
 
-                    <div class="row form-group">
+                    <div class="row form-group" ng-show="campaign.paymentStatus !== 'open'">
                         <label for="productType" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.productType.label</label>
                         <div class="col-md-5 col-sm-5">
                             <input id="productType" name="productType" type="text" placeholder="{{ 'campaignPaymentForm.productType.placeholder' | translate }}" class="form-control" ng-model="campaign.productType" readonly>
                             <span ng-show="campaignPaymentForm.productType.$dirty && campaignPaymentForm.productType.$invalid" class="help-inline" translate>campaignPaymentForm.productType.$invalid</span>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <button class="btn btn-sm" ng-disabled="true"><span translate>campaignPaymentForm.changeProductType</span></button>
                         </div>
                     </div>
 

@@ -22,9 +22,9 @@
 
             <div class="input-group">
                 <span class="input-group-addon">
-                    <span>service</span>
+                    <span>relatedService</span>
                 </span>
-                <input ng-model="paymentCode.service" type="text" class="form-control">
+                <input ng-model="paymentCode.relatedService" type="text" class="form-control">
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
@@ -38,12 +38,6 @@
                 </span>
                 <input ng-model="paymentCode.users" type="text" class="form-control">
             </div>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <span>campaign</span>
-                </span>
-                <select ng-model="paymentCode.campaign" ng-options="campaign.id as campaign.title for campaign in campaigns" class="form-control">
-            </div>
 
 
         </div>
@@ -54,7 +48,7 @@
             <ul class="list-group">
                 <li ng-repeat="(c,v) in codes" class="list-group-item">
                     <span>{{ c }}</span>
-                    <span class="badge">{{ v }}</span>
+                    <span class="badge">{{ v | json }}</span>
                 </li>
             </ul>
 

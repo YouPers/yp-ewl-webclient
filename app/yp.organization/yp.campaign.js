@@ -15,6 +15,7 @@
 
                     PaymentCodeService.redeemPaymentCode(code, campaign).then(function(result) {
                         $scope.campaign.paymentStatus = 'paid';
+                        $scope.campaign.productType = result.productType;
                         $rootScope.$emit('notification:success', result);
                     });
 
