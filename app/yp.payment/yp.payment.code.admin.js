@@ -39,7 +39,7 @@
 
                 PaymentCodeService.getPaymentCodes().then(function(codes) {
                     $scope.codes = codes;
-                })
+                });
 
             }]);
 }());
