@@ -21,6 +21,8 @@
 
                 };
 
+                $scope.codePattern = /^\s*\w{4}-\w{4}-\w{4}\s*$/;
+
                 $scope.inviteCampaignLead = function(emails,campaign) {
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
                         $scope.invitationSent = true;
