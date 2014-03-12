@@ -5,9 +5,23 @@
     angular.module('yp.organization')
 
 
-        .controller('CampaignController', ['campaign', 'CampaignService', 'ActivityService', 'Restangular', '$scope', '$rootScope',
-            function (campaign, CampaignService, ActivityService, Rest, $scope, $rootScope) {
+        .controller('CampaignController', ['campaign', 'CampaignService', 'ActivityService', 'PaymentCodeService', 'Restangular', '$scope', '$rootScope',
+            function (campaign, CampaignService, ActivityService, PaymentCodeService, Rest, $scope, $rootScope) {
                 $scope.campaign = campaign;
+
+                $scope.redeemCode = function(code) {
+
+                    var campaign = $scope.campaign.id;
+
+                    PaymentCodeService.redeemPaymentCode(code, campaign).then(function(result) {
+                        $scope.campaign.paymentStatus = 'paid';
+                        $scope.campaign.productType = result.productType;
+                        $rootScope.$emit('notification:success', result);
+                    });
+
+                };
+
+                $scope.codePattern = /^\s*\w{4}-\w{4}-\w{4}\s*$/;
 
                 $scope.inviteCampaignLead = function(emails,campaign) {
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {

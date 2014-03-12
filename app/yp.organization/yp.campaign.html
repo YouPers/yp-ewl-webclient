@@ -16,18 +16,24 @@
 
                 <accordion-group heading="{{'campaignForm.header.campaignAttributes' | translate}}" is-open="true">
 
-                    <form name="campaignForm" yp-model="campaign" class="form-horizontal" role="form" ng-submit="updateCampaign()" novalidate>
+                    <form name="campaignForm" yp-model="campaign" class="form-horizontal" role="form"
+                          ng-submit="updateCampaign()" novalidate>
 
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label" translate>campaignForm.title.label</label>
+
                             <div class="col-sm-10">
-                                <input id="title" name="title" type="text" placeholder="{{ 'campaignForm.title.placeholder' | translate }}" class="form-control" ng-model="campaign.title" required>
-                                <span ng-show="campaign.title.$dirty && campaign.title.$invalid" class="help-inline" translate>campaignForm.title.$invalid</span>
+                                <input id="title" name="title" type="text"
+                                       placeholder="{{ 'campaignForm.title.placeholder' | translate }}"
+                                       class="form-control" ng-model="campaign.title" required>
+                                <span ng-show="campaign.title.$dirty && campaign.title.$invalid" class="help-inline"
+                                      translate>campaignForm.title.$invalid</span>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="datePickerStart" class="col-sm-2 control-label" translate>campaignForm.start.label</label>
+
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" id="datePickerStart"
                                        datepicker-popup="dd.MM.yyyy"
@@ -39,7 +45,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="datePickerEnd" class="col-sm-2 control-label"translate>campaignForm.end.label</label>
+                            <label for="datePickerEnd" class="col-sm-2 control-label"
+                                   translate>campaignForm.end.label</label>
+
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" id="datePickerEnd"
                                        datepicker-popup="dd.MM.yyyy"
@@ -51,51 +59,80 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="location" class="col-sm-2 control-label" translate>campaignForm.location.label</label>
+                            <label for="location" class="col-sm-2 control-label"
+                                   translate>campaignForm.location.label</label>
+
                             <div class="col-sm-10">
-                                <input id="location" name="location" type="text" placeholder="{{ 'campaignForm.location.placeholder' | translate }}" class="form-control" ng-model="campaign.location" required>
-                                <span ng-show="campaign.location.$dirty && campaign.location.$invalid" class="help-inline" translate>campaignForm.location.$invalid</span>
+                                <input id="location" name="location" type="text"
+                                       placeholder="{{ 'campaignForm.location.placeholder' | translate }}"
+                                       class="form-control" ng-model="campaign.location" required>
+                                <span ng-show="campaign.location.$dirty && campaign.location.$invalid"
+                                      class="help-inline" translate>campaignForm.location.$invalid</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="slogan" class="col-sm-2 control-label"translate>campaignForm.slogan.label</label>
+                            <label for="slogan" class="col-sm-2 control-label"
+                                   translate>campaignForm.slogan.label</label>
+
                             <div class="col-sm-10">
-                                <input id="slogan" name="slogan" type="text" placeholder="{{ 'campaignForm.slogan.placeholder' | translate }}" class="form-control" ng-model="campaign.slogan" required>
-                                <span ng-show="campaign.slogan.$dirty && campaign.slogan.$invalid" class="help-inline" translate>campaignForm.slogan.$invalid</span>
+                                <input id="slogan" name="slogan" type="text"
+                                       placeholder="{{ 'campaignForm.slogan.placeholder' | translate }}"
+                                       class="form-control" ng-model="campaign.slogan" required>
+                                <span ng-show="campaign.slogan.$dirty && campaign.slogan.$invalid" class="help-inline"
+                                      translate>campaignForm.slogan.$invalid</span>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span translate>campaignForm.edit</span></button>
+                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="campaignForm.$invalid"><span
+                                translate>campaignForm.edit</span></button>
 
                     </form>
 
                 </accordion-group>
 
                 <accordion-group heading="{{'campaignPaymentForm.header' | translate}}" is-open="true">
+                    <form name="campaignPaymentForm">
+                        <div class="row form-group">
+                            <label for="paymentStatus" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.paymentStatus.label</label>
 
-                    <div class="row form-group">
-                        <label for="paymentStatus" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.paymentStatus.label</label>
-                        <div class="col-md-5 col-sm-5">
-                            <input id="paymentStatus" name="paymentStatus" type="text" placeholder="{{ 'campaignPaymentForm.paymentStatus.placeholder' | translate }}" class="form-control" ng-model="campaign.paymentStatus" readonly>
-                            <span ng-show="campaignPaymentForm.paymentStatus.$dirty && campaignPaymentForm.paymentStatus.$invalid" class="help-inline" translate>campaignPaymentForm.paymentStatus.$invalid</span>
+                            <div class="col-md-5 col-sm-5">
+                                <input id="paymentStatus" name="paymentStatus" type="text"
+                                       placeholder="{{ 'campaignPaymentForm.paymentStatus.placeholder' | translate }}"
+                                       class="form-control" ng-model="campaign.paymentStatus" readonly>
+                                <span ng-show="campaignPaymentForm.paymentStatus.$dirty && campaignPaymentForm.paymentStatus.$invalid"
+                                      class="help-inline" translate>campaignPaymentForm.paymentStatus.$invalid</span>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-sm-4">
-                            <button class="btn btn-sm"ng-disabled="true"><span translate>campaignPaymentForm.pay</span></button>
-                        </div>
-                    </div>
 
-                    <div class="row form-group">
-                        <label for="productType" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.productType.label</label>
-                        <div class="col-md-5 col-sm-5">
-                            <input id="productType" name="productType" type="text" placeholder="{{ 'campaignPaymentForm.productType.placeholder' | translate }}" class="form-control" ng-model="campaign.productType" readonly>
-                            <span ng-show="campaignPaymentForm.productType.$dirty && campaignPaymentForm.productType.$invalid" class="help-inline" translate>campaignPaymentForm.productType.$invalid</span>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <button class="btn btn-sm" ng-disabled="true"><span translate>campaignPaymentForm.changeProductType</span></button>
-                        </div>
-                    </div>
+                        <div class="row form-group" ng-show="campaign.paymentStatus === 'open'">
+                            <label for="paymentStatus" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.paymentCode.label</label>
 
+                            <div class="col-md-5 col-sm-5"  ng-class="{'has-error': campaignPaymentForm.paymentCode.$dirty && campaignPaymentForm.paymentCode.$invalid}">
+                                <input id="paymentCode" ng-pattern="codePattern" name="paymentCode" type="text"
+                                       placeholder="{{ 'campaignPaymentForm.paymentCode.placeholder' | translate }}"
+                                       class="form-control" ng-model="campaign.paymentCode">
+                                <span ng-show="campaignPaymentForm.paymentCode.$dirty && campaignPaymentForm.paymentCode.$invalid"
+                                      class="help-inline" translate>campaignPaymentForm.paymentCode.$invalid</span>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <button class="btn btn-sm" ng-disabled="campaignPaymentForm.$invalid" ng-click="redeemCode(campaign.paymentCode)"><span translate>campaignPaymentForm.redeem</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row form-group" ng-show="campaign.paymentStatus !== 'open'">
+                            <label for="productType" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.productType.label</label>
+
+                            <div class="col-md-5 col-sm-5">
+                                <input id="productType" name="productType" type="text"
+                                       placeholder="{{ 'campaignPaymentForm.productType.placeholder' | translate }}"
+                                       class="form-control" ng-model="campaign.productType" readonly>
+                                <span ng-show="campaignPaymentForm.productType.$dirty && campaignPaymentForm.productType.$invalid"
+                                      class="help-inline" translate>campaignPaymentForm.productType.$invalid</span>
+                            </div>
+                        </div>
+                    </form>
                 </accordion-group>
 
                 <accordion-group heading="{{'campaignStats.header' | translate}}" is-open="true">
@@ -140,12 +177,14 @@
                         <div class="form-group"
                              ng-class="{'has-error': model.inviteCampaignLeadForm.email.$dirty && model.inviteCampaignLeadForm.email.$invalid}">
                             <label class="sr-only" translate>campaignDetail.inviteCampaignLeadForm.email.label</label>
-                            <input class="form-control email-field" name="email" type="text" ng-model="model.inviteCampaignLead"
+                            <input class="form-control email-field" name="email" type="text"
+                                   ng-model="model.inviteCampaignLead"
                                    placeholder="{{'campaignDetail.inviteCampaignLeadForm.email.label' | translate}}"
                                    multiple-Emails required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" ng-disabled="model.inviteCampaignLeadForm.$invalid"
+                            <button type="submit" class="btn btn-primary"
+                                    ng-disabled="model.inviteCampaignLeadForm.$invalid"
                                     translate>campaignDetail.inviteCampaignLeadForm.inviteSubmit
                             </button>
                         </div>
@@ -170,7 +209,8 @@
 
                 </accordion-group>
 
-                <accordion-group heading="{{'campaignActivityForm.header.newCampaignActivity' | translate}}" is-open="false">
+                <accordion-group heading="{{'campaignActivityForm.header.newCampaignActivity' | translate}}"
+                                 is-open="false">
                     <div class="row panel panel-primary">
                         <activity-edit></activity-edit>
                     </div>

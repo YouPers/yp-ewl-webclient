@@ -133,7 +133,7 @@
         },
 
         "changeProductType": "Change Product Type",
-        "pay": "Pay"
+        "redeem": "Redeem"
     },
     "campaignStats": {
         "header": "Statistics",

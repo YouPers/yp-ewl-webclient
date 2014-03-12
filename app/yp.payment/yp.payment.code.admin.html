@@ -1,0 +1,57 @@
+<div class="container">
+
+
+    <div class="row" >
+
+        <div class="col-md-6">
+
+            <div class="input-group">
+
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="generate(paymentCode)">generate</button>
+                    <button class="btn btn-default" type="button" ng-click="validate(code)">validate</button>
+                </span>
+
+                <span class="input-group-addon">
+                    <span>code</span>
+                    <span ng-show="valid" class="glyphicon glyphicon-ok"></span>
+                    <span ng-show="!valid" class="glyphicon glyphicon-remove"></span>
+                </span>
+                <input ng-model="code" type="text" class="form-control">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>relatedService</span>
+                </span>
+                <input ng-model="paymentCode.relatedService" type="text" class="form-control">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>productType</span>
+                </span>
+                <input ng-model="paymentCode.productType" type="text" class="form-control">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>users</span>
+                </span>
+                <input ng-model="paymentCode.users" type="text" class="form-control">
+            </div>
+
+
+        </div>
+
+        <div class="col-md-6">
+
+
+            <ul class="list-group">
+                <li ng-repeat="paymentCode in codes" class="list-group-item">
+                    <span>{{ paymentCode.code }}</span>
+                    <span class="badge">{{ paymentCode.campaign }}</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
