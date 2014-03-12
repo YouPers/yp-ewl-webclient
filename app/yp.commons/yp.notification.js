@@ -68,7 +68,10 @@
 
                 // TODO: localize error
 
-                $rootScope.$emit('notification', msg, _.extend(options || {}, { type: 'error', error: error }));
+                options = options || {};
+                options.type = options.type || 'error';
+
+                $rootScope.$emit('notification', msg, _.extend(options, { error: error }));
             });
 
             // distinct event name for success notifications
@@ -199,7 +202,7 @@
                     $log[type].apply( $log, arguments );
 
                     // post to backend
-                    if(_.contains(['warn', 'error'], type)) {
+                    if(_.contains(['error'], type)) {
                         var args = {
                             error: arguments,
                             client: client
