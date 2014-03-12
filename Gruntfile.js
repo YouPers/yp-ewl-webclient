@@ -478,8 +478,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'jshint',
-        'test',
-        'build'
+        'test'
     ]);
 
     grunt.registerTask('heroku:production', ['concurrent:server','template:server',
