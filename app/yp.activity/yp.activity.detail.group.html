@@ -17,8 +17,9 @@
             </div>
             <div class="col-md-4">
 
-                <a href="" ng-click="showJoiners = !showJoiners">{{planToJoin.joiningUsers.length}}
-                    <span translate>detail.group.joinPlan.joiningUsers</span>
+                <a href="" ng-click="showJoiners = !showJoiners">
+                    <span translate translate-values="{ OTHERS: '{{planToJoin.joiningUsers.length}}' }"
+                          translate-interpolation="messageformat">detail.group.joinPlan.joiningUsers</span>
                 </a>
 
                 <div ng-show="showJoiners">

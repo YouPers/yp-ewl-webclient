@@ -30,6 +30,12 @@
     <script src="lib/angular-i18n/angular-locale_de-ch.js"></script>
     <script src="lib/angular-translate/angular-translate.js"></script>
     <script src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="lib/messageformat/messageformat.js"></script>
+    <script src="lib/messageformat/locale/en.js"></script>
+    <script src="lib/messageformat/locale/de.js"></script>
+    <script src="lib/messageformat/locale/fr.js"></script>
+    <script src="lib/messageformat/locale/it.js"></script>
+    <script src="lib/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
     <script src="yp.commons/angular-translate-loader-wti-partial.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="lib/angular-file-upload/angular-file-upload.js"></script>
@@ -50,6 +56,7 @@
     <script src="yp.commons/yp.commons.directive.ypinput.js"></script>
     <script src="yp.commons/yp.discussion.js"></script>
     <script src="yp.commons/yp.notification.js"></script>
+    <script src="yp.commons/yp.error.js"></script>
     <script src="yp.commons/base64.js"></script>
     <script src="yp.commons/yp.directive.avatar.upload.js"></script>
 
@@ -61,6 +68,7 @@
     <script src="yp.assessment/yp.assessment.service.js"></script>
 <!--activity-->
     <script src="yp.activity/yp.activity.js"></script>
+    <script src="yp.activity/yp.activity.service.js"></script>
     <script src="yp.activity/yp.activity.list.js"></script>
     <script src="yp.activity/yp.activity.detail.js"></script>
     <script src="yp.activity/yp.activity.edit.js"></script>
@@ -88,6 +96,7 @@
     <script src="yp.organization/yp.organization.js"></script>
     <script src="yp.organization/yp.organization.service.js"></script>
     <script src="yp.organization/yp.organization.create.js"></script>
+    <script src="yp.organization/yp.campaign.js"></script>
     <script src="yp.organization/yp.campaign.service.js"></script>
 <!--user-->
     <script src="yp.user/yp.user.js"></script>
@@ -117,7 +126,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-39309635-2', 'youpers.com');
+        ga('create', '<%= config.googleAnalytics.webPropertyId %>', 'auto');
     </script>
 
 </head>

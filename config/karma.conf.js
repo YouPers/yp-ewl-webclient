@@ -7,6 +7,9 @@ module.exports = function (config) {
             'app/lib/angular-cookies/angular-cookies.js',
             'app/lib/angular-translate/*min.js',
             'app/lib/angular-translate-storage-cookie/*min.js',
+            'app/lib/messageformat/messageformat.js',
+            'app/lib/messageformat/locale/de.js',
+            'app/lib/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js',
             'app/lib/angular-ui-router/release/angular-ui-router.js',
             'app/lib/angular-bootstrap/ui-bootstrap-*.js',
             'app/lib/angular-file-upload/angular-file-upload.js',
@@ -19,6 +22,7 @@ module.exports = function (config) {
             'app/lib/stacktrace.js',
 
             'app/yp.commons/angular-translate-loader-wti-partial.js',
+            'app/yp.commons/yp.error.js',
             'app/yp.commons/yp.commons.js',
             'app/yp.activity/yp.activity.js',
             'app/yp.activity/yp.activitylog.js',

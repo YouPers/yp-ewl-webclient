@@ -8,7 +8,7 @@
         /**
          * stacktrace.js - print stacktraces from exceptions
          */
-        .factory("stacktraceService", function() {
+        .factory("StacktraceService", function() {
 
             // "printStackTrace" is a global object.
             return({ print: printStackTrace });
@@ -19,15 +19,15 @@
      * decorate exceptionHandler, log uncaught exceptions to backend
      */
         .config(['$provide', function ($provide) {
-            $provide.decorator('$exceptionHandler', ['$delegate', 'stacktraceService', '$injector',
-                function ($delegate, stacktraceService, $injector) {
+            $provide.decorator('$exceptionHandler', ['$delegate', 'StacktraceService', '$injector',
+                function ($delegate, StacktraceService, $injector) {
 
-                    var notificationService = null;
+                    var NotificationService = null;
 
                     return function(exception, cause) {
 
-                        if(!notificationService) {
-                            notificationService = $injector.get('notificationService');
+                        if(!NotificationService) {
+                            NotificationService = $injector.get('NotificationService');
                         }
 
                         // call the original $exceptionHandler.
@@ -36,15 +36,15 @@
                         // log to server
 
                         var error = exception.toString();
-                        var trace = stacktraceService.print({ e: exception });
+                        var trace = StacktraceService.print({ e: exception });
 
-                        notificationService.error({ error: error, trace: trace, cause: cause });
+                        NotificationService.error({ error: error, trace: trace, cause: cause });
                     };
                 }]);
         }])
 
 
-        .run(['$rootScope', 'notificationService', '$timeout', function($rootScope, notificationService, $timeout) {
+        .run(['$rootScope', 'NotificationService', '$timeout', function($rootScope, NotificationService, $timeout) {
 
             // distinct event name for error notifications
             $rootScope.$on('notification:error', function (event, error, options) {
@@ -124,7 +124,7 @@
 
 
                 // log notification
-                notificationService.notification(opts.type)(message, options);
+                NotificationService.notification(opts.type)(message, options);
 
                 if(opts.type === 'log') {
                     return false; // skip user feedback below
@@ -160,7 +160,7 @@
             };
         }])
 
-        .factory("notificationService", [ '$log', '$window', 'Restangular', function( $log, $window, Restangular) {
+        .factory("NotificationService", [ '$log', '$window', 'Restangular', function( $log, $window, Restangular) {
 
             var errorResource = Restangular.all('error');
 

@@ -6,7 +6,7 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
-            'yp.config', 'yp.commons', 'yp.notification', 'angulartics','angulartics.google.analytics',
+            'yp.config', 'yp.commons', 'yp.notification', 'yp.error', 'angulartics','angulartics.google.analytics',
 
             'yp.user',
 
@@ -58,12 +58,13 @@ angular.module('yp-ewl',
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
 
             $translateProvider.preferredLanguage('de');
+            $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
             $translateProvider.useCookieStorage();
             $translateProvider.useLoader('$translateWtiPartialLoader', {
                 urlTemplate: '/{part}/{part}.translations.{lang}.json',
                 wtiProjectId: '8233-eWL',
                 wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
-                fromWti: false
+                fromWti: config.translationSource === 'wti'
             });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl');
             $translateWtiPartialLoaderProvider.addPart('yp.commons');
@@ -72,8 +73,8 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'UserService', '$timeout', '$http', '$translate', 'enums',
-        function ($rootScope, $state, $stateParams, UserService, $timeout, $http, $translate, enums) {
+    .run(['$rootScope', '$state', '$stateParams', 'UserService', '$timeout', '$http', '$translate', 'enums', 'yp.config',
+        function ($rootScope, $state, $stateParams, UserService, $timeout, $http, $translate, enums, config) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -83,6 +84,7 @@ angular.module('yp-ewl',
             $rootScope.principal = UserService.principal;
             $rootScope.currentLocale = $translate.use() || $translate.proposedLanguage();
             $rootScope.enums = enums;
+            $rootScope.config = config;
 
             // set the language to use for backend calls to be equal to the current GUI language
             // translate.use() returns undefined until the partial async loader has found the "proposedLanguage"
@@ -246,7 +248,7 @@ angular.module('yp-ewl',
 
                         // validate and use a "unique" postfix to have different error messages
 
-                        UserService.validateUser(user, function (res) {
+                        UserService.validateUser(user).then(function (res) {
                             ctrl.$setValidity("unique", true);
                         }, function (err) {
                             ctrl.$setValidity("unique", false);
