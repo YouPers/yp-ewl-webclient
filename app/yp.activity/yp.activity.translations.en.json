@@ -98,7 +98,7 @@
                     "end": " to: "
                 },
                 "owner": "organized by: ",
-                "joiningUsers": " others are participating:"
+                "joiningUsers": "{OTHERS, plural, =0{No others} one{One other} other{# others}} from your campaign have joined:"
             }
         },
         "self": {

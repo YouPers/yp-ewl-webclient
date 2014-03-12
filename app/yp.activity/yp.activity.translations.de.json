@@ -98,7 +98,7 @@
                     "end": " bis: "
                 },
                 "owner": "Organisiert von: ",
-                "joiningUsers": " andere aus deinem Betrieb sind dabei:"
+                "joiningUsers": "{OTHERS, plural, =0{Keine anderen} one{Ein anderer} other{# andere}} aus deinem Betrieb sind dabei:"
             }
         },
         "self": {
