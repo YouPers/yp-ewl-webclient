@@ -108,7 +108,7 @@
                         <div class="row form-group" ng-show="campaign.paymentStatus === 'open'">
                             <label for="paymentStatus" class="col-md-3 col-sm-3 control-label" translate>campaignPaymentForm.paymentCode.label</label>
 
-                            <div class="col-md-5 col-sm-5">
+                            <div class="col-md-5 col-sm-5"  ng-class="{'has-error': campaignPaymentForm.paymentCode.$dirty && campaignPaymentForm.paymentCode.$invalid}">
                                 <input id="paymentCode" ng-pattern="codePattern" name="paymentCode" type="text"
                                        placeholder="{{ 'campaignPaymentForm.paymentCode.placeholder' | translate }}"
                                        class="form-control" ng-model="campaign.paymentCode">
@@ -116,7 +116,7 @@
                                       class="help-inline" translate>campaignPaymentForm.paymentCode.$invalid</span>
                             </div>
                             <div class="col-md-4 col-sm-4">
-                                <button class="btn btn-sm" ng-click="redeemCode(campaign.paymentCode)"><span translate>campaignPaymentForm.redeem</span>
+                                <button class="btn btn-sm" ng-disabled="campaignPaymentForm.$invalid" ng-click="redeemCode(campaign.paymentCode)"><span translate>campaignPaymentForm.redeem</span>
                                 </button>
                             </div>
                         </div>
