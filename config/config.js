@@ -24,7 +24,7 @@ var environmentConfig = {
         }
     },
     cimaster: {
-        backendUrl: 'https://cimaster.youpers.com/api',
+        backendUrl: 'http://cimaster.youpers.com:8000',
         translationSource: 'local',
         googleAnalytics: {}
     },
