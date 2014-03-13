@@ -20,6 +20,8 @@ module.exports = function (config) {
             'app/lib/angulartics/src/angulartics.js',
             'app/lib/angulartics/src/angulartics-ga.js',
             'app/lib/stacktrace.js',
+            'app/lib/angular-touch/angular-touch.js',
+            'app/lib/venturocket-angular-slider/build/angular-slider.js',
 
             'app/yp.commons/angular-translate-loader-wti-partial.js',
             'app/yp.commons/yp.error.js',
