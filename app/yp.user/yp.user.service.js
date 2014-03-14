@@ -85,7 +85,7 @@
                 // `deauthorize` resets the `principal` and `identity`
                 var _deauthorize = function () {
                     _authenticated = false;
-                    _currentUser = {profile: {}};
+                    _currentUser = {profile: {userPreferences: {}}};
 
                     // Broadcast the deauthorized event
                     $rootScope.$broadcast('event:authority-deauthorized');

@@ -30,7 +30,7 @@
                 $scope.filteredActivities = allActivities;
 
                 _.forEach(topStressors, function (stressor) {
-                    stressor.title = assessment.questionLookup[stressor.question].title;
+                    stressor.title = assessment.questionLookup[stressor.question] &&  assessment.questionLookup[stressor.question].title;
                 });
                 $scope.topStressors = topStressors;
 
