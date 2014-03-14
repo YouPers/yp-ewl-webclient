@@ -25,7 +25,7 @@
                 $scope.filteredActivities = allActivities;
 
                 _.forEach(topStressors, function (stressor) {
-                    stressor.title = assessment.questionLookup[stressor.question].title;
+                    stressor.title = assessment.questionLookup[stressor.question] &&  assessment.questionLookup[stressor.question].title;
                 });
                 $scope.topStressors = topStressors;
 
@@ -79,7 +79,9 @@
                     }
                     activity.starred = !activity.starred;
 
-                    ProfileService.putProfile(user.profile);
+                    if ($scope.principal.isAuthenticated()) {
+                        ProfileService.putProfile(user.profile);
+                    }
 
                 };
                 $scope.countStarredActivities = function () {
