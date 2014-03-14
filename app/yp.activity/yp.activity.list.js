@@ -8,23 +8,21 @@
                     'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
             function ($scope, $filter, allActivities, activityPlans,
                       recommendations, topStressors, assessment, ActivityService, ProfileService) {
+                var user = $scope.principal.getUser();
 
-                // mock campaigns, that this user has an active goal for, should be loaded from server later...
+                $scope.buttonsShown ={};
+
                 var campaigns = [];
 
-                if ($scope.principal &&
-                    $scope.principal.getUser() &&
-                    $scope.principal.getUser().campaign) {
-                    campaigns = [$scope.principal.getUser().campaign.id];
+                if (user.campaign) {
+                    campaigns = [user.campaign.id];
                 }
 
                 $scope.hasRecommendations = (recommendations.length > 0);
 
-                var starredActs = $scope.principal &&
-                    $scope.principal.getUser() &&
-                    $scope.principal.getUser().profile.userPreferences.starredActivities || [];
-
-                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, starredActs);
+                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns,
+                    user.profile.userPreferences.starredActivities,
+                    user.profile.userPreferences.rejectedActivities);
 
                 $scope.activities = allActivities;
                 $scope.filteredActivities = allActivities;
@@ -56,10 +54,24 @@
                     $scope.$state.go('activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
                 };
 
+                $scope.reject = function(activity, event) {
+                    event.stopPropagation();
+                    activity.rejected = true;
+
+                    // add it to the collection of rejected Activities in the profile
+                    user.profile.userPreferences.rejectedActivities.push({activity: activity.id, timestamp: new Date()});
+                    // remove it from the starred list
+                    _.remove(user.profile.userPreferences.starredActivities, function (starred) {
+                        return starred.activity === activity.id;
+                    });
+                    // update the filtered list, so it does not show up anymore in the display
+                    $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
+                    // save the profile
+                    ProfileService.putProfile(user.profile);
+                };
 
                 $scope.toggleStar = function (activity, event) {
                     event.stopPropagation();
-                    var user = $scope.principal.getUser();
 
                     if (activity.starred) {
                         _.remove(user.profile.userPreferences.starredActivities, function (starred) {
@@ -121,6 +133,9 @@
 
                 $scope.setListTab = setListTab;
 
+                $scope.getMaxNrOfelements = function() {
+                    return ($scope.query.subset === 'recommendations' ? 5 : $scope.pageSize = 20);
+                };
 
                 $scope.pageSize = 20;
                 $scope.maxSize = 8;
@@ -162,9 +177,9 @@
                         }
                     };
 
-                // if we do not get a query, we return the full set of answers
+                // if we do not get a query, we create an empty one
                 if (!query) {
-                    return activities;
+                    query = {};
                 }
 
                 angular.forEach(query.cluster, function (value, key) {
@@ -215,9 +230,10 @@
                             (allTimes || !activity.defaultduration || query.time[durationMapping(activity.defaultduration)]
                                 ) &&
                             (subSetAll || (query.subset === 'campaign' && activity.isCampaign) ||
-                                (query.subset === 'recommendations' && activity.isRecommended) ||
+                                (query.subset === 'recommendations' && activity.isRecommended && out.length < 5) ||
                                 (query.subset === 'starred' && activity.starred)) &&
-                            (!query.fulltext || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
+                            (!query.fulltext || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
+                            (!activity.rejected)
                             ) {
                             out.push(activity);
                         }

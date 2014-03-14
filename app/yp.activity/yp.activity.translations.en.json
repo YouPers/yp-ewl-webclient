@@ -45,7 +45,9 @@
         "planned": "planned",
         "ifYouFillAssessment": "By filling out the assessment we will provide you with personal recommendations...",
         "toAssessment": "Assessment",
-        "showAllActivities": "show all activities"
+        "showAllActivities": "show all activities",
+        "planIt": "plan it",
+        "notForMe": "not for me!"
     },
     "detail": {
         "header": "Plan this activity: ",
