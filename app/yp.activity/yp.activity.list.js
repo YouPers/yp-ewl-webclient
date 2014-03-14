@@ -5,26 +5,21 @@
     angular.module('yp.activity')
 
         .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans',
-                    'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
-            function ($scope, $filter, allActivities, activityPlans,
-                      recommendations, topStressors, assessment, ActivityService, ProfileService) {
+            'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
+            function ($scope, $filter, allActivities, activityPlans, recommendations, topStressors, assessment, ActivityService, ProfileService) {
+                var user = $scope.principal.getUser();
 
-                // mock campaigns, that this user has an active goal for, should be loaded from server later...
+                $scope.buttonsShown = {};
+
                 var campaigns = [];
 
-                if ($scope.principal &&
-                    $scope.principal.getUser() &&
-                    $scope.principal.getUser().campaign) {
-                    campaigns = [$scope.principal.getUser().campaign.id];
+                if (user.campaign) {
+                    campaigns = [user.campaign.id];
                 }
 
                 $scope.hasRecommendations = (recommendations.length > 0);
 
-                var starredActs = $scope.principal &&
-                    $scope.principal.getUser() &&
-                    $scope.principal.getUser().profile.userPreferences.starredActivities || [];
-
-                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, starredActs);
+                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, user.profile.userPreferences);
 
                 $scope.activities = allActivities;
                 $scope.filteredActivities = allActivities;
@@ -45,7 +40,7 @@
                         });
                     }
                     ActivityService.getRecommendations(focusQuestion).then(function (newRecs) {
-                        allActivities.enrichWithUserData(activityPlans, newRecs, campaigns, starredActs);
+                        allActivities.enrichWithUserData(activityPlans, newRecs, campaigns, user.profile.userPreferences);
                         $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
                     });
 
@@ -56,32 +51,40 @@
                     $scope.$state.go('activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
                 };
 
+                $scope.reject = function (activity, event) {
+                    event.stopPropagation();
+                    activity.rejected = true;
+
+                    // add it to the collection of rejected Activities in the profile
+                    user.profile.userPreferences.rejectedActivities.push({activity: activity.id, timestamp: new Date()});
+                    // remove it from the starred list
+                    _.remove(user.profile.userPreferences.starredActivities, function (starred) {
+                        return starred.activity === activity.id;
+                    });
+                    // update the filtered list, so it does not show up anymore in the display
+                    $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
+                    // save the profile
+                    ProfileService.putProfile(user.profile);
+                };
 
                 $scope.toggleStar = function (activity, event) {
                     event.stopPropagation();
-                    activity.starred = !activity.starred;
-                    var user = $scope.principal.getUser();
-                    if (!user.preferences) {
-                        user.preferences = {};
-                    }
-                    if (!user.profile.userPreferences.starredActivities) {
-                        user.profile.userPreferences.starredActivities = [];
-                    }
 
-                    if (_.contains(user.profile.userPreferences.starredActivities, activity.id)) {
-                        _.remove(user.profile.userPreferences.starredActivities, function (id) {
-                            return id === activity.id;
+                    if (activity.starred) {
+                        _.remove(user.profile.userPreferences.starredActivities, function (starred) {
+                            return starred.activity === activity.id;
                         });
                     } else {
-                        user.profile.userPreferences.starredActivities.push(activity.id);
+                        user.profile.userPreferences.starredActivities.push({activity: activity.id, timestamp: new Date()});
                     }
+                    activity.starred = !activity.starred;
+
                     if ($scope.principal.isAuthenticated()) {
                         ProfileService.putProfile(user.profile);
                     }
 
                 };
                 $scope.countStarredActivities = function () {
-                    //TODO: consider initialization at an earlier point to prevent checks like this
                     if (_.isUndefined($scope.principal.getUser())) {
                         return '';
                     }
@@ -118,17 +121,14 @@
                     }
                 };
 
-                function setListTab(tabId) {
-                    $scope.$state.go('activitylist', {tab: tabId});
-                }
-
                 // initialize correct Tab from state Params
                 if ($scope.$stateParams.tab) {
                     $scope.query.subset = $scope.$stateParams.tab;
                 }
 
-                $scope.setListTab = setListTab;
-
+                $scope.setListTab = function setListTab(tabId) {
+                    $scope.$state.go('activitylist', {tab: tabId});
+                };
 
                 $scope.pageSize = 20;
                 $scope.maxSize = 8;
@@ -170,7 +170,7 @@
                         }
                     };
 
-                // if we do not get a query, we return the full set of answers
+                // if we do not get a query, return the full list
                 if (!query) {
                     return activities;
                 }
@@ -223,9 +223,10 @@
                             (allTimes || !activity.defaultduration || query.time[durationMapping(activity.defaultduration)]
                                 ) &&
                             (subSetAll || (query.subset === 'campaign' && activity.isCampaign) ||
-                                (query.subset === 'recommendations' && activity.isRecommended) ||
+                                (query.subset === 'recommendations' && activity.isRecommended && out.length < 5) ||
                                 (query.subset === 'starred' && activity.starred)) &&
-                            (!query.fulltext || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1)
+                            (!query.fulltext || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
+                            (!activity.rejected)
                             ) {
                             out.push(activity);
                         }
@@ -243,7 +244,6 @@
                 return input.slice(start);
             };
         }]);
-
 
 
 }());

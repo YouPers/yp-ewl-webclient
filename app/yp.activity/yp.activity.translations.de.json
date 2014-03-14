@@ -45,7 +45,9 @@
         "planned": "geplant",
         "ifYouFillAssessment": "Wenn du das Assessment ausfüllst, empfiehlt dir YouPers individuell die für dich passendsten Aktivitäten",
         "toAssessment": "zum Assessment",
-        "showAllActivities": "alle Aktivitäten zeigen"
+        "showAllActivities": "alle Aktivitäten zeigen",
+        "planIt": "einplanen",
+        "notForMe": "Nichts für mich!"
     },
     "detail": {
         "header": "Plane diese Aktivität: ",

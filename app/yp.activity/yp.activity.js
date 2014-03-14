@@ -121,7 +121,7 @@
         // Object methods for all Assessment related objects
         .run(['Restangular', function (Restangular) {
             Restangular.extendCollection('activities', function (activities) {
-                    activities.enrichWithUserData = function (plans, recommendations, campaigns, starredActivities) {
+                    activities.enrichWithUserData = function (plans, recommendations, campaigns, userPreferences) {
                         _.forEach(activities, function (act) {
 
                             var matchingPlan = _.find(plans, function (plan) {
@@ -130,9 +130,18 @@
 
                             act.plan = matchingPlan;
                             act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                            if (_.contains(starredActivities, act.id)) {
+                            if (_.any(userPreferences.starredActivities,function(starred) {
+                                return starred.activity === act.id;
+                            })) {
                                 act.starred = true;
                             }
+
+                            if (_.any(userPreferences.rejectedActivities,function(rejected) {
+                                return rejected.activity === act.id;
+                            })) {
+                                act.rejected = true;
+                            }
+
                             var rec = _.find(recommendations, {'activity': act.id});
                             if (rec) {
                                 act.isRecommended = true;
