@@ -59,27 +59,21 @@
 
                 $scope.toggleStar = function (activity, event) {
                     event.stopPropagation();
-                    activity.starred = !activity.starred;
                     var user = $scope.principal.getUser();
-                    if (!user.preferences) {
-                        user.preferences = {};
-                    }
-                    if (!user.profile.userPreferences.starredActivities) {
-                        user.profile.userPreferences.starredActivities = [];
-                    }
 
-                    if (_.contains(user.profile.userPreferences.starredActivities, activity.id)) {
-                        _.remove(user.profile.userPreferences.starredActivities, function (id) {
-                            return id === activity.id;
+                    if (activity.starred) {
+                        _.remove(user.profile.userPreferences.starredActivities, function (starred) {
+                            return starred.activity === activity.id;
                         });
                     } else {
-                        user.profile.userPreferences.starredActivities.push(activity.id);
+                        user.profile.userPreferences.starredActivities.push({activity: activity.id, timestamp: new Date()});
                     }
+                    activity.starred = !activity.starred;
+
                     ProfileService.putProfile(user.profile);
 
                 };
                 $scope.countStarredActivities = function () {
-                    //TODO: consider initialization at an earlier point to prevent checks like this
                     if (_.isUndefined($scope.principal.getUser())) {
                         return '';
                     }

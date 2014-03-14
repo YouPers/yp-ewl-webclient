@@ -130,7 +130,9 @@
 
                             act.plan = matchingPlan;
                             act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                            if (_.contains(starredActivities, act.id)) {
+                            if (_.any(starredActivities,function(starred) {
+                                return starred.activity === act.id;
+                            })) {
                                 act.starred = true;
                             }
                             var rec = _.find(recommendations, {'activity': act.id});
