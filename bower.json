@@ -1,40 +1,38 @@
 {
-    "name": "YouPers Webclient",
-    "version": "0.0.1",
-    "dependencies": {
-        "angular": "~1.2.13",
-        "angular-animate": "~1.2.13",
-        "angular-bootstrap": "~0.10.0",
-        "angular-cookies": "~1.2.13",
-        "angular-i18n": "~1.2.13",
-        "angular-resource": "~1.2.13",
-        "angular-sanitize": "~1.2.13",
-        "angular-translate": "~2.0.x",
-        "angular-translate-storage-cookie": "~2.0.x",
-        "angular-translate-loader-partial": "~2.0.x",
-        "angular-translate-interpolation-messageformat": "~2.0.x",
-        "angular-ui-router": "0.2.8-bowratic-tedium",
-        "angular-file-upload": "~0.3.1",
-        "bootstrap": "~3.1.0",
-        "d3": "~3.4.1",
-        "jquery": "~2.1.0",
-        "less": "~1.6.2",
-        "less-elements": "",
-        "lodash": "~2.4.1",
-        "markdown": "~0.5.0",
-        "messageformat": "~0.1.8",
-        "momentjs": "~2.5.1",
-        "restangular": "~1.3.x"
-
-    },
-    "devDependencies": {
-        "angular-mocks": "~1.2.7",
-        "angular-scenario": "~1.2.7"
-    },
-    "resolutions": {
-        "angular": "~1.2.10",
-        "angular-cookies": "~1.2.10",
-        "angular-translate": "~2.0.0"
-    }
+  "name": "YouPers Webclient",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.2.13",
+    "angular-animate": "~1.2.13",
+    "angular-bootstrap": "~0.10.0",
+    "angular-cookies": "~1.2.13",
+    "angular-i18n": "~1.2.13",
+    "angular-resource": "~1.2.13",
+    "angular-sanitize": "~1.2.13",
+    "angular-translate": "~2.0.x",
+    "angular-translate-storage-cookie": "~2.0.x",
+    "angular-translate-loader-partial": "~2.0.x",
+    "angular-translate-interpolation-messageformat": "~2.0.x",
+    "angular-ui-router": "0.2.8-bowratic-tedium",
+    "angular-file-upload": "~0.3.1",
+    "bootstrap": "~3.1.0",
+    "d3": "~3.4.1",
+    "jquery": "~2.1.0",
+    "less": "~1.6.2",
+    "less-elements": "",
+    "lodash": "~2.4.1",
+    "markdown": "~0.5.0",
+    "messageformat": "~0.1.8",
+    "momentjs": "~2.5.1",
+    "restangular": "~1.3.x",
+    "venturocket-angular-slider": "~0.2.x"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.7",
+    "angular-scenario": "~1.2.7"
+  },
+  "resolutions": {
+    "angular": "~1.2.10",
+    "angular-translate": "~2.0.0"
+  }
 }
-

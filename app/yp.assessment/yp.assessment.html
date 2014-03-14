@@ -32,12 +32,18 @@
                                     <div class="col-md-3 ass-min-text" popover="{{ question.mintextexample }}"
                                          popover-trigger="mouseenter" popover-placement="right">{{ question.mintext }} <span class="glyphicon glyphicon-info-sign"></span></div>
                                     <div class="col-md-6">
-                                        <input ng-class="[question.type, assAnswersByQuestionId[question.id].dirty ? 'answered' : '']"
-                                               type="range" min="-100"
-                                               max="{{ (question.type == 'oneSided') ? 0 : 100 }}"
-                                               ng-model="assAnswersByQuestionId[question.id].answer"
-                                               ng-mousedown="setQuestionAnswered(question.id)"/>
+
+                                        <slider ng-class="[question.type]"
+                                                ng-model="assAnswersByQuestionId[question.id].answer"
+                                                ng-mousedown="setQuestionAnswered(question.id)"
+                                                floor="-100"
+                                                ceiling="{{ (question.type == 'oneSided') ? 0 : 100 }}"
+                                                step="10"
+                                                precision="1">
+                                        </slider>
+
                                     </div>
+
                                     <div ng-hide="question.maxtext == 'n/a'" class="col-md-3 ass-max-text" popover="{{ question.maxtextexample }}"
                                          popover-trigger="mouseenter">{{ question.maxtext }} <span class="glyphicon glyphicon-info-sign"></span>
                                     </div>
