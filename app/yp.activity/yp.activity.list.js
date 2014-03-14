@@ -168,7 +168,7 @@
                         }
                     };
 
-                // if we do not get a query, we create an empty one
+                // if we do not get a query, return the full list
                 if (!query) {
                     return activities;
                 }
