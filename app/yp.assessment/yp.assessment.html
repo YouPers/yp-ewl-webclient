@@ -33,7 +33,7 @@
                                          popover-trigger="mouseenter" popover-placement="right">{{ question.mintext }} <span class="glyphicon glyphicon-info-sign"></span></div>
                                     <div class="col-md-6">
 
-                                        <slider
+                                        <slider ng-class="[question.type]"
                                                 ng-model="assAnswersByQuestionId[question.id].answer"
                                                 ng-mousedown="setQuestionAnswered(question.id)"
                                                 floor="-100"
