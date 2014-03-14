@@ -37,7 +37,8 @@
             admin: _userRoles.productadmin | _userRoles.systemadmin  // 00011
         };
 
-    var _currentUser = {profile: {userPreferences: {}}};
+    var _emptyDefaultUser = {profile: {userPreferences: {}}};
+    var _currentUser = _.clone(_emptyDefaultUser);
     var _authenticated = false;
 
 
@@ -85,7 +86,7 @@
                 // `deauthorize` resets the `principal` and `identity`
                 var _deauthorize = function () {
                     _authenticated = false;
-                    _currentUser = {profile: {userPreferences: {}}};
+                    _currentUser = _.clone(_emptyDefaultUser);
 
                     // Broadcast the deauthorized event
                     $rootScope.$broadcast('event:authority-deauthorized');

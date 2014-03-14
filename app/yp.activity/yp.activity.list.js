@@ -75,7 +75,9 @@
                     } else {
                         user.profile.userPreferences.starredActivities.push(activity.id);
                     }
-                    ProfileService.putProfile(user.profile);
+                    if ($scope.principal.isAuthenticated()) {
+                        ProfileService.putProfile(user.profile);
+                    }
 
                 };
                 $scope.countStarredActivities = function () {

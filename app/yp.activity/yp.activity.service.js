@@ -20,6 +20,14 @@
                     actService.invalidateRecommendations();
                 });
 
+                $rootScope.$on('event:authority-deauthorized', function() {
+                    actService.reloadActivities();
+                });
+
+                $rootScope.$on('event:authority-authorized', function() {
+                    actService.reloadActivities();
+                });
+
                 var actService = {
                     getActivities: function (params) {
                         // we can no longer assume, that activities are static because campaign leads can create new campaign
