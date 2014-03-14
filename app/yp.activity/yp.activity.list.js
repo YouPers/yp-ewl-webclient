@@ -5,12 +5,11 @@
     angular.module('yp.activity')
 
         .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans',
-                    'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
-            function ($scope, $filter, allActivities, activityPlans,
-                      recommendations, topStressors, assessment, ActivityService, ProfileService) {
+            'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
+            function ($scope, $filter, allActivities, activityPlans, recommendations, topStressors, assessment, ActivityService, ProfileService) {
                 var user = $scope.principal.getUser();
 
-                $scope.buttonsShown ={};
+                $scope.buttonsShown = {};
 
                 var campaigns = [];
 
@@ -52,7 +51,7 @@
                     $scope.$state.go('activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
                 };
 
-                $scope.reject = function(activity, event) {
+                $scope.reject = function (activity, event) {
                     event.stopPropagation();
                     activity.rejected = true;
 
@@ -120,16 +119,14 @@
                     }
                 };
 
-                function setListTab(tabId) {
-                    $scope.$state.go('activitylist', {tab: tabId});
-                }
-
                 // initialize correct Tab from state Params
                 if ($scope.$stateParams.tab) {
                     $scope.query.subset = $scope.$stateParams.tab;
                 }
 
-                $scope.setListTab = setListTab;
+                $scope.setListTab = function setListTab(tabId) {
+                    $scope.$state.go('activitylist', {tab: tabId});
+                };
 
                 $scope.pageSize = 20;
                 $scope.maxSize = 8;
@@ -245,7 +242,6 @@
                 return input.slice(start);
             };
         }]);
-
 
 
 }());
