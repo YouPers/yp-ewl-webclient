@@ -177,7 +177,7 @@
 
                 // if we do not get a query, we create an empty one
                 if (!query) {
-                    query = {};
+                    return activities;
                 }
 
                 angular.forEach(query.cluster, function (value, key) {

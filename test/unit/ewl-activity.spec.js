@@ -172,6 +172,18 @@ describe('ewl activity', function () {
             $scope = $rootScope.$new();
             $scope.$state = $state;
             $scope.$stateParams = $stateParams;
+            $scope.principal = {
+                getUser: function() {
+                    return {
+                        profile: {
+                            userPreferences: {
+
+                            }
+                        }
+                    };
+                }
+            };
+
 
             // create some fake activities add activities-methods:
             var activities = [
