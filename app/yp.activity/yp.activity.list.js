@@ -20,9 +20,7 @@
 
                 $scope.hasRecommendations = (recommendations.length > 0);
 
-                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns,
-                    user.profile.userPreferences.starredActivities,
-                    user.profile.userPreferences.rejectedActivities);
+                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, user.profile.userPreferences);
 
                 $scope.activities = allActivities;
                 $scope.filteredActivities = allActivities;
@@ -43,7 +41,7 @@
                         });
                     }
                     ActivityService.getRecommendations(focusQuestion).then(function (newRecs) {
-                        allActivities.enrichWithUserData(activityPlans, newRecs, campaigns, starredActs);
+                        allActivities.enrichWithUserData(activityPlans, newRecs, campaigns, user.profile.userPreferences);
                         $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
                     });
 
