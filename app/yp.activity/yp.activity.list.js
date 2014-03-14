@@ -131,10 +131,6 @@
 
                 $scope.setListTab = setListTab;
 
-                $scope.getMaxNrOfelements = function() {
-                    return ($scope.query.subset === 'recommendations' ? 5 : $scope.pageSize = 20);
-                };
-
                 $scope.pageSize = 20;
                 $scope.maxSize = 8;
 
