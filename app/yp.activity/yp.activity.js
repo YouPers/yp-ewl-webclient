@@ -152,9 +152,17 @@
                             }
                         });
                     };
+
+                    activities.byId = function(id) {
+                        return _.find(activities, function(act) {
+                            return act.id === id;
+                        });
+                    };
+
                     return activities;
                 }
             );
+
 
             Restangular.extendCollection('activityplans', function (actPlanList) {
                     if (actPlanList) {  // Issue WL-136: Safari does not like assigning function to undefined when using 'use strict'; at top of file.
