@@ -41,7 +41,11 @@
                 });
 
                 $scope.reactivateActivity = function (recAct) {
+                    // remove it from the clone we use to populate the form, so it immediately shows in the UI
                     _.remove($scope.profileUserObj.userPreferences.rejectedActivities, recAct);
+
+                    // remove it from the real profile and immediatly save it, because it is not intuitiv to
+                    // wait for the save button to be clicked in this case
                     _.remove($scope.principal.getUser().profile.userPreferences.rejectedActivities, recAct);
                     ProfileService.putProfile($scope.principal.getUser().profile);
                 };
