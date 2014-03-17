@@ -244,18 +244,18 @@
                     <div class="col-md-6">
                         {{ activity.title }}
                     </div>
-                    <div class="col-md-2" ng-if="!buttonsShown[activity.id]">
+                    <div class="col-md-2" ng-if="!buttonsShown[activity.id] ||  activity.plan.status=='active'">
                         <div popover="{{ 'activityField.'+ fieldId | translate}}" popover-trigger="mouseenter"
                              ng-repeat="fieldId in activity.fields" popover-placement="left" popover-append-to-body="true">
                             <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListClusterIcon">
                         </div>
                     </div>
-                    <div class="col-md-1" ng-if="!buttonsShown[activity.id]" popover="Überprüft und Empfohlen durch YouPers"
+                    <div class="col-md-1" ng-if="!buttonsShown[activity.id] ||  activity.plan.status=='active'" popover="Überprüft und Empfohlen durch YouPers"
                          popover-trigger="mouseenter">
                         <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activity.source == 'youpers'"
                              class="activityListClusterIcon">
                     </div>
-                    <div class="col-md-3" ng-if="buttonsShown[activity.id]">
+                    <div class="col-md-3" ng-if="buttonsShown[activity.id] && activity.plan.status!='active'">
                         <a class="btn btn-sm btn-primary"
                            ng-click="gotoActivityDetail(activity)" translate>list.planIt</a>
                         <a class="btn btn-sm btn-primary"
