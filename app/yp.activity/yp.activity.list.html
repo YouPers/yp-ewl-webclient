@@ -241,8 +241,11 @@
                         <div class="activityListStarred glyphicon" ng-click="toggleStar(activity, $event)"
                              ng-class="(activity.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         {{ activity.title }}
+                    </div>
+                    <div class="col-md-1">
+                        <img ng-src="{{'https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/' + activity.id + '.jpg' }}" width='60' height="40">
                     </div>
                     <div class="col-md-2" ng-if="!buttonsShown[activity.id] ||  activity.plan.status=='active'">
                         <div popover="{{ 'activityField.'+ fieldId | translate}}" popover-trigger="mouseenter"

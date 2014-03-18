@@ -6,7 +6,6 @@
         <div class="col-md-6">
             <div class="modal-footer">
                 <div>
-
                     <div ng-show="currentActivityPlan.editStatus && currentActivityPlan.editStatus !== 'editable'"
                          class="glyphicon glyphicon-info-sign"
                          tooltip="{{ 'activityPlanEditable.' + currentActivityPlan.editStatus | translate}}">
@@ -58,6 +57,7 @@
                     <div class="col-md-12 activityDetailText" ng-bind-html="getRenderedText(currentActivity)">
                     </div>
                 </div>
+                <img ng-src="{{'https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/' + currentActivity.id + '.jpg'}}">
                 <!-- activityProposal Description and overall Rating -->
 
                 <div class="row"> <!-- Kommentare für Activity -->
