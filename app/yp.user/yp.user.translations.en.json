@@ -182,7 +182,10 @@
             "iCalInvites": "Calendar events for Office Calendar"
         },
         "emailNotificationsSettings": "receive email notifications",
-        "calendarNotificationSettings": "calendar alerts"
+        "calendarNotificationSettings": "calendar alerts",
+        "rejectedActivities": {
+            "header": "Rejected Activities"
+        }
 
     }
 
