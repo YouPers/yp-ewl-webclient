@@ -185,7 +185,10 @@
             "iCalInvites": "Kalender-Einträge per Email"
         },
         "emailNotificationsSettings": "E-Mailbenachrichtigungen erhalten?",
-        "calendarNotificationSettings": "Hinweise im Bürokalendar"
+        "calendarNotificationSettings": "Hinweise im Bürokalendar",
+        "rejectedActivities": {
+            "header": "Abgelehnte Aktivitäten"
+        }
     }
 
 
