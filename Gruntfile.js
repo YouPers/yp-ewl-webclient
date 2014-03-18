@@ -18,6 +18,8 @@ var environmentConfig = require('./config/config.js').environmentConfig;
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
+    var httpProxy = require('http-proxy');
+    var proxy = httpProxy.createProxyServer({});
 
     // configurable paths
     var yeomanConfig = {
@@ -80,6 +82,13 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
+                            function(req, res, next) {
+                                if  (req.url.indexOf('/api') !== -1) {
+                                    proxy.web(req, res, {target: 'https://cimaster.youpers.com'});
+                                } else {
+                                    return next();
+                                }
+                            },
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
                             mountFolder(connect, yeomanConfig.app)
@@ -91,6 +100,13 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
+                            function(req, res, next) {
+                                if  (req.url.indexOf('/api') !== -1) {
+                                    proxy.web(req, res, {target: 'https://cimaster.youpers.com'});
+                                } else {
+                                    return next();
+                                }
+                            },
                             mountFolder(connect, '.tmp'),
                             mountFolder(connect, yeomanConfig.app),
                             mountFolder(connect, 'test')
@@ -102,6 +118,13 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
+                            function(req, res, next) {
+                                if  (req.url.indexOf('/api') !== -1) {
+                                    proxy.web(req, res, {target: 'https://cimaster.youpers.com'});
+                                } else {
+                                    return next();
+                                }
+                            },
                             mountFolder(connect, yeomanConfig.dist)
                         ];
                     }
