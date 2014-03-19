@@ -5,11 +5,11 @@ deployment:
   uat:
     branch: uat
     commands:
-    - ssh youpers@uat.youpers.com "~/yp-ewl-webclient/bin/deploy.sh uat"
+    - ssh youpers@uat.youpers.com "~/yp-ewl-webclient/bin/deploy.sh uat uat"
 
   cimaster:
     branch: master
     commands:
-    - ssh youpers@cimaster.youpers.com "~/yp-ewl-webclient/bin/deploy.sh cimaster"
+    - ssh youpers@cimaster.youpers.com "~/yp-ewl-webclient/bin/deploy.sh master cimaster"
 
 

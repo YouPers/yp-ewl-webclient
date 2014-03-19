@@ -43,7 +43,8 @@
         "grunt-recess": "~0.5.1",
         "bower": "~1.2.8",
         "grunt-protractor-runner": "~0.2.3",
-        "protractor": "~0.19.0"
+        "protractor": "~0.19.0",
+        "http-proxy": "*"
     },
     "engines": {
         "node": "0.10.22"
