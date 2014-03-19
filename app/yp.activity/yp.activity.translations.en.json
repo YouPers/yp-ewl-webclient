@@ -145,8 +145,18 @@
     },
     "admin": {
         "header": "Edit Activity",
-        "title": "Title",
-        "text": "Text",
+        "title": {
+            "label": "Title",
+            "placeholder": "Enter short title (2x20 chars max)"
+        },
+        "description": {
+            "label": "Short Description",
+            "placeholder": "Short Description"
+        },
+        "text": {
+            "label":"Text",
+            "placeholder": "Text"
+        },
         "number": "Activity-Number",
         "executiontype": "Default Execution",
         "frequency": "Default Frequency",

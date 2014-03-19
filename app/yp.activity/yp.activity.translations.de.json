@@ -149,7 +149,11 @@
         "header": "Aktivität bearbeiten",
         "title": {
             "label": "Titel",
-            "placeholder": "Hier einen aussagekräftigen Titel erfassen"
+            "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"
+        },
+        "description": {
+            "label": "Kurzbeschreibung",
+            "placeholder": "Kurzbeschreibung"
         },
         "text": {
             "label": "Text",
