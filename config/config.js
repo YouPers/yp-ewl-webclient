@@ -8,12 +8,8 @@
 
 
 var environmentConfig = {
-    mock: {
-        backendUrl: 'http://localhost:8000',
-        translationSource: 'local',
-        googleAnalytics: {}
-    },
     dev: {
+        webclientUrl: 'http://localhost:9000',
         backendUrl: 'http://localhost:8000',
         translationSource: 'local',
         googleAnalytics: {
@@ -24,10 +20,26 @@ var environmentConfig = {
         }
     },
     cimaster: {
+        webclientUrl: 'https://cimaster.youpers.com',
         backendUrl: 'https://cimaster.youpers.com/api',
         translationSource: 'local',
-        googleAnalytics: {}
+        googleAnalytics: {},
+        ui: {
+            showUserFeedbackLink: true
+        }
     },
+    uat: {
+        backendUrl: 'https://uat.youpers.com/api',
+        translationSource: 'wti',
+        googleAnalytics: {
+            webPropertyId: 'UA-39309635-2'
+        },
+        ui: {
+            showUserFeedbackLink: true
+        }
+    },
+
+
     herokutest: {
         backendUrl: 'http://yp-backend-test.herokuapp.com',
         translationSource: 'wti',
@@ -39,16 +51,6 @@ var environmentConfig = {
         backendUrl: 'https://nb.youpers.com/api',
         translationSource: 'wti',
         googleAnalytics: {}
-    },
-    uat: {
-        backendUrl: 'https://uat.youpers.com/api',
-        translationSource: 'wti',
-        googleAnalytics: {
-            webPropertyId: 'UA-39309635-2'
-        },
-        ui: {
-            showUserFeedbackLink: true
-        }
     },
     prod: {
         backendUrl: 'https://api.youpers.com/api',

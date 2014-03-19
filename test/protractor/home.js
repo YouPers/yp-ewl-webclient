@@ -1,10 +1,7 @@
-
-
-
 describe('GET home', function() {
 
     beforeEach(function() {
-        browser.get('http://localhost:9000/');
+        browser.get('/');
     });
 
 

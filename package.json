@@ -24,6 +24,7 @@
         "grunt-concurrent": "~0.4.3",
         "grunt-template": "*",
         "load-grunt-tasks": "~0.4.x",
+        "lodash": "2.4.x",
         "connect-livereload": "~0.3.2",
         "grunt-google-cdn": "~0.2.x",
         "grunt-ngmin": "~0.0.x",

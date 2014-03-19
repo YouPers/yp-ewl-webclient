@@ -19,6 +19,8 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
 
+    process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+
     // configurable paths
     var yeomanConfig = {
         app: 'app',
@@ -339,11 +341,13 @@ module.exports = function (grunt) {
         },
         protractor: {
             options: {
-                keepAlive: false,
-                configFile: "config/protractor.conf.js"
+                keepAlive: false
             },
-            run: {
-
+            chromeOnly: {
+                configFile: "config/protractor.chromeOnly.js"
+            },
+            all: {
+                configFile: "config/protractor.all.js"
             }
         },
         cdnify: {
@@ -425,7 +429,10 @@ module.exports = function (grunt) {
         'autoprefixer',
         'connect:test',
         'karma',
-        'protractor:run'
+        'protractor:chromeOnly'
+    ]);
+    grunt.registerTask('e2e', [
+        'protractor:all'
     ]);
 
     grunt.registerTask('build', [
