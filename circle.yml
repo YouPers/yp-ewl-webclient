@@ -11,5 +11,6 @@ deployment:
     branch: master
     commands:
     - ssh youpers@cimaster.youpers.com "~/yp-ewl-webclient/bin/deploy.sh master cimaster"
+    - ssh youpers@cimaster.youpers.com "~/yp-ewl-webclient/bin/e2e.sh master cimaster"
 
 
