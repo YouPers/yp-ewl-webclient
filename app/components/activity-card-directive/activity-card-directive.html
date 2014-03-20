@@ -1,0 +1,37 @@
+<div class="activity-card">
+    <div class="image">
+        <img ng-src="{{rec.image}}">
+    </div>
+    <div class="source">
+        <div class="sourceAvatar">
+            <img ng-src="{{rec.source.avatar}}">
+        </div>
+        <div class="sourceText">
+            {{ rec.source.text }}
+        </div>
+
+    </div>
+
+    <div class="title">
+        {{ rec.activity.title }}
+    </div>
+
+    <div class="shortDescription">
+        {{ rec.activity.shortDescription }}
+    </div>
+
+    <div class="schedule">
+        {{ rec.schedule }}
+    </div>
+
+    <div class="info">
+        <a>Info</a>
+    </div>
+
+    <div class="link">
+        <a class="btn btn-primary" href="#">
+            Einplanen
+        </a>
+    </div>
+
+</div>
