@@ -1,11 +1,15 @@
-<div class="row">
-    <dhcHeader></dhcHeader>
-</div>
-<div class="row">
-    <div class="col-md-9">
-        <!--content-->
+<div class="container">
+    <div class="row">
+        <div class="container">
+            <h1>State Header</h1>
+        </div>
     </div>
-    <div class="col-md-3">
-        <!--coach-->
+    <div class="row">
+        <div class="col-md-9">
+            <div ui-view="content" autoscroll="false"></div>
+        </div>
+        <div class="col-md-3">
+            <h2>Health Coach</h2>
+        </div>
     </div>
 </div>

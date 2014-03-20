@@ -2,11 +2,13 @@
     'use strict';
 
 
-    angular.module('dhc',
+    angular.module('yp.dhc',
         [
-            'home',
+            'yp.user',
 
-            'select'
+            'yp.dhc.home',
+            'yp.dhc.select'
+
 //            'plan',
 //            'report',
 //            'dashboard',

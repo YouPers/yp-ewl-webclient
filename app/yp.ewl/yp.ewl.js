@@ -6,8 +6,10 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
-            'angulartics','angulartics.google.analytics', 'vr.directives.slider',
+            'angulartics','angulartics.google.analytics',
             'yp.config', 'yp.commons', 'yp.notification', 'yp.error',
+
+            'yp.dhc',
 
             'yp.user', 'yp.payment',
 
@@ -31,11 +33,11 @@ angular.module('yp-ewl',
             //
             // Now set up the states
             $stateProvider
-                .state('home', {
-                    url: "/home",
-                    templateUrl: "yp.ewl/home.html",
-                    access: accessLevels.all
-                })
+//                .state('home', {
+//                    url: "/home",
+//                    templateUrl: "yp.ewl/home.html",
+//                    access: accessLevels.all
+//                })
                 .state('terms', {
                     url: "/terms",
                     templateUrl: "yp.ewl/terms.html",

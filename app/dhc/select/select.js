@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dhc.home',
+    angular.module('yp.dhc.select',
         [
             'restangular',
             'ui.router'
@@ -10,16 +10,16 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('home', {
+                    .state('select', {
                         templateUrl: "layout/default.html",
                         access: accessLevels.all
                     })
-                    .state('home.content', {
-                        url: "/home",
+                    .state('select.content', {
+                        url: "/select",
                         access: accessLevels.all,
                         views: {
                             content: {
-                                templateUrl: 'dhc/home/home.html'
+                                templateUrl: 'dhc/select/select.html'
                             }
                         },
                         resolve: {
@@ -27,7 +27,7 @@
                         }
                     });
 
-//                $translateWtiPartialLoaderProvider.addPart('yp.dhc.home');
+//                $translateWtiPartialLoaderProvider.addPart('yp.dhc.select');
             }]);
 
 }());
