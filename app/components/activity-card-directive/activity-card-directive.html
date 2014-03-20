@@ -1,37 +1,70 @@
-<div class="activity-card">
-    <div class="image">
-        <img ng-src="{{rec.image}}">
-    </div>
-    <div class="source">
-        <div class="sourceAvatar">
-            <img ng-src="{{rec.source.avatar}}">
+
+<div class="activity-card flip">
+
+    <div class="card" ng-class="{ flipped: flipped }">
+        <div class="front face" ng-click="flip()">
+
+            <div class="image">
+                <img ng-src="{{rec.image}}">
+            </div>
+            <div class="source">
+                <div class="source-avatar-container">
+                    <div class="source-avatar-content">
+                        <img ng-src="{{rec.source.avatar}}">
+                    </div>
+                    <div class="source-text">
+                        {{ rec.source.text }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <div class="title">
+                    {{ rec.activity.title }}
+                </div>
+
+                <div class="shortDescription">
+                    {{ rec.activity.shortDescription }}
+                </div>
+
+                <div>
+
+                    <div class="schedule">
+                        {{ rec.schedule }}
+                    </div>
+
+                    <div class="info">
+                        <a>Info</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="link">
+                    <a class="btn btn-primary" href="#">
+                        Einplanen
+                    </a>
+                </div>
+
+            </div>
+
         </div>
-        <div class="sourceText">
-            {{ rec.source.text }}
+
+        <div class="back face" ng-click="flip()">
+
+            <div class="content">
+                <h3>
+                    {{ rec.activity.title }}
+                </h3>
+
+                <p>
+                    {{ rec.activity.longDescription }}
+                </p>
+            </div>
+
         </div>
-
-    </div>
-
-    <div class="title">
-        {{ rec.activity.title }}
-    </div>
-
-    <div class="shortDescription">
-        {{ rec.activity.shortDescription }}
-    </div>
-
-    <div class="schedule">
-        {{ rec.schedule }}
-    </div>
-
-    <div class="info">
-        <a>Info</a>
-    </div>
-
-    <div class="link">
-        <a class="btn btn-primary" href="#">
-            Einplanen
-        </a>
     </div>
 
 </div>

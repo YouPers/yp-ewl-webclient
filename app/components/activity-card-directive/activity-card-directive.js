@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('activityCard', ['UserService', function (UserService) {
+        .directive('activityCard', ['$rootScope', function ($rootScope) {
             return {
                 restrict: 'EA',
                 scope: {
@@ -13,7 +13,15 @@
 
                 link: function (scope, elem, attrs) {
 
+                    scope.flip = function() {
+                        var flipped = scope.flipped;
+                        $rootScope.$broadcast('flipped');
+                        scope.flipped = !flipped;
+                    }
 
+                    $rootScope.$on('flipped', function() {
+                        scope.flipped = false;
+                    });
 
                 }
             };

@@ -1,5 +1,7 @@
-<div>
-    <div ng-repeat="rec in recommendations" class="col-md-4">
-        <activity-card rec="rec"/>
+<div class="recommendation-list">
+    <div>
+        <div ng-repeat="rec in recommendations" class="recommendation-list-item">
+            <activity-card rec="rec"/>
+        </div>
     </div>
 </div>
