@@ -1,7 +1,7 @@
 <div class="recommendation-list">
     <div>
         <div ng-repeat="rec in recommendations" class="recommendation-list-item">
-            <activity-card rec="rec"/>
+            <activity-card rec="rec" reject="reject(index, event)" plan="plan" index="$index"/>
         </div>
     </div>
 </div>

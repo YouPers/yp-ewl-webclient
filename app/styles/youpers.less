@@ -108,7 +108,6 @@ body {
   width: @youpers-activity-card-width;
   height: @youpers-activity-card-height;
 
-  box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.75);
   font-size: @youpers-font-size-6;
 
   position: relative;
@@ -135,6 +134,7 @@ body {
   border-radius: 50%;
 
   margin: 0 auto;
+  box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.75);
 
   background-color: #ffffff;
   overflow: hidden;
@@ -169,11 +169,29 @@ body {
   margin-top: 1em;
   height: 1em;
 }
-.activity-card .link {
+.activity-card .linkleft {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}
+
+.activity-card .linkright {
   position: absolute;
   bottom: 1em;
   right: 1em;
 }
+
+.recommendation-list-item.ng-leave {
+  transition:0.8s ease-in all;
+  opacity: 1;
+  top: 0;
+}
+
+.recommendation-list-item.ng-leave-active {
+  opacity: 0;
+  top: -500px;
+}
+
 
 .flip .ng-hide {
   /* this needs to be here to make it visible during the animation
@@ -183,31 +201,34 @@ body {
 }
 
 .flip {
-  -webkit-perspective: 2000;
+  perspective: 2000;
   position: relative;
+
 }
 .flip .card.flipped {
-  -webkit-transform: rotatey(-180deg);
+  transform: rotatey(-180deg);
 }
 .flip .card {
   width: 100%;
   height: 100%;
-  -webkit-transform-style: preserve-3d;
-  -webkit-transition: 0.5s;
+  transform-style: preserve-3d;
+  transition: 0.5s;
 }
 .flip .card .face {
   width: 100%;
   height: 100%;
   position: absolute;
-  -webkit-backface-visibility: hidden ;
+  backface-visibility: hidden ;
   z-index: 2;
+  box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.75);
+
 }
 .flip .card .front {
   position: absolute;
   z-index: 1;
 }
 .flip .card .back {
-  -webkit-transform: rotatey(-180deg);
+  transform: rotatey(-180deg);
 }
 
 

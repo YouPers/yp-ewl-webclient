@@ -125,6 +125,9 @@
                         }
 
                     },
+                    getActivityOffers: function () {
+                        return Restangular.all('activities/offers').getList();
+                    },
                     invalidateRecommendations: function () {
                         cachedRecommendationsPromises = {};
                     },

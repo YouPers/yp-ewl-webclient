@@ -4,7 +4,8 @@
     angular.module('yp.dhc.select',
         [
             'restangular',
-            'ui.router'
+            'ui.router',
+            'ngAnimate'
         ])
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
@@ -31,8 +32,8 @@
 //                $translateWtiPartialLoaderProvider.addPart('yp.dhc.select');
             }])
 
-        .controller('SelectController', [ '$scope', '$rootScope',
-            function ($scope, $rootScope) {
+        .controller('SelectController', [ '$scope', '$rootScope', 'ActivityService',
+            function ($scope, $rootScope, ActivityService) {
 
                 var dummy = {
                     image: 'https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg',
@@ -51,17 +52,15 @@
                     schedule: "Einmal pro Woche"
                 };
 
-                $scope.recommendations = [
-                    _.extend(_.clone(dummy), { id: _.random()}),
-                    _.extend(_.clone(dummy), { id: _.random()}),
-                    _.extend(_.clone(dummy), { id: _.random()}),
-                    _.extend(_.clone(dummy), { id: _.random()}),
-                    _.extend(_.clone(dummy), { id: _.random()}),
-                    _.extend(_.clone(dummy), { id: _.random()}),
-                    _.extend(_.clone(dummy), { id: _.random()}),
-                    _.extend(_.clone(dummy), { id: _.random()}),
-                    _.extend(_.clone(dummy), { id: _.random()})
-                ];
+                ActivityService.getActivityOffers().then(function(offers) {
+                    $scope.recommendations = offers;
+                });
+
+                $scope.reject = function(index, event) {
+                    event.stopPropagation();
+                    $scope.recommendations.splice(index, 1);
+                };
+
 
             }
         ]);
