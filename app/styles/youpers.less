@@ -152,11 +152,12 @@ body {
   font-size: @youpers-font-size-3;
   text-align: center;
   margin-top: 2.2em;
-  height: 1em;
+  height: @youpers-font-size-3;
+  overflow: hidden;
 }
 
 .activity-card .shortDescription {
-  margin-top: 1.2em;
+
 }
 
 .activity-card .schedule {
@@ -181,17 +182,9 @@ body {
   right: 1em;
 }
 
-.recommendation-list-item.ng-leave {
-  transition:0.8s ease-in all;
-  opacity: 1;
-  top: 0;
-}
 
-.recommendation-list-item.ng-leave-active {
-  opacity: 0;
-  top: -500px;
-}
-
+// card flip
+// --------------------------------------------------
 
 .flip .ng-hide {
   /* this needs to be here to make it visible during the animation
@@ -201,39 +194,56 @@ body {
 }
 
 .flip {
-  perspective: 2000;
-  position: relative;
+  perspective: 1000;
+  transform-style: preserve-3d;
+}
 
+.flip .card.flipped .back {
+  transform: rotateY(0deg);
 }
-.flip .card.flipped {
-  transform: rotatey(-180deg);
+.flip .card.flipped .front {
+  transform: rotateY(-180deg);
 }
+
+
+/* flip speed goes here */
 .flip .card {
+  transition: 0.5s;
+  transform-style: preserve-3d;
+
+  position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  transition: 0.5s;
 }
+
 .flip .card .face {
   width: 100%;
   height: 100%;
-  position: absolute;
-  backface-visibility: hidden ;
-  z-index: 2;
+
   box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.75);
-
 }
-.flip .card .front {
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+
   position: absolute;
-  z-index: 1;
-}
-.flip .card .back {
-  transform: rotatey(-180deg);
+  top: 0;
+  left: 0;
 }
 
+/*  UPDATED! front pane, placed above back */
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
 
-
-
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg);
+}
 
 
 
@@ -259,3 +269,15 @@ body {
   position: relative;
   margin: 0.8em;
 }
+
+.recommendation-list-item.ng-leave {
+  transition:0.8s ease-in all;
+  opacity: 1;
+  top: 0;
+}
+
+.recommendation-list-item.ng-leave-active {
+  opacity: 0;
+  top: -500px;
+}
+
