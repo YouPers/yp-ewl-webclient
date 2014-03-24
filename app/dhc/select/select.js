@@ -35,6 +35,10 @@
         .controller('SelectController', [ '$scope', '$rootScope', '$window', '$timeout', 'ActivityService',
             function ($scope, $rootScope, $window, $timeout, ActivityService) {
 
+                $scope.$watch('slider.offset', function (offset) {
+                    $scope.style = { left: - offset * 280 + 'px' }
+                });
+
                 $scope.slider = {
                     offset: 0,
 //                    numberOfPages: function(){

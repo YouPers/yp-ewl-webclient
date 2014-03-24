@@ -253,49 +253,21 @@ body {
 // --------------------------------------------------
 
 .recommendation-list {
-  overflow-x:scroll;
-  overflow-y:hidden;
+  overflow: hidden;
   height: @youpers-activity-card-height + 20px;
 //  padding: 0 15px;
 //  white-space: nowrap;
   position: relative;
 }
 
-.recommendation-list > div{
-//  width: 2000px;
-}
 .recommendation-list-item {
   float: left;
   position: relative;
-  margin: 0.8em;
+  margin: 10px;
 }
 
-.recommendation-list.left-out {
-  animation: left-out 0.4s linear;
-}
-@keyframes left-out {
-  from { left: 0; }
-  to { left: -@youpers-activity-card-width; }
-}
-.recommendation-list.left-in {
-  animation: left-in 0.4s linear;
-}
-@keyframes left-in {
-  from { left: @youpers-activity-card-width; }
-  to { left: 0; }
-}
-
-.recommendation-list.right-out {
-  animation: right-out 0.4s linear;
-}
-@keyframes right-out {
-  from { right: 0; }
-  to { right: -@youpers-activity-card-width; }
-}
-.recommendation-list.right-in {
-  animation: right-in 0.4s linear;
-}
-@keyframes right-in {
-  from { right: @youpers-activity-card-width; }
-  to { right: 0; }
+.recommendation-list > div {
+  transition: left 0.4s;
+  position: absolute;
+  width: 5000px;
 }

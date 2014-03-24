@@ -1,8 +1,6 @@
 <div class="recommendation-list" ng-class="animationClass">
-    <div>
-        <div ng-repeat="item in slider.items |
-        offset: slider.offset |
-        limitTo: slider.itemsPerView" class="recommendation-list-item"
+    <div ng-style="style" msd-wheel="$deltaX > 0 ? next() : prev()">
+        <div ng-repeat="item in slider.items" class="recommendation-list-item"
              >
 
             <activity-card rec="item" reject="reject(index, event)" plan="plan" index="$index"/>
