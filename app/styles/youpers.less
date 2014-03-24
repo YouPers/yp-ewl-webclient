@@ -262,7 +262,7 @@ body {
 }
 
 .recommendation-list > div{
-  width: 2000px;
+//  width: 2000px;
 }
 .recommendation-list-item {
   float: left;
@@ -270,14 +270,32 @@ body {
   margin: 0.8em;
 }
 
-.recommendation-list-item.ng-leave {
-  transition:0.8s ease-in all;
-  opacity: 1;
-  top: 0;
+.recommendation-list.left-out {
+  animation: left-out 0.4s linear;
+}
+@keyframes left-out {
+  from { left: 0; }
+  to { left: -@youpers-activity-card-width; }
+}
+.recommendation-list.left-in {
+  animation: left-in 0.4s linear;
+}
+@keyframes left-in {
+  from { left: @youpers-activity-card-width; }
+  to { left: 0; }
 }
 
-.recommendation-list-item.ng-leave-active {
-  opacity: 0;
-  top: -500px;
+.recommendation-list.right-out {
+  animation: right-out 0.4s linear;
 }
-
+@keyframes right-out {
+  from { right: 0; }
+  to { right: -@youpers-activity-card-width; }
+}
+.recommendation-list.right-in {
+  animation: right-in 0.4s linear;
+}
+@keyframes right-in {
+  from { right: @youpers-activity-card-width; }
+  to { right: 0; }
+}
