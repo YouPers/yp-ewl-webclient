@@ -10,6 +10,6 @@ describe('GET home', function() {
         element(by.model('username')).sendKeys('test_ind1');
         element(by.model('password')).sendKeys('yp\n');
 
-        expect(element(by.binding('principal.getUser().fullname')).getText()).toEqual('TEST INDIVIDUAL 1');
+        expect(element(by.binding('principal.getUser().fullname')).getText()).toEqual('Test Individual 1');
     });
 });

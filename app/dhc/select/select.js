@@ -4,8 +4,7 @@
     angular.module('yp.dhc.select',
         [
             'restangular',
-            'ui.router',
-            'ngAnimate'
+            'ui.router'
         ])
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
@@ -36,31 +35,20 @@
             function ($scope, $rootScope, $window, $timeout, ActivityService) {
 
                 $scope.$watch('slider.offset', function (offset) {
-                    $scope.style = { left: - offset * 280 + 'px' }
+                    $scope.style = { left: - offset * 20 + 'em' };
                 });
 
                 $scope.slider = {
                     offset: 0,
-//                    numberOfPages: function(){
-//                        return $scope.slider.items ? Math.ceil($scope.slider.items.length / $scope.slider.itemsPerPage) : 0;
-//                    },
                     itemsPerView: 0,
                     prev: function() {
                         if($scope.slider.hasPrev()) {
                             $scope.slider.offset -= 1;
-                            $scope.animationClass = 'right-out';
-                            $timeout(function () {
-                                $scope.animationClass = '';
-                            }, 400);
                         }
                     },
                     next: function() {
                         if($scope.slider.hasNext()) {
                             $scope.slider.offset += 1;
-                            $scope.animationClass = 'left-out';
-                            $timeout(function () {
-                                $scope.animationClass = '';
-                            }, 400);
                         }
                     },
                     hasPrev: function() {
