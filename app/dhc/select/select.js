@@ -35,7 +35,7 @@
             function ($scope, $rootScope, $window, $timeout, ActivityService) {
 
                 $scope.$watch('slider.offset', function (offset) {
-                    $scope.style = { left: - offset * 20 + 'em' };
+                    $scope.style = { left: - offset * 20.4 + 'em' };
                 });
 
                 $scope.slider = {
@@ -59,6 +59,7 @@
                     }
                 };
 
+                // watch window width to adjust number of items displayed
                 $scope.$watch( function() {
 
                     var dimensions = [

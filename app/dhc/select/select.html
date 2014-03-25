@@ -8,10 +8,11 @@
     </div>
 </div>
 
-
-<a class="btn btn-primary" ng-click="slider.prev()" ng-disabled="!slider.hasPrev()">
-    prev
-</a>
-<a class="btn btn-primary" ng-click="slider.next()" ng-disabled="!slider.hasNext()">
-    next
-</a>
+<div class="recommendation-list-nav">
+    <a class="btn btn-default" ng-click="slider.prev()" ng-disabled="!slider.hasPrev()">
+        <span class="glyphicon glyphicon-chevron-left"/>
+    </a>
+    <a class="btn btn-default" ng-click="slider.next()" ng-disabled="!slider.hasNext()">
+        <span class="glyphicon glyphicon-chevron-right"/>
+    </a>
+</div>

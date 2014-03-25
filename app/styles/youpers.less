@@ -95,11 +95,11 @@ body {
   cursor: pointer;
 }
 
-@youpers-activity-card-width: 260px;
-@youpers-activity-card-height: 450px;
+@youpers-activity-card-width: 19em;
+@youpers-activity-card-height: 32em;
 @youpers-activity-card-image-width: @youpers-activity-card-width;
-@youpers-activity-card-image-height: 170px;
-@youpers-activity-card-avatar-width: 66px;
+@youpers-activity-card-image-height: 12em;
+@youpers-activity-card-avatar-width: 4.7em;
 
 // activity-card
 // --------------------------------------------------
@@ -120,7 +120,7 @@ body {
 .activity-card .source-avatar-container {
   position: absolute;
   width: @youpers-activity-card-width;
-  top: 140px;
+  top: 10em;
 }
 
 .activity-card .source-avatar-container .source-text {
@@ -130,11 +130,11 @@ body {
 .activity-card .source-avatar-content {
 
   width: @youpers-activity-card-avatar-width;
-  height: 66px;
+  height: 4.7em;
   border-radius: 50%;
 
   margin: 0 auto;
-  box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.75);
+  box-shadow: 0.3em 0.3em 0.6em 0px rgba(0,0,0,0.75);
 
   background-color: #ffffff;
   overflow: hidden;
@@ -245,29 +245,28 @@ body {
   transform: rotateY(180deg);
 }
 
-
-
-
-
 // recommendation list
 // --------------------------------------------------
 
 .recommendation-list {
   overflow: hidden;
-  height: @youpers-activity-card-height + 20px;
-//  padding: 0 15px;
-//  white-space: nowrap;
+  height: @youpers-activity-card-height + 2em;
   position: relative;
 }
 
 .recommendation-list-item {
   float: left;
   position: relative;
-  margin: 10px;
+  margin-right: 1.4em;
 }
 
 .recommendation-list > div {
   transition: left 0.4s;
   position: absolute;
-  width: 5000px;
+  width: @youpers-activity-card-width * 20;
+}
+
+.recommendation-list-nav {
+  float: right;
+  margin: 0.8em
 }
