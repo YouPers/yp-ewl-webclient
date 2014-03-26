@@ -34,13 +34,23 @@
         .controller('SelectController', [ '$scope', '$rootScope', '$window', '$timeout', 'ActivityService',
             function ($scope, $rootScope, $window, $timeout, ActivityService) {
 
-                $scope.$watch('slider.offset', function (offset) {
-                    $scope.style = { left: - offset * 20.4 + 'em' };
+                var cardWidth = 20.4;
+
+                $scope.$watch('slider.itemsPerView', function () {
+                    $scope.outerListStyle = {
+                        width: cardWidth * $scope.slider.itemsPerView + 'em'
+                    };
+                });
+                $scope.$watch('slider.offset', function () {
+
+                    $scope.innerListStyle = {
+                        left: - $scope.slider.offset * cardWidth + 'em'
+                    };
                 });
 
                 $scope.slider = {
                     offset: 0,
-                    itemsPerView: 0,
+                    itemsPerView: 3,
                     prev: function() {
                         if($scope.slider.hasPrev()) {
                             $scope.slider.offset -= 1;
@@ -55,7 +65,7 @@
                         return $scope.slider.offset > 0;
                     },
                     hasNext: function() {
-                        return $scope.slider.items && $scope.slider.offset < $scope.slider.items.length - 1 - $scope.slider.itemsPerView;
+                        return $scope.slider.items && $scope.slider.offset < $scope.slider.items.length - $scope.slider.itemsPerView;
                     }
                 };
 
