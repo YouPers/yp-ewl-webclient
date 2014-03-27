@@ -93,6 +93,11 @@
 
                 } );
 
+                $scope.isItemActive = function (index) {
+
+                    return $scope.slider.offset <= index && $scope.slider.offset + $scope.slider.itemsPerView > index;
+                };
+
                 ActivityService.getActivityOffers().then(function(offers) {
                     $scope.slider.items = offers;
                 });

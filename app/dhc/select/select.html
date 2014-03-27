@@ -8,7 +8,14 @@
     </div>
 </div>
 
-<div class="recommendation-list-nav">
+<div class="recommendation-list-nav-items">
+
+    <div ng-repeat="item in slider.items" class="item" ng-class="{ active: isItemActive($index) }">
+        <div></div>
+    </div>
+
+</div>
+<div class="recommendation-list-nav-links">
     <a class="btn btn-default" ng-click="slider.prev()" ng-disabled="!slider.hasPrev()">
         <span class="glyphicon glyphicon-chevron-left"/>
     </a>
@@ -16,3 +23,4 @@
         <span class="glyphicon glyphicon-chevron-right"/>
     </a>
 </div>
+
