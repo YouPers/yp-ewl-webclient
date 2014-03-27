@@ -98,6 +98,10 @@
                     return $scope.slider.offset <= index && $scope.slider.offset + $scope.slider.itemsPerView > index;
                 };
 
+                $scope.showItem = function (index) {
+                    $scope.slider.offset = index - 1;
+                };
+
                 ActivityService.getActivityOffers().then(function(offers) {
                     $scope.slider.items = offers;
                 });

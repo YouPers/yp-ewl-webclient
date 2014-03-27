@@ -10,7 +10,7 @@
 
 <div class="recommendation-list-nav-items">
 
-    <div ng-repeat="item in slider.items" class="item" ng-class="{ active: isItemActive($index) }">
+    <div ng-repeat="item in slider.items" class="item" ng-class="{ active: isItemActive($index) }" ng-click="showItem($index)">
         <div></div>
     </div>
 
