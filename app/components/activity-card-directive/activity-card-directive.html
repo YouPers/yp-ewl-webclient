@@ -1,7 +1,7 @@
 
 <div class="activity-card flip">
 
-    <div class="card" ng-class="{ flipped: flipped }">
+    <div class="card page" ng-class="{ flipped: flipped }">
         <div class="front face" ng-click="flip()">
 
             <div class="image">
@@ -35,10 +35,6 @@
                         {{ rec.schedule }}
                     </div>
 
-                    <div class="info">
-                        <a>Info</a>
-                    </div>
-
                     <div class="clearfix"></div>
                 </div>
 
@@ -47,9 +43,9 @@
                         Nein, Danke!
                     </button>
                  </div>
-                    <div class="linkright">
-                    <a class="btn btn-primary" href="">
-                        Einplanen
+                <div class="linkright">
+                    <a class="btn btn-primary" ng-href="{{scheduleLink}}" stop-propagation>
+                        <span>Einplanen</span>
                     </a>
                 </div>
 

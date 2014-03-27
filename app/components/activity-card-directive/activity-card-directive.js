@@ -16,6 +16,11 @@
 
                 link: function (scope, elem, attrs) {
 
+                    // FIXME: stateless url / blocked by backend
+                    $rootScope.rec = scope.rec;
+
+                    scope.scheduleLink = '/#/schedule';
+
                     scope.flip = function() {
                         var flipped = scope.flipped;
                         $rootScope.$broadcast('flipped');

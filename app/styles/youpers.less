@@ -101,16 +101,28 @@ body {
 @youpers-activity-card-image-height: 12em;
 @youpers-activity-card-avatar-width: 4.7em;
 
+
+
+
+
+
+// ui-view transitions
+// --------------------------------------------------
+
+@import "view-transitions";
+
 // activity-card
 // --------------------------------------------------
 
 .activity-card {
-  width: @youpers-activity-card-width;
-  height: @youpers-activity-card-height;
 
   font-size: @youpers-font-size-6;
 
   position: relative;
+}
+.activity-card .page {
+  width: @youpers-activity-card-width;
+  height: @youpers-activity-card-height;
 }
 
 .activity-card .image img {
@@ -183,15 +195,26 @@ body {
 }
 
 
+
+
+// activity-schedule
+// --------------------------------------------------
+
+.activity-schedule .page {
+  width: @youpers-activity-card-width;
+  height: @youpers-activity-card-height;
+}
+
+.dummy {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 1px solid orangered;
+}
+
 // card flip
 // --------------------------------------------------
 
-.flip .ng-hide {
-  /* this needs to be here to make it visible during the animation
-     since the .ng-hide class is already on the element rendering
-     it as hidden. */
-  display:block!important;
-}
 
 .flip {
   perspective: 1000;
@@ -212,8 +235,6 @@ body {
   transform-style: preserve-3d;
 
   position: relative;
-  width: 100%;
-  height: 100%;
 }
 
 .flip .card .face {

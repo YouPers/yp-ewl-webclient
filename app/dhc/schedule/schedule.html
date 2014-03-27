@@ -1,0 +1,53 @@
+<div class="activity-schedule">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="activity-card">
+                <div class="page">
+                <div>
+                    <div class="image">
+                        <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
+                    </div>
+
+                    <div class="source">
+                        <div class="source-avatar-container">
+                            <div class="source-avatar-content">
+                                <img ng-src="{{rec.recommendedBy[0].avatar}}">
+                            </div>
+                            <div class="source-text">
+                                empfohlen durch {{ rec.recommendedBy[0].fullname }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="title">
+                            {{ rec.activity.title }}
+                        </div>
+                        <div class="text">
+                            {{ rec.activity.description }}
+                        </div>
+                        <div>
+                            <div class="schedule">
+                                {{ rec.schedule }}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="linkleft">
+                            <a class="btn btn-default" ng-click="back()">
+                                <span>Zurück</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="dummy page"></div>
+        </div>
+        <div class="col-sm-4">
+            <div class="dummy page"></div>
+        </div>
+    </div>
+</div>

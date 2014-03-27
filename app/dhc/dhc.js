@@ -7,7 +7,8 @@
             'yp.user',
 
             'yp.dhc.home',
-            'yp.dhc.select'
+            'yp.dhc.select',
+            'yp.dhc.schedule'
 
 //            'plan',
 //            'report',
