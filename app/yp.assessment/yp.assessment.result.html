@@ -18,7 +18,7 @@
             </div>
         </div>
         </br>
-        <div ng-repeat="stressor in results[0].answers | stripGeneralLevel | limitTo:'3'">
+        <div ng-repeat="stressor in topStressors">
             <div class="row">
                 <div class="col-md-3">
                     <span class="assessmentResultTitle">{{ assessment.questionLookup[stressor.question].title }}</span></br>
@@ -35,12 +35,12 @@
         </div>
 
         <p translate>assessment.result.topStressors.campaignStatistics.header</p>
-                <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000dd"].title }}</span>
-                <span class="assessmentResultCategory">({{'assessment.result.topStressors.campaignStatistics.category' | translate }}{{ assessment.questionLookup["5278c51a6166f2de240000dd"].category.toUpperCase() | translate}}), </span>
-                <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000dc"].title }}</span>
-                <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup["5278c51a6166f2de240000dc"].category.toUpperCase() | translate}}), </span>
-                <span class="assessmentResultTitle">{{ assessment.questionLookup["5278c51a6166f2de240000c5"].title }}</span>
-                <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup["5278c51a6166f2de240000c5"].category.toUpperCase() | translate}})</span></p>
+                <span class="assessmentResultTitle">{{ assessment.questionLookup['5278c51a6166f2de240000dd'].title }}</span>
+                <span class="assessmentResultCategory">({{'assessment.result.topStressors.campaignStatistics.category' | translate }}{{ assessment.questionLookup['5278c51a6166f2de240000dd'].category.toUpperCase()}}), </span>
+                <span class="assessmentResultTitle">{{ assessment.questionLookup['5278c51a6166f2de240000dc'].title }}</span>
+                <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup['5278c51a6166f2de240000dc'].category.toUpperCase()}}), </span>
+                <span class="assessmentResultTitle">{{ assessment.questionLookup['5278c51a6166f2de240000c5'].title }}</span>
+                <span class="assessmentResultCategory">(Kategorie: {{ assessment.questionLookup['5278c51a6166f2de240000c5'].category.toUpperCase()}})</span></p>
 
         <p translate>assessment.result.nextSteps</p>
         <p></p>
