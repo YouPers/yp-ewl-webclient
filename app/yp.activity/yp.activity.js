@@ -119,7 +119,7 @@
             });
         }])
         // Object methods for all Assessment related objects
-        .run(['Restangular', function (Restangular) {
+        .run(['Restangular', 'ActivityService', function (Restangular, ActivityService) {
             Restangular.extendCollection('activities', function (activities) {
                     activities.enrichWithUserData = function (plans, recommendations, campaigns, userPreferences) {
                         _.forEach(activities, function (act) {
@@ -198,61 +198,10 @@
                 return actPlan;
             });
 
-            Restangular.extendModel('activities', function (activity) {
+            var extendActivities = function (activity) {
 
                 activity.getDefaultPlan = function () {
-                    var now = moment();
-                    var newMainEvent = {
-                        "allDay": false
-                    };
-                    var duration = activity.defaultduration ? activity.defaultduration : 60;
-                    if (activity.defaultfrequency === 'week') {
-                        newMainEvent.start = moment(now).startOf('hour').toDate();
-                        newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
-                        newMainEvent.frequency = 'week';
-                        newMainEvent.recurrence = {
-                            "endby": {
-                                "type": "after",
-                                "after": 6
-                            },
-                            every: 1
-                        };
-                    } else if (activity.defaultfrequency === 'day') {
-                        newMainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
-                        newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
-                        newMainEvent.frequency = 'day';
-                        newMainEvent.recurrence = {
-                            "endby": {
-                                "type": "after",
-                                "after": 6
-                            },
-                            every: 1
-                        };
-                    } else { // default is "once"
-                        newMainEvent.start = moment(now).add('d', 7).startOf('hour').toDate();
-                        newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
-                        newMainEvent.frequency = 'once';
-                        newMainEvent.recurrence = {
-                            "endby": {
-                                "type": "after",
-                                "after": 6
-                            },
-                            every: 1
-                        };
-                    }
-
-                    return {
-                        activity: activity,
-                        status: 'active',
-                        mainEvent: newMainEvent,
-                        source: 'community',
-                        executionType: activity.defaultexecutiontype,
-                        visibility: activity.defaultvisibility,
-                        fields: activity.fields,
-                        topics: activity.topics,
-                        title: activity.title,
-                        number: activity.number
-                    };
+                    return ActivityService.getDefaultPlan(activity);
                 };
 
                 activity.getRecWeightsByQuestionId = function () {
@@ -264,7 +213,8 @@
                 };
 
                 return activity;
-            });
+            };
+            Restangular.extendModel('activities', extendActivities);
 
         }])
 

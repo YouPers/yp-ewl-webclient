@@ -1,13 +1,12 @@
-
 // Imports
 //
+@import "../lib/bootstrap/less/variables";
 // importing common less mixins (for gradients, borders, round edges ...
 @import "../lib/less-elements/elements";
 
 //
 // Variables
 // --------------------------------------------------
-
 
 // Global values
 // --------------------------------------------------
@@ -39,7 +38,6 @@
 @youpers-font-size-h4: @youpers-font-size-4;
 @youpers-font-size-h5: @youpers-font-size-5;
 @youpers-font-size-h6: @youpers-font-size-6;
-
 
 /* YouPers header and body fonts */
 
@@ -82,8 +80,6 @@ body {
   font-family: @youpers-brand-font-family;
 }
 
-
-
 // navbar
 // --------------------------------------------------
 
@@ -91,6 +87,7 @@ body {
   border-radius: 0px;
   margin: 0;
 }
+
 .navbar a {
   cursor: pointer;
 }
@@ -100,11 +97,6 @@ body {
 @youpers-activity-card-image-width: @youpers-activity-card-width;
 @youpers-activity-card-image-height: 12em;
 @youpers-activity-card-avatar-width: 4.7em;
-
-
-
-
-
 
 // ui-view transitions
 // --------------------------------------------------
@@ -120,7 +112,8 @@ body {
 
   position: relative;
 }
-.activity-card .page {
+
+.activity-card > div {
   width: @youpers-activity-card-width;
   height: @youpers-activity-card-height;
 }
@@ -129,6 +122,7 @@ body {
   width: @youpers-activity-card-image-width;
   height: @youpers-activity-card-image-height;
 }
+
 .activity-card .source-avatar-container {
   position: absolute;
   width: @youpers-activity-card-width;
@@ -177,11 +171,13 @@ body {
   margin-top: 1em;
   height: 1em;
 }
+
 .activity-card .info {
   float: right;
   margin-top: 1em;
   height: 1em;
 }
+
 .activity-card .linkleft {
   position: absolute;
   bottom: 1em;
@@ -194,27 +190,63 @@ body {
   right: 1em;
 }
 
-
-
-
 // activity-schedule
 // --------------------------------------------------
 
-.activity-schedule .page {
+
+@media (min-width: @screen-desktop) {
+  .activity-schedule-page:nth-child(1) {
+    border-right: 1px #d3d3d3 solid;
+  }
+  .activity-schedule-page:nth-child(2) {
+    border-right: 1px #d3d3d3 solid;
+  }
+  .activity-schedule-page {
+    vertical-align: top;
+    display: inline-block;
+  }
+}
+
+@media (max-width: @screen-desktop) {
+  .activity-schedule {
+    width: @youpers-activity-card-width;
+    height: @youpers-activity-card-height * 3;
+  }
+  .activity-schedule-page {
+    display: block;
+  }
+}
+
+.activity-schedule {
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.75);
+  display: inline-table;
+}
+
+.activity-schedule-page {
   width: @youpers-activity-card-width;
   height: @youpers-activity-card-height;
 }
 
-.dummy {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: 1px solid orangered;
+.activity-schedule-page .page {
+  padding: 1em;
+}
+.activity-schedule-page .date-selection {
+  padding-right: 0.2em;
+  padding-top: 1.1em;
+}
+.activity-schedule-page .time-selection {
+  padding: 0 0.4em;
+}
+.activity-schedule-page .time-selection .btn {
+  padding: 0em;
+}
+.activity-schedule-page .time-selection .form-control {
+  height: inherit;
+  padding: 0em;
 }
 
 // card flip
 // --------------------------------------------------
-
 
 .flip {
   perspective: 1000;
@@ -224,10 +256,10 @@ body {
 .flip .card.flipped .back {
   transform: rotateY(0deg);
 }
+
 .flip .card.flipped .front {
   transform: rotateY(-180deg);
 }
-
 
 /* flip speed goes here */
 .flip .card {
@@ -241,7 +273,7 @@ body {
   width: 100%;
   height: 100%;
 
-  box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.75);
 }
 
 /* hide back of pane during swap */
@@ -300,11 +332,13 @@ body {
 .recommendation-list-nav-items .item.active {
   opacity: 1;
 }
+
 .recommendation-list-nav-items .item {
   display: inline-block;
   opacity: 0.5;
   cursor: pointer;
 }
+
 .recommendation-list-nav-items .item div {
   display: block;
   width: 12px;

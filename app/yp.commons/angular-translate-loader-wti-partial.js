@@ -19,7 +19,12 @@ angular.module('pascalprecht.translate')
         }
 
         Part.prototype.parseUrl = function(urlTemplate, targetLang) {
-            return urlTemplate.replace(/\{part\}/g, this.name).replace(/\{lang\}/g, targetLang);
+            // FIXME: temporary mapping for dhc translation files
+            if(this.name.indexOf('dhc')>0) {
+                return '/' + this.name.replace('yp.', '').replace(/\./g, '/') + '/' + this.name + '.translations.' + targetLang + '.json';
+            } else {
+                return urlTemplate.replace(/\{part\}/g, this.name).replace(/\{lang\}/g, targetLang);
+            }
         };
 
         Part.prototype.getTable = function(lang, $q, $http, urlTemplate, errorHandler) {
