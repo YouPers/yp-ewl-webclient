@@ -14,8 +14,8 @@
                         templateUrl: "layout/default.html",
                         access: accessLevels.all
                     })
-                    .state('schedule.content', {
-                        url: "/schedule",
+                    .state('schedule.offer', {
+                        url: "/schedule/:id",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -24,9 +24,31 @@
                             }
                         },
                         resolve: {
-                            offer: ['ActivityService', function (ActivityService) {
-                                return ActivityService.getActivityOffers().then(function(offers) {
-                                    return offers[_.random(0, offers.length)];
+                            schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                                return ActivityService.getActivityOffer($stateParams.id).then(function(offer) {
+                                    offer.plan = offer.activityPlan[0] || ActivityService.getDefaultPlan(offer.activity);
+                                    return offer;
+                                });
+                            }]
+                        }
+                    })
+                    .state('schedule.plan', {
+                        url: "/plan/:id",
+                        access: accessLevels.all,
+                        views: {
+                            content: {
+                                templateUrl: 'dhc/schedule/schedule.html',
+                                controller: 'ScheduleController'
+                            }
+                        },
+                        resolve: {
+                            schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                                return ActivityService.getActivityPlan($stateParams.id).then(function(plan) {
+                                    return {
+                                        activity: plan.activity,
+                                        plan: plan,
+                                        recommendedBy: plan.invitedBy
+                                    };
                                 });
                             }]
                         }
@@ -35,11 +57,11 @@
                 $translateWtiPartialLoaderProvider.addPart('yp.dhc.schedule');
             }])
 
-        .controller('ScheduleController', [ '$scope', '$rootScope', 'offer', 'ActivityService',
-            function ($scope, $rootScope, offer, ActivityService) {
+        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', 'schedule', 'ActivityService',
+            function ($scope, $rootScope, $state, schedule, ActivityService) {
 
-                $scope.offer = offer;
-                $scope.plan = offer.activityPlan[0] || ActivityService.getDefaultPlan(offer.activity);
+                $scope.schedule = schedule;
+                $scope.plan = schedule.plan;
 
 
                 // visibility
@@ -115,7 +137,7 @@
                     ActivityService.savePlan($scope.plan).then(function (savedPlan) {
                         $rootScope.$emit('notification:success', 'activityPlan.save');
 
-                        // if a campaign activity Plan has been created, send sample invite to the autor
+                        // if a campaign activity Plan has been created, send sample invite to the author
                         var user = $scope.principal.getUser();
                         if (_.contains(user.roles, 'campaignlead') && savedPlan.source === 'campaign') {
                             $scope.$broadcast('formPristine');
@@ -124,7 +146,7 @@
                             });
                         }
 
-                        $scope.plan = savedPlan;
+                        $state.go('schedule.plan', { id: savedPlan.id });
 
                     });
                 }

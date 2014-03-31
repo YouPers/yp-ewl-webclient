@@ -8,27 +8,27 @@
                         <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
                     </div>
 
-                    <div class="source">
+                    <div class="source" ng-if="schedule.recommendedBy && schedule.recommendedBy.length > 0">
                         <div class="source-avatar-container">
                             <div class="source-avatar-content">
-                                <img ng-src="{{offer.recommendedBy[0].avatar}}">
+                                <img ng-src="{{schedule.recommendedBy[0].avatar}}">
                             </div>
                             <div class="source-text">
-                                empfohlen durch {{ offer.recommendedBy[0].fullname }}
+                                empfohlen durch {{ schedule.recommendedBy[0].fullname }}
                             </div>
                         </div>
                     </div>
 
                     <div class="content">
                         <div class="title">
-                            {{ offer.activity.title }}
+                            {{ schedule.activity.title }}
                         </div>
                         <div class="text">
-                            {{ offer.activity.description }}
+                            {{ schedule.activity.description }}
                         </div>
                         <div>
                             <div class="schedule">
-                                {{ offer.schedule }}
+                                {{ schedule.schedule }}
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -103,7 +103,7 @@
 
                         <!-- frequency -->
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12 frequency">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
                                             btn-radio="'once'" translate>activityPlanFrequency.once
@@ -175,7 +175,7 @@
 
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" translate>schedule.submit</button>
+                        <button type="submit" class="btn btn-primary pull-right" translate>schedule.submit</button>
                     </div>
 
 

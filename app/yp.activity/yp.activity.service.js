@@ -72,6 +72,9 @@
                             });
                         }
                     },
+                    getActivityPlan: function(activityPlanId) {
+                        return Restangular.one('activityplans', activityPlanId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']});
+                    },
                     getActivityPlans: function (options) {
                         if (UserService.principal.isAuthenticated()) {
                             return activityPlans.getList(options);
@@ -127,6 +130,11 @@
                     },
                     getActivityOffers: function () {
                         return Restangular.all('activityoffers').getList();
+                    },
+                    getActivityOffer: function (id) {
+                        return Restangular.one('activityoffers', id).get({
+                            'populate': 'activity'
+                        });
                     },
                     invalidateRecommendations: function () {
                         cachedRecommendationsPromises = {};
