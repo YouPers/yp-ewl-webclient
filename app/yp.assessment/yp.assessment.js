@@ -28,8 +28,8 @@
                             assessment: ['AssessmentService', function (AssessmentService) {
                                 return AssessmentService.getAssessment('525faf0ac558d40000000005');
                             }],
-                            assessmentResults: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.getAssessmentResults('525faf0ac558d40000000005');
+                            topStressors: ['AssessmentService', function (AssessmentService) {
+                                return AssessmentService.topStressors('525faf0ac558d40000000005');
                             }]
                         }
                     });

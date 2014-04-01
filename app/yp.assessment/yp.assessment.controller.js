@@ -35,19 +35,15 @@
             }])
 
         // Controller to display assessment Results
-        .controller('AssessmentResultCtrl', ['$scope', '$rootScope', 'assessment', 'assessmentResults',
-            function ($scope, $rootScope, assessment, assessmentResults) {
-                if (!assessmentResults[0]) {
+        .controller('AssessmentResultCtrl', ['$scope', '$rootScope', 'assessment', 'topStressors',
+            function ($scope, $rootScope, assessment, topStressors) {
+                if (!topStressors) {
                     var msg = "no result found, should be impossible at this place";
                     console.log(msg);
                     throw new Error(msg);
                 }
 
-                // sort the answers of the first result into order
-                assessmentResults[0].answers = _.sortBy(assessmentResults[0].answers, function (answer) {
-                    return -Math.abs(answer.answer);
-                });
-                $scope.results = assessmentResults;
+                $scope.topStressors = topStressors;
                 $scope.assessment = assessment;
 
             }
