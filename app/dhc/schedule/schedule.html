@@ -168,8 +168,10 @@
                     <!-- group -->
                     <div ng-if="plan.executionType === 'group'">
 
-                        <div ng-repeat="plan in offeredPlans" class="row">
+                        <div ng-repeat="plan in schedule.activityPlan" class="row">
                             <div class="col-md-12">
+
+
 
                                 <pre>{{ plan | json }}</pre>
 
