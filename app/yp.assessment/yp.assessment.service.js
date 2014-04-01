@@ -100,7 +100,7 @@
                         }
                     },
                     topStressors: function (assessmentId) {
-                        return assService.getNewestAssessmentResults('525faf0ac558d40000000005').then(function (result) {
+                        return assService.getNewestAssessmentResults(assessmentId).then(function (result) {
                             if (!result) {
                                 return null;
                             } else {

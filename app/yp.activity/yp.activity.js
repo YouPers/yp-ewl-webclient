@@ -22,7 +22,7 @@
                                 return ActivityService.getRecommendations();
                             }],
                             topStressors: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.topStressors();
+                                return AssessmentService.topStressors('525faf0ac558d40000000005');
                             }],
                             assessment: ['AssessmentService', function (AssessmentService) {
                                 return AssessmentService.getAssessment('525faf0ac558d40000000005');
