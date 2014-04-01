@@ -172,8 +172,39 @@
                             <div class="col-md-12">
 
 
+                                <div>
+                                    <a>{{ plan.owner.fullname }}</a>
+                                    <span ng-if="joiningUsers">
+                                        <span translate translate-values="{ OTHERS: '{{plan.joiningUsers.length}}' }"
+                                              translate-interpolation="messageformat">schedule.group.joiningUsers</span>
+                                    </span>
+                                    <button type="button" ng-click="joinActivityPlan(plan)" class="btn btn-xs btn-default pull-right" translate>schedule.group.join</button>
 
-                                <pre>{{ plan | json }}</pre>
+                                </div>
+
+                                <div>
+
+                                    <span>{{ 'activityPlanFrequency.' + plan.mainEvent.frequency | translate}}</span>
+
+                                    <div ng-if="planToJoin.mainEvent.frequency == 'week'">
+                                        <span translate>schedule.group.startingOn</span>
+                                        <span>{{ plan.mainEvent.start | fromNow }}</span>
+                                    </div>
+
+                                    <div>
+                                        <span>{{ plan.mainEvent.start | time }}</span>
+                                        <span translate>schedule.group.startToEndDate</span>
+                                        <span>{{ planToJoin.mainEvent.end | time }}</span>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div ng-if="plan.location">
+                                    <span translate>schedule.group.location</span>
+                                    <span>{{ plan.location }}</span>
+                                </div>
 
                             </div>
                         </div>

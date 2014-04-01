@@ -43,6 +43,16 @@
             "visibility": "Andere dürfen mitmachen"
         },
 
+        "group": {
+            "join": "Mitmachen",
+            "joiningUsers": "{OTHERS, plural, =0{} one{und 1 anderer} other{und # andere}}",
+            "startingOn": "erstmals am",
+            "startToEndDate": "bis",
+            "location": "Treffpunkt"
+
+
+        },
+
         "schedule": "Einplanen",
         "save": "Sichern",
         "delete": "Entfernen"

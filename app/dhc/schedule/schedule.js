@@ -67,9 +67,9 @@
                 // execution type / visibility mapping, to be continued in saveActivityPlan()
                 if($scope.schedule.activity.defaultexecutiontype === 'self') {
                     $scope.privateActivity = true;
-                    $scope.plan.visibility = 'private';
+                    $scope.plan.visibility = false;
                 } else {
-                    $scope.plan.visibility = $scope.plan.visibility === 'campaign';
+                    $scope.plan.visibility = true;
                 }
                 if(!$scope.schedule.activityPlan || $scope.schedule.activityPlan.length === 0) {
                     $scope.plan.executionType = 'self';
@@ -120,6 +120,14 @@
                         $scope.currentActivityPlan.mainEvent.end = moment($scope.currentActivityPlan.mainEvent.start).add(duration);
                     }
                 });
+
+
+                $scope.joinActivityPlan = function(plan) {
+                    ActivityService.joinPlan(plan).then(function(joinedPlan) {
+                        $rootScope.$emit('notification:success', 'activityPlan.join');
+                        $state.go('schedule.plan', { id: joinedPlan.id });
+                    });
+                };
 
 
                 $scope.saveActivityPlan = function() {

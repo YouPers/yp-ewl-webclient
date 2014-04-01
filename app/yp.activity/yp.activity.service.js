@@ -133,11 +133,15 @@
                     },
                     getActivityOffer: function (id) {
                         return Restangular.one('activityoffers', id).get({
-                            'populate': 'activity activityPlan recommendedBy'
+                            'populate': 'activity activityPlan recommendedBy',
+                            'populatedeep': 'activityPlan.owner'
                         });
                     },
                     invalidateRecommendations: function () {
                         cachedRecommendationsPromises = {};
+                    },
+                    joinPlan: function (plan) {
+                        return activityPlans.one(plan.id).all('/join').post();
                     },
                     savePlan: function (plan) {
                         if (plan.id) {
