@@ -52,7 +52,7 @@
                 });
 
                 $scope.slider = {
-                    offset: $stateParams.s || 0,
+                    offset: parseInt($stateParams.s) || 0,
                     itemsPerView: 3,
                     prev: function() {
                         if($scope.slider.hasPrev()) {

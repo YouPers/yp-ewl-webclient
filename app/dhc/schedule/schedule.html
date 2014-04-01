@@ -46,11 +46,11 @@
         <div class="activity-schedule-page">
             <div class="page">
 
-                <form class="form" role="form" ng-submit="saveActivityPlan()">
+                <form class="form activity-schedule-form" role="form" ng-submit="saveActivityPlan()">
 
 
 
-                    <div class="btn-group form-group">
+                    <div class="btn-group form-group" ng-hide="!schedule.activityPlan || schedule.activityPlan.length === 0">
                         <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'self'" translate>schedule.executiontype.self</button>
                         <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'group'" translate>schedule.executiontype.group</button>
                     </div>
@@ -86,7 +86,7 @@
                                            date-disabled="disabled(date, mode)" ng-required="true"/>
 
                                 <span class="input-group-btn">
-                                    <button class="btn btn-info " ng-click="open()">
+                                    <button class="btn btn-info " ng-click="open()" type="button">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </button>
                                 </span>
@@ -151,7 +151,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row" ng-if="!privateActivity">
                             <div class="col-md-12">
                                 <div class="checkbox">
                                     <label>
@@ -168,17 +168,26 @@
                     <!-- group -->
                     <div ng-if="plan.executionType === 'group'">
 
+                        <div ng-repeat="plan in offeredPlans" class="row">
+                            <div class="col-md-12">
 
+                                <pre>{{ plan | json }}</pre>
+
+                            </div>
+                        </div>
 
                     </div>
 
 
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary pull-right" translate>schedule.submit</button>
+                    <div class="save-link form-group" tooltip-placement="left" tooltip="{{ !plan.id || plan.editStatus === 'editable' ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}" >
+                        <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule</button>
+                        <button ng-hide="!plan.id" ng-disabled="plan.editStatus !== 'editable'" type="submit" class="btn btn-primary pull-right"  translate>schedule.save</button>
                     </div>
 
-
+                    <div class="delete-link form-group" tooltip-placement="left" tooltip="{{ !plan.id || plan.deleteStatus === 'deletable' ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}" >
+                        <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="plan.deleteStatus !== 'deletable'" type="button" class="btn btn-warning pull-left"  translate>schedule.delete</button>
+                    </div>
 
 
                 </form>
@@ -193,6 +202,11 @@
                     <p>
                         events are displayed here
                     </p>
+
+                </div>
+
+                <div>
+                    defaultexecutiontype: {{ schedule.activity.defaultexecutiontype }}
                 </div>
 
             </div>

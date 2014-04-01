@@ -57,15 +57,24 @@
                 $translateWtiPartialLoaderProvider.addPart('yp.dhc.schedule');
             }])
 
-        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', 'schedule', 'ActivityService',
-            function ($scope, $rootScope, $state, schedule, ActivityService) {
+        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$timeout', 'schedule', 'ActivityService',
+            function ($scope, $rootScope, $state, $timeout, schedule, ActivityService) {
 
                 $scope.schedule = schedule;
                 $scope.plan = schedule.plan;
 
 
-                // visibility
-                $scope.plan.visibility = $scope.plan.visibility === 'campaign';
+                // execution type / visibility mapping, to be continued in saveActivityPlan()
+                if($scope.schedule.activity.defaultexecutiontype === 'self') {
+                    $scope.privateActivity = true;
+                    $scope.plan.visibility = 'private';
+                } else {
+                    $scope.plan.visibility = $scope.plan.visibility === 'campaign';
+                }
+                if(!$scope.schedule.activityPlan || $scope.schedule.activityPlan.length === 0) {
+                    $scope.plan.executionType = 'self';
+                }
+
 
                 // calendar & recurrence
 
@@ -104,13 +113,6 @@
                     return output > moment(date) ? output.toDate() : output.add('week', 1).toDate();
                 }
 
-                $scope.$watch('plan.source', function (newValue, oldValue) {
-                    if (newValue && newValue === 'campaign') {
-                        $scope.currentActivityPlan.executionType = 'group';
-                        $scope.currentActivityPlan.visibility = 'campaign';
-                    }
-                });
-
                 $scope.$watch('plan.weeklyDay', function (newValue, oldValue) {
                     if (newValue && $scope.currentActivityPlan.mainEvent.frequency === 'week') {
                         var duration = $scope.currentActivityPlan.mainEvent.end - $scope.currentActivityPlan.mainEvent.start;
@@ -132,7 +134,13 @@
                     dateEnd.setDate(dateStart.getDate());
                     $scope.plan.mainEvent.end = dateEnd;
 
-                    $scope.plan.visibility = $scope.plan.visibility ? 'campaign' : 'private';
+                    if($scope.plan.visibility) {
+                        $scope.plan.visibility = 'campaign';
+                        $scope.plan.executionType = 'group';
+                    } else {
+                        $scope.plan.visibility = 'private';
+                        $scope.plan.executionType = 'self';
+                    }
 
                     ActivityService.savePlan($scope.plan).then(function (savedPlan) {
                         $rootScope.$emit('notification:success', 'activityPlan.save');
@@ -149,7 +157,14 @@
                         $state.go('schedule.plan', { id: savedPlan.id });
 
                     });
-                }
+                };
+
+                $scope.deleteActivityPlan = function () {
+                    ActivityService.deletePlan($scope.plan).then(function (result) {
+                        $rootScope.$emit('notification:success', 'activityPlan.delete');
+                        $rootScope.back();
+                    });
+                };
             }
         ]);
 

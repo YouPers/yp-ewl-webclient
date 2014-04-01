@@ -40,16 +40,29 @@
                 "week": "Wiederholungen:",
                 "weeklyDay": "Jeweils am:"
             },
-            "visibility": "Andere dürfen mitmachen",
-            "source": {
-                "label": "Planen als",
-                "sourceType": {
-                    "community": "persönlicher Event",
-                    "campaign": "Kampagnen-Event"
-                }
-            }
-        }
+            "visibility": "Andere dürfen mitmachen"
+        },
 
+        "schedule": "Einplanen",
+        "save": "Sichern",
+        "delete": "Entfernen"
+
+    },
+
+
+    "activityPlanEditable": {
+        "editable": "Eingeplante Aktivität ändern",
+        "notEditableJoinedPlans": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil andere Benutzer daran teilnehmen.",
+        "notEditableJoinedUsers": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
+        "notEditableNotSingleEvent": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil es eine Aktivität mit mehreren Ausführungen ist.",
+        "notEditablePastEvent": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil die Ausführung in der Vergangenheit ist."
+    },
+    "activityPlanDeletable": {
+        "deletable": "Eingeplante Aktivität löschen",
+        "deletableOnlyFutureEvents": "Zukünftige Ausführungen löschen",
+        "notDeletableJoinedUsers": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil andere Benutzer daran teilnehmen.",
+        "notDeletableJoinedPlans": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
+        "notDeletableNoFutureEvents": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil alle Ausführungen in der Vergangenheit liegen."
     },
 
     "visibility": {

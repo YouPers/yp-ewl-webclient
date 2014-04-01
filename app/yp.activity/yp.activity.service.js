@@ -133,7 +133,7 @@
                     },
                     getActivityOffer: function (id) {
                         return Restangular.one('activityoffers', id).get({
-                            'populate': 'activity'
+                            'populate': 'activity activityPlan recommendedBy'
                         });
                     },
                     invalidateRecommendations: function () {
@@ -202,7 +202,7 @@
                             activity: activity,
                             status: 'active',
                             mainEvent: newMainEvent,
-                            source: 'community',
+                            source: 'campaign',
                             executionType: activity.defaultexecutiontype,
                             visibility: activity.defaultvisibility,
                             fields: activity.fields,
