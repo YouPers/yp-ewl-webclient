@@ -52,7 +52,7 @@
                     });
 
 
-                $translateWtiPartialLoaderProvider.addPart('yp.cockpit');
+                $translateWtiPartialLoaderProvider.addPart('yp.cockpit/yp.cockpit');
             }]);
 
 

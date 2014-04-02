@@ -64,13 +64,13 @@ angular.module('yp-ewl',
             $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
             $translateProvider.useCookieStorage();
             $translateProvider.useLoader('$translateWtiPartialLoader', {
-                urlTemplate: '/{part}/{part}.translations.{lang}.json',
+                urlTemplate: '/{part}.translations.{lang}.json',
                 wtiProjectId: '8233-eWL',
                 wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
                 fromWti: config.translationSource === 'wti'
             });
-            $translateWtiPartialLoaderProvider.addPart('yp.ewl');
-            $translateWtiPartialLoaderProvider.addPart('yp.commons');
+            $translateWtiPartialLoaderProvider.addPart('yp.ewl/yp.ewl');
+            $translateWtiPartialLoaderProvider.addPart('yp.commons/yp.commons');
         }])
 
 /**
