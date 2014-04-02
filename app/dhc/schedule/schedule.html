@@ -1,0 +1,219 @@
+<div>
+    <div class="activity-schedule">
+        <div class="activity-schedule-page">
+            <div class="activity-card">
+                <div>
+
+                    <div class="image">
+                        <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
+                    </div>
+
+                    <div class="source" ng-if="schedule.recommendedBy && schedule.recommendedBy.length > 0">
+                        <div class="source-avatar-container">
+                            <div class="source-avatar-content">
+                                <img ng-src="{{schedule.recommendedBy[0].avatar}}">
+                            </div>
+                            <div class="source-text">
+                                empfohlen durch {{ schedule.recommendedBy[0].fullname }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="title">
+                            {{ schedule.activity.title }}
+                        </div>
+                        <div class="text">
+                            {{ schedule.activity.description }}
+                        </div>
+                        <div>
+                            <div class="schedule">
+                                {{ schedule.schedule }}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="linkleft">
+                            <a class="btn btn-default" ng-click="back()">
+                                <span>Zurück</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-schedule-page">
+            <div class="page">
+
+                <form class="form activity-schedule-form" role="form" ng-submit="saveActivityPlan()">
+
+
+
+                    <div class="btn-group form-group" ng-hide="!schedule.activityPlan || schedule.activityPlan.length === 0">
+                        <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'self'" translate>schedule.executiontype.self</button>
+                        <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'group'" translate>schedule.executiontype.group</button>
+                    </div>
+
+                    <!-- self -->
+                    <div ng-if="plan.executionType === 'self'">
+
+
+                        <!-- location -->
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" ng-model="plan.location" placeholder="{{ 'schedule.self.location' | translate }}">
+                            </div>
+                        </div>
+
+                        <!-- text -->
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <textarea class="form-control" ng-model="plan.text" placeholder="{{'schedule.self.text' | translate }}"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- date and time -->
+                        <div class="row">
+                            <div class="col-md-6 date-selection">
+
+                                <div class="input-group">
+                                    <input ng-model="plan.mainEvent.start"
+                                           class="form-control" type="text" id="datePickerStart"
+                                           datepicker-popup="dd.MM.yyyy"
+                                           is-open="opened" min="minDate"
+                                           datepicker-options="dateOptions"
+                                           date-disabled="disabled(date, mode)" ng-required="true"/>
+
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info " ng-click="open()" type="button">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </button>
+                                </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 time-selection">
+                                <timepicker ng-model="plan.mainEvent.start" id="timePickerStart" minute-step="15" show-meridian="false"></timepicker>
+                            </div>
+                            <div class="col-md-3 time-selection">
+                                <timepicker ng-model="plan.mainEvent.end" id="timePickerEnd" minute-step="15" show-meridian="false"></timepicker>
+                            </div>
+                        </div>
+
+                        <!-- frequency -->
+                        <div class="row">
+                            <div class="col-md-12 frequency">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
+                                            btn-radio="'once'" translate>activityPlanFrequency.once
+                                    </button>
+                                    <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
+                                            btn-radio="'day'" translate>activityPlanFrequency.day
+                                    </button>
+                                    <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
+                                            btn-radio="'week'" translate>activityPlanFrequency.week
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- recurrence -->
+
+                        <div class="row" ng-if="plan.mainEvent.frequency=='day'">
+                            <div class="col-md-6">
+                                <label>
+                                    <span translate>schedule.self.recurrence.day</span>
+                                    <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number class="form-control input-sm">
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="row" ng-if="plan.mainEvent.frequency=='week'">
+                            <div class="col-md-6">
+                                <label>
+                                    <span translate>schedule.self.recurrence.week</span>
+                                    <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number class="form-control input-sm">
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>
+                                    <span translate>schedule.self.recurrence.weeklyDay</span>
+                                    <fieldset ng-disabled="plan.mainEvent.frequency!='week'">
+                                        <select ng-model="plan.weeklyDay"
+                                                name="weeklyDay"
+                                                id="weeklyDay"
+                                                ng-options="d.value as d.label | translate for d in availableDays"
+                                                class="form-control">
+                                        </select>
+                                    </fieldset>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-if="!privateActivity">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="plan.visibility" type="checkbox">
+                                        <span translate>schedule.self.visibility</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- group -->
+                    <div ng-if="plan.executionType === 'group'">
+
+                        <div ng-repeat="plan in schedule.activityPlan" class="row">
+                            <div class="col-md-12">
+
+
+
+                                <pre>{{ plan | json }}</pre>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="save-link form-group" tooltip-placement="left" tooltip="{{ !plan.id || plan.editStatus === 'editable' ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}" >
+                        <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule</button>
+                        <button ng-hide="!plan.id" ng-disabled="plan.editStatus !== 'editable'" type="submit" class="btn btn-primary pull-right"  translate>schedule.save</button>
+                    </div>
+
+                    <div class="delete-link form-group" tooltip-placement="left" tooltip="{{ !plan.id || plan.deleteStatus === 'deletable' ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}" >
+                        <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="plan.deleteStatus !== 'deletable'" type="button" class="btn btn-warning pull-left"  translate>schedule.delete</button>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+        </div>
+        <div class="activity-schedule-page">
+            <div class="page">
+
+                <div ng-if="plan.events">
+                    <p>
+                        events are displayed here
+                    </p>
+
+                </div>
+
+                <div>
+                    defaultexecutiontype: {{ schedule.activity.defaultexecutiontype }}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="clearBoth"></div>
+    </div>
+</div>

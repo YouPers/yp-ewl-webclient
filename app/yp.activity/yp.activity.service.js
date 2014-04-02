@@ -72,6 +72,9 @@
                             });
                         }
                     },
+                    getActivityPlan: function(activityPlanId) {
+                        return Restangular.one('activityplans', activityPlanId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']});
+                    },
                     getActivityPlans: function (options) {
                         if (UserService.principal.isAuthenticated()) {
                             return activityPlans.getList(options);
@@ -125,6 +128,14 @@
                         }
 
                     },
+                    getActivityOffers: function () {
+                        return Restangular.all('activityoffers').getList();
+                    },
+                    getActivityOffer: function (id) {
+                        return Restangular.one('activityoffers', id).get({
+                            'populate': 'activity activityPlan recommendedBy'
+                        });
+                    },
                     invalidateRecommendations: function () {
                         cachedRecommendationsPromises = {};
                     },
@@ -143,6 +154,62 @@
                     },
                     inviteEmailToJoinPlan: function (email, plan) {
                         return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
+                    },
+
+                    getDefaultPlan: function(activity) {
+
+                        var now = moment();
+                        var newMainEvent = {
+                            "allDay": false
+                        };
+                        var duration = activity.defaultduration ? activity.defaultduration : 60;
+                        if (activity.defaultfrequency === 'week') {
+                            newMainEvent.start = moment(now).startOf('hour').toDate();
+                            newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
+                            newMainEvent.frequency = 'week';
+                            newMainEvent.recurrence = {
+                                "endby": {
+                                    "type": "after",
+                                    "after": 6
+                                },
+                                every: 1
+                            };
+                        } else if (activity.defaultfrequency === 'day') {
+                            newMainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
+                            newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
+                            newMainEvent.frequency = 'day';
+                            newMainEvent.recurrence = {
+                                "endby": {
+                                    "type": "after",
+                                    "after": 6
+                                },
+                                every: 1
+                            };
+                        } else { // default is "once"
+                            newMainEvent.start = moment(now).add('d', 7).startOf('hour').toDate();
+                            newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
+                            newMainEvent.frequency = 'once';
+                            newMainEvent.recurrence = {
+                                "endby": {
+                                    "type": "after",
+                                    "after": 6
+                                },
+                                every: 1
+                            };
+                        }
+
+                        return {
+                            activity: activity,
+                            status: 'active',
+                            mainEvent: newMainEvent,
+                            source: 'campaign',
+                            executionType: activity.defaultexecutiontype,
+                            visibility: activity.defaultvisibility,
+                            fields: activity.fields,
+                            topics: activity.topics,
+                            title: activity.title,
+                            number: activity.number
+                        };
                     }
                 };
 

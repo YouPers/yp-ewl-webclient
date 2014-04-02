@@ -11,7 +11,7 @@
         // generating a principal from the authenticated entity's information.
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('yp.user');
+            $translateWtiPartialLoaderProvider.addPart('yp.user/yp.user');
         }])
 
         .run(['enums', function (enums) {
