@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('HealthCoach', ['$rootScope', 'HealthCoachService', '$state',
+        .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$state',
             function ($rootScope, HealthCoachService, $state) {
             return {
                 restrict: 'E',
@@ -11,11 +11,15 @@
                 templateUrl: 'components/health-coach/health-coach-directive.html',
 
                 link: function (scope, elem, attrs) {
+                    console.log($state.current.name);
                     HealthCoachService.getCoachMessages($state.current.name).then(function(result) {
                         scope.coachMessages = result;
                     });
                 }
             };
+        }])
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('components/health-coach/health-coach');
         }]);
 
 }());

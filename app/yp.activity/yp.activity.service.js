@@ -120,7 +120,7 @@
                         if (UserService.principal.isAuthenticated()) {
                             if (!cachedRecommendationsPromises[focusQuestionId || 'default']) {
                                 cachedRecommendationsPromises[focusQuestionId || 'default'] =
-                                    Restangular.all('activities/recommendations').getList(params);
+                                    Restangular.all('activityoffers/coach').getList(params);
                             }
                             return cachedRecommendationsPromises[focusQuestionId || 'default'];
                         } else {

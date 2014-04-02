@@ -8,7 +8,7 @@
 
             var service = {
                 getCoachMessages: function(uistate) {
-                    return Restangular.all(baseUrl, {uistate: uistate});
+                    return Restangular.all(baseUrl).getList({uistate: uistate});
                 }
             };
 

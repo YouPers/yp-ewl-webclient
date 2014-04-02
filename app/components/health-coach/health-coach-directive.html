@@ -1,6 +1,8 @@
 
 <div class="health-coach">
-    The Health Coach recommends:
-
-    <div ng-repeat="msg in messages">{{msg}}</div>
+    <div class="avatar">
+        <img ng-src="/assets/img/healthcoach.jpg">
+    </div>
+    YouPers Health Coach
+    <div ng-repeat="msg in coachMessages">{{'healthCoach.'+msg | translate}}</div>
 </div>
