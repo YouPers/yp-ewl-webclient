@@ -52,6 +52,13 @@
             "startToEndDate": "bis",
             "location": "Treffpunkt"
         },
+        "event": {
+            "startToEndDate": "bis",
+            "rating": "Bewertung",
+            "done": "Gemacht",
+            "missed": "Verpasst",
+            "rating": "Bewertung"
+        },
 
         "schedule": "Einplanen",
         "save": "Sichern",
