@@ -36,21 +36,21 @@
             "end": "Bis: ",
 
             "recurrence": {
-                "day": "Wiederholungen:",
-                "week": "Wiederholungen:",
-                "weeklyDay": "Jeweils am:"
+                "day": "Wiederholungen",
+                "week": "Wiederholungen",
+                "weeklyDay": "Jeweils am"
             },
-            "visibility": "Andere dürfen mitmachen"
+            "visibility": "Andere dürfen mitmachen",
+            "joiningUsers": "{OTHERS, plural, =0{} one{und 1 anderer macht mit} other{und # andere machen mit}}"
         },
 
         "group": {
+            "noPlansToJoin": "Noch niemand hat diese Aktivität eingeplant, plane sie selber ein!",
             "join": "Mitmachen",
             "joiningUsers": "{OTHERS, plural, =0{} one{und 1 anderer} other{und # andere}}",
             "startingOn": "erstmals am",
             "startToEndDate": "bis",
             "location": "Treffpunkt"
-
-
         },
 
         "schedule": "Einplanen",
@@ -59,6 +59,15 @@
 
     },
 
+    "weekday": {
+        "monday": "Montag",
+        "tuesday": "Dienstag",
+        "wednesday": "Mittwoch",
+        "thursday": "Donnerstag",
+        "friday": "Freitag",
+        "saturday": "Samstag",
+        "sunday": "Sonntag"
+    },
 
     "activityPlanEditable": {
         "editable": "Eingeplante Aktivität ändern",

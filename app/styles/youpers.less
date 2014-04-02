@@ -231,27 +231,66 @@ body {
   padding: 1em;
   height: 100%;
 }
-.activity-schedule-page .date-selection {
-  padding-right: 0.2em;
-  padding-top: 1.1em;
+
+// execution-type
+
+.activity-schedule-form .btn-group.execution-type {
+  width: 100%;
 }
-.activity-schedule-page .time-selection {
-  padding: 0 0.4em;
+.activity-schedule-form .btn-group.execution-type .btn {
+  width: 50%;
 }
-.activity-schedule-page .time-selection .btn {
-  padding: 0em;
-}
-.activity-schedule-page .time-selection .form-control {
-  height: inherit;
-  padding: 0em;
-}
-.activity-schedule-page .frequency .btn {
-  padding: 0.3em 0.6em;
-}
+
+// self
 
 .activity-schedule-form {
   height: 100%;
   position: relative;
+}
+
+.activity-schedule-form textarea {
+  resize: none;
+}
+
+.activity-schedule-form .date-selection {
+  padding-right: 0.2em;
+  padding-top: 1em;
+}
+.activity-schedule-form .time-selection {
+  padding: 0 0.4em;
+  width: 23%;
+}
+.activity-schedule-form .time-selection .btn {
+  padding: 0em;
+}
+.activity-schedule-form .time-selection .form-control {
+  height: inherit;
+  padding: 0em;
+}
+.activity-schedule-form .frequency {
+  padding-top: 0.5em;
+}
+.activity-schedule-form .frequency .btn {
+  padding: 0.3em 0.64em;;
+}
+
+.activity-schedule-form .recurrence > * {
+  padding-top: 0.5em;
+}
+
+.activity-schedule-form .recurrence label {
+  font-weight: normal;
+//  text-align: center;
+}
+
+.activity-schedule-form .recurrence input {
+//  text-align: right;
+}
+.activity-schedule-form .recurrence-week-day select {
+  height: 30px;
+}
+.activity-schedule-form .joining-users {
+  padding-top: 1em;
 }
 .activity-schedule-form .form-group.save-link {
   position: absolute;
@@ -264,6 +303,19 @@ body {
   margin: 0;
   bottom: 0;
   right: left;
+}
+
+// group
+
+.activity-schedule-form .no-plans {
+  text-align: center;
+  padding: 1em;
+}
+
+.activity-schedule-form .plan-list {
+  height: 23em;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 // card flip

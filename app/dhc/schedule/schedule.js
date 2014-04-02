@@ -26,7 +26,19 @@
                         resolve: {
                             schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 return ActivityService.getActivityOffer($stateParams.id).then(function(offer) {
-                                    offer.plan = offer.activityPlan[0] || ActivityService.getDefaultPlan(offer.activity);
+                                    offer.plan = ActivityService.getDefaultPlan(offer.activity);
+                                    offer.isScheduled = false;
+
+                                    // FIXME: remove dummies
+                                    if(offer.activityPlan && offer.activityPlan.length > 0) {
+                                        var f = function() {
+                                            var p = _.clone(offer.activityPlan[0]);
+                                            p.id = _.random(1000);
+                                            offer.activityPlan.push(p);
+                                        }
+                                        f();f();f();f();f();f();f();f();f();f();f();
+                                    }
+
                                     return offer;
                                 });
                             }]
@@ -45,6 +57,10 @@
                             schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 return ActivityService.getActivityPlan($stateParams.id).then(function(plan) {
                                     return {
+                                        isScheduled: true,
+                                        isDeletable: plan.deleteStatus.indexOf('deletable') === 0,
+                                        isEditable: plan.editStatus === 'editable',
+                                        isJoinedPlan: !!plan.masterPlan,
                                         activity: plan.activity,
                                         plan: plan,
                                         recommendedBy: plan.invitedBy
@@ -66,9 +82,10 @@
 
                 // execution type / visibility mapping, to be continued in saveActivityPlan()
                 if($scope.schedule.activity.defaultexecutiontype === 'self') {
-                    $scope.privateActivity = true;
-                    $scope.plan.visibility = false;
+                    $scope.schedule.isPrivate = true; // flag for ui
+                    $scope.plan.visibility = false; // checkbox model
                 } else {
+                    $scope.schedule.isPrivate = false;
                     $scope.plan.visibility = true;
                 }
                 if(!$scope.schedule.activityPlan || $scope.schedule.activityPlan.length === 0) {
@@ -95,13 +112,13 @@
 
                 // weekplanning using dayselector
                 $scope.availableDays = [
-                    {label: 'MONDAY', value: "1"},
-                    {label: 'TUESDAY', value: "2"},
-                    {label: 'WEDNESDAY', value: "3"},
-                    {label: 'THURSDAY', value: "4"},
-                    {label: 'FRIDAY', value: "5"},
-                    {label: 'SATURDAY', value: "6"},
-                    {label: 'SUNDAY', value: "0"}
+                    {label: 'weekday.monday', value: "1"},
+                    {label: 'weekday.tuesday', value: "2"},
+                    {label: 'weekday.wednesday', value: "3"},
+                    {label: 'weekday.thursday', value: "4"},
+                    {label: 'weekday.friday', value: "5"},
+                    {label: 'weekday.saturday', value: "6"},
+                    {label: 'weekday.sunday', value: "0"}
                 ];
 
                 function nextWeekday(date, weekday) {
