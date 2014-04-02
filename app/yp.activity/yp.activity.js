@@ -75,7 +75,7 @@
                         }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('yp.activity');
+                $translateWtiPartialLoaderProvider.addPart('yp.activity/yp.activity');
 
 
             }])

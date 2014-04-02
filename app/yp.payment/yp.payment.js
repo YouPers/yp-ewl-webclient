@@ -14,7 +14,7 @@
                         access: accessLevels.user
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('yp.payment');
+                $translateWtiPartialLoaderProvider.addPart('yp.payment/yp.payment');
             }])
 
         .run(['enums', function (enums) {

@@ -29,7 +29,7 @@
                         }
                     });
 
-//                $translateWtiPartialLoaderProvider.addPart('yp.dhc.select');
+                $translateWtiPartialLoaderProvider.addPart('dhc/select/select');
             }])
 
         .controller('SelectController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout', 'ActivityService',

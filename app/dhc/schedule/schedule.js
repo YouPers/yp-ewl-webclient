@@ -70,7 +70,7 @@
                         }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('yp.dhc.schedule');
+                $translateWtiPartialLoaderProvider.addPart('dhc/schedule/schedule');
             }])
 
         .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$timeout', 'schedule', 'ActivityService',
