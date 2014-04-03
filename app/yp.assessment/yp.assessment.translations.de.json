@@ -26,11 +26,11 @@
     },
 
     "questionCategory": {
-        "generalStresslevel": "Allgemeiner Stresslevel",
-        "atWork": "Stress am Arbeitsplatz",
-        "leisureTime": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
-        "stressType": "Stresstyp (Stressverstärker)",
-        "stressMeasures": "Stressbewältigung (Entspannung/Ausgleich)"
+        "general": "Allgemeiner Stresslevel",
+        "work": "Stress am Arbeitsplatz",
+        "leisure": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
+        "stresstypus": "Stresstyp (Stressverstärker)",
+        "handling": "Stressbewältigung (Entspannung/Ausgleich)"
     }
 
 }
