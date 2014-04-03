@@ -1,0 +1,24 @@
+<div class="carousel-item-list" ng-style="outerListStyle">
+    <div ng-style="innerListStyle" msd-wheel="$deltaX > 0 ? next() : prev()">
+        <div class="carousel-item-list-content" ng-transclude></div>
+    </div>
+</div>
+
+<div class="carousel-item-list-nav-items">
+
+    <div ng-repeat="item in items track by $index" class="item" ng-class="{ active: isItemActive($index) }" ng-click="showItem($index)">
+        <div></div>
+    </div>
+
+</div>
+<div class="carousel-item-list-nav-links" ng-show="items">
+    <div>
+        <a class="btn btn-default" ng-click="slider.prev()" ng-disabled="!slider.hasPrev()">
+            <span class="glyphicon glyphicon-chevron-left"/>
+        </a>
+        <a class="btn btn-default" ng-click="slider.next()" ng-disabled="!slider.hasNext()">
+            <span class="glyphicon glyphicon-chevron-right"/>
+        </a>
+    </div>
+</div>
+

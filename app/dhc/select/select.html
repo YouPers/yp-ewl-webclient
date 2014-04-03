@@ -1,26 +1,5 @@
-<div class="recommendation-list" ng-class="animationClass" ng-style="outerListStyle">
-    <div ng-style="innerListStyle" msd-wheel="$deltaX > 0 ? next() : prev()">
-        <div ng-repeat="item in slider.items" class="recommendation-list-item">
-
-            <activity-card rec="item" reject="reject(index, event)" plan="plan" index="$index"/>
-
-        </div>
+<multiple-view-carousel class="activity-offer-list" items="offers" items-per-view="cardsPerView" item-width-em="20.4">
+    <div ng-repeat="item in offers track by $index">
+        <activity-card rec="item" reject="reject(index, event)" plan="plan" index="$index"/>
     </div>
-</div>
-
-<div class="recommendation-list-nav-items">
-
-    <div ng-repeat="item in slider.items" class="item" ng-class="{ active: isItemActive($index) }" ng-click="showItem($index)">
-        <div></div>
-    </div>
-
-</div>
-<div class="recommendation-list-nav-links">
-    <a class="btn btn-default" ng-click="slider.prev()" ng-disabled="!slider.hasPrev()">
-        <span class="glyphicon glyphicon-chevron-left"/>
-    </a>
-    <a class="btn btn-default" ng-click="slider.next()" ng-disabled="!slider.hasNext()">
-        <span class="glyphicon glyphicon-chevron-right"/>
-    </a>
-</div>
-
+</multiple-view-carousel>

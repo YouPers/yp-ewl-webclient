@@ -1,0 +1,88 @@
+@import "youpers-variables";
+
+// activity-card
+// --------------------------------------------------
+
+.activity-card {
+
+  font-size: @youpers-font-size-6;
+
+  position: relative;
+}
+
+.activity-card > div {
+  width: @youpers-activity-card-width;
+  height: @youpers-activity-card-height;
+}
+
+.activity-card .image img {
+  width: @youpers-activity-card-image-width;
+  height: @youpers-activity-card-image-height;
+}
+
+.activity-card .source-avatar-container {
+  position: absolute;
+  width: @youpers-activity-card-width;
+  top: 10em;
+}
+
+.activity-card .source-avatar-container .source-text {
+  text-align: center;
+}
+
+.activity-card .source-avatar-content {
+
+  width: @youpers-activity-card-avatar-width;
+  height: 4.7em;
+  border-radius: 50%;
+
+  margin: 0 auto;
+  box-shadow: 0.3em 0.3em 0.6em 0px rgba(0,0,0,0.75);
+
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.activity-card .source-avatar-content img {
+  width: @youpers-activity-card-avatar-width;
+}
+
+.activity-card .content {
+  padding: 1em;
+}
+
+.activity-card .title {
+  font-size: @youpers-font-size-3;
+  text-align: center;
+  margin-top: 2.2em;
+  height: @youpers-font-size-3;
+  overflow: hidden;
+}
+
+.activity-card .shortDescription {
+
+}
+
+.activity-card .schedule {
+  float: left;
+  margin-top: 1em;
+  height: 1em;
+}
+
+.activity-card .info {
+  float: right;
+  margin-top: 1em;
+  height: 1em;
+}
+
+.activity-card .linkleft {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}
+
+.activity-card .linkright {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
