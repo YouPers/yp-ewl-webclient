@@ -269,7 +269,7 @@
                         <div ng-if="principal.isAuthorized('admin')"><a class="btn btn-sm btn-primary cockpit"
                                                                           ui-sref="activityAdmin({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
                                                                           ng-click="$event.stopPropagation()">admin</a>
-                            Gewicht: {{activity.recWeight | number: 0}}
+                            Gewicht: {{activity.score | number: 0}}
                         </div>
                     </div>
                 </div>

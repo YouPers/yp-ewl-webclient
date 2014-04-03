@@ -30,7 +30,7 @@
                     activity.recWeights = [];
                     _.forEach(assessment.questionCats, function (cat) {
                         _.forEach(cat.questions, function (question) {
-                            activity.recWeights.push({question: question.id, negativeAnswerWeight: 0, positiveAnswerWeight: 0});
+                            activity.recWeights.push([question.id,0,0]);
                         });
                     });
                 }

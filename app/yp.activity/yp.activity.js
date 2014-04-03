@@ -145,10 +145,10 @@
                             var rec = _.find(recommendations, {'activity': act.id});
                             if (rec) {
                                 act.isRecommended = true;
-                                act.recWeight = rec.weight;
+                                act.score = rec.score;
                             } else {
                                 delete act.isRecommended;
-                                delete act.recWeight;
+                                delete act.score;
                             }
                         });
                     };
@@ -207,7 +207,7 @@
                 activity.getRecWeightsByQuestionId = function () {
                     var byId = {};
                     _.forEach(activity.recWeights, function (obj) {
-                        byId[obj.question] = obj;
+                        byId[obj[0]] = obj;
                     });
                     return byId;
                 };
