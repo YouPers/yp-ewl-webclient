@@ -88,10 +88,6 @@
                     $scope.schedule.isPrivate = false;
                     $scope.plan.visibility = true;
                 }
-                if(!$scope.schedule.activityPlan || $scope.schedule.activityPlan.length === 0) {
-                    $scope.plan.executionType = 'self';
-                }
-
 
                 // calendar & recurrence
 
@@ -179,6 +175,7 @@
                             });
                         }
 
+                        $scope.plan = savedPlan;
                         $state.go('schedule.plan', { id: savedPlan.id });
 
                     });
