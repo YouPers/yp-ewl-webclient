@@ -226,7 +226,7 @@
                 <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity)"
                      ng-mouseenter="buttonsShown[activity.id]=true"
                      ng-mouseleave="buttonsShown[activity.id]=false"
-                     ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-recWeight', '-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize track by activity.id">
+                     ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-score', '-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize track by activity.id">
                     <div class="col-md-1">
                         {{ activity.number }}
                         <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld" translate>
