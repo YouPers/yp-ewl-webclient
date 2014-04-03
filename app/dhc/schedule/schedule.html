@@ -48,7 +48,7 @@
 
                 <form class="form activity-schedule-form" role="form" ng-submit="saveActivityPlan()">
 
-                    <fieldset ng-disabled="schedule.isJoinedPlan || schedule.isJoinedPlan && !schedule.isEditable">
+                    <fieldset ng-disabled="schedule.isScheduled && (schedule.isJoinedPlan || (!schedule.isJoinedPlan && !schedule.isEditable))">
 
 
                         <div class="btn-group form-group execution-type" ng-hide="schedule.isPrivate || schedule.isScheduled">
@@ -167,16 +167,6 @@
                                       translate-interpolation="messageformat">schedule.self.joiningUsers</span>
                                 </div>
                             </div>
-
-                            <div class="save-link form-group" tooltip-placement="left" tooltip="{{ schedule.isEditable ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}" >
-                                <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule</button>
-                                <button ng-hide="!plan.id" ng-disabled="!schedule.isEditable" type="submit" class="btn btn-primary pull-right"  translate>schedule.save</button>
-                            </div>
-
-                            <div class="delete-link form-group" tooltip-placement="left" tooltip="{{ schedule.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}" >
-                                <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="!schedule.isDeletable" type="button" class="btn btn-warning pull-left"  translate>schedule.delete</button>
-                            </div>
-
                         </div>
 
                         <!-- group -->
@@ -231,6 +221,18 @@
 
 
                     </fieldset>
+
+                    <div ng-show="plan.executionType == 'self'">
+                        <div class="save-link form-group" tooltip-placement="left" tooltip="{{ (schedule.isScheduled && schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}" >
+                            <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule</button>
+                            <button ng-hide="!plan.id" ng-disabled="!schedule.isEditable" type="submit" class="btn btn-primary pull-right"  translate>schedule.save</button>
+                        </div>
+
+                        <div class="delete-link form-group" tooltip-placement="left" tooltip="{{ schedule.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}" >
+                            <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="!schedule.isDeletable" type="button" class="btn btn-warning pull-left"  translate>schedule.delete</button>
+                        </div>
+                    </div>
+
 
                 </form>
 
