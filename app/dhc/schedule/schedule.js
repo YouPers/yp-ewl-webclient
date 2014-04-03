@@ -134,6 +134,16 @@
                     }
                 });
 
+                _.forEach($scope.plan.events, function(event, index) {
+                    var updateEvent = function(newEvent, oldEvent) {
+                        if(newEvent && !_.isEqual(newEvent, oldEvent)) {
+                            ActivityService.updateActivityEvent($scope.plan.id, newEvent);
+                        }
+                    };
+                    $scope.$watch('plan.events[' + index + ']', _.throttle(updateEvent, 1000), true);
+                });
+
+                //TODO: refactor comment db schema, update ui while dirty / not saved
 
                 $scope.joinActivityPlan = function(plan) {
                     ActivityService.joinPlan(plan).then(function(joinedPlan) {
