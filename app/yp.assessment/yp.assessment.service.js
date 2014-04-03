@@ -13,10 +13,6 @@
                     cachedAssessmentPromise = null;
                 });
 
-                function _getCategories(assessment) {
-
-                }
-
                 var assService = {
                     getAssessment: function (assessmentId) {
                         // assessments are static from a users perspective, therefore we only load once and cache the promise
