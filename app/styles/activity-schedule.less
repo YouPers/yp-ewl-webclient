@@ -1,0 +1,139 @@
+@import "youpers-variables";
+
+// activity-schedule
+// --------------------------------------------------
+
+
+@media (min-width: @screen-desktop) {
+  .activity-schedule-page:nth-child(1) {
+    border-right: 1px #d3d3d3 solid;
+  }
+  .activity-schedule-page:nth-child(2) {
+    border-right: 1px #d3d3d3 solid;
+  }
+  .activity-schedule-page {
+    vertical-align: top;
+    display: inline-block;
+  }
+}
+
+@media (max-width: @screen-desktop) {
+  .activity-schedule {
+    width: @youpers-activity-card-width;
+    height: @youpers-activity-card-height * 3;
+  }
+  .activity-schedule-page {
+    display: block;
+  }
+}
+
+.activity-schedule {
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.75);
+  display: inline-table;
+}
+
+.activity-schedule-page {
+  width: @youpers-activity-card-width;
+  height: @youpers-activity-card-height;
+}
+
+.activity-schedule-page .page {
+  padding: 1em;
+  height: 100%;
+}
+
+// execution-type
+
+.activity-schedule-form .btn-group.execution-type {
+  width: 100%;
+}
+.activity-schedule-form .btn-group.execution-type .btn {
+  width: 50%;
+}
+
+// self
+
+.activity-schedule-form {
+  height: 100%;
+  position: relative;
+}
+
+.activity-schedule-form textarea {
+  resize: none;
+}
+
+.activity-schedule-form .date-selection {
+  padding-right: 0.2em;
+  padding-top: 1em;
+}
+.activity-schedule-form .time-selection {
+  padding: 0 0.4em;
+  width: 23%;
+}
+.activity-schedule-form .time-selection .btn {
+  padding: 0em;
+}
+.activity-schedule-form .time-selection .form-control {
+  height: inherit;
+  padding: 0em;
+}
+.activity-schedule-form .frequency {
+  padding-top: 0.5em;
+}
+.activity-schedule-form .frequency .btn {
+  padding: 0.3em 0.64em;;
+}
+
+.activity-schedule-form .recurrence > * {
+  padding-top: 0.5em;
+}
+
+.activity-schedule-form .recurrence label {
+  font-weight: normal;
+  //  text-align: center;
+}
+
+.activity-schedule-form .recurrence input {
+  //  text-align: right;
+}
+.activity-schedule-form .recurrence-week-day select {
+  height: 30px;
+}
+.activity-schedule-form .joining-users {
+  padding-top: 1em;
+}
+.activity-schedule-form .form-group.save-link {
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  right: 0;
+}
+.activity-schedule-form .form-group.delete-link {
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  right: left;
+}
+
+// group
+
+.activity-schedule-form .no-plans {
+  text-align: center;
+  padding: 1em;
+}
+
+.activity-schedule-form .plan-list {
+  height: 23em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+// event
+
+.activity-schedule-page .rating .rating-component {
+  font-size: 2em;
+}
+
+.activity-schedule-page .comment textarea {
+  resize: none;
+}

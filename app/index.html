@@ -17,14 +17,13 @@
 
     <!-- build:css(.tmp) styles/main.css -->
     <link rel='stylesheet' href='lib/bootstrap/dist/css/bootstrap.css'>
-    <link rel='stylesheet' href='styles/dosisfont.css'>
-    <link rel='stylesheet' href='styles/robotofont.css'>
     <link rel="stylesheet" href="styles/youpers.css">
     <link rel="stylesheet" href="lib/less-elements/elements.css">
     <!-- endbuild -->
 
     <!-- build:js js/app.js -->
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/angular-touch/angular-touch.js"></script>
     <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="lib/angular-cookies/angular-cookies.js"></script>
@@ -52,8 +51,31 @@
 
     <script src="lib/stacktrace.js"></script>
 
+    <script src="lib/hamsterjs/hamster.js"></script>
+    <script src="lib/angular-mousewheel/mousewheel.js"></script>
 
-<!--commons-->
+    <!--dhc-->
+    <script src="dhc/dhc.js"></script>
+
+
+    <!--components-->
+    <script src="components/activity-card-directive/activity-card-directive.js"></script>
+    <script src="components/multiple-view-carousel-directive/multiple-view-carousel-directive.js"></script>
+    <script src="components/stop-propagation-directive/stop-propagation-directive.js"></script>
+    <script src="components/health-coach/health-coach-service.js"></script>
+    <script src="components/health-coach/health-coach-directive.js"></script>
+
+    <!--home-->
+    <script src="dhc/home/home.js"></script>
+    <!--select-->
+    <script src="dhc/select/select.js"></script>
+    <!--schedule-->
+    <script src="dhc/schedule/schedule.js"></script>
+
+
+
+
+    <!--commons-->
     <script src="yp.commons/yp.commons.js"></script>
     <script src="yp.commons/yp.commons.directive.ypinput.js"></script>
     <script src="yp.commons/yp.discussion.js"></script>

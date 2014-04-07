@@ -6,8 +6,10 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
-            'angulartics','angulartics.google.analytics', 'vr.directives.slider',
+            'angulartics','angulartics.google.analytics',
             'yp.config', 'yp.commons', 'yp.notification', 'yp.error',
+
+            'yp.dhc',
 
             'yp.user', 'yp.payment',
 
@@ -31,11 +33,11 @@ angular.module('yp-ewl',
             //
             // Now set up the states
             $stateProvider
-                .state('home', {
-                    url: "/home",
-                    templateUrl: "yp.ewl/home.html",
-                    access: accessLevels.all
-                })
+//                .state('home', {
+//                    url: "/home",
+//                    templateUrl: "yp.ewl/home.html",
+//                    access: accessLevels.all
+//                })
                 .state('terms', {
                     url: "/terms",
                     templateUrl: "yp.ewl/terms.html",
@@ -62,20 +64,20 @@ angular.module('yp-ewl',
             $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
             $translateProvider.useCookieStorage();
             $translateProvider.useLoader('$translateWtiPartialLoader', {
-                urlTemplate: '/{part}/{part}.translations.{lang}.json',
+                urlTemplate: '/{part}.translations.{lang}.json',
                 wtiProjectId: '8233-eWL',
                 wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
                 fromWti: config.translationSource === 'wti'
             });
-            $translateWtiPartialLoaderProvider.addPart('yp.ewl');
-            $translateWtiPartialLoaderProvider.addPart('yp.commons');
+            $translateWtiPartialLoaderProvider.addPart('yp.ewl/yp.ewl');
+            $translateWtiPartialLoaderProvider.addPart('yp.commons/yp.commons');
         }])
 
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', 'UserService', '$timeout', '$http', '$translate', 'enums', 'yp.config',
-        function ($rootScope, $state, $stateParams, UserService, $timeout, $http, $translate, enums, config) {
+    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'enums', 'yp.config',
+        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, enums, config) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -87,6 +89,16 @@ angular.module('yp-ewl',
             $rootScope.enums = enums;
             $rootScope.config = config;
 
+            $rootScope.back = function() {
+                if (!$state.current.previous) {
+                    $state.go('home.content');
+                } else if($state.current.previous.name === 'schedule.offer') {
+                    $state.go('select.content');
+                } else {
+                    $state.go($state.current.previous.name);
+                }
+            };
+
             // set the language to use for backend calls to be equal to the current GUI language
             // translate.use() returns undefined until the partial async loader has found the "proposedLanguage"
             // therefore we use in this case $translate.proposedLanguage()
@@ -96,6 +108,7 @@ angular.module('yp-ewl',
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+                toState.previous = fromState;
 
                 var requiredAccessLevel = toState.access;
 

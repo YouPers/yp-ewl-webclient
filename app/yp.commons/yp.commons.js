@@ -98,11 +98,23 @@
                 }
             };
         })
+        .filter('calendar', function () {
+            return function (dateString) {
+                var myMoment = moment(dateString);
+                return myMoment.calendar();
+            };
+        })
+        .filter('eventDate', function () {
+            return function (dateString) {
+                var myMoment = moment(dateString);
+                return myMoment.format('dddd, DD. MMMM');
+            };
+        })
 
         .filter('time', function () {
             return function (dateString) {
                 var myMoment = moment(dateString);
-                return myMoment.format('LT');
+                return myMoment.format('HH:mm');
             };
         })
 

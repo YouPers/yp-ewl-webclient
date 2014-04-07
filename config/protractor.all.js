@@ -18,7 +18,7 @@ var config = {
 
     baseUrl: envConfig.webclientUrl,
 
-    specs: ['../test/protractor/**/*.js'],
+    specs: ['../test/protractor/login.js', '../test/protractor/**/*.js'],
 
     jasmineNodeOpts: {
         showColors: true // Use colors in the command line report.

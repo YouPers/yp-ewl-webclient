@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.assessment', ['ui.router', 'restangular', 'yp.user', 'yp.activity' ])
+    angular.module('yp.assessment', ['ui.router', 'restangular', 'vr.directives.slider', 'yp.user', 'yp.activity' ])
 
         // configuration of routes for all assessment module pages
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
@@ -34,7 +34,7 @@
                         }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('yp.assessment');
+                $translateWtiPartialLoaderProvider.addPart('yp.assessment/yp.assessment');
             }])
 
         // Object methods for all Assessment related objects

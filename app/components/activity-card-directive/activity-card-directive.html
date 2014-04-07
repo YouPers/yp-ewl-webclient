@@ -1,0 +1,71 @@
+
+<div class="activity-card flip">
+
+    <div class="card page" ng-class="{ flipped: flipped }">
+        <div class="front face" ng-click="flip()">
+
+            <div class="image">
+                <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
+            </div>
+            <div class="source">
+                <div class="source-avatar-container">
+                    <div class="source-avatar-content">
+                        <img ng-src="{{rec.recommendedBy[0].avatar}}">
+                    </div>
+                    <div class="source-text">
+                        empfohlen durch {{ rec.recommendedBy[0].fullname }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <div class="title">
+                    {{ rec.activity.title }}
+                </div>
+
+                <div class="shortDescription">
+                    {{ rec.activity.description }}
+                </div>
+
+                <div>
+
+                    <div class="schedule">
+                        {{ rec.schedule }}
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="linkleft">
+                    <button class="btn btn-default" ng-click="reject({index: index, event: $event})">
+                        Nein, Danke!
+                    </button>
+                 </div>
+                <div class="linkright">
+                    <a class="btn btn-primary" ng-href="{{scheduleLink}}" stop-propagation>
+                        <span>Einplanen</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="back face" ng-click="flip()">
+
+            <div class="content">
+                <h3>
+                    {{ rec.activity.title }}
+                </h3>
+
+                <p>
+                    {{ rec.activity.text }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
