@@ -1,9 +1,6 @@
+var user = require('./common/user');
+
 describe('GET home', function() {
-
-    beforeEach(function() {
-        browser.get('/');
-    });
-
 
     it('navigates to the "select" state', function() {
 
