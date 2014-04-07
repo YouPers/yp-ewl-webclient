@@ -58,82 +58,91 @@
   position: relative;
 }
 
+.activity-schedule-form fieldset[disabled] * {
+  cursor: default !important;
+  background-color: transparent;
+}
+
 .activity-schedule-form textarea {
-  resize: none;
+resize: none;
 }
 
 .activity-schedule-form .date-selection {
-  padding-right: 0.2em;
-  padding-top: 1em;
+padding-right: 0.2em;
+padding-top: 1em;
 }
 .activity-schedule-form .time-selection {
-  padding: 0 0.4em;
-  width: 23%;
+padding: 0 0.4em;
+width: 23%;
 }
 .activity-schedule-form .time-selection .btn {
-  padding: 0em;
+padding: 0em;
 }
 .activity-schedule-form .time-selection .form-control {
-  height: inherit;
-  padding: 0em;
+height: inherit;
+padding: 0em;
 }
 .activity-schedule-form .frequency {
-  padding-top: 0.5em;
+padding-top: 0.5em;
+}
+.activity-schedule-form fieldset[disabled] .frequency .btn-default.active {
+color: #333;
+background-color: #ebebeb;
 }
 .activity-schedule-form .frequency .btn {
-  padding: 0.3em 0.64em;;
+padding: 0.3em 0.64em;;
 }
 
 .activity-schedule-form .recurrence > * {
-  padding-top: 0.5em;
+padding-top: 0.5em;
 }
 
 .activity-schedule-form .recurrence label {
-  font-weight: normal;
-  //  text-align: center;
+font-weight: normal;
+//  text-align: center;
 }
 
 .activity-schedule-form .recurrence input {
-  //  text-align: right;
+//  text-align: right;
 }
 .activity-schedule-form .recurrence-week-day select {
-  height: 30px;
+height: 30px;
 }
 .activity-schedule-form .joining-users {
-  padding-top: 1em;
+padding-top: 1em;
 }
 .activity-schedule-form .form-group.save-link {
-  position: absolute;
-  margin: 0;
-  bottom: 0;
-  right: 0;
+position: absolute;
+margin: 0;
+bottom: 0;
+right: 0;
 }
 .activity-schedule-form .form-group.delete-link {
-  position: absolute;
-  margin: 0;
-  bottom: 0;
-  right: left;
+position: absolute;
+margin: 0;
+bottom: 0;
+right: left;
 }
 
 // group
 
 .activity-schedule-form .no-plans {
-  text-align: center;
-  padding: 1em;
+text-align: center;
+padding: 1em;
 }
 
 .activity-schedule-form .plan-list {
-  height: 23em;
-  overflow-y: scroll;
-  overflow-x: hidden;
+height: 23em;
+overflow-y: scroll;
+overflow-x: hidden;
 }
 
 // event
 
 .activity-schedule-page .rating .rating-component {
-  font-size: 2em;
+font-size: 2em;
 }
 
 .activity-schedule-page .comment textarea {
-  resize: none;
+resize: none;
 }
