@@ -10,18 +10,18 @@
     <!--<div class="ass-done-button ass-done-button-top">-->
     <!--<button type="button" class="btn btn-primary btn-sm" ng-click="assessmentDone()">speichern</button>-->
     <!--</div>-->
-    <div class="row ass-questioncat-title" ng-repeat="questioncat in assessment.questionCats">
+    <div class="row ass-questioncat-title" ng-repeat="category in assessment.categories">
         <div class="col-md-11">
-            <div class="panel cockpit" ng-class="{mainAssQuestion: questioncat.category=='generalStresslevel', otherAssQuestion: questioncat.category!='generalStresslevel'}">
+            <div class="panel cockpit" ng-class="{mainAssQuestion: category =='generalStresslevel', otherAssQuestion: category!='generalStresslevel'}">
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel cockpit section-title">
-                            {{ 'questionCategory.' + questioncat.category | translate }}
+                            {{ 'questionCategory.' + category | translate }}
                         </div>
                     </div>
                 </div>
-                <div class="row" ng-repeat="question in questioncat.questions">
+                <div class="row" ng-repeat="question in assessment.questions | filter:{category: category}">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-7">

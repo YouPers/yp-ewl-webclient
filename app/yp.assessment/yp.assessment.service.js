@@ -5,12 +5,12 @@
     angular.module('yp.assessment')
 
         // provides methods to get Assessment Information from the server
-        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'UserService','$rootScope',
+        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'UserService', '$rootScope',
             function ($http, $q, Restangular, UserService, $rootScope) {
                 var cachedAssessmentPromise;
 
-                $rootScope.$on('$translateChangeStart', function() {
-                   cachedAssessmentPromise = null;
+                $rootScope.$on('$translateChangeStart', function () {
+                    cachedAssessmentPromise = null;
                 });
 
                 var assService = {
@@ -18,21 +18,21 @@
                         // assessments are static from a users perspective, therefore we only load once and cache the promise
                         // in the service.
                         if (!cachedAssessmentPromise) {
-                            cachedAssessmentPromise = Restangular.one('assessments', assessmentId).get().then(function (assessment) {
+                            cachedAssessmentPromise = Restangular.one('assessments', assessmentId).get({populate: 'questions'}).then(function (assessment) {
                                 // sort questions into keyed lookup so all controllers can easily get the question for a given
                                 // questionId
                                 assessment.questionLookup = {};
-                                _.forEach(assessment.questionCats, function (questionCat) {
-                                    _.forEach(questionCat.questions, function (question) {
-                                        assessment.questionLookup[question.id] = question;
-                                    });
+                                _.forEach(assessment.questions, function (question) {
+                                    assessment.questionLookup[question.id] = question;
                                 });
+
+                                assessment.categories =  _.uniq(_.map(assessment.questions,'category'));
                                 return assessment;
                             });
                         }
                         return cachedAssessmentPromise;
                     },
-                    reloadAssessment: function() {
+                    reloadAssessment: function () {
                         cachedAssessmentPromise = undefined;
                     },
                     getAssessmentData: function (assessmentId) {
@@ -104,7 +104,7 @@
                             if (!result) {
                                 return null;
                             } else {
-                                return _.sortBy(result.answers,function (answer) {
+                                return _.sortBy(result.answers, function (answer) {
                                     return -Math.abs(answer.answer);
                                 }).slice(0, 3);
                             }

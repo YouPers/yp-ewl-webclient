@@ -46,19 +46,15 @@
                         assessment: assessment.id,
                         answers: []
                     };
-                    for (var i = 0; i < assessment.questionCats.length; i++) {
-                        var questionCat = assessment.questionCats[i];
-                        for (var j = 0; j < questionCat.questions.length; j++) {
-                            var question = questionCat.questions[j];
-                            var answer = {
-                                assessment: assessment.id,
-                                question: question.id,
-                                answer: 0,
-                                answered: false
-                            };
-                            emptyResult.answers.push(answer);
-                        }
-                    }
+                    _.forEach(assessment.questions, function(question) {
+                        var answer = {
+                            assessment: assessment.id,
+                            question: question.id || question,
+                            answer: 0,
+                            answered: false
+                        };
+                        emptyResult.answers.push(answer);
+                    });
                     return emptyResult;
 
                 };
@@ -67,8 +63,8 @@
         }])
 
 
-    // hardcoded filtering out of general stress level
-    // todo: replacing hardcoded question id
+        // hardcoded filtering out of general stress level
+        // todo: replacing hardcoded question id
         .
         filter('stripGeneralLevel', function () {
             return function (input) {
