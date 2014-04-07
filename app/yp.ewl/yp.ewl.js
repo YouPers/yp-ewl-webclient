@@ -89,6 +89,9 @@ angular.module('yp-ewl',
             $rootScope.enums = enums;
             $rootScope.config = config;
 
+
+            // TODO: goto proper history entry instead of forwarding to a new location
+
             $rootScope.back = function() {
                 if (!$state.current.previous || !$state.current.previous.name) {
                     $state.go('home.content');
@@ -98,6 +101,7 @@ angular.module('yp-ewl',
                     $state.go($state.current.previous.name);
                 }
             };
+
 
             // set the language to use for backend calls to be equal to the current GUI language
             // translate.use() returns undefined until the partial async loader has found the "proposedLanguage"

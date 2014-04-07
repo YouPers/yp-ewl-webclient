@@ -16,6 +16,17 @@
 
                 link: function ($scope, elem, attrs) {
 
+
+                    $scope.$watch(function () {
+                        return $location.search();
+                    }, function (newValue, oldValue) {
+
+                        if(newValue.offset && $scope.slider.offset !== parseInt(newValue.offset)) {
+                            $scope.$parent.back();
+                        }
+
+                    });
+
                     $scope.itemsPerView = $scope.itemsPerView || 1;
 
                     $scope.$watch('itemsPerView', function () {
@@ -25,7 +36,7 @@
                     });
 
                     $scope.$watch('slider.offset', function () {
-                        $location.search({ s: $scope.slider.offset });
+                        $location.search({ offset: $scope.slider.offset });
                         $scope.innerListStyle = {
                             left: - $scope.slider.offset * $scope.itemWidthEm + 'em',
                             width: ($scope.items ? $scope.itemWidthEm * ($scope.items.length + 1) + 'em' : 0)
