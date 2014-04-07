@@ -90,7 +90,7 @@ angular.module('yp-ewl',
             $rootScope.config = config;
 
             $rootScope.back = function() {
-                if (!$state.current.previous) {
+                if (!$state.current.previous || !$state.current.previous.name) {
                     $state.go('home.content');
                 } else if($state.current.previous.name === 'schedule.offer') {
                     $state.go('select.content');
