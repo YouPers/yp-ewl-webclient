@@ -19,6 +19,15 @@ var environmentConfig = {
             showUserFeedbackLink: true
         }
     },
+    ci: {
+        webclientUrl: 'http://localhost:9000',
+        backendUrl: 'https://cimaster.youpers.com/api',
+        translationSource: 'local',
+        googleAnalytics: {},
+        ui: {
+            showUserFeedbackLink: true
+        }
+    },
     cimaster: {
         webclientUrl: 'https://cimaster.youpers.com',
         backendUrl: 'https://cimaster.youpers.com/api',
