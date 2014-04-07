@@ -41,7 +41,7 @@
                 "weeklyDay": "Jeweils am"
             },
             "visibility": "Andere dürfen mitmachen",
-            "joiningUsers": "{OTHERS, plural, =0{} one{und 1 anderer macht mit} other{und # andere machen mit}}"
+            "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 anderer</a> macht mit} other{und <a># andere</a> machen mit}}"
         },
 
         "group": {

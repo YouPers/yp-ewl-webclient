@@ -47,10 +47,12 @@
                             schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 return ActivityService.getActivityPlan($stateParams.id).then(function(plan) {
                                     return {
+
                                         isScheduled: true,
                                         isDeletable: plan.deleteStatus.indexOf('deletable') === 0,
                                         isEditable: plan.editStatus === 'editable',
                                         isJoinedPlan: !!plan.masterPlan,
+
                                         activity: plan.activity,
                                         plan: plan,
                                         recommendedBy: plan.invitedBy
@@ -78,6 +80,10 @@
                     $scope.schedule.isPrivate = false;
                     $scope.plan.visibility = true;
                 }
+
+                $scope.getJoiningUsers = function () {
+                    return _.pluck(schedule.plan.joiningUsers, 'fullname').join('\n');
+                };
 
                 // calendar & recurrence
 

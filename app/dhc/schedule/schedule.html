@@ -161,12 +161,12 @@
 
                             <!-- joiningUsers -->
                             <div class="row joining-users" ng-show="schedule.isJoinedPlan">
-                                <div class="col-md-12">
+                                <span class="col-md-12">
                                     <span>{{ schedule.plan.owner.firstname }}</span>
-                                <a translate translate-values="{ OTHERS: '{{schedule.plan.joiningUsers.length}}' }"
+                                <span translate translate-values="{ OTHERS: '{{schedule.plan.joiningUsers.length}}' }"
                                       translate-interpolation="messageformat"
-                                      tooltip="{{ schedule.plan.joiningUsers }}">schedule.self.joiningUsers</a>
-                                </div>
+                                      tooltip="{{ getJoiningUsers() }}">schedule.self.joiningUsers</span>
+                                </span>
                             </div>
                         </div>
 
