@@ -29,16 +29,6 @@
                                     offer.plan = ActivityService.getDefaultPlan(offer.activity);
                                     offer.isScheduled = false;
 
-                                    // FIXME: remove dummies
-                                    if(offer.activityPlan && offer.activityPlan.length > 0) {
-                                        var f = function() {
-                                            var p = _.clone(offer.activityPlan[0]);
-                                            p.id = _.random(1000);
-                                            offer.activityPlan.push(p);
-                                        }
-                                        f();f();f();f();f();f();f();f();f();f();f();
-                                    }
-
                                     return offer;
                                 });
                             }]
