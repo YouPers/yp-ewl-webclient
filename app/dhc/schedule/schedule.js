@@ -134,7 +134,15 @@
                     $scope.$watch('plan.events[' + index + ']', _.throttle(updateEvent, 1000), true);
                 });
 
-                //TODO: refactor comment db schema, update ui while dirty / not saved
+                //TODO: update ui while dirty / not saved
+
+                $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                    $scope.inviteEmail = "";
+                    $scope.$broadcast('formPristine');
+                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
+                        $rootScope.$emit('notification:success', 'activityPlan.invite', { values: { email: email } });
+                    });
+                };
 
                 $scope.joinActivityPlan = function(plan) {
                     ActivityService.joinPlan(plan).then(function(joinedPlan) {

@@ -48,195 +48,221 @@
 
                 <form class="form activity-schedule-form" role="form" ng-submit="saveActivityPlan()">
 
+
+
+
+                    <div class="btn-group form-group execution-type" ng-hide="schedule.isPrivate || schedule.isScheduled">
+                        <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'self'" translate>schedule.executiontype.self</button>
+                        <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'group'" translate>schedule.executiontype.group</button>
+                    </div>
+
+                    <!-- self -->
+                    <div ng-if="schedule.isScheduled || plan.executionType === 'self'">
+
                     <fieldset ng-disabled="schedule.isScheduled && (schedule.isJoinedPlan || !schedule.isEditable)">
 
-
-                        <div class="btn-group form-group execution-type" ng-hide="schedule.isPrivate || schedule.isScheduled">
-                            <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'self'" translate>schedule.executiontype.self</button>
-                            <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'group'" translate>schedule.executiontype.group</button>
-                        </div>
-
-                        <!-- self -->
-                        <div ng-if="schedule.isScheduled || plan.executionType === 'self'">
-
-
-                            <!-- location -->
-                            <div class="row">
-                                <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" ng-model="plan.location" placeholder="{{ 'schedule.self.location' | translate }}">
-                                </div>
-                            </div>
-
-                            <!-- text -->
-                            <div class="row">
-                                <div class="col-md-12 form-group">
-                                    <textarea class="form-control" ng-model="plan.text" placeholder="{{'schedule.self.text' | translate }}"></textarea>
-                                </div>
-                            </div>
-
-                            <!-- date and time -->
-                            <div class="row">
-                                <div class="col-md-6 date-selection">
-
-                                    <div >
-                                        <input ng-model="plan.mainEvent.start"
-                                               class="form-control" type="text" id="datePickerStart"
-                                               datepicker-popup="dd.MM.yyyy"
-                                               is-open="opened" min="minDate"
-                                               datepicker-options="dateOptions"
-                                               date-disabled="disabled(date, mode)" ng-required="true"/>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 time-selection">
-                                    <timepicker ng-model="plan.mainEvent.start" id="timePickerStart" minute-step="15" show-meridian="false"></timepicker>
-                                </div>
-                                <div class="col-md-3 time-selection">
-                                    <timepicker ng-model="plan.mainEvent.end" id="timePickerEnd" minute-step="15" show-meridian="false"></timepicker>
-                                </div>
-                            </div>
-
-                            <!-- frequency -->
-                            <div class="row">
-                                <div class="col-md-12 frequency">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
-                                                btn-radio="'once'" translate>activityPlanFrequency.once
-                                        </button>
-                                        <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
-                                                btn-radio="'day'" translate>activityPlanFrequency.day
-                                        </button>
-                                        <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
-                                                btn-radio="'week'" translate>activityPlanFrequency.week
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- recurrence -->
-
-                            <div class="row recurrence" ng-if="plan.mainEvent.frequency=='day'">
-                                <div class="col-md-6 recurrence-day">
-                                    <label>
-                                        <span translate>schedule.self.recurrence.day</span>
-                                        <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number class="form-control input-sm">
-                                    </label>
-                                </div>
-
-                            </div>
-                            <div class="row recurrence" ng-if="plan.mainEvent.frequency=='week'">
-                                <div class="col-md-6 recurrence-week">
-                                    <label>
-                                        <span translate>schedule.self.recurrence.week</span>
-                                        <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number class="form-control input-sm">
-                                    </label>
-                                </div>
-                                <div class="col-md-6 recurrence-week-day">
-                                    <label>
-                                        <span translate>schedule.self.recurrence.weeklyDay</span>
-                                        <fieldset ng-disabled="plan.mainEvent.frequency!='week'">
-                                            <select ng-model="plan.weeklyDay"
-                                                    name="weeklyDay"
-                                                    id="weeklyDay"
-                                                    ng-options="d.value as (d.label | translate) for d in availableDays"
-                                                    class="form-control">
-                                            </select>
-                                        </fieldset>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- visibility -->
-                            <div class="row" ng-hide="schedule.isPrivate || schedule.isJoinedPlan">
-                                <div class="col-md-12">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input ng-model="plan.visibility" type="checkbox">
-                                            <span translate>schedule.self.visibility</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- joiningUsers -->
-                            <div class="row joining-users" ng-show="schedule.isJoinedPlan">
-                                <span class="col-md-12">
-                                    <span>{{ schedule.plan.owner.firstname }}</span>
-                                <span translate translate-values="{ OTHERS: '{{schedule.plan.joiningUsers.length}}' }"
-                                      translate-interpolation="messageformat"
-                                      tooltip="{{ getJoiningUsers() }}">schedule.self.joiningUsers</span>
-                                </span>
+                        <!-- location -->
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" ng-model="plan.location" placeholder="{{ 'schedule.self.location' | translate }}">
                             </div>
                         </div>
 
-                        <!-- group -->
-
-                        <div ng-if="!schedule.isScheduled && plan.executionType === 'group'">
-
-                            <div class="no-plans" ng-hide="schedule.activityPlan && schedule.activityPlan.length > 0">
-                                <p translate>schedule.group.noPlansToJoin</p>
+                        <!-- text -->
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <textarea class="form-control" ng-model="plan.text" placeholder="{{'schedule.self.text' | translate }}"></textarea>
                             </div>
+                        </div>
 
+                        <!-- date and time -->
+                        <div class="row">
+                            <div class="col-md-6 date-selection">
 
-                            <div class="plan-list">
-                                <div ng-repeat="plan in schedule.activityPlan" class="row">
-                                    <div class="col-md-12">
+                                <div >
+                                    <input ng-model="plan.mainEvent.start"
+                                           class="form-control" type="text" id="datePickerStart"
+                                           datepicker-popup="dd.MM.yyyy"
+                                           is-open="opened" min="minDate"
+                                           datepicker-options="dateOptions"
+                                           date-disabled="disabled(date, mode)" ng-required="true"/>
 
-                                        <div>
-                                            <a>{{ plan.owner.fullname }}</a>
-                                            <span ng-show="joiningUsers">
-                                                <span translate translate-values="{ OTHERS: '{{plan.joiningUsers.length}}' }"
-                                                      translate-interpolation="messageformat">schedule.group.joiningUsers</span>
-                                            </span>
-                                            <button type="button" ng-click="joinActivityPlan(plan)" class="btn btn-xs btn-default pull-right" translate>schedule.group.join</button>
-                                        </div>
-
-                                        <div>
-
-                                            <span>{{ 'activityPlanFrequency.' + plan.mainEvent.frequency | translate}}</span>
-
-                                            <div ng-if="planToJoin.mainEvent.frequency == 'week'">
-                                                <span translate>schedule.group.startingOn</span>
-                                                <span>{{ plan.mainEvent.start | fromNow }}</span>
-                                            </div>
-
-                                            <div>
-                                                <span>{{ plan.mainEvent.start | time }}</span>
-                                                <span translate>schedule.group.startToEndDate</span>
-                                                <span>{{ planToJoin.mainEvent.end | time }}</span>
-                                            </div>
-
-                                        </div>
-
-                                        <div ng-if="plan.location">
-                                            <span translate>schedule.group.location</span>
-                                            <span>{{ plan.location }}</span>
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
 
+                            <div class="col-md-3 time-selection">
+                                <timepicker ng-model="plan.mainEvent.start" id="timePickerStart" minute-step="15" show-meridian="false"></timepicker>
+                            </div>
+                            <div class="col-md-3 time-selection">
+                                <timepicker ng-model="plan.mainEvent.end" id="timePickerEnd" minute-step="15" show-meridian="false"></timepicker>
+                            </div>
                         </div>
 
+                        <!-- frequency -->
+                        <div class="row">
+                            <div class="col-md-12 frequency">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
+                                            btn-radio="'once'" translate>activityPlanFrequency.once
+                                    </button>
+                                    <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
+                                            btn-radio="'day'" translate>activityPlanFrequency.day
+                                    </button>
+                                    <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
+                                            btn-radio="'week'" translate>activityPlanFrequency.week
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- recurrence -->
+
+                        <div class="row recurrence" ng-if="plan.mainEvent.frequency=='day'">
+                            <div class="col-md-6 recurrence-day">
+                                <label>
+                                    <span translate>schedule.self.recurrence.day</span>
+                                    <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number class="form-control input-sm">
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="row recurrence" ng-if="plan.mainEvent.frequency=='week'">
+                            <div class="col-md-6 recurrence-week">
+                                <label>
+                                    <span translate>schedule.self.recurrence.week</span>
+                                    <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number class="form-control input-sm">
+                                </label>
+                            </div>
+                            <div class="col-md-6 recurrence-week-day">
+                                <label>
+                                    <span translate>schedule.self.recurrence.weeklyDay</span>
+                                    <fieldset ng-disabled="plan.mainEvent.frequency!='week'">
+                                        <select ng-model="plan.weeklyDay"
+                                                name="weeklyDay"
+                                                id="weeklyDay"
+                                                ng-options="d.value as (d.label | translate) for d in availableDays"
+                                                class="form-control">
+                                        </select>
+                                    </fieldset>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- visibility -->
+                        <div class="row" ng-hide="schedule.isPrivate || schedule.isJoinedPlan">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="plan.visibility" type="checkbox">
+                                        <span translate>schedule.self.visibility</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- joiningUsers -->
+                        <div class="row joining-users" ng-show="schedule.isJoinedPlan">
+                            <div class="col-md-12">
+                                <span>{{ schedule.plan.owner.firstname }}</span>
+                                    <span translate translate-values="{ OTHERS: '{{schedule.plan.joiningUsers.length}}' }"
+                                          translate-interpolation="messageformat"
+                                          tooltip="{{ getJoiningUsers() }}">schedule.self.joiningUsers</span>
+                            </div>
+                        </div>
 
                     </fieldset>
 
-                    <div ng-show="plan.executionType == 'self'">
-                        <div class="save-link form-group" tooltip-placement="left" tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}" >
-                            <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule</button>
-                            <button ng-hide="!plan.id" ng-disabled="!schedule.isEditable" type="submit" class="btn btn-primary pull-right"  translate>schedule.save</button>
+
+
+
+                    <!-- group -->
+
+                    <div ng-if="!schedule.isScheduled && plan.executionType === 'group'">
+
+                        <div class="no-plans" ng-hide="schedule.activityPlan && schedule.activityPlan.length > 0">
+                            <p translate>schedule.group.noPlansToJoin</p>
                         </div>
 
-                        <div class="delete-link form-group" tooltip-placement="left" tooltip="{{ schedule.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}" >
-                            <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="!schedule.isDeletable" type="button" class="btn btn-warning pull-left"  translate>schedule.delete</button>
+
+                        <div class="plan-list">
+                            <div ng-repeat="plan in schedule.activityPlan" class="row">
+                                <div class="col-md-12">
+
+                                    <div>
+                                        <a>{{ plan.owner.fullname }}</a>
+                                                <span ng-show="joiningUsers">
+                                                    <span translate translate-values="{ OTHERS: '{{plan.joiningUsers.length}}' }"
+                                                          translate-interpolation="messageformat">schedule.group.joiningUsers</span>
+                                                </span>
+                                        <button type="button" ng-click="joinActivityPlan(plan)" class="btn btn-xs btn-default pull-right" translate>schedule.group.join</button>
+                                    </div>
+
+                                    <div>
+
+                                        <span>{{ 'activityPlanFrequency.' + plan.mainEvent.frequency | translate}}</span>
+
+                                        <div ng-if="planToJoin.mainEvent.frequency == 'week'">
+                                            <span translate>schedule.group.startingOn</span>
+                                            <span>{{ plan.mainEvent.start | fromNow }}</span>
+                                        </div>
+
+                                        <div>
+                                            <span>{{ plan.mainEvent.start | time }}</span>
+                                            <span translate>schedule.group.startToEndDate</span>
+                                            <span>{{ planToJoin.mainEvent.end | time }}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div ng-if="plan.location">
+                                        <span translate>schedule.group.location</span>
+                                        <span>{{ plan.location }}</span>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
+
                     </div>
 
 
+                    <div ng-show="plan.executionType == 'self'">
+                            <div class="save-link form-group" tooltip-placement="left" tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}" >
+                                <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule</button>
+                                <button ng-hide="!plan.id" ng-disabled="!schedule.isEditable" type="submit" class="btn btn-primary pull-right"  translate>schedule.save</button>
+                            </div>
+
+                            <div class="delete-link form-group" tooltip-placement="left" tooltip="{{ schedule.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}" >
+                                <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="!schedule.isDeletable" type="button" class="btn btn-warning pull-left"  translate>schedule.delete</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
 
+
+                <!-- inviteOthers -->
+
+                <div class="invite-others" ng-show="schedule.isScheduled && plan.executionType === 'group'">
+
+
+                    <form name="inviteEmailForm" class="form-inline" role="form"
+                          ng-submit="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, schedule.plan)">
+
+                        <div class="input-group" ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
+
+                            <input class="form-control email-field"  name="email" type="text" ng-model="inviteEmail"
+                                   placeholder="{{ 'schedule.self.inviteOthers.placeholder' | translate }}"  multiple-Emails required>
+
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-disabled="inviteEmailForm.$invalid" translate>
+                                                schedule.self.inviteOthers.submit
+                                            </button>
+                                        </span>
+                        </div>
+
+                    </form>
+                </div>
 
             </div>
         </div>
