@@ -1,6 +1,6 @@
 <div class="carousel-item-list" ng-style="outerListStyle">
-    <div ng-style="innerListStyle" msd-wheel="$deltaX > 0 ? next() : prev()">
-        <div class="carousel-item-list-content" ng-transclude></div>
+    <div class="carousel-item-list-content" ng-style="innerListStyle" msd-wheel="$deltaX > 0 ? next() : prev()" ng-transclude>
+        <!-- transcluded content -->
     </div>
 </div>
 

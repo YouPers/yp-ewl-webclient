@@ -90,7 +90,13 @@ angular.module('yp-ewl',
             $rootScope.config = config;
 
             $rootScope.back = function() {
-                $window.history.back();
+                if (!$state.current.previous) {
+                    $state.go('home.content');
+                } else if($state.current.previous.name === 'schedule.offer') {
+                    $state.go('select.content');
+                } else {
+                    $state.go($state.current.previous.name);
+                }
             };
 
             // set the language to use for backend calls to be equal to the current GUI language
@@ -102,6 +108,7 @@ angular.module('yp-ewl',
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+                toState.previous = fromState;
 
                 var requiredAccessLevel = toState.access;
 

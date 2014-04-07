@@ -96,11 +96,6 @@
                 $scope.showWeeks = false;
                 $scope.minDate = new Date();
 
-                $scope.open = function () {
-                    $timeout(function () {
-                        $scope.opened = true;
-                    });
-                };
                 $scope.dateOptions = {
                     'year-format': "'yy'",
                     'starting-day': 1
@@ -135,7 +130,7 @@
                 });
 
                 _.forEach($scope.plan.events, function(event, index) {
-                    var updateEvent = function(newEvent, oldEvent) {
+                    var updateEvent = function updateEvent(newEvent, oldEvent) {
                         if(newEvent && !_.isEqual(newEvent, oldEvent)) {
                             ActivityService.updateActivityEvent($scope.plan.id, newEvent);
                         }
@@ -194,6 +189,7 @@
                 $scope.deleteActivityPlan = function () {
                     ActivityService.deletePlan($scope.plan).then(function (result) {
                         $rootScope.$emit('notification:success', 'activityPlan.delete');
+                        // TODO: define where to go and do it.
                         $rootScope.back();
                     });
                 };

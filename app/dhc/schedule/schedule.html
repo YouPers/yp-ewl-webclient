@@ -48,7 +48,7 @@
 
                 <form class="form activity-schedule-form" role="form" ng-submit="saveActivityPlan()">
 
-                    <fieldset ng-disabled="schedule.isScheduled && (schedule.isJoinedPlan || (!schedule.isJoinedPlan && !schedule.isEditable))">
+                    <fieldset ng-disabled="schedule.isScheduled && (schedule.isJoinedPlan || !schedule.isEditable)">
 
 
                         <div class="btn-group form-group execution-type" ng-hide="schedule.isPrivate || schedule.isScheduled">
@@ -239,6 +239,7 @@
 
             </div>
         </div>
+
         <div class="activity-schedule-page">
             <div class="page">
 

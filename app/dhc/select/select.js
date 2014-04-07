@@ -40,7 +40,10 @@
                 $scope.offers = offers;
 
                 // watch window width to adjust number of items displayed
-                $scope.$watch( function() {
+                $scope.$watch(function() {
+                    return $window.innerWidth;
+                }, function() {
+
 
                     var dimensions = [
 //                        480,
