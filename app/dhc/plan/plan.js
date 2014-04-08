@@ -42,7 +42,7 @@
                     _.forEach(plan.events, function(event) {
                         event.plan = plan;
                         events.push(event);
-                    })
+                    });
                 });
 
                 var groupedEvents = _.groupBy(events, function(event) {
@@ -50,7 +50,7 @@
                     var date = event.begin;
 
                     // open events that have past
-                    if(event.status == 'open' && moment().diff(date) > 0) {
+                    if(event.status === 'open' && moment().diff(date) > 0) {
                         return 'open';
                     }
 
@@ -90,7 +90,7 @@
                         });
                     }
                 });
-            }        
+            }
         ]);
 
 }());
