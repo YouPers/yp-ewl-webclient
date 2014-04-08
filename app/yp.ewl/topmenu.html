@@ -46,10 +46,10 @@
                 <div class="nav navbar-right">
                     <ul class="nav navbar-nav">
                         <li class="dropdown" ng-show="principal.isAuthenticated()">
-                            <a class="dropdown-toggle" data-toggle="dropdown">{{ principal.getUser().fullname }}
+                            <a class="dropdown-toggle user-nav-link" data-toggle="dropdown">{{ principal.getUser().fullname }}
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="" ng-click="logout()" translate>topmenu.logout</a></li>
+                                <li><a class="user-logout-link" href="" ng-click="logout()" translate>topmenu.logout</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#/account" translate>topmenu.account</a></li>
                                 <li><a href="#/profile" translate>topmenu.profile</a></li>

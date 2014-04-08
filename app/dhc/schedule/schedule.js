@@ -47,10 +47,12 @@
                             schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 return ActivityService.getActivityPlan($stateParams.id).then(function(plan) {
                                     return {
+
                                         isScheduled: true,
                                         isDeletable: plan.deleteStatus.indexOf('deletable') === 0,
                                         isEditable: plan.editStatus === 'editable',
                                         isJoinedPlan: !!plan.masterPlan,
+
                                         activity: plan.activity,
                                         plan: plan,
                                         recommendedBy: plan.invitedBy
@@ -78,6 +80,10 @@
                     $scope.schedule.isPrivate = false;
                     $scope.plan.visibility = true;
                 }
+
+                $scope.getJoiningUsers = function () {
+                    return _.pluck(schedule.plan.joiningUsers, 'fullname').join('\n');
+                };
 
                 // calendar & recurrence
 
@@ -128,7 +134,15 @@
                     $scope.$watch('plan.events[' + index + ']', _.throttle(updateEvent, 1000), true);
                 });
 
-                //TODO: refactor comment db schema, update ui while dirty / not saved
+                //TODO: update ui while dirty / not saved
+
+                $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                    $scope.inviteEmail = "";
+                    $scope.$broadcast('formPristine');
+                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
+                        $rootScope.$emit('notification:success', 'activityPlan.invite', { values: { email: email } });
+                    });
+                };
 
                 $scope.joinActivityPlan = function(plan) {
                     ActivityService.joinPlan(plan).then(function(joinedPlan) {
