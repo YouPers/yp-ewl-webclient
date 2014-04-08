@@ -25,7 +25,7 @@
                         },
                         resolve: {
                             diaryEntries: ['DiaryService', function(DiaryService) {
-                                return DiaryService.getEntries();
+                                return DiaryService.getEntries({populate: 'activityPlan'});
                             }]
                         }
                     });
@@ -35,8 +35,46 @@
 
         .controller('DiaryController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout', 'diaryEntries',
             function ($scope, $rootScope, $stateParams, $location, $window, $timeout, diaryEntries) {
-                $scope.diaryEntries = diaryEntries;
 
+                var groupedEntries = _.groupBy(diaryEntries, function(entry) {
+
+                    var date = entry.created;
+
+                    var diff = Math.abs(moment().diff(date, 'days'));
+
+                    // TODO: finetune today/tomorrow
+
+                    if(diff < 1) {
+                        return 'today';
+                    } else if(diff < 2) {
+                        return 'tomorrow';
+                    } else if(diff < 7) {
+                        return 'week';
+                    } else if(diff < 31) {
+                        return 'month';
+                    } else {
+                        return 'other';
+                    }
+
+                });
+
+                var groups = [
+                    'today',
+                    'tomorrow',
+                    'week',
+                    'month',
+                    'other'
+                ];
+
+                $scope.groups = [];
+                _.forEach(groups, function (group) {
+                    if(groupedEntries[group]) {
+                        $scope.groups.push({
+                            name: group,
+                            entries: groupedEntries[group]
+                        });
+                    }
+                });
             }
         ]);
 

@@ -1,1 +1,17 @@
-{}
+{
+    "notification": {
+
+    },
+
+
+    "diary": {
+        "header": "Dein Tagebuch",
+        "group": {
+            "today": "Heute",
+            "tomorrow": "Morgen",
+            "week": "Diese Woche",
+            "month": "Diesen Monat",
+            "other": "Weitere"
+        }
+    }
+}

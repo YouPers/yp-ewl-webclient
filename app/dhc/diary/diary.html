@@ -1,8 +1,52 @@
-<div ng-repeat="entry in diaryEntries" class="row">
-    <div class="col-md-2">{{entry.created}}</div>
-    <div class="col-md-2">{{entry.title}}</div>
-    <div class="col-md-2">{{entry.text}}</div>
-    <div class="col-md-2">{{entry.feedback}}</div>
+<h1 translate>diary.header</h1>
+
+
+<div class="diary">
+
+    <!-- groups -->
+
+    <div ng-repeat="group in groups">
+
+        <h2 translate>{{ 'diary.group.' + group.name }}</h2>
+
+        <!-- events -->
+
+        <div class="row diaryentry" ng-repeat="entry in group.entries">
+
+            <!-- date -->
+            <div class="col-md-3 date">
+                <span>
+                    {{ entry.created | date }}
+                </span>
+            </div>
+
+            <!-- image -->
+            <div class="col-md-3 image">
+                <span>
+                    <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
+                </span>
+            </div>
+
+            <!-- title -->
+            <div class="col-md-3">
+                {{ entry.activityPlan.title }}
+            </div>
+
+            <!-- location -->
+            <div class="col-md-3">
+
+
+                <span>
+                    {{ entry.text }}
+                </span>
+            </div>
+
+            <!-- other info's once the mockup is final -->
+
+
+        </div>
+
+    </div>
 
 
 </div>
