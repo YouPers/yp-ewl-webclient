@@ -15,7 +15,7 @@
                         access: accessLevels.all
                     })
                     .state('select.content', {
-                        url: "/select?s",
+                        url: "/select?offset",
                         reloadOnSearch: false,
                         access: accessLevels.all,
                         views: {

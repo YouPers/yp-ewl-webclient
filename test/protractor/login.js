@@ -1,22 +1,9 @@
+var user = require('./common/user');
+
 describe('GET home', function() {
 
-    beforeEach(function() {
-        browser.get('/');
-    });
+    user.initialize('test_ind1', 'yp');
+    user.logout();
+    user.initialize('test_ind2', 'yp');
 
-
-    it('logs in and displays the users fullname', function() {
-
-        element(by.model('username')).sendKeys('test_ind1');
-        element(by.model('password')).sendKeys('yp\n');
-
-        expect(element(by.binding('principal.getUser().fullname')).getText()).toEqual('Test Individual 1');
-    });
-
-    it('does a quick and dirty assessment for later tests', function () {
-
-        browser.get('/#/assessment/525faf0ac558d40000000005');
-
-        element(by.css('.ass-done-button button')).click();
-    });
 });
