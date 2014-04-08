@@ -1,0 +1,18 @@
+{
+    "notification": {
+
+    },
+
+
+    "plan": {
+        "header": "Dein Plan",
+        "group": {
+            "open": "Offene Rückmeldungen",
+            "today": "Heute",
+            "tomorrow": "Morgen",
+            "week": "Diese Woche",
+            "month": "Diesen Monat",
+            "other": "Weitere"
+        }
+    }
+}

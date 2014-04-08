@@ -1,0 +1,53 @@
+
+<h1 translate>plan.header</h1>
+
+
+<div class="activity-plan">
+
+    <!-- groups -->
+
+    <div ng-repeat="group in groups">
+
+        <h2 translate>{{ 'plan.group.' + group.name }}</h2>
+
+        <!-- events -->
+
+        <div class="row event" ng-repeat="event in group.events">
+
+            <!-- date -->
+            <div class="col-md-3 date">
+                <span>
+                    {{ event.begin | date }}
+                </span>
+            </div>
+
+            <!-- image -->
+            <div class="col-md-3 image">
+                <span>
+                    <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
+                </span>
+            </div>
+
+            <!-- title -->
+            <div class="col-md-3">
+                <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}' })">
+                    {{ event.plan.activity.title }}
+                </a>
+            </div>
+
+            <!-- location -->
+            <div class="col-md-3">
+                <span>
+                    {{ event.plan.location }}
+                </span>
+            </div>
+
+            <!-- other info's once the mockup is final -->
+
+
+        </div>
+
+    </div>
+
+
+</div>
