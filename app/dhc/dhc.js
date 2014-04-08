@@ -9,8 +9,8 @@
             'yp.dhc.home',
             'yp.dhc.select',
             'yp.dhc.schedule',
-            'yp.dhc.diary'
-
+            'yp.dhc.diary',
+            'yp.dhc.plan'
 
 //            'plan',
 //            'report',
