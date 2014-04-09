@@ -44,8 +44,6 @@
 
                         var diff = Math.abs(moment().hour(0).minute(0).second(0).millisecond(0).diff(date, 'days', true));
 
-                        // TODO: finetune today/tomorrow
-
                         if ((diff > 1)) {
                             return 'future';
                         } else if(diff > 0) {
