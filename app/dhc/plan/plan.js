@@ -90,6 +90,10 @@
                         });
                     }
                 });
+
+                $scope.getJoiningUsers = function (event) {
+                    return _.pluck(event.plan.joiningUsers.slice(1), 'fullname').join('<br/>');
+                };
             }
         ]);
 

@@ -82,7 +82,7 @@
                 }
 
                 $scope.getJoiningUsers = function () {
-                    return _.pluck(schedule.plan.joiningUsers, 'fullname').join('\n');
+                    return _.pluck(schedule.plan.joiningUsers.slice(1), 'fullname').join('<br/>');
                 };
 
                 // calendar & recurrence

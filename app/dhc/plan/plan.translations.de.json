@@ -13,6 +13,8 @@
             "week": "Diese Woche",
             "month": "Diesen Monat",
             "other": "Weitere"
-        }
+        },
+        "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 anderer</a>} other{und <a># andere</a>}}"
+
     }
 }
