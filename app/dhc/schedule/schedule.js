@@ -125,9 +125,14 @@
                     }
                 });
 
+
+                $scope.isFutureEvent = function(event) {
+                    return moment().diff(event.begin) < 0;
+                }
+
                 _.forEach($scope.plan.events, function(event, index) {
                     var updateEvent = function updateEvent(newEvent, oldEvent) {
-                        if(newEvent && !_.isEqual(newEvent, oldEvent)) {
+                        if(newEvent && !_.isEqual(newEvent, oldEvent) && !$scope.isFutureEvent(newEvent)) {
                             ActivityService.updateActivityEvent($scope.plan.id, newEvent);
                         }
                     };
