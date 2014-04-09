@@ -8,7 +8,12 @@
 
     <div ng-repeat="group in groups">
 
-        <h2 translate>{{ 'plan.group.' + group.name }}</h2>
+        <h2>
+            <span translate>{{ 'plan.group.' + group.name }}</span>
+            <span ng-show="group.name == 'open'">({{ openEvents }})</span>
+        </h2>
+
+
 
         <!-- events -->
 
@@ -30,7 +35,7 @@
 
             <!-- title -->
             <div class="col-md-2">
-                <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}' })">
+                <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })">
                     {{ event.plan.activity.title }}
                 </a>
             </div>
