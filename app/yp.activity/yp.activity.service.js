@@ -206,7 +206,7 @@
                             activity: activity,
                             status: 'active',
                             mainEvent: newMainEvent,
-                            source: 'campaign',
+                            source: 'community',
                             executionType: activity.defaultexecutiontype,
                             visibility: activity.defaultvisibility,
                             fields: activity.fields,
