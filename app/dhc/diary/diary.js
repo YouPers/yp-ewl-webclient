@@ -33,49 +33,92 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/diary/diary');
             }])
 
-        .controller('DiaryController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout', 'diaryEntries',
-            function ($scope, $rootScope, $stateParams, $location, $window, $timeout, diaryEntries) {
+        .controller('DiaryController', [ '$scope', '$rootScope', 'diaryEntries', '$modal', 'DiaryService', 'ProfileService',
+            function ($scope, $rootScope, diaryEntries, $modal, DiaryService, ProfileService) {
 
-                var groupedEntries = _.groupBy(diaryEntries, function(entry) {
 
-                    var date = entry.created;
+                function _getEntryGroups(entries) {
+                    var groupedEntries = _.groupBy(_.sortBy(entries,function(entry) {return entry.created;}).reverse(), function(entry) {
 
-                    var diff = Math.abs(moment().diff(date, 'days'));
+                        var date = entry.created;
 
-                    // TODO: finetune today/tomorrow
+                        var diff = Math.abs(moment().hour(0).minute(0).second(0).millisecond(0).diff(date, 'days', true));
 
-                    if(diff < 1) {
-                        return 'today';
-                    } else if(diff < 2) {
-                        return 'tomorrow';
-                    } else if(diff < 7) {
-                        return 'week';
-                    } else if(diff < 31) {
-                        return 'month';
-                    } else {
-                        return 'other';
-                    }
+                        // TODO: finetune today/tomorrow
 
-                });
+                        if ((diff > 1)) {
+                            return 'future';
+                        } else if(diff > 0) {
+                            return 'today';
+                        } else if(diff > -1) {
+                            return 'yesterday';
+                        } else if(diff > -7) {
+                            return 'week';
+                        } else if(diff > -31) {
+                            return 'month';
+                        } else {
+                            return 'other';
+                        }
 
-                var groups = [
-                    'today',
-                    'tomorrow',
-                    'week',
-                    'month',
-                    'other'
-                ];
+                    });
 
-                $scope.groups = [];
-                _.forEach(groups, function (group) {
-                    if(groupedEntries[group]) {
-                        $scope.groups.push({
-                            name: group,
-                            entries: groupedEntries[group]
-                        });
-                    }
-                });
+                    var groupsNames = [
+                        'today',
+                        'future',
+                        'yesterday',
+                        'week',
+                        'month',
+                        'other'
+                    ];
+
+                    var groups = [];
+
+                    _.forEach(groupsNames, function (group) {
+                        if(groupedEntries[group]) {
+                            groups.push({
+                                name: group,
+                                entries: groupedEntries[group]
+                            });
+                        }
+                    });
+                    return groups;
+                }
+
+
+                $scope.groups = _getEntryGroups(diaryEntries);
+
+
+                $scope.showModal = function() {
+                    DiaryService.showDiaryModal().then(function(newEntry) {
+                        diaryEntries.push(newEntry);
+                        $scope.groups = _getEntryGroups(diaryEntries);
+                    });
+                };
+
             }
-        ]);
+        ])
+
+    .controller('DiaryModalController', ['$scope', '$modalInstance', 'topic', 'resolution',
+            function($scope, $modalInstance, topic, resolution) {
+            $scope.topic = topic;
+            $scope.resolution = resolution;
+
+            $scope.result = {
+                entry: {
+                    feedback: null,
+                    text: null,
+                    type: 'manual'
+                },
+                doNotAskAgainToday: false
+            };
+
+            $scope.ok = function () {
+                $modalInstance.close($scope.result);
+            };
+
+            $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+            };
+        }]);
 
 }());

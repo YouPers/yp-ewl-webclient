@@ -1,6 +1,6 @@
 <h1 translate>diary.header</h1>
 
-
+<button ng-click="showModal()">PLUS</button>
 <div class="diary">
 
     <!-- groups -->
@@ -14,35 +14,35 @@
         <div class="row diaryentry" ng-repeat="entry in group.entries">
 
             <!-- date -->
-            <div class="col-md-3 date">
+            <div class="col-md-2 date">
                 <span>
-                    {{ entry.created | date }}
+                    {{ entry.created | date}}
                 </span>
+            </div>
+            <div class="col-md-1">
+                <div class="feedback-icon" ng-class="'feedback-icon-' + entry.feedback" ng-show="entry.feedback"></div>
             </div>
 
             <!-- image -->
-            <div class="col-md-3 image">
+            <div class="col-md-2 image">
                 <span>
-                    <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
+                    <img ng-src="{{entry.image}}">
                 </span>
             </div>
 
             <!-- title -->
-            <div class="col-md-3">
-                {{ entry.activityPlan.title }}
+            <div class="col-md-2">
+                {{ entry.title }}
             </div>
 
-            <!-- location -->
-            <div class="col-md-3">
+            <!-- text -->
+            <div class="col-md-4">
 
 
                 <span>
                     {{ entry.text }}
                 </span>
             </div>
-
-            <!-- other info's once the mockup is final -->
-
 
         </div>
 
