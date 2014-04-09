@@ -38,9 +38,9 @@
 
 
                 function _getEntryGroups(entries) {
-                    var groupedEntries = _.groupBy(_.sortBy(entries,function(entry) {return entry.created;}).reverse(), function(entry) {
+                    var groupedEntries = _.groupBy(_.sortBy(entries,function(entry) {return entry.dateBegin;}).reverse(), function(entry) {
 
-                        var date = entry.created;
+                        var date = entry.dateBegin;
 
                         var diff = Math.abs(moment().hour(0).minute(0).second(0).millisecond(0).diff(date, 'days', true));
 
