@@ -177,6 +177,8 @@
                         $scope.plan.executionType = 'self';
                     }
 
+                    // TODO: validate/set source = ['campaign', 'community'] if user is a campaign lead
+
                     ActivityService.savePlan($scope.plan).then(function (savedPlan) {
                         $rootScope.$emit('notification:success', 'activityPlan.save');
 
