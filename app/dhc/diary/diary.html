@@ -14,10 +14,20 @@
         <div class="row diaryentry" ng-repeat="entry in group.entries">
 
             <!-- date -->
-            <div class="col-md-2 date">
-                <span>
-                    {{ entry.created | date}}
-                </span>
+            <div class="col-md-3 listdate">
+                <div class="weekday">
+                    {{ entry.dateBegin | date:'EEE'}}
+                </div>
+                <div class="dayofmonth">
+                    {{ entry.dateBegin | date:'dd'}}
+                </div>
+                <div class="time" ng-if="entry.dateEnd">
+                    {{ entry.dateBegin | date:'HH:mm'}} -<br>
+                    {{ entry.dateEnd | date:'HH:mm'}}
+                </div>
+                <div class="time" ng-if="!entry.dateEnd">
+                    {{ entry.dateBegin | date:'HH:mm'}}
+                </div>
             </div>
             <div class="col-md-1">
                 <div class="feedback-icon" ng-class="'feedback-icon-' + entry.feedback" ng-show="entry.feedback"></div>

@@ -105,7 +105,8 @@
                 entry: {
                     feedback: null,
                     text: null,
-                    type: 'manual'
+                    type: 'manual',
+                    dateBegin: new Date()
                 },
                 doNotAskAgainToday: false
             };
