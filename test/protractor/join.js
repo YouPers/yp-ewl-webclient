@@ -37,7 +37,7 @@ describe('GET home', function() {
                 return;
             }
 
-            expect(index).toBeGreaterThan(0);
+            expect(index).toBeGreaterThan(-1);
 
             element.all(by.repeater('item in items')).get(index).click(); // navigate to card in carousel
             all.get(index).findElement(by.css('.schedule-link')).click(); // open card
