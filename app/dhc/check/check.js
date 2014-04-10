@@ -64,34 +64,46 @@
 
                 _.forEach($scope.answers, function(answer, key) {
 
-                    $scope.$watch('answers["'+key+'"]', function(value, oldValue) {
+                    $scope.$watch('answers["'+key+'"].answerType', function(value, oldValue) {
 
+                        var answer = $scope.answers[key];
 
-                        if(value.answerType !== oldValue.answerType && value.answerType !== 'mid') {
+                        if(value && value !== oldValue) {
 
-                            if(value.answerType === 'min' && answer.answer >= 0) {
-                                value.answer = '-50';
+                            if(value === 'min' && answer.answer >= 0) {
+                                answer.answer = '-50';
                             }
-                            if(value.answerType === 'max' && answer.answer <= 0) {
-                                value.answer = '50';
+                            if(value === 'max' && answer.answer <= 0) {
+                                answer.answer = '50';
                             }
-                            value.answered = true;
+                            if(value === 'mid') {
+                                answer.answer = '0';
+                            }
                         }
 
-                        if(value.answer !== oldValue.answer && value.answer !== 0) {
-                            value.answerType = (value.answer < 0 ? 'min' : 'max');
+                    });
+                    $scope.$watch('answers["'+key+'"].answer', function(value, oldValue) {
+
+
+                        if(!value || value === parseInt(oldValue)) {
+                            return;
                         }
 
+                        var answer = $scope.answers[key];
 
-                        // TODO: do a throttled put of the new answer
+                        if(value != 0) {
+                            answer.answerType = (value < 0 ? 'min' : 'max');
+                        }
 
-                        putAnswer();
+                        answer.answered = true;
+                        postAnswer(answer);
+
                     }, true);
 
                 });
 
-                var putAnswer = _.throttle(function putAnswer(answer) {
-                    AssessmentService.putAnswer(answer);
+                var postAnswer = _.throttle(function postAnswer(answer) {
+                    AssessmentService.postAnswer(answer);
                 }, 1000);
 
             }

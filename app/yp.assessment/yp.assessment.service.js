@@ -52,7 +52,9 @@
                             // check whether we got saved answers for this user and this assessment
                             var assResult;
                             if (results[1]) {
-                                assResult = results[1];
+
+                                // fill up unanswered questions
+                                assResult = _.merge(assessment.getNewEmptyAssResult(), results[1]);
                                 // convert into a new Result, otherwise we overwrite the old one
                                 delete assResult.id;
                             } else {
@@ -77,8 +79,9 @@
                             };
                         });
                     },
-                    putAnswer: function(answer) {
-                        // TODO: create backend service first
+                    postAnswer: function(answer) {
+                        var resource = Restangular.one('assessments', answer.assessment).all('answer');
+                        return resource.post(answer);
                     },
                     postResults: function (assResult) {
 
