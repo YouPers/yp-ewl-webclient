@@ -1,7 +1,7 @@
 var initialize = function (username, password) {
 
     login(username, password);
-    assessment();
+    assessmentData();
 
 };
 
@@ -16,7 +16,7 @@ var login = function(username, password) {
     expect(element(by.binding('principal.getUser().fullname')).getText()).toBeDefined();
 };
 
-var assessment = function() {
+var assessmentData = function() {
 
 
     browser.get('/#/topics');

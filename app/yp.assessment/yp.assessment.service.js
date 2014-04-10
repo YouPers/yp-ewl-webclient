@@ -63,6 +63,10 @@
                             // sort answers into keyed object (by question_id) to ease access by view
                             assResult.keyedAnswers = {};
                             _.forEach(assResult.answers, function (myAnswer) {
+
+                                myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
+                                    (myAnswer.answer < 0 ? 'min' : 'max');
+                                myAnswer.answer = myAnswer.answer + '';
                                 assResult.keyedAnswers[myAnswer.question] = myAnswer;
                             });
 
@@ -72,6 +76,9 @@
                                 result: assResult
                             };
                         });
+                    },
+                    putAnswer: function(answer) {
+                        // TODO: create backend service first
                     },
                     postResults: function (assResult) {
 

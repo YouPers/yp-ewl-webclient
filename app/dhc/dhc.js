@@ -9,7 +9,8 @@
             'yp.dhc.home',
             'yp.dhc.select',
             'yp.dhc.schedule',
-            'yp.dhc.plan'
+            'yp.dhc.plan',
+            'yp.dhc.check'
 
 //            'plan',
 //            'report',

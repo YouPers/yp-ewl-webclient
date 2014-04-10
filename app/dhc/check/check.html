@@ -1,0 +1,76 @@
+<h1 translate>
+    check.header
+</h1>
+
+<accordion class="check" close-others="true">
+
+    <accordion-group ng-repeat="(name, questions) in categories" is-open="cat[name]">
+        <accordion-heading>
+            <div>
+                <span>{{ 'questionCategory.' + name | translate }}</span>
+                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
+            </div>
+        </accordion-heading>
+
+
+        <div ng-repeat="question in questions">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>{{ question.title }}</h2>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="btn-group-justified">
+                        <!-- too low -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-model="answers[question.id].answerType"
+                                    btn-radio="'min'">
+                                {{ question.mintext }}
+                            </button>
+                        </div>
+                        <!-- alright -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-model="answers[question.id].answerType"
+                                    btn-radio="'mid'">
+                                {{ question.midtext }}
+                            </button>
+                        </div>
+                        <!-- too much -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-model="answers[question.id].answerType"
+                                    btn-radio="'max'" ng-show="question.type == 'twoSided'">
+                                {{ question.maxtext }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" ng-show="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
+
+                <div class="col-md-12">
+
+                    <!-- slider -->
+
+                    <slider ng-class="[question.type]"
+                            ng-model="answers[question.id].answer"
+                            ng-mousedown="answers[question.id].dirty = true"
+                            floor="-100"
+                            ceiling="{{ (question.type == 'oneSided') ? 0 : 100 }}"
+                            step="10"
+                            precision="1">
+                    </slider>
+                </div>
+
+            </div>
+
+        </div>
+
+    </accordion-group>
+
+</accordion>
