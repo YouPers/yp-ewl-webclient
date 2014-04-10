@@ -9,7 +9,6 @@
 
                 var diaryService = {
                     getEntries: function (params) {
-                        // we can no longer assume, that activities are static because campaign leads can create new campaign
                         return Restangular.all('diaryentries').getList(params);
                     },
                     saveEntry: function (entry) {
@@ -25,6 +24,7 @@
                                     return "topic.stress";
                                 },
                                 resolution: function () {
+                                    // TODO: access resolution as soon as it is implemented
                                     return "In kleinen Schritten mein Verhalten verbessern";
                                 }
                             },
