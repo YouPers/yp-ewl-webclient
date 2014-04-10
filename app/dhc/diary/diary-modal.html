@@ -1,0 +1,47 @@
+<div class="row modal-header">
+    <div class="col-md-12">
+        <h2 translate>diary.modal.question</h2>
+    </div>
+</div>
+<div class="row modal-body">
+    <div class="col-md-8">
+        <h3 translate>diary.modal.yourCampaign</h3>
+
+        <div class="topic-entry">
+            <div class="topic-title">{{topic | translate}}</div>
+
+            <div class="mood-feedback">
+                <button class="btn btn-default" ng-model="result.entry.feedback" btn-radio="1">
+                    <div class="feedback-icon feedback-icon-1"></div>
+                </button>
+                <button class="btn btn-default" ng-model="result.entry.feedback" btn-radio="2">
+                    <div class="feedback-icon feedback-icon-2"></div>
+                </button>
+                <button class="btn btn-default" ng-model="result.entry.feedback" btn-radio="3">
+                    <div class="feedback-icon feedback-icon-3"></div>
+                </button>
+                <button class="btn btn-default" ng-model="result.entry.feedback" btn-radio="4">
+                    <div class="feedback-icon feedback-icon-4"></div>
+                </button>
+                <button class="btn btn-default" ng-model="result.entry.feedback" btn-radio="5">
+                    <div class="feedback-icon feedback-icon-5"></div>
+                </button>
+            </div>
+        </div>
+        <div>
+            <textarea class="feedback-reason" ng-model="result.entry.text" title="{{'diary.modal.reason' | translate}}"></textarea>
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+
+            <h4 translate>diary.modal.yourResolution</h4>
+            <div class="resolution-content">{{resolution}}</div>
+        <button class="btn btn-primary" ng-click="ok()">Weiter</button>
+        <div><input type="checkbox"
+               ng-model="result.doNotAskAgainToday">
+               {{'diary.modal.doNotAskAgainToday' | translate}}
+        </div>
+    </div>
+</div>

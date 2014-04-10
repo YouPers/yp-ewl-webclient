@@ -27,7 +27,6 @@
         "lodash": "2.4.x",
         "connect-livereload": "~0.3.2",
         "grunt-google-cdn": "~0.2.x",
-        "grunt-ngmin": "~0.0.x",
         "time-grunt": "0.2.x",
         "karma-ng-scenario": "~0.1.x",
         "grunt-karma": "~0.6.x",
