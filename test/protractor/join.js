@@ -18,9 +18,10 @@ describe('GET home', function() {
         user.logout();
         user.initialize('test_ind1', 'yp');
 
+
         // go to select state
 
-        browser.get('/#/select');
+        browser.get('/#/select')
 
         // plan group activity
 

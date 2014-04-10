@@ -34,11 +34,14 @@ module.exports = function (config) {
             'app/yp.user/yp.user.js',
             'app/yp.payment/yp.payment.js',
 
+            'app/dhc/diary/diary.js',
             'app/dhc/dhc.js',
 
             'app/yp*/*.js',
             'app/yp*/**/*.js',
             'app/dhc/**/*.js',
+
+            'app/components/**/*.js',
 
             'test/lib/angular/angular-mocks.js',
             'test/unit/**/*.js'
