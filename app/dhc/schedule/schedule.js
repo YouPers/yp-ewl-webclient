@@ -35,7 +35,7 @@
                         }
                     })
                     .state('schedule.plan', {
-                        url: "/plan/:id",
+                        url: "/plan/:id/:event/",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -46,6 +46,8 @@
                         resolve: {
                             schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 return ActivityService.getActivityPlan($stateParams.id).then(function(plan) {
+
+
                                     return {
 
                                         isScheduled: true,
@@ -65,12 +67,19 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/schedule/schedule');
             }])
 
-        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$timeout', 'schedule', 'ActivityService',
-            function ($scope, $rootScope, $state, $timeout, schedule, ActivityService) {
+        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$stateParams', '$location', '$timeout', 'schedule', 'ActivityService',
+            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, schedule, ActivityService) {
 
                 $scope.schedule = schedule;
                 $scope.plan = schedule.plan;
 
+
+                if($stateParams.event) {
+                    var offset = _.findIndex($scope.plan.events, function(event) {
+                        return $stateParams.event === event.id;
+                    });
+                    $location.search({ offset: offset });
+                }
 
                 // execution type / visibility mapping, to be continued in saveActivityPlan()
                 if($scope.schedule.activity.defaultexecutiontype === 'self') {
@@ -82,7 +91,7 @@
                 }
 
                 $scope.getJoiningUsers = function () {
-                    return _.pluck(schedule.plan.joiningUsers, 'fullname').join('\n');
+                    return _.pluck(schedule.plan.joiningUsers.slice(1), 'fullname').join('<br/>');
                 };
 
                 // calendar & recurrence
@@ -125,9 +134,14 @@
                     }
                 });
 
+
+                $scope.isFutureEvent = function(event) {
+                    return moment().diff(event.begin) < 0;
+                };
+
                 _.forEach($scope.plan.events, function(event, index) {
                     var updateEvent = function updateEvent(newEvent, oldEvent) {
-                        if(newEvent && !_.isEqual(newEvent, oldEvent)) {
+                        if(newEvent && !_.isEqual(newEvent, oldEvent) && !$scope.isFutureEvent(newEvent)) {
                             ActivityService.updateActivityEvent($scope.plan.id, newEvent);
                         }
                     };
@@ -171,6 +185,8 @@
                         $scope.plan.visibility = 'private';
                         $scope.plan.executionType = 'self';
                     }
+
+                    // TODO: validate/set source = ['campaign', 'community'] if user is a campaign lead
 
                     ActivityService.savePlan($scope.plan).then(function (savedPlan) {
                         $rootScope.$emit('notification:success', 'activityPlan.save');

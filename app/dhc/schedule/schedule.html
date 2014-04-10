@@ -52,14 +52,14 @@
 
 
                     <div class="btn-group form-group execution-type" ng-hide="schedule.isPrivate || schedule.isScheduled">
-                        <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'self'" translate>schedule.executiontype.self</button>
-                        <button type="button" class="btn btn-default" ng-model="plan.executionType" btn-radio="'group'" translate>schedule.executiontype.group</button>
+                        <button type="button" class="btn btn-default self" ng-model="plan.executionType" btn-radio="'self'" translate>schedule.executiontype.self</button>
+                        <button type="button" class="btn btn-default group" ng-model="plan.executionType" btn-radio="'group'" translate>schedule.executiontype.group</button>
                     </div>
 
                     <!-- self -->
                     <div ng-if="schedule.isScheduled || plan.executionType === 'self'">
 
-                    <fieldset ng-disabled="schedule.isScheduled && (schedule.isJoinedPlan || !schedule.isEditable)">
+                        <fieldset ng-disabled="schedule.isScheduled && (schedule.isJoinedPlan || !schedule.isEditable)">
 
                         <!-- location -->
                         <div class="row">
@@ -163,16 +163,23 @@
                         <!-- joiningUsers -->
                         <div class="row joining-users" ng-show="schedule.isJoinedPlan">
                             <div class="col-md-12">
-                                <span>{{ schedule.plan.owner.firstname }}</span>
-                                    <span translate translate-values="{ OTHERS: '{{schedule.plan.joiningUsers.length}}' }"
+                                <span ng-if="schedule.plan.joiningUsers.length > 0">
+                                    <span>{{ schedule.plan.joiningUsers[0].fullname }}</span>
+                                    <span ng-if="schedule.plan.joiningUsers.length > 1"
+                                          translate translate-values="{ OTHERS: '{{ schedule.plan.joiningUsers.slice(1).length}}' }"
                                           translate-interpolation="messageformat"
-                                          tooltip="{{ getJoiningUsers() }}">schedule.self.joiningUsers</span>
+                                          tooltip-html-unsafe="{{ getJoiningUsers() }}"
+                                            >
+                                        schedule.self.joiningUsers
+                                    </span>
+                                </span>
                             </div>
                         </div>
 
                     </fieldset>
 
 
+                    </div>
 
 
                     <!-- group -->
@@ -194,7 +201,7 @@
                                                     <span translate translate-values="{ OTHERS: '{{plan.joiningUsers.length}}' }"
                                                           translate-interpolation="messageformat">schedule.group.joiningUsers</span>
                                                 </span>
-                                        <button type="button" ng-click="joinActivityPlan(plan)" class="btn btn-xs btn-default pull-right" translate>schedule.group.join</button>
+                                        <button type="button" ng-click="joinActivityPlan(plan)" class="join-plan btn btn-xs btn-default pull-right" translate>schedule.group.join</button>
                                     </div>
 
                                     <div>
@@ -227,14 +234,13 @@
 
 
                     <div ng-show="plan.executionType == 'self'">
-                            <div class="save-link form-group" tooltip-placement="left" tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}" >
-                                <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule</button>
-                                <button ng-hide="!plan.id" ng-disabled="!schedule.isEditable" type="submit" class="btn btn-primary pull-right"  translate>schedule.save</button>
-                            </div>
+                        <div class="save-link form-group" tooltip-placement="left" tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}" >
+                            <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule</button>
+                            <button ng-hide="!plan.id" ng-disabled="!schedule.isEditable" type="submit" class="btn btn-primary pull-right"  translate>schedule.save</button>
+                        </div>
 
-                            <div class="delete-link form-group" tooltip-placement="left" tooltip="{{ schedule.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}" >
-                                <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="!schedule.isDeletable" type="button" class="btn btn-warning pull-left"  translate>schedule.delete</button>
-                            </div>
+                        <div class="delete-link form-group" tooltip-placement="left" tooltip="{{ schedule.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}" >
+                            <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="!schedule.isDeletable" type="button" class="btn btn-warning pull-left"  translate>schedule.delete</button>
                         </div>
                     </div>
 
@@ -288,29 +294,34 @@
                                     <span>{{ event.end | time }}</span>
                                 </div>
 
-                                <div class="status">
-                                    <div class="btn-group btn-group-justified">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default" ng-model="event.status" btn-radio="'done'">
-                                                <span class="glyphicon glyphicon-ok"></span>
-                                                <span translate>schedule.event.done</span>
-                                            </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default" ng-model="event.status" btn-radio="'missed'">
-                                                <span translate>schedule.event.missed</span>
-                                                <span class="glyphicon glyphicon-remove"></span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <fieldset ng-disabled="isFutureEvent(event)">
 
-                                <div class="rating">
-                                    <div>
-                                        <span translate>schedule.event.rating</span>
+
+                                    <div class="status">
+                                        <div class="btn-group btn-group-justified">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default" ng-model="event.status" btn-radio="'done'">
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                    <span translate>schedule.event.done</span>
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default" ng-model="event.status" btn-radio="'missed'">
+                                                    <span translate>schedule.event.missed</span>
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <rating value="event.feedback" max="5" class="rating-component"></rating>
-                                </div>
+
+                                    <div class="rating">
+                                        <div>
+                                            <span translate>schedule.event.rating</span>
+                                        </div>
+                                        <rating value="event.feedback" max="5" class="rating-component"></rating>
+                                    </div>
+
+                                </fieldset>
 
                                 <div class="comment">
                                     <div class="input-group">

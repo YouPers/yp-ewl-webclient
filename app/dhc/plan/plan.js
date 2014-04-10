@@ -81,15 +81,33 @@
                     'other'
                 ];
 
+                if(groupedEvents.open) {
+
+                }
+
                 $scope.groups = [];
                 _.forEach(groups, function (group) {
                     if(groupedEvents[group]) {
+
+                        var events = _.sortBy(groupedEvents[group], function(event) {
+                            return event.begin;
+                        });
+
+                        if(group === 'open') {
+                            $scope.openEvents = events.length;
+                            events = _.first(events, 2);
+                        }
+
                         $scope.groups.push({
                             name: group,
-                            events: groupedEvents[group]
+                            events: events
                         });
                     }
                 });
+
+                $scope.getJoiningUsers = function (event) {
+                    return _.pluck(event.plan.joiningUsers.slice(1), 'fullname').join('<br/>');
+                };
             }
         ]);
 
