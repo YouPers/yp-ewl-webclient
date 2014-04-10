@@ -21,9 +21,24 @@
 
             <!-- date -->
             <div class="col-md-1 date">
-                <span>
-                    {{ event.begin | date }}
-                </span>
+
+                <!-- date -->
+                <div class="col-md-3 listdate">
+                    <div class="weekday">
+                        {{ event.begin | date:'EEE'}}
+                    </div>
+                    <div class="dayofmonth">
+                        {{ event.begin | date:'dd'}}
+                    </div>
+                    <div class="time" ng-if="event.end">
+                        {{ event.begin | date:'HH:mm'}} -<br>
+                        {{ event.end | date:'HH:mm'}}
+                    </div>
+                    <div class="time" ng-if="!event.end">
+                        {{ event.begin | date:'HH:mm'}}
+                    </div>
+                </div>
+
             </div>
 
             <!-- image -->
