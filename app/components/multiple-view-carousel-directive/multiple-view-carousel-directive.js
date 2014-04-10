@@ -16,7 +16,6 @@
 
                 link: function ($scope, elem, attrs) {
 
-
                     $scope.$watch(function () {
                         return $location.search();
                     }, function (newValue, oldValue) {
@@ -44,7 +43,7 @@
                     });
 
                     $scope.slider = {
-                        offset: parseInt($stateParams.s) || 0,
+                        offset: $location.search().offset || 0,
 
                         prev: function() {
                             if($scope.slider.hasPrev()) {
@@ -72,7 +71,6 @@
                         // place in the middle if 3 items are displayed
                         $scope.slider.offset = index - ($scope.itemsPerView === 3 ? 1 : 0);
                     };
-
 
                 }
             };

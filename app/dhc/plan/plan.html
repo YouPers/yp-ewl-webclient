@@ -8,37 +8,71 @@
 
     <div ng-repeat="group in groups">
 
-        <h2 translate>{{ 'plan.group.' + group.name }}</h2>
+        <h2>
+            <span translate>{{ 'plan.group.' + group.name }}</span>
+            <span ng-show="group.name == 'open'">({{ openEvents }})</span>
+        </h2>
+
+
 
         <!-- events -->
 
         <div class="row event" ng-repeat="event in group.events">
 
             <!-- date -->
-            <div class="col-md-3 date">
-                <span>
-                    {{ event.begin | date }}
-                </span>
+            <div class="col-md-1 date">
+
+                <!-- date -->
+                <div class="col-md-3 listdate">
+                    <div class="weekday">
+                        {{ event.begin | date:'EEE'}}
+                    </div>
+                    <div class="dayofmonth">
+                        {{ event.begin | date:'dd'}}
+                    </div>
+                    <div class="time" ng-if="event.end">
+                        {{ event.begin | date:'HH:mm'}} -<br>
+                        {{ event.end | date:'HH:mm'}}
+                    </div>
+                    <div class="time" ng-if="!event.end">
+                        {{ event.begin | date:'HH:mm'}}
+                    </div>
+                </div>
+
             </div>
 
             <!-- image -->
-            <div class="col-md-3 image">
+            <div class="col-md-2 image">
                 <span>
                     <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
                 </span>
             </div>
 
             <!-- title -->
-            <div class="col-md-3">
-                <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}' })">
+            <div class="col-md-2">
+                <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })">
                     {{ event.plan.activity.title }}
                 </a>
             </div>
 
             <!-- location -->
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span>
                     {{ event.plan.location }}
+                </span>
+            </div>
+
+            <!-- joining users -->
+            <div class="col-md-3">
+                <span ng-if="event.plan.joiningUsers.length > 0">
+                    <span>{{ event.plan.joiningUsers[0].fullname }}</span>
+                    <span ng-if="event.plan.joiningUsers.length > 1"
+                          translate translate-values="{ OTHERS: '{{ event.plan.joiningUsers.slice(1).length}}' }"
+                          translate-interpolation="messageformat"
+                          tooltip-html-unsafe="{{ getJoiningUsers(event) }}"
+                          >
+                        plan.joiningUsers
+                    </span>
                 </span>
             </div>
 
