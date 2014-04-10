@@ -16,7 +16,7 @@
             <!-- date -->
             <div class="col-md-3 listdate">
                 <div class="weekday">
-                    {{ entry.dateBegin | date:'EEE'}}
+                    {{ entry.dateBegin | date:'EEE' | limitTo: 2 }}
                 </div>
                 <div class="dayofmonth">
                     {{ entry.dateBegin | date:'dd'}}
