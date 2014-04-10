@@ -73,6 +73,9 @@
                     $scope.offers.splice(index, 1);
                 };
 
+                $scope.schedule = function(activity) {
+                    $scope.$state.go('schedule.offer', {id: activity.id});
+                };
 
             }
         ]);

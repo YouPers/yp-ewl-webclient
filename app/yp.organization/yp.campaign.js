@@ -16,7 +16,7 @@
                     PaymentCodeService.redeemPaymentCode(code, campaign).then(function(result) {
                         $scope.campaign.paymentStatus = 'paid';
                         $scope.campaign.productType = result.productType;
-                        $rootScope.$emit('notification:success', result);
+                        $rootScope.$emit('clientmsg:success', result);
                     });
 
                 };
@@ -43,7 +43,7 @@
                         // start date is earlier than end date, so we try to create the campaign
                         CampaignService.putCampaign($scope.campaign);
                     } else {
-                        $rootScope.$emit('notification:error', 'campaign.dateRange');
+                        $rootScope.$emit('clientmsg:error', 'campaign.dateRange');
                     }
                 };
 

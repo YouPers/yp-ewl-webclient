@@ -50,7 +50,7 @@
                                 var campaignId = $stateParams.id;
                                 var token = $stateParams.token;
                                 CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
-                                    $rootScope.$emit('notification:success', 'campaign.lead');
+                                    $rootScope.$emit('clientmsg:success', 'campaign.lead');
                                     $state.go('campaign', {id: campaignId});
                                 }, function(err) {
 
@@ -72,7 +72,7 @@
                                 var organizationId = $stateParams.id;
                                 var token = $stateParams.token;
                                 OrganizationService.assignOrganizationAdmin(organizationId, token).then(function(data) {
-                                    $rootScope.$emit('notification:success', 'organization.lead');
+                                    $rootScope.$emit('clientmsg:success', 'organization.lead');
                                     $state.go('organization', {id: organizationId});
                                 }, function(err) {
                                     if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {

@@ -87,7 +87,7 @@
                     slavePlan.owner = $scope.principal.getUser().id;
                     slavePlan.masterPlan = planToJoin.id;
                     ActivityService.savePlan(slavePlan).then(function (slavePlanReloaded) {
-                            $rootScope.$emit('notification:success', 'activityPlan.join');
+                            $rootScope.$emit('clientmsg:success', 'activityPlan.join');
 
                             // The post call returns the updated activityPlan, but does not populate the activity property,
                             // no problem, we already have the activity in the session
@@ -101,7 +101,7 @@
 
                     $scope.$broadcast('formPristine');
                     ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
-                            $rootScope.$emit('notification:success', 'activityPlan.invite', { values: { email: email } });
+                            $rootScope.$emit('clientmsg:success', 'activityPlan.invite', { values: { email: email } });
                         });
                 };
 
@@ -159,13 +159,13 @@
                     dateEnd.setDate(dateToBeUsed.getDate());
                     $scope.currentActivityPlan.mainEvent.end = dateEnd;
                     ActivityService.savePlan($scope.currentActivityPlan).then(function (result) {
-                        $rootScope.$emit('notification:success', 'activityPlan.save');
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.save');
 
                         // if a campaign activity Plan has been created, send sample invite to the autor
                         if (_.contains($scope.principal.getUser().roles, 'campaignlead') && result.source === 'campaign') {
                             $scope.$broadcast('formPristine');
                             ActivityService.inviteEmailToJoinPlan($scope.principal.getUser().email, result).then(function (result) {
-                                    $rootScope.$emit('notification:success', 'activityPlan.sampleInvitationSent', { values: { email: $scope.principal.getUser().email }});
+                                    $rootScope.$emit('clientmsg:success', 'activityPlan.sampleInvitationSent', { values: { email: $scope.principal.getUser().email }});
                                 });
                         }
 
@@ -179,7 +179,7 @@
 
                 $scope.deleteActivityPlan = function () {
                     ActivityService.deletePlan($scope.currentActivityPlan).then(function (result) {
-                        $rootScope.$emit('notification:success', 'activityPlan.delete');
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.delete');
                         if ($scope.$modalInstance) {
                             $scope.$modalInstance.dismiss();
                         } else {

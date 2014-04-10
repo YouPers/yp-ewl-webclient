@@ -7,7 +7,7 @@ angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n',
             'angulartics','angulartics.google.analytics',
-            'yp.config', 'yp.commons', 'yp.notification', 'yp.error',
+            'yp.config', 'yp.commons', 'yp.clientmsg', 'yp.error',
 
             'yp.dhc',
 
@@ -191,7 +191,7 @@ angular.module('yp-ewl',
 
 
             $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-                $scope.$emit('notification:error', error);
+                $scope.$emit('clientmsg:error', error);
             });
 
             $scope.$on('loginMessageShow', function (event, data) {
