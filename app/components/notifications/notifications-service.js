@@ -2,15 +2,22 @@
 
     'use strict';
 
-    angular.module('yp.dhc').factory('NotificationService', ['Restangular',
-        function (Restangular) {
+    angular.module('yp.dhc').factory('NotificationService', ['Restangular', 'UserService', '$q',
+        function (Restangular, UserService, $q) {
             var baseUrl = '/notifications';
 
             var service = {
                 getNotifications: function () {
-                    return Restangular.all(baseUrl).getList(
-                        {populate: 'author',
-                            sort: '-created'});
+                    if (UserService.principal.isAuthenticated()) {
+                        return Restangular.all(baseUrl).getList(
+                            {populate: 'author',
+                                sort: '-created'});
+                    } else {
+                        var deferred = $q.defer();
+                        deferred.resolve([]);
+                        return deferred.promise();
+                    }
+
                 }
             };
 
