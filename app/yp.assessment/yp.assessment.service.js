@@ -52,7 +52,19 @@
                             // check whether we got saved answers for this user and this assessment
                             var assResult;
                             if (results[1]) {
-                                assResult = results[1];
+
+                                // fill up unanswered questions
+                                assResult = assessment.getNewEmptyAssResult();
+
+                                _.forEach(assResult.answers, function(answer) {
+                                    var answerFromResult = _.find(results[1].answers, function(res) {
+                                        return answer.question === res.question;
+                                    });
+                                    if(answerFromResult) {
+                                        _.merge(answer, answerFromResult);
+                                    }
+                                });
+
                                 // convert into a new Result, otherwise we overwrite the old one
                                 delete assResult.id;
                             } else {
@@ -63,6 +75,10 @@
                             // sort answers into keyed object (by question_id) to ease access by view
                             assResult.keyedAnswers = {};
                             _.forEach(assResult.answers, function (myAnswer) {
+
+                                myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
+                                    (myAnswer.answer < 0 ? 'min' : 'max');
+                                myAnswer.answerValue = parseInt(Math.abs(myAnswer.answer));
                                 assResult.keyedAnswers[myAnswer.question] = myAnswer;
                             });
 
@@ -72,6 +88,11 @@
                                 result: assResult
                             };
                         });
+                    },
+                    putAnswer: function(answer) {
+                        var assessment = Restangular.one('assessments', answer.assessment);
+                        answer.id = answer.question;
+                        return Restangular.restangularizeElement(assessment, answer, 'answers').put();
                     },
                     postResults: function (assResult) {
 
