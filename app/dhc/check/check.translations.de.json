@@ -1,0 +1,19 @@
+{
+    "notification": {
+
+    },
+
+
+    "check": {
+        "header": "Deine Beurteilung"
+    },
+
+    "questionCategory": {
+        "general": "Allgemeiner Stresslevel",
+        "work": "Stress am Arbeitsplatz",
+        "leisure": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
+        "stresstypus": "Stresstyp (Stressverstärker)",
+        "handling": "Stressbewältigung (Entspannung/Ausgleich)"
+    }
+
+}
