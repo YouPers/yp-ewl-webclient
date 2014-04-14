@@ -241,8 +241,8 @@ module.exports = function (grunt) {
                 ]
             },
             options: {
-                optimizationLevel: 1,
-                cache: false
+                optimizationLevel: 1
+//                cache: false
             }
         },
         svgmin: {
