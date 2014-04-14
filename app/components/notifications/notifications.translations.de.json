@@ -2,7 +2,8 @@
     "notifications": {
         "title": "Deine Nachrichten",
         "type": {
-           "personalInvitation": "Persönliche Einladung"
+           "personalInvitation": "Persönliche Einladung",
+           "message": "Ankündigung"
         }
     }
 

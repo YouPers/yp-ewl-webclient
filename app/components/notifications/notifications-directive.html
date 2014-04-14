@@ -1,12 +1,13 @@
 <div class="notifications-list">
     <a ng-href="{{nf.refDocLink}}" class="notification" ng-repeat="nf in notifications">
         <div>
-            <div class="avatar">
+            <div class="avatar source-type" ng-class="'source-type-' + nf.sourceType">
                 <img ng-src="{{nf.author.avatar}}">
             </div>
             <div class="type-title">
                 <div>{{'notifications.type.' + nf.type | translate}}</div>
                 <div class="title">{{nf.title}}</div>
+                <div class="title">{{nf.text}}</div>
             </div>
 
             <div class="time">{{nf.created | fromNow}}</div>
