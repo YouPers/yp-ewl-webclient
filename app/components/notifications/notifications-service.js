@@ -11,11 +11,11 @@
                     if (UserService.principal.isAuthenticated()) {
                         return Restangular.all(baseUrl).getList(
                             {populate: 'author',
-                                sort: '-created'});
+                                sort: 'created:-1'});
                     } else {
                         var deferred = $q.defer();
                         deferred.resolve([]);
-                        return deferred.promise();
+                        return deferred.promise;
                     }
 
                 }
