@@ -54,7 +54,17 @@
                             if (results[1]) {
 
                                 // fill up unanswered questions
-                                assResult = _.merge(assessment.getNewEmptyAssResult(), results[1]);
+                                assResult = assessment.getNewEmptyAssResult();
+
+                                _.forEach(assResult.answers, function(answer) {
+                                    var answerFromResult = _.find(results[1].answers, function(res) {
+                                        return answer.question === res.question;
+                                    });
+                                    if(answerFromResult) {
+                                        _.merge(answer, answerFromResult);
+                                    }
+                                });
+
                                 // convert into a new Result, otherwise we overwrite the old one
                                 delete assResult.id;
                             } else {
@@ -68,7 +78,7 @@
 
                                 myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
                                     (myAnswer.answer < 0 ? 'min' : 'max');
-                                myAnswer.answer = myAnswer.answer + '';
+                                myAnswer.answerValue = parseInt(Math.abs(myAnswer.answer));
                                 assResult.keyedAnswers[myAnswer.question] = myAnswer;
                             });
 
@@ -79,9 +89,10 @@
                             };
                         });
                     },
-                    postAnswer: function(answer) {
-                        var resource = Restangular.one('assessments', answer.assessment).all('answer');
-                        return resource.post(answer);
+                    putAnswer: function(answer) {
+                        var assessment = Restangular.one('assessments', answer.assessment);
+                        answer.id = answer.question;
+                        return Restangular.restangularizeElement(assessment, answer, 'answers').put();
                     },
                     postResults: function (assResult) {
 

@@ -40,25 +40,28 @@
                 $scope.categories = _.groupBy(assessmentData.assessment.questions, 'category');
                 $scope.answers = assessmentData.result.keyedAnswers;
 
-                var firstUnansweredCategory = function firstUnansweredCategory() {
-
-                    // find first category that contains any question that has not been answered
-                    var category = _.find(_.keys($scope.categories), function(category) {
-                        return _.any($scope.categories[category], function(question) {
-
-                            return !$scope.answers[question.id].answered;
-
-                        });
-                    });
-                    return category;
-                };
+//                var firstUnansweredCategory = function firstUnansweredCategory() {
+//
+//                    // find first category that contains any question that has not been answered
+//                    var category = _.find(_.keys($scope.categories), function(category) {
+//                        return _.any($scope.categories[category], function(question) {
+//
+//                            return !$scope.answers[question.id].answered;
+//
+//                        });
+//                    });
+//                    return category;
+//                };
 
 
                 $scope.cat = {}; // track open accordion group
 
-                var category = firstUnansweredCategory();
-                var categoryName = category ? category : 'general';
-                $scope.cat[categoryName] = true;
+//                var category = firstUnansweredCategory();
+//                var categoryName = category ? category : 'general';
+
+                // TODO: define when a question should be counted as 'answered' => with manual slider or just too low/much
+
+//                $scope.cat['general'] = true;
 
 
 
@@ -70,40 +73,36 @@
 
                         if(value && value !== oldValue) {
 
-                            if(value === 'min' && answer.answer >= 0) {
-                                answer.answer = '-50';
-                            }
-                            if(value === 'max' && answer.answer <= 0) {
-                                answer.answer = '50';
-                            }
                             if(value === 'mid') {
-                                answer.answer = '0';
+                                answer.answer = 0;
+                                answer.answerValue = 0;
+                            } else {
+                                answer.answer = value === 'min' ? -50 : 50;
+                                answer.answerValue = 50;
                             }
                         }
 
                     });
-                    $scope.$watch('answers["'+key+'"].answer', function(value, oldValue) {
+                    $scope.$watch('answers["'+key+'"].answerValue', function(value, oldValue) {
 
 
-                        if(!value || value === parseInt(oldValue)) {
+                        if((!value && value !== 0) || value === parseInt(oldValue)) {
                             return;
                         }
 
                         var answer = $scope.answers[key];
 
-                        if(value != 0) {
-                            answer.answerType = (value < 0 ? 'min' : 'max');
-                        }
+                        answer.answer = answer.answerType === 'mid' ? 0 : (answer.answerType === 'min' ? -value : value);
 
                         answer.answered = true;
-                        postAnswer(answer);
+                        putAnswer(answer);
 
                     }, true);
 
                 });
 
-                var postAnswer = _.throttle(function postAnswer(answer) {
-                    AssessmentService.postAnswer(answer);
+                var putAnswer = _.throttle(function putAnswer(answer) {
+                    AssessmentService.putAnswer(answer);
                 }, 1000);
 
             }

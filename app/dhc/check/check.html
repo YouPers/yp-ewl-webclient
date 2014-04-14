@@ -2,9 +2,9 @@
     check.header
 </h1>
 
-<accordion class="check" close-others="true">
+<accordion class="check" close-others="false">
 
-    <accordion-group ng-repeat="(name, questions) in categories" is-open="cat[name]">
+    <accordion-group ng-repeat="(name, questions) in categories" is-open="true">
         <accordion-heading>
             <div>
                 <span>{{ 'questionCategory.' + name | translate }}</span>
@@ -58,10 +58,10 @@
                     <!-- slider -->
 
                     <slider ng-class="[question.type]"
-                            ng-model="answers[question.id].answer"
+                            ng-model="answers[question.id].answerValue"
                             ng-mousedown="answers[question.id].dirty = true"
-                            floor="-100"
-                            ceiling="{{ (question.type == 'oneSided') ? 0 : 100 }}"
+                            floor="0"
+                            ceiling="100"
                             step="10"
                             precision="1">
                     </slider>
