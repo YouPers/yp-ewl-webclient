@@ -5,9 +5,9 @@
                 <img ng-src="{{nf.author.avatar}}">
             </div>
             <div class="type-title">
-                <div>{{'notifications.type.' + nf.type | translate}}</div>
+                <div class="type">{{'notifications.type.' + nf.type | translate}}</div>
                 <div class="title">{{nf.title}}</div>
-                <div class="title">{{nf.text}}</div>
+                <div class="text">{{nf.text}}</div>
             </div>
 
             <div class="time">{{nf.created | fromNow}}</div>
