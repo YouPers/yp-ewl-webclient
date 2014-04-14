@@ -5,7 +5,8 @@
 
 
     "diary": {
-        "header": "Dein Tagebuch",
+        "title1": "dein",
+        "title2": "Tagebuch",
         "group": {
             "today": "Heute",
             "tomorrow": "Morgen",

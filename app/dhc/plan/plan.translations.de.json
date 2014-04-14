@@ -5,7 +5,8 @@
 
 
     "plan": {
-        "header": "Dein Plan",
+        "title1": "dein",
+        "title2": "Plan",
         "group": {
             "open": "Offene Rückmeldungen",
             "today": "Heute",
