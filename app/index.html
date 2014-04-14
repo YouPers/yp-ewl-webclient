@@ -64,6 +64,8 @@
     <script src="components/stop-propagation-directive/stop-propagation-directive.js"></script>
     <script src="components/health-coach/health-coach-service.js"></script>
     <script src="components/health-coach/health-coach-directive.js"></script>
+    <script src="components/notifications/notifications-directive.js"></script>
+    <script src="components/notifications/notifications-service.js"></script>
 
     <!--home-->
     <script src="dhc/home/home.js"></script>
@@ -84,7 +86,7 @@
     <script src="yp.commons/yp.commons.js"></script>
     <script src="yp.commons/yp.commons.directive.ypinput.js"></script>
     <script src="yp.commons/yp.discussion.js"></script>
-    <script src="yp.commons/yp.notification.js"></script>
+    <script src="yp.commons/yp.clientmsg.js"></script>
     <script src="yp.commons/yp.error.js"></script>
     <script src="yp.commons/base64.js"></script>
     <script src="yp.commons/yp.directive.avatar.upload.js"></script>
@@ -170,9 +172,9 @@
 
     <ng-include src="'yp.ewl/topmenu.html'"></ng-include>
 
-    <div class="yp-notification">
-        <alert ng-repeat="notification in notifications" type='notification.alertType' close="closeNotification(notification.id)" >
-            {{ notification.message | translate:notification.values }}
+    <div class="yp-clientmsg">
+        <alert ng-repeat="msg in clientmsgs" type='msg.alertType' close="closeClientmsg(msg.id)" >
+            {{ msg.message | translate:msg.values }}
         </alert>
     </div>
 

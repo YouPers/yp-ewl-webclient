@@ -48,6 +48,12 @@ p {
 // bootstrap.css:body
 body {
   font-family: @youpers-brand-font-family;
+  background-color: #CCCACA;
+}
+
+.main-layout {
+  margin-top: 15px;
+  background-color: #FEFEFE;
 }
 
 // navbar
@@ -60,6 +66,11 @@ body {
 
 .navbar a {
   cursor: pointer;
+}
+
+// topbar
+.top-bar {
+  background-color:  #473F45;
 }
 
 // ui-view transitions
@@ -85,22 +96,96 @@ body {
 @import "activity-plan";
 @import "diary";
 @import "check";
+@import "notifications";
+
+
 
 
 // Health Coach
 //---------------------------------------------
+
+
+
 .health-coach .avatar {
-  width: 10em;
-  height: 10em;
+  width: 5em;
+  height: 5em;
   border-radius: 50%;
-
-  margin: 0 auto;
-  box-shadow: 0.3em 0.3em 0.6em 0px rgba(0,0,0,0.75);
-
+  float: left;
   overflow: hidden;
+  margin-right: 10px;
 }
 
 .health-coach .avatar  img {
-  width: 10em;
-  height: 10em;
+  width: 5em;
+  height: 5em;
+}
+
+.health-coach .message {
+  color: #473F45;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.health-coach-nav {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.health-coach-nav img {
+  width: 75px;
+  height: 75px;
+}
+
+// Home
+// ----------------
+.home-content {
+  position: relative;
+}
+
+.home-content img {
+  width: 454px;
+  height: 454px;
+}
+
+.home-content .link-area {
+  position: absolute;
+//  border: 1px solid red;
+  height: 100px;
+  width: 100px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.home-content .link-area-1 {
+  top: 55px;
+  left: 120px;
+}
+
+.home-content .link-area-2 {
+  top: 55px;
+  left: 235px;
+}
+
+.home-content .link-area-3 {
+  top: 170px;
+  left: 40px;
+}
+
+.home-content .link-area-4 {
+  top: 170px;
+  left: 320px;
+}
+
+.home-content .link-area-5 {
+  top: 295px;
+  left: 110px;
+}
+.home-content .link-area-6 {
+  top: 295px;
+  left: 250px;
+}
+.home-content .link-area-center {
+  top: 170px;
+  left: 175px;
 }

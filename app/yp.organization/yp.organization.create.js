@@ -98,7 +98,7 @@
                             initCampaign();
                         });
                     } else {
-                        $rootScope.$emit('notification:error', 'campaign.dateRange');
+                        $rootScope.$emit('clientmsg:error', 'campaign.dateRange');
                     }
                 };
 

@@ -12,7 +12,7 @@
 
             return({
                 defaultErrorCallback: function(reason) {
-                    $rootScope.$emit('notification:error', reason, { type: 'warn' });
+                    $rootScope.$emit('clientmsg:error', reason, { type: 'warn' });
                     return $q.reject(reason);
                 }
             });

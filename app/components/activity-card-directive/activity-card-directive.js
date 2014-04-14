@@ -9,14 +9,12 @@
                 scope: {
                     rec: '=rec',
                     reject: '&',
-                    plan: '&',
+                    schedule: '&',
                     index: '=index'
                 },
                 templateUrl: 'components/activity-card-directive/activity-card-directive.html',
 
                 link: function (scope, elem, attrs) {
-
-                    scope.scheduleLink = '/#/schedule/' + scope.rec.id;
 
                     scope.flip = function() {
                         var flipped = scope.flipped;

@@ -57,7 +57,7 @@
                 $scope.save = function () {
 
                     ActivityService.saveActivity(activity).then(function(result) {
-                        $rootScope.$emit('notification:success', 'activity.save');
+                        $rootScope.$emit('clientmsg:success', 'activity.save');
                         if ($scope.activityType === "campaign") {
                             $scope.$state.go('campaign', {id: $scope.activity.campaign});
                         } else  {

@@ -50,7 +50,7 @@
                     FeedbackService.postFeedback($scope.feedback);
 
                     $scope.feedback = {};
-                    $rootScope.$emit('notification:success', 'notification.success.feedback');
+                    $rootScope.$emit('clientmsg:success', 'notification.success.feedback');
                 };
             }
         ])

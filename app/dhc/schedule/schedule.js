@@ -25,11 +25,20 @@
                         },
                         resolve: {
                             schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
-                                return ActivityService.getActivityOffer($stateParams.id).then(function(offer) {
-                                    offer.plan = ActivityService.getDefaultPlan(offer.activity);
-                                    offer.isScheduled = false;
+                                return ActivityService.getActivityOffers({activity: $stateParams.id}).then(function(offers) {
+                                    if (offers.length === 1) {
+                                        var offer = offers[0];
+                                        offer.plan = ActivityService.getDefaultPlan(offer.activity);
+                                        offer.isScheduled = false;
+                                        return offer;
+                                    } else if (offers.length === 0) {
+                                        return [];
+                                        // TODO: What should we do if we arrive here without offers
 
-                                    return offer;
+                                    } else {
+                                        // this should never happen
+                                        throw new Error("should never get more than one offer for one activity");
+                                    }
                                 });
                             }]
                         }
@@ -154,13 +163,13 @@
                     $scope.inviteEmail = "";
                     $scope.$broadcast('formPristine');
                     ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
-                        $rootScope.$emit('notification:success', 'activityPlan.invite', { values: { email: email } });
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.invite', { values: { email: email } });
                     });
                 };
 
                 $scope.joinActivityPlan = function(plan) {
                     ActivityService.joinPlan(plan).then(function(joinedPlan) {
-                        $rootScope.$emit('notification:success', 'activityPlan.join');
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.join');
                         $state.go('schedule.plan', { id: joinedPlan.id });
                     });
                 };
@@ -189,14 +198,14 @@
                     // TODO: validate/set source = ['campaign', 'community'] if user is a campaign lead
 
                     ActivityService.savePlan($scope.plan).then(function (savedPlan) {
-                        $rootScope.$emit('notification:success', 'activityPlan.save');
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.save');
 
                         // if a campaign activity Plan has been created, send sample invite to the author
                         var user = $scope.principal.getUser();
                         if (_.contains(user.roles, 'campaignlead') && savedPlan.source === 'campaign') {
                             $scope.$broadcast('formPristine');
                             ActivityService.inviteEmailToJoinPlan(user.email, savedPlan).then(function (result) {
-                                $rootScope.$emit('notification:success', 'activityPlan.sampleInvitationSent', { values: { email: user.email }});
+                                $rootScope.$emit('clientmsg:success', 'activityPlan.sampleInvitationSent', { values: { email: user.email }});
                             });
                         }
 
@@ -208,7 +217,7 @@
 
                 $scope.deleteActivityPlan = function () {
                     ActivityService.deletePlan($scope.plan).then(function (result) {
-                        $rootScope.$emit('notification:success', 'activityPlan.delete');
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.delete');
                         // TODO: define where to go and do it.
                         $rootScope.back();
                     });

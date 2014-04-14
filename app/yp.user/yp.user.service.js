@@ -111,7 +111,7 @@
                                 $http.defaults.headers.common.Authorization = '';
 
                                 // TODO: find a way to suppress default error message
-                                $rootScope.$emit('notification:error', 'loginFailed', { error: err });
+                                $rootScope.$emit('clientmsg:error', 'loginFailed', { error: err });
                                 return err;
                             });
                     },
