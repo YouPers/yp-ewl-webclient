@@ -27,7 +27,7 @@
                         }
                     });
 
-//                $translateWtiPartialLoaderProvider.addPart('yp.dhc.home');
+                $translateWtiPartialLoaderProvider.addPart('dhc/home/home');
             }]);
 
 }());

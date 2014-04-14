@@ -320,6 +320,11 @@ module.exports = function (grunt) {
                         cwd: '<%= yeoman.app %>/lib/bootstrap/dist/',
                         src: ['fonts/*'],
                         dest: '<%= yeoman.dist %>'
+                    },
+                    {
+                        expand: true,
+                        src: ['lib/bootstrap/dist/fonts/*'],
+                        dest: '<%= yeoman.dist %>/fonts'
                     }
                 ]
             },
@@ -337,6 +342,12 @@ module.exports = function (grunt) {
                         cwd: '<%= yeoman.app %>/lib/bootstrap/dist/css/',
                         dest: '.tmp/lib/bootstrap/dist/css/',
                         src: 'bootstrap.css'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['<%= yeoman.app %>/lib/bootstrap/dist/fonts/*'],
+                        dest: '.tmp/fonts/'
                     }
                 ]
             }
