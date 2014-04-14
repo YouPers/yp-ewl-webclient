@@ -32,7 +32,8 @@
                                         offer.isScheduled = false;
                                         return offer;
                                     } else if (offers.length === 0) {
-                                        throw new Error("should alway have at least on offer for an activity if we arrive here");
+                                        return [];
+                                        // TODO: What should we do if we arrive here without offers
 
                                     } else {
                                         // this should never happen

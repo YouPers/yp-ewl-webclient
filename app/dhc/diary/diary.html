@@ -14,7 +14,7 @@
         <div class="row diary-entry" ng-repeat="entry in group.entries">
 
             <!-- date -->
-            <div class="col-md-3 listdate">
+            <div class="col-sm-3 listdate">
                 <div class="weekday">
                     {{ entry.dateBegin | date:'EEE' | limitTo: 2 }}
                 </div>
@@ -29,24 +29,24 @@
                     {{ entry.dateBegin | date:'HH:mm'}}
                 </div>
             </div>
-            <div class="col-md-1">
+            <div class="col-sm-1">
                 <div class="feedback-icon" ng-class="'feedback-icon-' + entry.feedback" ng-show="entry.feedback"></div>
             </div>
 
             <!-- image -->
-            <div class="col-md-2 image">
+            <div class="col-sm-2 image">
                 <span>
                     <img ng-src="{{entry.image}}">
                 </span>
             </div>
 
             <!-- title -->
-            <div class="col-md-2">
+            <div class="col-sm-2">
                 {{ entry.title }}
             </div>
 
             <!-- text -->
-            <div class="col-md-4">
+            <div class="col-sm-4">
 
 
                 <span>
