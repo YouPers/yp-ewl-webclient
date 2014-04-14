@@ -1,8 +1,8 @@
-
-<div class="health-coach">
-    <div class="avatar">
-        <img ng-src="/assets/img/healthcoach.jpg">
+<div class="health-coach" ng-show="coachMessages.length > 0">
+    <div>
+        <div class="avatar">
+            <img ng-src="/assets/img/healthcoach.jpg">
+        </div>
+        <div class="message">{{'healthCoach.' + coachMessages[0] | translate}}</div>
     </div>
-    YouPers Health Coach
-    <div ng-repeat="msg in coachMessages">{{'healthCoach.'+msg | translate}}</div>
 </div>
