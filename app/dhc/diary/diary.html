@@ -1,0 +1,62 @@
+<h1 translate>diary.header</h1>
+
+<button ng-click="showModal()">PLUS</button>
+<div class="diary">
+
+    <!-- groups -->
+
+    <div ng-repeat="group in groups">
+
+        <h2 translate>{{ 'diary.group.' + group.name }}</h2>
+
+        <!-- events -->
+
+        <div class="row diary-entry" ng-repeat="entry in group.entries">
+
+            <!-- date -->
+            <div class="col-md-3 listdate">
+                <div class="weekday">
+                    {{ entry.dateBegin | date:'EEE' | limitTo: 2 }}
+                </div>
+                <div class="dayofmonth">
+                    {{ entry.dateBegin | date:'dd'}}
+                </div>
+                <div class="time" ng-if="entry.dateEnd">
+                    {{ entry.dateBegin | date:'HH:mm'}} -<br>
+                    {{ entry.dateEnd | date:'HH:mm'}}
+                </div>
+                <div class="time" ng-if="!entry.dateEnd">
+                    {{ entry.dateBegin | date:'HH:mm'}}
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="feedback-icon" ng-class="'feedback-icon-' + entry.feedback" ng-show="entry.feedback"></div>
+            </div>
+
+            <!-- image -->
+            <div class="col-md-2 image">
+                <span>
+                    <img ng-src="{{entry.image}}">
+                </span>
+            </div>
+
+            <!-- title -->
+            <div class="col-md-2">
+                {{ entry.title }}
+            </div>
+
+            <!-- text -->
+            <div class="col-md-4">
+
+
+                <span>
+                    {{ entry.text }}
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

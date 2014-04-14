@@ -1,0 +1,28 @@
+{
+    "notification": {
+
+    },
+
+
+    "diary": {
+        "header": "Dein Tagebuch",
+        "group": {
+            "today": "Heute",
+            "tomorrow": "Morgen",
+            "week": "Diese Woche",
+            "month": "Diesen Monat",
+            "other": "Weitere",
+            "future": "Zukunft"
+        },
+        "modal": {
+            "question": "Wie fühlst du dich heute gesundheitlich?",
+            "yourCampaign": "Deine Kampagne",
+            "yourResolution": "Dein Vorsatz",
+            "doNotAskAgainToday": "Heute nicht mehr zeigen"
+        }
+
+    },
+    "topic": {
+        "stress": "Stress Management"
+    }
+}
