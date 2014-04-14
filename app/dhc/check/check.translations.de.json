@@ -1,11 +1,12 @@
 {
-    "notification": {
+    "clientmsg": {
 
     },
 
 
     "check": {
-        "header": "Deine Beurteilung"
+        "title1": "deine",
+        "title2": "Beurteilung"
     },
 
     "questionCategory": {

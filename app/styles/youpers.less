@@ -1,13 +1,14 @@
 // Imports
 //
-@import "../lib/bootstrap/less/variables";
-// importing common less mixins (for gradients, borders, round edges ...
+
 @import "../lib/less-elements/elements";
 
 @import "youpers_adminviews";
 
 @import "youpers-variables";
 
+
+@navbar-height: 40px;
 
 /* YouPers header and body fonts */
 
@@ -71,7 +72,29 @@ body {
 // topbar
 .top-bar {
   background-color:  #473F45;
+  height: 100px;
 }
+
+// main content shared definitions
+// --------------------------------
+.state-title-1 {
+  color: #CCCACA;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  padding-top: 10px;
+}
+
+.state-title-2 {
+  color: #473F45;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 200;
+  text-transform: uppercase;
+  line-height: 0.7em;
+  padding-bottom: 0.5em;
+}
+
 
 // ui-view transitions
 // --------------------------------------------------
@@ -84,6 +107,7 @@ body {
 
 @import "card-flip";
 @import "multiple-view-carousel";
+@import "notifications";
 
 
 // yp dhc components and states
@@ -96,10 +120,6 @@ body {
 @import "activity-plan";
 @import "diary";
 @import "check";
-@import "notifications";
-
-
-
 
 // Health Coach
 //---------------------------------------------
@@ -130,6 +150,7 @@ body {
 .health-coach-nav {
   padding: 10px;
   cursor: pointer;
+  float: right;
 }
 
 .health-coach-nav img {

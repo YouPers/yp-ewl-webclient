@@ -37,9 +37,9 @@ module.exports = function (grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
         watch: {
-            recess: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
-                tasks: ['recess:server', 'autoprefixer']
+            less: {
+                files: ['<%= yeoman.app %>/styles/*.less'],
+                tasks: ['less:server', 'autoprefixer']
             },
             styles: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
@@ -172,16 +172,16 @@ module.exports = function (grunt) {
                 ['<%= yeoman.app %>/**/*.js', '!<%= yeoman.app %>/**/lib/**']
             ]
         },
-        recess: {
+        less: {
             options: {
-                compile: true
+
             },
             dist: {
                 files: [
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
-                        src: ['styles/{,*/}*.less', 'lib/less-elements/*.less'],
+                        src: ['styles/styles.less', 'lib/less-elements/*.less'],
                         dest: '.tmp/',
                         ext: '.css'
                     }
@@ -192,7 +192,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
-                        src: ['styles/{,*/}*.less', 'lib/less-elements/*.less'],
+                        src: ['styles/styles.less', 'lib/less-elements/*.less'],
                         dest: '.tmp/',
                         ext: '.css'
                     }
@@ -320,6 +320,11 @@ module.exports = function (grunt) {
                         cwd: '<%= yeoman.app %>/lib/bootstrap/dist/',
                         src: ['fonts/*'],
                         dest: '<%= yeoman.dist %>'
+                    },
+                    {
+                        expand: true,
+                        src: ['lib/bootstrap/dist/fonts/*'],
+                        dest: '<%= yeoman.dist %>/fonts'
                     }
                 ]
             },
@@ -337,21 +342,27 @@ module.exports = function (grunt) {
                         cwd: '<%= yeoman.app %>/lib/bootstrap/dist/css/',
                         dest: '.tmp/lib/bootstrap/dist/css/',
                         src: 'bootstrap.css'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['<%= yeoman.app %>/lib/bootstrap/dist/fonts/*'],
+                        dest: '.tmp/fonts/'
                     }
                 ]
             }
         },
         concurrent: {
             server: [
-                'recess:server',
+                'less:server',
                 'copy:styles'
             ],
             test: [
-                'recess',
+                'less',
                 'copy:styles'
             ],
             dist: [
-                'recess:dist',
+                'less:dist',
                 'copy:styles',
                 'imagemin',
                 'svgmin',
