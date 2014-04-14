@@ -47,7 +47,7 @@
                 $scope.save = function () {
 
                     ActivityService.saveActivity(activity).then(function (result) {
-                        $rootScope.$emit('notification:success', 'activity.save');
+                        $rootScope.$emit('clientmsg:success', 'activity.save');
                         $scope.$state.go('activitylist', $rootScope.$stateParams);
                     });
                 };

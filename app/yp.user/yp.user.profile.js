@@ -52,7 +52,7 @@
 
                 $scope.saveProfile = function () {
                     ProfileService.putProfile($scope.profileUserObj).then(function (profile) {
-                        $rootScope.$emit('notification:success', 'profile.save');
+                        $rootScope.$emit('clientmsg:success', 'profile.save');
                         $scope.principal.getUser().profile = profile;
                     });
                 };

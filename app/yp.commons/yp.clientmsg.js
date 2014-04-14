@@ -3,7 +3,7 @@
     /*global printStackTrace:true */
 
 
-    angular.module('yp.notification', [])
+    angular.module('yp.clientmsg', [])
 
         /**
          * stacktrace.js - print stacktraces from exceptions
@@ -22,12 +22,12 @@
             $provide.decorator('$exceptionHandler', ['$delegate', 'StacktraceService', '$injector',
                 function ($delegate, StacktraceService, $injector) {
 
-                    var NotificationService = null;
+                    var ClientMessageService = null;
 
                     return function(exception, cause) {
 
-                        if(!NotificationService) {
-                            NotificationService = $injector.get('NotificationService');
+                        if(!ClientMessageService) {
+                            ClientMessageService = $injector.get('ClientMessageService');
                         }
 
                         // call the original $exceptionHandler.
@@ -38,18 +38,18 @@
                         var error = exception.toString();
                         var trace = StacktraceService.print({ e: exception });
 
-                        NotificationService.error({ error: error, trace: trace, cause: cause });
+                        ClientMessageService.error({ error: error, trace: trace, cause: cause });
                     };
                 }]);
         }])
 
 
-        .run(['$rootScope', 'NotificationService', '$timeout', function($rootScope, NotificationService, $timeout) {
+        .run(['$rootScope', 'ClientMessageService', '$timeout', function($rootScope, ClientMessageService, $timeout) {
 
             // distinct event name for error notifications
-            $rootScope.$on('notification:error', function (event, error, options) {
+            $rootScope.$on('clientmsg:error', function (event, error, options) {
 
-                var prefix = 'notification.error.';
+                var prefix = 'clientmsg.error.';
                 var msg;
 
 
@@ -71,13 +71,13 @@
                 options = options || {};
                 options.type = options.type || 'error';
 
-                $rootScope.$emit('notification', msg, _.extend(options, { error: error }));
+                $rootScope.$emit('clientmsg', msg, _.extend(options, { error: error }));
             });
 
             // distinct event name for success notifications
-            $rootScope.$on('notification:success', function (event, message, options) {
+            $rootScope.$on('clientmsg:success', function (event, message, options) {
 
-                var prefix = 'notification.success.';
+                var prefix = 'clientmsg.success.';
                 var msg = 'default';
 
                 if(typeof message === 'string') {
@@ -88,13 +88,13 @@
                     }
                 }
 
-                $rootScope.$emit('notification', msg, _.extend(options || {}, { type: 'success'}));
+                $rootScope.$emit('clientmsg', msg, _.extend(options || {}, { type: 'success'}));
 
             });
 
             // distinct event name for log notifications, logging only without user feedback
-            $rootScope.$on('notification:log', function (event, message, options) {
-                $rootScope.$emit('notification', message, _.extend(options || {}, { type: 'log'}));
+            $rootScope.$on('clientmsg:log', function (event, message, options) {
+                $rootScope.$emit('clientmsg', message, _.extend(options || {}, { type: 'log'}));
             });
 
             // clear list of notifications on state change
@@ -102,7 +102,7 @@
 //                $rootScope.notifications = [];
             });
 
-            $rootScope.$on('notification', function (event, message, options) {
+            $rootScope.$on('clientmsg', function (event, message, options) {
 
                 var defaults = {
                     id: _.uniqueId(),
@@ -127,7 +127,7 @@
 
 
                 // log notification
-                NotificationService.notification(opts.type)(message, options);
+                ClientMessageService.clientmsg(opts.type)(message, options);
 
                 if(opts.type === 'log') {
                     return false; // skip user feedback below
@@ -137,19 +137,19 @@
 
                 opts.alertType = typeMap[opts.type] || 'info';
 
-                $rootScope.notifications = $rootScope.notifications || [];
+                $rootScope.clientmsgs = $rootScope.clientmsgs || [];
 
-                if($rootScope.notifications.length > 0 && $rootScope.notifications[0].message ===
+                if($rootScope.clientmsgs.length > 0 && $rootScope.clientmsgs[0].message ===
                     opts.message) {
                     return false; // don't repeat the same message
                 }
 
                 // display new notification on top
-                $rootScope.notifications.unshift(opts);
+                $rootScope.clientmsgs.unshift(opts);
 
                 if (opts.duration) {
                     $timeout(function () {
-                        _.remove($rootScope.notifications, function(n) {
+                        _.remove($rootScope.clientmsgs, function(n) {
                             return n.id === opts.id;
                         });
                     }, opts.duration);
@@ -158,16 +158,16 @@
             });
 
 
-            $rootScope.closeNotification = function (id) {
-                _.remove($rootScope.notifications, function(n) { return n.id === id; });
+            $rootScope.closeClientmsg = function (id) {
+                _.remove($rootScope.clientmsgs, function(n) { return n.id === id; });
             };
         }])
 
-        .factory("NotificationService", [ '$log', '$window', 'Restangular', function( $log, $window, Restangular) {
+        .factory("ClientMessageService", [ '$log', '$window', 'Restangular', function( $log, $window, Restangular) {
 
             var errorResource = Restangular.all('error');
 
-            var notificationFn = function(type) {
+            var clientmsgFn = function(type) {
 
                 var fn = function () {
 
@@ -217,12 +217,12 @@
 
             return {
 
-                notification: notificationFn,
-                log: notificationFn('log'),
-                debug: notificationFn('debug'),
-                info: notificationFn('info'),
-                warn: notificationFn('warn'),
-                error: notificationFn('error')
+                clientmsg: clientmsgFn,
+                log: clientmsgFn('log'),
+                debug: clientmsgFn('debug'),
+                info: clientmsgFn('info'),
+                warn: clientmsgFn('warn'),
+                error: clientmsgFn('error')
             };
         }]);
 

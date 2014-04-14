@@ -1,5 +1,5 @@
 {
-    "notification": {
+    "clientmsg": {
         "success": {
             "campaign": {
                 "save": "Kampagne {{campaign}} gespeichert",

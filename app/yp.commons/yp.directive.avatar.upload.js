@@ -66,7 +66,7 @@
                                     var valid = '|jpg|png|jpeg|bmp|gif|tif|tiff'.indexOf(type) !== -1;
                                     if(!valid) {
                                         scope.$apply(function() {
-                                            $rootScope.$emit('notification:error', 'avatar.invalid');
+                                            $rootScope.$emit('clientmsg:error', 'avatar.invalid');
 
                                         });
                                     }
@@ -77,7 +77,7 @@
                                 // on file upload complete
                                 uploader.bind('error', function (event, xhr, item, response) {
                                     scope.$apply(function() {
-                                        $rootScope.$emit('notification:error', 'avatar.error');
+                                        $rootScope.$emit('clientmsg:error', 'avatar.error');
 
                                     });
                                 });

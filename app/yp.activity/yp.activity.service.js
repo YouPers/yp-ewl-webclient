@@ -103,7 +103,7 @@
                                 return null;
                             } else if (result.length > 1) {
                                 var reason = 'only one plan expected per activity and user';
-                                $rootScope.$emit('notification:error', reason);
+                                $rootScope.$emit('clientmsg:error', reason);
                                 $q.reject(reason);
                             } else {
                                 return result[0];
@@ -128,8 +128,8 @@
                         }
 
                     },
-                    getActivityOffers: function () {
-                        return Restangular.all('activityoffers').getList();
+                    getActivityOffers: function (options) {
+                        return Restangular.all('activityoffers').getList(options);
                     },
                     getActivityOffer: function (id) {
                         return Restangular.one('activityoffers', id).get({
