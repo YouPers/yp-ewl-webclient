@@ -9,8 +9,8 @@
         "title2": "Beurteilung",
         "impactQuestion": {
             "question": "Wie stark wirkt sich dies auf deine Stresssituation aus?",
-            "lowCaption": "kaum",
-            "highCaption": "sehr stark"
+            "leftCaption": "kaum",
+            "rightCaption": "sehr stark"
         }
     },
 
