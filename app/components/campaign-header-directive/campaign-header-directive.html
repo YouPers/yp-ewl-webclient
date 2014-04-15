@@ -1,0 +1,11 @@
+<div class="campaign-header" ng-if="campaigns.length > 0">
+    <div ng-repeat="campaign in campaigns" class="campaign">
+        <div class="avatar">
+            <img ng-src="{{campaign.avatar}}">
+        </div>
+        <div class="topic">Stress Management</div>
+        <div class="details">Dienststelle Gesundheit KTLU</div>
+        <div class="details">{{campaign.location}}</div>
+        <div class="details">{{campaign.start | date:'d. MMMM'}} -  {{campaign.end | date:'d. MMMM yyyy'}}</div>
+    </div>
+</div>

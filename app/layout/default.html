@@ -1,7 +1,12 @@
 <div class="container main-layout">
     <div class="row top-bar">
-        <div class="health-coach-nav" ng-click="$state.go('home.content')" ng-hide="$state.current.name == 'home.content'">
-            <img ng-src="/assets/img/navigation_coach_sm.png">
+        <div class="col-sm-10">
+            <campaign-header></campaign-header>
+        </div>
+        <div class="col-sm-2">
+            <div class="health-coach-nav" ng-click="$state.go('home.content')" ng-hide="$state.current.name == 'home.content'">
+                <img ng-src="/assets/img/navigation_coach_sm.png">
+            </div>
         </div>
     </div>
     <div class="row">
