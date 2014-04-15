@@ -38,7 +38,7 @@
 
                 $scope.join = function () {
 
-                    UserService.principal.getUser().campaign = campaign.id;
+                    UserService.principal.getUser().campaign = campaign;
 
                     // if this is an authenticated user (e.g. a stored one, that already exists on the backend)
                     // we need to save it, because we have just updated it.
