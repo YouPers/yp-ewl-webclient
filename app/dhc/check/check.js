@@ -36,41 +36,48 @@
         .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessmentData', 'AssessmentService',
             function ($scope, $rootScope, $state, $timeout, assessmentData, AssessmentService) {
 
-
+                $scope.orderedCategoryNames = _.uniq(_.map(assessmentData.assessment.questions, 'category'));
                 $scope.categories = _.groupBy(assessmentData.assessment.questions, 'category');
+
+
+                // setup helper values for UI-controls
+                _.forEach(assessmentData.result.answers, function(myAnswer) {
+                    if (!_.isNull(myAnswer.answer)) {
+                        myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
+                            (myAnswer.answer < 0 ? 'min' : 'max');
+                        myAnswer.answerValue = parseInt(Math.abs(myAnswer.answer));
+                    } else {
+                        myAnswer.answerType = null;
+                        myAnswer.answerValue = null;
+                    }
+                });
+
+
                 $scope.answers = assessmentData.result.keyedAnswers;
 
-//                var firstUnansweredCategory = function firstUnansweredCategory() {
-//
-//                    // find first category that contains any question that has not been answered
-//                    var category = _.find(_.keys($scope.categories), function(category) {
-//                        return _.any($scope.categories[category], function(question) {
-//
-//                            return !$scope.answers[question.id].answered;
-//
-//                        });
-//                    });
-//                    return category;
-//                };
+                function firstUnansweredCategory() {
+                    return _.find($scope.orderedCategoryNames, function(catName) {
+                        return _.any($scope.categories[catName], function(question) {
+                            return _.isNull($scope.answers[question.id].answer);
+                        });
+                    });
+
+                }
 
 
                 $scope.cat = {}; // track open accordion group
 
-//                var category = firstUnansweredCategory();
-//                var categoryName = category ? category : 'general';
+                var firstUnansweredCat = firstUnansweredCategory();
 
-                // TODO: define when a question should be counted as 'answered' => with manual slider or just too low/much
-
-//                $scope.cat['general'] = true;
-
-
+                if (firstUnansweredCat) {
+                    $scope.cat[firstUnansweredCat] = true;
+                }
 
                 _.forEach($scope.answers, function(answer, key) {
 
                     $scope.$watch('answers["'+key+'"].answerType', function(value, oldValue) {
 
                         var answer = $scope.answers[key];
-
                         if(value && value !== oldValue) {
 
                             if(value === 'mid') {
@@ -94,7 +101,6 @@
 
                         answer.answer = answer.answerType === 'mid' ? 0 : (answer.answerType === 'min' ? -value : value);
 
-                        answer.answered = true;
                         putAnswer(answer);
 
                     }, true);
@@ -105,7 +111,40 @@
                     AssessmentService.putAnswer(answer);
                 }, 1000);
 
+
+                $scope.displayInfo = function(question) {
+                    $rootScope.$emit('healthCoach:displayMessage', renderCoachMessageFromQuestion(question));
+                };
+
+                function renderCoachMessageFromQuestion(question) {
+                    // the Coach speaks MARKDOWN!
+                    var myText =  question.exptext + '\n\n';
+                    if (question.mintext !== 'n/a') {
+                        myText += '**' + question.mintext + ':** ' + question.mintextexample +'\n\n';
+                    }
+                    if (question.midtext !== 'n/a') {
+                        myText += '**' + question.midtext + ':** ' + question.midtextexample +'\n\n';
+                    }
+                    if (question.maxtext !== 'n/a') {
+                        myText += '**' + question.maxtext + ':** ' + question.maxtextexample +'\n\n';
+                    }
+                    return myText;
+                }
+
             }
-        ]);
+        ])
+
+        .filter('answeredCount', function() {
+            return function(questions, answers) {
+                var answered = 0;
+                for (var i = 0; i < questions.length; i++) {
+                    if (!_.isNull(answers[questions[i].id].answer)) {
+                        answered++;
+                    }
+                }
+
+                return answered;
+            };
+        });
 
 }());

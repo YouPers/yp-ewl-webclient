@@ -1,5 +1,9 @@
 {
     "healthCoach": {
-        "msg_1": "Starte mit einer Selbstbeurteilung oder schaue Dir die Aktivitätsvorschläge an."
+        "hcmsg": {
+            "1": "Starte mit einer Selbstbeurteilung oder schaue Dir die Aktivitätsvorschläge an.",
+            "2": "Deine Selbstbeurteilung ist schon einige Tage her. Schaue nochmals deine Antworten durch und finde heraus, ob sich inzwischen etwas verändert hat. \n Wenn du deine Antworten anpasst bekommst du Aktivitäts-Vorschläge die besser zu deiner persönlichen Situation passen.",
+            "3": "Du hast noch keine Aktivitäten geplant. Mache einen ersten Schritt zu einem verbesserten Gesundheitsverhalten indem du eine Aktivität einplanst und diese dann durchführst."
+        }
     }
 }

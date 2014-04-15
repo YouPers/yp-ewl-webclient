@@ -6,7 +6,12 @@
 
     "check": {
         "title1": "deine",
-        "title2": "Beurteilung"
+        "title2": "Beurteilung",
+        "impactQuestion": {
+            "question": "Wie stark wirkt sich dies auf deine Stresssituation aus?",
+            "leftCaption": "kaum",
+            "rightCaption": "sehr stark"
+        }
     },
 
     "questionCategory": {

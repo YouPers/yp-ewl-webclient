@@ -4,22 +4,23 @@
         <div class="state-title-2" translate>check.title2</div>
     </div>
 </div>
-<accordion class="check" close-others="false">
+<accordion class="check" close-others="true">
 
-    <accordion-group ng-repeat="(name, questions) in categories" is-open="true">
+    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]">
         <accordion-heading>
             <div>
                 <span>{{ 'questionCategory.' + name | translate }}</span>
                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
+                <span class="pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} Fragen beantwortet</span>
             </div>
         </accordion-heading>
 
 
-        <div ng-repeat="question in questions">
+        <div ng-repeat="question in categories[name]">
 
             <div class="row">
                 <div class="col-md-12">
-                    <h2>{{ question.title }}</h2>
+                    <h2>{{ question.title }} <i class="glyphicon glyphicon-info-sign" ng-click="displayInfo(question)"></i></h2>
                 </div>
             </div>
 
@@ -53,12 +54,12 @@
 
             </div>
 
-            <div class="row" ng-show="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
+            <div class="row" ng-if="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
 
                 <div class="col-md-12">
 
-                    <!-- slider -->
-
+                    <div class="impact-question" translate>check.impactQuestion.question</div>
+                    <div class="slider-caption-left" translate>check.impactQuestion.leftCaption</div>
                     <slider ng-class="[question.type]"
                             ng-model="answers[question.id].answerValue"
                             ng-mousedown="answers[question.id].dirty = true"
@@ -68,6 +69,7 @@
                             precision="1">
                     </slider>
                 </div>
+                <div class="slider-caption-right" translate>check.impactQuestion.rightCaption</div>
 
             </div>
 
