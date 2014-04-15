@@ -95,6 +95,55 @@ body {
   padding-bottom: 0.5em;
 }
 
+// date and time
+
+
+.list-date {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.list-date > * {
+
+  display: inline-block;
+}
+.list-date .weekday {
+
+
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  color: #CCCACA;
+
+  width: 25px;
+
+  vertical-align: top;
+}
+
+.list-date .dayofmonth {
+
+  font-weight: 600;
+  font-style: normal;
+  font-size: 36px;
+  color: #6B6B6B;
+
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.list-date .time {
+
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
+  color: #473F45;
+
+  vertical-align: top;
+}
+
+
+
+
 
 // ui-view transitions
 // --------------------------------------------------
@@ -117,7 +166,7 @@ body {
 @import "activity-offer-list";
 @import "activity-schedule";
 @import "activity-schedule-event-list";
-@import "activity-plan";
+@import "plan";
 @import "diary";
 @import "check";
 

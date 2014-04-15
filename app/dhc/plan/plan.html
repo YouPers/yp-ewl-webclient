@@ -10,10 +10,10 @@
 
     <div ng-repeat="group in groups">
 
-        <h2>
+        <div class="group-header">
             <span translate>{{ 'plan.group.' + group.name }}</span>
             <span ng-show="group.name == 'open'">({{ openEvents }})</span>
-        </h2>
+        </div>
 
 
 
@@ -22,10 +22,10 @@
         <div class="row event" ng-repeat="event in group.events">
 
             <!-- date -->
-            <div class="col-md-1 date">
+            <div class="col-md-2 date">
 
                 <!-- date -->
-                <div class="col-md-3 listdate">
+                <div class="list-date">
                     <div class="weekday">
                         {{ event.begin | date:'EEE'}}
                     </div>
@@ -33,8 +33,8 @@
                         {{ event.begin | date:'dd'}}
                     </div>
                     <div class="time" ng-if="event.end">
-                        {{ event.begin | date:'HH:mm'}} -<br>
-                        {{ event.end | date:'HH:mm'}}
+                        <div>{{ event.begin | date:'HH:mm'}}&nbsp;-</div>
+                        <div>{{ event.end | date:'HH:mm'}}</div>
                     </div>
                     <div class="time" ng-if="!event.end">
                         {{ event.begin | date:'HH:mm'}}
@@ -44,14 +44,14 @@
             </div>
 
             <!-- image -->
-            <div class="col-md-2 image">
+            <div class="col-md-1 image">
                 <span>
                     <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
                 </span>
             </div>
 
             <!-- title -->
-            <div class="col-md-2">
+            <div class="col-md-3 title">
                 <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })">
                     {{ event.plan.activity.title }}
                 </a>
@@ -65,7 +65,7 @@
             </div>
 
             <!-- joining users -->
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span ng-if="event.plan.joiningUsers.length > 0">
                     <span>{{ event.plan.joiningUsers[0].fullname }}</span>
                     <span ng-if="event.plan.joiningUsers.length > 1"
@@ -78,7 +78,14 @@
                 </span>
             </div>
 
-            <!-- other info's once the mockup is final -->
+            <div class="col-md-1 status" ng-if="group.name == 'open'">
+                <button class="done btn btn-xs btn-default" ng-click="updateEvent(event, 'done')">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button class="missed btn btn-xs btn-default" ng-click="updateEvent(event, 'missed')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
 
 
         </div>

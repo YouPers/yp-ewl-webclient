@@ -108,6 +108,18 @@
                 $scope.getJoiningUsers = function (event) {
                     return _.pluck(event.plan.joiningUsers.slice(1), 'fullname').join('<br/>');
                 };
+
+                $scope.updateEvent = function(event, status) {
+                    var planId = event.plan.id;
+                    delete event.plan;
+                    event.status = status;
+                    ActivityService.updateActivityEvent(planId, event).then(function() {
+                        $state.go('schedule.plan', {
+                            id: planId,
+                            event: event.id
+                        })
+                    });
+                }
             }
         ]);
 
