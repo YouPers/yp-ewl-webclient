@@ -117,9 +117,9 @@
                         $state.go('schedule.plan', {
                             id: planId,
                             event: event.id
-                        })
+                        });
                     });
-                }
+                };
             }
         ]);
 
