@@ -1,0 +1,61 @@
+<div class="welcome-layout">
+    <div>
+        <div class="container">
+            <div class="row" ng-controller="WelcomeController">
+                <div class="col-sm-3">
+
+                    <div class="activity-card">
+                        <div>
+
+                            <div class="image">
+                                <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
+                            </div>
+
+                            <div class="source">
+                                <div class="source-avatar-container">
+                                    <div class="source-avatar-content">
+                                        <img ng-src="assets/img/SMUE.jpeg">
+                                    </div>
+                                    <div class="source-text">
+                                        Martin Degen
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <div class="title">
+                                    {{ campaign.title }}
+                                </div>
+                                <div class="text">
+                                    {{ campaign.slogan }}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-9">
+
+                    <div class="welcome-content">
+                        <h1 class="welcome-header">
+                            <span translate>welcome.header.part1</span>
+                            <span class="campaign-title">{{ campaign.title }}</span>
+                            <span translate>welcome.header.part2</span>
+                        </h1>
+
+                        <div class="welcome-links">
+                            <button class="btn btn-default info">
+                                <span translate>welcome.link.info</span>
+                            </button>
+                            <button class="btn btn-default join" ui-sref="startCampaign({campaignId: campaign.id})">
+                                <span translate>welcome.link.join</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
