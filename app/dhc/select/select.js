@@ -34,8 +34,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/select/select');
             }])
 
-        .controller('SelectController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout', 'offers',
-            function ($scope, $rootScope, $stateParams, $location, $window, $timeout, offers) {
+        .controller('SelectController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout', 'offers', 'ProfileService',
+            function ($scope, $rootScope, $stateParams, $location, $window, $timeout, offers, ProfileService) {
 
                 $scope.offers = offers;
 
@@ -70,7 +70,19 @@
 
                 $scope.reject = function(index, event) {
                     event.stopPropagation();
+
+                    var user = $scope.principal.getUser();
+                    // add it to the collection of rejected Activities in the profile
+                    user.profile.userPreferences.rejectedActivities.push({activity: $scope.offers[index].activity.id, timestamp: new Date()});
+                    // remove it from the starred list
+                    _.remove(user.profile.userPreferences.starredActivities, function (starred) {
+                        return starred.activity === $scope.offers[index].activity.id;
+                    });
+
+                    // save the profile
+                    ProfileService.putProfile(user.profile);
                     $scope.offers.splice(index, 1);
+
                 };
 
                 $scope.schedule = function(activity) {
