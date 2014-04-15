@@ -54,14 +54,16 @@
                             if (results[1]) {
 
                                 // fill up unanswered questions
-                                assResult = assessment.getNewEmptyAssResult();
+                                assResult = results[1];
+                                var emtpyResult = assessment.getNewEmptyAssResult();
 
-                                _.forEach(assResult.answers, function(answer) {
-                                    var answerFromResult = _.find(results[1].answers, function(res) {
-                                        return answer.question === res.question;
+                                _.forEach(emtpyResult.answers, function(emptyAnswer) {
+                                    var answerFromBackend = _.find(assResult.answers, function(res) {
+                                        return emptyAnswer.question === res.question;
                                     });
-                                    if(answerFromResult) {
-                                        _.merge(answer, answerFromResult);
+
+                                    if (!answerFromBackend) {
+                                        assResult.answers.push(emptyAnswer);
                                     }
                                 });
 
@@ -75,10 +77,6 @@
                             // sort answers into keyed object (by question_id) to ease access by view
                             assResult.keyedAnswers = {};
                             _.forEach(assResult.answers, function (myAnswer) {
-
-                                myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
-                                    (myAnswer.answer < 0 ? 'min' : 'max');
-                                myAnswer.answerValue = parseInt(Math.abs(myAnswer.answer));
                                 assResult.keyedAnswers[myAnswer.question] = myAnswer;
                             });
 

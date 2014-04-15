@@ -50,8 +50,7 @@
                         var answer = {
                             assessment: assessment.id,
                             question: question.id || question,
-                            answer: 0,
-                            answered: false
+                            answer: null
                         };
                         emptyResult.answers.push(answer);
                     });

@@ -38,6 +38,20 @@
 
 
                 $scope.categories = _.groupBy(assessmentData.assessment.questions, 'category');
+
+                // setup helper values for controls
+                _.forEach(assessmentData.result.answers, function(myAnswer) {
+                    if (!_.isNull(myAnswer.answer)) {
+                        myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
+                            (myAnswer.answer < 0 ? 'min' : 'max');
+                        myAnswer.answerValue = parseInt(Math.abs(myAnswer.answer));
+                    } else {
+                        myAnswer.answerType = null;
+                        myAnswer.answerValue = null;
+                    }
+                });
+
+
                 $scope.answers = assessmentData.result.keyedAnswers;
 
 //                var firstUnansweredCategory = function firstUnansweredCategory() {
@@ -70,7 +84,6 @@
                     $scope.$watch('answers["'+key+'"].answerType', function(value, oldValue) {
 
                         var answer = $scope.answers[key];
-
                         if(value && value !== oldValue) {
 
                             if(value === 'mid') {
@@ -94,7 +107,6 @@
 
                         answer.answer = answer.answerType === 'mid' ? 0 : (answer.answerType === 'min' ? -value : value);
 
-                        answer.answered = true;
                         putAnswer(answer);
 
                     }, true);
@@ -106,6 +118,19 @@
                 }, 1000);
 
             }
-        ]);
+        ])
+
+        .filter('answeredCount', function() {
+            return function(questions, answers) {
+                var answered = 0;
+                for (var i = 0; i < questions.length; i++) {
+                    if (!_.isNull(answers[questions[i].id].answer)) {
+                        answered++;
+                    }
+                }
+
+                return answered;
+            };
+        });
 
 }());

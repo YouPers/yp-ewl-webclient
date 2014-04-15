@@ -11,6 +11,7 @@
             <div>
                 <span>{{ 'questionCategory.' + name | translate }}</span>
                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
+                <span class="pull-right">{{questions | answeredCount:answers}} von {{questions.length}} Fragen beantwortet</span>
             </div>
         </accordion-heading>
 
@@ -53,7 +54,7 @@
 
             </div>
 
-            <div class="row" ng-show="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
+            <div class="row" ng-if="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
 
                 <div class="col-md-12">
 

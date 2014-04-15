@@ -3,6 +3,7 @@
     /*global printStackTrace:true */
 
 
+
     angular.module('yp.clientmsg', [])
 
         /**
@@ -45,6 +46,8 @@
 
 
         .run(['$rootScope', 'ClientMessageService', '$timeout', function($rootScope, ClientMessageService, $timeout) {
+
+
 
             // distinct event name for error notifications
             $rootScope.$on('clientmsg:error', function (event, error, options) {
@@ -166,6 +169,10 @@
         .factory("ClientMessageService", [ '$log', '$window', 'Restangular', function( $log, $window, Restangular) {
 
             var errorResource = Restangular.all('error');
+            var _postToBackend = _.throttle(function(args) {
+                errorResource.post(args);
+            }, 10000);
+
 
             var clientmsgFn = function(type) {
 
@@ -207,7 +214,7 @@
                             error: arguments,
                             client: client
                         };
-                        errorResource.post(args);
+                        _postToBackend(args);
                     }
 
                 };
