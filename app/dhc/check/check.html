@@ -6,17 +6,17 @@
 </div>
 <accordion class="check" close-others="false">
 
-    <accordion-group ng-repeat="(name, questions) in categories" is-open="true">
+    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="true">
         <accordion-heading>
             <div>
                 <span>{{ 'questionCategory.' + name | translate }}</span>
                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
-                <span class="pull-right">{{questions | answeredCount:answers}} von {{questions.length}} Fragen beantwortet</span>
+                <span class="pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} Fragen beantwortet</span>
             </div>
         </accordion-heading>
 
 
-        <div ng-repeat="question in questions">
+        <div ng-repeat="question in categories[name]">
 
             <div class="row">
                 <div class="col-md-12">

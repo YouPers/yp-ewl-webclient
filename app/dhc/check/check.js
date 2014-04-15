@@ -36,8 +36,9 @@
         .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessmentData', 'AssessmentService',
             function ($scope, $rootScope, $state, $timeout, assessmentData, AssessmentService) {
 
-
+                $scope.orderedCategoryNames = _.uniq(_.map(assessmentData.assessment.questions, 'category'));
                 $scope.categories = _.groupBy(assessmentData.assessment.questions, 'category');
+
 
                 // setup helper values for controls
                 _.forEach(assessmentData.result.answers, function(myAnswer) {
