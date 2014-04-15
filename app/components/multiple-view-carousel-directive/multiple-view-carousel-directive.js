@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('multipleViewCarousel', ['$location', '$stateParams', function ($location, $stateParams) {
+        .directive('multipleViewCarousel', ['$location', '$state', function ($location, $state) {
             return {
                 restrict: 'E',
                 transclude: true,
@@ -20,7 +20,9 @@
                         return $location.search();
                     }, function (newValue, oldValue) {
 
-                        if(newValue.offset && $scope.slider.offset !== parseInt(newValue.offset)) {
+                        if($state.current.previous.name && newValue.offset &&
+                            $scope.slider.offset !== parseInt(newValue.offset)) {
+
                             $scope.$parent.back();
                         }
 
