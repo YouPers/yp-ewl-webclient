@@ -4,6 +4,7 @@ module.exports = function (config) {
 
         files: [
             'app/lib/angular/angular.js',
+            'app/lib/angular-animate/angular-animate.js',
             'app/lib/angular-cookies/angular-cookies.js',
             'app/lib/angular-translate/*min.js',
             'app/lib/angular-translate-storage-cookie/*min.js',
