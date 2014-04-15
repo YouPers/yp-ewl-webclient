@@ -11,8 +11,21 @@
                 templateUrl: 'components/campaign-header-directive/campaign-header-directive.html',
 
                 link: function (scope, elem, attrs) {
-                    var user = UserService.principal.getUser();
-                    scope.campaigns = user.campaign ? [user.campaign] : [];
+
+                    function _setCampaign() {
+                        var user = UserService.principal.getUser();
+                        scope.campaigns = user.campaign ? [user.campaign] : [];
+                    }
+
+                    _setCampaign();
+
+                    $rootScope.$on('event:authority-deauthorized', function() {
+                        scope.campaigns = [];
+                    });
+
+                    $rootScope.$on('event:authority-authorized', function() {
+                        _setCampaign();
+                    });
                 }
             };
         }])
