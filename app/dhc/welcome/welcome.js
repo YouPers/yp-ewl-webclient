@@ -13,14 +13,13 @@
                     .state('welcome', {
                         url: "/welcome/{campaignId}",
                         templateUrl: "dhc/welcome/welcome.html",
+                        controller: 'WelcomeController',
                         access: accessLevels.all,
                         resolve: {
 
-                            campaign: ['Restangular', '$stateParams',
-                                function (Restangular, $stateParams) {
-                                    return Restangular.one('campaigns', $stateParams.campaignId).get().then(function success (campaign) {
-                                        return campaign;
-                                    });
+                            campaign: ['CampaignService', '$stateParams',
+                                function (CampaignService, $stateParams) {
+                                    return CampaignService.getCampaign($stateParams.campaignId);
                                 }]
                         }
                     });
@@ -33,6 +32,8 @@
 
                 if (!campaign) {
                     $state.go('home.content');
+                } else {
+                    $scope.campaign = campaign;
                 }
 
                 $scope.join = function () {
