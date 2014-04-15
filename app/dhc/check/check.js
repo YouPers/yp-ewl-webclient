@@ -40,7 +40,7 @@
                 $scope.categories = _.groupBy(assessmentData.assessment.questions, 'category');
 
 
-                // setup helper values for controls
+                // setup helper values for UI-controls
                 _.forEach(assessmentData.result.answers, function(myAnswer) {
                     if (!_.isNull(myAnswer.answer)) {
                         myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
@@ -55,30 +55,23 @@
 
                 $scope.answers = assessmentData.result.keyedAnswers;
 
-//                var firstUnansweredCategory = function firstUnansweredCategory() {
-//
-//                    // find first category that contains any question that has not been answered
-//                    var category = _.find(_.keys($scope.categories), function(category) {
-//                        return _.any($scope.categories[category], function(question) {
-//
-//                            return !$scope.answers[question.id].answered;
-//
-//                        });
-//                    });
-//                    return category;
-//                };
+                function firstUnansweredCategory() {
+                    return _.find($scope.orderedCategoryNames, function(catName) {
+                        return _.any($scope.categories[catName], function(question) {
+                            return _.isNull($scope.answers[question.id].answer);
+                        });
+                    });
+
+                }
 
 
                 $scope.cat = {}; // track open accordion group
 
-//                var category = firstUnansweredCategory();
-//                var categoryName = category ? category : 'general';
+                var firstUnansweredCat = firstUnansweredCategory();
 
-                // TODO: define when a question should be counted as 'answered' => with manual slider or just too low/much
-
-//                $scope.cat['general'] = true;
-
-
+                if (firstUnansweredCat) {
+                    $scope.cat[firstUnansweredCat] = true;
+                }
 
                 _.forEach($scope.answers, function(answer, key) {
 

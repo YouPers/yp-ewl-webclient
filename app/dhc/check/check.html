@@ -6,7 +6,7 @@
 </div>
 <accordion class="check" close-others="false">
 
-    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="true">
+    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]">
         <accordion-heading>
             <div>
                 <span>{{ 'questionCategory.' + name | translate }}</span>
