@@ -1,0 +1,56 @@
+<div class="welcome-layout">
+    <div>
+        <div class="welcome-box">
+
+            <div class="welcome-card">
+                <div class="activity-card">
+                    <div>
+
+                        <div class="image">
+                            <img ng-src="{{ campaign.avatar }}">
+                        </div>
+
+                        <div class="source">
+                            <div class="source-avatar-container">
+                                <div class="source-avatar-content">
+                                    <img ng-src="{{ campaign.campaignLeads[0].avatar }}">
+                                </div>
+                                <div class="source-text">
+                                    {{ campaign.campaignLeads[0].fullname }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <div class="title">
+                                {{ campaign.title }}
+                            </div>
+                            <div class="text">
+                                {{ campaign.slogan }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="welcome-content">
+                <h1 class="welcome-header">
+                    <span translate>welcome.header.part1</span>
+                    <span class="campaign-title">{{ campaign.title }}</span>
+                    <span translate>welcome.header.part2</span>
+                </h1>
+
+                <div class="welcome-links">
+                    <button class="btn btn-default info">
+                        <span translate>welcome.link.info</span>
+                    </button>
+                    <button class="btn btn-default join" ng-click="join()">
+                        <span translate>welcome.link.join</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

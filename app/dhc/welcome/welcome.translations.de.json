@@ -1,0 +1,18 @@
+{
+    "clientmsg": {
+
+    },
+
+
+    "welcome": {
+        "header": {
+            "part1": "Willkommen zur Kampagne ",
+            "part2": " der Kantonsverwaltung Luzern"
+        },
+
+        "link": {
+            "info": "Mehr erfahren",
+            "join": "Teilnehmen"
+        }
+    }
+}

@@ -6,6 +6,7 @@
         [
             'yp.user',
 
+            'yp.dhc.welcome',
             'yp.dhc.home',
             'yp.dhc.select',
             'yp.dhc.schedule',
