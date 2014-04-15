@@ -111,6 +111,26 @@
                     AssessmentService.putAnswer(answer);
                 }, 1000);
 
+
+                $scope.displayInfo = function(question) {
+                    $rootScope.$emit('healthCoach:displayMessage', renderCoachMessageFromQuestion(question));
+                };
+
+                function renderCoachMessageFromQuestion(question) {
+                    // the Coach speaks MARKDOWN!
+                    var myText =  question.exptext + '\n\n';
+                    if (question.mintext !== 'n/a') {
+                        myText += '**' + question.mintext + ':** ' + question.mintextexample +'\n\n';
+                    }
+                    if (question.midtext !== 'n/a') {
+                        myText += '**' + question.midtext + ':** ' + question.midtextexample +'\n\n';
+                    }
+                    if (question.maxtext !== 'n/a') {
+                        myText += '**' + question.maxtext + ':** ' + question.maxtextexample +'\n\n';
+                    }
+                    return myText;
+                }
+
             }
         ])
 
