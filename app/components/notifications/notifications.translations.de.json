@@ -3,7 +3,8 @@
         "title": "Deine Nachrichten",
         "type": {
            "personalInvitation": "Persönliche Einladung",
-           "message": "Ankündigung"
+           "message": "Ankündigung",
+           "activityRecommendation": "Kampagnen-Aktivität"
         }
     }
 
