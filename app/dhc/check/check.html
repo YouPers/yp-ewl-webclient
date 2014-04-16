@@ -6,7 +6,7 @@
 </div>
 <accordion class="check" close-others="true">
 
-    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]">
+    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]" ng-click="reinitialize()">
         <accordion-heading>
             <div>
                 <span>{{ 'questionCategory.' + name | translate }}</span>
@@ -54,7 +54,7 @@
 
             </div>
 
-            <div class="row" ng-if="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
+            <div class="row" ng-show="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
 
                 <div class="col-md-12">
 

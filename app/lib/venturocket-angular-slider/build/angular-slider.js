@@ -9,85 +9,85 @@ window.AngularSlider = (function( window, document, undefined ) {
 
     var version = '2.7.1',
 
-    AngularSlider = {},
+        AngularSlider = {},
 
 
-    docElement = document.documentElement,
+        docElement = document.documentElement,
 
-    mod = 'modernizr',
-    modElem = document.createElement(mod),
-    mStyle = modElem.style,
+        mod = 'modernizr',
+        modElem = document.createElement(mod),
+        mStyle = modElem.style,
 
-    inputElem  = document.createElement('input')  ,
+        inputElem  = document.createElement('input')  ,
 
-    smile = ':)',
+        smile = ':)',
 
-    toString = {}.toString,    tests = {},
-    inputs = {},
-    attrs = {},
+        toString = {}.toString,    tests = {},
+        inputs = {},
+        attrs = {},
 
-    classes = [],
+        classes = [],
 
-    slice = classes.slice,
+        slice = classes.slice,
 
-    featureName,
+        featureName,
 
 
 
-    _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
+        _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
 
     if ( !is(_hasOwnProperty, 'undefined') && !is(_hasOwnProperty.call, 'undefined') ) {
-      hasOwnProp = function (object, property) {
-        return _hasOwnProperty.call(object, property);
-      };
+        hasOwnProp = function (object, property) {
+            return _hasOwnProperty.call(object, property);
+        };
     }
     else {
-      hasOwnProp = function (object, property) { 
-        return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
-      };
+        hasOwnProp = function (object, property) {
+            return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
+        };
     }
 
 
     if (!Function.prototype.bind) {
-      Function.prototype.bind = function bind(that) {
+        Function.prototype.bind = function bind(that) {
 
-        var target = this;
+            var target = this;
 
-        if (typeof target != "function") {
-            throw new TypeError();
-        }
-
-        var args = slice.call(arguments, 1),
-            bound = function () {
-
-            if (this instanceof bound) {
-
-              var F = function(){};
-              F.prototype = target.prototype;
-              var self = new F();
-
-              var result = target.apply(
-                  self,
-                  args.concat(slice.call(arguments))
-              );
-              if (Object(result) === result) {
-                  return result;
-              }
-              return self;
-
-            } else {
-
-              return target.apply(
-                  that,
-                  args.concat(slice.call(arguments))
-              );
-
+            if (typeof target != "function") {
+                throw new TypeError();
             }
 
-        };
+            var args = slice.call(arguments, 1),
+                bound = function () {
 
-        return bound;
-      };
+                    if (this instanceof bound) {
+
+                        var F = function(){};
+                        F.prototype = target.prototype;
+                        var self = new F();
+
+                        var result = target.apply(
+                            self,
+                            args.concat(slice.call(arguments))
+                        );
+                        if (Object(result) === result) {
+                            return result;
+                        }
+                        return self;
+
+                    } else {
+
+                        return target.apply(
+                            that,
+                            args.concat(slice.call(arguments))
+                        );
+
+                    }
+
+                };
+
+            return bound;
+        };
     }
 
     function setCss( str ) {
@@ -112,47 +112,47 @@ window.AngularSlider = (function( window, document, undefined ) {
             var item = obj[props[i]];
             if ( item !== undefined) {
 
-                            if (elem === false) return props[i];
+                if (elem === false) return props[i];
 
-                            if (is(item, 'function')){
-                                return item.bind(elem || obj);
+                if (is(item, 'function')){
+                    return item.bind(elem || obj);
                 }
 
-                            return item;
+                return item;
             }
         }
         return false;
     }
     function webforms() {
-                            AngularSlider['inputtypes'] = (function(props) {
+        AngularSlider['inputtypes'] = (function(props) {
 
             for ( var i = 0, bool, inputElemType, defaultView, len = props.length; i < len; i++ ) {
 
                 inputElem.setAttribute('type', inputElemType = props[i]);
                 bool = inputElem.type !== 'text';
 
-                                                    if ( bool ) {
+                if ( bool ) {
 
                     inputElem.value         = smile;
                     inputElem.style.cssText = 'position:absolute;visibility:hidden;';
 
                     if ( /^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined ) {
 
-                      docElement.appendChild(inputElem);
-                      defaultView = document.defaultView;
+                        docElement.appendChild(inputElem);
+                        defaultView = document.defaultView;
 
-                                        bool =  defaultView.getComputedStyle &&
-                              defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
-                                                                                  (inputElem.offsetHeight !== 0);
+                        bool =  defaultView.getComputedStyle &&
+                            defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
+                            (inputElem.offsetHeight !== 0);
 
-                      docElement.removeChild(inputElem);
+                        docElement.removeChild(inputElem);
 
                     } else if ( /^(search|tel)$/.test(inputElemType) ){
-                                                                                    } else if ( /^(url|email)$/.test(inputElemType) ) {
-                                        bool = inputElem.checkValidity && inputElem.checkValidity() === false;
+                    } else if ( /^(url|email)$/.test(inputElemType) ) {
+                        bool = inputElem.checkValidity && inputElem.checkValidity() === false;
 
                     } else {
-                                        bool = inputElem.value != smile;
+                        bool = inputElem.value != smile;
                     }
                 }
 
@@ -160,10 +160,10 @@ window.AngularSlider = (function( window, document, undefined ) {
             }
             return inputs;
         })('search tel url email datetime date month week time datetime-local number range color'.split(' '));
-        }
+    }
     for ( var feature in tests ) {
         if ( hasOwnProp(tests, feature) ) {
-                                    featureName  = feature.toLowerCase();
+            featureName  = feature.toLowerCase();
             AngularSlider[featureName] = tests[feature]();
 
             classes.push((AngularSlider[featureName] ? '' : 'no-') + featureName);
@@ -173,32 +173,32 @@ window.AngularSlider = (function( window, document, undefined ) {
     AngularSlider.input || webforms();
 
 
-     AngularSlider.addTest = function ( feature, test ) {
-       if ( typeof feature == 'object' ) {
-         for ( var key in feature ) {
-           if ( hasOwnProp( feature, key ) ) {
-             AngularSlider.addTest( key, feature[ key ] );
-           }
-         }
-       } else {
+    AngularSlider.addTest = function ( feature, test ) {
+        if ( typeof feature == 'object' ) {
+            for ( var key in feature ) {
+                if ( hasOwnProp( feature, key ) ) {
+                    AngularSlider.addTest( key, feature[ key ] );
+                }
+            }
+        } else {
 
-         feature = feature.toLowerCase();
+            feature = feature.toLowerCase();
 
-         if ( AngularSlider[feature] !== undefined ) {
-                                              return AngularSlider;
-         }
+            if ( AngularSlider[feature] !== undefined ) {
+                return AngularSlider;
+            }
 
-         test = typeof test == 'function' ? test() : test;
+            test = typeof test == 'function' ? test() : test;
 
-         if (typeof enableClasses !== "undefined" && enableClasses) {
-           docElement.className += ' ' + (test ? '' : 'no-') + feature;
-         }
-         AngularSlider[feature] = test;
+            if (typeof enableClasses !== "undefined" && enableClasses) {
+                docElement.className += ' ' + (test ? '' : 'no-') + feature;
+            }
+            AngularSlider[feature] = test;
 
-       }
+        }
 
-       return AngularSlider; 
-     };
+        return AngularSlider;
+    };
 
 
     setCss('');
@@ -223,8 +223,8 @@ AngularSlider.load=function(){yepnope.apply(window,[].slice.call(arguments,0));}
  */
 
 angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
-	['$timeout', '$document', '$interpolate', '$swipe', 
-	 	function($timeout, $document, $interpolate, $swipe) {
+    ['$timeout', '$document', '$interpolate', '$swipe',
+        function($timeout, $document, $interpolate, $swipe) {
 
             /**
              * How sticky the knobs feel...ew
@@ -399,15 +399,15 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                 return parseFloat(roundedValue.toFixed(precision));
             }
 
-			/**
-			 * Round the given number to an arbitrary step
-			 * @param {number} value
-			 * @param {number} step
-			 * @returns {number}
-			 */
-			function roundTo(value, step) {
-				return Math.floor((value / step) + 0.5) * step;
-			}
+            /**
+             * Round the given number to an arbitrary step
+             * @param {number} value
+             * @param {number} step
+             * @returns {number}
+             */
+            function roundTo(value, step) {
+                return Math.floor((value / step) + 0.5) * step;
+            }
 
             /**
              * Rounds the buffer up to the nearest full step
@@ -433,22 +433,24 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 
             return {
                 restrict: 'EA',
+                require: 'ngModel',
                 scope: {
-                    floor            : '@',   // the minimum possible value
-                    ceiling          : '@',   // the maximum possible value
-                    step             : '@',   // how wide is each step, omit or set to 0 for no steps
-                    precision        : '@',   // how many decimal places do we care about
-                    buffer           : '@',   // how close can the two knobs of a dual knob slider get?
-                    stickiness       : '@',   // how sticky should the knobs feel...seriously, how did this get all sticky? gross
-                    showSteps        : '@',   // show the step value bubbles?
-                    ngModel          : '=',   // single knob value binding
-                    ngModelLow       : '=',   // dual knob low value binding
-                    ngModelHigh      : '=',   // dual knob high value binding
-                    translate        : '&',   // how to translate the values displayed in the bubbles
-                    translateRange   : '&',   // how to translate the range bubble
-                    translateCombined: '&',   // how to translate the combined bubble 
-                    scale            : '&',   // how to scale the values
-                    inverseScale     : '&'    // how to unscale the values
+                    floor            	: '@',   // the minimum possible value
+                    ceiling          	: '@',   // the maximum possible value
+                    step             	: '@',   // how wide is each step, omit or set to 0 for no steps
+                    precision        	: '@',   // how many decimal places do we care about
+                    buffer           	: '@',   // how close can the two knobs of a dual knob slider get?
+                    stickiness      	: '@',   // how sticky should the knobs feel...seriously, how did this get all sticky? gross
+                    showSteps        	: '@',   // show the step value bubbles?
+                    ngModel          	: '=',   // single knob/dual know low value binding
+                    ngModelRange     	: '=',   // dual knob high value binding
+                    ngDisabled		 	: '=',   // should the slider be disabled?
+                    ngChange			: '&',   // what should we do when a value is changed
+                    translateFn   	 	: '&',   // how to translate the values displayed in the bubbles
+                    translateRangeFn   	: '&',   // how to translate the range bubble
+                    translateCombinedFn	: '&',   // how to translate the combined bubble 
+                    scaleFn          	: '&',   // how to scale the values
+                    inverseScaleFn   	: '&'    // how to unscale the values
                 },
                 template: // bar background
                     "<span class='bar full'></span>" + // secondary bars used for dual knobs
@@ -464,13 +466,13 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                     var showSteps = attributes.showSteps;
 
                     // dual knob?
-                    var isDualKnob = (attributes.ngModel == null) && ((attributes.ngModelLow != null) && (attributes.ngModelHigh != null)),
+                    var isDualKnob = attributes.ngModelRange != null,
 
                     // init element references
                         refs = {},
 
                     // which properties do we want to use?
-                        refLow = isDualKnob ? 'ngModelLow' : 'ngModel', refHigh = 'ngModelHigh', refSel = 'selectBar',
+                        refLow = 'ngModel', refHigh = 'ngModelRange', refSel = 'selectBar',
 
                     // which properties to we want to watch for changes?
                         watchables = ['floor', 'ceiling', 'stickiness', refLow];
@@ -539,28 +541,28 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                     refs = setReferences(refs, true, true);
 
                     // set up the translation function
-                    if(attributes.translate) {
-                        attributes.$set('translate', "" + attributes.translate + "(value)");
+                    if(attributes.translateFn) {
+                        attributes.$set('translateFn', "" + attributes.translateFn + "(value)");
                     }
 
                     // set up the translation function for the range bubble
-                    if(attributes.translateRange) {
-                        attributes.$set('translateRange', "" + attributes.translateRange + "(low,high)");
+                    if(attributes.translateRangeFn) {
+                        attributes.$set('translateRangeFnFn', "" + attributes.translateRangeFn + "(low,high)");
                     }
 
                     // set up the translation function for the center bubble
-                    if(attributes.translateCombined) {
-                        attributes.$set('translateCombined', "" + attributes.translateCombined + "(low,high)");
+                    if(attributes.translateCombinedFn) {
+                        attributes.$set('translateCombinedFnFn', "" + attributes.translateCombinedFn + "(low,high)");
                     }
 
                     // set up the encoding function
-                    if(attributes.scale) {
-                        attributes.$set('scale', "" + attributes.scale + "(value)");
+                    if(attributes.scaleFn) {
+                        attributes.$set('scaleFn', "" + attributes.scaleFn + "(value)");
                     }
 
                     // set up the decoding function
-                    if(attributes.inverseScale) {
-                        attributes.$set('inverseScale', "" + attributes.inverseScale + "(value)");
+                    if(attributes.inverseScaleFn) {
+                        attributes.$set('inverseScaleFn', "" + attributes.inverseScaleFn + "(value)");
                     }
 
                     // set up the background bar so it fills the entire width of the slider
@@ -594,18 +596,18 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                         if(isDualKnob) {
                             // this is a dual knob slider
 
-                            refs.minInput.attr('max', expression("ngModelHigh - (buffer / 2)")); // set the maximum value of the low range input so it doesn't overlap the high range input's minimum value
+                            refs.minInput.attr('max', expression("ngModelRange - (buffer / 2)")); // set the maximum value of the low range input so it doesn't overlap the high range input's minimum value
 
                             // set up the high value range input
                             refs.maxInput.attr('step', expression("inputSteps()"));              // set the number of steps
-                            refs.maxInput.attr('min', expression("ngModelLow + (buffer / 2)"));  // set the minimum value of the high range input so it doesn't overlap the low range input's maximum value
+                            refs.maxInput.attr('min', expression("ngModel + (buffer / 2)"));  // set the minimum value of the high range input so it doesn't overlap the low range input's maximum value
                             refs.maxInput.attr('max', expression("ceiling"));                    // set the maximum possible value
                             refs.maxInput.css(inputStyles);                                      // apply the default styles
 
                             // set up the selection range input
                             refs.selInput.attr('step', expression("inputSteps()"));  // set the number of steps
-                            refs.selInput.attr('min', expression("ngModelLow"));     // set up the minimum value
-                            refs.selInput.attr('max', expression("ngModelHigh"));    // set up the maximum falue
+                            refs.selInput.attr('min', expression("ngModel"));     // set up the minimum value
+                            refs.selInput.attr('max', expression("ngModelRange"));    // set up the maximum falue
                             refs.selInput.css(inputStyles);                          // apply the default styles
                         } else {
                             // this is single knob slider
@@ -646,31 +648,30 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                     }
                     // make sure the precision and step are first in the list
                     watchables.unshift('precision', 'step');
-                    
+
                     if(!showSteps) {
                         // we're not displaying the step bubbles this time
                         refs.stepBubs.children().remove();
                     }
 
                     return {
-                        post: function(scope, element, attributes) {
+                        post: function(scope, element, attributes, ctrl) {
                             // re-set references locally to avoid any cross contamination and disassociation when using transcluded scopes (namely ng-repeat)
                             var refs = setReferences(getReferences(element), isDualKnob, AngularSlider.inputtypes.range);
 
                             /**
                              * Save the decoded values so we don't have to decode every...single...time....ugh
-                             * @type {{floor: number, ceiling: number, step: number, precision: number, buffer: number, stickiness: number, ngModel: number, ngModelLow: number, ngModelHigh: number}}
+                             * @type {{floor: number, ceiling: number, step: number, precision: number, buffer: number, stickiness: number, ngModel: number, ngModel: number, ngModelRange: number}}
                              */
                             scope.decodedValues = {
-                                floor      : 0,
-                                ceiling    : 0,
-                                step       : 0,
-                                precision  : 0,
-                                buffer     : 0,
-                                stickiness : 0,
-                                ngModel    : 0,
-                                ngModelLow : 0,
-                                ngModelHigh: 0
+                                floor      	: 0,
+                                ceiling    	: 0,
+                                step       	: 0,
+                                precision  	: 0,
+                                buffer     	: 0,
+                                stickiness 	: 0,
+                                ngModel    	: 0,
+                                ngModelRange: 0
                             };
 
                             /**
@@ -680,10 +681,10 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                              */
                             scope.translation = function(value) {
                                 value = parseFloat(value).toFixed(scope.precision);
-                                if(angular.isUndefined(attributes.translate)) {
+                                if(angular.isUndefined(attributes.translateFn)) {
                                     return '' + value;
                                 }
-                                return scope.translate({value: value});
+                                return scope.translateFn({value: value});
                             };
 
                             /**
@@ -693,10 +694,10 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                              * @returns {string}
                              */
                             scope.rangeTranslation = function(low, high) {
-                                if(angular.isUndefined(attributes.translateRange)) {
+                                if(angular.isUndefined(attributes.translateRangeFn)) {
                                     return "Range: " + scope.translation((high - low).toFixed(scope.precision));
                                 }
-                                return scope.translateRange({low: low, high: high});
+                                return scope.translateRangeFn({low: low, high: high});
                             };
 
                             /**
@@ -706,10 +707,10 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                              * @returns {string}
                              */
                             scope.combinedTranslation = function(low, high) {
-                                if(angular.isUndefined(attributes.translateCombined)) {
+                                if(angular.isUndefined(attributes.translateCombinedFn)) {
                                     return scope.translation(low) + " - " + scope.translation(high);
                                 }
-                                return scope.translateCombined({low: low, high: high});
+                                return scope.translateCombinedFn({low: low, high: high});
                             };
 
                             /**
@@ -718,10 +719,10 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                              * @returns {number}
                              */
                             scope.encode = function(value) {
-                                if(angular.isUndefined(attributes.scale) || attributes.scale == '') {
+                                if(angular.isUndefined(attributes.scaleFn) || attributes.scaleFn == '') {
                                     return value;
                                 }
-                                return scope.scale({value: value});
+                                return scope.scaleFn({value: value});
                             };
 
                             /**
@@ -730,12 +731,12 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                              * @returns {number}
                              */
                             scope.decode = function(value) {
-                                if(angular.isUndefined(attributes.inverseScale) || attributes.inverseScale == '') {
+                                if(angular.isUndefined(attributes.inverseScaleFn) || attributes.inverseScaleFn == '') {
                                     return value;
                                 }
-                                return scope.inverseScale({value: value});
+                                return scope.inverseScaleFn({value: value});
                             };
-                            
+
                             if(Math.round(scope.encode(scope.decode(1))) != 1 || Math.round(scope.encode(scope.decode(100))) != 100) {
                                 console.warn("The scale and inverseScale functions are not perfect inverses: 1 = "+scope.encode(scope.decode(1))+"  100 = "+scope.encode(scope.decode(100)));
                             }
@@ -823,11 +824,11 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                              */
                             var valueRangeDecoded = 0;
 
-							/**
-							 * The normalized width in percent of a step
-							 * @type {number}
-							 */
-							var stepRange = 1;
+                            /**
+                             * The normalized width in percent of a step
+                             * @type {number}
+                             */
+                            var stepRange = 1;
 
                             /**
                              * How far from a step is the low knob?
@@ -854,7 +855,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 
                                 // make sure the watchables are all valid
                                 angular.forEach(watchables, function(watchable) {
-                                    
+
                                     // parse them to floats
                                     scope[watchable] = parseFloat(scope[watchable]);
 
@@ -891,7 +892,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                             scope.stickiness = 1;
                                         }
                                     }
-                                    
+
                                     // save the decoded values
                                     scope.decodedValues[watchable] = scope.decodeRef(watchable);
 
@@ -945,8 +946,8 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                 maxValueDecoded = scope.decodedValues.ceiling;
                                 valueRange = maxValue - minValue;
                                 valueRangeDecoded = maxValueDecoded - minValueDecoded;
-								
-								stepRange = roundTo(valueRangeDecoded, scope.decodedValues.step);
+
+                                stepRange = roundTo(valueRangeDecoded, scope.decodedValues.step);
                             }
 
                             /**
@@ -1000,7 +1001,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                  * @returns {number}
                                  */
                                 function offsetFromDecodedValue(value) {
-									return ((value - minValueDecoded) * offsetRange) + minOffset;
+                                    return ((value - minValueDecoded) * offsetRange) + minOffset;
                                 }
 
                                 /**
@@ -1018,12 +1019,12 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                  * @returns {number}
                                  */
                                 function percentFromDecodedValue(value) {
-									var percent = value - minValueDecoded;
-									if(valueRange == valueRangeDecoded) {
-										percent = roundTo(percent, scope.decodedValues.step) / stepRange;
-									} else {
-										percent /= valueRangeDecoded;
-									}
+                                    var percent = value - minValueDecoded;
+                                    if(valueRange == valueRangeDecoded) {
+                                        percent = roundTo(percent, scope.decodedValues.step) / stepRange;
+                                    } else {
+                                        percent /= valueRangeDecoded;
+                                    }
                                     return percent * 100;
                                 }
 
@@ -1081,10 +1082,10 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                     if(end) {
                                         // compute the max stretch amount
                                         return (
-                                                   Math.sin((
-                                                                Math.min(Math.abs(percent / maxPercent), 1) * Math.PI
-                                                                ) - (Math.PI / 2)) + 1
-                                                   ) * sign * maxPercent / 6;
+                                            Math.sin((
+                                                Math.min(Math.abs(percent / maxPercent), 1) * Math.PI
+                                                ) - (Math.PI / 2)) + 1
+                                            ) * sign * maxPercent / 6;
                                     }
 
                                     // compute the current stretch amount
@@ -1181,7 +1182,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                             // and re-set the low knob's and bubble's new positions
                                             offset(refs.minPtr, offsetFromPercent(stretchedLowPercent));
                                             offset(refs.lowBub, offsetFromPercent(percentFromOffset(offsetLeft(refs.minPtr) - halfWidth(refs.lowBub) +
-                                                                                                    pointerHalfWidth)));
+                                                pointerHalfWidth)));
                                         }
 
                                         if(stretchedHighPercent < rawLowPercent + bufferWidthPercentLow) {
@@ -1194,7 +1195,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                         // set the high knob's and bubble's new positions
                                         offset(refs.maxPtr, offsetFromPercent(stretchedHighPercent));
                                         offset(refs.highBub, offsetFromPercent(percentFromOffset(offsetLeft(refs.maxPtr) - halfWidth(refs.highBub) +
-                                                                                                 pointerHalfWidth)));
+                                            pointerHalfWidth)));
 
                                         // set the selection bar's new position and width
                                         offset(refs.selBar, offsetFromPercent(stretchedLowPercent + ptrHalfWidthPercent));
@@ -1220,26 +1221,26 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 
                                         if(AngularSlider.inputtypes.range) {
                                             // we're using range inputs
-                                            
+
                                             var ptrWidth = ptrHalfWidthPercent * 2;
-                                            
+
                                             // get the high input's new position
                                             var highInputLeft = stretchedLowPercent + (bufferWidthPercentLow / 2);
-											var highInputWidth = 100 - highInputLeft;
-											highInputLeft += ptrWidth;
-                                            
+                                            var highInputWidth = 100 - highInputLeft;
+                                            highInputLeft += ptrWidth;
+
                                             // get the low input's new width
                                             var lowInputWidth = stretchedHighPercent - (bufferWidthPercentHigh / 2);
-											
-											// get the selection inputs new position and width;
-											var selInputLeft = stretchedLowPercent + ptrWidth;
-											var selInputWidth = stretchedHighPercent - stretchedLowPercent - ptrWidth;
-											
-											if(stretchedHighPercent <= stretchedLowPercent + ptrWidth) {												
-												selInputLeft = stretchedLowPercent;
-												selInputWidth = stretchedHighPercent + ptrWidth - stretchedLowPercent;
-											}
-                                            
+
+                                            // get the selection inputs new position and width;
+                                            var selInputLeft = stretchedLowPercent + ptrWidth;
+                                            var selInputWidth = stretchedHighPercent - stretchedLowPercent - ptrWidth;
+
+                                            if(stretchedHighPercent <= stretchedLowPercent + ptrWidth) {
+                                                selInputLeft = stretchedLowPercent;
+                                                selInputWidth = stretchedHighPercent + ptrWidth - stretchedLowPercent;
+                                            }
+
                                             // set the low input's new width
                                             refs.minInput.css({
                                                 width: offsetFromPercent(lowInputWidth)
@@ -1516,13 +1517,13 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 
                                                                 // so set the low value to what the high used to be
                                                                 scope[refLow] = scope[refHigh];
-                                                                
+
                                                                 // make sure the decoded values are updated
                                                                 scope.decodedValues[refLow] = scope.decodeRef(refLow);
 
                                                                 // switch the value reference
                                                                 ref = refHigh;
-                                                                
+
                                                                 // swap the element references
                                                                 var temp = refs.minPtr;
                                                                 refs.minPtr = refs.maxPtr;
@@ -1540,13 +1541,13 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 
                                                                 // so set the high value to what the low used to be
                                                                 scope[refHigh] = scope[refLow];
-                                                                
+
                                                                 // make sure the decoded values are updated
                                                                 scope.decodedValues[refHigh] = scope.decodeRef(refHigh);
 
                                                                 // switch the value reference
                                                                 ref = refLow;
-                                                                
+
                                                                 // swap the element references
                                                                 var temp = refs.minPtr;
                                                                 refs.minPtr = refs.maxPtr;
@@ -1562,7 +1563,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 
                                                 // round the new value and assign it
                                                 scope[ref] = newValue = roundToStep(newValue, scope.precision, scope.step, scope.floor, scope.ceiling);
-                                                
+
                                                 // update the decoded value
                                                 scope.decodedValues[ref] = scope.decodeRef(ref);
 
@@ -1571,7 +1572,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 
                                                     // so update the sticky offset for the low knob
                                                     stickyOffsetLow = stickyOffsetLow - percentFromValue(newValue);
-                                                    
+
                                                     // and ensure the high knob stays put
                                                     stickyOffsetHigh = 0;
                                                 } else {
@@ -1584,6 +1585,11 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                                     stickyOffsetLow = 0;
                                                 }
                                             }
+
+                                            if(scope.ngChange) {
+                                                scope.ngChange();
+                                            }
+                                            ctrl.$setViewValue(scope[refLow]);
 
                                             // update the DOM
                                             setPointers();
@@ -1601,11 +1607,13 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                  */
                                 function onStart(event, ptr, rf) {
 
-									/**
-									 * The current x position of the mouse/finger/etc.
-									 * @type {number}
-									 */
-									var currentX = event.clientX || event.x;
+                                    if(scope.ngDisabled && scope.ngDisabled == true) return;
+
+                                    /**
+                                     * The current x position of the mouse/finger/etc.
+                                     * @type {number}
+                                     */
+                                    var currentX = event.clientX || event.x;
 
                                     // save the pointer reference
                                     pointer = ptr;
@@ -1621,7 +1629,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 
                                         // so tell everyone else this is the case
                                         dragRange = true;
-                                        
+
                                         var startValue = valueFromOffset(currentX);
 
                                         // and save the start positions
@@ -1668,12 +1676,12 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                             }
 
                                             // bind events to the range input
-											$swipe.bind(elem, {
-												start : start,
-												move  : onMove,
-												end   : end,
-												cancel: onEnd
-											});
+                                            $swipe.bind(elem, {
+                                                start : start,
+                                                move  : onMove,
+                                                end   : end,
+                                                cancel: onEnd
+                                            });
                                         }
 
                                         // bind the events to the low value range input
@@ -1798,4 +1806,4 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                 }
             }
         }
-	]);
+    ]);
