@@ -1,16 +1,16 @@
-<div class="row modal-header">
-    <div class="col-md-12">
+<div class="modal-header">
+    <div class="">
         <h2 translate>diary.modal.question</h2>
     </div>
 </div>
 <div class="row modal-body">
     <div class="col-md-8">
-        <h3 translate>diary.modal.yourCampaign</h3>
+        <h4 translate>diary.modal.yourCampaign</h4>
 
         <div class="topic-entry">
-            <div class="topic-title">{{topic | translate}}</div>
+            <h3 class="topic-title pull-left">{{topic | translate}}</h3>
 
-            <div class="mood-feedback">
+            <div class="mood-feedback pull-right">
                 <button class="btn btn-default" ng-model="result.entry.feedback" btn-radio="1">
                     <div class="feedback-icon feedback-icon-1"></div>
                 </button>
@@ -26,10 +26,13 @@
                 <button class="btn btn-default" ng-model="result.entry.feedback" btn-radio="5">
                     <div class="feedback-icon feedback-icon-5"></div>
                 </button>
-            </div>
+
+            </div><div class="clearfix"></div>
         </div>
-        <div>
-            <textarea class="feedback-reason" ng-model="result.entry.text" title="{{'diary.modal.reason' | translate}}"></textarea>
+        <div class="form-group">
+            <textarea class="feedback-reason form-control" ng-model="result.entry.text"
+                      title="{{'diary.modal.reason' | translate}}"
+                      placeholder="{{'diary.modal.reason.placeholder' | translate }}"></textarea>
         </div>
 
 
@@ -37,7 +40,7 @@
     <div class="col-md-4">
 
             <h4 translate>diary.modal.yourResolution</h4>
-            <div class="resolution-content">{{resolution}}</div>
+            <h3 class="resolution-content">{{resolution}}</h3>
         <button class="btn btn-primary" ng-click="ok()">Weiter</button>
         <div><input type="checkbox"
                ng-model="result.doNotAskAgainToday">
