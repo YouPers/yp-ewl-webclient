@@ -135,37 +135,19 @@ angular.module('yp-ewl',
                 }
             });
 
-            // log stateChangeErrors
-            $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
-                console.log('Error on StateChange: '+ JSON.stringify(error));
-            });
 
-        }])
-
-
-/**
- * main controller, responsible for
- * - showing global user messages
- * - highlighting global menu option according to currently active state
- * - setting principal to the scope, so all other scopes inherit it
- */
-    .controller('MainCtrl', ['$scope', '$timeout', '$log', 'UserService', '$modal',
-        function ($scope, $timeout, $log, UserService, $modal) {
-
-
-            // handle Menu Highlighting
-            $scope.isActive = function (viewLocation) {
-                return ($scope.$state.current.name.indexOf(viewLocation) !== -1);
-            };
-
-
-            $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+            $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 $scope.$emit('clientmsg:error', error);
             });
 
-            $scope.$on('loginMessageShow', function (event, data) {
+            $rootScope.$on('loginMessageShow', function (event, data) {
                 $state.go('signin.content');
-                $scope.nextStateAfterLogin = data;
+                $rootScope.nextStateAfterLogin = data;
+            });
+
+            // log stateChangeErrors
+            $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+                console.log('Error on StateChange: '+ JSON.stringify(error));
             });
 
         }]);

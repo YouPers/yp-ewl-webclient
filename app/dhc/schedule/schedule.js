@@ -12,11 +12,11 @@
                 $stateProvider
                     .state('schedule', {
                         templateUrl: "layout/default.html",
-                        access: accessLevels.all
+                        access: accessLevels.user
                     })
                     .state('schedule.offer', {
                         url: "/schedule/:id",
-                        access: accessLevels.all,
+                        access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'dhc/schedule/schedule.html',
