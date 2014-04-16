@@ -1,0 +1,45 @@
+
+
+
+    <div class="row">
+        <div class="col-md-6 center-block">
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <h1 translate>signup.header</h1>
+
+                    <form name="registerForm" ypModel="user" class="form" role="form" ng-submit="submit()">
+
+                        <yp-input name="firstname" required></yp-input>
+                        <yp-input name="lastname" required></yp-input>
+                        <yp-input name="username" required unique-user-field></yp-input>
+                        <yp-input name="email" type="email" required unique-user-field></yp-input>
+
+                        <yp-input name="password" type="password" required ng-minlength="6"></yp-input>
+                        <yp-input name="password2" type="password" required password-match="user.password"></yp-input>
+
+
+                        <div class="form-group"  ng-class="{'has-error': registerForm.termsAccepted.$dirty && registerForm.termsAccepted.$invalid}">
+
+
+
+                            <!-- toggle-value="termsAccepted" is used again in the <a> to revert the checkbox change when clicking on the link-->
+                            <label toggle-value="termsAccepted">
+                                <input name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
+
+                                <translate>registerForm.termsAccepted.label1</translate>
+                                <a href="#/terms" target="_blank" toggle-value="termsAccepted" translate>registerForm.termsAccepted.label2</a>
+                                <translate>registerForm.termsAccepted.label3</translate>
+                            </label>
+                            <span ng-show="registerForm.termsAccepted.$error.required" class="help-inline" translate>registerForm.termsAccepted.$error.required</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="registerForm.$invalid" translate>registerForm.register</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,69 @@
+{
+    "clientmsg": {
+
+    },
+
+    "signup": {
+        "header": "Registrierung"
+    },
+
+    "registerForm": {
+        "firstname": {
+            "label": "Vorname",
+            "placeholder": "Vorname",
+            "error": {
+                "required": "Bitte einen gültigen Vornamen eingeben."
+            }
+        },
+        "lastname": {
+            "label": "Nachname",
+            "placeholder": "Nachname",
+            "error": {
+                "required": "Bitte einen gültigen Nachnamen eingeben."
+            }
+        },
+        "username": {
+            "label": "Username",
+            "placeholder": "Username",
+            "error": {
+                "required": "Bitte einen Benutzername eingeben.",
+                "unique": "Dieser Benutzername ist bereits vergeben"
+            }
+        },
+        "email": {
+            "label": "Email",
+            "placeholder": "Email",
+            "error": {
+                "required": "Bitte eine EMail-Adresse eingeben",
+                "email": "Bitte eine gültige EMail-Adresse eingeben",
+                "unique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein"
+            }
+        },
+        "password": {
+            "label": "Passwort",
+            "placeholder": "Passwort",
+            "error": {
+                "required": "Bitte ein Passwort eingeben",
+                "minlength": "Das Passwort muss mindestens 6 Zeichen lang sein"
+            }
+        },
+        "password2": {
+            "label": "Passwort wiederholen",
+            "placeholder": "Passwort wiederholen",
+            "$invalid": "Passwort nicht identisch",
+            "error": {
+                "unique": "Die Passwörter stimmen nicht überein"
+            }
+        },
+        "termsAccepted": {
+            "label1": "Ich hab die ",
+            "label2": "Allgemeinen Geschäftsbedingungen und die Datenschutzbestimmung ",
+            "label3": "gelesen und stimme ihnen zu",
+            "$error": {
+                "required": "Bitte akzeptiere die Geschäftsbedingungen"
+            }
+        },
+        "register": "registrieren"
+    }
+
+}
