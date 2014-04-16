@@ -50,6 +50,8 @@
                             $state.go('home.content');
 
                         });
+                    } else {
+                        $state.go('home.content');
                     }
 
                 };
