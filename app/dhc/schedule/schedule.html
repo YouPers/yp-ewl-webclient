@@ -11,7 +11,7 @@
         <div>
 
             <div class="image">
-                <img ng-src="https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg">
+                <img ng-src="{{'/assets/actpics/' + schedule.activity.number + '.jpg'}}">
             </div>
 
             <div class="source" ng-if="schedule.recommendedBy && schedule.recommendedBy.length > 0">
