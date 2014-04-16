@@ -5,5 +5,6 @@
         </div>
         <div class="message" ng-bind-html="getFormattedMessage()" ng-if="!isTranslatable()"></div>
         <div class="message" ng-if="isTranslatable()">{{'healthCoach.' + coachMessages[0] | translate}}</div>
+        <div class="clearfix"></div>
     </div>
 </div>
