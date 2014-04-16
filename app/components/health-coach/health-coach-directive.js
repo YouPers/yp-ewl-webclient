@@ -18,6 +18,19 @@
                     $rootScope.$on('healthCoach:displayMessage', function (even, message) {
                         scope.coachMessages.unshift(message);
                     });
+
+                    $rootScope.$on('event:authority-deauthorized', function() {
+                        HealthCoachService.getCoachMessages($state.current.name).then(function (result) {
+                            scope.coachMessages = result;
+                        });
+                    });
+
+                    $rootScope.$on('event:authority-authorized', function() {
+                        HealthCoachService.getCoachMessages($state.current.name).then(function (result) {
+                            scope.coachMessages = result;
+                        });
+                    });
+
                 },
                 controller: ['$scope','$sce', function($scope, $sce) {
                     $scope.isTranslatable = function() {

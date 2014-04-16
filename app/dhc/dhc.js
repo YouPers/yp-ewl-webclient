@@ -12,7 +12,8 @@
             'yp.dhc.schedule',
             'yp.dhc.diary',
             'yp.dhc.plan',
-            'yp.dhc.check'
+            'yp.dhc.check',
+            'ngSanitize'
 
 //            'plan',
 //            'report',
