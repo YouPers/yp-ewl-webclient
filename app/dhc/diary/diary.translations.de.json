@@ -19,7 +19,10 @@
             "question": "Wie fühlst du dich heute gesundheitlich?",
             "yourCampaign": "Deine Kampagne",
             "yourResolution": "Dein Vorsatz",
-            "doNotAskAgainToday": "Heute nicht mehr zeigen"
+            "doNotAskAgainToday": "Heute nicht mehr zeigen",
+            "reason": {
+                "placeholder": "Gib hier deine Begründung ein. (optional)"
+            }
         }
 
     },

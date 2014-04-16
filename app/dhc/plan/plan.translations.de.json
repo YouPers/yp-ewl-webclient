@@ -8,12 +8,12 @@
         "title1": "dein",
         "title2": "Plan",
         "group": {
-            "open": "Offene Rückmeldungen",
-            "today": "Heute",
-            "tomorrow": "Morgen",
-            "week": "Diese Woche",
-            "month": "Diesen Monat",
-            "other": "Weitere"
+            "open": "offene rückmeldungen",
+            "today": "heute",
+            "tomorrow": "morgen",
+            "week": "diese woche",
+            "month": "diesen monat",
+            "other": "weitere"
         },
         "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 anderer</a>} other{und <a># andere</a>}}"
 
