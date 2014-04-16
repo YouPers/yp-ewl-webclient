@@ -54,7 +54,7 @@
 
             </div>
 
-            <div class="row" ng-show="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
+            <div class="row" ng-if="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
 
                 <div class="col-md-12">
 

@@ -56,7 +56,9 @@
                 // FIX for slider issue: not working if they have not been visible, reinitialize with a string value
                 $scope.reinitialize = function () {
                     _.forEach($scope.answers, function(answer) {
-                        answer.answerValue = answer.answerValue.toString();
+                        if(answer.answerValue) {
+                            answer.answerValue = answer.answerValue.toString();
+                        }
                     });
 
                 };
