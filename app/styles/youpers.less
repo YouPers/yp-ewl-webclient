@@ -70,14 +70,17 @@ body {
 .main-content {
   margin-top: @grid-gutter-width /2;
   background-color: @yp-color-white;
-  padding-bottom: 1.5em;
-  padding-top: 1.5em;
-
 }
 
 .center-block {
   float: none;
   margin: 0 auto;
+}
+
+.main-content > .col-lg-3 {
+  padding-bottom: 1.5em;
+  padding-top: 1.5em;
+
 }
 
 // middle gutter colored like background, on only lg screens
@@ -86,6 +89,10 @@ body {
     border-right-style: solid;
     border-right-width: @grid-gutter-width /2;
     border-right-color: @yp-color-light-grey;
+
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
+
   }
 }
 
