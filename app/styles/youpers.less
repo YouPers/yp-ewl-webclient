@@ -72,12 +72,27 @@ body {
   background-color: @yp-color-white;
 }
 
+.center-block {
+  float: none;
+  margin: 0 auto;
+}
+
+.main-content > .col-lg-3 {
+  padding-bottom: 1.5em;
+  padding-top: 1.5em;
+
+}
+
 // middle gutter colored like background, on only lg screens
 .main-content > .col-lg-9 {
   @media(min-width: @screen-lg) {
     border-right-style: solid;
     border-right-width: @grid-gutter-width /2;
     border-right-color: @yp-color-light-grey;
+
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
+
   }
 }
 
@@ -221,6 +236,10 @@ body {
 @import "campaign-header";
 @import "health-coach";
 
+@import "signin";
+@import "signup";
+@import "invite";
+
 @import "welcome";
 @import "diary";
 @import "check";
@@ -304,4 +323,23 @@ body {
 .home-content .link-area-center {
   top: 170px;
   left: 175px;
+}
+
+.yp-clientmsg {
+  position: fixed;
+  right: 1em;
+  botton: 1em;
+
+  width: 30em;
+  z-index: 2;
+}
+.yp-clientmsg .alert {
+  opacity: 1;
+  padding: 0.4em 1em;
+  margin: 0.5em;
+  box-sizing: border-box;
+//  border: 1px solid #444;
+  border-radius: 4px;
+  overflow: hidden;
+  color: black;
 }

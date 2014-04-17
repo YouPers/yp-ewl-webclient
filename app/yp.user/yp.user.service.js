@@ -112,7 +112,8 @@
 
                                 // TODO: find a way to suppress default error message
                                 $rootScope.$emit('clientmsg:error', 'loginFailed', { error: err });
-                                return err;
+
+                                return $q.reject(err);
                             });
                     },
                     reload: function () {

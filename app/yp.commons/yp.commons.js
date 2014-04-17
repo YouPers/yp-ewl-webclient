@@ -204,7 +204,46 @@
                     });
                 }
             };
-        });
+        })
+
+        .directive('uniqueUserField', ['UserService', function (UserService) {
+            return {
+                require: 'ngModel',
+                link: function (scope, elm, attrs, ctrl) {
+
+                    // onchange instead of onblur is nice, but we should not hit the server all the time
+                    var validate = function (value) {
+
+                        var user = {};
+                        user[attrs.name] = value; // currently only username and email are checked in the backend
+
+                        if (!value) {
+                            return;
+                        }
+
+                        _.throttle(function () {
+
+                            // validate and use a "unique" postfix to have different error messages
+
+                            UserService.validateUser(user).then(function (res) {
+                                ctrl.$setValidity("unique", true);
+                            }, function (err) {
+                                ctrl.$setValidity("unique", false);
+                            });
+
+                        }, 500)();
+
+
+                        // we can't return undefined for invalid values as it is validated asynchronously
+                        return value;
+                    };
+
+                    ctrl.$parsers.unshift(validate); // user input
+                    ctrl.$formatters.unshift(validate); // model change
+
+                }
+            };
+        }]);
 
 
 }());

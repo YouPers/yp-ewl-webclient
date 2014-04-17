@@ -11,7 +11,12 @@ angular.module('yp-ewl',
 
             'yp.dhc',
 
-            'yp.user', 'yp.payment',
+            'yp.user',
+            'yp.user.signin',
+            'yp.user.signup',
+            'yp.user.invite',
+
+            'yp.payment',
 
             'yp.topic',
             'yp.assessment',
@@ -95,7 +100,7 @@ angular.module('yp-ewl',
             $rootScope.back = function() {
                 if (!$state.current.previous || !$state.current.previous.name) {
                     $state.go('home.content');
-                } else if($state.current.previous.name.indexOf('schedule' >= 0)) {
+                } else if($state.current.previous.name.indexOf('schedule') >= 0) {
                     $state.go('select.content');
                 } else {
                     $state.go($state.current.previous.name);
@@ -132,157 +137,20 @@ angular.module('yp-ewl',
                 }
             });
 
+
+            $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+                $rootScope.$emit('clientmsg:error', error);
+            });
+
+            $rootScope.$on('loginMessageShow', function (event, data) {
+                $state.go('signin.content');
+                $rootScope.nextStateAfterLogin = data;
+            });
+
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
                 console.log('Error on StateChange: '+ JSON.stringify(error));
             });
 
-        }])
-
-
-/**
- * main controller, responsible for
- * - showing global user messages
- * - highlighting global menu option according to currently active state
- * - setting principal to the scope, so all other scopes inherit it
- */
-    .controller('MainCtrl', ['$scope', '$timeout', '$log', 'UserService', '$modal',
-        function ($scope, $timeout, $log, UserService, $modal) {
-
-
-            var loginDialogOpen = function () {
-                var modalInstance = $modal.open({
-                    templateUrl: 'yp.ewl/loginDialog.html',
-                    controller: 'yp.user.DialogLoginRegisterCtrl',
-                    backdrop: true,
-                    resolve: {
-                        registerShown: function () {
-                            return $scope.registerShown;
-                        }
-                    }
-                });
-
-                modalInstance.result.then(function (result) {
-                    if (result.login) {
-                        UserService.login(UserService.encodeCredentials(result.login.username, result.login.password),
-                                result.login.keepMeLoggedIn).then(function(){
-                                if ($scope.nextStateAfterLogin) {
-                                    $scope.$state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
-                                }
-                            });
-                    } else if (result.newuser) {
-                        UserService.submitNewUser(result.newuser).then(function (newUser) {
-                            UserService.login(UserService.encodeCredentials(result.newuser.username, result.newuser.password)).then(function() {
-                                if ($scope.nextStateAfterLogin) {
-                                    $scope.$state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
-                                }
-                            });
-                        });
-                    } else {
-                        // user dismissed the dialog without result - we do nothing
-                    }
-                });
-            };
-
-            // handle Menu Highlighting
-            $scope.isActive = function (viewLocation) {
-                return ($scope.$state.current.name.indexOf(viewLocation) !== -1);
-            };
-
-
-            $scope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-                $scope.$emit('clientmsg:error', error);
-            });
-
-            $scope.$on('loginMessageShow', function (event, data) {
-                $scope.registerShown = data && data.registration;
-                loginDialogOpen();
-                $scope.nextStateAfterLogin = data;
-            });
-
-        }])
-
-
-    .controller('yp.user.DialogLoginRegisterCtrl', ['$scope', '$modalInstance', 'registerShown', 'UserService',
-        function ($scope, $modalInstance, registerShown, UserService) {
-
-            $scope.registerShownInitially = registerShown;
-
-            var result = {
-                login: {
-                    username: '',
-                    password: '',
-                    keepMeLoggedIn: true
-                }
-            };
-            $scope.result = result;
-
-            // passing in a reference to "registerform" and saving it on our scope
-            // this is a workaround for current issue: https://github.com/angular-ui/bootstrap/issues/969
-            $scope.showRegistrationForm = function (registerform) {
-                $scope.registerShownInitially = false;
-                delete result.login;
-                result.newuser = {};
-                $scope.registerShown = true;
-                $scope.registerform = registerform;
-            };
-
-            $scope.$watchCollection('[result.newuser.firstname, result.newuser.lastname]', function () {
-                if ($scope.registerform && !$scope.registerform.username.$dirty && $scope.result.newuser.firstname) {
-                    $scope.result.newuser.username = ($scope.result.newuser.firstname.substr(0, 1) || '').toLowerCase() + ($scope.result.newuser.lastname || '').toLowerCase();
-                }
-            });
-
-            $scope.cancel = function () {
-                $modalInstance.dismiss();
-            };
-
-            $scope.done = function () {
-                $modalInstance.close(result);
-            };
-
-            $scope.gotoPasswordReset = function () {
-                $modalInstance.dismiss();
-                $scope.$state.go('requestPasswordReset');
-            };
-
-        }])
-    .directive('uniqueUserField', ['UserService', function (UserService) {
-        return {
-            require: 'ngModel',
-            link: function (scope, elm, attrs, ctrl) {
-
-                // onchange instead of onblur is nice, but we should not hit the server all the time
-                var validate = function (value) {
-
-                    var user = {};
-                    user[attrs.name] = value; // currently only username and email are checked in the backend
-
-                    if (!value) {
-                        return;
-                    }
-
-                    _.throttle(function () {
-
-                        // validate and use a "unique" postfix to have different error messages
-
-                        UserService.validateUser(user).then(function (res) {
-                            ctrl.$setValidity("unique", true);
-                        }, function (err) {
-                            ctrl.$setValidity("unique", false);
-                        });
-
-                    }, 500)();
-
-
-                    // we can't return undefined for invalid values as it is validated asynchronously
-                    return value;
-                };
-
-                ctrl.$parsers.unshift(validate); // user input
-                ctrl.$formatters.unshift(validate); // model change
-
-            }
-        };
-    }]);
+        }]);
 

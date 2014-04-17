@@ -12,11 +12,11 @@
                 $stateProvider
                     .state('diary', {
                         templateUrl: "layout/default.html",
-                        access: accessLevels.all
+                        access: accessLevels.user
                     })
                     .state('diary.content', {
                         url: "/diary",
-                        access: accessLevels.all,
+                        access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'dhc/diary/diary.html',

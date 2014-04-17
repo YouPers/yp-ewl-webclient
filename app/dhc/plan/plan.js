@@ -12,11 +12,11 @@
                 $stateProvider
                     .state('plan', {
                         templateUrl: "layout/default.html",
-                        access: accessLevels.all
+                        access: accessLevels.user
                     })
                     .state('plan.offer', {
                         url: "/plan",
-                        access: accessLevels.all,
+                        access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'dhc/plan/plan.html',

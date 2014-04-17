@@ -12,12 +12,12 @@
                 $stateProvider
                     .state('select', {
                         templateUrl: "layout/default.html",
-                        access: accessLevels.all
+                        access: accessLevels.user
                     })
                     .state('select.content', {
                         url: "/select?offset",
                         reloadOnSearch: false,
-                        access: accessLevels.all,
+                        access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'dhc/select/select.html',
