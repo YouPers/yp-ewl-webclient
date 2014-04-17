@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('activityCard', ['$rootScope', function ($rootScope) {
+        .directive('activityCard', ['$rootScope', '$sce', function ($rootScope, $sce) {
             return {
                 restrict: 'EA',
                 scope: {
@@ -27,6 +27,13 @@
                     });
 
 
+                    scope.getRenderedText = function (text) {
+                        if (text) {
+                            return $sce.trustAsHtml(markdown.toHTML(text));
+                        } else {
+                            return "";
+                        }
+                    };
                 }
             };
         }]);

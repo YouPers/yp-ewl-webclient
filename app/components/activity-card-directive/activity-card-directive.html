@@ -60,8 +60,7 @@
                     {{ rec.activity.title }}
                 </h3>
 
-                <p>
-                    {{ rec.activity.text }}
+                <p ng-bind-html="getRenderedText(rec.activity.text)">
                 </p>
             </div>
 

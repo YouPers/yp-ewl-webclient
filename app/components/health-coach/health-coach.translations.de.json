@@ -1,10 +1,12 @@
 {
     "healthCoach": {
         "hcmsg": {
-            "1": "Starte mit einer <a href='/#/check'>Selbstbeurteilung</a> oder schaue Dir die <a href='/#/select'>Aktivitätsvorschläge</a> an.",
+            "1": "Starte mit einer <a href='/#/check'>Selbstbeurteilung</a> oder schaue Dir erste <a href='/#/select'>Aktivitätsvorschläge</a> an.",
             "2": "Deine <a href='/#/check'>Selbstbeurteilung</a> ist schon einige Tage her. Schaue nochmals deine Antworten durch und finde heraus, ob sich inzwischen etwas verändert hat. \n Wenn du deine Antworten anpasst bekommst du Aktivitäts-Vorschläge die besser zu deiner persönlichen Situation passen.",
             "3": "Du hast noch keine Aktivitäten geplant. Mache einen ersten Schritt zu einem verbesserten Gesundheitsverhalten indem du eine <a href='/#/select'>Aktivität einplanst</a> und diese dann durchführst.",
-            "4": "Wenn du deine <a href='/#/check'>Selbstbeurteilung ausfüllst</a>, dann können wir dir Aktivitäten vorschlagen, die auf deine persönliche Situation abgestimmt sind."
+            "4": "Wenn du deine <a href='/#/check'>Selbstbeurteilung ausfüllst</a>, dann können wir dir Aktivitäten vorschlagen, die auf deine persönliche Situation abgestimmt sind.",
+            "5": "Mit dem Ausfüllen dieser Selbstbeurteilung ermöglichst du uns, Dir massgeschneiderte Aktivitäten vorzuschla&shy;gen mit denen du in kleinen Schritten dein Gesundheitsverhalten verbessern kannst.<p><p> Deine Daten werden verschlüsselt übertragen und in einer sicheren Datenbank in der Schweiz gespeichert.<p><p>Dein Arbeitgeber hat unter keinen Umständen Zugang zu diesen Informationen.",
+            "6": "Je vollständiger Du die Selbstbeurteilung ausfüllst desto besser passen die vorgeschla&shy;genen Aktivitäten zu deiner persönlichen Situation. <p><p>Bis jetzt hast du weniger als die Hälfte der Fragen beantwortet."
         }
     }
 }
