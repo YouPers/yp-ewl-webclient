@@ -16,10 +16,10 @@
         "handling": "Ausgleich",
         "stresstypus": "Stresstyp",
 
-        "none": "",
-        "low": "",
+        "none": "kein",
+        "low": "gering",
         "medium": "",
-        "high": ""
+        "high": "gross"
 
     }
 }

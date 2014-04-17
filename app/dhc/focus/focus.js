@@ -23,15 +23,24 @@
                             }
                         },
                         resolve: {
-                            
+                            assessmentResult: ['AssessmentService', function(AssessmentService) {
+                                return AssessmentService.getNewestAssessmentResults('525faf0ac558d40000000005');
+                            }]
                         }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/focus/focus');
             }])
 
-        .controller('FocusController', [ '$scope',
-            function ($scope) {
+        .controller('FocusController', [ '$scope', 'assessmentResult',
+            function ($scope, assessmentResult) {
+
+                $scope.needForAction = {
+                    work: 2,
+                    leisure: 4,
+                    stresstypus: 5,
+                    handling: 10
+                };
 
                 $scope.categories = [
                     'work',
@@ -39,6 +48,26 @@
                     'handling',
                     'stresstypus'
                 ];
+
+                $scope.needForActionClass = function(category) {
+
+
+                    var need = $scope.needForAction[category];
+
+                    var level = need < 1 ? "none" :
+                        need < 4 ? "low" :
+                            need < 7 ? "medium" : "high";
+
+                    var obj  = {};
+                    obj[level] = true;
+                    return obj;
+
+                }
+                $scope.needForActionStyle = function(category) {
+                    return {
+                        width: $scope.needForAction[category] * 10 * 0.6 + '%'
+                    };
+                }
 
             }
         ]);

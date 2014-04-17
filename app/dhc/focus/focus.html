@@ -7,30 +7,44 @@
 
 <div class="row">
 
-    <div class="col-md-6 center-block">
+    <div class="col-md-8 center-block">
 
-        <table class="table">
+        <table class="table focus">
             <thead>
                 <tr>
-                    <th translate>focus.header</th>
+                    <th class="left" translate>focus.header</th>
 
-                    <th translate></th>
-                    <th translate>focus.work</th>
-                    <th translate>focus.handling</th>
-                    <th translate>focus.stresstypus</th>
+                    <th translate>focus.none</th>
+                    <th class="active" translate>focus.low</th>
+                    <th translate>focus.medium</th>
+                    <th class="active" translate>focus.high</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="category in categories">
-                    <td translate>focus.{{category}}</td>
+                    <td class="left" translate>focus.{{category}}</td>
 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <div class="bar" ng-class="needForActionClass(category)" ng-style="needForActionStyle(category)">
+
+                        </div>
+                    </td>
+
+                    <td class="active"><div></div></td>
+                    <td><div></div></td>
+                    <td class="active"><div></div></td>
                 </tr>
             </tbody>
         </table>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-8 center-block arrow-down">
+
 
     </div>
 
