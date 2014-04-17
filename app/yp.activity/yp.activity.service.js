@@ -129,7 +129,22 @@
 
                     },
                     getActivityOffers: function (options) {
-                        return Restangular.all('activityoffers').getList(options);
+                        return Restangular.all('activityoffers').getList(options).then(function addSourceTypeToOffers(offerList) {
+                            var mapOfferTypeToSourceType = {
+                                'campaignActivityPlan': 'campaign',
+                                'campaignActivity': 'campaign',
+                                'personalInvitation': 'community',
+                                'ypHealthCoach': 'youpers',
+                                'publicActivityPlan': 'community',
+                                'defaultActivity': 'youpers'
+                            };
+
+                            _.forEach(offerList, function(offer) {
+                                offer.sourceType = mapOfferTypeToSourceType[offer.type[0]];
+                            });
+
+                            return offerList;
+                        });
                     },
                     getActivityOffer: function (id) {
                         return Restangular.one('activityoffers', id).get({

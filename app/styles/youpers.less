@@ -60,7 +60,7 @@ p {
 // bootstrap.css:body
 body {
   font-family: @youpers-brand-font-family;
-  background-color: #CCCACA;
+  background-color: @yp-color-light-grey;
 }
 
 .main-layout {
@@ -68,8 +68,17 @@ body {
 }
 
 .main-content {
-  margin-top: 15px;
-  background-color: #FEFEFE;
+  margin-top: @grid-gutter-width /2;
+  background-color: @yp-color-white;
+}
+
+// middle gutter colored like background, on only lg screens
+.main-content > .col-lg-9 {
+  @media(min-width: @screen-lg) {
+    border-right-style: solid;
+    border-right-width: @grid-gutter-width /2;
+    border-right-color: @yp-color-light-grey;
+  }
 }
 
 // navbar
@@ -156,6 +165,34 @@ body {
   vertical-align: top;
 }
 
+// source-type rings around avatars
+.source-type {
+  border-radius: 50%;
+  border-width: @yp-source-type-ring-width;
+  border-style: solid;
+}
+
+.source-type .source-type-youpers img {
+  transform: rotate(45deg);
+}
+
+.source-type-youpers {
+  transform: rotate(-45deg);
+  border-left-color: @yp-color-green;
+  border-top-color: @yp-color-green;
+  border-bottom-color: @yp-color-turquoise;
+  border-right-color: @yp-color-turquoise;
+
+}
+
+.source-type-community {
+  border-color: @yp-color-mid-grey;
+
+}
+
+.source-type-campaign {
+  border-color: @yp-color-saffron;
+}
 
 
 
