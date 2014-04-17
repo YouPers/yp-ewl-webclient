@@ -57,12 +57,12 @@
                     obj[level] = true;
                     return obj;
 
-                }
+                };
                 $scope.needForActionStyle = function(category) {
                     return {
                         width: $scope.needForAction[category] * 10 * 0.6 + '%'
                     };
-                }
+                };
 
             }
         ]);
