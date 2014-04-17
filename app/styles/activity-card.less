@@ -1,5 +1,11 @@
 @import "youpers-variables";
 
+
+// local variables
+@youpers-activity-card-image-width: @youpers-activity-card-width;
+@youpers-activity-card-image-height: 12em;
+@youpers-activity-card-avatar-width: 4.7em;
+
 // activity-card
 // --------------------------------------------------
 
@@ -31,9 +37,8 @@
 }
 
 .activity-card .source-avatar-content {
-
   width: @youpers-activity-card-avatar-width;
-  height: 4.7em;
+  height:@youpers-activity-card-avatar-width;
   border-radius: 50%;
 
   margin: 0 auto;
@@ -44,7 +49,8 @@
 }
 
 .activity-card .source-avatar-content img {
-  width: @youpers-activity-card-avatar-width;
+  width: @youpers-activity-card-avatar-width - (@yp-source-type-ring-width * 1.8);
+  height: @youpers-activity-card-avatar-width - (@yp-source-type-ring-width * 1.8);
 }
 
 .activity-card .content {
