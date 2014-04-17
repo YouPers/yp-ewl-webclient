@@ -11,10 +11,12 @@ angular.module('yp-ewl',
 
             'yp.dhc',
 
+            'yp.user',
             'yp.user.signin',
             'yp.user.signup',
+            'yp.user.invite',
 
-            'yp.user', 'yp.payment',
+            'yp.payment',
 
             'yp.topic',
             'yp.assessment',

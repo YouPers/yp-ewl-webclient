@@ -30,31 +30,6 @@
         .controller('SigninController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService',
             function ($scope, $rootScope, $state, $stateParams, UserService) {
 
-                $scope.keepMeLoggedIn = true;
-
-                $scope.submit = function () {
-                    UserService.login(UserService.encodeCredentials($scope.username, $scope.password),  $scope.keepMeLoggedIn)
-                        .then(function (err) {
-
-                            if(err) {
-                                return;
-                            }
-
-                            $scope.username = '';
-                            $scope.password = '';
-
-                            if ($scope.nextStateAfterLogin) {
-                                $scope.$state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
-                            } else {
-                                $state.go('home.content');
-                            }
-
-                        }, function(err) {
-
-                        }
-                    );
-
-                };
             }
         ]);
 

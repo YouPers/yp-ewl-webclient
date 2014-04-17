@@ -1,0 +1,39 @@
+
+<form class="signin-form" ng-submit="submit()">
+
+    <div class="row">
+        <div class="col-md-12">
+            <input type="text" placeholder="{{'loginform.usernameOrEmail.label' | translate}}" class="form-control login"
+                   ng-model="username">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <input type="password" placeholder="{{'loginform.password.label' | translate}}"
+                   class="form-control login"
+                   ng-model="password">
+        </div>
+    </div>
+
+    <div class="row login-options">
+        <div class="col-md-4">
+            <a ui-sref="requestPasswordReset" translate>loginDialog.passwordForgotten</a>
+
+        </div>
+
+        <div class="col-md-5">
+            <label>
+                <input type="checkbox" ng-model="keepMeLoggedIn">
+                <translate>loginform.rememberMe.label</translate>
+            </label>
+        </div>
+
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success btn-sm pull-right" translate>loginform.login</button>
+        </div>
+
+
+    </div>
+
+</form>

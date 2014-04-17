@@ -67,6 +67,7 @@ body {
   margin-top: 15px;
   background-color: #FEFEFE;
   padding-bottom: 1.5em;
+  padding-top: 1.5em;
 }
 
 .center-block {
@@ -184,9 +185,11 @@ body {
 @import "activity-schedule";
 @import "activity-schedule-event-list";
 @import "campaign-header";
+@import "health-coach";
 
 @import "signin";
 @import "signup";
+@import "invite";
 
 @import "welcome";
 @import "diary";
@@ -275,10 +278,11 @@ body {
 
 .yp-clientmsg {
   position: fixed;
-  left: 1em;
+  right: 1em;
   botton: 1em;
 
   width: 30em;
+  z-index: 2;
 }
 .yp-clientmsg .alert {
   opacity: 1;
