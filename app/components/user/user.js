@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular.module('yp.user', [
-
-        'yp.user'
-
-    ]);
+    angular.module('yp.user');
 
 })();
