@@ -13,6 +13,8 @@
             'yp.dhc.diary',
             'yp.dhc.plan',
             'yp.dhc.check',
+            'yp.dhc.focus',
+
             'ngSanitize'
 
 //            'plan',
