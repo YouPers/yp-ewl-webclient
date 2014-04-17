@@ -35,12 +35,7 @@
         .controller('FocusController', [ '$scope', 'assessmentResult',
             function ($scope, assessmentResult) {
 
-                $scope.needForAction = {
-                    work: 2,
-                    leisure: 4,
-                    stresstypus: 5,
-                    handling: 10
-                };
+                $scope.needForAction = assessmentResult.needForAction;
 
                 $scope.categories = [
                     'work',
@@ -54,7 +49,7 @@
 
                     var need = $scope.needForAction[category];
 
-                    var level = need < 1 ? "none" :
+                    var level = !need || need < 1 ? "none" :
                         need < 4 ? "low" :
                             need < 7 ? "medium" : "high";
 
