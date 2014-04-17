@@ -137,7 +137,7 @@ angular.module('yp-ewl',
 
 
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-                $scope.$emit('clientmsg:error', error);
+                $rootScope.$emit('clientmsg:error', error);
             });
 
             $rootScope.$on('loginMessageShow', function (event, data) {
