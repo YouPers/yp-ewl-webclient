@@ -7,7 +7,7 @@ var initialize = function (username, password) {
 var login = function (username, password) {
     var ptor = protractor.getInstance();
 
-    browser.get('/');
+    browser.get('/#/signin');
 
     element(by.model('username')).sendKeys(username);
     element(by.model('password')).sendKeys(password + '\n');

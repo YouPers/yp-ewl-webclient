@@ -70,6 +70,13 @@ body {
 .main-content {
   margin-top: 15px;
   background-color: #FEFEFE;
+  padding-bottom: 1.5em;
+  padding-top: 1.5em;
+}
+
+.center-block {
+  float: none;
+  margin: 0 auto;
 }
 
 // navbar
@@ -184,6 +191,10 @@ body {
 @import "campaign-header";
 @import "health-coach";
 
+@import "signin";
+@import "signup";
+@import "invite";
+
 @import "welcome";
 @import "diary";
 @import "check";
@@ -267,4 +278,23 @@ body {
 .home-content .link-area-center {
   top: 170px;
   left: 175px;
+}
+
+.yp-clientmsg {
+  position: fixed;
+  right: 1em;
+  botton: 1em;
+
+  width: 30em;
+  z-index: 2;
+}
+.yp-clientmsg .alert {
+  opacity: 1;
+  padding: 0.4em 1em;
+  margin: 0.5em;
+  box-sizing: border-box;
+//  border: 1px solid #444;
+  border-radius: 4px;
+  overflow: hidden;
+  color: black;
 }
