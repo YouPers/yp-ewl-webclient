@@ -1,47 +1,24 @@
 @import "youpers-variables";
 
+@yp-notifications-avatar-width: 3em;
+@yp-notifications-avatar-height: @yp-notifications-avatar-width;
+
 .notifications-list {
   padding-top: 10px;
 }
 
 .notification .avatar img {
-  width: 40px;
-  height: 40px;
+  width: @yp-notifications-avatar-width - (@yp-source-type-ring-width*1.8);
+  height: @yp-notifications-avatar-width - (@yp-source-type-ring-width*1.8);
   border-radius: 50%;
-  transform: rotate(45deg);
 }
 
 .notification  .avatar {
+  width: @yp-notifications-avatar-width;
+  height: @yp-notifications-avatar-height;
   float: left;
   border-radius: 50%;
 }
-
-.source-type {
-  transform: rotate(-45deg);
-  border-radius: 50%;
-  border-width: 4px;
-  border-style: solid;
-  margin-right: 5px;
-}
-
-.source-type-youpers {
-  border-left-color: blue;
-  border-top-color:  blue;
-  border-bottom-color: green;
-  border-right-color: green;
-
-}
-
-.source-type-community {
-  border-color: #808080;
-
-}
-
-.source-type-campaign {
-  border-color: #ffff00;
-
-}
-
 
 .notification .type-title {
   float: left;
