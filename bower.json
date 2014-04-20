@@ -26,7 +26,8 @@
     "momentjs": "~2.5.1",
     "restangular": "~1.3.x",
     "venturocket-angular-slider": "~0.3.x",
-    "angular-mousewheel": "~1.0.4"
+    "angular-mousewheel": "~1.0.4",
+    "angular-ui-utils": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.7",
