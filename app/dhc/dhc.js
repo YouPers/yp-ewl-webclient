@@ -13,7 +13,8 @@
             'yp.dhc.diary',
             'yp.dhc.plan',
             'yp.dhc.check',
-            'ngSanitize'
+            'ngSanitize',
+            'ui.scrollfix'
 
 //            'plan',
 //            'report',
