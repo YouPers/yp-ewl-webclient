@@ -98,8 +98,12 @@ angular.module('yp-ewl',
             // TODO: goto proper history entry instead of forwarding to a new location
 
             $rootScope.back = function() {
-                if (!$state.current.previous || !$state.current.previous.name) {
+                if (!$state.current.previous ||
+                    !$state.current.previous.name ||
+                    $state.current.previous.name === 'invite.content') {
+
                     $state.go('home.content');
+
                 } else if($state.current.previous.name.indexOf('schedule') >= 0) {
                     $state.go('select.content');
                 } else {
