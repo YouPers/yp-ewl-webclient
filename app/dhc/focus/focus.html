@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="state-title-1" translate>focus.title1</div>
+        <div class="state-title-2" translate>focus.title2</div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-8 center-block">
+
+        <table class="table focus">
+            <thead>
+                <tr>
+                    <th class="left" translate>focus.header</th>
+
+                    <th translate>focus.none</th>
+                    <th class="active" translate>focus.low</th>
+                    <th translate>focus.medium</th>
+                    <th class="active" translate>focus.high</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="category in categories">
+                    <td class="left" translate>focus.{{category}}</td>
+
+                    <td>
+                        <div class="bar" ng-class="needForActionClass(category)" ng-style="needForActionStyle(category)">
+
+                        </div>
+                    </td>
+
+                    <td class="active"><div></div></td>
+                    <td><div></div></td>
+                    <td class="active"><div></div></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-8 center-block arrow-down">
+
+
+    </div>
+
+</div>
