@@ -19,7 +19,9 @@
         "none": "kein",
         "low": "gering",
         "medium": "",
-        "high": "gross"
+        "high": "gross",
+
+        "whatFocus": "In welchen Problembereichen möchtest du dich verbessern?"
 
     }
 }

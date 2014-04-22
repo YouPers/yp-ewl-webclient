@@ -25,6 +25,9 @@
                         resolve: {
                             assessmentResult: ['AssessmentService', function(AssessmentService) {
                                 return AssessmentService.getNewestAssessmentResults('525faf0ac558d40000000005');
+                            }],
+                            topStressors: ['AssessmentService', function (AssessmentService) {
+                                return AssessmentService.topStressors('525faf0ac558d40000000005');
                             }]
                         }
                     });
@@ -32,8 +35,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/focus/focus');
             }])
 
-        .controller('FocusController', [ '$scope', 'assessmentResult',
-            function ($scope, assessmentResult) {
+        .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'ProfileService',
+            function ($scope, assessmentResult, topStressors,  ProfileService) {
 
                 $scope.needForAction = assessmentResult.needForAction;
 
@@ -43,6 +46,39 @@
                     'handling',
                     'stresstypus'
                 ];
+
+                $scope.topStressors = topStressors;
+
+                var profile = $scope.principal.getUser().profile;
+
+                if (profile.userPreferences.focus && profile.userPreferences.focus.length > 0) {
+                    _.forEach(profile.userPreferences.focus, function(foc) {
+                        var selectedStressor = null;
+                        selectedStressor = _.find(topStressors, function(stressor) {
+                            return stressor.question.id === foc.question;
+                        });
+                        if (selectedStressor) {
+                            selectedStressor.selected = true;
+                        }
+                    });
+                }
+
+                $scope.stressorSelected = function(stressor) {
+                    var id  = stressor.question.id;
+
+                    var focus = profile.userPreferences.focus;
+
+                    if (stressor.selected) {
+                        if (!_.contains(focus, id)) {
+                            focus.push({question: id, timestamp: new Date()});
+                        }
+                    } else {
+                        _.remove(focus, function(foc) {
+                            return foc.question === id;
+                        });
+                    }
+                    ProfileService.putProfile($scope.principal.getUser().profile);
+                };
 
                 $scope.needForActionClass = function(category) {
 
@@ -58,6 +94,7 @@
                     return obj;
 
                 };
+
                 $scope.needForActionStyle = function(category) {
                     return {
                         width: $scope.needForAction[category] * 10 * 0.6 + '%'
