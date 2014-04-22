@@ -1,8 +1,8 @@
-<div class="avatar-upload">
-    <div avatar class="avatar" ng-class="{placeholder: !(avatarObject.avatar)}"
-         onclick="document.getElementById('avatarUpload').click()"></div>
+<div class="avatar-upload" onclick="document.getElementById('avatarUpload').click()">
+    <div avatar class="avatar" ng-class="{placeholder: !(avatarObject.avatar)}"></div>
     <input id="avatarUpload" ng-file-select type="file" ng-hide="true">
 
+    <div ng-transclude></div>
 
     <div class="progress" ng-show="uploader.isUploading">
         <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>

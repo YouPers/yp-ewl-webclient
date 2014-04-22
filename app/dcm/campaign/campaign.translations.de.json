@@ -5,10 +5,64 @@
 
     "campaigns": {
         "title1": "deine",
-        "title2": "kampagnen"
+        "title2": "kampagnen",
+
+        "group": {
+            "active": "aktive kampagnen",
+            "inactive": "beendete kampagnen"
+        }
     },
     "campaign": {
         "title1": "deine",
-        "title2": "kampagne"
+        "title2": "kampagne",
+
+        "link": {
+            "activityLog": "Aktivitäten und Meldungen",
+            "statistics": "Statistik"
+        },
+
+        "campaignLeads": {
+            "header": "kampagnenleiter"
+        }
+    },
+
+
+    "campaignForm": {
+        "avatar": {
+            "label": "Avatar",
+            "change": "ändern"
+        },
+        "title": {
+            "label": "Titel",
+            "placeholder": "Titel",
+            "$invalid": "Bitte einen gültigen Title eingeben"
+        },
+        "start": {
+            "label": "Start"
+        },
+        "end": {
+            "label": "Ende"
+        },
+        "participants": {
+            "label": "Personenkreis",
+            "placeholder": "Personenkreis",
+            "$invalid": "Bitte einen gültigen Personenkreis eingeben"
+        },
+        "location": {
+            "label": "Lokalität",
+            "placeholder": "Lokalität",
+            "$invalid": "Bitte eine gültige Lokalität eingeben"
+        },
+        "city": {
+            "label": "Ort",
+            "placeholder": "Ort",
+            "$invalid": "Bitte einen gültigen Ort eingeben"
+        },
+        "slogan": {
+            "label": "Slogan",
+            "placeholder": "Slogan",
+            "$invalid": "Bitte einen gültigen Slogan eingeben"
+        },
+        "save": "Speichern"
     }
 }

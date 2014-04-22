@@ -62,45 +62,6 @@
         "save": "Erstellen"
     },
 
-    "campaignForm": {
-
-        "header": {
-            "newCampaign": "Neue Kampagne",
-            "campaignAttributes": "Kampagnendetails"
-        },
-        "title": {
-            "label": "Titel",
-            "placeholder": "Titel",
-            "$invalid": "Bitte einen gültigen Title eingeben"
-        },
-        "start": {
-            "label": "Start"
-        },
-        "end": {
-            "label": "Ende"
-        },
-        "relatedService": {
-            "label": "Service",
-            "placeholder": "Service",
-            "$invalid": "Bitte einen gültigen Service eingeben"
-        },
-        "location": {
-            "label": "Ort",
-            "placeholder": "Ort",
-            "$invalid": "Bitte einen gültigen Ort eingeben"
-        },
-        "slogan": {
-            "label": "Slogan",
-            "placeholder": "Slogan",
-            "$invalid": "Bitte einen gültigen Slogan eingeben"
-        },
-        "paymentStatus": "Status",
-
-        "reset": "Zurücksetzen",
-        "edit": "Ändern",
-        "save": "Speichern"
-    },
-
     "campaign": {
         "list": {
             "header": "Kampagnen",

@@ -22,6 +22,7 @@
             function ($rootScope, $http, $fileUploader, config) {
                 return {
                     restrict: 'E',
+                    transclude: true,
                     templateUrl: 'yp.commons/yp.directive.avatar.upload.html',
                     link: function (scope, elem, attrs) {
 

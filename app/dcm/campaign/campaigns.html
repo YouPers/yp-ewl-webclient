@@ -11,7 +11,7 @@
     <div class="group" ng-repeat="group in groups">
 
         <div class="group-header">
-            <span translate>{{ 'campaign.group.' + group.name }}</span>
+            <span translate>{{ 'campaigns.group.' + group.name }}</span>
         </div>
 
 
@@ -34,20 +34,23 @@
                 </a>
             </div>
 
-            <!-- date -->
+            <!-- date and location -->
             <div class="col-md-3 date">
 
-               <div>
-                   <span>{{ campaign.start | date }} - {{ campaign.end | date }}</span>
-               </div>
+                <div>
+                    <span>{{ campaign.location }}</span>
+                </div>
+                <div>
+                    <span>{{ campaign.start | date }} - {{ campaign.end | date }}</span>
+                </div>
 
             </div>
 
 
-            <!-- location -->
+            <!-- city -->
             <div class="col-md-3">
                 <span>
-                    {{ campaign.location }}
+                    {{ campaign.city }}
                 </span>
             </div>
 

@@ -1,5 +1,116 @@
-<h1>
-    {{campaign.title}}
-</h1>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="state-title-1" translate>campaign.title1</div>
+        <div class="state-title-2" translate>campaign.title2</div>
+    </div>
+</div>
 
-        <pre>{{ campaign | json }}</pre>
+<div class="campaign-detail">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="group-header">
+                <span translate>header</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="link-header">
+                <button class="btn btn-default">
+                    <span translate>campaign.link.activityLog</span>
+                </button>
+                <button class="btn btn-default">
+                    <span translate>campaign.link.statistics</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+
+
+            <form name="campaignForm" ypModel="campaign" class="form-horizontal" role="form"
+                  ng-submit="updateCampaign()" novalidate>
+
+                <div class="form-group">
+                    <label for="avatar" translate>campaignForm.avatar.label</label>
+                    <avatar-upload type="campaign" avatar-object="campaign">
+                        <a href="" ng-click="" translate>campaignForm.avatar.change</a>
+                    </avatar-upload>
+                </div>
+
+                <yp-input name="title"></yp-input>
+                <yp-input name="participants"></yp-input>
+                <yp-input name="location"></yp-input>
+                <yp-input name="city"></yp-input>
+                <yp-input name="slogan"></yp-input>
+
+                <div class="form-group date">
+                    <label for="datePickerStart" class="control-label" translate>campaignForm.start.label</label>
+
+                    <div>
+                        <input class="form-control start" type="text" id="datePickerStart"
+                               datepicker-popup="dd.MM.yyyy"
+                               ng-model="campaign.start"
+                               is-open="startOpened" min="minDateStart"
+                               datepicker-options="dateOptions"
+                               date-disabled="disabled(date, mode)" ng-required="true"/>
+                    </div>
+
+                    <div>
+                        <input class="form-control end" type="text" id="datePickerEnd"
+                               datepicker-popup="dd.MM.yyyy"
+                               ng-model="campaign.end"
+                               is-open="endOpened" min="minDateEnd"
+                               datepicker-options="dateOptions"
+                               date-disabled="disabled(date, mode)" ng-required="true"/>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary pull-right">
+                        <span translate>campaignForm.save</span>
+                    </button>
+                </div>
+
+
+            </form>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="group-header">
+                <span translate>campaign.campaignLeads.header</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row campaign-leads" ng-repeat="campaignLead in campaign.campaignLeads">
+        <div class="col-md-1">
+            <img ng-src="{{campaignLead.avatar}}">
+        </div>
+        <div class="col-md-4">
+            <div>{{ campaignLead.fullname }}</div>
+        </div>
+        <div class="col-md-4">
+            <div>{{ campaignLead.email }}</div>
+        </div>
+    </div>
+
+
+    <div class="row campaign-preview">
+        <div class="col-md-12">
+
+
+            <campaign-header></campaign-header>
+
+
+
+        </div>
+    </div>
+</div>

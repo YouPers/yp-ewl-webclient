@@ -54,8 +54,8 @@
 
 
 
-        .controller('CampaignsController', [ '$scope', 'campaign',
-            function ($scope, campaign) {
+        .controller('CampaignsController', [ '$scope', 'CampaignService', 'campaign',
+            function ($scope, CampaignService, campaign) {
 
                 $scope.campaign = campaign;
             }
@@ -91,6 +91,19 @@
                         });
                     }
                 });
+
+                $scope.updateCampaign = function() {
+
+                    var startDate = moment($scope.campaign.start);
+                    var endDate = moment($scope.campaign.end);
+                    if (startDate.diff(endDate) < 0) {
+                        CampaignService.putCampaign($scope.campaign).then(function() {
+                            $state.go('campaigns.content');
+                        });
+                    } else {
+                        $rootScope.$emit('clientmsg:error', 'campaign.dateRange');
+                    }
+                };
             }
         ]);
 
