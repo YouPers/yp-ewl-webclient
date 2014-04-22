@@ -4,7 +4,7 @@ angular.module('yp.cockpit')
 
     .controller('StresslevelLinechartController', ['$scope', '$timeout', 'AssessmentService', function ($scope, $timeout, AssessmentService) {
 
-        AssessmentService.getAssessmentResults('525faf0ac558d40000000005', 'timestamp:1')
+        AssessmentService.getAssessmentResults('525faf0ac558d40000000005', {sortBy: 'timestamp:1'})
             .then(function (result) {
                 $scope.generalStressLevelTitle = "";
                 $scope.generalStressLevelMinText = "";
