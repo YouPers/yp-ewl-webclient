@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="state-title-1" translate>campaigns.title1</div>
+        <div class="state-title-2" translate>campaigns.title2</div>
+    </div>
+</div>
+<div class="campaign-list">
+
+    <!-- groups -->
+
+    <div class="group" ng-repeat="group in groups">
+
+        <div class="group-header">
+            <span translate>{{ 'campaign.group.' + group.name }}</span>
+        </div>
+
+
+
+        <!-- campaigns -->
+
+        <div class="row campaign" ng-repeat="campaign in group.campaigns" ui-sref="campaign.content({ id: campaign.id})">
+
+            <!-- image -->
+            <div class="col-md-2 image">
+                <span>
+                    <img ng-src="{{campaign.avatar}}">
+                </span>
+            </div>
+
+            <!-- title -->
+            <div class="col-md-4 title">
+                <a href="" ui-sref="campaign({id: '{{ campaign.id }}'})">
+                    {{ campaign.title }}
+                </a>
+            </div>
+
+            <!-- date -->
+            <div class="col-md-3 date">
+
+               <div>
+                   <span>{{ campaign.start | date }} - {{ campaign.end | date }}</span>
+               </div>
+
+            </div>
+
+
+            <!-- location -->
+            <div class="col-md-3">
+                <span>
+                    {{ campaign.location }}
+                </span>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>

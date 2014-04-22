@@ -9,14 +9,14 @@
 
                 $stateProvider
                     .state('old-organization', {
-                        url: '/organization',
+                        url: '/old-organization',
                         templateUrl: 'yp.organization/yp.organization.create.html',
                         controller: 'CreateOrganizationController',
                         access: accessLevels.user
                     })
 
                     .state('old-campaign', {
-                        url: '/campaign/{id}',
+                        url: '/old-campaign/{id}',
                         templateUrl: 'yp.organization/yp.campaign.html',
                         controller: 'CampaignController',
                         access: accessLevels.campaignlead,

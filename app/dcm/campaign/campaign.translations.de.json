@@ -3,8 +3,12 @@
 
     },
 
-    "organization": {
+    "campaigns": {
         "title1": "deine",
         "title2": "kampagnen"
+    },
+    "campaign": {
+        "title1": "deine",
+        "title2": "kampagne"
     }
 }
