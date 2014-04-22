@@ -58,7 +58,7 @@
 
                 if(typeof error === 'string') {
                     msg = error;
-                    error = options.error;
+                    error = options && options.error ? options.error : error;
 
                     if(msg.indexOf(prefix) < 0) {
                         msg = prefix + msg;
@@ -132,7 +132,7 @@
                 // log notification
                 ClientMessageService.clientmsg(opts.type)(message, options);
 
-                if(opts.type === 'log') {
+                if(opts.type !== 'error' && opts.type !== 'success') {
                     return false; // skip user feedback below
                 }
 

@@ -42,6 +42,7 @@
                 $scope.changePassword = function () {
                     UserService.putUser($scope.passwordUserObj).then(function (user) {
 
+                        UserService.logout();
                         UserService.login($scope.passwordUserObj).then(function () {
 
                             $scope.passwordUserObjReset();
