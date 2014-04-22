@@ -7,24 +7,32 @@
             function ($rootScope,  $state, UserService) {
             return {
                 restrict: 'E',
-                scope: {},
+                scope: {
+                    campaign: '=campaign'
+                },
                 templateUrl: 'components/campaign-header-directive/campaign-header-directive.html',
 
                 link: function (scope, elem, attrs) {
 
-                    function _setCampaign() {
+
+                    function _setCampaignFromUser() {
                         var user = UserService.principal.getUser();
                         scope.campaigns = user.campaign ? [user.campaign] : [];
                     }
 
-                    _setCampaign();
+
+                    if (attrs.campaign) {
+                        scope.campaigns = [attrs.campaign];
+                    } else {
+                        _setCampaignFromUser();
+                    }
 
                     $rootScope.$on('event:authority-deauthorized', function() {
                         scope.campaigns = [];
                     });
 
                     $rootScope.$on('event:authority-authorized', function() {
-                        _setCampaign();
+                        _setCampaignFromUser();
                     });
                 }
             };
