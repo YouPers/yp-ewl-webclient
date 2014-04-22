@@ -8,14 +8,14 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
 
                 $stateProvider
-                    .state('organization', {
+                    .state('old-organization', {
                         url: '/organization',
                         templateUrl: 'yp.organization/yp.organization.create.html',
                         controller: 'CreateOrganizationController',
                         access: accessLevels.user
                     })
 
-                    .state('campaign', {
+                    .state('old-campaign', {
                         url: '/campaign/{id}',
                         templateUrl: 'yp.organization/yp.campaign.html',
                         controller: 'CampaignController',
