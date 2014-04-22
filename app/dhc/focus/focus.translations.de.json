@@ -1,0 +1,25 @@
+{
+    "clientmsg": {
+
+    },
+
+
+    "focus": {
+
+        "title1": "dein",
+        "title2": "focus",
+
+        "header": "Handlungsbedarf",
+
+        "work": "Arbeitsplatz",
+        "leisure": "Freizeit",
+        "handling": "Ausgleich",
+        "stresstypus": "Stresstyp",
+
+        "none": "kein",
+        "low": "gering",
+        "medium": "",
+        "high": "gross"
+
+    }
+}
