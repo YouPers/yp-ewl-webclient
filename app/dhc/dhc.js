@@ -14,15 +14,8 @@
             'yp.dhc.plan',
             'yp.dhc.check',
             'yp.dhc.focus',
-
-            'ngSanitize'
-
-//            'plan',
-//            'report',
-//            'dashboard',
-//            'diary',
-//            'goal',
-//            'check'
+            'ngSanitize',
+            'ui.scrollfix'
         ]);
 
 }());

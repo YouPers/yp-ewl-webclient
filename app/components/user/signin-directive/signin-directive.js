@@ -6,7 +6,7 @@
             return {
                 restrict: 'E',
                 scope: {
-                    onSignIn: "&"
+                    onSignIn: "&?"
                 },
                 templateUrl: 'components/user/signin-directive/signin-directive.html',
                 link: function (scope, elem, attrs) {
@@ -21,7 +21,7 @@
                                 scope.username = '';
                                 scope.password = '';
 
-                                if(scope.onSignIn) {
+                                if(attrs.onSignIn) { // can't check isolated scope variable as it is always defined
                                     return scope.onSignIn();
                                 }
 
