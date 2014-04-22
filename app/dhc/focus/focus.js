@@ -49,7 +49,13 @@
 
                 $scope.topStressors = topStressors;
 
+
                 var profile = $scope.principal.getUser().profile;
+
+                $scope.userPreferences = profile.userPreferences;
+
+
+
 
                 if (profile.userPreferences.focus && profile.userPreferences.focus.length > 0) {
                     _.forEach(profile.userPreferences.focus, function(foc) {
@@ -77,6 +83,10 @@
                             return foc.question === id;
                         });
                     }
+                    ProfileService.putProfile($scope.principal.getUser().profile);
+                };
+
+                $scope.savePersonalGoal = function() {
                     ProfileService.putProfile($scope.principal.getUser().profile);
                 };
 
