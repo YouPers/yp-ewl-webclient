@@ -54,7 +54,7 @@
 
 
 
-        .controller('CampaignsController', [ '$scope', 'CampaignService', 'campaign',
+        .controller('CampaignController', [ '$scope', 'CampaignService', 'campaign',
             function ($scope, CampaignService, campaign) {
 
                 $scope.campaign = campaign;

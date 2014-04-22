@@ -8,7 +8,7 @@
             return {
                 restrict: 'E',
                 scope: {
-                    campaign: '=campaign'
+                    campaign: '='
                 },
                 templateUrl: 'components/campaign-header-directive/campaign-header-directive.html',
 
