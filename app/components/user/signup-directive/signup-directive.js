@@ -15,7 +15,7 @@
 
                     scope.$watchCollection('[user.firstname, user.lastname]', function () {
                         if (scope.registerform && !scope.registerForm.username.$dirty && scope.user.firstname) {
-                            scope.result.newuser.username = (scope.result.newuser.firstname.substr(0, 1) || '').toLowerCase() + (scope.result.newuser.lastname || '').toLowerCase();
+                            scope.user.username = (scope.user.firstname.substr(0, 1) || '').toLowerCase() + (scope.user.lastname || '').toLowerCase();
                         }
                     });
 
