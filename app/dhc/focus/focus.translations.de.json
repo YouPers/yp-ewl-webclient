@@ -19,7 +19,12 @@
         "none": "kein",
         "low": "gering",
         "medium": "",
-        "high": "gross"
+        "high": "gross",
 
+        "whatFocus": "In welchen Problembereichen möchtest du dich verbessern?",
+        "yourPersonalGoal": {
+            "question": "Dein Ziel für diese Kampagne lautet:",
+            "placeholder": "Optional kannst du hier ein Ziel oder einen Slogan als persönlichen Vorsatz erfassen."
+        }
     }
 }

@@ -98,20 +98,23 @@
                         var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
                         return assessmentResultBase.post(assResult);
                     },
-                    getAssessmentResults: function (assessmentId, sortBy) {
-                        sortBy = sortBy || 'timestamp:-1';
+                    getAssessmentResults: function (assessmentId, options) {
+                        if (!options) {
+                            options = {};
+                        }
+                        options.sortBy = options.sortBy || 'timestamp:-1';
 
                         if (UserService.principal.isAuthenticated()) {
-                            return Restangular.one('assessments', assessmentId).all('results').getList({sort: sortBy});
+                            return Restangular.one('assessments', assessmentId).all('results').getList(options);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);
                             return deferred.promise;
                         }
                     },
-                    getNewestAssessmentResults: function (assessmentId) {
+                    getNewestAssessmentResults: function (assessmentId, options) {
                         if (UserService.principal.isAuthenticated()) {
-                            return Restangular.one('assessments', assessmentId).one('results/newest').get();
+                            return Restangular.one('assessments', assessmentId).one('results/newest').get(options);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);
@@ -119,7 +122,7 @@
                         }
                     },
                     topStressors: function (assessmentId) {
-                        return assService.getNewestAssessmentResults(assessmentId).then(function (result) {
+                        return assService.getNewestAssessmentResults(assessmentId, {populatedeep: 'answers.question'}).then(function (result) {
                             if (!result) {
                                 return null;
                             } else {
