@@ -1,0 +1,152 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="state-title-1" translate>campaign.title1</div>
+        <div class="state-title-2" translate>campaign.title2</div>
+    </div>
+</div>
+
+<div class="campaign-detail">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="group-header">
+                <span translate>header</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="link-header">
+                <button class="btn btn-primary">
+                    <span translate>campaign.link.activityLog</span>
+                </button>
+                <button class="btn btn-primary">
+                    <span translate>campaign.link.statistics</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+
+
+            <form name="campaignForm" ypModel="campaign" class="form-horizontal" role="form"
+                  ng-submit="saveCampaign()" novalidate>
+
+                <div class="form-group" ng-if="campaign.id">
+                    <label for="avatar" translate>campaignForm.avatar.label</label>
+                    <avatar-upload type="campaign" avatar-object="campaign">
+                        <a href="" translate>campaignForm.avatar.change</a>
+                    </avatar-upload>
+                </div>
+
+                <yp-input name="title" required></yp-input>
+                <yp-input name="participants"></yp-input>
+                <yp-input name="location"></yp-input>
+                <yp-input name="city"></yp-input>
+                <yp-input name="slogan"></yp-input>
+
+                <div class="form-group date">
+                    <label for="datePickerStart" class="control-label" translate>campaignForm.start.label</label>
+
+                    <div>
+                        <input class="form-control start" type="text" id="datePickerStart"
+                               datepicker-popup="dd.MM.yyyy"
+                               ng-model="campaign.start"
+                               is-open="startOpened" min="minDateStart"
+                               datepicker-options="dateOptions"
+                               date-disabled="disabled(date, mode)" ng-required="true"/>
+                    </div>
+
+                    <div>
+                        <input class="form-control end" type="text" id="datePickerEnd"
+                               datepicker-popup="dd.MM.yyyy"
+                               ng-model="campaign.end"
+                               is-open="endOpened" min="minDateEnd"
+                               datepicker-options="dateOptions"
+                               date-disabled="disabled(date, mode)" ng-required="true"/>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary pull-right" ng-disabled="campaignForm.$invalid">
+                        <span translate>campaignForm.{{ campaign.id ? 'save' : 'create' }}</span>
+                    </button>
+                </div>
+
+
+            </form>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="row campaign-preview">
+        <div class="col-md-12">
+
+            <div class="group-header">
+                <div translate>campaign.preview.header</div>
+            </div>
+
+            <div ng-class="{ 'welcome-link': !!campaign.id }" ui-sref="welcome({ campaignId: campaign.id})" ng-disabled="!campaign.id">
+
+                <campaign-header campaign="campaign"></campaign-header>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row" ng-show="campaign.id">
+        <div class="col-md-12">
+            <a href="" ng-click="showCampaignLeadInviteForm = true; invitationSent = false;" class="group-header">
+                <div translate>campaign.campaignLeads.header</div>
+                <div class="group-add">+</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row invite-campaign-lead" ng-show="campaign.id && showCampaignLeadInviteForm">
+        <div class="col-md-12">
+
+            <div translate ng-if="invitationSent">inviteCampaignLeadForm.invitationSent</div>
+
+            <form class="form-inline" ng-if="!invitationSent"
+                  role="form"
+                  ng-submit="inviteCampaignLeadForm.$valid && inviteCampaignLead(campaignLeads, campaign)"
+                  name="inviteCampaignLeadForm">
+                <div class="form-group"
+                     ng-class="{'has-error': inviteCampaignLeadForm.email.$dirty && inviteCampaignLeadForm.email.$invalid}">
+                    <label class="sr-only" translate>inviteCampaignLeadForm.email.label</label>
+                    <input class="form-control email-field" name="email" type="text"
+                           ng-model="campaignLeads"
+                           placeholder="{{'inviteCampaignLeadForm.email.placeholder' | translate}}"
+                           multiple-Emails required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"
+                            ng-disabled="inviteCampaignLeadForm.$invalid"
+                            translate>inviteCampaignLeadForm.inviteSubmit
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+    <div class="row campaign-leads" ng-repeat="campaignLead in campaign.campaignLeads">
+        <div class="col-md-1">
+            <img ng-src="{{campaignLead.avatar}}">
+        </div>
+        <div class="col-md-4">
+            <div>{{ campaignLead.fullname }}</div>
+        </div>
+        <div class="col-md-4">
+            <div>{{ campaignLead.email }}</div>
+        </div>
+    </div>
+
+</div>

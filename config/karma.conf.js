@@ -39,10 +39,12 @@ module.exports = function (config) {
 
             'app/dhc/diary/diary.js',
             'app/dhc/dhc.js',
+            'app/dcm/dcm.js',
 
             'app/yp*/*.js',
             'app/yp*/**/*.js',
             'app/dhc/**/*.js',
+            'app/dcm/**/*.js',
 
             'app/components/**/*.js',
 

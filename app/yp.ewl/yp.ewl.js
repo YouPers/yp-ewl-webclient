@@ -10,6 +10,7 @@ angular.module('yp-ewl',
             'yp.config', 'yp.commons', 'yp.clientmsg', 'yp.error',
 
             'yp.dhc',
+            'yp.dcm',
 
             'yp.user',
             'yp.user.signin',

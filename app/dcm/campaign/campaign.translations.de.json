@@ -1,0 +1,86 @@
+{
+    "clientmsg": {
+
+    },
+
+    "campaigns": {
+        "title1": "deine",
+        "title2": "kampagnen",
+
+        "group": {
+            "active": "aktive kampagnen",
+            "inactive": "beendete kampagnen"
+        }
+    },
+    "campaign": {
+        "title1": "deine",
+        "title2": "kampagne",
+
+        "link": {
+            "new": "neue kampagne",
+            "activityLog": "Aktivitäten und Meldungen",
+            "statistics": "Statistik"
+        },
+
+        "preview": {
+            "header": "Vorschau"
+        },
+
+        "campaignLeads": {
+            "header": "kampagnenleiter"
+        }
+    },
+
+
+    "campaignForm": {
+        "avatar": {
+            "label": "Avatar",
+            "change": "ändern"
+        },
+        "title": {
+            "label": "Titel",
+            "placeholder": "Titel",
+            "error": {
+                "required": "Bitte einen gültigen Title eingeben"
+            }
+        },
+        "start": {
+            "label": "Start"
+        },
+        "end": {
+            "label": "Ende"
+        },
+        "participants": {
+            "label": "Personenkreis",
+            "placeholder": "Personenkreis",
+            "$invalid": "Bitte einen gültigen Personenkreis eingeben"
+        },
+        "location": {
+            "label": "Lokalität",
+            "placeholder": "Lokalität",
+            "error": {
+                "required": "Bitte eine gültige Lokalität eingeben"
+            }
+        },
+        "city": {
+            "label": "Ort",
+            "placeholder": "Ort"
+        },
+        "slogan": {
+            "label": "Slogan",
+            "placeholder": "Slogan"
+        },
+
+        "save": "Speichern",
+        "create": "Erstellen"
+    },
+
+    "inviteCampaignLeadForm": {
+        "email": {
+            "placeholder": "Ein oder mehrere Email-Adressen"
+        },
+        "inviteSubmit": "Senden",
+        "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"
+
+    }
+}

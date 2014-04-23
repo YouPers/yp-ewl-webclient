@@ -1,7 +1,9 @@
 <div class="form-group" ng-non-bindable ng-class="{'has-error': {{ypFormName}}.{{ypInputName}}.$dirty && {{ypFormName}}.{{ypInputName}}.$invalid}">
     <label ng-show="showLabel">{{ypFormName + '.' + ypInputName + '.label' | translate}}</label>
-    <input name="{{ypFormName}}" type="text" placeholder="{{ypFormName + '.' + ypInputName + '.placeholder' | translate}}"
+    <input name="{{ypInputName}}" type="text" placeholder="{{ypFormName + '.' + ypInputName + '.placeholder' | translate}}"
            class="form-control" >
 
-    <li ng-repeat="(key, error) in errors" ng-show="{{ypFormName}}.{{ypInputName}}.$dirty && error" class="help-inline">{{ypFormName + '.' + ypInputName + '.error.' + key | translate}}</li>
+    <ul class="validation">
+        <li ng-repeat="(key, error) in errors" ng-show="{{ypFormName}}.{{ypInputName}}.$dirty && error" class="help-inline">{{ypFormName + '.' + ypInputName + '.error.' + key | translate}}</li>
+    </ul>
 </div>

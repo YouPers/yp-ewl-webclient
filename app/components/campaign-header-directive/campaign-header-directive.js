@@ -8,7 +8,7 @@
             return {
                 restrict: 'E',
                 scope: {
-                    campaign: '=campaign'
+                    campaign: '='
                 },
                 templateUrl: 'components/campaign-header-directive/campaign-header-directive.html',
 
@@ -22,7 +22,7 @@
 
 
                     if (attrs.campaign) {
-                        scope.campaigns = [attrs.campaign];
+                        scope.campaigns = [scope.campaign];
                     } else {
                         _setCampaignFromUser();
                     }

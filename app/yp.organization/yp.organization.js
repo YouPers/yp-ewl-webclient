@@ -8,17 +8,17 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
 
                 $stateProvider
-                    .state('organization', {
-                        url: '/organization',
+                    .state('old-organization', {
+                        url: '/old-organization',
                         templateUrl: 'yp.organization/yp.organization.create.html',
                         controller: 'CreateOrganizationController',
                         access: accessLevels.user
                     })
 
-                    .state('campaign', {
-                        url: '/campaign/{id}',
+                    .state('old-campaign', {
+                        url: '/old-campaign/{id}',
                         templateUrl: 'yp.organization/yp.campaign.html',
-                        controller: 'CampaignController',
+                        controller: 'OldCampaignController',
                         access: accessLevels.campaignlead,
                         resolve: {
                             campaign: ['CampaignService', '$stateParams', function(CampaignService, $stateParams) {

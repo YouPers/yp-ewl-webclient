@@ -15,7 +15,7 @@
 
                     scope.$watchCollection('[user.firstname, user.lastname]', function () {
                         if (scope.registerform && !scope.registerForm.username.$dirty && scope.user.firstname) {
-                            scope.result.newuser.username = (scope.result.newuser.firstname.substr(0, 1) || '').toLowerCase() + (scope.result.newuser.lastname || '').toLowerCase();
+                            scope.user.username = (scope.user.firstname.substr(0, 1) || '').toLowerCase() + (scope.user.lastname || '').toLowerCase();
                         }
                     });
 
@@ -27,7 +27,7 @@
                             UserService.login(UserService.encodeCredentials(user.username, user.password)).then(function() {
 
 
-                                if(scope.onSignUp) {
+                                if(attrs.onSignIn) { // can't check isolated scope variable as it is always defined
                                     return scope.onSignUp();
                                 }
 

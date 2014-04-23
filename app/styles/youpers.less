@@ -56,6 +56,26 @@ p {
   font-size: @youpers-font-size-body;
   line-height: 1.4;
 }
+.btn {
+  padding: 0.5em 1em;
+}
+.btn-default {
+
+}
+.btn-primary {
+  color: #ffffff;
+  background-color: @yp-button-primary;
+  border-color: @yp-button-primary-border;
+}
+.btn-primary:disabled {
+  background-color: @yp-button-primary-disabled;
+  border-color: @yp-button-primary-disabled-border;
+
+}
+.btn-primary:hover {
+  background-color: @yp-button-primary-hover;
+  border-color: @yp-button-primary-hover-border;
+}
 
 // bootstrap.css:body
 body {
@@ -136,6 +156,28 @@ body {
   text-transform: uppercase;
   line-height: 0.7em;
   padding-bottom: 0.5em;
+}
+
+.group-header:hover, .group-header:hover * {
+  text-decoration: none;
+  color: @yp-color-green-hover;
+}
+.group-header {
+  padding: 1em 0;
+}
+.group-header * {
+  font-weight: 200;
+  font-style: normal;
+  font-size: 28px;
+  color: @yp-color-green;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.group-header .group-add {
+  padding: 4px;
+  font-size: 40px;
+  font-weight: 200;
 }
 
 // date and time
@@ -249,6 +291,13 @@ body {
 @import "check";
 @import "plan";
 @import "focus";
+
+
+@import "organization";
+@import "campaigns";
+@import "campaign";
+
+
 
 
 // Fix for auto height in boostrap accordion with dynamic content

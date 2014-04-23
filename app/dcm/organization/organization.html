@@ -1,0 +1,55 @@
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="state-title-1" translate>campaign.title1</div>
+        <div class="state-title-2" translate>campaign.title2</div>
+    </div>
+</div>
+
+<div class="organization">
+
+    <div class="row">
+        <div class="col-md-10">
+
+            <form name="organizationForm" ypModel="organization" class="form-horizontal" role="form" ng-submit="saveOrganization()" novalidate>
+
+
+                <div class="group-header">
+                    <span translate>organizationForm.header</span>
+                </div>
+
+                <yp-input name="name" required></yp-input>
+                <yp-input name="address.street"></yp-input>
+
+                <div class="form-group">
+                    <label translate>organizationForm.address.zipCode.label</label>
+                    <input name="address.zipCode" type="text" placeholder="{{ 'organizationForm.address.zipCode.placeholder' | translate }}" class="form-control" ng-model="organization.address.zipCode" ng-class="{'has-error': organizationForm.address.zipCode.$dirty && organizationForm.address.zipCode.$invalid}">
+                    <input name="address.city" type="text" placeholder="{{ 'organizationForm.address.city.placeholder' | translate }}" class="form-control" ng-model="organization.address.city" label="false" ng-class="{'has-error': organizationForm.address.city.$dirty && organizationForm.address.city.$invalid}" style="">
+                </div>
+
+                <yp-input name="legalForm"></yp-input>
+                <yp-input name="sector"></yp-input>
+
+
+                <div class="group-header">
+                    <span translate>organizationForm.contact.header</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label translate>organizationForm.contact.firstname.label</label>
+                    <input name="contact.firstname" type="text" placeholder="{{ 'organizationForm.contact.firstname.placeholder' | translate }}" class="form-control" ng-model="organization.contact.firstname" ng-class="{'has-error': organizationForm.contact.firstname.$dirty && organizationForm.contact.firstname.$invalid}">
+                    <input name="contact.lastname" type="text" placeholder="{{ 'organizationForm.contact.lastname.placeholder' | translate }}" class="form-control" ng-model="organization.contact.lastname" label="false" ng-class="{'has-error': organizationForm.contact.lastname.$dirty && organizationForm.contact.lastname.$invalid}" style="">
+                </div>
+
+                <yp-input name="contact.position"></yp-input>
+                <yp-input name="contact.email"></yp-input>
+                <yp-input name="contact.phone"></yp-input>
+
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="organizationForm.$invalid"><span translate>organizationForm.save</span></button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
