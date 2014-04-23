@@ -95,16 +95,16 @@
     </div>
 
 
-    <div class="row" ng-if="campaign.id">
+    <div class="row" ng-show="campaign.id">
         <div class="col-md-12">
-            <a href="" ng-click="showCampaignLeadInviteForm = !showCampaignLeadInviteForm" class="group-header">
+            <a href="" ng-click="showCampaignLeadInviteForm = true; invitationSent = false;" class="group-header">
                 <div translate>campaign.campaignLeads.header</div>
                 <div class="group-add">+</div>
             </a>
         </div>
     </div>
 
-    <div class="row invite-campaign-lead" ng-if="campaign.id && showCampaignLeadInviteForm">
+    <div class="row invite-campaign-lead" ng-show="campaign.id && showCampaignLeadInviteForm">
         <div class="col-md-12">
 
             <div translate ng-if="invitationSent">inviteCampaignLeadForm.invitationSent</div>
