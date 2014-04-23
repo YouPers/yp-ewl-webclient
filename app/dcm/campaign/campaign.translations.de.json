@@ -71,7 +71,8 @@
             "placeholder": "Slogan"
         },
 
-        "save": "Speichern"
+        "save": "Speichern",
+        "create": "Erstellen"
     },
 
     "inviteCampaignLeadForm": {

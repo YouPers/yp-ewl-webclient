@@ -94,14 +94,14 @@
                     var endDate = moment($scope.campaign.end);
                     if (startDate.diff(endDate) < 0) {
 
-                        var onCampaignSaved = function(campaign) {
-                            $state.go('campaigns.content');
-                        };
-
                         if($scope.campaign.id) {
-                            CampaignService.putCampaign($scope.campaign).then(onCampaignSaved);
+                            CampaignService.putCampaign($scope.campaign).then(function(campaign) {
+                                $state.go('campaigns.content');
+                            });
                         } else {
-                            CampaignService.postCampaign($scope.campaign).then(onCampaignSaved);
+                            CampaignService.postCampaign($scope.campaign).then(function(campaign) {
+                                $state.go('campaign.content', { id: campaign.id });
+                            });
                         }
 
                     } else {
