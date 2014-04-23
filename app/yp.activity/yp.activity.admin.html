@@ -1,7 +1,11 @@
 <div class="container">
     <div class="row panel panel-primary">
-
-        <activity-edit></activity-edit>
+        <div class="col-md-8">
+            <activity-edit></activity-edit>
+        </div>
+        <div class="col-md-4">
+            <activity-card rec="offer" reject="reject(index, event)" schedule="schedule(activity)" index="$index"/>
+        </div>
 
     </div>
     <div class="row activity-admin-matrix">
@@ -24,10 +28,8 @@
         <div class="row">
             <div class="container">
                 <div class="col-md-12">
-                    <div class="row" ng-repeat="cat in assessment.questionCats">
-                        <div class="col-md-12"><h5>{{ cat.category | translate}}</h5>
 
-                            <div class="row  panel panel-default" ng-repeat="question in cat.questions">
+                            <div class="row  panel panel-default" ng-repeat="question in assessment.questions">
                                 <form name="myForm" novalidate>
                                     <div class="col-md-1 control-group"
                                          ng-class="{'has-error': myForm.leftWeight.$dirty && myForm.leftWeight.$invalid}">
@@ -48,8 +50,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
