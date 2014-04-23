@@ -27,7 +27,7 @@
                             UserService.login(UserService.encodeCredentials(user.username, user.password)).then(function() {
 
 
-                                if(scope.onSignUp) {
+                                if(attrs.onSignIn) { // can't check isolated scope variable as it is always defined
                                     return scope.onSignUp();
                                 }
 
