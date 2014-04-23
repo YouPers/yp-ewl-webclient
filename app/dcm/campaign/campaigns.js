@@ -105,7 +105,7 @@
                         }
 
                     } else {
-                        $rootScope.$emit('clientmsg:error', 'campaign.dateRange');
+                        $scope.$emit('clientmsg:error', 'campaign.dateRange');
                     }
                 };
 
@@ -115,8 +115,6 @@
 
         .controller('CampaignsController', [ '$scope', 'campaigns',
             function ($scope, campaigns) {
-
-                var now = new Date();
 
                 var groupedCampaigns = _.groupBy(campaigns, function(campaign) {
                     return moment(campaign.end) > moment() ? "active" : "inactive";
