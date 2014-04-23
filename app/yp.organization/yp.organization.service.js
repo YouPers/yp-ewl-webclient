@@ -19,6 +19,9 @@
                             UserService.reload();
                         });
                     },
+                    putOrganization: function(organization) {
+                        return organization.put();
+                    },
                     postOrganization: function(organization) {
 
                         return organizations.post(organization).then(function(result) {
