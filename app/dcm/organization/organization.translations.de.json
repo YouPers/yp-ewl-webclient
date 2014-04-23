@@ -19,7 +19,7 @@
 
 
     "organizationForm": {
-        "header": "Neue Organization",
+        "header": "Neue Organisation",
 
         "name": {
             "label": "Name",

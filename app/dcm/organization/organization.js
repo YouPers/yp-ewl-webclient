@@ -46,6 +46,7 @@
                 var onSave = function (organization) {
                     $scope.$emit('clientmsg:success', 'organization.saved');
                     $scope.organization = organization;
+                    $state.go('campaigns.content');
                 };
 
                 $scope.saveOrganization = function() {

@@ -89,7 +89,10 @@
                 <div translate>campaign.preview.header</div>
             </div>
 
-            <campaign-header campaign="campaign"></campaign-header>
+            <div ng-class="{ 'welcome-link': !!campaign.id }" ui-sref="welcome({ campaignId: campaign.id})" ng-disabled="!campaign.id">
+
+                <campaign-header campaign="campaign"></campaign-header>
+            </div>
 
         </div>
     </div>
