@@ -5,7 +5,7 @@
     angular.module('yp.organization')
 
 
-        .controller('CampaignController', ['campaign', 'CampaignService', 'ActivityService', 'PaymentCodeService', 'Restangular', '$scope', '$rootScope',
+        .controller('OldCampaignController', ['campaign', 'CampaignService', 'ActivityService', 'PaymentCodeService', 'Restangular', '$scope', '$rootScope',
             function (campaign, CampaignService, ActivityService, PaymentCodeService, Rest, $scope, $rootScope) {
                 $scope.campaign = campaign;
 
@@ -48,7 +48,7 @@
                 };
 
                 var getCampaignStats = function() {
-                    if ($scope.campaign.id) {
+                    if ($scope.campaign && $scope.campaign.id) {
 
                         $scope.campaignStats = {};
 

@@ -22,7 +22,7 @@
 
 
                     if (attrs.campaign) {
-                        scope.campaigns = [attrs.campaign];
+                        scope.campaigns = [scope.campaign];
                     } else {
                         _setCampaignFromUser();
                     }

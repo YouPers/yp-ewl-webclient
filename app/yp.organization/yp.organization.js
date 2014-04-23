@@ -18,7 +18,7 @@
                     .state('old-campaign', {
                         url: '/old-campaign/{id}',
                         templateUrl: 'yp.organization/yp.campaign.html',
-                        controller: 'CampaignController',
+                        controller: 'OldCampaignController',
                         access: accessLevels.campaignlead,
                         resolve: {
                             campaign: ['CampaignService', '$stateParams', function(CampaignService, $stateParams) {

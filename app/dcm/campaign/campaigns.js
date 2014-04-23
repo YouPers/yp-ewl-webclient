@@ -12,11 +12,11 @@
                 $stateProvider
                     .state('campaigns', {
                         templateUrl: "layout/default.html",
-                        access: accessLevels.all
+                        access: accessLevels.campaignlead
                     })
                     .state('campaigns.content', {
                         url: "/campaigns",
-                        access: accessLevels.all,
+                        access: accessLevels.campaignlead,
                         views: {
                             content: {
                                 templateUrl: 'dcm/campaign/campaigns.html',
@@ -31,11 +31,11 @@
                     })
                     .state('campaign', {
                         templateUrl: "layout/default.html",
-                        access: accessLevels.all
+                        access: accessLevels.campaignlead
                     })
                     .state('campaign.content', {
                         url: "/campaigns/:id",
-                        access: accessLevels.all,
+                        access: accessLevels.campaignlead,
                         views: {
                             content: {
                                 templateUrl: 'dcm/campaign/campaign.html',
@@ -44,7 +44,13 @@
                         },
                         resolve: {
                             campaign: ['$stateParams', 'CampaignService', function($stateParams, CampaignService) {
-                                return CampaignService.getCampaign($stateParams.id);
+
+                                if($stateParams.id) {
+                                    return CampaignService.getCampaign($stateParams.id);
+                                } else {
+                                    return undefined;
+                                }
+
                             }]
                         }
                     });
@@ -54,10 +60,51 @@
 
 
 
-        .controller('CampaignController', [ '$scope', 'CampaignService', 'campaign',
-            function ($scope, CampaignService, campaign) {
+        .controller('CampaignController', [ '$scope', '$state', 'CampaignService', 'campaign',
+            function ($scope, $state, CampaignService, campaign) {
 
-                $scope.campaign = campaign;
+                $scope.dateOptions = {
+                    'year-format': "'yy'",
+                    'starting-day': 1
+                };
+
+
+                $scope.minDateStart = new Date(moment().hour(8).minutes(0).seconds(0));
+                // we assume, that a campaign ideally lasts at least 6 weeks
+                $scope.minDateEnd = new Date(moment().hour(17).minutes(0).seconds(0).add('week',6));
+
+                if(campaign) {
+                    $scope.campaign = campaign;
+                } else {
+                    $scope.campaign = {
+                        start: $scope.minDateStart,
+                        end: $scope.minDateEnd
+                    };
+                }
+
+
+                $scope.saveCampaign = function() {
+
+                    var startDate = moment($scope.campaign.start);
+                    var endDate = moment($scope.campaign.end);
+                    if (startDate.diff(endDate) < 0) {
+
+                        var onCampaignSaved = function(campaign) {
+                            $state.go('campaigns.content');
+                        };
+
+                        if($scope.campaign.id) {
+                            CampaignService.putCampaign($scope.campaign).then(onCampaignSaved);
+                        } else {
+                            CampaignService.postCampaign($scope.campaign).then(onCampaignSaved);
+                        }
+
+                    } else {
+                        $rootScope.$emit('clientmsg:error', 'campaign.dateRange');
+                    }
+                };
+
+
             }
         ])
 
@@ -92,18 +139,6 @@
                     }
                 });
 
-                $scope.updateCampaign = function() {
-
-                    var startDate = moment($scope.campaign.start);
-                    var endDate = moment($scope.campaign.end);
-                    if (startDate.diff(endDate) < 0) {
-                        CampaignService.putCampaign($scope.campaign).then(function() {
-                            $state.go('campaigns.content');
-                        });
-                    } else {
-                        $rootScope.$emit('clientmsg:error', 'campaign.dateRange');
-                    }
-                };
             }
         ]);
 

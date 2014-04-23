@@ -17,8 +17,13 @@
         "title2": "kampagne",
 
         "link": {
+            "new": "neue kampagne +",
             "activityLog": "Aktivitäten und Meldungen",
             "statistics": "Statistik"
+        },
+
+        "preview": {
+            "header": "Vorschau"
         },
 
         "campaignLeads": {
@@ -35,7 +40,9 @@
         "title": {
             "label": "Titel",
             "placeholder": "Titel",
-            "$invalid": "Bitte einen gültigen Title eingeben"
+            "error": {
+                "required": "Bitte einen gültigen Title eingeben"
+            }
         },
         "start": {
             "label": "Start"
@@ -51,18 +58,19 @@
         "location": {
             "label": "Lokalität",
             "placeholder": "Lokalität",
-            "$invalid": "Bitte eine gültige Lokalität eingeben"
+            "error": {
+                "required": "Bitte eine gültige Lokalität eingeben"
+            }
         },
         "city": {
             "label": "Ort",
-            "placeholder": "Ort",
-            "$invalid": "Bitte einen gültigen Ort eingeben"
+            "placeholder": "Ort"
         },
         "slogan": {
             "label": "Slogan",
-            "placeholder": "Slogan",
-            "$invalid": "Bitte einen gültigen Slogan eingeben"
+            "placeholder": "Slogan"
         },
+
         "save": "Speichern"
     }
 }
