@@ -82,6 +82,11 @@
                     };
                 }
 
+                $scope.inviteCampaignLead = function(emails,campaign) {
+                    CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
+                        $scope.invitationSent = true;
+                    });
+                };
 
                 $scope.saveCampaign = function() {
 
@@ -114,7 +119,7 @@
                 var now = new Date();
 
                 var groupedCampaigns = _.groupBy(campaigns, function(campaign) {
-                    return campaign.end < now ? "active" : "inactive";
+                    return moment(campaign.end) > moment() ? "active" : "inactive";
                 });
 
 

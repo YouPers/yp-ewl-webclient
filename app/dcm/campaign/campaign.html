@@ -35,7 +35,7 @@
                 <div class="form-group" ng-if="campaign.id">
                     <label for="avatar" translate>campaignForm.avatar.label</label>
                     <avatar-upload type="campaign" avatar-object="campaign">
-                        <a href="" ng-click="" translate>campaignForm.avatar.change</a>
+                        <a href="" translate>campaignForm.avatar.change</a>
                     </avatar-upload>
                 </div>
 
@@ -86,7 +86,7 @@
         <div class="col-md-12">
 
             <div class="group-header">
-                <span translate>campaign.preview.header</span>
+                <div translate>campaign.preview.header</div>
             </div>
 
             <campaign-header campaign="campaign"></campaign-header>
@@ -95,13 +95,44 @@
     </div>
 
 
-    <div class="row">
+    <div class="row" ng-if="campaign.id">
         <div class="col-md-12">
-            <div class="group-header">
-                <span translate>campaign.campaignLeads.header</span>
-            </div>
+            <a href="" ng-click="showCampaignLeadInviteForm = !showCampaignLeadInviteForm" class="group-header">
+                <div translate>campaign.campaignLeads.header</div>
+                <div class="group-add">+</div>
+            </a>
         </div>
     </div>
+
+    <div class="row invite-campaign-lead" ng-if="campaign.id && showCampaignLeadInviteForm">
+        <div class="col-md-12">
+
+            <div translate ng-if="invitationSent">inviteCampaignLeadForm.invitationSent</div>
+
+            <form class="form-inline" ng-if="!invitationSent"
+                  role="form"
+                  ng-submit="inviteCampaignLeadForm.$valid && inviteCampaignLead(campaignLeads, campaign)"
+                  name="inviteCampaignLeadForm">
+                <div class="form-group"
+                     ng-class="{'has-error': inviteCampaignLeadForm.email.$dirty && inviteCampaignLeadForm.email.$invalid}">
+                    <label class="sr-only" translate>inviteCampaignLeadForm.email.label</label>
+                    <input class="form-control email-field" name="email" type="text"
+                           ng-model="campaignLeads"
+                           placeholder="{{'inviteCampaignLeadForm.email.placeholder' | translate}}"
+                           multiple-Emails required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"
+                            ng-disabled="inviteCampaignLeadForm.$invalid"
+                            translate>inviteCampaignLeadForm.inviteSubmit
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
 
     <div class="row campaign-leads" ng-repeat="campaignLead in campaign.campaignLeads">
         <div class="col-md-1">

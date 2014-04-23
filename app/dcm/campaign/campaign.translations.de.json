@@ -17,7 +17,7 @@
         "title2": "kampagne",
 
         "link": {
-            "new": "neue kampagne +",
+            "new": "neue kampagne",
             "activityLog": "Aktivitäten und Meldungen",
             "statistics": "Statistik"
         },
@@ -72,5 +72,14 @@
         },
 
         "save": "Speichern"
+    },
+
+    "inviteCampaignLeadForm": {
+        "email": {
+            "placeholder": "Ein oder mehrere Email-Adressen"
+        },
+        "inviteSubmit": "Senden",
+        "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"
+
     }
 }

@@ -39,14 +39,20 @@ form[name='campaignForm'] avatar-upload {
   float: left;
 }
 form[name='campaignForm'] .avatar-upload .avatar {
-  width: 100px;
-  height: 50px;
-  background-size: 100px 50px;
+  width: @yp-avatar-campaign-size;
+  height: @yp-avatar-campaign-size;
+  background-size: @yp-avatar-campaign-size @yp-avatar-campaign-size;
 }
 
 form[name='campaignForm'] .avatar-upload > div {
   display: inline-block;
   vertical-align: middle;
+}
+
+// invite campaign leads
+.invite-campaign-lead input.form-control {
+  width: 25em;
+
 }
 
 // campaign lead avatar

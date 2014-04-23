@@ -160,14 +160,26 @@ body {
   padding-bottom: 0.5em;
 }
 
+.group-header:hover, .group-header:hover * {
+  text-decoration: none;
+  color: @yp-color-green-hover;
+}
 .group-header {
   padding: 1em 0;
 }
-.group-header span {
+.group-header * {
   font-weight: 200;
   font-style: normal;
   font-size: 28px;
-  color: #8ACC3E;
+  color: @yp-color-green;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.group-header .group-add {
+  padding: 4px;
+  font-size: 40px;
+  font-weight: 200;
 }
 
 // date and time

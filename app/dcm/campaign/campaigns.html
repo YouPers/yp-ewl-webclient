@@ -13,7 +13,8 @@
         <div class="col-md-12">
             <div class="group-header">
                 <a ui-sref="campaign.content({})">
-                    <span translate>campaign.link.new</span>
+                    <div translate>campaign.link.new</div>
+                    <div class="group-add">+</div>
                 </a>
             </div>
         </div>
@@ -24,7 +25,7 @@
     <div class="group" ng-repeat="group in groups">
 
         <div class="group-header">
-            <span translate>{{ 'campaigns.group.' + group.name }}</span>
+            <div translate>{{ 'campaigns.group.' + group.name }}</div>
         </div>
 
 
@@ -51,6 +52,8 @@
             <div class="col-md-3 date">
 
                 <div>
+                    <span>{{ campaign.participants }}</span>
+                    <span ng-show="campaign.participants && campaign.location">/</span>
                     <span>{{ campaign.location }}</span>
                 </div>
                 <div>
