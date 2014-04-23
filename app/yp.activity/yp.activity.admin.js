@@ -23,6 +23,10 @@
                 $scope.activity = activity;
                 $scope.assessment = assessment;
 
+                $scope.offer = {
+                    activity: activity,
+                    recommendedBy: {}
+                };
 
                 // Weighting to generate recommendation of activity based on answers of this assessment
                 // initialize weights if they do not yet exist

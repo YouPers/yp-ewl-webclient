@@ -25,8 +25,7 @@
                     {{ rec.activity.title }}
                 </div>
 
-                <div class="shortDescription">
-                    {{ rec.activity.description }}
+                <div class="shortDescription" ng-bind-html="rec.activity.description">
                 </div>
 
                 <div>
