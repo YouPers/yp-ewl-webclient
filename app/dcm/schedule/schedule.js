@@ -44,7 +44,7 @@
                                                         targetQueue: campaign.id,
                                                         campaign: campaign,
                                                         recommendedBy: [UserService.principal.getUser()],
-                                                        type: [ activity.defaultExecutionType === 'group' ?
+                                                        type: [ activity.defaultexecutiontype === 'group' ?
                                                             'campaignActivityPlan' : 'campaignActivity' ],
                                                         sourceType: 'campaign',
                                                         validFrom: new Date(),
