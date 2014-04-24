@@ -4,7 +4,8 @@
         <div class="state-title-2" translate>dcmschedule.title2</div>
     </div>
 </div>
-<form class="form activity-schedule-form" role="form" ng-submit="saveActivityPlan()">
+
+<form class="form activity-schedule-form" role="form" ng-submit="saveOffer()">
 
 <div class="activity-schedule">
 <div class="activity-schedule-page">
@@ -73,7 +74,7 @@
                 <!-- location -->
                 <div class="row">
                     <div class="col-md-12 form-group">
-                        <input type="text" class="form-control" ng-model="offer.plan.location"
+                        <input type="text" class="form-control" ng-model="plan.location"
                                placeholder="{{ 'schedule.self.location' | translate }}">
                     </div>
                 </div>
@@ -81,7 +82,7 @@
                 <!-- text -->
                 <div class="row">
                     <div class="col-md-12 form-group">
-                        <textarea class="form-control" ng-model="offer.plan.text"
+                        <textarea class="form-control" ng-model="plan.text"
                                   placeholder="{{'schedule.self.text' | translate }}"></textarea>
                     </div>
                 </div>
@@ -91,7 +92,7 @@
                     <div class="col-md-6 date-selection">
 
                         <div>
-                            <input ng-model="offer.plan.mainEvent.start"
+                            <input ng-model="plan.mainEvent.start"
                                    class="form-control" type="text" id="datePickerStart"
                                    datepicker-popup="dd.MM.yyyy"
                                    is-open="opened" min="minDate"
@@ -102,11 +103,11 @@
                     </div>
 
                     <div class="col-md-3 time-selection">
-                        <timepicker ng-model="offer.plan.mainEvent.start" id="timePickerStart" minute-step="15"
+                        <timepicker ng-model="plan.mainEvent.start" id="timePickerStart" minute-step="15"
                                     show-meridian="false"></timepicker>
                     </div>
                     <div class="col-md-3 time-selection">
-                        <timepicker ng-model="offer.plan.mainEvent.end" id="timePickerEnd" minute-step="15"
+                        <timepicker ng-model="plan.mainEvent.end" id="timePickerEnd" minute-step="15"
                                     show-meridian="false"></timepicker>
                     </div>
                 </div>
@@ -115,13 +116,13 @@
                 <div class="row">
                     <div class="col-md-12 frequency">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" ng-model="offer.plan.mainEvent.frequency"
+                            <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
                                     btn-radio="'once'" translate>activityPlanFrequency.once
                             </button>
-                            <button type="button" class="btn btn-default" ng-model="offer.plan.mainEvent.frequency"
+                            <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
                                     btn-radio="'day'" translate>activityPlanFrequency.day
                             </button>
-                            <button type="button" class="btn btn-default" ng-model="offer.plan.mainEvent.frequency"
+                            <button type="button" class="btn btn-default" ng-model="plan.mainEvent.frequency"
                                     btn-radio="'week'" translate>activityPlanFrequency.week
                             </button>
                         </div>
@@ -131,11 +132,11 @@
                 <!-- recurrence -->
 
                 <div class="row recurrence"
-                     ng-if="offer.plan.mainEvent.frequency=='day' || offer.plan.mainEvent.frequency=='week'">
+                     ng-if="plan.mainEvent.frequency=='day' || plan.mainEvent.frequency=='week'">
                     <div class="col-md-6 recurrence-day">
                         <label>
                             <span translate>schedule.self.recurrence.day</span>
-                            <input ng-model="offer.plan.mainEvent.recurrence['endby'].after" type=number
+                            <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number
                                    class="form-control input-sm">
                         </label>
                     </div>
@@ -145,11 +146,11 @@
                 <!-- joiningUsers -->
                 <div class="row joining-users" ng-show="offer.isJoinedPlan">
                     <div class="col-md-12">
-                                <span ng-if="offer.plan.joiningUsers.length > 0">
+                                <span ng-if="plan.joiningUsers.length > 0">
                                     <span>{{ schedule.plan.joiningUsers[0].fullname }}</span>
-                                    <span ng-if="offer.plan.joiningUsers.length > 1"
+                                    <span ng-if="plan.joiningUsers.length > 1"
                                           translate
-                                          translate-values="{ OTHERS: '{{ offer.plan.joiningUsers.slice(1).length}}' }"
+                                          translate-values="{ OTHERS: '{{ plan.joiningUsers.slice(1).length}}' }"
                                           translate-interpolation="messageformat"
                                           tooltip-html-unsafe="{{ getJoiningUsers() }}"
                                             >
@@ -165,42 +166,13 @@
         </div>
 
 
-        <!-- group -->
+        <!-- campaignActivity without Plan -->
 
         <div ng-if="offer.type[0] === 'campaignActivity'">
 
             <div class="no-plans">
                 <p translate>dcmschedule.recommend.helptext</p>
             </div>
-
-
-        </div>
-
-
-        <!-- inviteOthers -->
-
-        <div class="invite-others" ng-show="schedule.isScheduled && plan.executionType === 'group'">
-
-
-            <form name="inviteEmailForm" class="form-inline" role="form"
-                  ng-submit="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, offer.plan)">
-
-                <div class="input-group"
-                     ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
-
-                    <input class="form-control email-field" name="email" type="text" ng-model="inviteEmail"
-                           placeholder="{{ 'schedule.self.inviteOthers.placeholder' | translate }}" multiple-Emails
-                           required>
-
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"
-                                                    ng-disabled="inviteEmailForm.$invalid" translate>
-                                                schedule.self.inviteOthers.submit
-                                            </button>
-                                        </span>
-                </div>
-
-            </form>
         </div>
 
     </div>
@@ -252,20 +224,20 @@
         <div class="row">
             <div class="col-xs-12">
 
-                <div ng-show="schedule.scheduleType == 'plan'">
+                <div>
                     <div class="save-link form-group" tooltip-placement="left"
                          tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
-                        <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>
+                        <button ng-show="!offer.id" type="submit" class="btn btn-primary pull-right" translate>
                             schedule.schedule
                         </button>
-                        <button ng-hide="!plan.id" ng-disabled="!schedule.isEditable" type="submit"
+                        <button ng-hide="!offer.id" ng-disabled="!schedule.isEditable" type="submit"
                                 class="btn btn-primary pull-right" translate>schedule.save
                         </button>
                     </div>
 
                     <div class="delete-link form-group" tooltip-placement="left"
-                         tooltip="{{ schedule.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}">
-                        <button ng-click="deleteActivityPlan()" ng-hide="!plan.id" ng-disabled="!schedule.isDeletable"
+                         tooltip="{{ offer.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}">
+                        <button ng-click="deleteOffer()" ng-show="offer.id" ng-disabled="!offer.isDeletable"
                                 type="button"
                                 class="btn btn-warning pull-left" translate>schedule.delete
                         </button>
@@ -279,6 +251,33 @@
 <div class="clearBoth"></div>
 
 
+
+
 </div>
 </div>
 </form>
+<!-- inviteOthers -->
+
+<div class="invite-others" ng-show="schedule.isScheduled && plan.executionType === 'group'">
+
+
+    <form name="inviteEmailForm" class="form-inline" role="form"
+          ng-submit="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, plan)">
+
+        <div class="input-group"
+             ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
+
+            <input class="form-control email-field" name="email" type="text" ng-model="inviteEmail"
+                   placeholder="{{ 'schedule.self.inviteOthers.placeholder' | translate }}" multiple-Emails
+                   required>
+
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"
+                                                    ng-disabled="inviteEmailForm.$invalid" translate>
+                                                schedule.self.inviteOthers.submit
+                                            </button>
+                                        </span>
+        </div>
+
+    </form>
+</div>

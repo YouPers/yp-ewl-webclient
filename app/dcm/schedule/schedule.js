@@ -45,20 +45,15 @@
                                                         campaign: campaign,
                                                         recommendedBy: [UserService.principal.getUser()],
                                                         type: [ activity.defaultExecutionType === 'group' ?
-                                                            'campaignActivityPlan': 'campaignActivity' ],
+                                                            'campaignActivityPlan' : 'campaignActivity' ],
                                                         sourceType: 'campaign',
                                                         validFrom: new Date(),
                                                         validTo: campaign.end,
-                                                        plan: ActivityService.getDefaultPlan(activity),
+                                                        activityPlan: [ActivityService.getDefaultPlan(activity, campaign.id)],
                                                         prio: [500]
                                                     };
 
                                                 });
-
-
-                                            var deferred = $q.defer();
-                                            deferred.resolve(ActivityService.getDefaultPlan());
-                                            return deferred.promise;
                                         }
                                     } else {
                                         return ActivityService.getActivityOffer($stateParams.id);
@@ -70,10 +65,11 @@
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/schedule/schedule');
             }])
-        .controller('DcmScheduleController', [ '$scope', '$state', 'ActivityService', 'offer',
-            function ($scope, $state, ActivityService, offer) {
+        .controller('DcmScheduleController', [ '$rootScope', '$scope', '$state', 'ActivityService', 'offer',
+            function ($rootScope, $scope, $state, ActivityService, offer) {
 
                 $scope.offer = offer;
+                $scope.plan = offer.activityPlan[0];
 
                 // one time planning using daypicker
                 $scope.showWeeks = false;
@@ -84,8 +80,32 @@
                     'starting-day': 1
                 };
 
+                $scope.saveOffer = function () {
+                    ActivityService.saveActivityOffer($scope.offer).then(
+                        function (savedOffer) {
+                            $rootScope.$emit('clientmsg:success', 'activityOffer.saved');
+                        },
+                        function (err) {
+                            console.log(err);
+
+                        }
+                    )
+                    ;
+
+                };
+
+                $scope.deleteOffer = function () {
+                    ActivityService.deleteOffer($scope.offer).then(function () {
+                        $rootScope.$emit('clientmsg:success', 'activityOffer.delete');
+                    });
+                };
+
 
             }
-        ]);
+        ])
+    ;
 
-}());
+}
+()
+    )
+;
