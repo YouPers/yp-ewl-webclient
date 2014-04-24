@@ -7,7 +7,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('activitylist', {
-                        url: "/activities?tab&page",
+                        url: "/old-activities?tab&page",
                         templateUrl: "yp.activity/yp.activity.list.html",
                         controller: "ActivityListCtrl",
                         access: accessLevels.all,
@@ -30,7 +30,7 @@
                         }
                     })
                     .state('activityAdmin', {
-                        url: "/activities/:activityId/admin?tab&page",
+                        url: "/old-activities/:activityId/admin?tab&page",
                         templateUrl: "yp.activity/yp.activity.admin.html",
                         controller: "ActivityAdminCtrl",
                         access: accessLevels.individual,
@@ -44,7 +44,7 @@
                         }
                     })
                     .state('activityPlan', {
-                        url: "/activities/:activityId?tab&page",
+                        url: "/old-activities/:activityId?tab&page",
                         templateUrl: "yp.activity/yp.activity.detail.html",
                         controller: "ActivityDetailCtrl",
                         access: accessLevels.individual,
@@ -61,7 +61,7 @@
                         }
                     })
                     .state('activityPlanInvite', {
-                        url: "/activities/:activityId/invitation?invitingUserId",
+                        url: "/old-activities/:activityId/invitation?invitingUserId",
                         templateUrl: "yp.activity/yp.activity.activityplaninvite.html",
                         controller: "ActivityPlanInviteCtrl",
                         access: accessLevels.all,
@@ -81,43 +81,6 @@
             }])
 
 
-        .run(['enums', function (enums) {
-            _.merge(enums, {
-                executiontype: [
-                    'self',
-                    'group'
-                ],
-                activityPlanFrequency: [
-                    'once',
-                    'day',
-                    'week',
-                    'month',
-                    'year'
-                ],
-                visibility: [
-                    'public',
-                    'campaign',
-                    'private'
-                ],
-                source: [
-                    'youpers',
-                    'community',
-                    'campaign'
-                ],
-                calendarNotifications: [
-                    'none',
-                    '0',
-                    '300',
-                    '600',
-                    '900',
-                    '1800',
-                    '3600',
-                    '7200',
-                    '86400',
-                    '172800'
-                ]
-            });
-        }])
         // Object methods for all Assessment related objects
         .run(['Restangular', 'ActivityService', function (Restangular, ActivityService) {
             Restangular.extendCollection('activities', function (activities) {

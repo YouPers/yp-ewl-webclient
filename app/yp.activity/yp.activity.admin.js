@@ -48,15 +48,12 @@
 
                 $scope.recWeights = activity.getRecWeightsByQuestionId();
 
-                $scope.save = function () {
-
-                    ActivityService.saveActivity(activity).then(function (result) {
-                        $rootScope.$emit('clientmsg:success', 'activity.save');
-                        $scope.$state.go('activitylist', $rootScope.$stateParams);
-                    });
+                $scope.onSave = function () {
+                    $scope.$state.go('activitylist', $rootScope.$stateParams);
+                    $rootScope.$emit('clientmsg:success', 'activity.save');
                 };
 
-                $scope.cancel = function () {
+                $scope.onCancel = function () {
                     $scope.$state.go('activitylist');
                 };
             }]);

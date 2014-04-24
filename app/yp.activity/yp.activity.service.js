@@ -63,11 +63,15 @@
                     },
                     saveActivity: function (activity) {
                         if (activity.id) {
+
+                            // TODO: ask reto how to remove this hack
+                            delete activity.recWeights;
+
                             return activity.put().then(function (result) {
                                 return actService.reloadActivities();
                             });
                         } else {
-                            return activity.post().then(function (result) {
+                            return Restangular.restangularizeElement(null, activity, 'activities').post().then(function (result) {
                                 return actService.reloadActivities();
                             });
                         }

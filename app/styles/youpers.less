@@ -65,6 +65,13 @@ p {
 .btn-default {
 
 }
+.btn:focus, .btn-default:focus {
+  background-color: white;
+}
+.btn.active, .btn-default.active {
+  background-color: #ebebeb;
+}
+
 .btn-primary {
   color: #ffffff;
   background-color: @yp-button-primary;
@@ -177,6 +184,29 @@ body {
   font-weight: 200;
 }
 
+
+.list-item {
+  cursor: pointer;
+
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.list-item:hover {
+  border-left: 10px solid @yp-hover;
+  border-right: 10px solid @yp-hover;
+}
+
+.list-item img {
+  width: @yp-list-item-img-size;
+  height: @yp-list-item-img-size;
+  padding: 5px;
+}
+.list-item > div {
+  vertical-align: middle;
+  display: inline-block;
+  float: none;
+}
+
 // date and time
 
 
@@ -252,7 +282,7 @@ body {
   border-color: @yp-color-saffron;
 }
 
-
+.glyphicon-group { &:before { content: "\E044"; } }
 
 
 // ui-view transitions
@@ -293,13 +323,15 @@ body {
 @import "organization";
 @import "campaigns";
 @import "campaign";
+@import "activities";
+@import "activity";
 
 
 
 
 // Fix for auto height in boostrap accordion with dynamic content
 
-.collapsing {
+.open .collapsing {
   height: auto !important;
 }
 

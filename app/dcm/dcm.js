@@ -11,6 +11,8 @@
             'yp.dcm.campaign',
             'yp.dcm.schedule',
 
+            'yp.dcm.activity',
+
             'ngSanitize',
             'ui.scrollfix'
         ]);
