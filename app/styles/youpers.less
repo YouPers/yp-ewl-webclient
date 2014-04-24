@@ -19,12 +19,15 @@
 @border-radius-large:       0px;
 @border-radius-small:       0px;
 
+@brand-primary: @yp-color-green;
+@font-family-base: @youpers-brand-font-family;
+@btn-font-weight: 200;
+@body-bg: @yp-color-light-grey;
 
 
-/* YouPers header and body fonts */
+  /* YouPers header and body fonts */
 
 h1, h2, h3, h4, h5, h6, p {
-  font-family: @youpers-brand-font-family;
   font-weight: normal;
 }
 
@@ -79,13 +82,7 @@ p {
 
 // bootstrap.css:body
 body {
-  font-family: @youpers-brand-font-family;
-
   font-weight: 300;
-  font-style: normal;
-  font-size: 14px;
-
-  background-color: @yp-color-light-grey;
 }
 
 .main-layout {
@@ -402,4 +399,17 @@ body {
   border-radius: 4px;
   overflow: hidden;
   color: black;
+}
+
+
+// bottom nav buttons
+// --------------------------
+
+.btn-bottom-nav button {
+  width: @yp-bottom-nav-btn-width;
+  height: @yp-bottom-nav-btn-height;
+}
+
+.btn-bottom-nav {
+  padding-top: @grid-gutter-width;
 }

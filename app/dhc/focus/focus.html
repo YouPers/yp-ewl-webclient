@@ -51,7 +51,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
         <div translate>focus.whatFocus</div>
     </div>
 </div>
@@ -71,9 +71,15 @@
 
 </div>
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
         <div translate>focus.yourPersonalGoal.question</div>
         <textarea id="personalGoal" ng-model="userPreferences.personalGoal" class="form-control" ng-blur="savePersonalGoal()" placeholder="{{'focus.yourPersonalGoal.placeholder' | translate}}"></textarea>
 
+    </div>
+</div>
+<div class="row btn-bottom-nav">
+    <div class="col-xs-12">
+        <div class="pull-left"><button class="btn btn-primary" translate ng-click="$state.go('check.content')">focus.toCheck</button></div>
+        <div class="pull-right"><button class="btn btn-primary" translate ng-click="$state.go('select.content')">focus.toSelect</button></div>
     </div>
 </div>

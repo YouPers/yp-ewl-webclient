@@ -11,7 +11,8 @@
             "question": "Wie stark wirkt sich dies auf deine Stresssituation aus?",
             "leftCaption": "kaum",
             "rightCaption": "sehr stark"
-        }
+        },
+        "toFocus": "Zu deinem Fokus"
     },
 
     "questionCategory": {
