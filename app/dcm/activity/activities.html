@@ -29,8 +29,14 @@
             <div translate>{{ 'activities.group.' + group.name }}</div>
         </div>
 
-        <div class="search pull-right">
+        <div class="search pull-right" ng-if="group.name == 'all'">
 
+            <div class="input-group">
+                <input ng-model="query" type="text" class="form-control" placeholder="{{ 'activities.search' | translate }}" name="query">
+                <div class="input-group-btn">
+                    <i class="glyphicon glyphicon-search"></i>
+                </div>
+            </div>
 
         </div>
 
@@ -38,7 +44,7 @@
 
         <!-- activities -->
 
-        <div class="row activity list-item" ng-repeat="activity in group.activities" ui-sref="activity.content({ id: activity.id})">
+        <div class="row activity list-item" ng-repeat="activity in filtered = (group.activities | fulltext:query)" ui-sref="activity.content({ id: activity.id})">
 
             <!-- image -->
             <div class="col-md-1 image">

@@ -105,44 +105,50 @@
 
             }
         ])
+        .filter('fulltext', function() {
+            return function (activities, query) {
+                return _.filter(activities, function(activity) {
+                    return (!query || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.toUpperCase()) !== -1);
+                });
 
-
+            };
+        })
         .run(['enums', function (enums) {
-            _.merge(enums, {
-                executiontype: [
-                    'self',
-                    'group'
-                ],
-                activityPlanFrequency: [
-                    'once',
-                    'day',
-                    'week',
-                    'month',
-                    'year'
-                ],
-                visibility: [
-                    'public',
-                    'campaign',
-                    'private'
-                ],
-                source: [
-                    'youpers',
-                    'community',
-                    'campaign'
-                ],
-                calendarNotifications: [
-                    'none',
-                    '0',
-                    '300',
-                    '600',
-                    '900',
-                    '1800',
-                    '3600',
-                    '7200',
-                    '86400',
-                    '172800'
-                ]
-            });
-        }]);
+        _.merge(enums, {
+            executiontype: [
+                'self',
+                'group'
+            ],
+            activityPlanFrequency: [
+                'once',
+                'day',
+                'week',
+                'month',
+                'year'
+            ],
+            visibility: [
+                'public',
+                'campaign',
+                'private'
+            ],
+            source: [
+                'youpers',
+                'community',
+                'campaign'
+            ],
+            calendarNotifications: [
+                'none',
+                '0',
+                '300',
+                '600',
+                '900',
+                '1800',
+                '3600',
+                '7200',
+                '86400',
+                '172800'
+            ]
+        });
+    }]);
 
 }());
