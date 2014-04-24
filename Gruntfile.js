@@ -287,7 +287,14 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
-                        src: ['yp*/*.html', 'yp*/**/*.html', 'dhc/**/*.html', 'components/**/*.html', 'layout/*.html'],
+                        src: [
+                            'yp*/*.html',
+                            'yp*/**/*.html',
+                            'dhc/**/*.html',
+                            'dcm/**/*.html',
+                            'components/**/*.html',
+                            'layout/*.html'
+                        ],
                         dest: '<%= yeoman.dist %>'
                     },
                     {'dist/index.html': '.tmp/index.html'}
@@ -309,6 +316,7 @@ module.exports = function (grunt) {
                             'lib/**/*',
                             'yp.*/*.json',
                             'dhc/**/*.json',
+                            'dcm/**/*.json',
                             'components/**/*.json',
                             'assets/{,*/}*.{gif,webp}',
                             'styles/fonts/{,*/}*.woff'
