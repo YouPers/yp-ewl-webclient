@@ -2,18 +2,24 @@
     'use strict';
 
 
-    angular.module('yp.activity')
+    angular.module('yp.dhc')
 
-        .directive('activityEdit', ['$rootScope',
-            function ($rootScope) {
+        .directive('activityEdit', ['$rootScope', 'ActivityService',
+            function ($rootScope, ActivityService) {
                 return {
 
                     restrict: 'EA',
-                    templateUrl: 'yp.activity/yp.activity.edit.html',
+                    templateUrl: 'components/activity-edit-directive/activity-edit-directive.html',
 
+                    scope: {
+                        activity: "=",
+                        onSave: "&",
+                        onCancel: "&"
+                    },
 
                     link: function ($scope, elem, attrs) {
 
+                        $scope.enums = $rootScope.enums;
 
                         var activity = $scope.activity;
                         $scope.actFieldsModel = {};
@@ -43,34 +49,23 @@
                             }
                         };
 
-                    }
-                };
-            }])
+                        $scope.save = function() {
 
-        .controller('ActivityEditCtrl', ['$scope', '$rootScope',  'activity', 'ActivityService', 'activityType',
-            function ($scope, $rootScope, activity, ActivityService, activityType) {
+                            ActivityService.saveActivity($scope.activity).then(function (result) {
 
-                $scope.activity = activity;
+                                if(attrs.onSave) {
+                                    $scope.onSave();
+                                }
 
-                $scope.activityType = activityType;
+                            });
+                        };
 
-                $scope.save = function () {
-
-                    ActivityService.saveActivity(activity).then(function(result) {
-                        $rootScope.$emit('clientmsg:success', 'activity.save');
-                        if ($scope.activityType === "campaign") {
-                            $scope.$state.go('campaign', {id: $scope.activity.campaign});
-                        } else  {
-                            $scope.$state.go('activitylist', $rootScope.$stateParams);
+                        $scope.cancel = function() {
+                            if(attrs.onCancel) {
+                                $scope.onCancel();
+                            }
                         }
-                    });
-                };
 
-                $scope.cancel = function () {
-                    if ($scope.activityType === "campaign") {
-                        $scope.$state.go('campaign', {id: $scope.activity.campaign});
-                    } else  {
-                        $scope.$state.go('activitylist');
                     }
                 };
             }]);

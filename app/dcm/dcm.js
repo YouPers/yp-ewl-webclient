@@ -10,6 +10,8 @@
             'yp.dcm.organization',
             'yp.dcm.campaign',
 
+            'yp.dcm.activity',
+
             'ngSanitize',
             'ui.scrollfix'
         ]);
