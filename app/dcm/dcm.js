@@ -9,6 +9,7 @@
             'yp.dcm.home',
             'yp.dcm.organization',
             'yp.dcm.campaign',
+            'yp.dcm.schedule',
 
             'ngSanitize',
             'ui.scrollfix'
