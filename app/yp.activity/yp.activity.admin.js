@@ -36,15 +36,15 @@
 
                 // backend does not store emtpy weights, but our UI needs an empty record for each question
                 // so we add one for all question that don't have one
-                _.forEach(assessment.questionCats, function (cat) {
-                    _.forEach(cat.questions, function (question) {
-                        if (!_.any(activity.recWeights, function (recWeight) {
-                            return recWeight[0] === question.id;
-                        })) {
-                            activity.recWeights.push([question.id, 0, 0]);
-                        }
-                    });
+
+                _.forEach(assessment.questions, function (question) {
+                    if (!_.any(activity.recWeights, function (recWeight) {
+                        return recWeight[0] === question.id;
+                    })) {
+                        activity.recWeights.push([question.id, 0, 0]);
+                    }
                 });
+
 
                 $scope.recWeights = activity.getRecWeightsByQuestionId();
 
