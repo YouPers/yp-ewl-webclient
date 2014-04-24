@@ -64,7 +64,7 @@
                             if(attrs.onCancel) {
                                 $scope.onCancel();
                             }
-                        }
+                        };
 
                     }
                 };
