@@ -11,7 +11,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('activities', {
-                        templateUrl: "layout/single-column.html",
+                        templateUrl: "layout/dcmdefault.html",
                         access: accessLevels.campaignlead
                     })
                     .state('activities.content', {
@@ -30,7 +30,7 @@
                         }
                     })
                     .state('activity', {
-                        templateUrl: "layout/single-column.html",
+                        templateUrl: "layout/dcmdefault.html",
                         access: accessLevels.campaignlead
                     })
                     .state('activity.content', {
@@ -90,7 +90,7 @@
                 var grouped = _.groupBy(activities, function(activity) {
                     return activity.campaign ? "campaign" : "all";
                 });
-
+                $scope.query = {query: ''};
 
                 var groups = [
                     'campaign',
@@ -117,6 +117,9 @@
         ])
         .filter('fulltext', function() {
             return function (activities, query) {
+                if (!query || query.length < 3) {
+                    return activities;
+                }
                 return _.filter(activities, function(activity) {
                     return (!query || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.toUpperCase()) !== -1);
                 });

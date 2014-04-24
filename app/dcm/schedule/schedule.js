@@ -11,7 +11,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dcmschedule', {
-                        templateUrl: "layout/default.html",
+                        templateUrl: "layout/dcmdefault.html",
                         access: accessLevels.all
                     })
                     .state('dcmschedule.content', {

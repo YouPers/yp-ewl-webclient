@@ -1,18 +1,11 @@
 <div class="campaign-header" ng-if="campaigns.length > 0">
-    <div ng-repeat="campaign in campaigns" class="campaign row">
-        <div class="col-md-4">
-            <div class="avatar" ng-show="campaign.avatar">
-                <img ng-src="{{campaign.avatar}}">
-            </div>
-            <div class="topic">{{campaign.title}}</div>
+    <div ng-repeat="campaign in campaigns" class="campaign">
+        <div class="avatar">
+            <img ng-src="{{campaign.avatar}}">
         </div>
-        <div class="col-md-4">
-            <div class="details">{{campaign.participants}}</div>
-            <div class="details">{{campaign.start | date:'d. MMMM'}} -  {{campaign.end | date:'d. MMMM yyyy'}}</div>
-        </div>
-        <div class="col-md-4">
-            <div class="details">{{campaign.location}}</div>
-            <div class="details">{{campaign.city}}</div>
-        </div>
+        <div class="topic">{{campaign.title}}</div>
+        <div class="details">{{campaign.participants}}</div>
+        <div class="details">{{campaign.location}} {{campaign.city}}</div>
+        <div class="details">{{campaign.start | date:'d. MMMM'}} -  {{campaign.end | date:'d. MMMM yyyy'}}</div>
     </div>
 </div>
