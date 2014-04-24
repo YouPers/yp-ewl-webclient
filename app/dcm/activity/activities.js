@@ -48,7 +48,17 @@
                                 if($stateParams.id) {
                                     return ActivityService.getActivity($stateParams.id);
                                 } else {
-                                    return undefined;
+
+                                    // TODO: define default activity and options visible for the campaign lead
+
+                                    return {
+                                        source: "campaign",
+                                        defaultfrequency: "once",
+                                        "defaultexecutiontype": "group",
+                                        "defaultvisibility": "campaign",
+                                        "defaultduration": 60,
+                                        topics: ['workLifeBalance']
+                                    };
                                 }
 
                             }]
