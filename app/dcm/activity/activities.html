@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="state-title-1" translate>activities.title1</div>
+        <div class="state-title-2" translate>activities.title2</div>
+    </div>
+</div>
+
+<div class="activity-list">
+
+    <!-- new activity -->
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="group-header">
+                <a ui-sref="activity.content({})">
+                    <div translate>activities.link.new</div>
+                    <div class="group-add">+</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- groups -->
+
+    <div class="group" ng-repeat="group in groups">
+
+        <div class="group-header">
+            <div translate>{{ 'activities.group.' + group.name }}</div>
+        </div>
+
+        <div class="search pull-right" ng-if="group.name == 'all'">
+
+            <div class="input-group">
+                <input ng-model="query" type="text" class="form-control" placeholder="{{ 'activities.search' | translate }}" name="query">
+                <div class="input-group-btn">
+                    <i class="glyphicon glyphicon-search"></i>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- activities -->
+
+        <div class="row activity list-item" ng-repeat="activity in filtered = (group.activities | fulltext:query)" ui-sref="activity.content({ id: activity.id})">
+
+            <!-- image -->
+            <div class="col-md-1 image">
+                <div>
+                    <img ng-src="{{'/assets/actpics/' + activity.number + '.jpg'}}">
+                </div>
+            </div>
+
+            <!-- title -->
+            <div class="col-md-5 title">
+                <div>
+                    {{ activity.title }}
+                </div>
+            </div>
+
+
+            <!-- execution type -->
+            <div class="col-md-1 execution-type">
+                <div class="glyphicon"
+                     ng-class="{ 'glyphicon-group': activity.defaultexecutiontype == 'group',
+                                 'glyphicon-user': activity.defaultexecutiontype == 'self'}">
+                </div>
+            </div>
+
+            <!-- duration -->
+            <div class="col-md-1 duration">
+                <div>
+                    <span>{{ activity.defaultduration }}</span>
+                    <span translate>activities.duration.suffix</span>
+                </div>
+            </div>
+
+            <!-- links -->
+
+            <div class="col-md-3 links">
+                <div>
+                    <!--<a translate>activities.link.schedule</a>-->
+                    <!--<a translate>activities.link.recommend</a>-->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
