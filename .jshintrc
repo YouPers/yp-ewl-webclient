@@ -23,6 +23,6 @@ noempty:true, nonew:true, undef:true, strict:true, globalstrict:true, browser:tr
       "_": false,
       "mock": true,
       "YT": false,
-      "markdown": false
+      "marked": false
   }
 }
