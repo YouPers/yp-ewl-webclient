@@ -24,7 +24,7 @@
                             }
                         },
                         resolve: {
-                            activities: ['ActivityService', function(ActivityService) {
+                            activities: ['ActivityService', function (ActivityService) {
                                 return ActivityService.getActivities();
                             }]
                         }
@@ -43,9 +43,9 @@
                             }
                         },
                         resolve: {
-                            activity: ['$stateParams', 'ActivityService', function($stateParams, ActivityService) {
+                            activity: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
 
-                                if($stateParams.id) {
+                                if ($stateParams.id) {
                                     return ActivityService.getActivity($stateParams.id);
                                 } else {
 
@@ -63,11 +63,36 @@
 
                             }]
                         }
+                    })
+                    .state('campaignoffers', {
+                        templateUrl: "layout/dcmdefault.html",
+                        access: accessLevels.campaignlead
+                    })
+                    .state('campaignoffers.content', {
+                        url: "/campaignoffers/:id",
+                        access: accessLevels.campaignlead,
+                        views: {
+                            content: {
+                                templateUrl: 'dcm/activity/campaignoffers.html',
+                                controller: 'CampaignOffersController'
+                            }
+                        },
+                        resolve: {
+                            offers: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+
+                                return [];
+
+                            }],
+                            notifications: ['$stateParams', 'NotificationService', function ($stateParams, NotificationService) {
+
+                               return [];
+
+                            }]
+                        }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/activity/activity');
             }])
-
 
 
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'activity',
@@ -87,7 +112,7 @@
         .controller('ActivitiesController', [ '$scope', 'activities',
             function ($scope, activities) {
 
-                var grouped = _.groupBy(activities, function(activity) {
+                var grouped = _.groupBy(activities, function (activity) {
                     return activity.campaign ? "campaign" : "all";
                 });
                 $scope.query = {query: ''};
@@ -100,7 +125,7 @@
                 $scope.groups = [];
 
                 _.forEach(groups, function (group) {
-                    if(grouped[group]) {
+                    if (grouped[group]) {
 
 //                        var list = _.sortBy(grouped[group], function(item) {
 //                            return ;
@@ -115,53 +140,59 @@
 
             }
         ])
-        .filter('fulltext', function() {
+        .controller('CampaignOffersController', ['$scope', 'offers',
+            function ($scope, offers, notifications) {
+
+
+            } ])
+
+        .filter('fulltext', function () {
             return function (activities, query) {
                 if (!query || query.length < 3) {
                     return activities;
                 }
-                return _.filter(activities, function(activity) {
+                return _.filter(activities, function (activity) {
                     return (!query || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.toUpperCase()) !== -1);
                 });
 
             };
         })
         .run(['enums', function (enums) {
-        _.merge(enums, {
-            executiontype: [
-                'self',
-                'group'
-            ],
-            activityPlanFrequency: [
-                'once',
-                'day',
-                'week',
-                'month',
-                'year'
-            ],
-            visibility: [
-                'public',
-                'campaign',
-                'private'
-            ],
-            source: [
-                'youpers',
-                'community',
-                'campaign'
-            ],
-            calendarNotifications: [
-                'none',
-                '0',
-                '300',
-                '600',
-                '900',
-                '1800',
-                '3600',
-                '7200',
-                '86400',
-                '172800'
-            ]
-        });
-    }]);
+            _.merge(enums, {
+                executiontype: [
+                    'self',
+                    'group'
+                ],
+                activityPlanFrequency: [
+                    'once',
+                    'day',
+                    'week',
+                    'month',
+                    'year'
+                ],
+                visibility: [
+                    'public',
+                    'campaign',
+                    'private'
+                ],
+                source: [
+                    'youpers',
+                    'community',
+                    'campaign'
+                ],
+                calendarNotifications: [
+                    'none',
+                    '0',
+                    '300',
+                    '600',
+                    '900',
+                    '1800',
+                    '3600',
+                    '7200',
+                    '86400',
+                    '172800'
+                ]
+            });
+        }]);
 
 }());

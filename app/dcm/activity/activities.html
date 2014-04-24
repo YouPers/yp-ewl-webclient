@@ -48,8 +48,7 @@
 
         <!-- activities -->
 
-        <div class="row activity list-item" ng-repeat="activity in group.activities | fulltext:query.query"
-             ui-sref="activity.content({ id: activity.id})">
+        <div class="row activity list-item" ng-repeat="activity in group.activities | fulltext:query.query">
 
             <!-- image -->
             <div class="col-md-1 image">
@@ -86,8 +85,8 @@
 
             <div class="col-md-3 links">
                 <div>
-                    <!--<a translate>activities.link.schedule</a>-->
-                    <!--<a translate>activities.link.recommend</a>-->
+                    <a ui-sref="dcmschedule.content({id: 'NEW', activity: activity.id, campaign: principal.getUser().campaign.id})" translate>activities.link.schedule</a>
+                    <a ui-sref="dcmschedule.content({id: 'NEW', activity: activity.id, campaign: principal.getUser().campaign.id})" translate>activities.link.recommend</a>
                 </div>
             </div>
 
