@@ -15,7 +15,7 @@
                         access: accessLevels.all
                     })
                     .state('dcmschedule.content', {
-                        url: "/dcmschedule/:id?activity",
+                        url: "/dcmschedule/:id?activity&offerType",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -42,8 +42,9 @@
                                                         targetQueue: campaign.id,
                                                         campaign: campaign,
                                                         recommendedBy: [UserService.principal.getUser()],
-                                                        type: [ activity.defaultexecutiontype === 'group' ?
-                                                            'campaignActivityPlan' : 'campaignActivity' ],
+                                                        type: [ $stateParams.offerType ||
+                                                            (activity.defaultexecutiontype === 'group' ?
+                                                            'campaignActivityPlan' : 'campaignActivity')],
                                                         sourceType: 'campaign',
                                                         validFrom: new Date(),
                                                         validTo: campaign.end,

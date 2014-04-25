@@ -83,12 +83,17 @@
 
             <!-- links -->
 
-            <div class="col-md-3 links">
-                <div>
-                    <a ui-sref="dcmschedule.content({id: 'NEW', activity: activity.id})" translate>activities.link.schedule</a>
-                    <a ui-sref="dcmschedule.content({id: 'NEW', activity: activity.id})" translate>activities.link.recommend</a>
+            <div class="col-md-1 links">
+                <div ng-show="activity.defaultexecutiontype === 'group'">
+                    <a ui-sref="dcmschedule.content({id: 'NEW', activity: activity.id, offerType: 'campaignActivityPlan'})" translate>activities.link.schedule</a>
                 </div>
             </div>
+            <div class="col-md-1 links">
+                <div>
+                    <a ui-sref="dcmschedule.content({id: 'NEW', activity: activity.id, offerType: 'campaignActivity'})" translate>activities.link.recommend</a>
+                </div>
+            </div>
+
 
         </div>
 
