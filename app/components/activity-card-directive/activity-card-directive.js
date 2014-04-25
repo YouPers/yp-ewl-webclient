@@ -29,7 +29,7 @@
 
                     scope.getRenderedText = function (text) {
                         if (text) {
-                            return $sce.trustAsHtml(markdown.toHTML(text));
+                            return $sce.trustAsHtml(marked(text));
                         } else {
                             return "";
                         }
