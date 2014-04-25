@@ -8,6 +8,9 @@
 
             var service = {
                 getNotifications: function (options) {
+                    if (!options) {
+                        options = {};
+                    }
                     options.populate = 'author';
                     options.sort = 'created:-1';
 
@@ -19,6 +22,9 @@
                         return deferred.promise;
                     }
 
+                },
+                postNotification: function(notif, options) {
+                    return Restangular.all(baseUrl).post(notif);
                 }
             };
 

@@ -54,8 +54,7 @@
         <div class="back face" ng-click="flip()">
 
             <div class="content">
-                <h3>
-                    {{ rec.activity.title }}
+                <h3 ng-bind-html="rec.activity.title">
                 </h3>
 
                 <p ng-bind-html="getRenderedText(rec.activity.text)">

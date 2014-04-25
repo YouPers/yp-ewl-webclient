@@ -54,7 +54,8 @@
 
 
         <div class="btn-group form-group execution-type">
-            <button type="button" class="btn btn-default plan" ng-model="offer.type[0]" btn-radio="'campaignActivityPlan'"
+            <button type="button" class="btn btn-default plan" ng-model="offer.type[0]"
+                    btn-radio="'campaignActivityPlan'"
                     translate>
                 dcmschedule.scheduletype.plan
             </button>
@@ -219,36 +220,27 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-xs-12">
+        <div class="save-link form-group" tooltip-placement="left"
+             tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
+            <button ng-show="!offer.id" type="submit" class="btn btn-primary pull-right" translate>
+                schedule.schedule
+            </button>
+            <button ng-hide="!offer.id" ng-disabled="!schedule.isEditable" type="submit"
+                    class="btn btn-primary pull-right" translate>schedule.save
+            </button>
+        </div>
 
-                <div>
-                    <div class="save-link form-group" tooltip-placement="left"
-                         tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
-                        <button ng-show="!offer.id" type="submit" class="btn btn-primary pull-right" translate>
-                            schedule.schedule
-                        </button>
-                        <button ng-hide="!offer.id" ng-disabled="!schedule.isEditable" type="submit"
-                                class="btn btn-primary pull-right" translate>schedule.save
-                        </button>
-                    </div>
-
-                    <div class="delete-link form-group" tooltip-placement="left"
-                         tooltip="{{ offer.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}">
-                        <button ng-click="deleteOffer()" ng-show="offer.id" ng-disabled="!offer.isDeletable"
-                                type="button"
-                                class="btn btn-warning pull-left" translate>schedule.delete
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="delete-link form-group" tooltip-placement="left"
+             tooltip="{{ offer.isDeletable ? '' : ('activityPlanDeletable.' + plan.deleteStatus | translate) }}">
+            <button ng-click="deleteOffer()" ng-show="offer.id" ng-disabled="!offer.isDeletable"
+                    type="button"
+                    class="btn btn-warning pull-left" translate>schedule.delete
+            </button>
         </div>
     </div>
 </div>
 
 <div class="clearBoth"></div>
-
-
 
 
 </div>

@@ -29,7 +29,8 @@
             {{offer.activityPlan[0].location}}
         </div>
         <div class="col-xs-2 title">
-            {{ 'activityPlanFrequency.' + ((offer.activityPlan[0] && offer.activityPlan[0].frequency) || (offer.activity.defaultfrequency)) | translate}}<br>
+            {{ 'activityPlanFrequency.' + ((offer.activityPlan[0] && offer.activityPlan[0].frequency) ||
+            (offer.activity.defaultfrequency)) | translate}}<br>
             <span ng-show="offer.type[0] == 'campaignActivityPlan'">{{offer.activityPlan[0].mainEvent.start | date}} {{offer.activityPlan[0].mainEvent.start | date:'HH:mm'}}</span>
         </div>
         <div class="col-xs-1 type">
@@ -50,11 +51,60 @@
 <div class="row">
     <div class="col-md-12">
         <div class="group-header">
-                <div translate>campaignoffers.notifications</div>
-                <div class="group-add" ng-click="addEmptyNotif()">+</div>
+            <div translate>campaignoffers.notifications.title</div>
+            <div class="group-add" ng-click="addNewNotif = !addNewNotif">+</div>
         </div>
     </div>
 </div>
-<div class="notification" ng-repeat="notif in notifications">
-    {{notif}}
+<div class="row new-notification" ng-show="addNewNotif">
+    <form name="newNotifForm" ng-submit="saveNewNotif()" role="form">
+        <div class="col-xs-6">
+            <input class="form-control" type="text" ng-model="newNotif.title" placeholder="{{'campaignoffers.notifications.form.title.placeholder' | translate}}">
+        </div>
+        <div class="col-xs-2  col-xs-offset-2">
+            <div>
+                <input ng-model="newNotif.publishFrom"
+                       class="form-control" type="text" id="datePickerPublishFrom"
+                       datepicker-popup="dd.MM.yyyy"
+                       is-open="openedPublishFrom" min="minDate"
+                       datepicker-options="dateOptions"
+                       date-disabled="disabled(date, mode)" ng-required="true"/>
+
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <input class="form-control" type="text" ng-model="newNotif.text" placeholder="{{'campaignoffers.notifications.form.text.placeholder' | translate}}">
+        </div>
+        <div class="col-xs-2 col-xs-offset-2">
+            <div>
+                <input ng-model="newNotif.publishTo"
+                       class="form-control" type="text" id="datePickerPublishTo"
+                       datepicker-popup="dd.MM.yyyy"
+                       is-open="openedPublishTo" min="minDate"
+                       datepicker-options="dateOptions"
+                       date-disabled="disabled(date, mode)" ng-required="true"/>
+
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <button class="btn btn-primary" type="submit" translate>campaignoffers.notifications.form.submit</button>
+        </div>
+    </form>
+</div>
+<div class="notifications-list-edit row" ng-repeat="notif in notifications">
+    <div class="col-xs-6">
+        {{notif.title}}
+    </div>
+    <div class="col-xs-2  col-xs-offset-2">
+        {{notif.publishFrom | date}}
+    </div>
+    <div class="col-xs-6">
+        {{notif.text}}
+    </div>
+    <div class="col-xs-2 col-xs-offset-2">
+        {{notif.publishTo | date}}
+    </div>
+    <div class="col-xs-2">
+        <a ng-click="alert('TODO: not yet implemented;')" translate>campaignoffers.notifications.form.delete</a>
+    </div>
 </div>

@@ -156,6 +156,33 @@
                 $scope.offers = offers;
                 $scope.notifications = notifications;
 
+                $scope.newNotif = {
+                    publishFrom: new Date(),
+                    type: 'message',
+                    author: $scope.principal.getUser(),
+                    sourceType: 'campaign',
+                    targetQueue: CampaignService.currentCampaign && CampaignService.currentCampaign.id
+                };
+
+                $scope.saveNewNotif = function() {
+                    // reset targetQueue, user might have changed the currentCampaign
+                    $scope.newNotif.targetQueue = CampaignService.currentCampaign.id;
+                    NotificationService.postNotification($scope.newNotif).then(function(savedNotif) {
+                        $scope.notifications.unshift(savedNotif);
+                        $scope.addNewNotif = false;
+                        $scope.newNotif.title = '';
+                        $scope.newNotif.text = '';
+                    });
+                };
+
+
+                $scope.showWeeks = false;
+                $scope.minDate = new Date();
+
+                $scope.dateOptions = {
+                    'year-format': "'yy'",
+                    'starting-day': 1
+                };
 
                 $rootScope.$on('campaign:currentCampaignChanged', function () {
                     ActivityService.getActivityOffers(
