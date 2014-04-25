@@ -25,7 +25,7 @@
             <img ng-src="{{'/assets/actpics/' + offer.activity.number + '.jpg' }}">
         </div>
         <div class="col-xs-2 title">
-            {{offer.activity.title}}
+            <span ng-bind-html="offer.activity.title"></span>
             {{offer.activityPlan[0].location}}
         </div>
         <div class="col-xs-2 title">

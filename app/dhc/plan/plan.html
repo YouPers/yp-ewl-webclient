@@ -52,8 +52,7 @@
 
             <!-- title -->
             <div class="col-md-3 title">
-                <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })">
-                    {{ event.plan.activity.title }}
+                <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })" ng-bind-html=" event.plan.activity.title">
                 </a>
             </div>
 

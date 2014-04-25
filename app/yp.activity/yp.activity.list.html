@@ -241,8 +241,7 @@
                         <div class="activityListStarred glyphicon" ng-click="toggleStar(activity, $event)"
                              ng-class="(activity.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
                     </div>
-                    <div class="col-md-5">
-                        {{ activity.title }}
+                    <div class="col-md-5" ng-bind-html="activity.title">
                     </div>
                     <div class="col-md-1">
                         <img ng-src="{{'/assets/actpics/' + activity.number + '.jpg'}}" width='60' height="40">
