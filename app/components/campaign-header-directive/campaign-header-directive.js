@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('campaignHeader', ['$rootScope', '$state','UserService',
-            function ($rootScope,  $state, UserService) {
+        .directive('campaignHeader', ['$rootScope', '$state','UserService', 'CampaignService',
+            function ($rootScope,  $state, UserService, CampaignService) {
             return {
                 restrict: 'E',
                 scope: {
@@ -20,12 +20,35 @@
                         scope.campaigns = user.campaign ? [user.campaign] : [];
                     }
 
+                    function _setCampaignsFromCampaignLead() {
+                        CampaignService.getCampaigns().then(function(campaigns) {
+                            scope.campaigns = campaigns;
+                            if (! CampaignService.currentCampaign) {
+                                CampaignService.currentCampaign = campaigns[0];
+                            }
+                        });
+                    }
+
 
                     if (attrs.campaign) {
                         scope.campaigns = [scope.campaign];
-                    } else {
+                    } else if (attrs.campaigns) {
+                        scope.campaigns = scope.campaigns;
+                    } else if (attrs.mode === 'user'){
                         _setCampaignFromUser();
+                    } else if (attrs.mode === 'campaignlead') {
+                        _setCampaignsFromCampaignLead();
                     }
+
+                    scope.isSelected = function(campaign) {
+                        return campaign.id === (CampaignService.currentCampaign && CampaignService.currentCampaign.id);
+                    };
+
+                    scope.selectCampaign = function(campaign) {
+                        if (attrs.mode === 'campaignlead') {
+                            CampaignService.currentCampaign = campaign;
+                        }
+                    };
 
                     $rootScope.$on('event:authority-deauthorized', function() {
                         scope.campaigns = [];

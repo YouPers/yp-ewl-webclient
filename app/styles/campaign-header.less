@@ -2,6 +2,7 @@
 
 .campaign-header {
   background-color: @yp-color-dark-brown;
+  height: 100px;
 }
 
 .dcm .campaign-header {
@@ -12,6 +13,14 @@
   background-color: @yp-color-dark-brown;
 }
 
+.dcm .campaign-header-container {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.dcm .campaign-header-container .campaign-header {
+  width: 2000px;
+}
 
 .campaign-header .avatar {
   float: left;
@@ -40,4 +49,18 @@
 
 .campaign-header .campaign {
   padding-top: 5px;
+  display:inline-block;
+  width: 300px;
+}
+
+.dcm .campaign-header .campaign {
+  cursor: pointer;
+}
+
+.dcm .campaign-header .campaign:hover {
+  background-color: lighten(@yp-color-saffron, 30%);
+}
+
+.dcm .campaign-header .campaign.selected {
+  background-color: lighten(@yp-color-saffron, 15%);
 }

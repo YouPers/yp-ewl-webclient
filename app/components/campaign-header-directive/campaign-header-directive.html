@@ -1,5 +1,5 @@
 <div class="campaign-header" ng-if="campaigns.length > 0">
-    <div ng-repeat="campaign in campaigns" class="campaign">
+    <div ng-repeat="campaign in campaigns" class="campaign" ng-class="{selected: isSelected(campaign)}" ng-click="selectCampaign(campaign)">
         <div class="avatar">
             <img ng-src="{{campaign.avatar}}">
         </div>

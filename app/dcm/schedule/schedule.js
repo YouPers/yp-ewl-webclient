@@ -15,7 +15,7 @@
                         access: accessLevels.all
                     })
                     .state('dcmschedule.content', {
-                        url: "/dcmschedule/:id?campaign&activity",
+                        url: "/dcmschedule/:id?activity",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -32,12 +32,10 @@
                                         if (!$stateParams.activity || !$stateParams.campaign) {
                                             return $q.reject('activity and campaign Id are required for NEW offer');
                                         } else {
-                                            return $q.all([ActivityService.getActivity($stateParams.activity),
-                                                CampaignService.getCampaign($stateParams.campaign)])
+                                            return ActivityService.getActivity($stateParams.activity)
+                                                .then(function (activity) {
 
-                                                .then(function (results) {
-                                                    var activity = results[0];
-                                                    var campaign = results[1];
+                                                    var campaign = CampaignService.currentCampaign;
 
                                                     return {
                                                         activity: activity,
@@ -58,7 +56,6 @@
                                     } else {
                                         return ActivityService.getActivityOffer($stateParams.id);
                                     }
-
                                 }]
                         }
                     });
@@ -83,6 +80,7 @@
                 $scope.saveOffer = function () {
                     ActivityService.saveActivityOffer($scope.offer).then(
                         function (savedOffer) {
+                            $scope.offer.id = savedOffer.id;
                             $rootScope.$emit('clientmsg:success', 'activityOffer.saved');
                         },
                         function (err) {
@@ -105,7 +103,4 @@
         ])
     ;
 
-}
-()
-    )
-;
+} ());

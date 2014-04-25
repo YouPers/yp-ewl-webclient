@@ -68,6 +68,7 @@
                     'starting-day': 1
                 };
 
+                CampaignService.currentCampaign = campaign;
 
                 $scope.minDateStart = new Date(moment().hour(8).minutes(0).seconds(0));
                 // we assume, that a campaign ideally lasts at least 6 weeks
