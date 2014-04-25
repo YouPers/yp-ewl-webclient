@@ -125,7 +125,7 @@
                             return this.savePlan(plan)
                                 .then(function (savedPlan) {
                                     offer.activityPlan = [savedPlan.id];
-                                    _saveActivityOffer(offer);
+                                    return _saveActivityOffer(offer);
                                 });
                         } else if (offer.type[0] === 'campaignActivity') {
                             // no event, so just save the offer.

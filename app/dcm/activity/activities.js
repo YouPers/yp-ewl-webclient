@@ -79,16 +79,15 @@
                             }
                         },
                         resolve: {
-                            offers: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
-
-                                return [];
-
-                            }],
-                            notifications: ['$stateParams', 'NotificationService', function ($stateParams, NotificationService) {
-
-                               return [];
-
-                            }]
+                            offers: ['$stateParams', 'ActivityService', 'CampaignService',
+                                function ($stateParams, ActivityService, CampaignService) {
+                                    return ActivityService.getActivityOffers({campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined,
+                                    populate: 'activity activityPlan'});
+                                }],
+                            notifications: ['$stateParams', 'NotificationService', 'CampaignService',
+                                function ($stateParams, NotificationService, CampaignService) {
+                                    return NotificationService.getNotifications({campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined});
+                                }]
                         }
                     });
 
@@ -114,7 +113,7 @@
         .controller('ActivitiesController', [ '$scope', '$rootScope', 'activities', 'ActivityService', 'CampaignService',
             function ($scope, $rootScope, resolvedActivities, ActivityService, CampaignService) {
 
-                function _initializeActivities(activities)  {
+                function _initializeActivities(activities) {
                     var grouped = _.groupBy(activities, function (activity) {
                         return activity.campaign ? "campaign" : "all";
                     });
@@ -142,20 +141,40 @@
                     });
 
                 }
+
                 _initializeActivities(resolvedActivities);
 
-                $rootScope.$on('campaign:currentCampaignChanged', function() {
-                   ActivityService.getActivities({campaign: CampaignService.currentCampaign.id}).then(function(activities) {
-                      _initializeActivities(activities);
-                   });
+                $rootScope.$on('campaign:currentCampaignChanged', function () {
+                    ActivityService.getActivities({campaign: CampaignService.currentCampaign.id}).then(function (activities) {
+                        _initializeActivities(activities);
+                    });
                 });
             }
         ])
-        .controller('CampaignOffersController', ['$scope', 'offers',
-            function ($scope, offers, notifications) {
+        .controller('CampaignOffersController', ['$scope', '$rootScope', 'offers', 'notifications', 'CampaignService', 'ActivityService', 'NotificationService',
+            function ($scope, $rootScope, offers, notifications, CampaignService, ActivityService, NotificationService) {
+                $scope.offers = offers;
+                $scope.notifications = notifications;
 
 
-            } ])
+                $rootScope.$on('campaign:currentCampaignChanged', function () {
+                    ActivityService.getActivityOffers(
+                        {campaign: CampaignService.currentCampaign.id,
+                         populate: 'activity activityPlan'}
+                    ).then(function (offers) {
+                        $scope.offers = offers;
+                    });
+                });
+
+                $rootScope.$on('campaign:currentCampaignChanged', function () {
+                    NotificationService.getNotifications(
+                        {campaign: CampaignService.currentCampaign.id,
+                            populate: 'author'}
+                    ).then(function (notifications) {
+                            $scope.notifications = notifications;
+                        });
+                });
+            }])
 
         .filter('fulltext', function () {
             return function (activities, query) {

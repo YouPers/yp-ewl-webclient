@@ -49,5 +49,20 @@
             "recommend": "Empfehlen"
         },
         "search": "suchen"
+    },
+    "campaignoffers": {
+        "title1": "deine",
+        "title2": "Aktivitäten und Meldungen",
+
+        "notifications": "Kampagnen-Meldungen",
+
+        "link": {
+            "new": "Neue Kampagnen-Aktivität"
+        },
+        "offertype": {
+            "campaignActivity": "empfohlen",
+            "campaignActivityPlan": "geplant"
+        }
+
     }
 }
