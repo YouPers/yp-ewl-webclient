@@ -9,48 +9,20 @@
                 var activities = Restangular.all('activities');
                 var activityPlans = Restangular.all('activityplans');
 
-                var cachedActivitiesPromise;
                 var cachedRecommendationsPromises = {};
-
-                $rootScope.$on('$translateChangeStart', function () {
-                    actService.reloadActivities();
-                });
 
                 $rootScope.$on('newAssessmentResultsPosted', function (assResult) {
                     actService.invalidateRecommendations();
                 });
 
-                $rootScope.$on('event:authority-deauthorized', function () {
-                    actService.reloadActivities();
-                });
-
-                $rootScope.$on('event:authority-authorized', function () {
-                    actService.reloadActivities();
-                });
-
                 var actService = {
                     getActivities: function (params) {
-                        // we can no longer assume, that activities are static because campaign leads can create new campaign
-                        // activities during a session, therefore we cache it on the client only for the full list of activities
-                        // and not for filtered subsets
-
-                        if (params) {
-                            // we do not use the cached activity list
-                            params.limit = 1000;
-                            return activities.getList(params);
-                        } else {
+                        if (!params) {
                             params = {};
-                            params.limit = 1000;
-                            if (!cachedActivitiesPromise) {
-                                cachedActivitiesPromise = activities.getList(params);
-                            }
-                            return cachedActivitiesPromise;
                         }
-                    },
-                    reloadActivities: function () {
-                        cachedActivitiesPromise = activities.getList({limit: 1000});
-                        cachedRecommendationsPromises = {};
-                        return cachedActivitiesPromise;
+
+                        params.limit = 1000;
+                        return activities.getList(params);
                     },
                     getActivity: function (activityId) {
                         if (activityId) {
@@ -242,11 +214,11 @@
                             };
                         }
 
-                        var plan =  {
+                        var plan = {
                             activity: activity,
                             status: 'active',
                             mainEvent: newMainEvent,
-                            source: campaignId ? 'campaign': 'community',
+                            source: campaignId ? 'campaign' : 'community',
                             executionType: activity.defaultexecutiontype,
                             visibility: activity.defaultvisibility,
                             fields: activity.fields,

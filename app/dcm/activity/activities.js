@@ -24,8 +24,8 @@
                             }
                         },
                         resolve: {
-                            activities: ['ActivityService', function (ActivityService) {
-                                return ActivityService.getActivities();
+                            activities: ['ActivityService', 'CampaignService', function (ActivityService, CampaignService) {
+                                return ActivityService.getActivities({campaign: CampaignService.currentCampaign.id});
                             }]
                         }
                     })
@@ -43,7 +43,7 @@
                             }
                         },
                         resolve: {
-                            activity: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                            activity: ['$stateParams', 'ActivityService', 'CampaignService', function ($stateParams, ActivityService, CampaignService) {
 
                                 if ($stateParams.id) {
                                     return ActivityService.getActivity($stateParams.id);
@@ -57,7 +57,8 @@
                                         "defaultexecutiontype": "group",
                                         "defaultvisibility": "campaign",
                                         "defaultduration": 60,
-                                        topics: ['workLifeBalance']
+                                        topics: ['workLifeBalance'],
+                                        campaign: CampaignService.currentCampaign
                                     };
                                 }
 
@@ -103,7 +104,8 @@
 
                 $scope.offer = {
                     activity: activity,
-                    recommendedBy: {}
+                    recommendedBy: [$scope.principal.getUser()],
+                    sourceType: 'campaign'
                 };
 
             }
