@@ -25,6 +25,7 @@
                             scope.campaigns = campaigns;
                             if (! CampaignService.currentCampaign) {
                                 CampaignService.currentCampaign = campaigns[0];
+                                $rootScope.$emit('campaign:currentCampaignChanged');
                             }
                         });
                     }
@@ -47,6 +48,7 @@
                     scope.selectCampaign = function(campaign) {
                         if (attrs.mode === 'campaignlead') {
                             CampaignService.currentCampaign = campaign;
+                            $rootScope.$emit('campaign:currentCampaignChanged');
                         }
                     };
 

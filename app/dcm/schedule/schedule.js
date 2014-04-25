@@ -29,8 +29,8 @@
                                     if (!$stateParams.id) {
                                         return $q.reject('no offer id passed in URL');
                                     } else if ($stateParams.id === 'NEW') {
-                                        if (!$stateParams.activity || !$stateParams.campaign) {
-                                            return $q.reject('activity and campaign Id are required for NEW offer');
+                                        if (!$stateParams.activity) {
+                                            return $q.reject('activity id is required as param for NEW offer');
                                         } else {
                                             return ActivityService.getActivity($stateParams.activity)
                                                 .then(function (activity) {

@@ -25,7 +25,7 @@
                         },
                         resolve: {
                             activities: ['ActivityService', 'CampaignService', function (ActivityService, CampaignService) {
-                                return ActivityService.getActivities({campaign: CampaignService.currentCampaign.id});
+                                return ActivityService.getActivities({campaign: CampaignService.currentCampaign && CampaignService.currentCampaign.id});
                             }]
                         }
                     })
@@ -58,7 +58,7 @@
                                         "defaultvisibility": "campaign",
                                         "defaultduration": 60,
                                         topics: ['workLifeBalance'],
-                                        campaign: CampaignService.currentCampaign
+                                        campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined
                                     };
                                 }
 
@@ -111,35 +111,44 @@
             }
         ])
 
-        .controller('ActivitiesController', [ '$scope', 'activities',
-            function ($scope, activities) {
+        .controller('ActivitiesController', [ '$scope', '$rootScope', 'activities', 'ActivityService', 'CampaignService',
+            function ($scope, $rootScope, resolvedActivities, ActivityService, CampaignService) {
 
-                var grouped = _.groupBy(activities, function (activity) {
-                    return activity.campaign ? "campaign" : "all";
-                });
-                $scope.query = {query: ''};
+                function _initializeActivities(activities)  {
+                    var grouped = _.groupBy(activities, function (activity) {
+                        return activity.campaign ? "campaign" : "all";
+                    });
+                    $scope.query = {query: ''};
 
-                var groups = [
-                    'campaign',
-                    'all'
-                ];
+                    var groups = [
+                        'campaign',
+                        'all'
+                    ];
 
-                $scope.groups = [];
+                    $scope.groups = [];
 
-                _.forEach(groups, function (group) {
-                    if (grouped[group]) {
+                    _.forEach(groups, function (group) {
+                        if (grouped[group]) {
 
 //                        var list = _.sortBy(grouped[group], function(item) {
 //                            return ;
 //                        });
 
-                        $scope.groups.push({
-                            name: group,
-                            activities: grouped[group]
-                        });
-                    }
-                });
+                            $scope.groups.push({
+                                name: group,
+                                activities: grouped[group]
+                            });
+                        }
+                    });
 
+                }
+                _initializeActivities(resolvedActivities);
+
+                $rootScope.$on('campaign:currentCampaignChanged', function() {
+                   ActivityService.getActivities({campaign: CampaignService.currentCampaign.id}).then(function(activities) {
+                      _initializeActivities(activities);
+                   });
+                });
             }
         ])
         .controller('CampaignOffersController', ['$scope', 'offers',

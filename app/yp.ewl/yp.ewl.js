@@ -155,6 +155,7 @@ angular.module('yp-ewl',
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
                 console.log('Error on StateChange: '+ JSON.stringify(error));
+                throw error;
             });
 
         }]);

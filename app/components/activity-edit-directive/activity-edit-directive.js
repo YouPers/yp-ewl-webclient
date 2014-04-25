@@ -4,8 +4,8 @@
 
     angular.module('yp.dhc')
 
-        .directive('activityEdit', ['$rootScope', 'ActivityService',
-            function ($rootScope, ActivityService) {
+        .directive('activityEdit', ['$rootScope', 'ActivityService', 'CampaignService',
+            function ($rootScope, ActivityService, CampaignService) {
                 return {
 
                     restrict: 'EA',
@@ -50,7 +50,10 @@
                         };
 
                         $scope.save = function() {
-
+                            // reset the currentCampaign to the activity, the user might have changed it
+                            if (CampaignService.currentCampaign) {
+                                $scope.activity.campaign = CampaignService.currentCampaign;
+                            }
                             ActivityService.saveActivity($scope.activity).then(function (result) {
 
                                 if(attrs.onSave) {
