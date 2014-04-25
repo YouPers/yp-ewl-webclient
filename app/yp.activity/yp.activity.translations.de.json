@@ -146,29 +146,6 @@
         "commentsPopover": "Kommentare anzeigen"
     },
     "admin": {
-        "header": "Aktivität bearbeiten",
-        "title": {
-            "label": "Titel",
-            "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"
-        },
-        "description": {
-            "label": "Kurzbeschreibung",
-            "placeholder": "Kurzbeschreibung"
-        },
-        "text": {
-            "label": "Text",
-            "placeholder": "Die ausführliche Beschreibung der Aktivität"
-        },
-        "number": "Aktivitätsnummer",
-        "executiontype": "Standard Ausführung",
-        "frequency": "Standard Frequenz",
-        "visibility": "Standard Sichtbarkeit",
-        "source": "Quelle",
-        "activityField": "Aktivitäts Felder",
-        "qualityFactor": "Qualitäts-Faktor (1-10)",
-        "duration": "Benötigte Zeit (min) ",
-        "cancel": "Abbrechen",
-        "save": "Sichern",
         "matrix": {
             "header": "Matrix zu Assessment, Fragen für Empfehlungen für: ",
             "recommendationSliderLeft": "Empfehlung <br/>Slider links",

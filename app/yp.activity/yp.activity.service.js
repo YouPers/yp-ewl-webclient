@@ -9,48 +9,20 @@
                 var activities = Restangular.all('activities');
                 var activityPlans = Restangular.all('activityplans');
 
-                var cachedActivitiesPromise;
                 var cachedRecommendationsPromises = {};
 
-                $rootScope.$on('$translateChangeStart', function() {
-                    actService.reloadActivities();
-                });
-
-                $rootScope.$on('newAssessmentResultsPosted', function(assResult) {
+                $rootScope.$on('newAssessmentResultsPosted', function (assResult) {
                     actService.invalidateRecommendations();
-                });
-
-                $rootScope.$on('event:authority-deauthorized', function() {
-                    actService.reloadActivities();
-                });
-
-                $rootScope.$on('event:authority-authorized', function() {
-                    actService.reloadActivities();
                 });
 
                 var actService = {
                     getActivities: function (params) {
-                        // we can no longer assume, that activities are static because campaign leads can create new campaign
-                        // activities during a session, therefore we cache it on the client only for the full list of activities
-                        // and not for filtered subsets
-
-                        if (params) {
-                            // we do not use the cached activity list
-                            params.limit = 1000;
-                            return activities.getList(params);
-                        } else {
+                        if (!params) {
                             params = {};
-                            params.limit = 1000;
-                            if (!cachedActivitiesPromise) {
-                                cachedActivitiesPromise = activities.getList(params);
-                            }
-                            return cachedActivitiesPromise;
                         }
-                    },
-                    reloadActivities: function () {
-                        cachedActivitiesPromise = activities.getList({limit: 1000});
-                        cachedRecommendationsPromises = {};
-                        return cachedActivitiesPromise;
+
+                        params.limit = 1000;
+                        return activities.getList(params);
                     },
                     getActivity: function (activityId) {
                         if (activityId) {
@@ -61,18 +33,18 @@
                             return deferred.promise;
                         }
                     },
-                    saveActivity: function(activity) {
+                    saveActivity: function (activity) {
                         if (activity.id) {
-                            return activity.put().then(function (result) {
-                                return actService.reloadActivities();
-                            });
+
+                            // TODO: ask reto how to remove this hack
+                            delete activity.recWeights;
+
+                            return activity.put();
                         } else {
-                            return activity.post().then(function (result) {
-                                return actService.reloadActivities();
-                            });
+                            return Restangular.restangularizeElement(null, activity, 'activities').post();
                         }
                     },
-                    getActivityPlan: function(activityPlanId) {
+                    getActivityPlan: function (activityPlanId) {
                         return Restangular.one('activityplans', activityPlanId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']});
                     },
                     getActivityPlans: function (options) {
@@ -137,6 +109,32 @@
                             'populatedeep': 'activityPlan.owner'
                         });
                     },
+                    saveActivityOffer: function (offer) {
+                        var plan = offer.activityPlan[0];
+
+                        function _saveActivityOffer(offer) {
+                            if (offer.id) {
+                                return Restangular.restangularizeElement(null, offer, "activityoffers").put();
+                            } else {
+                                return Restangular.all('activityoffers').post(offer);
+                            }
+                        }
+
+                        if (offer.type[0] === 'campaignActivityPlan') {
+                            // an event is being scheduled or edited, so we first save the plan
+                            return this.savePlan(plan)
+                                .then(function (savedPlan) {
+                                    offer.activityPlan = [savedPlan.id];
+                                    return _saveActivityOffer(offer);
+                                });
+                        } else if (offer.type[0] === 'campaignActivity') {
+                            // no event, so just save the offer.
+                            offer.activityPlan = [];
+                            return _saveActivityOffer(offer);
+                        } else {
+                            throw new Error('should never arrive here');
+                        }
+                    },
                     invalidateRecommendations: function () {
                         cachedRecommendationsPromises = {};
                     },
@@ -153,6 +151,16 @@
                     deletePlan: function (plan) {
                         return activityPlans.one(plan.id).remove();
                     },
+                    deleteOffer: function (offer) {
+                        if (offer.plan && offer.plan.id) {
+                            // if this is an offer with a saved plan, then we delete the plan
+                            // the backend will cascade delete the offer automafically
+                            return activityPlans.one(offer.plan.id).remove();
+                        } else {
+                            // if this is an offer without plan, we just delete the offer
+                            return Restangular.one('activityoffers', offer.id).remove();
+                        }
+                    },
                     updateActivityEvent: function (planId, actEvent) {
                         return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
                     },
@@ -160,7 +168,7 @@
                         return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
                     },
 
-                    getDefaultPlan: function(activity) {
+                    getDefaultPlan: function (activity, campaignId) {
 
                         var now = moment();
                         var newMainEvent = {
@@ -202,11 +210,11 @@
                             };
                         }
 
-                        return {
+                        var plan = {
                             activity: activity,
                             status: 'active',
                             mainEvent: newMainEvent,
-                            source: 'community',
+                            source: campaignId ? 'campaign' : 'community',
                             executionType: activity.defaultexecutiontype,
                             visibility: activity.defaultvisibility,
                             fields: activity.fields,
@@ -214,6 +222,10 @@
                             title: activity.title,
                             number: activity.number
                         };
+                        if (campaignId) {
+                            plan.campaign = campaignId;
+                        }
+                        return plan;
                     }
                 };
 

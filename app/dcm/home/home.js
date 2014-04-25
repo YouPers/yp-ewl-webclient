@@ -11,7 +11,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dcm-home', {
-                        templateUrl: "layout/default.html",
+                        templateUrl: "layout/dcmdefault.html",
                         access: accessLevels.all
                     })
                     .state('dcm-home.content', {
@@ -27,7 +27,7 @@
                         }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('dhc/home/home');
+                $translateWtiPartialLoaderProvider.addPart('dcm/home/home');
             }]);
 
 }());

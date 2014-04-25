@@ -1,0 +1,80 @@
+{
+    "clientmsg": {
+
+    },
+
+    "activity": {
+        "title1": "aktivität",
+
+        "title": {
+            "label": "Titel",
+            "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"
+        },
+        "description": {
+            "label": "Kurzbeschreibung",
+            "placeholder": "Kurzbeschreibung"
+        },
+        "text": {
+            "label": "Text",
+            "placeholder": "Die ausführliche Beschreibung der Aktivität"
+        },
+        "number": "Aktivitätsnummer",
+        "executiontype": "Ausführung",
+        "frequency": "Frequenz",
+        "visibility": "Sichtbarkeit",
+        "source": "Quelle",
+        "activityField": "Aktivitäts Felder",
+        "qualityFactor": "Qualitäts-Faktor (1-10)",
+        "duration": "Benötigte Zeit (min) ",
+
+        "save": "Speichern",
+        "back": "Zurück"
+    },
+
+    "activities": {
+        "title1": "deine",
+        "title2": "aktivitäten",
+
+        "group": {
+            "campaign": "kampagnen aktivitäten",
+            "all": "alle aktivitäten"
+        },
+
+        "duration": {
+            "suffix": "min"
+        },
+        "link": {
+            "new": "neue aktivität",
+            "schedule": "Einplanen",
+            "recommend": "Empfehlen"
+        },
+        "search": "suchen"
+    },
+    "campaignoffers": {
+        "title1": "deine",
+        "title2": "Aktivitäten und Meldungen",
+
+        "notifications": {
+            "title": "Kampagnen-Meldungen",
+            "form": {
+                "title": {
+                    "placeholder": "Titel, der erscheint in der Inbox als Überschrift"
+                },
+                "text": {
+                    "placeholder": "Text, ausführliche Botschaft (optional)"
+                },
+                "submit": "veröffentlichen",
+                "delete": "löschen"
+            }
+        },
+
+        "link": {
+            "new": "Neue Kampagnen-Aktivität"
+        },
+        "offertype": {
+            "campaignActivity": "empfohlen",
+            "campaignActivityPlan": "geplant"
+        }
+
+    }
+}

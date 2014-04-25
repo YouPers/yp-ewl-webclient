@@ -4,7 +4,8 @@
         "type": {
            "personalInvitation": "Persönliche Einladung",
            "message": "Ankündigung",
-           "activityRecommendation": "Kampagnen-Aktivität"
+           "activityRecommendation": "Kampagnen-Aktivität",
+           "joinablePlan": "Einladung für Event"
         }
     }
 

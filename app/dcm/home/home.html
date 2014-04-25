@@ -1,18 +1,19 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="state-title-1" translate>home.title1</div>
-        <div class="state-title-2" translate>home.title2</div>
+        <div class="state-title-1" translate>dcmhome.title1</div>
+        <div class="state-title-2" translate>dcmhome.title2</div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="home-content">
-            <a class="btn btn-default" href="#/organization">
-                organization
-            </a>
-            <a class="btn btn-default" href="#/campaigns">
-                campaigns
-            </a>
-        </div>
+
+<div class="col-sm-3 col-sm-offset-3">
+    <div class="home-content">
+        <div class="link-area link-area-1" ng-click="$state.go('organization.content')"></div>
+        <div class="link-area link-area-2" ng-click="$state.go('campaignoffers.content')"></div>
+        <div class="link-area link-area-3" ng-click="$state.go('campaigns.content')"></div>
+        <div class="link-area link-area-4" ng-click="$state.go('activities.content')"></div>
+        <div class="link-area link-area-5" ng-click="$state.go('')"></div>
+        <div class="link-area link-area-6" ng-click="$state.go('')"></div>
+        <div class="link-area link-area-center" ng-click=""></div>
+        <img ng-src="/assets/img/radial_coach_healthpromoter_small.png">
     </div>
 </div>

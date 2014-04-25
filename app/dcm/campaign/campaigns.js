@@ -11,7 +11,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('campaigns', {
-                        templateUrl: "layout/default.html",
+                        templateUrl: "layout/dcmdefault.html",
                         access: accessLevels.campaignlead
                     })
                     .state('campaigns.content', {
@@ -30,7 +30,7 @@
                         }
                     })
                     .state('campaign', {
-                        templateUrl: "layout/default.html",
+                        templateUrl: "layout/dcmdefault.html",
                         access: accessLevels.campaignlead
                     })
                     .state('campaign.content', {
@@ -68,6 +68,7 @@
                     'starting-day': 1
                 };
 
+                CampaignService.currentCampaign = campaign;
 
                 $scope.minDateStart = new Date(moment().hour(8).minutes(0).seconds(0));
                 // we assume, that a campaign ideally lasts at least 6 weeks
