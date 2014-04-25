@@ -23,7 +23,10 @@
         },
 
         "preview": {
-            "header": "Vorschau"
+            "header": "Vorschau",
+            "welcomeLink": "Einladungs-Link",
+            "welcomeLinkExplain": "Mittels Klick auf diesen Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer",
+            "welcomeLinkTest": "Teste den Link"
         },
 
         "campaignLeads": {
