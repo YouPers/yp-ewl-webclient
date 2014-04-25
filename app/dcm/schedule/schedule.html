@@ -28,11 +28,9 @@
             </div>
 
             <div class="content">
-                <div class="title">
-                    {{ offer.activity.title }}
+                <div class="title" ng-bind-html="offer.activity.title">
                 </div>
-                <div class="text">
-                    {{ offer.activity.description }}
+                <div class="text" ng-bind-html="offer.activity.description">
                 </div>
                 <div>
                     <div class="schedule">
