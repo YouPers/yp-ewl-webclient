@@ -4,7 +4,7 @@
 
     angular.module('yp.dhc').factory('NotificationService', ['Restangular', 'UserService', '$q',
         function (Restangular, UserService, $q) {
-            var baseUrl = '/notifications';
+            var baseUrl = 'notifications';
 
             var service = {
                 getNotifications: function (options) {
@@ -25,6 +25,9 @@
                 },
                 postNotification: function(notif, options) {
                     return Restangular.all(baseUrl).post(notif);
+                },
+                deleteNotification: function(notif) {
+                    return Restangular.one(baseUrl, notif.id || notif).remove();
                 }
             };
 

@@ -175,6 +175,14 @@
                     });
                 };
 
+                $scope.deleteNotification = function(notif) {
+                    NotificationService.deleteNotification(notif).then(function() {
+                        _.remove($scope.notifications, function(not) {
+                            return not.id === notif.id;
+                        });
+                    });
+                };
+
 
                 $scope.showWeeks = false;
                 $scope.minDate = new Date();
