@@ -155,10 +155,10 @@
                         if (offer.plan && offer.plan.id) {
                             // if this is an offer with a saved plan, then we delete the plan
                             // the backend will cascade delete the offer automafically
-                            return activityPlans.one(offer.plan.id).delete();
+                            return activityPlans.one(offer.plan.id).remove();
                         } else {
                             // if this is an offer without plan, we just delete the offer
-                            return Restangular.one('activityoffers', offer.id).delete();
+                            return Restangular.one('activityoffers', offer.id).remove();
                         }
                     },
                     updateActivityEvent: function (planId, actEvent) {

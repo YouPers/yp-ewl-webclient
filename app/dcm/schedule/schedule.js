@@ -66,6 +66,14 @@
             function ($rootScope, $scope, $state, ActivityService, offer) {
 
                 $scope.offer = offer;
+
+
+                offer.isScheduled = offer.type[0] === 'campaignActivityPlan' && offer.activityPlan[0].id;
+                offer.isDeletable = (offer.type[0] === 'campaignActivity') ||
+                    (offer.isScheduled && offer.activityPlan[0].deleteStatus.indexOf('deletable') === 0);
+                offer.isEditable =  (offer.type[0] === 'campaignActivity') ||
+                    (offer.activityPlan[0].editStatus === 'editable');
+
                 $scope.plan = offer.activityPlan[0];
 
                 // one time planning using daypicker
@@ -95,6 +103,7 @@
                 $scope.deleteOffer = function () {
                     ActivityService.deleteOffer($scope.offer).then(function () {
                         $rootScope.$emit('clientmsg:success', 'activityOffer.delete');
+                        $rootScope.back();
                     });
                 };
 
