@@ -222,8 +222,11 @@
         </div>
         <div class="save-link form-group" tooltip-placement="left"
              tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
-            <button ng-show="!offer.id" type="submit" class="btn btn-primary pull-right" translate>
-                schedule.schedule
+            <button ng-show="!offer.id && (offer.type[0] == 'campaignActivityPlan')" type="submit" class="btn btn-primary pull-right" translate>
+                dcmschedule.scheduletype.plan
+            </button>
+            <button ng-show="!offer.id && (offer.type[0] == 'campaignActivity')" type="submit" class="btn btn-primary pull-right" translate>
+                dcmschedule.scheduletype.recommend
             </button>
             <button ng-hide="!offer.id" ng-disabled="!schedule.isEditable" type="submit"
                     class="btn btn-primary pull-right" translate>schedule.save
