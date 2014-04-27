@@ -51,15 +51,18 @@
 <div class="row">
     <div class="col-md-12">
         <div class="group-header">
-            <div translate>campaignoffers.notifications.title</div>
-            <div class="group-add" ng-click="addNewNotif = !addNewNotif">+</div>
+            <a href="" ng-click="addNewNotif = !addNewNotif">
+                <div translate>campaignoffers.notifications.title</div>
+                <div class="group-add">+</div>
+            </a>
         </div>
     </div>
 </div>
 <div class="row new-notification" ng-show="addNewNotif">
     <form name="newNotifForm" ng-submit="saveNewNotif()" role="form">
         <div class="col-xs-6">
-            <input class="form-control" type="text" ng-model="newNotif.title" placeholder="{{'campaignoffers.notifications.form.title.placeholder' | translate}}">
+            <input class="form-control" type="text" ng-model="newNotif.title"
+                   placeholder="{{'campaignoffers.notifications.form.title.placeholder' | translate}}">
         </div>
         <div class="col-xs-2  col-xs-offset-2">
             <div>
@@ -73,7 +76,8 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <input class="form-control" type="text" ng-model="newNotif.text" placeholder="{{'campaignoffers.notifications.form.text.placeholder' | translate}}">
+            <input class="form-control" type="text" ng-model="newNotif.text"
+                   placeholder="{{'campaignoffers.notifications.form.text.placeholder' | translate}}">
         </div>
         <div class="col-xs-2 col-xs-offset-2">
             <div>
