@@ -74,7 +74,7 @@
 
                 $scope.getRenderedText = function (activity) {
                     if (activity.text) {
-                        return $sce.trustAsHtml(marked.toHTML(activity.text));
+                        return $sce.trustAsHtml(marked(activity.text));
                     } else {
                         return "";
                     }

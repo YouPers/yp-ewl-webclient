@@ -46,7 +46,7 @@
                                 // this is a translatable ressource key
                                 return $sce.trustAsHtml('key' + myMsg);
                             } else {
-                                return $sce.trustAsHtml(marked.toHTML(myMsg));
+                                return $sce.trustAsHtml(marked(myMsg));
                             }
                         } else {
                             return "";
