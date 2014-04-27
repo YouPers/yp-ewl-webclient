@@ -46,7 +46,10 @@
                 <yp-input name="contact.email"></yp-input>
                 <yp-input name="contact.phone"></yp-input>
 
-                <button type="submit" class="btn btn-primary pull-right" ng-disabled="organizationForm.$invalid"><span translate>organizationForm.save</span></button>
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="organizationForm.$invalid">
+                    <span translate ng-if="!organization.id">organizationForm.create</span>
+                    <span translate ng-if="organization.id">organizationForm.save</span>
+                </button>
 
             </form>
 
