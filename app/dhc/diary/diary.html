@@ -19,22 +19,24 @@
         <div class="row diary-entry" ng-repeat="entry in group.entries">
 
             <!-- date -->
-            <div class="col-sm-3 list-date">
-                <div class="weekday">
-                    {{ entry.dateBegin | date:'EEE' | limitTo: 2 }}
-                </div>
-                <div class="dayofmonth">
-                    {{ entry.dateBegin | date:'dd'}}
-                </div>
-                <div class="time" ng-if="entry.dateEnd">
-                    {{ entry.dateBegin | date:'HH:mm'}} -<br>
-                    {{ entry.dateEnd | date:'HH:mm'}}
-                </div>
-                <div class="time" ng-if="!entry.dateEnd">
-                    {{ entry.dateBegin | date:'HH:mm'}}
+            <div class="col-sm-3">
+                <div class="list-date">
+                    <div class="weekday">
+                        {{ entry.dateBegin | date:'EEE' | limitTo: 2 }}
+                    </div>
+                    <div class="dayofmonth">
+                        {{ entry.dateBegin | date:'dd'}}
+                    </div>
+                    <div class="time" ng-if="entry.dateEnd">
+                        {{ entry.dateBegin | date:'HH:mm'}} -<br>
+                        {{ entry.dateEnd | date:'HH:mm'}}
+                    </div>
+                    <div class="time" ng-if="!entry.dateEnd">
+                        {{ entry.dateBegin | date:'HH:mm'}}
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-1">
+            <div class="col-sm-1 active">
                 <div class="feedback-icon" ng-class="'feedback-icon-' + entry.feedback" ng-show="entry.feedback"></div>
             </div>
 
@@ -52,8 +54,6 @@
 
             <!-- text -->
             <div class="col-sm-4">
-
-
                 <span>
                     {{ entry.text }}
                 </span>
