@@ -51,6 +51,7 @@
 
                     $scope.feedback = {};
                     $rootScope.$emit('clientmsg:success', 'notification.success.feedback');
+                    $scope.back();
                 };
             }
         ])
