@@ -5,10 +5,7 @@
 
 
     "welcome": {
-        "header": {
-            "part1": "Willkommen zur Kampagne ",
-            "part2": " der Kantonsverwaltung Luzern"
-        },
+        "header": "Willkommen zur Kampagne ",
 
         "link": {
             "info": "Mehr erfahren",
