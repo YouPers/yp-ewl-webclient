@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('signIn', ['UserService', '$state', function (UserService, $state) {
+        .directive('signIn', ['UserService', '$rootScope', '$state', function (UserService, $rootScope, $state) {
             return {
                 restrict: 'E',
                 scope: {
@@ -25,8 +25,8 @@
                                     return scope.onSignIn();
                                 }
 
-                                if (scope.nextStateAfterLogin) {
-                                    scope.$state.go(scope.nextStateAfterLogin.toState, scope.nextStateAfterLogin.toParams);
+                                if ($rootScope.nextStateAfterLogin) {
+                                    $state.go($rootScope.nextStateAfterLogin.toState, $rootScope.nextStateAfterLogin.toParams);
                                 } else {
                                     $state.go('home.content');
                                 }
