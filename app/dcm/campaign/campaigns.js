@@ -78,6 +78,7 @@
                     $scope.campaign = campaign;
                 } else {
                     $scope.campaign = {
+                        title: "Stress Management",
                         start: $scope.minDateStart,
                         end: $scope.minDateEnd
                     };
