@@ -198,7 +198,7 @@
                                 every: 1
                             };
                         } else { // default is "once"
-                            newMainEvent.start = moment(now).add('d', 7).startOf('hour').toDate();
+                            newMainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
                             newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                             newMainEvent.frequency = 'once';
                             newMainEvent.recurrence = {

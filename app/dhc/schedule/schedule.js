@@ -126,24 +126,6 @@
                     {label: 'weekday.sunday', value: "0"}
                 ];
 
-                function nextWeekday(date, weekday) {
-                    if (!weekday) {
-                        return date;
-                    }
-                    var input = moment(date);
-                    var output = input.day(weekday);
-                    return output > moment(date) ? output.toDate() : output.add('week', 1).toDate();
-                }
-
-                $scope.$watch('plan.weeklyDay', function (newValue, oldValue) {
-                    if (newValue && $scope.currentActivityPlan.mainEvent.frequency === 'week') {
-                        var duration = $scope.currentActivityPlan.mainEvent.end - $scope.currentActivityPlan.mainEvent.start;
-                        $scope.currentActivityPlan.mainEvent.start = nextWeekday(new Date(), newValue);
-                        $scope.currentActivityPlan.mainEvent.end = moment($scope.currentActivityPlan.mainEvent.start).add(duration);
-                    }
-                });
-
-
                 $scope.isFutureEvent = function(event) {
                     return moment().diff(event.begin) < 0;
                 };
