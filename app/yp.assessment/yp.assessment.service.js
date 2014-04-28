@@ -137,9 +137,11 @@
                                     });
                                 });
 
-                                // first, filter out all answers lower than 40
+                                // first, filter out all answers lower than 40 and not already included from the user profile
                                 var answersAboveThreshold = _.filter(result.answers, function(answer) {
-                                    return Math.abs(answer.answer) > threshold;
+                                    return Math.abs(answer.answer) > threshold && !_.any(focus, function(focus) {
+                                        return focus.question === answer.question.id;
+                                    });
                                 });
 
                                 var topAnswers = _.sortBy(answersAboveThreshold, function (answer) {
