@@ -127,10 +127,17 @@ angular.module('yp-ewl',
                 var requiredAccessLevel = toState.access;
 
                 if (UserService.initialized) {
-                    if (!(UserService.principal.isAuthorized(requiredAccessLevel))) {
+                    if (!UserService.principal.isAuthorized(requiredAccessLevel)) {
                         event.preventDefault();
-                        console.log('preventing state change, because user is not authorized');
-                        $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
+
+                        if (!UserService.principal.isAuthenticated()) {
+                            console.log('preventing state change, because user is not authenticated');
+                            $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
+                        } else {
+                            console.log('preventing state change, because user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
+                            $rootScope.$emit('clientmsg:error', 'user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
+                        }
+
                     }
                 } else {
                     // if the UserService is not done initializing we cancel the stateChange and schedule it again in 100ms
