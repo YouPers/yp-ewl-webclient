@@ -123,12 +123,30 @@
                     },
                     topStressors: function (assessmentId) {
                         return assService.getNewestAssessmentResults(assessmentId, {populatedeep: 'answers.question'}).then(function (result) {
-                            if (!result) {
+                            if (!result || result.answers.length < 26) {
                                 return null;
                             } else {
-                                return _.sortBy(result.answers, function (answer) {
+
+                                // allways include user stressors from profile
+                                var focus = UserService.principal.getUser().profile.userPreferences.focus;
+                                var threshold = 40;
+
+                                var answers = _.filter(result.answers, function(answer) {
+                                    return _.any(focus, function(focus) {
+                                        return focus.question === answer.question.id;
+                                    });
+                                });
+
+                                // first, filter out all answers lower than 40
+                                var answersAboveThreshold = _.filter(result.answers, function(answer) {
+                                    return Math.abs(answer.answer) > threshold;
+                                });
+
+                                var topAnswers = _.sortBy(answersAboveThreshold, function (answer) {
                                     return -Math.abs(answer.answer);
                                 }).slice(0, 3);
+
+                                return answers.concat(topAnswers);
                             }
                         });
                     }

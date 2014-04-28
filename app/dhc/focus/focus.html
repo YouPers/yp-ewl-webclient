@@ -5,12 +5,22 @@
     </div>
 </div>
 
-<div class="row">
+<div ng-if="!topStressors">
+    <div class="row">
+        <div class="col-md-7 center-block text-center">
+            <span translate>focus.assessmentNotCompleted</span>
+        </div>
+    </div>
+</div>
 
-    <div class="col-md-8 center-block">
+<div ng-if="topStressors">
 
-        <table class="table focus">
-            <thead>
+    <div class="row">
+
+        <div class="col-md-8 center-block">
+
+            <table class="table focus">
+                <thead>
                 <tr>
                     <th class="left" translate>focus.header</th>
 
@@ -19,8 +29,8 @@
                     <th translate>focus.medium</th>
                     <th class="active" translate>focus.high</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr ng-repeat="category in categories">
                     <td class="left" translate>focus.{{category}}</td>
 
@@ -34,52 +44,54 @@
                     <td><div></div></td>
                     <td class="active"><div></div></td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-    </div>
-
-</div>
-
-<div class="row">
-
-    <div class="col-md-8 center-block arrow-down">
-
-
-    </div>
-
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div translate>focus.whatFocus</div>
-    </div>
-</div>
-<div class="row">
-
-    <div class="col-md-8 col-md-offset-2">
-        <div class="row" ng-repeat="stressor in topStressors">
-            <div class="col-md-1">{{$index + 1}}</div>
-            <div class="col-md-4">{{stressor.question.title}}</div>
-            <div class="col-md-3">{{'questionCategory.' + stressor.question.category | translate}}</div>
-            <div class="col-md-1">
-                <input type="checkbox" ng-model="stressor.selected" ng-change="stressorSelected(stressor)"/>
-            </div>
         </div>
 
     </div>
 
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div translate>focus.yourPersonalGoal.question</div>
-        <textarea id="personalGoal" ng-model="userPreferences.personalGoal" class="form-control" ng-blur="savePersonalGoal()" placeholder="{{'focus.yourPersonalGoal.placeholder' | translate}}"></textarea>
+    <div class="row">
+
+        <div class="col-md-8 center-block arrow-down">
+
+
+        </div>
 
     </div>
-</div>
-<div class="row btn-bottom-nav">
-    <div class="col-xs-12">
-        <div class="pull-left"><button class="btn btn-primary" translate ng-click="$state.go('check.content')">focus.toCheck</button></div>
-        <div class="pull-right"><button class="btn btn-primary" translate ng-click="$state.go('select.content')">focus.toSelect</button></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div translate>focus.whatFocus</div>
+        </div>
     </div>
+    <div class="row">
+
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row" ng-repeat="stressor in topStressors">
+                <div class="col-md-1">{{$index + 1}}</div>
+                <div class="col-md-4">{{stressor.question.title}}</div>
+                <div class="col-md-3">{{'questionCategory.' + stressor.question.category | translate}}</div>
+                <div class="col-md-1">
+                    <input type="checkbox" ng-model="stressor.selected" ng-change="stressorSelected(stressor)"/>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div translate>focus.yourPersonalGoal.question</div>
+            <textarea id="personalGoal" ng-model="userPreferences.personalGoal" class="form-control" ng-blur="savePersonalGoal()" placeholder="{{'focus.yourPersonalGoal.placeholder' | translate}}"></textarea>
+
+        </div>
+    </div>
+    <div class="row btn-bottom-nav">
+        <div class="col-xs-12">
+            <div class="pull-left"><button class="btn btn-primary" translate ng-click="$state.go('check.content')">focus.toCheck</button></div>
+            <div class="pull-right"><button class="btn btn-primary" translate ng-click="$state.go('select.content')">focus.toSelect</button></div>
+        </div>
+    </div>
+
 </div>
