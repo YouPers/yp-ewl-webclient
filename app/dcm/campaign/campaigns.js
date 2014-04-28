@@ -68,7 +68,7 @@
                     'starting-day': 1
                 };
 
-                CampaignService.currentCampaign = campaign;
+
 
                 $scope.minDateStart = new Date(moment().hour(8).minutes(0).seconds(0));
                 // we assume, that a campaign ideally lasts at least 6 weeks
@@ -83,6 +83,12 @@
                         end: $scope.minDateEnd
                     };
                 }
+
+                CampaignService.currentCampaign = $scope.campaign;
+
+                $scope.$watch(function() {return CampaignService.currentCampaign;}, function(newValue, oldValue) {
+                    $state.go('campaign.content', {id: newValue.id});
+                });
 
                 $scope.inviteCampaignLead = function(emails,campaign) {
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
