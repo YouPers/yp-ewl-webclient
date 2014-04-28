@@ -95,6 +95,7 @@
         "description": {
             "label": "Beschreibung"
         },
+        "back": "Zurück",
         "submit": "Abschicken"
     },
     "feedbackCategory": {
