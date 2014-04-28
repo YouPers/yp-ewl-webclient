@@ -13,7 +13,19 @@
             "tomorrow": "morgen",
             "week": "diese woche",
             "month": "diesen monat",
-            "other": "weitere"
+
+            "0": "Jänner",
+            "1": "Februar",
+            "2": "März",
+            "3": "April",
+            "4": "Mai",
+            "5": "Juni",
+            "6": "Juli",
+            "7": "August",
+            "8": "September",
+            "9": "Oktober",
+            "10": "November",
+            "11": "Dezember"
         },
         "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 anderer</a>} other{und <a># andere</a>}}"
 

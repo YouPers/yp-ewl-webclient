@@ -38,6 +38,14 @@
 
                 var events = [];
 
+                var groups = [
+                    'open',
+                    'today',
+                    'tomorrow',
+                    'week',
+                    'month'
+                ];
+
                 _.forEach(plans, function(plan) {
                     _.forEach(plan.events, function(event) {
                         event.plan = plan;
@@ -54,32 +62,38 @@
                         return 'open';
                     }
 
-                    var diff = Math.abs(moment().diff(date, 'days'));
+                    var now = moment();
+
+                    var today = moment().hour(0).minute(0).second(0).millisecond(0);
+                    var tomorrow = moment(today).add('days', 1);
+                    var dayAfterTomorrow = moment(today).add('days', 2);
+
+                    var nextWeek = moment(today).day(7);
+                    var nextMonth = moment(today).date(1).month((today.month() + 1) % 11);
+
+
+                    var eventDate = moment(date);
 
                     // TODO: finetune today/tomorrow
 
-                    if(diff < 1) {
+                    if(eventDate.diff(tomorrow) < 0) {
                         return 'today';
-                    } else if(diff < 2) {
+                    } else if(eventDate.diff(dayAfterTomorrow) < 0) {
                         return 'tomorrow';
-                    } else if(diff < 7) {
+                    } else if(eventDate.diff(nextWeek) < 0) {
                         return 'week';
-                    } else if(diff < 31) {
+                    } else if(eventDate.diff(nextMonth) < 0) {
                         return 'month';
                     } else {
-                        return 'other';
+                        var month = eventDate.month();
+                        if(!_.contains(groups, month)) {
+                            groups.push(month);
+                        }
+                        return  month;
                     }
 
                 });
 
-                var groups = [
-                    'open',
-                    'today',
-                    'tomorrow',
-                    'week',
-                    'month',
-                    'other'
-                ];
 
                 if(groupedEvents.open) {
 
