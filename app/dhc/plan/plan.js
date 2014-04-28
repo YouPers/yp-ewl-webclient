@@ -70,6 +70,7 @@
 
                     var nextWeek = moment(today).day(7);
                     var nextMonth = moment(today).date(1).month((today.month() + 1) % 11);
+                    var nextYear = moment(today).month(0).date(1).add('years', 1);
 
 
                     var eventDate = moment(date);
@@ -84,20 +85,19 @@
                         return 'week';
                     } else if(eventDate.diff(nextMonth) < 0) {
                         return 'month';
-                    } else {
+                    } else if(eventDate.diff(nextYear) < 0) {
                         var month = eventDate.month();
                         if(!_.contains(groups, month)) {
                             groups.push(month);
                         }
                         return  month;
+                    } else {
+                        return 'year';
                     }
 
                 });
 
-
-                if(groupedEvents.open) {
-
-                }
+                groups.push('year');
 
                 $scope.groups = [];
                 _.forEach(groups, function (group) {
