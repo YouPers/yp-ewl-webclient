@@ -99,8 +99,8 @@
                     $scope.plan.visibility = true;
                 }
 
-                $scope.getJoiningUsers = function () {
-                    return _.pluck(schedule.plan.joiningUsers.slice(1), 'fullname').join('<br/>');
+                $scope.getJoiningUsers = function (plan) {
+                    return _.pluck(plan.joiningUsers.slice(1), 'fullname').join('<br/>');
                 };
 
                 // calendar & recurrence

@@ -181,7 +181,7 @@
                                           translate
                                           translate-values="{ OTHERS: '{{ schedule.plan.joiningUsers.slice(1).length}}' }"
                                           translate-interpolation="messageformat"
-                                          tooltip-html-unsafe="{{ getJoiningUsers() }}"
+                                          tooltip-html-unsafe="{{ getJoiningUsers(schedule.plan) }}"
                                             >
                                         schedule.self.joiningUsers
                                     </span>
@@ -206,15 +206,18 @@
 
         <div class="plan-list">
             <div ng-repeat="plan in schedule.activityPlan" class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 item">
 
                     <div>
-                        <a>{{ plan.owner.fullname }}</a>
-                                                <span ng-show="joiningUsers">
-                                                    <span translate
-                                                          translate-values="{ OTHERS: '{{plan.joiningUsers.length}}' }"
-                                                          translate-interpolation="messageformat">schedule.group.joiningUsers</span>
-                                                </span>
+                        <span>{{ plan.owner.fullname }}</span>
+
+                        <span ng-show="plan.joiningUsers">
+                            <span translate
+                                  translate-values="{ OTHERS: '{{plan.joiningUsers.length}}' }"
+                                  translate-interpolation="messageformat">
+                                schedule.group.joiningUsers</span>
+                        </span>
+
                         <button type="button" ng-click="joinActivityPlan(plan)"
                                 class="join-plan btn btn-xs btn-default pull-right" translate>schedule.group.join
                         </button>
