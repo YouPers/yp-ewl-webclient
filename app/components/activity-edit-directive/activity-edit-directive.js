@@ -57,7 +57,7 @@
                             ActivityService.saveActivity($scope.activity).then(function (result) {
 
                                 if(attrs.onSave) {
-                                    $scope.onSave();
+                                    $scope.onSave(result);
                                 }
 
                             });

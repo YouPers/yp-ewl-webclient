@@ -151,6 +151,8 @@
                 });
             }
         ])
+
+        // TODO: refactor to new file
         .controller('CampaignOffersController', ['$scope', '$rootScope', 'offers', 'notifications', 'CampaignService', 'ActivityService', 'NotificationService',
             function ($scope, $rootScope, offers, notifications, CampaignService, ActivityService, NotificationService) {
                 $scope.offers = offers;
