@@ -349,7 +349,26 @@
                                 <div>
                                     <span translate>schedule.event.rating</span>
                                 </div>
-                                <rating value="event.feedback" max="5" class="rating-component"></rating>
+
+                                <div class="feedback">
+                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="1">
+                                        <div class="feedback-icon feedback-icon-1"></div>
+                                    </button>
+                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="2">
+                                        <div class="feedback-icon feedback-icon-2"></div>
+                                    </button>
+                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="3">
+                                        <div class="feedback-icon feedback-icon-3"></div>
+                                    </button>
+                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="4">
+                                        <div class="feedback-icon feedback-icon-4"></div>
+                                    </button>
+                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="5">
+                                        <div class="feedback-icon feedback-icon-5"></div>
+                                    </button>
+
+                                </div>
+
                             </div>
 
                         </fieldset>
