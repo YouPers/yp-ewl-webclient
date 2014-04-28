@@ -211,6 +211,8 @@
                 require: 'ngModel',
                 link: function (scope, elm, attrs, ctrl) {
 
+                    var initialValue;
+
                     // onchange instead of onblur is nice, but we should not hit the server all the time
                     var validate = function (value) {
 
@@ -221,17 +223,25 @@
                             return;
                         }
 
-                        _.throttle(function () {
+                        // validate only if the value does not equal the initial value
 
-                            // validate and use a "unique" postfix to have different error messages
+                        if(!initialValue) {
+                            initialValue = value;
+                        } else if(initialValue !== value) {
 
-                            UserService.validateUser(user).then(function (res) {
-                                ctrl.$setValidity("unique", true);
-                            }, function (err) {
-                                ctrl.$setValidity("unique", false);
-                            });
+                            _.throttle(function () {
 
-                        }, 500)();
+                                // validate and use a "unique" postfix to have different error messages
+
+                                UserService.validateUser(user).then(function (res) {
+                                    ctrl.$setValidity("unique", true);
+                                }, function (err) {
+                                    ctrl.$setValidity("unique", false);
+                                });
+
+                            }, 500)();
+                        }
+
 
 
                         // we can't return undefined for invalid values as it is validated asynchronously
