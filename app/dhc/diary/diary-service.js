@@ -61,9 +61,17 @@
 
             $rootScope.$on('event:authority-authorized', function () {
                 console.log("checking if we should show Diary Modal");
+
+                var user = UserService.principal.getUser();
                 var profile = UserService.principal.getUser().profile;
+
+                var today = moment().hour(0).minute(0).second(0).millisecond(0);
+                var age = user.created ? Math.abs(today.diff(user.created, 'days', true))
+                    : 0;
+                var doNotAskAgain = profile.userPreferences.doNotAskAgainForDiaryEntry
+
                 var noDiaryEntryToday = ((!profile.userPreferences.lastDiaryEntry) || moment(profile.userPreferences.lastDiaryEntry).diff(moment()) > 1);
-                if (!profile.userPreferences.doNotAskAgainForDiaryEntry && noDiaryEntryToday) {
+                if (age > 1 && !doNotAskAgain && noDiaryEntryToday) {
                     DiaryService.showDiaryModal();
                 }
             });
