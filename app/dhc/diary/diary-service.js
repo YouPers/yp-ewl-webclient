@@ -68,7 +68,7 @@
                 var today = moment().hour(0).minute(0).second(0).millisecond(0);
                 var age = user.created ? Math.abs(today.diff(user.created, 'days', true))
                     : 0;
-                var doNotAskAgain = profile.userPreferences.doNotAskAgainForDiaryEntry
+                var doNotAskAgain = profile.userPreferences.doNotAskAgainForDiaryEntry;
 
                 var noDiaryEntryToday = ((!profile.userPreferences.lastDiaryEntry) || moment(profile.userPreferences.lastDiaryEntry).diff(moment()) > 1);
                 if (age > 1 && !doNotAskAgain && noDiaryEntryToday) {
