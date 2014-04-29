@@ -140,8 +140,20 @@ body {
 // topbar
 .top-bar {
   background-color:  @yp-color-dark-brown;
-  height: 100px;
+  @media(min-width: @screen-sm) {
+    height: 25px;
+  }
+  @media(max-width: @screen-xs) {
+    height: 45px;
+  }
 }
+
+.top-bar a {
+  color: @yp-color-light-grey;
+  display: inline-block;
+  padding-right: 50px;
+}
+
 
 // main content shared definitions
 // --------------------------------

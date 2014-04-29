@@ -1,14 +1,21 @@
-<div class="container main-layout">
-    <div class="row top-bar">
-        <div class="col-sm-10">
-            <campaign-header mode="user"></campaign-header>
-        </div>
-        <div class="col-sm-2">
-            <div class="health-coach-nav" ng-click="$state.go('home.content')" ng-hide="$state.current.name == 'home.content'">
-
+<div class="row top-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 hidden-xs">
+                <a ui-sref="home.content" translate>Start</a><a ui-sref="diary.content" translate>Tagebuch</a> <a ui-sref="check.content" translate>Selbsbeurteilung</a>
+                <a ui-sref="focus.content" translate>Fokus</a>  <a ui-sref="select.content" translate>Empfehlungen</a>  <a ui-sref="plan.offer" translate>Plan</a>
             </div>
         </div>
+        <div class="col-xs-12 visible-xs">
+            <a ui-sref="home.content" translate>Start</a><a ui-sref="diary.content" translate>Tagebuch</a> <a ui-sref="check.content" translate>Selbsbeurteilung</a>
+        </div>
+        <div class="col-xs-12 visible-xs">
+            <a ui-sref="focus.content" translate>Fokus</a>  <a ui-sref="select.content" translate>Empfehlungen</a>  <a ui-sref="plan.offer" translate>Plan</a>
+        </div>
     </div>
+</div>
+<div class="container main-layout">
+
     <div class="row main-content">
         <div class="col-lg-9">
             <div ui-view="content" autoscroll="false"></div>
