@@ -40,9 +40,10 @@
                                         return postedEntry;
                                     }
                                 );
-                            } else if (result.doNotAskAgainToday) {
+                            } else if (result.doNotAskAgainForDiaryEntry) {
                                 var profile = UserService.principal.getUser().profile;
                                 profile.userPreferences.lastDiaryEntry = moment();
+                                profile.userPreferences.doNotAskAgainForDiaryEntry = true;
                                 ProfileService.putProfile(profile);
                                 return null;
                             }
@@ -62,7 +63,7 @@
                 console.log("checking if we should show Diary Modal");
                 var profile = UserService.principal.getUser().profile;
                 var noDiaryEntryToday = ((!profile.userPreferences.lastDiaryEntry) || moment(profile.userPreferences.lastDiaryEntry).diff(moment()) > 1);
-                if (noDiaryEntryToday) {
+                if (!profile.userPreferences.doNotAskAgainForDiaryEntry && noDiaryEntryToday) {
                     DiaryService.showDiaryModal();
                 }
             });
