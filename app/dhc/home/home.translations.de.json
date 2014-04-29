@@ -6,6 +6,13 @@
 
     "home": {
         "title1": "dein",
-        "title2": "Gesundheitscoach"
+        "title2": "Gesundheitscoach",
+
+        "diary": "Tagebuch",
+        "select": "Empfehlungen",
+        "plan": "Plan",
+        "result": "Ergebnisse",
+        "check": "Selbstbeurteilung",
+        "focus": "Fokus"
     }
 }

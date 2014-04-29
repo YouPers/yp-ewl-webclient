@@ -7,14 +7,32 @@
 <div class="row">
     <div class="col-sm-3 col-sm-offset-3">
         <div class="home-content">
-            <div class="link-area link-area-1" ng-click="$state.go('diary.content')"></div>
-            <div class="link-area link-area-2" ng-click="$state.go('select.content')"></div>
-            <div class="link-area link-area-3" ng-click="$state.go('focus.content')"></div>
-            <div class="link-area link-area-4" ng-click="$state.go('plan.offer')"></div>
-            <div class="link-area link-area-5" ng-click="$state.go('check.content')"></div>
-            <div class="link-area link-area-6" ng-click=""></div>
+            <div class="link-area diary" ng-click="$state.go('diary.content')">
+                <div class="icon"></div>
+                <span translate>home.diary</span>
+            </div>
+            <div class="link-area select" ng-click="$state.go('select.content')">
+                <div class="icon"></div>
+                <span translate>home.select</span>
+            </div>
+            <div class="link-area plan" ng-click="$state.go('plan.offer')">
+                <div class="icon"></div>
+                <span translate>home.plan</span>
+            </div>
+            <div class="link-area check" ng-click="$state.go('check.content')">
+                <div class="icon"></div>
+                <span translate>home.check</span>
+            </div>
+            <div class="link-area result" ng-click="">
+                <div class="icon"></div>
+                <span translate>home.result</span>
+            </div>
+            <div class="link-area focus" ng-click="$state.go('focus.content')">
+                <div class="icon"></div>
+                <span translate>home.focus</span>
+            </div>
             <div class="link-area link-area-center" ng-click=""></div>
-            <img ng-src="/assets/img/radial_coach_14_150.png">
+            <div class="link-container"></div>
         </div>
     </div>
 </div>
