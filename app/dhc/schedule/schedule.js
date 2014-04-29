@@ -82,6 +82,13 @@
                 $scope.schedule = schedule;
                 $scope.plan = schedule.plan;
 
+                $scope.$watch('plan.mainEvent.start', function(val, old) {
+                    if(old !== val) {
+                        var end = moment($scope.plan.mainEvent.end).add(moment(val).diff(old));
+                        $scope.plan.mainEvent.end = old ? end : val;
+                    }
+                });
+
 
                 if($stateParams.event) {
                     var offset = _.findIndex($scope.plan.events, function(event) {
