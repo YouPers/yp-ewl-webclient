@@ -19,7 +19,8 @@
                         access: accessLevels.all,
                         views: {
                             content: {
-                                templateUrl: 'dcm/home/home.html'
+                                templateUrl: 'dcm/home/home.html',
+                                controller: 'DcmHomeController'
                             }
                         },
                         resolve: {
@@ -28,6 +29,13 @@
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/home/home');
-            }]);
+            }])
 
+        .controller('DcmHomeController', ['$scope', 'UserService', function($scope, UserService) {
+
+            $scope.canAccess = function(stateName) {
+                return UserService.principal.isAuthorized($scope.$state.get(stateName).access );
+            };
+
+        }]);
 }());

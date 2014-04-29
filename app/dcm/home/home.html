@@ -8,23 +8,28 @@
 <div class="col-sm-3 col-sm-offset-3">
     <div class="dcm-home-content">
 
-        <div class="link-area campaigns" ng-click="$state.go('campaigns.content')">
+        <div class="link-area campaigns" ng-click="canAccess('campaigns.content') && $state.go('campaigns.content')"
+             ng-class="{disabled: !canAccess('campaigns.content')}">
             <div class="icon"></div>
             <span translate>dcmhome.campaigns</span>
         </div>
-        <div class="link-area activities" ng-click="$state.go('activities.content')">
-            <div class="icon"></div>
-            <span translate>dcmhome.activities</span>
-        </div>
-        <div class="link-area campaignoffers" ng-click="$state.go('campaignoffers.content')">
+        <div class="link-area activities" ng-click="canAccess('campaignoffers.content') && $state.go('campaignoffers.content')"
+             ng-class="{disabled: !canAccess('campaignoffers.content')}">
             <div class="icon"></div>
             <span translate>dcmhome.campaignoffers</span>
         </div>
-        <div class="link-area statistics" ng-click="$state.go('statistics.content')">
+        <div class="link-area campaignoffers" ng-click="canAccess('notifications.content') && $state.go('notifications.content')"
+             ng-class="{disabled: !canAccess('notifications.content')}">
+            <div class="icon"></div>
+            <span translate>dcmhome.notifications</span>
+        </div>
+        <div class="link-area statistics" ng-click="false && $state.go('statistics.content')"
+             ng-class="{disabled: true}">
             <div class="icon"></div>
             <span translate>dcmhome.statistics</span>
         </div>
-        <div class="link-area organization" ng-click="$state.go('organization.content')">
+        <div class="link-area organization" ng-click="canAccess('organization.content') && $state.go('organization.content')"
+             ng-class="{disabled: !canAccess('organization.content')}">
             <div class="icon"></div>
             <span translate>dcmhome.organization</span>
         </div>
