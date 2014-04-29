@@ -56,7 +56,7 @@
                 $scope.passwordResetObjReset();
 
                 $scope.requestPasswordReset = function () {
-                    UserService.requestPasswordReset($scope.passwordResetObj.usernameOrEmail).then(function () {
+                    UserService.requestPasswordReset($scope.passwordResetObj.usernameOrEmail).finally(function () {
                         $scope.requestSent = true;
                     });
                 };

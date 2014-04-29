@@ -24,8 +24,24 @@
 .dcm-home-content .icon {
   margin: auto;
 }
-.dcm-home-content div:hover span {
+
+
+.dcm-home-content div:hover.activities span, .dcm-home-content div:hover.notifications span, .dcm-home-content div:hover.statistics span {
   color: @yp-color-green-hover
+}
+
+.dcm-home-content div:hover.organization span, .dcm-home-content div:hover.campaigns span {
+  color: @yp-color-turquoise
+}
+
+.dcm-home-content .link-area.disabled .icon {
+  opacity:.30;
+}
+
+.dcm-home-content .link-area.disabled:hover .icon {
+  opacity:.30;
+  cursor: default;
+  color: inherit;
 }
 
 // campaigns

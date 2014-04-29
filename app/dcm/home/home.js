@@ -19,7 +19,8 @@
                         access: accessLevels.all,
                         views: {
                             content: {
-                                templateUrl: 'dcm/home/home.html'
+                                templateUrl: 'dcm/home/home.html',
+                                controller: 'DcmHomeController'
                             }
                         },
                         resolve: {
@@ -28,6 +29,19 @@
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/home/home');
-            }]);
+            }])
 
+        .controller('DcmHomeController', ['$scope', 'UserService', 'CampaignService',
+            function($scope, UserService, CampaignService) {
+
+            $scope.canAccess = function(stateName) {
+                return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access );
+            };
+
+
+            $scope.$watch(CampaignService.currentCampaign, function(newValue, oldValue) {
+                $scope.currentCampaign =  CampaignService.currentCampaign;
+            });
+
+        }]);
 }());

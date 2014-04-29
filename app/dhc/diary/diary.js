@@ -106,6 +106,9 @@
                 $scope.topic = topic;
                 $scope.resolution = resolution;
 
+                var profile = $scope.principal.getUser().profile;
+                var doNotAskAgainForDiaryEntry = profile.userPreferences.doNotAskAgainForDiaryEntry;
+
                 $scope.result = {
                     entry: {
                         feedback: null,
@@ -113,7 +116,7 @@
                         type: 'manual',
                         dateBegin: new Date()
                     },
-                    doNotAskAgainToday: false
+                    doNotAskAgainForDiaryEntry: doNotAskAgainForDiaryEntry
                 };
 
                 $scope.ok = function () {

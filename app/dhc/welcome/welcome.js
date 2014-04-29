@@ -11,7 +11,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('welcome', {
-                        url: "/welcome/{campaignId}",
+                        url: "/welcome/{campaignId}/{preview}",
                         templateUrl: "dhc/welcome/welcome.html",
                         controller: 'WelcomeController',
                         access: accessLevels.all,
@@ -31,6 +31,9 @@
             function ($scope, $rootScope, $state, $stateParams, UserService, campaign) {
 
                 if (!campaign) {
+                    $state.go('home.content');
+                } else if(!$stateParams.preview && UserService.principal.getUser().campaign.id === campaign.id) {
+                    // user is already in this campaign
                     $state.go('home.content');
                 } else {
                     $scope.campaign = campaign;

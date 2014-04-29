@@ -80,7 +80,8 @@
                     $scope.campaign = {
                         title: "Stress Management",
                         start: $scope.minDateStart,
-                        end: $scope.minDateEnd
+                        end: $scope.minDateEnd,
+                        avatar: '/assets/img/stressManagement.png'
                     };
                 }
 

@@ -24,10 +24,14 @@
 .home-content .icon {
   margin: auto;
 }
-.home-content div:hover span {
+
+.home-content  div:hover.select span, .home-content  div:hover.plan span, .home-content  div:hover.result span {
   color: @yp-color-green-hover
 }
 
+.home-content  div:hover.diary span, .home-content  div:hover.focus span, .home-content  div:hover.check span {
+  color: @yp-color-turquoise
+}
 
 // diary
 .home-content .diary:hover .icon, .home-content .diary:active .icon {
@@ -61,7 +65,7 @@
 
 // plan
 .home-content .plan:hover .icon, .home-content .plan:active .icon {
-  background-image: url('/assets/img/healthcoach/dhc/plan_inactive.png');
+  background-image: url('/assets/img/healthcoach/dhc/plan_active.png');
 }
 .home-content .plan {
   top: 187px;
@@ -126,5 +130,3 @@
   width: 100px;
   height: 100px;
 }
-
-
