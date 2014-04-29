@@ -7,12 +7,12 @@
 
     </div>
 
-    <div class="form-group">
-        <label for="number" class="col-md-3 control-label" translate>activity.number</label>
-        <div class="col-md-9">
-            <input id="number" type="text" ng-model="activity.number" class="form-control">
-        </div>
-    </div>
+    <!--<div class="form-group">-->
+        <!--<label for="number" class="col-md-3 control-label" translate>activity.number</label>-->
+        <!--<div class="col-md-9">-->
+            <!--<input id="number" type="text" ng-model="activity.number" class="form-control">-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div class="form-group">
         <label for="title" class="col-md-3 control-label" translate>activity.title.label</label>
@@ -31,7 +31,7 @@
     <div class="form-group">
         <label for="text" class="col-md-3 control-label" translate>activity.text.label</label>
         <div class="col-md-9">
-            <textarea rows="12" id="text" type="text" class="form-control" ng-model="activity.text" ng-attr-placeholder="{{'activity.text.placeholder' | translate}}"></textarea>
+            <textarea rows="8" id="text" type="text" class="form-control" ng-model="activity.text" ng-attr-placeholder="{{'activity.text.placeholder' | translate}}"></textarea>
         </div>
     </div>
 
@@ -96,9 +96,9 @@
         <div class="col-md-9">
         </div>
 
-        <div class="col-md-3">
-            <button class="btn btn-default pull-left" ng-click="cancel()" translate>activity.back</button>
+        <div class="col-md-3 activity-edit-link">
             <button type="submit" class="btn btn-primary pull-right" ng-disabled="validate()" translate>activity.save</button>
+            <button class="btn btn-default" ng-click="cancel()" translate>activity.back</button>
         </div>
     </div>
 </form>
