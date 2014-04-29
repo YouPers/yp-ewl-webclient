@@ -16,11 +16,15 @@
         </accordion-heading>
 
 
-        <div ng-repeat="question in categories[name]">
+        <div ng-repeat="question in categories[name]" ng-click="displayInfo(question)">
 
             <div class="row">
                 <div class="col-md-12">
-                    <h2>{{ question.title }} <i class="glyphicon glyphicon-info-sign" ng-click="displayInfo(question)"></i></h2>
+                    <h1>
+                        <span>{{ question.title }}</span>
+                        <i ng-mouseover="displayInfo(question)" class="glyphicon glyphicon-info-sign"></i>
+                    </h1>
+
                 </div>
             </div>
 

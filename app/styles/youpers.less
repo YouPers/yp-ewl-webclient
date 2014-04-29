@@ -87,8 +87,15 @@ p {
   border-color: @yp-button-primary-hover-border;
 }
 
-.btn:hover, .btn.active {
+.btn-default:hover {
+  border: 1px solid;
+  border-color: @yp-color-green-hover !important;
+  background-color: white;
+  color: @yp-color-green-hover !important;
+}
+.btn.active {
   background-color: @yp-color-green-hover !important;
+//  background-color: @yp-color-green-hover !important;
   color: white !important;
 }
 .btn:hover, input:hover, textarea:hover, select:hover {
