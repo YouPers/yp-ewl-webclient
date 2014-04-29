@@ -37,14 +37,20 @@
 
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 diary-resolution">
 
             <h4 translate>diary.modal.yourResolution</h4>
             <h3 class="resolution-content">{{resolution}}</h3>
         <button class="btn btn-primary" ng-click="ok()">Weiter</button>
-        <div><input type="checkbox"
-               ng-model="result.doNotAskAgainForDiaryEntry">
-               {{'diary.modal.doNotAskAgainForDiaryEntry' | translate}}
+        <div class="form-group">
+            <label for="doNotAskAgainForDiaryEntry">
+
+                <input id="doNotAskAgainForDiaryEntry" class="" type="checkbox"
+                       ng-model="result.doNotAskAgainForDiaryEntry">
+
+                <span>{{'diary.modal.doNotAskAgainForDiaryEntry' | translate}}</span>
+            </label>
+
         </div>
     </div>
 </div>

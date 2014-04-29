@@ -7,6 +7,30 @@
 
 .mood-feedback button:hover, .mood-feedback button.active {
   background-color: transparent;
+  box-shadow: none;
+  user-select: none;
+  outline: none !important;
+}
+
+.diary-plus {
+  font-size: 2em;
+  &:before { content: "+"; }
+}
+
+.diary-resolution > * {
+
+}
+.diary-resolution label {
+  width: 100%;
+  text-align: center;
+  margin-top: 1em;
+}
+.diary-resolution button {
+  width: 100%;
+  font-size: 2em;
+}
+.diary-resolution .form-group {
+  margin: 0;
 }
 
 .feedback-icon {
