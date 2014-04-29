@@ -62,8 +62,6 @@
                         return 'open';
                     }
 
-                    var now = moment();
-
                     var today = moment().hour(0).minute(0).second(0).millisecond(0);
                     var tomorrow = moment(today).add('days', 1);
                     var dayAfterTomorrow = moment(today).add('days', 2);
