@@ -6,14 +6,30 @@
 </div>
 
 <div class="col-sm-3 col-sm-offset-3">
-    <div class="home-content">
-        <div class="link-area link-area-1" ng-click="$state.go('organization.content')"></div>
-        <div class="link-area link-area-2" ng-click="$state.go('campaignoffers.content')"></div>
-        <div class="link-area link-area-3" ng-click="$state.go('campaigns.content')"></div>
-        <div class="link-area link-area-4" ng-click="$state.go('activities.content')"></div>
-        <div class="link-area link-area-5" ng-click="$state.go('')"></div>
-        <div class="link-area link-area-6" ng-click="$state.go('')"></div>
+    <div class="dcm-home-content">
+
+        <div class="link-area campaigns" ng-click="$state.go('campaigns.content')">
+            <div class="icon"></div>
+            <span translate>dcmhome.campaigns</span>
+        </div>
+        <div class="link-area activities" ng-click="$state.go('activities.content')">
+            <div class="icon"></div>
+            <span translate>dcmhome.activities</span>
+        </div>
+        <div class="link-area campaignoffers" ng-click="$state.go('campaignoffers.content')">
+            <div class="icon"></div>
+            <span translate>dcmhome.campaignoffers</span>
+        </div>
+        <div class="link-area statistics" ng-click="$state.go('statistics.content')">
+            <div class="icon"></div>
+            <span translate>dcmhome.statistics</span>
+        </div>
+        <div class="link-area organization" ng-click="$state.go('organization.content')">
+            <div class="icon"></div>
+            <span translate>dcmhome.organization</span>
+        </div>
+
         <div class="link-area link-area-center" ng-click=""></div>
-        <img ng-src="/assets/img/radial_coach_healthpromoter_small.png">
+        <div class="link-container"></div>
     </div>
 </div>

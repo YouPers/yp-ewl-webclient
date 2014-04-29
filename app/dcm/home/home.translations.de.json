@@ -6,6 +6,12 @@
 
     "dcmhome": {
         "title1": "digitaler",
-        "title2": "Kampagnen-Manager"
+        "title2": "Kampagnen-Manager",
+
+        "campaigns": "Kampagnen",
+        "campaignoffers": "Aktivitäten",
+        "activities": "Neue Aktivitäten",
+        "statistics": "Statistiken",
+        "organization": "Organisation"
     }
 }
