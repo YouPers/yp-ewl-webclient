@@ -12,11 +12,11 @@
                 $stateProvider
                     .state('organization', {
                         templateUrl: "layout/dcmdefault.html",
-                        access: accessLevels.all
+                        access: accessLevels.user
                     })
                     .state('organization.content', {
                         url: "/organization/",
-                        access: accessLevels.all,
+                        access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'dcm/organization/organization.html',

@@ -109,7 +109,7 @@
                             });
                         } else {
                             CampaignService.postCampaign($scope.campaign).then(function(campaign) {
-                                $state.go('campaign.content', { id: campaign.id });
+                                $state.go('campaigns.content');
                             });
                         }
 
