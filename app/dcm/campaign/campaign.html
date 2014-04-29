@@ -32,14 +32,6 @@
             <form name="campaignForm" ypModel="campaign" class="form-horizontal" role="form"
                   ng-submit="saveCampaign()" novalidate>
 
-                <div class="form-group" ng-if="campaign.id">
-                    <label for="avatar" translate>campaignForm.avatar.label</label>
-                    <avatar-upload type="campaign" avatar-object="campaign">
-                        <a href="" translate>campaignForm.avatar.change</a>
-                    </avatar-upload>
-                </div>
-
-
                 <yp-input name="participants"></yp-input>
                 <yp-input name="location"></yp-input>
                 <yp-input name="city"></yp-input>
