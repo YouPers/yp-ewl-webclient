@@ -28,8 +28,7 @@
             <div class="icon"></div>
             <span translate>dcmhome.statistics</span>
         </div>
-        <div class="link-area organization" ng-click="canAccess('organization.content') && $state.go('organization.content')"
-             ng-class="{disabled: !canAccess('organization.content')}">
+        <div class="link-area organization" ng-click="$state.go('organization.content')">
             <div class="icon"></div>
             <span translate>dcmhome.organization</span>
         </div>

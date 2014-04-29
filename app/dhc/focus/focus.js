@@ -11,11 +11,11 @@
                 $stateProvider
                     .state('focus', {
                         templateUrl: "layout/default.html",
-                        access: accessLevels.all
+                        access: accessLevels.user
                     })
                     .state('focus.content', {
                         url: "/focus",
-                        access: accessLevels.all,
+                        access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'dhc/focus/focus.html',
