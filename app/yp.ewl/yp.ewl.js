@@ -155,7 +155,7 @@ angular.module('yp-ewl',
             });
 
             $rootScope.$on('loginMessageShow', function (event, data) {
-                $state.go('signin.content');
+                $state.go('signup.content');
                 $rootScope.nextStateAfterLogin = data;
             });
 
