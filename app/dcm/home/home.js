@@ -31,11 +31,17 @@
                 $translateWtiPartialLoaderProvider.addPart('dcm/home/home');
             }])
 
-        .controller('DcmHomeController', ['$scope', 'UserService', function($scope, UserService) {
+        .controller('DcmHomeController', ['$scope', 'UserService', 'CampaignService',
+            function($scope, UserService, CampaignService) {
 
             $scope.canAccess = function(stateName) {
-                return UserService.principal.isAuthorized($scope.$state.get(stateName).access );
+                return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access );
             };
+
+
+            $scope.$watch(CampaignService.currentCampaign, function(newValue, oldValue) {
+                $scope.currentCampaign =  CampaignService.currentCampaign;
+            });
 
         }]);
 }());

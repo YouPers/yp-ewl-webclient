@@ -21,13 +21,19 @@
                     }
 
                     function _setCampaignsFromCampaignLead() {
-                        CampaignService.getCampaigns().then(function(campaigns) {
-                            scope.campaigns = campaigns;
-                            if (! CampaignService.currentCampaign) {
-                                CampaignService.currentCampaign = campaigns[0];
-                                $rootScope.$emit('campaign:currentCampaignChanged');
-                            }
-                        });
+                        if (_.contains(UserService.principal.getUser().roles),'campaignlead') {
+                            CampaignService.getCampaigns().then(function(campaigns) {
+                                scope.campaigns = campaigns;
+                                if (!CampaignService.currentCampaign) {
+                                    CampaignService.currentCampaign = campaigns[0];
+                                    $rootScope.$emit('campaign:currentCampaignChanged');
+                                }
+                            });
+                        } else {
+                            scope.campaigns = [];
+                            CampaignService.currentCampaign = undefined;
+                        }
+
                     }
 
 
