@@ -43,11 +43,8 @@ describe('GET home', function() {
             element.all(by.repeater('item in items')).get(index).click(); // navigate to card in carousel
             all.get(index).findElement(by.css('.schedule-link')).click(); // open card
 
-
             element(by.css('button.self')).click(); // open self tab
             element(by.css('.save-link button')).click(); // plan
-
-
 
             // login user 2
             user.logout();
