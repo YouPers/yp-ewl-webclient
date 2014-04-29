@@ -118,9 +118,19 @@
 
                 });
 
-                var putAnswer = _.throttle(function putAnswer(answer) {
-                    AssessmentService.putAnswer(answer);
-                }, 1000);
+                var throtteledFunctions = {};
+
+                var putAnswer = function(answer) {
+                    if (!throtteledFunctions[answer.question]) {
+                        throtteledFunctions[answer.question] = _.throttle(function putAnswer(answer) {
+                            AssessmentService.putAnswer(answer);
+                        }, 1000);
+                    }
+                    return throtteledFunctions[answer.question](answer);
+
+                };
+
+
 
 
                 $scope.displayInfo = function(question) {
