@@ -94,7 +94,7 @@
             <div translate>campaign.preview.welcomeLinkExplain</div>
             <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
             <div translate ng-hide="campaign.id">campaign.preview.welcomeLinkNotSaved</div>
-            <a ui-sref="welcome({campaignId: campaign.id})" ng-show="campaign.id" translate>campaign.preview.welcomeLinkTest</a>
+            <a ui-sref="welcome({campaignId: campaign.id, preview: true})" ng-show="campaign.id" translate>campaign.preview.welcomeLinkTest</a>
 
         </div>
     </div>

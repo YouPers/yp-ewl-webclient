@@ -68,7 +68,6 @@
 
                 $scope.offer = offer;
 
-
                 offer.isScheduled = offer.type[0] === 'campaignActivityPlan' && offer.activityPlan[0].id;
                 offer.isDeletable = (offer.type[0] === 'campaignActivity') ||
                     (offer.isScheduled && offer.activityPlan[0].deleteStatus.indexOf('deletable') === 0);
@@ -76,6 +75,13 @@
                     (offer.activityPlan[0].editStatus === 'editable');
 
                 $scope.plan = offer.activityPlan[0];
+
+                $scope.$watch('plan.mainEvent.start', function(val, old) {
+                    if(old !== val) {
+                        var end = moment($scope.plan.mainEvent.end).add(moment(val).diff(old));
+                        $scope.plan.mainEvent.end = old ? end : val;
+                    }
+                });
 
                 // one time planning using daypicker
                 $scope.showWeeks = false;
