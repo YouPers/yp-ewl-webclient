@@ -8,65 +8,63 @@
 <div class="campaign-detail">
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="group-header">
                 <span translate>campaign.header</span>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="link-header">
-                <button class="btn btn-primary" ng-click="$state.go('campaignoffers.content')">
-                    <span translate>campaign.link.activityLog</span>
+                <button class="btn btn-primary" ui-sref="campaignoffers.content">
+                    <span translate>campaign.link.campaignoffers</span>
                 </button>
-                <button class="btn btn-primary">
-                    <span translate>campaign.link.statistics</span>
+                <button class="btn btn-primary" ui-sref="notifications.content">
+                    <span translate>campaign.link.notifications</span>
                 </button>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-11">
 
 
-            <form name="campaignForm" ypModel="campaign" class="form-horizontal" role="form"
-                  ng-submit="saveCampaign()" novalidate>
-
-                <yp-input name="participants"></yp-input>
-                <yp-input name="location"></yp-input>
-                <yp-input name="city"></yp-input>
-                <yp-input name="slogan"></yp-input>
-
-                <div class="form-group date">
-                    <label for="datePickerStart" class="control-label" translate>campaignForm.start.label</label>
-
-                    <div>
-                        <input class="form-control start" type="text" id="datePickerStart"
-                               datepicker-popup="dd.MM.yyyy"
-                               ng-model="campaign.start"
-                               is-open="startOpened" min="minDateStart"
-                               datepicker-options="dateOptions"
-                               date-disabled="disabled(date, mode)" ng-required="true"/>
-                    </div>
-
-                    <div>
-                        <input class="form-control end" type="text" id="datePickerEnd"
-                               datepicker-popup="dd.MM.yyyy"
-                               ng-model="campaign.end"
-                               is-open="endOpened" min="minDateEnd"
-                               datepicker-options="dateOptions"
-                               date-disabled="disabled(date, mode)" ng-required="true"/>
-                    </div>
-                </div>
-
-                <div>
-                    <button type="submit" class="btn btn-primary pull-right" ng-disabled="campaignForm.$invalid">
-                        <span translate>campaignForm.{{ campaign.id ? 'save' : 'create' }}</span>
-                    </button>
-                </div>
+                    <form name="campaignForm" ypModel="campaign" class="form-horizontal" role="form"
+                          ng-submit="saveCampaign()" novalidate>
 
 
-            </form>
+                        <yp-input name="participants"></yp-input>
+                        <yp-input name="location"></yp-input>
+                        <yp-input name="city"></yp-input>
+                        <yp-input name="slogan"></yp-input>
+
+                        <div class="form-group date">
+                            <label for="datePickerStart" class="control-label" translate>campaignForm.start.label</label>
+
+                            <div>
+                                <input class="form-control start" type="text" id="datePickerStart"
+                                       datepicker-popup="dd.MM.yyyy"
+                                       ng-model="campaign.start"
+                                       is-open="startOpened" min="minDateStart"
+                                       datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true"/>
+                            </div>
+
+                            <div>
+                                <input class="form-control end" type="text" id="datePickerEnd"
+                                       datepicker-popup="dd.MM.yyyy"
+                                       ng-model="campaign.end"
+                                       is-open="endOpened" min="minDateEnd"
+                                       datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" ng-required="true"/>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary pull-right" ng-disabled="campaignForm.$invalid">
+                                <span translate>campaignForm.{{ campaign.id ? 'save' : 'create' }}</span>
+                            </button>
+                        </div>
+                    </form>
 
 
         </div>
