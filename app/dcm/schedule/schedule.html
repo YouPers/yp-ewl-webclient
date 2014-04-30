@@ -55,7 +55,7 @@
 
         <div class="btn-group form-group execution-type">
             <button type="button" class="btn btn-default plan" ng-model="offer.type[0]"
-                    btn-radio="'campaignActivityPlan'"
+                    btn-radio="'campaignActivityPlan'" ng-disabled="offer.activity.defaultexecutiontype=='self'"
                     translate>
                 dcmschedule.scheduletype.plan
             </button>
