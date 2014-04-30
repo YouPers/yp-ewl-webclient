@@ -104,7 +104,7 @@
                     $scope.$watch('answers["'+key+'"].answerValue', function(value, oldValue) {
 
 
-                        if((!value && value !== 0) || value === parseInt(oldValue)) {
+                        if((!value && value !== 0) || parseInt(value) === parseInt(oldValue)) {
                             return;
                         }
 
