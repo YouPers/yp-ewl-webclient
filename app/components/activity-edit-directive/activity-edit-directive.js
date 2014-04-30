@@ -56,6 +56,8 @@
                             }
                             ActivityService.saveActivity($scope.activity).then(function (result) {
 
+                                $scope.activity.id = result.id;
+
                                 if(attrs.onSave) {
                                     $scope.onSave(result);
                                 }

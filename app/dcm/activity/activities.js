@@ -52,6 +52,7 @@
                                     // TODO: define default activity and options visible for the campaign lead
 
                                     return {
+                                        "number": "CampaignActivity",
                                         source: "campaign",
                                         defaultfrequency: "once",
                                         "defaultexecutiontype": "group",
@@ -116,7 +117,7 @@
                     $scope.query = {query: ''};
 
                     var groups = [
-                        'campaign',
+//                        'campaign',
                         'all'
                     ];
 

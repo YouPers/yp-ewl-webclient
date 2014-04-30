@@ -32,12 +32,12 @@
     },
 
     "activities": {
-        "title1": "deine",
+        "title1": "kampagnen",
         "title2": "aktivitäten",
 
         "group": {
-            "campaign": "kampagnen aktivitäten",
-            "all": "alle aktivitäten"
+            "campaign": "eigene aktivitäten",
+            "all": "YouPers Aktivitäts-Ideen"
         },
 
         "duration": {
