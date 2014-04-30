@@ -1,0 +1,25 @@
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <span>{{ start | date:'dd.MM.' }} - {{ end | date }}</span>
+
+    </div>
+
+</div>
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <span>{{ start | date:'HH:mm' }} - {{ end | date:'HH:mm' }}</span>
+
+        <span ng-if="frequency === 'day'">
+            (<span translate>scheduledDate.daily</span>)
+        </span>
+        <span ng-if="frequency === 'week'">
+            ({{ weekday() }})
+        </span>
+
+    </div>
+
+</div>

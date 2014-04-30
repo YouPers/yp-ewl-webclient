@@ -58,10 +58,16 @@
             "newActivity": "Eigene Aktivität <br/>erstellen",
             "publishActivity": "Bestehende Aktivität <br/>empfehlen/einplanen"
         },
+
+        "published": "publiziert",
+
         "offertype": {
             "campaignActivity": "empfohlen",
-            "campaignActivityPlan": "geplant"
+            "campaignActivityPlan": "eingeplant"
         }
 
+    },
+    "scheduledDate": {
+        "daily": "täglich"
     }
 }

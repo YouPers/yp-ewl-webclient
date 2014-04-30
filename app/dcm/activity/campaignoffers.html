@@ -28,26 +28,36 @@
     <!-- groups -->
 
     <div class="offer row" ng-repeat="offer in offers">
-        <div class="col-xs-3 image">
+        <div class="col-xs-2 image">
             <img ng-src="{{'/assets/actpics/' + offer.activity.number + '.jpg' }}">
         </div>
         <div class="col-xs-2 title">
             <span ng-bind-html="offer.activity.title"></span>
             {{offer.activityPlan[0].location}}
         </div>
-        <div class="col-xs-2 title">
-            {{ 'activityPlanFrequency.' + ((offer.activityPlan[0] && offer.activityPlan[0].frequency) ||
-            (offer.activity.defaultfrequency)) | translate}}<br>
-            <span ng-show="offer.type[0] == 'campaignActivityPlan'">{{offer.activityPlan[0].mainEvent.start | date}} {{offer.activityPlan[0].mainEvent.start | date:'HH:mm'}}</span>
-        </div>
-        <div class="col-xs-1 type">
-            {{'campaignoffers.offertype.'+offer.type[0] | translate }}
+        <div class="col-xs-3 date">
+
+            <div ng-show="offer.type[0] == 'campaignActivityPlan'">
+
+
+                <scheduled-date start="offer.activityPlan[0].mainEvent.start"
+                                end="offer.activityPlan[0].events[offer.activityPlan[0].events.length - 1].end"
+                                frequency="offer.activityPlan[0].mainEvent.frequency">
+
+                                </scheduled-date>
+
+            </div>
+
+
         </div>
         <div class="col-xs-2 type">
-            von: {{offer.validFrom | date }}<br>
-            bis: {{offer.validTo | date }}
+            {{'campaignoffers.offertype.'+offer.type[0] | translate }}
         </div>
-        <div class="col-xs-2 details" ng-click="$state.go('dcmschedule.content', {id: offer.id})">
+        <div class="col-xs-2 published">
+            <div translate>campaignoffers.published</div>
+            <div>{{ offer.validFrom | date:'dd.MM.' }} - {{ offer.validTo | date }}</div>
+        </div>
+        <div class="col-xs-1 details" ng-click="$state.go('dcmschedule.content', {id: offer.id})">
             <a ui-sref="'dcmschedule.content({id: offer.id})">details</a>
         </div>
 
