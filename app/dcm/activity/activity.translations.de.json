@@ -54,9 +54,9 @@
         "title1": "kampagnen",
         "title2": "Aktivitäten",
 
-
         "link": {
-            "new": "Neue Kampagnen-Aktivität"
+            "newActivity": "Eigene Aktivität <br/>erstellen",
+            "publishActivity": "Bestehende Aktivität <br/>empfehlen/einplanen"
         },
         "offertype": {
             "campaignActivity": "empfohlen",
