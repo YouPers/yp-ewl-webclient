@@ -97,6 +97,7 @@
                         function (savedOffer) {
                             $scope.offer.id = savedOffer.id;
                             $rootScope.$emit('clientmsg:success', 'activityOffer.saved');
+                            $state.go('campaignoffers.content');
                         },
                         function (err) {
                             console.log(err);
