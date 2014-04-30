@@ -23,11 +23,11 @@
                     }
 
                 },
-                postNotification: function(notif, options) {
-                    return Restangular.all(baseUrl).post(notif);
+                postNotification: function(notification, options) {
+                    return Restangular.all(baseUrl).post(notification);
                 },
-                deleteNotification: function(notif) {
-                    return Restangular.one(baseUrl, notif.id || notif).remove();
+                deleteNotification: function(notification) {
+                    return Restangular.one(baseUrl, notification.id || notification).remove();
                 }
             };
 

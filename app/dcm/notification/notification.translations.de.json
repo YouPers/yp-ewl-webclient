@@ -1,0 +1,28 @@
+{
+    "clientmsg": {
+
+    },
+
+    "notifications": {
+        "title1": "deine",
+        "title2": "mitteilungen",
+
+        "link": {
+            "new": "Neue Mitteilung"
+        },
+
+        "form": {
+            "title": {
+                "placeholder": "Titel, der erscheint in der Inbox als Überschrift"
+            },
+            "text": {
+                "placeholder": "Text, ausführliche Botschaft (optional)"
+            },
+            "submit": "veröffentlichen",
+            "delete": "löschen"
+        }
+
+    }
+
+
+}

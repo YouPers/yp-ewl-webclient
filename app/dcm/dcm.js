@@ -10,6 +10,7 @@
             'yp.dcm.organization',
             'yp.dcm.campaign',
             'yp.dcm.schedule',
+            'yp.dcm.notification',
 
             'yp.dcm.activity',
 
