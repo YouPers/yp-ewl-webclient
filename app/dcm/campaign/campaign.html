@@ -15,10 +15,10 @@
         </div>
         <div class="col-md-4">
             <div class="link-header">
-                <button class="btn btn-primary" ui-sref="campaignoffers.content">
+                <button class="btn btn-primary" ui-sref="campaignoffers.content" ng-disabled="!campaign.id">
                     <span translate>campaign.link.campaignoffers</span>
                 </button>
-                <button class="btn btn-primary" ui-sref="notifications.content">
+                <button class="btn btn-primary" ui-sref="notifications.content" ng-disabled="!campaign.id">
                     <span translate>campaign.link.notifications</span>
                 </button>
             </div>
