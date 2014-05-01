@@ -38,8 +38,7 @@
                 return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access );
             };
 
-
-            $rootScope.$on('campaign:currentCampaignChanged', function () {
+            $scope.$watch(function() {return CampaignService.currentCampaign;}, function(value, oldValue) {
                 $scope.currentCampaign =  CampaignService.currentCampaign;
             });
 
