@@ -87,7 +87,7 @@
                     AssessmentService.getNewestAssessmentResults('525faf0ac558d40000000005').then(function(results) {
                         results.dirty = true;
                         AssessmentService.postResults(results);
-                    })
+                    });
 
                     ProfileService.putProfile($scope.principal.getUser().profile);
                 };
