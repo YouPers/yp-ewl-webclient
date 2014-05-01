@@ -2,7 +2,8 @@
 
     <div class="col-sm-12">
 
-        <span>{{ start | date:'dd.MM.' }} - {{ end | date }}</span>
+        <span ng-if="frequency === 'once'">{{ start | date }}</span>
+        <span ng-if="frequency !== 'once'">{{ start | date:'dd.MM.' }} - {{ end | date }}</span>
 
     </div>
 
