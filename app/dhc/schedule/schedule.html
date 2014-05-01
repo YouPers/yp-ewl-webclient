@@ -212,18 +212,12 @@
 
                     <div>
 
-                        <span>{{ 'activityPlanFrequency.' + plan.mainEvent.frequency | translate}}</span>
+                        <scheduled-date start="plan.mainEvent.start"
+                                        end="plan.events[plan.events.length - 1].end"
+                                        frequency="plan.mainEvent.frequency">
 
-                        <div ng-if="plan.mainEvent.frequency == 'week'">
-                            <span translate>schedule.group.startingOn</span>
-                            <span>{{ plan.mainEvent.start | fromNow }}</span>
-                        </div>
+                                        </scheduled-date>
 
-                        <div>
-                            <span>{{ plan.mainEvent.start | time }}</span>
-                            <span translate>schedule.group.startToEndDate</span>
-                            <span>{{ plan.mainEvent.end | time }}</span>
-                        </div>
 
                     </div>
 
