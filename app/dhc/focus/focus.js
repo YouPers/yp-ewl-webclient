@@ -38,7 +38,7 @@
         .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'ProfileService', 'AssessmentService',
             function ($scope, assessmentResult, topStressors,  ProfileService, AssessmentService) {
 
-                $scope.needForAction = assessmentResult.needForAction;
+                $scope.needForAction = assessmentResult? assessmentResult.needForAction : null;
 
                 $scope.categories = [
                     'work',
