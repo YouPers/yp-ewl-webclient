@@ -24,7 +24,7 @@
                             }
                         },
                         resolve: {
-                            campaigns: ['CampaignService', function(CampaignService) {
+                            campaigns: ['CampaignService', function (CampaignService) {
                                 return CampaignService.getCampaigns();
                             }]
                         }
@@ -43,9 +43,9 @@
                             }
                         },
                         resolve: {
-                            campaign: ['$stateParams', 'CampaignService', function($stateParams, CampaignService) {
+                            campaign: ['$stateParams', 'CampaignService', function ($stateParams, CampaignService) {
 
-                                if($stateParams.id) {
+                                if ($stateParams.id) {
                                     return CampaignService.getCampaign($stateParams.id);
                                 } else {
                                     return undefined;
@@ -59,9 +59,8 @@
             }])
 
 
-
-        .controller('CampaignController', [ '$scope', '$state', 'CampaignService', 'campaign',
-            function ($scope, $state, CampaignService, campaign) {
+        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign',
+            function ($scope, CampaignService, UserService, campaign) {
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
@@ -69,12 +68,11 @@
                 };
 
 
-
                 $scope.minDateStart = new Date(moment().hour(8).minutes(0).seconds(0));
                 // we assume, that a campaign ideally lasts at least 6 weeks
-                $scope.minDateEnd = new Date(moment().hour(17).minutes(0).seconds(0).add('week',6));
+                $scope.minDateEnd = new Date(moment().hour(17).minutes(0).seconds(0).add('week', 6));
 
-                if(campaign) {
+                if (campaign) {
                     $scope.campaign = campaign;
                 } else {
                     $scope.campaign = {
@@ -87,30 +85,38 @@
 
                 CampaignService.currentCampaign = $scope.campaign;
 
-                $scope.$watch(function() {return CampaignService.currentCampaign;}, function(newValue, oldValue) {
-                    $state.go('campaign.content', {id: newValue.id});
+                $scope.$watch(function () {
+                    return CampaignService.currentCampaign;
+                }, function (newValue, oldValue) {
+                    if (newValue) {
+                        $scope.$state.go('campaign.content', {id: newValue.id});
+                    }
                 });
 
-                $scope.inviteCampaignLead = function(emails,campaign) {
-                    CampaignService.inviteCampaignLead(emails, campaign.id).then(function() {
+                $scope.inviteCampaignLead = function (emails, campaign) {
+                    CampaignService.inviteCampaignLead(emails, campaign.id).then(function () {
                         $scope.invitationSent = true;
                     });
                 };
 
-                $scope.saveCampaign = function() {
+                $scope.saveCampaign = function () {
 
                     var startDate = moment($scope.campaign.start);
                     var endDate = moment($scope.campaign.end);
                     if (startDate.diff(endDate) < 0) {
 
-                        if($scope.campaign.id) {
-                            CampaignService.putCampaign($scope.campaign).then(function(campaign) {
-                                $state.go('campaigns.content');
+                        if ($scope.campaign.id) {
+                            CampaignService.putCampaign($scope.campaign).then(function (campaign) {
+                                $scope.$state.go('campaigns.content');
                             });
                         } else {
-                            CampaignService.postCampaign($scope.campaign).then(function(campaign) {
-                                $state.go('campaigns.content');
-                            });
+                            CampaignService.postCampaign($scope.campaign)
+                                .then(function (campaign) {
+                                    return UserService.reload();
+                                })
+                                .then(function() {
+                                    return $scope.$state.go('campaigns.content');
+                                });
                         }
 
                     } else {
@@ -125,7 +131,7 @@
         .controller('CampaignsController', [ '$scope', 'campaigns',
             function ($scope, campaigns) {
 
-                var groupedCampaigns = _.groupBy(campaigns, function(campaign) {
+                var groupedCampaigns = _.groupBy(campaigns, function (campaign) {
                     return moment(campaign.end) > moment() ? "active" : "inactive";
                 });
 
@@ -138,9 +144,9 @@
                 $scope.groups = [];
 
                 _.forEach(groups, function (group) {
-                    if(groupedCampaigns[group]) {
+                    if (groupedCampaigns[group]) {
 
-                        var campaigns = _.sortBy(groupedCampaigns[group], function(campaign) {
+                        var campaigns = _.sortBy(groupedCampaigns[group], function (campaign) {
                             return campaign.start;
                         });
 

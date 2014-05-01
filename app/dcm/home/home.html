@@ -13,12 +13,12 @@
             <div class="icon"></div>
             <span translate>dcmhome.campaigns</span>
         </div>
-        <div class="link-area notifications" ng-click="canAccess('notifications.content') && $state.go('notifications.content')"
+        <div class="link-area notifications" ng-click="currentCampaign && canAccess('notifications.content') && $state.go('notifications.content')"
              ng-class="{disabled: !currentCampaign || !canAccess('notifications.content')}">
             <div class="icon"></div>
             <span translate>dcmhome.notifications</span>
         </div>
-        <div class="link-area campaignoffers" ng-click="canAccess('campaignoffers.content') && currentCampaign && $state.go('campaignoffers.content')"
+        <div class="link-area campaignoffers" ng-click="currentCampaign && canAccess('campaignoffers.content') && currentCampaign && $state.go('campaignoffers.content')"
              ng-class="{disabled: !currentCampaign || !canAccess('campaignoffers.content')}">
             <div class="icon"></div>
             <span translate>dcmhome.campaignoffers</span>

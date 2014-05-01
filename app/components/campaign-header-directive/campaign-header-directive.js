@@ -21,7 +21,7 @@
                     }
 
                     function _setCampaignsFromCampaignLead() {
-                        if (_.contains(UserService.principal.getUser().roles),'campaignlead') {
+                        if (_.contains(UserService.principal.getUser().roles,'campaignlead')) {
                             CampaignService.getCampaigns().then(function(campaigns) {
                                 scope.campaigns = campaigns;
                                 if (!CampaignService.currentCampaign) {
