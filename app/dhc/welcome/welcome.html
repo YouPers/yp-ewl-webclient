@@ -25,9 +25,12 @@
                             <div class="title">
                                 {{ campaign.title }}
                             </div>
+
+
                             <div class="text">
                                 {{ campaign.slogan }}
                             </div>
+
                         </div>
 
                     </div>
@@ -35,10 +38,26 @@
             </div>
 
             <div class="welcome-content">
-                <h1 class="welcome-header">
+                <h1 class="welcome-header text-center">
                     <span translate>welcome.header</span>
                     <span class="campaign-title">{{ campaign.title }}</span>
                 </h1>
+
+                <h3 class="text-center">
+                    <span translate>welcome.organizationPrefix</span>
+                    <span>{{ campaign.organization.name }}</span>
+                </h3>
+
+                <h3 class="text-center">
+                    <div>
+                        {{ campaign.participants }}
+                    </div>
+                    <div>
+                        {{ campaign.location }}
+                        {{ campaign.location && campaign.city ? ' / ' : '' }}
+                        {{ campaign.city }}
+                    </div>
+                </h3>
 
                 <div class="welcome-links">
                     <button class="btn btn-default info">
