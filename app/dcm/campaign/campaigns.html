@@ -9,7 +9,7 @@
     <!-- new campaign -->
 
 
-    <div class="row">
+    <div class="row" ng-if="principal.getUser().roles.indexOf('orgadmin') != -1">
         <div class="col-md-12">
             <div class="group-header">
                 <a ui-sref="campaign.content({})">
