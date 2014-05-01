@@ -35,8 +35,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/focus/focus');
             }])
 
-        .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'ProfileService',
-            function ($scope, assessmentResult, topStressors,  ProfileService) {
+        .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'ProfileService', 'AssessmentService',
+            function ($scope, assessmentResult, topStressors,  ProfileService, AssessmentService) {
 
                 $scope.needForAction = assessmentResult.needForAction;
 
@@ -83,6 +83,12 @@
                             return foc.question === id;
                         });
                     }
+
+                    AssessmentService.getNewestAssessmentResults('525faf0ac558d40000000005').then(function(results) {
+                        results.dirty = true;
+                        AssessmentService.postResults(results);
+                    })
+
                     ProfileService.putProfile($scope.principal.getUser().profile);
                 };
 

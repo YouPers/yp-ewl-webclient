@@ -11,6 +11,7 @@
 
         "assessmentNotCompleted": "Sobald du die <a href='/#/check'>Selbstbeurteilung</a> vollständig ausgefüllt hast, zeigen wir dir hier eine Auswertung aufgrund der du deinen persönlichen Fokus wählen kannst.",
 
+        "assessmentNoStressors": "Bist du sicher, dass du bei deiner <a href='/#/check'>Selbstbeurteilung</a> nicht noch etwas ändern willst?",
         "header": "Handlungsbedarf",
 
         "none": "kein",
