@@ -16,17 +16,6 @@
 
                 link: function (scope, elem, attrs) {
 
-                    scope.endDate = function() {
-
-                        if(scope.frequency === 'once') {
-                            return scope.start;
-                        } else if(scope.frequency === 'day') {
-                            return moment(scope.start).add('days', scope.recurrence);
-                        } else if(scope.frequency === 'week') {
-                            return moment(scope.start).add('weeks', scope.recurrence);
-                        }
-
-                    };
                     scope.weekday = function() {
                         return moment(scope.startDate).format("dddd") + 's';
                     };
