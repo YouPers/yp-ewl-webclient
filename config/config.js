@@ -73,9 +73,14 @@ var environmentConfig = {
         googleAnalytics: {}
     },
     prod: {
-        backendUrl: 'https://api.youpers.com/api',
-        translationSource: 'wti',
-        googleAnalytics: {}
+        backendUrl: 'https://prod.youpers.com/api',
+        translationSource: 'local',
+        googleAnalytics: {
+            webPropertyId: 'UA-39309635-2'
+        },
+        ui: {
+            showUserFeedbackLink: true
+        }
     }
 };
 
