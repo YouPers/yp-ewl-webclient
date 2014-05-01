@@ -1,38 +1,53 @@
+
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-4 home-campaign">
         <div class="state-title-1" translate>home.title1</div>
         <div class="state-title-2" translate>home.title2</div>
+
+        <div ng-init="campaign = principal.getUser().campaign">
+            <campaign-header campaign="campaign" ng-if="campaign"></campaign-header>
+            <div ng-if="!campaign">
+                <br/>
+                <span>
+                    Öffne den Link in deiner Einladungs-Mail,
+                    <br/>
+                    um der Kampagne beizutreten!
+                </span>
+            </div>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-sm-3 col-sm-offset-3">
-        <div class="home-content">
-            <div class="link-area diary" ng-click="$state.go('diary.content')">
-                <div class="icon"></div>
-                <span translate>home.diary</span>
+    <div class="col-sm-8 home-healthcoach">
+        <div class="row">
+            <div class="col-sm-10 center-block">
+                <div class="home-content">
+                    <div class="link-area diary" ng-click="$state.go('diary.content')">
+                        <div class="icon"></div>
+                        <span translate>home.diary</span>
+                    </div>
+                    <div class="link-area select" ng-click="$state.go('select.content')">
+                        <div class="icon"></div>
+                        <span translate>home.select</span>
+                    </div>
+                    <div class="link-area plan" ng-click="$state.go('plan.offer')">
+                        <div class="icon"></div>
+                        <span translate>home.plan</span>
+                    </div>
+                    <div class="link-area check" ng-click="$state.go('check.content')">
+                        <div class="icon"></div>
+                        <span translate>home.check</span>
+                    </div>
+                    <!--<div class="link-area result" ng-click="">-->
+                    <!--<div class="icon"></div>-->
+                    <!--<span translate>home.result</span>-->
+                    <!--</div>-->
+                    <div class="link-area focus" ng-click="$state.go('focus.content')">
+                        <div class="icon"></div>
+                        <span translate>home.focus</span>
+                    </div>
+                    <div class="link-area link-area-center" ng-click=""></div>
+                    <div class="link-container"></div>
+                </div>
             </div>
-            <div class="link-area select" ng-click="$state.go('select.content')">
-                <div class="icon"></div>
-                <span translate>home.select</span>
-            </div>
-            <div class="link-area plan" ng-click="$state.go('plan.offer')">
-                <div class="icon"></div>
-                <span translate>home.plan</span>
-            </div>
-            <div class="link-area check" ng-click="$state.go('check.content')">
-                <div class="icon"></div>
-                <span translate>home.check</span>
-            </div>
-            <!--<div class="link-area result" ng-click="">-->
-                <!--<div class="icon"></div>-->
-                <!--<span translate>home.result</span>-->
-            <!--</div>-->
-            <div class="link-area focus" ng-click="$state.go('focus.content')">
-                <div class="icon"></div>
-                <span translate>home.focus</span>
-            </div>
-            <div class="link-area link-area-center" ng-click=""></div>
-            <div class="link-container"></div>
         </div>
     </div>
 </div>
