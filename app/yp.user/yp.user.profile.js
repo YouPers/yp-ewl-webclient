@@ -31,8 +31,8 @@
                 return ProfileService;
             }])
 
-        .controller('profileCtrl', ['$scope', '$rootScope', 'ProfileService', 'ActivityService',
-            function ($scope, $rootScope, ProfileService, ActivityService) {
+        .controller('profileCtrl', ['$scope', '$rootScope', 'UserService', 'ProfileService', 'ActivityService',
+            function ($scope, $rootScope, UserService, ProfileService, ActivityService) {
 
                 $scope.profileUserObj = _.clone($scope.principal.getUser().profile);
 
@@ -56,6 +56,22 @@
                         $scope.principal.getUser().profile = profile;
                     });
                 };
+
+                $scope.$watch('profileUserObj.gender', function(gender, old) {
+
+                    var user = $scope.principal.getUser();
+                    var avatarMale = '/assets/img/avatar_man.png';
+                    var avatarFemale = '/assets/img/avatar_woman.png';
+
+                    if (!user.avatar ||
+                        user.avatar === avatarFemale ||
+                        user.avatar === avatarMale
+                        ) {
+                        user.avatar = gender === 'male' ? avatarMale : avatarFemale;
+                        UserService.putUser(user);
+                        $scope.avatarObject = $scope.principal.getUser();
+                    }
+                })
 
                 $scope.avatarObject = $scope.principal.getUser();
 

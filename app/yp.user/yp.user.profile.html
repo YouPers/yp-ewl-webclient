@@ -41,10 +41,10 @@
                 </div>
                 <div class="col-md-8">
                     <div class="btn-group" data-toggle="buttons-radio">
-                        <input type="radio" value="female" ng-model="profileUserObj.gender"
-                               ng-click="profileUserObj.gender = 'female'">&NonBreakingSpace;{{ 'gender.male' | translate }} </input></br>
-                        <input type="radio" value="male" ng-model="profileUserObj.gender"
-                               ng-click="profileUserObj.gender = 'male'">&NonBreakingSpace;{{ 'gender.female' | translate }} </input></br>
+                        <input id="female" type="radio" value="female" ng-model="profileUserObj.gender"
+                               ng-click="profileUserObj.gender = 'female'"><label for="female">&NonBreakingSpace;{{ 'gender.female' | translate }}</label></input></br>
+                        <input id="male" type="radio" value="male" ng-model="profileUserObj.gender"
+                               ng-click="profileUserObj.gender = 'male'"><label for="male">&NonBreakingSpace;{{ 'gender.male' | translate }}</label></input></br>
                     </div>
                 </div>
             </div>
