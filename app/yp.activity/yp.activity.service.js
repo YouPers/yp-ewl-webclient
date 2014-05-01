@@ -216,7 +216,7 @@
                             mainEvent: newMainEvent,
                             source: campaignId ? 'campaign' : 'community',
                             executionType: activity.defaultexecutiontype,
-                            visibility: activity.defaultvisibility,
+                            visibility: campaignId ? 'campaign' : activity.defaultvisibility,
                             fields: activity.fields,
                             topics: activity.topics,
                             title: activity.title,
