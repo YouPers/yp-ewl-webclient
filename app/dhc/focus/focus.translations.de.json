@@ -13,11 +13,6 @@
 
         "header": "Handlungsbedarf",
 
-        "work": "Arbeitsplatz",
-        "leisure": "Freizeit",
-        "handling": "Ausgleich",
-        "stresstypus": "Stresstyp",
-
         "none": "kein",
         "low": "gering",
         "medium": "mittel",

@@ -6,21 +6,21 @@
 
     "check": {
         "title1": "deine",
-        "title2": "Beurteilung",
+        "title2": "Selbstbeurteilung",
         "impactQuestion": {
             "question": "Wie stark wirkt sich dies auf deine Stresssituation aus?",
             "leftCaption": "kaum",
             "rightCaption": "sehr stark"
         },
-        "toFocus": "Zu deinem Fokus"
+        "toFocus": "Zu deinem Fokus",
+        "questionsAnswered": "Kriterien beurteilt"
     },
 
     "questionCategory": {
-        "general": "Allgemeiner Stresslevel",
         "work": "Stress am Arbeitsplatz",
-        "leisure": "Stress in der Freizeit (Jobexterne Stressfaktoren)",
-        "stresstypus": "Stresstyp (Stressverstärker)",
-        "handling": "Stressbewältigung (Entspannung/Ausgleich)"
+        "leisure": "Stress in der Freizeit",
+        "stresstypus": "Stressverstärker",
+        "handling": "Stressausgleich"
     }
 
 }

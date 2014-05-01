@@ -34,7 +34,7 @@
                         }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('yp.assessment/yp.assessment');
+ //               $translateWtiPartialLoaderProvider.addPart('yp.assessment/yp.assessment');
             }])
 
         // Object methods for all Assessment related objects
