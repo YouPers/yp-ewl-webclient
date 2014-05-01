@@ -43,8 +43,8 @@
                 $scope.categories = [
                     'work',
                     'leisure',
-                    'handling',
-                    'stresstypus'
+                    'stresstypus',
+                    'handling'
                 ];
 
                 $scope.topStressors = topStressors;

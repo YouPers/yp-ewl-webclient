@@ -214,7 +214,7 @@
 
                         <span>{{ 'activityPlanFrequency.' + plan.mainEvent.frequency | translate}}</span>
 
-                        <div ng-if="planToJoin.mainEvent.frequency == 'week'">
+                        <div ng-if="plan.mainEvent.frequency == 'week'">
                             <span translate>schedule.group.startingOn</span>
                             <span>{{ plan.mainEvent.start | fromNow }}</span>
                         </div>
@@ -222,7 +222,7 @@
                         <div>
                             <span>{{ plan.mainEvent.start | time }}</span>
                             <span translate>schedule.group.startToEndDate</span>
-                            <span>{{ planToJoin.mainEvent.end | time }}</span>
+                            <span>{{ plan.mainEvent.end | time }}</span>
                         </div>
 
                     </div>

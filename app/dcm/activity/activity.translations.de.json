@@ -32,12 +32,12 @@
     },
 
     "activities": {
-        "title1": "deine",
+        "title1": "kampagnen",
         "title2": "aktivitäten",
 
         "group": {
-            "campaign": "kampagnen aktivitäten",
-            "all": "alle aktivitäten"
+            "campaign": "eigene aktivitäten",
+            "all": "YouPers Aktivitäts-Ideen"
         },
 
         "duration": {
@@ -51,30 +51,23 @@
         "search": "suchen"
     },
     "campaignoffers": {
-        "title1": "deine",
-        "title2": "Aktivitäten und Meldungen",
-
-        "notifications": {
-            "title": "Kampagnen-Meldungen",
-            "form": {
-                "title": {
-                    "placeholder": "Titel, der erscheint in der Inbox als Überschrift"
-                },
-                "text": {
-                    "placeholder": "Text, ausführliche Botschaft (optional)"
-                },
-                "submit": "veröffentlichen",
-                "delete": "löschen"
-            }
-        },
+        "title1": "kampagnen",
+        "title2": "Aktivitäten",
 
         "link": {
-            "new": "Neue Kampagnen-Aktivität"
+            "newActivity": "Eigene Aktivität <br/>erstellen",
+            "publishActivity": "Bestehende Aktivität <br/>empfehlen/einplanen"
         },
+
+        "published": "publiziert",
+
         "offertype": {
             "campaignActivity": "empfohlen",
-            "campaignActivityPlan": "geplant"
+            "campaignActivityPlan": "eingeplant"
         }
 
+    },
+    "scheduledDate": {
+        "daily": "täglich"
     }
 }

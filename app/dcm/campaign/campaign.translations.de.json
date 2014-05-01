@@ -20,8 +20,8 @@
 
         "link": {
             "new": "neue kampagne",
-            "activityLog": "Aktivitäten und Meldungen",
-            "statistics": "Statistik"
+            "campaignoffers": "Aktivitäten",
+            "notifications": "Mitteilungen"
         },
 
         "preview": {

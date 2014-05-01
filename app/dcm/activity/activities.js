@@ -52,6 +52,7 @@
                                     // TODO: define default activity and options visible for the campaign lead
 
                                     return {
+                                        "number": "CampaignActivity",
                                         source: "campaign",
                                         defaultfrequency: "once",
                                         "defaultexecutiontype": "group",
@@ -83,10 +84,6 @@
                                 function ($stateParams, ActivityService, CampaignService) {
                                     return ActivityService.getActivityOffers({campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined,
                                     populate: 'activity activityPlan'});
-                                }],
-                            notifications: ['$stateParams', 'NotificationService', 'CampaignService',
-                                function ($stateParams, NotificationService, CampaignService) {
-                                    return NotificationService.getNotifications({campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined});
                                 }]
                         }
                     });
@@ -120,7 +117,7 @@
                     $scope.query = {query: ''};
 
                     var groups = [
-                        'campaign',
+//                        'campaign',
                         'all'
                     ];
 
@@ -128,10 +125,6 @@
 
                     _.forEach(groups, function (group) {
                         if (grouped[group]) {
-
-//                        var list = _.sortBy(grouped[group], function(item) {
-//                            return ;
-//                        });
 
                             $scope.groups.push({
                                 name: group,
@@ -153,46 +146,9 @@
         ])
 
         // TODO: refactor to new file
-        .controller('CampaignOffersController', ['$scope', '$rootScope', 'offers', 'notifications', 'CampaignService', 'ActivityService', 'NotificationService',
-            function ($scope, $rootScope, offers, notifications, CampaignService, ActivityService, NotificationService) {
+        .controller('CampaignOffersController', ['$scope', '$rootScope', 'offers', 'CampaignService', 'ActivityService', 'NotificationService',
+            function ($scope, $rootScope, offers, CampaignService, ActivityService) {
                 $scope.offers = offers;
-                $scope.notifications = notifications;
-
-                $scope.newNotif = {
-                    publishFrom: new Date(),
-                    type: 'message',
-                    author: $scope.principal.getUser(),
-                    sourceType: 'campaign',
-                    targetQueue: CampaignService.currentCampaign && CampaignService.currentCampaign.id
-                };
-
-                $scope.saveNewNotif = function() {
-                    // reset targetQueue, user might have changed the currentCampaign
-                    $scope.newNotif.targetQueue = CampaignService.currentCampaign.id;
-                    NotificationService.postNotification($scope.newNotif).then(function(savedNotif) {
-                        $scope.notifications.unshift(savedNotif);
-                        $scope.addNewNotif = false;
-                        $scope.newNotif.title = '';
-                        $scope.newNotif.text = '';
-                    });
-                };
-
-                $scope.deleteNotification = function(notif) {
-                    NotificationService.deleteNotification(notif).then(function() {
-                        _.remove($scope.notifications, function(not) {
-                            return not.id === notif.id;
-                        });
-                    });
-                };
-
-
-                $scope.showWeeks = false;
-                $scope.minDate = new Date();
-
-                $scope.dateOptions = {
-                    'year-format': "'yy'",
-                    'starting-day': 1
-                };
 
                 $rootScope.$on('campaign:currentCampaignChanged', function () {
                     ActivityService.getActivityOffers(
@@ -203,14 +159,6 @@
                     });
                 });
 
-                $rootScope.$on('campaign:currentCampaignChanged', function () {
-                    NotificationService.getNotifications(
-                        {campaign: CampaignService.currentCampaign.id,
-                            populate: 'author'}
-                    ).then(function (notifications) {
-                            $scope.notifications = notifications;
-                        });
-                });
             }])
 
         .filter('fulltext', function () {

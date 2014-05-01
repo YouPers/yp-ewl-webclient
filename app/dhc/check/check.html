@@ -11,7 +11,7 @@
             <div>
                 <span>{{ 'questionCategory.' + name | translate }}</span>
                 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
-                <span class="pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} Fragen beantwortet</span>
+                <span class="pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} {{'check.questionsAnswered' | translate}}</span>
             </div>
         </accordion-heading>
 
@@ -69,7 +69,7 @@
                             ng-mousedown="answers[question.id].dirty = true"
                             floor="1"
                             ceiling="100"
-                            step="10"
+                            step="1"
                             precision="1">
                     </slider>
                 </div>
