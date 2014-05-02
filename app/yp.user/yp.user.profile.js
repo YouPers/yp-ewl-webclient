@@ -18,7 +18,7 @@
 
         .factory("ProfileService", ['$rootScope', 'Restangular', 'UserService',
             function ($rootScope, Rest, UserService) {
-                var ProfileService = {
+                return {
 
                     putProfile: function (profile) {
                         return Rest.restangularizeElement(null, profile, "profiles").put();
@@ -28,7 +28,6 @@
                     }
 
                 };
-                return ProfileService;
             }])
 
         .controller('profileCtrl', ['$scope', '$rootScope', 'UserService', 'ProfileService', 'ActivityService',
@@ -71,7 +70,7 @@
                         UserService.putUser(user);
                         $scope.avatarObject = $scope.principal.getUser();
                     }
-                })
+                });
 
                 $scope.avatarObject = $scope.principal.getUser();
 
