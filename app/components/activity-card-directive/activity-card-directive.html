@@ -10,7 +10,7 @@
             <div class="source">
                 <div class="source-avatar-container">
                     <div class="source-avatar-content source-type" ng-class="'source-type-' + rec.sourceType">
-                        <img ng-src="{{rec.recommendedBy[0].avatar}}">
+                        <img ng-src="{{rec.recommendedBy[0].avatar}}" ng-if="rec.recommendedBy[0].avatar">
                     </div>
                     <div class="source-text">
                         empfohlen durch {{ rec.recommendedBy[0].fullname }}
