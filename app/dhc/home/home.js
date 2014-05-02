@@ -25,7 +25,24 @@
                         resolve: {
 
                         }
+                    })
+                    .state('moreinfo', {
+                        templateUrl: "layout/single-column.html",
+                        access: accessLevels.all
+                    })
+                    .state('moreinfo.content', {
+                        url: "/moreinfo",
+                        access: accessLevels.all,
+                        views: {
+                            content: {
+                                templateUrl: 'dhc/home/moreinfo.html'
+                            }
+                        },
+                        resolve: {
+
+                        }
                     });
+
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/home/home');
             }]);
