@@ -7,12 +7,12 @@
 
     </div>
 
-    <!--<div class="form-group">-->
-        <!--<label for="number" class="col-md-3 control-label" translate>activity.number</label>-->
-        <!--<div class="col-md-9">-->
-            <!--<input id="number" type="text" ng-model="activity.number" class="form-control">-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="form-group" ng-if="isProductAdmin()">
+        <label for="number" class="col-md-3 control-label" translate>activity.number</label>
+        <div class="col-md-9">
+            <input id="number" type="text" ng-model="activity.number" class="form-control">
+        </div>
+    </div>
 
     <div class="form-group">
         <label for="title" class="col-md-3 control-label" translate>activity.title.label</label>
@@ -54,38 +54,38 @@
         </div>
     </div>
 
-    <!--<div class="form-group">-->
-        <!--<label for="visibility" class="col-md-3 control-label" translate>activity.visibility</label>-->
-        <!--<div id="visibility" class="btn-group col-md-9">-->
-            <!--<button type="button" ng-repeat="visibility in enums.visibility" class="btn btn-default btn-sm" ng-model="activity.defaultvisibility" btn-radio="visibility" translate>-->
-                <!--visibility.{{visibility}}-->
-            <!--</button>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="form-group" ng-if="isProductAdmin()">
+        <label for="visibility" class="col-md-3 control-label" translate>activity.visibility</label>
+        <div id="visibility" class="btn-group col-md-9">
+            <button type="button" ng-repeat="visibility in enums.visibility" class="btn btn-default btn-sm" ng-model="activity.defaultvisibility" btn-radio="visibility" translate>
+                visibility.{{visibility}}
+            </button>
+        </div>
+    </div>
 
-    <!--<div class="form-group" ng-hide="activityType === 'campaign'">-->
-        <!--<label for="source" class="col-md-3 control-label" translate>activity.source</label>-->
-        <!--<div id="source" class="btn-group col-md-9">-->
-            <!--<button type="button" ng-repeat="source in enums.source" class="btn btn-default btn-sm" ng-model="activity.source" btn-radio="source" translate>-->
-                <!--source.{{source}}-->
-            <!--</button>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="form-group" ng-if="isProductAdmin()">
+        <label for="source" class="col-md-3 control-label" translate>activity.source</label>
+        <div id="source" class="btn-group col-md-9">
+            <button type="button" ng-repeat="source in enums.source" class="btn btn-default btn-sm" ng-model="activity.source" btn-radio="source" translate>
+                source.{{source}}
+            </button>
+        </div>
+    </div>
 
-    <!--<div class="form-group">-->
-        <!--<label for="activityField" class="col-md-3 control-label" translate>activity.activityField</label>-->
-        <!--<div id="activityField" class="btn-group col-md-9">-->
-            <!--<button type="button" class="btn btn-default btn-sm" ng-repeat="fieldId in enums.activityFields"-->
-                    <!--ng-model="actFieldsModel[fieldId]" btn-checkbox data-toggle="button">{{ 'activityField.' + fieldId | translate }}-->
-            <!--</button>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="form-group" ng-if="isProductAdmin()">
+        <label for="activityField" class="col-md-3 control-label" translate>activity.activityField</label>
+        <div id="activityField" class="btn-group col-md-9">
+            <button type="button" class="btn btn-default btn-sm" ng-repeat="fieldId in enums.activityFields"
+                    ng-model="actFieldsModel[fieldId]" btn-checkbox data-toggle="button">{{ 'activityField.' + fieldId | translate }}
+            </button>
+        </div>
+    </div>
 
     <div class="form-group" ng-hide="activityType === 'campaign'">
-        <!--<label for="qualityFactor" class="col-md-3 control-label" translate>activity.qualityFactor</label>-->
-        <!--<div class="col-md-2">-->
-            <!--<input id="qualityFactor" type="number" min=1 max=10 ng-model="activity.qualityFactor" class="form-control">-->
-        <!--</div>-->
+        <label ng-if="isProductAdmin()" for="qualityFactor" class="col-md-3 control-label" translate>activity.qualityFactor</label>
+        <div class="col-md-2" ng-if="isProductAdmin()">
+            <input id="qualityFactor" type="number" min=1 max=10 ng-model="activity.qualityFactor" class="form-control">
+        </div>
         <label for="duration" class="col-md-3 control-label" translate>activity.duration</label>
         <div class="col-md-2">
             <input id="duration" type="number" min=0 ng-model="activity.defaultduration" class="form-control">

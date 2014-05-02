@@ -4,8 +4,8 @@
 
     angular.module('yp.dhc')
 
-        .directive('activityEdit', ['$rootScope', 'ActivityService', 'CampaignService',
-            function ($rootScope, ActivityService, CampaignService) {
+        .directive('activityEdit', ['$rootScope', 'ActivityService', 'CampaignService', 'UserService',
+            function ($rootScope, ActivityService, CampaignService, UserService) {
                 return {
 
                     restrict: 'EA',
@@ -47,6 +47,10 @@
                                 !activity.text || activity.text === "") {
                                 return true;
                             }
+                        };
+
+                        $scope.isProductAdmin = function() {
+                            return (UserService.principal.getUser().roles.indexOf('productadmin') !== -1);
                         };
 
                         $scope.save = function() {
