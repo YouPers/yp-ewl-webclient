@@ -18,8 +18,8 @@
          *  - avatarObject: the object where the avatar is located, avatarObject.avatar
          *
          */
-        .directive('avatarUpload', ['$rootScope', '$http', '$fileUploader', 'yp.config',
-            function ($rootScope, $http, $fileUploader, config) {
+        .directive('avatarUpload', ['$rootScope', '$http', '$fileUploader', 'yp.config','UserService',
+            function ($rootScope, $http, $fileUploader, config, UserService) {
                 return {
                     restrict: 'E',
                     transclude: true,
@@ -91,6 +91,7 @@
                                     avatarObject.avatar = response.avatar;
                                     scope.$apply();
                                 }
+                                UserService.reload();
                             });
                         }
                     }
