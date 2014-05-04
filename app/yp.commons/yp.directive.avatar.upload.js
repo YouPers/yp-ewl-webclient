@@ -91,7 +91,13 @@
                                     avatarObject.avatar = response.avatar;
                                     scope.$apply();
                                 }
-                                UserService.reload();
+                                if(attrs.type && attrs.type === 'organization') {
+                                    //  nothing to update, because we do not keep an Org in session
+                                } else if(attrs.type && attrs.type === 'campaign') {
+                                    throw new Error('TODO: need to update the CampaignService.currentCampaign');
+                                } else {
+                                    UserService.reload();
+                                }
                             });
                         }
                     }
