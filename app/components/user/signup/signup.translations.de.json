@@ -59,7 +59,7 @@
         },
         "termsAccepted": {
             "label1": "Ich hab die ",
-            "label2": "Allgemeinen Geschäftsbedingungen und die Datenschutzbestimmung ",
+            "label2": "Allgemeinen Geschäftsbedingungen",
             "label3": "gelesen und stimme ihnen zu",
             "$error": {
                 "required": "Bitte akzeptiere die Geschäftsbedingungen"
