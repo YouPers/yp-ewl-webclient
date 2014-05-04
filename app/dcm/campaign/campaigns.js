@@ -112,10 +112,12 @@
                         } else {
                             CampaignService.postCampaign($scope.campaign)
                                 .then(function (campaign) {
+                                    $scope.campaign = campaign;
+
                                     return UserService.reload();
                                 })
                                 .then(function() {
-                                    return $scope.$state.go('campaigns.content');
+                                    return $scope.$emit('clientmsg:success', 'campaign.saved');
                                 });
                         }
 

@@ -13,7 +13,10 @@
                 var CampaignService = {
 
                     postCampaign: function(campaign) {
-                        return campaigns.post(campaign);
+                        return campaigns.post(campaign).then(function(postedCampaign) {
+                            CampaignService.currentCampaign = postedCampaign;
+                            return postedCampaign;
+                        });
                     },
                     putCampaign: function(campaign) {
                         return Rest.restangularizeElement(null, campaign, "campaigns").put();
