@@ -21,7 +21,8 @@
                     'bug',
                     'improvement',
                     'question',
-                    'support'
+                    'support',
+                    'other'
                 ]});
         }])
         .controller('FeedbackController', [ '$scope', '$rootScope', 'FeedbackService', 'UserService',

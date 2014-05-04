@@ -137,7 +137,8 @@
         "bug": "Bug",
         "improvement": "Improvement",
         "question": "Question",
-        "support": "Support"
+        "support": "Support",
+        "other": "Other"
     }
 
 }
