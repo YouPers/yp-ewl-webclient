@@ -30,8 +30,12 @@
 }
 
 
-.notification .name {
+.notification a,.notification .name, .notification .time {
+  color: @yp-color-dark-grey;
+}
 
+.notification:hover a, .notification:hover .name, .notification:hover .time {
+  color: @yp-color-green-hover;
 }
 
 .notification {
