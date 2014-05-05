@@ -60,9 +60,11 @@
                 </h3>
 
                 <div class="welcome-links">
-                    <button class="btn btn-default info" ng-click="$state.go('moreinfo.content')">
-                        <span translate>welcome.link.info</span>
-                    </button>
+                    <a target="_blank" ui-sref="moreinfo.content">
+                        <button class="btn btn-default info">
+                            <span translate>welcome.link.info</span>
+                        </button>
+                    </a>
                     <button class="btn btn-default join" ng-click="join()">
                         <span translate>welcome.link.join</span>
                     </button>

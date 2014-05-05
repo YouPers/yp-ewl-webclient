@@ -47,7 +47,12 @@ angular.module('yp-ewl',
                 .state('terms', {
                     url: "/terms",
                     templateUrl: "yp.ewl/terms.html",
-                    access: accessLevels.all
+                    access: accessLevels.all,
+                    controller: ['$scope','$window', function($scope, $window) {
+                        $scope.close = function() {
+                            $window.close();
+                        };
+                    }]
                 })
 
                 // temporary bounce state while we wait for this bug to be fixed: https://github.com/angular-ui/ui-router/issues/76

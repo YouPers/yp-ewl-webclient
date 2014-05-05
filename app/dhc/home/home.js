@@ -28,7 +28,12 @@
                     })
                     .state('moreinfo', {
                         templateUrl: "layout/single-column.html",
-                        access: accessLevels.all
+                        access: accessLevels.all,
+                        controller: ['$scope','$window', function($scope, $window) {
+                            $scope.close = function() {
+                                $window.close();
+                            };
+                        }]
                     })
                     .state('moreinfo.content', {
                         url: "/moreinfo",
