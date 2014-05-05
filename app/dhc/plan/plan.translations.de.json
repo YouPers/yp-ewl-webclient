@@ -9,11 +9,11 @@
         "title2": "Plan",
         "group": {
             "open": "offene Rückmeldungen",
-            "today": "heute",
-            "tomorrow": "morgen",
-            "week": "diese woche",
-            "month": "diesen monat",
-            "year": "nächstes jahr",
+            "today": "Heute",
+            "tomorrow": "Morgen",
+            "week": "diese Woche",
+            "month": "diesen Monat",
+            "year": "nächstes Jahr",
 
             "0": "Januar",
             "1": "Februar",
