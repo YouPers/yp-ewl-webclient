@@ -230,13 +230,11 @@
 
 </accordion-group>
 <accordion-group heading="{{ 'profileForm.rejectedActivities.header' | translate }}" is-open="true">
-    <div class="col-md-6" ng-repeat="recAct in profileUserObj.userPreferences.rejectedActivities">
+    <div class="col-md-4" ng-repeat="recAct in profileUserObj.userPreferences.rejectedActivities">
         <div class="row">
-            <div class="col-md-8"> <b>{{activities.byId(recAct.activity).number}}</b> {{activities.byId(recAct.activity).title}}</div>
+            <div class="col-md-8">  {{activities.byId(recAct.activity).title}}</div>
             <div class="col-md-4"> <a class="btn btn-sm btn-primary" ng-click="reactivateActivity(recAct)">wieder aktivieren</a></div>
         </div>
-
-
     </div>
 </accordion-group>
 
