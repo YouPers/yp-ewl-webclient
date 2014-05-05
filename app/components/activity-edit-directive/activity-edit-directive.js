@@ -44,7 +44,7 @@
 
                         $scope.validate = function () {
                             if (!activity.title || activity.title === "" ||
-                                !activity.text || activity.text === "") {
+                                !activity.description || activity.description === "") {
                                 return true;
                             }
                         };
