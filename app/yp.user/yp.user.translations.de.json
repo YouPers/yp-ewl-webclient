@@ -91,7 +91,7 @@
     },
     "emailVerification": {
         "emailValid": "Email-Adresse bestätigt!",
-        "thankYou": "Vielen für die Bestätigung der Email-Adresse - sie können nun fortfahren.",
+        "thankYou": "Vielen für die Bestätigung der Email-Adresse - du kannst nun fortfahren.",
         "next": "weiter"
     },
     "passwordResetRequest": {
