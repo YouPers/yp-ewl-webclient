@@ -6,11 +6,13 @@
 </div>
 <accordion class="check" close-others="true">
 
-    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]" ng-class="{ open: !!cat[name]}" ng-click="reinitialize()">
+    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]" ng-class="{ open: !!cat[name]}"
+                     ng-click="reinitialize()">
         <accordion-heading>
             <div>
                 <span>{{ 'questionCategory.' + name | translate }}</span>
-                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
+                <i class="pull-right glyphicon"
+                   ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
                 <span class="pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} {{'check.questionsAnswered' | translate}}</span>
             </div>
         </accordion-heading>
@@ -30,7 +32,7 @@
 
             <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-sm-6 col-sm-offset-3">
                     <div class="btn-group-justified">
                         <!-- too low -->
                         <div class="btn-group">
@@ -58,22 +60,38 @@
 
             </div>
 
-            <div class="row" ng-if="answers[question.id].answerType && answers[question.id].answerType !== 'mid'">
+            <div class="row">
 
-                <div class="col-md-12">
-
-                    <div class="impact-question" translate>check.impactQuestion.question</div>
-                    <div class="slider-caption-left" translate>check.impactQuestion.leftCaption</div>
-                    <slider ng-class="[question.type]"
-                            ng-model="answers[question.id].answerValue"
-                            ng-mousedown="answers[question.id].dirty = true"
-                            floor="1"
-                            ceiling="100"
-                            step="1"
-                            precision="1">
-                    </slider>
+                <div class="col-sm-2 col-sm-offset-3 slider-left-container">
+                    <div ng-if="answers[question.id].answerType == 'min'">
+                        <div class="impact-question" translate>check.impactQuestion.question</div>
+                        <div class="slider-caption-left" translate>check.impactQuestion.leftCaption</div>
+                        <slider ng-class="[question.type]"
+                                ng-model="answers[question.id].answerValue"
+                                ng-mousedown="answers[question.id].dirty = true"
+                                floor="1"
+                                ceiling="100"
+                                step="1"
+                                precision="1">
+                        </slider>
+                        <div class="slider-caption-right" translate>check.impactQuestion.rightCaption</div>
+                    </div>
                 </div>
-                <div class="slider-caption-right" translate>check.impactQuestion.rightCaption</div>
+                <div class="col-sm-2 col-sm-offset-2 slider-right-container">
+                    <div ng-if="answers[question.id].answerType == 'max'">
+                        <div class="impact-question" translate>check.impactQuestion.question</div>
+                        <div class="slider-caption-left" translate>check.impactQuestion.leftCaption</div>
+                        <slider ng-class="[question.type]"
+                                ng-model="answers[question.id].answerValue"
+                                ng-mousedown="answers[question.id].dirty = true"
+                                floor="1"
+                                ceiling="100"
+                                step="1"
+                                precision="1">
+                        </slider>
+                        <div class="slider-caption-right" translate>check.impactQuestion.rightCaption</div>
+                    </div>
+                </div>
 
             </div>
 
@@ -85,6 +103,8 @@
 <div class="row btn-bottom-nav">
     <div class="col-xs-12">
         <div class="pull-left"></div>
-        <div class="pull-right"><button class="btn btn-primary" translate ng-click="$state.go('focus.content')">check.toFocus</button></div>
+        <div class="pull-right">
+            <button class="btn btn-primary" translate ng-click="$state.go('focus.content')">check.toFocus</button>
+        </div>
     </div>
 </div>

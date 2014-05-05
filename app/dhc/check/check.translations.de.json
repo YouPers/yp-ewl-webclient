@@ -8,9 +8,9 @@
         "title1": "deine",
         "title2": "Selbstbeurteilung",
         "impactQuestion": {
-            "question": "Wie stark wirkt sich dies auf deine Stresssituation aus?",
+            "question": "Stresst dich das?",
             "leftCaption": "kaum",
-            "rightCaption": "sehr stark"
+            "rightCaption": "sehr"
         },
         "toFocus": "Zu deinem Fokus",
         "questionsAnswered": "Kriterien beurteilt"
