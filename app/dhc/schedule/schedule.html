@@ -233,9 +233,9 @@
     </div>
 
 
-    <div ng-show="plan.executionType == 'self'">
+    <div >
         <div class="save-link form-group" tooltip-placement="left"
-             tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
+             tooltip="{{ (!schedule.isScheduled || schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
             <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule
             </button>
             <button ng-hide="!plan.id" ng-disabled="!schedule.isEditable" type="submit"
