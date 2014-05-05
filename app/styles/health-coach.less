@@ -12,8 +12,8 @@
   border-radius: 50%;
   overflow: hidden;
   margin-right: 10px;
-  display: inline-block;
   vertical-align: top;
+  float: left;
 }
 
 .health-coach .avatar  img {
@@ -22,8 +22,16 @@
 }
 
 .health-coach {
-  padding-top: 15px;
+//  padding-top: 15px;
+  padding: 15px;
+  margin: -15px 0 0 -15px;
+  background: white;
+  opacity: 1;
+  z-index: 2;
+}
 
+hr {
+  z-index: 1;
 }
 
 .health-coach .message,
@@ -31,9 +39,8 @@
   color: @yp-color-dark-brown;
   font-size: 16px;
   font-weight: 300;
-  display: inline-block;
   vertical-align: top;
-  width: 170px;
+  width: 17em;
 }
 
 .health-coach-nav {
@@ -55,7 +62,7 @@
 .ui-scrollfix {
   @media(min-width: @screen-lg) {
     position: fixed;
-    top: 0;
+    top: -15px;
     background-color: @yp-color-white;
   }
 
