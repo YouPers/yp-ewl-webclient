@@ -68,17 +68,16 @@
                 };
 
 
-                $scope.minDateStart = new Date(moment().hour(8).minutes(0).seconds(0));
-                // we assume, that a campaign ideally lasts at least 6 weeks
-                $scope.minDateEnd = new Date(moment().hour(17).minutes(0).seconds(0).add('week', 6));
+                var start = new Date(moment().hour(8).minutes(0).seconds(0));
+                var end = new Date(moment().hour(17).minutes(0).seconds(0).add('week', 6));
 
                 if (campaign) {
                     $scope.campaign = campaign;
                 } else {
                     $scope.campaign = {
                         title: "Stress Management",
-                        start: $scope.minDateStart,
-                        end: $scope.minDateEnd,
+                        start: start,
+                        end: end,
                         avatar: '/assets/img/stressManagement.png'
                     };
                 }
