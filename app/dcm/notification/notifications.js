@@ -49,7 +49,8 @@
                 };
 
                 $scope.notificationObj = {
-                    publishFrom: new Date(),
+                    publishFrom: new Date(moment().startOf('day')),
+                    publishTo: new Date(moment().endOf('day')),
                     type: 'message',
                     author: $scope.principal.getUser(),
                     sourceType: 'campaign',
