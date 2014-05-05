@@ -8,14 +8,14 @@
         "title1": "dein",
         "title2": "Plan",
         "group": {
-            "open": "offene rückmeldungen",
+            "open": "offene Rückmeldungen",
             "today": "heute",
             "tomorrow": "morgen",
             "week": "diese woche",
             "month": "diesen monat",
             "year": "nächstes jahr",
 
-            "0": "Jänner",
+            "0": "Januar",
             "1": "Februar",
             "2": "März",
             "3": "April",
@@ -28,7 +28,7 @@
             "10": "November",
             "11": "Dezember"
         },
-        "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 anderer</a>} other{und <a># andere</a>}}"
+        "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 andere</a>} other{und <a># andere</a>}}"
 
     }
 }
