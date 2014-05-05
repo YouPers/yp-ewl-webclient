@@ -9,6 +9,12 @@
 
 <div class="diary">
 
+
+    <div class="no-content" ng-if="groups.length === 0">
+        <br/>
+        <span translate>diary.noContent</span>
+    </div>
+
     <!-- groups -->
 
     <div ng-repeat="group in groups">

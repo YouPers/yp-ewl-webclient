@@ -8,6 +8,11 @@
 
     <!-- groups -->
 
+    <div class="no-content" ng-if="groups.length === 0">
+        <br/>
+        <span translate>plan.noContent</span>
+    </div>
+
     <div class="group" ng-repeat="group in groups">
 
         <div class="group-header">
