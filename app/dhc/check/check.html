@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2 col-sm-offset-2 slider-right-container">
-                    <div ng-if="answers[question.id].answerType == 'max'">
+                    <div ng-if="question.type == 'twoSided' && answers[question.id].answerType == 'max'">
                         <div class="impact-question" translate>check.impactQuestion.question</div>
                         <div class="slider-caption-left" translate>check.impactQuestion.leftCaption</div>
                         <slider ng-class="[question.type]"
