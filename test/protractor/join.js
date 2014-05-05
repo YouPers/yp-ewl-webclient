@@ -41,37 +41,42 @@ describe('GET home', function() {
             expect(index).toBeGreaterThan(-1);
 
             element.all(by.repeater('item in items')).get(index).click(); // navigate to card in carousel
-            all.get(index).findElement(by.css('.schedule-link')).click(); // open card
 
-            element(by.css('button.self')).click(); // open self tab
-            element(by.css('.save-link button')).click(); // plan
+            ptor.wait(function () {
 
-            // login user 2
-            user.logout();
-            user.initialize('test_ind2', 'yp');
-
-
-            browser.get('/#/select');
-
-            // find offer by id to join
-
-            all = element.all(by.repeater('item in offers'));
-
-            all.map(function(el){ return el.evaluate('item') }).then(function(items) {
-                var index = _.findIndex(items, function(item) {
-                    return item.activityPlan.length > 0;
-                });
-
-
-                element.all(by.repeater('item in items')).get(index).click(); // navigate to card in carousel
                 all.get(index).findElement(by.css('.schedule-link')).click(); // open card
 
-                element(by.css('.join-plan')).click();
+                element(by.css('button.self')).click(); // open self tab
+                element(by.css('.save-link button')).click(); // plan
+
+                // login user 2
+                user.logout();
+                user.initialize('test_ind2', 'yp');
 
 
-                browser.get('/#/plan');
+                browser.get('/#/select');
 
-                // TODO: check if plan shows up here ( after refactoring of offerId -> activityPlanId )
+                // find offer by id to join
+
+                all = element.all(by.repeater('item in offers'));
+
+                all.map(function(el){ return el.evaluate('item') }).then(function(items) {
+                    var index = _.findIndex(items, function(item) {
+                        return item.activityPlan.length > 0;
+                    });
+
+
+                    element.all(by.repeater('item in items')).get(index).click(); // navigate to card in carousel
+                    all.get(index).findElement(by.css('.schedule-link')).click(); // open card
+
+                    element(by.css('.join-plan')).click();
+
+
+                    browser.get('/#/plan');
+
+                    // TODO: check if plan shows up here ( after refactoring of offerId -> activityPlanId )
+
+                }, 1000);
 
             });
 
