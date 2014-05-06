@@ -71,6 +71,11 @@
                     }
                 };
 
+                $scope.isDefaultAvatar = function isDefaultAvatar() {
+                    var user = $scope.avatarObject;
+                    return user.avatar === avatarFemale ||user.avatar === avatarMale;
+                };
+
                 $scope.$watch('profileUserObj.gender', function(gender, old) {
 
                     var user = $scope.principal.getUser();
