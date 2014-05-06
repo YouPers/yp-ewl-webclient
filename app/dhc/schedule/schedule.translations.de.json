@@ -51,7 +51,8 @@
         "group": {
             "noPlansToJoin": "Noch niemand hat diese Aktivität eingeplant, plane sie selber ein!",
             "join": "Mitmachen",
-            "joiningUsers": "{OTHERS, plural, =0{} one{und 1 anderer} other{und # andere}}",
+            "owner": "Organisator:",
+            "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 anderer</a> nimmt teil} other{und <a># andere</a> nehmen teil}}",
             "startingOn": "erstmals am",
             "startToEndDate": "bis",
             "location": "Treffpunkt"

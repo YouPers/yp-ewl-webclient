@@ -196,12 +196,18 @@
                 <div class="col-md-12 item">
 
                     <div>
+                        <span translate>schedule.group.owner</span>
                         <span>{{ plan.owner.fullname }}</span>
+                    </div>
+
+                    <div>
 
                         <span ng-show="plan.joiningUsers">
+                            <span ng-show="plan.joiningUsers.length > 0">{{ plan.joiningUsers[0].fullname }}</span>
                             <span translate
-                                  translate-values="{ OTHERS: '{{plan.joiningUsers.length}}' }"
-                                  translate-interpolation="messageformat">
+                                  translate-values="{ OTHERS: '{{ plan.joiningUsers.length - 1 }}' }"
+                                  translate-interpolation="messageformat"
+                                  tooltip-html-unsafe="{{ getJoiningUsers(plan) }}" tooltip-append-to-body="true">
                                 schedule.group.joiningUsers</span>
                         </span>
 
