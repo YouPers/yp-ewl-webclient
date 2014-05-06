@@ -29,6 +29,7 @@
             "11": "Dezember"
         },
         "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 andere</a>} other{und <a># andere</a>}}",
+        "sindDabei": " sind dabei",
         "noContent": "Du hast bisher noch keine <a href='#/select'>Aktivitäten</a> eingeplant"
 
     }

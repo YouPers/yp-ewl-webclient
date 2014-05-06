@@ -61,26 +61,6 @@
                 </a>
             </div>
 
-            <!-- location -->
-            <div class="col-md-2">
-                <span>
-                    {{ event.plan.location }}
-                </span>
-            </div>
-
-            <!-- joining users -->
-            <div class="col-md-2">
-                <span ng-if="event.plan.joiningUsers.length > 0">
-                    <span>{{ event.plan.joiningUsers[0].fullname }}</span>
-                    <span ng-if="event.plan.joiningUsers.length > 1"
-                          translate translate-values="{ OTHERS: '{{ event.plan.joiningUsers.slice(1).length}}' }"
-                          translate-interpolation="messageformat"
-                          tooltip-html-unsafe="{{ getJoiningUsers(event) }}"
-                          >
-                        plan.joiningUsers
-                    </span>
-                </span>
-            </div>
 
             <div class="col-md-1 status" ng-if="group.name == 'open'">
                 <button class="done btn btn-xs btn-default" ng-click="updateEvent(event, 'done')">
@@ -90,6 +70,35 @@
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </div>
+            <div class="col-md-1 status" ng-if="group.name != 'open'" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })">
+                <i class="glyphicon glyphicon-edit">
+
+                </i>
+            </div>
+
+
+            <!-- location -->
+            <div class="col-md-2">
+                <span>
+                    {{ event.plan.location }}
+                </span>
+            </div>
+
+            <!-- joining users -->
+            <div class="col-md-2 joining">
+                <span ng-if="event.plan.joiningUsers.length > 0">
+                    <span>{{ event.plan.joiningUsers[0].fullname }}</span>
+                    <span class="others" ng-if="event.plan.joiningUsers.length > 1"
+                          translate translate-values="{ OTHERS: '{{ event.plan.joiningUsers.slice(1).length}}' }"
+                          translate-interpolation="messageformat"
+                          tooltip-html-unsafe="{{ getJoiningUsers(event) }}"
+                          >
+                        plan.joiningUsers
+                    </span>
+                    <span translate>plan.sindDabei</span>
+                </span>
+            </div>
+
 
 
         </div>
