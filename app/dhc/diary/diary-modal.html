@@ -40,9 +40,9 @@
     <div class="col-md-4 diary-resolution">
 
             <h4 translate>diary.modal.yourResolution</h4>
-            <h3 class="resolution-content">{{resolution}}</h3>
+            <h3 class="resolution-content" translate>{{resolution || 'diary.modal.noresolution'}}</h3>
         <button class="btn btn-primary" ng-click="ok()">Weiter</button>
-        <div class="form-group">
+        <div class="form-group" ng-if="mode=='auto'">
             <label for="doNotAskAgainForDiaryEntry">
 
                 <input id="doNotAskAgainForDiaryEntry" class="" type="checkbox"

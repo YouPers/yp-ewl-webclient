@@ -14,7 +14,7 @@
                     saveEntry: function (entry) {
                         return Restangular.all('diaryentries').post(entry);
                     },
-                    showDiaryModal: function() {
+                    showDiaryModal: function(resolution, mode) {
 
                         var modalInstance = $modal.open({
                             templateUrl: 'dhc/diary/diary-modal.html',
@@ -24,8 +24,10 @@
                                     return "topic.stress";
                                 },
                                 resolution: function () {
-                                    // TODO: access resolution as soon as it is implemented
-                                    return "In kleinen Schritten mein Verhalten verbessern";
+                                    return resolution;
+                                },
+                                mode: function() {
+                                    return mode;
                                 }
                             },
                             windowClass: 'diary-modal'
@@ -72,7 +74,7 @@
 
                 var noDiaryEntryToday = ((!profile.userPreferences.lastDiaryEntry) || moment(profile.userPreferences.lastDiaryEntry).diff(moment()) > 1);
                 if (age > 1 && !doNotAskAgain && noDiaryEntryToday) {
-                    DiaryService.showDiaryModal();
+                    DiaryService.showDiaryModal(profile.userPreferences.personalGoal, 'auto');
                 }
             });
 

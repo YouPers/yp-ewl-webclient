@@ -20,10 +20,11 @@
             "question": "Wie geht es dir heute gesundheitlich?",
             "yourCampaign": "Deine Kampagne",
             "yourResolution": "Dein Vorsatz",
-            "doNotAskAgainForDiaryEntry": "Nicht mehr zeigen",
+            "doNotAskAgainForDiaryEntry": "Nicht mehr fragen",
             "reason": {
                 "placeholder": "Gib hier deine Begründung ein. (optional)"
-            }
+            },
+            "noresolution": "Hier könnte dein persönliches Ziel stehen, setze es im <a href='/#/focus'>Fokus</a>!"
         }
 
     },

@@ -90,7 +90,7 @@
 
 
                 $scope.showModal = function () {
-                    DiaryService.showDiaryModal().then(function (newEntry) {
+                    DiaryService.showDiaryModal($scope.principal.getUser().profile.userPreferences.personalGoal, 'manual').then(function (newEntry) {
                         if (newEntry) {
                             diaryEntries.push(newEntry);
                             $scope.groups = _getEntryGroups(diaryEntries);
@@ -101,10 +101,11 @@
             }
         ])
 
-        .controller('DiaryModalController', ['$scope', '$modalInstance', 'topic', 'resolution',
-            function ($scope, $modalInstance, topic, resolution) {
+        .controller('DiaryModalController', ['$scope', '$modalInstance', 'topic', 'resolution', 'mode',
+            function ($scope, $modalInstance, topic, resolution, mode) {
                 $scope.topic = topic;
                 $scope.resolution = resolution;
+                $scope.mode = mode;
 
                 var profile = $scope.principal.getUser().profile;
                 var doNotAskAgainForDiaryEntry = profile.userPreferences.doNotAskAgainForDiaryEntry;
