@@ -84,8 +84,8 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
-                            function(req, res, next) {
-                                if  (req.url.indexOf('/api') !== -1) {
+                            function (req, res, next) {
+                                if (req.url.indexOf('/api') !== -1) {
                                     proxy.web(req, res, {target: 'https://cimaster.youpers.com'});
                                 } else {
                                     return next();
@@ -102,8 +102,8 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
-                            function(req, res, next) {
-                                if  (req.url.indexOf('/api') !== -1) {
+                            function (req, res, next) {
+                                if (req.url.indexOf('/api') !== -1) {
                                     proxy.web(req, res, {target: 'https://cimaster.youpers.com'});
                                 } else {
                                     return next();
@@ -120,8 +120,8 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
-                            function(req, res, next) {
-                                if  (req.url.indexOf('/api') !== -1) {
+                            function (req, res, next) {
+                                if (req.url.indexOf('/api') !== -1) {
                                     proxy.web(req, res, {target: 'https://cimaster.youpers.com'});
                                 } else {
                                     return next();
@@ -161,7 +161,7 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-            server: '.tmp'
+            server: ['.tmp']
         },
         jshint: {
             options: {
@@ -437,23 +437,13 @@ module.exports = function (grunt) {
         if (target === 'dist') {
             return grunt.task.run(
                 ['build',
-                 'open',
-                 'connect:dist:keepalive']);
-        } else if (target === 'mock') {
-            return grunt.task.run([
-                'clean:server',
-                'concurrent:server',
-                'template:' +  grunt.config('clientMode'),
-                'autoprefixer',
-                'connect:livereload',
-                'open',
-                'watch'
-            ]);
+                    'open',
+                    'connect:dist:keepalive']);
         } else {
             return grunt.task.run([
                 'clean:server',
                 'concurrent:server',
-                'template:'+  grunt.config('clientMode'),
+                    'template:' + grunt.config('clientMode'),
                 'autoprefixer',
                 'connect:livereload',
                 'open',

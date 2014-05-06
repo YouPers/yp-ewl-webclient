@@ -49,7 +49,8 @@ module.exports = function (config) {
             'app/components/**/*.js',
 
             'test/lib/angular/angular-mocks.js',
-            'test/unit/**/*.js'
+            'test/unit/**/*.js',
+            'app/templates.js'
         ],
 
         frameworks: ["jasmine"],

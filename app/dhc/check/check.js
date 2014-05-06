@@ -98,6 +98,8 @@
                                 answer.answer = value === 'min' ? -50 : 50;
                                 answer.answerValue = 50;
                             }
+                            console.log("putting");
+                            putAnswer(answer);
                         }
 
                     });
