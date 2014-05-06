@@ -56,19 +56,31 @@
                     });
                 };
 
+
+                var avatarMale = '/assets/img/avatar_man.png';
+                var avatarFemale = '/assets/img/avatar_woman.png';
+
+                $scope.defaultAvatar = function defaultAvatar(ev) {
+                    var user = $scope.principal.getUser();
+                    user.avatar = $scope.profileUserObj.gender === 'male' ? avatarMale : avatarFemale;
+                    UserService.putUser(user).then(function(result) {
+                        $scope.avatarObject = result;
+                    });
+                    if(ev) {
+                        ev.stopPropagation();
+                    }
+                };
+
                 $scope.$watch('profileUserObj.gender', function(gender, old) {
 
                     var user = $scope.principal.getUser();
-                    var avatarMale = '/assets/img/avatar_man.png';
-                    var avatarFemale = '/assets/img/avatar_woman.png';
 
                     if (!user.avatar ||
                         user.avatar === avatarFemale ||
                         user.avatar === avatarMale
                         ) {
-                        user.avatar = gender === 'male' ? avatarMale : avatarFemale;
-                        UserService.putUser(user);
-                        $scope.avatarObject = $scope.principal.getUser();
+
+                        $scope.defaultAvatar();
                     }
                 });
 

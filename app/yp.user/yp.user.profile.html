@@ -28,7 +28,37 @@
 
         <div class="row">
 
-            <avatar-upload avatar-object="avatarObject"></avatar-upload>
+            <div class="col-md-12">
+
+                <div class="avatar-form">
+
+                    <avatar-upload avatar-object="avatarObject">
+
+
+                        <span class="dropdown" on-toggle="toggled(open)">
+                              <a href class="dropdown-toggle">
+                                  <span translate>profileForm.avatar.change</span>
+                              </a>
+                              <ul class="dropdown-menu">
+                                  <li>
+                                      <a href ng-click="avatarUpload()">
+                                          <span translate>profileForm.avatar.upload</span>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href ng-click="defaultAvatar($event)">
+                                          <span translate>profileForm.avatar.default</span>
+                                      </a>
+                                  </li>
+                              </ul>
+                        </span>
+
+                    </avatar-upload>
+
+
+                </div>
+
+            </div>
 
         </div>
 

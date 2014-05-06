@@ -88,7 +88,7 @@
                             // on file upload complete
                             uploader.bind('success', function (event, xhr, item, response) {
                                 if(avatarObject) {
-                                    avatarObject.avatar = response.avatar;
+                                    UserService.principal.getUser().avatar = avatarObject.avatar = response.avatar;
                                     scope.$apply();
                                 }
                                 if(attrs.type && attrs.type === 'organization') {

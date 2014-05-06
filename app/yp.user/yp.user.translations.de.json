@@ -118,6 +118,12 @@
             "header": "Profil"
         },
 
+        "avatar": {
+            "change": "Bild ändern",
+            "default": "Standard",
+            "upload": "Hochladen"
+        },
+
         "gender": {
             "label": "Geschlecht"
         },
