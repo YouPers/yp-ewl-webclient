@@ -57,8 +57,8 @@
             <div translate>campaignoffers.published</div>
             <div>{{ offer.validFrom | date:'dd.MM.' }} - {{ offer.validTo | date }}</div>
         </div>
-        <div class="col-xs-1 details" ng-click="$state.go('dcmschedule.content', {id: offer.id})">
-            <a ui-sref="'dcmschedule.content({id: offer.id})">details</a>
+        <div class="col-xs-1 details">
+            <a ui-sref="dcmschedule.content({id: offer.id})">details</a>
         </div>
 
     </div>
