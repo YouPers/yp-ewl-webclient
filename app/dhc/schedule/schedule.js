@@ -140,10 +140,12 @@
                 _.forEach($scope.plan.events, function(event, index) {
                     var updateEvent = function updateEvent(newEvent, oldEvent) {
                         if(newEvent && !_.isEqual(newEvent, oldEvent) && !$scope.isFutureEvent(newEvent)) {
-                            ActivityService.updateActivityEvent($scope.plan.id, newEvent);
+                            ActivityService.updateActivityEvent($scope.plan.id, newEvent).then(function() {
+                                $rootScope.$emit('clientmsg:success','activityPlan.eventSaved');
+                            });
                         }
                     };
-                    $scope.$watch('plan.events[' + index + ']', _.throttle(updateEvent, 1000), true);
+                    $scope.$watch('plan.events[' + index + ']', _.debounce(updateEvent, 1000), true);
                 });
 
                 //TODO: update ui while dirty / not saved

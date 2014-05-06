@@ -10,7 +10,8 @@
                 "join": "Aktivität eingeplant",
                 "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
                 "delete": "Aktivität gelöscht",
-                "sampleInvitationSent": "Einladung versendet {{email}}"
+                "sampleInvitationSent": "Einladung versendet {{email}}",
+                "eventSaved": "Rückmeldung erfolgreich gespeichert"
             }
         },
         "error": {
