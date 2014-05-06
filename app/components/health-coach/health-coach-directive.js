@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$state', '$translate','$sce',
-            function ($rootScope, HealthCoachService, $state, $translate, $sce) {
+        .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state', '$translate','$sce',
+            function ($rootScope, HealthCoachService, $window, $timeout, $state, $translate, $sce) {
             return {
                 restrict: 'E',
                 scope: {},
@@ -15,8 +15,31 @@
                         scope.coachMessages = result;
                     });
 
+                    scope.style = {
+                        top: 0
+                    };
+
+                    var offset = 0;
+
+                    scope.updateStyle = function updateStyle() {
+                        offset = $window.pageYOffset;
+                        scope.style = {
+                            'top': Math.max(0, offset - 90) + 'px',
+                            position: 'relative'
+                        };
+                    };
+
+                    angular.element($window).on('scroll', function() {
+                        if($window.pageYOffset < offset) {
+                            scope.$apply(scope.updateStyle);
+                        }
+                    });
+
+
                     $rootScope.$on('healthCoach:displayMessage', function (even, message) {
+
                         scope.coachMessages.unshift(message);
+                        scope.updateStyle();
                     });
 
                     $rootScope.$on('event:authority-deauthorized', function() {
