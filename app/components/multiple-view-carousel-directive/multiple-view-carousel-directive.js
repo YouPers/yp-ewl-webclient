@@ -49,12 +49,12 @@
 
                         prev: function() {
                             if($scope.slider.hasPrev()) {
-                                $scope.slider.offset -= 1;
+                                $scope.slider.offset = parseInt($scope.slider.offset) - 1;
                             }
                         },
                         next: function() {
                             if($scope.slider.hasNext()) {
-                                $scope.slider.offset += 1;
+                                $scope.slider.offset = parseInt($scope.slider.offset) + 1;
                             }
                         },
                         hasPrev: function() {
