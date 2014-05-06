@@ -223,7 +223,7 @@ module.exports = function (grunt) {
             }
         },
         usemin: {
-            html: ['<%= yeoman.dist %>/**/*.html'],
+            html: ['<%= yeoman.dist %>/index.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
                 dirs: ['<%= yeoman.dist %>']
@@ -241,7 +241,7 @@ module.exports = function (grunt) {
                 ]
             },
             options: {
-                optimizationLevel: 1
+                optimizationLevel: 7
 //                cache: false
             }
         },
@@ -257,19 +257,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        cssmin: {
-            // By default, your `index.html` <!-- Usemin Block --> will take care of
-            // minification. This option is pre-configured if you do not wish to use
-            // Usemin blocks.
-            // dist: {
-            //   files: {
-            //     '<%= yeoman.dist %>/styles/main.css': [
-            //       '.tmp/styles/{,*/}*.css',
-            //       '<%= yeoman.app %>/styles/{,*/}*.css'
-            //     ]
-            //   }
-            // }
-        },
         htmlmin: {
             dist: {
                 options: {
@@ -284,21 +271,36 @@ module.exports = function (grunt) {
                     removeOptionalTags: true
                 },
                 files: [
-                    {
-                        expand: true,
-                        cwd: '<%= yeoman.app %>',
-                        src: [
-                            'yp*/*.html',
-                            'yp*/**/*.html',
-                            'dhc/**/*.html',
-                            'dcm/**/*.html',
-                            'components/**/*.html',
-                            'layout/*.html'
-                        ],
-                        dest: '<%= yeoman.dist %>'
-                    },
                     {'dist/index.html': '.tmp/index.html'}
                 ]
+            }
+        },
+        html2js: {
+            options: {
+                base: '<%= yeoman.app %>',
+                htmlmin: {
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: true,
+                    removeComments: true,
+                    removeEmptyAttributes: true,
+                    removeRedundantAttributes: true,
+                    removeScriptTypeAttributes: true,
+                    removeStyleLinkTypeAttributes: true
+                }
+            },
+            main: {
+
+                src: [
+                    '<%= yeoman.app %>/yp*/*.html',
+                    '<%= yeoman.app %>/yp*/**/*.html',
+                    '<%= yeoman.app %>/dhc/*.html',
+                    '<%= yeoman.app %>/dhc/**/*.html',
+                    '<%= yeoman.app %>/dcm/**/*.html',
+                    '<%= yeoman.app %>/components/**/*.html',
+                    '<%= yeoman.app %>/layout/*.html'
+                ],
+                dest: '.tmp/templates.js'
             }
         },
         copy: {
@@ -318,7 +320,7 @@ module.exports = function (grunt) {
                             'dhc/**/*.json',
                             'dcm/**/*.json',
                             'components/**/*.json',
-                            'assets/{,*/}*.{gif,webp}',
+                            'assets/**/*.{gif,webp,png,jpg}',
                             'styles/fonts/{,*/}*.woff'
                         ]
                     },
@@ -358,6 +360,25 @@ module.exports = function (grunt) {
                         dest: '.tmp/fonts/'
                     }
                 ]
+            },
+            // copies js files to .tmp so they can be found at the same place as templates.js
+            js: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>',
+                        src: [
+                            'lib/**/*.js',
+                            'yp*/*.js',
+                            'yp*/**/*.js',
+                            'dhc/**/*.js',
+                            'dcm/**/*.js',
+                            'components/**/*.js',
+                            'layout/*.js'
+                        ],
+                        dest: '.tmp'
+                    }
+                ]
             }
         },
         concurrent: {
@@ -368,13 +389,6 @@ module.exports = function (grunt) {
             test: [
                 'less',
                 'copy:styles'
-            ],
-            dist: [
-                'less:dist',
-                'copy:styles',
-                'imagemin',
-                'svgmin',
-                'htmlmin'
             ]
         },
         karma: {
@@ -392,11 +406,6 @@ module.exports = function (grunt) {
             },
             all: {
                 configFile: "config/protractor.all.js"
-            }
-        },
-        cdnify: {
-            dist: {
-                html: ['<%= yeoman.dist %>/*.html']
             }
         },
         uglify: {
@@ -471,15 +480,24 @@ module.exports = function (grunt) {
         'clean:dist',
         'template:server',
         'useminPrepare',
-        'concurrent:dist',
+        'less:dist',
+        'copy:styles',
+        'htmlmin',
         'autoprefixer',
+        'html2js',
+        'copy:js',
         'concat',
         'copy:dist',
-        //'cdnify',
         'cssmin',
         'uglify',
         'rev',
         'usemin'
+    ]);
+
+
+    grunt.registerTask('imageopt', [
+        'imagemin',
+        'svgmin'
     ]);
 
     grunt.registerTask('default', [
@@ -487,13 +505,5 @@ module.exports = function (grunt) {
         'test'
     ]);
 
-    grunt.registerTask('heroku:production', ['concurrent:server','template:server',
-        'autoprefixer']);
-    grunt.registerTask('heroku:development', ['concurrent:server','template:server',
-        'autoprefixer']);
-    grunt.registerTask('heroku:ci', ['concurrent:server','template:server',
-        'autoprefixer']);
-    grunt.registerTask('heroku:herokutest', ['concurrent:server','template:server',
-        'autoprefixer']);
 
 };

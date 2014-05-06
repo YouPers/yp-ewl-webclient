@@ -27,7 +27,9 @@ angular.module('yp-ewl',
 
             'yp.organization',
             'yp.discussion',
-            'yp.feedback'
+            'yp.feedback',
+
+            'templates-main'
 
         ]).
 
