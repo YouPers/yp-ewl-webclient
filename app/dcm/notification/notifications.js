@@ -27,7 +27,7 @@
 
                             notifications: ['$stateParams', 'NotificationService', 'CampaignService',
                                 function ($stateParams, NotificationService, CampaignService) {
-                                    return NotificationService.getNotifications({campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined});
+                                    return NotificationService.getNotifications({campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined, mode: 'administrate'});
                                 }]
                         }
                     });
@@ -79,7 +79,7 @@
                 $rootScope.$on('campaign:currentCampaignChanged', function () {
                     NotificationService.getNotifications(
                         {campaign: CampaignService.currentCampaign.id,
-                            populate: 'author'}
+                            populate: 'author', mode: 'administrate'}
                     ).then(function (notifications) {
                             $scope.notifications = notifications;
                         });

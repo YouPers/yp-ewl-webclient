@@ -12,7 +12,7 @@
                         return false;
                     }
                     _hasEvent.call(this, event);
-                }
+                };
                 return $sniffer;
             }]);
         }])
