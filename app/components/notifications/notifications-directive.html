@@ -1,4 +1,12 @@
 <div class="notifications-list">
+    <div ng-if="preview">
+        <h3 translate>notifications.preview.title</h3>
+        <input ng-model="preview.previewdate"
+               class="form-control" type="text" id="datePickerStart"
+               datepicker-popup="dd.MM.yyyy"
+               is-open="opened"
+               ng-required="true"/>
+    </div>
     <a ng-href="{{nf.refDocLink}}" class="notification" ng-repeat="nf in notifications">
         <div>
             <div class="avatar source-type" ng-class="'source-type-' + nf.sourceType">
