@@ -37,7 +37,7 @@
             "reason": {
                 "placeholder": "Gib hier deine Begründung ein. (optional)"
             },
-            "noresolution": "Hier könnte dein persönliches Ziel stehen, setze es im <a href='/#/focus' analytics-on='click' analytics-event='NewDiaryEntryDirectlyToFocus' analytics-category='Commands' analytics-label='Fokus'>Fokus</a>!"
+            "noresolution": "Hier könnte dein persönliches Ziel stehen, setze es im <a href='/#/focus'>Fokus</a>!"
         }
 
     },

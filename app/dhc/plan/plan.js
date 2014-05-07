@@ -36,8 +36,10 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/plan/plan');
             }])
 
-        .controller('PlanController', [ '$scope', '$rootScope', '$state', '$timeout', 'plans', 'ActivityService',
-            function ($scope, $rootScope, $state, $timeout, plans, ActivityService) {
+        .controller('PlanController', [ '$scope', '$rootScope', '$state', '$timeout', 'plans', 'ActivityService', '$analytics',
+            function ($scope, $rootScope, $state, $timeout, plans, ActivityService, $analytics) {
+
+                $analytics.pageTrack('/dhc/plan');
 
                 var events = [];
 

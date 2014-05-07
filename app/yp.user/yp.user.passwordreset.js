@@ -46,9 +46,10 @@
 
             }])
 
-        .controller('RequestPasswordResetCtrl', ['$scope', '$rootScope', 'UserService',
-            function ($scope, $rootScope, UserService) {
+        .controller('RequestPasswordResetCtrl', ['$scope', '$rootScope', 'UserService', '$analytics',
+            function ($scope, $rootScope, UserService, $analytics) {
 
+                $analytics.pageTrack('/requestPasswordReset');
 
                 $scope.passwordResetObjReset = function () {
                     $scope.passwordResetObj = {usernameOrEmail: ''};

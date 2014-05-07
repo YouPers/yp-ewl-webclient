@@ -92,9 +92,10 @@
             }])
 
 
-        .controller('ActivityController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'activity',
-            function ($scope, $rootScope, $state, ActivityService, activity) {
+        .controller('ActivityController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'activity', '$analytics',
+            function ($scope, $rootScope, $state, ActivityService, activity, $analytics) {
 
+                $analytics.pageTrack('/dcm/activity');
 
                 $scope.activity = activity;
 

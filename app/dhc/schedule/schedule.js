@@ -76,8 +76,10 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/schedule/schedule');
             }])
 
-        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$stateParams', '$location', '$timeout', 'schedule', 'ActivityService',
-            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, schedule, ActivityService) {
+        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$stateParams', '$location', '$timeout', 'schedule', 'ActivityService', '$analytics',
+            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, schedule, ActivityService, $analytic) {
+
+                $analytics.pageTrack('/dhc/schedule');
 
                 $scope.schedule = schedule;
                 $scope.plan = schedule.plan;

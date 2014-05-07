@@ -25,8 +25,10 @@
                     'other'
                 ]});
         }])
-        .controller('FeedbackController', [ '$scope', '$rootScope', 'FeedbackService', 'UserService',
-            function ($scope, $rootScope, FeedbackService, UserService) {
+        .controller('FeedbackController', [ '$scope', '$rootScope', 'FeedbackService', 'UserService', '$analytics',
+            function ($scope, $rootScope, FeedbackService, UserService, $analytics) {
+
+                $analytics.pageTrack('/feedback');
 
                 $scope.contactInfo = UserService.principal.isAuthenticated() ? UserService.principal.getUser().username : false;
 

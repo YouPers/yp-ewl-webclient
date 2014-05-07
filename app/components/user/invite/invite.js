@@ -32,9 +32,10 @@
                 $translateWtiPartialLoaderProvider.addPart('components/user/invite/invite');
             }])
 
-        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'activity', 'invitingUser',
-            function ($scope, $rootScope, $state, $stateParams, UserService, activity, invitingUser) {
+        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'activity', 'invitingUser', '$analytics',
+            function ($scope, $rootScope, $state, $stateParams, UserService, activity, invitingUser, $analytics) {
 
+                $analytics.pageTrack('/invite');
 
                 $scope.onSignIn = function() {
                     $scope.$state.go('schedule.offer' , { id: activity.id });

@@ -33,8 +33,10 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/check/check');
             }])
 
-        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessmentData', 'AssessmentService',
-            function ($scope, $rootScope, $state, $timeout, assessmentData, AssessmentService) {
+        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessmentData', 'AssessmentService', '$analytics',
+            function ($scope, $rootScope, $state, $timeout, assessmentData, AssessmentService, $analytics) {
+
+                $analytics.pageTrack('/dhc/check');
 
                 $scope.orderedCategoryNames = _.uniq(_.map(assessmentData.assessment.questions, 'category'));
                 $scope.categories = _.groupBy(assessmentData.assessment.questions, 'category');

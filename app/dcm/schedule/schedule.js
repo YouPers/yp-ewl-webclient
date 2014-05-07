@@ -62,8 +62,10 @@
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/schedule/schedule');
             }])
-        .controller('DcmScheduleController', [ '$rootScope', '$scope', '$state', 'ActivityService', 'offer',
-            function ($rootScope, $scope, $state, ActivityService, offer) {
+        .controller('DcmScheduleController', [ '$rootScope', '$scope', '$state', 'ActivityService', 'offer', '$analytics',
+            function ($rootScope, $scope, $state, ActivityService, offer, $analytics) {
+
+                $analytics.pageTrack('/dcm/schedule');
 
                 $scope.offer = offer;
 

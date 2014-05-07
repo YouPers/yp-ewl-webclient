@@ -59,8 +59,10 @@
             }])
 
 
-        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign',
-            function ($scope, CampaignService, UserService, campaign) {
+        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign', '$analytics',
+            function ($scope, CampaignService, UserService, campaign, $analytics) {
+
+                $analytics.pageTrack('/dcm/campaign');
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",

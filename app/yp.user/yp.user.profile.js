@@ -30,8 +30,10 @@
                 };
             }])
 
-        .controller('profileCtrl', ['$scope', '$rootScope', 'UserService', 'ProfileService', 'ActivityService',
-            function ($scope, $rootScope, UserService, ProfileService, ActivityService) {
+        .controller('profileCtrl', ['$scope', '$rootScope', 'UserService', 'ProfileService', 'ActivityService', '$analytics',
+            function ($scope, $rootScope, UserService, ProfileService, ActivityService, $analytics) {
+
+                $analytics.pageTrack('/profile');
 
                 $scope.profileUserObj = _.clone($scope.principal.getUser().profile);
 
