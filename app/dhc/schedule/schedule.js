@@ -77,7 +77,7 @@
             }])
 
         .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$stateParams', '$location', '$timeout', 'schedule', 'ActivityService', '$analytics',
-            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, schedule, ActivityService, $analytic) {
+            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, schedule, ActivityService, $analytics) {
 
                 $analytics.pageTrack('/dhc/schedule');
 
