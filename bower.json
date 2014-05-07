@@ -2,7 +2,7 @@
   "name": "YouPers Webclient",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "~1.2.13",
+    "angular": "~1.2.16",
     "angular-animate": "~1.2.13",
     "angular-bootstrap": "~0.10.0",
     "angular-cookies": "~1.2.13",
@@ -33,6 +33,7 @@
     "angular-scenario": "~1.2.7"
   },
   "resolutions": {
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.0",
+    "angular": "~1.2.16"
   }
 }
