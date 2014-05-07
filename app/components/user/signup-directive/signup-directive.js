@@ -24,8 +24,8 @@
                         var user = scope.newUser;
 
                         UserService.submitNewUser(user).then(function (newUser) {
-                            UserService.login(UserService.encodeCredentials(user.username, user.password)).then(function() {
-
+                            var keepMeLoggedIn = true;
+                            UserService.login(UserService.encodeCredentials(user.username, user.password), keepMeLoggedIn).then(function() {
 
                                 if(attrs.onSignIn) { // can't check isolated scope variable as it is always defined
                                     return scope.onSignUp();
