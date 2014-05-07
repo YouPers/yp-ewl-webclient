@@ -27,10 +27,8 @@
                 $translateWtiPartialLoaderProvider.addPart('components/user/signup/signup');
             }])
 
-        .controller('SignupController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', '$analytics',
-            function ($scope, $rootScope, $state, $stateParams, UserService, $analytics) {
-
-                $analytics.pageTrack('/signup');
+        .controller('SignupController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService',
+            function ($scope, $rootScope, $state, $stateParams, UserService) {
 
             }
         ]);
