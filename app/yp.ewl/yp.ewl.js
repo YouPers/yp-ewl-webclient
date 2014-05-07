@@ -168,7 +168,6 @@ angular.module('yp-ewl',
             });
 
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-                var requiredAccessLevel = toState.access;
                 // Variante 1, Beispiel: "/diary"
                 $analytics.pageTrack(toState.url);
                 // Variante 2, Beispiel: "/dhc/diary/diary.html"
