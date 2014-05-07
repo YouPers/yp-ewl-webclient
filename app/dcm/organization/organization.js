@@ -33,10 +33,8 @@
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/organization/organization');
             }])
-        .controller('OrganizationController', [ '$scope', '$state', 'OrganizationService', 'organizations', '$analytics',
-            function ($scope, $state, OrganizationService, organizations, $analytics) {
-
-                $analytics.pageTrack('/dcm/organization');
+        .controller('OrganizationController', [ '$scope', '$state', 'OrganizationService', 'organizations',
+            function ($scope, $state, OrganizationService, organizations) {
 
                 if(organizations.length > 1) {
                     $scope.$emit('clientmsg:error', 'organization.notUnique');

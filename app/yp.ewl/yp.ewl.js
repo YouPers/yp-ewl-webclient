@@ -89,8 +89,8 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'enums', 'yp.config',
-        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, enums, config) {
+    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'enums', 'yp.config', '$analytics',
+        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, enums, config, $analytics) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -167,6 +167,14 @@ angular.module('yp-ewl',
                 }
             });
 
+            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                var requiredAccessLevel = toState.access;
+                // Variante 1, Beispiel: "/diary"
+                $analytics.pageTrack(toState.url);
+                // Variante 2, Beispiel: "/dhc/diary/diary.html"
+//                $analytics.pageTrack("/" + toState.views.content.templateUrl);
+
+            });
 
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 $rootScope.$emit('clientmsg:error', error);

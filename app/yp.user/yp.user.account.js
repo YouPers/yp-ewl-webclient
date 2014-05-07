@@ -18,10 +18,8 @@
             }])
 
 
-        .controller('UserAccountCtrl', ['$scope', '$rootScope', 'UserService', '$analytics',
-            function ($scope, $rootScope, UserService, $analytics) {
-
-                $analytics.pageTrack('/account');
+        .controller('UserAccountCtrl', ['$scope', '$rootScope', 'UserService',
+            function ($scope, $rootScope, UserService) {
 
                 $scope.accountUserObjReset = function () {
                     $scope.accountUserObj = _.clone($scope.principal.getUser());

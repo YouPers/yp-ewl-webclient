@@ -29,10 +29,7 @@
                     .state('moreinfo', {
                         templateUrl: "layout/single-column.html",
                         access: accessLevels.all,
-                        controller: ['$scope','$window', '$analytics', function($scope, $window, $analytics) {
-
-                            $analytics.pageTrack('/moreinfo');
-
+                        controller: ['$scope','$window', function($scope, $window) {
                             $scope.close = function() {
                                 $window.close();
                             };

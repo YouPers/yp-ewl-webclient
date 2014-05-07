@@ -35,10 +35,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dcm/notification/notification');
             }])
 
-        .controller('NotificationsController', [ '$scope', '$rootScope', 'CampaignService', 'NotificationService', 'notifications', '$analytics',
-            function ($scope, $rootScope, CampaignService, NotificationService, notifications, $analytics) {
-
-                $analytics.pageTrack('/dcm/notifications');
+        .controller('NotificationsController', [ '$scope', '$rootScope', 'CampaignService', 'NotificationService', 'notifications',
+            function ($scope, $rootScope, CampaignService, NotificationService, notifications) {
 
                 $scope.notifications = notifications;
 

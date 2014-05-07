@@ -35,10 +35,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/focus/focus');
             }])
 
-        .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'ProfileService', 'AssessmentService', '$analytics',
-            function ($scope, assessmentResult, topStressors,  ProfileService, AssessmentService, $analytics) {
-
-                $analytics.pageTrack('/dhc/focus');
+        .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'ProfileService', 'AssessmentService',
+            function ($scope, assessmentResult, topStressors,  ProfileService, AssessmentService) {
 
                 $scope.needForAction = assessmentResult? assessmentResult.needForAction : null;
 

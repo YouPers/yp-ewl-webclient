@@ -33,10 +33,9 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/diary/diary');
             }])
 
-        .controller('DiaryController', [ '$scope', '$rootScope', 'diaryEntries', '$modal', 'DiaryService', 'ProfileService', '$analytics',
-            function ($scope, $rootScope, diaryEntries, $modal, DiaryService, ProfileService, $analytics) {
+        .controller('DiaryController', [ '$scope', '$rootScope', 'diaryEntries', '$modal', 'DiaryService', 'ProfileService',
+            function ($scope, $rootScope, diaryEntries, $modal, DiaryService, ProfileService) {
 
-                $analytics.pageTrack('/dhc/diary');
 
                 function _getEntryGroups(entries) {
 

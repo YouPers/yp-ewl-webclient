@@ -34,10 +34,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/select/select');
             }])
 
-        .controller('SelectController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout', 'offers', 'ProfileService', '$analytics',
-            function ($scope, $rootScope, $stateParams, $location, $window, $timeout, offers, ProfileService, $analytics) {
-
-                $analytics.pageTrack('/dhc/select');
+        .controller('SelectController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout', 'offers', 'ProfileService',
+            function ($scope, $rootScope, $stateParams, $location, $window, $timeout, offers, ProfileService) {
 
                 $scope.offers = offers;
 

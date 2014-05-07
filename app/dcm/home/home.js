@@ -31,12 +31,10 @@
                 $translateWtiPartialLoaderProvider.addPart('dcm/home/home');
             }])
 
-        .controller('DcmHomeController', ['$scope', '$rootScope', 'UserService', 'CampaignService', '$analytics',
-            function($scope, $rootScope, UserService, CampaignService, $analytics) {
+        .controller('DcmHomeController', ['$scope', '$rootScope', 'UserService', 'CampaignService',
+            function($scope, $rootScope, UserService, CampaignService) {
 
-                $analytics.pageTrack('/dcm/home');
-
-                $scope.canAccess = function(stateName) {
+            $scope.canAccess = function(stateName) {
                 return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access );
             };
 

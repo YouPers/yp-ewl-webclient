@@ -27,10 +27,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/welcome/welcome');
             }])
 
-        .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'campaign', '$analytics',
-            function ($scope, $rootScope, $state, $stateParams, UserService, campaign, $analytics) {
-
-                $analytics.pageTrack('/dhc/welcome');
+        .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'campaign',
+            function ($scope, $rootScope, $state, $stateParams, UserService, campaign) {
 
                 if (!campaign) {
                     $state.go('home.content');
