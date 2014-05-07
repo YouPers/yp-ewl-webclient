@@ -45,8 +45,8 @@
                                                         type: [ ($stateParams.offerType || (activity.defaultexecutiontype === 'group' ?
                                                             'campaignActivityPlan' : 'campaignActivity'))],
                                                         sourceType: 'campaign',
-                                                        validFrom: new Date(),
-                                                        validTo: campaign.end,
+                                                        validFrom: new Date(moment().startOf('day')),
+                                                        validTo: new Date(moment(campaign.end).endOf('day')),
                                                         activityPlan: [ActivityService.getDefaultPlan(activity, campaign.id)],
                                                         prio: [500]
                                                     };
@@ -102,8 +102,7 @@
                             console.log(err);
 
                         }
-                    )
-                    ;
+                    );
 
                 };
 
