@@ -109,9 +109,13 @@
 
                             }, function error(err) {
                                 $http.defaults.headers.common.Authorization = '';
+                                $rootScope.$emit('clientmsg:error', err);
 
-                                // TODO: find a way to suppress default error message
-                                $rootScope.$emit('clientmsg:error', 'loginFailed', { error: err });
+                                if(err.data && err.data.code === 'UnauthorizedError') {
+                                    $rootScope.$emit('clientmsg:error', 'loginFailed', { error: err });
+                                } else {
+                                    $rootScope.$emit('clientmsg:error', err);
+                                }
 
                                 return $q.reject(err);
                             });
