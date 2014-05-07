@@ -14,11 +14,11 @@
 
             <div class="nav navbar-left">
 
-                <ul class="nav navbar-nav">
-                    <li class="nav navbar-nav sneaky-hidden">
+                <ul class="nav navbar-nav" ng-if="isAdmin">
+                    <li class="nav navbar-nav">
                         <a ui-sref="home.content">Digital Health Coach</a>
                     </li>
-                    <li class="nav navbar-nav sneaky-hidden">
+                    <li class="nav navbar-nav">
                         <a ui-sref="dcm-home.content">Digital Campaign Management</a>
                     </li>
                 </ul>

@@ -102,6 +102,17 @@ angular.module('yp-ewl',
             $rootScope.enums = enums;
             $rootScope.config = config;
 
+            $rootScope.$on('event:authority-authorized', function() {
+
+                $rootScope.isAdmin = _.any(UserService.principal.getUser().roles, function (role) {
+                    return _.contains([
+                        'campaignlead',
+                        'orgadmin',
+                        'productadmin',
+                        'systemadmin'
+                    ], role);
+                });
+            });
 
             // TODO: goto proper history entry instead of forwarding to a new location
 
