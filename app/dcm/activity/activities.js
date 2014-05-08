@@ -148,12 +148,20 @@
         // TODO: refactor to new file
         .controller('CampaignOffersController', ['$scope', '$rootScope', 'offers', 'CampaignService', 'ActivityService', 'NotificationService',
             function ($scope, $rootScope, offers, CampaignService, ActivityService) {
+
                 $scope.offers = offers;
+
+                $scope.getJoiningUsers = function (plan) {
+                    return _.pluck(plan.joiningUsers, 'fullname').join('<br/>');
+                };
 
                 $rootScope.$on('campaign:currentCampaignChanged', function () {
                     ActivityService.getActivityOffers(
-                        {campaign: CampaignService.currentCampaign.id,
-                         populate: 'activity activityPlan'}
+                        {
+                            campaign: CampaignService.currentCampaign.id,
+                            populate: 'activity activityPlan',
+                            populatedeep: 'activityPlan.joiningUsers'
+                        }
                     ).then(function (offers) {
                         $scope.offers = offers;
                     });
