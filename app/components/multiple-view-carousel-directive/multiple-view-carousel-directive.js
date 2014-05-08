@@ -21,7 +21,7 @@
                     }, function (newValue, oldValue) {
 
                         if($state.current.previous.name && newValue.offset &&
-                            $scope.slider.offset !== parseInt(newValue.offset)) {
+                            parseInt($scope.slider.offset) !== parseInt(newValue.offset)) {
 
                             $scope.$parent.back();
                         }
