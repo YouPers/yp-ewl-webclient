@@ -13,7 +13,7 @@ var environmentConfig = {
         backendUrl: 'http://localhost:8000',
         translationSource: 'local',
         googleAnalytics: {
-            webPropertyId: 'UA-39309635-2'
+            webPropertyId: 'UA-39309635-4'
         },
         ui: {
             showUserFeedbackLink: true
@@ -24,7 +24,7 @@ var environmentConfig = {
         backendUrl: 'http://localhost:8000',
         translationSource: 'local',
         googleAnalytics: {
-            webPropertyId: 'UA-39309635-2'
+            webPropertyId: 'UA-39309635-4'
         },
         ui: {
             showUserFeedbackLink: true
@@ -64,7 +64,7 @@ var environmentConfig = {
         backendUrl: 'http://yp-backend-test.herokuapp.com',
         translationSource: 'wti',
         googleAnalytics: {
-            webPropertyId: 'UA-39309635-2'
+            webPropertyId: 'UA-39309635-4'
         }
     },
     nb: {
@@ -76,7 +76,7 @@ var environmentConfig = {
         backendUrl: 'https://prod.youpers.com/api',
         translationSource: 'local',
         googleAnalytics: {
-            webPropertyId: 'UA-39309635-2'
+            webPropertyId: 'UA-39309635-3'
         },
         ui: {
             showUserFeedbackLink: true

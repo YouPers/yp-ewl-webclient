@@ -60,12 +60,14 @@
                 </h3>
 
                 <div class="welcome-links">
-                    <a target="_blank" ui-sref="moreinfo.content">
+                    <a target="_blank" ui-sref="moreinfo.content"
+                       analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="More Info">
                         <button class="btn btn-default info">
                             <span translate>welcome.link.info</span>
                         </button>
                     </a>
-                    <button class="btn btn-default join" ng-click="join()">
+                    <button class="btn btn-default join" ng-click="join()"
+                            analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="Join">
                         <span translate>welcome.link.join</span>
                     </button>
                 </div>

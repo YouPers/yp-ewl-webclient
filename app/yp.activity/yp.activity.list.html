@@ -259,9 +259,13 @@
                     </div>
                     <div class="col-md-3" ng-if="buttonsShown[activity.id] && activity.plan.status!='active'">
                         <a class="btn btn-sm btn-primary"
-                           ng-click="gotoActivityDetail(activity)" translate>list.planIt</a>
+                           ng-click="gotoActivityDetail(activity)" translate
+                           analytics-on="click" analytics-event="ContinueProposal" analytics-category="Command" analytics-label="Activity Start Planning">
+                            list.planIt</a>
                         <a class="btn btn-sm btn-primary"
-                               ng-click="reject(activity, $event)" translate>list.notForMe</a>
+                               ng-click="reject(activity, $event)" translate
+                               analytics-on="click" analytics-event="RejectProposal" analytics-category="Command" analytics-label="Activity Rejected">
+                            list.notForMe</a>
                     </div>
                     <div class="col-md-2">
                         {{ 'executiontype.' + activity.defaultexecutiontype | translate}}
