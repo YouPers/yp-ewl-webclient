@@ -35,6 +35,7 @@
             <span ng-bind-html="offer.activity.title"></span>
             {{offer.activityPlan[0].location}}
         </div>
+
         <div class="col-xs-3 date">
 
             <div ng-show="offer.type[0] == 'campaignActivityPlan'">
@@ -48,10 +49,15 @@
 
             </div>
 
-
         </div>
+
         <div class="col-xs-2 type">
-            {{'campaignoffers.offertype.'+offer.type[0] | translate }}
+            <span>{{'campaignoffers.offertype.'+offer.type[0] | translate }}</span>
+            <a ng-if="offer.type[0] === 'campaignActivityPlan'">
+                <span class="badge" tooltip-html-unsafe="{{ getJoiningUsers(offer.activityPlan[0]) }}">
+                    {{ offer.activityPlan[0].joiningUsers.length }}
+                </span>
+            </a>
         </div>
         <div class="col-xs-2 published">
             <div translate>campaignoffers.published</div>

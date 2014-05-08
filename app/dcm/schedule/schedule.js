@@ -114,6 +114,13 @@
                 };
 
 
+                $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                    $scope.inviteEmail = "";
+                    $scope.$broadcast('formPristine');
+                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.invite', { values: { email: email } });
+                    });
+                };
             }
         ])
     ;

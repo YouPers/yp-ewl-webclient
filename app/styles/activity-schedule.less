@@ -61,6 +61,10 @@
   right: 1em;
 }
 
+.invite-others .btn {
+  padding: 6px 12px;
+}
+
 // self
 
 .activity-schedule-form {
@@ -78,7 +82,6 @@ resize: none;
 }
 
 .activity-schedule-form .date-selection {
-padding-right: 0.2em;
 padding-top: 1em;
 }
 .activity-schedule-form .time-selection {
@@ -133,10 +136,6 @@ margin: 0;
 bottom: 0;
 right: left;
 }
-.invite-others .btn {
-  padding: 6px 12px;
-}
-
 
 // group
 
@@ -181,6 +180,19 @@ resize: none;
   bottom: @grid-gutter-width/3;
   left: @grid-gutter-width/3;
 }
+
+// TODO: refactor forms so we can position this relative, the forms must not be nested
+.dcm-invite-others {
+  position: absolute;
+  width: 17em;
+  right: 4.5em;
+  top: 19em;
+}
+
+.dcm-invite-others .btn {
+  padding: 6px 12px;
+}
+
 
 .rating .btn {
   padding: 0.3em;
