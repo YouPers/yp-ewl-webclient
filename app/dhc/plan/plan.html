@@ -111,6 +111,9 @@
 <div class="row btn-bottom-nav">
     <div class="col-xs-12">
         <div class="pull-left"></div>
-        <div class="pull-right"><button class="btn btn-primary" translate ng-click="$state.go('select.content')">focus.toSelect</button></div>
+        <div class="pull-right">
+            <button class="btn btn-primary" translate ng-click="$state.go('select.content')"
+                    analytics-on="click" analytics-event="ProcessNavigation" analytics-category="Navigation" analytics-label="Plan: < Select">
+            focus.toSelect</button></div>
     </div>
 </div>
