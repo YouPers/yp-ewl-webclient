@@ -28,7 +28,7 @@
             "10": "November",
             "11": "Dezember"
         },
-        "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 andere</a>} other{und <a># andere</a>}}",
+        "joiningUsers": "{OTHERS, plural, =0{ist dabei} one{und <a>1 anderer</a> ist dabei} other{und <a># andere</a> sind dabei}}",
         "sindDabei": " sind dabei",
         "noContent": "Du hast bisher noch keine <a href='#/select'>Aktivitäten</a> eingeplant"
 
