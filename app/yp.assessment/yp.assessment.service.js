@@ -102,7 +102,7 @@
                         if (!options) {
                             options = {};
                         }
-                        options.sortBy = options.sortBy || 'timestamp:-1';
+                        options.sortBy = options.sortBy || 'created:-1';
 
                         if (UserService.principal.isAuthenticated()) {
                             return Restangular.one('assessments', assessmentId).all('results').getList(options);
