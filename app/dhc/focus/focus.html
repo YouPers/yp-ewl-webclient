@@ -97,8 +97,18 @@
     </div>
     <div class="row btn-bottom-nav">
         <div class="col-xs-12">
-            <div class="pull-left"><button class="btn btn-primary" translate ng-click="$state.go('check.content')">focus.toCheck</button></div>
-            <div class="pull-right"><button class="btn btn-primary" translate ng-click="$state.go('select.content')">focus.toSelect</button></div>
+            <div class="pull-left">
+                <button class="btn btn-primary" translate ng-click="$state.go('check.content')"
+                        analytics-on="click" analytics-event="ProcessNavigation" analytics-category="Navigation" analytics-label="Focus to Check">
+                    focus.toCheck
+                </button>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-primary" translate ng-click="$state.go('select.content')"
+                        analytics-on="click" analytics-event="ProcessNavigation" analytics-category="Navigation" analytics-label="Focus to Select">
+                    focus.toSelect
+                </button>
+            </div>
         </div>
     </div>
 

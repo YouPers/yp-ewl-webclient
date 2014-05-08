@@ -37,7 +37,8 @@
                 </div>
 
                 <div class="linkleft">
-                    <button class="btn btn-default" ng-click="reject({index: index, event: $event})">
+                    <button class="btn btn-default" ng-click="reject({index: index, event: $event})"
+                            analytics-on="click" analytics-event="RejectProposal" analytics-category="Command" analytics-label="Activity Rejected">
                         Nein, Danke!
                     </button>
                  </div>
