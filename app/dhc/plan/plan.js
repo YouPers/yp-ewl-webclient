@@ -69,7 +69,7 @@
                     var tomorrow = moment(today).add('days', 1);
                     var dayAfterTomorrow = moment(today).add('days', 2);
 
-                    var nextWeek = moment(today).day(7);
+                    var nextWeek = moment(today).day(1).add('days', 7);
                     var nextMonth = moment(today).date(1).month((today.month() + 1));
                     var nextYear = moment(today).month(0).date(1).add('years', 1);
 
