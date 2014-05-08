@@ -59,7 +59,7 @@
                             var today = moment().hour(0).minute(0).second(0).millisecond(0);
                             var yesterday = moment(today).subtract('days', 1);
 
-                            var lastWeek = moment(today).day(1).subtract('days', 7);
+                            var lastWeek = moment(today).day(1);
 //                            var lastMonth = moment(today).date(1).month((today.month() - 1));
                             var lastYear = moment(today).month(0).date(1).subtract('years', 1);
 

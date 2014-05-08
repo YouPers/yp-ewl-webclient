@@ -11,8 +11,8 @@
         "group": {
             "today": "Heute",
             "yesterday": "Gestern",
-            "week": "Letzte Woche",
-            "month": "Letzen Monat",
+            "week": "Diese Woche",
+            "month": "Diesen Monat",
             "year": "Letzes Jahr",
             "future": "Zukunft",
 
