@@ -38,6 +38,16 @@
 
 
                 function _getEntryGroups(entries) {
+
+
+                    var groupNames = [
+
+                        'future',
+                        'today',
+                        'yesterday',
+                        'week'
+                    ];
+
                     var groupedEntries = _.groupBy(
                         _.sortBy(entries, function (entry) {
                             return entry.dateBegin;
@@ -45,36 +55,43 @@
 
                             var date = entry.dateBegin;
 
-                            var diff = Math.abs(moment().hour(0).minute(0).second(0).millisecond(0).diff(date, 'days', true));
 
-                            if ((diff > 1)) {
+                            var today = moment().hour(0).minute(0).second(0).millisecond(0);
+                            var yesterday = moment(today).subtract('days', 1);
+
+                            var lastWeek = moment(today).day(1).subtract('days', 7);
+//                            var lastMonth = moment(today).date(1).month((today.month() - 1));
+                            var lastYear = moment(today).month(0).date(1).subtract('years', 1);
+
+
+                            var eventDate = moment(date);
+
+                            if(eventDate.diff(moment()) > 0) {
                                 return 'future';
-                            } else if (diff > 0) {
+                            }
+                            else if(eventDate.diff(today) > 0) {
                                 return 'today';
-                            } else if (diff > -1) {
+                            } else if(eventDate.diff(yesterday) > 0) {
                                 return 'yesterday';
-                            } else if (diff > -7) {
+                            } else if(eventDate.diff(lastWeek) > 0) {
                                 return 'week';
-                            } else if (diff > -31) {
-                                return 'month';
+                            } else if(eventDate.diff(lastYear) > 0) {
+                                var month = eventDate.month();
+                                if(!_.contains(groupNames, month)) {
+                                    groupNames.push(month);
+                                }
+                                return  month;
                             } else {
-                                return 'other';
+                                return 'year';
                             }
 
                         });
 
-                    var groupsNames = [
-                        'today',
-                        'future',
-                        'yesterday',
-                        'week',
-                        'month',
-                        'other'
-                    ];
+                    groupNames.push('year');
 
                     var groups = [];
 
-                    _.forEach(groupsNames, function (group) {
+                    _.forEach(groupNames, function (group) {
                         if (groupedEntries[group]) {
                             groups.push({
                                 name: group,

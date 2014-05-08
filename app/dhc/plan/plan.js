@@ -25,7 +25,10 @@
                         },
                         resolve: {
                             plans: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
-                                return ActivityService.getActivityPlans({'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']});
+                                return ActivityService.getActivityPlans(
+                                    {
+                                        'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']
+                                    });
                             }]
                         }
                     });
@@ -67,15 +70,17 @@
                     var dayAfterTomorrow = moment(today).add('days', 2);
 
                     var nextWeek = moment(today).day(7);
-                    var nextMonth = moment(today).date(1).month((today.month() + 1) % 11);
+                    var nextMonth = moment(today).date(1).month((today.month() + 1));
                     var nextYear = moment(today).month(0).date(1).add('years', 1);
 
 
                     var eventDate = moment(date);
 
-                    // TODO: finetune today/tomorrow
+                    // TODO: filter out events by db query that are not open and in the past
 
                     if(eventDate.diff(tomorrow) < 0) {
+                        return "past";
+                    } else if(eventDate.diff(tomorrow) < 0) {
                         return 'today';
                     } else if(eventDate.diff(dayAfterTomorrow) < 0) {
                         return 'tomorrow';
