@@ -106,7 +106,7 @@
                     getActivityOffer: function (id) {
                         return Restangular.one('activityoffers', id).get({
                             'populate': 'activity activityPlan recommendedBy',
-                            'populatedeep': 'activityPlan.owner'
+                            'populatedeep': 'activityPlan.owner activityPlan.joiningUsers'
                         });
                     },
                     saveActivityOffer: function (offer) {

@@ -146,12 +146,12 @@
                 <div class="row joining-users" ng-show="offer.isJoinedPlan">
                     <div class="col-md-12">
                                 <span ng-if="plan.joiningUsers.length > 0">
-                                    <span>{{ schedule.plan.joiningUsers[0].fullname }}</span>
+                                    <span>{{ plan.joiningUsers[0].fullname }}</span>
                                     <span ng-if="plan.joiningUsers.length > 1"
                                           translate
                                           translate-values="{ OTHERS: '{{ plan.joiningUsers.slice(1).length}}' }"
                                           translate-interpolation="messageformat"
-                                          tooltip-html-unsafe="{{ getJoiningUsers() }}"
+                                          tooltip-html-unsafe="{{ getJoiningUsers(plan) }}"
                                             >
                                         schedule.self.joiningUsers
                                     </span>
@@ -221,14 +221,14 @@
 
         </div>
         <div class="save-link form-group" tooltip-placement="left"
-             tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
+             tooltip="{{ (!offer.isScheduled || !offer.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
             <button ng-show="!offer.id && (offer.type[0] == 'campaignActivityPlan')" type="submit" class="btn btn-primary pull-right" translate>
                 dcmschedule.scheduletype.plan
             </button>
             <button ng-show="!offer.id && (offer.type[0] == 'campaignActivity')" type="submit" class="btn btn-primary pull-right" translate>
                 dcmschedule.scheduletype.recommend
             </button>
-            <button ng-hide="!offer.id" ng-disabled="!schedule.isEditable" type="submit"
+            <button ng-hide="!offer.id" ng-disabled="!offer.isEditable" type="submit"
                     class="btn btn-primary pull-right" translate>schedule.save
             </button>
         </div>
@@ -251,7 +251,7 @@
 </form>
 <!-- inviteOthers -->
 
-<div class="invite-others" ng-show="schedule.isScheduled && plan.executionType === 'group'">
+<div class="invite-others" ng-show="offer.isScheduled && plan.executionType === 'group'">
 
 
     <form name="inviteEmailForm" class="form-inline" role="form"
