@@ -9,17 +9,20 @@
     <div class="dcm-home-content">
 
         <div class="link-area campaigns" ng-click="canAccess('campaigns.content') && $state.go('campaigns.content')"
-             ng-class="{disabled: !canAccess('campaigns.content')}">
+             ng-class="{disabled: !canAccess('campaigns.content')}"
+             analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Campaigns">
             <div class="icon"></div>
             <span translate>dcmhome.campaigns</span>
         </div>
         <div class="link-area notifications" ng-click="currentCampaign && canAccess('notifications.content') && $state.go('notifications.content')"
-             ng-class="{disabled: !currentCampaign || !canAccess('notifications.content')}">
+             ng-class="{disabled: !currentCampaign || !canAccess('notifications.content')}"
+             analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Notifications">
             <div class="icon"></div>
             <span translate>dcmhome.notifications</span>
         </div>
         <div class="link-area campaignoffers" ng-click="currentCampaign && canAccess('campaignoffers.content') && currentCampaign && $state.go('campaignoffers.content')"
-             ng-class="{disabled: !currentCampaign || !canAccess('campaignoffers.content')}">
+             ng-class="{disabled: !currentCampaign || !canAccess('campaignoffers.content')}"
+             analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Campaign Offers">
             <div class="icon"></div>
             <span translate>dcmhome.campaignoffers</span>
         </div>
@@ -28,7 +31,8 @@
             <!--<div class="icon"></div>-->
             <!--<span translate>dcmhome.statistics</span>-->
         <!--</div>-->
-        <div class="link-area organization" ng-click="$state.go('organization.content')">
+        <div class="link-area organization" ng-click="$state.go('organization.content')"
+             analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Organization">
             <div class="icon"></div>
             <span translate>dcmhome.organization</span>
         </div>
