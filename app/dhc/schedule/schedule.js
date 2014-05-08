@@ -24,7 +24,7 @@
                             }
                         },
                         resolve: {
-                            schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                            schedule: ['$state', '$stateParams', 'ActivityService', function ($state, $stateParams, ActivityService) {
                                 return ActivityService.getActivityOffers({activity: $stateParams.id}).then(function(offers) {
                                     if (offers.length === 1) {
                                         var offer = offers[0];
@@ -38,6 +38,10 @@
                                     } else {
                                         // this should never happen
                                         throw new Error("should never get more than one offer for one activity");
+                                    }
+                                }, function(err) {
+                                    if(err.data.code === 'ConflictError' && err.data && err.data.data && err.data.data.activityPlanId) {
+                                        $state.go('schedule.plan', { id: err.data.data.activityPlanId });
                                     }
                                 });
                             }]
