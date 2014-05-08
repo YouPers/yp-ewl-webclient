@@ -124,7 +124,7 @@
                             // an event is being scheduled or edited, so we first save the plan
                             return this.savePlan(plan)
                                 .then(function (savedPlan) {
-                                    offer.activityPlan = [savedPlan.id];
+                                    offer.activityPlan = [savedPlan];
                                     return _saveActivityOffer(offer);
                                 });
                         } else if (offer.type[0] === 'campaignActivity') {

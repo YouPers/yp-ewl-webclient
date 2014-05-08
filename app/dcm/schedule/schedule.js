@@ -72,7 +72,7 @@
                     (offer.isScheduled && offer.activityPlan[0].deleteStatus.indexOf('deletable') === 0);
                 offer.isEditable =  (offer.type[0] === 'campaignActivity') ||
                     (offer.activityPlan[0].editStatus === 'editable');
-                offer.isJoinedPlan = offer.activityPlan[0].joiningUsers.length > 0;
+                offer.isJoinedPlan = offer.activityPlan && offer.activityPlan[0] && offer.activityPlan[0].joiningUsers &&  offer.activityPlan[0].joiningUsers.length > 0;
 
                 $scope.getJoiningUsers = function (plan) {
                     return _.pluck(plan.joiningUsers.slice(1), 'fullname').join('<br/>');
