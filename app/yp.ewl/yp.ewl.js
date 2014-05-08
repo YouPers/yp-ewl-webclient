@@ -168,10 +168,8 @@ angular.module('yp-ewl',
             });
 
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-                // Variante 1, Beispiel: "/diary"
-                $analytics.pageTrack(toState.url + " - " + toState.name);
-                // Variante 2, Beispiel: "/dhc/diary/diary.html"
-//                $analytics.pageTrack("/" + toState.views.content.templateUrl);
+
+                $analytics.pageTrack(toState.name);
 
             });
 

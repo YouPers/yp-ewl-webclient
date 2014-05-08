@@ -41,13 +41,13 @@
 
             <h4 translate>diary.modal.yourResolution</h4>
             <h3 class="resolution-content" translate>{{resolution || 'diary.modal.noresolution'}}</h3>
-        <button class="btn btn-primary" ng-click="ok()" analytics-on="click" analytics-event="NewDiaryEntrySave" analytics-category="Commands" analytics-label="Weiter">Weiter</button>
+        <button class="btn btn-primary" ng-click="ok()" analytics-on="click" analytics-event="NewDiaryEntry" analytics-category="Command" analytics-label="Continue">Weiter</button>
         <div class="form-group" ng-if="mode=='auto'">
             <label for="doNotAskAgainForDiaryEntry">
 
                 <input id="doNotAskAgainForDiaryEntry" class="" type="checkbox"
                        ng-model="result.doNotAskAgainForDiaryEntry"
-                       analytics-on="click" analytics-event="NewDiaryEntryDontShowItAgain" analytics-category="Commands" analytics-label="<Don't show it again">
+                       analytics-on="click" analytics-event="NewDiaryEntry" analytics-category="Command" analytics-label="<Don't show it again">
 
                 <span>{{'diary.modal.doNotAskAgainForDiaryEntry' | translate}}</span>
             </label>
