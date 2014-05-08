@@ -146,12 +146,12 @@
                 <div class="row joining-users" ng-show="offer.isJoinedPlan">
                     <div class="col-md-12">
                                 <span ng-if="plan.joiningUsers.length > 0">
-                                    <span>{{ schedule.plan.joiningUsers[0].fullname }}</span>
+                                    <span>{{ plan.joiningUsers[0].fullname }}</span>
                                     <span ng-if="plan.joiningUsers.length > 1"
                                           translate
                                           translate-values="{ OTHERS: '{{ plan.joiningUsers.slice(1).length}}' }"
                                           translate-interpolation="messageformat"
-                                          tooltip-html-unsafe="{{ getJoiningUsers() }}"
+                                          tooltip-html-unsafe="{{ getJoiningUsers(plan) }}"
                                             >
                                         schedule.self.joiningUsers
                                     </span>
@@ -184,42 +184,36 @@
 
             <div class="col-xs-12">
                 <fieldset>
-                    <div class="row">
+                    <div class="col-xs-6 date-selection">
 
-                        <div class="col-xs-6 date-selection">
-
-                            <div>
-                                <label translate>dcmschedule.label.publishFrom</label>
-                                <input ng-model="offer.validFrom"
-                                       class="form-control" type="text" id="validFrom"
-                                       datepicker-popup="dd.MM.yyyy"
-                                       is-open="openedFrom" min="minDate"
-                                       datepicker-options="dateOptions"
-                                       ng-required="true"/>
-                            </div>
+                        <div>
+                            <label translate>dcmschedule.label.publishFrom</label>
+                            <input ng-model="offer.validFrom"
+                                   class="form-control" type="text" id="validFrom"
+                                   datepicker-popup="dd.MM.yyyy"
+                                   is-open="openedFrom" min="minDate"
+                                   datepicker-options="dateOptions"
+                                   ng-required="true"/>
                         </div>
-                        <div class="col-xs-6 date-selection">
-
-                            <div>
-                                <label translate>dcmschedule.label.publishTo</label>
-                                <input ng-model="offer.validTo"
-                                       class="form-control" type="text" id="validTo"
-                                       datepicker-popup="dd.MM.yyyy"
-                                       is-open="openedTo" min="minDate"
-                                       datepicker-options="dateOptions"
-                                       ng-required="true"/>
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="row">
+                    <div class="col-xs-6 date-selection">
 
-                        <div class="col-xs-12">
-                            <label translate>dcmschedule.publishText</label>
-                            <textarea class="form-control" ng-model="offer.publishText">
-
-                            </textarea>
+                        <div>
+                            <label translate>dcmschedule.label.publishTo</label>
+                            <input ng-model="offer.validTo"
+                                   class="form-control" type="text" id="validTo"
+                                   datepicker-popup="dd.MM.yyyy"
+                                   is-open="openedTo" min="minDate"
+                                   datepicker-options="dateOptions"
+                                   ng-required="true"/>
                         </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <label translate>dcmschedule.publishText</label>
+                        <textarea class="form-control" ng-model="offer.publishText">
+
+                        </textarea>
                     </div>
                 </fieldset>
 
@@ -227,14 +221,14 @@
 
         </div>
         <div class="save-link form-group" tooltip-placement="left"
-             tooltip="{{ (!schedule.isScheduled || !schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
+             tooltip="{{ (!offer.isScheduled || !offer.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
             <button ng-show="!offer.id && (offer.type[0] == 'campaignActivityPlan')" type="submit" class="btn btn-primary pull-right" translate>
                 dcmschedule.scheduletype.plan
             </button>
             <button ng-show="!offer.id && (offer.type[0] == 'campaignActivity')" type="submit" class="btn btn-primary pull-right" translate>
                 dcmschedule.scheduletype.recommend
             </button>
-            <button ng-hide="!offer.id" ng-disabled="!schedule.isEditable" type="submit"
+            <button ng-hide="!offer.id" ng-disabled="!offer.isEditable" type="submit"
                     class="btn btn-primary pull-right" translate>schedule.save
             </button>
         </div>
@@ -255,27 +249,23 @@
 </div>
 </div>
 </form>
-
-
 <!-- inviteOthers -->
 
-<div class="dcm-invite-others" ng-show="offer.id">
+<div class="invite-others" ng-show="offer.isScheduled && plan.executionType === 'group'">
 
 
     <form name="inviteEmailForm" class="form-inline" role="form"
-          ng-submit="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, offer.activityPlan[0])">
+          ng-submit="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, plan)">
 
         <div class="input-group"
              ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
 
             <input class="form-control email-field" name="email" type="text" ng-model="inviteEmail"
                    placeholder="{{ 'schedule.self.inviteOthers.placeholder' | translate }}" multiple-Emails
-                   required
-                   ng-enter="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, offer.activityPlan[0])"
-                    >
+                   required>
 
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button"
+                                            <button class="btn btn-default" type="submit"
                                                     ng-disabled="inviteEmailForm.$invalid" translate>
                                                 schedule.self.inviteOthers.submit
                                             </button>
