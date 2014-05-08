@@ -54,16 +54,16 @@
 
 
     <div class="btn-group form-group execution-type" ng-hide="schedule.isPrivate || schedule.isScheduled">
-        <button type="button" class="btn btn-default self" ng-model="plan.executionType" btn-radio="'self'" translate>
+        <button type="button" class="btn btn-default self" ng-model="schedule.executionType" btn-radio="'self'" translate>
             schedule.executiontype.self
         </button>
-        <button type="button" class="btn btn-default group" ng-model="plan.executionType" btn-radio="'group'" translate>
+        <button type="button" class="btn btn-default group" ng-model="schedule.executionType" btn-radio="'group'" translate>
             schedule.executiontype.group
         </button>
     </div>
 
     <!-- self -->
-    <div ng-if="schedule.isScheduled || plan.executionType === 'self'">
+    <div ng-if="schedule.isScheduled || schedule.executionType === 'self'">
 
         <fieldset ng-disabled="schedule.isScheduled && (schedule.isJoinedPlan || !schedule.isEditable)">
 
@@ -184,7 +184,7 @@
 
     <!-- group -->
 
-    <div ng-if="!schedule.isScheduled && plan.executionType === 'group'">
+    <div ng-if="!schedule.isScheduled && schedule.executionType === 'group'">
 
         <div class="no-plans" ng-hide="schedule.activityPlan && schedule.activityPlan.length > 0">
             <p translate>schedule.group.noPlansToJoin</p>
@@ -239,7 +239,7 @@
     </div>
 
 
-    <div >
+    <div ng-show="schedule.executionType == 'self'">
         <div class="save-link form-group" tooltip-placement="left"
              tooltip="{{ (!schedule.isScheduled || schedule.isEditable) ? '' : ('activityPlanEditable.' + plan.editStatus | translate) }}">
             <button ng-show="!plan.id" type="submit" class="btn btn-primary pull-right" translate>schedule.schedule
@@ -262,7 +262,7 @@
 
 <!-- inviteOthers -->
 
-<div class="invite-others" ng-show="schedule.isScheduled && plan.executionType === 'group'">
+<div class="invite-others" ng-show="schedule.isScheduled && schedule.executionType === 'group'">
 
 
     <form name="inviteEmailForm" class="form-inline" role="form"

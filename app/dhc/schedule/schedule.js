@@ -81,6 +81,7 @@
 
                 $scope.schedule = schedule;
                 $scope.plan = schedule.plan;
+                $scope.schedule.executionType = schedule.plan.executionType;
 
                 $scope.$watch('plan.mainEvent.start', function(val, old) {
                     if(old !== val) {
