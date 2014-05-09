@@ -6,15 +6,18 @@
 
 <div class="carousel-item-list-nav-items" ng-show="items.length > 1">
     <div class="carousel-item-list-nav-chevron-left">
-        <a class="btn btn-default" ng-click="slider.prev()" ng-disabled="!slider.hasPrev()">
+        <a class="btn btn-default" ng-click="slider.prev()" ng-disabled="!slider.hasPrev()"
+           analytics-on="click" analytics-event="ActivityCardsCarousel" analytics-category="InPageNavigation" analytics-label="Carousel Chevron Pressed">
             <span class="glyphicon glyphicon-chevron-left"/>
         </a>
     </div>
-    <div ng-repeat="item in items track by $index" class="item" ng-class="{ active: isItemActive($index) }" ng-click="showItem($index)">
+    <div ng-repeat="item in items track by $index" class="item" ng-class="{ active: isItemActive($index) }" ng-click="showItem($index)"
+         analytics-on="click" analytics-event="ActivityCardsCarousel" analytics-category="InPageNavigation" analytics-label="Carousel Dots Pressed">
         <div></div>
     </div>
     <div class="carousel-item-list-nav-chevron-right">
-        <a class="btn btn-default" ng-click="slider.next()" ng-disabled="!slider.hasNext()">
+        <a class="btn btn-default" ng-click="slider.next()" ng-disabled="!slider.hasNext()"
+           analytics-on="click" analytics-event="ActivityCardsCarousel" analytics-category="InPageNavigation" analytics-label="Carousel Chevron Pressed">
             <span class="glyphicon glyphicon-chevron-right"/>
         </a>
     </div>
