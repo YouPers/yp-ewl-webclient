@@ -52,7 +52,8 @@
 
         </div>
 
-        <div class="back face" ng-click="flip()">
+        <div class="back face" ng-click="flip()"
+             analytics-on="click" analytics-event="ActivityCardFlip" analytics-category="InPageNavigation" analytics-label="Activity Card Flipped">
 
             <div class="content">
                 <h3 ng-bind-html="rec.activity.title">
