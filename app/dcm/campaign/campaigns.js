@@ -78,7 +78,7 @@
                         title: "Stress Management",
                         start: start,
                         end: end,
-                        avatar: '/assets/img/stressManagement.png'
+                        avatar: '/assets/img/stressManagement.jpg'
                     };
                 }
 
