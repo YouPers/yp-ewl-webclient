@@ -413,12 +413,14 @@ body {
 
 .yp-clientmsg {
   position: fixed;
-  width: 100%;
-  z-index: 2;
+  z-index: 100;
+  left: 50%;
 }
 .yp-clientmsg > div {
+  position: relative;
   width: 30em;
-  margin: 2em auto;
+  left: -50%;
+  top: 1.5em;
 }
 .yp-clientmsg .alert {
   opacity: 1;
