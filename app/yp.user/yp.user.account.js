@@ -28,6 +28,11 @@
                 $scope.accountUserObjReset();
 
                 $scope.saveAccount = function () {
+
+                    // TODO: remove this, once we removed the merge of the current user in authenticate
+                    $scope.principal.getUser().fullname = $scope.accountUserObj.fullname =
+                        $scope.accountUserObj.firstname + ' ' + $scope.accountUserObj.lastname;
+
                     UserService.putUser($scope.accountUserObj).then(function (user) {
                         $rootScope.$emit('clientmsg:success', 'account.save');
                     });
