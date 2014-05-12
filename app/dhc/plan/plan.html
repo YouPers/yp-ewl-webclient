@@ -88,16 +88,42 @@
 
             <!-- joining users -->
             <div class="col-md-2 joining">
-                <span ng-if="event.plan.joiningUsers.length > 0">
-                    <span>{{ event.plan.joiningUsers[0].fullname }}</span>
-                    <span class="others" ng-if="event.plan.joiningUsers.length > 0"
-                          translate translate-values="{ OTHERS: '{{ event.plan.joiningUsers.slice(1).length}}' }"
-                          translate-interpolation="messageformat"
-                          tooltip-html-unsafe="{{ getJoiningUsers(event) }}"
-                          >
-                        plan.joiningUsers
+                <div>
+                    <span class="joining-users" ng-if="event.plan.joiningUsers.length > 0">
+                        <span>{{ event.plan.joiningUsers[0].fullname }}</span>
+                        <span class="others" ng-if="event.plan.joiningUsers.length > 0"
+                              translate translate-values="{ OTHERS: '{{ event.plan.joiningUsers.slice(1).length}}' }"
+                              translate-interpolation="messageformat"
+                              tooltip-html-unsafe="{{ getJoiningUsers(event) }}"
+                                >
+                            plan.joiningUsers
+                        </span>
                     </span>
-                </span>
+                </div>
+                <div ng-if="group.name != 'open'">
+
+
+
+                    <form name="inviteEmailForm" class="form-inline" role="form"
+                          ng-submit="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, event.plan)">
+
+
+                        <div class="input-group"
+                             ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
+
+                            <input class="form-control email-field" name="email" type="text" ng-model="inviteEmail"
+                                   placeholder="{{ 'plan.inviteOthers.placeholder' | translate }}" multiple-Emails required>
+
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit"
+                                        ng-disabled="inviteEmailForm.$invalid" translate>
+                                    <span class="glyphicon glyphicon-arrow-right"></span>
+                                </button>
+                            </span>
+                        </div>
+
+                    </form>
+                </div>
             </div>
 
 
