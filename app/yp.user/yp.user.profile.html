@@ -87,11 +87,11 @@
                     <label translate>profileForm.birthdate.label</label>
                 </div>
                 <div class="col-md-4">
-                    <!--ToDo internationalized date check and or date Picker-->
-                    <input name="birthDate" type="text" placeholder="tt.mm.jjjj" class="form-control"
-                           ng-model="profileUserObj.birthDate">
-                    <span ng-show="profileForm.birthDate.$dirty && profileForm.birthDate.$invalid" class="help-inline"
-                          translate>profileForm.birthdate.$invalid</span>
+                    <input ng-model="profileUserObj.birthDate"
+                           class="form-control" type="text" id="datePickerStart"
+                           datepicker-popup="dd.MM.yyyy"
+                           datepicker-append-to-body="true"
+                           is-open="opened" ng-required="true"/>
                 </div>
             </div>
         </div>
