@@ -4,8 +4,8 @@
 
     angular.module('yp.dhc')
 
-        .directive('activityEdit', ['$rootScope', 'ActivityService', 'CampaignService', 'UserService',
-            function ($rootScope, ActivityService, CampaignService, UserService) {
+        .directive('activityEdit', ['$rootScope', '$modal', 'ActivityService', 'CampaignService', 'UserService',
+            function ($rootScope, $modal, ActivityService, CampaignService, UserService) {
                 return {
 
                     restrict: 'EA',
@@ -75,7 +75,52 @@
                             }
                         };
 
+
+                        $scope.selectActivityImage = function selectActivityImage() {
+
+                            var modalInstance = $modal.open({
+                                templateUrl: 'components/activity-edit-directive/activity-image-modal.html',
+                                controller: 'ActivityImageModalController',
+                                resolve: {
+
+                                },
+                                windowClass: 'activity-image-modal'
+                            });
+
+                            return modalInstance.result.then(function (selection) {
+                                $scope.activity.number = selection;
+                            }, function () {
+                                // do nothing on dialog dismiss()
+                            });
+
+                        };
                     }
+                };
+            }])
+
+
+        .controller('ActivityImageModalController', ['$scope', '$modalInstance',
+            function ($scope, $modalInstance) {
+
+                var prefix = '/assets/actpics/';
+                $scope.list = [];
+
+                for(var i=0;i<12;i++) {
+
+                    var id = 'Act-' + (100 + i);
+
+                    $scope.list.push({
+                        id: id,
+                        path: prefix + id + '.jpg'
+                    });
+                }
+
+                $scope.select = function (selection) {
+                    $modalInstance.close(selection);
+                };
+
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
                 };
             }]);
 

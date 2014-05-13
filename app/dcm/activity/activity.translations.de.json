@@ -10,6 +10,12 @@
             "label": "Titel",
             "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"
         },
+
+        "image": {
+            "label": "Aktivitätsbild",
+            "select": "auswählen"
+        },
+
         "description": {
             "label": "Kurzbeschreibung",
             "placeholder": "Kurzbeschreibung"
