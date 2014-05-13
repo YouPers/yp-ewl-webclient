@@ -87,14 +87,29 @@
             <div class="row">
                 <div class="col-md-6 date-selection">
 
-                    <div>
+                    <span>
+                        {{ plan.mainEvent.start }}
+                    </span>
+                    <br/>
+                    <span>
+                        {{ plan.mainEvent.end }}
+                    </span>
+
+                    <div class="input-group">
                         <input ng-model="plan.mainEvent.start"
                                class="form-control" type="text" id="datePickerStart"
-                               datepicker-popup="EEE dd.MM.yyyy"
+                               datepicker-popup="{{dateFormat}}"
                                is-open="opened" min="minDate"
                                datepicker-options="dateOptions"
-                               date-disabled="disabled(date, mode)" ng-required="true"/>
+                               ng-required="true"
+                               ng-click="opened = true"
+                                />
 
+                        <!--<span class="input-group-btn">-->
+                            <!--<button type="button" class="btn btn-default" ng-click="open($event)">-->
+                                <!--<i class="glyphicon glyphicon-calendar"></i>-->
+                            <!--</button>-->
+                        <!--</span>-->
                     </div>
                 </div>
 

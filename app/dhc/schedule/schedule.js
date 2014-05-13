@@ -122,6 +122,8 @@
                 $scope.showWeeks = false;
                 $scope.minDate = new Date();
 
+                $scope.dateFormat = 'EEE dd.MM.yyyy';
+
                 $scope.dateOptions = {
                     'year-format': "'yy'",
                     'starting-day': 1

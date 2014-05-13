@@ -193,6 +193,31 @@
                 }
             };
         })
+
+        .directive('futureDate', function () {
+            return {
+                restrict: 'A',
+                require: 'ngModel',
+                link: function (scope, elm, attrs, ctrl) {
+                    ctrl.$parsers.unshift(function (viewValue) {
+                        var valid = false;
+
+                        if(viewValue) {
+
+                            var now = moment();
+                            var date = moment(viewValue);
+
+                            valid = now.isBefore(date);
+                        }
+
+                        ctrl.$setValidity('futureDate', valid);
+
+                        return viewValue;
+                    });
+                }
+            };
+        })
+
         .directive('toggleValue', function () {
             return {
                 restrict: 'A',
