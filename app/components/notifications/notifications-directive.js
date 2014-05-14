@@ -26,6 +26,9 @@
                             };
 
                             scope.dismissNotification = function dismissNotification(notification) {
+                                _.remove(scope.notifications, function(nf) {
+                                    return nf.id === notification.id;
+                                })
                                 NotificationService.deleteNotification(notification);
                             };
 
