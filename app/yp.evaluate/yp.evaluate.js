@@ -14,7 +14,7 @@ angular.module('yp.evaluate', ['restangular', 'ui.router', 'yp.user', 'yp.activi
 
                     }
                 });
-        }])
+        }]);
 //    .controller('EvaluateCtrl', ['$scope', 'UserService', 'ActivityService', 'AssessmentService', 'StatsService',
 //        function ($scope, UserService, ActivityService, AssessmentService, StatsService) {
 //
@@ -27,7 +27,7 @@ angular.module('yp.evaluate', ['restangular', 'ui.router', 'yp.user', 'yp.activi
 //                    // TODO: find better solution, private fields are not accessible in angular, Date object would be more convenient to use
 //                    item.day = new Date(item._id.year, item._id.month, item._id.day);
 //                });
-//            });
+//            });;
 //
 //
 //            StatsService.getStats('assTotals').then(function(result) {
