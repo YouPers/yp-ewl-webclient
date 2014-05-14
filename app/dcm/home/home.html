@@ -26,11 +26,11 @@
             <div class="icon"></div>
             <span translate>dcmhome.campaignoffers</span>
         </div>
-        <!--<div class="link-area statistics" ng-click="false && $state.go('statistics.content')"-->
-             <!--ng-class="{disabled: true}">-->
-            <!--<div class="icon"></div>-->
-            <!--<span translate>dcmhome.statistics</span>-->
-        <!--</div>-->
+        <div class="link-area statistics" ng-click="currentCampaign && canAccess('stats.content') && $state.go('stats.content')"
+             ng-class="{disabled: !currentCampaign || !canAccess('stats.content')}">
+            <div class="icon"></div>
+            <span translate>dcmhome.statistics</span>
+        </div>
         <div class="link-area organization" ng-click="$state.go('organization.content')"
              analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Organization">
             <div class="icon"></div>
