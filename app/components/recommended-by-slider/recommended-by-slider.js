@@ -15,14 +15,11 @@
                 link: function (scope, elem, attrs) {
 
                     var users = scope.users;
-
-                    var index = 0;
-                    scope.currentUser = users ? [users[index]] : [];
+                    scope.current = 0;
 
                     if(users.length > 1) {
                         $interval(function () {
-                            index = (index + 1) % users.length;
-                            scope.currentUser = [users[index]];
+                            scope.current = (scope.current + 1) % users.length;
                         }, 1000);
                     }
 

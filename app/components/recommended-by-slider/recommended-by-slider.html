@@ -1,5 +1,5 @@
-<div class="source" ng-repeat="user in currentUser">
-    <div class="source-avatar-container">
+<div class="source recommended-by" ng-repeat="user in users">
+    <div class="source-avatar-container" ng-show="$index == current">
         <div class="source-avatar-content source-type" ng-class="'source-type-' + sourceType">
             <img ng-src="{{user.avatar}}">
         </div>

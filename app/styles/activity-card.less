@@ -94,3 +94,21 @@
   bottom: 1em;
   right: 1em;
 }
+
+.recommended-by.ng-enter,
+.recommended-by.ng-leave {
+  transition:0.5s linear all;
+  left: 0;
+  position: absolute;
+}
+
+.recommended-by.ng-enter {
+  left: -100%;
+}
+.recommended-by.ng-leave.ng-leave-active {
+  left: 100%;
+}
+.recommended-by.ng-leave,
+.recommended-by.ng-enter.ng-enter-active {
+  left:0;
+}
