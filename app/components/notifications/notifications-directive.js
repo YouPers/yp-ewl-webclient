@@ -25,6 +25,10 @@
                                 'starting-day': 1
                             };
 
+                            scope.dismissNotification = function dismissNotification(notification) {
+                                NotificationService.deleteNotification(notification);
+                            };
+
                             if (CampaignService.currentCampaign) {
 
                                 NotificationService.getNotifications({campaign: CampaignService.currentCampaign.id, mode: 'preview'}).then(function (result) {
