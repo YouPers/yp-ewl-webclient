@@ -8,15 +8,7 @@
                 <img ng-src="{{'/assets/actpics/' + rec.activity.number + '.jpg'}}">
             </div>
             <div class="source">
-                <div class="source-avatar-container">
-                    <div class="source-avatar-content source-type" ng-class="'source-type-' + rec.sourceType">
-                        <img ng-src="{{rec.recommendedBy[0].avatar}}" ng-if="rec.recommendedBy[0].avatar">
-                    </div>
-                    <div class="source-text">
-                        empfohlen durch {{ rec.recommendedBy[0].fullname }}
-                    </div>
-                </div>
-
+                <recommended-by-slider users="rec.recommendedBy" source-type="rec.sourceType"></recommended-by-slider>
             </div>
 
             <div class="content">

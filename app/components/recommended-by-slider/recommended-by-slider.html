@@ -1,0 +1,10 @@
+<div class="source" ng-repeat="user in currentUser">
+    <div class="source-avatar-container">
+        <div class="source-avatar-content source-type" ng-class="'source-type-' + sourceType">
+            <img ng-src="{{user.avatar}}">
+        </div>
+        <div class="source-text">
+            empfohlen durch {{ user.fullname }}
+        </div>
+    </div>
+</div>
