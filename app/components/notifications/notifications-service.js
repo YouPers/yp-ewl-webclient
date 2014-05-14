@@ -26,6 +26,10 @@
                 postNotification: function(notification, options) {
                     return Restangular.all(baseUrl).post(notification);
                 },
+
+                dismissNotification: function(notification) {
+                    return Restangular.one(baseUrl, notification.id || notification).remove();
+                },
                 deleteNotification: function(notification) {
                     return Restangular.one(baseUrl, notification.id || notification).remove();
                 }

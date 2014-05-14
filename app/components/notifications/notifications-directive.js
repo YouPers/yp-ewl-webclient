@@ -12,6 +12,13 @@
 
                     link: function (scope, elem, attrs) {
 
+                        scope.dismiss = function (notification) {
+                            _.remove(scope.notifications, function(nf) {
+                                return nf.id === notification.id;
+                            });
+                            NotificationService.dismissNotification(notification);
+                        };
+
                         if ($state.current.access === accessLevels.campaignlead) {
                             // this is screen where only campaignLeads have access and a currentCampaign is set
                             // so we show the preview Version
@@ -25,12 +32,6 @@
                                 'starting-day': 1
                             };
 
-                            scope.dismissNotification = function dismissNotification(notification) {
-                                _.remove(scope.notifications, function(nf) {
-                                    return nf.id === notification.id;
-                                })
-                                NotificationService.deleteNotification(notification);
-                            };
 
                             if (CampaignService.currentCampaign) {
 
