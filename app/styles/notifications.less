@@ -37,11 +37,14 @@
   color: @yp-color-dark-grey;
 }
 
-.notification:hover a,
-.notification:hover .name,
-.notification:hover .time {
-  color: @yp-color-green-hover;
+.notification:hover {
   text-decoration: none;
+}
+
+
+.notification.link:hover,
+.notification.link:hover .type-title {
+  color: @yp-color-green-hover;
   cursor: pointer;
 }
 
@@ -51,6 +54,14 @@
   display: block;
 }
 
+.notification .dismiss {
+  color: @yp-color-light-grey;
+  cursor: pointer;
+}
+
+.notification .dismiss:hover {
+  color: @yp-color-red;
+}
 
 
 .notifications-list-edit {

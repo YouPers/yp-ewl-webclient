@@ -7,22 +7,22 @@
                is-open="opened"
                ng-required="true"/>
     </div>
-    <div ng-href="{{nf.refDocLink}}" class="notification" ng-repeat="nf in notifications">
+    <a ng-href="{{nf.refDocLink}}" class="notification" ng-class="{ link: nf.refDocLink }"  ng-repeat="nf in notifications">
         <div>
 
-            <a href class="pull-right" ng-click="dismissNotification(nf)">
+            <div class="pull-right dismiss" ng-click="dismissNotification(nf)">
                 <span class="glyphicon glyphicon-remove"></span>
-            </a>
+            </div>
 
             <div class="avatar source-type" ng-class="'source-type-' + nf.sourceType">
                 <img ng-src="{{nf.author.avatar}}">
             </div>
 
-            <a class="type-title">
+            <div class="type-title">
                 <div class="type">{{'notifications.type.' + nf.type | translate}}</div>
                 <div class="title">{{nf.title}}</div>
                 <div class="text">{{nf.text}}</div>
-            </a>
+            </div>
 
             <div class="clearfix"></div>
             <div class="time pull-right">{{nf.created | fromNow}}</div>
@@ -31,5 +31,5 @@
             {{nf.author.fullname}}
         </div>
 
-    </div>
+    </a>
 </div>
