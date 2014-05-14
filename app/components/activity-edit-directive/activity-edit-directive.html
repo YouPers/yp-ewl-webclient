@@ -4,7 +4,12 @@
       ng-submit="save()" novalidate>
 
     <div class="form-group">
-
+        <label for="number" class="col-md-3 control-label" translate>activity.image.label</label>
+        <div class="col-md-9">
+            <span class="activity-image-link">
+                <a href ng-click="selectActivityImage()" translate>activity.image.select</a>
+            </span>
+        </div>
     </div>
 
     <div class="form-group" ng-if="isProductAdmin()">
