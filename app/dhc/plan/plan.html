@@ -49,7 +49,7 @@
             </div>
 
             <!-- image -->
-            <div class="col-md-1 image">
+            <div class="col-md-1 activity-image" ng-class="{ {{event.plan.source}}: true }">
                 <span>
                     <img ng-src="{{'/assets/actpics/' + event.plan.activity.number + '.jpg' }}">
                 </span>

@@ -168,7 +168,9 @@
                         return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
                     },
 
-                    getDefaultPlan: function (activity, campaignId) {
+                    getDefaultPlan: function (offer) {
+
+                        var activity = offer.activity;
 
                         var now = moment();
                         var newMainEvent = {
@@ -214,17 +216,15 @@
                             activity: activity,
                             status: 'active',
                             mainEvent: newMainEvent,
-                            source: campaignId ? 'campaign' : 'community',
+                            source: offer.sourceType,
                             executionType: activity.defaultexecutiontype,
-                            visibility: campaignId ? 'campaign' : activity.defaultvisibility,
+                            visibility: activity.defaultvisibility,
                             fields: activity.fields,
                             topics: activity.topics,
                             title: activity.title,
                             number: activity.number
                         };
-                        if (campaignId) {
-                            plan.campaign = campaignId;
-                        }
+
                         return plan;
                     }
                 };
