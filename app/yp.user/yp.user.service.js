@@ -67,15 +67,21 @@
                         authenticatedUser.roles = [authenticatedUser.role];
                     }
 
-                    if (_.isString(authenticatedUser.profile)) {
-                        // we got an "unpopulated" profile from the backend, but we want to preserve
-                        // the profile data we already have in the session. It would be overwritten by
-                        // the String on merge.
-                        // We also need to have an object instead of a ref in case we want to set some profile values
-                        authenticatedUser.profile = {id: authenticatedUser.profile};
+
+                    // copy the following user properties from the current user,
+                    // if the user is not already authenticated
+                    if(!_authenticated) {
+                        authenticatedUser.campaign = _currentUser.campaign;
                     }
 
-                    _currentUser = _.merge(authenticatedUser, _currentUser);
+                    // clean current user in order to keep the same reference
+                    _.forEach(_.keys(_currentUser), function(key) {
+                        delete _currentUser[key];
+                    });
+
+                    // merge the user obj recursively to the current user
+                    _.merge(_currentUser, authenticatedUser);
+
                     _authenticated = true;
 
                     // Broadcast the authorized event
