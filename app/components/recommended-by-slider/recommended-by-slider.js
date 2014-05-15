@@ -17,10 +17,17 @@
                     var users = scope.users;
                     scope.current = 0;
 
+
+                    function next() {
+                        scope.current = (scope.current + 1) % users.length;
+                    }
+
+                    next();
+
                     if(users.length > 1) {
                         $interval(function () {
-                            scope.current = (scope.current + 1) % users.length;
-                        }, 1000);
+                            next();
+                        }, 4000);
                     }
 
                 }
