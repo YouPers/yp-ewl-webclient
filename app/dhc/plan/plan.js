@@ -27,6 +27,7 @@
                             plans: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 return ActivityService.getActivityPlans(
                                     {
+                                        'filter[status]': 'active',
                                         'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']
                                     });
                             }]
@@ -42,6 +43,7 @@
                 var events = [];
 
                 var groups = [
+                    'past',
                     'open',
                     'today',
                     'tomorrow',
@@ -124,6 +126,15 @@
 
                 $scope.getJoiningUsers = function (event) {
                     return _.pluck(event.plan.joiningUsers.slice(1), 'fullname').join('<br/>');
+                };
+
+                $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                    this.inviteEmail = "";
+
+                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.invite', { values: { email: email } });
+                        $scope.$broadcast('formPristine');
+                    });
                 };
 
                 $scope.updateEvent = function(event, status) {

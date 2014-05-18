@@ -212,18 +212,29 @@
         ga('create', '<%= config.googleAnalytics.webPropertyId %>', 'auto');
     </script>
 
+    <!--[if lt IE 10]>
+    <script type="text/javascript">
+        window.location = "/unsupportedBrowser.html";
+    </script>
+    <![endif]-->
+
 </head>
 
 
 <body ng-app="yp-ewl<%- ngappsuffix %>">
 
 
+
     <ng-include src="'yp.ewl/topmenu.html'"></ng-include>
 
+
     <div class="yp-clientmsg">
-        <alert ng-repeat="msg in clientmsgs" type='msg.alertType' close="closeClientmsg(msg.id)" >
-            {{ msg.message | translate:msg.values }}
-        </alert>
+        <div>
+            <alert ng-repeat="msg in clientmsgs" type='msg.alertType' close="closeClientmsg(msg.id)" >
+                {{ msg.message | translate:msg.values }}
+            </alert>
+        </div>
+
     </div>
 
     <div ui-view autoscroll="false"></div>

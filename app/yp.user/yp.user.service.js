@@ -37,7 +37,7 @@
             admin: _userRoles.productadmin | _userRoles.systemadmin  // 00011
         };
 
-    var _emptyDefaultUser = {profile: {userPreferences: {}}};
+    var _emptyDefaultUser = {profile: {userPreferences: {email: {}}}};
     var _currentUser = _.clone(_emptyDefaultUser);
     var _authenticated = false;
 
@@ -67,15 +67,28 @@
                         authenticatedUser.roles = [authenticatedUser.role];
                     }
 
-                    if (_.isString(authenticatedUser.profile)) {
-                        // we got an "unpopulated" profile from the backend, but we want to preserve
-                        // the profile data we already have in the session. It would be overwritten by
-                        // the String on merge.
-                        // We also need to have an object instead of a ref in case we want to set some profile values
-                        authenticatedUser.profile = {id: authenticatedUser.profile};
+
+                    // copy the following user properties from the current user,
+                    // if the user is not already authenticated
+                    if(!_authenticated) {
+                        authenticatedUser.campaign = _currentUser.campaign;
                     }
 
-                    _currentUser = _.merge(authenticatedUser, _currentUser);
+                    // clean current user in order to keep the same reference, only clean out the profile
+                    // if the authenticated user provides an updated populated profile
+                    var hasProfilePopulated = authenticatedUser.profile &&  authenticatedUser.profile.id;
+                    if (!hasProfilePopulated) {
+                        delete authenticatedUser.profile;
+                    }
+                    _.forEach(_.keys(_currentUser), function(key) {
+                        if (key !== 'profile' || hasProfilePopulated) {
+                            delete _currentUser[key];
+                        }
+                    });
+
+                    // merge the user obj recursively to the current user
+                    _.merge(_currentUser, authenticatedUser);
+
                     _authenticated = true;
 
                     // Broadcast the authorized event

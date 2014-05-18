@@ -223,7 +223,7 @@ module.exports = function (grunt) {
             }
         },
         usemin: {
-            html: ['<%= yeoman.dist %>/index.html'],
+            html: ['<%= yeoman.dist %>/index.html', '<%= yeoman.dist %>/unsupportedBrowser.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
                 dirs: ['<%= yeoman.dist %>']
@@ -271,7 +271,9 @@ module.exports = function (grunt) {
                     removeOptionalTags: true
                 },
                 files: [
-                    {'dist/index.html': '.tmp/index.html'}
+                    {'dist/index.html': '.tmp/index.html'},
+                    {'dist/unsupportedBrowser.html': '<%= yeoman.app %>/unsupportedBrowser.html'}
+
                 ]
             }
         },
