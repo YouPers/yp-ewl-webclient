@@ -271,7 +271,9 @@ module.exports = function (grunt) {
                     removeOptionalTags: true
                 },
                 files: [
-                    {'dist/index.html': '.tmp/index.html'}
+                    {'dist/index.html': '.tmp/index.html'},
+                    {'dist/unsupportedBrowser.html': '<%= yeoman.app %>/unsupportedBrowser.html'}
+
                 ]
             }
         },
