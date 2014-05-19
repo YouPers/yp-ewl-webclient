@@ -28,9 +28,7 @@
 }
 
 .activity-card .source-avatar-container {
-  position: absolute;
   width: @youpers-activity-card-width;
-  top: 10em;
 }
 
 .activity-card .source-avatar-container .source-text {
@@ -93,4 +91,34 @@
   position: absolute;
   bottom: 1em;
   right: 1em;
+}
+
+.activity-card .source {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 12em;
+  top: 5em;
+}
+
+.source-avatar-container.ng-hide-add, .source-avatar-container.ng-hide-remove {
+  transition: 1.5s ease all;
+  display:block!important;
+  position: absolute;
+  opacity: 1;
+  left: 0%;
+}
+
+.source-avatar-container.ng-hide-remove {
+  opacity: 0;
+  left: -100%;
+}
+.source-avatar-container.ng-hide-remove.ng-hide-remove-active,
+.source-avatar-container.ng-hide-add {
+  left: 0%;
+  opacity: 1;
+}
+.source-avatar-container.ng-hide-add.ng-hide-add-active { 
+  opacity: 0;
+  left: 100%;
 }
