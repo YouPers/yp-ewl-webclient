@@ -213,6 +213,12 @@
         ga('create', '<%= config.googleAnalytics.webPropertyId %>', 'auto');
     </script>
 
+    <!--[if lt IE 10]>
+    <script type="text/javascript">
+        window.location = "/unsupportedBrowser.html";
+    </script>
+    <![endif]-->
+
 </head>
 
 
