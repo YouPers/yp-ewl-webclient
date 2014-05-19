@@ -86,9 +86,7 @@
 
     "activityPlanEditable": {
         "editable": "Eingeplante Aktivität ändern",
-        "notEditableJoinedPlans": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil andere Benutzer daran teilnehmen.",
-        "notEditableJoinedUsers": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
-        "notEditableNotSingleEvent": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil es eine Aktivität mit mehreren Ausführungen ist.",
+        "notEditableJoinedPlan": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil andere Benutzer daran teilnehmen.",
         "notEditablePastEvent": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil die Ausführung in der Vergangenheit ist."
     },
     "activityPlanDeletable": {

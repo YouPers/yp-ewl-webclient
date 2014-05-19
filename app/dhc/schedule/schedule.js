@@ -208,6 +208,8 @@
                         $scope.plan = savedPlan;
                         $state.go('schedule.plan', { id: savedPlan.id });
 
+                    }, function(err) {
+                        $rootScope.$emit('clientmsg:error', err);
                     });
                 };
 
