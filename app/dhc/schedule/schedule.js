@@ -100,8 +100,8 @@
                         $scope.plan.mainEvent.start = start.toISOString();
                     }
                 });
-                
-                
+
+
                 $scope.$watch('plan.mainEvent.start', function(val, old) {
                     if(old !== val) {
                         var end = moment($scope.plan.mainEvent.end).add(moment(val).diff(old));
@@ -137,7 +137,7 @@
                 $scope.showWeeks = false;
                 $scope.minDate = new Date();
 
-                $scope.dateFormat = 'EEE dd.MM.yyyy';
+                $scope.dateFormat = 'dd.MM.yyyy';
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",

@@ -203,10 +203,12 @@
                             <label translate>dcmschedule.label.publishTo</label>
                             <input ng-model="offer.validTo"
                                    class="form-control" type="text" id="validTo"
-                                   datepicker-popup="dd.MM.yyyy"
+                                   datepicker-popup="{{dateFormat}}"
                                    is-open="openedTo" min="minDate"
                                    datepicker-options="dateOptions"
-                                   ng-required="true"/>
+                                   ng-required="true"
+                                   date-parser="{{dateFormat}}"
+                                    />
                         </div>
                     </div>
 
