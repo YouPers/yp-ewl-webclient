@@ -87,6 +87,21 @@
                 $scope.plan = schedule.plan;
                 $scope.schedule.executionType = schedule.plan.executionType;
 
+                // copy of start date the date picker can mess around with and loose it's time
+                $scope.plan.mainEvent.startDate = $scope.plan.mainEvent.start;
+                $scope.$watch('plan.mainEvent.startDate', function(val, old) {
+
+                    if(val) {
+                        var startDate = new Date(val);
+                        var start = new Date($scope.plan.mainEvent.start);
+                        start.setYear(startDate.getYear());
+                        start.setMonth(startDate.getMonth());
+                        start.setDate(startDate.getDate());
+                        $scope.plan.mainEvent.start = start.toISOString();
+                    }
+                });
+                
+                
                 $scope.$watch('plan.mainEvent.start', function(val, old) {
                     if(old !== val) {
                         var end = moment($scope.plan.mainEvent.end).add(moment(val).diff(old));
