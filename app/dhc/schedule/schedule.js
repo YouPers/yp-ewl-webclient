@@ -28,7 +28,7 @@
                                 return ActivityService.getActivityOffers({activity: $stateParams.id}).then(function(offers) {
                                     if (offers.length === 1) {
                                         var offer = offers[0];
-                                        offer.plan = ActivityService.getDefaultPlan(offer);
+                                        offer.plan = ActivityService.getDefaultPlan(offer.activity);
                                         offer.isScheduled = false;
                                         return offer;
                                     } else if (offers.length === 0) {
