@@ -79,6 +79,7 @@
     <script src="components/user/invite/invite.js"></script>
 
     <script src="components/activity-card-directive/activity-card-directive.js"></script>
+    <script src="components/recommended-by-slider/recommended-by-slider.js"></script>
     <script src="components/multiple-view-carousel-directive/multiple-view-carousel-directive.js"></script>
     <script src="components/stop-propagation-directive/stop-propagation-directive.js"></script>
     <script src="components/health-coach/health-coach-service.js"></script>
@@ -211,6 +212,12 @@
 
         ga('create', '<%= config.googleAnalytics.webPropertyId %>', 'auto');
     </script>
+
+    <!--[if lt IE 10]>
+    <script type="text/javascript">
+        window.location = "/unsupportedBrowser.html";
+    </script>
+    <![endif]-->
 
 </head>
 

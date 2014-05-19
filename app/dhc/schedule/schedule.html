@@ -14,15 +14,8 @@
                 <img ng-src="{{'/assets/actpics/' + schedule.activity.number + '.jpg'}}">
             </div>
 
-            <div class="source" ng-if="schedule.recommendedBy && schedule.recommendedBy.length > 0">
-                <div class="source-avatar-container">
-                    <div class="source-avatar-content source-type" ng-class="'source-type-' + schedule.sourceType">
-                        <img ng-src="{{schedule.recommendedBy[0].avatar}}">
-                    </div>
-                    <div class="source-text">
-                        empfohlen durch {{ schedule.recommendedBy[0].fullname }}
-                    </div>
-                </div>
+            <div class="source">
+                <recommended-by-slider users="schedule.recommendedBy" source-type="schedule.sourceType"></recommended-by-slider>
             </div>
 
             <div class="content">
