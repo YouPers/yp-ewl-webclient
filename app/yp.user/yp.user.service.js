@@ -71,7 +71,7 @@
                     // copy the following user properties from the current user,
                     // if the user is not already authenticated
                     if(!_authenticated) {
-                        authenticatedUser.campaign = _currentUser.campaign;
+                        authenticatedUser.campaign = _currentUser.campaign || authenticatedUser.campaign;
                     }
 
                     // clean current user in order to keep the same reference, only clean out the profile
