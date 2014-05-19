@@ -166,6 +166,7 @@
 
                     getDefaultPlan: function (activity, campaignId) {
 
+
                         var now = moment();
                         var newMainEvent = {
                             "allDay": false
@@ -218,6 +219,7 @@
                             title: activity.title,
                             number: activity.number
                         };
+
                         if (campaignId) {
                             plan.campaign = campaignId;
                         }

@@ -24,7 +24,12 @@
 
         <!-- events -->
 
-        <div class="row event" ng-repeat="event in group.events">
+        <div class="row event" ng-repeat="event in group.events"
+
+             ng-class="{ active: event.hovered || event.focused }"
+             ng-mouseover="event.hovered = true;"
+             ng-mouseleave="event.hovered = false;">
+
 
             <!-- date -->
             <div class="col-md-2 date">
@@ -49,7 +54,7 @@
             </div>
 
             <!-- image -->
-            <div class="col-md-1 image">
+            <div class="col-md-1 activity-image" ng-class="{ {{event.plan.source}}: true }">
                 <span>
                     <img ng-src="{{'/assets/actpics/' + event.plan.activity.number + '.jpg' }}">
                 </span>
@@ -100,8 +105,7 @@
                         </span>
                     </span>
                 </div>
-                <div ng-if="group.name != 'open'">
-
+                <div ng-if="group.name != 'open' && event.plan.executionType == 'group'">
 
 
                     <form name="inviteEmailForm" class="form-inline" role="form"
@@ -111,8 +115,16 @@
                         <div class="input-group"
                              ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
 
-                            <input class="form-control email-field" name="email" type="text" ng-model="inviteEmail"
-                                   placeholder="{{ 'plan.inviteOthers.placeholder' | translate }}" multiple-Emails required>
+
+                            <input class="form-control email-field" name="email" type="text"
+
+                                   ng-model="inviteEmail" multiple-Emails required
+                                   placeholder="{{ 'plan.inviteOthers.placeholder' | translate }}"
+
+                                   ng-focus="event.focused = true;"
+                                   ng-blur="event.focused = false;"
+
+                                   >
 
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit"
