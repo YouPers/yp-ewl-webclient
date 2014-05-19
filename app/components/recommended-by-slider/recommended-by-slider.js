@@ -22,7 +22,7 @@
                         scope.current = (scope.current + 1) % users.length;
                     }
 
-                    if(users.length > 1) {
+                    if(users && users.length > 1) {
 
                         next();
 
