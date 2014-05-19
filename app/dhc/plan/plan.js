@@ -27,6 +27,7 @@
                             plans: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 return ActivityService.getActivityPlans(
                                     {
+                                        'filter[status]': 'active',
                                         'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']
                                     });
                             }]
@@ -42,6 +43,7 @@
                 var events = [];
 
                 var groups = [
+//                    'past',
                     'open',
                     'today',
                     'tomorrow',

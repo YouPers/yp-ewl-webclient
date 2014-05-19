@@ -33,7 +33,7 @@
         .controller('profileCtrl', ['$scope', '$rootScope', 'UserService', 'ProfileService', 'ActivityService',
             function ($scope, $rootScope, UserService, ProfileService, ActivityService) {
 
-                $scope.profileUserObj = _.clone($scope.principal.getUser().profile);
+                $scope.profileUserObj = _.clone($scope.principal.getUser().profile, true);
 
                 ActivityService.getActivities().then(function (acts) {
                     $scope.activities = acts;
