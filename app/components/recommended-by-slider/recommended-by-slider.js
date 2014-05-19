@@ -22,9 +22,10 @@
                         scope.current = (scope.current + 1) % users.length;
                     }
 
-                    next();
-
                     if(users.length > 1) {
+
+                        next();
+
                         $interval(function () {
                             next();
                         }, 4000);
