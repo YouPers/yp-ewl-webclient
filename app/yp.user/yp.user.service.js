@@ -37,7 +37,7 @@
             admin: _userRoles.productadmin | _userRoles.systemadmin  // 00011
         };
 
-    var _emptyDefaultUser = {profile: {userPreferences: {}}};
+    var _emptyDefaultUser = {profile: {userPreferences: {email: {}}}};
     var _currentUser = _.clone(_emptyDefaultUser);
     var _authenticated = false;
 
@@ -74,9 +74,16 @@
                         authenticatedUser.campaign = _currentUser.campaign;
                     }
 
-                    // clean current user in order to keep the same reference
+                    // clean current user in order to keep the same reference, only clean out the profile
+                    // if the authenticated user provides an updated populated profile
+                    var hasProfilePopulated = authenticatedUser.profile &&  authenticatedUser.profile.id;
+                    if (!hasProfilePopulated) {
+                        delete authenticatedUser.profile;
+                    }
                     _.forEach(_.keys(_currentUser), function(key) {
-                        delete _currentUser[key];
+                        if (key !== 'profile' || hasProfilePopulated) {
+                            delete _currentUser[key];
+                        }
                     });
 
                     // merge the user obj recursively to the current user

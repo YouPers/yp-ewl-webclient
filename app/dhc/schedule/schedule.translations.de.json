@@ -24,6 +24,8 @@
 
     "schedule": {
 
+        "recommendedBy": "empfohlen durch",
+
         "executiontype": {
             "self": "Selber planen",
             "group": "Mitmachen"

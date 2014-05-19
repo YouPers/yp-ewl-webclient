@@ -125,7 +125,7 @@
                     error: 'danger'
                 };
 
-                var opts = _.clone(defaults);
+                var opts = _.clone(defaults, true);
                 _.merge(opts, options);
 
 
