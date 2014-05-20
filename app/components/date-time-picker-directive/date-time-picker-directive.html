@@ -1,19 +1,8 @@
 <div class="row">
     <div class="col-md-6 date-selection">
 
-        <div class="input-group">
-            <input ng-model="startDate"
-                   class="form-control" type="text" id="datePickerStart"
+        <date-picker date="start"></date-picker>
 
-                   datepicker-popup="{{dateFormat}}"
-                   is-open="opened" min="minDate"
-                   datepicker-options="dateOptions"
-                   ng-required="true"
-                   ng-click="opened = true"
-                   date-parser="{{dateFormat}}"
-
-                    />
-        </div>
     </div>
 
     <div class="col-md-3 time-selection">

@@ -172,26 +172,14 @@
 
                         <div>
                             <label translate>dcmschedule.label.publishFrom</label>
-                            <input ng-model="offer.validFrom"
-                                   class="form-control" type="text" id="validFrom"
-                                   datepicker-popup="dd.MM.yyyy"
-                                   is-open="openedFrom" min="minDate"
-                                   datepicker-options="dateOptions"
-                                   ng-required="true"/>
+                            <date-picker date="offer.validFrom"></date-picker>
                         </div>
                     </div>
                     <div class="col-xs-6 date-selection">
 
                         <div>
                             <label translate>dcmschedule.label.publishTo</label>
-                            <input ng-model="offer.validTo"
-                                   class="form-control" type="text" id="validTo"
-                                   datepicker-popup="{{dateFormat}}"
-                                   is-open="openedTo" min="minDate"
-                                   datepicker-options="dateOptions"
-                                   ng-required="true"
-                                   date-parser="{{dateFormat}}"
-                                    />
+                            <date-picker date="offer.validTo"></date-picker>
                         </div>
                     </div>
 
