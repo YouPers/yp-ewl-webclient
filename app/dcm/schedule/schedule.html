@@ -5,7 +5,7 @@
     </div>
 </div>
 
-<form class="form activity-schedule-form" role="form" ng-submit="saveOffer()">
+<form name="scheduleForm" class="form activity-schedule-form" role="form" ng-submit="saveOffer()">
 
 <div class="activity-schedule">
 <div class="activity-schedule-page">
@@ -22,7 +22,7 @@
                         <img ng-src="{{offer.recommendedBy[0].avatar}}">
                     </div>
                     <div class="source-text">
-                        empfohlen durch {{ offer.recommendedBy[0].fullname }}
+                        <span translate>schedule.recommendedBy</span> {{ offer.recommendedBy[0].fullname }}
                     </div>
                 </div>
             </div>
@@ -88,26 +88,10 @@
 
                 <!-- date and time -->
                 <div class="row">
-                    <div class="col-md-6 date-selection">
+                    <div class="col-md-12 date-time-selection">
 
-                        <div>
-                            <input ng-model="plan.mainEvent.start"
-                                   class="form-control" type="text" id="datePickerStart"
-                                   datepicker-popup="dd.MM.yyyy"
-                                   is-open="opened" min="minDate"
-                                   datepicker-options="dateOptions"
-                                   date-disabled="disabled(date, mode)" ng-required="true"/>
+                        <date-time-picker start="plan.mainEvent.start" end="plan.mainEvent.end"></date-time-picker>
 
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 time-selection">
-                        <timepicker ng-model="plan.mainEvent.start" id="timePickerStart" minute-step="15"
-                                    show-meridian="false"></timepicker>
-                    </div>
-                    <div class="col-md-3 time-selection">
-                        <timepicker ng-model="plan.mainEvent.end" id="timePickerEnd" minute-step="15"
-                                    show-meridian="false"></timepicker>
                     </div>
                 </div>
 
@@ -188,24 +172,14 @@
 
                         <div>
                             <label translate>dcmschedule.label.publishFrom</label>
-                            <input ng-model="offer.validFrom"
-                                   class="form-control" type="text" id="validFrom"
-                                   datepicker-popup="dd.MM.yyyy"
-                                   is-open="openedFrom" min="minDate"
-                                   datepicker-options="dateOptions"
-                                   ng-required="true"/>
+                            <date-picker date="offer.validFrom"></date-picker>
                         </div>
                     </div>
                     <div class="col-xs-6 date-selection">
 
                         <div>
                             <label translate>dcmschedule.label.publishTo</label>
-                            <input ng-model="offer.validTo"
-                                   class="form-control" type="text" id="validTo"
-                                   datepicker-popup="dd.MM.yyyy"
-                                   is-open="openedTo" min="minDate"
-                                   datepicker-options="dateOptions"
-                                   ng-required="true"/>
+                            <date-picker date="offer.validTo"></date-picker>
                         </div>
                     </div>
 
@@ -222,13 +196,15 @@
         </div>
         <div class="save-link form-group" tooltip-placement="left"
              tooltip="{{ (offer.isScheduled && !offer.isEditable) ? ('activityPlanEditable.' + plan.editStatus | translate) : ''  }}">
-            <button ng-show="!offer.id && (offer.type[0] == 'campaignActivityPlan')" type="submit" class="btn btn-primary pull-right" translate>
+            <button ng-show="!offer.id && (offer.type[0] == 'campaignActivityPlan')"
+                    ng-disabled="scheduleForm.$invalid" type="submit" class="btn btn-primary pull-right" translate>
                 dcmschedule.scheduletype.plan
             </button>
-            <button ng-show="!offer.id && (offer.type[0] == 'campaignActivity')" type="submit" class="btn btn-primary pull-right" translate>
+            <button ng-show="!offer.id && (offer.type[0] == 'campaignActivity')"
+                     type="submit" class="btn btn-primary pull-right" translate>
                 dcmschedule.scheduletype.recommend
             </button>
-            <button ng-hide="!offer.id" ng-disabled="!offer.isEditable" type="submit"
+            <button ng-hide="!offer.id" ng-disabled="scheduleForm.$invalid || !offer.isEditable" type="submit"
                     class="btn btn-primary pull-right" translate>schedule.save
             </button>
         </div>

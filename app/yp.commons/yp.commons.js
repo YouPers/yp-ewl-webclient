@@ -193,6 +193,8 @@
                 }
             };
         })
+
+
         .directive('toggleValue', function () {
             return {
                 restrict: 'A',

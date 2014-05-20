@@ -15,8 +15,7 @@
             'yp.dhc.check',
             'yp.dhc.focus',
 
-            'ngSanitize',
-            'ui.scrollfix'
+            'ngSanitize'
         ]);
 
 }());
