@@ -17,7 +17,7 @@
                         throw new Error('date attribute is required');
                     }
 
-                    // copy of start date the date picker can mess around with and loose it's time
+                    // working copy for the datepicker to preserve the time in the attribute 'date'
                     scope.dateOnly = scope.date;
 
                     scope.$watch('dateOnly', function(val, old) {
@@ -47,12 +47,17 @@
         }])
 
 
+    /**
+     * dateParser using moment.js that works with the german date format DD.MM.YYYY
+     * as opposed to the dateParser that comes with the ui bootstrap datepicker
+     */
         .directive('dateParser', function () {
             return {
                 restrict: 'A',
                 require: 'ngModel',
                 link: function (scope, element, attrs, ctrl) {
 
+                    // remove vendor dateParser from datepicker
                     _.remove(ctrl.$parsers, function(parser) {
                         return parser.name === 'parseDate';
                     });
@@ -67,6 +72,8 @@
                             throw new Error('date format is required');
                         }
 
+                        // fix for the date format mismatch between moment.js and the standard the datepicker uses
+                        // dd vs DD / yyyy vs YYYY
                         var format = attrs.dateParser.toUpperCase();
 
                         var date = moment(data, format);
