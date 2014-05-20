@@ -43,7 +43,7 @@
                 var events = [];
 
                 var groups = [
-                    'past',
+//                    'past',
                     'open',
                     'today',
                     'tomorrow',

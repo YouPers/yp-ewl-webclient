@@ -1,0 +1,123 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="state-title-1" translate>stats.title1</div>
+        <div class="state-title-2" translate>stats.title2</div>
+    </div>
+</div>
+
+<accordion close-others="oneAtATime">
+    <accordion-group is-open="true">
+        <accordion-heading><div translate>stats.overview</div></accordion-heading>
+        <div class="row">
+            <div class="col-sm-3" translate>stats.usersTotal</div>
+            <div class="col-sm-3" translate>{{stats.usersTotal[0].usersTotal}}</div>
+            <div class="col-sm-3" translate>stats.updatesTotal</div>
+            <div class="col-sm-3" translate>{{stats.assUpdatesTotal[0].updatesTotal}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3" translate>stats.totalActsPlanned</div>
+            <div class="col-sm-3" translate>{{stats.activitiesPlannedTotal[0].activitiesPlannedTotal}}</div>
+            <div class="col-sm-3" translate>stats.totalEventsPlanned</div>
+            <div class="col-sm-3" translate>{{stats.activityEventsTotal[0].eventsTotal}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3" translate>stats.totalFocusSet</div>
+            <div class="col-sm-3" translate>{{stats.focusSet[0].users}}</div>
+            <div class="col-sm-3" translate>stats.usersWithDiaryEntry</div>
+            <div class="col-sm-3" translate>{{stats.usersWithDiaryEntry[0].users}}</div>
+        </div>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading><div translate>stats.totalActsPlanned</div></accordion-heading>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th translate>stats.activityName</th>
+                        <th translate>stats.count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="act in stats.activitiesPlanned">
+                        <td>{{act.activity}}</td>
+                        <td>{{act.count}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading><div translate>stats.assUpdatesPerDay</div></accordion-heading>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th translate>stats.day</th>
+                        <th translate>stats.count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="day in stats.assUpdatesPerDay">
+                        <td>{{day.date.day + '.' + day.date.month + '.' + day.date.year}}</td>
+                        <td>{{day.updatesPerDay}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </accordion-group>
+
+    <accordion-group>
+        <accordion-heading><div translate>stats.topStressors</div></accordion-heading>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th translate>stats.stressor</th>
+                        <th translate>stats.stressorCount</th>
+                        <th translate>stats.average</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="stressor in stats.topStressors">
+                        <td>{{stressor.question}}</td>
+                        <td>{{stressor.count}}</td>
+                        <td>{{stressor.sumAvg | number}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </accordion-group>
+    <accordion-group>
+        <accordion-heading><div translate>stats.activityEvents</div></accordion-heading>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th translate>stats.status</th>
+                        <th translate>stats.count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="eventStatus in stats.activityEvents">
+                        <td>{{eventStatus.status}}</td>
+                        <td>{{eventStatus.count}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </accordion-group>
+</accordion>
