@@ -37,8 +37,15 @@
   color: @yp-color-dark-grey;
 }
 
-.notification:hover a, .notification:hover .name, .notification:hover .time {
+.notification:hover {
+  text-decoration: none;
+}
+
+
+.notification.link:hover,
+.notification.link:hover .type-title {
   color: @yp-color-green-hover;
+  cursor: pointer;
 }
 
 .notification {
@@ -47,7 +54,18 @@
   display: block;
 }
 
+.notification .dismiss {
+  color: @yp-color-light-grey;
+  cursor: pointer;
+}
 
+.notification .dismiss:hover {
+  color: @yp-color-red;
+}
+
+.dcm.notifications .notification .dismiss {
+  display: none;
+}
 
 .notifications-list-edit {
   padding: @grid-gutter-width/3;
