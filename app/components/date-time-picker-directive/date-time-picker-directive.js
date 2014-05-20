@@ -63,11 +63,8 @@
                 require: 'ngModel',
                 link: function (scope, element, attrs, ctrl) {
 
-                    if (!ctrl)
-                        return;
-
                     _.remove(ctrl.$parsers, function(parser) {
-                        return parser.name == 'parseDate';
+                        return parser.name === 'parseDate';
                     });
 
                     ctrl.$parsers.push(function (data) {
