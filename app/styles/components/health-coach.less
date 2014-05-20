@@ -1,0 +1,69 @@
+@import "../youpers-variables";
+
+
+// Health Coach
+//---------------------------------------------
+
+
+
+.health-coach .avatar {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+  vertical-align: top;
+  float: left;
+}
+
+.health-coach .avatar  img {
+  width: 5em;
+  height: 5em;
+}
+
+.health-coach {
+//  padding-top: 15px;
+  padding: 15px;
+  margin: -15px -15px 0 -15px;
+  background: white;
+  opacity: 1;
+  z-index: 2;
+}
+
+hr {
+  z-index: 1;
+}
+
+.health-coach .message,
+.health-coach .message p {
+  color: @yp-color-grey2;
+  font-size: 16px;
+  font-weight: 300;
+  vertical-align: top;
+  width: 17em;
+}
+
+.health-coach-nav {
+  margin: 15px;
+  cursor: pointer;
+  float: right;
+  width: 70px;
+  height: 70px;
+  background-image: url('/assets/img/radial_navigation_72.png');
+  background-size: 100% 100%;
+}
+
+.health-coach-nav:hover {
+  background-image: url('/assets/img/radial_navigation_hover_72.png');
+}
+
+
+
+.ui-scrollfix {
+  @media(min-width: @screen-lg) {
+    position: fixed;
+    top: -15px;
+    background-color: @yp-color-white;
+  }
+
+}
