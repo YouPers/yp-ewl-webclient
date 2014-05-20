@@ -76,14 +76,13 @@
                     });
                 };
 
-                $rootScope.$on('campaign:currentCampaignChanged', function () {
+                $scope.$watch(function(){return CampaignService.currentCampaign;}, function(newValue, oldValue) {
                     NotificationService.getNotifications(
                         {campaign: CampaignService.currentCampaign.id,
                             populate: 'author', mode: 'administrate'}
                     ).then(function (notifications) {
                             $scope.notifications = notifications;
-                        });
-                });
+                        });                });
             }
         ]);
 
