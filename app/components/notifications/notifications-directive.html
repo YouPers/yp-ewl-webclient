@@ -10,7 +10,7 @@
     <a ng-href="{{nf.refDocLink}}" class="notification" ng-class="{ link: nf.refDocLink }"  ng-repeat="nf in notifications">
         <div>
 
-            <div class="pull-right dismiss" ng-click="dismiss(nf)">
+            <div class="pull-right dismiss" ng-click="dismiss(nf)" ng-if="!preview">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
 
