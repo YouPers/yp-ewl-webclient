@@ -57,7 +57,7 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>/**/*.html',
                     '.tmp/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/**/*.js', '{.tmp,<%= yeoman.app %>}/**/*.json',
-                    '<%= yeoman.app %>/assets/**/*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%= yeoman.app %>/assets/**/*.{png,jpg,jpeg,gif,webp,svg,ico}'
                 ]
             }
         },
@@ -322,7 +322,7 @@ module.exports = function (grunt) {
                             'dhc/**/*.json',
                             'dcm/**/*.json',
                             'components/**/*.json',
-                            'assets/**/*.{gif,webp,png,jpg}',
+                            'assets/**/*.{gif,webp,png,jpg,ico}',
                             'styles/fonts/{,*/}*.woff'
                         ]
                     },
