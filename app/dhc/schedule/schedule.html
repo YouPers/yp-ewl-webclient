@@ -78,30 +78,10 @@
 
             <!-- date and time -->
             <div class="row">
-                <div class="col-md-6 date-selection">
+                <div class="col-md-12 date-time-selection">
 
-                    {{ plan.mainEvent.start | date }}
+                    <date-time-picker start="plan.mainEvent.start" end="plan.mainEvent.end"></date-time-picker>
 
-                    <div class="input-group">
-                        <input ng-model="plan.mainEvent.startDate"
-                               class="form-control" type="text" id="datePickerStart"
-                               datepicker-popup="{{dateFormat}}"
-                               is-open="opened" min="minDate"
-                               datepicker-options="dateOptions"
-                               ng-required="true"
-                               ng-click="opened = true"
-                               date-parser="{{dateFormat}}"
-                                />
-                    </div>
-                </div>
-
-                <div class="col-md-3 time-selection">
-                    <timepicker ng-model="plan.mainEvent.start" id="timePickerStart" minute-step="15"
-                                show-meridian="false"></timepicker>
-                </div>
-                <div class="col-md-3 time-selection">
-                    <timepicker ng-model="plan.mainEvent.end" id="timePickerEnd" minute-step="15"
-                                show-meridian="false"></timepicker>
                 </div>
             </div>
 

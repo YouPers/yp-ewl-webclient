@@ -194,62 +194,6 @@
             };
         })
 
-        .directive('futureDate', function () {
-            return {
-                restrict: 'A',
-                require: 'ngModel',
-                link: function (scope, elm, attrs, ctrl) {
-                    ctrl.$parsers.unshift(function (viewValue) {
-                        var valid = false;
-
-                        if(viewValue) {
-
-                            var now = moment();
-                            var date = moment(viewValue);
-
-                            valid = now.isBefore(date);
-                        }
-
-                        ctrl.$setValidity('futureDate', valid);
-
-                        return viewValue;
-                    });
-                }
-            };
-        })
-
-        .directive('dateParser', function () {
-            return {
-                restrict: 'A',
-                require: 'ngModel',
-                link: function (scope, element, attrs, ctrl) {
-
-                    if(!attrs.dateParser) {
-                        throw new Error('date format is required');
-                    }
-
-                    var format = attrs.dateParser.toUpperCase();
-
-                    if (!ctrl)
-                        return;
-
-                    _.remove(ctrl.$parsers, function(parser) {
-                         return parser.name == 'parseDate';
-                     });
-
-                    ctrl.$parsers.push(function (data) {
-
-                        var date = moment(data, format);
-                        var valid = data && date.isValid();
-
-                        ctrl.$setValidity('date', valid);
-
-                        return valid ? date : undefined;
-                    });
-                }
-            };
-
-        })
 
         .directive('toggleValue', function () {
             return {

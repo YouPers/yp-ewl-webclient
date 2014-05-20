@@ -22,7 +22,7 @@
                         <img ng-src="{{offer.recommendedBy[0].avatar}}">
                     </div>
                     <div class="source-text">
-                        empfohlen durch {{ offer.recommendedBy[0].fullname }}
+                        <span translate>schedule.recommendedBy</span> {{ offer.recommendedBy[0].fullname }}
                     </div>
                 </div>
             </div>
@@ -88,27 +88,10 @@
 
                 <!-- date and time -->
                 <div class="row">
-                    <div class="col-md-6 date-selection">
+                    <div class="col-md-12 date-time-selection">
 
-                        <div class="input-group">
-                            <input ng-model="plan.mainEvent.startDate"
-                                   class="form-control" type="text" id="datePickerStart"
-                                   datepicker-popup="{{dateFormat}}"
-                                   is-open="opened" min="minDate"
-                                   datepicker-options="dateOptions"
-                                   ng-required="true"
-                                   ng-click="opened = true"
-                                    />
-                        </div>
-                    </div>
+                        <date-time-picker start="plan.mainEvent.start" end="plan.mainEvent.end"></date-time-picker>
 
-                    <div class="col-md-3 time-selection">
-                        <timepicker ng-model="plan.mainEvent.start" id="timePickerStart" minute-step="15"
-                                    show-meridian="false"></timepicker>
-                    </div>
-                    <div class="col-md-3 time-selection">
-                        <timepicker ng-model="plan.mainEvent.end" id="timePickerEnd" minute-step="15"
-                                    show-meridian="false"></timepicker>
                     </div>
                 </div>
 
