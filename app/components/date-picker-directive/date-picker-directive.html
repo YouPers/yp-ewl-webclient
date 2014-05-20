@@ -1,0 +1,14 @@
+<div class="input-group">
+    <input ng-model="dateOnly"
+           class="form-control text-center" type="text" id="datePickerStart"
+
+           datepicker-popup="{{dateFormat}}"
+           is-open="opened" min="minDate"
+           datepicker-append-to-body="true"
+           datepicker-options="dateOptions"
+           ng-required="true"
+           ng-click="opened = !opened"
+           date-parser="{{dateFormat}}"
+
+            />
+</div>
