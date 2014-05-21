@@ -70,7 +70,8 @@
         "offertype": {
             "campaignActivity": "empfohlen",
             "campaignActivityPlan": "eingeplant"
-        }
+        },
+        "userNamesNotShown": "Namen nicht angezeigt zum Schutz der Privatsphäre"
 
     },
     "scheduledDate": {
