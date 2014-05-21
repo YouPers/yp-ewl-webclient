@@ -3,14 +3,14 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('campaignHeader', ['$rootScope', '$state','UserService', 'CampaignService',
+        .directive('campaignSwitcher', ['$rootScope', '$state','UserService', 'CampaignService',
             function ($rootScope,  $state, UserService, CampaignService) {
             return {
                 restrict: 'E',
                 scope: {
                     campaign: '='
                 },
-                templateUrl: 'components/campaign-header-directive/campaign-header-directive.html',
+                templateUrl: 'components/campaign-switcher-directive/campaign-switcher-directive.html',
 
                 link: function (scope, elem, attrs) {
 
@@ -18,6 +18,7 @@
                     function _setCampaignFromUser() {
                         var user = UserService.principal.getUser();
                         scope.campaigns = user.campaign ? [user.campaign] : [];
+                        scope.currentCampaign = scope.campaigns && scope.campaigns[0];
                     }
 
                     function _setCampaignsFromCampaignLead() {
@@ -26,8 +27,9 @@
                                 scope.campaigns = campaigns;
                                 if (!CampaignService.currentCampaign) {
                                     CampaignService.currentCampaign = campaigns[0];
-                                    $rootScope.$emit('campaign:currentCampaignChanged');
+
                                 }
+                                scope.currentCampaign = CampaignService.currentCampaign;
                             });
                         } else {
                             scope.campaigns = [];
@@ -39,22 +41,19 @@
 
                     if (attrs.campaign) {
                         scope.campaigns = [scope.campaign];
+                        scope.currentCampaign = CampaignService.currentCampaign || scope.campaigns[0];
                     } else if (attrs.campaigns) {
-                        scope.campaigns = scope.campaigns;
+                        scope.currentCampaign = CampaignService.currentCampaign || scope.campaigns[0];
                     } else if (attrs.mode === 'user'){
                         _setCampaignFromUser();
                     } else if (attrs.mode === 'campaignlead') {
                         _setCampaignsFromCampaignLead();
                     }
 
-                    scope.isSelected = function(campaign) {
-                        return campaign.id === (CampaignService.currentCampaign && CampaignService.currentCampaign.id);
-                    };
-
                     scope.selectCampaign = function(campaign) {
                         if (attrs.mode === 'campaignlead') {
                             CampaignService.currentCampaign = campaign;
-                            $rootScope.$emit('campaign:currentCampaignChanged');
+                            scope.currentCampaign = campaign;
                         }
                     };
 
@@ -69,7 +68,7 @@
             };
         }])
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('components/campaign-header-directive/campaign-header');
+            $translateWtiPartialLoaderProvider.addPart('components/campaign-switcher-directive/campaign-switcher');
         }]);
 
 }());

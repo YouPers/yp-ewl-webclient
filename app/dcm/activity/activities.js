@@ -137,7 +137,7 @@
 
                 _initializeActivities(resolvedActivities);
 
-                $rootScope.$on('campaign:currentCampaignChanged', function () {
+                $scope.$watch(function(){return CampaignService.currentCampaign;}, function(newValue, oldValue) {
                     ActivityService.getActivities({campaign: CampaignService.currentCampaign.id}).then(function (activities) {
                         _initializeActivities(activities);
                     });
@@ -155,7 +155,7 @@
                     return _.pluck(plan.joiningUsers, 'fullname').join('<br/>');
                 };
 
-                $rootScope.$on('campaign:currentCampaignChanged', function () {
+                $scope.$watch(function(){return CampaignService.currentCampaign;}, function(newValue, oldValue) {
                     ActivityService.getActivityOffers(
                         {
                             campaign: CampaignService.currentCampaign.id,
@@ -163,10 +163,9 @@
                             populatedeep: 'activityPlan.joiningUsers'
                         }
                     ).then(function (offers) {
-                        $scope.offers = offers;
-                    });
+                            $scope.offers = offers;
+                        });
                 });
-
             }])
 
         .filter('fulltext', function () {

@@ -5,7 +5,7 @@
         <div class="state-title-2" translate>home.title2</div>
 
         <div ng-init="campaign = principal.getUser().campaign">
-            <campaign-header campaign="campaign" ng-if="campaign"></campaign-header>
+            <campaign-switcher campaign="campaign" ng-if="campaign"></campaign-switcher>
             <div ng-if="!campaign">
                 <br/>
                 <span>
