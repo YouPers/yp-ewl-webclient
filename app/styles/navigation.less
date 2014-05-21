@@ -1,0 +1,50 @@
+@import "youpers-variables";
+
+
+// navbar
+// --------------------------------------------------
+
+.navbar {
+  border-radius: 0px;
+  margin: 0;
+}
+
+.navbar a {
+  cursor: pointer;
+}
+
+.navbar-inverse .navbar-nav .sneaky-hidden > a {
+  color: @yp-color-grey4;
+}
+
+
+// topbar
+.top-bar {
+  background-color: @yp-color-grey2;
+  @media(min-width: @screen-sm) {
+    height: 25px;
+  }
+  @media(max-width: @screen-xs) {
+    height: 45px;
+  }
+}
+.top-bar.sub-nav-bar {
+  margin: 0;
+}
+
+.top-bar a {
+  color: @yp-color-grey1;
+  display: inline-block;
+  padding-right: 20px;
+}
+
+
+// top-bar
+
+.top-bar a:hover {
+  color: @yp-color-green-hover;
+}
+.top-bar a {
+  padding-top: 2px;
+  text-decoration: none;
+}

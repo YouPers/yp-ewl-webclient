@@ -1,3 +1,88 @@
-@import "../lib/bootstrap/less/bootstrap.less";
 
-@import "youpers.less";
+// lib
+// --------------------------------------------------
+
+@import "../lib/bootstrap/less/bootstrap.less";
+@import "../lib/less-elements/elements";
+
+
+// variables
+// --------------------------------------------------
+
+@import "youpers-variables";
+
+
+// base
+// --------------------------------------------------
+
+@import "typography";
+
+@import "bootstrap-customizations";
+
+@import "view-transitions";
+@import "navigation";
+@import "layout";
+@import "validation";
+
+
+// legacy, to be refactored
+@import "youpers_adminviews";
+
+
+// components
+// --------------------------------------------------
+
+@import "components/activity-card";
+@import "components/activity-card-flip";
+@import "components/campaign-header";
+@import "components/health-coach";
+@import "components/multiple-view-carousel";
+@import "components/notifications";
+
+
+// shared
+// --------------------------------------------------
+
+@import "shared/refactor-me";
+
+@import "shared/avatar";
+@import "shared/source-type";
+
+
+// states
+// --------------------------------------------------
+
+// dcm
+
+@import "states/dcm/activities";
+@import "states/dcm/activity";
+@import "states/dcm/campaign";
+@import "states/dcm/campaignoffers";
+@import "states/dcm/campaigns";
+@import "states/dcm/dcm";
+@import "states/dcm/home";
+@import "states/dcm/notifications";
+@import "states/dcm/organization";
+
+// dhc
+
+@import "states/dhc/check";
+@import "states/dhc/diary";
+@import "states/dhc/focus";
+@import "states/dhc/home";
+@import "states/dhc/invite";
+@import "states/dhc/plan";
+@import "states/dhc/select";
+@import "states/dhc/welcome";
+
+// user
+
+@import "states/user/profile";
+@import "states/user/signin";
+@import "states/user/signup";
+
+// common
+
+@import "states/schedule";
+@import "states/schedule-event-list";
+

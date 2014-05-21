@@ -1,0 +1,131 @@
+
+@import "../youpers-variables";
+
+
+
+// main content shared definitions
+// --------------------------------
+
+
+.list-item {
+  cursor: pointer;
+
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.list-item:hover {
+  border-left: 10px solid @yp-hover;
+  border-right: 10px solid @yp-hover;
+}
+
+.list-item img {
+  width: @yp-list-item-img-size;
+  height: @yp-list-item-img-size;
+  padding: 5px;
+}
+.list-item > div {
+  vertical-align: middle;
+  display: inline-block;
+  float: none;
+}
+
+.group-header:hover, .group-header:hover * {
+  text-decoration: none;
+  color: @yp-color-green-hover;
+}
+.group-header {
+  padding: 1em 0;
+}
+.group-header * {
+  font-weight: 200;
+  font-style: normal;
+  font-size: 28px;
+  color: @yp-color-green;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.group-header .group-add {
+  padding: 4px;
+  font-size: 40px;
+  font-weight: 200;
+}
+
+
+// date and time
+
+
+.list-date {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.list-date > * {
+  display: inline-block;
+}
+.list-date .weekday {
+
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  color: #CCCACA;
+
+  width: 25px;
+
+  vertical-align: top;
+}
+
+.list-date .dayofmonth {
+
+  font-weight: 600;
+  font-style: normal;
+  font-size: 36px;
+  color: #6B6B6B;
+
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.list-date .time {
+
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
+  color: #473F45;
+
+  vertical-align: top;
+}
+
+.yp-clientmsg {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+}
+.yp-clientmsg > div {
+  position: relative;
+  width: 30em;
+  left: -50%;
+  top: 1.5em;
+}
+.yp-clientmsg .alert {
+  opacity: 1;
+  padding: 0.4em 1em;
+  margin: 0.5em;
+  box-sizing: border-box;
+//  border: 1px solid #444;
+  border-radius: 4px;
+  overflow: hidden;
+  color: black;
+}
+
+// bottom nav buttons
+// --------------------------
+
+.btn-bottom-nav button {
+  width: @yp-bottom-nav-btn-width;
+  height: @yp-bottom-nav-btn-height;
+}
+
+.btn-bottom-nav {
+  padding-top: @grid-gutter-width;
+}
