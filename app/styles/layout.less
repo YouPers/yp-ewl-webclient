@@ -20,11 +20,13 @@
 
 }
 
-// middle gutter colored like background, on only lg screens
+.main-content > div {
+  background-color: @yp-color-white;
+}
 .main-content > .col-lg-9 {
+
   @media(min-width: @screen-lg) {
 
-    background-color: @yp-color-white;
     width: 75% - @gutter-width;
     margin-right: @gutter-width;
     padding-bottom: 1.5em;
@@ -37,7 +39,6 @@
 .main-content > .col-lg-3 {
   @media(min-width: @screen-lg) {
 
-    background-color: @yp-color-white;
     width: 25% - @gutter-width;
     margin-left: @gutter-width;
 

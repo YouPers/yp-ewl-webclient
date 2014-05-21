@@ -1,6 +1,6 @@
 <ng-include src="'dhc/subnavbar.html'">
 </ng-include>
-<div class="container main-layout">
+<div class="container main-layout  {{ $state.current.name.substr(0, $state.current.name.indexOf('.')) }}">
     <div class="row main-content">
         <div class="col-lg-12">
             <div  ui-view="content" autoscroll="false"></div>
