@@ -1,0 +1,82 @@
+@import "../youpers-variables";
+
+.campaign-switcher {
+  height: 100px;
+}
+
+.dcm .campaign-switcher {
+}
+
+.dcm .campaign-preview  .campaign-switcher {
+  background-color: @yp-color-grey2;
+}
+
+.campaign-switcher .avatar {
+  float: left;
+  height: @yp-avatar-campaign-size;
+  width: @yp-avatar-campaign-size;
+  margin: 5px 15px 5px 5px;
+}
+
+.campaign-switcher .avatar img {
+  width: 68px;
+  height: 68px;
+}
+
+.campaign-switcher .topic {
+   font-weight:400;
+   font-size:14px;
+   color: @yp-color-grey1;
+   max-height: 38px;
+   overflow: hidden;
+}
+
+.campaign-switcher .details {
+  font-weight:300;
+  font-size:14px;
+  color: @yp-color-grey3;
+}
+
+.campaign-switcher .campaign {
+  padding-top: 5px;
+  display:inline-block;
+  width: 100%;
+}
+
+.campaign-switcher .glyphicon {
+  color: @yp-color-grey1;
+  position: absolute;
+  right: 20px;
+  top: 35%;
+  font-size: 20px;
+}
+
+.campaign-switcher.switchable .dropdown-menu {
+  padding: 0;
+  margin: -5px 15px;
+
+}
+.campaign-switcher.switchable .dropdown-menu .campaign:not(:first-of-type) {
+  border-top: 1px solid @yp-color-grey1;
+}
+
+.campaign-switcher.switchable .campaign:hover {
+
+//  border: 1px solid lighten(@yp-color-green-hover, 30%);
+//  background-color: lighten(@yp-color-grey1, 12%);
+  cursor: pointer;
+
+   .glyphicon,
+   .topic {
+    color: @yp-color-green-hover;
+  }
+
+}
+
+.dcm .top-bar .campaign-switcher .campaign:hover {
+  background-color: lighten(@yp-color-saffron, 30%);
+}
+
+.dcm .top-bar .campaign-switcher .campaign.selected {
+  background-color: lighten(@yp-color-saffron, 15%);
+}

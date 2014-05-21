@@ -59,7 +59,7 @@
                     {{ offer.activityPlan[0].joiningUsers.length }}
                 </span>
             </a>
-            <a ng-if="offer.type[0] === 'campaignActivity'" tooltip="{{'campaignoffers.userNamesNotShown' | translate}}">
+            <a ng-if="offer.type[0] === 'campaignActivity'" tooltip="{{ offer.planCount == 0 ? '' : ('campaignoffers.userNamesNotShown' | translate) }}">
                 <span class="badge" >
                     {{ offer.planCount }}
                 </span>

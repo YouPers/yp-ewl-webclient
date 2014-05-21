@@ -43,7 +43,6 @@
                         scope.campaigns = [scope.campaign];
                         scope.currentCampaign = CampaignService.currentCampaign || scope.campaigns[0];
                     } else if (attrs.campaigns) {
-                        scope.campaigns = scope.campaigns;
                         scope.currentCampaign = CampaignService.currentCampaign || scope.campaigns[0];
                     } else if (attrs.mode === 'user'){
                         _setCampaignFromUser();
