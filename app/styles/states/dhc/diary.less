@@ -1,0 +1,115 @@
+@import "../../youpers-variables";
+
+.diary .diary-entry .image img {
+  height: 4em;
+  margin: 0.5em;
+}
+
+.mood-feedback button:hover, .mood-feedback button.active {
+  background-color: transparent;
+  box-shadow: none;
+  user-select: none;
+  outline: none !important;
+}
+
+.diary-plus {
+  font-size: 2em;
+  &:before { content: "+"; }
+}
+
+.diary-resolution > * {
+
+}
+.diary-resolution label {
+  width: 100%;
+  text-align: center;
+  margin-top: 1em;
+}
+.diary-resolution button {
+  width: 100%;
+  font-size: 2em;
+}
+.diary-resolution .form-group {
+  margin: 0;
+}
+
+.feedback-icon {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background-size: 30px 30px;
+}
+
+.feedback-icon-1 {
+  background-image: url(../../../assets/img/smilies/s01_inactive.png);
+}
+button:hover .feedback-icon-1, .active .feedback-icon-1 {
+  background-image: url(../../../assets/img/smilies/s01_active.png);
+}
+.feedback-icon-2 {
+  background-image: url(../../../assets/img/smilies/s02_inactive.png);
+}
+button:hover .feedback-icon-2, .active .feedback-icon-2 {
+  background-image: url(../../../assets/img/smilies/s02_active.png);
+}
+.feedback-icon-3 {
+  background-image: url(../../../assets/img/smilies/s03_inactive.png);
+}
+button:hover .feedback-icon-3, .active .feedback-icon-3 {
+  background-image: url(../../../assets/img/smilies/s03_active.png);
+}
+.feedback-icon-4 {
+  background-image: url(../../../assets/img/smilies/s04_inactive.png);
+}
+button:hover .feedback-icon-4, .active .feedback-icon-4 {
+  background-image: url(../../../assets/img/smilies/s04_active.png);
+}
+.feedback-icon-5 {
+  background-image: url(../../../assets/img/smilies/s05_inactive.png);
+}
+button:hover .feedback-icon-5, .active .feedback-icon-5 {
+  background-image: url(../../../assets/img/smilies/s05_active.png);
+}
+
+.diary-modal {
+  color: @yp-color-grey2;
+  font-style: normal;
+  font-weight: 200;
+}
+
+.diary-modal .modal-header {
+  padding: 30px;
+}
+.diary-modal .modal-dialog {
+  width: 981px;
+}
+
+.diary-modal h2 {
+  font-size: 48px;
+  font-weight: 200;
+}
+
+.diary-modal h3 {
+  font-size: 28px;
+  margin-top: 0px;
+  font-weight: 300;
+}
+
+.diary-modal h4 {
+  font-size: 28px;
+  font-size: 13px;
+  color: @yp-color-grey1;
+  text-transform: uppercase;
+}
+
+.diary-modal .topic-entry {
+  margin-bottom: 30px;
+}
+
+.diary-modal .reason {
+  margin-top: 50px;
+}
+
+.diary-modal .resolution-content {
+  margin-bottom: 50px;
+}

@@ -170,7 +170,7 @@
 
 </accordion-group>
 
-<accordion-group heading="{{ 'profileForm.settings.header' | translate }}" is-open="true">
+<accordion-group heading="{{ 'profileForm.settings.header' | translate }}">
 
     <div class="col-md-6">
 
@@ -259,7 +259,7 @@
     </div>
 
 </accordion-group>
-<accordion-group heading="{{ 'profileForm.rejectedActivities.header' | translate }}" is-open="true">
+<accordion-group heading="{{ 'profileForm.rejectedActivities.header' | translate }}">
     <div class="col-md-4" ng-repeat="recAct in profileUserObj.userPreferences.rejectedActivities">
         <div class="row">
             <div class="col-md-8">  {{activities.byId(recAct.activity).title}}</div>

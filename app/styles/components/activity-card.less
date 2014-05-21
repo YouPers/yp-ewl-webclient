@@ -1,0 +1,124 @@
+@import "../youpers-variables";
+
+
+// local variables
+@youpers-activity-card-image-width: @youpers-activity-card-width;
+@youpers-activity-card-image-height: 12em;
+@youpers-activity-card-avatar-width: 4.7em;
+
+// activity-card
+// --------------------------------------------------
+
+.activity-card {
+
+  font-size: @youpers-font-size-6;
+
+  position: relative;
+  cursor: pointer;
+}
+
+.activity-card > div {
+  width: @youpers-activity-card-width;
+  height: @youpers-activity-card-height;
+}
+
+.activity-card .image img {
+  width: @youpers-activity-card-image-width;
+  height: @youpers-activity-card-image-height;
+}
+
+.activity-card .source-avatar-container {
+  width: @youpers-activity-card-width;
+}
+
+.activity-card .source-avatar-container .source-text {
+  text-align: center;
+  font-weight: 400;
+  font-size: @youpers-font-size-7;
+}
+
+.activity-card .source-avatar-content {
+  width: @youpers-activity-card-avatar-width;
+  height:@youpers-activity-card-avatar-width;
+  border-radius: 50%;
+
+  margin: 0 auto;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.activity-card .source-avatar-content img {
+  width: @youpers-activity-card-avatar-width - (@yp-source-type-ring-width * 1.8);
+  height: @youpers-activity-card-avatar-width - (@yp-source-type-ring-width * 1.8);
+}
+
+.activity-card .content {
+  padding: 1em;
+}
+
+.activity-card .title {
+  font-size: @youpers-font-size-3;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 2.2em;
+  height: @youpers-font-size-3 * 2;
+  overflow: hidden;
+}
+
+.activity-card .shortDescription {
+
+}
+
+.activity-card .schedule {
+  float: left;
+  margin-top: 1em;
+  height: 1em;
+}
+
+.activity-card .info {
+  float: right;
+  margin-top: 1em;
+  height: 1em;
+}
+
+.activity-card .linkleft {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}
+
+.activity-card .linkright {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
+
+.activity-card .source {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 12em;
+  top: 5em;
+}
+
+.source-avatar-container.ng-hide-add, .source-avatar-container.ng-hide-remove {
+  transition: 1.5s ease all;
+  display:block!important;
+  position: absolute;
+  opacity: 1;
+  left: 0%;
+}
+
+.source-avatar-container.ng-hide-remove {
+  opacity: 0;
+  left: -100%;
+}
+.source-avatar-container.ng-hide-remove.ng-hide-remove-active,
+.source-avatar-container.ng-hide-add {
+  left: 0%;
+  opacity: 1;
+}
+.source-avatar-container.ng-hide-add.ng-hide-add-active { 
+  opacity: 0;
+  left: 100%;
+}

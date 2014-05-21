@@ -47,9 +47,7 @@
                 <scheduled-date start="offer.activityPlan[0].mainEvent.start"
                                 end="offer.activityPlan[0].events[offer.activityPlan[0].events.length - 1].end"
                                 frequency="offer.activityPlan[0].mainEvent.frequency">
-
-                                </scheduled-date>
-
+                </scheduled-date>
             </div>
 
         </div>
@@ -59,6 +57,11 @@
             <a ng-if="offer.type[0] === 'campaignActivityPlan'">
                 <span class="badge" tooltip-html-unsafe="{{ getJoiningUsers(offer.activityPlan[0]) }}">
                     {{ offer.activityPlan[0].joiningUsers.length }}
+                </span>
+            </a>
+            <a ng-if="offer.type[0] === 'campaignActivity'" tooltip="{{'campaignoffers.userNamesNotShown' | translate}}">
+                <span class="badge" >
+                    {{ offer.planCount }}
                 </span>
             </a>
         </div>

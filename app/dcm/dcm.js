@@ -15,8 +15,7 @@
 
             'yp.dcm.activity',
 
-            'ngSanitize',
-            'ui.scrollfix'
+            'ngSanitize'
         ]);
 
 }());

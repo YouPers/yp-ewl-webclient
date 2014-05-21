@@ -80,21 +80,7 @@
 
                 $scope.plan = offer.activityPlan[0];
 
-                $scope.$watch('plan.mainEvent.start', function(val, old) {
-                    if(old !== val) {
-                        var end = moment($scope.plan.mainEvent.end).add(moment(val).diff(old));
-                        $scope.plan.mainEvent.end = old ? end : val;
-                    }
-                });
 
-                // one time planning using daypicker
-                $scope.showWeeks = false;
-                $scope.minDate = new Date();
-
-                $scope.dateOptions = {
-                    'year-format': "'yy'",
-                    'starting-day': 1
-                };
 
                 $scope.saveOffer = function () {
                     ActivityService.saveActivityOffer($scope.offer).then(

@@ -42,24 +42,14 @@
                         <yp-input name="slogan"></yp-input>
 
                         <div class="form-group date">
-                            <label for="datePickerStart" class="control-label" translate>campaignForm.start.label</label>
+                            <label class="control-label" translate>campaignForm.start.label</label>
 
-                            <div>
-                                <input class="form-control start" type="text" id="datePickerStart"
-                                       datepicker-popup="dd.MM.yyyy"
-                                       ng-model="campaign.start"
-                                       is-open="startOpened"
-                                       datepicker-options="dateOptions"
-                                       date-disabled="disabled(date, mode)" ng-required="true"/>
+                            <div class="start">
+                                <date-picker date="campaign.start"></date-picker>
                             </div>
 
-                            <div>
-                                <input class="form-control end" type="text" id="datePickerEnd"
-                                       datepicker-popup="dd.MM.yyyy"
-                                       ng-model="campaign.end"
-                                       is-open="endOpened"
-                                       datepicker-options="dateOptions"
-                                       date-disabled="disabled(date, mode)" ng-required="true"/>
+                            <div class="end">
+                                <date-picker date="campaign.end"></date-picker>
                             </div>
                         </div>
                         <div>

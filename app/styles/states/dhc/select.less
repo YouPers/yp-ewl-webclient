@@ -1,0 +1,39 @@
+@import "../../youpers-variables";
+
+// activity-offer-list
+// --------------------------------------------------
+
+.activity-offer-list .carousel-item-list {
+  height: @youpers-activity-card-height + 2em;
+}
+.activity-offer-list .carousel-item-list-content > * {
+    margin-right: 1.4em;
+}
+.activity-offer-list .offer-list-item > * {
+  position: relative;
+}
+.activity-offer-list .offer-list-item.ng-leave {
+  transition: 0.8s ease-in all;
+  opacity: 1;
+  top: 0;
+}
+
+.activity-offer-list .offer-list-item.ng-leave.ng-leave-active {
+  opacity: 0;
+  top: -500px;
+}
+
+.activity-offer-list .carousel-item-list-nav-items {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin:  20px auto 0 auto;
+}
+.activity-offer-list .carousel-item-list-nav-items > div {
+  display: inline-block;
+  position: relative;
+  left: -50%;
+  vertical-align: middle;
+  user-select: none;
+}
+

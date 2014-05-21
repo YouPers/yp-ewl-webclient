@@ -21,32 +21,22 @@
     <form name="notificationObjForm" ng-submit="saveNotification()" role="form" novalidate>
         <div class="col-xs-6">
             <input class="form-control" type="text" ng-model="notificationObj.title" required
-                   placeholder="{{'notifications.form.title.placeholder' | translate}}">
+                   placeholder="{{'notifications.form.title.placeholder' | translate}}"
+                    tabindex="1">
         </div>
         <div class="col-xs-2  col-xs-offset-2">
             <div>
-                <input ng-model="notificationObj.publishFrom"
-                       class="form-control" type="text" id="datePickerPublishFrom"
-                       datepicker-popup="dd.MM.yyyy"
-                       is-open="openedPublishFrom" min="minDate"
-                       datepicker-options="dateOptions"
-                       date-disabled="disabled(date, mode)" ng-required="true"/>
-
+                <date-picker date="notificationObj.publishFrom"></date-picker>
             </div>
         </div>
         <div class="col-xs-6">
             <input class="form-control" type="text" ng-model="notificationObj.text"
-                   placeholder="{{'notifications.form.text.placeholder' | translate}}">
+                   placeholder="{{'notifications.form.text.placeholder' | translate}}"
+                   tabindex="2">
         </div>
         <div class="col-xs-2 col-xs-offset-2">
             <div>
-                <input ng-model="notificationObj.publishTo"
-                       class="form-control" type="text" id="datePickerPublishTo"
-                       datepicker-popup="dd.MM.yyyy"
-                       is-open="openedPublishTo" min="minDate"
-                       datepicker-options="dateOptions"
-                       date-disabled="disabled(date, mode)" ng-required="true"/>
-
+                <date-picker date="notificationObj.publishTo"></date-picker>
             </div>
         </div>
         <div class="col-xs-2">
