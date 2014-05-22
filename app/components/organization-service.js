@@ -2,7 +2,7 @@
     'use strict';
 
 
-    angular.module('yp.organization')
+    angular.module('yp.components.organization', ['yp.user'])
 
 
         .factory("OrganizationService", ['ErrorService', 'Restangular','UserService',

@@ -2,8 +2,21 @@
     'use strict';
 
 
-    angular.module('yp.payment')
+    angular.module('yp.admin')
 
+        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
+
+                $stateProvider
+                    .state('paymentCodeAdmin', {
+                        url: '/paymentCode',
+                        templateUrl: 'yp.payment/yp.payment.code.admin.html',
+                        controller: 'PaymentCodeAdminController',
+                        access: accessLevels.user
+                    });
+
+                $translateWtiPartialLoaderProvider.addPart('yp.payment/yp.payment');
+            }])
 
         .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'CampaignService',
             function ($rootScope, $scope, PaymentCodeService) {

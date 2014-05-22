@@ -1,7 +1,16 @@
 (function () {
     'use strict';
 
-    angular.module('yp.payment')
+    angular.module('yp.components.payment-code', [])
+
+
+        .run(['enums', function (enums) {
+            _.merge(enums, {
+                relatedService: "YP-Balance".split(' '),
+                productType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' ')
+            })
+
+        }])
 
         .factory("PaymentCodeService", ['$rootScope', 'Restangular',
             function ($rootScope, Rest) {

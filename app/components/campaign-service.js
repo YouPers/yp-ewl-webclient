@@ -2,7 +2,7 @@
     'use strict';
 
 
-    angular.module('yp.organization')
+    angular.module('yp.components.campaign', [])
 
 
         .factory("CampaignService", ['$rootScope', 'Restangular', 'UserService',
