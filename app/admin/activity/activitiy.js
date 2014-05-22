@@ -14,9 +14,13 @@
 
                     .state('admin-activity.list', {
                         url: "/admin/activities?tab&page",
-                        templateUrl: "admin/activity/activities.html",
-                        controller: "ActivitiesCtrl",
                         access: accessLevels.admin,
+                        views: {
+                            content: {
+                                templateUrl: "admin/activity/activities.html",
+                                controller: 'ActivitiesCtrl'
+                            }
+                        },
                         resolve: {
                             allActivities: ['ActivityService', function (ActivityService) {
                                 return ActivityService.getActivities();
@@ -37,8 +41,12 @@
                     })
                     .state('admin-activity.edit', {
                         url: "/admin/activities/:activityId/admin?tab&page",
-                        templateUrl: "admin/activity/activity-admin.html",
-                        controller: "ActivityAdminCtrl",
+                        views: {
+                            content: {
+                                templateUrl: "admin/activity/activity-admin.html",
+                                controller: "ActivityAdminCtrl",
+                            }
+                        },
                         access: accessLevels.admin,
                         resolve: {
                             activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
