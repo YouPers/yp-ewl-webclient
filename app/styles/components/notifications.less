@@ -25,28 +25,30 @@
 }
 
 .notification .type {
-  color: #d3d3d3;
+  color: @yp-color-grey1;
 }
 
 .notification .title {
-  font-weight: 400;
   margin-bottom: 3px;
 }
 
-.notification a,.notification .name, .notification .time {
-  color: @yp-color-grey4;
-}
-
-.notification:hover {
-  text-decoration: none;
+.notification .time {
+  font-size: 12px;
+  color: @yp-color-grey1;
 }
 
 
 .notification.link:hover,
 .notification.link:hover .type-title {
-  color: @yp-color-green-hover;
-  cursor: pointer;
+  .link-hover();
 }
+
+.notification:not(.link):hover,
+.notification:not(.link):hover .type-title {
+  cursor: default;
+}
+
+
 
 .notification:first-of-type {
   border-top: none;
