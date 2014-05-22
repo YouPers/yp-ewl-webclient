@@ -4,18 +4,11 @@
 
     angular.module('yp.dhc',
         [
-            'yp.user',
+            'ngSanitize',
+            'restangular',
+            'ui.router',
 
-            'yp.dhc.welcome',
-            'yp.dhc.home',
-            'yp.dhc.select',
-            'yp.dhc.schedule',
-            'yp.dhc.diary',
-            'yp.dhc.plan',
-            'yp.dhc.check',
-            'yp.dhc.focus',
-
-            'ngSanitize'
+            'yp.user'
         ])
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
