@@ -1,82 +1,73 @@
 {
-    "clientmsg": {
-        "success": {
-            "organization": {
-                "saved": "Änderungen gespeichert"
-            }
-        },
-        "error": {
-            "organization": {
-                "notUnique": "Es wurde mehr als eine Organisation gefunden"
-            }
-        }
+  "clientmsg": {
+    "success": {
+      "organization": {
+        "saved": "Änderungen gespeichert"
+      }
     },
-
-    "organization": {
-        "title1": "deine",
-        "title2": "organisation"
-    },
-
-
-    "organizationForm": {
-        "header": "Neue Organisation",
-
-        "name": {
-            "label": "Name",
-            "placeholder": "Name der Organisation",
-            "error": {
-                "required": "Bitte einen gültigen Namen eingeben"
-            }
-        },
-        "address": {
-
-            "street": {
-                "label": "Adresse",
-                "placeholder": "Strasse, Hausnummer"
-            },
-            "zipCode": {
-                "label": "PLZ / Ort",
-                "placeholder": "PLZ"
-            },
-            "city": {
-                "placeholder": "Ort"
-            }
-
-        },
-
-        "legalForm": {
-            "label": "Rechtsform",
-            "placeholder": "Rechtsform"
-        },
-        "sector": {
-            "label": "Branche",
-            "placeholder": "Branche"
-        },
-
-        "contact": {
-            "header": "Kontakt",
-            "firstname": {
-                "label": "Name",
-                "placeholder": "Vorname"
-            },
-            "lastname": {
-                "placeholder": "Nachname"
-            },
-            "position": {
-                "label": "Funktion",
-                "placeholder": "Funktion / Organisationseinheit"
-            },
-            "email": {
-                "label": "Email",
-                "placeholder": "Email Adresse"
-            },
-            "phone": {
-                "label": "Telefon",
-                "placeholder": "Telefonnummer"
-            }
-        },
-        "save": "speichern",
-        "create": "erstellen"
-
+    "error": {
+      "organization": {
+        "notUnique": "Es wurde mehr als eine Organisation gefunden"
+      }
     }
+  },
+  "organization": {
+    "title1": "deine",
+    "title2": "organisation"
+  },
+  "organizationForm": {
+    "header": "Neue Organisation",
+    "name": {
+      "label": "Name",
+      "placeholder": "Name der Organisation",
+      "error": {
+        "required": "Bitte einen gültigen Namen eingeben"
+      }
+    },
+    "address": {
+      "street": {
+        "label": "Adresse",
+        "placeholder": "Strasse, Hausnummer"
+      },
+      "zipCode": {
+        "label": "PLZ / Ort",
+        "placeholder": "PLZ"
+      },
+      "city": {
+        "placeholder": "Ort"
+      }
+    },
+    "legalForm": {
+      "label": "Rechtsform",
+      "placeholder": "Rechtsform"
+    },
+    "sector": {
+      "label": "Branche",
+      "placeholder": "Branche"
+    },
+    "contact": {
+      "header": "Kontakt",
+      "firstname": {
+        "label": "Name",
+        "placeholder": "Vorname"
+      },
+      "lastname": {
+        "placeholder": "Nachname"
+      },
+      "position": {
+        "label": "Funktion",
+        "placeholder": "Funktion / Organisationseinheit"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Email Adresse"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "Telefonnummer"
+      }
+    },
+    "save": "speichern",
+    "create": "erstellen"
+  }
 }

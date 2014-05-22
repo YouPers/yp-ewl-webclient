@@ -1,17 +1,12 @@
 {
-    "clientmsg": {
-
-    },
-
-
-    "dcmhome": {
-        "title1": "digitaler",
-        "title2": "Kampagnen-Manager",
-        "notifications": "Mitteilungen",
-        "campaigns": "Kampagnen",
-        "campaignoffers": "Aktivitäten",
-        "activities": "Neue Aktivitäten",
-        "statistics": "Statistiken",
-        "organization": "Organisation"
-    }
+  "dcmhome": {
+    "title1": "digitaler",
+    "title2": "Kampagnen-Manager",
+    "notifications": "Mitteilungen",
+    "campaigns": "Kampagnen",
+    "campaignoffers": "Aktivitäten",
+    "activities": "Neue Aktivitäten",
+    "statistics": "Statistiken",
+    "organization": "Organisation"
+  }
 }

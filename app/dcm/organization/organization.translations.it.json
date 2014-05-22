@@ -1,0 +1,73 @@
+{
+  "clientmsg": {
+    "success": {
+      "organization": {
+        "saved": null
+      }
+    },
+    "error": {
+      "organization": {
+        "notUnique": null
+      }
+    }
+  },
+  "organization": {
+    "title1": null,
+    "title2": null
+  },
+  "organizationForm": {
+    "header": null,
+    "name": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "address": {
+      "street": {
+        "label": null,
+        "placeholder": null
+      },
+      "zipCode": {
+        "label": null,
+        "placeholder": null
+      },
+      "city": {
+        "placeholder": null
+      }
+    },
+    "legalForm": {
+      "label": null,
+      "placeholder": null
+    },
+    "sector": {
+      "label": null,
+      "placeholder": null
+    },
+    "contact": {
+      "header": null,
+      "firstname": {
+        "label": null,
+        "placeholder": null
+      },
+      "lastname": {
+        "placeholder": null
+      },
+      "position": {
+        "label": null,
+        "placeholder": null
+      },
+      "email": {
+        "label": null,
+        "placeholder": null
+      },
+      "phone": {
+        "label": null,
+        "placeholder": null
+      }
+    },
+    "save": null,
+    "create": null
+  }
+}

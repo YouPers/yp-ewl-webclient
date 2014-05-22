@@ -1,80 +1,65 @@
 {
-    "clientmsg": {
-
+  "activity": {
+    "title1": "aktivität",
+    "title": {
+      "label": "Titel",
+      "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"
     },
-
-    "activity": {
-        "title1": "aktivität",
-
-        "title": {
-            "label": "Titel",
-            "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"
-        },
-
-        "image": {
-            "label": "Aktivitätsbild",
-            "select": "auswählen"
-        },
-
-        "description": {
-            "label": "Kurzbeschreibung",
-            "placeholder": "Kurzbeschreibung"
-        },
-        "text": {
-            "label": "Text",
-            "placeholder": "Die ausführliche Beschreibung der Aktivität"
-        },
-        "number": "Aktivitätsnummer",
-        "executiontype": "Ausführung",
-        "frequency": "Frequenz",
-        "visibility": "Sichtbarkeit",
-        "source": "Quelle",
-        "activityField": "Aktivitäts Felder",
-        "qualityFactor": "Qualitäts-Faktor (1-10)",
-        "duration": "Benötigte Zeit (min) ",
-
-        "save": "Speichern",
-        "back": "Zurück"
+    "image": {
+      "label": "Aktivitätsbild",
+      "select": "auswählen"
     },
-
-    "activities": {
-        "title1": "kampagnen",
-        "title2": "aktivitäten",
-
-        "group": {
-            "campaign": "eigene aktivitäten",
-            "all": "YouPers Aktivitäts-Ideen"
-        },
-
-        "duration": {
-            "suffix": "min"
-        },
-        "link": {
-            "new": "neue aktivität",
-            "schedule": "Einplanen",
-            "recommend": "Empfehlen"
-        },
-        "search": "suchen"
+    "description": {
+      "label": "Kurzbeschreibung",
+      "placeholder": "Kurzbeschreibung"
     },
-    "campaignoffers": {
-        "title1": "kampagnen",
-        "title2": "Aktivitäten",
-
-        "link": {
-            "newActivity": "Eigene Aktivität <br/>erstellen",
-            "publishActivity": "Bestehende Aktivität <br/>empfehlen/einplanen"
-        },
-
-        "published": "publiziert",
-
-        "offertype": {
-            "campaignActivity": "empfohlen",
-            "campaignActivityPlan": "eingeplant"
-        },
-        "userNamesNotShown": "Namen nicht angezeigt zum Schutz der Privatsphäre"
-
+    "text": {
+      "label": "Text",
+      "placeholder": "Die ausführliche Beschreibung der Aktivität"
     },
-    "scheduledDate": {
-        "daily": "täglich"
-    }
+    "number": "Aktivitätsnummer",
+    "executiontype": "Ausführung",
+    "frequency": "Frequenz",
+    "visibility": "Sichtbarkeit",
+    "source": "Quelle",
+    "activityField": "Aktivitäts Felder",
+    "qualityFactor": "Qualitäts-Faktor (1-10)",
+    "duration": "Benötigte Zeit (min) ",
+    "save": "Speichern",
+    "back": "Zurück"
+  },
+  "activities": {
+    "title1": "kampagnen",
+    "title2": "aktivitäten",
+    "group": {
+      "campaign": "eigene aktivitäten",
+      "all": "YouPers Aktivitäts-Ideen"
+    },
+    "duration": {
+      "suffix": "min"
+    },
+    "link": {
+      "new": "neue aktivität",
+      "schedule": "Einplanen",
+      "recommend": "Empfehlen"
+    },
+    "search": "suchen"
+  },
+  "campaignoffers": {
+    "title1": "kampagnen",
+    "title2": "Aktivitäten",
+    "link": {
+      "newActivity": "Eigene Aktivität <br/>erstellen",
+      "publishActivity": "Bestehende Aktivität <br/>empfehlen/einplanen"
+    },
+    "published": "publiziert",
+    "offertype": {
+      "campaignActivity": "empfohlen",
+      "campaignActivityPlan": "eingeplant"
+    },
+    "userNamesNotShown": "Namen nicht angezeigt zum Schutz der Privatsphäre"
+  },
+  "scheduledDate": {
+    "daily": "täglich"
+  }
 }

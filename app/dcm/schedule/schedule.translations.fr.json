@@ -1,0 +1,18 @@
+{
+  "dcmschedule": {
+    "title1": null,
+    "title2": null,
+    "scheduletype": {
+      "recommend": null,
+      "plan": null
+    },
+    "recommend": {
+      "helptext": null
+    },
+    "publishText": null,
+    "label": {
+      "publishFrom": null,
+      "publishTo": null
+    }
+  }
+}

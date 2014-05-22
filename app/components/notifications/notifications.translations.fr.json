@@ -1,0 +1,14 @@
+{
+  "notifications": {
+    "title": null,
+    "type": {
+      "personalInvitation": null,
+      "message": null,
+      "activityRecommendation": null,
+      "joinablePlan": null
+    },
+    "preview": {
+      "title": null
+    }
+  }
+}
