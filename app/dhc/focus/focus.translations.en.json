@@ -1,0 +1,20 @@
+{
+  "focus": {
+    "title1": null,
+    "title2": null,
+    "assessmentNotCompleted": null,
+    "assessmentNoStressors": null,
+    "header": null,
+    "none": null,
+    "low": null,
+    "medium": null,
+    "high": null,
+    "whatFocus": null,
+    "yourPersonalGoal": {
+      "question": null,
+      "placeholder": null
+    },
+    "toCheck": null,
+    "toSelect": null
+  }
+}

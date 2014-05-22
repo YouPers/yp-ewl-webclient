@@ -16,9 +16,11 @@ angular.module('i18n', ['pascalprecht.translate'])
                     $rootScope.currentLocale = $translate.use() || $translate.proposedLanguage();
                     var profile = $scope.principal.getUser().profile;
                     profile.language = key;
-                    ProfileService.putProfile(profile).then(function success() {
-                        console.log('successfully updated user profile');
-                    });
+                    if ($scope.principal.isAuthenticated()) {
+                        ProfileService.putProfile(profile).then(function success() {
+                            console.log('successfully updated user profile');
+                        });
+                    }
                 }, function (err) {
                     console.log('could not switch language, err: ' + err);
                 });

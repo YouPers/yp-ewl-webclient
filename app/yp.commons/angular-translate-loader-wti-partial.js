@@ -284,7 +284,7 @@ angular.module('pascalprecht.translate')
                                 wtiDeferred.reject(err);
                             });
                         wtiProject = wtiDeferred.promise;
-                    } else {
+                    } else if (!wtiProject) {
                         wtiDeferred.resolve();
                         wtiProject = wtiDeferred.promise;
                     }

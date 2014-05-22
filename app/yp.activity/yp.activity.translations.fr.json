@@ -1,0 +1,210 @@
+{
+  "clientmsg": {
+    "success": {
+      "activity": {
+        "save": null
+      },
+      "activityPlan": {
+        "save": null,
+        "join": null,
+        "invite": null,
+        "delete": null,
+        "sampleInvitationSent": null
+      }
+    },
+    "error": {
+      "activity": {
+        "join": null
+      }
+    }
+  },
+  "list": {
+    "planAnActivity": null,
+    "createNewActivity": null,
+    "search": null,
+    "setFocus": null,
+    "areas": null,
+    "togetherWith": null,
+    "alone": null,
+    "asAGroup": null,
+    "duration": null,
+    "lt15min": null,
+    "15-30min": null,
+    "30-60min": null,
+    "mt60min": null,
+    "rating": null,
+    "activities": null,
+    "recommendedForYou": null,
+    "campaignActivities": null,
+    "all": null,
+    "ofTotal": null,
+    "done": null,
+    "recommended": null,
+    "planned": null,
+    "ifYouFillAssessment": null,
+    "toAssessment": null,
+    "showAllActivities": null,
+    "planIt": null,
+    "notForMe": null
+  },
+  "detail": {
+    "header": null,
+    "edit": null,
+    "delete": null,
+    "save": null,
+    "plan": null,
+    "cancel": null,
+    "statistics": null,
+    "comment": {
+      "header": null,
+      "new": null,
+      "submit": null
+    },
+    "executiontype": {
+      "self": null,
+      "group": null
+    },
+    "activityLog": {
+      "header": null,
+      "location": null,
+      "executiontype": {
+        "group": {
+          "header": null,
+          "joiningUsers": null,
+          "inviteUsers": null,
+          "inviteSubmit": null,
+          "label": null
+        }
+      },
+      "nextExecutions": null
+    },
+    "activityPlanFrequency": {
+      "week": null,
+      "once": null
+    },
+    "group": {
+      "noPlansToJoin": {
+        "message": null,
+        "link": null
+      },
+      "joinPlan": {
+        "join": null,
+        "frequency": null,
+        "start": null,
+        "time": {
+          "start": null,
+          "end": null
+        },
+        "owner": null,
+        "joiningUsers": null
+      }
+    },
+    "self": {
+      "header": null,
+      "title": null,
+      "text": null,
+      "start": null,
+      "end": null,
+      "location": null,
+      "recurrence": {
+        "day": null,
+        "week": null,
+        "weeklyDay": null
+      },
+      "visibility": {
+        "public": null,
+        "campaign": null,
+        "private": null
+      },
+      "executionType": {
+        "self": null,
+        "group": null
+      },
+      "source": {
+        "label": null,
+        "sourceType": {
+          "community": null,
+          "campaign": null
+        }
+      }
+    }
+  },
+  "done": {
+    "date": null,
+    "message": null,
+    "feedback": null,
+    "cancel": null,
+    "save": null
+  },
+  "activityLog": {
+    "comments": null,
+    "commentsPopover": null
+  },
+  "admin": {
+    "matrix": {
+      "header": null,
+      "recommendationSliderLeft": null,
+      "recommendationSliderRight": null,
+      "valueRangeHint": null
+    }
+  },
+  "visibility": {
+    "public": null,
+    "campaign": null,
+    "private": null
+  },
+  "source": {
+    "youpers": null,
+    "community": null,
+    "campaign": null
+  },
+  "calendarNotification": {
+    "none": null,
+    "0": null,
+    "300": null,
+    "600": null,
+    "900": null,
+    "1800": null,
+    "3600": null,
+    "7200": null,
+    "86400": null,
+    "172800": null
+  },
+  "activityPlanInvite": {
+    "header": null,
+    "subheader": null,
+    "inviteMessage": null
+  },
+  "activityPlanFrequency": {
+    "once": null,
+    "day": null,
+    "week": null,
+    "month": null,
+    "year": null
+  },
+  "activityPlanEditable": {
+    "editable": null,
+    "notEditableJoinedPlan": null,
+    "notEditablePastEvent": null
+  },
+  "activityPlanDeletable": {
+    "deletable": null,
+    "deletableOnlyFutureEvents": null,
+    "notDeletableNoFutureEvents": null
+  },
+  "activityField": {
+    "awarenessAbility": null,
+    "timeManagement": null,
+    "workStructuring": null,
+    "physicalActivity": null,
+    "nutrition": null,
+    "leisureActivity": null,
+    "breaks": null,
+    "relaxation": null,
+    "socialInteraction": null
+  },
+  "executiontype": {
+    "self": null,
+    "group": null
+  }
+}

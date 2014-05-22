@@ -1,16 +1,10 @@
 {
-    "clientmsg": {
-
-    },
-
-
-    "welcome": {
-        "header": "Willkommen zur Kampagne ",
-
-        "organizationPrefix": " ",
-        "link": {
-            "info": "Mehr erfahren",
-            "join": "Teilnehmen"
-        }
+  "welcome": {
+    "header": "Willkommen zur Kampagne ",
+    "organizationPrefix": " ",
+    "link": {
+      "info": "Mehr erfahren",
+      "join": "Teilnehmen"
     }
+  }
 }
