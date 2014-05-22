@@ -1,92 +1,78 @@
 {
-    "clientmsg": {
-
-    },
-
-    "campaigns": {
-        "title1": "deine",
-        "title2": "kampagnen",
-
-        "group": {
-            "active": "aktive kampagnen",
-            "inactive": "beendete kampagnen"
-        }
-    },
-    "campaign": {
-        "title1": "deine",
-        "title2": "kampagne",
-
-        "header": "Stress Management",
-
-        "link": {
-            "new": "neue kampagne",
-            "campaignoffers": "Aktivitäten",
-            "notifications": "Mitteilungen"
-        },
-
-        "preview": {
-            "header": "Vorschau",
-            "welcomeLink": "Einladungs-Link",
-            "welcomeLinkExplain": "Mittels Klick auf diesen Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer",
-            "welcomeLinkTest": "Teste den Link",
-            "welcomeLinkNotSaved": "Sobald du die Kampagne speicherst, siehst du hier den Einladungslink."
-        },
-
-        "campaignLeads": {
-            "header": "kampagnenleiter"
-        }
-    },
-
-
-    "campaignForm": {
-        "avatar": {
-            "label": "Avatar",
-            "change": "ändern"
-        },
-        "title": {
-            "label": "Titel",
-            "placeholder": "Titel",
-            "error": {
-                "required": "Bitte einen gültigen Title eingeben"
-            }
-        },
-        "start": {
-            "label": "Start"
-        },
-        "end": {
-            "label": "Ende"
-        },
-        "participants": {
-            "label": "Personenkreis",
-            "placeholder": "Personenkreis",
-            "$invalid": "Bitte einen gültigen Personenkreis eingeben"
-        },
-        "location": {
-            "label": "Lokalität",
-            "placeholder": "Lokalität",
-            "error": {
-                "required": "Bitte eine gültige Lokalität eingeben"
-            }
-        },
-        "city": {
-            "label": "Ort",
-            "placeholder": "Ort"
-        },
-        "slogan": {
-            "label": "Slogan",
-            "placeholder": "Slogan"
-        },
-
-        "save": "Speichern",
-        "create": "Speichern"
-    },
-
-    "inviteCampaignLeadForm": {
-        "email": {
-            "placeholder": "Ein oder mehrere Email-Adressen"
-        },
-        "inviteSubmit": "Senden",
-        "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"
-
+  "campaigns": {
+    "title1": "deine",
+    "title2": "kampagnen",
+    "group": {
+      "active": "aktive kampagnen",
+      "inactive": "beendete kampagnen"
     }
+  },
+  "campaign": {
+    "title1": "deine",
+    "title2": "kampagne",
+    "header": "Stress Management",
+    "link": {
+      "new": "neue kampagne",
+      "campaignoffers": "Aktivitäten",
+      "notifications": "Mitteilungen"
+    },
+    "preview": {
+      "header": "Vorschau",
+      "welcomeLink": "Einladungs-Link",
+      "welcomeLinkExplain": "Mittels Klick auf diesen Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer",
+      "welcomeLinkTest": "Teste den Link",
+      "welcomeLinkNotSaved": "Sobald du die Kampagne speicherst, siehst du hier den Einladungslink."
+    },
+    "campaignLeads": {
+      "header": "kampagnenleiter"
+    }
+  },
+  "campaignForm": {
+    "avatar": {
+      "label": "Avatar",
+      "change": "ändern"
+    },
+    "title": {
+      "label": "Titel",
+      "placeholder": "Titel",
+      "error": {
+        "required": "Bitte einen gültigen Title eingeben"
+      }
+    },
+    "start": {
+      "label": "Start"
+    },
+    "end": {
+      "label": "Ende"
+    },
+    "participants": {
+      "label": "Personenkreis",
+      "placeholder": "Personenkreis",
+      "$invalid": "Bitte einen gültigen Personenkreis eingeben"
+    },
+    "location": {
+      "label": "Lokalität",
+      "placeholder": "Lokalität",
+      "error": {
+        "required": "Bitte eine gültige Lokalität eingeben"
+      }
+    },
+    "city": {
+      "label": "Ort",
+      "placeholder": "Ort"
+    },
+    "slogan": {
+      "label": "Slogan",
+      "placeholder": "Slogan"
+    },
+    "save": "Speichern",
+    "create": "Speichern"
+  },
+  "inviteCampaignLeadForm": {
+    "email": {
+      "placeholder": "Ein oder mehrere Email-Adressen"
+    },
+    "inviteSubmit": "Senden",
+    "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"
+  }
 }

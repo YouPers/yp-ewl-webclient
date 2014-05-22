@@ -16,6 +16,9 @@
             'yp.dcm.activity',
 
             'ngSanitize'
-        ]);
+        ])
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('dcm/dcm');
+        }]);
 
 }());

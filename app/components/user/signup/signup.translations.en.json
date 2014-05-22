@@ -1,0 +1,65 @@
+{
+  "signup": {
+    "header": "Welcome to YOUPERS!",
+    "signupNote": null,
+    "signinNote": null
+  },
+  "registerForm": {
+    "firstname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "lastname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "username": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null,
+        "unique": null
+      }
+    },
+    "email": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null,
+        "email": null,
+        "unique": null
+      }
+    },
+    "password": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null,
+        "minlength": null
+      }
+    },
+    "password2": {
+      "label": null,
+      "placeholder": null,
+      "$invalid": null,
+      "error": {
+        "unique": null
+      }
+    },
+    "termsAccepted": {
+      "label1": null,
+      "label2": null,
+      "label3": null,
+      "$error": {
+        "required": null
+      }
+    },
+    "register": null
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "check": {
+    "title1": null,
+    "title2": null,
+    "impactQuestion": {
+      "question": null,
+      "leftCaption": null,
+      "rightCaption": null
+    },
+    "toFocus": null,
+    "questionsAnswered": null
+  },
+  "questionCategory": {
+    "work": null,
+    "leisure": null,
+    "stresstypus": null,
+    "handling": null
+  }
+}

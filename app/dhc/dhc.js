@@ -16,6 +16,11 @@
             'yp.dhc.focus',
 
             'ngSanitize'
-        ]);
+        ])
+
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('dhc/dhc');
+        }]);
+
 
 }());

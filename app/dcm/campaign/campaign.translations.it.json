@@ -1,0 +1,78 @@
+{
+  "campaigns": {
+    "title1": null,
+    "title2": null,
+    "group": {
+      "active": null,
+      "inactive": null
+    }
+  },
+  "campaign": {
+    "title1": null,
+    "title2": null,
+    "header": null,
+    "link": {
+      "new": null,
+      "campaignoffers": null,
+      "notifications": null
+    },
+    "preview": {
+      "header": null,
+      "welcomeLink": null,
+      "welcomeLinkExplain": null,
+      "welcomeLinkTest": null,
+      "welcomeLinkNotSaved": null
+    },
+    "campaignLeads": {
+      "header": null
+    }
+  },
+  "campaignForm": {
+    "avatar": {
+      "label": null,
+      "change": null
+    },
+    "title": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "start": {
+      "label": null
+    },
+    "end": {
+      "label": null
+    },
+    "participants": {
+      "label": null,
+      "placeholder": null,
+      "$invalid": null
+    },
+    "location": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "city": {
+      "label": null,
+      "placeholder": null
+    },
+    "slogan": {
+      "label": null,
+      "placeholder": null
+    },
+    "save": null,
+    "create": null
+  },
+  "inviteCampaignLeadForm": {
+    "email": {
+      "placeholder": null
+    },
+    "inviteSubmit": null,
+    "invitationSent": null
+  }
+}

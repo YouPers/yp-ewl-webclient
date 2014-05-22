@@ -1,0 +1,40 @@
+{
+  "diary": {
+    "title1": null,
+    "title2": null,
+    "noContent": null,
+    "group": {
+      "today": null,
+      "yesterday": null,
+      "week": null,
+      "month": null,
+      "year": null,
+      "future": null,
+      "0": null,
+      "1": null,
+      "2": null,
+      "3": null,
+      "4": null,
+      "5": null,
+      "6": null,
+      "7": null,
+      "8": null,
+      "9": null,
+      "10": null,
+      "11": null
+    },
+    "modal": {
+      "question": null,
+      "yourCampaign": null,
+      "yourResolution": null,
+      "doNotAskAgainForDiaryEntry": null,
+      "reason": {
+        "placeholder": null
+      },
+      "noresolution": null
+    }
+  },
+  "topic": {
+    "stress": null
+  }
+}
