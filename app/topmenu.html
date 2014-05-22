@@ -7,20 +7,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-logo" href="http://www.youpers.com"><img src="../assets/img/logo.png" alt="YouPers"
-                                                                      height="40"></a>
+
+            <a class="navbar-logo" href="http://www.youpers.com">
+                <img src="assets/img/logo.png" alt="YouPers" height="40">
+            </a>
         </div>
         <div class="navbar-collapse collapse" collapse="topnavCollapsed.collapsed">
 
 
             <div class="nav navbar-left">
 
-                <ul class="nav navbar-nav" ng-if="isAdmin">
+                <ul class="nav navbar-nav" ng-if="isCampaignAdmin">
                     <li class="nav navbar-nav">
                         <a ui-sref="home.content">Digital Health Coach</a>
                     </li>
                     <li class="nav navbar-nav">
                         <a ui-sref="dcm-home.content">Digital Campaign Management</a>
+                    </li>
+                    <li class="nav navbar-nav" ng-if="isProductAdmin">
+                        <a ui-sref="admin-home.content">Product Configuration</a>
                     </li>
                 </ul>
             </div>

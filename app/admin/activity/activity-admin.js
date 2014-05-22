@@ -2,7 +2,7 @@
     'use strict';
 
 
-    angular.module('yp.activity')
+    angular.module('yp.admin')
 
         .controller('ActivityAdminCtrl', ['$scope', '$rootScope', 'activity', 'assessment', 'ActivityService', 'Restangular',
             function ($scope, $rootScope, activity, assessment, ActivityService, Restangular) {

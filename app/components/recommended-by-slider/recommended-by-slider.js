@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
         .directive('recommendedBySlider', ['$interval', function ($interval) {
             return {
                 restrict: 'EA',

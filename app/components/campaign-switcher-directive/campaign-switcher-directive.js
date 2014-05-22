@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
         .directive('campaignSwitcher', ['$rootScope', '$state','UserService', 'CampaignService',
             function ($rootScope,  $state, UserService, CampaignService) {
             return {

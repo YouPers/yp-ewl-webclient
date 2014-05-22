@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
         .directive('notifications', ['$rootScope', 'NotificationService', 'CampaignService', '$state','accessLevels',
             function ($rootScope, NotificationService, CampaignService, $state, accessLevels) {
                 return {

@@ -2,7 +2,7 @@
     'use strict';
 
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
 
         .directive('activityEdit', ['$rootScope', '$modal', 'ActivityService', 'CampaignService', 'UserService',
             function ($rootScope, $modal, ActivityService, CampaignService, UserService) {

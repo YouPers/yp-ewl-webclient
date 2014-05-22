@@ -2,9 +2,59 @@
     'use strict';
 
 
-    angular.module('yp.activity')
+    angular.module('yp.admin')
 
-        .controller('ActivityListCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans',
+        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
+                $stateProvider
+                    .state('admin-activity', {
+                        templateUrl: "layout/admin-default.html",
+                        access: accessLevels.admin
+                    })
+
+                    .state('admin-activity.list', {
+                        url: "/admin/activities?tab&page",
+                        templateUrl: "admin/activity/activities.html",
+                        controller: "ActivitiesCtrl",
+                        access: accessLevels.admin,
+                        resolve: {
+                            allActivities: ['ActivityService', function (ActivityService) {
+                                return ActivityService.getActivities();
+                            }],
+                            activityPlans: ['ActivityService', function (ActivityService) {
+                                return ActivityService.getActivityPlans();
+                            }],
+                            recommendations: ['ActivityService', function (ActivityService) {
+                                return ActivityService.getRecommendations();
+                            }],
+                            topStressors: ['AssessmentService', function (AssessmentService) {
+                                return AssessmentService.topStressors('525faf0ac558d40000000005');
+                            }],
+                            assessment: ['AssessmentService', function (AssessmentService) {
+                                return AssessmentService.getAssessment('525faf0ac558d40000000005');
+                            }]
+                        }
+                    })
+                    .state('admin-activity.edit', {
+                        url: "/admin/activities/:activityId/admin?tab&page",
+                        templateUrl: "admin/activity/activity-admin.html",
+                        controller: "ActivityAdminCtrl",
+                        access: accessLevels.admin,
+                        resolve: {
+                            activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
+                                return ActivityService.getActivity($stateParams.activityId);
+                            }],
+                            assessment: ['AssessmentService', function (AssessmentService) {
+                                return AssessmentService.getAssessment('525faf0ac558d40000000005');
+                            }]
+                        }
+                    });
+
+                $translateWtiPartialLoaderProvider.addPart('admin/activity/activity');
+
+            }])
+
+        .controller('ActivitiesCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans',
             'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
             function ($scope, $filter, allActivities, activityPlans, recommendations, topStressors, assessment, ActivityService, ProfileService) {
                 var user = $scope.principal.getUser();

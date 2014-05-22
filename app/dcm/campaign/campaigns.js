@@ -11,7 +11,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('campaigns', {
-                        templateUrl: "layout/dcmdefault.html",
+                        templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
                     .state('campaigns.content', {
@@ -30,7 +30,7 @@
                         }
                     })
                     .state('campaign', {
-                        templateUrl: "layout/dcmdefault.html",
+                        templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
                     .state('campaign.content', {

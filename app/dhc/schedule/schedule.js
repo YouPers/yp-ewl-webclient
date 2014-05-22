@@ -14,6 +14,7 @@
                         templateUrl: "layout/default.html",
                         access: accessLevels.user
                     })
+
                     .state('schedule.offer', {
                         url: "/schedule/:id",
                         access: accessLevels.user,

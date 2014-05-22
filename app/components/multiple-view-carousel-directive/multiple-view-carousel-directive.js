@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
         .directive('multipleViewCarousel', ['$location', '$state', function ($location, $state) {
             return {
                 restrict: 'E',

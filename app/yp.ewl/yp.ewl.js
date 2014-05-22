@@ -9,6 +9,8 @@ angular.module('yp-ewl',
             'angulartics','angulartics.google.analytics',
             'yp.config', 'yp.commons', 'yp.clientmsg', 'yp.error',
 
+            'yp.components',
+            'yp.admin',
             'yp.dhc',
             'yp.dcm',
 
@@ -16,18 +18,6 @@ angular.module('yp-ewl',
             'yp.user.signin',
             'yp.user.signup',
             'yp.user.invite',
-
-            'yp.payment',
-
-            'yp.topic',
-            'yp.assessment',
-            'yp.activity',
-            'yp.cockpit',
-            'yp.evaluate',
-
-            'yp.organization',
-            'yp.discussion',
-            'yp.feedback',
 
             'templates-main'
 
@@ -41,11 +31,6 @@ angular.module('yp-ewl',
             //
             // Now set up the states
             $stateProvider
-//                .state('home', {
-//                    url: "/home",
-//                    templateUrl: "yp.ewl/home.html",
-//                    access: accessLevels.all
-//                })
                 .state('terms', {
                     url: "/terms",
                     templateUrl: "yp.ewl/terms.html",
@@ -104,7 +89,13 @@ angular.module('yp-ewl',
 
             $rootScope.$on('event:authority-authorized', function() {
 
-                $rootScope.isAdmin = _.any(UserService.principal.getUser().roles, function (role) {
+                $rootScope.isProductAdmin = _.any(UserService.principal.getUser().roles, function (role) {
+                    return _.contains([
+                        'productadmin',
+                        'systemadmin'
+                    ], role);
+                });
+                $rootScope.isCampaignAdmin = _.any(UserService.principal.getUser().roles, function (role) {
                     return _.contains([
                         'campaignlead',
                         'orgadmin',

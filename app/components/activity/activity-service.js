@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.activity')
+    angular.module('yp.components.activity')
 
 
         .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',

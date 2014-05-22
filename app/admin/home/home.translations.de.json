@@ -1,0 +1,15 @@
+{
+    "clientmsg": {
+
+    },
+
+
+    "admin": {
+        "home": {
+            "title1": "product",
+            "title2": "configuration",
+            "activities": "Aktivitäten"
+        }
+    }
+
+}
