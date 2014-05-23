@@ -176,10 +176,6 @@ angular.module('yp-ewl',
 
             });
 
-            $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-                $rootScope.$emit('clientmsg:error', error);
-            });
-
             $rootScope.$on('loginMessageShow', function (event, data) {
                 $state.go('signup.content');
                 $rootScope.nextStateAfterLogin = data;
@@ -187,6 +183,7 @@ angular.module('yp-ewl',
 
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+                $rootScope.$emit('clientmsg:error', error);
                 console.log('Error on StateChange: '+ JSON.stringify(error));
                 throw error;
             });
