@@ -24,13 +24,15 @@
                             }
                         },
                         resolve: {
-                            offer: ['$stateParams', 'ActivityService', 'CampaignService', 'UserService', '$q',
-                                function ($stateParams, ActivityService, CampaignService, UserService, $q) {
+                            offer: ['$stateParams', 'ActivityService', 'CampaignService', 'UserService', '$q', '$state',
+                                function ($stateParams, ActivityService, CampaignService, UserService, $q, $state) {
                                     if (!$stateParams.id) {
                                         return $q.reject('no offer id passed in URL');
                                     } else if ($stateParams.id === 'NEW') {
                                         if (!$stateParams.activity) {
                                             return $q.reject('activity id is required as param for NEW offer');
+                                        } else if (!CampaignService.currentCampaign) {
+                                            return $q.reject('no current Campaign, cannot schedule without knowing for which campaign');
                                         } else {
                                             return ActivityService.getActivity($stateParams.activity)
                                                 .then(function (activity) {

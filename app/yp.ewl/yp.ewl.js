@@ -134,9 +134,12 @@ angular.module('yp-ewl',
             // set the language to use for backend calls to be equal to the current GUI language
             // translate.use() returns undefined until the partial async loader has found the "proposedLanguage"
             // therefore we use in this case $translate.proposedLanguage()
-            $http.defaults.headers.common['yp-language'] =  $translate.use() || $translate.proposedLanguage();
+            var localeToUse = $translate.use() || $translate.proposedLanguage();
+            $http.defaults.headers.common['yp-language'] =  localeToUse;
 
             $translate.refresh();
+            moment.lang(localeToUse);
+            $rootScope.currentLocale=localeToUse;
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
@@ -173,10 +176,6 @@ angular.module('yp-ewl',
 
             });
 
-            $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-                $rootScope.$emit('clientmsg:error', error);
-            });
-
             $rootScope.$on('loginMessageShow', function (event, data) {
                 $state.go('signup.content');
                 $rootScope.nextStateAfterLogin = data;
@@ -184,8 +183,13 @@ angular.module('yp-ewl',
 
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+                $rootScope.$emit('clientmsg:error', error);
                 console.log('Error on StateChange: '+ JSON.stringify(error));
-                throw error;
+                if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
+                    $state.go('dcm-home.content');
+                } else {
+                    $state.go('home.content');
+                }
             });
 
         }]);

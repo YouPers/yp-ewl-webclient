@@ -104,24 +104,15 @@
 
             <!-- recurrence -->
 
-            <div class="row recurrence" ng-if="plan.mainEvent.frequency=='day'">
+            <div class="row recurrence" ng-if="plan.mainEvent.frequency=='day' || plan.mainEvent.frequency=='week'">
                 <div class="col-md-6 recurrence-day">
                     <label>
                         <span translate>schedule.self.recurrence.day</span>
-                        <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number
+                        <input ng-model="plan.mainEvent.recurrence['endby'].after" min="1" type=number
                                class="form-control input-sm">
                     </label>
                 </div>
 
-            </div>
-            <div class="row recurrence" ng-if="plan.mainEvent.frequency=='week'">
-                <div class="col-md-6 recurrence-week">
-                    <label>
-                        <span translate>schedule.self.recurrence.week</span>
-                        <input ng-model="plan.mainEvent.recurrence['endby'].after" type=number
-                               class="form-control input-sm">
-                    </label>
-                </div>
             </div>
 
             <!-- visibility -->

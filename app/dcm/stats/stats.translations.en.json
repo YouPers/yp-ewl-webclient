@@ -1,0 +1,23 @@
+{
+  "stats": {
+    "title1": null,
+    "title2": null,
+    "overview": null,
+    "usersTotal": null,
+    "updatesTotal": null,
+    "totalActsPlanned": null,
+    "totalEventsPlanned": null,
+    "assUpdatesPerDay": null,
+    "usersWithDiaryEntry": null,
+    "activityName": null,
+    "day": null,
+    "totalFocusSet": null,
+    "topStressors": null,
+    "stressorCount": null,
+    "count": null,
+    "average": null,
+    "stressor": null,
+    "activityEvents": null,
+    "status": null
+  }
+}

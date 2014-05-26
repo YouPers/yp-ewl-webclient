@@ -1,0 +1,101 @@
+{
+  "clientmsg": {
+    "success": {
+      "save": null,
+      "submit": null,
+      "feedback": null
+    },
+    "error": {
+      "default": null,
+      "loginFailed": null,
+      "UnauthorizedError": null,
+      "404": null
+    }
+  },
+  "topmenu": {
+    "commit": null,
+    "assess": null,
+    "plan": null,
+    "do": null,
+    "evaluate": null,
+    "logout": null,
+    "signin": null,
+    "signup": null,
+    "account": null,
+    "profile": null,
+    "language": null,
+    "feedback": null
+  },
+  "home": {
+    "for": null,
+    "individuals": null,
+    "healthPromoters": null
+  },
+  "loginDialog": {
+    "pleaseLoginOrRegister": null,
+    "loginReason": null,
+    "register": null,
+    "registerNewAccount": null,
+    "passwordForgotten": null
+  },
+  "loginform": {
+    "usernameOrEmail": {
+      "label": null,
+      "$invalid": null
+    },
+    "password": {
+      "label": null,
+      "$invalid": null
+    },
+    "login": null,
+    "rememberMe": {
+      "label": null
+    }
+  },
+  "footer": {
+    "copyright": null
+  },
+  "terms": {
+    "termsAndConditionsHeading": null,
+    "termsAndConditions": null,
+    "privacyStatementHeading": null,
+    "privacyStatement": null
+  },
+  "topic": {
+    "chooseATopic": null,
+    "setGoal": {
+      "title": null,
+      "text": null
+    }
+  },
+  "feedbackForm": {
+    "anonymous": {
+      "label": null
+    },
+    "username": {
+      "label": null
+    },
+    "contactInfo": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "email": null
+      }
+    },
+    "feedbackCategory": {
+      "label": null
+    },
+    "description": {
+      "label": null
+    },
+    "back": null,
+    "submit": null
+  },
+  "feedbackCategory": {
+    "bug": null,
+    "improvement": null,
+    "question": null,
+    "support": null,
+    "other": null
+  }
+}

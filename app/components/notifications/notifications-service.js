@@ -31,7 +31,7 @@
                     return Restangular.one(baseUrl, notification.id || notification).remove();
                 },
                 deleteNotification: function(notification) {
-                    return Restangular.one(baseUrl, notification.id || notification).remove();
+                    return Restangular.one(baseUrl, notification.id || notification).remove({mode: "administrate"});
                 }
             };
 

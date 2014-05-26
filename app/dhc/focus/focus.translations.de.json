@@ -1,30 +1,20 @@
 {
-    "clientmsg": {
-
+  "focus": {
+    "title1": "dein",
+    "title2": "fokus",
+    "assessmentNotCompleted": "Sobald du deine <a href='/#/check'>Selbstbeurteilung</a>  vollständig ausgefüllt hast, zeigen wir dir hier eine Auswertung deiner Stresssituation mit Problembereichen, aufgrund derer du deinen persönlichen Fokus setzen kannst.",
+    "assessmentNoStressors": "Gratulation - Deine <a href='/#/check'>Selbstbeurteilung</a> hat keinen akuten Handlungsbedarf ergeben!",
+    "header": "Handlungsbedarf",
+    "none": "kein",
+    "low": "gering",
+    "medium": "mittel",
+    "high": "gross",
+    "whatFocus": "In welchen Problembereichen möchtest du dich verbessern?",
+    "yourPersonalGoal": {
+      "question": "Dein Ziel für diese Kampagne lautet:",
+      "placeholder": "Optional kannst du hier ein Ziel oder einen Slogan als persönlichen Vorsatz erfassen."
     },
-
-
-    "focus": {
-
-        "title1": "dein",
-        "title2": "fokus",
-        "assessmentNotCompleted": "Sobald du deine <a href='/#/check'>Selbstbeurteilung</a>  vollständig ausgefüllt hast, zeigen wir dir hier eine Auswertung deiner Stresssituation mit Problembereichen, aufgrund derer du deinen persönlichen Fokus setzen kannst.",
-
-        "assessmentNoStressors": "Gratulation - Deine <a href='/#/check'>Selbstbeurteilung</a> hat keinen akuten Handlungsbedarf ergeben!",
-        "header": "Handlungsbedarf",
-
-        "none": "kein",
-        "low": "gering",
-        "medium": "mittel",
-        "high": "gross",
-
-        "whatFocus": "In welchen Problembereichen möchtest du dich verbessern?",
-        "yourPersonalGoal": {
-            "question": "Dein Ziel für diese Kampagne lautet:",
-            "placeholder": "Optional kannst du hier ein Ziel oder einen Slogan als persönlichen Vorsatz erfassen."
-        },
-
-        "toCheck": "zurück zur Selbstbeurteilung",
-        "toSelect": "zu deinen Empfehlungen"
-    }
+    "toCheck": "zurück zur Selbstbeurteilung",
+    "toSelect": "zu deinen Empfehlungen"
+  }
 }

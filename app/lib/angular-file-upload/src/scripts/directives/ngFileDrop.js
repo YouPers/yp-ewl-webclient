@@ -1,11 +1,11 @@
 /**
  * The angular file upload module
  * @author: nerv
- * @version: 0.3.1, 2014-01-05
+ * @version: 0.5.6, 2014-04-24
  */
 
 // It is attached to an element that catches the event drop file
-app.directive('ngFileDrop', [ '$fileUploader', function ($fileUploader) {
+app.directive('ngFileDrop', ['$fileUploader', function ($fileUploader) {
     'use strict';
 
     return {

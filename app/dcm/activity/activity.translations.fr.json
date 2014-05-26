@@ -1,0 +1,65 @@
+{
+  "activity": {
+    "title1": null,
+    "title": {
+      "label": null,
+      "placeholder": null
+    },
+    "image": {
+      "label": null,
+      "select": null
+    },
+    "description": {
+      "label": null,
+      "placeholder": null
+    },
+    "text": {
+      "label": null,
+      "placeholder": null
+    },
+    "number": null,
+    "executiontype": null,
+    "frequency": null,
+    "visibility": null,
+    "source": null,
+    "activityField": null,
+    "qualityFactor": null,
+    "duration": null,
+    "save": null,
+    "back": null
+  },
+  "activities": {
+    "title1": null,
+    "title2": null,
+    "group": {
+      "campaign": null,
+      "all": null
+    },
+    "duration": {
+      "suffix": null
+    },
+    "link": {
+      "new": null,
+      "schedule": null,
+      "recommend": null
+    },
+    "search": null
+  },
+  "campaignoffers": {
+    "title1": null,
+    "title2": null,
+    "link": {
+      "newActivity": null,
+      "publishActivity": null
+    },
+    "published": null,
+    "offertype": {
+      "campaignActivity": null,
+      "campaignActivityPlan": null
+    },
+    "userNamesNotShown": null
+  },
+  "scheduledDate": {
+    "daily": null
+  }
+}
