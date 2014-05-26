@@ -294,6 +294,9 @@ module.exports = function (grunt) {
             main: {
 
                 src: [
+                    '<%= yeoman.app %>/footer.html',
+                    '<%= yeoman.app %>/terms.html',
+                    '<%= yeoman.app %>/topmenu.html',
                     '<%= yeoman.app %>/yp*/*.html',
                     '<%= yeoman.app %>/yp*/**/*.html',
                     '<%= yeoman.app %>/dhc/*.html',
