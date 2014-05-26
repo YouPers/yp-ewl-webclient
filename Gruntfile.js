@@ -298,6 +298,7 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>/yp*/**/*.html',
                     '<%= yeoman.app %>/dhc/*.html',
                     '<%= yeoman.app %>/dhc/**/*.html',
+                    '<%= yeoman.app %>/admin/**/*.html',
                     '<%= yeoman.app %>/dcm/**/*.html',
                     '<%= yeoman.app %>/components/**/*.html',
                     '<%= yeoman.app %>/layout/*.html'
@@ -319,6 +320,7 @@ module.exports = function (grunt) {
                             '.htaccess',
                             'lib/**/*',
                             'yp.*/*.json',
+                            'admin/**/*.json',
                             'dhc/**/*.json',
                             'dcm/**/*.json',
                             'components/**/*.json',
@@ -373,6 +375,7 @@ module.exports = function (grunt) {
                             'lib/**/*.js',
                             'yp*/*.js',
                             'yp*/**/*.js',
+                            'admin/**/*.js',
                             'dhc/**/*.js',
                             'dcm/**/*.js',
                             'components/**/*.js',
