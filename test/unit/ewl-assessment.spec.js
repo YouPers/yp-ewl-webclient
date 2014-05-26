@@ -4,7 +4,7 @@
 
 describe('ewl-assessment', function () {
     beforeEach(module('pascalprecht.translate'));
-    beforeEach(angular.mock.module('yp.commons'));
+    beforeEach(angular.mock.module('yp.components'));
     beforeEach(module('yp.activity'));
     beforeEach(module('yp.assessment'));
 

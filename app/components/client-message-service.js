@@ -4,11 +4,11 @@
 
 
 
-    angular.module('yp.clientmsg', [])
+    angular.module('yp.components')
 
-        /**
-         * stacktrace.js - print stacktraces from exceptions
-         */
+    /**
+     * stacktrace.js - print stacktraces from exceptions
+     */
         .factory("StacktraceService", function() {
 
             // "printStackTrace" is a global object.

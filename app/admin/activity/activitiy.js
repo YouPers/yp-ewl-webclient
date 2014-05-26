@@ -4,6 +4,22 @@
 
     angular.module('yp.admin')
 
+        .constant('enums', {
+
+            // used in activity & cockpit
+            activityFields: [
+                'awarenessAbility',
+                'timeManagement',
+                'workStructuring',
+                'physicalActivity',
+                'nutrition',
+                'leisureActivity',
+                'breaks',
+                'relaxation',
+                'socialInteraction'
+            ]
+        })
+
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider

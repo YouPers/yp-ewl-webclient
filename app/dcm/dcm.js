@@ -8,7 +8,10 @@
             'restangular',
             'ui.router',
 
-            'yp.user'
+            'yp.user',
+            'yp.components',
+            'yp.components.campaign',
+            'yp.components.notifications'
         ])
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {

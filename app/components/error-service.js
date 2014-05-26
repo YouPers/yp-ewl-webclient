@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.error', [])
+    angular.module('yp.components')
 
         .run(['ErrorService', 'Restangular', function (ErrorService, Restangular) {
 

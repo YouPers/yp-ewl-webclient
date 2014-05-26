@@ -1,8 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('yp.commons')
+    angular.module('yp.components')
 
+        // IE10 fix for yp-input placeholder
         .config(['$provide', function($provide) {
             $provide.decorator('$sniffer', ['$delegate', function($sniffer) {
                 var msie = parseInt((/msie (\d+)/.exec(angular.lowercase(navigator.userAgent)) || [])[1], 10);
@@ -25,7 +26,7 @@
                 priority: 100, // higher = earlier, needed to move attributes to child input first
                 replace: true, // replace the element itself, not just the content
                 restrict: 'E',
-                templateUrl: 'yp.commons/yp.commons.directive.ypinput.html',
+                templateUrl: 'components/yp-input-directive/yp-input-directive.html',
 
                 link: function ($scope, $element, $attrs) {
 

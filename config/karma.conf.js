@@ -27,18 +27,14 @@ module.exports = function (config) {
             'app/lib/venturocket-angular-slider/build/angular-slider.js',
 
             'app/yp.commons/angular-translate-loader-wti-partial.js',
-            'app/yp.commons/yp.error.js',
-            'app/yp.commons/yp.commons.js',
-            'app/yp.activity/yp.activity.js',
-            'app/yp.activity/yp.activitylog.js',
-            'app/yp.assessment/yp.assessment.js',
-            'app/yp.cockpit/yp.cockpit.js',
-            'app/yp.organization/yp.organization.js',
-            'app/yp.user/yp.user.js',
-            'app/yp.payment/yp.payment.js',
 
-            'app/dhc/diary/diary.js',
+            'app/yp.user/yp.user.js',
+
+            'app/components/components.js',
+            'app/components/notifications/notifications-service.js',
+
             'app/dhc/dhc.js',
+            'app/dhc/diary/diary.js',
             'app/dcm/dcm.js',
 
             'app/yp*/*.js',

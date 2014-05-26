@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('yp.commons')
+    angular.module('yp.components')
 
 
         /**
          * directive: avatar-upload
          *
          * dependencies: avatarObject in parent scope, with the avatar at avatarObject.avatar
-         *               or a custum object specified as attribute
+         *               or a custom object specified as attribute
          *
          * default: user avatar for the authenticated user
          *
@@ -23,7 +23,7 @@
                 return {
                     restrict: 'E',
                     transclude: true,
-                    templateUrl: 'yp.commons/yp.directive.avatar.upload.html',
+                    templateUrl: 'components/avatar-upload-directive/avatar-upload-directive.html',
                     scope: {
                         avatarObject: "="
                     },

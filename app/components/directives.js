@@ -1,79 +1,9 @@
 (function () {
     'use strict';
 
-    // internal functions
 
-    /**
-     * resolve a nested property of an object by specifying the property names, concatenated by a '.' (dot)
-     * example: obj, 'foo.bar' => obj.foo.bar
-     *
-     *
-     * @param o
-     * @param s
-     * @returns {*}
-     */
-    Object.byString = function (o, s) {
-        s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
-        s = s.replace(/^\./, '');           // strip a leading dot
-        var a = s.split('.');
-        while (a.length) {
-            var n = a.shift();
-            if (n in o) {
-                o = o[n];
-            } else {
-                return;
-            }
-        }
-        return o;
-    };
+    angular.module('yp.components')
 
-    /**
-     * validates the format of an email address.
-     * it just works ;-)
-     * copied from here:
-     * http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
-     *
-     * @param email
-     * @returns {boolean}
-     * @private
-     */
-    function _isValidEmail(email) {
-        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
-
-    angular.module('yp.commons', [])
-
-        .constant('enums', {
-            language: [
-            'de',
-            'en',
-            'fr',
-            'it'],
-
-            weekday: [
-                'monday',
-                'tuesday',
-                'wednesday',
-                'thursday',
-                'friday',
-                'saturday',
-                'sunday'
-            ],
-
-            // used in activity & cockpit
-            activityFields: [
-                'awarenessAbility',
-                'timeManagement',
-                'workStructuring',
-                'physicalActivity',
-                'nutrition',
-                'leisureActivity',
-                'breaks',
-                'relaxation',
-                'socialInteraction'
-            ]
-        })
 
         .directive('form', [function () {
             return {
@@ -86,37 +16,6 @@
                 }
             };
         }])
-
-        .filter('fromNow', function () {
-            return function (dateString) {
-                var myMoment = moment(dateString);
-
-                if (myMoment.isBefore(moment().subtract('day', 3)) || myMoment.isAfter(moment().add('day', 3))) {
-                    return myMoment.format('L');
-                } else {
-                    return myMoment.fromNow();
-                }
-            };
-        })
-        .filter('calendar', function () {
-            return function (dateString) {
-                var myMoment = moment(dateString);
-                return myMoment.calendar();
-            };
-        })
-        .filter('eventDate', function () {
-            return function (dateString) {
-                var myMoment = moment(dateString);
-                return myMoment.format('dddd, DD. MMMM');
-            };
-        })
-
-        .filter('time', function () {
-            return function (dateString) {
-                var myMoment = moment(dateString);
-                return myMoment.format('HH:mm');
-            };
-        })
 
 
         .directive('setfocus', ['$timeout', function ($timeout) {
@@ -255,7 +154,26 @@
 
                 }
             };
-        }]);
+        }])
+
+    ;
+
+
+
+    /**
+     * validates the format of an email address.
+     * it just works ;-)
+     * copied from here:
+     * http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+     *
+     * @param email
+     * @returns {boolean}
+     * @private
+     */
+    function _isValidEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
 
 
 }());

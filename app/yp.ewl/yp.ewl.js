@@ -7,17 +7,18 @@ angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n', 'ngAnimate',
             'angulartics','angulartics.google.analytics',
-            'yp.config', 'yp.commons', 'yp.clientmsg', 'yp.error',
-
+            'yp.config',
             'yp.components',
-            'yp.admin',
-            'yp.dhc',
-            'yp.dcm',
 
             'yp.user',
             'yp.user.signin',
             'yp.user.signup',
             'yp.user.invite',
+
+            'yp.admin',
+            'yp.dhc',
+            'yp.dcm',
+
 
             'templates-main'
 

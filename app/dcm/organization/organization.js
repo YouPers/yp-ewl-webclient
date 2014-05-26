@@ -68,7 +68,7 @@
                                 });
                             }]
 
-                    });;
+                    });
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/organization/organization');
             }])

@@ -8,8 +8,7 @@
             _.merge(enums, {
                 relatedService: "YP-Balance".split(' '),
                 productType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' ')
-            })
-
+            });
         }])
 
         .factory("PaymentCodeService", ['$rootScope', 'Restangular',
