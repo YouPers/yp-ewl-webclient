@@ -460,9 +460,9 @@ module.exports = function (grunt) {
         'concurrent:test',
         'template:server',
         'autoprefixer',
-        'connect:test',
-        'karma',
-        'protractor:chromeOnly'
+        'connect:test'
+//        'karma',
+//        'protractor:chromeOnly'
     ]);
     grunt.registerTask('e2e', [
         'protractor:all'
