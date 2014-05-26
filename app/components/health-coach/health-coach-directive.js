@@ -37,7 +37,9 @@
 
 
                     $rootScope.$on('healthCoach:displayMessage', function (even, message) {
-
+                        if (!scope.coachMessages) {
+                            scope.coachMessages = [];
+                        }
                         scope.coachMessages.unshift(message);
                         scope.updateStyle();
                     });

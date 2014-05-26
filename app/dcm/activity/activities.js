@@ -78,9 +78,14 @@
                         resolve: {
                             offers: ['$stateParams', 'ActivityService', 'CampaignService',
                                 function ($stateParams, ActivityService, CampaignService) {
-                                    return ActivityService.getActivityOffers({campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined,
-                                    populate: 'activity activityPlan'});
-                                }]
+                                    if (CampaignService.currentCampaign) {
+                                        return ActivityService.getActivityOffers({campaign: CampaignService.currentCampaign.id,
+                                            populate: 'activity activityPlan'});
+                                    } else {
+                                        return [];
+                                    }
+                                }
+                            ]
                         }
                     });
 
@@ -133,7 +138,9 @@
 
                 _initializeActivities(resolvedActivities);
 
-                $scope.$watch(function(){return CampaignService.currentCampaign;}, function(newValue, oldValue) {
+                $scope.$watch(function () {
+                    return CampaignService.currentCampaign;
+                }, function (newValue, oldValue) {
                     ActivityService.getActivities({campaign: CampaignService.currentCampaign.id}).then(function (activities) {
                         _initializeActivities(activities);
                     });
@@ -151,16 +158,20 @@
                     return _.pluck(plan.joiningUsers, 'fullname').join('<br/>');
                 };
 
-                $scope.$watch(function(){return CampaignService.currentCampaign;}, function(newValue, oldValue) {
-                    ActivityService.getActivityOffers(
-                        {
-                            campaign: CampaignService.currentCampaign.id,
-                            populate: 'activity activityPlan',
-                            populatedeep: 'activityPlan.joiningUsers'
-                        }
-                    ).then(function (offers) {
-                            $scope.offers = offers;
-                        });
+                $scope.$watch(function () {
+                    return CampaignService.currentCampaign;
+                }, function (newValue, oldValue) {
+                    if (newValue) {
+                        ActivityService.getActivityOffers(
+                            {
+                                campaign: newValue.id,
+                                populate: 'activity activityPlan',
+                                populatedeep: 'activityPlan.joiningUsers'
+                            }
+                        ).then(function (offers) {
+                                $scope.offers = offers;
+                            });
+                    }
                 });
             }])
 

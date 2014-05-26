@@ -24,11 +24,11 @@
 
                         if(val) {
                             var dateOnly = moment(val);
-                            var start = moment(scope.start);
-                            start.year(dateOnly.year());
-                            start.dayOfYear(dateOnly.dayOfYear());
+                            var date = moment(scope.date);
+                            date.year(dateOnly.year());
+                            date.dayOfYear(dateOnly.dayOfYear());
 
-                            scope.date = start.toISOString();
+                            scope.date = date.toISOString();
                         }
                     });
 
