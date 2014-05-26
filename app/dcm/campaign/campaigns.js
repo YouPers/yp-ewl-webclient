@@ -1,17 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dcm.campaign',
-        [
-            'restangular',
-            'ui.router'
-        ])
+    angular.module('yp.dcm')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('campaigns', {
-                        templateUrl: "layout/dcmdefault.html",
+                        templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
                     .state('campaigns.content', {
@@ -30,7 +26,7 @@
                         }
                     })
                     .state('campaign', {
-                        templateUrl: "layout/dcmdefault.html",
+                        templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
                     .state('campaign.content', {

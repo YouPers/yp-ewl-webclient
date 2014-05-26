@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
         .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state', '$translate','$sce',
             function ($rootScope, HealthCoachService, $window, $timeout, $state, $translate, $sce) {
             return {

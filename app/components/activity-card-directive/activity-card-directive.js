@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
         .directive('activityCard', ['$rootScope', '$sce', function ($rootScope, $sce) {
             return {
                 restrict: 'EA',

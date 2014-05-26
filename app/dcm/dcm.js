@@ -4,19 +4,16 @@
 
     angular.module('yp.dcm',
         [
+            'ngSanitize',
+            'restangular',
+            'ui.router',
+
             'yp.user',
-
-            'yp.dcm.home',
-            'yp.dcm.organization',
-            'yp.dcm.campaign',
-            'yp.dcm.schedule',
-            'yp.dcm.notification',
-            'yp.dcm.stats',
-
-            'yp.dcm.activity',
-
-            'ngSanitize'
+            'yp.components',
+            'yp.components.campaign',
+            'yp.components.notifications'
         ])
+
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
             $translateWtiPartialLoaderProvider.addPart('dcm/dcm');
         }]);

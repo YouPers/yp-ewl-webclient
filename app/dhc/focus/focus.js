@@ -1,10 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dhc.focus',
-        [
-            'ui.router'
-        ])
+    angular.module('yp.dhc')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {

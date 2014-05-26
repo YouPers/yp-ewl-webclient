@@ -1,0 +1,10 @@
+<ng-include src="'admin/subnavbar.html'">
+</ng-include>
+<div class="container main-layout admin {{ $state.current.name.substr(0, $state.current.name.indexOf('.')) }}">
+    <div class="row main-content">
+        <div class="col-lg-12">
+            <div ui-view="content" autoscroll="false"></div>
+        </div>
+
+    </div>
+</div>

@@ -2,8 +2,9 @@
 
     'use strict';
 
-    angular.module('yp.dhc').factory('NotificationService', ['Restangular', 'UserService', '$q',
-        function (Restangular, UserService, $q) {
+    angular.module('yp.components.notifications', [])
+
+        .factory('NotificationService', ['Restangular', 'UserService', '$q', function (Restangular, UserService, $q) {
             var baseUrl = 'notifications';
 
             var service = {

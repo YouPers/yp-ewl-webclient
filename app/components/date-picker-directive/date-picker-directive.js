@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
         .directive('datePicker', [function () {
             return {
                 restrict: 'EA',

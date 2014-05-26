@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components')
         .directive('signUp', ['UserService', '$rootScope', '$state', function (UserService, $rootScope, $state) {
             return {
                 restrict: 'E',

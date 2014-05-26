@@ -1,11 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dhc.home',
-        [
-            'restangular',
-            'ui.router'
-        ])
+    angular.module('yp.dhc')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
