@@ -1,7 +1,7 @@
 {
   "stats": {
-    "title1": "kampagnen",
-    "title2": "Statistiken",
+    "stateHeader1": "kampagnen",
+    "stateHeader2": "Statistiken",
     "overview": "Übersicht",
     "usersTotal": "Anzahl User in der Kampagne",
     "updatesTotal": "Anzahl ausgefüllte Selbstbeurteilungen (auch unvollständig)",

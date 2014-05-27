@@ -6,8 +6,8 @@
 
     "admin": {
         "home": {
-            "title1": "product",
-            "title2": "configuration",
+            "stateHeader1": "product",
+            "stateHeader2": "configuration",
             "activities": "Aktivitäten"
         }
     }

@@ -1,6 +1,6 @@
 {
   "activity": {
-    "title1": null,
+    "stateHeader1": null,
     "title": {
       "label": null,
       "placeholder": null
@@ -29,8 +29,8 @@
     "back": null
   },
   "activities": {
-    "title1": null,
-    "title2": null,
+    "stateHeader1": null,
+    "stateHeader2": null,
     "group": {
       "campaign": null,
       "all": null
@@ -46,8 +46,8 @@
     "search": null
   },
   "campaignoffers": {
-    "title1": null,
-    "title2": null,
+    "stateHeader1": null,
+    "stateHeader2": null,
     "link": {
       "newActivity": null,
       "publishActivity": null

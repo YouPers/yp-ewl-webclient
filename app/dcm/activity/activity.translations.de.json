@@ -1,6 +1,6 @@
 {
   "activity": {
-    "title1": "aktivität",
+    "stateHeader1": "aktivität",
     "title": {
       "label": "Titel",
       "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"
@@ -29,8 +29,8 @@
     "back": "Zurück"
   },
   "activities": {
-    "title1": "kampagnen",
-    "title2": "aktivitäten",
+    "stateHeader1": "kampagnen",
+    "stateHeader2": "aktivitäten",
     "group": {
       "campaign": "eigene aktivitäten",
       "all": "YouPers Aktivitäts-Ideen"
@@ -46,8 +46,8 @@
     "search": "suchen"
   },
   "campaignoffers": {
-    "title1": "kampagnen",
-    "title2": "Aktivitäten",
+    "stateHeader1": "kampagnen",
+    "stateHeader2": "Aktivitäten",
     "link": {
       "newActivity": "Eigene Aktivität <br/>erstellen",
       "publishActivity": "Bestehende Aktivität <br/>empfehlen/einplanen"

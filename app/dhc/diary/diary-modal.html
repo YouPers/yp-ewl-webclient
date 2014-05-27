@@ -5,7 +5,7 @@
 </div>
 <div class="row modal-body">
     <div class="col-md-8">
-        <h4 translate>diary.modal.yourCampaign</h4>
+        <h5 translate>diary.modal.yourCampaign</h5>
 
         <div class="topic-entry">
             <h3 class="topic-title pull-left">{{topic | translate}}</h3>
@@ -39,8 +39,8 @@
     </div>
     <div class="col-md-4 diary-resolution">
 
-            <h4 translate>diary.modal.yourResolution</h4>
-            <h3 class="resolution-content" translate>{{resolution || 'diary.modal.noresolution'}}</h3>
+            <h5 translate>diary.modal.yourResolution</h5>
+            <h4 class="resolution-content" translate>{{resolution || 'diary.modal.noresolution'}}</h4>
         <button class="btn btn-primary" ng-click="ok()" analytics-on="click" analytics-event="NewDiaryEntry" analytics-category="Command" analytics-label="Continue">Weiter</button>
         <div class="form-group" ng-if="mode=='auto'">
             <label for="doNotAskAgainForDiaryEntry">

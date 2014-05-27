@@ -1,7 +1,7 @@
 {
   "dcmhome": {
-    "title1": "digitaler",
-    "title2": "Kampagnen-Manager",
+    "stateHeader1": "digitaler",
+    "stateHeader2": "Kampagnen-Manager",
     "notifications": "Mitteilungen",
     "campaigns": "Kampagnen",
     "campaignoffers": "Aktivitäten",

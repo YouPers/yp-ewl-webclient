@@ -1,7 +1,7 @@
 {
   "home": {
-    "title1": "deine",
-    "title2": "kampagnen",
+    "stateHeader1": "deine",
+    "stateHeader2": "kampagnen",
     "diary": "Tagebuch",
     "select": "Empfehlungen",
     "plan": "Plan",

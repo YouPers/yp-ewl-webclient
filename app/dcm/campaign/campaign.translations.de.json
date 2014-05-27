@@ -1,15 +1,15 @@
 {
   "campaigns": {
-    "title1": "deine",
-    "title2": "kampagnen",
+    "stateHeader1": "deine",
+    "stateHeader2": "kampagnen",
     "group": {
       "active": "aktive kampagnen",
       "inactive": "beendete kampagnen"
     }
   },
   "campaign": {
-    "title1": "deine",
-    "title2": "kampagne",
+    "stateHeader1": "deine",
+    "stateHeader2": "kampagne",
     "header": "Stress Management",
     "link": {
       "new": "neue kampagne",

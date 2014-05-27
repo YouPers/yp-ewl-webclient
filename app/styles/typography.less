@@ -17,6 +17,18 @@ body, h1, h2, h3, h4, h5, h6, p, span, .form-control  {
   font-style: normal;
 }
 
+// hover styles
+
+a:hover, .link:hover * {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-hover {
+  color: @yp-color-green-hover;
+}
+
+
 // headers
 // -------------------------
 
@@ -40,7 +52,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, .form-control  {
 
 // h1
 // welcome header, used in campaign welcome screen, diary modal
-h1, .welcome-header {
+h1, .welcome-header, .header1 {
   color: @yp-color-grey2;
   font-size: 48px;
   font-weight: 200;
@@ -48,34 +60,45 @@ h1, .welcome-header {
 // h1 strong
 // welcome header, bold variation
 h1 b, h1 strong,
+.header1 b, .header1 strong,
 .welcome-header b, .welcome-header strong {
   font-weight: 400;
 }
 
 // h2
 // main header
-h2, h2 *,
+h2, h2 * ,
+.header2,.header2 * ,
 .main-header,.main-header * {
   color: @yp-color-green;
   font-size: 28px;
   font-weight: 200;
 
-  padding: 1em 0;
+//  padding: 1em 0;
 }
+.h2:hover, .h2:hover * ,
+.header2:hover, .header2:hover * ,
 .main-header:hover, .main-header:hover * {
   text-decoration: none;
   color: @yp-color-green-hover;
 }
 
 // h3
-h3 {
+h3, .header3 {
   color: @yp-color-grey2;
   font-size: 20px;
   font-weight: 400;
 }
 
 // h4
-h4 {
+h4, .header4 {
+  color: @yp-color-grey2;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+// h5
+h5, .header5 {
   color: @yp-color-grey1;
   font-size: 14px;
   font-weight: 400;
@@ -99,32 +122,11 @@ label, .label {
 }
 
 
-// common styles
+// titles
 // -------------------------
 
-.title-light {
-  color: @yp-color-grey2;
-  font-size: 14px;
-  font-weight: 400;
-}
-.title-medium {
+.title1 {
   color: @yp-color-grey2;
   font-size: 14px;
   font-weight: 600;
-}
-.title-strong {
-  color: @yp-color-grey2;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-// hover styles
-
-a:hover, .link:hover * {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.link-hover {
-  color: @yp-color-green-hover;
 }

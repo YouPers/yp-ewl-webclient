@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-8">
-        <div class="state-header-1" translate>activities.title1</div>
-        <div class="state-header-2" translate>activities.title2</div>
+        <div class="state-header-1" translate>activities.stateHeader1</div>
+        <div class="state-header-2" translate>activities.stateHeader2</div>
     </div>
     <div class="col-sm-4">
         <campaign-switcher mode="campaignlead"></campaign-switcher>
@@ -16,11 +16,11 @@
 
     <div class="group" ng-repeat="group in groups">
 
-        <div class="main-header row">
+        <div class="row">
             <div class="col-xs-8">
-                <div translate>{{ 'activities.group.' + group.name }}</div>
+                <h2 translate>{{ 'activities.group.' + group.name }}</h2>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-4">
                 <div class="search" ng-if="group.name == 'all'">
 
                     <div class="input-group">

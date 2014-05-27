@@ -1,7 +1,7 @@
 {
   "plan": {
-    "title1": "dein",
-    "title2": "Plan",
+    "stateHeader1": "dein",
+    "stateHeader2": "Plan",
     "group": {
       "open": "offene Rückmeldungen",
       "today": "Heute",
