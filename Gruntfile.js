@@ -463,7 +463,7 @@ module.exports = function (grunt) {
         'template:server',
         'autoprefixer',
         'connect:test'
-//        'karma',
+//        'karma'
 //        'protractor:chromeOnly'
     ]);
     grunt.registerTask('e2e', [
