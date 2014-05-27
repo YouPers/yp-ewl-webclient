@@ -2,8 +2,7 @@
   "clientmsg": {
     "success": {
       "save": "Gespeichert",
-      "submit": "Gesendet",
-      "feedback": "Danke für dein Feedback!"
+      "submit": "Gesendet"
     },
     "error": {
       "default": "Ein Fehler ist aufgetreten",
@@ -67,35 +66,5 @@
       "title": "Willkommen zum Persönlichen Stress Management",
       "text": "<p>Verbessere deine Worklife-Balance durch eine nachhaltige Verhaltensänderung.</p><p>Gratulation: der erste Schritt ist schon gemacht!</p><h2>Fachlicher Review</h2><p>Wir reviewen fachlichen Inhalt - den Fragebogen, die Aktivitäten und die Vorschläge.<ul><li>Feedback zum Fragebogen wird im Excel gesammelt. </li><li>Korrekturen / Feedback zu den Aktiväten können wir direkt mittels des Admin-Buttons auf der Website eintragen.</li></ul></p><p> Start: Mittwoch 20. Novemeber</p><p> Ende: Montag 25. Dezember</p>"
     }
-  },
-  "feedbackForm": {
-    "anonymous": {
-      "label": "Anonymes Feedback"
-    },
-    "username": {
-      "label": "Username"
-    },
-    "contactInfo": {
-      "label": "Email",
-      "placeholder": "Email",
-      "error": {
-        "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
-      }
-    },
-    "feedbackCategory": {
-      "label": "Kategorie"
-    },
-    "description": {
-      "label": "Beschreibung"
-    },
-    "back": "Zurück",
-    "submit": "Abschicken"
-  },
-  "feedbackCategory": {
-    "bug": "Fehler",
-    "improvement": "Verbesserung",
-    "question": "Frage",
-    "support": "Hilfe",
-    "other": "Anderes"
   }
 }

@@ -35,5 +35,36 @@
     "en": "English",
     "fr": "Français",
     "it": "Italiano"
-  }
+  },
+    "feedbackForm": {
+        "submitted": "Danke für dein Feedback!",
+        "anonymous": {
+            "label": "Anonymes Feedback"
+        },
+        "username": {
+            "label": "Username"
+        },
+        "contactInfo": {
+            "label": "Email",
+            "placeholder": "Email",
+            "error": {
+                "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
+            }
+        },
+        "feedbackCategory": {
+            "label": "Kategorie"
+        },
+        "description": {
+            "label": "Beschreibung"
+        },
+        "close": "Schliessen",
+        "submit": "Abschicken"
+    },
+    "feedbackCategory": {
+        "bug": "Fehler",
+        "improvement": "Verbesserung",
+        "question": "Frage",
+        "support": "Hilfe",
+        "other": "Anderes"
+    }
 }

@@ -27,10 +27,11 @@
                 ]});
         }])
 
-        .controller('FeedbackController', [ '$scope', '$rootScope', 'FeedbackService', 'UserService',
-            function ($scope, $rootScope, FeedbackService, UserService) {
+        .controller('FeedbackController', [ '$scope', '$rootScope', '$window', 'FeedbackService', 'UserService',
+            function ($scope, $rootScope, $window, FeedbackService, UserService) {
 
                 $scope.contactInfo = UserService.principal.isAuthenticated() ? UserService.principal.getUser().username : false;
+                $scope.feedback = {};
 
                 $scope.$watch('anonymous', function(val) {
                     if($scope.anonymous) {
@@ -38,7 +39,13 @@
                     }
                 });
 
+                $scope.close = function() {
+                    $window.close();
+                };
+
                 $scope.submitFeedback = function() {
+
+                    $scope.submitting = true;
 
                     // copy username
                     if($scope.contactInfo && !$scope.anonymous) {
@@ -50,11 +57,13 @@
 
 
                     // optimistic posting, don't wait for response
-                    FeedbackService.postFeedback($scope.feedback);
+                    FeedbackService.postFeedback($scope.feedback).then(function() {
+                        $scope.submitted = true;
+                        $scope.feedback = {};
 
-                    $scope.feedback = {};
-                    $rootScope.$emit('clientmsg:success', 'notification.success.feedback');
-                    $scope.back();
+                    });
+
+
                 };
             }
         ])
