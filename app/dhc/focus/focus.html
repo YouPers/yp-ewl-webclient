@@ -69,18 +69,18 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 focus-title">
             <div translate>focus.whatFocus</div>
         </div>
     </div>
     <div class="row">
 
         <div class="col-md-8 col-md-offset-2">
-            <div class="row" ng-repeat="stressor in topStressors">
-                <div class="col-md-1">{{$index + 1}}</div>
-                <div class="col-md-4">{{stressor.question.title}}</div>
-                <div class="col-md-3">{{'questionCategory.' + stressor.question.category | translate}}</div>
-                <div class="col-md-1">
+            <div class="row stressor" ng-repeat="stressor in topStressors">
+                <div class="col-md-1 index">{{$index + 1}}</div>
+                <div class="col-md-5 title">{{stressor.question.title}}</div>
+                <div class="col-md-5 category">{{'questionCategory.' + stressor.question.category | translate}}</div>
+                <div class="col-md-1 selection">
                     <input type="checkbox" ng-model="stressor.selected" ng-change="stressorSelected(stressor)"/>
                 </div>
             </div>
@@ -89,7 +89,7 @@
 
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 focus-title">
             <div translate>focus.yourPersonalGoal.question</div>
             <textarea id="personalGoal" ng-model="userPreferences.personalGoal" class="form-control" ng-blur="savePersonalGoal()" ng-attr-placeholder="{{'focus.yourPersonalGoal.placeholder' | translate}}"></textarea>
 

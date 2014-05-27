@@ -31,12 +31,12 @@
     <!-- groups -->
 
     <div class="offer row" ng-repeat="offer in offers">
-        <div class="col-xs-2 image">
+        <div class="col-xs-1 image">
             <img ng-src="{{'/assets/actpics/' + offer.activity.number + '.jpg' }}">
         </div>
-        <div class="col-xs-2 title">
-            <span ng-bind-html="offer.activity.title"></span>
-            {{offer.activityPlan[0].location}}
+        <div class="col-xs-3 title">
+            <div ng-bind-html="offer.activity.title"></div>
+            <span>{{offer.activityPlan[0].location}}</span>
         </div>
 
         <div class="col-xs-3 date">
