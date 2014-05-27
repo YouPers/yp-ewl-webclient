@@ -1,17 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dcm.notification',
-        [
-            'restangular',
-            'ui.router'
-        ])
+    angular.module('yp.dcm')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('notifications', {
-                        templateUrl: "layout/dcmdefault.html",
+                        templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
                     .state('notifications.content', {
@@ -60,7 +56,7 @@
                 $scope.saveNotification = function() {
                     // reset targetQueue, user might have changed the currentCampaign
                     $scope.notificationObj.targetQueue = CampaignService.currentCampaign.id;
-                    NotificationService.postNotification($scope.notificationObj).then(function(saved) {
+                    NotificationService.postNotification($scope.notificationObj).then(function (saved) {
                         $scope.notifications.unshift(saved);
                         $scope.addNotification = false;
                         $scope.notificationObj.title = '';
@@ -68,21 +64,26 @@
                     });
                 };
 
-                $scope.deleteNotification = function(notification) {
-                    NotificationService.deleteNotification(notification).then(function() {
-                        _.remove($scope.notifications, function(not) {
+                $scope.deleteNotification = function (notification) {
+                    NotificationService.deleteNotification(notification).then(function () {
+                        _.remove($scope.notifications, function (not) {
                             return not.id === notification.id;
                         });
                     });
                 };
 
-                $scope.$watch(function(){return CampaignService.currentCampaign;}, function(newValue, oldValue) {
-                    NotificationService.getNotifications(
-                        {campaign: CampaignService.currentCampaign.id,
-                            populate: 'author', mode: 'administrate'}
-                    ).then(function (notifications) {
-                            $scope.notifications = notifications;
-                        });                });
+                $scope.$watch(function () {
+                    return CampaignService.currentCampaign;
+                }, function (newValue, oldValue) {
+                    if (CampaignService.currentCampaign ) {
+                        NotificationService.getNotifications(
+                            {campaign: CampaignService.currentCampaign.id || CampaignService.currentCampaign,
+                                populate: 'author', mode: 'administrate'}
+                        ).then(function (notifications) {
+                                $scope.notifications = notifications;
+                            });
+                    }
+                });
             }
         ]);
 

@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components.healthCoach')
         .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state', '$translate','$sce',
             function ($rootScope, HealthCoachService, $window, $timeout, $state, $translate, $sce) {
             return {
@@ -37,7 +37,9 @@
 
 
                     $rootScope.$on('healthCoach:displayMessage', function (even, message) {
-
+                        if (!scope.coachMessages) {
+                            scope.coachMessages = [];
+                        }
                         scope.coachMessages.unshift(message);
                         scope.updateStyle();
                     });
@@ -77,9 +79,6 @@
                     };
                 }]
             };
-        }])
-        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('components/health-coach/health-coach');
         }]);
 
 }());

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.user.invite', [])
+    angular.module('yp.components.user')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {

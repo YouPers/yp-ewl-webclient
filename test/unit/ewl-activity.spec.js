@@ -5,8 +5,8 @@
 describe('ewl activity', function () {
 
     beforeEach(module('pascalprecht.translate'));
-    beforeEach(angular.mock.module('yp.commons'));
-    beforeEach(angular.mock.module('yp.activity'));
+    beforeEach(angular.mock.module('yp.components'));
+    beforeEach(angular.mock.module('yp.components.activity'));
     beforeEach(module('ui.router'));
 
 

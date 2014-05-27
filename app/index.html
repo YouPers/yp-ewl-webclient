@@ -23,7 +23,7 @@
     <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.js"></script>
     <script src="lib/angular-touch/angular-touch.js"></script>
-    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls-0.12.0-SNAPSHOT.js"></script>
     <script src="lib/angular-cookies/angular-cookies.js"></script>
     <script src="lib/angular-i18n/angular-locale_de-ch.js"></script>
     <script src="lib/angular-translate/angular-translate.js"></script>
@@ -34,7 +34,6 @@
     <script src="lib/messageformat/locale/fr.js"></script>
     <script src="lib/messageformat/locale/it.js"></script>
     <script src="lib/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
-    <script src="yp.commons/angular-translate-loader-wti-partial.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="lib/venturocket-angular-slider/build/angular-slider.js"></script>
     <script src="lib/angular-file-upload/angular-file-upload.js"></script>
@@ -46,6 +45,8 @@
     <script src="lib/marked/marked.js"></script>
     <script src="lib/momentjs/moment.js"></script>
     <script src="lib/momentjs/lang/de.js"></script>
+    <script src="lib/momentjs/lang/fr.js"></script>
+    <script src="lib/momentjs/lang/it.js"></script>
     <script src="lib/restangular/dist/restangular.js"></script>
 
     <script src="lib/stacktrace.js"></script>
@@ -53,47 +54,81 @@
     <script src="lib/hamsterjs/hamster.js"></script>
     <script src="lib/angular-mousewheel/mousewheel.js"></script>
 
-    <!--dhc-->
-    <script src="dhc/dhc.js"></script>
-    <!--dcm-->
-    <script src="dcm/dcm.js"></script>
-
-    <!--user-->
-    <script src="yp.user/yp.user.js"></script>
-    <script src="yp.user/yp.user.service.js"></script>
-    <script src="yp.user/yp.user.directive.login.js"></script>
-    <script src="yp.user/yp.user.account.js"></script>
-    <script src="yp.user/yp.user.profile.js"></script>
-    <script src="yp.user/yp.user.directive.js"></script>
-    <script src="yp.user/yp.user.emailverification.js"></script>
-    <script src="yp.user/yp.user.passwordreset.js"></script>
+    <script src="components/i18n/angular-translate-loader-wti-partial.js"></script>
 
 
     <!--components-->
-    <script src="components/user/user.js"></script>
-    <script src="components/user/signin-directive/signin-directive.js"></script>
-    <script src="components/user/signin/signin.js"></script>
-    <script src="components/user/signup-directive/signup-directive.js"></script>
-    <script src="components/user/signup/signup.js"></script>
-    <script src="components/user/invite/invite.js"></script>
+    <script src="components/components.js"></script>
 
-    <script src="components/activity-card-directive/activity-card-directive.js"></script>
-    <script src="components/recommended-by-slider/recommended-by-slider.js"></script>
-    <script src="components/multiple-view-carousel-directive/multiple-view-carousel-directive.js"></script>
-    <script src="components/stop-propagation-directive/stop-propagation-directive.js"></script>
+    <!--user-->
+    <script src="components/user/user.js"></script>
+    <script src="components/user/user-service.js"></script>
+    <script src="components/user/account/account.js"></script>
+    <script src="components/user/email-verification/email-verification.js"></script>
+    <script src="components/user/invite/invite.js"></script>
+    <script src="components/user/password-reset/password-reset.js"></script>
+    <script src="components/user/profile/profile.js"></script>
+    <script src="components/user/signin/signin.js"></script>
+    <script src="components/user/signin-directive/signin-directive.js"></script>
+    <script src="components/user/signup/signup.js"></script>
+    <script src="components/user/signup-directive/signup-directive.js"></script>
+    <script src="components/user/user-directive/user-directive.js"></script>
+
+    <script src="components/i18n/i18n.js"></script>
+
+    <script src="components/activity/activity.js"></script>
+    <script src="components/activity/activity-service.js"></script>
+    <script src="components/assessment/assessment.js"></script>
+    <script src="components/assessment/assessment-service.js"></script>
+    <script src="components/organization/organization.js"></script>
+    <script src="components/organization/organization-service.js"></script>
+    <script src="components/campaign/campaign.js"></script>
+    <script src="components/campaign/campaign-service.js"></script>
+    <script src="components/payment-code/payment-code.js"></script>
+    <script src="components/payment-code/payment-code-service.js"></script>
+    <script src="components/feedback/feedback.js"></script>
+    <script src="components/health-coach/health-coach.js"></script>
     <script src="components/health-coach/health-coach-service.js"></script>
     <script src="components/health-coach/health-coach-directive.js"></script>
-    <script src="components/notifications/notifications-directive.js"></script>
+    <script src="components/notifications/notifications.js"></script>
     <script src="components/notifications/notifications-service.js"></script>
-    <script src="components/campaign-switcher-directive/campaign-switcher-directive.js"></script>
-    <script src="components/activity-edit-directive/activity-edit-directive.js"></script>
-    <script src="components/scheduled-date-directive/scheduled-date-directive.js"></script>
-    <script src="components/date-picker-directive/date-picker-directive.js"></script>
-    <script src="components/date-time-picker-directive/date-time-picker-directive.js"></script>
+    <script src="components/notifications/notifications-directive.js"></script>
+
+    <!--util-->
+    <script src="components/util/util.js"></script>
+    <script src="components/util/filters.js"></script>
+    <script src="components/util/directives.js"></script>
+    <script src="components/util/error.js"></script>
+    <script src="components/util/client-message.js"></script>
+    <script src="components/util/base64.js"></script>
+    <script src="components/util/base64.js"></script>
 
 
-    <!-- dcm -->
+    <!--directives-->
+    <script src="components/directives/yp-input-directive/yp-input-directive.js"></script>
+    <script src="components/directives/activity-card-directive/activity-card-directive.js"></script>
+    <script src="components/directives/recommended-by-slider-directive/recommended-by-slider-directive.js"></script>
+    <script src="components/directives/multiple-view-carousel-directive/multiple-view-carousel-directive.js"></script>
+    <script src="components/directives/campaign-switcher-directive/campaign-switcher-directive.js"></script>
+    <script src="components/directives/activity-edit-directive/activity-edit-directive.js"></script>
+    <script src="components/directives/scheduled-date-directive/scheduled-date-directive.js"></script>
+    <script src="components/directives/date-picker-directive/date-picker-directive.js"></script>
+    <script src="components/directives/date-time-picker-directive/date-time-picker-directive.js"></script>
+    <script src="components/directives/avatar-upload-directive/avatar-upload-directive.js"></script>
 
+
+
+    <!-- admin -->
+    <script src="admin/admin.js"></script>
+    <!--home-->
+    <script src="admin/home/home.js"></script>
+    <!--activity-->
+    <script src="admin/activity/activitiy.js"></script>
+    <script src="admin/activity/activity-admin.js"></script>
+
+
+    <!--dcm-->
+    <script src="dcm/dcm.js"></script>
     <!--home-->
     <script src="dcm/home/home.js"></script>
     <!--organization-->
@@ -110,7 +145,7 @@
     <script src="dcm/stats/stats.js"></script>
 
     <!-- dhc -->
-
+    <script src="dhc/dhc.js"></script>
     <!--welcome-->
     <script src="dhc/welcome/welcome.js"></script>
     <!--home-->
@@ -130,72 +165,10 @@
     <script src="dhc/focus/focus.js"></script>
 
 
-    <!--commons-->
-    <script src="yp.commons/yp.commons.js"></script>
-    <script src="yp.commons/yp.commons.directive.ypinput.js"></script>
-    <script src="yp.commons/yp.discussion.js"></script>
-    <script src="yp.commons/yp.clientmsg.js"></script>
-    <script src="yp.commons/yp.error.js"></script>
-    <script src="yp.commons/base64.js"></script>
-    <script src="yp.commons/yp.directive.avatar.upload.js"></script>
 
-<!--topic-->
-    <script src="yp.ewl/yp.topic.js"></script>
-<!--assessment-->
-    <script src="yp.assessment/yp.assessment.js"></script>
-    <script src="yp.assessment/yp.assessment.controller.js"></script>
-    <script src="yp.assessment/yp.assessment.service.js"></script>
-<!--activity-->
-    <script src="yp.activity/yp.activity.js"></script>
-    <script src="yp.activity/yp.activity.service.js"></script>
-    <script src="yp.activity/yp.activity.list.js"></script>
-    <script src="yp.activity/yp.activity.detail.js"></script>
-    <script src="yp.activity/yp.activity.admin.js"></script>
-    <script src="yp.activity/yp.activity.activityplaninvite.js"></script>
 
-    <script src="yp.activity/yp.activitylog.js"></script>
-    <script src="yp.activity/yp.activitylog.controller.js"></script>
-    <script src="yp.activity/yp.activitylog.filter.js"></script>
-<!--cockpit-->
-    <script src="yp.cockpit/yp.cockpit.js"></script>
-    <script src="yp.cockpit/yp.cockpit.activityvchart.js"></script>
-    <script src="yp.cockpit/yp.cockpit.stresslevel.gauge.js"></script>
-    <script src="yp.cockpit/yp.cockpit.stresslevel.linechart.js"></script>
-    <script src="yp.cockpit/yp.cockpit.sociallog.js"></script>
-
-    <script src="yp.cockpit/d3/d3.js"></script>
-    <script src="yp.cockpit/d3/d3-dir-hbar.js"></script>
-    <script src="yp.cockpit/d3/d3-dir-vbar.js"></script>
-    <script src="yp.cockpit/d3/d3-dir-linechart.js"></script>
-    <script src="yp.cockpit/d3/d3-dir-gauge.js"></script>
-<!--evaluate-->
-    <script src="yp.evaluate/yp.evaluate.js"></script>
-<!--healthpromoter-->
-    <script src="yp.organization/yp.organization.js"></script>
-    <script src="yp.organization/yp.organization.service.js"></script>
-    <script src="yp.organization/yp.organization.create.js"></script>
-    <script src="yp.organization/yp.campaign.js"></script>
-    <script src="yp.organization/yp.campaign.service.js"></script>
-<!--payment-->
-    <script src="yp.payment/yp.payment.js"></script>
-    <script src="yp.payment/yp.payment.code.service.js"></script>
-    <script src="yp.payment/yp.payment.code.admin.js"></script>
-<!--user-->
-    <script src="yp.user/yp.user.js"></script>
-    <script src="yp.user/yp.user.service.js"></script>
-    <script src="yp.user/yp.user.directive.login.js"></script>
-    <script src="yp.user/yp.user.account.js"></script>
-    <script src="yp.user/yp.user.profile.js"></script>
-    <script src="yp.user/yp.user.directive.js"></script>
-    <script src="yp.user/yp.user.emailverification.js"></script>
-    <script src="yp.user/yp.user.passwordreset.js"></script>
-<!--ewl-->
     <script src="yp.ewl/yp.config.js"></script>
-    <script src="yp.ewl/header.js"></script>
-    <script src="yp.ewl/yp.feedback.js"></script>
     <script src="yp.ewl/yp.ewl.js"></script>
-<!--i18n-->
-    <script src="yp.commons/i18n.js"></script>
 
 <!-- angular html templates -->
 
@@ -227,12 +200,12 @@
 
 
 
-    <ng-include src="'yp.ewl/topmenu.html'"></ng-include>
+    <ng-include src="'partials/topmenu.html'"></ng-include>
 
 
     <div class="yp-clientmsg">
         <div>
-            <alert ng-repeat="msg in clientmsgs" type='msg.alertType' close="closeClientmsg(msg.id)" >
+            <alert ng-repeat="msg in clientmsgs" type='{{msg.alertType}}' close="closeClientmsg(msg.id)" >
                 {{ msg.message | translate:msg.values }}
             </alert>
         </div>
@@ -241,7 +214,7 @@
 
     <div ui-view autoscroll="false"></div>
 
-    <ng-include src="'yp.ewl/footer.html'"></ng-include>
+    <ng-include src="'partials/footer.html'"></ng-include>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.components.notifications')
         .directive('notifications', ['$rootScope', 'NotificationService', 'CampaignService', '$state','accessLevels',
             function ($rootScope, NotificationService, CampaignService, $state, accessLevels) {
                 return {
@@ -64,9 +64,6 @@
                         }
                     }
                 };
-            }])
-        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('components/notifications/notifications');
-        }]);
+            }]);
 
 }());

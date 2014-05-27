@@ -1,0 +1,39 @@
+{
+  "clientmsg": {
+    "success": {
+      "comment": {
+        "save": null
+      }
+    },
+    "error": {
+      "avatar": {
+        "invalid": null,
+        "error": null
+      }
+    }
+  },
+  "executiontype": {
+    "self": null,
+    "group": null
+  },
+  "weekday": {
+    "monday": null,
+    "tuesday": null,
+    "wednesday": null,
+    "thursday": null,
+    "friday": null,
+    "saturday": null,
+    "sunday": null
+  },
+  "timezone": {
+    "00:00": null,
+    "+01:00": null,
+    "+03:00": null
+  },
+  "language": {
+    "de": null,
+    "en": null,
+    "fr": null,
+    "it": null
+  }
+}

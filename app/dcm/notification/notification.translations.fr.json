@@ -1,0 +1,19 @@
+{
+  "notifications": {
+    "title1": null,
+    "title2": null,
+    "link": {
+      "new": null
+    },
+    "form": {
+      "title": {
+        "placeholder": null
+      },
+      "text": {
+        "placeholder": null
+      },
+      "submit": null,
+      "delete": null
+    }
+  }
+}

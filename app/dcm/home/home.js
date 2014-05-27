@@ -1,17 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dcm.home',
-        [
-            'restangular',
-            'ui.router'
-        ])
+    angular.module('yp.dcm')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dcm-home', {
-                        templateUrl: "layout/dcmdefault.html",
+                        templateUrl: "layout/dcm-default.html",
                         access: accessLevels.all
                     })
                     .state('dcm-home.content', {

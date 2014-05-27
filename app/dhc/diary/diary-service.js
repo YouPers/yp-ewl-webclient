@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dhc.diary')
+    angular.module('yp.dhc')
 
 
         .factory('DiaryService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope', 'ProfileService', '$modal',

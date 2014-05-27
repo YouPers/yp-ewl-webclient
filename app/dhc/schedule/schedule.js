@@ -1,11 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dhc.schedule',
-        [
-            'restangular',
-            'ui.router'
-        ])
+    angular.module('yp.dhc')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
@@ -14,6 +10,7 @@
                         templateUrl: "layout/default.html",
                         access: accessLevels.user
                     })
+
                     .state('schedule.offer', {
                         url: "/schedule/:id",
                         access: accessLevels.user,

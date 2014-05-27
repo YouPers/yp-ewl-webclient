@@ -1,36 +1,23 @@
 {
-    "clientmsg": {
-
-    },
-
-    "stats": {
-        "title1": "kampagnen",
-        "title2": "Statistiken",
-
-        "overview": "Übersicht",
-        "usersTotal": "Anzahl User in der Kampagne",
-        "updatesTotal": "Anzahl ausgefüllte Selbstbeurteilungen (auch unvollständig)",
-        "totalActsPlanned": "Anzahl eingeplante Aktivitäten",
-        "totalEventsPlanned": "Anzahl geplante Durchführungen von Aktivitäten",
-        "assUpdatesPerDay": "Anpassungen der Selbstbeurteilung pro Tag",
-        "usersWithDiaryEntry": "Anzahl Benutzer mit mindestens 1 Tagebuch-Eintrag",
-        "activityName": "Aktivität",
-
-        "day": "Datum",
-
-        "totalFocusSet": "Anzahl User mit gesetztem Fokus",
-        "topStressors": "Häufigste Stressverursacher",
-        "stressorCount": "Anzahl Nennungen",
-
-        "count": "Anzahl",
-        "average": "durchschnittlich",
-        "stressor": "Stressverursacher",
-
-        "activityEvents": "Ausführungen von Aktivitäten",
-        "status": "Status der Ausführung"
-
-
-    }
-
-
+  "stats": {
+    "title1": "kampagnen",
+    "title2": "Statistiken",
+    "overview": "Übersicht",
+    "usersTotal": "Anzahl User in der Kampagne",
+    "updatesTotal": "Anzahl ausgefüllte Selbstbeurteilungen (auch unvollständig)",
+    "totalActsPlanned": "Anzahl eingeplante Aktivitäten",
+    "totalEventsPlanned": "Anzahl geplante Durchführungen von Aktivitäten",
+    "assUpdatesPerDay": "Anpassungen der Selbstbeurteilung pro Tag",
+    "usersWithDiaryEntry": "Anzahl Benutzer mit mindestens 1 Tagebuch-Eintrag",
+    "activityName": "Aktivität",
+    "day": "Datum",
+    "totalFocusSet": "Anzahl User mit gesetztem Fokus",
+    "topStressors": "Häufigste Stressverursacher",
+    "stressorCount": "Anzahl Nennungen",
+    "count": "Anzahl",
+    "average": "durchschnittlich",
+    "stressor": "Stressverursacher",
+    "activityEvents": "Ausführungen von Aktivitäten",
+    "status": "Status der Ausführung"
+  }
 }

@@ -1,26 +1,19 @@
 {
-    "clientmsg": {
-
+  "check": {
+    "title1": "deine",
+    "title2": "Selbstbeurteilung",
+    "impactQuestion": {
+      "question": "Stresst dich das?",
+      "leftCaption": "kaum",
+      "rightCaption": "sehr"
     },
-
-
-    "check": {
-        "title1": "deine",
-        "title2": "Selbstbeurteilung",
-        "impactQuestion": {
-            "question": "Stresst dich das?",
-            "leftCaption": "kaum",
-            "rightCaption": "sehr"
-        },
-        "toFocus": "Zu deinem Fokus",
-        "questionsAnswered": "Kriterien beurteilt"
-    },
-
-    "questionCategory": {
-        "work": "Stress am Arbeitsplatz",
-        "leisure": "Stress in der Freizeit",
-        "stresstypus": "Stressverstärker",
-        "handling": "Stressausgleich"
-    }
-
+    "toFocus": "Zu deinem Fokus",
+    "questionsAnswered": "Kriterien beurteilt"
+  },
+  "questionCategory": {
+    "work": "Stress am Arbeitsplatz",
+    "leisure": "Stress in der Freizeit",
+    "stresstypus": "Stressverstärker",
+    "handling": "Stressausgleich"
+  }
 }

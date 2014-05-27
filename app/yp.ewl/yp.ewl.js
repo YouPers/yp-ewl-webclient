@@ -5,29 +5,18 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl',
         [
-            'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n', 'ngAnimate',
+            'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'ngAnimate',
             'angulartics','angulartics.google.analytics',
-            'yp.config', 'yp.commons', 'yp.clientmsg', 'yp.error',
 
+            'yp.config',
+
+            'yp.components',
+
+
+            'yp.admin',
             'yp.dhc',
             'yp.dcm',
 
-            'yp.user',
-            'yp.user.signin',
-            'yp.user.signup',
-            'yp.user.invite',
-
-            'yp.payment',
-
-            'yp.topic',
-            'yp.assessment',
-            'yp.activity',
-            'yp.cockpit',
-            'yp.evaluate',
-
-            'yp.organization',
-            'yp.discussion',
-            'yp.feedback',
 
             'templates-main'
 
@@ -41,14 +30,9 @@ angular.module('yp-ewl',
             //
             // Now set up the states
             $stateProvider
-//                .state('home', {
-//                    url: "/home",
-//                    templateUrl: "yp.ewl/home.html",
-//                    access: accessLevels.all
-//                })
                 .state('terms', {
                     url: "/terms",
-                    templateUrl: "yp.ewl/terms.html",
+                    templateUrl: "partials/terms.html",
                     access: accessLevels.all,
                     controller: ['$scope','$window', function($scope, $window) {
                         $scope.close = function() {
@@ -83,7 +67,6 @@ angular.module('yp-ewl',
                 fromWti: config.translationSource === 'wti'
             });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl/yp.ewl');
-            $translateWtiPartialLoaderProvider.addPart('yp.commons/yp.commons');
         }])
 
 /**
@@ -104,7 +87,13 @@ angular.module('yp-ewl',
 
             $rootScope.$on('event:authority-authorized', function() {
 
-                $rootScope.isAdmin = _.any(UserService.principal.getUser().roles, function (role) {
+                $rootScope.isProductAdmin = _.any(UserService.principal.getUser().roles, function (role) {
+                    return _.contains([
+                        'productadmin',
+                        'systemadmin'
+                    ], role);
+                });
+                $rootScope.isCampaignAdmin = _.any(UserService.principal.getUser().roles, function (role) {
                     return _.contains([
                         'campaignlead',
                         'orgadmin',
@@ -134,9 +123,12 @@ angular.module('yp-ewl',
             // set the language to use for backend calls to be equal to the current GUI language
             // translate.use() returns undefined until the partial async loader has found the "proposedLanguage"
             // therefore we use in this case $translate.proposedLanguage()
-            $http.defaults.headers.common['yp-language'] =  $translate.use() || $translate.proposedLanguage();
+            var localeToUse = $translate.use() || $translate.proposedLanguage();
+            $http.defaults.headers.common['yp-language'] =  localeToUse;
 
             $translate.refresh();
+            moment.lang(localeToUse);
+            $rootScope.currentLocale=localeToUse;
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
@@ -173,10 +165,6 @@ angular.module('yp-ewl',
 
             });
 
-            $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-                $rootScope.$emit('clientmsg:error', error);
-            });
-
             $rootScope.$on('loginMessageShow', function (event, data) {
                 $state.go('signup.content');
                 $rootScope.nextStateAfterLogin = data;
@@ -184,8 +172,13 @@ angular.module('yp-ewl',
 
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+                $rootScope.$emit('clientmsg:error', error);
                 console.log('Error on StateChange: '+ JSON.stringify(error));
-                throw error;
+                if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
+                    $state.go('dcm-home.content');
+                } else {
+                    $state.go('home.content');
+                }
             });
 
         }]);

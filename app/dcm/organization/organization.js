@@ -1,17 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dcm.organization',
-        [
-            'restangular',
-            'ui.router'
-        ])
+    angular.module('yp.dcm')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('organization', {
-                        templateUrl: "layout/dcmdefault.html",
+                        templateUrl: "layout/dcm-default.html",
                         access: accessLevels.user
                     })
                     .state('organization.content', {
@@ -29,6 +25,49 @@
                                 return OrganizationService.getOrganizations();
                             }]
                         }
+                    })
+                    .state('assignCampaignLead', {
+                        url: '/campaigns/{id}/becomeCampaignLead?token',
+                        access: accessLevels.user,
+                        onEnter:['$state','$stateParams','CampaignService', 'UserService', '$rootScope', '$window',
+                            function($state, $stateParams, CampaignService, UserService, $rootScope, $window) {
+                                var campaignId = $stateParams.id;
+                                var token = $stateParams.token;
+                                CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
+                                    $rootScope.$emit('clientmsg:success', 'campaign.lead');
+                                    $state.go('campaign', {id: campaignId});
+                                }, function(err) {
+
+                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {
+                                        UserService.logout();
+                                        $window.location.reload();
+                                    } else {
+                                        $state.go('home');
+                                    }
+                                });
+                            }]
+
+                    })
+                    .state('assignOrganizationAdmin', {
+                        url: '/organizations/{id}/becomeOrganizationAdmin?token',
+                        access: accessLevels.user,
+                        onEnter:['$state','$stateParams','OrganizationService', 'UserService', '$rootScope', '$window',
+                            function($state, $stateParams, OrganizationService, UserService, $rootScope, $window) {
+                                var organizationId = $stateParams.id;
+                                var token = $stateParams.token;
+                                OrganizationService.assignOrganizationAdmin(organizationId, token).then(function(data) {
+                                    $rootScope.$emit('clientmsg:success', 'organization.lead');
+                                    $state.go('organization', {id: organizationId});
+                                }, function(err) {
+                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {
+                                        UserService.logout();
+                                        $window.location.reload();
+                                    } else {
+                                        $state.go('home');
+                                    }
+                                });
+                            }]
+
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/organization/organization');

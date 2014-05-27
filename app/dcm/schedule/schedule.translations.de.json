@@ -1,23 +1,18 @@
 {
-    "clientmsg": {
-
+  "dcmschedule": {
+    "title1": "Kampagnen-Aktivitäten",
+    "title2": "Einplanen und Empfehlen",
+    "scheduletype": {
+      "recommend": "Empfehlen",
+      "plan": "Einplanen"
     },
-
-    "dcmschedule": {
-        "title1": "Kampagnen-Aktivitäten",
-        "title2": "Einplanen und Empfehlen",
-
-        "scheduletype": {
-            "recommend": "Empfehlen",
-            "plan": "Einplanen"
-        },
-        "recommend": {
-            "helptext": "Wenn du eine Aktivität in der Kampagne empfiehlst, können die Teilnehmer sie selber für sich einplanen.<br><br>Die Aktivität taucht auf in ihren Aktivitäts-Empfehlungen und als Mitteilung in der persönlichen Mitteilungs-Liste.<br><br>Auf der Rechten Seite kannst du erfassen, wie lange diese Empfehlung angezeigt werden soll."
-        },
-        "publishText": "Mitteilungs-Text:",
-        "label": {
-            "publishFrom": "Publiziert Ab",
-            "publishTo": "Publiziert Bis"
-        }
+    "recommend": {
+      "helptext": "Wenn du eine Aktivität in der Kampagne empfiehlst, können die Teilnehmer sie selber für sich einplanen.<br><br>Die Aktivität taucht auf in ihren Aktivitäts-Empfehlungen und als Mitteilung in der persönlichen Mitteilungs-Liste.<br><br>Auf der Rechten Seite kannst du erfassen, wie lange diese Empfehlung angezeigt werden soll."
+    },
+    "publishText": "Mitteilungs-Text:",
+    "label": {
+      "publishFrom": "Publiziert Ab",
+      "publishTo": "Publiziert Bis"
     }
+  }
 }

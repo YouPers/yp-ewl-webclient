@@ -1,0 +1,307 @@
+<div class="container cockpit">
+
+<header name="plan">
+    <div class="col-md-6" translate>list.planAnActivity</div>
+    <div class="col-md-6">
+        <a class="btn btn-default" ui-sref="activityAdmin" ng-if="principal.isAuthorized('admin')" translate>list.createNewActivity</a>
+    </div>
+</header>
+
+<!-- Page body  -->
+
+<div class="row">
+
+<!-- Linke Spalte: Suchen und Filtern -->
+
+<div class="col-md-2">
+
+    <!-- Suche -->
+    <div class="panel sidebar">
+        <div class="panel sidebar section-title" translate>
+            list.search
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search-option" ng-class="query.fulltext ? 'filter-option-active' : 'filter-option-inactive'">
+                    <input type="text" value="" ng-model="query.fulltext" size="16" maxlength="20">
+                    <button type="button" class="btn btn-primary cockpit btn-sm" ng-click="query.fulltext=''">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fokus -->
+    <div class="panel sidebar">
+        <div class="panel sidebar section-title" translate>
+            list.setFocus
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" ng-hide="query.subset=='recommendations' && !hasRecommendations">
+                <div class="checkbox filter-option"
+                     ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'"
+                     ng-repeat="stressor in topStressors" ng-click="focusOnStressor(stressor)">
+                    <label>
+                        <input type="checkbox" name ="stressorFocus" ng-model="stressor.focussed">
+                        {{ stressor.title }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aktivitätsbereiche -->
+    <div class="panel sidebar">
+        <div class="panel sidebar section-title" translate>
+            list.areas
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-repeat="fieldId in enums.activityFields" class="filter-option"
+                     ng-class="query.cluster[fieldId] ? 'filter-option-active' : 'filter-option-inactive'"
+                     ng-click="query.cluster[fieldId] = !query.cluster[fieldId]">
+                    <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListFilterClusterIcon">
+                    {{ 'activityField.' + fieldId | translate }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alleine/Gruppe -->
+    <div class="panel sidebar">
+        <div class="panel sidebar section-title" translate>
+            list.togetherWith
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="checkbox filter-option"
+                     ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.executiontype.self">
+                        <translate>list.alone</translate>
+                    </label>
+                </div>
+                <div class="checkbox filter-option"
+                     ng-class="query.executiontype.group ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.executiontype.group">
+                        <translate>list.asAGroup</translate>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zeitaufwand -->
+    <div class="panel sidebar">
+        <div class="panel sidebar section-title" translate>
+            list.duration
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="checkbox filter-option"
+                     ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.time.t15">
+                        <translate>list.lt15min</translate>
+                    </label>
+                </div>
+                <div class="checkbox filter-option"
+                     ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.time.t30">
+                        <translate>list.15-30min</translate>
+                    </label>
+                </div>
+                <div class="checkbox filter-option"
+                     ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.time.t60">
+                        <translate>list.30-60min</translate>
+                    </label>
+                </div>
+                <div class="checkbox filter-option"
+                     ng-class="query.time.more ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.time.more">
+                        <translate>list.mt60min</translate>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rating -->
+    <div class="panel sidebar">
+        <div class="panel sidebar section-title" translate>
+            list.rating
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="checkbox filter-option"
+                     ng-class="query.rating.five ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.rating.five">
+                        <rating value="5" max="5"></rating>
+                    </label>
+                </div>
+                <div class="checkbox filter-option"
+                     ng-class="query.rating.four ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.rating.four">
+                        <rating value="4" max="5"></rating>
+                    </label>
+                </div>
+                <div class="checkbox filter-option"
+                     ng-class="query.rating.three ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.rating.three">
+                        <rating value="3" max="5"></rating>
+                    </label>
+                </div>
+                <div class="checkbox filter-option"
+                     ng-class="query.rating.two ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.rating.two">
+                        <rating value="2" max="5"></rating>
+                    </label>
+                </div>
+                <div class="checkbox filter-option"
+                     ng-class="query.rating.one ? 'filter-option-active' : 'filter-option-inactive'">
+                    <label>
+                        <input type="checkbox" value="" ng-model="query.rating.one">
+                        <rating value="1" max="5"></rating>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Rechter Hauptteil: Aktivitätenliste -->
+
+<div class="col-md-10">
+    <div class="panel cockpit">
+        <div class="panel cockpit section-title" translate>
+            list.activities
+        </div>
+
+        <!-- Tabs und Paginierung -->
+        <div class="row">
+            <div class="col-md-7">
+                <tabset class="cockpit-tabs">
+                    <li class="cockpit-tab" ng-class="{active: query.subset=='recommendations'}">
+                        <a href="" ng-click="setListTab('recommendations')" translate>list.recommendedForYou</a></li>
+                    <li class="cockpit-tab" ng-class="{active: query.subset=='campaign'}">
+                        <a href="" ng-click="setListTab('campaign')" translate>list.campaignActivities</a>
+                    </li>
+                    <li class="cockpit-tab" ng-class="{active: query.subset=='all'}">
+                        <a href="" ng-click="setListTab('all')" translate>list.all</a>
+                    </li>
+                    <li class="cockpit-tab" ng-class="{active: query.subset=='starred'}">
+                        <a href="" ng-click="setListTab('starred')">
+                        <span class="glyphicon glyphicon-star"></span><span>({{countStarredActivities()}})</span></a></li>
+                </tabset>
+            </div>
+            <div class="col-md-5">
+                <div> {{filteredActivities.length}} <translate>list.ofTotal</translate> {{activities.length}}</div>
+                    <span ng-hide="filteredActivities.length < maxSize">
+                        <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
+                                    max-size="maxSize" class="pagination youpers" boundary-links="false" previous-text="<" next-text=">"/>
+                    </span>
+            </div>
+        </div>
+
+        <!-- die eigentliche Liste -->
+        <div class="row">
+            <div class="col-md-12" ng-hide="query.subset=='recommendations' && !hasRecommendations">
+                <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity)"
+                     ng-mouseenter="buttonsShown[activity.id]=true"
+                     ng-mouseleave="buttonsShown[activity.id]=false"
+                     ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-score', '-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize track by activity.id">
+                    <div class="col-md-1">
+                        {{ activity.number }}
+                        <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld" translate>
+                            list.done
+                        </div>
+                        <div ng-if="activity.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended" translate>
+                            list.recommended
+                        </div>
+                        <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge" translate>
+                            list.planned
+                        </div>
+                        <div class="activityListStarred glyphicon" ng-click="toggleStar(activity, $event)"
+                             ng-class="(activity.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
+                    </div>
+                    <div class="col-md-5" ng-bind-html="activity.title">
+                    </div>
+                    <div class="col-md-1">
+                        <img ng-src="{{'/assets/actpics/' + activity.number + '.jpg'}}" width='60' height="40">
+                    </div>
+                    <div class="col-md-2" ng-if="!buttonsShown[activity.id] ||  activity.plan.status=='active'">
+                        <div popover="{{ 'activityField.'+ fieldId | translate}}" popover-trigger="mouseenter"
+                             ng-repeat="fieldId in activity.fields" popover-placement="left" popover-append-to-body="true">
+                            <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListClusterIcon">
+                        </div>
+                    </div>
+                    <div class="col-md-1" ng-if="!buttonsShown[activity.id] ||  activity.plan.status=='active'" popover="Überprüft und Empfohlen durch YouPers"
+                         popover-trigger="mouseenter">
+                        <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activity.source == 'youpers'"
+                             class="activityListClusterIcon">
+                    </div>
+                    <div class="col-md-3" ng-if="buttonsShown[activity.id] && activity.plan.status!='active'">
+                        <a class="btn btn-sm btn-primary"
+                           ng-click="gotoActivityDetail(activity)" translate
+                           analytics-on="click" analytics-event="ContinueProposal" analytics-category="Command" analytics-label="Activity Start Planning">
+                            list.planIt</a>
+                        <a class="btn btn-sm btn-primary"
+                               ng-click="reject(activity, $event)" translate
+                               analytics-on="click" analytics-event="RejectProposal" analytics-category="Command" analytics-label="Activity Rejected">
+                            list.notForMe</a>
+                    </div>
+                    <div class="col-md-2">
+                        {{ 'executiontype.' + activity.defaultexecutiontype | translate}}
+                        <div ng-if="principal.isAuthorized('admin')"><a class="btn btn-sm btn-primary cockpit"
+                                                                          ui-sref="admin-activity.edit({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
+                                                                          ng-click="$event.stopPropagation()">admin</a>
+                            Gewicht: {{activity.score | number: 0}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" ng-show="query.subset=='recommendations' && !hasRecommendations">
+                <div class="row top-buffer">
+                    <div class="col-md-6 col-md-offset-3 panel panel-default">
+                        <h3 translate>list.ifYouFillAssessment</h3>
+                        <a ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" class="btn btn-primary" translate>list.toAssessment</a>
+                        <a href="" ng-click="query.subset='all'" class="btn btn-primary" translate>list.showAllActivities</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+            </div>
+            <div class="col-md-5">
+                </br>
+                <span ng-hide="filteredActivities.length < maxSize">
+                    <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
+                                max-size="maxSize" class="pagination youpers" boundary-links="false" previous-text="<" next-text=">"/>
+                </span>
+                </br></br>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,135 @@
+{
+  "clientmsg": {
+    "success": {
+      "activity": {
+        "save": null
+      },
+      "activityPlan": {
+        "save": null,
+        "join": null,
+        "invite": null,
+        "delete": null,
+        "sampleInvitationSent": null,
+        "eventSaved": null
+      }
+    },
+    "error": {
+      "activity": {
+        "join": null
+      }
+    }
+  },
+  "schedule": {
+    "recommendedBy": null,
+    "executiontype": {
+      "self": null,
+      "group": null
+    },
+    "self": {
+      "location": null,
+      "text": null,
+      "start": null,
+      "end": null,
+      "recurrence": {
+        "day": null,
+        "week": null,
+        "weeklyDay": null
+      },
+      "visibility": null,
+      "joiningUsers": null,
+      "inviteOthers": {
+        "placeholder": null,
+        "submit": null
+      }
+    },
+    "group": {
+      "noPlansToJoin": null,
+      "join": null,
+      "owner": null,
+      "joiningUsers": null,
+      "startingOn": null,
+      "startToEndDate": null,
+      "location": null
+    },
+    "event": {
+      "startToEndDate": null,
+      "rating": null,
+      "done": null,
+      "missed": null,
+      "comment": null
+    },
+    "schedule": null,
+    "save": null,
+    "delete": null
+  },
+  "weekday": {
+    "monday": null,
+    "tuesday": null,
+    "wednesday": null,
+    "thursday": null,
+    "friday": null,
+    "saturday": null,
+    "sunday": null
+  },
+  "activityPlanEditable": {
+    "editable": null,
+    "notEditableJoinedPlan": null,
+    "notEditablePastEvent": null
+  },
+  "activityPlanDeletable": {
+    "deletable": null,
+    "deletableOnlyFutureEvents": null,
+    "notDeletableJoinedUsers": null,
+    "notDeletableJoinedPlans": null,
+    "notDeletableNoFutureEvents": null
+  },
+  "visibility": {
+    "public": null,
+    "campaign": null,
+    "private": null
+  },
+  "source": {
+    "youpers": null,
+    "community": null,
+    "campaign": null
+  },
+  "calendarNotification": {
+    "none": null,
+    "0": null,
+    "300": null,
+    "600": null,
+    "900": null,
+    "1800": null,
+    "3600": null,
+    "7200": null,
+    "86400": null,
+    "172800": null
+  },
+  "activityPlanInvite": {
+    "header": null,
+    "subheader": null,
+    "inviteMessage": null
+  },
+  "activityPlanFrequency": {
+    "once": null,
+    "day": null,
+    "week": null,
+    "month": null,
+    "year": null
+  },
+  "activityField": {
+    "awarenessAbility": null,
+    "timeManagement": null,
+    "workStructuring": null,
+    "physicalActivity": null,
+    "nutrition": null,
+    "leisureActivity": null,
+    "breaks": null,
+    "relaxation": null,
+    "socialInteraction": null
+  },
+  "executiontype": {
+    "self": null,
+    "group": null
+  }
+}

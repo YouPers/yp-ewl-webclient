@@ -2,8 +2,9 @@
 
     'use strict';
 
-    angular.module('yp.dhc').factory('NotificationService', ['Restangular', 'UserService', '$q',
-        function (Restangular, UserService, $q) {
+    angular.module('yp.components.notifications')
+
+        .factory('NotificationService', ['Restangular', 'UserService', '$q', function (Restangular, UserService, $q) {
             var baseUrl = 'notifications';
 
             var service = {
@@ -31,7 +32,7 @@
                     return Restangular.one(baseUrl, notification.id || notification).remove();
                 },
                 deleteNotification: function(notification) {
-                    return Restangular.one(baseUrl, notification.id || notification).remove();
+                    return Restangular.one(baseUrl, notification.id || notification).remove({mode: "administrate"});
                 }
             };
 

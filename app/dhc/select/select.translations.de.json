@@ -1,8 +1,7 @@
 {
-    "select": {
-        "title1": "deine",
-        "title2": "Empfehlungen",
-        "toPlan": "zum Plan"
-    }
-
+  "select": {
+    "title1": "deine",
+    "title2": "Empfehlungen",
+    "toPlan": "zum Plan"
+  }
 }

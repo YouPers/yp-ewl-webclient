@@ -1,17 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dcm.schedule',
-        [
-            'restangular',
-            'ui.router'
-        ])
+    angular.module('yp.dcm')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dcmschedule', {
-                        templateUrl: "layout/dcmdefault.html",
+                        templateUrl: "layout/dcm-default.html",
                         access: accessLevels.all
                     })
                     .state('dcmschedule.content', {
@@ -24,13 +20,15 @@
                             }
                         },
                         resolve: {
-                            offer: ['$stateParams', 'ActivityService', 'CampaignService', 'UserService', '$q',
-                                function ($stateParams, ActivityService, CampaignService, UserService, $q) {
+                            offer: ['$stateParams', 'ActivityService', 'CampaignService', 'UserService', '$q', '$state',
+                                function ($stateParams, ActivityService, CampaignService, UserService, $q, $state) {
                                     if (!$stateParams.id) {
                                         return $q.reject('no offer id passed in URL');
                                     } else if ($stateParams.id === 'NEW') {
                                         if (!$stateParams.activity) {
                                             return $q.reject('activity id is required as param for NEW offer');
+                                        } else if (!CampaignService.currentCampaign) {
+                                            return $q.reject('no current Campaign, cannot schedule without knowing for which campaign');
                                         } else {
                                             return ActivityService.getActivity($stateParams.activity)
                                                 .then(function (activity) {

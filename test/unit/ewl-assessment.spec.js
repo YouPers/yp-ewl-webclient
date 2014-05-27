@@ -4,9 +4,9 @@
 
 describe('ewl-assessment', function () {
     beforeEach(module('pascalprecht.translate'));
-    beforeEach(angular.mock.module('yp.commons'));
-    beforeEach(module('yp.activity'));
-    beforeEach(module('yp.assessment'));
+    beforeEach(angular.mock.module('yp.components'));
+    beforeEach(module('yp.components.activity'));
+    beforeEach(module('yp.components.assessment'));
 
     describe('assessment ', function () {
         it('should be defined', inject(function (AssessmentService) {

@@ -1,47 +1,40 @@
 {
-    "clientmsg": {
-
+  "diary": {
+    "title1": "dein",
+    "title2": "Tagebuch",
+    "noContent": "Du hast noch keine Einträge in deinem Tagebuch</a>",
+    "group": {
+      "today": "Heute",
+      "yesterday": "Gestern",
+      "week": "Diese Woche",
+      "month": "Diesen Monat",
+      "year": "Letzes Jahr",
+      "future": "Zukunft",
+      "0": "Januar",
+      "1": "Februar",
+      "2": "März",
+      "3": "April",
+      "4": "Mai",
+      "5": "Juni",
+      "6": "Juli",
+      "7": "August",
+      "8": "September",
+      "9": "Oktober",
+      "10": "November",
+      "11": "Dezember"
     },
-
-
-    "diary": {
-        "title1": "dein",
-        "title2": "Tagebuch",
-        "noContent": "Du hast noch keine Einträge in deinem Tagebuch</a>",
-        "group": {
-            "today": "Heute",
-            "yesterday": "Gestern",
-            "week": "Diese Woche",
-            "month": "Diesen Monat",
-            "year": "Letzes Jahr",
-            "future": "Zukunft",
-
-            "0": "Januar",
-            "1": "Februar",
-            "2": "März",
-            "3": "April",
-            "4": "Mai",
-            "5": "Juni",
-            "6": "Juli",
-            "7": "August",
-            "8": "September",
-            "9": "Oktober",
-            "10": "November",
-            "11": "Dezember"
-        },
-        "modal": {
-            "question": "Wie geht es dir heute gesundheitlich?",
-            "yourCampaign": "Deine Kampagne",
-            "yourResolution": "Dein Vorsatz",
-            "doNotAskAgainForDiaryEntry": "Nicht mehr fragen",
-            "reason": {
-                "placeholder": "Gib hier deine Begründung ein. (optional)"
-            },
-            "noresolution": "Hier könnte dein persönliches Ziel stehen, setze es im <a href='/#/focus'>Fokus</a>!"
-        }
-
-    },
-    "topic": {
-        "stress": "Stress Management"
+    "modal": {
+      "question": "Wie geht es dir heute gesundheitlich?",
+      "yourCampaign": "Deine Kampagne",
+      "yourResolution": "Dein Vorsatz",
+      "doNotAskAgainForDiaryEntry": "Nicht mehr fragen",
+      "reason": {
+        "placeholder": "Gib hier deine Begründung ein. (optional)"
+      },
+      "noresolution": "Hier könnte dein persönliches Ziel stehen, setze es im <a href='/#/focus'>Fokus</a>!"
     }
+  },
+  "topic": {
+    "stress": "Stress Management"
+  }
 }
