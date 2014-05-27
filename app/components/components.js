@@ -3,20 +3,32 @@
 
     angular.module('yp.components', [
 
+            'pascalprecht.translate',
+
+            'yp.components.util',
+
+            'yp.components.user',
+
             'yp.components.activity',
             'yp.components.assessment',
             'yp.components.organization',
             'yp.components.campaign',
-
             'yp.components.notifications',
+            'yp.components.healthCoach',
+            'yp.components.feedback',
+            'yp.components.i18n',
 
-
-            // components with a distinct namespace, needed to fix dependency issues where one component in 'yp.components'
-            // references another one in the same namespace
-            // TODO: decide if we should all place all components in a distinct namespace
-            'yp.components.campaign-switcher'
-
-
+            // directives
+            'yp.components.activityCard',
+            'yp.components.activityEdit',
+            'yp.components.avatarUpload',
+            'yp.components.campaignSwitcher',
+            'yp.components.datePicker',
+            'yp.components.dateTimePicker',
+            'yp.components.multipleViewCarousel',
+            'yp.components.recommendedBySlider',
+            'yp.components.scheduledDate',
+            'yp.components.ypInput'
         ])
 
 
@@ -37,6 +49,12 @@
                 'sunday'
             ]
         })
+
+
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('components/components');
+        }])
+
     ;
 
 })();

@@ -7,8 +7,9 @@
             'ngSanitize',
             'restangular',
             'ui.router',
+            'vr.directives.slider',
 
-            'yp.user'
+            'yp.components'
         ])
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {

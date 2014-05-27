@@ -2,7 +2,8 @@
 
     'use strict';
 
-    angular.module('yp.components').factory('HealthCoachService', ['Restangular',
+    angular.module('yp.components.healthCoach')
+        .factory('HealthCoachService', ['Restangular',
         function (Restangular) {
             var baseUrl = '/coachmessages';
 

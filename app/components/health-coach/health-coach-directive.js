@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.components')
+    angular.module('yp.components.healthCoach')
         .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state', '$translate','$sce',
             function ($rootScope, HealthCoachService, $window, $timeout, $state, $translate, $sce) {
             return {
@@ -79,9 +79,6 @@
                     };
                 }]
             };
-        }])
-        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('components/health-coach/health-coach');
         }]);
 
 }());

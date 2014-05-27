@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.components')
+    angular.module('yp.components.user')
         .directive('signIn', ['UserService', '$rootScope', '$state', function (UserService, $rootScope, $state) {
             return {
                 restrict: 'E',

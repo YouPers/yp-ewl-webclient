@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('yp.user.signin', [])
+    angular.module('yp.components.user')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {

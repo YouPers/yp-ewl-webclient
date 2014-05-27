@@ -64,9 +64,6 @@
                         }
                     }
                 };
-            }])
-        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('components/notifications/notifications');
-        }]);
+            }]);
 
 }());
