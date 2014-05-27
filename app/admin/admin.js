@@ -4,7 +4,7 @@
 
     angular.module('yp.admin',
         [
-            'yp.user',
+            'yp.components.user',
             'ngSanitize'
         ]);
 

@@ -5,15 +5,13 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl',
         [
-            'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'i18n', 'ngAnimate',
+            'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'ngAnimate',
             'angulartics','angulartics.google.analytics',
+
             'yp.config',
+
             'yp.components',
 
-            'yp.user',
-            'yp.user.signin',
-            'yp.user.signup',
-            'yp.user.invite',
 
             'yp.admin',
             'yp.dhc',
@@ -34,7 +32,7 @@ angular.module('yp-ewl',
             $stateProvider
                 .state('terms', {
                     url: "/terms",
-                    templateUrl: "yp.ewl/terms.html",
+                    templateUrl: "partials/terms.html",
                     access: accessLevels.all,
                     controller: ['$scope','$window', function($scope, $window) {
                         $scope.close = function() {
@@ -69,7 +67,6 @@ angular.module('yp-ewl',
                 fromWti: config.translationSource === 'wti'
             });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl/yp.ewl');
-            $translateWtiPartialLoaderProvider.addPart('yp.commons/yp.commons');
         }])
 
 /**

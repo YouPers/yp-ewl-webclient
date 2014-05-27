@@ -26,21 +26,26 @@ module.exports = function (config) {
             'app/lib/angular-touch/angular-touch.js',
             'app/lib/venturocket-angular-slider/build/angular-slider.js',
 
-            'app/yp.commons/angular-translate-loader-wti-partial.js',
-
-            'app/yp.user/yp.user.js',
-
             'app/components/components.js',
-            'app/components/notifications/notifications-service.js',
+            'app/components/activity/activity.js',
+            'app/components/assessment/assessment.js',
+            'app/components/campaign/campaign.js',
+            'app/components/health-coach/health-coach.js',
+            'app/components/health-coach/health-coach.js',
+            'app/components/notifications/notifications.js',
+            'app/components/organization/organization.js',
+            'app/components/user/user.js',
+            'app/components/payment-code/payment-code.js',
 
             'app/dhc/dhc.js',
             'app/dhc/diary/diary.js',
             'app/dcm/dcm.js',
+            'app/admin/admin.js',
 
-            'app/yp*/*.js',
-            'app/yp*/**/*.js',
+            'app/admin/**/*.js',
             'app/dhc/**/*.js',
             'app/dcm/**/*.js',
+            'app/yp.ewl/*.js',
 
             'app/components/**/*.js',
 

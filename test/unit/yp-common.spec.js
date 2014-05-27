@@ -9,9 +9,9 @@ describe('yp-common: ', function () {
         var $scope = null;
         var ctrl = null;
 
-        beforeEach(module('i18n'));
-        beforeEach(module('yp.activity'));
-        beforeEach(module('yp.assessment'));
+        beforeEach(module('yp.components.i18n'));
+        beforeEach(module('yp.components.activity'));
+        beforeEach(module('yp.components.assessment'));
 
         /* IMPORTANT!
          * this is where we're setting up the $scope and

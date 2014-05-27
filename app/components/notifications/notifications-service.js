@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.components.notifications', [])
+    angular.module('yp.components.notifications')
 
         .factory('NotificationService', ['Restangular', 'UserService', '$q', function (Restangular, UserService, $q) {
             var baseUrl = 'notifications';

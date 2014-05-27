@@ -34,7 +34,6 @@
     <script src="lib/messageformat/locale/fr.js"></script>
     <script src="lib/messageformat/locale/it.js"></script>
     <script src="lib/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
-    <script src="yp.commons/angular-translate-loader-wti-partial.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="lib/venturocket-angular-slider/build/angular-slider.js"></script>
     <script src="lib/angular-file-upload/angular-file-upload.js"></script>
@@ -55,63 +54,67 @@
     <script src="lib/hamsterjs/hamster.js"></script>
     <script src="lib/angular-mousewheel/mousewheel.js"></script>
 
+    <script src="components/i18n/angular-translate-loader-wti-partial.js"></script>
 
-    <!--user-->
-    <script src="yp.user/yp.user.js"></script>
-    <script src="yp.user/yp.user.service.js"></script>
-    <script src="yp.user/yp.user.directive.login.js"></script>
-    <script src="yp.user/yp.user.account.js"></script>
-    <script src="yp.user/yp.user.profile.js"></script>
-    <script src="yp.user/yp.user.directive.js"></script>
-    <script src="yp.user/yp.user.emailverification.js"></script>
-    <script src="yp.user/yp.user.passwordreset.js"></script>
-
-
-    <!--commons-->
-    <script src="yp.commons/base64.js"></script>
-    <script src="yp.commons/angular-translate-loader-wti-partial.js"></script>
 
     <!--components-->
     <script src="components/components.js"></script>
 
-    <script src="components/filters.js"></script>
-    <script src="components/directives.js"></script>
-
     <!--user-->
     <script src="components/user/user.js"></script>
-    <script src="components/user/signin-directive/signin-directive.js"></script>
-    <script src="components/user/signin/signin.js"></script>
-    <script src="components/user/signup-directive/signup-directive.js"></script>
-    <script src="components/user/signup/signup.js"></script>
+    <script src="components/user/user-service.js"></script>
+    <script src="components/user/account/account.js"></script>
+    <script src="components/user/email-verification/email-verification.js"></script>
     <script src="components/user/invite/invite.js"></script>
+    <script src="components/user/password-reset/password-reset.js"></script>
+    <script src="components/user/profile/profile.js"></script>
+    <script src="components/user/signin/signin.js"></script>
+    <script src="components/user/signin-directive/signin-directive.js"></script>
+    <script src="components/user/signup/signup.js"></script>
+    <script src="components/user/signup-directive/signup-directive.js"></script>
+    <script src="components/user/user-directive/user-directive.js"></script>
 
-    <!--services-->
-    <script src="components/activity-service.js"></script>
-    <script src="components/assessment-service.js"></script>
-    <script src="components/organization-service.js"></script>
-    <script src="components/campaign-service.js"></script>
-    <script src="components/payment-code-service.js"></script>
+    <script src="components/i18n/i18n.js"></script>
 
-    <script src="components/error-service.js"></script>
-    <script src="components/client-message-service.js"></script>
-
-
-
-    <script src="components/yp-input-directive/yp-input-directive.js"></script>
-    <script src="components/activity-card-directive/activity-card-directive.js"></script>
-    <script src="components/recommended-by-slider/recommended-by-slider.js"></script>
-    <script src="components/multiple-view-carousel-directive/multiple-view-carousel-directive.js"></script>
-    <script src="components/stop-propagation-directive/stop-propagation-directive.js"></script>
+    <script src="components/activity/activity.js"></script>
+    <script src="components/activity/activity-service.js"></script>
+    <script src="components/assessment/assessment.js"></script>
+    <script src="components/assessment/assessment-service.js"></script>
+    <script src="components/organization/organization.js"></script>
+    <script src="components/organization/organization-service.js"></script>
+    <script src="components/campaign/campaign.js"></script>
+    <script src="components/campaign/campaign-service.js"></script>
+    <script src="components/payment-code/payment-code.js"></script>
+    <script src="components/payment-code/payment-code-service.js"></script>
+    <script src="components/feedback/feedback.js"></script>
+    <script src="components/health-coach/health-coach.js"></script>
     <script src="components/health-coach/health-coach-service.js"></script>
     <script src="components/health-coach/health-coach-directive.js"></script>
+    <script src="components/notifications/notifications.js"></script>
     <script src="components/notifications/notifications-service.js"></script>
     <script src="components/notifications/notifications-directive.js"></script>
-    <script src="components/campaign-switcher-directive/campaign-switcher-directive.js"></script>
-    <script src="components/activity-edit-directive/activity-edit-directive.js"></script>
-    <script src="components/scheduled-date-directive/scheduled-date-directive.js"></script>
-    <script src="components/date-picker-directive/date-picker-directive.js"></script>
-    <script src="components/date-time-picker-directive/date-time-picker-directive.js"></script>
-    <script src="components/avatar-upload-directive/avatar-upload-directive.js"></script>
+
+    <!--util-->
+    <script src="components/util/util.js"></script>
+    <script src="components/util/filters.js"></script>
+    <script src="components/util/directives.js"></script>
+    <script src="components/util/error.js"></script>
+    <script src="components/util/client-message.js"></script>
+    <script src="components/util/base64.js"></script>
+    <script src="components/util/base64.js"></script>
+
+
+    <!--directives-->
+    <script src="components/directives/yp-input-directive/yp-input-directive.js"></script>
+    <script src="components/directives/activity-card-directive/activity-card-directive.js"></script>
+    <script src="components/directives/recommended-by-slider-directive/recommended-by-slider-directive.js"></script>
+    <script src="components/directives/multiple-view-carousel-directive/multiple-view-carousel-directive.js"></script>
+    <script src="components/directives/campaign-switcher-directive/campaign-switcher-directive.js"></script>
+    <script src="components/directives/activity-edit-directive/activity-edit-directive.js"></script>
+    <script src="components/directives/scheduled-date-directive/scheduled-date-directive.js"></script>
+    <script src="components/directives/date-picker-directive/date-picker-directive.js"></script>
+    <script src="components/directives/date-time-picker-directive/date-time-picker-directive.js"></script>
+    <script src="components/directives/avatar-upload-directive/avatar-upload-directive.js"></script>
 
 
 
@@ -166,8 +169,6 @@
 
     <script src="yp.ewl/yp.config.js"></script>
     <script src="yp.ewl/yp.ewl.js"></script>
-<!--i18n-->
-    <script src="yp.commons/i18n.js"></script>
 
 <!-- angular html templates -->
 
@@ -199,7 +200,7 @@
 
 
 
-    <ng-include src="'topmenu.html'"></ng-include>
+    <ng-include src="'partials/topmenu.html'"></ng-include>
 
 
     <div class="yp-clientmsg">
@@ -213,7 +214,7 @@
 
     <div ui-view autoscroll="false"></div>
 
-    <ng-include src="'footer.html'"></ng-include>
+    <ng-include src="'partials/footer.html'"></ng-include>
 
 </body>
 </html>
