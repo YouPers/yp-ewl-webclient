@@ -49,12 +49,12 @@
                 $scope.recWeights = activity.getRecWeightsByQuestionId();
 
                 $scope.onSave = function () {
-                    $scope.$state.go('activitylist', $rootScope.$stateParams);
+                    $scope.$state.go('admin-activity.list', $rootScope.$stateParams);
                     $rootScope.$emit('clientmsg:success', 'activity.save');
                 };
 
                 $scope.onCancel = function () {
-                    $scope.$state.go('activitylist');
+                    $scope.$state.go('admin-activity.list');
                 };
             }]);
 

@@ -35,5 +35,35 @@
     "en": null,
     "fr": null,
     "it": null
-  }
+  },
+    "feedbackForm": {
+        "anonymous": {
+            "label": null
+        },
+        "username": {
+            "label": null
+        },
+        "contactInfo": {
+            "label": null,
+            "placeholder": null,
+            "error": {
+                "email": null
+            }
+        },
+        "feedbackCategory": {
+            "label": null
+        },
+        "description": {
+            "label": null
+        },
+        "close": null,
+        "submit": null
+    },
+    "feedbackCategory": {
+        "bug": null,
+        "improvement": null,
+        "question": null,
+        "support": null,
+        "other": null
+    }
 }
