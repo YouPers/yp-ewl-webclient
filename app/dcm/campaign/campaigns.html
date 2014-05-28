@@ -11,12 +11,11 @@
 
     <div class="row" ng-if="principal.getUser().roles.indexOf('orgadmin') != -1">
         <div class="col-md-12">
-            <div class="main-header">
-                <a ui-sref="campaign.content({})">
-                    <div translate>campaign.link.new</div>
-                    <div class="group-add">+</div>
-                </a>
-            </div>
+
+            <button class="btn btn-primary btn-large pull-right" type="button" ui-sref="campaign.content({})" translate>
+                campaign.link.new
+            </button>
+
         </div>
     </div>
 
@@ -64,7 +63,7 @@
 
 
             <!-- city -->
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span>
                     {{ campaign.city }}
                 </span>

@@ -1,7 +1,7 @@
 @import "../../youpers-variables";
 
 .activity-plan .group a {
-  .title1();
+  .header4();
   text-align: center;
 }
 
@@ -15,8 +15,9 @@
   float: none;
 }
 
-.activity-plan .joining span, .activity-plan .joining .others a {
-  font-size: 12px;
+.activity-plan .joining span,
+.activity-plan .joining .others a {
+  .label2();
 }
 .activity-plan .status i:hover {
   color: @yp-color-green;
@@ -33,11 +34,13 @@
   padding-left: 2em;
 }
 
-.activity-plan .event .status .btn i {
-  font-size: 9px;
-}
-.activity-plan .event .status .btn {
-  padding: 2px 8px;
+
+.activity-plan .event .status {
+  .btn, .btn:hover {
+    padding: 2px 8px;
+    border: none;
+  }
+
 }
 .activity-plan .event .status i {
   font-size: 12px;

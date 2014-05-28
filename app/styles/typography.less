@@ -100,6 +100,7 @@ h4, h4 *,
   color: @yp-color-grey2;
   font-size: 20px;
   font-weight: 300;
+  line-height: 19px;
 }
 
 // h5
@@ -144,10 +145,15 @@ label, .label1 {
   font-weight: 300;
 }
 
-.placeholder {
-  color: @yp-color-grey3;
-  font-size: 14px;
-  font-weight: 300;
+::-webkit-input-placeholder {
+  color: @yp-color-grey3 !important;
+}
+:-ms-input-placeholder  {
+  color: @yp-color-grey3 !important;
+}
+
+::-moz-placeholder {
+  color: @yp-color-grey3 !important;
 }
 
 // titles
@@ -194,3 +200,4 @@ p, .p1 {
 
 // primary: forward / submit
 // default: back buttons
+// warning: just the border color: @yp-color-saffron
