@@ -14,16 +14,19 @@
 
 
         <!-- toggle-value="termsAccepted" is used again in the <a> to revert the checkbox change when clicking on the link-->
-        <label toggle-value="termsAccepted">
-            <input name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
+        <label class="p2" toggle-value="termsAccepted">
+            <input class="pull-left" name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
 
-            <translate>registerForm.termsAccepted.label1</translate>
-            <a href="#/terms" target="_blank" toggle-value="termsAccepted" translate>registerForm.termsAccepted.label2</a>
-            <translate>registerForm.termsAccepted.label3</translate>
+            <div class="pull-left">
+                <span translate>registerForm.termsAccepted.label1</span>
+                <a href="#/terms" target="_blank" toggle-value="termsAccepted" translate>registerForm.termsAccepted.label2</a>
+                <span translate>registerForm.termsAccepted.label3</span>
+            </div>
         </label>
+        <br/>
         <span ng-show="registerForm.termsAccepted.$error.required" class="help-inline" translate>registerForm.termsAccepted.$error.required</span>
     </div>
 
-    <button type="submit" class="btn btn-success btn-sm" ng-disabled="registerForm.$invalid" translate>registerForm.register</button>
+    <button type="submit" class="btn btn-primary" ng-disabled="registerForm.$invalid" translate>registerForm.register</button>
 
 </form>

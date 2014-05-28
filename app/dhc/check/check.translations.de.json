@@ -1,7 +1,7 @@
 {
   "check": {
-    "title1": "deine",
-    "title2": "Selbstbeurteilung",
+    "stateHeader1": "deine",
+    "stateHeader2": "Selbstbeurteilung",
     "impactQuestion": {
       "question": "Stresst dich das?",
       "leftCaption": "kaum",

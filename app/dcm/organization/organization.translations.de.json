@@ -12,8 +12,8 @@
     }
   },
   "organization": {
-    "title1": "deine",
-    "title2": "organisation"
+    "stateHeader1": "deine",
+    "stateHeader2": "organisation"
   },
   "organizationForm": {
     "header": "Neue Organisation",

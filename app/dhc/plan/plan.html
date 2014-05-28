@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="state-title-1" translate>plan.title1</div>
-        <div class="state-title-2" translate>plan.title2</div>
+        <div class="state-header-1" translate>plan.stateHeader1</div>
+        <div class="state-header-2" translate>plan.stateHeader2</div>
     </div>
 </div>
 <div class="activity-plan">
@@ -15,10 +15,10 @@
 
     <div class="group" ng-repeat="group in groups">
 
-        <div class="group-header">
+        <h2>
             <span translate>{{ 'plan.group.' + group.name }}</span>
             <span ng-show="group.name == 'open'">({{ openEvents }})</span>
-        </div>
+        </h2>
 
 
 
@@ -70,10 +70,10 @@
 
             <div class="col-md-1 status" ng-if="group.name == 'open'">
                 <button class="done btn btn-xs btn-default" ng-click="updateEvent(event, 'done')">
-                    <span class="glyphicon glyphicon-ok"></span>
+                    <i class="glyphicon glyphicon-ok"></i>
                 </button>
                 <button class="missed btn btn-xs btn-default" ng-click="updateEvent(event, 'missed')">
-                    <span class="glyphicon glyphicon-remove"></span>
+                    <i class="glyphicon glyphicon-remove"></i>
                 </button>
             </div>
             <div class="col-md-1 status" ng-if="group.name != 'open'" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })"

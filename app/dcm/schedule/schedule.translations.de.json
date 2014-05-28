@@ -1,7 +1,7 @@
 {
   "dcmschedule": {
-    "title1": "Kampagnen-Aktivitäten",
-    "title2": "Einplanen und Empfehlen",
+    "stateHeader1": "Kampagnen-Aktivitäten",
+    "stateHeader2": "Einplanen und Empfehlen",
     "scheduletype": {
       "recommend": "Empfehlen",
       "plan": "Einplanen"

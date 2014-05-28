@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="state-title-1" translate>check.title1</div>
-        <div class="state-title-2" translate>check.title2</div>
+        <div class="state-header-1" translate>check.stateHeader1</div>
+        <div class="state-header-2" translate>check.stateHeader2</div>
     </div>
 </div>
 <accordion class="check" close-others="true">
@@ -14,7 +14,7 @@
                 <span>{{ 'questionCategory.' + name | translate }}</span>
                 <i class="pull-right glyphicon"
                    ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
-                <span class="pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} {{'check.questionsAnswered' | translate}}</span>
+                <span class="label3 pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} {{'check.questionsAnswered' | translate}}</span>
             </div>
         </accordion-heading>
 
@@ -23,10 +23,10 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <h1>
+                    <div class="question">
                         <span>{{ question.title }}</span>
                         <i ng-mouseover="displayInfo(question)" class="glyphicon glyphicon-info-sign"></i>
-                    </h1>
+                    </div>
 
                 </div>
             </div>

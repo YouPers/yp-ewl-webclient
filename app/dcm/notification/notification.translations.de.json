@@ -1,7 +1,7 @@
 {
   "notifications": {
-    "title1": "deine",
-    "title2": "mitteilungen",
+    "stateHeader1": "deine",
+    "stateHeader2": "mitteilungen",
     "link": {
       "new": "Neue Mitteilung"
     },

@@ -3,16 +3,16 @@
 
 
 table.focus th.left {
-  font-weight: 400;
+  .header6();
   text-align: left;
-  font-size: 16px;
 }
 table.focus th {
-  font-weight: 300;
+  .header6();
   text-align: center;
 }
 table.focus td.left {
   width: 32%;
+  .header4();
 }
 
 table.focus td {
@@ -35,4 +35,20 @@ table.focus .bar.medium {
 }
 table.focus .bar.high {
   background: linear-gradient(to right, white 0%, @yp-focus-color-high-gradient 50%, @yp-focus-color-high 100%); /* W3C */
+}
+
+.focus-title {
+  .p2();
+  div {
+    padding: 1em 0;
+  }
+}
+
+.stressor {
+  .index, .title {
+    .header4();
+  }
+  .category {
+    .p3();
+  }
 }

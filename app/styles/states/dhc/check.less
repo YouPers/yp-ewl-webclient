@@ -7,6 +7,9 @@ accordion.check .panel-title > a {
   padding: 10px 15px;
   display: block;
 }
+accordion.check .panel-title i {
+  color: @yp-color-grey3;
+}
 accordion.check .panel-heading {
   padding: 0;
 }
@@ -15,15 +18,25 @@ accordion.check .panel-heading a {
   cursor: pointer;
 }
 
-.check h1:hover {
+.check .question:hover {
   color: @yp-color-green-hover;
   text-decoration: none;
 }
-.check h1 {
+.check .question {
+
   display: inline-block;
-  font-size: 1.4em;
-  font-weight: 200;
   cursor: pointer;
+
+  span {
+    .header3();
+  }
+  i {
+    margin: 3px 0 0 6px;
+  }
+  i:before {
+    font-size: 18px;
+    color: @yp-color-green-hover;
+  }
 }
 .check .btn {
   border: 1px solid rgba(1,1,1,0.08) !important;
@@ -41,17 +54,26 @@ accordion.check .glyphicon-info-sign {
 }
 
 .impact-question {
+  .p2();
+
+
   text-align: center;
   padding-top: 10px;
-  font-weight: 400;
+
 }
 
 .slider-caption-left {
+
+  .label1();
+
   float: left;
   padding-top: 30px;
 }
 
 .slider-caption-right {
+
+  .label1();
+
   padding-left: 0;
   float: right;
 }

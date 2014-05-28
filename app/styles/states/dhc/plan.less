@@ -1,10 +1,7 @@
 @import "../../youpers-variables";
 
 .activity-plan .group a {
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-  color: #473F45;
+  .header4();
   text-align: center;
 }
 
@@ -18,12 +15,9 @@
   float: none;
 }
 
-.activity-plan .status i {
-  font-size: 22px;
-}
-
-.activity-plan .joining span, .activity-plan .joining .others a {
-  font-size: 12px;
+.activity-plan .joining span,
+.activity-plan .joining .others a {
+  .label2();
 }
 .activity-plan .status i:hover {
   color: @yp-color-green;
@@ -40,8 +34,13 @@
   padding-left: 2em;
 }
 
-.activity-plan .event .status .btn {
-  font-size: 9px;
+
+.activity-plan .event .status {
+  .btn, .btn:hover {
+    padding: 2px 8px;
+    border: none;
+  }
+
 }
 .activity-plan .event .status i {
   font-size: 12px;
@@ -75,7 +74,6 @@
 
 .activity-plan form[name='inviteEmailForm'] {
   transition: 0.5s ease all;
-
   opacity: 0;
 }
 

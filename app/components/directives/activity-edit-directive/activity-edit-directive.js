@@ -79,7 +79,7 @@
                         $scope.selectActivityImage = function selectActivityImage() {
 
                             var modalInstance = $modal.open({
-                                templateUrl: 'components/activity-edit-directive/activity-image-modal.html',
+                                templateUrl: 'components/directives/activity-edit-directive/activity-image-modal.html',
                                 controller: 'ActivityImageModalController',
                                 resolve: {
 

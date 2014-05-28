@@ -1,7 +1,7 @@
 {
   "focus": {
-    "title1": null,
-    "title2": null,
+    "stateHeader1": null,
+    "stateHeader2": null,
     "assessmentNotCompleted": null,
     "assessmentNoStressors": null,
     "header": null,

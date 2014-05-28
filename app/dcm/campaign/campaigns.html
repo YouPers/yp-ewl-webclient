@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="state-title-1" translate>campaigns.title1</div>
-        <div class="state-title-2" translate>campaigns.title2</div>
+        <div class="state-header-1" translate>campaigns.stateHeader1</div>
+        <div class="state-header-2" translate>campaigns.stateHeader2</div>
     </div>
 </div>
 <div class="campaign-list">
@@ -11,12 +11,11 @@
 
     <div class="row" ng-if="principal.getUser().roles.indexOf('orgadmin') != -1">
         <div class="col-md-12">
-            <div class="group-header">
-                <a ui-sref="campaign.content({})">
-                    <div translate>campaign.link.new</div>
-                    <div class="group-add">+</div>
-                </a>
-            </div>
+
+            <button class="btn btn-primary btn-large pull-right" type="button" ui-sref="campaign.content({})" translate>
+                campaign.link.new
+            </button>
+
         </div>
     </div>
 
@@ -24,7 +23,7 @@
 
     <div class="group" ng-repeat="group in groups">
 
-        <div class="group-header">
+        <div class="main-header">
             <div translate>{{ 'campaigns.group.' + group.name }}</div>
         </div>
 
@@ -32,7 +31,7 @@
 
         <!-- campaigns -->
 
-        <div class="row campaign list-item" ng-repeat="campaign in group.campaigns" ui-sref="campaign.content({ id: campaign.id})">
+        <div class="row campaign list-item link" ng-repeat="campaign in group.campaigns" ui-sref="campaign.content({ id: campaign.id})">
 
             <!-- image -->
             <div class="col-md-2 image">
@@ -64,7 +63,7 @@
 
 
             <!-- city -->
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <span>
                     {{ campaign.city }}
                 </span>

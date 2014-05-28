@@ -1,7 +1,7 @@
 {
   "diary": {
-    "title1": "dein",
-    "title2": "Tagebuch",
+    "stateHeader1": "dein",
+    "stateHeader2": "Tagebuch",
     "noContent": "Du hast noch keine Einträge in deinem Tagebuch</a>",
     "group": {
       "today": "Heute",

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-8">
-        <div class="state-title-1" translate>campaignoffers.title1</div>
-        <div class="state-title-2" translate>campaignoffers.title2</div>
+        <div class="state-header-1" translate>campaignoffers.stateHeader1</div>
+        <div class="state-header-2" translate>campaignoffers.stateHeader2</div>
     </div>
     <div class="col-sm-4">
         <campaign-switcher mode="campaignlead"></campaign-switcher>
@@ -31,12 +31,12 @@
     <!-- groups -->
 
     <div class="offer row" ng-repeat="offer in offers">
-        <div class="col-xs-2 image">
+        <div class="col-xs-1 image">
             <img ng-src="{{'/assets/actpics/' + offer.activity.number + '.jpg' }}">
         </div>
-        <div class="col-xs-2 title">
-            <span ng-bind-html="offer.activity.title"></span>
-            {{offer.activityPlan[0].location}}
+        <div class="col-xs-3 title">
+            <div ng-bind-html="offer.activity.title"></div>
+            <span>{{offer.activityPlan[0].location}}</span>
         </div>
 
         <div class="col-xs-3 date">

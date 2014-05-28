@@ -1,7 +1,7 @@
 {
   "focus": {
-    "title1": "dein",
-    "title2": "fokus",
+    "stateHeader1": "dein",
+    "stateHeader2": "fokus",
     "assessmentNotCompleted": "Sobald du deine <a href='/#/check'>Selbstbeurteilung</a>  vollständig ausgefüllt hast, zeigen wir dir hier eine Auswertung deiner Stresssituation mit Problembereichen, aufgrund derer du deinen persönlichen Fokus setzen kannst.",
     "assessmentNoStressors": "Gratulation - Deine <a href='/#/check'>Selbstbeurteilung</a> hat keinen akuten Handlungsbedarf ergeben!",
     "header": "Handlungsbedarf",
