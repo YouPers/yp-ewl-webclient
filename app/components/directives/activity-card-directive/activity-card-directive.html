@@ -36,7 +36,7 @@
                  </div>
                 <div class="linkright">
                     <button class="schedule-link btn btn-primary" ng-click="schedule({activity: rec.activity})" stop-propagation>
-                        <span>Einplanen</span>
+                        Einplanen
                     </button>
                 </div>
 
@@ -48,10 +48,10 @@
              analytics-on="click" analytics-event="ActivityCardFlip" analytics-category="InPageNavigation" analytics-label="Activity Card Flipped">
 
             <div class="content">
-                <h3 ng-bind-html="rec.activity.title">
-                </h3>
+                <div class="title" ng-bind-html="rec.activity.title">
+                </div>
 
-                <p ng-bind-html="getRenderedText(rec.activity.text)">
+                <p class="text" ng-bind-html="getRenderedText(rec.activity.text)">
                 </p>
             </div>
 

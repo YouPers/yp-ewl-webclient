@@ -11,10 +11,11 @@ body, p, span {
   font-size: 14px;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, span, .form-control  {
+body, h1, h2, h3, h4, h5, h6, p, .form-control  {
   font-family: @youpers-brand-font-family;
   font-weight: 400;
   font-style: normal;
+  color: @yp-color-grey2;
 }
 
 // hover styles
@@ -52,7 +53,9 @@ a:hover, .link:hover * {
 
 // h1
 // welcome header, used in campaign welcome screen, diary modal
-h1, .welcome-header, .header1 {
+h1, h1 *,
+.welcome-header, .welcome-header *,
+.header1, .header1 * {
   color: @yp-color-grey2;
   font-size: 48px;
   font-weight: 200;
@@ -62,7 +65,7 @@ h1, .welcome-header, .header1 {
 h1 b, h1 strong,
 .header1 b, .header1 strong,
 .welcome-header b, .welcome-header strong {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 // h2
@@ -84,14 +87,16 @@ h2, h2 * ,
 }
 
 // h3
-h3, .header3 {
+h3, h3 *,
+.header3, .header3 * {
   color: @yp-color-grey2;
   font-size: 20px;
   font-weight: 400;
 }
 
 // h4
-h4, .header4 {
+h4, h4 *,
+.header4, .header4 *, {
   color: @yp-color-grey2;
   font-size: 20px;
   font-weight: 300;
@@ -105,14 +110,32 @@ h5, .header5 {
   text-transform: uppercase;
 }
 
+// h6
+h6, .header6 {
+  color: @yp-color-grey2;
+  font-size: 14px;
+  font-weight: 300;
+}
+
 
 // form components
 // -------------------------
 
-label, .label {
+label, .label1 {
   color: @yp-color-grey2;
   font-size: 13px;
   font-weight: 300;
+}
+
+.label2 {
+  color: @yp-color-grey2;
+  font-size: 12px;
+  font-weight: 400;
+}
+.label3 {
+  color: @yp-color-grey3;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .form-control, input, textarea {
@@ -121,6 +144,11 @@ label, .label {
   font-weight: 300;
 }
 
+.placeholder {
+  color: @yp-color-grey3;
+  font-size: 14px;
+  font-weight: 300;
+}
 
 // titles
 // -------------------------
@@ -128,7 +156,7 @@ label, .label {
 .title1 {
   color: @yp-color-grey2;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .title2 {
@@ -141,3 +169,28 @@ label, .label {
   font-size: 14px;
   font-weight: 300;
 }
+.title4 {
+  color: @yp-color-grey2;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 25px;
+}
+
+// paragraphs
+
+p, .p1 {
+  // baseline
+}
+.p2 {
+  font-weight: 300;
+}
+.p3 {
+  color: @yp-color-grey3;
+  font-weight: 300;
+}
+
+
+// buttons
+
+// primary: forward / submit
+// default: back buttons
