@@ -108,7 +108,11 @@
                 var _getConflictsDebounced = _.debounce(function(plan) {
                     ActivityService.getSchedulingConflicts($scope.plan).then(function(conflicts) {
                         if (conflicts.length > 0) {
-                            $rootScope.$emit('healthCoach:displayMessage', "Du hast zu diesem Zeitpunkt bereits die Aktivität: '"+ conflicts[0].conflictingEvent.title + "' geplant.<p>Willst du wirklich noch etwas gleichzeitig planen?");
+                            $rootScope.$emit('healthCoach:displayMessage',
+                                "hcmsg.schedulingConflict",
+                                {beginDate: moment(conflicts[0].conflictingEvent.begin).format("dd DD.MM.YYYY HH:mm"),
+                                endDate: moment(conflicts[0].conflictingEvent.end).format("HH:mm"),
+                                title: conflicts[0].conflictingEvent.title});
                         }
                     });
                 }, 1000);
