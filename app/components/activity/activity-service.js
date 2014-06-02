@@ -163,7 +163,9 @@
                     inviteEmailToJoinPlan: function (email, plan) {
                         return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
                     },
-
+                    getSchedulingConflicts: function (plan) {
+                        return Restangular.all('activityplans/conflicts').post(plan);
+                    },
                     getDefaultPlan: function (activity, campaignId) {
 
 

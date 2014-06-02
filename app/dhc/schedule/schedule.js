@@ -105,24 +105,21 @@
                     return _.pluck(plan.joiningUsers.slice(1), 'fullname').join('<br/>');
                 };
 
-                // calendar & recurrence
+                var _getConflictsDebounced = _.debounce(function(plan) {
+                    ActivityService.getSchedulingConflicts($scope.plan).then(function(conflicts) {
+                        if (conflicts.length > 0) {
+                            $rootScope.$emit('healthCoach:displayMessage', "Du hast zu diesem Zeitpunkt bereits die Aktivität: '"+ conflicts[0].conflictingEvent.title + "' geplant.<p>Willst du wirklich noch etwas gleichzeitig planen?");
+                        }
+                    });
+                }, 1000);
 
-
-                // weekplanning using dayselector
-                $scope.availableDays = [
-                    {label: 'weekday.monday', value: "1"},
-                    {label: 'weekday.tuesday', value: "2"},
-                    {label: 'weekday.wednesday', value: "3"},
-                    {label: 'weekday.thursday', value: "4"},
-                    {label: 'weekday.friday', value: "5"},
-                    {label: 'weekday.saturday', value: "6"},
-                    {label: 'weekday.sunday', value: "0"}
-                ];
+                $scope.$watch('plan.mainEvent',_getConflictsDebounced, true);
 
                 $scope.isFutureEvent = function(event) {
                     return moment().diff(event.begin) < 0;
                 };
 
+                // setup the automatic saving of Feedback
                 _.forEach($scope.plan.events, function(event, index) {
                     var updateEvent = function updateEvent(newEvent, oldEvent) {
                         if(newEvent && !_.isEqual(newEvent, oldEvent) && !$scope.isFutureEvent(newEvent)) {
