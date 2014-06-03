@@ -54,19 +54,19 @@
 
 
         <div class="btn-group form-group execution-type">
-            <button type="button" class="btn btn-default plan" ng-model="offer.type[0]"
+            <button type="button" class="btn btn-default plan" ng-model="offer.offerType[0]"
                     btn-radio="'campaignActivityPlan'" ng-disabled="offer.activity.defaultexecutiontype=='self'"
                     translate>
                 dcmschedule.scheduletype.plan
             </button>
-            <button type="button" class="btn btn-default recommend" ng-model="offer.type[0]"
+            <button type="button" class="btn btn-default recommend" ng-model="offer.offerType[0]"
                     btn-radio="'campaignActivity'" translate>
                 dcmschedule.scheduletype.recommend
             </button>
         </div>
 
         <!-- self -->
-        <div ng-if="offer.type[0] === 'campaignActivityPlan'">
+        <div ng-if="offer.offerType[0] === 'campaignActivityPlan'">
 
             <fieldset ng-disabled="schedule.isScheduled && (schedule.isJoinedPlan || !schedule.isEditable)">
 
@@ -151,7 +151,7 @@
 
         <!-- campaignActivity without Plan -->
 
-        <div ng-if="offer.type[0] === 'campaignActivity'">
+        <div ng-if="offer.offerType[0] === 'campaignActivity'">
 
             <div class="no-plans">
                 <p translate>dcmschedule.recommend.helptext</p>
@@ -196,11 +196,11 @@
         </div>
         <div class="save-link form-group" tooltip-placement="left"
              tooltip="{{ (offer.isScheduled && !offer.isEditable) ? ('activityPlanEditable.' + plan.editStatus | translate) : ''  }}">
-            <button ng-show="!offer.id && (offer.type[0] == 'campaignActivityPlan')"
+            <button ng-show="!offer.id && (offer.offerType[0] == 'campaignActivityPlan')"
                     ng-disabled="scheduleForm.$invalid" type="submit" class="btn btn-primary pull-right" translate>
                 dcmschedule.scheduletype.plan
             </button>
-            <button ng-show="!offer.id && (offer.type[0] == 'campaignActivity')"
+            <button ng-show="!offer.id && (offer.offerType[0] == 'campaignActivity')"
                      type="submit" class="btn btn-primary pull-right" translate>
                 dcmschedule.scheduletype.recommend
             </button>

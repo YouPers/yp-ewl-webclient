@@ -40,7 +40,7 @@
                                                         targetQueue: campaign.id,
                                                         campaign: campaign,
                                                         recommendedBy: [UserService.principal.getUser()],
-                                                        type: [ ($stateParams.offerType || (activity.defaultexecutiontype === 'group' ?
+                                                        offerType: [ ($stateParams.offerType || (activity.defaultexecutiontype === 'group' ?
                                                             'campaignActivityPlan' : 'campaignActivity'))],
                                                         sourceType: 'campaign',
                                                         validFrom: new Date(moment().startOf('day')),
@@ -65,10 +65,10 @@
 
                 $scope.offer = offer;
 
-                offer.isScheduled = offer.type[0] === 'campaignActivityPlan' && offer.activityPlan[0].id;
-                offer.isDeletable = (offer.type[0] === 'campaignActivity') ||
+                offer.isScheduled = offer.offerType[0] === 'campaignActivityPlan' && offer.activityPlan[0].id;
+                offer.isDeletable = (offer.offerType[0] === 'campaignActivity') ||
                     (offer.isScheduled && offer.activityPlan[0].deleteStatus.indexOf('deletable') === 0);
-                offer.isEditable =  (offer.type[0] === 'campaignActivity') ||
+                offer.isEditable =  (offer.offerType[0] === 'campaignActivity') ||
                     (offer.activityPlan[0].editStatus === 'editable');
                 offer.isJoinedPlan = offer.activityPlan && offer.activityPlan[0] && offer.activityPlan[0].joiningUsers &&  offer.activityPlan[0].joiningUsers.length > 0;
 

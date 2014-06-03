@@ -116,14 +116,14 @@
                             }
                         }
 
-                        if (offer.type[0] === 'campaignActivityPlan') {
+                        if (offer.offerType[0] === 'campaignActivityPlan') {
                             // an event is being scheduled or edited, so we first save the plan
                             return this.savePlan(plan)
                                 .then(function (savedPlan) {
                                     offer.activityPlan = [savedPlan];
                                     return _saveActivityOffer(offer);
                                 });
-                        } else if (offer.type[0] === 'campaignActivity') {
+                        } else if (offer.offerType[0] === 'campaignActivity') {
                             // no event, so just save the offer.
                             offer.activityPlan = [];
                             return _saveActivityOffer(offer);
