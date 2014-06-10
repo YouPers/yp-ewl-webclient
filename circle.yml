@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 0.10.28
+    version: v0.10.28
 deployment:
   uat:
     branch: uat
