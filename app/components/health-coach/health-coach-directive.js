@@ -36,11 +36,33 @@
                     });
 
 
-                    $rootScope.$on('healthCoach:displayMessage', function (even, message) {
+                    scope.isTranslatable = function() {
+                        return (scope.coachMessages &&
+                            scope.coachMessages.length >0 &&
+                            scope.coachMessages[0].lastIndexOf('hcmsg.') === 0);
+                    };
+
+                    scope.getFormattedMessage = function(message) {
+                        if (scope.coachMessages && scope.coachMessages.length >0) {
+                            var myMsg = scope.coachMessages[0];
+                            if (myMsg.lastIndexOf('hcmsg.') === 0) {
+                                // this is a translatable ressource key
+                                return $sce.trustAsHtml('key' + myMsg);
+                            } else {
+                                return $sce.trustAsHtml(marked(myMsg));
+                            }
+                        } else {
+                            return "";
+                        }
+                    };
+
+
+                    $rootScope.$on('healthCoach:displayMessage', function (event, message, interpolateParams) {
                         if (!scope.coachMessages) {
                             scope.coachMessages = [];
                         }
                         scope.coachMessages.unshift(message);
+                        scope.interpolateParams = interpolateParams;
                         scope.updateStyle();
                     });
 
@@ -56,28 +78,7 @@
                         });
                     });
 
-                },
-                controller: ['$scope','$sce', function($scope, $sce) {
-                    $scope.isTranslatable = function() {
-                        return ($scope.coachMessages &&
-                            $scope.coachMessages.length >0 &&
-                            $scope.coachMessages[0].lastIndexOf('hcmsg.') === 0);
-                    };
-
-                    $scope.getFormattedMessage = function(message) {
-                        if ($scope.coachMessages && $scope.coachMessages.length >0) {
-                            var myMsg = $scope.coachMessages[0];
-                            if (myMsg.lastIndexOf('hcmsg.') === 0) {
-                                // this is a translatable ressource key
-                                return $sce.trustAsHtml('key' + myMsg);
-                            } else {
-                                return $sce.trustAsHtml(marked(myMsg));
-                            }
-                        } else {
-                            return "";
-                        }
-                    };
-                }]
+                }
             };
         }]);
 
