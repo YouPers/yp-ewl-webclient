@@ -33,11 +33,18 @@
           }
       },
       "zipCode": {
-        "label": "PLZ / Ort",
-        "placeholder": "PLZ"
+        "label": "PLZ",
+        "placeholder": "PLZ",
+          "error": {
+              "required": "Bitte eine gültige Postleitzahl eingeben"
+          }
       },
       "city": {
-        "placeholder": "Ort"
+        "label": "Ort",
+        "placeholder": "Ort",
+          "error": {
+              "required": "Bitte einen gültigen Org eingeben"
+          }
       }
     },
     "legalForm": {
@@ -57,23 +64,39 @@
     "contact": {
       "header": "Kontakt",
       "firstname": {
-        "label": "Name",
-        "placeholder": "Vorname"
+        "label": "Vorname",
+        "placeholder": "Vorname",
+          "error": {
+              "required": "Bitte einen gültigen Vornamen eingeben"
+          }
       },
       "lastname": {
-        "placeholder": "Nachname"
+        "label": "Nachname",
+        "placeholder": "Nachname",
+          "error": {
+              "required": "Bitte einen gültigen Nachnamen eingeben"
+          }
       },
       "position": {
         "label": "Funktion",
-        "placeholder": "Funktion / Organisationseinheit"
+        "placeholder": "Funktion / Organisationseinheit",
+          "error": {
+              "required": "Bitte eine gültige Funktion eingeben"
+          }
       },
       "email": {
         "label": "Email",
-        "placeholder": "Email Adresse"
+        "placeholder": "Email Adresse",
+          "error": {
+              "required": "Bitte eine gültige Email-Adresse eingeben"
+          }
       },
       "phone": {
         "label": "Telefon",
-        "placeholder": "Telefonnummer"
+        "placeholder": "Telefonnummer",
+          "error": {
+              "required": "Bitte eine gültige Telefonnummer eingeben"
+          }
       }
     },
     "save": "speichern",

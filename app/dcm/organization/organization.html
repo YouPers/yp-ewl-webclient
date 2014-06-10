@@ -21,11 +21,8 @@
                 <yp-input name="name" required></yp-input>
                 <yp-input name="address.street" required></yp-input>
 
-                <div class="form-group">
-                    <label translate>organizationForm.address.zipCode.label</label>
-                    <input name="address.zipCode" type="text" placeholder="{{ 'organizationForm.address.zipCode.placeholder' | translate }}" class="form-control" ng-model="organization.address.zipCode" ng-class="{'has-error': organizationForm.address.zipCode.$dirty && organizationForm.address.zipCode.$invalid}"  required>
-                    <input name="address.city" type="text" placeholder="{{ 'organizationForm.address.city.placeholder' | translate }}" class="form-control" ng-model="organization.address.city" label="false" ng-class="{'has-error': organizationForm.address.city.$dirty && organizationForm.address.city.$invalid}" style=""  required>
-                </div>
+                <yp-input name="address.zipCode" required></yp-input>
+                <yp-input name="address.city" required></yp-input>
 
                 <yp-input name="legalForm"  required></yp-input>
                 <yp-input name="sector"  required></yp-input>
@@ -34,11 +31,8 @@
                     <span translate>organizationForm.contact.header</span>
                 </div>
 
-                <div class="form-group">
-                    <label translate>organizationForm.contact.firstname.label</label>
-                    <input required name="contact.firstname" type="text" placeholder="{{ 'organizationForm.contact.firstname.placeholder' | translate }}" class="form-control" ng-model="organization.contact.firstname" ng-class="{'has-error': organizationForm.contact.firstname.$dirty && organizationForm.contact.firstname.$invalid}">
-                    <input required name="contact.lastname" type="text" placeholder="{{ 'organizationForm.contact.lastname.placeholder' | translate }}" class="form-control" ng-model="organization.contact.lastname" label="false" ng-class="{'has-error': organizationForm.contact.lastname.$dirty && organizationForm.contact.lastname.$invalid}" style="">
-                </div>
+                <yp-input name="contact.firstname" required></yp-input>
+                <yp-input name="contact.lastname" required></yp-input>
 
                 <yp-input required name="contact.position"></yp-input>
                 <yp-input required name="contact.email"></yp-input>

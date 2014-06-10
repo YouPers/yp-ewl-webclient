@@ -4,6 +4,6 @@
            class="form-control" >
 
     <div class="validation">
-        <div ng-repeat="(key, error) in errors" ng-show="{{ypFormName}}.{{ypInputName}}.$dirty && error" class="help-inline">{{ypFormName + '.' + ypInputName + '.error.' + key | translate}}</div>
+        <div ng-repeat="(key, error) in errors" ng-show="{{ypFormName}}['{{ypInputName}}'].$dirty && error" class="help-inline">{{ypFormName + '.' + ypInputName + '.error.' + key | translate}}</div>
     </div>
 </div>

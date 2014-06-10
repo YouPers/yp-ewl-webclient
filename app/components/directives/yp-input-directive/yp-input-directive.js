@@ -2,21 +2,21 @@
     'use strict';
 
     angular.module('yp.components.ypInput', [])
-
-        // IE10 fix for yp-input placeholder
-        .config(['$provide', function($provide) {
-            $provide.decorator('$sniffer', ['$delegate', function($sniffer) {
-                var msie = parseInt((/msie (\d+)/.exec(angular.lowercase(navigator.userAgent)) || [])[1], 10);
-                var _hasEvent = $sniffer.hasEvent;
-                $sniffer.hasEvent = function(event) {
-                    if (event === 'input' && msie === 10) {
-                        return false;
-                    }
-                    _hasEvent.call(this, event);
-                };
-                return $sniffer;
-            }]);
-        }])
+//
+//        // IE10 fix for yp-input placeholder
+//        .config(['$provide', function($provide) {
+//            $provide.decorator('$sniffer', ['$delegate', function($sniffer) {
+//                var msie = parseInt((/msie (\d+)/.exec(angular.lowercase(navigator.userAgent)) || [])[1], 10);
+//                var _hasEvent = $sniffer.hasEvent;
+//                $sniffer.hasEvent = function(event) {
+//                    if (event === 'input' && msie === 10) {
+//                        return false;
+//                    }
+//                    _hasEvent.call(this, event);
+//                };
+//                return $sniffer;
+//            }]);
+//        }])
 
         .directive('ypInput', ['$compile', '$filter', function ($compile, $filter) {
             return {
@@ -71,7 +71,7 @@
                         input.attr($attrs.$attr[key], $attrs[key] ? $attrs[key] : true);
                     });
 
-                    $scope.$watch($scope.ypFormName + '.' + name, function(input) {
+                    $scope.$watch($scope.ypFormName + "['" + name + "']", function(input) {
                         if(input) {
                             $scope.errors = input.$error;
                         }
