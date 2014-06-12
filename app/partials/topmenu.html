@@ -40,7 +40,7 @@
                                 <div class="glyphicon glyphicon-pencil"></div>
                             </a>
                         </li>
-                        <li><a ui-sref="moreinfo.content" target="_blank">Mehr Erfahren</a></li>
+                        <li><a ui-sref="moreinfo.content" target="_blank" translate>topmenu.moreinfo</a></li>
                         <li class="dropdown" ng-show="principal.isAuthenticated()">
                             <a class="dropdown-toggle user-nav-link" data-toggle="dropdown">{{
                                 principal.getUser().fullname }}
@@ -60,8 +60,6 @@
                         <li ng-show="!principal.isAuthenticated()">
                             <a ui-sref="signup.content" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signup</a>
                         </li>
-
-
                         <li class="dropdown" ng-controller="i18nCtrl">
                             <a class="dropdown-toggle" data-toggle="dropdown">{{currentLocale}}
                                 <b class="caret"></b></a>
