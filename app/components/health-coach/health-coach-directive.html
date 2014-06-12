@@ -4,6 +4,10 @@
 
 >
     <div ng-if="coachMessages.length > 0">
+        <div class="pull-right dismiss" ng-click="dismiss()" ng-if="!preview">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+
         <div class="avatar">
             <img ng-src="/assets/img/healthcoach.png">
         </div>

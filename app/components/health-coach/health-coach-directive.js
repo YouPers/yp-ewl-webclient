@@ -56,6 +56,9 @@
                         }
                     };
 
+                    scope.dismiss = function() {
+                        scope.coachMessages = [];
+                    };
 
                     $rootScope.$on('healthCoach:displayMessage', function (event, message, interpolateParams) {
                         if (!scope.coachMessages) {
