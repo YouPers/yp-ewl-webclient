@@ -58,6 +58,9 @@
                             <button type="submit" class="btn btn-primary pull-right" ng-disabled="campaignForm.$invalid">
                                 <span translate>campaignForm.{{ campaign.id ? 'save' : 'create' }}</span>
                             </button>
+                            <button type="button" class="btn btn-default pull-right" ui-sref="campaigns.content">
+                                <span translate>campaignForm.back</span>
+                            </button>
                         </div>
                     </form>
 
