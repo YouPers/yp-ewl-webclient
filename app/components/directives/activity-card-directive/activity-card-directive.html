@@ -30,13 +30,13 @@
 
                 <div class="linkleft">
                     <button class="btn btn-default" ng-click="reject({index: index, event: $event})"
-                            analytics-on="click" analytics-event="RejectProposal" analytics-category="Command" analytics-label="Activity Rejected">
-                        Nein, Danke!
+                            analytics-on="click" analytics-event="RejectProposal" analytics-category="Command" analytics-label="Activity Rejected" translate>
+                        schedule.nothanks
                     </button>
                  </div>
                 <div class="linkright">
-                    <button class="schedule-link btn btn-primary" ng-click="schedule({activity: rec.activity})" stop-propagation>
-                        Einplanen
+                    <button class="schedule-link btn btn-primary" ng-click="schedule({activity: rec.activity})" stop-propagation translate>
+                        schedule.schedule
                     </button>
                 </div>
 
