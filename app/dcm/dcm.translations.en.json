@@ -1,9 +1,9 @@
 {
   "subnavbar": {
-    "organization": null,
-    "campaigns": null,
-    "notifications": null,
-    "activities": null,
-    "stats": null
+    "organization": "Organization",
+    "campaigns": "Campaigns",
+    "notifications": "Notifications",
+    "activities": "Activities",
+    "stats": "Statistics"
   }
 }

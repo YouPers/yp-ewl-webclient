@@ -1,12 +1,13 @@
 {
   "home": {
-    "stateHeader1": null,
-    "stateHeader2": null,
-    "diary": null,
-    "select": null,
-    "plan": null,
-    "result": null,
-    "check": null,
-    "focus": null
+    "diary": "Le journal",
+    "select": "Les recommandations",
+    "plan": "Le plan",
+    "result": "Les résultats",
+    "check": "L'auto-évaluation",
+    "focus": "L'accent",
+    "noCampaign": "Ouvrir le lien dans ton courriel d'invitation, <br/> Connectes-toi pour participer à la campagne!",
+    "stateHeader1": "Tes",
+    "stateHeader2": "campagnes"
   }
 }

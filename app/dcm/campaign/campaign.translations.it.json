@@ -1,78 +1,78 @@
 {
   "campaigns": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "group": {
-      "active": null,
-      "inactive": null
-    }
+      "active": "aktive kampagnen",
+      "inactive": "beendete kampagnen"
+    },
+    "stateHeader1": "deine",
+    "stateHeader2": "kampagnen"
   },
   "campaign": {
-    "stateHeader1": null,
-    "stateHeader2": null,
-    "header": null,
+    "header": "Stress Management",
     "link": {
-      "new": null,
-      "campaignoffers": null,
-      "notifications": null
+      "new": "neue kampagne",
+      "campaignoffers": "Aktivitäten",
+      "notifications": "Mitteilungen"
     },
     "preview": {
-      "header": null,
-      "welcomeLink": null,
-      "welcomeLinkExplain": null,
-      "welcomeLinkTest": null,
-      "welcomeLinkNotSaved": null
+      "header": "Vorschau",
+      "welcomeLink": "Einladungs-Link",
+      "welcomeLinkExplain": "Mittels Klick auf diesen Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer",
+      "welcomeLinkTest": "Teste den Link",
+      "welcomeLinkNotSaved": "Sobald du die Kampagne speicherst, siehst du hier den Einladungslink."
     },
     "campaignLeads": {
-      "header": null
-    }
+      "header": "kampagnenleiter"
+    },
+    "stateHeader1": "deine",
+    "stateHeader2": "kampagne"
   },
   "campaignForm": {
     "avatar": {
-      "label": null,
-      "change": null
+      "label": "Avatar",
+      "change": "ändern"
     },
     "title": {
-      "label": null,
-      "placeholder": null,
+      "label": "Titel",
+      "placeholder": "Titel",
       "error": {
-        "required": null
+        "required": "Prego inserire un titolo valido"
       }
     },
     "start": {
-      "label": null
+      "label": "Start"
     },
     "end": {
-      "label": null
+      "label": "Ende"
     },
     "participants": {
-      "label": null,
-      "placeholder": null,
-      "$invalid": null
+      "label": "Personenkreis",
+      "placeholder": "Personenkreis",
+      "$invalid": "Prego inserire un valido gruppo di persone"
     },
     "location": {
-      "label": null,
-      "placeholder": null,
+      "label": "Lokalität",
+      "placeholder": "Lokalität",
       "error": {
-        "required": null
+        "required": "Prego inserire una località valida"
       }
     },
     "city": {
-      "label": null,
-      "placeholder": null
+      "label": "Ort",
+      "placeholder": "Ort"
     },
     "slogan": {
-      "label": null,
-      "placeholder": null
+      "label": "Slogan",
+      "placeholder": "Slogan"
     },
-    "save": null,
-    "create": null
+    "save": "Speichern",
+    "create": "Speichern"
   },
   "inviteCampaignLeadForm": {
     "email": {
-      "placeholder": null
+      "placeholder": "Una o diverse email"
     },
-    "inviteSubmit": null,
-    "invitationSent": null
+    "inviteSubmit": "Senden",
+    "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"
   }
 }

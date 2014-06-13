@@ -2,134 +2,135 @@
   "clientmsg": {
     "success": {
       "activity": {
-        "save": null
+        "save": "L'activité enregistré"
       },
       "activityPlan": {
-        "save": null,
-        "join": null,
-        "invite": null,
-        "delete": null,
-        "sampleInvitationSent": null,
-        "eventSaved": null
+        "save": "L'activité planifié",
+        "join": "L'activité planifié",
+        "invite": "Tu as invité {{email}} à participer à cette activité",
+        "delete": "L'activité supprimé",
+        "sampleInvitationSent": "L'Invitation envoyée{{email}}",
+        "eventSaved": "Enregistrer des feed-back  avec succès"
       }
     },
     "error": {
       "activity": {
-        "join": null
+        "join": "Cette activité ne pourrait pas planifié"
       }
     }
   },
   "schedule": {
-    "recommendedBy": null,
+    "recommendedBy": "Recommandé par",
     "executiontype": {
-      "self": null,
-      "group": null
+      "self": "Planifier soi-même",
+      "group": "Participer"
     },
     "self": {
-      "location": null,
-      "text": null,
-      "start": null,
-      "end": null,
+      "location": "Où",
+      "text": "La description",
+      "start": "de ",
+      "end": "à ",
       "recurrence": {
-        "day": null,
-        "week": null,
-        "weeklyDay": null
+        "day": "Les répétitions",
+        "week": "Les répétitions",
+        "weeklyDay": "le"
       },
-      "visibility": null,
-      "joiningUsers": null,
+      "visibility": "Les autres sont autorisés à y participer",
+      "joiningUsers": "{AUTRES, pluriel, = 0 {} un {und <a>1 anderer</a> macht mit} autre {und <a># andere</a> machen mit} }",
       "inviteOthers": {
-        "placeholder": null,
-        "submit": null
+        "placeholder": "Inviter quelqu'un par email",
+        "submit": "Inviter"
       }
     },
     "group": {
-      "noPlansToJoin": null,
-      "join": null,
-      "owner": null,
-      "joiningUsers": null,
-      "startingOn": null,
-      "startToEndDate": null,
-      "location": null
+      "noPlansToJoin": "Personne n'a prévu cette activité, ils prévoient un moi-même!",
+      "join": "Participer",
+      "owner": "Organisateur:",
+      "joiningUsers": "{AUTRES, pluriel, = 0 {} un {und <a>1 anderer</a> nimmt teil} autre {und <a># andere</a> nehmen teil} }",
+      "startingOn": "la première fois, le",
+      "startToEndDate": "jusqu'à",
+      "location": "Lieu de rendez-vous"
     },
     "event": {
-      "startToEndDate": null,
-      "rating": null,
-      "done": null,
-      "missed": null,
-      "comment": null
+      "startToEndDate": "Jusqu'à",
+      "rating": "L'estimation",
+      "done": "Fait",
+      "missed": "Perdu",
+      "comment": "Feed-back"
     },
-    "schedule": null,
-    "save": null,
-    "delete": null
+    "schedule": "Planifier",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "nothanks": "Non, merci!"
   },
   "weekday": {
-    "monday": null,
-    "tuesday": null,
-    "wednesday": null,
-    "thursday": null,
-    "friday": null,
-    "saturday": null,
-    "sunday": null
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi",
+    "saturday": "Samedi",
+    "sunday": "Dimanche"
   },
   "activityPlanEditable": {
-    "editable": null,
-    "notEditableJoinedPlan": null,
-    "notEditablePastEvent": null
+    "editable": "Modifier l'activité planifié",
+    "notEditableJoinedPlan": "Note: Cette activité prévue ne peut pas être modifié, car les autres utilisateurs à y assister.",
+    "notEditablePastEvent": "Note: Cette activité prévue ne peut pas être modifié, car l'exécution dans le passé."
   },
   "activityPlanDeletable": {
-    "deletable": null,
-    "deletableOnlyFutureEvents": null,
-    "notDeletableJoinedUsers": null,
-    "notDeletableJoinedPlans": null,
-    "notDeletableNoFutureEvents": null
+    "deletable": "Annuler l'activité planifié",
+    "deletableOnlyFutureEvents": "Supprimer la réalisation future",
+    "notDeletableJoinedUsers": "Note: Cette activité prévue ne peut pas être supprimé car d'autres utilisateurs d'y assister.",
+    "notDeletableJoinedPlans": "Note: Cette activité prévue ne peut pas être supprimé car il participe à une activité d'un autre utilisateur ici.",
+    "notDeletableNoFutureEvents": "Note: Cette activité prévue ne peut pas être supprimée car toutes les versions sont dans le passé."
   },
   "visibility": {
-    "public": null,
-    "campaign": null,
-    "private": null
+    "public": "Public",
+    "campaign": "Campagne",
+    "private": "Privé"
   },
   "source": {
-    "youpers": null,
-    "community": null,
-    "campaign": null
+    "youpers": "YouPers",
+    "community": "La communauté",
+    "campaign": "Campagne"
   },
   "calendarNotification": {
-    "none": null,
-    "0": null,
-    "300": null,
-    "600": null,
-    "900": null,
-    "1800": null,
-    "3600": null,
-    "7200": null,
-    "86400": null,
-    "172800": null
+    "none": "Pas de remarque",
+    "0": "au début de l'événement",
+    "300": "5 minutes avant",
+    "600": "10 minutes avant",
+    "900": "15 minutes avant",
+    "1800": "30 minutes avant",
+    "3600": "1 heure avant",
+    "7200": "2 heure avant",
+    "86400": "1 jour avant",
+    "172800": "2 jours avant"
   },
   "activityPlanInvite": {
-    "header": null,
-    "subheader": null,
-    "inviteMessage": null
+    "header": "Bienvenue - YouPers Digital Health Plattform",
+    "subheader": " t' a invité à participer à une activité",
+    "inviteMessage": "Pour rejoindre <a {{loginLinkAttribute}} &gt;logge Dich ein</a> ou <a href='' {{registerLinkAttribute}} &gt;registriere dich</a>"
   },
   "activityPlanFrequency": {
-    "once": null,
-    "day": null,
-    "week": null,
-    "month": null,
-    "year": null
+    "once": "Ponctuel",
+    "day": "Quotidien",
+    "week": "Hebdomadaire",
+    "month": "Mensuel",
+    "year": "Annuel"
   },
   "activityField": {
-    "awarenessAbility": null,
-    "timeManagement": null,
-    "workStructuring": null,
-    "physicalActivity": null,
-    "nutrition": null,
-    "leisureActivity": null,
-    "breaks": null,
-    "relaxation": null,
-    "socialInteraction": null
+    "awarenessAbility": "La conscience et l'aptitude",
+    "timeManagement": "La gestion du temps",
+    "workStructuring": "L'aménagement du travail",
+    "physicalActivity": "L'activité physique",
+    "nutrition": "L'alimentation",
+    "leisureActivity": "Activité de loisir",
+    "breaks": "Les pauses",
+    "relaxation": "La détente",
+    "socialInteraction": "L'échange social"
   },
   "executiontype": {
-    "self": null,
-    "group": null
+    "self": "Soi-même",
+    "group": "La groupe"
   }
 }

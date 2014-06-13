@@ -1,12 +1,13 @@
 {
   "home": {
-    "stateHeader1": null,
-    "stateHeader2": "Gesundheitscoach",
-    "diary": null,
-    "select": null,
-    "plan": null,
-    "result": null,
-    "check": null,
-    "focus": null
+    "diary": "Diary",
+    "select": "Recommendations",
+    "plan": "Plan",
+    "result": "Ergebnisse",
+    "check": "Self-Check",
+    "focus": "Focus",
+    "noCampaign": "Open the link in your invitation email <br/> to join the campaign!",
+    "stateHeader1": "deine",
+    "stateHeader2": "kampagnen"
   }
 }

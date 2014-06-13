@@ -1,7 +1,7 @@
 {
   "invite": {
-    "header": null,
-    "message": null,
-    "signup": null
+    "header": "Bienvenue - YouPers Digital Health Plattform",
+    "message": "<strong>{{user}}</strong> t' a invité à une activité. Inscrives-toi pour participer",
+    "signup": "Créer un nouveau compte"
   }
 }

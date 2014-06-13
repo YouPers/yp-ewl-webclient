@@ -1,40 +1,40 @@
 {
   "diary": {
-    "stateHeader1": null,
-    "stateHeader2": null,
-    "noContent": null,
+    "noContent": "Du hast noch keine Einträge in deinem Tagebuch</a>",
     "group": {
-      "today": null,
-      "yesterday": null,
-      "week": null,
-      "month": null,
-      "year": null,
-      "future": null,
-      "0": null,
-      "1": null,
-      "2": null,
-      "3": null,
-      "4": null,
-      "5": null,
-      "6": null,
-      "7": null,
-      "8": null,
-      "9": null,
-      "10": null,
-      "11": null
+      "today": "Heute",
+      "yesterday": "Gestern",
+      "week": "Diese Woche",
+      "month": "Diesen Monat",
+      "year": "Letzes Jahr",
+      "future": "Zukunft",
+      "0": "Januar",
+      "1": "Februar",
+      "2": "März",
+      "3": "April",
+      "4": "Mai",
+      "5": "Juni",
+      "6": "Juli",
+      "7": "August",
+      "8": "September",
+      "9": "Oktober",
+      "10": "November",
+      "11": "Dezember"
     },
     "modal": {
-      "question": null,
-      "yourCampaign": null,
-      "yourResolution": null,
-      "doNotAskAgainForDiaryEntry": null,
+      "question": "Wie geht es dir heute gesundheitlich?",
+      "yourCampaign": "Deine Kampagne",
+      "yourResolution": "Dein Vorsatz",
+      "doNotAskAgainForDiaryEntry": "Nicht mehr fragen",
       "reason": {
-        "placeholder": null
+        "placeholder": "Gib hier deine Begründung ein. (optional)"
       },
-      "noresolution": null
-    }
+      "noresolution": "Hier könnte dein persönliches Ziel stehen, setze es im <a href='/#/focus'>Fokus</a>!"
+    },
+    "stateHeader1": "dein",
+    "stateHeader2": "Tagebuch"
   },
   "topic": {
-    "stress": null
+    "stress": "Stress Management"
   }
 }

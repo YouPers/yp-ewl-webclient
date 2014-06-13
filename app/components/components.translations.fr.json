@@ -2,68 +2,84 @@
   "clientmsg": {
     "success": {
       "comment": {
-        "save": null
+        "save": "Kommentar gespeichert"
       }
     },
     "error": {
       "avatar": {
-        "invalid": null,
-        "error": null
+        "invalid": "Kein gültiges Avatar Bild",
+        "error": "Il y a eu un problème."
       }
     }
   },
   "executiontype": {
-    "self": null,
-    "group": null
+    "self": "Selber",
+    "group": "Gruppe"
+  },
+  "gender": {
+    "undefined": "unbekannt",
+    "male": "männlich",
+    "female": "weiblich"
+  },
+  "maritalStatus": {
+    "maritalStatus": "Zivilstand",
+    "undefined": "unbekannt",
+    "single": "single",
+    "unmarried": "in Partnerschaft",
+    "married": "verheiratet",
+    "separated": "getrennt",
+    "divorced": "geschieden",
+    "widowed": "verwitwet"
   },
   "weekday": {
-    "monday": null,
-    "tuesday": null,
-    "wednesday": null,
-    "thursday": null,
-    "friday": null,
-    "saturday": null,
-    "sunday": null
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch",
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag"
   },
   "timezone": {
-    "00:00": null,
-    "+01:00": null,
-    "+03:00": null
+    "00:00": "UTC",
+    "+01:00": "Zürich (+01:00)",
+    "+03:00": "Sotschi (+03:00)"
   },
   "language": {
-    "de": null,
-    "en": null,
-    "fr": null,
-    "it": null
+    "de": "Deutsch",
+    "en": "English",
+    "fr": "Français",
+    "it": "Italiano"
   },
-    "feedbackForm": {
-        "anonymous": {
-            "label": null
-        },
-        "username": {
-            "label": null
-        },
-        "contactInfo": {
-            "label": null,
-            "placeholder": null,
-            "error": {
-                "email": null
-            }
-        },
-        "feedbackCategory": {
-            "label": null
-        },
-        "description": {
-            "label": null
-        },
-        "close": null,
-        "submit": null
+  "feedbackCategory": {
+    "bug": "Fehler",
+    "improvement": "Verbesserung",
+    "other": "Anderes",
+    "question": "Frage",
+    "support": "Hilfe"
+  },
+  "feedbackForm": {
+    "anonymous": {
+      "label": "Anonymes Feedback"
+    },
+    "close": "Schliessen",
+    "contactInfo": {
+      "error": {
+        "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
+      },
+      "label": "Email",
+      "placeholder": "Email"
+    },
+    "description": {
+      "label": "Beschreibung"
     },
     "feedbackCategory": {
-        "bug": null,
-        "improvement": null,
-        "question": null,
-        "support": null,
-        "other": null
+      "label": "Kategorie"
+    },
+    "submit": "Abschicken",
+    "submitted": "Danke für dein Feedback!",
+    "username": {
+      "label": "Username"
     }
+  }
 }

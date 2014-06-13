@@ -2,72 +2,104 @@
   "clientmsg": {
     "success": {
       "organization": {
-        "saved": null
+        "saved": "Les modifications ont été enregistrées"
       }
     },
     "error": {
       "organization": {
-        "notUnique": null
+        "notUnique": "Il a été trouvés plus d'une organisation"
       }
     }
   },
-  "organization": {
-    "stateHeader1": null,
-    "stateHeader2": null
-  },
   "organizationForm": {
-    "header": null,
+    "header": "Nouvelle organisation",
     "name": {
-      "label": null,
-      "placeholder": null,
+      "label": "Nom",
+      "placeholder": "Nom d'organisation",
       "error": {
-        "required": null
+        "required": "S'il te plaît entrer un nom valide de l'organisation"
       }
     },
     "address": {
       "street": {
-        "label": null,
-        "placeholder": null
+        "label": "L’adresse",
+        "placeholder": "Rue (nom et numéro)",
+        "error": {
+          "required": "S'il te plaît, entrer un rue (nom et numéro) valide"
+        }
       },
       "zipCode": {
-        "label": null,
-        "placeholder": null
+        "label": "Code postal / lieu",
+        "placeholder": "Code postal",
+        "error": {
+          "required": "S'il te plaît, entrer un code postale valide"
+        }
       },
       "city": {
-        "placeholder": null
+        "placeholder": "lieu",
+        "error": {
+          "required": "S'il te plaît, entrer une Organisation valide"
+        },
+        "label": "Lieu"
       }
     },
     "legalForm": {
-      "label": null,
-      "placeholder": null
-    },
-    "sector": {
-      "label": null,
-      "placeholder": null
-    },
-    "contact": {
-      "header": null,
-      "firstname": {
-        "label": null,
-        "placeholder": null
-      },
-      "lastname": {
-        "placeholder": null
-      },
-      "position": {
-        "label": null,
-        "placeholder": null
-      },
-      "email": {
-        "label": null,
-        "placeholder": null
-      },
-      "phone": {
-        "label": null,
-        "placeholder": null
+      "label": "Forme juridique",
+      "placeholder": "Forme juridique",
+      "error": {
+        "required": "S'il te plaît, entrer une forme juridique valable"
       }
     },
-    "save": null,
-    "create": null
+    "sector": {
+      "label": "Branche",
+      "placeholder": "Branche",
+      "error": {
+        "required": "S'il te plaît entrer une branche valide"
+      }
+    },
+    "contact": {
+      "header": "Contact",
+      "firstname": {
+        "label": "Nom",
+        "placeholder": "Prénom",
+        "error": {
+          "required": "S'il te plaît, entrer un prénom valide"
+        }
+      },
+      "lastname": {
+        "placeholder": "Nom",
+        "error": {
+          "required": "S'il te plaît, entrer un nom valide"
+        },
+        "label": "Nom"
+      },
+      "position": {
+        "label": "Rôle",
+        "placeholder": "Rôle / Organisation",
+        "error": {
+          "required": "S'il te plaît entrer une fonction valable"
+        }
+      },
+      "email": {
+        "label": "E-mail",
+        "placeholder": "Adresse e-mail",
+        "error": {
+          "required": "S'il te plaît, entrer une adresse email valide"
+        }
+      },
+      "phone": {
+        "label": "téléphone",
+        "placeholder": "numéro de téléphone",
+        "error": {
+          "required": "S'il te plaît, entrer un numéro de téléphone valable"
+        }
+      }
+    },
+    "save": "Enregistrer",
+    "create": "Créer"
+  },
+  "organization": {
+    "stateHeader1": "Ta",
+    "stateHeader2": "Unité d'organisation"
   }
 }

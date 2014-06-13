@@ -1,20 +1,20 @@
 {
   "focus": {
-    "stateHeader1": null,
-    "stateHeader2": null,
-    "assessmentNotCompleted": null,
-    "assessmentNoStressors": null,
-    "header": null,
-    "none": null,
-    "low": null,
-    "medium": null,
-    "high": null,
-    "whatFocus": null,
+    "assessmentNotCompleted": "Sobald du deine <a href='/#/check'>Selbstbeurteilung</a>  vollständig ausgefüllt hast, zeigen wir dir hier eine Auswertung deiner Stresssituation mit Problembereichen, aufgrund derer du deinen persönlichen Fokus setzen kannst.",
+    "assessmentNoStressors": "Congratulations - your <a href='/#/check'>self-check</a> has revealed no acute need for action!",
+    "header": "Handlungsbedarf",
+    "none": "kein",
+    "low": "gering",
+    "medium": "mittel",
+    "high": "gross",
+    "whatFocus": "In welchen Problembereichen möchtest du dich verbessern?",
     "yourPersonalGoal": {
-      "question": null,
-      "placeholder": null
+      "question": "Dein Ziel für diese Kampagne lautet:",
+      "placeholder": "Optional kannst du hier ein Ziel oder einen Slogan als persönlichen Vorsatz erfassen."
     },
-    "toCheck": null,
-    "toSelect": null
+    "toCheck": "Back to self-check",
+    "toSelect": "Go to recommendations",
+    "stateHeader1": "dein",
+    "stateHeader2": "fokus"
   }
 }

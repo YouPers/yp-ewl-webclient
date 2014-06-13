@@ -1,65 +1,65 @@
 {
   "activity": {
-    "stateHeader1": null,
     "title": {
-      "label": null,
-      "placeholder": null
+      "label": "Le title",
+      "placeholder": "Enregistrez un titre court, s.v.p. (2x20 caractères max.)"
     },
     "image": {
-      "label": null,
-      "select": null
+      "label": "L'image de l'activité",
+      "select": "Sélectionner"
     },
     "description": {
-      "label": null,
-      "placeholder": null
+      "label": "La description",
+      "placeholder": "La description"
     },
     "text": {
-      "label": null,
-      "placeholder": null
+      "label": "Le texte",
+      "placeholder": "La description détaillée de l'activité"
     },
-    "number": null,
-    "executiontype": null,
-    "frequency": null,
-    "visibility": null,
-    "source": null,
-    "activityField": null,
-    "qualityFactor": null,
-    "duration": null,
-    "save": null,
-    "back": null
+    "number": "L'activité numéro",
+    "executiontype": "La réalisation",
+    "frequency": "La fréquence",
+    "visibility": "La visibilité",
+    "source": "La source",
+    "activityField": "Les cadres activités",
+    "qualityFactor": "Le facteur de la qualité (1-10)",
+    "duration": "Le temps nécessaire (min.) ",
+    "save": "Enregistrer",
+    "back": "Retour",
+    "stateHeader1": "L'activité"
   },
   "activities": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "group": {
-      "campaign": null,
-      "all": null
+      "campaign": "Les activités propers",
+      "all": "Les idées d'activités de YouPers"
     },
     "duration": {
-      "suffix": null
+      "suffix": "Min"
     },
     "link": {
-      "new": null,
-      "schedule": null,
-      "recommend": null
+      "new": "La nouvelle activité",
+      "schedule": "Planifier",
+      "recommend": "Recommander"
     },
-    "search": null
+    "search": "Chercher",
+    "stateHeader1": "Les campagnes",
+    "stateHeader2": "Les activités"
   },
   "campaignoffers": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "link": {
-      "newActivity": null,
-      "publishActivity": null
+      "newActivity": "Créer une activité propre",
+      "publishActivity": "L'activité existant <br/>recommander/planifier"
     },
-    "published": null,
+    "published": "Publié",
     "offertype": {
-      "campaignActivity": null,
-      "campaignActivityPlan": null
+      "campaignActivity": "Recommandé",
+      "campaignActivityPlan": "Planifié"
     },
-    "userNamesNotShown": null
+    "userNamesNotShown": "Noms ne sont pas affichés pour la protection de la vie privée",
+    "stateHeader1": "Les campagnes",
+    "stateHeader2": "Les activité"
   },
   "scheduledDate": {
-    "daily": null
+    "daily": "Quotidien"
   }
 }

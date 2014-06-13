@@ -1,78 +1,78 @@
 {
   "campaigns": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "group": {
-      "active": null,
-      "inactive": null
-    }
+      "active": "active campaigns",
+      "inactive": "terminated campaigns"
+    },
+    "stateHeader1": "your",
+    "stateHeader2": "CAMPAIGNS"
   },
   "campaign": {
-    "stateHeader1": null,
-    "stateHeader2": null,
-    "header": null,
+    "header": "Stress Management",
     "link": {
-      "new": null,
-      "campaignoffers": null,
-      "notifications": null
+      "new": "new campaign",
+      "campaignoffers": "Acitivities",
+      "notifications": "Notifications"
     },
     "preview": {
-      "header": null,
-      "welcomeLink": null,
-      "welcomeLinkExplain": null,
-      "welcomeLinkTest": null,
-      "welcomeLinkNotSaved": null
+      "header": "Preview",
+      "welcomeLink": "Invitation link",
+      "welcomeLinkExplain": "By clicking on this link, you can sign up to this campaign. Send this link as part of an e-mail to all potential participants you would like to invite.",
+      "welcomeLinkTest": "Test the link",
+      "welcomeLinkNotSaved": "Once you save the campaign, you will see the referral link here."
     },
     "campaignLeads": {
-      "header": null
-    }
+      "header": "campaign lead"
+    },
+    "stateHeader1": "your",
+    "stateHeader2": "campaign"
   },
   "campaignForm": {
     "avatar": {
-      "label": null,
-      "change": null
+      "label": "Avatar",
+      "change": "change"
     },
     "title": {
-      "label": null,
-      "placeholder": null,
+      "label": "Title",
+      "placeholder": "Title",
       "error": {
-        "required": null
+        "required": "Please enter a valid title"
       }
     },
     "start": {
-      "label": null
+      "label": "Start"
     },
     "end": {
-      "label": null
+      "label": "End"
     },
     "participants": {
-      "label": null,
-      "placeholder": null,
-      "$invalid": null
+      "label": "Group of people",
+      "placeholder": "Group of people",
+      "$invalid": "Please enter a valid group of people"
     },
     "location": {
-      "label": null,
-      "placeholder": null,
+      "label": "Location",
+      "placeholder": "Location",
       "error": {
-        "required": null
+        "required": "Please enter a valid location"
       }
     },
     "city": {
-      "label": null,
-      "placeholder": null
+      "label": "City",
+      "placeholder": "City"
     },
     "slogan": {
-      "label": null,
-      "placeholder": null
+      "label": "Slogan",
+      "placeholder": "Slogan"
     },
-    "save": null,
-    "create": null
+    "save": "Save",
+    "create": "Save"
   },
   "inviteCampaignLeadForm": {
     "email": {
-      "placeholder": null
+      "placeholder": "One or multiple emails"
     },
-    "inviteSubmit": null,
-    "invitationSent": null
+    "inviteSubmit": "Send",
+    "invitationSent": "Invitation email sent, the new campaign lead needs to confirm"
   }
 }

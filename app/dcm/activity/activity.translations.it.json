@@ -1,65 +1,65 @@
 {
   "activity": {
-    "stateHeader1": null,
     "title": {
-      "label": null,
-      "placeholder": null
+      "label": "Titolo",
+      "placeholder": "Inserisci un breve titolo (max 2x20 caratteri)"
     },
     "image": {
-      "label": null,
-      "select": null
+      "label": "Immagine dell'attività",
+      "select": "Seleziona"
     },
     "description": {
-      "label": null,
-      "placeholder": null
+      "label": "Breve descrizione",
+      "placeholder": "Breve descrizione"
     },
     "text": {
-      "label": null,
-      "placeholder": null
+      "label": "Testo",
+      "placeholder": "Descrizione dettagliata dell'attività"
     },
-    "number": null,
-    "executiontype": null,
-    "frequency": null,
-    "visibility": null,
-    "source": null,
-    "activityField": null,
-    "qualityFactor": null,
-    "duration": null,
-    "save": null,
-    "back": null
+    "number": "Attività - numero",
+    "executiontype": "Esecuzione",
+    "frequency": "Frequenza",
+    "visibility": "Visibilità",
+    "source": "Fonte",
+    "activityField": "Campi dell' attività",
+    "qualityFactor": "Fattore qualità (1-10)",
+    "duration": "Durata (min) ",
+    "save": "Salva",
+    "back": "Indietro",
+    "stateHeader1": "aktivität"
   },
   "activities": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "group": {
-      "campaign": null,
-      "all": null
+      "campaign": "Proprie attività",
+      "all": "Idee di attività da YouPers"
     },
     "duration": {
-      "suffix": null
+      "suffix": "min."
     },
     "link": {
-      "new": null,
-      "schedule": null,
-      "recommend": null
+      "new": "Nuova attività",
+      "schedule": "Programma",
+      "recommend": "Consigliato"
     },
-    "search": null
+    "search": "Cerca",
+    "stateHeader1": "kampagnen",
+    "stateHeader2": "aktivitäten"
   },
   "campaignoffers": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "link": {
-      "newActivity": null,
-      "publishActivity": null
+      "newActivity": "Crea le tue attività",
+      "publishActivity": "Pianifica le attività esistenti"
     },
-    "published": null,
+    "published": "Pubblicato",
     "offertype": {
-      "campaignActivity": null,
-      "campaignActivityPlan": null
+      "campaignActivity": "Consigliato",
+      "campaignActivityPlan": "Programmato"
     },
-    "userNamesNotShown": null
+    "userNamesNotShown": "I nomi non sono visualizzati per motivi di privacy",
+    "stateHeader1": "kampagnen",
+    "stateHeader2": "Aktivitäten"
   },
   "scheduledDate": {
-    "daily": null
+    "daily": "Giornaliero"
   }
 }

@@ -6,8 +6,8 @@
     },
     "error": {
       "default": "An error has occurred. Sorry about that.",
-      "loginFailed": null,
-      "UnauthorizedError": "Username or Password are not correct",
+      "loginFailed": "The user name or password is not valid",
+      "UnauthorizedError": "Authorization failed",
       "404": "Our server is not reachable right now, please try again later"
     }
   },
@@ -18,12 +18,13 @@
     "do": "do",
     "evaluate": "evaluate",
     "logout": "Logout",
-    "signin": null,
-    "signup": null,
+    "signin": "Login",
+    "signup": "Sign up",
     "account": "Account",
     "profile": "Profile",
     "language": "Language",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "moreinfo": "More Information"
   },
   "home": {
     "for": "for",
@@ -32,21 +33,21 @@
   },
   "loginDialog": {
     "pleaseLoginOrRegister": "Please login or register",
-    "loginReason": "so we can store your data",
-    "register": "register new account",
+    "loginReason": "So we can store your data",
+    "register": "Register new account",
     "registerNewAccount": "Register new account",
     "passwordForgotten": "Cannot remember your password?"
   },
   "loginform": {
     "usernameOrEmail": {
-      "label": "username/email",
-      "$invalid": "please enter a valid username/email"
+      "label": "User name/email",
+      "$invalid": "please enter a valid user name/email"
     },
     "password": {
-      "label": "password",
-      "$invalid": "please enter a valid password"
+      "label": "Password",
+      "$invalid": "Please enter a valid password"
     },
-    "login": "login",
+    "login": "Login",
     "rememberMe": {
       "label": "Remember me"
     }
@@ -64,7 +65,7 @@
     "chooseATopic": "Choose a Topic",
     "setGoal": {
       "title": "Welcome to the YouPers personal Stress-Management Campaign",
-      "text": "<p>Verbessere deine Worklife-Balance durch eine nachhaltige Verhaltensänderung.</p><p>Gratulation: der erste Schritt ist schon gemacht!</p><h2>Fachlicher Review</h2><p>Wir reviewen fachlichen Inhalt - den Fragebogen, die Aktivitäten und die Vorschläge.<ul><li>Feedback zum Fragebogen wird im Excel gesammelt. </li><li>Korrekturen / Feedback zu den Aktiväten können wir direkt mittels des Admin-Buttons auf der Website eintragen.</li></ul></p><p> Start: Mittwoch 20. Novemeber</p><p> Ende: Montag 25. Dezember</p>"
+      "text": "<p> Improve your work life balance through sustainable behavioral change. </p><p> Congratulations: the first step is already done! </p><h2> Technical review </h2><p> We review our technical content - the questionnaire, the activities and proposals. <ul><li> Feedback on the questionnaire is collected in Excel. </li><li> Corrections / feedback on the activities can be entered directly, via the admin button on the website. </li></ul></p><p> Start: Wednesday 20th Novemeber </p><p> End: Monday, December 25 </p>"
     }
   }
 }

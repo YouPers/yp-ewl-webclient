@@ -16,6 +16,21 @@
     "self": "self",
     "group": "group"
   },
+  "gender": {
+    "undefined": "unknown",
+    "male": "male",
+    "female": "female"
+  },
+  "maritalStatus": {
+    "maritalStatus": "Marital Status",
+    "undefined": "unknown",
+    "single": "single",
+    "unmarried": "unmarried",
+    "married": "married",
+    "separated": "separated",
+    "divorced": "divorced",
+    "widowed": "widowed"
+  },
   "weekday": {
     "monday": "Monday",
     "tuesday": "Tuesday",
@@ -36,35 +51,35 @@
     "fr": "Français",
     "it": "Italiano"
   },
-    "feedbackForm": {
-        "submitted": "Thanks for your feedback!",
-        "anonymous": {
-            "label": "Anonymous Feedback"
-        },
-        "username": {
-            "label": "Username"
-        },
-        "contactInfo": {
-            "label": "Email",
-            "placeholder": "Email",
-            "error": {
-                "email": "Please enter a valid email address, or select to send your feedback anonymously"
-            }
-        },
-        "feedbackCategory": {
-            "label": "Category"
-        },
-        "description": {
-            "label": "Description"
-        },
-        "close": null,
-        "submit": "Submit"
+  "feedbackCategory": {
+    "bug": "Fehler",
+    "improvement": "Verbesserung",
+    "other": "Anderes",
+    "question": "Frage",
+    "support": "Hilfe"
+  },
+  "feedbackForm": {
+    "anonymous": {
+      "label": "Anonymes Feedback"
+    },
+    "close": "Schliessen",
+    "contactInfo": {
+      "error": {
+        "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
+      },
+      "label": "Email",
+      "placeholder": "Email"
+    },
+    "description": {
+      "label": "Beschreibung"
     },
     "feedbackCategory": {
-        "bug": "Bug",
-        "improvement": "Improvement",
-        "question": "Question",
-        "support": "Support",
-        "other": null
+      "label": "Kategorie"
+    },
+    "submit": "Abschicken",
+    "submitted": "Danke für dein Feedback!",
+    "username": {
+      "label": "Username"
     }
+  }
 }

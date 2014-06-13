@@ -1,18 +1,18 @@
 {
   "dcmschedule": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "scheduletype": {
-      "recommend": null,
-      "plan": null
+      "recommend": "Recommend",
+      "plan": "Schedule it"
     },
     "recommend": {
-      "helptext": null
+      "helptext": "If you recommend an activity in the campaign, participants can schedule it for themselves. <br><br> The activity appears in their activity recommendations and as posting on the personal notification list. <br><br> On the right side you can specify how long this recommendation should be displayed."
     },
-    "publishText": null,
+    "publishText": "Announcement text:",
     "label": {
-      "publishFrom": null,
-      "publishTo": null
-    }
+      "publishFrom": "Publish From Date",
+      "publishTo": "Publish To Date"
+    },
+    "stateHeader1": "Campaign Activities",
+    "stateHeader2": "Schedule and Recommend"
   }
 }

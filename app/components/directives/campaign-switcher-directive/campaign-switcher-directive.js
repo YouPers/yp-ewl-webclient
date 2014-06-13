@@ -67,8 +67,4 @@
                 }
             };
         }])
-        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('components/directives/campaign-switcher-directive/campaign-switcher');
-        }]);
-
 }());

@@ -1,65 +1,65 @@
 {
   "signup": {
-    "header": null,
-    "signupNote": null,
-    "signinNote": null
+    "header": "Bienvenue chez YouPers!",
+    "signupNote": "Enregistrer nouveau",
+    "signinNote": "Login"
   },
   "registerForm": {
     "firstname": {
-      "label": null,
-      "placeholder": null,
+      "label": "Prénom",
+      "placeholder": "Prénom",
       "error": {
-        "required": null
+        "required": "S'il te plaît, entrer un prénom valide."
       }
     },
     "lastname": {
-      "label": null,
-      "placeholder": null,
+      "label": "Nom",
+      "placeholder": "Nom",
       "error": {
-        "required": null
+        "required": "S'il te plaît, entrer un nom valide."
       }
     },
     "username": {
-      "label": null,
-      "placeholder": null,
+      "label": "Le nom d'utilisateur",
+      "placeholder": "Le nom d'utilisateur",
       "error": {
-        "required": null,
-        "unique": null
+        "required": "S'il te plaît, entrer un nom d'utilisateur.",
+        "unique": "Un utilisateur avec ce nom existe déjà."
       }
     },
     "email": {
-      "label": null,
-      "placeholder": null,
+      "label": "E-mail",
+      "placeholder": "E-mail",
       "error": {
-        "required": null,
-        "email": null,
-        "unique": null
+        "required": "S'il te plaît, entrer un email valide.",
+        "email": "S'il te plaît, entrer une adresse email valide",
+        "unique": "Cette adresse email est déjà enregistré, Connectes-toi, s'il te plaît"
       }
     },
     "password": {
-      "label": null,
-      "placeholder": null,
+      "label": "Mot de passe",
+      "placeholder": "Mot de passe",
       "error": {
-        "required": null,
-        "minlength": null
+        "required": "S'il te plaît, entrer un mot de passe",
+        "minlength": "Le mot de passe doit contenir au moins 6 caractères."
       }
     },
     "password2": {
-      "label": null,
-      "placeholder": null,
-      "$invalid": null,
+      "label": "Confirmer mot de passe",
+      "placeholder": "Confirmer mot de passe",
+      "$invalid": "Mot de passe n'est pas identique",
       "error": {
-        "unique": null
+        "unique": "Les mots de passe ne concordent pas."
       }
     },
     "termsAccepted": {
-      "label1": null,
-      "label2": null,
-      "label3": null,
+      "label1": "J'ai lu et accepté les conditions générales ",
+      "label2": "Les conditions générales",
+      "label3": "",
       "$error": {
-        "required": null
+        "required": "S'il te plaît, acceptes les condition générales"
       }
     },
-    "register": null
+    "register": "Enregistrer"
   }
 }
