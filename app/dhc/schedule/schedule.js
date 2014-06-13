@@ -110,9 +110,9 @@
                         if (conflicts.length > 0) {
                             $rootScope.$emit('healthCoach:displayMessage',
                                 "hcmsg.schedulingConflict",
-                                {beginDate: moment(conflicts[0].conflictingEvent.begin).format("dd DD.MM.YYYY HH:mm"),
-                                endDate: moment(conflicts[0].conflictingEvent.end).format("HH:mm"),
-                                title: conflicts[0].conflictingEvent.title});
+                                {beginDate: moment(conflicts[0].conflictingSavedEvent.begin).format("dd DD.MM.YYYY HH:mm"),
+                                endDate: moment(conflicts[0].conflictingSavedEvent.end).format("HH:mm"),
+                                title: conflicts[0].conflictingSavedEvent.title});
                         }
                     });
                 }, 1000);
