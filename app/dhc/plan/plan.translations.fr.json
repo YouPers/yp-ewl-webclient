@@ -1,31 +1,31 @@
 {
   "plan": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "group": {
-      "open": null,
-      "today": null,
-      "tomorrow": null,
-      "week": null,
-      "month": null,
-      "year": null,
-      "0": null,
-      "1": null,
-      "2": null,
-      "3": null,
-      "4": null,
-      "5": null,
-      "6": null,
-      "7": null,
-      "8": null,
-      "9": null,
-      "10": null,
-      "11": null
+      "open": "Feed-back ouvert",
+      "today": "Aujourd’hui",
+      "tomorrow": "Demain",
+      "week": "Cette semaine",
+      "month": "De ce mois",
+      "year": "L'année prochaine",
+      "0": "Janvier",
+      "1": "Février",
+      "2": "Mars",
+      "3": "Avril",
+      "4": "Mai",
+      "5": "Juin",
+      "6": "Juillet",
+      "7": "Août",
+      "8": "Septembre",
+      "9": "Octobre",
+      "10": "Novembre",
+      "11": "Décembre"
     },
-    "joiningUsers": null,
+    "joiningUsers": "{AUTRES, pluriel, = 0 {ist dabei} un {und <a>1 anderer</a> ist dabei} autres {und <a># andere</a> sind dabei} }",
     "inviteOthers": {
-      "placeholder": null
+      "placeholder": "Inviter quelqu'un par email"
     },
-    "noContent": null
+    "noContent": "Tu n'as pas encore prévues des<a href='#/select'>activités</a>",
+    "stateHeader1": "Ton",
+    "stateHeader2": "plan"
   }
 }

@@ -1,19 +1,19 @@
 {
   "notifications": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "link": {
-      "new": null
+      "new": "Neue Mitteilung"
     },
     "form": {
       "title": {
-        "placeholder": null
+        "placeholder": "Titel, der erscheint in der Inbox als Überschrift"
       },
       "text": {
-        "placeholder": null
+        "placeholder": "Text, ausführliche Botschaft (optional)"
       },
-      "submit": null,
-      "delete": null
-    }
+      "submit": "veröffentlichen",
+      "delete": "löschen"
+    },
+    "stateHeader1": "deine",
+    "stateHeader2": "mitteilungen"
   }
 }

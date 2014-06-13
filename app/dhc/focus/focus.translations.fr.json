@@ -1,20 +1,20 @@
 {
   "focus": {
-    "stateHeader1": null,
-    "stateHeader2": null,
-    "assessmentNotCompleted": null,
-    "assessmentNoStressors": null,
-    "header": null,
-    "none": null,
-    "low": null,
-    "medium": null,
-    "high": null,
-    "whatFocus": null,
+    "assessmentNotCompleted": "Une fois que tu ton <a href='/#/check'>auto-évaluation</a> ont complètement rempli, nous te présentons une évaluation de ton situation stressante avec des zones à problèmes, grâce à laquelle tu peux mettre ton attention personnelle.",
+    "assessmentNoStressors": "Félicitations - ton <a href='/#/check'>auto-évaluation</a> n'a révélé aucun besoin urgent d'agir!",
+    "header": "L'action",
+    "none": "Aucun",
+    "low": "Bas",
+    "medium": "Moyen",
+    "high": "Grand",
+    "whatFocus": "Dans quels domaines problème que tu veux t'améliorer?",
     "yourPersonalGoal": {
-      "question": null,
-      "placeholder": null
+      "question": "Ton objectif pour cette campagne est:",
+      "placeholder": "Option pour un but ou un slogan comme une capture intention personnelle ici."
     },
-    "toCheck": null,
-    "toSelect": null
+    "toCheck": "retour au'auto-évaluation",
+    "toSelect": "aux recommandations",
+    "stateHeader1": "Ton",
+    "stateHeader2": "l'accent"
   }
 }

@@ -1,19 +1,19 @@
 {
   "check": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "impactQuestion": {
-      "question": null,
-      "leftCaption": null,
-      "rightCaption": null
+      "question": "Stresst dich das?",
+      "leftCaption": "kaum",
+      "rightCaption": "sehr"
     },
-    "toFocus": null,
-    "questionsAnswered": null
+    "toFocus": "Zu deinem Fokus",
+    "questionsAnswered": "Kriterien beurteilt",
+    "stateHeader1": "deine",
+    "stateHeader2": "Selbstbeurteilung"
   },
   "questionCategory": {
-    "work": null,
-    "leisure": null,
-    "stresstypus": null,
-    "handling": null
+    "work": "Stress am Arbeitsplatz",
+    "leisure": "Stress in der Freizeit",
+    "stresstypus": "Stressverstärker",
+    "handling": "Stressausgleich"
   }
 }

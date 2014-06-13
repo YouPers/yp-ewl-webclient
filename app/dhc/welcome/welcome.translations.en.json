@@ -1,10 +1,10 @@
 {
   "welcome": {
-    "header": null,
-    "organizationPrefix": null,
+    "header": "Willkommen zur Kampagne ",
+    "organizationPrefix": " ",
     "link": {
-      "info": null,
-      "join": null
+      "info": "Learn more",
+      "join": "Teilnehmen"
     }
   }
 }

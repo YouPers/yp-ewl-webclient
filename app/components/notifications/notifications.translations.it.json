@@ -1,14 +1,14 @@
 {
   "notifications": {
-    "title": null,
+    "title": "Le tue notifiche",
     "type": {
-      "personalInvitation": null,
-      "message": null,
-      "activityRecommendation": null,
-      "joinablePlan": null
+      "personalInvitation": "Persönliche Einladung",
+      "message": "Mitteilung",
+      "activityRecommendation": "Aktivitäts-Empfehlung",
+      "joinablePlan": "Einladung für Event"
     },
     "preview": {
-      "title": null
+      "title": "Vorschau per"
     }
   }
 }

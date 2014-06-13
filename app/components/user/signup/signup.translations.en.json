@@ -1,65 +1,65 @@
 {
   "signup": {
     "header": "Welcome to YOUPERS!",
-    "signupNote": null,
-    "signinNote": null
+    "signupNote": "Neu registieren",
+    "signinNote": "Login"
   },
   "registerForm": {
     "firstname": {
-      "label": null,
-      "placeholder": null,
+      "label": "First name",
+      "placeholder": "First name",
       "error": {
-        "required": null
+        "required": "Please enter a valid first name"
       }
     },
     "lastname": {
-      "label": null,
-      "placeholder": null,
+      "label": "Last name",
+      "placeholder": "Last name",
       "error": {
-        "required": null
+        "required": "Please enter a valid last name"
       }
     },
     "username": {
-      "label": null,
-      "placeholder": null,
+      "label": "User name",
+      "placeholder": "User name",
       "error": {
-        "required": null,
-        "unique": null
+        "required": "Please enter a valid user name",
+        "unique": "A user with that username already exists."
       }
     },
     "email": {
-      "label": null,
-      "placeholder": null,
+      "label": "Email",
+      "placeholder": "Email",
       "error": {
-        "required": null,
-        "email": null,
-        "unique": null
+        "required": "Please enter a valid email address",
+        "email": "Please enter a valid email address",
+        "unique": "This email address is already registered, please login"
       }
     },
     "password": {
-      "label": null,
-      "placeholder": null,
+      "label": "Password",
+      "placeholder": "Password",
       "error": {
-        "required": null,
-        "minlength": null
+        "required": "Please enter a password",
+        "minlength": "Note: The password must contain at least 6 characters."
       }
     },
     "password2": {
-      "label": null,
-      "placeholder": null,
-      "$invalid": null,
+      "label": "Repeat password",
+      "placeholder": "Repeat password",
+      "$invalid": "Passwords are not identical",
       "error": {
-        "unique": null
+        "unique": "Die Passwörter stimmen nicht überein"
       }
     },
     "termsAccepted": {
-      "label1": null,
-      "label2": null,
-      "label3": null,
+      "label1": "Ich hab die ",
+      "label2": "Allgemeinen Geschäftsbedingungen",
+      "label3": "gelesen und stimme ihnen zu",
       "$error": {
-        "required": null
+        "required": "Please accept the Terms and Conditions"
       }
     },
-    "register": null
+    "register": "Sign up"
   }
 }

@@ -1,10 +1,10 @@
 {
   "subnavbar": {
-    "start": null,
-    "diary": null,
-    "check": null,
-    "focus": null,
-    "recommendations": null,
-    "plan": null
+    "start": "Le début",
+    "diary": "Le journal",
+    "check": "L'auto-évaluation",
+    "focus": "L'accent",
+    "recommendations": "Les recommandations",
+    "plan": "Le plan"
   }
 }

@@ -1,19 +1,19 @@
 {
   "notifications": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "link": {
-      "new": null
+      "new": "New Message"
     },
     "form": {
       "title": {
-        "placeholder": null
+        "placeholder": "Title, appears in the inbox as heading"
       },
       "text": {
-        "placeholder": null
+        "placeholder": "Text, detailed message (optional)"
       },
-      "submit": null,
-      "delete": null
-    }
+      "submit": "post",
+      "delete": "delete"
+    },
+    "stateHeader1": "your",
+    "stateHeader2": "messages"
   }
 }

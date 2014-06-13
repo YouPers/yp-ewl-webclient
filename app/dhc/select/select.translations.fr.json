@@ -1,7 +1,7 @@
 {
   "select": {
-    "stateHeader1": null,
-    "stateHeader2": null,
-    "toPlan": null
+    "toPlan": "Le plan",
+    "stateHeader1": "Tes",
+    "stateHeader2": "Recommandations"
   }
 }

@@ -1,19 +1,19 @@
 {
   "notifications": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "link": {
-      "new": null
+      "new": "Nouveau message"
     },
     "form": {
       "title": {
-        "placeholder": null
+        "placeholder": "Titre qui apparaît dans la boîte de réception comme en-tête"
       },
       "text": {
-        "placeholder": null
+        "placeholder": "Texte, message principal (optionnel)"
       },
-      "submit": null,
-      "delete": null
-    }
+      "submit": "Publier",
+      "delete": "Effacer"
+    },
+    "stateHeader1": "ton",
+    "stateHeader2": "Messages"
   }
 }

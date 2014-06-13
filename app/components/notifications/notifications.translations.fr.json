@@ -1,14 +1,14 @@
 {
   "notifications": {
-    "title": null,
+    "title": "Tes messages",
     "type": {
-      "personalInvitation": null,
-      "message": null,
-      "activityRecommendation": null,
-      "joinablePlan": null
+      "personalInvitation": "L'invitation personnelle",
+      "message": "Message",
+      "activityRecommendation": "Recommandation des activité",
+      "joinablePlan": "une invitation pour l'événement"
     },
     "preview": {
-      "title": null
+      "title": "Aperçu par"
     }
   }
 }

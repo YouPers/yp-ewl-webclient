@@ -1,31 +1,31 @@
 {
   "plan": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "group": {
-      "open": null,
-      "today": null,
-      "tomorrow": null,
-      "week": null,
-      "month": null,
-      "year": null,
-      "0": null,
-      "1": null,
-      "2": null,
-      "3": null,
-      "4": null,
-      "5": null,
-      "6": null,
-      "7": null,
-      "8": null,
-      "9": null,
-      "10": null,
-      "11": null
+      "open": "offene Rückmeldungen",
+      "today": "Today",
+      "tomorrow": "Morgen",
+      "week": "diese Woche",
+      "month": "diesen Monat",
+      "year": "nächstes Jahr",
+      "0": "Januar",
+      "1": "Februar",
+      "2": "März",
+      "3": "April",
+      "4": "Mai",
+      "5": "Juni",
+      "6": "Juli",
+      "7": "August",
+      "8": "September",
+      "9": "Oktober",
+      "10": "November",
+      "11": "Dezember"
     },
-    "joiningUsers": null,
+    "joiningUsers": "{OTHERS, plural, =0{ist dabei} one{und <a>1 anderer</a> ist dabei} other{und <a># andere</a> sind dabei}}",
     "inviteOthers": {
-      "placeholder": null
+      "placeholder": "per email einladen"
     },
-    "noContent": null
+    "noContent": "Du hast bisher noch keine <a href='#/select'>Aktivitäten</a> eingeplant",
+    "stateHeader1": "dein",
+    "stateHeader2": "Plan"
   }
 }

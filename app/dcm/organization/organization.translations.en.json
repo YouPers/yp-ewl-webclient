@@ -2,72 +2,104 @@
   "clientmsg": {
     "success": {
       "organization": {
-        "saved": null
+        "saved": "Changes saved"
       }
     },
     "error": {
       "organization": {
-        "notUnique": null
+        "notUnique": "It has been more than one organization found"
       }
     }
   },
-  "organization": {
-    "stateHeader1": null,
-    "stateHeader2": null
-  },
   "organizationForm": {
-    "header": null,
+    "header": "New Organization",
     "name": {
-      "label": null,
-      "placeholder": null,
+      "label": "Name",
+      "placeholder": "Name of Organization",
       "error": {
-        "required": null
+        "required": "Please enter a valid name of the organization"
       }
     },
     "address": {
       "street": {
-        "label": null,
-        "placeholder": null
+        "label": "Address",
+        "placeholder": "Street, House No.",
+        "error": {
+          "required": "Please enter a valid Street Address"
+        }
       },
       "zipCode": {
-        "label": null,
-        "placeholder": null
+        "label": "Postal code / City",
+        "placeholder": "Postal code",
+        "error": {
+          "required": "Please enter a valid postal code"
+        }
       },
       "city": {
-        "placeholder": null
+        "placeholder": "City",
+        "error": {
+          "required": "Please enter a valid city"
+        },
+        "label": "City"
       }
     },
     "legalForm": {
-      "label": null,
-      "placeholder": null
-    },
-    "sector": {
-      "label": null,
-      "placeholder": null
-    },
-    "contact": {
-      "header": null,
-      "firstname": {
-        "label": null,
-        "placeholder": null
-      },
-      "lastname": {
-        "placeholder": null
-      },
-      "position": {
-        "label": null,
-        "placeholder": null
-      },
-      "email": {
-        "label": null,
-        "placeholder": null
-      },
-      "phone": {
-        "label": null,
-        "placeholder": null
+      "label": "Legal form",
+      "placeholder": "Legal form",
+      "error": {
+        "required": "Bitte eine gültige Rechtsform eingeben"
       }
     },
-    "save": null,
-    "create": null
+    "sector": {
+      "label": "Industry",
+      "placeholder": "Industry",
+      "error": {
+        "required": "Bitte eine gültige Branche eingeben"
+      }
+    },
+    "contact": {
+      "header": "Contact",
+      "firstname": {
+        "label": "First name",
+        "placeholder": "First name",
+        "error": {
+          "required": "Bitte einen gültigen Vornamen eingeben"
+        }
+      },
+      "lastname": {
+        "placeholder": "Last name",
+        "error": {
+          "required": "Bitte einen gültigen Nachnamen eingeben"
+        },
+        "label": "Nachname"
+      },
+      "position": {
+        "label": "Role",
+        "placeholder": "Role / Organizational Unit",
+        "error": {
+          "required": "Bitte eine gültige Funktion eingeben"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Email Address",
+        "error": {
+          "required": "Bitte eine gültige Email-Adresse eingeben"
+        }
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "Phone number",
+        "error": {
+          "required": "Bitte eine gültige Telefonnummer eingeben"
+        }
+      }
+    },
+    "save": "save",
+    "create": "create"
+  },
+  "organization": {
+    "stateHeader1": "your",
+    "stateHeader2": "Organization"
   }
 }

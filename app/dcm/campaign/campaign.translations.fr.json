@@ -1,78 +1,78 @@
 {
   "campaigns": {
-    "stateHeader1": null,
-    "stateHeader2": null,
     "group": {
-      "active": null,
-      "inactive": null
-    }
+      "active": "Les Campagnes actives",
+      "inactive": "Les Campagnes terminées"
+    },
+    "stateHeader1": "Tes",
+    "stateHeader2": "Campagnes"
   },
   "campaign": {
-    "stateHeader1": null,
-    "stateHeader2": null,
-    "header": null,
+    "header": "La gestion du stress",
     "link": {
-      "new": null,
-      "campaignoffers": null,
-      "notifications": null
+      "new": "Nouvelle campagne",
+      "campaignoffers": "Activités",
+      "notifications": "Les messages"
     },
     "preview": {
-      "header": null,
-      "welcomeLink": null,
-      "welcomeLinkExplain": null,
-      "welcomeLinkTest": null,
-      "welcomeLinkNotSaved": null
+      "header": "L'aperçu",
+      "welcomeLink": "Le lien d'invitation",
+      "welcomeLinkExplain": "En cliquant sur ce lien, tu peux t' inscrire à cette campagne. Envoyer ce lien dans un e-mail à tous les participants potentiels",
+      "welcomeLinkTest": "Teste le lien",
+      "welcomeLinkNotSaved": "Une fois que tu enregistres la campagne, tu vois le lien de parrainage ici."
     },
     "campaignLeads": {
-      "header": null
-    }
+      "header": "Le directeur de campagne"
+    },
+    "stateHeader1": "Ta",
+    "stateHeader2": "Campagne"
   },
   "campaignForm": {
     "avatar": {
-      "label": null,
-      "change": null
+      "label": "L'avatar",
+      "change": "Modifier"
     },
     "title": {
-      "label": null,
-      "placeholder": null,
+      "label": "Le title",
+      "placeholder": "Le title",
       "error": {
-        "required": null
+        "required": "S'il te plaît entres un titre valide"
       }
     },
     "start": {
-      "label": null
+      "label": "Le début"
     },
     "end": {
-      "label": null
+      "label": "Fin"
     },
     "participants": {
-      "label": null,
-      "placeholder": null,
-      "$invalid": null
+      "label": "Le groupe de personnes",
+      "placeholder": "Le groupe de personnes",
+      "$invalid": "S'il te plaît entrer un groupe de personnes valides"
     },
     "location": {
-      "label": null,
-      "placeholder": null,
+      "label": "La localité",
+      "placeholder": "La localité",
       "error": {
-        "required": null
+        "required": "S'il te plaît entrer une Localité valide"
       }
     },
     "city": {
-      "label": null,
-      "placeholder": null
+      "label": "Le lieu",
+      "placeholder": "Le lieu"
     },
     "slogan": {
-      "label": null,
-      "placeholder": null
+      "label": "Le slogan",
+      "placeholder": "Le slogan"
     },
-    "save": null,
-    "create": null
+    "save": "Enregistrer",
+    "create": "Enregistrer"
   },
   "inviteCampaignLeadForm": {
     "email": {
-      "placeholder": null
+      "placeholder": "Une ou plusieurs adresse e-mail ?\t"
     },
-    "inviteSubmit": null,
-    "invitationSent": null
+    "inviteSubmit": "Envoyer",
+    "invitationSent": "Invitation envoyée par e-mail, le nouveau directeur de campagne doit maintenant confirmer"
   }
 }
