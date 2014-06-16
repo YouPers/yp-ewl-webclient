@@ -18,6 +18,11 @@
                                 templateUrl: 'dcm/stats/stats.html',
                                 controller: 'StatsController'
                             }
+                        },
+                        resolve: {
+                            jsIncludes: ["util", function(util) {
+                                return util.loadJSIncludes(['lib/d3/d3.js', 'lib/angular-charts/dist/angular-charts.js'])
+                            }]
                         }
                     });
 
