@@ -1,0 +1,26 @@
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="state-header-1" translate>campaign-list.stateHeader1</div>
+        <div class="state-header-2" translate>campaign-list.stateHeader2</div>
+
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="campaign in campaigns">
+
+                <a ui-sref="welcome({campaignId: campaign.id, preview: true})">
+                    <h3>
+                        {{ campaign.title }}
+                        <small>
+                            {{ campaign.participants }}
+                        </small>
+                    </h3>
+                </a>
+
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
