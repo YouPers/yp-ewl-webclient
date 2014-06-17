@@ -25,11 +25,14 @@
     "restangular": "~1.4.x",
     "venturocket-angular-slider": "~0.3.x",
     "angular-mousewheel": "~1.0.4",
+    "angular-charts": "~0.2.3"
   },
   "devDependencies": {
     "angular-scenario": "~1.2.7"
   },
   "resolutions": {
-    "angular-translate": "~2.1.x"
+    "angular-translate": "~2.1.x",
+    "angular": "1.2.18",
+    "d3": "~3.3.10"
   }
 }

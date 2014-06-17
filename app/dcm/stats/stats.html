@@ -53,24 +53,17 @@
         </div>
 
     </accordion-group>
-    <accordion-group>
+    <accordion-group is-open="isOpen">
         <accordion-heading><div translate>stats.assUpdatesPerDay</div></accordion-heading>
-        <div class="row">
+
+        <!-- WARNING: the chart does not work if rendered while it's not visible, in this case within an accordion -->
+
+        <div class="row" ng-if="isOpen">
+
             <div class="col-xs-12">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th translate>stats.day</th>
-                        <th translate>stats.count</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="day in stats.assUpdatesPerDay">
-                        <td>{{day.date.day + '.' + day.date.month + '.' + day.date.year}}</td>
-                        <td>{{day.updatesPerDay}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                <statistics-chart chart-data="chartStats.assUpdatesPerDay" title=""></statistics-chart>
+
             </div>
 
         </div>

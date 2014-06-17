@@ -28,7 +28,8 @@
             'yp.components.multipleViewCarousel',
             'yp.components.recommendedBySlider',
             'yp.components.scheduledDate',
-            'yp.components.ypInput'
+            'yp.components.ypInput',
+            'yp.components.statisticsChart'
         ])
 
 
