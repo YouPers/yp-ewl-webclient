@@ -33,7 +33,12 @@
 
         .controller('CampaignListController', [ '$scope', 'campaigns',
             function ($scope, campaigns) {
-                $scope.campaigns = campaigns;
+
+                $scope.campaigns = _.filter(campaigns, function(campaign) {
+                    return moment().isAfter(moment(campaign.start)) &&
+                        moment().isBefore(moment(campaign.end))
+                });
+
         }]);
 
 }());
