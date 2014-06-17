@@ -16,12 +16,12 @@
      * "data": [
      *
      *      {
-     *          "x": x-value1
-     *          "y": y-value1
+     *          "x": x-value
+     *          "y": [y-value1, y-value2]
      *      },
      *      {
-     *          "x": x-value2
-     *          "y": y-value2
+     *          "x": x-value
+     *          "y": [y-value1, y-value2]
      *      }
      * ]
      *
