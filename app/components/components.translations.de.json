@@ -72,7 +72,7 @@
         "description": {
             "label": "Beschreibung"
         },
-        "close": "Schliessen",
+        "close": "Abbrechen",
         "submit": "Abschicken"
     },
     "feedbackCategory": {
