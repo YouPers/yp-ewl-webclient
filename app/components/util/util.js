@@ -30,7 +30,7 @@
 
                         var headNode = document.getElementsByTagName('HEAD');
 
-                        if (headNode[0] != null) {
+                        if (headNode[0] !== null) {
                             headNode[0].appendChild(scriptNode);
                         }
 
@@ -40,8 +40,7 @@
                             deferred.resolve(scriptPath);
                         };
 
-                        if (callback != null)
-                        {
+                        if (callback !== null) {
                             scriptNode.onreadystagechange = callback;
                             scriptNode.onload = callback;
                         }

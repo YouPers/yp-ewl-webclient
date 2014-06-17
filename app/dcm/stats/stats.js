@@ -21,7 +21,7 @@
                         },
                         resolve: {
                             jsInclude: ["util", function(util) {
-                                return util.loadJSInclude('lib/d3/d3.js')
+                                return util.loadJSInclude('lib/d3/d3.js');
                             }]
                         }
                     });
@@ -68,7 +68,7 @@
                             $scope.chartStats.assUpdatesPerDay.data.push({
                                 "x": moment(new Date(update.date.year, update.date.month, update.date.day)).format("l"),
                                 "y": [ update.updatesPerDay ]
-                            })
+                            });
                         });
 
                     });
