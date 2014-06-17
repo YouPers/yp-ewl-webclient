@@ -2,23 +2,51 @@
 
     'use strict';
 
-    angular.module('yp.components.statisticsChart', [])
+    angular.module('yp.components.statisticsChart', ['angularCharts'])
+
+    /**
+     * statistics-chart directive: standard directive for displaying a line chart, supports multiple data sets / lines
+     *
+     * chartData:
+     *
+     * "series": [
+     *      "legend1",
+     *      "legend2"
+     * ],
+     * "data": [
+     *
+     *      {
+     *          "x": x-value1
+     *          "y": y-value1
+     *      },
+     *      {
+     *          "x": x-value2
+     *          "y": y-value2
+     *      }
+     * ]
+     *
+     * title: chart title
+     *
+     *
+     */
+
         .directive('statisticsChart', [function () {
             return {
                 restrict: 'EA',
                 scope: {
-                    data: '='
+                    chartData: '=',
+                    title: '='
                 },
                 templateUrl: 'components/directives/statistics-chart-directive/statistics-chart-directive.html',
 
                 link: function (scope, elem, attrs) {
 
-                    if(!attrs.data) {
+                    if(!attrs.chartData) {
                         throw new Error('data attribute is required');
                     }
 
-                    var config = {
-                        title: '',
+                    scope.config = {
+                        title: scope.title,
                         tooltips: true,
                         labels: false,
                         mouseover: function() {},
@@ -27,10 +55,8 @@
                         legend: {
                             display: true,
                             //could be 'left, right'
-                            position: 'left'
-                        },
-                        innerRadius: 0, // applicable on pieCharts, can be a percentage like '50%'
-                        lineLegend: 'lineEnd' // can be also 'traditional'
+                            position: 'right'
+                        }
                     };
 
                 }
