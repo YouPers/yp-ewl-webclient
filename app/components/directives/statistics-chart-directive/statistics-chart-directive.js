@@ -42,7 +42,7 @@
                 link: function (scope, elem, attrs) {
 
                     if(!attrs.chartData) {
-                        throw new Error('data attribute is required');
+                        throw new Error('chartData attribute is required');
                     }
 
                     scope.config = {
