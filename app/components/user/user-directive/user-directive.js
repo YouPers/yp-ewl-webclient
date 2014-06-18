@@ -8,12 +8,13 @@
                 restrict: 'EA',
                 transclude: true,
                 templateUrl: 'components/user/user-directive/user-directive.html',
+                scope: {
+                    user: "="
+                },
 
                 link: function (scope, elem, attrs) {
 
-                    if(attrs.user) {
-                        scope.user = byString(scope, attrs.user);
-                    } else {
+                    if(!attrs.user) {
                         scope.user = scope.principal.getUser();
                     }
                 }
