@@ -24,8 +24,8 @@
                     getCampaign: function(campaignId) {
                         return campaigns.one(campaignId).get({populate: 'organization campaignLeads'});
                     },
-                    getCampaigns: function() {
-                        return campaigns.getList();
+                    getCampaigns: function(options) {
+                        return campaigns.getList(options);
                     },
                     inviteCampaignLead: function (email, campaignId) {
                         return campaigns.one(campaignId).all('/inviteCampaignLeadEmail').post({email: email});
