@@ -36,7 +36,7 @@
 
                 $scope.campaigns = _.filter(campaigns, function(campaign) {
                     return moment().isAfter(moment(campaign.start)) &&
-                        moment().isBefore(moment(campaign.end))
+                        moment().isBefore(moment(campaign.end));
                 });
 
         }]);
