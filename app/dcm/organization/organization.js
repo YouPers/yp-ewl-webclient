@@ -83,9 +83,15 @@
 
                 $scope.localizedValues = function localizedValues(prefix, range) {
 
-                    return _.map(_.range(range), function(val) {
-                        return $filter('translate')(prefix + (val+1));
+                    var values = _.map(_.range(range), function(val) {
+                        var key = prefix + (val+1);
+//                        return key;
+                        return {
+                            key: key,
+                            value: $filter('translate')(key)
+                        };
                     });
+                    return values;
 
                 };
 

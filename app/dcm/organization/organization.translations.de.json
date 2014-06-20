@@ -56,7 +56,7 @@
     },
     "sector": {
       "label": "Branche",
-      "placeholder": "Branche",
+      "placeholder": "Nach Branche suchen",
       "error": {
          "required": "Bitte eine gültige Branche eingeben"
       }
