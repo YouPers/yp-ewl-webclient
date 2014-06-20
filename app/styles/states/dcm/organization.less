@@ -8,8 +8,10 @@ form[name='organizationForm'] label {
   text-align: right;
   padding-top: (@padding-base-vertical + 1);
 }
-form[name='organizationForm'] input {
-  .make-sm-column(9);
+form[name='organizationForm'] {
+  input, select {
+    .make-sm-column(9);
+  }
 }
 
 //form[name='organizationForm'] input[name='address.zipCode'],
