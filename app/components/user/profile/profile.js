@@ -49,6 +49,21 @@
                     ProfileService.putProfile($scope.principal.getUser().profile);
                 };
 
+                $scope.workdays = {};
+                 _.forEach($rootScope.enums.weekday, function(day) {
+                    $scope.workdays[day] = _.contains($scope.profileUserObj.userPreferences.defaultWorkWeek, day);
+                });
+
+                $scope.changedWorkDay = function(weekday) {
+                    if ($scope.workdays[weekday] && !_.contains($scope.profileUserObj.userPreferences.defaultWorkWeek, weekday)) {
+                        $scope.profileUserObj.userPreferences.defaultWorkWeek.push(weekday);
+                    } else {
+                        _.remove($scope.profileUserObj.userPreferences.defaultWorkWeek, function(d) {
+                            return d === weekday;
+                        });
+                    }
+                };
+
                 $scope.saveProfile = function () {
                     ProfileService.putProfile($scope.profileUserObj).then(function (profile) {
                         $rootScope.$emit('clientmsg:success', 'profile.save');

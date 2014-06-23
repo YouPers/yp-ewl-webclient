@@ -182,7 +182,7 @@
                     <div class="input-group">
                          <span class="input-group-addon">
                               <input name="{{'defWeekForScheduling'+weekday}}" type="checkbox"
-                                     ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling[weekday]">&NonBreakingSpace;{{ 'weekday.'+weekday | translate }}
+                                     ng-model="workdays[weekday]" ng-change="changedWorkDay(weekday)">&NonBreakingSpace;{{ 'weekday.'+weekday | translate }}
                          </span>
                     </div>
                 </div>
@@ -194,12 +194,12 @@
                 </div>
                 <div class="col-md-8">
                     <div class="btn-group" data-toggle="buttons-radio">
-                        <input type="radio" value="Monday" ng-model="profileUserObj.userPreferences.firstDayOfWeek"
-                               ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'Monday'">&NonBreakingSpace;{{
-                        'weekday.sunday' | translate }} <br/></input>
-                        <input type="radio" value="Sunday" ng-model="profileUserObj.userPreferences.firstDayOfWeek"
-                               ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'Sunday'">&NonBreakingSpace;{{
-                        'weekday.monday' | translate }}</input>
+                        <input type="radio" value="MO" ng-model="profileUserObj.userPreferences.firstDayOfWeek"
+                               ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'MO'">&NonBreakingSpace;{{
+                        'weekday.SU' | translate }} <br/></input>
+                        <input type="radio" value="SU" ng-model="profileUserObj.userPreferences.firstDayOfWeek"
+                               ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'SU'">&NonBreakingSpace;{{
+                        'weekday.MO' | translate }}</input>
                     </div>
                 </div>
             </div>

@@ -52,15 +52,6 @@
                             return deferred.promise;
                         }
                     },
-                    getPlansToJoin: function (activityId) {
-                        var params = {
-                            'populate': ['owner', 'joiningUsers'],
-                            'activity': activityId,
-                            'filter[status]': 'active',
-                            sort: 'mainEvent.start:-1'
-                        };
-                        return Restangular.all('activityplans/joinOffers').getList(params);
-                    },
                     getPlanForActivity: function (activityId, options) {
                         if (!options) {
                             options = {};
