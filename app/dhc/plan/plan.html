@@ -37,32 +37,32 @@
                 <!-- date -->
                 <div class="list-date">
                     <div class="weekday">
-                        {{ event.begin | date:'EEE'}}
+                        {{ event.start | date:'EEE'}}
                     </div>
                     <div class="dayofmonth">
-                        {{ event.begin | date:'dd'}}
+                        {{ event.start | date:'dd'}}
                     </div>
                     <div class="time" ng-if="event.end">
-                        <div>{{ event.begin | date:'HH:mm'}}&nbsp;-</div>
+                        <div>{{ event.start | date:'HH:mm'}}&nbsp;-</div>
                         <div>{{ event.end | date:'HH:mm'}}</div>
                     </div>
                     <div class="time" ng-if="!event.end">
-                        {{ event.begin | date:'HH:mm'}}
+                        {{ event.start | date:'HH:mm'}}
                     </div>
                 </div>
 
             </div>
 
             <!-- image -->
-            <div class="col-md-1 activity-image" ng-class="{ {{event.plan.source}}: true }">
+            <div class="col-md-1 activity-image" ng-class="{{event.activityPlan.source}}">
                 <span>
-                    <img ng-src="{{'/assets/actpics/' + event.plan.activity.number + '.jpg' }}">
+                    <img ng-src="{{'/assets/actpics/' + event.activity.number + '.jpg' }}">
                 </span>
             </div>
 
             <!-- title -->
             <div class="col-md-3 title">
-                <a href="" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })" ng-bind-html=" event.plan.activity.title"
+                <a href="" ui-sref="schedule.plan({id: '{{ event.activityPlan.id }}', event: '{{event.id}}' })" ng-bind-html=" event.activity.title"
                    analytics-on="click" analytics-event="PlanEditing" analytics-category="InPageNavigation" analytics-label="Activity Title Clicked">
                 </a>
             </div>
@@ -76,7 +76,7 @@
                     <i class="glyphicon glyphicon-remove"></i>
                 </button>
             </div>
-            <div class="col-md-1 status" ng-if="group.name != 'open'" ui-sref="schedule.plan({id: '{{ event.plan.id }}', event: '{{event.id}}' })"
+            <div class="col-md-1 status" ng-if="group.name != 'open'" ui-sref="schedule.plan({id: '{{ event.activityPlan.id }}', event: '{{event.id}}' })"
                  analytics-on="click" analytics-event="PlanEditing" analytics-category="InPageNavigation" analytics-label="Edit Icon Clicked">
                 <i class="glyphicon glyphicon-edit">
 
@@ -87,17 +87,17 @@
             <!-- location -->
             <div class="col-md-2">
                 <span>
-                    {{ event.plan.location }}
+                    {{ event.activityPlan.location }}
                 </span>
             </div>
 
             <!-- joining users -->
             <div class="col-md-2 joining">
                 <div>
-                    <span class="joining-users" ng-if="event.plan.joiningUsers.length > 0">
-                        <span>{{ event.plan.joiningUsers[0].fullname }}</span>
-                        <span class="others" ng-if="event.plan.joiningUsers.length > 0"
-                              translate translate-values="{ OTHERS: '{{ event.plan.joiningUsers.slice(1).length}}' }"
+                    <span class="joining-users" ng-if="event.activityPlan.joiningUsers.length > 0">
+                        <span>{{ event.activityPlan.joiningUsers[0].fullname }}</span>
+                        <span class="others" ng-if="event.activityPlan.joiningUsers.length > 0"
+                              translate translate-values="{ OTHERS: '{{ event.activityPlan.joiningUsers.slice(1).length}}' }"
                               translate-interpolation="messageformat"
                               tooltip-html-unsafe="{{ getJoiningUsers(event) }}"
                                 >
@@ -105,11 +105,11 @@
                         </span>
                     </span>
                 </div>
-                <div ng-if="group.name != 'open' && event.plan.executionType == 'group'">
+                <div ng-if="group.name != 'open' && event.activityPlan.executionType == 'group'">
 
 
                     <form name="inviteEmailForm" class="form-inline" role="form"
-                          ng-submit="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, event.plan)">
+                          ng-submit="inviteEmailForm.$valid && inviteEmailToJoinPlan(inviteEmail, event.activityPlan)">
 
 
                         <div class="input-group"

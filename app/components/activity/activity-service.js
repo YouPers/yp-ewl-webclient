@@ -3,12 +3,11 @@
 
     angular.module('yp.components.activity')
 
-
         .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',
             function ($http, Restangular, $q, UserService, $rootScope) {
                 var activities = Restangular.all('activities');
                 var activityPlans = Restangular.all('activityplans');
-
+                var activityEvents = Restangular.all('activityevents');
                 var cachedRecommendationsPromises = {};
 
                 $rootScope.$on('newAssessmentResultsPosted', function (assResult) {
@@ -46,6 +45,15 @@
                     getActivityPlans: function (options) {
                         if (UserService.principal.isAuthenticated()) {
                             return activityPlans.getList(options);
+                        } else {
+                            var deferred = $q.defer();
+                            deferred.resolve([]);
+                            return deferred.promise;
+                        }
+                    },
+                    getActivityEvents: function (options) {
+                        if (UserService.principal.isAuthenticated()) {
+                            return activityEvents.getList(options);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);
