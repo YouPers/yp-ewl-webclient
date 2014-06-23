@@ -4,7 +4,6 @@
 
     angular.module('yp.components.util.directives', [])
 
-
         .directive('form', [function () {
             return {
                 restrict: 'E',
