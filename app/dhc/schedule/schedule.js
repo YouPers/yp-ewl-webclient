@@ -120,7 +120,7 @@
                 $scope.$watch('plan.mainEvent',_getConflictsDebounced, true);
 
                 $scope.isFutureEvent = function(event) {
-                    return moment().diff(event.begin) < 0;
+                    return moment().diff(event.start) < 0;
                 };
 
                 // setup the automatic saving of Feedback

@@ -269,11 +269,11 @@
                     <div class="event" ng-repeat="event in plan.events">
 
                         <div class="event-date">
-                            {{ event.begin | eventDate }}
+                            {{ event.start | eventDate }}
                         </div>
 
                         <div class="event-time">
-                            <span>{{ event.begin | time }}</span>
+                            <span>{{ event.start | time }}</span>
                             <span translate>schedule.event.startToEndDate</span>
                             <span>{{ event.end | time }}</span>
                         </div>

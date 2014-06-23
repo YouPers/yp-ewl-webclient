@@ -37,7 +37,7 @@
             admin: _userRoles.productadmin | _userRoles.systemadmin  // 00011
         };
 
-    var _emptyDefaultUser = {profile: {userPreferences: {email: {}}}};
+    var _emptyDefaultUser = {profile: {prefs: {email: {}}}};
     var _currentUser = _.clone(_emptyDefaultUser);
     var _authenticated = false;
 

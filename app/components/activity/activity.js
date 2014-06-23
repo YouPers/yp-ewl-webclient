@@ -5,7 +5,7 @@
 
         .run(['Restangular', 'ActivityService', function (Restangular, ActivityService) {
             Restangular.extendCollection('activities', function (activities) {
-                    activities.enrichWithUserData = function (plans, recommendations, campaigns, userPreferences) {
+                    activities.enrichWithUserData = function (plans, recommendations, campaigns, prefs) {
                         _.forEach(activities, function (act) {
 
                             var matchingPlan = _.find(plans, function (plan) {
@@ -14,13 +14,13 @@
 
                             act.plan = matchingPlan;
                             act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                            if (_.any(userPreferences.starredActivities,function(starred) {
+                            if (_.any(prefs.starredActivities,function(starred) {
                                 return starred.activity === act.id;
                             })) {
                                 act.starred = true;
                             }
 
-                            if (_.any(userPreferences.rejectedActivities,function(rejected) {
+                            if (_.any(prefs.rejectedActivities,function(rejected) {
                                 return rejected.activity === act.id;
                             })) {
                                 act.rejected = true;

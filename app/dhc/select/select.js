@@ -69,9 +69,9 @@
 
                     var user = $scope.principal.getUser();
                     // add it to the collection of rejected Activities in the profile
-                    user.profile.userPreferences.rejectedActivities.push({activity: $scope.offers[index].activity.id, timestamp: new Date()});
+                    user.profile.prefs.rejectedActivities.push({activity: $scope.offers[index].activity.id, timestamp: new Date()});
                     // remove it from the starred list
-                    _.remove(user.profile.userPreferences.starredActivities, function (starred) {
+                    _.remove(user.profile.prefs.starredActivities, function (starred) {
                         return starred.activity === $scope.offers[index].activity.id;
                     });
 

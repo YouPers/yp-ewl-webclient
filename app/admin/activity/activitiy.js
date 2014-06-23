@@ -93,7 +93,7 @@
 
                 $scope.hasRecommendations = (recommendations.length > 0);
 
-                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, user.profile.userPreferences);
+                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, user.profile.prefs);
 
                 $scope.activities = allActivities;
                 $scope.filteredActivities = allActivities;
@@ -114,7 +114,7 @@
                         });
                     }
                     ActivityService.getRecommendations(focusQuestion).then(function (newRecs) {
-                        allActivities.enrichWithUserData(activityPlans, newRecs, campaigns, user.profile.userPreferences);
+                        allActivities.enrichWithUserData(activityPlans, newRecs, campaigns, user.profile.prefs);
                         $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
                     });
 
@@ -130,9 +130,9 @@
                     activity.rejected = true;
 
                     // add it to the collection of rejected Activities in the profile
-                    user.profile.userPreferences.rejectedActivities.push({activity: activity.id, timestamp: new Date()});
+                    user.profile.prefs.rejectedActivities.push({activity: activity.id, timestamp: new Date()});
                     // remove it from the starred list
-                    _.remove(user.profile.userPreferences.starredActivities, function (starred) {
+                    _.remove(user.profile.prefs.starredActivities, function (starred) {
                         return starred.activity === activity.id;
                     });
                     // update the filtered list, so it does not show up anymore in the display
@@ -145,11 +145,11 @@
                     event.stopPropagation();
 
                     if (activity.starred) {
-                        _.remove(user.profile.userPreferences.starredActivities, function (starred) {
+                        _.remove(user.profile.prefs.starredActivities, function (starred) {
                             return starred.activity === activity.id;
                         });
                     } else {
-                        user.profile.userPreferences.starredActivities.push({activity: activity.id, timestamp: new Date()});
+                        user.profile.prefs.starredActivities.push({activity: activity.id, timestamp: new Date()});
                     }
                     activity.starred = !activity.starred;
 
@@ -162,7 +162,7 @@
                     if (_.isUndefined($scope.principal.getUser())) {
                         return '';
                     }
-                    return _.size($scope.principal.getUser().profile.userPreferences.starredActivities);
+                    return _.size($scope.principal.getUser().profile.prefs.starredActivities);
                 };
 
                 $scope.query = {
