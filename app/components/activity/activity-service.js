@@ -156,8 +156,8 @@
                             return Restangular.one('activityoffers', offer.id).remove();
                         }
                     },
-                    updateActivityEvent: function (planId, actEvent) {
-                        return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
+                    updateActivityEvent: function (actEvent) {
+                        return actEvent.put();
                     },
                     inviteEmailToJoinPlan: function (email, plan) {
                         return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
@@ -166,8 +166,6 @@
                         return Restangular.all('activityplans/conflicts').post(plan);
                     },
                     getDefaultPlan: function (activity, campaignId) {
-
-
                         var now = moment();
                         var newMainEvent = {
                             "allDay": false

@@ -125,15 +125,18 @@
                     });
                 };
 
-                $scope.updateEvent = function(event, status) {
-                    var planId = event.plan.id;
-                    delete event.plan;
-                    event.status = status;
-                    ActivityService.updateActivityEvent(planId, event).then(function() {
-                        $state.go('schedule.plan', {
-                            id: planId,
-                            event: event.id
+                $scope.updateEvent = function(updatedEvent, status) {
+                    updatedEvent.status = status;
+                    ActivityService.updateActivityEvent(updatedEvent).then(function() {
+
+                        var openEvents = _.find($scope.groups, function(group) {
+                            return group.name === 'open';
                         });
+                        $scope.openEvents--;
+                        _.remove(openEvents.events, function(openEvent) {
+                            return openEvent.id === updatedEvent.id;
+                        });
+                        $rootScope.$emit('clientmsg:success','activityEvent.update');
                     });
                 };
             }
