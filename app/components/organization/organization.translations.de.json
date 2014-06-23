@@ -1,0 +1,53 @@
+{
+  "organization": {
+      "legalForm": {
+          "1": "Aktiengesellschaft/GmbH",
+          "2": "öffentlich-rechtlicher Betrieb/Verwaltung",
+          "3": "Genossenschaft",
+          "4": "Personengesellschaft",
+          "5": "Verein",
+          "6": "Verband",
+          "7": "sonstige"
+      },
+      "sector": {
+          "1": "Landwirtschaft, Forstwirtschaft und Fischerei",
+          "2": "Bergbau und Gewinnung von Steinen und Erden",
+          "3": "Herstellung von Nahrungsmitteln und Tabakerzeugnissen",
+          "4": "Herstellung von Textilien und Bekleidung",
+          "5": "Herstellung von Holzwaren, Papier und Druckerzeugnissen",
+          "6": "Kokerei und Mineralölverarbeitung",
+          "7": "Herstellung von chemischen Erzeugnissen",
+          "8": "Herstellung von pharmazeutischen Erzeugnissen",
+          "9": "Herstellung von Gummi- und Kunststoffwaren",
+          "10": "Herstellung von Metallerzeugnissen",
+          "11": "Herstellung von Datenverarbeitungsgeräten und Uhren",
+          "12": "Herstellung von elektrischen Ausrüstungen",
+          "13": "Maschinenbau",
+          "14": "Fahrzeugbau",
+          "15": "Sonstige Herstellung von Waren, Reparatur und Installation",
+          "16": "Energieversorgung",
+          "17": "Wasserversorgung, Beseitigung von Umweltverschmutzungen",
+          "18": "Baugewerbe/Bau",
+          "19": "Handel; Instandhaltung und Reparatur von Kraftfahrzeugen",
+          "20": "Verkehr und Lagerei",
+          "21": "Gastgewerbe und Beherbergung",
+          "22": "Verlagswesen, audiovisuelle Medien und Rundfunk",
+          "23": "Telekommunikation",
+          "24": "Informationstechnologische und Informationsdienstleistungen",
+          "25": "Finanz- und Versicherungsdienstleistungen",
+          "26": "Grundstücks- und Wohnungswesen",
+          "27": "Erbringung von freiberuflichen und technischen Dienstleistungen",
+          "28": "Wissenschaftliche Forschung und Entwicklung",
+          "29": "Sonstige freiberufliche, wissenschaftliche und technische Tätigkeiten",
+          "30": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+          "31": "Öffentliche Verwaltung",
+          "32": "Erziehung und Unterricht",
+          "33": "Gesundheitswesen",
+          "34": "Heime und Sozialwesen",
+          "35": "Kunst, Unterhaltung und Erholung",
+          "36": "Sonstige Dienstleistungen",
+          "37": "Private Haushalte als Arbeitgeber und Hersteller von Waren",
+          "38": "Exterritoriale Organisationen"
+      }
+  }
+}

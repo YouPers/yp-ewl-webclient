@@ -34,7 +34,8 @@
                 _userRoles.orgadmin |
                 _userRoles.productadmin |
                 _userRoles.systemadmin,
-            admin: _userRoles.productadmin | _userRoles.systemadmin  // 00011
+            admin: _userRoles.productadmin | _userRoles.systemadmin,   // 00011
+            systemadmin: _userRoles.systemadmin
         };
 
     var _emptyDefaultUser = {profile: {prefs: {email: {}}}};
@@ -164,7 +165,7 @@
                             if (_currentUser.id === updatedUser.id) {
                                _authorize(updatedUser);
                             }
-                            return _currentUser;
+                            return updatedUser;
                         });
                     },
                     verifyEmail: function (userid, token) {
@@ -178,6 +179,9 @@
                     },
                     getUser: function (userId) {
                         return users.one(userId).get();
+                    },
+                    getUsers: function (options) {
+                        return users.getList(options);
                     },
                     principal: {
                         getUser: function () {

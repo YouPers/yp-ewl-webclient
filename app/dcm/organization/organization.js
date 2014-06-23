@@ -72,8 +72,8 @@
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/organization/organization');
             }])
-        .controller('OrganizationController', [ '$scope', '$state', 'OrganizationService', 'organizations',
-            function ($scope, $state, OrganizationService, organizations) {
+        .controller('OrganizationController', [ '$scope', '$state', '$filter', 'OrganizationService', 'organizations',
+            function ($scope, $state, $filter, OrganizationService, organizations) {
 
                 if(organizations.length > 1) {
                     $scope.$emit('clientmsg:error', 'organization.notUnique');
@@ -81,6 +81,19 @@
 
                 $scope.organization = organizations.length > 0 ? organizations[0] : {};
 
+                $scope.localizedValues = function localizedValues(prefix, range) {
+
+                    var values = _.map(_.range(range), function(val) {
+                        var key = prefix + (val+1);
+//                        return key;
+                        return {
+                            key: key,
+                            value: $filter('translate')(key)
+                        };
+                    });
+                    return values;
+
+                };
 
                 var onSave = function (organization) {
                     $scope.$emit('clientmsg:success', 'organization.saved');

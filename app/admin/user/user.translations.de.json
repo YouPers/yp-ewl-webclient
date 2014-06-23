@@ -1,0 +1,17 @@
+{
+    "clientmsg": {
+
+    },
+
+    "admin": {
+
+        "user": {
+            "stateHeader1": "benutzer",
+            "stateHeader2": "verwaltung",
+
+            "typeahead": {
+                "placeholder": "Suche"
+            }
+        }
+    }
+}
