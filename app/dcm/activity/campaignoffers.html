@@ -15,11 +15,11 @@
 
             <div class="link-header">
 
-                <button class="btn btn-primary" ui-sref="activities.content">
+                <button class="btn btn-primary" ui-sref="ideas.content">
                     <span translate>campaignoffers.link.publishActivity</span>
                 </button>
 
-                <button class="btn btn-primary" ui-sref="activity.content">
+                <button class="btn btn-primary" ui-sref="idea.content">
                     <span translate>campaignoffers.link.newActivity</span>
                 </button>
 
@@ -32,10 +32,10 @@
 
     <div class="offer row" ng-repeat="offer in offers">
         <div class="col-xs-1 image">
-            <img ng-src="{{'/assets/actpics/' + offer.activity.number + '.jpg' }}">
+            <img ng-src="{{'/assets/actpics/' + offer.idea.number + '.jpg' }}">
         </div>
         <div class="col-xs-3 title">
-            <div ng-bind-html="offer.activity.title"></div>
+            <div ng-bind-html="offer.idea.title"></div>
             <span>{{offer.activityPlan[0].location}}</span>
         </div>
 

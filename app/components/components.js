@@ -20,7 +20,7 @@
 
             // directives
             'yp.components.activityCard',
-            'yp.components.activityEdit',
+            'yp.components.ideaEdit',
             'yp.components.avatarUpload',
             'yp.components.campaignSwitcher',
             'yp.components.datePicker',

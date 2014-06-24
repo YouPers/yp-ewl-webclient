@@ -5,7 +5,7 @@
 
         .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',
             function ($http, Restangular, $q, UserService, $rootScope) {
-                var activities = Restangular.all('activities');
+                var ideas = Restangular.all('ideas');
                 var activityPlans = Restangular.all('activityplans');
                 var activityEvents = Restangular.all('activityevents');
                 var cachedRecommendationsPromises = {};
@@ -15,28 +15,28 @@
                 });
 
                 var actService = {
-                    getActivities: function (params) {
+                    getIdeas: function (params) {
                         if (!params) {
                             params = {};
                         }
 
                         params.limit = 1000;
-                        return activities.getList(params);
+                        return ideas.getList(params);
                     },
-                    getActivity: function (activityId) {
-                        if (activityId) {
-                            return Restangular.one('activities', activityId).get();
+                    getIdea: function (ideaId) {
+                        if (ideaId) {
+                            return Restangular.one('ideas', ideaId).get();
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve(null);
                             return deferred.promise;
                         }
                     },
-                    saveActivity: function (activity) {
-                        if (activity.id) {
-                            return activity.put();
+                    saveIdea: function (idea) {
+                        if (idea.id) {
+                            return idea.put();
                         } else {
-                            return Restangular.restangularizeElement(null, activity, 'activities').post();
+                            return Restangular.restangularizeElement(null, idea, 'ideas').post();
                         }
                     },
                     getActivityPlan: function (activityPlanId) {
@@ -60,16 +60,16 @@
                             return deferred.promise;
                         }
                     },
-                    getPlanForActivity: function (activityId, options) {
+                    getPlanForIdea: function (ideaId, options) {
                         if (!options) {
                             options = {};
                         }
-                        _.merge(options, {'filter[activity]': activityId});
+                        _.merge(options, {'filter[idea]': ideaId});
                         return Restangular.all('activityplans').getList(options).then(function (result) {
                             if (result.length === 0) {
                                 return null;
                             } else if (result.length > 1) {
-                                var reason = 'only one plan expected per activity and user';
+                                var reason = 'only one plan expected per idea and user';
                                 $rootScope.$emit('clientmsg:error', reason);
                                 $q.reject(reason);
                             } else {
@@ -100,7 +100,7 @@
                     },
                     getActivityOffer: function (id) {
                         return Restangular.one('activityoffers', id).get({
-                            'populate': 'activity activityPlan recommendedBy',
+                            'populate': 'idea activityPlan recommendedBy',
                             'populatedeep': 'activityPlan.owner activityPlan.joiningUsers'
                         });
                     },
@@ -165,13 +165,13 @@
                     getSchedulingConflicts: function (plan) {
                         return Restangular.all('activityplans/conflicts').post(plan);
                     },
-                    getDefaultPlan: function (activity, campaignId) {
+                    getDefaultPlan: function (idea, campaignId) {
                         var now = moment();
                         var newMainEvent = {
                             "allDay": false
                         };
-                        var duration = activity.defaultduration ? activity.defaultduration : 60;
-                        if (activity.defaultfrequency === 'week') {
+                        var duration = idea.defaultduration ? idea.defaultduration : 60;
+                        if (idea.defaultfrequency === 'week') {
                             newMainEvent.start = moment(now).startOf('hour').toDate();
                             newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                             newMainEvent.frequency = 'week';
@@ -182,7 +182,7 @@
                                 },
                                 every: 1
                             };
-                        } else if (activity.defaultfrequency === 'day') {
+                        } else if (idea.defaultfrequency === 'day') {
                             newMainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
                             newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
                             newMainEvent.frequency = 'day';
@@ -207,16 +207,16 @@
                         }
 
                         var plan = {
-                            activity: activity,
+                            idea: idea,
                             status: 'active',
                             mainEvent: newMainEvent,
                             source: campaignId ? 'campaign' : 'community',
-                            executionType: activity.defaultexecutiontype,
-                            visibility: campaignId ? 'campaign' : activity.defaultvisibility,
-                            fields: activity.fields,
-                            topics: activity.topics,
-                            title: activity.title,
-                            number: activity.number
+                            executionType: idea.defaultexecutiontype,
+                            visibility: campaignId ? 'campaign' : idea.defaultvisibility,
+                            fields: idea.fields,
+                            topics: idea.topics,
+                            title: idea.title,
+                            number: idea.number
                         };
 
                         if (campaignId) {

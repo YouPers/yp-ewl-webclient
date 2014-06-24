@@ -2,17 +2,17 @@
     'use strict';
 
 
-    angular.module('yp.components.activityEdit', [])
+    angular.module('yp.components.ideaEdit', [])
 
-        .directive('activityEdit', ['$rootScope', '$modal', 'ActivityService', 'CampaignService', 'UserService',
+        .directive('ideaEdit', ['$rootScope', '$modal', 'ActivityService', 'CampaignService', 'UserService',
             function ($rootScope, $modal, ActivityService, CampaignService, UserService) {
                 return {
 
                     restrict: 'EA',
-                    templateUrl: 'components/directives/activity-edit-directive/activity-edit-directive.html',
+                    templateUrl: 'components/directives/idea-edit-directive/idea-edit-directive.html',
 
                     scope: {
-                        activity: "=",
+                        idea: "=",
                         onSave: "&",
                         onCancel: "&"
                     },
@@ -21,10 +21,10 @@
 
                         $scope.enums = $rootScope.enums;
 
-                        var activity = $scope.activity;
+                        var idea = $scope.idea;
                         $scope.actFieldsModel = {};
 
-                        _.forEach(activity.fields, function (fieldId) {
+                        _.forEach(idea.fields, function (fieldId) {
                             $scope.actFieldsModel[fieldId] = true;
                         });
 
@@ -35,16 +35,16 @@
                                     newFields.push(key);
                                 }
                             });
-                            activity.fields = newFields;
+                            idea.fields = newFields;
                         }, true);
 
-                        if (!activity.qualityFactor) {
-                            activity.qualityFactor = 1;
+                        if (!idea.qualityFactor) {
+                            idea.qualityFactor = 1;
                         }
 
                         $scope.validate = function () {
-                            if (!activity.title || activity.title === "" ||
-                                !activity.description || activity.description === "") {
+                            if (!idea.title || idea.title === "" ||
+                                !idea.description || idea.description === "") {
                                 return true;
                             }
                         };
@@ -54,13 +54,13 @@
                         };
 
                         $scope.save = function() {
-                            // reset the currentCampaign to the activity, the user might have changed it
+                            // reset the currentCampaign to the idea, the user might have changed it
                             if (CampaignService.currentCampaign) {
-                                $scope.activity.campaign = CampaignService.currentCampaign;
+                                $scope.idea.campaign = CampaignService.currentCampaign;
                             }
-                            ActivityService.saveActivity($scope.activity).then(function (result) {
+                            ActivityService.saveIdea($scope.idea).then(function (result) {
 
-                                $scope.activity.id = result.id;
+                                $scope.idea.id = result.id;
 
                                 if(attrs.onSave) {
                                     $scope.onSave(result);
@@ -76,11 +76,11 @@
                         };
 
 
-                        $scope.selectActivityImage = function selectActivityImage() {
+                        $scope.selectIdeaImage = function selectIdeaImage() {
 
                             var modalInstance = $modal.open({
-                                templateUrl: 'components/directives/activity-edit-directive/activity-image-modal.html',
-                                controller: 'ActivityImageModalController',
+                                templateUrl: 'components/directives/idea-edit-directive/idea-image-modal.html',
+                                controller: 'IdeaImageModalController',
                                 resolve: {
 
                                 },
@@ -88,7 +88,7 @@
                             });
 
                             return modalInstance.result.then(function (selection) {
-                                $scope.activity.number = selection;
+                                $scope.idea.number = selection;
                             }, function () {
                                 // do nothing on dialog dismiss()
                             });
@@ -99,7 +99,7 @@
             }])
 
 
-        .controller('ActivityImageModalController', ['$scope', '$modalInstance',
+        .controller('IdeaImageModalController', ['$scope', '$modalInstance',
             function ($scope, $modalInstance) {
 
                 var prefix = '/assets/actpics/';

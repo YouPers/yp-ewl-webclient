@@ -11,7 +11,7 @@
                         access: accessLevels.all
                     })
                     .state('dcmschedule.content', {
-                        url: "/dcmschedule/:id?activity&offerType",
+                        url: "/dcmschedule/:id?idea&offerType",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -25,27 +25,27 @@
                                     if (!$stateParams.id) {
                                         return $q.reject('no offer id passed in URL');
                                     } else if ($stateParams.id === 'NEW') {
-                                        if (!$stateParams.activity) {
-                                            return $q.reject('activity id is required as param for NEW offer');
+                                        if (!$stateParams.idea) {
+                                            return $q.reject('idea id is required as param for NEW offer');
                                         } else if (!CampaignService.currentCampaign) {
                                             return $q.reject('no current Campaign, cannot schedule without knowing for which campaign');
                                         } else {
-                                            return ActivityService.getActivity($stateParams.activity)
-                                                .then(function (activity) {
+                                            return ActivityService.getIdea($stateParams.idea)
+                                                .then(function (idea) {
 
                                                     var campaign = CampaignService.currentCampaign;
 
                                                     return {
-                                                        activity: activity,
+                                                        idea: idea,
                                                         targetQueue: campaign.id,
                                                         campaign: campaign,
                                                         recommendedBy: [UserService.principal.getUser()],
-                                                        offerType: [ ($stateParams.offerType || (activity.defaultexecutiontype === 'group' ?
+                                                        offerType: [ ($stateParams.offerType || (idea.defaultexecutiontype === 'group' ?
                                                             'campaignActivityPlan' : 'campaignActivity'))],
                                                         sourceType: 'campaign',
                                                         validFrom: new Date(moment().startOf('day')),
                                                         validTo: new Date(moment(campaign.end).endOf('day')),
-                                                        activityPlan: [ActivityService.getDefaultPlan(activity, campaign.id)],
+                                                        activityPlan: [ActivityService.getDefaultPlan(idea, campaign.id)],
                                                         prio: [500]
                                                     };
 

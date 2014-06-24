@@ -39,18 +39,18 @@
 
         <!-- activities -->
 
-        <div class="row activity list-item" ng-repeat="activity in group.activities | fulltext:query.query">
+        <div class="row activity list-item" ng-repeat="idea in group.ideas | fulltext:query.query">
 
             <!-- image -->
             <div class="col-md-1 image">
                 <div>
-                    <img ng-src="{{'/assets/actpics/' + activity.number + '.jpg'}}">
+                    <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}">
                 </div>
             </div>
 
             <!-- title -->
             <div class="col-md-5 title">
-                <div ng-bind-html="activity.title">
+                <div ng-bind-html="idea.title">
                 </div>
             </div>
 
@@ -58,15 +58,15 @@
             <!-- execution type -->
             <div class="col-md-1 execution-type">
                 <div class="glyphicon"
-                     ng-class="{ 'glyphicon-group': activity.defaultexecutiontype == 'group',
-                                 'glyphicon-user': activity.defaultexecutiontype == 'self'}">
+                     ng-class="{ 'glyphicon-group': idea.defaultexecutiontype == 'group',
+                                 'glyphicon-user': idea.defaultexecutiontype == 'self'}">
                 </div>
             </div>
 
             <!-- duration -->
             <div class="col-md-2 duration">
                 <div>
-                    <span>{{ activity.defaultduration }}</span>
+                    <span>{{ idea.defaultduration }}</span>
                     <span translate>activities.duration.suffix</span>
                 </div>
             </div>
@@ -74,13 +74,13 @@
             <!-- links -->
 
             <div class="col-md-1 links">
-                <div ng-show="activity.defaultexecutiontype === 'group'">
-                    <a ui-sref="dcmschedule.content({id: 'NEW', activity: activity.id, offerType: 'campaignActivityPlan'})" translate>activities.link.schedule</a>
+                <div ng-show="idea.defaultexecutiontype === 'group'">
+                    <a ui-sref="dcmschedule.content({id: 'NEW', idea: idea.id, offerType: 'campaignActivityPlan'})" translate>activities.link.schedule</a>
                 </div>
             </div>
             <div class="col-md-1 links">
                 <div>
-                    <a ui-sref="dcmschedule.content({id: 'NEW', activity: activity.id, offerType: 'campaignActivity'})" translate>activities.link.recommend</a>
+                    <a ui-sref="dcmschedule.content({id: 'NEW', idea: idea.id, offerType: 'campaignActivity'})" translate>activities.link.recommend</a>
                 </div>
             </div>
 

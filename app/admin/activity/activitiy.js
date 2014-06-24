@@ -66,7 +66,7 @@
                         access: accessLevels.admin,
                         resolve: {
                             activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
-                                return ActivityService.getActivity($stateParams.activityId);
+                                return ActivityService.getIdea($stateParams.activityId);
                             }],
                             assessment: ['AssessmentService', function (AssessmentService) {
                                 return AssessmentService.getAssessment('525faf0ac558d40000000005');
