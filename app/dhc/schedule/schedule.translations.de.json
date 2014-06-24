@@ -56,7 +56,8 @@
       "rating": "Bewertung",
       "done": "Gemacht",
       "missed": "Verpasst",
-      "comment": "Feedback"
+      "comment": "Feedback",
+      "future": "Zukünftig"
     },
     "schedule": "Einplanen",
     "nothanks": "Nein, Danke!",
