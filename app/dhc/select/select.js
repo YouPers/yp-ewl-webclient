@@ -69,10 +69,10 @@
 
                     var user = $scope.principal.getUser();
                     // add it to the collection of rejected Activities in the profile
-                    user.profile.prefs.rejectedActivities.push({activity: $scope.offers[index].activity.id, timestamp: new Date()});
+                    user.profile.prefs.rejectedActivities.push({idea: $scope.offers[index].idea.id, timestamp: new Date()});
                     // remove it from the starred list
                     _.remove(user.profile.prefs.starredActivities, function (starred) {
-                        return starred.activity === $scope.offers[index].activity.id;
+                        return starred.idea === $scope.offers[index].idea.id;
                     });
 
                     // save the profile
@@ -81,8 +81,8 @@
 
                 };
 
-                $scope.schedule = function(activity) {
-                    $scope.$state.go('schedule.offer', {id: activity.id});
+                $scope.schedule = function(idea) {
+                    $scope.$state.go('schedule.offer', {id: idea.id});
                 };
 
             }

@@ -4,11 +4,11 @@
 
     angular.module('yp.admin')
 
-        .controller('ActivityAdminCtrl', ['$scope', '$rootScope', 'activity', 'assessment', 'ActivityService', 'Restangular',
-            function ($scope, $rootScope, activity, assessment, ActivityService, Restangular) {
+        .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'assessment', 'ActivityService', 'Restangular',
+            function ($scope, $rootScope, idea, assessment, ActivityService, Restangular) {
 
-                if (!activity) {
-                    activity = Restangular.restangularizeElement(null, {
+                if (!idea) {
+                    idea = Restangular.restangularizeElement(null, {
                         number: 'NEW',
                         source: "youpers",
                         defaultfrequency: "once",
@@ -18,43 +18,43 @@
                         fields: [],
                         recWeights: [],
                         topics: ['workLifeBalance']
-                    }, 'activities');
+                    }, 'ideas');
                 }
-                $scope.activity = activity;
+                $scope.idea = idea;
                 $scope.assessment = assessment;
 
                 $scope.offer = {
-                    activity: activity,
+                    idea: idea,
                     recommendedBy: {}
                 };
 
-                // Weighting to generate recommendation of activity based on answers of this assessment
+                // Weighting to generate recommendation of idea based on answers of this assessment
                 // initialize weights if they do not yet exist
-                if (!activity.recWeights || activity.recWeights.length === 0) {
-                    activity.recWeights = [];
+                if (!idea.recWeights || idea.recWeights.length === 0) {
+                    idea.recWeights = [];
                 }
 
                 // backend does not store emtpy weights, but our UI needs an empty record for each question
                 // so we add one for all question that don't have one
 
                 _.forEach(assessment.questions, function (question) {
-                    if (!_.any(activity.recWeights, function (recWeight) {
+                    if (!_.any(idea.recWeights, function (recWeight) {
                         return recWeight[0] === question.id;
                     })) {
-                        activity.recWeights.push([question.id, 0, 0]);
+                        idea.recWeights.push([question.id, 0, 0]);
                     }
                 });
 
 
-                $scope.recWeights = activity.getRecWeightsByQuestionId();
+                $scope.recWeights = idea.getRecWeightsByQuestionId();
 
                 $scope.onSave = function () {
-                    $scope.$state.go('admin-activity.list', $rootScope.$stateParams);
-                    $rootScope.$emit('clientmsg:success', 'activity.save');
+                    $scope.$state.go('admin-idea.list', $rootScope.$stateParams);
+                    $rootScope.$emit('clientmsg:success', 'idea.save');
                 };
 
                 $scope.onCancel = function () {
-                    $scope.$state.go('admin-activity.list');
+                    $scope.$state.go('admin-idea.list');
                 };
             }]);
 

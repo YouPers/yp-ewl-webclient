@@ -11,7 +11,7 @@
         <div>
 
             <div class="image">
-                <img ng-src="{{'/assets/actpics/' + schedule.activity.number + '.jpg'}}">
+                <img ng-src="{{'/assets/actpics/' + schedule.idea.number + '.jpg'}}">
             </div>
 
             <div class="source">
@@ -19,9 +19,9 @@
             </div>
 
             <div class="content">
-                <div class="title" ng-bind-html="schedule.activity.title">
+                <div class="title" ng-bind-html="schedule.idea.title">
                 </div>
-                <div class="text" ng-bind-html="schedule.activity.description ">
+                <div class="text" ng-bind-html="schedule.idea.description ">
                 </div>
                 <div>
                     <div class="schedule">
@@ -187,7 +187,7 @@
                     <div>
 
                         <scheduled-date start="plan.mainEvent.start"
-                                        end="plan.events[plan.events.length - 1].end"
+                                        end="plan.mainEvent.end"
                                         frequency="plan.mainEvent.frequency">
 
                                         </scheduled-date>
@@ -263,84 +263,86 @@
 
             <div class="col-md-12">
 
-                <multiple-view-carousel class="activity-schedule-event-list" items="plan.events" items-per-view="1"
-                                        item-width-em="18">
 
-                    <div class="event" ng-repeat="event in plan.events">
+                <!--TODO: DISABLED because this will be removed by WL-825, and it was not adjusted to refactorings-->
+                <!--<multiple-view-carousel class="activity-schedule-event-list" items="plan.events" items-per-view="1"-->
+                                        <!--item-width-em="18">-->
 
-                        <div class="event-date">
-                            {{ event.start | eventDate }}
-                        </div>
+                    <!--<div class="event" ng-repeat="event in plan.events">-->
 
-                        <div class="event-time">
-                            <span>{{ event.start | time }}</span>
-                            <span translate>schedule.event.startToEndDate</span>
-                            <span>{{ event.end | time }}</span>
-                        </div>
+                        <!--<div class="event-date">-->
+                            <!--{{ event.start | eventDate }}-->
+                        <!--</div>-->
 
-                        <fieldset ng-disabled="isFutureEvent(event)">
+                        <!--<div class="event-time">-->
+                            <!--<span>{{ event.start | time }}</span>-->
+                            <!--<span translate>schedule.event.startToEndDate</span>-->
+                            <!--<span>{{ event.end | time }}</span>-->
+                        <!--</div>-->
+
+                        <!--<fieldset ng-disabled="isFutureEvent(event)">-->
 
 
-                            <div class="status">
-                                <div class="btn-group btn-group-justified">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default" ng-model="event.status"
-                                                btn-radio="'done'">
-                                            <span class="glyphicon glyphicon-ok"></span>
-                                            <span translate>schedule.event.done</span>
-                                        </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default" ng-model="event.status"
-                                                btn-radio="'missed'">
-                                            <span translate>schedule.event.missed</span>
-                                            <span class="glyphicon glyphicon-remove"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--<div class="status">-->
+                                <!--<div class="btn-group btn-group-justified">-->
+                                    <!--<div class="btn-group">-->
+                                        <!--<button type="button" class="btn btn-default" ng-model="event.status"-->
+                                                <!--btn-radio="'done'">-->
+                                            <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                            <!--<span translate>schedule.event.done</span>-->
+                                        <!--</button>-->
+                                    <!--</div>-->
+                                    <!--<div class="btn-group">-->
+                                        <!--<button type="button" class="btn btn-default" ng-model="event.status"-->
+                                                <!--btn-radio="'missed'">-->
+                                            <!--<span translate>schedule.event.missed</span>-->
+                                            <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                        <!--</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
-                            <div class="rating">
-                                <div>
-                                    <span translate>schedule.event.rating</span>
-                                </div>
+                            <!--<div class="rating">-->
+                                <!--<div>-->
+                                    <!--<span translate>schedule.event.rating</span>-->
+                                <!--</div>-->
 
-                                <div class="feedback">
-                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="1">
-                                        <div class="feedback-icon feedback-icon-1"></div>
-                                    </button>
-                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="2">
-                                        <div class="feedback-icon feedback-icon-2"></div>
-                                    </button>
-                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="3">
-                                        <div class="feedback-icon feedback-icon-3"></div>
-                                    </button>
-                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="4">
-                                        <div class="feedback-icon feedback-icon-4"></div>
-                                    </button>
-                                    <button class="btn btn-default" ng-model="event.feedback" btn-radio="5">
-                                        <div class="feedback-icon feedback-icon-5"></div>
-                                    </button>
+                                <!--<div class="feedback">-->
+                                    <!--<button class="btn btn-default" ng-model="event.feedback" btn-radio="1">-->
+                                        <!--<div class="feedback-icon feedback-icon-1"></div>-->
+                                    <!--</button>-->
+                                    <!--<button class="btn btn-default" ng-model="event.feedback" btn-radio="2">-->
+                                        <!--<div class="feedback-icon feedback-icon-2"></div>-->
+                                    <!--</button>-->
+                                    <!--<button class="btn btn-default" ng-model="event.feedback" btn-radio="3">-->
+                                        <!--<div class="feedback-icon feedback-icon-3"></div>-->
+                                    <!--</button>-->
+                                    <!--<button class="btn btn-default" ng-model="event.feedback" btn-radio="4">-->
+                                        <!--<div class="feedback-icon feedback-icon-4"></div>-->
+                                    <!--</button>-->
+                                    <!--<button class="btn btn-default" ng-model="event.feedback" btn-radio="5">-->
+                                        <!--<div class="feedback-icon feedback-icon-5"></div>-->
+                                    <!--</button>-->
 
-                                </div>
+                                <!--</div>-->
 
-                            </div>
+                            <!--</div>-->
 
-                        </fieldset>
+                        <!--</fieldset>-->
 
-                        <div class="comment">
-                            <div class="input-group">
-                                <textarea ng-model="event.comment" class="form-control" placeholder="{{ 'schedule.event.comment' | translate }}"></textarea>
-                                  <span class="input-group-addon">
-                                    <a><span class="glyphicon glyphicon-ok"></span></a>
-                                  </span>
-                            </div>
+                        <!--<div class="comment">-->
+                            <!--<div class="input-group">-->
+                                <!--<textarea ng-model="event.comment" class="form-control" placeholder="{{ 'schedule.event.comment' | translate }}"></textarea>-->
+                                  <!--<span class="input-group-addon">-->
+                                    <!--<a><span class="glyphicon glyphicon-ok"></span></a>-->
+                                  <!--</span>-->
+                            <!--</div>-->
 
-                        </div>
+                        <!--</div>-->
 
-                    </div>
+                    <!--</div>-->
 
-                </multiple-view-carousel>
+                <!--</multiple-view-carousel>-->
 
 
             </div>

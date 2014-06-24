@@ -40,7 +40,7 @@
                         }
                     },
                     getActivityPlan: function (activityPlanId) {
-                        return Restangular.one('activityplans', activityPlanId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']});
+                        return Restangular.one('activityplans', activityPlanId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'idea']});
                     },
                     getActivityPlans: function (options) {
                         if (UserService.principal.isAuthenticated()) {

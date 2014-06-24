@@ -24,7 +24,7 @@
                                 return ActivityService.getActivityEvents(
                                     {
                                         'filter[status]': 'open',
-                                        'populate': [ 'activity activityPlan'],
+                                        'populate': [ 'idea activityPlan'],
                                         'populatedeep': ['owner joiningUsers']
                                     });
                             }]

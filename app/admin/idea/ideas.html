@@ -33,26 +33,6 @@
         </div>
     </div>
 
-    <!-- Fokus -->
-    <div class="panel sidebar">
-        <div class="panel sidebar section-title" translate>
-            list.setFocus
-        </div>
-
-        <div class="row">
-            <div class="col-md-12" ng-hide="query.subset=='recommendations' && !hasRecommendations">
-                <div class="checkbox filter-option"
-                     ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'"
-                     ng-repeat="stressor in topStressors" ng-click="focusOnStressor(stressor)">
-                    <label>
-                        <input type="checkbox" name ="stressorFocus" ng-model="stressor.focussed">
-                        {{ stressor.title }}
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Aktivitätsbereiche -->
     <div class="panel sidebar">
         <div class="panel sidebar section-title" translate>
@@ -137,52 +117,7 @@
         </div>
     </div>
 
-    <!-- Rating -->
-    <div class="panel sidebar">
-        <div class="panel sidebar section-title" translate>
-            list.rating
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="checkbox filter-option"
-                     ng-class="query.rating.five ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.rating.five">
-                        <rating value="5" max="5"></rating>
-                    </label>
-                </div>
-                <div class="checkbox filter-option"
-                     ng-class="query.rating.four ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.rating.four">
-                        <rating value="4" max="5"></rating>
-                    </label>
-                </div>
-                <div class="checkbox filter-option"
-                     ng-class="query.rating.three ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.rating.three">
-                        <rating value="3" max="5"></rating>
-                    </label>
-                </div>
-                <div class="checkbox filter-option"
-                     ng-class="query.rating.two ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.rating.two">
-                        <rating value="2" max="5"></rating>
-                    </label>
-                </div>
-                <div class="checkbox filter-option"
-                     ng-class="query.rating.one ? 'filter-option-active' : 'filter-option-inactive'">
-                    <label>
-                        <input type="checkbox" value="" ng-model="query.rating.one">
-                        <rating value="1" max="5"></rating>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 
@@ -208,13 +143,13 @@
                     </li>
                     <li class="cockpit-tab" ng-class="{active: query.subset=='starred'}">
                         <a href="" ng-click="setListTab('starred')">
-                        <span class="glyphicon glyphicon-star"></span><span>({{countStarredActivities()}})</span></a></li>
+                        <span class="glyphicon glyphicon-star"></span><span>({{countStarredIdeas()}})</span></a></li>
                 </tabset>
             </div>
             <div class="col-md-5">
-                <div> {{filteredActivities.length}} <translate>list.ofTotal</translate> {{activities.length}}</div>
-                    <span ng-hide="filteredActivities.length < maxSize">
-                        <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
+                <div> {{filteredIdeas.length}} <translate>list.ofTotal</translate> {{ideas.length}}</div>
+                    <span ng-hide="filteredIdeas.length < maxSize">
+                        <pagination total-items="filteredIdeas.length" items-per-page="pageSize" page="currentPage"
                                     max-size="maxSize" class="pagination youpers" boundary-links="false" previous-text="<" next-text=">"/>
                     </span>
             </div>
@@ -223,56 +158,56 @@
         <!-- die eigentliche Liste -->
         <div class="row">
             <div class="col-md-12" ng-hide="query.subset=='recommendations' && !hasRecommendations">
-                <div class="row panel panel-default activityListItem" ng-click="gotoActivityDetail(activity)"
-                     ng-mouseenter="buttonsShown[activity.id]=true"
-                     ng-mouseleave="buttonsShown[activity.id]=false"
-                     ng-repeat="activity in filteredActivities | orderBy:['+plan.status','-score', '-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize track by activity.id">
+                <div class="row panel panel-default activityListItem" ng-click="gotoIdeaDetail(idea)"
+                     ng-mouseenter="buttonsShown[idea.id]=true"
+                     ng-mouseleave="buttonsShown[idea.id]=false"
+                     ng-repeat="idea in filteredIdeas | orderBy:['+plan.status','-score', '-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize track by idea.id">
                     <div class="col-md-1">
-                        {{ activity.number }}
-                        <div ng-if="activity.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld" translate>
+                        {{ idea.number }}
+                        <div ng-if="idea.plan.status=='old'" class="activityListPlannedEdge activityListPlannedEdgeOld" translate>
                             list.done
                         </div>
-                        <div ng-if="activity.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended" translate>
+                        <div ng-if="idea.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended" translate>
                             list.recommended
                         </div>
-                        <div ng-if="activity.plan.status=='active'" class="activityListPlannedEdge" translate>
+                        <div ng-if="idea.plan.status=='active'" class="activityListPlannedEdge" translate>
                             list.planned
                         </div>
-                        <div class="activityListStarred glyphicon" ng-click="toggleStar(activity, $event)"
-                             ng-class="(activity.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
+                        <div class="activityListStarred glyphicon" ng-click="toggleStar(idea, $event)"
+                             ng-class="(idea.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
                     </div>
-                    <div class="col-md-5" ng-bind-html="activity.title">
+                    <div class="col-md-5" ng-bind-html="idea.title">
                     </div>
                     <div class="col-md-1">
-                        <img ng-src="{{'/assets/actpics/' + activity.number + '.jpg'}}" width='60' height="40">
+                        <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}" width='60' height="40">
                     </div>
-                    <div class="col-md-2" ng-if="!buttonsShown[activity.id] ||  activity.plan.status=='active'">
+                    <div class="col-md-2" ng-if="!buttonsShown[idea.id] ||  idea.plan.status=='active'">
                         <div popover="{{ 'activityField.'+ fieldId | translate}}" popover-trigger="mouseenter"
-                             ng-repeat="fieldId in activity.fields" popover-placement="left" popover-append-to-body="true">
+                             ng-repeat="fieldId in idea.fields" popover-placement="left" popover-append-to-body="true">
                             <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListClusterIcon">
                         </div>
                     </div>
-                    <div class="col-md-1" ng-if="!buttonsShown[activity.id] ||  activity.plan.status=='active'" popover="Überprüft und Empfohlen durch YouPers"
+                    <div class="col-md-1" ng-if="!buttonsShown[idea.id] ||  idea.plan.status=='active'" popover="Überprüft und Empfohlen durch YouPers"
                          popover-trigger="mouseenter">
-                        <img ng-src="/assets/img/YouPersAvatar.png" ng-if="activity.source == 'youpers'"
+                        <img ng-src="/assets/img/YouPersAvatar.png" ng-if="idea.source == 'youpers'"
                              class="activityListClusterIcon">
                     </div>
-                    <div class="col-md-3" ng-if="buttonsShown[activity.id] && activity.plan.status!='active'">
+                    <div class="col-md-3" ng-if="buttonsShown[idea.id] && idea.plan.status!='active'">
                         <a class="btn btn-sm btn-primary"
-                           ng-click="gotoActivityDetail(activity)" translate
+                           ng-click="gotoIdeaDetail(idea)" translate
                            analytics-on="click" analytics-event="ContinueProposal" analytics-category="Command" analytics-label="Activity Start Planning">
                             list.planIt</a>
                         <a class="btn btn-sm btn-primary"
-                               ng-click="reject(activity, $event)" translate
+                               ng-click="reject(idea, $event)" translate
                                analytics-on="click" analytics-event="RejectProposal" analytics-category="Command" analytics-label="Activity Rejected">
                             list.notForMe</a>
                     </div>
                     <div class="col-md-2">
-                        {{ 'executiontype.' + activity.defaultexecutiontype | translate}}
+                        {{ 'executiontype.' + idea.defaultexecutiontype | translate}}
                         <div ng-if="principal.isAuthorized('admin')"><a class="btn btn-sm btn-primary cockpit"
-                                                                          ui-sref="admin-activity.edit({activityId: activity.id, page: currentPage, tab: $stateParams.tab})"
+                                                                          ui-sref="admin-idea.edit({ideaId: idea.id, page: currentPage, tab: $stateParams.tab})"
                                                                           ng-click="$event.stopPropagation()">admin</a>
-                            Gewicht: {{activity.score | number: 0}}
+                            Gewicht: {{idea.score | number: 0}}
                         </div>
                     </div>
                 </div>
@@ -293,8 +228,8 @@
             </div>
             <div class="col-md-5">
                 </br>
-                <span ng-hide="filteredActivities.length < maxSize">
-                    <pagination total-items="filteredActivities.length" items-per-page="pageSize" page="currentPage"
+                <span ng-hide="filteredIdeas.length < maxSize">
+                    <pagination total-items="filteredIdeas.length" items-per-page="pageSize" page="currentPage"
                                 max-size="maxSize" class="pagination youpers" boundary-links="false" previous-text="<" next-text=">"/>
                 </span>
                 </br></br>

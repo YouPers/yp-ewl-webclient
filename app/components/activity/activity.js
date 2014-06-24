@@ -4,6 +4,7 @@
     angular.module('yp.components.activity', ['yp.components.user'])
 
         .run(['Restangular', 'ActivityService', function (Restangular, ActivityService) {
+
             Restangular.extendCollection('ideas', function (ideas) {
                     ideas.enrichWithUserData = function (plans, recommendations, campaigns, prefs) {
                         _.forEach(ideas, function (idea) {
@@ -46,41 +47,6 @@
                     return ideas;
                 }
             );
-
-
-            Restangular.extendCollection('activityplans', function (actPlanList) {
-                    if (actPlanList) {  // Issue WL-136: Safari does not like assigning function to undefined when using 'use strict'; at top of file.
-                        actPlanList.getEventsByTime = function () {
-                            var actEventsByTime = [];
-                            // concat array for every plan
-                            for (var i = 0; i < actPlanList.length; i++) {
-                                actEventsByTime = actEventsByTime.concat(actPlanList[i].getEventsByTime());
-                            }
-
-                            return actEventsByTime;
-                        };
-                    }
-
-                    return actPlanList;
-                }
-            );
-
-            Restangular.extendModel('activityplans', function (actPlan) {
-                actPlan.getEventsByTime = function () {
-                    var actEventsByTime = [];
-                    for (var i = 0; i < actPlan.events.length; i++) {
-                        actEventsByTime.push({
-                            event: actPlan.events[i],
-                            plan: actPlan,
-                            idea: actPlan.idea
-                        });
-                    }
-
-                    return actEventsByTime;
-                };
-
-                return actPlan;
-            });
 
             var extendIdeas = function (idea) {
 

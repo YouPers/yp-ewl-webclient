@@ -22,10 +22,10 @@
                         },
                         resolve: {
                             schedule: ['$state', '$stateParams', 'ActivityService', function ($state, $stateParams, ActivityService) {
-                                return ActivityService.getActivityOffers({activity: $stateParams.id}).then(function(offers) {
+                                return ActivityService.getActivityOffers({idea: $stateParams.id}).then(function(offers) {
                                     if (offers.length === 1) {
                                         var offer = offers[0];
-                                        offer.plan = ActivityService.getDefaultPlan(offer.activity);
+                                        offer.plan = ActivityService.getDefaultPlan(offer.idea);
                                         offer.isScheduled = false;
                                         return offer;
                                     } else if (offers.length === 0) {
@@ -34,7 +34,7 @@
 
                                     } else {
                                         // this should never happen
-                                        throw new Error("should never get more than one offer for one activity");
+                                        throw new Error("should never get more than one offer for one idea");
                                     }
                                 }, function(err) {
                                     if(err.data.code === 'ConflictError' && err.data && err.data.data && err.data.data.activityPlanId) {
@@ -54,7 +54,7 @@
                             }
                         },
                         resolve: {
-                            schedule: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                            schedule: ['$rootScope', '$stateParams', 'ActivityService', function ($rootScope, $stateParams, ActivityService) {
                                 return ActivityService.getActivityPlan($stateParams.id).then(function(plan) {
 
 
@@ -63,9 +63,8 @@
                                         isScheduled: true,
                                         isDeletable: plan.deleteStatus.indexOf('deletable') === 0,
                                         isEditable: plan.editStatus === 'editable',
-                                        isJoinedPlan: !!plan.masterPlan,
-
-                                        activity: plan.activity,
+                                        isJoinedPlan: plan.owner.id === $rootScope.principal.getUser().id,
+                                        idea: plan.idea,
                                         plan: plan,
                                         recommendedBy: plan.invitedBy
                                     };
@@ -84,16 +83,16 @@
                 $scope.plan = schedule.plan;
                 $scope.schedule.executionType = schedule.plan.executionType;
 
-
-                if($stateParams.event) {
-                    var offset = _.findIndex($scope.plan.events, function(event) {
-                        return $stateParams.event === event.id;
-                    });
-                    $location.search({ offset: offset });
-                }
+// TODO: WL-825 will remove this, and
+//                if($stateParams.event) {
+//                    var offset = _.findIndex($scope.plan.events, function(event) {
+//                        return $stateParams.event === event.id;
+//                    });
+//                    $location.search({ offset: offset });
+//                }
 
                 // execution type / visibility mapping, to be continued in saveActivityPlan()
-                if($scope.schedule.activity.defaultexecutiontype === 'self') {
+                if($scope.schedule.idea.defaultexecutiontype === 'self') {
                     $scope.schedule.isPrivate = true; // flag for ui
                     $scope.plan.visibility = false; // checkbox model
                 } else {
@@ -119,21 +118,25 @@
 
                 $scope.$watch('plan.mainEvent',_getConflictsDebounced, true);
 
-                $scope.isFutureEvent = function(event) {
-                    return moment().diff(event.start) < 0;
-                };
+// TODO: WL-825, remove this as soon as we are sure that there will be no more feedback no schedule page
 
-                // setup the automatic saving of Feedback
-                _.forEach($scope.plan.events, function(event, index) {
-                    var updateEvent = function updateEvent(newEvent, oldEvent) {
-                        if(newEvent && !_.isEqual(newEvent, oldEvent) && !$scope.isFutureEvent(newEvent)) {
-                            ActivityService.updateActivityEvent($scope.plan.id, newEvent).then(function() {
-                                $rootScope.$emit('clientmsg:success','activityPlan.eventSaved');
-                            });
-                        }
-                    };
-                    $scope.$watch('plan.events[' + index + ']', _.debounce(updateEvent, 1000), true);
-                });
+//                $scope.isFutureEvent = function(event) {
+//                    return moment().diff(event.start) < 0;
+//                };
+//
+//                // setup the automatic saving of Feedback
+//
+//
+//                _.forEach($scope.plan.events, function(event, index) {
+//                    var updateEvent = function updateEvent(newEvent, oldEvent) {
+//                        if(newEvent && !_.isEqual(newEvent, oldEvent) && !$scope.isFutureEvent(newEvent)) {
+//                            ActivityService.updateActivityEvent(newEvent).then(function() {
+//                                $rootScope.$emit('clientmsg:success','activityPlan.eventSaved');
+//                            });
+//                        }
+//                    };
+//                    $scope.$watch('plan.events[' + index + ']', _.debounce(updateEvent, 1000), true);
+//                });
 
                 //TODO: update ui while dirty / not saved
 

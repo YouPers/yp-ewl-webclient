@@ -6,7 +6,7 @@
 
         .constant('enums', {
 
-            // used in activity & cockpit
+            // used in ideas & cockpit
             activityFields: [
                 'awarenessAbility',
                 'timeManagement',
@@ -23,23 +23,23 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('admin-activity', {
+                    .state('admin-idea', {
                         templateUrl: "layout/admin-default.html",
                         access: accessLevels.admin
                     })
 
-                    .state('admin-activity.list', {
-                        url: "/admin/activities?tab&page",
+                    .state('admin-idea.list', {
+                        url: "/admin/ideas?tab&page",
                         access: accessLevels.admin,
                         views: {
                             content: {
-                                templateUrl: "admin/activity/activities.html",
-                                controller: 'ActivitiesCtrl'
+                                templateUrl: "admin/idea/ideas.html",
+                                controller: 'IdeasAdminCtrl'
                             }
                         },
                         resolve: {
-                            allActivities: ['ActivityService', function (ActivityService) {
-                                return ActivityService.getActivities();
+                            allIdeas: ['ActivityService', function (ActivityService) {
+                                return ActivityService.getIdeas();
                             }],
                             activityPlans: ['ActivityService', function (ActivityService) {
                                 return ActivityService.getActivityPlans();
@@ -55,18 +55,18 @@
                             }]
                         }
                     })
-                    .state('admin-activity.edit', {
-                        url: "/admin/activities/:activityId/admin?tab&page",
+                    .state('admin-idea.edit', {
+                        url: "/admin/ideas/:ideaId/admin?tab&page",
                         views: {
                             content: {
-                                templateUrl: "admin/activity/activity-admin.html",
-                                controller: "ActivityAdminCtrl",
+                                templateUrl: "admin/idea/idea-admin.html",
+                                controller: "IdeaAdminCtrl"
                             }
                         },
                         access: accessLevels.admin,
                         resolve: {
-                            activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
-                                return ActivityService.getIdea($stateParams.activityId);
+                            idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
+                                return ActivityService.getIdea($stateParams.ideaId);
                             }],
                             assessment: ['AssessmentService', function (AssessmentService) {
                                 return AssessmentService.getAssessment('525faf0ac558d40000000005');
@@ -74,13 +74,13 @@
                         }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('admin/activity/activity');
+                $translateWtiPartialLoaderProvider.addPart('admin/idea/idea');
 
             }])
 
-        .controller('ActivitiesCtrl', ['$scope', '$filter', 'allActivities', 'activityPlans',
+        .controller('IdeasAdminCtrl', ['$scope', '$filter', 'allIdeas', 'activityPlans',
             'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
-            function ($scope, $filter, allActivities, activityPlans, recommendations, topStressors, assessment, ActivityService, ProfileService) {
+            function ($scope, $filter, allIdeas, activityPlans, recommendations, topStressors, assessment, ActivityService, ProfileService) {
                 var user = $scope.principal.getUser();
 
                 $scope.buttonsShown = {};
@@ -93,10 +93,10 @@
 
                 $scope.hasRecommendations = (recommendations.length > 0);
 
-                allActivities.enrichWithUserData(activityPlans, recommendations, campaigns, user.profile.prefs);
+                allIdeas.enrichWithUserData(activityPlans, recommendations, campaigns, user.profile.prefs);
 
-                $scope.activities = allActivities;
-                $scope.filteredActivities = allActivities;
+                $scope.ideas = allIdeas;
+                $scope.filteredIdeas = allIdeas;
 
                 _.forEach(topStressors, function (stressor) {
                     stressor.title = assessment.questionLookup[stressor.question] &&  assessment.questionLookup[stressor.question].title;
@@ -114,55 +114,55 @@
                         });
                     }
                     ActivityService.getRecommendations(focusQuestion).then(function (newRecs) {
-                        allActivities.enrichWithUserData(activityPlans, newRecs, campaigns, user.profile.prefs);
-                        $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
+                        allIdeas.enrichWithUserData(activityPlans, newRecs, campaigns, user.profile.prefs);
+                        $scope.filteredIdeas = $filter('IdeaListFilter')($scope.ideas, $scope.query);
                     });
 
                 };
 
-                $scope.gotoActivityDetail = function (activity) {
+                $scope.gotoIdeaDetail = function (idea) {
                     // goto detail state, keep active tab around as stateparameter
-                    $scope.$state.go('activityPlan', {activityId: activity.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
+                    $scope.$state.go('activityPlan', {ideaId: idea.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
                 };
 
-                $scope.reject = function (activity, event) {
+                $scope.reject = function (idea, event) {
                     event.stopPropagation();
-                    activity.rejected = true;
+                    idea.rejected = true;
 
-                    // add it to the collection of rejected Activities in the profile
-                    user.profile.prefs.rejectedActivities.push({activity: activity.id, timestamp: new Date()});
+                    // add it to the collection of rejected Ideas in the profile
+                    user.profile.prefs.rejectedIdeas.push({idea: idea.id, timestamp: new Date()});
                     // remove it from the starred list
-                    _.remove(user.profile.prefs.starredActivities, function (starred) {
-                        return starred.activity === activity.id;
+                    _.remove(user.profile.prefs.starredIdeas, function (starred) {
+                        return starred.idea === idea.id;
                     });
                     // update the filtered list, so it does not show up anymore in the display
-                    $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
+                    $scope.filteredIdeas = $filter('IdeaListFilter')($scope.ideas, $scope.query);
                     // save the profile
                     ProfileService.putProfile(user.profile);
                 };
 
-                $scope.toggleStar = function (activity, event) {
+                $scope.toggleStar = function (idea, event) {
                     event.stopPropagation();
 
-                    if (activity.starred) {
-                        _.remove(user.profile.prefs.starredActivities, function (starred) {
-                            return starred.activity === activity.id;
+                    if (idea.starred) {
+                        _.remove(user.profile.prefs.starredIdeas, function (starred) {
+                            return starred.idea === idea.id;
                         });
                     } else {
-                        user.profile.prefs.starredActivities.push({activity: activity.id, timestamp: new Date()});
+                        user.profile.prefs.starredIdeas.push({idea: idea.id, timestamp: new Date()});
                     }
-                    activity.starred = !activity.starred;
+                    idea.starred = !idea.starred;
 
                     if ($scope.principal.isAuthenticated()) {
                         ProfileService.putProfile(user.profile);
                     }
 
                 };
-                $scope.countStarredActivities = function () {
+                $scope.countStarredIdeas = function () {
                     if (_.isUndefined($scope.principal.getUser())) {
                         return '';
                     }
-                    return _.size($scope.principal.getUser().profile.prefs.starredActivities);
+                    return _.size($scope.principal.getUser().profile.prefs.starredIdeas);
                 };
 
                 $scope.query = {
@@ -201,7 +201,7 @@
                 }
 
                 $scope.setListTab = function setListTab(tabId) {
-                    $scope.$state.go('activitylist', {tab: tabId});
+                    $scope.$state.go('admin-idea.list', {tab: tabId});
                 };
 
                 $scope.pageSize = 20;
@@ -210,20 +210,20 @@
                 $scope.currentPage = $scope.$stateParams.page || 1;
 
                 // watch for changes on the query object and reapply filter, use deep watch=true
-                // whenever the query changes, update the filtered List of activities to the new query and
+                // whenever the query changes, update the filtered List of ideas to the new query and
                 // jump back to first page of pagination
                 $scope.$watch('query', function (newQuery) {
                     // $scope.currentPage = 1;
-                    $scope.filteredActivities = $filter('ActivityListFilter')($scope.activities, $scope.query);
+                    $scope.filteredIdeas = $filter('IdeaListFilter')($scope.ideas, $scope.query);
                 }, true);
             }])
 
 
     /**
-     * filters an array of activities by a given query, returns an array with all activities that match the query
+     * filters an array of ideas by a given query, returns an array with all ideas that match the query
      */
-        .filter('ActivityListFilter', [function () {
-            return function (activities, query) {
+        .filter('IdeaListFilter', [function () {
+            return function (ideas, query) {
                 var out = [],
                     allClusters = true,
                     allTopics = true,
@@ -246,7 +246,7 @@
 
                 // if we do not get a query, return the full list
                 if (!query) {
-                    return activities;
+                    return ideas;
                 }
 
                 angular.forEach(query.cluster, function (value, key) {
@@ -283,26 +283,26 @@
                     subSetAll = false;
                 }
 
-                angular.forEach(activities, function (activity, key) {
+                angular.forEach(ideas, function (idea, key) {
 
-                        if ((allClusters || _.any(activity.fields, function (value) {
+                        if ((allClusters || _.any(idea.fields, function (value) {
                             return query.cluster[value];
                         })) &&
-                            (allTopics || _.any(activity.topics, function (value) {
+                            (allTopics || _.any(idea.topics, function (value) {
                                 return query.topic[value];
                             })) &&
-                            (allRatings || query.rating[ratingsMapping[activity.rating]]
+                            (allRatings || query.rating[ratingsMapping[idea.rating]]
                                 ) &&
-                            (allExecutiontypes || query.executiontype[activity.defaultexecutiontype]) &&
-                            (allTimes || !activity.defaultduration || query.time[durationMapping(activity.defaultduration)]
+                            (allExecutiontypes || query.executiontype[idea.defaultexecutiontype]) &&
+                            (allTimes || !idea.defaultduration || query.time[durationMapping(idea.defaultduration)]
                                 ) &&
-                            (subSetAll || (query.subset === 'campaign' && activity.isCampaign) ||
-                                (query.subset === 'recommendations' && activity.isRecommended && out.length < 5) ||
-                                (query.subset === 'starred' && activity.starred)) &&
-                            (!query.fulltext || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
-                            (!activity.rejected)
+                            (subSetAll || (query.subset === 'campaign' && idea.isCampaign) ||
+                                (query.subset === 'recommendations' && idea.isRecommended && out.length < 5) ||
+                                (query.subset === 'starred' && idea.starred)) &&
+                            (!query.fulltext || (idea.title.toUpperCase() + idea.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
+                            (!idea.rejected)
                             ) {
-                            out.push(activity);
+                            out.push(idea);
                         }
                     }
                 );
