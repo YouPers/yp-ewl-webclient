@@ -32,13 +32,13 @@
     "widowed": "widowed"
   },
   "weekday": {
-    "monday": "Monday",
-    "tuesday": "Tuesday",
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday",
-    "saturday": "Saturday",
-    "sunday": "Sunday"
+    "MO": "Monday",
+    "TU": "Tuesday",
+    "WE": "Wednesday",
+    "TH": "Thursday",
+    "FR": "Friday",
+    "SA": "Saturday",
+    "SU": "Sunday"
   },
   "timezone": {
     "00:00": "UTC",

@@ -49,13 +49,13 @@
 
                 var profile = $scope.principal.getUser().profile;
 
-                $scope.userPreferences = profile.userPreferences;
+                $scope.prefs = profile.prefs;
 
 
 
 
-                if (profile.userPreferences.focus && profile.userPreferences.focus.length > 0) {
-                    _.forEach(profile.userPreferences.focus, function(foc) {
+                if (profile.prefs.focus && profile.prefs.focus.length > 0) {
+                    _.forEach(profile.prefs.focus, function(foc) {
                         var selectedStressor = null;
                         selectedStressor = _.find(topStressors, function(stressor) {
                             return stressor.question.id === foc.question;
@@ -69,7 +69,7 @@
                 $scope.stressorSelected = function(stressor) {
                     var id  = stressor.question.id;
 
-                    var focus = profile.userPreferences.focus;
+                    var focus = profile.prefs.focus;
 
                     if (stressor.selected) {
                         if (!_.contains(focus, id)) {

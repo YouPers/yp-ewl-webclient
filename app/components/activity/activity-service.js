@@ -3,12 +3,11 @@
 
     angular.module('yp.components.activity')
 
-
         .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',
             function ($http, Restangular, $q, UserService, $rootScope) {
                 var activities = Restangular.all('activities');
                 var activityPlans = Restangular.all('activityplans');
-
+                var activityEvents = Restangular.all('activityevents');
                 var cachedRecommendationsPromises = {};
 
                 $rootScope.$on('newAssessmentResultsPosted', function (assResult) {
@@ -52,14 +51,14 @@
                             return deferred.promise;
                         }
                     },
-                    getPlansToJoin: function (activityId) {
-                        var params = {
-                            'populate': ['owner', 'joiningUsers'],
-                            'activity': activityId,
-                            'filter[status]': 'active',
-                            sort: 'mainEvent.start:-1'
-                        };
-                        return Restangular.all('activityplans/joinOffers').getList(params);
+                    getActivityEvents: function (options) {
+                        if (UserService.principal.isAuthenticated()) {
+                            return activityEvents.getList(options);
+                        } else {
+                            var deferred = $q.defer();
+                            deferred.resolve([]);
+                            return deferred.promise;
+                        }
                     },
                     getPlanForActivity: function (activityId, options) {
                         if (!options) {
@@ -157,8 +156,8 @@
                             return Restangular.one('activityoffers', offer.id).remove();
                         }
                     },
-                    updateActivityEvent: function (planId, actEvent) {
-                        return Restangular.restangularizeElement(null, actEvent, 'activityplans/' + planId + '/events').put();
+                    updateActivityEvent: function (actEvent) {
+                        return actEvent.put();
                     },
                     inviteEmailToJoinPlan: function (email, plan) {
                         return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
@@ -167,8 +166,6 @@
                         return Restangular.all('activityplans/conflicts').post(plan);
                     },
                     getDefaultPlan: function (activity, campaignId) {
-
-
                         var now = moment();
                         var newMainEvent = {
                             "allDay": false

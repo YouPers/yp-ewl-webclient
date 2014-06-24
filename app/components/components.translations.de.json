@@ -32,13 +32,13 @@
     "widowed": "verwitwet"
   },
   "weekday": {
-    "monday": "Montag",
-    "tuesday": "Dienstag",
-    "wednesday": "Mittwoch",
-    "thursday": "Donnerstag",
-    "friday": "Freitag",
-    "saturday": "Samstag",
-    "sunday": "Sonntag"
+    "MO": "Montag",
+    "TU": "Dienstag",
+    "WE": "Mittwoch",
+    "TH": "Donnerstag",
+    "FR": "Freitag",
+    "SA": "Samstag",
+    "SU": "Sonntag"
   },
   "timezone": {
     "00:00": "UTC",

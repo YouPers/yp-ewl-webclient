@@ -20,11 +20,12 @@
                             }
                         },
                         resolve: {
-                            plans: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
-                                return ActivityService.getActivityPlans(
+                            events: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                                return ActivityService.getActivityEvents(
                                     {
-                                        'filter[status]': 'active',
-                                        'populate': ['owner', 'invitedBy', 'joiningUsers', 'activity']
+                                        'filter[status]': 'open',
+                                        'populate': [ 'activity activityPlan'],
+                                        'populatedeep': ['owner joiningUsers']
                                     });
                             }]
                         }
@@ -33,10 +34,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/plan/plan');
             }])
 
-        .controller('PlanController', [ '$scope', '$rootScope', '$state', '$timeout', 'plans', 'ActivityService',
-            function ($scope, $rootScope, $state, $timeout, plans, ActivityService) {
-
-                var events = [];
+        .controller('PlanController', [ '$scope', '$rootScope', '$state', '$timeout', 'events', 'ActivityService',
+            function ($scope, $rootScope, $state, $timeout, events, ActivityService) {
 
                 var groups = [
 //                    'past',
@@ -47,16 +46,9 @@
                     'month'
                 ];
 
-                _.forEach(plans, function(plan) {
-                    _.forEach(plan.events, function(event) {
-                        event.plan = plan;
-                        events.push(event);
-                    });
-                });
-
                 var groupedEvents = _.groupBy(events, function(event) {
 
-                    var date = event.begin;
+                    var date = event.start;
 
                     // open events that have past
                     if(event.status === 'open' && moment().diff(date) > 0) {
@@ -105,7 +97,7 @@
                     if(groupedEvents[group]) {
 
                         var events = _.sortBy(groupedEvents[group], function(event) {
-                            return event.begin;
+                            return event.start;
                         });
 
                         if(group === 'open') {
@@ -133,15 +125,18 @@
                     });
                 };
 
-                $scope.updateEvent = function(event, status) {
-                    var planId = event.plan.id;
-                    delete event.plan;
-                    event.status = status;
-                    ActivityService.updateActivityEvent(planId, event).then(function() {
-                        $state.go('schedule.plan', {
-                            id: planId,
-                            event: event.id
+                $scope.updateEvent = function(updatedEvent, status) {
+                    updatedEvent.status = status;
+                    ActivityService.updateActivityEvent(updatedEvent).then(function() {
+
+                        var openEvents = _.find($scope.groups, function(group) {
+                            return group.name === 'open';
                         });
+                        $scope.openEvents--;
+                        _.remove(openEvents.events, function(openEvent) {
+                            return openEvent.id === updatedEvent.id;
+                        });
+                        $rootScope.$emit('clientmsg:success','activityEvent.update');
                     });
                 };
             }

@@ -41,12 +41,27 @@
 
                 $scope.reactivateActivity = function (recAct) {
                     // remove it from the clone we use to populate the form, so it immediately shows in the UI
-                    _.remove($scope.profileUserObj.userPreferences.rejectedActivities, recAct);
+                    _.remove($scope.profileUserObj.prefs.rejectedActivities, recAct);
 
                     // remove it from the real profile and immediatly save it, because it is not intuitiv to
                     // wait for the save button to be clicked in this case
-                    _.remove($scope.principal.getUser().profile.userPreferences.rejectedActivities, recAct);
+                    _.remove($scope.principal.getUser().profile.prefs.rejectedActivities, recAct);
                     ProfileService.putProfile($scope.principal.getUser().profile);
+                };
+
+                $scope.workdays = {};
+                 _.forEach($rootScope.enums.weekday, function(day) {
+                    $scope.workdays[day] = _.contains($scope.profileUserObj.prefs.defaultWorkWeek, day);
+                });
+
+                $scope.changedWorkDay = function(weekday) {
+                    if ($scope.workdays[weekday] && !_.contains($scope.profileUserObj.prefs.defaultWorkWeek, weekday)) {
+                        $scope.profileUserObj.prefs.defaultWorkWeek.push(weekday);
+                    } else {
+                        _.remove($scope.profileUserObj.prefs.defaultWorkWeek, function(d) {
+                            return d === weekday;
+                        });
+                    }
                 };
 
                 $scope.saveProfile = function () {

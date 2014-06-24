@@ -182,7 +182,7 @@
                     <div class="input-group">
                          <span class="input-group-addon">
                               <input name="{{'defWeekForScheduling'+weekday}}" type="checkbox"
-                                     ng-model="profileUserObj.userPreferences.defaultUserWeekForScheduling[weekday]">&NonBreakingSpace;{{ 'weekday.'+weekday | translate }}
+                                     ng-model="workdays[weekday]" ng-change="changedWorkDay(weekday)">&NonBreakingSpace;{{ 'weekday.'+weekday | translate }}
                          </span>
                     </div>
                 </div>
@@ -194,12 +194,12 @@
                 </div>
                 <div class="col-md-8">
                     <div class="btn-group" data-toggle="buttons-radio">
-                        <input type="radio" value="Monday" ng-model="profileUserObj.userPreferences.firstDayOfWeek"
-                               ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'Monday'">&NonBreakingSpace;{{
-                        'weekday.sunday' | translate }} <br/></input>
-                        <input type="radio" value="Sunday" ng-model="profileUserObj.userPreferences.firstDayOfWeek"
-                               ng-click="profileUserObj.userPreferences.firstDayOfWeek = 'Sunday'">&NonBreakingSpace;{{
-                        'weekday.monday' | translate }}</input>
+                        <input type="radio" value="MO" ng-model="profileUserObj.prefs.firstDayOfWeek"
+                               ng-click="profileUserObj.prefs.firstDayOfWeek = 'MO'">&NonBreakingSpace;{{
+                        'weekday.SU' | translate }} <br/></input>
+                        <input type="radio" value="SU" ng-model="profileUserObj.prefs.firstDayOfWeek"
+                               ng-click="profileUserObj.prefs.firstDayOfWeek = 'SU'">&NonBreakingSpace;{{
+                        'weekday.MO' | translate }}</input>
                     </div>
                 </div>
             </div>
@@ -213,7 +213,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <select ng-model="profileUserObj.userPreferences.timezone" ng-options="'timezone.'+value | translate for value in enums.timezone">
+                    <select ng-model="profileUserObj.prefs.timezone" ng-options="'timezone.'+value | translate for value in enums.timezone">
                     </select>
                 </div>
 
@@ -239,11 +239,11 @@
         <div class="form-group">
             <label translate>profileForm.emailNotificationsSettings</label>
             <div class="row">
-                <div class="col-md-6" ng-repeat="(emailsetting, value) in profileUserObj.userPreferences.email">
+                <div class="col-md-6" ng-repeat="(emailsetting, value) in profileUserObj.prefs.email">
                     <div class="input-group">
                          <span class="input-group-addon">
                               <input name="{{'email.'+emailsetting}}" type="checkbox"
-                                     ng-model="profileUserObj.userPreferences.email[emailsetting]">&NonBreakingSpace;{{ 'profileForm.email.'+emailsetting | translate }}
+                                     ng-model="profileUserObj.prefs.email[emailsetting]">&NonBreakingSpace;{{ 'profileForm.email.'+emailsetting | translate }}
                          </span>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
             <label translate>profileForm.calendarNotificationSettings</label>
             <div class="row">
                 <div class="col-md-6">
-                    <select ng-model="profileUserObj.userPreferences.calendarNotification" ng-options="'calendarNotification.'+ setting | translate for setting in enums.calendarNotifications">
+                    <select ng-model="profileUserObj.prefs.calendarNotification" ng-options="'calendarNotification.'+ setting | translate for setting in enums.calendarNotifications">
                     </select>
                 </div>
             </div>
@@ -260,7 +260,7 @@
 
 </accordion-group>
 <accordion-group heading="{{ 'profileForm.rejectedActivities.header' | translate }}">
-    <div class="col-md-4" ng-repeat="recAct in profileUserObj.userPreferences.rejectedActivities">
+    <div class="col-md-4" ng-repeat="recAct in profileUserObj.prefs.rejectedActivities">
         <div class="row">
             <div class="col-md-8">  {{activities.byId(recAct.activity).title}}</div>
             <div class="col-md-4"> <a class="btn btn-sm btn-primary" ng-click="reactivateActivity(recAct)">wieder aktivieren</a></div>

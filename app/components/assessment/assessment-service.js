@@ -129,7 +129,7 @@
                             } else {
 
                                 // allways include user stressors from profile
-                                var focus = UserService.principal.getUser().profile.userPreferences.focus;
+                                var focus = UserService.principal.getUser().profile.prefs.focus;
                                 var threshold = 40;
 
                                 var answers = _.filter(result.answers, function(answer) {

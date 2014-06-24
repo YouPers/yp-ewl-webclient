@@ -63,15 +63,6 @@
     "delete": "Supprimer",
     "nothanks": "Non, merci!"
   },
-  "weekday": {
-    "monday": "Lundi",
-    "tuesday": "Mardi",
-    "wednesday": "Mercredi",
-    "thursday": "Jeudi",
-    "friday": "Vendredi",
-    "saturday": "Samedi",
-    "sunday": "Dimanche"
-  },
   "activityPlanEditable": {
     "editable": "Modifier l'activité planifié",
     "notEditableJoinedPlan": "Note: Cette activité prévue ne peut pas être modifié, car les autres utilisateurs à y assister.",

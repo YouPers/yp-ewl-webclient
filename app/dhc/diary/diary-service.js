@@ -37,15 +37,15 @@
                             if (result.entry.feedback || result.entry.text) {
                                 return diaryService.saveEntry(result.entry).then(function(postedEntry) {
                                         var profile = UserService.principal.getUser().profile;
-                                        profile.userPreferences.lastDiaryEntry = postedEntry.created;
+                                        profile.prefs.lastDiaryEntry = postedEntry.created;
                                         ProfileService.putProfile(profile);
                                         return postedEntry;
                                     }
                                 );
                             } else if (result.doNotAskAgainForDiaryEntry) {
                                 var profile = UserService.principal.getUser().profile;
-                                profile.userPreferences.lastDiaryEntry = moment();
-                                profile.userPreferences.doNotAskAgainForDiaryEntry = true;
+                                profile.prefs.lastDiaryEntry = moment();
+                                profile.prefs.doNotAskAgainForDiaryEntry = true;
                                 ProfileService.putProfile(profile);
                                 return null;
                             }
@@ -68,12 +68,12 @@
                 var today = moment().hour(0).minute(0).second(0).millisecond(0);
                 var age = user.created ? Math.abs(today.diff(user.created, 'days', true))
                     : 0;
-                var doNotAskAgain = profile.userPreferences.doNotAskAgainForDiaryEntry;
+                var doNotAskAgain = profile.prefs.doNotAskAgainForDiaryEntry;
 
-                var noDiaryEntryToday = ((!profile.userPreferences.lastDiaryEntry) || moment(profile.userPreferences.lastDiaryEntry).startOf('day').diff(moment(), 'days') < -1);
+                var noDiaryEntryToday = ((!profile.prefs.lastDiaryEntry) || moment(profile.prefs.lastDiaryEntry).startOf('day').diff(moment(), 'days') < -1);
 
                 if (age > 1 && !doNotAskAgain && noDiaryEntryToday) {
-                    DiaryService.showDiaryModal(profile.userPreferences.personalGoal, 'auto');
+                    DiaryService.showDiaryModal(profile.prefs.personalGoal, 'auto');
                 } else {
                     console.log("not showing Diary Modal (reason: userAge: " + (age<1)  + "; doNotAskAgain:  " + doNotAskAgain + "; diaryEntryToday: " + !noDiaryEntryToday +")" );
                 }

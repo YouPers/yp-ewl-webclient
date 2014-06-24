@@ -103,7 +103,7 @@
 
 
                 $scope.showModal = function () {
-                    DiaryService.showDiaryModal($scope.principal.getUser().profile.userPreferences.personalGoal, 'manual').then(function (newEntry) {
+                    DiaryService.showDiaryModal($scope.principal.getUser().profile.prefs.personalGoal, 'manual').then(function (newEntry) {
                         if (newEntry) {
                             diaryEntries.push(newEntry);
                             $scope.groups = _getEntryGroups(diaryEntries);
@@ -121,7 +121,7 @@
                 $scope.mode = mode;
 
                 var profile = $scope.principal.getUser().profile;
-                var doNotAskAgainForDiaryEntry = profile.userPreferences.doNotAskAgainForDiaryEntry;
+                var doNotAskAgainForDiaryEntry = profile.prefs.doNotAskAgainForDiaryEntry;
 
                 $scope.result = {
                     entry: {

@@ -38,17 +38,7 @@
                 'de',
                 'en',
                 'fr',
-                'it'],
-
-            weekday: [
-                'monday',
-                'tuesday',
-                'wednesday',
-                'thursday',
-                'friday',
-                'saturday',
-                'sunday'
-            ]
+                'it']
         })
 
 
