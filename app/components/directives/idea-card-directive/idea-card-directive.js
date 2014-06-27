@@ -2,8 +2,8 @@
 
     'use strict';
 
-    angular.module('yp.components.activityCard', [])
-        .directive('activityCard', ['$rootScope', '$sce', function ($rootScope, $sce) {
+    angular.module('yp.components.ideaCard', [])
+        .directive('ideaCard', ['$rootScope', '$sce', function ($rootScope, $sce) {
             return {
                 restrict: 'EA',
                 scope: {
@@ -12,7 +12,7 @@
                     schedule: '&',
                     index: '=index'
                 },
-                templateUrl: 'components/directives/activity-card-directive/activity-card-directive.html',
+                templateUrl: 'components/directives/idea-card-directive/idea-card-directive.html',
 
                 link: function (scope, elem, attrs) {
 

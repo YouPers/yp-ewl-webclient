@@ -19,7 +19,7 @@
             'yp.components.i18n',
 
             // directives
-            'yp.components.activityCard',
+            'yp.components.ideaCard',
             'yp.components.ideaEdit',
             'yp.components.avatarUpload',
             'yp.components.campaignSwitcher',
