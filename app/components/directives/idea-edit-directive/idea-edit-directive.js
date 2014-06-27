@@ -84,7 +84,7 @@
                                 resolve: {
 
                                 },
-                                windowClass: 'activity-image-modal'
+                                windowClass: 'idea-image-modal'
                             });
 
                             return modalInstance.result.then(function (selection) {
