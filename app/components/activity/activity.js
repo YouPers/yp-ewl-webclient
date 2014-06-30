@@ -4,101 +4,67 @@
     angular.module('yp.components.activity', ['yp.components.user'])
 
         .run(['Restangular', 'ActivityService', function (Restangular, ActivityService) {
-            Restangular.extendCollection('activities', function (activities) {
-                    activities.enrichWithUserData = function (plans, recommendations, campaigns, prefs) {
-                        _.forEach(activities, function (act) {
+
+            Restangular.extendCollection('ideas', function (ideas) {
+                    ideas.enrichWithUserData = function (plans, recommendations, campaigns, prefs) {
+                        _.forEach(ideas, function (idea) {
 
                             var matchingPlan = _.find(plans, function (plan) {
-                                return (act.id === plan.activity);
+                                return (idea.id === plan.idea);
                             });
 
-                            act.plan = matchingPlan;
-                            act.isCampaign = (campaigns.indexOf(act.campaign) !== -1);
-                            if (_.any(prefs.starredActivities,function(starred) {
-                                return starred.activity === act.id;
+                            idea.plan = matchingPlan;
+                            idea.isCampaign = (campaigns.indexOf(idea.campaign) !== -1);
+                            if (_.any(prefs.starredIdeas,function(starred) {
+                                return starred.idea === idea.id;
                             })) {
-                                act.starred = true;
+                                idea.starred = true;
                             }
 
-                            if (_.any(prefs.rejectedActivities,function(rejected) {
-                                return rejected.activity === act.id;
+                            if (_.any(prefs.rejectedIdeas,function(rejected) {
+                                return rejected.idea === idea.id;
                             })) {
-                                act.rejected = true;
+                                idea.rejected = true;
                             }
 
-                            var rec = _.find(recommendations, {'activity': act.id});
+                            var rec = _.find(recommendations, {'idea': idea.id});
                             if (rec) {
-                                act.isRecommended = true;
-                                act.score = rec.score;
+                                idea.isRecommended = true;
+                                idea.score = rec.score;
                             } else {
-                                delete act.isRecommended;
-                                delete act.score;
+                                delete idea.isRecommended;
+                                delete idea.score;
                             }
                         });
                     };
 
-                    activities.byId = function(id) {
-                        return _.find(activities, function(act) {
+                    ideas.byId = function(id) {
+                        return _.find(ideas, function(act) {
                             return act.id === id;
                         });
                     };
 
-                    return activities;
+                    return ideas;
                 }
             );
 
+            var extendIdeas = function (idea) {
 
-            Restangular.extendCollection('activityplans', function (actPlanList) {
-                    if (actPlanList) {  // Issue WL-136: Safari does not like assigning function to undefined when using 'use strict'; at top of file.
-                        actPlanList.getEventsByTime = function () {
-                            var actEventsByTime = [];
-                            // concat array for every plan
-                            for (var i = 0; i < actPlanList.length; i++) {
-                                actEventsByTime = actEventsByTime.concat(actPlanList[i].getEventsByTime());
-                            }
-
-                            return actEventsByTime;
-                        };
-                    }
-
-                    return actPlanList;
-                }
-            );
-
-            Restangular.extendModel('activityplans', function (actPlan) {
-                actPlan.getEventsByTime = function () {
-                    var actEventsByTime = [];
-                    for (var i = 0; i < actPlan.events.length; i++) {
-                        actEventsByTime.push({
-                            event: actPlan.events[i],
-                            plan: actPlan,
-                            activity: actPlan.activity
-                        });
-                    }
-
-                    return actEventsByTime;
+                idea.getDefaultPlan = function () {
+                    return ActivityService.getDefaultPlan(idea);
                 };
 
-                return actPlan;
-            });
-
-            var extendActivities = function (activity) {
-
-                activity.getDefaultPlan = function () {
-                    return ActivityService.getDefaultPlan(activity);
-                };
-
-                activity.getRecWeightsByQuestionId = function () {
+                idea.getRecWeightsByQuestionId = function () {
                     var byId = {};
-                    _.forEach(activity.recWeights, function (obj) {
+                    _.forEach(idea.recWeights, function (obj) {
                         byId[obj[0]] = obj;
                     });
                     return byId;
                 };
 
-                return activity;
+                return idea;
             };
-            Restangular.extendModel('activities', extendActivities);
+            Restangular.extendModel('ideas', extendIdeas);
 
         }]);
 

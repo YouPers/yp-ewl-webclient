@@ -19,8 +19,8 @@
             'yp.components.i18n',
 
             // directives
-            'yp.components.activityCard',
-            'yp.components.activityEdit',
+            'yp.components.ideaCard',
+            'yp.components.ideaEdit',
             'yp.components.avatarUpload',
             'yp.components.campaignSwitcher',
             'yp.components.datePicker',

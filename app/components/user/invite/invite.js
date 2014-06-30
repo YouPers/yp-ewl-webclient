@@ -11,7 +11,7 @@
                         access: accessLevels.all
                     })
                     .state('invite.content', {
-                        url: "/invite/:invitingUserId/activity/:activityId",
+                        url: "/invite/:invitingUserId/activity/:ideaId",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -20,8 +20,8 @@
                             }
                         },
                         resolve: {
-                            activity: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
-                                return ActivityService.getActivity($stateParams.activityId);
+                            idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
+                                return ActivityService.getIdea($stateParams.ideaId);
                             }],
                             invitingUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
                                 return UserService.getUser($stateParams.invitingUserId);
@@ -32,12 +32,12 @@
                 $translateWtiPartialLoaderProvider.addPart('components/user/invite/invite');
             }])
 
-        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'activity', 'invitingUser',
-            function ($scope, $rootScope, $state, $stateParams, UserService, activity, invitingUser) {
+        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'idea', 'invitingUser',
+            function ($scope, $rootScope, $state, $stateParams, UserService, idea, invitingUser) {
 
 
                 $scope.onSignIn = function() {
-                    $scope.$state.go('schedule.offer' , { id: activity.id });
+                    $scope.$state.go('schedule.offer' , { id: idea.id });
                 };
 
                 // if the user is authenticated we immediatly go to the corresponding activity so he can join
@@ -46,7 +46,7 @@
                 }
 
                 $scope.offer = {
-                    activity: activity,
+                    idea: idea,
                     recommendedBy: [invitingUser]
                 };
 

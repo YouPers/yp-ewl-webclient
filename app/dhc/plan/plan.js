@@ -24,8 +24,8 @@
                                 return ActivityService.getActivityEvents(
                                     {
                                         'filter[status]': 'open',
-                                        'populate': [ 'activity activityPlan'],
-                                        'populatedeep': ['owner joiningUsers']
+                                        'populate': [ 'idea activityPlan'],
+                                        'populatedeep': ['activityPlan.owner activityPlan.joiningUsers']
                                     });
                             }]
                         }
@@ -48,10 +48,9 @@
 
                 var groupedEvents = _.groupBy(events, function(event) {
 
-                    var date = event.start;
 
-                    // open events that have past
-                    if(event.status === 'open' && moment().diff(date) > 0) {
+                    // open events that have passed are put into the group 'open'
+                    if(event.status === 'open' && moment().diff(event.end) > 0) {
                         return 'open';
                     }
 
@@ -64,22 +63,22 @@
                     var nextYear = moment(today).month(0).date(1).add('years', 1);
 
 
-                    var eventDate = moment(date);
+                    var eventEndDate = moment(event.end);
 
                     // TODO: filter out events by db query that are not open and in the past
 
-                    if(eventDate.diff(tomorrow) < 0) {
+                    if(eventEndDate.diff(tomorrow) < 0) {
                         return "past";
-                    } else if(eventDate.diff(tomorrow) < 0) {
+                    } else if(eventEndDate.diff(tomorrow) < 0) {
                         return 'today';
-                    } else if(eventDate.diff(dayAfterTomorrow) < 0) {
+                    } else if(eventEndDate.diff(dayAfterTomorrow) < 0) {
                         return 'tomorrow';
-                    } else if(eventDate.diff(nextWeek) < 0) {
+                    } else if(eventEndDate.diff(nextWeek) < 0) {
                         return 'week';
-                    } else if(eventDate.diff(nextMonth) < 0) {
+                    } else if(eventEndDate.diff(nextMonth) < 0) {
                         return 'month';
-                    } else if(eventDate.diff(nextYear) < 0) {
-                        var month = eventDate.month();
+                    } else if(eventEndDate.diff(nextYear) < 0) {
+                        var month = eventEndDate.month();
                         if(!_.contains(groups, month)) {
                             groups.push(month);
                         }
@@ -101,8 +100,7 @@
                         });
 
                         if(group === 'open') {
-                            $scope.openEvents = events.length;
-                            events = _.first(events, 2);
+                            $scope.groups.openEvents = events.length;
                         }
 
                         $scope.groups.push({
@@ -113,7 +111,7 @@
                 });
 
                 $scope.getJoiningUsers = function (event) {
-                    return _.pluck(event.plan.joiningUsers.slice(1), 'fullname').join('<br/>');
+                    return _.pluck(event.activityPlan.joiningUsers.slice(1), 'fullname').join('<br/>');
                 };
 
                 $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
@@ -129,13 +127,14 @@
                     updatedEvent.status = status;
                     ActivityService.updateActivityEvent(updatedEvent).then(function() {
 
-                        var openEvents = _.find($scope.groups, function(group) {
+                        var openEventsGroup = _.find($scope.groups, function(group) {
                             return group.name === 'open';
                         });
-                        $scope.openEvents--;
-                        _.remove(openEvents.events, function(openEvent) {
+
+                        _.remove(openEventsGroup.events, function(openEvent) {
                             return openEvent.id === updatedEvent.id;
                         });
+                        $scope.groups.openEvents--;
                         $rootScope.$emit('clientmsg:success','activityEvent.update');
                     });
                 };
