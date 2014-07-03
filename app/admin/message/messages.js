@@ -70,6 +70,10 @@
                             type: 'campaign',
                             targetId: $scope.message.campaign
                         });
+                    } else { // system wide message
+                        $scope.message.targetSpaces.push({
+                            type: 'system'
+                        });
                     }
 
                     MessageService.postMessage($scope.message).then(function(response) {
