@@ -21,8 +21,8 @@
                 }
 
                 function completeResultWithZeroAnswers(assessment, assResult) {
+                    assResult.missingAnswers = assessment.questions.length - assResult.answers.length;
                     var emtpyResult = assessment.getNewEmptyAssResult();
-
                     _.forEach(emtpyResult.answers, function (emptyAnswer) {
                         var answerFromBackend = _.find(assResult.answers, function (res) {
                             return emptyAnswer.question === res.question;
@@ -147,7 +147,7 @@
                         }
 
                         return assService.getNewestAssessmentResults(topicId, {populatedeep: 'answers.question'}).then(function (result) {
-                            if (!result || result.answers.length < 26) {
+                            if (!result || result.missingAnswers > 0) {
                                 return null;
                             } else {
 

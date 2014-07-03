@@ -33,6 +33,13 @@
                                     return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
                                 }
                                 return AssessmentService.topStressors(currentUsersCampaign.topic);
+                            }],
+                            assessment: ['AssessmentService','UserService', '$q', function (AssessmentService, UserService, $q) {
+                                var currentUsersCampaign = UserService.principal.getUser().campaign;
+                                if (!currentUsersCampaign) {
+                                    return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
+                                }
+                                return AssessmentService.getAssessment(currentUsersCampaign.topic);
                             }]
                         }
                     });
@@ -40,27 +47,18 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/focus/focus');
             }])
 
-        .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'ProfileService', 'AssessmentService',
-            function ($scope, assessmentResult, topStressors,  ProfileService, AssessmentService) {
+        .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'assessment', 'ProfileService', 'AssessmentService',
+            function ($scope, assessmentResult, topStressors, assessment, ProfileService, AssessmentService) {
 
                 $scope.needForAction = assessmentResult? assessmentResult.needForAction : null;
 
-                $scope.categories = [
-                    'work',
-                    'leisure',
-                    'stresstypus',
-                    'handling'
-                ];
+                $scope.categories = _.uniq(_.map(assessment.questions, 'category'));
 
                 $scope.topStressors = topStressors;
-
 
                 var profile = $scope.principal.getUser().profile;
 
                 $scope.prefs = profile.prefs;
-
-
-
 
                 if (profile.prefs.focus && profile.prefs.focus.length > 0) {
                     _.forEach(profile.prefs.focus, function(foc) {
