@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="act in stats.activitiesPlanned">
-                        <td>{{act.activity}}</td>
+                        <td>{{act.idea}}</td>
                         <td>{{act.count}}</td>
                     </tr>
                     </tbody>
@@ -107,7 +107,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="eventStatus in stats.activityEvents">
-                        <td>{{eventStatus.status}}</td>
+                        <td translate>{{ 'schedule.event.' + eventStatus.status}}</td>
                         <td>{{eventStatus.count}}</td>
                     </tr>
                     </tbody>

@@ -1,17 +1,17 @@
 <div class="container">
     <div class="row panel panel-primary">
         <div class="col-md-8">
-            <activity-edit activity="activity" on-save="onSave()" on-cancel="onCancel()"></activity-edit>
+            <idea-edit idea="idea" on-save="onSave()" on-cancel="onCancel()"></idea-edit>
         </div>
         <div class="col-md-4">
-            <activity-card rec="offer" reject="reject(index, event)" schedule="schedule(activity)" index="$index"/>
+            <idea-card rec="offer" reject="reject(index, event)" schedule="schedule(idea)" index="$index"/>
         </div>
 
     </div>
     <div class="row activity-admin-matrix">
         <div>
             <div class="col-md-12">
-                <h3><span translate>admin.matrix.header</span> {{activity.number}}</h3>
+                <h3><span translate>admin.matrix.header</span> {{idea.number}}</h3>
             </div>
         </div>
         <div class="row">

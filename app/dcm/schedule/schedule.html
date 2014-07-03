@@ -9,11 +9,11 @@
 
 <div class="activity-schedule">
 <div class="activity-schedule-page">
-    <div class="activity-card">
+    <div class="idea-card">
         <div>
 
             <div class="image">
-                <img ng-src="{{'/assets/actpics/' + offer.activity.number + '.jpg'}}">
+                <img ng-src="{{'/assets/actpics/' + offer.idea.number + '.jpg'}}">
             </div>
 
             <div class="source" ng-if="offer.recommendedBy && offer.recommendedBy.length > 0">
@@ -28,9 +28,9 @@
             </div>
 
             <div class="content">
-                <div class="title" ng-bind-html="offer.activity.title">
+                <div class="title" ng-bind-html="offer.idea.title">
                 </div>
-                <div class="text" ng-bind-html="offer.activity.description">
+                <div class="text" ng-bind-html="offer.idea.description">
                 </div>
                 <div>
                     <div class="schedule">
@@ -55,7 +55,7 @@
 
         <div class="btn-group form-group execution-type">
             <button type="button" class="btn btn-default plan" ng-model="offer.offerType[0]"
-                    btn-radio="'campaignActivityPlan'" ng-disabled="offer.activity.defaultexecutiontype=='self'"
+                    btn-radio="'campaignActivityPlan'" ng-disabled="offer.idea.defaultexecutiontype=='self'"
                     translate>
                 dcmschedule.scheduletype.plan
             </button>

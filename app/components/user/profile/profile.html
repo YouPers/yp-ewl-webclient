@@ -260,10 +260,10 @@
 
 </accordion-group>
 <accordion-group heading="{{ 'profileForm.rejectedActivities.header' | translate }}">
-    <div class="col-md-4" ng-repeat="recAct in profileUserObj.prefs.rejectedActivities">
+    <div class="col-md-4" ng-repeat="recIdea in profileUserObj.prefs.rejectedIdeas">
         <div class="row">
-            <div class="col-md-8">  {{activities.byId(recAct.activity).title}}</div>
-            <div class="col-md-4"> <a class="btn btn-sm btn-primary" ng-click="reactivateActivity(recAct)">wieder aktivieren</a></div>
+            <div class="col-md-8">  {{ideas.byId(recIdea.idea).title}}</div>
+            <div class="col-md-4"> <a class="btn btn-sm btn-primary" ng-click="reactivateActivity(recIdea)">wieder aktivieren</a></div>
         </div>
     </div>
 </accordion-group>

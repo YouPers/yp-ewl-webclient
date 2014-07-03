@@ -6,46 +6,46 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('activities', {
+                    .state('ideas', {
                         templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
-                    .state('activities.content', {
-                        url: "/activities",
+                    .state('ideas.content', {
+                        url: "/ideas",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
-                                templateUrl: 'dcm/activity/activities.html',
-                                controller: 'ActivitiesController'
+                                templateUrl: 'dcm/activity/ideas.html',
+                                controller: 'IdeasController'
                             }
                         },
                         resolve: {
-                            activities: ['ActivityService', 'CampaignService', function (ActivityService, CampaignService) {
-                                return ActivityService.getActivities({campaign: CampaignService.currentCampaign && CampaignService.currentCampaign.id});
+                            ideas: ['ActivityService', 'CampaignService', function (ActivityService, CampaignService) {
+                                return ActivityService.getIdeas({campaign: CampaignService.currentCampaign && CampaignService.currentCampaign.id});
                             }]
                         }
                     })
-                    .state('activity', {
+                    .state('idea', {
                         templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
-                    .state('activity.content', {
-                        url: "/activities/:id",
+                    .state('idea.content', {
+                        url: "/ideas/:id",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
-                                templateUrl: 'dcm/activity/activity.html',
-                                controller: 'ActivityController'
+                                templateUrl: 'dcm/activity/idea.html',
+                                controller: 'IdeaController'
                             }
                         },
                         resolve: {
-                            activity: ['$stateParams', 'ActivityService', 'CampaignService', function ($stateParams, ActivityService, CampaignService) {
+                            idea: ['$stateParams', 'ActivityService', 'CampaignService', function ($stateParams, ActivityService, CampaignService) {
 
                                 if ($stateParams.id) {
-                                    return ActivityService.getActivity($stateParams.id);
+                                    return ActivityService.getIdea($stateParams.id);
                                 } else {
 
-                                    // TODO: define default activity and options visible for the campaign lead
+                                    // TODO: define default idea and options visible for the campaign lead
 
                                     return {
                                         "number": "CampaignActivity",
@@ -80,7 +80,7 @@
                                 function ($stateParams, ActivityService, CampaignService) {
                                     if (CampaignService.currentCampaign) {
                                         return ActivityService.getActivityOffers({campaign: CampaignService.currentCampaign.id,
-                                            populate: 'activity activityPlan'});
+                                            populate: 'idea activityPlan'});
                                     } else {
                                         return [];
                                     }
@@ -93,14 +93,13 @@
             }])
 
 
-        .controller('ActivityController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'activity',
-            function ($scope, $rootScope, $state, ActivityService, activity) {
+        .controller('IdeaController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'idea',
+            function ($scope, $rootScope, $state, ActivityService, idea) {
 
-
-                $scope.activity = activity;
+                $scope.idea = idea;
 
                 $scope.offer = {
-                    activity: activity,
+                    idea: idea,
                     recommendedBy: [$scope.principal.getUser()],
                     sourceType: 'campaign'
                 };
@@ -108,12 +107,12 @@
             }
         ])
 
-        .controller('ActivitiesController', [ '$scope', '$rootScope', 'activities', 'ActivityService', 'CampaignService',
-            function ($scope, $rootScope, resolvedActivities, ActivityService, CampaignService) {
+        .controller('IdeasController', [ '$scope', '$rootScope', 'ideas', 'ActivityService', 'CampaignService',
+            function ($scope, $rootScope, resolvedIdeas, ActivityService, CampaignService) {
 
-                function _initializeActivities(activities) {
-                    var grouped = _.groupBy(activities, function (activity) {
-                        return activity.campaign ? "campaign" : "all";
+                function _initializeIdeas(ideas) {
+                    var grouped = _.groupBy(ideas, function (idea) {
+                        return idea.campaign ? "campaign" : "all";
                     });
                     $scope.query = {query: ''};
 
@@ -129,20 +128,20 @@
 
                             $scope.groups.push({
                                 name: group,
-                                activities: grouped[group]
+                                ideas: grouped[group]
                             });
                         }
                     });
 
                 }
 
-                _initializeActivities(resolvedActivities);
+                _initializeIdeas(resolvedIdeas);
 
                 $scope.$watch(function () {
                     return CampaignService.currentCampaign;
                 }, function (newValue, oldValue) {
-                    ActivityService.getActivities({campaign: CampaignService.currentCampaign.id}).then(function (activities) {
-                        _initializeActivities(activities);
+                    ActivityService.getIdeas({campaign: CampaignService.currentCampaign.id}).then(function (ideas) {
+                        _initializeIdeas(ideas);
                     });
                 });
             }
@@ -165,7 +164,7 @@
                         ActivityService.getActivityOffers(
                             {
                                 campaign: newValue.id,
-                                populate: 'activity activityPlan',
+                                populate: 'idea activityPlan',
                                 populatedeep: 'activityPlan.joiningUsers'
                             }
                         ).then(function (offers) {
@@ -176,12 +175,12 @@
             }])
 
         .filter('fulltext', function () {
-            return function (activities, query) {
+            return function (ideas, query) {
                 if (!query || query.length < 3) {
-                    return activities;
+                    return ideas;
                 }
-                return _.filter(activities, function (activity) {
-                    return (!query || (activity.title.toUpperCase() + activity.number.toUpperCase()).indexOf(query.toUpperCase()) !== -1);
+                return _.filter(ideas, function (idea) {
+                    return (!query || (idea.title.toUpperCase() + idea.number.toUpperCase()).indexOf(query.toUpperCase()) !== -1);
                 });
 
             };

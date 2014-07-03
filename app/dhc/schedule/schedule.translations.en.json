@@ -52,11 +52,12 @@
       "location": "Treffpunkt"
     },
     "event": {
-      "startToEndDate": "bis",
+      "startToEndDate": "until",
       "rating": "Bewertung",
-      "done": "Gemacht",
-      "missed": "Verpasst",
-      "comment": "Feedback"
+      "done": "Done",
+      "missed": "Missed",
+      "comment": "Feedback",
+      "future": "Future"
     },
     "schedule": "Schedule it",
     "save": "Sichern",

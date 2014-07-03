@@ -17,7 +17,7 @@
 
         <h2>
             <span translate>{{ 'plan.group.' + group.name }}</span>
-            <span ng-show="group.name == 'open'">({{ openEvents }})</span>
+            <span ng-show="group.name == 'open'">({{ groups.openEvents }})</span>
         </h2>
 
 
@@ -54,15 +54,15 @@
             </div>
 
             <!-- image -->
-            <div class="col-md-1 activity-image" ng-class="{{event.activityPlan.source}}">
+            <div class="col-md-1 idea-image" ng-class="{{event.activityPlan.source}}">
                 <span>
-                    <img ng-src="{{'/assets/actpics/' + event.activity.number + '.jpg' }}">
+                    <img ng-src="{{'/assets/actpics/' + event.idea.number + '.jpg' }}">
                 </span>
             </div>
 
             <!-- title -->
             <div class="col-md-3 title">
-                <a href="" ui-sref="schedule.plan({id: '{{ event.activityPlan.id }}', event: '{{event.id}}' })" ng-bind-html=" event.activity.title"
+                <a href="" ui-sref="schedule.plan({id: '{{ event.activityPlan.id }}', event: '{{event.id}}' })" ng-bind-html=" event.idea.title"
                    analytics-on="click" analytics-event="PlanEditing" analytics-category="InPageNavigation" analytics-label="Activity Title Clicked">
                 </a>
             </div>

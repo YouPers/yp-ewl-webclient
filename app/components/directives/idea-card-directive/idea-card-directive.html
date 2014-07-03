@@ -1,11 +1,11 @@
 
-<div class="activity-card flip">
+<div class="idea-card flip">
 
     <div class="card page" ng-class="{ flipped: flipped }">
         <div class="front face" ng-click="flip()">
 
             <div class="image">
-                <img ng-src="{{'/assets/actpics/' + rec.activity.number + '.jpg'}}">
+                <img ng-src="{{'/assets/actpics/' + rec.idea.number + '.jpg'}}">
             </div>
             <div class="source">
                 <recommended-by-slider users="rec.recommendedBy" source-type="rec.sourceType"></recommended-by-slider>
@@ -13,10 +13,10 @@
 
             <div class="content">
 
-                <div class="title" ng-bind-html="rec.activity.title">
+                <div class="title" ng-bind-html="rec.idea.title">
                 </div>
 
-                <div class="shortDescription" ng-bind-html="rec.activity.description">
+                <div class="shortDescription" ng-bind-html="rec.idea.description">
                 </div>
 
                 <div>
@@ -35,7 +35,7 @@
                     </button>
                  </div>
                 <div class="linkright">
-                    <button class="schedule-link btn btn-primary" ng-click="schedule({activity: rec.activity})" stop-propagation translate>
+                    <button class="schedule-link btn btn-primary" ng-click="schedule({idea: rec.idea})" stop-propagation translate>
                         schedule.schedule
                     </button>
                 </div>
@@ -45,13 +45,13 @@
         </div>
 
         <div class="back face" ng-click="flip()"
-             analytics-on="click" analytics-event="ActivityCardFlip" analytics-category="InPageNavigation" analytics-label="Activity Card Flipped">
+             analytics-on="click" analytics-event="IdeaCardFlip" analytics-category="InPageNavigation" analytics-label="Idea Card Flipped">
 
             <div class="content">
-                <div class="title" ng-bind-html="rec.activity.title">
+                <div class="title" ng-bind-html="rec.idea.title">
                 </div>
 
-                <p class="text" ng-bind-html="getRenderedText(rec.activity.text)">
+                <p class="text" ng-bind-html="getRenderedText(rec.idea.text)">
                 </p>
             </div>
 
