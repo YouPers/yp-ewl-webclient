@@ -48,7 +48,7 @@
                                 }
 
                             }],
-                            topics: ['Restangular', function(Restangular) {
+                            topics: ['Restangular', function (Restangular) {
                                 return Restangular.all('topics').getList();
                             }]
                         }
@@ -66,7 +66,9 @@
                     'starting-day': 1
                 };
 
+                topics.byId = _.indexBy(topics, 'id');
                 $scope.topics = topics;
+
 
                 var start = new Date(moment().hour(8).minutes(0).seconds(0));
                 var end = new Date(moment().hour(17).minutes(0).seconds(0).add('week', 6));
@@ -75,12 +77,18 @@
                     $scope.campaign = campaign;
                 } else {
                     $scope.campaign = {
-                        title: "Stress Management",
+                        title: '',
                         start: start,
                         end: end,
                         avatar: '/assets/img/stressManagement.jpg'
                     };
                 }
+
+                $scope.$watch('campaign.topic', function (newTopic, oldTopic) {
+                    if (newTopic) {
+                        $scope.campaign.title = topics.byId[newTopic].name;
+                    }
+                });
 
                 CampaignService.currentCampaign = $scope.campaign;
 
@@ -115,7 +123,7 @@
 
                                     return UserService.reload();
                                 })
-                                .then(function() {
+                                .then(function () {
                                     return $scope.$emit('clientmsg:success', 'campaign.saved');
                                 });
                         }
