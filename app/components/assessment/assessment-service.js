@@ -105,11 +105,8 @@
                         answer.id = answer.question;
                         return Restangular.restangularizeElement(assessment, answer, 'answers').put();
                     },
-                    postResults: function (assResult) {
-
-                        $rootScope.$emit('newAssessmentResultsPosted', assResult);
-                        var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
-                        return assessmentResultBase.post(assResult);
+                    regenerateRecommendations: function() {
+                        return Restangular.all('coachRecommendations').getList();
                     },
                     getNewestAssessmentResults: function (topicId, options) {
                         return _topicId2Assessment(topicId)

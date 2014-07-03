@@ -2,8 +2,15 @@
 
 <header name="plan">
     <div class="col-md-6" translate>list.planAnActivity</div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <a class="btn btn-default" ui-sref="activityAdmin" ng-if="principal.isAuthorized('admin')" translate>list.createNewActivity</a>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group date">
+            <label class="control-label" translate>Topic</label>
+            <select ng-model="currentTopic" ng-options="topic.id as topic.name for topic in topics">
+            </select>
+        </div>
     </div>
 </header>
 
@@ -127,7 +134,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row panel panel-default activityListItem"
-                     ng-repeat="idea in filteredIdeas | orderBy:['+plan.status','-score', '-source'] | startFrom:(currentPage -1) * pageSize | limitTo:pageSize track by idea.id">
+                     ng-repeat="idea in filteredIdeas | orderBy:'-score' | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
                     <div class="col-md-1">
                         {{ idea.number }}
                         <div ng-if="idea.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended" translate>

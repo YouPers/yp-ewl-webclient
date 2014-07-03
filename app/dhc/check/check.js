@@ -31,7 +31,11 @@
                                 var currentUsersTopic = UserService.principal.getUser().campaign.topic;
                                 return AssessmentService.getNewestAssessmentResults(currentUsersTopic);
                             }]
-                        }
+                        },
+                        onExit: ['AssessmentService', function(AssessmentService) {
+                            return AssessmentService.regenerateRecommendations();
+                        }]
+
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/check/check');

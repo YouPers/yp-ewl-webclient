@@ -55,9 +55,10 @@
                             return deferred.promise;
                         }
                     },
-                    getRecommendations: function () {
+                    getRecommendations: function (topicId) {
                         var params = {
-                            limit: 1000
+                            limit: 1000,
+                            topic: topicId
                         };
 
                         if (UserService.principal.isAuthenticated()) {

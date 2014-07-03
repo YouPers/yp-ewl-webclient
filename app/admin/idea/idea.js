@@ -26,9 +26,10 @@
                             allIdeas: ['ActivityService', function (ActivityService) {
                                 return ActivityService.getIdeas();
                             }],
-                            recommendations: ['ActivityService', function (ActivityService) {
-                                return ActivityService.getRecommendations();
+                            topics: ['Restangular', function (Restangular) {
+                                return Restangular.all('topics').getList();
                             }]
+
                         }
                     })
                     .state('admin-idea.edit', {
@@ -44,7 +45,7 @@
                             idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                                 return ActivityService.getIdea($stateParams.ideaId);
                             }],
-                            topics: ['Restangular', function(Restangular) {
+                            topics: ['Restangular', function (Restangular) {
                                 return Restangular.all('topics').getList();
                             }]
                         }
@@ -54,9 +55,8 @@
 
             }])
 
-        .controller('IdeasAdminCtrl', ['$scope', '$filter', 'allIdeas',
-            'recommendations', 'ActivityService', 'ProfileService',
-            function ($scope, $filter, allIdeas, recommendations,  ActivityService, ProfileService) {
+        .controller('IdeasAdminCtrl', ['$scope', '$filter', 'allIdeas', 'ActivityService', 'ProfileService', 'topics',
+            function ($scope, $filter, allIdeas, ActivityService, ProfileService, topics) {
                 var user = $scope.principal.getUser();
 
                 $scope.buttonsShown = {};
@@ -66,6 +66,21 @@
                 if (user.campaign) {
                     campaigns = [user.campaign.id];
                 }
+
+                var recommendations = [];
+                $scope.topics = topics;
+
+                $scope.$watch('currentTopic', function(newValue, oldValue) {
+                    if (newValue) {
+                        ActivityService.getRecommendations(newValue)
+                            .then(function(recs) {
+                                allIdeas.enrichWithUserData([], recs, campaigns, user.profile.prefs);
+                            });
+
+                    }
+                });
+
+
 
                 $scope.hasRecommendations = (recommendations.length > 0);
 
@@ -199,11 +214,11 @@
                 angular.forEach(ideas, function (idea, key) {
 
                         if ((allTopics || _.any(idea.topics, function (value) {
-                                return query.topic[value];
-                            })) &&
+                            return query.topic[value];
+                        })) &&
                             (allExecutiontypes || query.executiontype[idea.defaultexecutiontype]) &&
                             (allTimes || !idea.defaultduration || query.time[durationMapping(idea.defaultduration)]
-                                )  &&
+                                ) &&
                             (!query.fulltext || (idea.title.toUpperCase() + idea.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
                             (!idea.rejected)
                             ) {
@@ -215,7 +230,7 @@
 
             };
         }]
-        )
+    )
 
         .filter('startFrom', [function () {
             return function (input, start) {
@@ -251,7 +266,7 @@
 
                 $scope.topics = topics;
 
-                $scope.$watch('currentTopic', function(newVal, oldVal) {
+                $scope.$watch('currentTopic', function (newVal, oldVal) {
                     if (newVal) {
                         AssessmentService.getAssessment(newVal)
                             .then(function (assessment) {
@@ -278,7 +293,6 @@
                 // so we add one for all questions that don't have one
 
 
-
                 $scope.recWeights = idea.getRecWeightsByQuestionId();
 
                 $scope.onSave = function () {
@@ -290,7 +304,6 @@
                     $scope.$state.go('admin-idea.list');
                 };
             }]);
-
 
 
 }());
