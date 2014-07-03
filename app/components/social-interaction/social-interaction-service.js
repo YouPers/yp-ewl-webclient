@@ -20,8 +20,11 @@
                     getSocialInteraction: function(socialInteractionId) {
                         return socialInteractions.one(socialInteractionId);
                     },
-                    getSocialInteractions: function() {
-                        return socialInteractions.getList();
+                    getSocialInteractions: function(options) {
+                        return socialInteractions.getList(options);
+                    },
+                    deleteSocialInteraction: function(socialInteractionId) {
+                        return socialInteractions.one(socialInteractionId).remove();
                     }
                 };
                 return SocialInteractionService;

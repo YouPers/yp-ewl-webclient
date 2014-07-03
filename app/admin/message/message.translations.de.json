@@ -25,7 +25,8 @@
             }
         },
         "text": {
-            "label": "Text"
+            "label": "Text",
+            "placeholder": "Text"
         },
 
         "important": {
