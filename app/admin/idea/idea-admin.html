@@ -9,9 +9,18 @@
 
     </div>
     <div class="row activity-admin-matrix">
+
+
         <div>
             <div class="col-md-12">
                 <h3><span translate>admin.matrix.header</span> {{idea.number}}</h3>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group date">
+                <label class="control-label" translate>Topic</label>
+                <select ng-model="currentTopic" ng-options="topic.id as topic.name for topic in topics">
+                </select>
             </div>
         </div>
         <div class="row">

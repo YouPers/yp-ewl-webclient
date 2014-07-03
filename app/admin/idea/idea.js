@@ -43,6 +43,9 @@
                         resolve: {
                             idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                                 return ActivityService.getIdea($stateParams.ideaId);
+                            }],
+                            topics: ['Restangular', function(Restangular) {
+                                return Restangular.all('topics').getList();
                             }]
                         }
                     });
@@ -219,7 +222,75 @@
                 start = +start; //parse to int
                 return input.slice(start);
             };
-        }]);
+        }])
+
+        .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'ActivityService', 'AssessmentService', 'Restangular', 'topics',
+            function ($scope, $rootScope, idea, ActivityService, AssessmentService, Restangular, topics) {
+
+                if (!idea) {
+                    idea = Restangular.restangularizeElement(null, {
+                        number: 'NEW',
+                        source: "youpers",
+                        defaultfrequency: "once",
+                        "defaultexecutiontype": "self",
+                        "defaultvisibility": "private",
+                        "defaultduration": 60,
+                        fields: [],
+                        recWeights: [],
+                        topics: []
+                    }, 'ideas');
+                }
+                $scope.idea = idea;
+
+                $scope.assessment = {questions: []};
+
+                $scope.offer = {
+                    idea: idea,
+                    recommendedBy: {}
+                };
+
+                $scope.topics = topics;
+
+                $scope.$watch('currentTopic', function(newVal, oldVal) {
+                    if (newVal) {
+                        AssessmentService.getAssessment(newVal)
+                            .then(function (assessment) {
+                                _.forEach(assessment.questions, function (question) {
+                                    if (!_.any(idea.recWeights, function (recWeight) {
+                                        return recWeight[0] === question.id;
+                                    })) {
+                                        idea.recWeights.push([question.id, 0, 0]);
+                                        $scope.recWeights = idea.getRecWeightsByQuestionId();
+                                    }
+                                });
+                                $scope.assessment = assessment;
+                            });
+                    }
+                });
+
+                // Weighting to generate recommendation of idea based on answers of this assessment
+                // initialize weights if they do not yet exist
+                if (!idea.recWeights || idea.recWeights.length === 0) {
+                    idea.recWeights = [];
+                }
+
+                // backend does not store emtpy (0/0) weights, but our UI needs an empty record for each question
+                // so we add one for all questions that don't have one
+
+
+
+                $scope.recWeights = idea.getRecWeightsByQuestionId();
+
+                $scope.onSave = function () {
+                    $scope.$state.go('admin-idea.list', $rootScope.$stateParams);
+                    $rootScope.$emit('clientmsg:success', 'idea.save');
+                };
+
+                $scope.onCancel = function () {
+                    $scope.$state.go('admin-idea.list');
+                };
+            }]);
+
 
 
 }());

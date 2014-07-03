@@ -36,7 +36,6 @@
 
                 var assService = {
                     getAssessment: function (topicId) {
-                        console.log(topicId);
                         if (!topicId) {
                             throw new Error("topicId is required");
                         }
@@ -50,7 +49,7 @@
                                         // sort questions into keyed lookup so all controllers can easily get the question for a given
                                         // questionId
                                         if (assessments.length !== 1) {
-                                            throw new Error("we always expect exactly on assessment per topic, got: " + assessments.length);
+                                            throw new Error("we always expect exactly one assessment per topic, got: " + assessments.length);
                                         }
 
                                         assessments[0].questionLookup = {};
