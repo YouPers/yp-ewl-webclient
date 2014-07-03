@@ -37,7 +37,11 @@
                     <form name="campaignForm" ypModel="campaign" class="form-horizontal" role="form"
                           ng-submit="saveCampaign()" novalidate>
 
-
+                        <div class="form-group date">
+                            <label class="control-label" translate>Kampagnen-Thema</label>
+                             <select ng-model="campaign.topic" ng-options="topic.id as topic.name for topic in topics">
+                            </select>
+                        </div>
                         <yp-input name="participants"></yp-input>
                         <yp-input name="location"></yp-input>
                         <yp-input name="city"></yp-input>

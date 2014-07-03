@@ -20,8 +20,9 @@
                             }
                         },
                         resolve: {
-                            assessmentData: ['$stateParams', 'AssessmentService', function ($stateParams, AssessmentService) {
-                                return AssessmentService.getAssessmentData('525faf0ac558d40000000005');
+                            assessmentData: ['$stateParams', 'AssessmentService', 'UserService', function ($stateParams, AssessmentService, UserService) {
+                                var currentUsersTopic = UserService.principal.getUser().campaign.topic;
+                                return AssessmentService.getAssessmentData({"filter[topic]": currentUsersTopic});
                             }]
                         }
                     });

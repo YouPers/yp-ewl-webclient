@@ -21,7 +21,7 @@
                         },
                         resolve: {
                             campaigns: ['CampaignService', function (CampaignService) {
-                                return CampaignService.getCampaigns();
+                                return CampaignService.getCampaigns({populate: 'topic'});
                             }]
                         }
                     })
@@ -47,6 +47,9 @@
                                     return undefined;
                                 }
 
+                            }],
+                            topics: ['Restangular', function(Restangular) {
+                                return Restangular.all('topics').getList();
                             }]
                         }
                     });
@@ -55,14 +58,15 @@
             }])
 
 
-        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign',
-            function ($scope, CampaignService, UserService, campaign) {
+        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign', 'topics',
+            function ($scope, CampaignService, UserService, campaign, topics) {
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
                     'starting-day': 1
                 };
 
+                $scope.topics = topics;
 
                 var start = new Date(moment().hour(8).minutes(0).seconds(0));
                 var end = new Date(moment().hour(17).minutes(0).seconds(0).add('week', 6));

@@ -36,11 +36,11 @@
                     reloadAssessment: function () {
                         cachedAssessmentPromise = undefined;
                     },
-                    getAssessmentData: function (assessmentId) {
-                        var assessmentBase = Restangular.one('assessments', assessmentId);
+                    getAssessmentData: function (options) {
+                        var assessmentBase = Restangular.all('assessments');
                         // if the user is authenticated we try to get his previous answers from the server,
                         // if unauthenticated, we only get the assessment
-                        var neededCalls = [assService.getAssessment(assessmentId)];
+                        var neededCalls = [assessmentBase.getList(options)];
                         if (UserService.principal.isAuthenticated()) {
                             neededCalls.push(
                                 assessmentBase.one('results/newest').get()
@@ -48,7 +48,7 @@
                         }
                         // run the one/two calls in parallel and then processes the results
                         return $q.all(neededCalls).then(function (results) {
-                            var assessment = results[0];
+                            var assessment = results[0][0];
 
                             // check whether we got saved answers for this user and this assessment
                             var assResult;

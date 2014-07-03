@@ -43,8 +43,6 @@
     var _authenticated = false;
 
 
-
-
     angular.module('yp.components.user')
 
         // authorization levels and user Roles
@@ -71,20 +69,27 @@
 
                     // copy the following user properties from the current user,
                     // if the user is not already authenticated
-                    if(!_authenticated) {
+                    if (!_authenticated) {
                         authenticatedUser.campaign = _currentUser.campaign || authenticatedUser.campaign;
                     }
 
-                    // clean current user in order to keep the same reference, only clean out the profile
-                    // if the authenticated user provides an updated populated profile
-                    var hasProfilePopulated = authenticatedUser.profile &&  authenticatedUser.profile.id;
+                    // clean current user in order to keep the same reference,
+
+
+                    // keep the profile, if the newly authenticated user does not provide an updated populated profile
+                    var hasProfilePopulated = authenticatedUser.profile && authenticatedUser.profile.id;
                     if (!hasProfilePopulated) {
-                        delete authenticatedUser.profile;
+                        authenticatedUser.profile = _currentUser.profile;
                     }
-                    _.forEach(_.keys(_currentUser), function(key) {
-                        if (key !== 'profile' || hasProfilePopulated) {
-                            delete _currentUser[key];
-                        }
+
+                    // keep the campaign, if the newly authenticated user does not provide an updated populated campaign
+                    var hasCampaignPopulated = authenticatedUser.campaign && authenticatedUser.campaign.id;
+                    if (!hasCampaignPopulated) {
+                        authenticatedUser.campaign = _currentUser.campaign;
+                    }
+
+                    _.forEach(_.keys(_currentUser), function (key) {
+                        delete _currentUser[key];
                     });
 
                     // merge the user obj recursively to the current user
@@ -125,7 +130,7 @@
                                 $http.defaults.headers.common.Authorization = '';
                                 $rootScope.$emit('clientmsg:error', err);
 
-                                if(err.data && err.data.code === 'UnauthorizedError') {
+                                if (err.data && err.data.code === 'UnauthorizedError') {
                                     $rootScope.$emit('clientmsg:error', 'loginFailed', { error: err });
                                 } else {
                                     $rootScope.$emit('clientmsg:error', err);
@@ -163,7 +168,7 @@
                         return Rest.restangularizeElement(null, user, "users").put().then(function success(updatedUser) {
                             // check whether we have updated the current user, if yes update our session object
                             if (_currentUser.id === updatedUser.id) {
-                               _authorize(updatedUser);
+                                _authorize(updatedUser);
                             }
                             return updatedUser;
                         });
@@ -219,7 +224,7 @@
 
                 if (credentialsFromCookie) {
                     UserService.login(credentialsFromCookie)
-                        .then(function success () {
+                        .then(function success() {
                             UserService.initialized = true;
                         }, function error(err) {
                             UserService.initialized = true;
