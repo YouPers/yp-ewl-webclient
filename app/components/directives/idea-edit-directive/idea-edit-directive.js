@@ -13,6 +13,7 @@
 
                     scope: {
                         idea: "=",
+                        topics: "=",
                         onSave: "&",
                         onCancel: "&"
                     },
@@ -22,20 +23,20 @@
                         $scope.enums = $rootScope.enums;
 
                         var idea = $scope.idea;
-                        $scope.actFieldsModel = {};
+                        $scope.topicsModel = {};
 
-                        _.forEach(idea.fields, function (fieldId) {
-                            $scope.actFieldsModel[fieldId] = true;
+                        _.forEach(idea.topics, function(topic) {
+                              $scope.topicsModel[topic] = true;
                         });
 
-                        $scope.$watch('actFieldsModel', function (newValue, oldValue, scope) {
-                            var newFields = [];
+                        $scope.$watch('topicsModel', function (newValue, oldValue, scope) {
+                            var newTopics = [];
                             _.forEach(newValue, function (value, key) {
                                 if (value) {
-                                    newFields.push(key);
+                                    newTopics.push(key);
                                 }
                             });
-                            idea.fields = newFields;
+                            idea.topics = newTopics;
                         }, true);
 
                         if (!idea.qualityFactor) {
