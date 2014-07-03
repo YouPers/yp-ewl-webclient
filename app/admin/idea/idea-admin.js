@@ -4,8 +4,8 @@
 
     angular.module('yp.admin')
 
-        .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'assessment', 'ActivityService', 'Restangular',
-            function ($scope, $rootScope, idea, assessment, ActivityService, Restangular) {
+        .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'ActivityService', 'Restangular',
+            function ($scope, $rootScope, idea, ActivityService, Restangular) {
 
                 if (!idea) {
                     idea = Restangular.restangularizeElement(null, {
@@ -21,7 +21,8 @@
                     }, 'ideas');
                 }
                 $scope.idea = idea;
-                $scope.assessment = assessment;
+
+                $scope.assessment = {questions: []};
 
                 $scope.offer = {
                     idea: idea,
@@ -34,16 +35,16 @@
                     idea.recWeights = [];
                 }
 
-                // backend does not store emtpy weights, but our UI needs an empty record for each question
-                // so we add one for all question that don't have one
+                // backend does not store emtpy (0/0) weights, but our UI needs an empty record for each question
+                // so we add one for all questions that don't have one
 
-                _.forEach(assessment.questions, function (question) {
-                    if (!_.any(idea.recWeights, function (recWeight) {
-                        return recWeight[0] === question.id;
-                    })) {
-                        idea.recWeights.push([question.id, 0, 0]);
-                    }
-                });
+//                _.forEach(assessment.questions, function (question) {
+//                    if (!_.any(idea.recWeights, function (recWeight) {
+//                        return recWeight[0] === question.id;
+//                    })) {
+//                        idea.recWeights.push([question.id, 0, 0]);
+//                    }
+//                });
 
 
                 $scope.recWeights = idea.getRecWeightsByQuestionId();

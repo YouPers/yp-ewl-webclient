@@ -20,11 +20,19 @@
                             }
                         },
                         resolve: {
-                            assessmentResult: ['AssessmentService', function(AssessmentService) {
-                                return AssessmentService.getNewestAssessmentResults('525faf0ac558d40000000005');
+                            assessmentResult: ['AssessmentService','UserService', '$q', function(AssessmentService, UserService, $q) {
+                                var currentUsersCampaign = UserService.principal.getUser().campaign;
+                                if (!currentUsersCampaign) {
+                                    return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
+                                }
+                                return AssessmentService.getNewestAssessmentResults(currentUsersCampaign.topic);
                             }],
-                            topStressors: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.topStressors('525faf0ac558d40000000005');
+                            topStressors: ['AssessmentService','UserService', '$q', function (AssessmentService, UserService, $q) {
+                                var currentUsersCampaign = UserService.principal.getUser().campaign;
+                                if (!currentUsersCampaign) {
+                                    return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
+                                }
+                                return AssessmentService.topStressors(currentUsersCampaign.topic);
                             }]
                         }
                     });

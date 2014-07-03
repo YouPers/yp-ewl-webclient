@@ -4,21 +4,6 @@
 
     angular.module('yp.admin')
 
-        .constant('enums', {
-
-            // used in ideas & cockpit
-            activityFields: [
-                'awarenessAbility',
-                'timeManagement',
-                'workStructuring',
-                'physicalActivity',
-                'nutrition',
-                'leisureActivity',
-                'breaks',
-                'relaxation',
-                'socialInteraction'
-            ]
-        })
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
@@ -41,17 +26,8 @@
                             allIdeas: ['ActivityService', function (ActivityService) {
                                 return ActivityService.getIdeas();
                             }],
-                            activityPlans: ['ActivityService', function (ActivityService) {
-                                return ActivityService.getActivityPlans();
-                            }],
                             recommendations: ['ActivityService', function (ActivityService) {
                                 return ActivityService.getRecommendations();
-                            }],
-                            topStressors: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.topStressors('525faf0ac558d40000000005');
-                            }],
-                            assessment: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.getAssessment('525faf0ac558d40000000005');
                             }]
                         }
                     })
@@ -67,9 +43,6 @@
                         resolve: {
                             idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                                 return ActivityService.getIdea($stateParams.ideaId);
-                            }],
-                            assessment: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.getAssessment('525faf0ac558d40000000005');
                             }]
                         }
                     });
@@ -78,9 +51,9 @@
 
             }])
 
-        .controller('IdeasAdminCtrl', ['$scope', '$filter', 'allIdeas', 'activityPlans',
-            'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
-            function ($scope, $filter, allIdeas, activityPlans, recommendations, topStressors, assessment, ActivityService, ProfileService) {
+        .controller('IdeasAdminCtrl', ['$scope', '$filter', 'allIdeas',
+            'recommendations', 'ActivityService', 'ProfileService',
+            function ($scope, $filter, allIdeas, recommendations,  ActivityService, ProfileService) {
                 var user = $scope.principal.getUser();
 
                 $scope.buttonsShown = {};
@@ -93,37 +66,10 @@
 
                 $scope.hasRecommendations = (recommendations.length > 0);
 
-                allIdeas.enrichWithUserData(activityPlans, recommendations, campaigns, user.profile.prefs);
+                allIdeas.enrichWithUserData([], recommendations, campaigns, user.profile.prefs);
 
                 $scope.ideas = allIdeas;
                 $scope.filteredIdeas = allIdeas;
-
-                _.forEach(topStressors, function (stressor) {
-                    stressor.title = assessment.questionLookup[stressor.question] &&  assessment.questionLookup[stressor.question].title;
-                });
-                $scope.topStressors = topStressors;
-
-                $scope.focusOnStressor = function (stressor) {
-                    var focusQuestion = null;
-                    if (stressor.focussed) {
-                        focusQuestion = stressor.question;
-                        _.forEach($scope.topStressors, function (myStressor) {
-                            if (myStressor !== stressor) {
-                                myStressor.focussed = false;
-                            }
-                        });
-                    }
-                    ActivityService.getRecommendations(focusQuestion).then(function (newRecs) {
-                        allIdeas.enrichWithUserData(activityPlans, newRecs, campaigns, user.profile.prefs);
-                        $scope.filteredIdeas = $filter('IdeaListFilter')($scope.ideas, $scope.query);
-                    });
-
-                };
-
-                $scope.gotoIdeaDetail = function (idea) {
-                    // goto detail state, keep active tab around as stateparameter
-                    $scope.$state.go('activityPlan', {ideaId: idea.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
-                };
 
                 $scope.reject = function (idea, event) {
                     event.stopPropagation();
@@ -166,7 +112,6 @@
                 };
 
                 $scope.query = {
-                    subset: 'recommendations',
                     cluster: {
                     },
                     rating: {
@@ -182,26 +127,11 @@
                         t60: false,
                         more: false
                     },
-                    topic: {
-                        workLifeBalance: true,
-                        physicalFitness: false,
-                        nutrition: false,
-                        mentalFitness: false
-                    },
                     fulltext: "",
                     executiontype: {
                         self: false,
                         group: false
                     }
-                };
-
-                // initialize correct Tab from state Params
-                if ($scope.$stateParams.tab) {
-                    $scope.query.subset = $scope.$stateParams.tab;
-                }
-
-                $scope.setListTab = function setListTab(tabId) {
-                    $scope.$state.go('admin-idea.list', {tab: tabId});
                 };
 
                 $scope.pageSize = 20;
@@ -225,13 +155,9 @@
         .filter('IdeaListFilter', [function () {
             return function (ideas, query) {
                 var out = [],
-                    allClusters = true,
                     allTopics = true,
                     allTimes = true,
-                    allRatings = true,
                     allExecutiontypes = true,
-                    subSetAll = true,
-                    ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'],
                     durationMapping = function (duration) {
                         if (duration < 15) {
                             return 't15';
@@ -249,21 +175,9 @@
                     return ideas;
                 }
 
-                angular.forEach(query.cluster, function (value, key) {
-                    if (value) {
-                        allClusters = false;
-                    }
-                });
-
                 angular.forEach(query.topic, function (value, key) {
                     if (value) {
                         allTopics = false;
-                    }
-                });
-
-                angular.forEach(query.rating, function (value, key) {
-                    if (value) {
-                        allRatings = false;
                     }
                 });
 
@@ -279,26 +193,14 @@
                     }
                 });
 
-                if (query.subset !== 'all') {
-                    subSetAll = false;
-                }
-
                 angular.forEach(ideas, function (idea, key) {
 
-                        if ((allClusters || _.any(idea.fields, function (value) {
-                            return query.cluster[value];
-                        })) &&
-                            (allTopics || _.any(idea.topics, function (value) {
+                        if ((allTopics || _.any(idea.topics, function (value) {
                                 return query.topic[value];
                             })) &&
-                            (allRatings || query.rating[ratingsMapping[idea.rating]]
-                                ) &&
                             (allExecutiontypes || query.executiontype[idea.defaultexecutiontype]) &&
                             (allTimes || !idea.defaultduration || query.time[durationMapping(idea.defaultduration)]
-                                ) &&
-                            (subSetAll || (query.subset === 'campaign' && idea.isCampaign) ||
-                                (query.subset === 'recommendations' && idea.isRecommended && out.length < 5) ||
-                                (query.subset === 'starred' && idea.starred)) &&
+                                )  &&
                             (!query.fulltext || (idea.title.toUpperCase() + idea.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
                             (!idea.rejected)
                             ) {

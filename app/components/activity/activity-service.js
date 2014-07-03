@@ -8,11 +8,6 @@
                 var ideas = Restangular.all('ideas');
                 var activityPlans = Restangular.all('activityplans');
                 var activityEvents = Restangular.all('activityevents');
-                var cachedRecommendationsPromises = {};
-
-                $rootScope.$on('newAssessmentResultsPosted', function (assResult) {
-                    actService.invalidateRecommendations();
-                });
 
                 var actService = {
                     getIdeas: function (params) {
@@ -60,36 +55,13 @@
                             return deferred.promise;
                         }
                     },
-                    getPlanForIdea: function (ideaId, options) {
-                        if (!options) {
-                            options = {};
-                        }
-                        _.merge(options, {'filter[idea]': ideaId});
-                        return Restangular.all('activityplans').getList(options).then(function (result) {
-                            if (result.length === 0) {
-                                return null;
-                            } else if (result.length > 1) {
-                                var reason = 'only one plan expected per idea and user';
-                                $rootScope.$emit('clientmsg:error', reason);
-                                $q.reject(reason);
-                            } else {
-                                return result[0];
-                            }
-                        });
-                    },
-                    getRecommendations: function (focusQuestionId) {
+                    getRecommendations: function () {
                         var params = {
                             limit: 1000
                         };
-                        if (focusQuestionId) {
-                            params.fokus = focusQuestionId;
-                        }
+
                         if (UserService.principal.isAuthenticated()) {
-                            if (!cachedRecommendationsPromises[focusQuestionId || 'default']) {
-                                cachedRecommendationsPromises[focusQuestionId || 'default'] =
-                                    Restangular.all('activityoffers/coach').getList(params);
-                            }
-                            return cachedRecommendationsPromises[focusQuestionId || 'default'];
+                            return Restangular.all('coachRecommendations').getList(params);
                         } else {
                             return [];
                         }
@@ -129,9 +101,6 @@
                         } else {
                             throw new Error('should never arrive here');
                         }
-                    },
-                    invalidateRecommendations: function () {
-                        cachedRecommendationsPromises = {};
                     },
                     joinPlan: function (plan) {
                         return activityPlans.one(plan.id).all('/join').post();
