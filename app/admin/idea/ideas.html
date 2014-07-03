@@ -150,8 +150,8 @@
                     </div>
                     <div class="col-md-2">
                         <div popover="{{ 'activityField.'+ fieldId | translate}}" popover-trigger="mouseenter"
-                             ng-repeat="fieldId in idea.fields" popover-placement="left" popover-append-to-body="true">
-                            <img ng-src="/assets/ico/{{fieldId}}.gif" class="activityListClusterIcon">
+                             ng-repeat="topicId in idea.topics" popover-placement="left" popover-append-to-body="true">
+                            {{topics.byId[topicId].name}}
                         </div>
                     </div>
                     <div class="col-md-1" popover="Überprüft und Empfohlen durch YouPers"
@@ -168,16 +168,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12" ng-show="query.subset=='recommendations' && !hasRecommendations">
-                <div class="row top-buffer">
-                    <div class="col-md-6 col-md-offset-3 panel panel-default">
-                        <h3 translate>list.ifYouFillAssessment</h3>
-                        <a ui-sref="assessment({assessmentId: '525faf0ac558d40000000005'})" class="btn btn-primary" translate>list.toAssessment</a>
-                        <a href="" ng-click="query.subset='all'" class="btn btn-primary" translate>list.showAllActivities</a>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div class="row">

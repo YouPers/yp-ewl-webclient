@@ -68,6 +68,7 @@
                 }
 
                 var recommendations = [];
+                topics.byId = _.indexBy(topics, 'id');
                 $scope.topics = topics;
 
                 $scope.$watch('currentTopic', function(newValue, oldValue) {
