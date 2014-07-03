@@ -18,7 +18,7 @@
 
                         scope.dismissSocialInteraction = function dismissSocialInteraction(socialInteraction) {
                             SocialInteractionService.deleteSocialInteraction(socialInteraction.id);
-                            _.remove(scope.socialInteractions, { id: socialInteraction.id })
+                            _.remove(scope.socialInteractions, { id: socialInteraction.id });
                         };
 
                     }

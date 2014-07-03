@@ -82,7 +82,7 @@
                         $scope.adminMessageForm.$setPristine();
                     });
 
-                }
+                };
 
         }]);
 
