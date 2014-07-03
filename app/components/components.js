@@ -16,6 +16,8 @@
             'yp.components.notifications',
             'yp.components.healthCoach',
             'yp.components.feedback',
+            'yp.components.socialInteraction',
+            'yp.components.message',
             'yp.components.i18n',
 
             // directives
@@ -32,15 +34,16 @@
             'yp.components.statisticsChart'
         ])
 
+        .run(['enums', function (enums) {
+            _.merge(enums, {
+                language: [
+                    'de',
+                    'en',
+                    'fr',
+                    'it']
 
-        .constant('enums', {
-            language: [
-                'de',
-                'en',
-                'fr',
-                'it']
-        })
-
+            });
+        }])
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
             $translateWtiPartialLoaderProvider.addPart('components/components');

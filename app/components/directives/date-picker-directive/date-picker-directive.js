@@ -7,7 +7,8 @@
             return {
                 restrict: 'EA',
                 scope: {
-                    date: '='
+                    date: '=',
+                    required: '='
                 },
                 templateUrl: 'components/directives/date-picker-directive/date-picker-directive.html',
 
