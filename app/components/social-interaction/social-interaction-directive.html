@@ -8,6 +8,7 @@
 
         <span class="label label-primary" ng-show="socialInteraction.__t == 'Invitation'" translate>socialInteraction.invitation</span>
         <span class="label label-success" ng-show="socialInteraction.__t == 'Recommendation'" translate>socialInteraction.recommendation</span>
+        <span class="label label-default" ng-show="$parent.$root.isProductAdmin" translate>{{ socialInteraction.language }}</span>
 
         <span class="label label-info">{{ socialInteraction.author.fullname }}</span>
 
