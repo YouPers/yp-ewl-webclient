@@ -3,7 +3,10 @@
 
       "important": "Wichtig",
 
-      "publishFrom": "Publiziert von: ",
-      "publishTo": "Publiziert bis: "
+      "publishFrom": "Publiziert ab: ",
+      "publishTo": "Publiziert bis: ",
+
+      "invitation": "Einladung",
+      "recommendation": "Empfehlung"
   }
 }

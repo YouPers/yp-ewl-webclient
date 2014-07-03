@@ -9,7 +9,7 @@
             "stateHeader1": "system",
             "stateHeader2": "mitteilungen",
 
-            "publishFrom": "Publiziert von: ",
+            "publishFrom": "Publiziert ab: ",
             "publishTo": "Publiziert bis: ",
             "important": "Wichtig"
         }

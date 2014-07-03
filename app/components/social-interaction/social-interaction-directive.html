@@ -6,6 +6,9 @@
             <a href><i ng-click="dismissSocialInteraction(socialInteraction)" class="glyphicon glyphicon-remove"></i></a>
         </div>
 
+        <span class="label label-primary" ng-show="socialInteraction.__t == 'Invitation'" translate>socialInteraction.invitation</span>
+        <span class="label label-success" ng-show="socialInteraction.__t == 'Recommendation'" translate>socialInteraction.recommendation</span>
+
         <span class="label label-info">{{ socialInteraction.author.fullname }}</span>
 
         <span class="label label-danger" ng-if="socialInteraction.important" translate>socialInteraction.important</span>
@@ -13,7 +16,6 @@
         <h3>{{ socialInteraction.title }}</h3>
 
         <p>{{ socialInteraction.text }}</p>
-
 
         <div class="pull-right">
             <span ng-show="socialInteraction.publishFrom && !socialInteraction.publishTo" translate>socialInteraction.publishFrom</span>

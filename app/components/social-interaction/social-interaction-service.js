@@ -21,7 +21,9 @@
                         return socialInteractions.one(socialInteractionId);
                     },
                     getSocialInteractions: function(options) {
-                        return socialInteractions.getList(options);
+                        return socialInteractions.getList(options).then(function(socialInteractions) {
+                            return socialInteractions;
+                        });
                     },
                     deleteSocialInteraction: function(socialInteractionId) {
                         return socialInteractions.one(socialInteractionId).remove();
