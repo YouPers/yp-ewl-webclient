@@ -6,7 +6,7 @@
         .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',
             function ($http, Restangular, $q, UserService, $rootScope) {
                 var ideas = Restangular.all('ideas');
-                var activityPlans = Restangular.all('activityplans');
+                var activities = Restangular.all('activities');
                 var activityEvents = Restangular.all('activityevents');
 
                 var actService = {
@@ -34,12 +34,12 @@
                             return Restangular.restangularizeElement(null, idea, 'ideas').post();
                         }
                     },
-                    getActivityPlan: function (activityPlanId) {
-                        return Restangular.one('activityplans', activityPlanId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'idea']});
+                    getActivityPlan: function (activityId) {
+                        return Restangular.one('activities', activityId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'idea']});
                     },
                     getActivityPlans: function (options) {
                         if (UserService.principal.isAuthenticated()) {
-                            return activityPlans.getList(options);
+                            return activities.getList(options);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);
@@ -104,23 +104,23 @@
                         }
                     },
                     joinPlan: function (plan) {
-                        return activityPlans.one(plan.id).all('/join').post();
+                        return activities.one(plan.id).all('/join').post();
                     },
                     savePlan: function (plan) {
                         if (plan.id) {
                             return Restangular.restangularizeElement(null, plan, "activityplans").put();
                         } else {
-                            return activityPlans.post(plan);
+                            return activities.post(plan);
                         }
                     },
                     deletePlan: function (plan) {
-                        return activityPlans.one(plan.id).remove();
+                        return activities.one(plan.id).remove();
                     },
                     deleteOffer: function (offer) {
                         if (offer.plan && offer.plan.id) {
                             // if this is an offer with a saved plan, then we delete the plan
                             // the backend will cascade delete the offer automafically
-                            return activityPlans.one(offer.plan.id).remove();
+                            return activities.one(offer.plan.id).remove();
                         } else {
                             // if this is an offer without plan, we just delete the offer
                             return Restangular.one('activityoffers', offer.id).remove();
@@ -130,7 +130,7 @@
                         return actEvent.put();
                     },
                     inviteEmailToJoinPlan: function (email, plan) {
-                        return activityPlans.one(plan.id).all('/inviteEmail').post({email: email});
+                        return activities.one(plan.id).all('/inviteEmail').post({email: email});
                     },
                     getSchedulingConflicts: function (plan) {
                         return Restangular.all('activityplans/conflicts').post(plan);

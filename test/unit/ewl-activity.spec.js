@@ -14,8 +14,8 @@ describe('ewl activity', function () {
     describe('ActivityService', function () {
 
         it('allActivities should be defined and loadable', inject(function (ActivityService) {
+            expect(ActivityService.getIdeas).toBeDefined();
             expect(ActivityService.getActivities).toBeDefined();
-            expect(ActivityService.getActivityPlans).toBeDefined();
         }));
     });
 

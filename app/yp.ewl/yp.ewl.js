@@ -172,7 +172,8 @@ angular.module('yp-ewl',
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
                 $rootScope.$emit('clientmsg:error', error);
-                console.log('Error on StateChange: '+ JSON.stringify(error));
+                console.log('Error on StateChange: '+ error.message);
+                console.log('Stack: ' + error.stack);
                 if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
                     $state.go('dcm-home.content');
                 } else {

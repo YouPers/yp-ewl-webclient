@@ -8,7 +8,7 @@
                 <img ng-src="{{'/assets/actpics/' + rec.idea.number + '.jpg'}}">
             </div>
             <div class="source">
-                <recommended-by-slider users="rec.recommendedBy" source-type="rec.sourceType"></recommended-by-slider>
+                <recommended-by-slider users="[rec.author]" source-type="rec.sourceType"></recommended-by-slider>
             </div>
 
             <div class="content">

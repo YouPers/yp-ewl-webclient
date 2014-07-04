@@ -21,8 +21,21 @@
                             }
                         },
                         resolve: {
-                            offers: ['ActivityService', function(ActivityService) {
-                                return ActivityService.getActivityOffers();
+                            offers: ['SocialInteractionService', function(SocialInteractionService) {
+                                return SocialInteractionService.getRecommendations({populate: 'idea author'})
+                                    .then(function(recs) {
+                                        _.forEach(recs, function(rec) {
+                                             var types = _.map(rec.spaces, 'type');
+                                             if (_.contains(types, 'campaign')) {
+                                                 rec.sourceType = 'campaign';
+                                             } else if (rec.author.id === '53348c27996c80a534319bda') {
+                                                 rec.sourceType = 'youpers';
+                                             } else {
+                                                 rec.sourceType = 'community';
+                                             }
+                                        });
+                                        return recs;
+                                    });
                             }]
                         }
                     });
