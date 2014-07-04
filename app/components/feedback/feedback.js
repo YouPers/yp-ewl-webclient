@@ -16,8 +16,8 @@
                     });
             }])
 
-        .run(['enums', function (enums) {
-            _.merge(enums, {
+        .run(['$rootScope', function ($rootScope) {
+            _.merge($rootScope.enums, {
                 feedbackCategory: [
                     'bug',
                     'improvement',

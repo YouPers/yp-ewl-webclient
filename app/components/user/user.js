@@ -21,8 +21,8 @@
             $translateWtiPartialLoaderProvider.addPart('components/user/user');
         }])
 
-        .run(['enums', function (enums) {
-            _.merge(enums, {
+        .run(['$rootScope', function ($rootScope) {
+            _.merge($rootScope.enums, {
                 maritalStatus: [
                     'undefined',
                     'single',

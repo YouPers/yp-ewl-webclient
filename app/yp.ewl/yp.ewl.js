@@ -72,8 +72,8 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'enums', 'yp.config', '$analytics',
-        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, enums, config, $analytics) {
+    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'yp.config', '$analytics',
+        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, config, $analytics) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -82,7 +82,6 @@ angular.module('yp-ewl',
             $rootScope.$stateParams = $stateParams;
             $rootScope.principal = UserService.principal;
             $rootScope.currentLocale = $translate.use() || $translate.proposedLanguage();
-            $rootScope.enums = enums;
             $rootScope.config = config;
 
             $rootScope.$on('event:authority-authorized', function() {

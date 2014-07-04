@@ -189,8 +189,8 @@
 
             };
         })
-        .run(['enums', function (enums) {
-            _.merge(enums, {
+        .run(['$rootScope', function ($rootScope) {
+            _.merge($rootScope.enums, {
                 executiontype: [
                     'self',
                     'group'

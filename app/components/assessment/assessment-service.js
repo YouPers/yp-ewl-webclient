@@ -8,10 +8,11 @@
         // provides methods to get Assessment Information from the server
         .factory('AssessmentService', ['$http', '$q', 'Restangular', 'UserService', '$rootScope',
             function ($http, $q, Restangular, UserService, $rootScope) {
-                var cachedAssessmentPromise = {};
+                var _cachedAssessmentPromise = {};
+                var _answerDirty = false;
 
                 $rootScope.$on('$translateChangeStart', function () {
-                    cachedAssessmentPromise = {};
+                    _cachedAssessmentPromise = {};
                 });
 
                 function _topicId2Assessment(topicId) {
@@ -40,8 +41,8 @@
                             throw new Error("topicId is required");
                         }
 
-                        if (!cachedAssessmentPromise[topicId]) {
-                            cachedAssessmentPromise[topicId] =
+                        if (!_cachedAssessmentPromise[topicId]) {
+                            _cachedAssessmentPromise[topicId] =
                                 Restangular
                                     .all('assessments')
                                     .getList({populate: 'questions', "filter[topic]": topicId})
@@ -61,7 +62,7 @@
                                         return assessments[0];
                                     });
                         }
-                        return cachedAssessmentPromise[topicId];
+                        return _cachedAssessmentPromise[topicId];
                     },
                     getAssessmentData: function (options) {
                         var assessmentBase = Restangular.all('assessments');
@@ -91,8 +92,6 @@
                                 assResult = assessment.getNewEmptyAssResult();
                             }
 
-
-
                             // return both, assessment and assResult in a simple object
                             return {
                                 assessment: assessment,
@@ -103,10 +102,16 @@
                     putAnswer: function (answer) {
                         var assessment = Restangular.one('assessments', answer.assessment);
                         answer.id = answer.question;
+                        _answerDirty = true;
                         return Restangular.restangularizeElement(assessment, answer, 'answers').put();
                     },
                     regenerateRecommendations: function() {
-                        return Restangular.all('coachRecommendations').getList();
+                        if (_answerDirty) {
+                            _answerDirty = false;
+                            return Restangular.all('coachRecommendations').getList();
+                        } else {
+                            return;
+                        }
                     },
                     getNewestAssessmentResults: function (topicId, options) {
                         return _topicId2Assessment(topicId)
@@ -176,7 +181,11 @@
                             }
                         });
 
+                    },
+                    isAnswerDirty: function() {
+                        return _answerDirty;
                     }
+
                 };
 
                 return assService;
