@@ -12,8 +12,8 @@
   },
   "questionCategory": {
     "work": "Le stress sur le lieu de travail",
-    "leisure": "Le stress durant les loisirs",
-    "stresstypus": "Stressverstärker",
-    "handling": "La compensation du stress"
+    "leisure": "Stress dans la vie personnelle",
+    "stresstypus": "Amplificateurs de stress",
+    "handling": "Compensation du stress"
   }
 }

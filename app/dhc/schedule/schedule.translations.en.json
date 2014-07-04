@@ -2,127 +2,126 @@
   "clientmsg": {
     "success": {
       "activity": {
-        "save": "Aktivität gespeichert"
+        "save": "Activity saved"
       },
       "activityPlan": {
-        "save": "Aktivität eingeplant",
-        "join": "Aktivität eingeplant",
-        "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
-        "delete": "Aktivität gelöscht",
-        "sampleInvitationSent": "Einladung versendet {{email}}",
-        "eventSaved": "Rückmeldung erfolgreich gespeichert"
+        "save": "Activity scheduled",
+        "join": "Activity scheduled",
+        "invite": "You have invited {{email}} to this activity",
+        "delete": "Activity deleted",
+        "sampleInvitationSent": "Invitation mail sent to {{email}}",
+        "eventSaved": "Feedback successfully saved"
       }
     },
     "error": {
       "activity": {
-        "join": "Diese Aktivität konnte nicht eingeplant werden"
+        "join": "This activity could not be scheduled"
       }
     }
   },
   "schedule": {
-    "recommendedBy": "empfohlen durch",
+    "recommendedBy": "recommended by",
     "executiontype": {
-      "self": "Selber planen",
-      "group": "Mitmachen"
+      "self": "Plan myself",
+      "group": "Join"
     },
     "self": {
-      "location": "Wo",
-      "text": "Beschreibung",
+      "location": "Where",
+      "text": "Description",
       "start": "from: ",
-      "end": "Bis: ",
+      "end": "To: ",
       "recurrence": {
-        "day": "Wiederholungen",
-        "week": "Wiederholungen",
-        "weeklyDay": "Jeweils am"
+        "day": "Recurrences",
+        "week": "Recurrences",
+        "weeklyDay": "Repeating every"
       },
-      "visibility": "Andere dürfen mitmachen",
-      "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 anderer</a> macht mit} other{und <a># andere</a> machen mit}}",
+      "visibility": "Others my join",
+      "joiningUsers": "{OTHERS, plural, = 0 {} one {and <a>somebody else</a> is participating} other{and <a># others</a> are participating}}",
       "inviteOthers": {
-        "placeholder": "Jemanden per Email einladen",
-        "submit": "Einladen"
+        "placeholder": "Invite someone by Email",
+        "submit": "Invite"
       }
     },
     "group": {
-      "noPlansToJoin": "Noch niemand hat diese Aktivität eingeplant, plane sie selber ein!",
-      "join": "Mitmachen",
-      "owner": "Organisator:",
-      "joiningUsers": "{OTHERS, plural, =0{} one{und <a>1 anderer</a> nimmt teil} other{und <a># andere</a> nehmen teil}}",
-      "startingOn": "erstmals am",
-      "startToEndDate": "bis",
-      "location": "Treffpunkt"
+      "noPlansToJoin": "Nobody has scheduled this activity, plan it yourself!",
+      "join": "Join",
+      "owner": "Organizer:",
+      "joiningUsers": "{OTHERS, plural, =0{} one {and <a>somebody else</a> is participating} other{and <a># others</a> are participating}}",
+      "startingOn": "for the first time on",
+      "startToEndDate": "to",
+      "location": "Meeting point"
     },
     "event": {
-      "startToEndDate": "until",
-      "rating": "Bewertung",
+      "startToEndDate": "to",
+      "rating": "Rating",
       "done": "Done",
       "missed": "Missed",
-      "comment": "Feedback",
-      "future": "Future"
+      "comment": "Feedback"
     },
     "schedule": "Schedule it",
-    "save": "Sichern",
-    "delete": "Entfernen",
-    "nothanks": "Nein, Danke!"
+    "save": "Save",
+    "delete": "Remove",
+    "nothanks": "No, Thank You!"
   },
   "activityPlanEditable": {
-    "editable": "Eingeplante Aktivität ändern",
-    "notEditableJoinedPlan": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil andere Benutzer daran teilnehmen.",
-    "notEditablePastEvent": "Hinweis: Diese eingeplante Aktivität kann nicht editiert werden, weil die Ausführung in der Vergangenheit ist."
+    "editable": "Change planned activity",
+    "notEditableJoinedPlan": "Hint: This scheduled activity cannot be edited, because other users participate in it.",
+    "notEditablePastEvent": "Hint: This scheduled activity cannot be edited, because the execution is in the past."
   },
   "activityPlanDeletable": {
-    "deletable": "Eingeplante Aktivität löschen",
-    "deletableOnlyFutureEvents": "Zukünftige Ausführungen löschen",
-    "notDeletableJoinedUsers": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil andere Benutzer daran teilnehmen.",
-    "notDeletableJoinedPlans": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil hier an einer Aktivität eines anderen Benutzers teilgenommen wird.",
-    "notDeletableNoFutureEvents": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil alle Ausführungen in der Vergangenheit liegen."
+    "deletable": "Delete scheduled activity",
+    "deletableOnlyFutureEvents": "Delete future events",
+    "notDeletableJoinedUsers": "Hint: This activity cannot be deleted, because other users have already joined.",
+    "notDeletableJoinedPlans": "Hint: This activity cannot be deleted, because it was created by another user.",
+    "notDeletableNoFutureEvents": "Hint: This activity cannot be deleted, because all events are in the past."
   },
   "visibility": {
-    "public": "Öffentlich",
-    "campaign": "Kampagne",
-    "private": "Privat"
+    "public": "Public",
+    "campaign": "Campaign",
+    "private": "Private"
   },
   "source": {
     "youpers": "YouPers",
     "community": "Community",
-    "campaign": "Kampagne"
+    "campaign": "Campaign"
   },
   "calendarNotification": {
-    "none": "Kein Hinweis",
-    "0": "Bei Ereignistart",
-    "300": "5 Minuten vorher",
-    "600": "10 Minuten vorher",
-    "900": "15 Minuten vorher",
-    "1800": "30 Minuten vorher",
-    "3600": "1 Stunde vorher",
-    "7200": "2 Stunden vorher",
-    "86400": "1 Tag vorher",
-    "172800": "2 Tage vorher"
+    "none": "No hint",
+    "0": "At start of event",
+    "300": "5 minutes before",
+    "600": "10 minutes before",
+    "900": "15 minutes before",
+    "1800": "30 minutes before",
+    "3600": "1 hour before",
+    "7200": "2 hours before",
+    "86400": "1 day before",
+    "172800": "2 days before"
   },
   "activityPlanInvite": {
-    "header": "Herzlich willkommen - YouPers Digital Health Plattform",
-    "subheader": " hat Dich eingeladen an einer Aktivität teilzunehmen.",
-    "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}>logge Dich ein</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
+    "header": "Welcome - YouPers Digital Health Plattform",
+    "subheader": " has invited you to join an activity.",
+    "inviteMessage": "<a {{loginLinkAttribute}}>Log in</a> or <a href='' {{registerLinkAttribute}}>register</a> to participate"
   },
   "activityPlanFrequency": {
-    "once": "Einmalig",
-    "day": "Täglich",
-    "week": "Wöchentlich",
-    "month": "Monatlich",
-    "year": "Jährlich"
+    "once": "Once",
+    "day": "Daily",
+    "week": "Weekly",
+    "month": "Monthly",
+    "year": "Yearly"
   },
   "activityField": {
-    "awarenessAbility": "Bewusstsein und Fähigkeit",
-    "timeManagement": "Zeitmanagement",
-    "workStructuring": "Arbeitsgestaltung",
-    "physicalActivity": "Körperliche Aktivität",
-    "nutrition": "Ernährung",
-    "leisureActivity": "Freizeitaktivität",
-    "breaks": "Pausen",
-    "relaxation": "Entspannung",
-    "socialInteraction": "Sozialer Austausch"
+    "awarenessAbility": "Awareness and Ability",
+    "timeManagement": "Time Management",
+    "workStructuring": "Work Structuring",
+    "physicalActivity": "Physical Activity",
+    "nutrition": "Nutrition",
+    "leisureActivity": "Leisure Activity",
+    "breaks": "Breaks",
+    "relaxation": "Relaxation",
+    "socialInteraction": "Social Interaction"
   },
   "executiontype": {
-    "self": "Selber",
-    "group": "Gruppe"
+    "self": "Alone",
+    "group": "Group"
   }
 }

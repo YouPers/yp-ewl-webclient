@@ -1,7 +1,7 @@
 {
   "invite": {
-    "header": "Herzlich willkommen - YouPers Digital Health",
-    "message": "<strong>{{user}}</strong> hat dich zu einer Aktivität eingeladen. Melde dich an, um daran teilzunehmen",
-    "signup": "Neuen Account erstellen"
+    "header": "Welcome - YouPers Digital Health",
+    "message": "<strong>{{user}}</strong> has invited you to an activity. Sign in to participate",
+    "signup": "Create new account"
   }
 }

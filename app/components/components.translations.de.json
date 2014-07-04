@@ -51,35 +51,35 @@
     "fr": "Français",
     "it": "Italiano"
   },
-    "feedbackForm": {
-        "submitted": "Danke für dein Feedback!",
-        "anonymous": {
-            "label": "Anonymes Feedback"
-        },
-        "username": {
-            "label": "Username"
-        },
-        "contactInfo": {
-            "label": "Email",
-            "placeholder": "Email",
-            "error": {
-                "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
-            }
-        },
-        "feedbackCategory": {
-            "label": "Kategorie"
-        },
-        "description": {
-            "label": "Beschreibung"
-        },
-        "close": "Abbrechen",
-        "submit": "Abschicken"
+  "feedbackCategory": {
+    "bug": "Fehler",
+    "improvement": "Verbesserung",
+    "other": "Anderes",
+    "question": "Frage",
+    "support": "Hilfe"
+  },
+  "feedbackForm": {
+    "anonymous": {
+      "label": "Anonymes Feedback"
+    },
+    "close": "Schliessen",
+    "contactInfo": {
+      "error": {
+        "email": "Bitte eine gültige Email Adresse eingeben oder anonymes Feedback auswählen"
+      },
+      "label": "Email",
+      "placeholder": "Email"
+    },
+    "description": {
+      "label": "Beschreibung"
     },
     "feedbackCategory": {
-        "bug": "Fehler",
-        "improvement": "Verbesserung",
-        "question": "Frage",
-        "support": "Hilfe",
-        "other": "Anderes"
+      "label": "Kategorie"
+    },
+    "submit": "Abschicken",
+    "submitted": "Danke für dein Feedback!",
+    "username": {
+      "label": "Username"
+    }
   }
 }

@@ -17,7 +17,7 @@
     "preview": {
       "header": "Preview",
       "welcomeLink": "Invitation link",
-      "welcomeLinkExplain": "By clicking on this link, you can sign up to this campaign. Send this link as part of an e-mail to all potential participants you would like to invite.",
+      "welcomeLinkExplain": "By clicking on this link, you can sign up to this campaign. Send this link as part of an email to all potential participants you would like to invite.",
       "welcomeLinkTest": "Test the link",
       "welcomeLinkNotSaved": "Once you save the campaign, you will see the referral link here."
     },

@@ -13,7 +13,7 @@
       "10": "<p>Pflege deine offenen Rückmeldungen. Das Aktivitäts-Ergebnis wird automatisch in dein <a href='/#/diary'>Tagebuch</a> übertragen.",
       "11": "<p>Setze dir aufgrund deines aktuellen Handlungsbedarfes einen Fokus. Unter Empfehlungen werden dir zum Handlungsbedarf passende <a href='/#/select'>Aktivitätsempfehlungen</a> angezeigt.",
       "12": "<p>Überprüfe deinen Fokus und passe diesen bei Bedarf an, um entsprechend angepasste <a href='/#/select'>Aktivitäts-Empfehlungen</a> zu erhalten.",
-      "13": "<p>Schaue Dir die <a href='/#/select'>Aktivitäts-Vorschläge</a> an und plane dir etwas Passenden ein.",
+      "13": "<p>Schau Dir die <a href='/#/select'>Aktivitäts-Vorschläge</a> an und plane etwas Passendes ein.",
       "14": "<p>Um andere Empfehlungen zu erhalten passse deine <a href='/#/check'>Selbstbeurteilung</a> oder deinen <a href='/#/focus'>Fokus</a> an.",
       "15": "<p>Geplante Aktivitäten können auf dieser Seite geändert oder gelöscht werden. Neue Aktivitäten können auf der Seite <a href='/#/select'>Empfehlungen</a> eingeplant werden.",
       "schedulingConflict": "Du hast am {{beginDate}} - {{endDate}} bereits die Aktivität: '{{title}}' geplant.<p>Willst du wirklich gleichzeitig noch etwas planen?"

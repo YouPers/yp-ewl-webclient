@@ -2,34 +2,34 @@
   "clientmsg": {
     "success": {
       "comment": {
-        "save": "Kommentar gespeichert"
+        "save": "Commentaire enregistré."
       }
     },
     "error": {
       "avatar": {
-        "invalid": "Kein gültiges Avatar Bild",
+        "invalid": "Cette image d'Avatar n'est pas valable.",
         "error": "Il y a eu un problème."
       }
     }
   },
   "executiontype": {
-    "self": "Selber",
-    "group": "Gruppe"
+    "self": "Soi-même",
+    "group": "Le groupe"
   },
   "gender": {
-    "undefined": "unbekannt",
-    "male": "männlich",
-    "female": "weiblich"
+    "undefined": "inconnu",
+    "male": "masculin",
+    "female": "féminin"
   },
   "maritalStatus": {
-    "maritalStatus": "Zivilstand",
-    "undefined": "unbekannt",
-    "single": "single",
-    "unmarried": "in Partnerschaft",
-    "married": "verheiratet",
-    "separated": "getrennt",
-    "divorced": "geschieden",
-    "widowed": "verwitwet"
+    "maritalStatus": "Etat civil",
+    "undefined": "inconnu",
+    "single": "célibataire",
+    "unmarried": "en partenariat",
+    "married": "marié",
+    "separated": "séparé",
+    "divorced": "divorcé",
+    "widowed": "veuf"
   },
   "weekday": {
     "MO": "Lundi",
@@ -46,40 +46,40 @@
     "+03:00": "Sotschi (+03:00)"
   },
   "language": {
-    "de": "Deutsch",
-    "en": "English",
+    "de": "Allemand",
+    "en": "Anglais",
     "fr": "Français",
     "it": "Italiano"
   },
   "feedbackCategory": {
-    "bug": "Fehler",
-    "improvement": "Verbesserung",
-    "other": "Anderes",
-    "question": "Frage",
-    "support": "Hilfe"
+    "bug": "L'erreur",
+    "improvement": "L'amélioration",
+    "other": "Autre",
+    "question": "La question",
+    "support": "Le support"
   },
   "feedbackForm": {
     "anonymous": {
-      "label": "Anonymes Feedback"
+      "label": "le commentaire anonyme"
     },
-    "close": "Schliessen",
+    "close": "Fermer",
     "contactInfo": {
       "error": {
-        "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
+        "email": "S'il te plaît entrer une adresse email valid ou sélectionner des commentaires anonymes"
       },
       "label": "Email",
       "placeholder": "Email"
     },
     "description": {
-      "label": "Beschreibung"
+      "label": "La description"
     },
     "feedbackCategory": {
-      "label": "Kategorie"
+      "label": "La catégorie"
     },
-    "submit": "Abschicken",
-    "submitted": "Danke für dein Feedback!",
+    "submit": "Envoyer",
+    "submitted": "Merci pour ton commentaire!",
     "username": {
-      "label": "Username"
+      "label": "Nom d'utilisateur"
     }
   }
 }

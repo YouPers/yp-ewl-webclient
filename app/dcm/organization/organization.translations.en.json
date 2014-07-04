@@ -47,14 +47,14 @@
       "label": "Legal form",
       "placeholder": "Legal form",
       "error": {
-        "required": "Bitte eine gültige Rechtsform eingeben"
+        "required": "Please enter a valid legal form"
       }
     },
     "sector": {
       "label": "Industry",
       "placeholder": "Industry",
       "error": {
-        "required": "Bitte eine gültige Branche eingeben"
+        "required": "Please enter a valid industry"
       }
     },
     "contact": {
@@ -63,35 +63,35 @@
         "label": "First name",
         "placeholder": "First name",
         "error": {
-          "required": "Bitte einen gültigen Vornamen eingeben"
+          "required": "Please enter a valid first name"
         }
       },
       "lastname": {
         "placeholder": "Last name",
         "error": {
-          "required": "Bitte einen gültigen Nachnamen eingeben"
+          "required": "Please enter a valid last name"
         },
-        "label": "Nachname"
+        "label": "Lastname"
       },
       "position": {
         "label": "Role",
         "placeholder": "Role / Organizational Unit",
         "error": {
-          "required": "Bitte eine gültige Funktion eingeben"
+          "required": "Please enter a valid position"
         }
       },
       "email": {
         "label": "Email",
-        "placeholder": "Email Address",
+        "placeholder": "Email address",
         "error": {
-          "required": "Bitte eine gültige Email-Adresse eingeben"
+          "required": "Please enter a valid Email address"
         }
       },
       "phone": {
         "label": "Phone",
         "placeholder": "Phone number",
         "error": {
-          "required": "Bitte eine gültige Telefonnummer eingeben"
+          "required": "Please enter a valid phone number"
         }
       }
     },

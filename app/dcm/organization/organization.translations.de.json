@@ -11,95 +11,95 @@
       }
     }
   },
-  "organization": {
-    "stateHeader1": "deine",
-    "stateHeader2": "organisation"
-  },
   "organizationForm": {
     "header": "Neue Organisation",
     "name": {
       "label": "Name",
       "placeholder": "Name der Organisation",
       "error": {
-        "required": "Bitte einen gültigen Namen eingeben"
+        "required": "Bitte einen gültigen Namen der Organisation eingeben"
       }
     },
     "address": {
       "street": {
         "label": "Adresse",
         "placeholder": "Strasse, Hausnummer",
-          "error": {
-              "required": "Bitte eine gültige Strasse und Hausnummer eingeben"
-          }
+        "error": {
+          "required": "Bitte eine gültige Strasse und Hausnummer eingeben"
+        }
       },
       "zipCode": {
         "label": "PLZ",
         "placeholder": "PLZ",
-          "error": {
-              "required": "Bitte eine gültige Postleitzahl eingeben"
-          }
+        "error": {
+          "required": "Bitte eine gültige Postleitzahl eingeben"
+        }
       },
       "city": {
-        "label": "Ort",
         "placeholder": "Ort",
-          "error": {
-              "required": "Bitte einen gültigen Org eingeben"
-          }
+        "error": {
+          "required": "Bitte einen gültigen Ort eingeben"
+        },
+        "label": "Ort"
       }
     },
     "legalForm": {
       "label": "Rechtsform",
       "placeholder": "Rechtsform",
-        "error": {
-            "required": "Bitte eine gültige Rechtsform eingeben"
-        }
+      "error": {
+        "required": "Bitte eine gültige Rechtsform eingeben"
+      }
     },
     "sector": {
       "label": "Branche",
       "placeholder": "Nach Branche suchen",
       "error": {
-         "required": "Bitte eine gültige Branche eingeben"
+        "required": "Bitte eine gültige Branche eingeben"
       }
     },
     "contact": {
       "header": "Kontakt",
       "firstname": {
-        "label": "Vorname",
+        "label": "Name",
         "placeholder": "Vorname",
-          "error": {
-              "required": "Bitte einen gültigen Vornamen eingeben"
-          }
+        "error": {
+          "required": "Bitte einen gültigen Vornamen eingeben"
+        }
       },
       "lastname": {
-        "label": "Nachname",
         "placeholder": "Nachname",
-          "error": {
-              "required": "Bitte einen gültigen Nachnamen eingeben"
-          }
+        "error": {
+          "required": "Bitte einen gültigen Nachnamen eingeben"
+        },
+        "label": "Nachname"
       },
       "position": {
         "label": "Funktion",
         "placeholder": "Funktion / Organisationseinheit",
-          "error": {
-              "required": "Bitte eine gültige Funktion eingeben"
-          }
+        "error": {
+          "required": "Bitte eine gültige Funktion eingeben"
+        }
       },
       "email": {
         "label": "Email",
         "placeholder": "Email Adresse",
-          "error": {
-              "required": "Bitte eine gültige Email-Adresse eingeben"
-          }
+        "error": {
+          "required": "Bitte eine gültige Email-Adresse eingeben"
+        }
       },
       "phone": {
         "label": "Telefon",
         "placeholder": "Telefonnummer",
-          "error": {
-              "required": "Bitte eine gültige Telefonnummer eingeben"
-          }
+        "error": {
+          "required": "Bitte eine gültige Telefonnummer eingeben"
+        }
       }
     },
     "save": "speichern",
     "create": "erstellen"
+  },
+  "organization": {
+    "stateHeader1": "deine",
+    "stateHeader2": "organisation"
   }
 }

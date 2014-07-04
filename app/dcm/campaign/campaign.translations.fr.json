@@ -17,7 +17,7 @@
     "preview": {
       "header": "L'aperçu",
       "welcomeLink": "Le lien d'invitation",
-      "welcomeLinkExplain": "En cliquant sur ce lien, tu peux t' inscrire à cette campagne. Envoyer ce lien dans un e-mail à tous les participants potentiels",
+      "welcomeLinkExplain": "Le participant peut s'inscrire à cette campagne en cliquant sur ce lien. Inserts ce lien dans le e-mail qui sera envoyé à tous les participants potentiels.",
       "welcomeLinkTest": "Teste le lien",
       "welcomeLinkNotSaved": "Une fois que tu enregistres la campagne, tu vois le lien de parrainage ici."
     },
@@ -70,7 +70,7 @@
   },
   "inviteCampaignLeadForm": {
     "email": {
-      "placeholder": "Une ou plusieurs adresse e-mail ?\t"
+      "placeholder": "Une ou plusieurs adresses e-mail ?\t"
     },
     "inviteSubmit": "Envoyer",
     "invitationSent": "Invitation envoyée par e-mail, le nouveau directeur de campagne doit maintenant confirmer"

@@ -14,7 +14,7 @@
     "error": {
       "password": {
         "invalid": "The current password is not valid",
-        "reset": "User name/Email was not found"
+        "reset": "Username/Email not found"
       }
     }
   },
@@ -53,9 +53,9 @@
       "label": "Email",
       "placeholder": "Email",
       "error": {
-        "required": "Please enter your email address",
-        "email": "Please enter a valid email address",
-        "unique": "This email address is already registered, please login"
+        "required": "Please enter an Email address",
+        "email": "Please enter a valid Email address",
+        "unique": "This Email address is already registered, please login"
       }
     },
     "save": "save",
@@ -87,18 +87,18 @@
     "save": "Change"
   },
   "emailVerification": {
-    "emailValid": "Email address successfully validated!",
-    "thankYou": "Thank you for verifying your email address. You can now continue",
+    "emailValid": "Email address confirmed!",
+    "thankYou": "Thank you for confirming the Email address. You can continue now.",
     "next": "Next"
   },
   "passwordResetRequest": {
     "resetPasswordFor": "Reset password",
     "identification": "Identification",
-    "checkYourEmails": "Please check your Email",
-    "weSentALink": "We sent an email to you with a link where you can reset your password within the next 10 minutes. <br>Please check your inbox."
+    "checkYourEmails": "Check your Emails",
+    "weSentALink": "We sent an Email to you with a link to reset your password. Please check your mailbox."
   },
   "passwordResetRequestForm": {
-    "usernameOrEmail": "User name or Email",
+    "usernameOrEmail": "Username or Email",
     "$invalid": "Please enter a valid Username or Email",
     "submit": "Submit",
     "reset": "Reset"
@@ -115,9 +115,9 @@
       "header": "Profile"
     },
     "avatar": {
-      "change": "Bild ändern",
+      "change": "Change picture",
       "default": "Standard",
-      "upload": "Hochladen"
+      "upload": "Upload"
     },
     "gender": {
       "label": "Gender"
@@ -177,9 +177,9 @@
     "email": {
       "actPlanInvites": "Invitations for activities",
       "dailyUserMail": "Daily Summary",
-      "iCalInvites": "Calendar events for Office Calendar"
+      "iCalInvites": "Calendar events by email"
     },
-    "emailNotificationsSettings": "receive email notifications",
+    "emailNotificationsSettings": "Did you receive email notifications?",
     "calendarNotificationSettings": "calendar alerts",
     "rejectedActivities": {
       "header": "Rejected Activities"

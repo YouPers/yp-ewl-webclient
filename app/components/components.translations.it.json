@@ -65,7 +65,7 @@
     "close": "Schliessen",
     "contactInfo": {
       "error": {
-        "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
+        "email": "Bitte eine gültige Email Adresse eingeben oder anonymes Feedback auswählen"
       },
       "label": "Email",
       "placeholder": "Email"

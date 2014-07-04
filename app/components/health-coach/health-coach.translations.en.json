@@ -1,22 +1,22 @@
 {
   "healthCoach": {
     "hcmsg": {
-      "1": "<p>Starte mit einer <a href='/#/check'>Selbstbeurteilung</a> oder schaue Dir erste <a href='/#/select'>Aktivitätsvorschläge</a> an.",
-      "2": "<p>Deine <a href='/#/check'>Selbstbeurteilung</a> ist schon einige Tage her. Schaue nochmals deine Antworten durch und finde heraus, ob sich inzwischen etwas verändert hat. <p> Wenn du deine Antworten anpasst bekommst du Aktivitäts-Vorschläge die besser zu deiner persönlichen Situation passen.",
-      "3": "<p>Du hast noch keine Aktivitäten geplant. Mache einen ersten Schritt zu einem verbesserten Gesundheitsverhalten indem du eine <a href='/#/select'>Aktivität einplanst</a> und diese dann durchführst.",
-      "4": "<p>Wenn du deine <a href='/#/check'>Selbstbeurteilung ausfüllst</a>, dann können wir dir Aktivitäten vorschlagen, die auf deine persönliche Situation abgestimmt sind.",
-      "5": "<p>Mit dem Ausfüllen dieser  <a href='/#/check'>Selbstbeurteilung</a> ermöglichst du uns, Dir massgeschneiderte Aktivitäten vorzuschla&shy;gen mit denen du in kleinen Schritten dein Gesundheitsverhalten verbessern kannst.<p> Deine Daten werden verschlüsselt übertragen und in einer sicheren Datenbank in der Schweiz gespeichert.<p>Dein Arbeitgeber hat unter keinen Umständen Zugang zu diesen Informationen.",
-      "6": "<p>Je vollständiger Du die  <a href='/#/check'>Selbstbeurteilung</a> ausfüllst desto besser passen die vorgeschla&shy;genen Aktivitäten zu deiner persönlichen Situation. <p><p>Bis jetzt hast du weniger als die Hälfte der Fragen beantwortet.",
-      "7": "<p>Sobald du die  <a href='/#/check'>Selbstbeurteilung</a> vollständig ausgefüllt hast, zeigen wir dir auf dieser Seite eine Auswertung aufgrund der du deinen persönlichen Fokus wählen kannst.",
-      "8": "<p>Sobald du bei Empfehlungen eine Aktivität eingeplant hast, wird dir diese hier in deinem Plan angezeigt.",
-      "9": "<p>Erfasse hier einen ersten Tagebucheintrag und wiederhole dies gelegentlich, um deine Stresssituation zu verfolgen",
-      "10": "<p>Pflege deine offenen Rückmeldungen. Das Aktivitäts-Ergebnis wird automatisch in dein <a href='/#/diary'>Tagebuch</a> übertragen.",
-      "11": "<p>Setze dir aufgrund deines aktuellen Handlungsbedarfes einen Fokus. Unter Empfehlungen werden dir zum Handlungsbedarf passende <a href='/#/select'>Aktivitätsempfehlungen</a> angezeigt.",
-      "12": "<p>Überprüfe deinen Fokus und passe diesen bei Bedarf an, um entsprechend angepasste <a href='/#/select'>Aktivitäts-Empfehlungen</a> zu erhalten.",
-      "13": "<p>Schaue Dir die <a href='/#/select'>Aktivitäts-Vorschläge</a> an und plane dir etwas Passenden ein.",
-      "14": "<p>Um andere Empfehlungen zu erhalten passse deine <a href='/#/check'>Selbstbeurteilung</a> oder deinen <a href='/#/focus'>Fokus</a> an.",
-      "15": "<p>Geplante Aktivitäten können auf dieser Seite geändert oder gelöscht werden. Neue Aktivitäten können auf der Seite <a href='/#/select'>Empfehlungen</a> eingeplant werden.",
-      "schedulingConflict": "Du hast am {{beginDate}} - {{endDate}} bereits die Aktivität: '{{title}}' geplant.<p>Willst du wirklich gleichzeitig noch etwas planen?"
+      "1": "<p> Start with a <a href='/#/check'>self-check</a> or have a look at some  <a href='/#/select'>activity suggestions</a>.",
+      "2": "<p>Your last update of the <a href='/#/check'>self-check</a> has been a few days ago. Look again at your answers and find out if something has changed in the meantime. <p>If you adjust your answers you get activity suggestions that better fit your personal situation.",
+      "3": "<p>You have not yet planned any activities. Make a first step towards improved health behavior by <a href='/#/select'>scheduling an activity</a> and then execute on it.",
+      "4": "<p> If you perform the <a href='/#/check'>Self-Check</a> we can propose you activities that are tailored to your personal situation.",
+      "5": "<p> By completing this <a href='/#/check'>Self-Check</a> you enable us to propose tailor-made activities helping you to improve your health behavior in small steps.<p> Your data will be encrypted and stored in a secure database in Switzerland. <p> Your employer does not gain access to this data under any circumstances.",
+      "6": "<p> The more complete you perform the <a href='/#/check'>Self-Check</a> the better will the proposed activities fit to your personal situation. <p><p> Until now you have answered less than half of the questions.",
+      "7": "<p>Once you have completely filled out the <a href='/#/check'>self-assessment</a>, we will show you on this page an analysis based on which you can select your personal focus.",
+      "8": "<p>Once you have scheduled an activity under recommendations, it will be shown here in your plan.",
+      "9": "<p>Record a first diary entry here and repeat this occasionally to track your stress situation",
+      "10": "<p>Maintain your open feedback. The activity result will be automatically transmitted in your <a href='/#/diary'>diary</a>.",
+      "11": "<p>Set yourself a focus because of your current need for action. Under recommendations you will be displayed appropriate <a href='/#/select'>activity recommendations</a> that suit the need for action.",
+      "12": "<p>Check your focus and adjust it as needed to obtain appropriately adapted <a href='/#/select'>activity recommendations</a>.",
+      "13": "<p>Look at the <a href='/#/select'>activity suggestions</a> and schedule something suitable.",
+      "14": "<p>In order to obtain other recommendations, adjust your <a href='/#/check'>self-assessment</a> or your <a href='/#/focus'>focus</a>.",
+      "15": "<p>Planned activities can be modified or deleted on this page. New activities can be scheduled on the page <a href='/#/select'>recommendations</a>.",
+      "schedulingConflict": "You already have scheduled the activity: '{{title}}' on {{beginDate}} - {{endDate}}. <p>Do you really want the schedule anything else at once?"
     }
   }
 }

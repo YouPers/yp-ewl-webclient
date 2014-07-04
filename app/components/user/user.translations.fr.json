@@ -2,19 +2,19 @@
   "clientmsg": {
     "success": {
       "account": {
-        "save": "Konto gespeichert"
+        "save": "Enregistré le compte"
       },
       "password": {
-        "save": "Passwort geändert"
+        "save": "Mot de passe modifié avec succès"
       },
       "profile": {
-        "save": "Profil gespeichert"
+        "save": "enregistré le profil"
       }
     },
     "error": {
       "password": {
-        "invalid": "Das aktuelle Passwort ist nicht korrekt",
-        "reset": "Benutzername/Email ist uns nicht bekannt"
+        "invalid": "Le mot de passe actuel n'est pas correcte",
+        "reset": "Nom d'utilisateur / Email est inconnu"
       }
     }
   },
@@ -22,40 +22,40 @@
     "account": "Le compte",
     "changeAccount": "Changer de compte",
     "changePassword": "Changer mot de passe",
-    "currentCampaign": "Aktuelle Kampagne",
-    "start": "Begann am",
-    "end": "Endet am",
-    "noCurrentCampaign": "Du hast keine laufende Kampagne, starte eine hier"
+    "currentCampaign": "La campagne actuelle",
+    "start": "a été lancée le",
+    "end": "se clôture le",
+    "noCurrentCampaign": "Tu n'as pas de campagne en cours, commencer un ici"
   },
   "accountForm": {
     "firstname": {
       "label": "Prénom",
-      "placeholder": "Vorname",
+      "placeholder": "Prénom",
       "error": {
-        "required": "Bitte einen Vornamen eingeben"
+        "required": "S'il te plaît, entrer un prénom valide."
       }
     },
     "lastname": {
       "label": "Nom",
-      "placeholder": "Nachname",
+      "placeholder": "Nom",
       "error": {
-        "required": "Bitte einen Nachnamen eingeben"
+        "required": "S'il te plaît, entrer un nom valide."
       }
     },
     "username": {
       "label": "Nom d'utilisateur",
-      "placeholder": "Benutzername",
+      "placeholder": "Nom d'utilisateur",
       "error": {
-        "required": "Bitte einen Benutzernamen eingeben"
+        "required": "S'il te plaît, entrer un nom d'utilisateur"
       }
     },
     "email": {
       "label": "E-mail",
       "placeholder": "Email",
       "error": {
-        "required": "Bitte eine EMail-Adresse eingeben",
-        "email": "Bitte eine gültige EMail-Adresse eingeben",
-        "unique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein"
+        "required": "S'il te plaît, entrer un email valide.",
+        "email": "S'il te plaît, entrer une adresse email valide",
+        "unique": "Cette adresse email est déjà enregistré, Connectes-toi, s'il te plaît"
       }
     },
     "save": "Enregistrer",
@@ -64,125 +64,125 @@
   "passwordForm": {
     "password_old": {
       "label": "Mot de passe actuel",
-      "placeholder": "Aktuelles Passwort",
+      "placeholder": "Mot de passe actuel",
       "error": {
-        "required": "Dein aktuelles Passwort"
+        "required": "Ton mot de passe actuel"
       }
     },
     "password": {
       "label": "Nouveau mot de passe",
-      "placeholder": "Neues Passwort",
+      "placeholder": "Nouveau mot de passe",
       "error": {
-        "minlength": "Mindestens 6 Zeichen",
-        "required": "Dein neues Passwort"
+        "minlength": "6 caractères minimum",
+        "required": "Ton nouveau mot de passe"
       }
     },
     "password2": {
       "label": "Confirmer mot de passe",
-      "placeholder": "Passwort bestätigen",
+      "placeholder": "Confirmer mot de passe",
       "error": {
-        "unique": "Die Passwörter stimmen nicht überein"
+        "unique": "Les mots de passe ne concordent pas."
       }
     },
     "save": "Éditer"
   },
   "emailVerification": {
-    "emailValid": "Email -adresse confirmé!",
+    "emailValid": "l'adresse e-mail confirmé!",
     "thankYou": "Merci pour la confirmation de l'adresse e-mail - tu peux maintenant procéder.",
-    "next": "weiter"
+    "next": "suivant"
   },
   "passwordResetRequest": {
-    "resetPasswordFor": "Passwort zurücksetzen",
-    "identification": "Identifikation",
-    "checkYourEmails": "Überprüfe deine Emails",
-    "weSentALink": "Wir haben ein Email an dich versendet mit einem Link um dein Passwort zurückzusetzen. Bitte überprüfe deine Mailbox"
+    "resetPasswordFor": "Mot de passe réinitialisé",
+    "identification": "L'identité",
+    "checkYourEmails": "Vérifies tes emails",
+    "weSentALink": "Nous  t'avons envoyé un e-mail avec un lien pour réinitialiser ton mot de passe. S'il vous plaît,vérifier ta boîte aux lettres"
   },
   "passwordResetRequestForm": {
-    "usernameOrEmail": "Benutzername oder Email",
-    "$invalid": "Bitte gültigen Benutzername oder Email eingeben",
-    "submit": "Weiter",
-    "reset": "zurücksetzen"
+    "usernameOrEmail": "Nom d’utilisateur ou email",
+    "$invalid": "S'il vous plaît, entrer un nom d'utilisateur valide ou email",
+    "submit": "suivant",
+    "reset": "reculer"
   },
   "passwordReset": {
-    "hello": "Hallo",
-    "setNewPassword": "Du kannst Dir nun ein neues Passwort setzen:",
-    "newPassword": "Neues Passwort",
-    "success": "Passwort erfolgreich gesetzt",
-    "loginAgainWithNewPassword": "Logge Dich mit deinem neuen Passwort ein..."
+    "hello": "Allô",
+    "setNewPassword": "Tu peux te parier un nouveau mot de passe maintenant:",
+    "newPassword": "Nouveau mot de passe",
+    "success": "Le mot de passe soit réinitialisé avec succès",
+    "loginAgainWithNewPassword": "Signer avec ton nouveau mot de passe ..."
   },
   "profileForm": {
     "profile": {
-      "header": "Profil"
+      "header": "Le profil"
     },
     "avatar": {
-      "change": "Bild ändern",
-      "default": "Standard",
-      "upload": "Hochladen"
+      "change": "Changer d’image",
+      "default": "Le standard",
+      "upload": "charger"
     },
     "gender": {
-      "label": "Geschlecht"
+      "label": "Sexe"
     },
     "birthdate": {
-      "label": "Geburtstag",
-      "$invalid": "Bitte einen gültigen Geburtstag eingeben."
+      "label": "Anniversaire",
+      "$invalid": "S'il te plaît, entrer un anniversaire valide."
     },
     "maritalStatus": {
-      "label": "Zivilstand"
+      "label": "Etat civil"
     },
     "homeAddress": {
-      "header": "Heimadresse",
+      "header": "Adresse du domicile",
       "street": {
-        "placeholder": "Strasse"
+        "placeholder": "Rue"
       },
       "houseNumber": {
-        "placeholder": "Nr."
+        "placeholder": "Numéro"
       },
       "zipCode": {
-        "placeholder": "PLZ"
+        "placeholder": "Code postal"
       },
       "city": {
-        "placeholder": "Ort"
+        "placeholder": "Lieu"
       },
       "country": {
-        "placeholder": "Land"
+        "placeholder": "Pays"
       }
     },
     "workAddress": {
-      "header": "Arbeitsort",
+      "header": "Le lieu de travail",
       "street": {
-        "placeholder": "Strasse"
+        "placeholder": "Rue"
       },
       "houseNumber": {
-        "placeholder": "Nr."
+        "placeholder": "Numéro"
       },
       "zipCode": {
-        "placeholder": "PLZ"
+        "placeholder": "Code postal"
       },
       "city": {
-        "placeholder": "Ort"
+        "placeholder": "Lieu"
       },
       "country": {
-        "placeholder": "Land"
+        "placeholder": "Pays"
       }
     },
     "settings": {
-      "header": "Einstellungen"
+      "header": "Options"
     },
-    "submit": "Speichern",
-    "defaultWorkWeek": "Grundeinstellung für Arbeitswoche",
-    "firstDayOfWeek": "Erster Tag der Woche",
-    "timeZone": "Zeitzone",
-    "language": "Sprache",
-    "$invalid": "Bitte gültigen Wert eintragen",
+    "submit": "Enregistrer",
+    "defaultWorkWeek": "Les réglages de base pour une semaine de travail",
+    "firstDayOfWeek": "Premier jour de la semaine",
+    "timeZone": "Le fuseau horaire",
+    "language": "Langue",
+    "$invalid": "Intégrer les encours valides",
     "email": {
-      "actPlanInvites": "Einladungen zu Aktivitäten ",
-      "dailyUserMail": "Tägliche Zusammenfassung",
-      "iCalInvites": "Kalender-Einträge per Email"
+      "actPlanInvites": "Les invitations à des activités ",
+      "dailyUserMail": "Le résumé journalier",
+      "iCalInvites": "L'entrée de l'agenda par email"
     },
-    "emailNotificationsSettings": "E-Mailbenachrichtigungen erhalten?",
-    "calendarNotificationSettings": "Hinweise im Bürokalendar",
+    "emailNotificationsSettings": "Messages reçus?",
+    "calendarNotificationSettings": "Des indications dans le calendrier",
     "rejectedActivities": {
-      "header": "Abgelehnte Aktivitäten"
+      "header": "Des activités réfusés"
     }
   }
 }

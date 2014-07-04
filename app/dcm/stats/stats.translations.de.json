@@ -1,13 +1,11 @@
 {
   "stats": {
-    "stateHeader1": "kampagnen",
-    "stateHeader2": "Statistiken",
     "overview": "Übersicht",
     "usersTotal": "Anzahl User in der Kampagne",
-    "updatesTotal": "Anzahl ausgefüllte Selbstbeurteilungen (auch unvollständig)",
+    "updatesTotal": "Anzahl ausgefüllte Selbstbeurteilungen (vollständige und unvollständige Selbstbeurteilungen)",
     "totalActsPlanned": "Anzahl eingeplante Aktivitäten",
     "totalEventsPlanned": "Anzahl geplante Durchführungen von Aktivitäten",
-    "assUpdatesPerDay": "Anpassungen der Selbstbeurteilung pro Tag",
+    "assUpdatesPerDay": "Anzahl Anpassungen der Selbstbeurteilung pro Tag",
     "usersWithDiaryEntry": "Anzahl Benutzer mit mindestens 1 Tagebuch-Eintrag",
     "activityName": "Aktivität",
     "day": "Datum",
@@ -17,7 +15,9 @@
     "count": "Anzahl",
     "average": "durchschnittlich",
     "stressor": "Stressverursacher",
-    "activityEvents": "Ausführungen von Aktivitäten",
-    "status": "Status der Ausführung"
+    "activityEvents": "Anzahl Ausführungen von Aktivitäten",
+    "status": "Status der Ausführung",
+    "stateHeader1": "kampagnen",
+    "stateHeader2": "Statistiken"
   }
 }

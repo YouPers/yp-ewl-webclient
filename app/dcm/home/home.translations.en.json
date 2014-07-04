@@ -1,12 +1,12 @@
 {
   "dcmhome": {
-    "notifications": "Mitteilungen",
-    "campaigns": "Kampagnen",
-    "campaignoffers": "Aktivitäten",
-    "activities": "Neue Aktivitäten",
-    "statistics": "Statistiken",
-    "organization": "Organisation",
-    "stateHeader1": "digitaler",
-    "stateHeader2": "Kampagnen-Manager"
+    "notifications": "Notifications",
+    "campaigns": "Campaigns",
+    "campaignoffers": "Activities",
+    "activities": "New activities",
+    "statistics": "Statistics",
+    "organization": "Organization",
+    "stateHeader1": "digital",
+    "stateHeader2": "Campaign Manager"
   }
 }

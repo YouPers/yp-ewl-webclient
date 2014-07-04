@@ -1,19 +1,19 @@
 {
   "check": {
     "impactQuestion": {
-      "question": "Stresst dich das?",
-      "leftCaption": "kaum",
-      "rightCaption": "sehr"
+      "question": "Does this stress you?",
+      "leftCaption": "hardly",
+      "rightCaption": "very much"
     },
     "toFocus": "Go to focus",
     "questionsAnswered": "criteria rated",
-    "stateHeader1": "deine",
-    "stateHeader2": "Selbstbeurteilung"
+    "stateHeader1": "your",
+    "stateHeader2": "Self-assessment"
   },
   "questionCategory": {
-    "work": "Stress am Arbeitsplatz",
-    "leisure": "Stress in der Freizeit",
-    "stresstypus": "Stressverstärker",
-    "handling": "Stressausgleich"
+    "work": "Stress at Work",
+    "leisure": "Stress in Leisure Time",
+    "stresstypus": "Stress Intensifier",
+    "handling": "Stress Compensation"
   }
 }

@@ -22,14 +22,14 @@
     },
     "address": {
       "street": {
-        "label": "L’adresse",
+        "label": "Adresse",
         "placeholder": "Rue (nom et numéro)",
         "error": {
           "required": "S'il te plaît, entrer un rue (nom et numéro) valide"
         }
       },
       "zipCode": {
-        "label": "Code postal / lieu",
+        "label": "Code postal / Lieu",
         "placeholder": "Code postal",
         "error": {
           "required": "S'il te plaît, entrer un code postale valide"

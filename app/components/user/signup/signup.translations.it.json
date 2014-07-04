@@ -1,7 +1,7 @@
 {
   "signup": {
     "header": "Benvenuto in YOUPERS!",
-    "signupNote": "Neu registieren",
+    "signupNote": "Registrati",
     "signinNote": "Autenticazione"
   },
   "registerForm": {
@@ -28,8 +28,8 @@
       }
     },
     "email": {
-      "label": "Email",
-      "placeholder": "Email",
+      "label": "E-mail",
+      "placeholder": "E-mail",
       "error": {
         "required": "Prego inserire un indirizzo email valido",
         "email": "Prego inserire un indirizzo email valido",
@@ -49,13 +49,13 @@
       "placeholder": "Ripeti la password",
       "$invalid": "Le password non coincidono",
       "error": {
-        "unique": "Die Passwörter stimmen nicht überein"
+        "unique": "Le Password non coincidono"
       }
     },
     "termsAccepted": {
-      "label1": "Ich hab die ",
-      "label2": "Allgemeinen Geschäftsbedingungen",
-      "label3": "gelesen und stimme ihnen zu",
+      "label1": "Confermo d'aver letto le ",
+      "label2": "Termini e condizioni generali",
+      "label3": "e accetto",
       "$error": {
         "required": "Prego accetta i termini e le condizioni"
       }

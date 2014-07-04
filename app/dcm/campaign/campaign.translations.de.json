@@ -1,15 +1,13 @@
 {
   "campaigns": {
-    "stateHeader1": "deine",
-    "stateHeader2": "kampagnen",
     "group": {
       "active": "aktive kampagnen",
       "inactive": "beendete kampagnen"
-    }
+    },
+    "stateHeader1": "deine",
+    "stateHeader2": "kampagnen"
   },
   "campaign": {
-    "stateHeader1": "deine",
-    "stateHeader2": "kampagne",
     "header": "Kampagne erstellen/ändern",
     "link": {
       "new": "neue kampagne",
@@ -25,7 +23,9 @@
     },
     "campaignLeads": {
       "header": "kampagnenleiter"
-    }
+    },
+    "stateHeader1": "deine",
+    "stateHeader2": "kampagne"
   },
   "campaignForm": {
     "avatar": {
@@ -36,7 +36,7 @@
       "label": "Titel",
       "placeholder": "Titel",
       "error": {
-        "required": "Bitte einen gültigen Title eingeben"
+        "required": "Bitte einen gültigen Titel eingeben"
       }
     },
     "start": {
@@ -71,7 +71,7 @@
   },
   "inviteCampaignLeadForm": {
     "email": {
-      "placeholder": "Ein oder mehrere Email-Adressen"
+      "placeholder": "Eine oder mehrere Email-Adressen"
     },
     "inviteSubmit": "Senden",
     "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"

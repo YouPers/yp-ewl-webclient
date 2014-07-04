@@ -9,7 +9,7 @@
         "join": "Aktivität eingeplant",
         "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
         "delete": "Aktivität gelöscht",
-        "sampleInvitationSent": "Einladung versendet {{email}}",
+        "sampleInvitationSent": "Einladung versandt an {{email}}",
         "eventSaved": "Rückmeldung erfolgreich gespeichert"
       }
     },
@@ -60,9 +60,9 @@
       "future": "Zukünftig"
     },
     "schedule": "Einplanen",
-    "nothanks": "Nein, Danke!",
     "save": "Sichern",
-    "delete": "Entfernen"
+    "delete": "Entfernen",
+    "nothanks": "Nein, Danke!"
   },
   "activityPlanEditable": {
     "editable": "Eingeplante Aktivität ändern",

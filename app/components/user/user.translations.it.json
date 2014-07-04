@@ -95,7 +95,7 @@
     "resetPasswordFor": "Passwort zurücksetzen",
     "identification": "Identifikation",
     "checkYourEmails": "Überprüfe deine Emails",
-    "weSentALink": "Wir haben ein Email an dich versendet mit einem Link um dein Passwort zurückzusetzen. Bitte überprüfe deine Mailbox"
+    "weSentALink": "Wir haben eine Email an dich versendet mit einem Link, um dein Passwort zurückzusetzen. Bitte überprüfe deine Mailbox"
   },
   "passwordResetRequestForm": {
     "usernameOrEmail": "Benutzername oder Email",

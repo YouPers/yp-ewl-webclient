@@ -3,11 +3,11 @@
     "diary": "Diary",
     "select": "Recommendations",
     "plan": "Plan",
-    "result": "Ergebnisse",
+    "result": "Results",
     "check": "Self-Check",
     "focus": "Focus",
     "noCampaign": "Open the link in your invitation email <br/> to join the campaign!",
-    "stateHeader1": "deine",
-    "stateHeader2": "kampagnen"
+    "stateHeader1": "your",
+    "stateHeader2": "campaigns"
   }
 }

@@ -9,7 +9,7 @@
         "join": "Aktivität eingeplant",
         "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
         "delete": "Aktivität gelöscht",
-        "sampleInvitationSent": "Einladung versendet {{email}}",
+        "sampleInvitationSent": "Einladung versandt an {{email}}",
         "eventSaved": "Rückmeldung erfolgreich gespeichert"
       }
     },
@@ -62,6 +62,15 @@
     "save": "Sichern",
     "delete": "Entfernen",
     "nothanks": "Nein, Danke!"
+  },
+  "weekday": {
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch",
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag"
   },
   "activityPlanEditable": {
     "editable": "Eingeplante Aktivität ändern",

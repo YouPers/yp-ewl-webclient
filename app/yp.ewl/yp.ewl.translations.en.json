@@ -40,8 +40,8 @@
   },
   "loginform": {
     "usernameOrEmail": {
-      "label": "User name/email",
-      "$invalid": "please enter a valid user name/email"
+      "label": "Username/Email",
+      "$invalid": "Please enter a valid Username or Email"
     },
     "password": {
       "label": "Password",

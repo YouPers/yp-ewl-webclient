@@ -2,7 +2,7 @@
   "clientmsg": {
     "success": {
       "organization": {
-        "saved": "Änderungen gespeichert"
+        "saved": "Modifiche salvate"
       }
     },
     "error": {
@@ -12,35 +12,35 @@
     }
   },
   "organizationForm": {
-    "header": "Neue Organisation",
+    "header": "Nuova organizzazione",
     "name": {
-      "label": "Name",
-      "placeholder": "Name der Organisation",
+      "label": "Nome",
+      "placeholder": "Nome dell'organizzazione",
       "error": {
         "required": "Prego inserire un nome valido per l'organizzazione"
       }
     },
     "address": {
       "street": {
-        "label": "Adresse",
-        "placeholder": "Strasse, Hausnummer",
+        "label": "Indirizzo",
+        "placeholder": "Via e numero civico",
         "error": {
-          "required": "Bitte eine gültige Strasse und Hausnummer eingeben"
+          "required": "Si prega di inserire un Indirizzo valido"
         }
       },
       "zipCode": {
-        "label": "PLZ / Ort",
-        "placeholder": "PLZ",
+        "label": "CAP / Città",
+        "placeholder": "CAP",
         "error": {
-          "required": "Bitte eine gültige Postleitzahl eingeben"
+          "required": "Inserisci un codice postale valido"
         }
       },
       "city": {
-        "placeholder": "Ort",
+        "placeholder": "Città",
         "error": {
-          "required": "Bitte einen gültigen Org eingeben"
+          "required": "Inserisci una città valida"
         },
-        "label": "Ort"
+        "label": "Città"
       }
     },
     "legalForm": {
@@ -51,55 +51,55 @@
       }
     },
     "sector": {
-      "label": "Branche",
-      "placeholder": "Branche",
+      "label": "Industria",
+      "placeholder": "Industria",
       "error": {
-        "required": "Bitte eine gültige Branche eingeben"
+        "required": "Inserisci un settore valido"
       }
     },
     "contact": {
-      "header": "Kontakt",
+      "header": "Contatto",
       "firstname": {
-        "label": "Name",
+        "label": "Nome",
         "placeholder": "Nome",
         "error": {
-          "required": "Bitte einen gültigen Vornamen eingeben"
+          "required": "Prego inserire un nome valido"
         }
       },
       "lastname": {
         "placeholder": "Cognome",
         "error": {
-          "required": "Bitte einen gültigen Nachnamen eingeben"
+          "required": "Prego inserire un cognome valido"
         },
-        "label": "Nachname"
+        "label": "Cognome"
       },
       "position": {
-        "label": "Funktion",
-        "placeholder": "Funktion / Organisationseinheit",
+        "label": "Ruolo",
+        "placeholder": "Ruolo / unità organizzativa",
         "error": {
-          "required": "Bitte eine gültige Funktion eingeben"
+          "required": "Si prega di inserire una posizione valida"
         }
       },
       "email": {
-        "label": "Email",
-        "placeholder": "Email Adresse",
+        "label": "E-mail",
+        "placeholder": "E-mail",
         "error": {
-          "required": "Bitte eine gültige Email-Adresse eingeben"
+          "required": "Inserire un indirizzo e-mail valido."
         }
       },
       "phone": {
-        "label": "Telefon",
-        "placeholder": "Telefonnummer",
+        "label": "Telefono",
+        "placeholder": "Telefono",
         "error": {
-          "required": "Bitte eine gültige Telefonnummer eingeben"
+          "required": "Inserire un numero telefonico valido."
         }
       }
     },
-    "save": "speichern",
-    "create": "erstellen"
+    "save": "salva",
+    "create": "crea"
   },
   "organization": {
-    "stateHeader1": "deine",
-    "stateHeader2": "organisation"
+    "stateHeader1": "Tuo",
+    "stateHeader2": "Organizzazione"
   }
 }

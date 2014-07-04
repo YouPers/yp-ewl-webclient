@@ -1,14 +1,14 @@
 {
   "check": {
-    "stateHeader1": "deine",
-    "stateHeader2": "Selbstbeurteilung",
     "impactQuestion": {
       "question": "Stresst dich das?",
       "leftCaption": "kaum",
       "rightCaption": "sehr"
     },
     "toFocus": "Zu deinem Fokus",
-    "questionsAnswered": "Kriterien beurteilt"
+    "questionsAnswered": "Kriterien beurteilt",
+    "stateHeader1": "deine",
+    "stateHeader2": "Selbstbeurteilung"
   },
   "questionCategory": {
     "work": "Stress am Arbeitsplatz",

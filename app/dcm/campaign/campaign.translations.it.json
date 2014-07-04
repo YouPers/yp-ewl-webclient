@@ -4,8 +4,8 @@
       "active": "aktive kampagnen",
       "inactive": "beendete kampagnen"
     },
-    "stateHeader1": "deine",
-    "stateHeader2": "kampagnen"
+    "stateHeader1": "Tuo",
+    "stateHeader2": "CAMPAGNE"
   },
   "campaign": {
     "header": "Stress Management",
@@ -24,8 +24,8 @@
     "campaignLeads": {
       "header": "kampagnenleiter"
     },
-    "stateHeader1": "deine",
-    "stateHeader2": "kampagne"
+    "stateHeader1": "Tuo",
+    "stateHeader2": "campagna"
   },
   "campaignForm": {
     "avatar": {
@@ -58,21 +58,21 @@
       }
     },
     "city": {
-      "label": "Ort",
-      "placeholder": "Ort"
+      "label": "Città",
+      "placeholder": "Città"
     },
     "slogan": {
       "label": "Slogan",
       "placeholder": "Slogan"
     },
-    "save": "Speichern",
-    "create": "Speichern"
+    "save": "Salva",
+    "create": "Salva"
   },
   "inviteCampaignLeadForm": {
     "email": {
       "placeholder": "Una o diverse email"
     },
-    "inviteSubmit": "Senden",
-    "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"
+    "inviteSubmit": "Invia",
+    "invitationSent": "Invito spedito via e-mail, il nuovo leader della campagna deve confermare"
   }
 }

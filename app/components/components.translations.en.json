@@ -52,32 +52,32 @@
     "it": "Italiano"
   },
   "feedbackCategory": {
-    "bug": "Fehler",
-    "improvement": "Verbesserung",
-    "other": "Anderes",
-    "question": "Frage",
-    "support": "Hilfe"
+    "bug": "Error",
+    "improvement": "Improvement",
+    "other": "Miscellaneous",
+    "question": "Question",
+    "support": "Help"
   },
   "feedbackForm": {
     "anonymous": {
-      "label": "Anonymes Feedback"
+      "label": "Anonymous feedback"
     },
-    "close": "Schliessen",
+    "close": "Close",
     "contactInfo": {
       "error": {
-        "email": "Bitte eine gültige Email Adresse eingeben, oder anonymes Feedback auswählen"
+        "email": "Please enter a valid email address or select anonymous feedback"
       },
       "label": "Email",
       "placeholder": "Email"
     },
     "description": {
-      "label": "Beschreibung"
+      "label": "Description"
     },
     "feedbackCategory": {
-      "label": "Kategorie"
+      "label": "Category"
     },
-    "submit": "Abschicken",
-    "submitted": "Danke für dein Feedback!",
+    "submit": "Send",
+    "submitted": "Thank you for your feedback!",
     "username": {
       "label": "Username"
     }

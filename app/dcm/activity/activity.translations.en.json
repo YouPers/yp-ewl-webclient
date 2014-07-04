@@ -26,7 +26,7 @@
     "duration": "Duration (min) ",
     "save": "Save",
     "back": "Back",
-    "stateHeader1": "aktivität"
+    "stateHeader1": "activity"
   },
   "activities": {
     "group": {
@@ -42,8 +42,8 @@
       "recommend": "Recommend"
     },
     "search": "Search",
-    "stateHeader1": "kampagnen",
-    "stateHeader2": "aktivitäten"
+    "stateHeader1": "Campaigns",
+    "stateHeader2": "activities"
   },
   "campaignoffers": {
     "link": {
@@ -56,8 +56,8 @@
       "campaignActivityPlan": "scheduled"
     },
     "userNamesNotShown": "Names are not displayed for privacy protection",
-    "stateHeader1": "kampagnen",
-    "stateHeader2": "Aktivitäten"
+    "stateHeader1": "campaigns",
+    "stateHeader2": "Activities"
   },
   "scheduledDate": {
     "daily": "Daily"

@@ -33,7 +33,7 @@
       "error": {
         "required": "S'il te plaît, entrer un email valide.",
         "email": "S'il te plaît, entrer une adresse email valide",
-        "unique": "Cette adresse email est déjà enregistré, Connectes-toi, s'il te plaît"
+        "unique": "Cette adresse e-mail est déjà enregistrée, connectes-toi, s'il te plaît"
       }
     },
     "password": {

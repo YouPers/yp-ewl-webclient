@@ -2,13 +2,13 @@
   "notifications": {
     "title": "Your Notifications",
     "type": {
-      "personalInvitation": "Persönliche Einladung",
-      "message": "Mitteilung",
-      "activityRecommendation": "Aktivitäts-Empfehlung",
-      "joinablePlan": "Einladung für Event"
+      "personalInvitation": "Personal Invitation",
+      "message": "Message",
+      "activityRecommendation": "Activity recommendation",
+      "joinablePlan": "Invitation for Event"
     },
     "preview": {
-      "title": "Vorschau per"
+      "title": "Preview for"
     }
   }
 }

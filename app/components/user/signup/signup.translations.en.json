@@ -1,7 +1,7 @@
 {
   "signup": {
     "header": "Welcome to YOUPERS!",
-    "signupNote": "Neu registieren",
+    "signupNote": "register",
     "signinNote": "Login"
   },
   "registerForm": {
@@ -33,7 +33,7 @@
       "error": {
         "required": "Please enter a valid email address",
         "email": "Please enter a valid email address",
-        "unique": "This email address is already registered, please login"
+        "unique": "This email address is already registered, please log in"
       }
     },
     "password": {
@@ -49,13 +49,13 @@
       "placeholder": "Repeat password",
       "$invalid": "Passwords are not identical",
       "error": {
-        "unique": "Die Passwörter stimmen nicht überein"
+        "unique": "Passwords do not match"
       }
     },
     "termsAccepted": {
-      "label1": "Ich hab die ",
-      "label2": "Allgemeinen Geschäftsbedingungen",
-      "label3": "gelesen und stimme ihnen zu",
+      "label1": "I have read the ",
+      "label2": "General Terms and Conditions",
+      "label3": "and I agree",
       "$error": {
         "required": "Please accept the Terms and Conditions"
       }
