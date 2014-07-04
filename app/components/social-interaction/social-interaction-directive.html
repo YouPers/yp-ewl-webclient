@@ -1,0 +1,34 @@
+
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="socialInteraction in socialInteractions">
+
+        <div class="pull-right">
+            <a href><i ng-click="dismissSocialInteraction(socialInteraction)" class="glyphicon glyphicon-remove"></i></a>
+        </div>
+
+        <span class="label label-primary" ng-show="socialInteraction.__t == 'Invitation'" translate>socialInteraction.invitation</span>
+        <span class="label label-success" ng-show="socialInteraction.__t == 'Recommendation'" translate>socialInteraction.recommendation</span>
+        <span class="label label-default" ng-show="$parent.$root.isProductAdmin" translate>{{ socialInteraction.language }}</span>
+
+        <span class="label label-info">{{ socialInteraction.author.fullname }}</span>
+
+        <span class="label label-danger" ng-if="socialInteraction.important" translate>socialInteraction.important</span>
+
+        <h4>{{ socialInteraction.refDocs[0].doc.title }}</h4>
+
+        <h3>{{ socialInteraction.title }}</h3>
+
+        <p>{{ socialInteraction.text }}</p>
+
+        <div class="pull-right">
+            <span ng-show="socialInteraction.publishFrom && !socialInteraction.publishTo" translate>socialInteraction.publishFrom</span>
+            <span>{{ socialInteraction.publishFrom | date }}</span>
+            <span ng-show="socialInteraction.publishFrom && socialInteraction.publishTo"> - </span>
+            <span ng-show="!socialInteraction.publishFrom && socialInteraction.publishTo" translate>socialInteraction.publishTo</span>
+            <span>{{ socialInteraction.publishTo | date }}</span>
+        </div>
+
+        <div class="clearfix"></div>
+
+    </li>
+</ul>

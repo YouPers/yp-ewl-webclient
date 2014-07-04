@@ -1,0 +1,12 @@
+{
+    "socialInteraction": {
+
+        "important": "Important",
+
+        "publishFrom": "Published from: ",
+        "publishTo": "Published to: ",
+
+        "invitation": "Einladung",
+        "recommendation": "Empfehlung"
+    }
+}

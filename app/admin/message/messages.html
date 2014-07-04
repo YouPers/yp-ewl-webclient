@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="state-header-1" translate>admin.message.stateHeader1</div>
+        <div class="state-header-2" translate>admin.message.stateHeader2</div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+
+
+        <form name="adminMessageForm" ypModel="message" class="form" role="form" ng-submit="sendMessage()" novalidate>
+
+
+            <div class="form-group">
+                <label for="campaign" translate>adminMessageForm.campaign.label</label>
+                <select id="campaign" ng-model="message.campaign" ng-options="campaign.id as campaign.title for campaign in campaigns" class="form-control">
+                    <option value="">{{ 'adminMessageForm.campaign.none' | translate }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="language" translate>adminMessageForm.language.label</label>
+                <select id="language" ng-model="message.language" ng-options="'language.'+ language | translate for language in enums.language" class="form-control">
+                    <option value="">{{ 'adminMessageForm.language.none' | translate }}</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <input id="important" type="checkbox" ng-model="message.important">
+                <label for="important"><strong translate>adminMessageForm.important.label</strong></label>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label translate>adminMessageForm.publishFrom.label</label>
+                        <date-picker date="message.publishFrom"></date-picker>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label translate>adminMessageForm.publishTo.label</label>
+                        <date-picker date="message.publishTo"></date-picker>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title" translate>adminMessageForm.title.label</label>
+                <br/>
+                <input id="title" ng-model="message.title" type="text" placeholder="{{ 'adminMessageForm.title.placeholder' | translate }} " class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="text" translate>adminMessageForm.text.label</label>
+                <br/>
+                <textarea id="text" ng-model="message.text" class="form-control" required></textarea>
+            </div>
+
+
+
+
+
+            <div class="pull-right">
+                <button type="submit" class="btn btn-success btn-sm" ng-disabled="adminMessageForm.$invalid"><span translate>adminMessageForm.submit</span></button>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </form>
+    </div>
+
+    <div class="col-md-6">
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="message in messages">
+
+                <div class="pull-right">
+                    <a href><i ng-click="deleteMessage(message)" class="glyphicon glyphicon-remove"></i></a>
+                </div>
+
+                <span class="label label-primary" ng-repeat="space in message.targetSpaces" ng-if="space.type == 'campaign'">
+                    {{ getCampaignLabel(space) }}
+                </span>
+
+                <span class="label label-default" ng-if="message.language">{{ 'language.' + message.language | translate }}</span>
+
+                <span class="label label-danger" ng-if="message.important" translate>admin.message.important</span>
+
+                <h3>{{ message.title }}</h3>
+
+                <p>{{ message.text }}</p>
+
+                <div class="pull-right">
+                    <span ng-show="message.publishFrom && !message.publishTo" translate>admin.message.publishFrom</span>
+                    <span>{{ message.publishFrom | date }}</span>
+                    <span ng-show="message.publishFrom && message.publishTo"> - </span>
+                    <span ng-show="!message.publishFrom && message.publishTo" translate>admin.message.publishTo</span>
+                    <span>{{ message.publishTo | date }}</span>
+                </div>
+
+                <div class="clearfix"></div>
+
+            </li>
+        </ul>
+
+    </div>
+</div>
