@@ -8,39 +8,66 @@
         // provides methods to get Assessment Information from the server
         .factory('AssessmentService', ['$http', '$q', 'Restangular', 'UserService', '$rootScope',
             function ($http, $q, Restangular, UserService, $rootScope) {
-                var cachedAssessmentPromise;
+                var cachedAssessmentPromise = {};
 
                 $rootScope.$on('$translateChangeStart', function () {
-                    cachedAssessmentPromise = null;
+                    cachedAssessmentPromise = {};
                 });
 
-                var assService = {
-                    getAssessment: function (assessmentId) {
-                        // assessments are static from a users perspective, therefore we only load once and cache the promise
-                        // in the service.
-                        if (!cachedAssessmentPromise) {
-                            cachedAssessmentPromise = Restangular.one('assessments', assessmentId).get({populate: 'questions'}).then(function (assessment) {
-                                // sort questions into keyed lookup so all controllers can easily get the question for a given
-                                // questionId
-                                assessment.questionLookup = {};
-                                _.forEach(assessment.questions, function (question) {
-                                    assessment.questionLookup[question.id] = question;
-                                });
+                function _topicId2Assessment(topicId) {
+                    return assService.getAssessment(topicId).then(function (assessment) {
+                        return assessment;
+                    });
+                }
 
-                                assessment.categories =  _.uniq(_.map(assessment.questions,'category'));
-                                return assessment;
-                            });
+                function completeResultWithZeroAnswers(assessment, assResult) {
+                    assResult.missingAnswers = assessment.questions.length - assResult.answers.length;
+                    var emtpyResult = assessment.getNewEmptyAssResult();
+                    _.forEach(emtpyResult.answers, function (emptyAnswer) {
+                        var answerFromBackend = _.find(assResult.answers, function (res) {
+                            return emptyAnswer.question === res.question;
+                        });
+
+                        if (!answerFromBackend) {
+                            assResult.answers.push(emptyAnswer);
                         }
-                        return cachedAssessmentPromise;
+                    });
+                }
+
+                var assService = {
+                    getAssessment: function (topicId) {
+                        if (!topicId) {
+                            throw new Error("topicId is required");
+                        }
+
+                        if (!cachedAssessmentPromise[topicId]) {
+                            cachedAssessmentPromise[topicId] =
+                                Restangular
+                                    .all('assessments')
+                                    .getList({populate: 'questions', "filter[topic]": topicId})
+                                    .then(function (assessments) {
+                                        // sort questions into keyed lookup so all controllers can easily get the question for a given
+                                        // questionId
+                                        if (assessments.length !== 1) {
+                                            throw new Error("we always expect exactly one assessment per topic, got: " + assessments.length);
+                                        }
+
+                                        assessments[0].questionLookup = {};
+                                        _.forEach(assessments[0].questions, function (question) {
+                                            assessments[0].questionLookup[question.id] = question;
+                                        });
+
+                                        assessments[0].categories = _.uniq(_.map(assessments[0].questions, 'category'));
+                                        return assessments[0];
+                                    });
+                        }
+                        return cachedAssessmentPromise[topicId];
                     },
-                    reloadAssessment: function () {
-                        cachedAssessmentPromise = undefined;
-                    },
-                    getAssessmentData: function (assessmentId) {
-                        var assessmentBase = Restangular.one('assessments', assessmentId);
+                    getAssessmentData: function (options) {
+                        var assessmentBase = Restangular.all('assessments');
                         // if the user is authenticated we try to get his previous answers from the server,
                         // if unauthenticated, we only get the assessment
-                        var neededCalls = [assService.getAssessment(assessmentId)];
+                        var neededCalls = [assessmentBase.getList(options)];
                         if (UserService.principal.isAuthenticated()) {
                             neededCalls.push(
                                 assessmentBase.one('results/newest').get()
@@ -48,7 +75,7 @@
                         }
                         // run the one/two calls in parallel and then processes the results
                         return $q.all(neededCalls).then(function (results) {
-                            var assessment = results[0];
+                            var assessment = results[0][0];
 
                             // check whether we got saved answers for this user and this assessment
                             var assResult;
@@ -56,18 +83,7 @@
 
                                 // fill up unanswered questions
                                 assResult = results[1];
-                                var emtpyResult = assessment.getNewEmptyAssResult();
-
-                                _.forEach(emtpyResult.answers, function(emptyAnswer) {
-                                    var answerFromBackend = _.find(assResult.answers, function(res) {
-                                        return emptyAnswer.question === res.question;
-                                    });
-
-                                    if (!answerFromBackend) {
-                                        assResult.answers.push(emptyAnswer);
-                                    }
-                                });
-
+                                completeResultWithZeroAnswers(assessment, assResult);
                                 // convert into a new Result, otherwise we overwrite the old one
                                 delete assResult.id;
                             } else {
@@ -75,11 +91,7 @@
                                 assResult = assessment.getNewEmptyAssResult();
                             }
 
-                            // sort answers into keyed object (by question_id) to ease access by view
-                            assResult.keyedAnswers = {};
-                            _.forEach(assResult.answers, function (myAnswer) {
-                                assResult.keyedAnswers[myAnswer.question] = myAnswer;
-                            });
+
 
                             // return both, assessment and assResult in a simple object
                             return {
@@ -88,43 +100,54 @@
                             };
                         });
                     },
-                    putAnswer: function(answer) {
+                    putAnswer: function (answer) {
                         var assessment = Restangular.one('assessments', answer.assessment);
                         answer.id = answer.question;
                         return Restangular.restangularizeElement(assessment, answer, 'answers').put();
                     },
-                    postResults: function (assResult) {
-
-                        $rootScope.$emit('newAssessmentResultsPosted', assResult);
-                        var assessmentResultBase = Restangular.one('assessments', assResult.assessment).all('results');
-                        return assessmentResultBase.post(assResult);
+                    regenerateRecommendations: function() {
+                        return Restangular.all('coachRecommendations').getList();
                     },
-                    getAssessmentResults: function (assessmentId, options) {
-                        if (!options) {
-                            options = {};
-                        }
-                        options.sortBy = options.sortBy || 'created:-1';
+                    getNewestAssessmentResults: function (topicId, options) {
+                        return _topicId2Assessment(topicId)
+                            .then(function (assessment) {
+                                if (!UserService.principal.isAuthenticated()) {
+                                    var deferred = $q.defer();
+                                    deferred.resolve(assessment.getNewEmptyAssResult());
+                                    return deferred.promise;
+                                }
 
-                        if (UserService.principal.isAuthenticated()) {
-                            return Restangular.one('assessments', assessmentId).all('results').getList(options);
-                        } else {
+                                return Restangular
+                                    .one('assessments', assessment.id)
+                                    .one('results/newest')
+                                    .get(options)
+                                    .then(function (result) {
+                                        if (!result) {
+                                            result =  assessment.getNewEmptyAssResult();
+                                        } else {
+                                            completeResultWithZeroAnswers(assessment, result);
+                                        }
+
+                                        // sort answers into keyed object (by question_id) to ease access by view
+                                        result.keyedAnswers = {};
+                                        _.forEach(result.answers, function (myAnswer) {
+                                            result.keyedAnswers[myAnswer.question] = myAnswer;
+                                        });
+
+                                        return result;
+                                    });
+                            });
+
+                    },
+                    topStressors: function (topicId) {
+                        if (!UserService.principal.isAuthenticated()) {
                             var deferred = $q.defer();
                             deferred.resolve([]);
                             return deferred.promise;
                         }
-                    },
-                    getNewestAssessmentResults: function (assessmentId, options) {
-                        if (UserService.principal.isAuthenticated()) {
-                            return Restangular.one('assessments', assessmentId).one('results/newest').get(options);
-                        } else {
-                            var deferred = $q.defer();
-                            deferred.resolve([]);
-                            return deferred.promise;
-                        }
-                    },
-                    topStressors: function (assessmentId) {
-                        return assService.getNewestAssessmentResults(assessmentId, {populatedeep: 'answers.question'}).then(function (result) {
-                            if (!result || result.answers.length < 26) {
+
+                        return assService.getNewestAssessmentResults(topicId, {populatedeep: 'answers.question'}).then(function (result) {
+                            if (!result || result.missingAnswers > 0) {
                                 return null;
                             } else {
 
@@ -132,15 +155,15 @@
                                 var focus = UserService.principal.getUser().profile.prefs.focus;
                                 var threshold = 40;
 
-                                var answers = _.filter(result.answers, function(answer) {
-                                    return _.any(focus, function(focus) {
+                                var answers = _.filter(result.answers, function (answer) {
+                                    return _.any(focus, function (focus) {
                                         return focus.question === answer.question.id;
                                     });
                                 });
 
                                 // first, filter out all answers lower than 40 and not already included from the user profile
-                                var answersAboveThreshold = _.filter(result.answers, function(answer) {
-                                    return Math.abs(answer.answer) > threshold && !_.any(focus, function(focus) {
+                                var answersAboveThreshold = _.filter(result.answers, function (answer) {
+                                    return Math.abs(answer.answer) > threshold && !_.any(focus, function (focus) {
                                         return focus.question === answer.question.id;
                                     });
                                 });
@@ -152,6 +175,7 @@
                                 return answers.concat(topAnswers);
                             }
                         });
+
                     }
                 };
 

@@ -20,24 +20,36 @@
                             }
                         },
                         resolve: {
-                            assessmentData: ['$stateParams', 'AssessmentService', function ($stateParams, AssessmentService) {
-                                return AssessmentService.getAssessmentData('525faf0ac558d40000000005');
+                            assessment: ['AssessmentService', 'UserService', '$q', function (AssessmentService, UserService, $q) {
+                                var currentUsersCampaign = UserService.principal.getUser().campaign;
+                                if (!currentUsersCampaign) {
+                                    return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
+                                }
+                                return AssessmentService.getAssessment(currentUsersCampaign.topic);
+                            }],
+                            newestResult: ['AssessmentService', 'UserService', function (AssessmentService, UserService) {
+                                var currentUsersTopic = UserService.principal.getUser().campaign.topic;
+                                return AssessmentService.getNewestAssessmentResults(currentUsersTopic);
                             }]
-                        }
+                        },
+                        onExit: ['AssessmentService', function(AssessmentService) {
+                            return AssessmentService.regenerateRecommendations();
+                        }]
+
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/check/check');
             }])
 
-        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessmentData', 'AssessmentService',
-            function ($scope, $rootScope, $state, $timeout, assessmentData, AssessmentService) {
+        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessment', 'newestResult', 'AssessmentService',
+            function ($scope, $rootScope, $state, $timeout, assessment, newestResult, AssessmentService) {
 
-                $scope.orderedCategoryNames = _.uniq(_.map(assessmentData.assessment.questions, 'category'));
-                $scope.categories = _.groupBy(assessmentData.assessment.questions, 'category');
+                $scope.orderedCategoryNames = _.uniq(_.map(assessment.questions, 'category'));
+                $scope.categories = _.groupBy(assessment.questions, 'category');
 
 
                 // setup helper values for UI-controls
-                _.forEach(assessmentData.result.answers, function(myAnswer) {
+                _.forEach(newestResult.answers, function(myAnswer) {
                     if (!_.isNull(myAnswer.answer)) {
                         myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
                             (myAnswer.answer < 0 ? 'min' : 'max');
@@ -60,7 +72,7 @@
                 };
 
 
-                $scope.answers = assessmentData.result.keyedAnswers;
+                $scope.answers = newestResult.keyedAnswers;
 
                 function firstUnansweredCategory() {
                     return _.find($scope.orderedCategoryNames, function(catName) {

@@ -33,7 +33,7 @@
                                 idea.score = rec.score;
                             } else {
                                 delete idea.isRecommended;
-                                delete idea.score;
+                                idea.score = 0;
                             }
                         });
                     };

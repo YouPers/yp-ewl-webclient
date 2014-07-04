@@ -21,7 +21,7 @@
                         },
                         resolve: {
                             campaigns: ['CampaignService', function (CampaignService) {
-                                return CampaignService.getCampaigns();
+                                return CampaignService.getCampaigns({populate: 'topic'});
                             }]
                         }
                     })
@@ -47,6 +47,9 @@
                                     return undefined;
                                 }
 
+                            }],
+                            topics: ['Restangular', function (Restangular) {
+                                return Restangular.all('topics').getList();
                             }]
                         }
                     });
@@ -55,13 +58,16 @@
             }])
 
 
-        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign',
-            function ($scope, CampaignService, UserService, campaign) {
+        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign', 'topics',
+            function ($scope, CampaignService, UserService, campaign, topics) {
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
                     'starting-day': 1
                 };
+
+                topics.byId = _.indexBy(topics, 'id');
+                $scope.topics = topics;
 
 
                 var start = new Date(moment().hour(8).minutes(0).seconds(0));
@@ -71,12 +77,18 @@
                     $scope.campaign = campaign;
                 } else {
                     $scope.campaign = {
-                        title: "Stress Management",
+                        title: '',
                         start: start,
                         end: end,
                         avatar: '/assets/img/stressManagement.jpg'
                     };
                 }
+
+                $scope.$watch('campaign.topic', function (newTopic, oldTopic) {
+                    if (newTopic) {
+                        $scope.campaign.title = topics.byId[newTopic].name;
+                    }
+                });
 
                 CampaignService.currentCampaign = $scope.campaign;
 
@@ -111,7 +123,7 @@
 
                                     return UserService.reload();
                                 })
-                                .then(function() {
+                                .then(function () {
                                     return $scope.$emit('clientmsg:success', 'campaign.saved');
                                 });
                         }

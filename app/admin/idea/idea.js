@@ -4,21 +4,6 @@
 
     angular.module('yp.admin')
 
-        .constant('enums', {
-
-            // used in ideas & cockpit
-            activityFields: [
-                'awarenessAbility',
-                'timeManagement',
-                'workStructuring',
-                'physicalActivity',
-                'nutrition',
-                'leisureActivity',
-                'breaks',
-                'relaxation',
-                'socialInteraction'
-            ]
-        })
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
@@ -41,18 +26,10 @@
                             allIdeas: ['ActivityService', function (ActivityService) {
                                 return ActivityService.getIdeas();
                             }],
-                            activityPlans: ['ActivityService', function (ActivityService) {
-                                return ActivityService.getActivityPlans();
-                            }],
-                            recommendations: ['ActivityService', function (ActivityService) {
-                                return ActivityService.getRecommendations();
-                            }],
-                            topStressors: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.topStressors('525faf0ac558d40000000005');
-                            }],
-                            assessment: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.getAssessment('525faf0ac558d40000000005');
+                            topics: ['Restangular', function (Restangular) {
+                                return Restangular.all('topics').getList();
                             }]
+
                         }
                     })
                     .state('admin-idea.edit', {
@@ -68,8 +45,8 @@
                             idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                                 return ActivityService.getIdea($stateParams.ideaId);
                             }],
-                            assessment: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.getAssessment('525faf0ac558d40000000005');
+                            topics: ['Restangular', function (Restangular) {
+                                return Restangular.all('topics').getList();
                             }]
                         }
                     });
@@ -78,9 +55,8 @@
 
             }])
 
-        .controller('IdeasAdminCtrl', ['$scope', '$filter', 'allIdeas', 'activityPlans',
-            'recommendations', 'topStressors', 'assessment', 'ActivityService', 'ProfileService',
-            function ($scope, $filter, allIdeas, activityPlans, recommendations, topStressors, assessment, ActivityService, ProfileService) {
+        .controller('IdeasAdminCtrl', ['$scope', '$filter', 'allIdeas', 'ActivityService', 'ProfileService', 'topics',
+            function ($scope, $filter, allIdeas, ActivityService, ProfileService, topics) {
                 var user = $scope.principal.getUser();
 
                 $scope.buttonsShown = {};
@@ -91,39 +67,28 @@
                     campaigns = [user.campaign.id];
                 }
 
+                var recommendations = [];
+                topics.byId = _.indexBy(topics, 'id');
+                $scope.topics = topics;
+
+                $scope.$watch('currentTopic', function(newValue, oldValue) {
+                    if (newValue) {
+                        ActivityService.getRecommendations(newValue)
+                            .then(function(recs) {
+                                allIdeas.enrichWithUserData([], recs, campaigns, user.profile.prefs);
+                            });
+
+                    }
+                });
+
+
+
                 $scope.hasRecommendations = (recommendations.length > 0);
 
-                allIdeas.enrichWithUserData(activityPlans, recommendations, campaigns, user.profile.prefs);
+                allIdeas.enrichWithUserData([], recommendations, campaigns, user.profile.prefs);
 
                 $scope.ideas = allIdeas;
                 $scope.filteredIdeas = allIdeas;
-
-                _.forEach(topStressors, function (stressor) {
-                    stressor.title = assessment.questionLookup[stressor.question] &&  assessment.questionLookup[stressor.question].title;
-                });
-                $scope.topStressors = topStressors;
-
-                $scope.focusOnStressor = function (stressor) {
-                    var focusQuestion = null;
-                    if (stressor.focussed) {
-                        focusQuestion = stressor.question;
-                        _.forEach($scope.topStressors, function (myStressor) {
-                            if (myStressor !== stressor) {
-                                myStressor.focussed = false;
-                            }
-                        });
-                    }
-                    ActivityService.getRecommendations(focusQuestion).then(function (newRecs) {
-                        allIdeas.enrichWithUserData(activityPlans, newRecs, campaigns, user.profile.prefs);
-                        $scope.filteredIdeas = $filter('IdeaListFilter')($scope.ideas, $scope.query);
-                    });
-
-                };
-
-                $scope.gotoIdeaDetail = function (idea) {
-                    // goto detail state, keep active tab around as stateparameter
-                    $scope.$state.go('activityPlan', {ideaId: idea.id, tab: $scope.$stateParams.tab, page: $scope.currentPage});
-                };
 
                 $scope.reject = function (idea, event) {
                     event.stopPropagation();
@@ -166,7 +131,6 @@
                 };
 
                 $scope.query = {
-                    subset: 'recommendations',
                     cluster: {
                     },
                     rating: {
@@ -182,26 +146,11 @@
                         t60: false,
                         more: false
                     },
-                    topic: {
-                        workLifeBalance: true,
-                        physicalFitness: false,
-                        nutrition: false,
-                        mentalFitness: false
-                    },
                     fulltext: "",
                     executiontype: {
                         self: false,
                         group: false
                     }
-                };
-
-                // initialize correct Tab from state Params
-                if ($scope.$stateParams.tab) {
-                    $scope.query.subset = $scope.$stateParams.tab;
-                }
-
-                $scope.setListTab = function setListTab(tabId) {
-                    $scope.$state.go('admin-idea.list', {tab: tabId});
                 };
 
                 $scope.pageSize = 20;
@@ -225,13 +174,9 @@
         .filter('IdeaListFilter', [function () {
             return function (ideas, query) {
                 var out = [],
-                    allClusters = true,
                     allTopics = true,
                     allTimes = true,
-                    allRatings = true,
                     allExecutiontypes = true,
-                    subSetAll = true,
-                    ratingsMapping = ['none', 'one', 'two', 'three', 'four', 'five'],
                     durationMapping = function (duration) {
                         if (duration < 15) {
                             return 't15';
@@ -249,21 +194,9 @@
                     return ideas;
                 }
 
-                angular.forEach(query.cluster, function (value, key) {
-                    if (value) {
-                        allClusters = false;
-                    }
-                });
-
                 angular.forEach(query.topic, function (value, key) {
                     if (value) {
                         allTopics = false;
-                    }
-                });
-
-                angular.forEach(query.rating, function (value, key) {
-                    if (value) {
-                        allRatings = false;
                     }
                 });
 
@@ -279,26 +212,14 @@
                     }
                 });
 
-                if (query.subset !== 'all') {
-                    subSetAll = false;
-                }
-
                 angular.forEach(ideas, function (idea, key) {
 
-                        if ((allClusters || _.any(idea.fields, function (value) {
-                            return query.cluster[value];
+                        if ((allTopics || _.any(idea.topics, function (value) {
+                            return query.topic[value];
                         })) &&
-                            (allTopics || _.any(idea.topics, function (value) {
-                                return query.topic[value];
-                            })) &&
-                            (allRatings || query.rating[ratingsMapping[idea.rating]]
-                                ) &&
                             (allExecutiontypes || query.executiontype[idea.defaultexecutiontype]) &&
                             (allTimes || !idea.defaultduration || query.time[durationMapping(idea.defaultduration)]
                                 ) &&
-                            (subSetAll || (query.subset === 'campaign' && idea.isCampaign) ||
-                                (query.subset === 'recommendations' && idea.isRecommended && out.length < 5) ||
-                                (query.subset === 'starred' && idea.starred)) &&
                             (!query.fulltext || (idea.title.toUpperCase() + idea.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
                             (!idea.rejected)
                             ) {
@@ -310,14 +231,80 @@
 
             };
         }]
-        )
+    )
 
         .filter('startFrom', [function () {
             return function (input, start) {
                 start = +start; //parse to int
                 return input.slice(start);
             };
-        }]);
+        }])
+
+        .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'ActivityService', 'AssessmentService', 'Restangular', 'topics',
+            function ($scope, $rootScope, idea, ActivityService, AssessmentService, Restangular, topics) {
+
+                if (!idea) {
+                    idea = Restangular.restangularizeElement(null, {
+                        number: 'NEW',
+                        source: "youpers",
+                        defaultfrequency: "once",
+                        "defaultexecutiontype": "self",
+                        "defaultvisibility": "private",
+                        "defaultduration": 60,
+                        fields: [],
+                        recWeights: [],
+                        topics: []
+                    }, 'ideas');
+                }
+                $scope.idea = idea;
+
+                $scope.assessment = {questions: []};
+
+                $scope.offer = {
+                    idea: idea,
+                    recommendedBy: {}
+                };
+
+                $scope.topics = topics;
+
+                $scope.$watch('currentTopic', function (newVal, oldVal) {
+                    if (newVal) {
+                        AssessmentService.getAssessment(newVal)
+                            .then(function (assessment) {
+                                _.forEach(assessment.questions, function (question) {
+                                    if (!_.any(idea.recWeights, function (recWeight) {
+                                        return recWeight[0] === question.id;
+                                    })) {
+                                        idea.recWeights.push([question.id, 0, 0]);
+                                        $scope.recWeights = idea.getRecWeightsByQuestionId();
+                                    }
+                                });
+                                $scope.assessment = assessment;
+                            });
+                    }
+                });
+
+                // Weighting to generate recommendation of idea based on answers of this assessment
+                // initialize weights if they do not yet exist
+                if (!idea.recWeights || idea.recWeights.length === 0) {
+                    idea.recWeights = [];
+                }
+
+                // backend does not store emtpy (0/0) weights, but our UI needs an empty record for each question
+                // so we add one for all questions that don't have one
+
+
+                $scope.recWeights = idea.getRecWeightsByQuestionId();
+
+                $scope.onSave = function () {
+                    $scope.$state.go('admin-idea.list', $rootScope.$stateParams);
+                    $rootScope.$emit('clientmsg:success', 'idea.save');
+                };
+
+                $scope.onCancel = function () {
+                    $scope.$state.go('admin-idea.list');
+                };
+            }]);
 
 
 }());

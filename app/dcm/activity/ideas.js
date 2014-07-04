@@ -46,7 +46,11 @@
                                 } else {
 
                                     // TODO: define default idea and options visible for the campaign lead
-
+                                    var currentCampaignTopic = (CampaignService.currentCampaign && CampaignService.currentCampaign.topic) || undefined;
+                                    var topics = [];
+                                    if (currentCampaignTopic) {
+                                        topics.push(currentCampaignTopic);
+                                    }
                                     return {
                                         "number": "CampaignActivity",
                                         source: "campaign",
@@ -54,7 +58,7 @@
                                         "defaultexecutiontype": "group",
                                         "defaultvisibility": "campaign",
                                         "defaultduration": 60,
-                                        topics: ['workLifeBalance'],
+                                        topics: topics,
                                         campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined
                                     };
                                 }

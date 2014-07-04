@@ -78,10 +78,10 @@
     </div>
 
     <div class="form-group" ng-if="isProductAdmin()">
-        <label for="activityField" class="col-md-3 control-label" translate>activity.activityField</label>
-        <div id="activityField" class="btn-group col-md-9">
-            <button type="button" class="btn btn-default btn-sm" ng-repeat="fieldId in enums.activityFields"
-                    ng-model="actFieldsModel[fieldId]" btn-checkbox data-toggle="button">{{ 'activityField.' + fieldId | translate }}
+        <label for="topics" class="col-md-3 control-label" translate>activity.topics</label>
+        <div id="topics" class="btn-group col-md-9">
+            <button type="button" class="btn btn-default btn-sm" ng-repeat="topic in topics"
+                    ng-model="topicsModel[topic.id]" btn-checkbox data-toggle="button">{{ topic.name }}
             </button>
         </div>
     </div>

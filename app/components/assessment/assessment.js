@@ -11,7 +11,8 @@
                 assessment.getNewEmptyAssResult = function () {
                     var emptyResult = {
                         assessment: assessment.id,
-                        answers: []
+                        answers: [],
+                        missingAnswers: assessment.questions.length
                     };
                     _.forEach(assessment.questions, function(question) {
                         var answer = {
