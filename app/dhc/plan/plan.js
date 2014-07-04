@@ -24,8 +24,8 @@
                                 return ActivityService.getActivityEvents(
                                     {
                                         'filter[status]': 'open',
-                                        'populate': [ 'idea activityPlan'],
-                                        'populatedeep': ['activityPlan.owner activityPlan.joiningUsers']
+                                        'populate': [ 'idea activity'],
+                                        'populatedeep': ['activity.owner activity.joiningUsers']
                                     });
                             }]
                         }
@@ -111,14 +111,14 @@
                 });
 
                 $scope.getJoiningUsers = function (event) {
-                    return _.pluck(event.activityPlan.joiningUsers.slice(1), 'fullname').join('<br/>');
+                    return _.pluck(event.activity.joiningUsers.slice(1), 'fullname').join('<br/>');
                 };
 
-                $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                $scope.inviteEmailToJoinPlan = function (email, activity) {
                     this.inviteEmail = "";
 
-                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
-                        $rootScope.$emit('clientmsg:success', 'activityPlan.invite', { values: { email: email } });
+                    ActivityService.inviteEmailToJoinPlan(email, activity).then(function (result) {
+                        $rootScope.$emit('clientmsg:success', 'activity.invite', { values: { email: email } });
                         $scope.$broadcast('formPristine');
                     });
                 };

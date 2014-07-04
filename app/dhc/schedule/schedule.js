@@ -26,6 +26,13 @@
                             }],
                             invitations: ['$stateParams', 'SocialInteractionService', function ( $stateParams, SocialInteractionService){
                                 return SocialInteractionService.getInvitations({populate: 'activity'});
+                            }],
+                            schedule: ['idea', 'ActivityService', function(idea, ActivityService) {
+                                var schedule = {
+                                    idea: idea,
+                                    plan: ActivityService.getDefaultPlan(idea)
+                                };
+                                return schedule;
                             }]
                         }
                     })
@@ -54,21 +61,22 @@
                                         recommendedBy: plan.invitedBy
                                     };
                                 });
-                            }]
+                            }],
+                            idea: ['schedule', function(schedule) {
+                                return schedule.idea;
+                            }],
+                            invitations: function() {
+                                return [];
+                            }
                         }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/schedule/schedule');
             }])
 
-        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$stateParams', '$location', '$timeout', 'idea', 'invitations','ActivityService',
-            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, idea, invitations, ActivityService) {
-
-                var schedule = {
-                    idea: idea,
-                    plan: ActivityService.getDefaultPlan(idea)
-                };
-
+        .controller('ScheduleController', [
+            '$scope', '$rootScope', '$state', '$stateParams', '$location', '$timeout', 'idea', 'invitations','schedule', 'ActivityService',
+            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, idea, invitations, schedule, ActivityService) {
                 $scope.schedule = schedule;
                 $scope.plan = schedule.plan;
                 $scope.schedule.executionType = schedule.plan.executionType;
@@ -130,18 +138,18 @@
 
                 //TODO: update ui while dirty / not saved
 
-                $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                $scope.inviteEmailToJoinPlan = function (email, activity) {
                     $scope.inviteEmail = "";
-                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
+                    ActivityService.inviteEmailToJoinPlan(email, activity).then(function (result) {
                         $rootScope.$emit('clientmsg:success', 'activityPlan.invite', { values: { email: email } });
                         $scope.$broadcast('formPristine');
                     });
                 };
 
-                $scope.joinActivityPlan = function(plan) {
-                    ActivityService.joinPlan(plan).then(function(joinedPlan) {
+                $scope.joinActivityPlan = function(activity) {
+                    ActivityService.joinPlan(activity).then(function(joinedActivity) {
                         $rootScope.$emit('clientmsg:success', 'activityPlan.join');
-                        $state.go('schedule.plan', { id: joinedPlan.id });
+                        $state.go('schedule.plan', { id: joinedActivity.id });
                     });
                 };
 
