@@ -108,7 +108,7 @@
                     },
                     savePlan: function (plan) {
                         if (plan.id) {
-                            return Restangular.restangularizeElement(null, plan, "activityplans").put();
+                            return Restangular.restangularizeElement(null, plan, "activities").put();
                         } else {
                             return activities.post(plan);
                         }
@@ -133,7 +133,7 @@
                         return activities.one(plan.id).all('/inviteEmail').post({email: email});
                     },
                     getSchedulingConflicts: function (plan) {
-                        return Restangular.all('activityplans/conflicts').post(plan);
+                        return Restangular.all('activities/conflicts').post(plan);
                     },
                     getDefaultPlan: function (idea, campaignId) {
                         var now = moment();

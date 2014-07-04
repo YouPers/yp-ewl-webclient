@@ -21,26 +21,11 @@
                             }
                         },
                         resolve: {
-                            schedule: ['$state', '$stateParams', 'ActivityService', function ($state, $stateParams, ActivityService) {
-                                return ActivityService.getActivityOffers({idea: $stateParams.id}).then(function(offers) {
-                                    if (offers.length === 1) {
-                                        var offer = offers[0];
-                                        offer.plan = ActivityService.getDefaultPlan(offer.idea);
-                                        offer.isScheduled = false;
-                                        return offer;
-                                    } else if (offers.length === 0) {
-                                        return [];
-                                        // TODO: What should we do if we arrive here without offers
-
-                                    } else {
-                                        // this should never happen
-                                        throw new Error("should never get more than one offer for one idea");
-                                    }
-                                }, function(err) {
-                                    if(err.data.code === 'ConflictError' && err.data && err.data.data && err.data.data.activityPlanId) {
-                                        $state.go('schedule.plan', { id: err.data.data.activityPlanId });
-                                    }
-                                });
+                            idea: ['$stateParams', 'ActivityService', function ( $stateParams, ActivityService){
+                                return ActivityService.getIdea($stateParams.id);
+                            }],
+                            invitations: ['$stateParams', 'SocialInteractionService', function ( $stateParams, SocialInteractionService){
+                                return SocialInteractionService.getInvitations({populate: 'activity'});
                             }]
                         }
                     })
@@ -76,8 +61,13 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/schedule/schedule');
             }])
 
-        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$stateParams', '$location', '$timeout', 'schedule', 'ActivityService',
-            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, schedule, ActivityService) {
+        .controller('ScheduleController', [ '$scope', '$rootScope', '$state', '$stateParams', '$location', '$timeout', 'idea', 'invitations','ActivityService',
+            function ($scope, $rootScope, $state, $stateParams, $location, $timeout, idea, invitations, ActivityService) {
+
+                var schedule = {
+                    idea: idea,
+                    plan: ActivityService.getDefaultPlan(idea)
+                };
 
                 $scope.schedule = schedule;
                 $scope.plan = schedule.plan;
