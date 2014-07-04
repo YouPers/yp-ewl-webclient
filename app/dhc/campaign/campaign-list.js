@@ -21,7 +21,7 @@
                         },
                         resolve: {
                             campaigns: ['CampaignService', function(CampaignService) {
-                                return CampaignService.getCampaigns();
+                                return CampaignService.getCampaigns({listall: true});
                             }]
                         }
                     });

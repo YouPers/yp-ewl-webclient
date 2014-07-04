@@ -20,15 +20,19 @@
                             }
                         },
                         resolve: {
-                            assessment: ['AssessmentService', 'UserService', '$q', function (AssessmentService, UserService, $q) {
+                            assessment: ['AssessmentService', 'UserService', '$state', function (AssessmentService, UserService, $state) {
                                 var currentUsersCampaign = UserService.principal.getUser().campaign;
                                 if (!currentUsersCampaign) {
-                                    return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
+                                    return null;
                                 }
                                 return AssessmentService.getAssessment(currentUsersCampaign.topic);
                             }],
                             newestResult: ['AssessmentService', 'UserService', function (AssessmentService, UserService) {
-                                var currentUsersTopic = UserService.principal.getUser().campaign.topic;
+                                var currentUsersCampaign = UserService.principal.getUser().campaign;
+                                if (!currentUsersCampaign) {
+                                    return null;
+                                }
+                                var currentUsersTopic = currentUsersCampaign.topic;
                                 return AssessmentService.getNewestAssessmentResults(currentUsersTopic);
                             }]
                         },
@@ -36,6 +40,15 @@
                             return AssessmentService.regenerateRecommendations();
                         }]
 
+                    })
+                    .state('check.notopic', {
+                        url: "/check",
+                        access: accessLevels.user,
+                        views: {
+                            content: {
+                                templateUrl: 'dhc/check/check.notopic.html'
+                            }
+                        }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/check/check');
@@ -43,7 +56,9 @@
 
         .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessment', 'newestResult', 'AssessmentService',
             function ($scope, $rootScope, $state, $timeout, assessment, newestResult, AssessmentService) {
-
+                if (!assessment) {
+                    return;
+                }
                 $scope.orderedCategoryNames = _.uniq(_.map(assessment.questions, 'category'));
                 $scope.categories = _.groupBy(assessment.questions, 'category');
 

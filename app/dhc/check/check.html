@@ -4,7 +4,9 @@
         <div class="state-header-2" translate>check.stateHeader2</div>
     </div>
 </div>
-<accordion class="check" close-others="true">
+<div ng-if="!categories">Hier fehlt ein schöner Text darüber dass du in keiner Kampagne bist und wir darum nicht wissen
+welches Assessment zu welchem Topic wir hier darstellen sollen. <a ui-sref="campaign-list.content">Hier gibts eine Liste aller Kampagnen</a> , an denen du teilnehmen könntest:</div>
+<accordion class="check" close-others="true" ng-if="categories">
 
     <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]" ng-class="{ open: !!cat[name]}"
                      ng-click="reinitialize()"
