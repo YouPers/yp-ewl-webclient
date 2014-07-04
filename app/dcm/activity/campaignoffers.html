@@ -36,7 +36,7 @@
         </div>
         <div class="col-xs-3 title">
             <div ng-bind-html="offer.idea.title"></div>
-            <span>{{offer.activityPlan[0].location}}</span>
+            <span>{{offer.activity[0].location}}</span>
         </div>
 
         <div class="col-xs-3 date">
@@ -44,9 +44,9 @@
             <div ng-show="offer.offerType[0] == 'campaignActivityPlan'">
 
 
-                <scheduled-date start="offer.activityPlan[0].mainEvent.start"
-                                end="offer.activityPlan[0].mainEvent.end"
-                                frequency="offer.activityPlan[0].mainEvent.frequency">
+                <scheduled-date start="offer.activity[0].mainEvent.start"
+                                end="offer.activity[0].mainEvent.end"
+                                frequency="offer.activity[0].mainEvent.frequency">
                 </scheduled-date>
             </div>
 
@@ -55,8 +55,8 @@
         <div class="col-xs-2 type">
             <span>{{'campaignoffers.offertype.'+offer.offerType[0] | translate }}</span>
             <a ng-if="offer.offerType[0] === 'campaignActivityPlan'">
-                <span class="badge" tooltip-html-unsafe="{{ getJoiningUsers(offer.activityPlan[0]) }}">
-                    {{ offer.activityPlan[0].joiningUsers.length }}
+                <span class="badge" tooltip-html-unsafe="{{ getJoiningUsers(offer.activity[0]) }}">
+                    {{ offer.activity[0].joiningUsers.length }}
                 </span>
             </a>
             <a ng-if="offer.offerType[0] === 'campaignActivity'" tooltip="{{ offer.planCount == 0 ? '' : ('campaignoffers.userNamesNotShown' | translate) }}">

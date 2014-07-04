@@ -21,7 +21,7 @@
                         },
                         resolve: {
                             diaryEntries: ['DiaryService', function (DiaryService) {
-                                return DiaryService.getEntries({populate: 'activityPlan'});
+                                return DiaryService.getEntries({populate: 'activity'});
                             }]
                         }
                     });

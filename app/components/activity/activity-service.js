@@ -73,12 +73,12 @@
                     },
                     getActivityOffer: function (id) {
                         return Restangular.one('activityoffers', id).get({
-                            'populate': 'idea activityPlan recommendedBy',
-                            'populatedeep': 'activityPlan.owner activityPlan.joiningUsers'
+                            'populate': 'idea activity recommendedBy',
+                            'populatedeep': 'activity.owner activity.joiningUsers'
                         });
                     },
                     saveActivityOffer: function (offer) {
-                        var plan = offer.activityPlan[0];
+                        var plan = offer.activity[0];
 
                         function _saveActivityOffer(offer) {
                             if (offer.id) {
@@ -92,12 +92,12 @@
                             // an event is being scheduled or edited, so we first save the plan
                             return this.savePlan(plan)
                                 .then(function (savedPlan) {
-                                    offer.activityPlan = [savedPlan];
+                                    offer.activity = [savedPlan];
                                     return _saveActivityOffer(offer);
                                 });
                         } else if (offer.offerType[0] === 'campaignActivity') {
                             // no event, so just save the offer.
-                            offer.activityPlan = [];
+                            offer.activity = [];
                             return _saveActivityOffer(offer);
                         } else {
                             throw new Error('should never arrive here');

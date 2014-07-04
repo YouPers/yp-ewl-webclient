@@ -84,7 +84,7 @@
                                 function ($stateParams, ActivityService, CampaignService) {
                                     if (CampaignService.currentCampaign) {
                                         return ActivityService.getActivityOffers({campaign: CampaignService.currentCampaign.id,
-                                            populate: 'idea activityPlan'});
+                                            populate: 'idea activity'});
                                     } else {
                                         return [];
                                     }
@@ -168,8 +168,8 @@
                         ActivityService.getActivityOffers(
                             {
                                 campaign: newValue.id,
-                                populate: 'idea activityPlan',
-                                populatedeep: 'activityPlan.joiningUsers'
+                                populate: 'idea activity',
+                                populatedeep: 'activity.joiningUsers'
                             }
                         ).then(function (offers) {
                                 $scope.offers = offers;

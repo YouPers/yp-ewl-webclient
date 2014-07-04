@@ -129,7 +129,7 @@
 //                    var updateEvent = function updateEvent(newEvent, oldEvent) {
 //                        if(newEvent && !_.isEqual(newEvent, oldEvent) && !$scope.isFutureEvent(newEvent)) {
 //                            ActivityService.updateActivityEvent(newEvent).then(function() {
-//                                $rootScope.$emit('clientmsg:success','activityPlan.eventSaved');
+//                                $rootScope.$emit('clientmsg:success','activity.eventSaved');
 //                            });
 //                        }
 //                    };

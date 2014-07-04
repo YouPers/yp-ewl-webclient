@@ -45,7 +45,7 @@
                                                         sourceType: 'campaign',
                                                         validFrom: new Date(moment().startOf('day')),
                                                         validTo: new Date(moment(campaign.end).endOf('day')),
-                                                        activityPlan: [ActivityService.getDefaultPlan(idea, campaign.id)],
+                                                        activity: [ActivityService.getDefaultPlan(idea, campaign.id)],
                                                         prio: [500]
                                                     };
 
@@ -65,18 +65,18 @@
 
                 $scope.offer = offer;
 
-                offer.isScheduled = offer.offerType[0] === 'campaignActivityPlan' && offer.activityPlan[0].id;
+                offer.isScheduled = offer.offerType[0] === 'campaignActivityPlan' && offer.activity[0].id;
                 offer.isDeletable = (offer.offerType[0] === 'campaignActivity') ||
-                    (offer.isScheduled && offer.activityPlan[0].deleteStatus.indexOf('deletable') === 0);
+                    (offer.isScheduled && offer.activity[0].deleteStatus.indexOf('deletable') === 0);
                 offer.isEditable =  (offer.offerType[0] === 'campaignActivity') ||
-                    (offer.activityPlan[0].editStatus === 'editable');
-                offer.isJoinedPlan = offer.activityPlan && offer.activityPlan[0] && offer.activityPlan[0].joiningUsers &&  offer.activityPlan[0].joiningUsers.length > 0;
+                    (offer.activity[0].editStatus === 'editable');
+                offer.isJoinedPlan = offer.activity && offer.activity[0] && offer.activity[0].joiningUsers &&  offer.activity[0].joiningUsers.length > 0;
 
                 $scope.getJoiningUsers = function (plan) {
                     return _.pluck(plan.joiningUsers.slice(1), 'fullname').join('<br/>');
                 };
 
-                $scope.plan = offer.activityPlan[0];
+                $scope.plan = offer.activity[0];
 
 
 
@@ -95,9 +95,9 @@
 
                 };
 
-                $scope.inviteEmailToJoinPlan = function (email, activityPlan) {
+                $scope.inviteEmailToJoinPlan = function (email, activity) {
                     $scope.inviteEmail = "";
-                    ActivityService.inviteEmailToJoinPlan(email, activityPlan).then(function (result) {
+                    ActivityService.inviteEmailToJoinPlan(email, activity).then(function (result) {
                         $rootScope.$emit('clientmsg:success', 'activityPlan.invite', { values: { email: email } });
                         $scope.$broadcast('formPristine');
                     });

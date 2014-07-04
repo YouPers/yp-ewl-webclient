@@ -154,13 +154,13 @@
 
     <div ng-if="!schedule.isScheduled && schedule.executionType === 'group'">
 
-        <div class="no-plans" ng-hide="schedule.activityPlan && schedule.activityPlan.length > 0">
+        <div class="no-plans" ng-hide="schedule.activity && schedule.activity.length > 0">
             <p translate>schedule.group.noPlansToJoin</p>
         </div>
 
 
         <div class="plan-list">
-            <div ng-repeat="plan in schedule.activityPlan" class="row">
+            <div ng-repeat="plan in schedule.activity" class="row">
                 <div class="col-md-12 item">
 
                     <div>
