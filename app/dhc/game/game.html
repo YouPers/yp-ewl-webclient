@@ -1,8 +1,8 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="state-header-1" translate>home.stateHeader1</div>
-        <div class="state-header-2" translate>home.stateHeader2</div>
+        <div class="state-header-1" translate>game.stateHeader1</div>
+        <div class="state-header-2" translate>game.stateHeader2</div>
     </div>
 </div>
 
@@ -13,7 +13,7 @@
         <div class="current-activities">
 
             <div ng-repeat="activity in activities">
-                <div class="idea-thumbnail" idea="activity.idea"></div>
+                <a href><div class="idea-thumbnail" idea="activity.idea" ng-click="openActivity(activity)"></div></a>
             </div>
 
         </div>

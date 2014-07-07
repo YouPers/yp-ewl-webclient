@@ -16,7 +16,7 @@
                         views: {
                             content: {
                                 templateUrl: 'dhc/game/game.html',
-                                controller: 'CheckController'
+                                controller: 'GameController'
                             }
                         },
                         resolve: {
@@ -34,8 +34,8 @@
             }])
 
 
-        .controller('CheckController', [ '$scope', 'activities', 'socialInteractions',
-            function ($scope, activities, socialInteractions) {
+        .controller('GameController', [ '$scope', '$state', 'activities', 'socialInteractions',
+            function ($scope, $state, activities, socialInteractions) {
 
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
@@ -43,6 +43,19 @@
                 $scope.invitations = _.filter(socialInteractions, { __t: 'Invitation' });
                 $scope.recommendations = _.filter(socialInteractions, { __t: 'Recommendation' });
 
+                $scope.openActivity = function(activity) {
+
+                    if(activity.idea.action) {
+                        if(activity.idea.action === 'assessment') {
+                            $state.go('check.content');
+                        } else if(activity.idea.action === 'focus') {
+                            $state.go('focus.content');
+                        } else {
+                            throw new Error('unknown action');
+                        }
+                    }
+
+                };
 
             }]);
 

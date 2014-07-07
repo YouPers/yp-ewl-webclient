@@ -46,6 +46,8 @@
                     if (UserService.principal.isAuthenticated()) {
                         UserService.putUser(UserService.principal.getUser()).then(function (result){
 
+                            // TODO: move to backend
+
                             var assessmentIdeaId = '5278c6accdeab69a25000008';
 
                             ActivityService.getIdea(assessmentIdeaId).then(function (idea) {
