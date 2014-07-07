@@ -1,6 +1,5 @@
 {
     "clientmsg": {
-
         "success": {
             "activity": {
                 "save": "Aktivität gespeichert"
@@ -10,7 +9,7 @@
                 "join": "Aktivität eingeplant",
                 "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
                 "delete": "Aktivität gelöscht",
-                "sampleInvitationSent": "Einladung versendet {{email}}"
+                "sampleInvitationSent": "Einladung versandt {{email}}"
             }
         },
         "error": {
@@ -19,9 +18,6 @@
             }
         }
     },
-
-
-
     "list": {
         "planAnActivity": "Plane eine Aktivität",
         "createNewActivity": "Neue Aktivität erfassen",
@@ -46,18 +42,16 @@
         "recommended": "empfohlen",
         "planned": "geplant",
         "ifYouFillAssessment": "Wenn du das Assessment ausfüllst, empfiehlt dir YouPers individuell die für dich passendsten Aktivitäten",
-        "toAssessment": "zum Assessment",
+        "toAssessment": "zur Selbstbeurteilung",
         "showAllActivities": "alle Aktivitäten zeigen",
         "planIt": "einplanen",
         "notForMe": "Nichts für mich!"
     },
     "admin": {
-
         "navigation": {
             "start": "Start",
-            "activities": "Activities"
+            "activities": "Aktivitäten"
         },
-
         "matrix": {
             "header": "Matrix zu Assessment, Fragen für Empfehlungen für: ",
             "recommendationSliderLeft": "Empfehlung <br/>Slider links",
@@ -90,7 +84,6 @@
     "activityPlanInvite": {
         "header": "Herzlich willkommen - YouPers Digital Health Plattform",
         "subheader": " hat Dich eingeladen an einer Aktivität teilzunehmen.",
-
         "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}>logge Dich ein</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
     },
     "activityPlanFrequency": {
@@ -110,7 +103,6 @@
         "deletableOnlyFutureEvents": "Zukünftige Ausführungen löschen",
         "notDeletableNoFutureEvents": "Hinweis: Diese eingeplante Aktivität kann nicht gelöscht werden, weil alle Ausführungen in der Vergangenheit liegen."
     },
-
     "activityField": {
         "awarenessAbility": "Bewusstsein und Fähigkeit",
         "timeManagement": "Zeitmanagement",

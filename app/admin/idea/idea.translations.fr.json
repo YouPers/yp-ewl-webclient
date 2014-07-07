@@ -1,121 +1,121 @@
 {
-  "clientmsg": {
-    "success": {
-      "activity": {
-        "save": "L'activité enregistré"
-      },
-      "activityPlan": {
-        "save": "L'activité planifié",
-        "join": "L'activité planifié",
-        "invite": "Tu as invité {{email}} à participer à cette activité",
-        "delete": "L'activité supprimé",
-        "sampleInvitationSent": "L'invitation envoyée {{email}}"
-      }
+    "clientmsg": {
+        "success": {
+            "activity": {
+                "save": "Activité enregistrée"
+            },
+            "activityPlan": {
+                "save": "Activité planifiée",
+                "join": "L'activité planifié",
+                "invite": "Tu as invité {{email}} à participer à cette activité",
+                "delete": "Activité supprimée",
+                "sampleInvitationSent": "Invitation envoyée à {{email}}"
+            }
+        },
+        "error": {
+            "activity": {
+                "join": "Cette activité n'a pas pu être planifiée"
+            }
+        }
     },
-    "error": {
-      "activity": {
-        "join": "Cette activité ne pourrait pas planifié"
-      }
-    }
-  },
-  "list": {
-    "planAnActivity": "planifie une activité",
-    "createNewActivity": "Créer nouvelle activité",
-    "search": "Chercher",
-    "setFocus": "Mettre l'accent sur",
-    "areas": "Les domaines",
-    "togetherWith": "Avec qui?",
-    "alone": "Lui-même",
-    "asAGroup": "Dans le groupe",
-    "duration": "La durée",
-    "lt15min": "< 15 min",
-    "15-30min": "15-30 min",
-    "30-60min": "30 minutes - 1 heure",
-    "mt60min": "plus d’une heure",
-    "rating": "L'évaluation",
-    "activities": "Activités",
-    "recommendedForYou": "Recommandé pour toi",
-    "campaignActivities": "Actions des campagnes",
-    "all": "Tous",
-    "ofTotal": "sur un total de",
-    "done": "fait",
-    "recommended": "Recommandé",
-    "planned": "Planifié",
-    "ifYouFillAssessment": "Si tu remplisses l'évaluation, YouPers te recommande individuellement le plus approprié activités",
-    "toAssessment": "L'auto-évaluation",
-    "showAllActivities": "Montre toutes les activités",
-    "planIt": "Prévoir",
-    "notForMe": "Ce n'est pas pour moi"
-  },
-  "admin": {
-    "navigation": {
-      "start": "Le début",
-      "activities": "Activités"
+    "list": {
+        "planAnActivity": "Planifie une activité",
+        "createNewActivity": "Créer nouvelle activité",
+        "search": "Chercher",
+        "setFocus": "Mettre l'accent sur",
+        "areas": "Les domaines",
+        "togetherWith": "Avec qui?",
+        "alone": "Lui-même",
+        "asAGroup": "Dans le groupe",
+        "duration": "La durée",
+        "lt15min": "< 15 min",
+        "15-30min": "15-30 min",
+        "30-60min": "30 minutes - 1 heure",
+        "mt60min": "plus d’une heure",
+        "rating": "L'évaluation",
+        "activities": "Activités",
+        "recommendedForYou": "Recommandé pour toi",
+        "campaignActivities": "Actions des campagnes",
+        "all": "Tous",
+        "ofTotal": "sur un total de",
+        "done": "fait",
+        "recommended": "Recommandé",
+        "planned": "Planifié",
+        "ifYouFillAssessment": "Si tu remplisses l'évaluation, YouPers te recommande individuellement le plus approprié activités",
+        "toAssessment": "L'auto-évaluation",
+        "showAllActivities": "Montre toutes les activités",
+        "planIt": "Prévoir",
+        "notForMe": "Ce n'est pas pour moi"
     },
-    "matrix": {
-      "header": "La matrice d'évaluation, questions sur les recommandations ",
-      "recommendationSliderLeft": "La recommandation<br/>Slider à gauche",
-      "recommendationSliderRight": "La recommandation<br/>Slider à droite",
-      "valueRangeHint": "Toutes les valeurs comprises entre 0 et 10 <br/> 0 = Ne pas recommander activité 10 = activité recommander"
+    "admin": {
+        "navigation": {
+            "start": "Le début",
+            "activities": "Activités"
+        },
+        "matrix": {
+            "header": "La matrice d'évaluation, questions sur les recommandations ",
+            "recommendationSliderLeft": "La recommandation<br/>Slider à gauche",
+            "recommendationSliderRight": "La recommandation<br/>Slider à droite",
+            "valueRangeHint": "Toutes les valeurs comprises entre 0 et 10 <br/> 0 = Ne pas recommander activité 10 = activité recommander"
+        }
+    },
+    "visibility": {
+        "public": "Public",
+        "campaign": "La campagne",
+        "private": "Privé"
+    },
+    "source": {
+        "youpers": "YouPers",
+        "community": "La communauté",
+        "campaign": "La campagne"
+    },
+    "calendarNotification": {
+        "none": "Pas de remarque",
+        "0": "Début de l'événement",
+        "300": "5 minutes avant",
+        "600": "10 minutes avant",
+        "900": "15 minutes avant",
+        "1800": "30 minutes avant",
+        "3600": "1 heure avant",
+        "7200": "2 heure avant",
+        "86400": "1 jour avant",
+        "172800": "2 jours avant"
+    },
+    "activityPlanInvite": {
+        "header": "Bienvenue - YouPers Digital Health Plattform",
+        "subheader": " t' a invité à participer à une activité",
+        "inviteMessage": "Pour rejoindre <a {{loginLinkAttribute}} &gt;logge Dich ein</a> ou <a href='' {{registerLinkAttribute}} &gt;registriere dich</a>"
+    },
+    "activityPlanFrequency": {
+        "once": "Ponctuel",
+        "day": "Quotidien",
+        "week": "Hebdomadaire",
+        "month": "Mensuel",
+        "year": "Annuel"
+    },
+    "activityPlanEditable": {
+        "editable": "Modifier l'activité planifié",
+        "notEditableJoinedPlan": "Note: Cette activité prévue ne peut pas être modifié, car les autres utilisateurs à y assister.",
+        "notEditablePastEvent": "Note: Cette activité planifiée ne peut pas être modifiée car elle est déjà passée."
+    },
+    "activityPlanDeletable": {
+        "deletable": "Annuler l'activité planifié",
+        "deletableOnlyFutureEvents": "Annuler la version future",
+        "notDeletableNoFutureEvents": "Note: Cette activité prévue ne peut pas être supprimée car toutes les versions sont dans le passé."
+    },
+    "activityField": {
+        "awarenessAbility": "La conscience et l'aptitude",
+        "timeManagement": "La gestion du temps",
+        "workStructuring": "L'aménagement du travail",
+        "physicalActivity": "L'activité physique",
+        "nutrition": "L'alimentation",
+        "leisureActivity": "Activité de loisir",
+        "breaks": "Les pauses",
+        "relaxation": "La détente",
+        "socialInteraction": "L'échange social"
+    },
+    "executiontype": {
+        "self": "Lui-même",
+        "group": "Le groupe"
     }
-  },
-  "visibility": {
-    "public": "Public",
-    "campaign": "La campagne",
-    "private": "Privé"
-  },
-  "source": {
-    "youpers": "YouPers",
-    "community": "La communauté",
-    "campaign": "La campagne"
-  },
-  "calendarNotification": {
-    "none": "Pas de remarque",
-    "0": "Début de l'événement",
-    "300": "5 minutes avant",
-    "600": "10 minutes avant",
-    "900": "15 minutes avant",
-    "1800": "30 minutes avant",
-    "3600": "1 heure avant",
-    "7200": "2 heure avant",
-    "86400": "1 jour avant",
-    "172800": "2 jours avant"
-  },
-  "activityPlanInvite": {
-    "header": "Bienvenue - YouPers Digital Health Plattform",
-    "subheader": " t' a invité à participer à une activité",
-    "inviteMessage": "Pour rejoindre <a {{loginLinkAttribute}} &gt;logge Dich ein</a> ou <a href='' {{registerLinkAttribute}} &gt;registriere dich</a>"
-  },
-  "activityPlanFrequency": {
-    "once": "Ponctuel",
-    "day": "Quotidien",
-    "week": "Hebdomadaire",
-    "month": "Mensuel",
-    "year": "Annuel"
-  },
-  "activityPlanEditable": {
-    "editable": "Modifier l'activité planifié",
-    "notEditableJoinedPlan": "Note: Cette activité prévue ne peut pas être modifié, car les autres utilisateurs à y assister.",
-    "notEditablePastEvent": "Note: Cette activité prévue ne peut pas être modifié, car l'exécution est dans le passé."
-  },
-  "activityPlanDeletable": {
-    "deletable": "Annuler l'activité planifié",
-    "deletableOnlyFutureEvents": "Annuler la version future",
-    "notDeletableNoFutureEvents": "Note: Cette activité prévue ne peut pas être supprimée car toutes les versions sont dans le passé."
-  },
-  "activityField": {
-    "awarenessAbility": "La conscience et l'aptitude",
-    "timeManagement": "La gestion du temps",
-    "workStructuring": "L'aménagement du travail",
-    "physicalActivity": "L'activité physique",
-    "nutrition": "L'alimentation",
-    "leisureActivity": "L'activité de loisir",
-    "breaks": "Les pauses",
-    "relaxation": "La détente",
-    "socialInteraction": "L'échange social"
-  },
-  "executiontype": {
-    "self": "Lui-même",
-    "group": "Le groupe"
-  }
 }
