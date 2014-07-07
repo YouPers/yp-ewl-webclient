@@ -15,13 +15,14 @@
                         return Restangular.all('diaryentries').post(entry);
                     },
                     showDiaryModal: function(resolution, mode) {
+                        var topic = UserService.principal.getUser().campaign.title;
 
                         var modalInstance = $modal.open({
                             templateUrl: 'dhc/diary/diary-modal.html',
                             controller: 'DiaryModalController',
                             resolve: {
                                 topic: function () {
-                                    return "topic.stress";
+                                    return topic;
                                 },
                                 resolution: function () {
                                     return resolution;
