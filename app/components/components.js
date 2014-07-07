@@ -22,6 +22,7 @@
 
             // directives
             'yp.components.ideaCard',
+            'yp.components.ideaThumbnail',
             'yp.components.ideaEdit',
             'yp.components.avatarUpload',
             'yp.components.campaignSwitcher',

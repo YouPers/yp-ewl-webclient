@@ -37,7 +37,7 @@
                     getActivityPlan: function (activityId) {
                         return Restangular.one('activities', activityId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'idea']});
                     },
-                    getActivityPlans: function (options) {
+                    getActivities: function (options) {
                         if (UserService.principal.isAuthenticated()) {
                             return activities.getList(options);
                         } else {

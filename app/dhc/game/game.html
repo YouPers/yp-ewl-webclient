@@ -1,0 +1,54 @@
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="state-header-1" translate>home.stateHeader1</div>
+        <div class="state-header-2" translate>home.stateHeader2</div>
+    </div>
+</div>
+
+<div class="row game-table">
+    <div class="left-side">
+
+
+        <div class="current-activities">
+
+            <div ng-repeat="activity in activities">
+                <div class="idea-thumbnail" idea="activity.idea"></div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="right-side">
+
+        <h3 translate>game.activities.done</h3>
+
+        <div class="done-activities">
+            <div ng-repeat="activity in doneActivities">
+                <div class="idea-thumbnail" idea="activity.idea"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="row player">
+    <div class="left-side">
+
+        <div class="offers">
+
+            <div ng-repeat="offer in invitations">
+                <div class="idea-thumbnail" idea="offer.idea"></div>
+            </div>
+
+            <div ng-repeat="offer in recommendations">
+                <div class="idea-thumbnail" idea="offer.idea"></div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="right-side">
+
+    </div>
+</div>

@@ -1,0 +1,24 @@
+@import "../youpers-variables";
+
+@idea-thumbnail-width: 6em;
+@idea-thumbnail-aspect-ratio: 1.5;
+@idea-thumbnail-padding: 0.2em;
+
+.idea-thumbnail {
+
+  width: @idea-thumbnail-width;
+  height: @idea-thumbnail-width * @idea-thumbnail-aspect-ratio;
+
+  border: 1px solid @yp-color-grey1;
+
+  padding: @idea-thumbnail-padding;
+
+  box-shadow: 5px 5px 3px 0px rgba(0,0,0,0.75);
+
+  img {
+    width: @idea-thumbnail-width - (2 * @idea-thumbnail-padding);
+  }
+
+  float: left;
+  margin: 1em;
+}

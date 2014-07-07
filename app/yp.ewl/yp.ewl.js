@@ -26,7 +26,7 @@ angular.module('yp-ewl',
         function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider) {
             //
             // For any unmatched url, send to /home
-            $urlRouterProvider.otherwise("/home");
+            $urlRouterProvider.otherwise("/game");
             //
             // Now set up the states
             $stateProvider

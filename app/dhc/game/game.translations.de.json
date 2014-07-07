@@ -1,0 +1,12 @@
+{
+  "game": {
+    "stateHeader1": "dein",
+    "stateHeader2": "aktivitätskartenspiel",
+
+      "activities": {
+          "done": "Ergebnisse"
+      }
+
+
+  }
+}
