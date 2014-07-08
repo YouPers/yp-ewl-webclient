@@ -7,10 +7,7 @@
             return {
                 restrict: 'EA',
                 scope: {
-                    rec: '=rec',
-                    reject: '&',
-                    schedule: '&',
-                    index: '=index'
+                    idea: '='
                 },
                 templateUrl: 'components/directives/idea-card-directive/idea-card-directive.html',
 

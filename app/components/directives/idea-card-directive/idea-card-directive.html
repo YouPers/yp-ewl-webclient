@@ -5,42 +5,23 @@
         <div class="front face" ng-click="flip()">
 
             <div class="image">
-                <img ng-src="{{'/assets/actpics/' + rec.idea.number + '.jpg'}}">
-            </div>
-            <div class="source">
-                <recommended-by-slider users="[rec.author]" source-type="rec.sourceType"></recommended-by-slider>
+                <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}">
             </div>
 
             <div class="content">
 
-                <div class="title" ng-bind-html="rec.idea.title">
-                </div>
+                <div class="title" ng-bind-html="idea.title"></div>
 
-                <div class="shortDescription" ng-bind-html="rec.idea.description">
-                </div>
-
-                <div>
-
-                    <div class="schedule">
-                        {{ rec.schedule }}
-                    </div>
-
-                    <div class="clearfix"></div>
-                </div>
-
-                <div class="linkleft">
-                    <button class="btn btn-default" ng-click="reject({index: index, event: $event})"
-                            analytics-on="click" analytics-event="RejectProposal" analytics-category="Command" analytics-label="Activity Rejected" translate>
-                        schedule.nothanks
-                    </button>
-                 </div>
-                <div class="linkright">
-                    <button class="schedule-link btn btn-primary" ng-click="schedule({idea: rec.idea})" stop-propagation translate>
-                        schedule.schedule
-                    </button>
-                </div>
+                <div class="shortDescription" ng-bind-html="idea.description"></div>
 
             </div>
+
+            <ul class="icons">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
 
         </div>
 
@@ -48,10 +29,10 @@
              analytics-on="click" analytics-event="IdeaCardFlip" analytics-category="InPageNavigation" analytics-label="Idea Card Flipped">
 
             <div class="content">
-                <div class="title" ng-bind-html="rec.idea.title">
+                <div class="title" ng-bind-html="idea.title">
                 </div>
 
-                <p class="text" ng-bind-html="getRenderedText(rec.idea.text)">
+                <p class="text" ng-bind-html="getRenderedText(idea.text)">
                 </p>
             </div>
 

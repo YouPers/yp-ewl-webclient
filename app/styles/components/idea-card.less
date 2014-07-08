@@ -4,7 +4,8 @@
 // local variables
 @youpers-idea-card-image-width: @youpers-idea-card-width;
 @youpers-idea-card-image-height: 12em;
-@youpers-idea-card-avatar-width: 4.7em;
+@youpers-idea-card-padding: 5px;
+@youpers-idea-card-border: 1px;
 
 // idea-card
 // --------------------------------------------------
@@ -15,118 +16,66 @@
 
   position: relative;
   cursor: pointer;
-}
 
-.idea-card > div {
   width: @youpers-idea-card-width;
   height: @youpers-idea-card-height;
-}
 
-.idea-card .image img {
-  width: @youpers-idea-card-image-width;
-  height: @youpers-idea-card-image-height;
-}
+  padding: @youpers-idea-card-padding;
+  
+  border: 1px solid @yp-color-grey1;
 
-.idea-card .source-avatar-container {
-  width: @youpers-idea-card-width;
-}
+  .image img {
+    width: @youpers-idea-card-image-width - 2 * @youpers-idea-card-padding - 2 * @youpers-idea-card-border;
+    height: @youpers-idea-card-image-height;
+  }
 
-.idea-card .source-avatar-container .source-text,
-.idea-card .source-avatar-container .source-text * {
-  .label2();
-  text-align: center;
-}
+  .title {
+    .title4();
+    padding-bottom: 0.3em;
+    overflow: hidden;
+    text-align: center;
+  }
 
-.idea-card .source-avatar-content {
-  width: @youpers-idea-card-avatar-width;
-  height:@youpers-idea-card-avatar-width;
-  border-radius: 50%;
+  .content {
 
-  margin: 0 auto;
-  background-color: #ffffff;
-  overflow: hidden;
-}
+    .shortDescription {
+      .p2();
+    }
+  }
 
-.idea-card .source-avatar-content img {
-  width: @youpers-idea-card-avatar-width - (@yp-source-type-ring-width * 1.8);
-  height: @youpers-idea-card-avatar-width - (@yp-source-type-ring-width * 1.8);
-}
+  .content, .text * {
+    .p2();
+    line-height: 1.4em;
+  }
 
-.idea-card .content {
-  padding: 1em;
-}
-.idea-card .content,
-.idea-card .text * {
-  .p2();
-}
+  ul.icons {
+    width: 100%;
+    height: 2em;
+    bottom: 0;
+    padding: 0;
+    list-style: none;
 
-.idea-card .title {
-  .title4();
-  padding: 2em 0 0.5em 0;
-  overflow: hidden;
-  text-align: center;
-}
-.idea-card .front .title {
+    li {
+      border: 1px dashed #00008b;
 
-}
-.idea-card .back .title {
-  padding: 0.2em 0 1em 0;
-}
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      margin-right: 22px;
+    }
+    li:last-of-type {
+      margin: 0;
+    }
+  }
 
-.idea-card .shortDescription {
-  .p2();
-}
+  .back {
 
-.idea-card .schedule {
-  float: left;
-  margin-top: 1em;
-  height: 1em;
-}
+    .text {
+      line-height: 1em;
+    }
 
-.idea-card .info {
-  float: right;
-  margin-top: 1em;
-  height: 1em;
-}
-
-.idea-card .linkleft {
-  position: absolute;
-  bottom: 1em;
-  left: 1em;
-}
-
-.idea-card .linkright {
-  position: absolute;
-  bottom: 1em;
-  right: 1em;
-}
-
-.idea-card .source {
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-  height: 12em;
-  top: 5em;
-}
-
-.source-avatar-container.ng-hide-add, .source-avatar-container.ng-hide-remove {
-  transition: 1.5s ease all;
-  display:block!important;
-  position: absolute;
-  opacity: 1;
-  left: 0%;
-}
-
-.source-avatar-container.ng-hide-remove {
-  opacity: 0;
-  left: -100%;
-}
-.source-avatar-container.ng-hide-remove.ng-hide-remove-active,
-.source-avatar-container.ng-hide-add {
-  left: 0%;
-  opacity: 1;
-}
-.source-avatar-container.ng-hide-add.ng-hide-add-active { 
-  opacity: 0;
-  left: 100%;
+    .title {
+      padding: 0.2em 0 0.5em 0;
+    }
+  }
 }
