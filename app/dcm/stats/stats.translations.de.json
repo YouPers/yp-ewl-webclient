@@ -5,6 +5,8 @@
     "updatesTotal": "Anzahl ausgefüllte Selbstbeurteilungen (vollständige und unvollständige Selbstbeurteilungen)",
     "totalActsPlanned": "Anzahl eingeplante Aktivitäten",
     "totalEventsPlanned": "Anzahl geplante Durchführungen von Aktivitäten",
+    "eventsDonePerDay": "Anzahl durchgeführter und verpasster Events pro Tag",
+    "actPlannedPerDay": "Anzahl an einem Tag geplante Aktivitäten",
     "assUpdatesPerDay": "Anzahl Anpassungen der Selbstbeurteilung pro Tag",
     "usersWithDiaryEntry": "Anzahl Benutzer mit mindestens 1 Tagebuch-Eintrag",
     "activityName": "Aktivität",
