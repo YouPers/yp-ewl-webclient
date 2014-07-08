@@ -1,13 +1,40 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="state-header-1" translate>idea.list.{{status}}.stateHeader1</div>
-        <div class="state-header-2" translate>idea.list.{{status}}.stateHeader2</div>
+        <div class="state-header-1">{{ 'idea.list.' + status + '.stateHeader1' | translate }}</div>
+        <div class="state-header-2">{{ 'idea.list.' + status + '.stateHeader2' | translate }}</div>
     </div>
 </div>
-<div ng-show="ideas.length == 0">{{ 'idea.list.' + status + '.noContent'}}</div>
+
 
 
 <div class="row">
+
+    <div class="col-lg-12 nav-icons">
+
+        <div class="pull-left">
+            <i class="fa fa-backward" ui-sref="game.content"></i>
+        </div>
+
+        <div class="pull-right">
+            <ul class="list-inline ">
+
+
+                <li ng-repeat="statusFilter in stati">
+                    <i class="fa {{statusClasses[statusFilter]}}" ng-click="$parent.status = statusFilter" ng-class="{ active: isActive(statusFilter) }"></i>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-lg-12" ng-show="ideas.length == 0">{{ 'idea.list.' + status + '.noContent' | translate }}</div>
 
     <div class="col-lg-4" ng-repeat="idea in ideas">
 

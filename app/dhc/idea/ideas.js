@@ -75,11 +75,28 @@
             'ideasFromActivities', 'ideasFromProfile', 'ideasFromSocialInteractions',
             function ($scope, $rootScope, $stateParams, $location, $window, $timeout, ideasFromActivities, ideasFromProfile, ideasFromSocialInteractions) {
 
+                $scope.stati = ['active', 'done', 'starred', 'rejected', 'invited', 'recommended', 'offered'];
+
+                $scope.statusClasses = {
+                    active: 'fa-edit',
+                    done: 'fa-check-square-o',
+                    starred: 'fa-star-o',
+                    rejected: 'fa-trash-o',
+                    invited: 'fa-envelope-o',
+                    recommended: 'fa-sun-o',
+                    offered: 'fa-users'
+                };
+
                 function filterIdeas(status) {
                     var ideas = ideasFromSocialInteractions
                         .concat(ideasFromActivities)
                         .concat(ideasFromProfile);
                     return _.filter(ideas, function (idea) {
+
+                        if(status === 'offered') {
+                            return idea.status === 'invited' || idea.status === 'recommended';
+                        }
+
                         return idea.status === status;
                     });
                 }
@@ -91,6 +108,9 @@
 
                 init();
 
+                $scope.$watch('status', function(newValue, oldValue) {
+                    $location.search({status: newValue});
+                });
 
                 $scope.$watch(function () {
                     return $location.search();
@@ -98,8 +118,9 @@
                     init();
                 });
 
-
-
+                $scope.isActive = function isActive(status) {
+                    return status === $location.search().status;
+                };
             }
         ]);
 

@@ -14,6 +14,41 @@
             "stateHeader2": "erledigten Aktivitäten",
 
             "noContent": "Du hast noch keine Aktivitäten erledigt."
+        },
+        "starred": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "vorgemerkten Aktivitätsideen",
+
+            "noContent": "Du hast noch keine Aktivitäten vorgemerkt."
+        },
+        "rejected": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "abgelehnten Aktivitäten",
+
+            "noContent": "Du hast noch keine Aktivitäten abgelehnt."
+        },
+        "invited": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "Einladungen",
+
+            "noContent": "Du hast noch keine Einladungen."
+        },
+        "recommended": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "Empfehlungen",
+
+            "noContent": "Du hast noch keine Empfehlungen."
+        },
+        "offered": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "möglichen Einsätze",
+
+            "noContent": "Du hast noch keine Einladungen oder Empfehlungen."
         }
     }
   }

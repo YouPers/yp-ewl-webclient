@@ -10,7 +10,7 @@
     <div class="left-side">
 
 
-        <div class="current-activities" ng-click="$state.go('activity.list')" ng-class="{ hovered: hovered }"
+        <div class="current-activities" ng-click="showIdeas('active', hovered)" ng-class="{ hovered: hovered }"
              ng-mouseenter="hovered = true"
              ng-mouseleave="hovered = false"
                 >
@@ -30,7 +30,7 @@
 
         <h3 translate>game.activities.done</h3>
 
-        <div class="done-activities">
+        <div class="done-activities" ng-click="showIdeas('done')">
             <div ng-repeat="activity in doneActivities">
                 <div class="idea-thumbnail" idea="activity.idea"></div>
             </div>
@@ -42,9 +42,9 @@
 <div class="row player">
     <div class="left-side">
 
-        <div class="offers">
+        <div class="offered-activities" ng-click="showIdeas('offered')">
 
-            <div ng-repeat="offer in invitations">
+            <div ng-repeat="offer in invitations" ng-click="showIdeas('offered')">
                 <div class="idea-thumbnail" idea="offer.idea"></div>
             </div>
 
@@ -56,6 +56,11 @@
 
     </div>
     <div class="right-side">
+
+        <div class="profile-activities">
+            <i class="fa fa-star-o" ng-click="showIdeas('starred')"></i>
+            <i class="fa fa-trash-o" ng-click="showIdeas('rejected')"></i>
+        </div>
 
     </div>
 </div>

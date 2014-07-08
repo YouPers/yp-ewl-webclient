@@ -34,8 +34,8 @@
             }])
 
 
-        .controller('GameController', [ '$scope', '$state', 'activities', 'socialInteractions',
-            function ($scope, $state, activities, socialInteractions) {
+        .controller('GameController', [ '$scope', '$state', '$window', 'activities', 'socialInteractions',
+            function ($scope, $state, $window, activities, socialInteractions) {
 
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
@@ -43,7 +43,15 @@
                 $scope.invitations = _.filter(socialInteractions, { __t: 'Invitation' });
                 $scope.recommendations = _.filter(socialInteractions, { __t: 'Recommendation' });
 
+
+                $scope.showIdeas = function(status, hovered) {
+                    if(hovered) {
+                        $window.location = $state.href("idea.list") + '?status=' + status;
+                    }
+                };
+
                 $scope.openActivity = function(activity) {
+
 
                     if(activity.idea.action) {
                         if(activity.idea.action === 'assessment') {
