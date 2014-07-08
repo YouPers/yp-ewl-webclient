@@ -6,17 +6,17 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('ideas', {
+                    .state('edit-ideas', {
                         templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
-                    .state('ideas.content', {
-                        url: "/ideas",
+                    .state('edit-ideas.content', {
+                        url: "/dcm/ideas",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
                                 templateUrl: 'dcm/activity/ideas.html',
-                                controller: 'IdeasController'
+                                controller: 'DcmIdeasController'
                             }
                         },
                         resolve: {
@@ -25,17 +25,17 @@
                             }]
                         }
                     })
-                    .state('idea', {
+                    .state('edit-idea', {
                         templateUrl: "layout/dcm-default.html",
                         access: accessLevels.campaignlead
                     })
-                    .state('idea.content', {
-                        url: "/ideas/:id",
+                    .state('edit-idea.content', {
+                        url: "/dcm/ideas/:id",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
                                 templateUrl: 'dcm/activity/idea.html',
-                                controller: 'IdeaController'
+                                controller: 'DcmIdeaController'
                             }
                         },
                         resolve: {
@@ -97,7 +97,7 @@
             }])
 
 
-        .controller('IdeaController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'idea',
+        .controller('DcmIdeaController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'idea',
             function ($scope, $rootScope, $state, ActivityService, idea) {
 
                 $scope.idea = idea;
@@ -111,7 +111,7 @@
             }
         ])
 
-        .controller('IdeasController', [ '$scope', '$rootScope', 'ideas', 'ActivityService', 'CampaignService',
+        .controller('DcmIdeasController', [ '$scope', '$rootScope', 'ideas', 'ActivityService', 'CampaignService',
             function ($scope, $rootScope, resolvedIdeas, ActivityService, CampaignService) {
 
                 function _initializeIdeas(ideas) {

@@ -24,6 +24,7 @@
                             activities: ['ActivityService', function(ActivityService) {
                                 return ActivityService.getActivities({ populate: 'idea owner' });
                             }]
+
                         }
                     });
 
