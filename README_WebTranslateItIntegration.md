@@ -33,27 +33,24 @@ maybe you need a "sudo" in front (in case of permission issues while installing 
  
 - add new translation file in german to the code and check into github
 - upload the new file:
-
-
-    wti add app/../../myName.translations.de.json
-    
+```  
+  wti add app/../../myName.translations.de.json
+```    
 ### adding new segments into existing translation file  (called MERGE)
 
 - add new segment into the translation file in german and check into github
 - upload/merge the file to wti (using the -m option: merge)
-
-
+```
     wti push -l de -m app/../../myName.translations.de.json
-    
+```    
 ### getting the newest translations from wti
 - make sure you do not have local changes (like new segments, new files) as your translation files will be 
 overwritten by the next step. If you have new segments/files upload them first to wti.
 - then download the newest translations
-
-
+```
     wti pull  # gets all target language files
     wti pull -l de # gets the primary language files
-    
+```    
 - check the changes using IDEA diff commit before you commit everything to github.
     
 ### changing a translation string
@@ -62,14 +59,14 @@ overwritten by the next step. If you have new segments/files upload them first t
 If you really need to edit the translations in the code then follow this procedure:
 
 For German:  (in case you only touch one/few files you can list the files instead of using "all")
-
+```
     wti push -m -l de all  # push and merge all NEW segments to wti
     wti pull -l de all     # pull the latest changes from wti, overwrites your local files (recommended to make a branch before)
-
+```
 Then change all the german translations in the code (BUT do not change the keys!!!!), when you are finished:
-
+```
     wti push -l de all # pushes all the german language files, overwriting all german texts on wti!!!
-    
+```
 All changes made on wti by translators in the pushed files segements between pulling and pushing will be overwritten, so work fast or at night ;-)
 
 ### changing translation keys
