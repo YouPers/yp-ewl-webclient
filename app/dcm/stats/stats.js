@@ -53,6 +53,7 @@
 
                         // convert stats for charts
 
+
                         $scope.chartStats = {};
                         var emptyChartStat = {
                             "series": [
@@ -63,14 +64,25 @@
 
                         // assUpdatesPerDay
 
-                        $scope.chartStats.assUpdatesPerDay = _.clone(emptyChartStat);
-                        _.forEach($scope.stats.assUpdatesPerDay, function(update) {
-                            $scope.chartStats.assUpdatesPerDay.data.push({
-                                "x": moment(new Date(update.date.year, update.date.month, update.date.day)).format("l"),
-                                "y": [ update.updatesPerDay ]
-                            });
+
+                        var valuesByFormattedDate = _.indexBy($scope.stats.assUpdatesPerDay, function(update) {
+                            return moment(new Date(Date.UTC(update.date.year, update.date.month-1, update.date.day))).format("l");
                         });
 
+                        var myChartData = _.clone(emptyChartStat);
+
+                        // initialize with 0-values from start of Campaign until today
+                        var current = moment().startOf('day');
+                        // use the start a bit before the start date, so the isAfter in the loop catches the first day of the campaign.
+                        var startOfCampaign = moment(campaign.start).startOf('day').subtract('hour', 1);
+                        while (current.isAfter(startOfCampaign)) {
+                            var formattedCurrent = current.format('l');
+
+                            myChartData.data.push({x: formattedCurrent, y: [(valuesByFormattedDate[formattedCurrent] && valuesByFormattedDate[formattedCurrent].updatesPerDay) || 0]});
+                            current.subtract('day', 1);
+                        }
+
+                        $scope.chartStats.assUpdatesPerDay = myChartData;
                     });
                 }
 
