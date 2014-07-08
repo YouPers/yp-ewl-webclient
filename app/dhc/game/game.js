@@ -45,7 +45,7 @@
 
 
                 $scope.showIdeas = function(status, hovered) {
-                    if(hovered) {
+                    if(_.isUndefined(hovered) || hovered) {
                         $window.location = $state.href("idea.list") + '?status=' + status;
                     }
                 };
