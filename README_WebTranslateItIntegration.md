@@ -2,6 +2,7 @@
 We use the service  [WebTranslateIt wti](www.webtranslateit.com) to manage the translation of ressources/segments into all supported languages.
 
 The following overview should serve as a manual on how to integrate the developement with the translations.
+Documentation: [https://webtranslateit.com/en/docs](https://webtranslateit.com/en/docs)
 
 ## Accounts 
 
