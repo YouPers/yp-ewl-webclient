@@ -45,18 +45,7 @@
                     // just leave it in the client principal and store it when the user eventually register on our site.
                     if (UserService.principal.isAuthenticated()) {
                         UserService.putUser(UserService.principal.getUser()).then(function (result){
-
-                            // TODO: move to backend
-
-                            var assessmentIdeaId = '5278c6accdeab69a25000008';
-
-                            ActivityService.getIdea(assessmentIdeaId).then(function (idea) {
-                                var activity = idea.getDefaultPlan();
-                                ActivityService.savePlan(activity);
-                            });
-
                             $state.go('game.content');
-
                         });
                     } else {
                         $state.go('game.content');
