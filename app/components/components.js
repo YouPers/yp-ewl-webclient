@@ -36,14 +36,14 @@
         ])
 
         .run(['$rootScope', function ($rootScope) {
-            _.merge($rootScope.enums, {
+            $rootScope.enums = {
                 language: [
                     'de',
                     'en',
                     'fr',
                     'it']
 
-            });
+            };
         }])
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {

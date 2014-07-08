@@ -17,10 +17,45 @@
             </div>
 
             <ul class="icons">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>
+                    <!-- TODO: aggregation of social interactions for the same activity -->
+
+
+                    <p ng-if="activity">
+                        <img ng-src="{{ activity.owner.avatar }}">
+                    </p>
+                    <div class="execution-type" ng-if="!activity && idea.defaultexecutiontype == 'self'">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="execution-type" ng-if="!activity && idea.defaultexecutiontype == 'group'">
+                        <i class="fa fa-users"></i>
+                    </div>
+                </li>
+                <li>
+                    <div ng-if="activity">
+                        <i class="fa fa-comments-o"></i>
+                    </div>
+
+                    <p ng-if="!activity && socialInteraction">
+                        <img ng-src="{{ socialInteraction.author.avatar }}">
+                    </p>
+                </li>
+                <li ng-init="isParticipant = activity.isParticipant()">
+                    <div ng-if="activity && isParticipant && activity.status == 'active'">
+                        <i class="fa fa-edit"></i>
+                    </div>
+                    <div ng-if="activity && isParticipant && activity.status != 'active'">
+                        <i class="fa fa-repeat"></i>
+                    </div>
+                    <div ng-if="activity && !isParticipant">
+                        <i class="fa fa-sign-in"></i>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="fa fa-angle-double-right"></i>
+                    </div>
+                </li>
             </ul>
 
         </div>
@@ -36,6 +71,27 @@
                 </p>
             </div>
 
+
+            <ul class="icons">
+                <li>
+                    <div>
+                        <i class="fa fa-trash-o"></i>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </li>
+                <li>
+
+                </li>
+                <li>
+                    <div>
+                        <i class="fa fa-angle-double-left"></i>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 

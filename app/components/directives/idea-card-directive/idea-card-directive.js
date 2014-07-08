@@ -7,11 +7,18 @@
             return {
                 restrict: 'EA',
                 scope: {
-                    idea: '='
+                    idea: '=',
+                    activity: '=',
+                    socialInteraction: '='
                 },
                 templateUrl: 'components/directives/idea-card-directive/idea-card-directive.html',
 
                 link: function (scope, elem, attrs) {
+
+
+                    if(!attrs.idea) {
+                        throw new Error("ideaCard: attribute 'idea' is required")
+                    }
 
                     scope.flip = function() {
                         var flipped = scope.flipped;
