@@ -29,7 +29,7 @@
                                         idea.activity = activity;
                                         idea.status = activity.status === 'active' ? 'active' : 'done';
                                         return idea;
-                                    })
+                                    });
                                 });
                             }],
                             ideasFromProfile: ['UserService', function(UserService) {

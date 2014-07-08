@@ -17,7 +17,7 @@
 
 
                     if(!attrs.idea) {
-                        throw new Error("ideaCard: attribute 'idea' is required")
+                        throw new Error("ideaCard: attribute 'idea' is required");
                     }
 
                     scope.flip = function() {
