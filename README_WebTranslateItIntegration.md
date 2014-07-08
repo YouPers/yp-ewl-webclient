@@ -60,12 +60,12 @@ If you really need to edit the translations in the code then follow this procedu
 
 For German:  (in case you only touch one/few files you can list the files instead of using "all")
 ```
-    wti push -m -l de all  # push and merge all NEW segments to wti
-    wti pull -l de all     # pull the latest changes from wti, overwrites your local files (recommended to make a branch before)
+    wti push -m -l de  # push and merge all NEW segments to wti
+    wti pull -l de     # pull the latest changes from wti, overwrites your local files (recommended to make a branch before)
 ```
 Then change all the german translations in the code (BUT do not change the keys!!!!), when you are finished:
 ```
-    wti push -l de all # pushes all the german language files, overwriting all german texts on wti!!!
+    wti push -l de # pushes all the german language files, overwriting all german texts on wti!!!
 ```
 All changes made on wti by translators in the pushed files segements between pulling and pushing will be overwritten, so work fast or at night ;-)
 
