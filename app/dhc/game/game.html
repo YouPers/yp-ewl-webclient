@@ -10,10 +10,17 @@
     <div class="left-side">
 
 
-        <div class="current-activities">
+        <div class="current-activities" ng-click="$state.go('activity.list')" ng-class="{ hovered: hovered }"
+             ng-mouseenter="hovered = true"
+             ng-mouseleave="hovered = false"
+                >
 
             <div ng-repeat="activity in activities">
-                <a href><div class="idea-thumbnail" idea="activity.idea" ng-click="openActivity(activity)"></div></a>
+                <a href><div class="idea-thumbnail" idea="activity.idea" ng-click="openActivity(activity)"
+
+                             ng-mouseenter="$parent.hovered = false"
+                             ng-mouseleave="$parent.hovered = true"
+                        ></div></a>
             </div>
 
         </div>
