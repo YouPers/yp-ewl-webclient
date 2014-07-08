@@ -53,16 +53,48 @@
         </div>
 
     </accordion-group>
-    <accordion-group is-open="isOpen" ng-class="{ 'accordion-open': isOpen }">
+    <accordion-group is-open="isOpen1" ng-class="{ 'accordion-open': isOpen1 }">
         <accordion-heading><div translate>stats.assUpdatesPerDay</div></accordion-heading>
 
         <!-- WARNING: the chart does not work if rendered while it's not visible, in this case within an accordion -->
 
-        <div class="row" ng-if="isOpen">
+        <div class="row" ng-if="isOpen1">
 
             <div class="col-xs-12">
 
                 <statistics-chart chart-data="chartStats.assUpdatesPerDay" title=""></statistics-chart>
+
+            </div>
+
+        </div>
+
+    </accordion-group>
+    <accordion-group is-open="isOpen2" ng-class="{ 'accordion-open': isOpen2 }">
+        <accordion-heading><div translate>stats.actPlannedPerDay</div></accordion-heading>
+
+        <!-- WARNING: the chart does not work if rendered while it's not visible, in this case within an accordion -->
+
+        <div class="row" ng-if="isOpen2">
+
+            <div class="col-xs-12">
+
+                <statistics-chart chart-data="chartStats.activitiesPlannedPerDay" title=""></statistics-chart>
+
+            </div>
+
+        </div>
+
+    </accordion-group>
+    <accordion-group is-open="isOpen3" ng-class="{ 'accordion-open': isOpen3 }">
+        <accordion-heading><div translate>stats.eventsDonePerDay</div></accordion-heading>
+
+        <!-- WARNING: the chart does not work if rendered while it's not visible, in this case within an accordion -->
+
+        <div class="row" ng-if="isOpen3">
+
+            <div class="col-xs-12">
+
+                <statistics-chart chart-data="chartStats.eventsDonePerDay" title=""></statistics-chart>
 
             </div>
 
