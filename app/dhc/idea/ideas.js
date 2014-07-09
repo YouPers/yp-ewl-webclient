@@ -113,9 +113,11 @@
                 });
 
                 $scope.$watch(function () {
-                    return $location.search();
+                    return $location.search().status;
                 }, function (newValue, oldValue) {
-                    init();
+                    if($location.search().status) {
+                        init();
+                    }
                 });
 
                 $scope.isActive = function isActive(status) {

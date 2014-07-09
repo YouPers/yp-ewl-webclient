@@ -61,6 +61,8 @@
                         } else {
                             throw new Error('unknown action');
                         }
+                    } else {
+                        $state.go('activity.content', { id: activity.id });
                     }
 
                     return false;

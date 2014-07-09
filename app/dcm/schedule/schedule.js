@@ -45,7 +45,7 @@
                                                         sourceType: 'campaign',
                                                         validFrom: new Date(moment().startOf('day')),
                                                         validTo: new Date(moment(campaign.end).endOf('day')),
-                                                        activity: [ActivityService.getDefaultPlan(idea, campaign.id)],
+                                                        activity: [ActivityService.getDefaultActivity(idea, campaign.id)],
                                                         prio: [500]
                                                     };
 

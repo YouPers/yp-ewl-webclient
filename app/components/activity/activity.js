@@ -50,8 +50,8 @@
 
             var extendIdeas = function extendIdeas(idea) {
 
-                idea.getDefaultPlan = function () {
-                    return ActivityService.getDefaultPlan(idea);
+                idea.getDefaultActivity = function () {
+                    return ActivityService.getDefaultActivity(idea);
                 };
 
                 idea.getRecWeightsByQuestionId = function () {

@@ -34,7 +34,7 @@
                             return Restangular.restangularizeElement(null, idea, 'ideas').post();
                         }
                     },
-                    getActivityPlan: function (activityId) {
+                    getActivity: function (activityId) {
                         return Restangular.one('activities', activityId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'idea']});
                     },
                     getActivities: function (options) {
@@ -135,6 +135,11 @@
                     getSchedulingConflicts: function (plan) {
                         return Restangular.all('activities/conflicts').post(plan);
                     },
+
+                    getDefaultActivity: function (idea, options) {
+                        return ideas.one(idea.id || idea).one('defaultActivity').get(options);
+                    },
+
                     getDefaultPlan: function (idea, campaignId) {
                         var now = moment();
                         var newMainEvent = {
@@ -175,6 +180,8 @@
                                 every: 1
                             };
                         }
+
+                        var campaignId = UserService.principal.getUser().campaign;
 
                         var plan = {
                             idea: idea,

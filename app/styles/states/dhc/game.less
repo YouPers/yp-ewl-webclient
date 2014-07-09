@@ -26,8 +26,7 @@
   .offered-activities
   {
     height: 100%;
-    background-color: white;
-    transition: background-color 1000ms linear;
+    .background-hover();
   }
 
 
@@ -37,22 +36,18 @@
 
   .current-activities.hovered:hover,
   .done-activities:hover,
-  .offered-activities:hover
-  {
-    cursor: pointer;
-    background-color: lighten(@yp-color-green, 35%);
+  .offered-activities:hover {
+    .background-hover-hovered();
   }
 
 
   .profile-activities i {
     font-size: 40px;
-    transition: color 0.1s linear;
     padding: 1em 0.5em;
+    .color-hover();
   }
   .profile-activities i:hover {
-
-    cursor: pointer;
-    color: @yp-color-green-hover;
+    .color-hover-hovered();
   }
 
 }

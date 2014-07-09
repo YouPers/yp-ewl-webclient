@@ -1,20 +1,29 @@
 {
   "activity": {
     "list": {
-        "active": {
+        "stateHeader1": "deine",
+        "stateHeader2": "aktivitäten",
 
-            "stateHeader1": "deine",
-            "stateHeader2": "laufenden Aktivitäten",
-
-            "noContent": "Du hast noch keine Aktivitäten geplant."
+        "statusFilter": {
+            "all": "Alle Aktivitäten",
+            "invited": "Einladungen",
+            "owned": "Von mir organisierte Aktivitäten",
+            "joined": "Aktivitäten an denen ich teilnehme"
         },
-        "done": {
 
-            "stateHeader1": "deine",
-            "stateHeader2": "erledigten Aktivitäten",
-
-            "noContent": "Du hast noch keine Aktivitäten erledigt."
+        "item": {
+            "date": "Wann",
+            "location": "Wo",
+            "title": "Beschreibung"
         }
+    },
+    "view": {
+        "stateHeader1": "(d)eine",
+        "stateHeader2": "aktivität"
+    },
+    "edit": {
+        "stateHeader1": "deine",
+        "stateHeader2": "aktivität"
     }
   }
 }

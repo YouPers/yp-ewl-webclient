@@ -1,0 +1,70 @@
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <ul class="list-inline pull-right filter-icons">
+            <li>
+                <i class="fa fa-circle-o" ng-class="{ active: !search.status }" ng-click="search = {}" ng-init="search = {}" tooltip="{{ 'activity.list.statusFilter.all' | translate }}"></i>
+            </li>
+            <li ng-repeat="statusFilter in stati" tooltip="{{ 'activity.list.statusFilter.' + statusFilter | translate }}">
+                <i class="fa {{ statusClasses[statusFilter] }}" ng-class="{ active: search.status == statusFilter }" ng-click="$parent.search.status = statusFilter"></i>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="row" ng-show="activities.length == 0">
+    <div class="col-lg-12">
+
+        <div>{{ 'activity.list.' + mode + '.noContent'}}</div>
+
+    </div>
+</div>
+
+<div class="row activity" ng-init="search = {}" ng-repeat="activity in activities | filter:search">
+    <div class="col-lg-12 background-hover">
+
+        <div class="row">
+
+            <div class="col-lg-2">
+
+                <div user="activity.owner"></div>
+
+            </div>
+            <div class="col-lg-8">
+
+                <dl class="dl-horizontal">
+                    <dt translate>activity.list.item.date</dt>
+                    <dd>{{ activity.mainEvent.start | date }}</dd>
+                    <dt translate>activity.list.item.location</dt>
+                    <dd>{{ activity.location || '&nbsp;' }}</dd>
+                    <dt translate>activity.list.item.title</dt>
+                    <dd>{{ activity.title }}</dd>
+                </dl>
+
+            </div>
+            <div class="col-lg-2">
+                <i class="fa fa-angle-double-right" ng-click="onSelect(activity)"></i>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-lg-10">
+                <div class="row">
+                    <div class="col-lg-1" ng-repeat="invitingUser in []">
+                        <div user="invitingUser"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+
+                <i class="fa fa-comments-o"></i>
+
+            </div>
+
+            </div>
+    </div>
+</div>
+
