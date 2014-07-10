@@ -78,7 +78,9 @@
                 $scope.activity = activity;
                 $scope.idea = idea = idea ? idea : activity.idea;
 
-                if($stateParams.id) {
+                if($location.search().mode) {
+                    $scope.mode = $location.search().mode;
+                } else if($stateParams.id) {
                     $scope.mode = 'view';
                 } else if(activities.length > 1) {
                     $scope.mode = 'list';
