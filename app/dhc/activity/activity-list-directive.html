@@ -22,7 +22,14 @@
     </div>
 </div>
 
-<div class="row activity" ng-init="search = {}" ng-repeat="activity in activities | filter:search">
+<div class="row activity"
+
+     ng-init="search = {}"
+     ng-repeat="activity in activities | filter:search"
+
+     ng-click="onSelect(activity)"
+
+        >
     <div class="col-lg-12 background-hover">
 
         <div class="row">

@@ -37,11 +37,17 @@
                                 return !idea ? undefined : ActivityService.getIdea(idea);
                             }],
 
-                            activitiesParticipated: ['ActivityService', 'UserService', function(ActivityService, UserService) {
+                            activitiesParticipated: ['$location', 'ActivityService', 'UserService', function($location, ActivityService, UserService) {
 
                                 var user = UserService.principal.getUser();
+                                var idea = $location.search().idea;
 
-                                return ActivityService.getActivities({ populate: 'idea owner joiningUsers' }).then(function(activities) {
+                                var options = {  populate: 'idea owner joiningUsers' };
+                                if(idea) {
+                                    options['filter[idea]'] = idea;
+                                }
+
+                                return ActivityService.getActivities(options).then(function(activities) {
                                     _.forEach(activities, function (activity) {
                                         activity.status = activity.owner === user.id ? 'owned' : 'joined'
                                     });

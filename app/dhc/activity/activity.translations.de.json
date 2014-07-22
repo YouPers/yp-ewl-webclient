@@ -1,8 +1,17 @@
 {
   "activity": {
+
+      "owner": "Organisator",
+      "isJoining": "Teilnehmer",
+      "isInvited": "Eingeladen",
+
+
     "list": {
         "stateHeader1": "alle",
         "stateHeader2": "aktivitäten",
+
+        "editTooltip": "Aktivität bearbeiten",
+        "newTooltip": "Neue Aktivität einplanen",
 
         "statusFilter": {
             "all": "Alle Aktivitäten",
@@ -19,7 +28,19 @@
     },
     "view": {
         "stateHeader1": "(d)eine",
-        "stateHeader2": "aktivität"
+        "stateHeader2": "aktivität",
+
+        "date": "Wann",
+        "location": "Wo",
+        "title": "Beschreibung",
+
+        "socialInteraction": {
+            "title": "Nachricht"
+        },
+
+        "comment": {
+            "placeholder": "Kommentar schreiben"
+        }
     },
     "edit": {
         "stateHeader1": "deine",

@@ -16,11 +16,16 @@
         </div>
 
         <div class="pull-right">
-            <ul class="list-inline ">
+            <ul class="list-inline" ng-init="parentScope = this">
 
 
                 <li ng-repeat="statusFilter in stati">
-                    <i class="fa {{statusClasses[statusFilter]}}" ng-click="$parent.status = statusFilter" ng-class="{ active: isActive(statusFilter) }"></i>
+                    <i class="fa {{statusClasses[statusFilter]}}"
+                       ng-class="{ active: isActive(statusFilter) }"
+                       ng-click="parentScope.status = statusFilter"
+                       tooltip="{{ 'idea.list.' + statusFilter + '.tooltip' | translate }}"
+                       tooltip-popup-delay="700"
+                            ></i>
                 </li>
 
             </ul>

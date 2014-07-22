@@ -9,10 +9,32 @@
     </div>
     <div class="col-lg-8">
 
-        <div class="mode-icons pull-right">
-            <i class="fa fa-bars" ng-class="{ active: mode == 'list', disabled: activities.length <= 1 }" ng-click="mode = 'list'"></i>
-            <i class="fa fa-file-o" ng-class="{ active: mode == 'view', disabled: !activity.id }" ng-click="mode = activity.id ? 'view' : mode"></i>
-            <i class="fa {{ activity.id ? 'fa-edit' : 'fa-sign-in' }}" ng-class="{ active: mode == 'edit' }" ng-click="mode = 'edit'"></i>
+        <div class="mode-icons pull-right" ng-init="parentScope = this">
+
+            <i class="fa fa-bars"
+               ng-class="{ active: mode == 'list', disabled: activities.length <= 1 }"
+               ng-click="activities.length > 1 ? 'list' : mode"
+               ></i>
+
+            <i class="fa fa-file-o"
+               ng-class="{ active: mode == 'view', disabled: !activity.id }"
+               ng-click="parentScope.mode = activity.id ? 'view' : mode"></i>
+
+            <i ng-if="activity.id"
+               class="fa fa-edit"
+               ng-class="{ active: mode == 'edit' }"
+               ng-click="parentScope.mode = 'edit'"
+               tooltip="{{ 'activity.list.editTooltip' | translate }}"
+               tooltip-popup-delay="700"
+               ></i>
+
+            <i ng-if="!activity.id"
+               class="fa fa-sign-in"
+               ng-class="{ active: mode == 'edit' }"
+               ng-click="parentScope.mode = 'edit'"
+               tooltip="{{ 'activity.list.newTooltip' | translate }}"
+               tooltip-popup-delay="700"
+               ></i>
         </div>
 
     </div>
