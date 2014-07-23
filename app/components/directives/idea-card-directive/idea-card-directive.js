@@ -23,6 +23,9 @@
                     scope.showIdea = function(idea) {
                         $window.location = $state.href('activity.content') + '?idea=' + idea.id;
                     };
+                    scope.showActivity = function(activity) {
+                        $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
+                    };
 
                     scope.flip = function() {
                         var flipped = scope.flipped;

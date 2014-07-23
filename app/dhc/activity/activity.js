@@ -27,17 +27,18 @@
                                     return  ActivityService.getActivity($stateParams.id);
                                 } else if($location.search().idea) {
                                     return ActivityService.getDefaultActivity($location.search().idea, { populate: 'idea' });
-                                } else {
-                                    throw new Error('activity: either the id of an activity or an idea is required')
                                 }
                             }],
 
                             idea: ['$location', 'ActivityService', function($location, ActivityService) {
                                 var idea = $location.search().idea;
-                                return !idea ? undefined : ActivityService.getIdea(idea);
+                                if(!idea) {
+                                    throw new Error('activity: the id of an idea is required');
+                                }
+                                return  ActivityService.getIdea(idea);
                             }],
 
-                            activitiesParticipated: ['$location', 'ActivityService', 'UserService', function($location, ActivityService, UserService) {
+                            activitiesParticipating: ['$location', 'ActivityService', 'UserService', function($location, ActivityService, UserService) {
 
                                 var user = UserService.principal.getUser();
                                 var idea = $location.search().idea;
@@ -49,7 +50,7 @@
 
                                 return ActivityService.getActivities(options).then(function(activities) {
                                     _.forEach(activities, function (activity) {
-                                        activity.status = activity.owner === user.id ? 'owned' : 'joined'
+                                        activity.status = activity.owner.id === user.id ? 'owned' : 'joined';
                                     });
                                     return activities;
                                 });
@@ -62,7 +63,7 @@
                                         activity.socialInteraction = invitation;
                                         activity.status = 'invited';
                                         return activity;
-                                    })
+                                    });
                                 });
                             }]
                         }
@@ -72,13 +73,13 @@
             }])
 
         .controller('ActivityController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout',
-            'activity', 'activitiesParticipated', 'activitiesFromInvitations', 'idea',
+            'activity', 'activitiesParticipating', 'activitiesFromInvitations', 'idea',
             function ($scope, $rootScope, $stateParams, $location, $window, $timeout,
-                      activity, activitiesParticipated, activitiesFromInvitations, idea) {
+                      activity, activitiesParticipating, activitiesFromInvitations, idea) {
 
 
 
-                var activities = $scope.activities = activitiesParticipated.concat(activitiesFromInvitations);
+                var activities = $scope.activities = activitiesParticipating.concat(activitiesFromInvitations);
 
 
                 $scope.activity = activity;
@@ -112,6 +113,20 @@
                 $scope.onSelect = function (activity) {
                     $scope.activity = activity;
                     $scope.mode = 'view';
+                };
+
+                $scope.onSave = function(activity) {
+                    $scope.activity = activity;
+                    $scope.activities.push(activity);
+                    $scope.mode = 'view';
+                };
+
+                $scope.onDelete = function() {
+                    $window.history.back();
+                };
+
+                $scope.onCancel = function() {
+                    $window.history.back();
                 };
 
             }

@@ -3,12 +3,14 @@
 
 
         <dl class="dl-horizontal activity">
+            <dt translate>activity.view.title</dt>
+            <dd>{{ activity.title }}</dd>
+            <dt translate>activity.view.text</dt>
+            <dd>{{ activity.text || '&nbsp;' }}</dd>
             <dt translate>activity.view.date</dt>
             <dd>{{ activity.mainEvent.start | date }}</dd>
             <dt translate>activity.view.location</dt>
             <dd>{{ activity.location || '&nbsp;' }}</dd>
-            <dt translate>activity.view.title</dt>
-            <dd>{{ activity.title }}</dd>
         </dl>
 
         <dl class="dl-horizontal socialInteraction" ng-if="socialInteraction">

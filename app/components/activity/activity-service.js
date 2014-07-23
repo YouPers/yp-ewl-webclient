@@ -181,8 +181,6 @@
                             };
                         }
 
-                        var campaignId = UserService.principal.getUser().campaign;
-
                         var plan = {
                             idea: idea,
                             status: 'active',

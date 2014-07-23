@@ -62,7 +62,7 @@
                             throw new Error('unknown action');
                         }
                     } else {
-                        $state.go('activity.content', { id: activity.id });
+                        $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
                     }
 
                     return false;

@@ -19,6 +19,14 @@
 
                         scope.stati = ['invited', 'owned', 'joined'];
 
+                        scope.statusCounts = {
+                            all: scope.activities.length
+                        };
+                        scope.statusCounts = _.countBy(scope.activities, 'status');
+                        _.forEach(scope.stati, function(status) {
+
+                        });
+
                         scope.statusClasses = {
                             owned: 'fa-user',
                             joined: 'fa-users',

@@ -21,18 +21,20 @@
         },
 
         "item": {
+            "title": "Was",
+            "text": "Beschreibung",
             "date": "Wann",
-            "location": "Wo",
-            "title": "Beschreibung"
+            "location": "Wo"
         }
     },
     "view": {
         "stateHeader1": "(d)eine",
         "stateHeader2": "aktivität",
 
+        "title": "Was",
+        "text": "Beschreibung",
         "date": "Wann",
         "location": "Wo",
-        "title": "Beschreibung",
 
         "socialInteraction": {
             "title": "Nachricht"
@@ -46,5 +48,28 @@
         "stateHeader1": "deine",
         "stateHeader2": "aktivität"
     }
-  }
+  },
+    "activityForm": {
+        "title": {
+            "placeholder": "Was"
+        },
+        "text": {
+            "placeholder": "Beschreibung"
+        },
+        "location": {
+            "placeholder": "Wo"
+        },
+        "recurrence": {
+            "label": "Wiederholungen"
+        },
+        "private": {
+            "label": "Private Aktivität",
+            "text": "Andere können nur an dieser Aktivität teilnehmen, falls du sie persönlich dazu einlädst."
+        },
+
+        "create": "Erstellen",
+        "save": "Speichern",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
+    }
 }

@@ -41,13 +41,13 @@
                     </div>
                 </li>
                 <li ng-init="isParticipant = activity.isParticipant()">
-                    <a ng-if="activity && isParticipant && activity.status == 'active'" ui-sref="activity.content({ id: activity.id})">
+                    <a ng-if="activity && isParticipant && activity.status == 'active'" ng-click="showActivity(activity)">
                         <i class="fa fa-edit"></i>
                     </a>
                     <a ng-if="activity && isParticipant && activity.status != 'active'" ng-click="showIdea(idea)">
                         <i class="fa fa-repeat"></i>
                     </a>
-                    <a ng-if="activity && !isParticipant" ui-sref="activity.content({ id: activity.id})">
+                    <a ng-if="activity && !isParticipant" ng-click="showActivity(activity)">
                         <i class="fa fa-sign-in"></i>
                     </a>
                     <a ng-if="!activity" ng-click="showIdea(idea)">

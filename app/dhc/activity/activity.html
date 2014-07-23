@@ -13,7 +13,7 @@
 
             <i class="fa fa-bars"
                ng-class="{ active: mode == 'list', disabled: activities.length <= 1 }"
-               ng-click="activities.length > 1 ? 'list' : mode"
+               ng-click="parentScope.mode = activities.length > 1 ? 'list' : mode"
                ></i>
 
             <i class="fa fa-file-o"
@@ -63,7 +63,7 @@
 
         <div ng-if="mode == 'edit'">
 
-            <activity-edit activity="activity"></activity-edit>
+            <activity-edit activity="activity" on-save="onSave" on-cancel="onCancel" on-delete="onDelete"></activity-edit>
 
         </div>
 
