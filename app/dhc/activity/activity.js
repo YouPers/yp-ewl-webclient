@@ -83,7 +83,7 @@
 
 
                 $scope.activity = activity;
-                $scope.idea = idea = idea ? idea : activity.idea;
+                $scope.idea = $scope.activity.idea = idea;
 
                 if($location.search().mode) {
                     $scope.mode = $location.search().mode;
