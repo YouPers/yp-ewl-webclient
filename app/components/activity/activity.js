@@ -3,7 +3,7 @@
 
     angular.module('yp.components.activity', ['yp.components.user'])
 
-        .run(['Restangular', 'ActivityService', function (Restangular, ActivityService) {
+        .run(['Restangular', 'ActivityService', 'UserService', function (Restangular, ActivityService, UserService) {
 
             Restangular.extendCollection('ideas', function (ideas) {
                     ideas.enrichWithUserData = function (plans, recommendations, campaigns, prefs) {
@@ -48,10 +48,10 @@
                 }
             );
 
-            var extendIdeas = function (idea) {
+            var extendIdeas = function extendIdeas(idea) {
 
-                idea.getDefaultPlan = function () {
-                    return ActivityService.getDefaultPlan(idea);
+                idea.getDefaultActivity = function () {
+                    return ActivityService.getDefaultActivity(idea);
                 };
 
                 idea.getRecWeightsByQuestionId = function () {
@@ -65,6 +65,22 @@
                 return idea;
             };
             Restangular.extendModel('ideas', extendIdeas);
+
+            var extendActivities = function(activity) {
+                activity.isParticipant = function(user) {
+                    if(!user) {
+                        user = UserService.principal.getUser();
+                    }
+                    user = user.id || user;
+
+                    return (activity.owner.id || activity.owner) === user || _.any(activity.joiningUsers, function(joiningUser) {
+                        return (joiningUser.id || joiningUser) === user;
+                    });
+                };
+                return activity;
+            };
+
+            Restangular.extendModel('activities', extendActivities);
 
         }]);
 

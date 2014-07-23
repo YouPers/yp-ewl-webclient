@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-md-12">
+
+
+        <dl class="dl-horizontal activity">
+            <dt translate>activity.view.title</dt>
+            <dd>{{ activity.title }}</dd>
+            <dt translate>activity.view.text</dt>
+            <dd>{{ activity.text || '&nbsp;' }}</dd>
+            <dt translate>activity.view.date</dt>
+            <dd>{{ activity.mainEvent.start | date }}</dd>
+            <dt translate>activity.view.location</dt>
+            <dd>{{ activity.location || '&nbsp;' }}</dd>
+        </dl>
+
+        <dl class="dl-horizontal socialInteraction" ng-if="socialInteraction">
+
+            <dt translate>activity.view.socialInteraction.title</dt>
+            <dd class="title">{{ activity.title }}</dd>
+            <dd class="text">{{ activity.text }}</dd>
+
+        </dl>
+
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-12">
+
+
+
+        <dl class="dl-horizontal">
+            <dt>
+                <div user="activity.owner"></div>
+            </dt>
+            <dd>
+                <i class="fa fa-user" tooltip="{{ 'activity.owner' | translate }}"></i>
+            </dd>
+        </dl>
+
+
+        <dl class="dl-horizontal">
+            <dt>
+                <div user="joiningUser"></div>
+            </dt>
+            <dd>
+                <i class="fa fa-check-circle" tooltip="{{ 'activity.isJoining' | translate }}"></i>
+            </dd>
+        </dl>
+
+        <dl class="dl-horizontal">
+            <dt>
+                <div user></div>
+            </dt>
+            <dd>
+                <i class="fa fa-question-circle" tooltip="{{ 'activity.isInvited' | translate }}"></i>
+            </dd>
+        </dl>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                <div user=""></div>
+            </dt>
+            <dd>
+                <input type="text" class="form-control" placeholder="{{ 'activity.view.comment.placeholder' | translate }}">
+            </dd>
+
+        </dl>
+
+
+    </div>
+
+</div>

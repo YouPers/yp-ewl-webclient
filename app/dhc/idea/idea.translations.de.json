@@ -1,0 +1,62 @@
+{
+  "idea": {
+    "list": {
+        "active": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "laufenden Aktivitäten",
+
+            "tooltip": "laufend",
+            "noContent": "Du hast noch keine Aktivitäten geplant."
+        },
+        "done": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "erledigten Aktivitäten",
+
+            "tooltip": "erledigt",
+            "noContent": "Du hast noch keine Aktivitäten erledigt."
+        },
+        "starred": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "vorgemerkten Aktivitätsideen",
+
+            "tooltip": "vorgemerkt",
+            "noContent": "Du hast noch keine Aktivitäten vorgemerkt."
+        },
+        "rejected": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "abgelehnten Aktivitäten",
+
+            "tooltip": "abgelehnt",
+            "noContent": "Du hast noch keine Aktivitäten abgelehnt."
+        },
+        "invited": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "Einladungen",
+
+            "tooltip": "eingeladen",
+            "noContent": "Du hast noch keine Einladungen."
+        },
+        "recommended": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "Empfehlungen",
+
+            "tooltip": "empfohlen",
+            "noContent": "Du hast noch keine Empfehlungen."
+        },
+        "offered": {
+
+            "stateHeader1": "deine",
+            "stateHeader2": "möglichen Einsätze",
+
+            "tooltip": "Einladungen und Empfehlungen",
+            "noContent": "Du hast noch keine Einladungen oder Empfehlungen."
+        }
+    }
+  }
+}

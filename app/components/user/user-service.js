@@ -53,6 +53,7 @@
         .factory("UserService", ['userRoles', '$cookieStore', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
             function (userRoles, $cookieStore, $rootScope, Rest, $location, $http, base64codec, $q) {
                 var users = Rest.all('users');
+                var profiles = Rest.all('profiles');
                 var login = Rest.all('login');
                 var validateUser = Rest.all('/users/validate');
 
@@ -182,11 +183,14 @@
                     passwordReset: function (token, newPassword) {
                         return users.all("password_reset").post({token: token, password: newPassword});
                     },
-                    getUser: function (userId) {
-                        return users.one(userId).get();
+                    getUser: function (userId, options) {
+                        return users.one(userId).get(options);
                     },
                     getUsers: function (options) {
                         return users.getList(options);
+                    },
+                    getProfiles: function (options) {
+                        return profiles.getList(options);
                     },
                     principal: {
                         getUser: function () {

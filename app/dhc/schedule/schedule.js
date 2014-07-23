@@ -30,7 +30,7 @@
                             schedule: ['idea', 'ActivityService', function(idea, ActivityService) {
                                 var schedule = {
                                     idea: idea,
-                                    plan: ActivityService.getDefaultPlan(idea)
+                                    plan: ActivityService.getDefaultActivity(idea)
                                 };
                                 return schedule;
                             }]
@@ -47,7 +47,7 @@
                         },
                         resolve: {
                             schedule: ['$rootScope', '$stateParams', 'ActivityService', function ($rootScope, $stateParams, ActivityService) {
-                                return ActivityService.getActivityPlan($stateParams.id).then(function(plan) {
+                                return ActivityService.getActivity($stateParams.id).then(function(plan) {
 
 
                                     return {

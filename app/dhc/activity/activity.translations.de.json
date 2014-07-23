@@ -1,0 +1,75 @@
+{
+  "activity": {
+
+      "owner": "Organisator",
+      "isJoining": "Teilnehmer",
+      "isInvited": "Eingeladen",
+
+
+    "list": {
+        "stateHeader1": "alle",
+        "stateHeader2": "aktivitäten",
+
+        "editTooltip": "Aktivität bearbeiten",
+        "newTooltip": "Neue Aktivität einplanen",
+
+        "statusFilter": {
+            "all": "Alle Aktivitäten",
+            "invited": "Einladungen",
+            "owned": "Von mir organisierte Aktivitäten",
+            "joined": "Aktivitäten an denen ich teilnehme"
+        },
+
+        "item": {
+            "title": "Was",
+            "text": "Beschreibung",
+            "date": "Wann",
+            "location": "Wo"
+        }
+    },
+    "view": {
+        "stateHeader1": "(d)eine",
+        "stateHeader2": "aktivität",
+
+        "title": "Was",
+        "text": "Beschreibung",
+        "date": "Wann",
+        "location": "Wo",
+
+        "socialInteraction": {
+            "title": "Nachricht"
+        },
+
+        "comment": {
+            "placeholder": "Kommentar schreiben"
+        }
+    },
+    "edit": {
+        "stateHeader1": "deine",
+        "stateHeader2": "aktivität"
+    }
+  },
+    "activityForm": {
+        "title": {
+            "placeholder": "Was"
+        },
+        "text": {
+            "placeholder": "Beschreibung"
+        },
+        "location": {
+            "placeholder": "Wo"
+        },
+        "recurrence": {
+            "label": "Wiederholungen"
+        },
+        "private": {
+            "label": "Private Aktivität",
+            "text": "Andere können nur an dieser Aktivität teilnehmen, falls du sie persönlich dazu einlädst."
+        },
+
+        "create": "Erstellen",
+        "save": "Speichern",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
+    }
+}

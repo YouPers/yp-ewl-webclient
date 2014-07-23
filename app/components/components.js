@@ -22,6 +22,7 @@
 
             // directives
             'yp.components.ideaCard',
+            'yp.components.ideaThumbnail',
             'yp.components.ideaEdit',
             'yp.components.avatarUpload',
             'yp.components.campaignSwitcher',
@@ -35,14 +36,14 @@
         ])
 
         .run(['$rootScope', function ($rootScope) {
-            _.merge($rootScope.enums, {
+            $rootScope.enums = {
                 language: [
                     'de',
                     'en',
                     'fr',
                     'it']
 
-            });
+            };
         }])
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {

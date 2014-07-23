@@ -23,14 +23,14 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/welcome/welcome');
             }])
 
-        .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'campaign',
-            function ($scope, $rootScope, $state, $stateParams, UserService, campaign) {
+        .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'ActivityService', 'campaign',
+            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, campaign) {
 
                 if (!campaign) {
-                    $state.go('home.content');
+                    $state.go('game.content');
                 } else if(!$stateParams.preview && UserService.principal.getUser().campaign && UserService.principal.getUser().campaign.id === campaign.id) {
                     // user is already in this campaign
-                    $state.go('home.content');
+                    $state.go('game.content');
                 } else {
                     $scope.campaign = campaign;
                 }
@@ -45,12 +45,10 @@
                     // just leave it in the client principal and store it when the user eventually register on our site.
                     if (UserService.principal.isAuthenticated()) {
                         UserService.putUser(UserService.principal.getUser()).then(function (result){
-
-                            $state.go('home.content');
-
+                            $state.go('game.content');
                         });
                     } else {
-                        $state.go('home.content');
+                        $state.go('game.content');
                     }
 
                 };

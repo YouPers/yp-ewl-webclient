@@ -24,7 +24,16 @@
                         return socialInteractions.one(socialInteractionId);
                     },
                     getSocialInteractions: function(options) {
-                        return socialInteractions.getList(options);
+                        return socialInteractions.getList(options).then(function(results) {
+                            _.forEach(results, function (result) {
+                                _.forEach(result.refDocs, function (refDoc) {
+                                    if(refDoc.doc) {
+                                        result[refDoc.model.toLowerCase()] = refDoc.doc;
+                                    }
+                                });
+                            });
+                            return results;
+                        });
                     },
                     deleteSocialInteraction: function(socialInteractionId) {
                         return socialInteractions.one(socialInteractionId).remove();

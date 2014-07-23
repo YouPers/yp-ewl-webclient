@@ -9,13 +9,13 @@
                 transclude: true,
                 templateUrl: 'components/user/user-directive/user-directive.html',
                 scope: {
-                    user: "="
+                    user: "=?"
                 },
 
                 link: function (scope, elem, attrs) {
 
                     if(!attrs.user) {
-                        scope.user = scope.principal.getUser();
+                        scope.user = UserService.principal.getUser();
                     }
                 }
             };

@@ -1,0 +1,66 @@
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="state-header-1" translate>game.stateHeader1</div>
+        <div class="state-header-2" translate>game.stateHeader2</div>
+    </div>
+</div>
+
+<div class="row game-table">
+    <div class="left-side">
+
+
+        <div class="current-activities" ng-click="showIdeas('active', hovered)" ng-class="{ hovered: hovered }"
+             ng-mouseenter="hovered = true"
+             ng-mouseleave="hovered = false"
+                >
+
+            <div ng-repeat="activity in activities">
+                <a href><div class="idea-thumbnail" idea="activity.idea" ng-click="openActivity(activity)"
+
+                             ng-mouseenter="$parent.hovered = false"
+                             ng-mouseleave="$parent.hovered = true"
+                        ></div></a>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="right-side">
+
+        <h3 translate>game.activities.done</h3>
+
+        <div class="done-activities" ng-click="showIdeas('done')">
+            <div ng-repeat="activity in doneActivities">
+                <div class="idea-thumbnail" idea="activity.idea"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="row player">
+    <div class="left-side">
+
+        <div class="offered-activities" ng-click="showIdeas('offered')">
+
+            <div ng-repeat="offer in invitations" ng-click="showIdeas('offered')">
+                <div class="idea-thumbnail" idea="offer.idea"></div>
+            </div>
+
+            <div ng-repeat="offer in recommendations">
+                <div class="idea-thumbnail" idea="offer.idea"></div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="right-side">
+
+        <div class="profile-activities">
+            <i class="fa fa-star-o" ng-click="showIdeas('starred')"></i>
+            <i class="fa fa-trash-o" ng-click="showIdeas('rejected')"></i>
+        </div>
+
+    </div>
+</div>

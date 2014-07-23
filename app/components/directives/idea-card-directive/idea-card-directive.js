@@ -3,18 +3,29 @@
     'use strict';
 
     angular.module('yp.components.ideaCard', [])
-        .directive('ideaCard', ['$rootScope', '$sce', function ($rootScope, $sce) {
+        .directive('ideaCard', ['$rootScope', '$sce', '$window', '$state', function ($rootScope, $sce, $window, $state) {
             return {
                 restrict: 'EA',
                 scope: {
-                    rec: '=rec',
-                    reject: '&',
-                    schedule: '&',
-                    index: '=index'
+                    idea: '=',
+                    activity: '=',
+                    socialInteraction: '='
                 },
                 templateUrl: 'components/directives/idea-card-directive/idea-card-directive.html',
 
                 link: function (scope, elem, attrs) {
+
+
+                    if(!attrs.idea) {
+                        throw new Error("ideaCard: attribute 'idea' is required");
+                    }
+
+                    scope.showIdea = function(idea) {
+                        $window.location = $state.href('activity.content') + '?idea=' + idea.id;
+                    };
+                    scope.showActivity = function(activity) {
+                        $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
+                    };
 
                     scope.flip = function() {
                         var flipped = scope.flipped;
