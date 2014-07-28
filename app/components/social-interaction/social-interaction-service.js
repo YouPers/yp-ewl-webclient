@@ -28,7 +28,12 @@
                             _.forEach(results, function (result) {
                                 _.forEach(result.refDocs, function (refDoc) {
                                     if(refDoc.doc) {
-                                        result[refDoc.model.toLowerCase()] = refDoc.doc;
+                                        if(refDoc.model === 'Idea') {
+                                            result.idea = refDoc.doc;
+                                        } else if(refDoc.model === 'Activity') {
+                                            result.activity = refDoc.doc;
+                                            result.idea = refDoc.doc.idea;
+                                        }
                                     }
                                 });
                             });

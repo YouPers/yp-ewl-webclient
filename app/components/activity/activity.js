@@ -73,8 +73,11 @@
                     }
                     user = user.id || user;
 
-                    return (activity.owner.id || activity.owner) === user || _.any(activity.joiningUsers, function(joiningUser) {
-                        return (joiningUser.id || joiningUser) === user;
+                    var owner = activity.owner.id || activity.owner;
+
+                    return owner === user || _.any(activity.joiningUsers, function(joiningUser) {
+                        var joining = joiningUser.id || joiningUser;
+                        return joining === user;
                     });
                 };
                 return activity;
