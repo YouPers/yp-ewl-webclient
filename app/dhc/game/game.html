@@ -44,13 +44,42 @@
 
         <div class="offered-activities" ng-click="showIdeas('offered')">
 
-            <div ng-repeat="offer in invitations" ng-click="showIdeas('offered')">
-                <div class="idea-thumbnail" idea="offer.idea"></div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 translate>game.invitations</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div ng-repeat="offer in invitations" ng-click="showIdeas('offered')">
+                                <div class="idea-thumbnail" idea="offer.idea"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 translate>game.recommendations</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div ng-repeat="offer in recommendations">
+                                <div class="idea-thumbnail" idea="offer.idea"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <div ng-repeat="offer in recommendations">
-                <div class="idea-thumbnail" idea="offer.idea"></div>
-            </div>
+
 
         </div>
 

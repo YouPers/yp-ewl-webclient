@@ -41,7 +41,7 @@
         </dl>
 
 
-        <dl class="dl-horizontal">
+        <dl class="dl-horizontal" ng-repeat="joiningUser in activity.joiningUsers">
             <dt>
                 <div user="joiningUser"></div>
             </dt>
@@ -50,7 +50,7 @@
             </dd>
         </dl>
 
-        <dl class="dl-horizontal">
+        <dl class="dl-horizontal" ng-if="!activity.isParticipant()">
             <dt>
                 <div user></div>
             </dt>
@@ -58,6 +58,16 @@
                 <i class="fa fa-question-circle" tooltip="{{ 'activity.isInvited' | translate }}"></i>
             </dd>
         </dl>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <hr/>
 
     </div>
 

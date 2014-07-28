@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('yp.dhc')
-        .directive('activityView', ['$rootScope', '$state','accessLevels',
-            function ($rootScope, $state, accessLevels) {
+        .directive('activityView', ['$rootScope', '$state','accessLevels', 'SocialInteractionService',
+            function ($rootScope, $state, accessLevels, SocialInteractionService) {
                 return {
                     restrict: 'E',
                     scope: {

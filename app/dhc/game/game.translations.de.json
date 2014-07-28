@@ -5,8 +5,9 @@
 
       "activities": {
           "done": "Ergebnisse"
-      }
-
+      },
+        "invitations": "Einladungen",
+        "recommendations": "Empfehlungen"
 
   }
 }
