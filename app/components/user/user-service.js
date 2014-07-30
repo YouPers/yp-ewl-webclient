@@ -116,14 +116,14 @@
                     encodeCredentials: function (username, password) {
                         return ({username: username, password: password});
                     },
-                    login: function (cred, keepMeLoggedIn) {
+                    login: function (token, keepMeLoggedIn) {
 
-                        $http.defaults.headers.common.Authorization = 'Basic ' + base64codec.encode(cred.username + ':' + cred.password);
+                        $http.defaults.headers.common.Authorization = 'Bearer ' + token;
 
-                        return login.post({username: cred.username})
+                        return login.post()
                             .then(function success(user) {
                                 if (keepMeLoggedIn) {
-                                    $cookieStore.put('authdata', cred);
+                                    $cookieStore.put('authdata', token);
                                 }
                                 return _authorize(user);
 
@@ -224,10 +224,10 @@
                     initialized: false
                 };
 
-                var credentialsFromCookie = $cookieStore.get('authdata');
+                var tokenRetrieved = $location.search().token || $cookieStore.get('authdata');
 
-                if (credentialsFromCookie) {
-                    UserService.login(credentialsFromCookie)
+                if (tokenRetrieved) {
+                    UserService.login(tokenRetrieved, true)
                         .then(function success() {
                             UserService.initialized = true;
                         }, function error(err) {
