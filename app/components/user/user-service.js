@@ -50,8 +50,8 @@
 
         .constant('accessLevels', _accessLevels)
 
-        .factory("UserService", ['userRoles', '$cookieStore', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
-            function (userRoles, $cookieStore, $rootScope, Rest, $location, $http, base64codec, $q) {
+        .factory("UserService", ['userRoles', 'ipCookie', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
+            function (userRoles, ipCookie, $rootScope, Rest, $location, $http, base64codec, $q) {
                 var users = Rest.all('users');
                 var profiles = Rest.all('profiles');
                 var login = Rest.all('login');
@@ -116,14 +116,24 @@
                     encodeCredentials: function (username, password) {
                         return ({username: username, password: password});
                     },
-                    login: function (token, keepMeLoggedIn) {
+                    login: function (cred, keepMeLoggedIn) {
 
-                        $http.defaults.headers.common.Authorization = 'Bearer ' + token;
+                        if (_.isString(cred)) {
+                            // this is a token so we use bearer token mode
+                            $http.defaults.headers.common.Authorization = 'Bearer ' + cred;
+
+                        } else if (_.isObject(cred) && cred.username && cred.password) {
+                            // this is a username and password, so we use Basic Auth
+                            $http.defaults.headers.common.Authorization = 'Basic ' + base64codec.encode(cred.username + ':' + cred.password);
+                        }
 
                         return login.post()
-                            .then(function success(user) {
+                            .then(function success(result) {
+                                var user = result.user;
+                                var expires = result.expires;
+
                                 if (keepMeLoggedIn) {
-                                    $cookieStore.put('authdata', token);
+                                    ipCookie('authdata', result.token || cred, {expires: expires});
                                 }
                                 return _authorize(user);
 
@@ -146,7 +156,7 @@
                         });
                     },
                     logout: function () {
-                        $cookieStore.remove('authdata');
+                        ipCookie.remove('authdata');
                         $http.defaults.headers.common.Authorization = '';
                         _deauthorize();
                     },
@@ -224,11 +234,11 @@
                     initialized: false
                 };
 
-                var tokenRetrieved = $location.search().token || $cookieStore.get('authdata');
+                var tokenRetrieved = $location.search().token || ipCookie('authdata');
 
                 if (tokenRetrieved) {
                     UserService.login(tokenRetrieved, true)
-                        .then(function success() {
+                        .then(function success(user) {
                             UserService.initialized = true;
                         }, function error(err) {
                             UserService.initialized = true;

@@ -4,14 +4,14 @@
  * Copyright (c) 2014 ; Licensed MIT
  */
 angular.module('pascalprecht.translate').factory('$translateCookieStorage', [
-  '$cookieStore',
-  function ($cookieStore) {
+  'ipCookie',
+  function (ipCookie) {
     var $translateCookieStorage = {
         get: function (name) {
-          return $cookieStore.get(name);
+          return ipCookie(name);
         },
         set: function (name, value) {
-          $cookieStore.put(name, value);
+            ipCookie(name, value);
         }
       };
     return $translateCookieStorage;
