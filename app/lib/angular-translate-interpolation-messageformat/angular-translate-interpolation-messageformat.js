@@ -1,9 +1,32 @@
+/*!
+ * angular-translate - v2.2.0 - 2014-06-03
+ * http://github.com/PascalPrecht/angular-translate
+ * Copyright (c) 2014 ; Licensed MIT
+ */
 angular.module('pascalprecht.translate').constant('TRANSLATE_MF_INTERPOLATION_CACHE', '$translateMessageFormatInterpolation').factory('$translateMessageFormatInterpolation', [
   '$cacheFactory',
   'TRANSLATE_MF_INTERPOLATION_CACHE',
   function ($cacheFactory, TRANSLATE_MF_INTERPOLATION_CACHE) {
-    var $translateInterpolator = {};
-    $cache = $cacheFactory.get(TRANSLATE_MF_INTERPOLATION_CACHE), $mf = new MessageFormat(), $identifier = 'messageformat';
+    var $translateInterpolator = {}, $cache = $cacheFactory.get(TRANSLATE_MF_INTERPOLATION_CACHE), $mf = new MessageFormat(), $identifier = 'messageformat', $sanitizeValueStrategy = null, sanitizeValueStrategies = {
+        escaped: function (params) {
+          var result = {};
+          for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+              result[key] = angular.element('<div></div>').text(params[key]).html();
+            }
+          }
+          return result;
+        }
+      };
+    var sanitizeParams = function (params) {
+      var result;
+      if (angular.isFunction(sanitizeValueStrategies[$sanitizeValueStrategy])) {
+        result = sanitizeValueStrategies[$sanitizeValueStrategy](params);
+      } else {
+        result = params;
+      }
+      return result;
+    };
     if (!$cache) {
       $cache = $cacheFactory(TRANSLATE_MF_INTERPOLATION_CACHE);
     }
@@ -18,8 +41,15 @@ angular.module('pascalprecht.translate').constant('TRANSLATE_MF_INTERPOLATION_CA
     $translateInterpolator.getInterpolationIdentifier = function () {
       return $identifier;
     };
+    $translateInterpolator.useSanitizeValueStrategy = function (value) {
+      $sanitizeValueStrategy = value;
+      return this;
+    };
     $translateInterpolator.interpolate = function (string, interpolateParams) {
       interpolateParams = interpolateParams || {};
+      if ($sanitizeValueStrategy) {
+        interpolateParams = sanitizeParams(interpolateParams);
+      }
       var interpolatedText = $cache.get(string + angular.toJson(interpolateParams));
       if (!interpolatedText) {
         interpolatedText = $mf.compile(string)(interpolateParams);
