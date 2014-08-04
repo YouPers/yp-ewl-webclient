@@ -132,6 +132,10 @@
                                 var user = result.user;
                                 var expires = result.expires;
 
+                                if (result.token) {
+                                    $http.defaults.headers.common.Authorization = 'Bearer ' + result.token;
+                                }
+
                                 if (keepMeLoggedIn) {
                                     ipCookie('authdata', result.token || cred, {expires: expires});
                                 }
