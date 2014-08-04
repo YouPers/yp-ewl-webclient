@@ -42,6 +42,7 @@
     var _currentUser = _.clone(_emptyDefaultUser);
     var _authenticated = false;
 
+    var AUTH_COOKIE_NAME = "auth";
 
     angular.module('yp.components.user')
 
@@ -137,7 +138,7 @@
                                 }
 
                                 if (keepMeLoggedIn) {
-                                    ipCookie('authdata', result.token || cred, {expires: expires});
+                                    ipCookie(AUTH_COOKIE_NAME, result.token || cred, {expires: expires});
                                 }
                                 return _authorize(user);
 
@@ -160,7 +161,7 @@
                         });
                     },
                     logout: function () {
-                        ipCookie.remove('authdata');
+                        ipCookie.remove(AUTH_COOKIE_NAME);
                         $http.defaults.headers.common.Authorization = '';
                         _deauthorize();
                     },
@@ -238,7 +239,7 @@
                     initialized: false
                 };
 
-                var tokenRetrieved = $location.search().token || ipCookie('authdata');
+                var tokenRetrieved = $location.search().token || ipCookie(AUTH_COOKIE_NAME);
 
                 if (tokenRetrieved) {
                     UserService.login(tokenRetrieved, true)
