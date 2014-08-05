@@ -10,7 +10,7 @@
             return function (dateString) {
                 var myMoment = moment(dateString);
 
-                if (myMoment.isBefore(moment().subtract('day', 3)) || myMoment.isAfter(moment().add('day', 3))) {
+                if (myMoment.isBefore(moment().subtract(3, 'day')) || myMoment.isAfter(moment().add(3, 'day'))) {
                     return myMoment.format('L');
                 } else {
                     return myMoment.fromNow();

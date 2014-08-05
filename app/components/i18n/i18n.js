@@ -8,7 +8,7 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
             $scope.currentLang = $translate.use();
 
             $scope.changeLang = function (key) {
-                moment.lang(key);
+                moment.locale(key);
                 $http.defaults.headers.common['yp-language'] = key;
                 $translate.use(key).then(function (key) {
                     $translate.refresh();

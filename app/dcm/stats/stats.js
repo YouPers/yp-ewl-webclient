@@ -20,7 +20,7 @@
         // initialize with 0-values from start of Campaign until today
         var current = moment().startOf('day');
         // use the start a bit before the start date, so the isAfter in the loop catches the first day of the campaign.
-        var startOfCampaign = moment(campaign.start).startOf('day').subtract('hour', 1);
+        var startOfCampaign = moment(campaign.start).startOf('day').subtract(1, 'hour');
 
         while (current.isAfter(startOfCampaign)) {
             var formattedCurrent = current.format('l');
@@ -33,7 +33,7 @@
                 x: formattedCurrent,
                 y: values});
 
-            current.subtract('day', 1);
+            current.subtract(1, 'day');
         }
         return myChartData;
     }

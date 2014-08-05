@@ -126,7 +126,7 @@ angular.module('yp-ewl',
             $http.defaults.headers.common['yp-language'] =  localeToUse;
 
             $translate.refresh();
-            moment.lang(localeToUse);
+            moment.locale(localeToUse);
             $rootScope.currentLocale=localeToUse;
 
             // handle routing authentication
