@@ -12,9 +12,11 @@
 
                     link: function (scope, elem, attrs) {
 
-                        SocialInteractionService.getSocialInteractions({ populate: 'author' }).then(function (socialInteractions) {
-                            scope.socialInteractions = socialInteractions;
-                        });
+                        if ($rootScope.principal.isAuthenticated()) {
+                            SocialInteractionService.getSocialInteractions({ populate: 'author' }).then(function (socialInteractions) {
+                                scope.socialInteractions = socialInteractions;
+                            });
+                        }
 
                         scope.dismissSocialInteraction = function dismissSocialInteraction(socialInteraction) {
                             SocialInteractionService.deleteSocialInteraction(socialInteraction.id);
