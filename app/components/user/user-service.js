@@ -42,6 +42,7 @@
     var _currentUser = _.clone(_emptyDefaultUser);
     var _authenticated = false;
 
+    var AUTH_COOKIE_NAME = "auth";
 
     angular.module('yp.components.user')
 
@@ -50,8 +51,8 @@
 
         .constant('accessLevels', _accessLevels)
 
-        .factory("UserService", ['userRoles', '$cookieStore', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
-            function (userRoles, $cookieStore, $rootScope, Rest, $location, $http, base64codec, $q) {
+        .factory("UserService", ['userRoles', 'ipCookie', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
+            function (userRoles, ipCookie, $rootScope, Rest, $location, $http, base64codec, $q) {
                 var users = Rest.all('users');
                 var profiles = Rest.all('profiles');
                 var login = Rest.all('login');
@@ -118,12 +119,26 @@
                     },
                     login: function (cred, keepMeLoggedIn) {
 
-                        $http.defaults.headers.common.Authorization = 'Basic ' + base64codec.encode(cred.username + ':' + cred.password);
+                        if (_.isString(cred)) {
+                            // this is a token so we use bearer token mode
+                            $http.defaults.headers.common.Authorization = 'Bearer ' + cred;
 
-                        return login.post({username: cred.username})
-                            .then(function success(user) {
+                        } else if (_.isObject(cred) && cred.username && cred.password) {
+                            // this is a username and password, so we use Basic Auth
+                            $http.defaults.headers.common.Authorization = 'Basic ' + base64codec.encode(cred.username + ':' + cred.password);
+                        }
+
+                        return login.post()
+                            .then(function success(result) {
+                                var user = result.user;
+                                var expires = result.expires;
+
+                                if (result.token) {
+                                    $http.defaults.headers.common.Authorization = 'Bearer ' + result.token;
+                                }
+
                                 if (keepMeLoggedIn) {
-                                    $cookieStore.put('authdata', cred);
+                                    ipCookie(AUTH_COOKIE_NAME, result.token || cred, {expires: expires});
                                 }
                                 return _authorize(user);
 
@@ -146,7 +161,7 @@
                         });
                     },
                     logout: function () {
-                        $cookieStore.remove('authdata');
+                        ipCookie.remove(AUTH_COOKIE_NAME);
                         $http.defaults.headers.common.Authorization = '';
                         _deauthorize();
                         var deferred = $q.defer();
@@ -227,11 +242,11 @@
                     initialized: false
                 };
 
-                var credentialsFromCookie = $cookieStore.get('authdata');
+                var tokenRetrieved = $location.search().token || ipCookie(AUTH_COOKIE_NAME);
 
-                if (credentialsFromCookie) {
-                    UserService.login(credentialsFromCookie)
-                        .then(function success() {
+                if (tokenRetrieved) {
+                    UserService.login(tokenRetrieved, true)
+                        .then(function success(user) {
                             UserService.initialized = true;
                         }, function error(err) {
                             UserService.initialized = true;

@@ -5,7 +5,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl',
         [
-            'restangular', 'ui.router', 'ui.bootstrap', 'ngCookies', 'ngAnimate',
+            'restangular', 'ui.router', 'ui.bootstrap',  'ngAnimate', 'ipCookie',
             'angulartics','angulartics.google.analytics',
 
             'yp.config',

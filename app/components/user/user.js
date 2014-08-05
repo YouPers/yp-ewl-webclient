@@ -5,7 +5,7 @@
             [
                 'ui.router',
                 'restangular',
-                'ngCookies',
+                'ipCookie',
                 'angularFileUpload',
 
                 'yp.components.util',
