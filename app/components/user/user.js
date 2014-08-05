@@ -59,8 +59,9 @@
 
 
                 $scope.logout = function () {
-                    UserService.logout();
-                    $location.path('/');
+                    UserService.logout().then(function() {
+                        $window.location.reload();
+                    });
                 };
 
 

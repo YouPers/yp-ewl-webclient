@@ -18,8 +18,8 @@
          *  - avatarObject: the object where the avatar is located, avatarObject.avatar
          *
          */
-        .directive('avatarUpload', ['$rootScope', '$http', '$fileUploader', 'yp.config','UserService',
-            function ($rootScope, $http, $fileUploader, config, UserService) {
+        .directive('avatarUpload', ['$rootScope', '$http', 'FileUploader', 'yp.config','UserService',
+            function ($rootScope, $http, FileUploader, config, UserService) {
                 return {
                     restrict: 'E',
                     transclude: true,
@@ -27,6 +27,7 @@
                     scope: {
                         avatarObject: "="
                     },
+                    priority: 10,
                     link: function (scope, elem, attrs) {
 
                         var uploader;
@@ -53,7 +54,7 @@
                                 url = config.backendUrl + "/users/" + scope.avatarObject.id + "/avatar";
                             }
 
-                            uploader = scope.uploader = $fileUploader.create({
+                            uploader = scope.uploader = new FileUploader({
                                 scope: scope,
                                 url: url,
                                 autoUpload: true,
@@ -64,29 +65,33 @@
 
 
                             // images only filter
-                            uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {
+                            uploader.filters.push({name: 'allowedPicFormats', fn: function(item /*{File|HTMLInputElement}*/) {
                                 var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
                                 type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
                                 var valid = '|jpg|png|jpeg|bmp|gif|tif|tiff'.indexOf(type) !== -1;
-                                if(!valid) {
-                                    scope.$apply(function() {
+                                if (!valid) {
+                                    scope.$apply(function () {
                                         $rootScope.$emit('clientmsg:error', 'avatar.invalid');
 
                                     });
                                 }
                                 return  valid;
+                            }
                             });
 
 
                             // on file upload complete
-                            uploader.bind('error', function (event, xhr, item, response) {
+                            uploader.onErrorItem = function errorCb (item, response, status, headers) {
                                 scope.$apply(function() {
                                     $rootScope.$emit('clientmsg:error', 'avatar.error');
 
                                 });
-                            });
+                            };
+
+
                             // on file upload complete
-                            uploader.bind('success', function (event, xhr, item, response) {
+                            uploader.onSuccessItem = function successCb (item, response, status, headers) {
+                                console.log('success cb called');
                                 if(avatarObject) {
                                     UserService.principal.getUser().avatar = avatarObject.avatar = response.avatar;
                                     scope.$apply();
@@ -98,7 +103,8 @@
                                 } else {
                                     UserService.reload();
                                 }
-                            });
+                            };
+
                         }
                     }
                 };
