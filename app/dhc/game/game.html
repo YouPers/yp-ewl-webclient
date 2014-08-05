@@ -15,12 +15,15 @@
              ng-mouseleave="hovered = false"
                 >
 
-            <div ng-repeat="activity in activities">
-                <a href><div class="idea-thumbnail" idea="activity.idea" ng-click="openActivity(activity)"
+            <div ng-repeat="events in eventsByIdea">
+                <a href>
+                    <div>
+                    <div class="idea-thumbnail" idea="event.idea" ng-click="openActivity(event)" ng-repeat="event in events"
 
                              ng-mouseenter="$parent.hovered = false"
                              ng-mouseleave="$parent.hovered = true"
-                        ></div></a>
+                        ></div>
+                    </div></a>
             </div>
 
         </div>

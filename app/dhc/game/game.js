@@ -25,6 +25,9 @@
                             }],
                             socialInteractions: ['SocialInteractionService', function(SocialInteractionService) {
                                 return SocialInteractionService.getSocialInteractions();
+                            }],
+                            activityEvents: ['ActivityService', function(ActivityService) {
+                                return ActivityService.getActivityEvents({populate: 'idea'});
                             }]
                         }
                     });
@@ -34,8 +37,8 @@
             }])
 
 
-        .controller('GameController', [ '$scope', '$state', '$window', 'activities', 'socialInteractions',
-            function ($scope, $state, $window, activities, socialInteractions) {
+        .controller('GameController', [ '$scope', '$state', '$window', 'activities', 'socialInteractions', 'activityEvents',
+            function ($scope, $state, $window, activities, socialInteractions, activityEvents) {
 
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
@@ -43,6 +46,11 @@
                 $scope.invitations = _.filter(socialInteractions, { __t: 'Invitation' });
                 $scope.recommendations = _.filter(socialInteractions, { __t: 'Recommendation' });
 
+                $scope.openEvents = _.filter(activityEvents, {status: 'open'});
+
+                $scope.eventsByIdea = _.groupBy(activityEvents, function(event) {
+                    return event.idea.id;
+                });
 
                 $scope.showIdeas = function(status, hovered) {
                     if(_.isUndefined(hovered) || hovered) {
