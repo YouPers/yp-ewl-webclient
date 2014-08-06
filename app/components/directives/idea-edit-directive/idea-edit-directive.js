@@ -78,7 +78,6 @@
 
 
                         $scope.selectIdeaImage = function selectIdeaImage() {
-
                             var modalInstance = $modal.open({
                                 templateUrl: 'components/directives/idea-edit-directive/idea-image-modal.html',
                                 controller: 'IdeaImageModalController',
