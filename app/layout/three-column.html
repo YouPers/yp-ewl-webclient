@@ -1,0 +1,27 @@
+<ng-include src="'dhc/subnavbar.html'">
+</ng-include>
+<div class="container main-layout dhc {{ $state.current.name.substr(0, $state.current.name.indexOf('.')) }}">
+
+    <div class="row main-content">
+        <div class="col-lg-2">
+
+            <div ng-init="campaign = principal.getUser().campaign">
+                <campaign-switcher campaign="campaign" ng-if="campaign"></campaign-switcher>
+                <div ng-if="!campaign">
+                    <br/>
+                    <span translate>home.noCampaign</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-7">
+            <div ui-view="content" autoscroll="false"></div>
+        </div>
+        <div class="col-lg-3">
+
+            <social-interaction></social-interaction>
+            <health-coach></health-coach>
+            <notifications></notifications>
+        </div>
+    </div>
+</div>

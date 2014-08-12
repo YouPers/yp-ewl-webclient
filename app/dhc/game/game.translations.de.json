@@ -6,6 +6,7 @@
         "showMore": "mehr",
 
         "activities": {
+            "current": "Laufende Aktivitäten",
             "done": "Ergebnisse"
         },
         "invitations": "Einladungen",

@@ -6,92 +6,106 @@
     </div>
 </div>
 
-<div class="row game-table">
+<div class="row">
     <div class="col-md-12">
 
 
-        <div id="current-activities" class="current-activities" ng-style="{ height: currentActivitiesHeight }">
 
-            <activity-event-stack activity="activity"
-                                  events="eventsByActivity[activity.id]"
-                                  ng-repeat="activity in activities"
-                                  ng-click="openActivity(activity)">
+        <div class="row game-table">
 
-            </activity-event-stack>
+            <div class="col-md-12">
 
-            <a href class="show-more" ng-show="hasOverflow('current-activities')" ng-click="currentActivitiesHeightFactor = currentActivitiesHeightFactor + 1">
-                <span translate>game.showMore</span>
-            </a>
+                <div><h3 translate>game.activities.current</h3></div>
 
-        </div>
+                <div id="current-activities" class="current-activities" ng-style="{ height: currentActivitiesHeight }">
 
-    </div>
-    <div class="right-side">
 
-        <h3 translate>game.activities.done</h3>
 
-        <div class="done-activities" ng-click="showIdeas('done')">
-            <div ng-repeat="activity in doneActivities">
-                <div class="idea-thumbnail" idea="activity.idea"></div>
+                    <activity-event-stack activity="activity"
+                                          events="eventsByActivity[activity.id]"
+                                          ng-repeat="activity in activities"
+                                          ng-click="openActivity(activity)">
+
+                    </activity-event-stack>
+
+                    <a href class="show-more" ng-show="hasOverflow('current-activities')" ng-click="currentActivitiesHeightFactor = currentActivitiesHeightFactor + 1">
+                        <span translate>game.showMore</span>
+                    </a>
+
+                </div>
+
             </div>
+            <!--<div class="right-side">-->
 
+            <!--<h3 translate>game.activities.done</h3>-->
+
+            <!--<div class="done-activities" ng-click="showIdeas('done')">-->
+            <!--<div ng-repeat="activity in doneActivities">-->
+            <!--<div class="idea-thumbnail" idea="activity.idea"></div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+
+            <!--</div>-->
         </div>
+
+        <div class="row player">
+            <div class="col-md-12">
+
+                <div class="offered-activities" ng-click="showIdeas('offered')">
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 translate>game.invitations</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div ng-repeat="offer in invitations" ng-click="showIdeas('offered')">
+                                        <div class="idea-thumbnail" idea="offer.idea"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 translate>game.recommendations</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div ng-repeat="offer in recommendations">
+                                        <div class="idea-thumbnail" idea="offer.idea"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <div class="right-side">
+
+                <div class="profile-activities">
+                    <i class="fa fa-star-o" ng-click="showIdeas('starred')"></i>
+                    <i class="fa fa-trash-o" ng-click="showIdeas('rejected')"></i>
+                </div>
+
+            </div>
 
     </div>
 </div>
 
-<div class="row player">
-    <div class="col-md-12">
 
-        <div class="offered-activities" ng-click="showIdeas('offered')">
-
-            <div class="row">
-                <div class="col-md-6">
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 translate>game.invitations</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div ng-repeat="offer in invitations" ng-click="showIdeas('offered')">
-                                <div class="idea-thumbnail" idea="offer.idea"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-6">
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 translate>game.recommendations</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div ng-repeat="offer in recommendations">
-                                <div class="idea-thumbnail" idea="offer.idea"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-        </div>
-
-    </div>
-    <div class="right-side">
-
-        <div class="profile-activities">
-            <i class="fa fa-star-o" ng-click="showIdeas('starred')"></i>
-            <i class="fa fa-trash-o" ng-click="showIdeas('rejected')"></i>
-        </div>
-
-    </div>
 </div>
 

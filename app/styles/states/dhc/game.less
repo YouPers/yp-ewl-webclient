@@ -3,6 +3,11 @@
 
 .dhc.game {
 
+  .row.game-table > * {
+    border: 1px solid @yp-color-grey1;
+    margin: 0.6em;
+  }
+
   .current-activities {
 
     display: flex;
@@ -13,27 +18,27 @@
     align-items: flex-start;
     overflow: hidden;
 
-    height: 20em;
-    width: 78%;
+    height: 22em;
+    position: relative;
 
-    border: 1px solid @yp-color-grey1;
     transition: 0.8s ease-in all;
   }
 
   .current-activities > * {
     flex: 0 1 auto;
     align-self: auto;
-    margin: 5px 10px;
-
+    margin-bottom: 5px;
+    margin-right: 15px;
   }
 
   .show-more {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 0.8em;
+    padding: 0.8em 1.5em;
     border: 1px solid @yp-color-grey1;
+    background-color: white;
     z-index: 300;
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }

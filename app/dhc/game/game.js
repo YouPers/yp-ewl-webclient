@@ -7,7 +7,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('game', {
-                        templateUrl: "layout/default.html",
+                        templateUrl: "layout/three-column.html",
                         access: accessLevels.all
                     })
                     .state('game.content', {

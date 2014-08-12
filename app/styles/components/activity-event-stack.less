@@ -9,13 +9,15 @@ activity-event-stack {
   @yp-activity-event-image-height: 45px;
 
   position: relative;
-  box-shadow: 5px 5px 3px 0px rgba(0,0,0,0.45);
+  box-shadow: 0 4px 3px 0px rgba(0,0,0,0.45);
 
-
-  .activity-event-card:hover {
-    z-index: 100;
+  .activity-event-card > * {
+    opacity: 0.5;
   }
-  .activity-event-card {
+  .activity-event-card:last-of-type > * {
+    opacity: 1;
+  }
+  .activity-event-card  {
 
     position: absolute;
 
@@ -44,8 +46,6 @@ activity-event-stack {
     .invisible {
       visibility: hidden;
     }
-
-
 
   }
 
