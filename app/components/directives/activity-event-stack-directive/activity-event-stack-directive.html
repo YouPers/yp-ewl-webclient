@@ -1,0 +1,32 @@
+<div class="height-{{ !events.length ? 0 : positionIndex(events.length-1) }}">
+
+    <div class="activity-event-card {{ dueState(event) }} pos-{{ positionIndex($index) }}"
+
+         ng-repeat="event in events"
+
+            >
+
+        <img ng-src="{{'/assets/actpics/' + activity.idea.number + '.jpg'}}">
+
+        <div class="date" ng-class="{ invisible: !event.start }">
+            <i class="fa fa-clock-o"></i>
+            <span>
+                {{ event.start | calendar }}
+            </span>
+
+        </div>
+
+        <div class="location" ng-class="{ invisible: !activity.location }">
+            <i class="fa fa-location-arrow"></i>
+            <span>
+                {{ activity.location }}
+            </span>
+        </div>
+
+        <div class="title">
+            <span>{{ activity.title }}</span>
+        </div>
+
+    </div>
+
+</div>

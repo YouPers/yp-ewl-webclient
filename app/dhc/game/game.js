@@ -27,7 +27,7 @@
                                 return SocialInteractionService.getSocialInteractions();
                             }],
                             activityEvents: ['ActivityService', function(ActivityService) {
-                                return ActivityService.getActivityEvents({populate: 'idea'});
+                                return ActivityService.getActivityEvents();
                             }]
                         }
                     });
@@ -46,11 +46,19 @@
                 $scope.invitations = _.filter(socialInteractions, { __t: 'Invitation' });
                 $scope.recommendations = _.filter(socialInteractions, { __t: 'Recommendation' });
 
-                $scope.openEvents = _.filter(activityEvents, {status: 'open'});
+                $scope.events = _.filter(activityEvents, {status: 'open'}).reverse();
+                $scope.eventsByActivity = _.groupBy($scope.events, 'activity');
 
-                $scope.eventsByIdea = _.groupBy(activityEvents, function(event) {
-                    return event.idea.id;
+                $scope.currentActivitiesHeightFactor = 1;
+                $scope.$watch('currentActivitiesHeightFactor', function () {
+                    $scope.currentActivitiesHeight = $scope.currentActivitiesHeightFactor * 22 + 'em';
                 });
+
+                $scope.hasOverflow = function (id) {
+
+                    var element = document.getElementById(id);
+                    return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+                };
 
                 $scope.showIdeas = function(status, hovered) {
                     if(_.isUndefined(hovered) || hovered) {
