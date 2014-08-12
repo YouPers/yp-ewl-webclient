@@ -1,13 +1,15 @@
 {
-  "game": {
-    "stateHeader1": "dein",
-    "stateHeader2": "aktivitätskartenspiel",
+    "game": {
+        "stateHeader1": "dein",
+        "stateHeader2": "aktivitätskartenspiel",
 
-      "activities": {
-          "done": "Ergebnisse"
-      },
+        "showMore": "mehr",
+
+        "activities": {
+            "done": "Ergebnisse"
+        },
         "invitations": "Einladungen",
         "recommendations": "Empfehlungen"
 
-  }
+    }
 }

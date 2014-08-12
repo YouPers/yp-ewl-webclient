@@ -3,51 +3,37 @@
 
 .dhc.game {
 
-  .row.game-table > div {
+  .current-activities {
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+
     height: 20em;
+    width: 78%;
+
+    border: 1px solid @yp-color-grey1;
+    transition: 0.8s ease-in all;
   }
 
-  .row.player > div {
-    height: 15em;
+  .current-activities > * {
+    flex: 0 1 auto;
+    align-self: auto;
+    margin: 5px 10px;
+
   }
 
-  .left-side, .right-side {
-//    border: 1px solid #eee;
+  .show-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.8em;
+    border: 1px solid @yp-color-grey1;
+    z-index: 300;
+    opacity: 0.5;
   }
-  .left-side {
-    .make-lg-column(9);
-  }
-  .right-side {
-    .make-lg-column(3);
-  }
-
-  .current-activities,
-  .done-activities,
-  .offered-activities
-  {
-    height: 100%;
-    .background-hover();
-  }
-
-
-  .done-activities {
-    height: 80%;
-  }
-
-  .current-activities.hovered:hover,
-  .done-activities:hover,
-  .offered-activities:hover {
-    .background-hover-hovered();
-  }
-
-
-  .profile-activities i {
-    font-size: 40px;
-    padding: 1em 0.5em;
-    .color-hover();
-  }
-  .profile-activities i:hover {
-    .color-hover-hovered();
-  }
-
 }

@@ -7,24 +7,21 @@
 </div>
 
 <div class="row game-table">
-    <div class="left-side">
+    <div class="col-md-12">
 
 
-        <div class="current-activities" ng-click="showIdeas('active', hovered)" ng-class="{ hovered: hovered }"
-             ng-mouseenter="hovered = true"
-             ng-mouseleave="hovered = false"
-                >
+        <div id="current-activities" class="current-activities" ng-style="{ height: currentActivitiesHeight }">
 
-            <div ng-repeat="events in eventsByIdea">
-                <a href>
-                    <div>
-                    <div class="idea-thumbnail" idea="event.idea" ng-click="openActivity(event)" ng-repeat="event in events"
+            <activity-event-stack activity="activity"
+                                  events="eventsByActivity[activity.id]"
+                                  ng-repeat="activity in activities"
+                                  ng-click="openActivity(activity)">
 
-                             ng-mouseenter="$parent.hovered = false"
-                             ng-mouseleave="$parent.hovered = true"
-                        ></div>
-                    </div></a>
-            </div>
+            </activity-event-stack>
+
+            <a href class="show-more" ng-show="hasOverflow('current-activities')" ng-click="currentActivitiesHeightFactor = currentActivitiesHeightFactor + 1">
+                <span translate>game.showMore</span>
+            </a>
 
         </div>
 
@@ -42,8 +39,9 @@
 
     </div>
 </div>
+
 <div class="row player">
-    <div class="left-side">
+    <div class="col-md-12">
 
         <div class="offered-activities" ng-click="showIdeas('offered')">
 
