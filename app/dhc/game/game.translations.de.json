@@ -1,9 +1,9 @@
 {
     "game": {
-        "stateHeader1": "dein",
-        "stateHeader2": "aktivitätskartenspiel",
+        "stateHeader1": "deine",
+        "stateHeader2": "aktivitäten",
 
-        "showMore": "mehr",
+        "showMore": "weitere",
 
         "activities": {
             "current": "Laufende Aktivitäten",

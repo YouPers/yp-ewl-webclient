@@ -1,5 +1,47 @@
 @import "youpers-variables";
 
+@yp-layout-gutter: 0.8em;
+
+.three-column-layout {
+
+  nav,
+  aside,
+  section {
+    background-color: white;
+    padding: 0.6em;
+  }
+
+  @media(min-width: @screen-md) {
+    display: flex;
+
+
+    nav,
+    aside,
+    section {
+      margin-top: @yp-layout-gutter;
+    }
+
+    nav {
+      margin-right: @yp-layout-gutter;
+    }
+    aside {
+      margin-left: @yp-layout-gutter;
+    }
+
+    nav {
+      flex: 0 0 12em;
+    }
+    aside {
+      flex: 0 0 18em;
+    }
+    section {
+      //    flex: 1 0 auto;
+    }
+  }
+
+}
+
+
 
 .main-layout {
   padding-bottom: 1.5em;

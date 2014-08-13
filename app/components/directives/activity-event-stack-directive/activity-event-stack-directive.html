@@ -1,6 +1,6 @@
-<div class="height-{{ !events.length ? 0 : positionIndex(events.length-1) }}">
+<div class="height-{{ !events.length ? 0 : events[events.length-1].offset }}">
 
-    <div class="activity-event-card {{ dueState(event) }} pos-{{ positionIndex($index) }}"
+    <div class="activity-event-card {{ dueState(event) }} pos-{{ event.offset }}"
 
          ng-repeat="event in events"
 
@@ -11,7 +11,7 @@
         <div class="date" ng-class="{ invisible: !event.start }">
             <i class="fa fa-clock-o"></i>
             <span>
-                {{ event.start | calendar }}
+                {{ event.start | shortCalendar }}
             </span>
 
         </div>

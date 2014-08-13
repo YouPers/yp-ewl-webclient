@@ -2,8 +2,12 @@
 </ng-include>
 <div class="container main-layout dhc {{ $state.current.name.substr(0, $state.current.name.indexOf('.')) }}">
 
-    <div class="row main-content">
-        <div class="col-lg-2">
+    <div class="three-column-layout">
+
+        <nav>
+
+            <div class="state-header-1" translate>campaign.stateHeader1</div>
+            <div class="state-header-2" translate>campaign.stateHeader2</div>
 
             <div ng-init="campaign = principal.getUser().campaign">
                 <campaign-switcher campaign="campaign" ng-if="campaign"></campaign-switcher>
@@ -13,15 +17,20 @@
                 </div>
             </div>
 
-        </div>
-        <div class="col-lg-7">
-            <div ui-view="content" autoscroll="false"></div>
-        </div>
-        <div class="col-lg-3">
+        </nav>
 
-            <social-interaction></social-interaction>
+        <section>
+            <div ui-view="content" autoscroll="false"></div>
+        </section>
+
+        <aside>
+
             <health-coach></health-coach>
+            <social-interaction></social-interaction>
             <notifications></notifications>
-        </div>
+
+        </aside>
+
     </div>
+
 </div>

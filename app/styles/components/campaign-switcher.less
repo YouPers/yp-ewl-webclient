@@ -1,7 +1,8 @@
 @import "../youpers-variables";
 
 .campaign-switcher {
-  height: 100px;
+  padding: 5px;
+  border: 1px solid @yp-color-grey1;
 }
 
 .dcm .campaign-switcher {
@@ -12,10 +13,9 @@
 }
 
 .campaign-switcher .avatar {
-  float: left;
   height: @yp-avatar-campaign-size;
   width: @yp-avatar-campaign-size;
-  margin: 5px 15px 5px 5px;
+  margin: 0;
 }
 
 .campaign-switcher .avatar img {
@@ -28,7 +28,6 @@
    font-size:14px;
    color: @yp-color-grey2;
    max-height: 38px;
-   overflow: hidden;
 }
 
 .campaign-switcher .details {
@@ -38,9 +37,10 @@
 }
 
 .campaign-switcher .campaign {
-  padding-top: 5px;
-  display:inline-block;
-  width: 20em;
+  overflow: hidden;
+  * {
+    white-space: nowrap;
+  }
 }
 
 .campaign-switcher .glyphicon {

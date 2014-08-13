@@ -24,7 +24,17 @@
 
                     if(!scope.events) {
                         scope.events = [{}];
+                    } else {
+                        scope.events = _.sortBy(scope.events, function(event) {
+                            return - new Date(event.start).getTime();
+                        });
                     }
+
+                    var partiallyVisibleCardOffset = 3; // a card with a different due state
+                                                        // than the one before will be partially visible
+                    var offset = 0;
+                    var dueState;
+
 
                     scope.dueState = function (event) {
                         var now = moment();
@@ -37,27 +47,18 @@
                         }
                     };
 
-                    scope.positionIndex = function (index) {
+                    if(attrs.events) {
+                        _.forEach(scope.events, function (event, index) {
 
-                        var pos = 0;
-                        var dueState;
-
-                        if(attrs.events) {
-                            _.forEach(scope.events.slice(0, index), function (event) {
-
-                                var due = scope.dueState(event);
-                                if(dueState && due !== dueState) {
-                                    pos += 3;
-                                }
-                                dueState = due;
-                                pos += 1;
-
-                            });
-                        }
-
-                        return pos;
-
-                    };
+                            var due = scope.dueState(event);
+                            if(dueState && due !== dueState) {
+                                offset += partiallyVisibleCardOffset;
+                            }
+                            dueState = due;
+                            event.offset = offset;
+                            offset += 1;
+                        });
+                    }
 
                     scope.showActivity = function(activity) {
                         $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
