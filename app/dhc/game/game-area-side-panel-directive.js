@@ -10,7 +10,7 @@
                     iconClass: '@'
                 },
                 transclude: true,
-                templateUrl: 'components/directives/game-area-side-panel-directive/game-area-side-panel-directive.html',
+                templateUrl: 'dhc/game/game-area-side-panel-directive.html',
 
                 link: function (scope, elem, attrs) {
 

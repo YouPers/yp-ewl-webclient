@@ -1,5 +1,8 @@
 {
   "activityEventStack": {
-      "recommendedBy": "empfohlen durch"
+      "authorPrefix": {
+          "Recommendation": "empfohlen durch",
+          "Invitation": "Einladung von"
+      }
   }
 }

@@ -13,6 +13,22 @@
                 var invitations = Rest.all('invitations');
                 var messages = Rest.all('messages');
 
+                function extractRefDocs(results) {
+                    _.forEach(results, function (result) {
+                        _.forEach(result.refDocs, function (refDoc) {
+                            if(refDoc.doc) {
+                                if(refDoc.model === 'Idea') {
+                                    result.idea = refDoc.doc;
+                                } else if(refDoc.model === 'Activity') {
+                                    result.activity = refDoc.doc;
+                                    result.idea = refDoc.doc.idea;
+                                }
+                            }
+                        });
+                    });
+                    return results;
+                }
+
                 var SocialInteractionService = {
                     putSocialInteraction: function(socialInteraction) {
                         return socialInteraction.put();
@@ -25,19 +41,7 @@
                     },
                     getSocialInteractions: function(options) {
                         return socialInteractions.getList(options).then(function(results) {
-                            _.forEach(results, function (result) {
-                                _.forEach(result.refDocs, function (refDoc) {
-                                    if(refDoc.doc) {
-                                        if(refDoc.model === 'Idea') {
-                                            result.idea = refDoc.doc;
-                                        } else if(refDoc.model === 'Activity') {
-                                            result.activity = refDoc.doc;
-                                            result.idea = refDoc.doc.idea;
-                                        }
-                                    }
-                                });
-                            });
-                            return results;
+                            return extractRefDocs(results);
                         });
                     },
                     deleteSocialInteraction: function(socialInteractionId) {
@@ -47,7 +51,12 @@
                         return recommendations.getList(options);
                     },
                     getInvitations: function(options) {
-                        return invitations.getList(options);
+                        return invitations.getList(options).then(function(results) {
+                            return extractRefDocs(results);
+                        });
+                    },
+                    postInvitation: function(invitation) {
+                        return invitations.post(invitation);
                     },
                     getMessages: function(options) {
                         return messages.getList(options);

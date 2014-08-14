@@ -21,6 +21,7 @@
             'yp.components.i18n',
 
             // directives
+            'yp.components.userInvitation',
             'yp.components.activityEventStack',
             'yp.components.gameArea',
             'yp.components.gameAreaSidePanel',
