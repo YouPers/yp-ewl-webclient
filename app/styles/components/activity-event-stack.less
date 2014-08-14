@@ -1,0 +1,188 @@
+@import "../youpers-variables";
+
+activity-event-stack {
+
+  position: relative;
+
+  .activity-event-card > * {
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+  .activity-event-card:last-of-type > * {
+    opacity: 1;
+  }
+
+  .activity-event-card  {
+
+    position: absolute;
+
+    width: @yp-activity-event-card-width;
+    box-shadow: 0 2px 3px -2px rgba(0,0,0,0.45);
+
+    border: 1px solid @yp-color-grey1;
+    background: white;
+
+    > div {
+      padding: 0 4px;
+      border-bottom: 1px solid @yp-color-grey1;
+    }
+
+    i {
+      font-size: 14px;
+    }
+
+    > div:first-of-type {
+
+      height: @yp-activity-event-image-height;
+
+      img {
+
+        position: absolute;
+
+        width: @yp-activity-event-image-width;
+        height: @yp-activity-event-image-height;
+
+        top: 0;
+        right: 0;
+      }
+
+    }
+
+    > .author {
+      padding: 0;
+
+      > * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      > div {
+        padding-left: 5px;
+      }
+
+      img {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    .title {
+      white-space: normal;
+      min-height: 3em;
+      text-align: center;
+      display: flex;
+      justify-content:center;
+      align-content:center;
+      flex-direction:column;
+    }
+
+    .invisible {
+      visibility: hidden;
+    }
+
+  }
+
+  .overdue {
+    .date {
+      color: @yp-color-red;
+    }
+  }
+  .today {
+    .date {
+      color: @yp-color-saffron;
+    }
+  }
+  .upcoming {
+
+  }
+
+  .height-recommendation {
+    height: 10em;
+    width: @yp-activity-event-card-width;
+  }
+
+  .pos(@index) {
+    top: @index * @yp-activity-event-offset;
+    z-index: @index;
+  }
+
+  .height(@max) {
+    height: @yp-activity-event-card-height + @max * @yp-activity-event-offset;
+    width: @yp-activity-event-card-width;
+  }
+
+  .pos-0 {
+    .pos(0);
+  }
+  .pos-1 {
+    .pos(1);
+  }
+  .pos-2 {
+    .pos(2);
+  }
+  .pos-3 {
+    .pos(3);
+  }
+  .pos-4 {
+    .pos(4);
+  }
+  .pos-5 {
+    .pos(5);
+  }
+  .pos-6 {
+    .pos(6);
+  }
+  .pos-7 {
+    .pos(7);
+  }
+  .pos-8 {
+    .pos(8);
+  }
+  .pos-9 {
+    .pos(9);
+  }
+  .pos-10 {
+    .pos(10);
+  }
+  .pos-11 {
+    .pos(11);
+  }
+
+  .height-0 {
+    .height(0);
+  }
+  .height-1 {
+    .height(1);
+  }
+  .height-2 {
+    .height(2);
+  }
+  .height-3 {
+    .height(3);
+  }
+  .height-4 {
+    .height(4);
+  }
+  .height-5 {
+    .height(5);
+  }
+  .height-6 {
+    .height(6);
+  }
+  .height-7 {
+    .height(7);
+  }
+  .height-8 {
+    .height(8);
+  }
+  .height-9 {
+    .height(9);
+  }
+  .height-10 {
+    .height(10);
+  }
+  .height-11 {
+    .height(11);
+  }
+
+}

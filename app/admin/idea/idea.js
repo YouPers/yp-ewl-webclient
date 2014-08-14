@@ -267,6 +267,14 @@
 
                 $scope.topics = topics;
 
+                $scope.$watch('idea.topics', function(newValue, oldValue) {
+                        $scope.selectedTopics = _.filter(topics, function (topic) {
+                            return _.contains(idea.topics, topic.id);
+                        }, true);
+                    }
+                );
+
+
                 $scope.$watch('currentTopic', function (newVal, oldVal) {
                     if (newVal) {
                         AssessmentService.getAssessment(newVal)

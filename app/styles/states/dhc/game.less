@@ -3,51 +3,55 @@
 
 .dhc.game {
 
-  .row.game-table > div {
-    height: 20em;
+  @side-panel-width: @yp-activity-event-card-width + 30px;
+  game-area-side-panel > * {
+    width: @side-panel-width;
+  }
+  game-area-side-panel > *.toggled {
+    margin-left: -@side-panel-width;
   }
 
-  .row.player > div {
-    height: 15em;
+  game-area.current-activities .flex {
+    height: 22em;
   }
 
-  .left-side, .right-side {
-//    border: 1px solid #eee;
-  }
-  .left-side {
-    .make-lg-column(9);
-  }
-  .right-side {
-    .make-lg-column(3);
+  game-area.offered-activities .flex {
+    height: 8em;
   }
 
-  .current-activities,
-  .done-activities,
-  .offered-activities
-  {
-    height: 100%;
-    .background-hover();
+  .flex {
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    overflow: scroll;
+
+    position: relative;
+
+    transition: 0.2s ease-in height;
+
+    > * {
+      flex: 0 1 auto;
+      margin: 0 20px 20px 0;
+    }
+
   }
 
+  .show-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: @yp-activity-event-card-width;
+    padding: 1em 0;
+    text-align: center;
 
-  .done-activities {
-    height: 80%;
+    border: 1px solid @yp-color-grey1;
+    background-color: white;
+    z-index: 300;
+    opacity: 0.9;
+    margin: 0 6px 10px 0;
   }
-
-  .current-activities.hovered:hover,
-  .done-activities:hover,
-  .offered-activities:hover {
-    .background-hover-hovered();
-  }
-
-
-  .profile-activities i {
-    font-size: 40px;
-    padding: 1em 0.5em;
-    .color-hover();
-  }
-  .profile-activities i:hover {
-    .color-hover-hovered();
-  }
-
 }

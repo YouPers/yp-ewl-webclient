@@ -21,6 +21,9 @@
             'yp.components.i18n',
 
             // directives
+            'yp.components.activityEventStack',
+            'yp.components.gameArea',
+            'yp.components.gameAreaSidePanel',
             'yp.components.ideaCard',
             'yp.components.ideaThumbnail',
             'yp.components.ideaEdit',

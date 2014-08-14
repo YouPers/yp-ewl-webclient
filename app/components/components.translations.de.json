@@ -12,6 +12,11 @@
       }
     }
   },
+    "calendar": {
+        "tomorrow": "morgen",
+        "today": "heute",
+        "yesterday": "gestern"
+    },
   "executiontype": {
     "self": "Selber",
     "group": "Gruppe"

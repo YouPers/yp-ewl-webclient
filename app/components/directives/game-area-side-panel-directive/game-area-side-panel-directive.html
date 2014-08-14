@@ -1,0 +1,11 @@
+<div ng-init="toggled = false" ng-class="{ toggled: toggled }">
+
+    <a href class="toggle" ng-click="toggled = !toggled">
+        <i class="fa" ng-class="{ 'fa-chevron-right': toggled, 'fa-chevron-left': !toggled }"></i>
+
+        <i ng-if="iconClass" class="fa {{ iconClass }}"></i>
+    </a>
+
+    <div ng-transclude></div>
+
+</div>

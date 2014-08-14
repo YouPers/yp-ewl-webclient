@@ -103,13 +103,6 @@
     "subheader": " hat Dich eingeladen an einer Aktivität teilzunehmen.",
     "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}>logge Dich ein</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
   },
-  "activityPlanFrequency": {
-    "once": "Einmalig",
-    "day": "Täglich",
-    "week": "Wöchentlich",
-    "month": "Monatlich",
-    "year": "Jährlich"
-  },
   "activityField": {
     "awarenessAbility": "Bewusstsein und Fähigkeit",
     "timeManagement": "Zeitmanagement",
