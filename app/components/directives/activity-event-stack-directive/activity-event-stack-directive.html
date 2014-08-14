@@ -6,7 +6,7 @@
 
             >
 
-        <img ng-src="{{'/assets/actpics/' + activity.idea.number + '.jpg'}}">
+        <img ng-src="{{'/assets/actpics/' + (event.idea.number || event.activity.number) + '.jpg'}}">
 
         <div class="date" ng-class="{ invisible: !event.start }">
             <i class="fa fa-clock-o"></i>
@@ -16,7 +16,7 @@
 
         </div>
 
-        <div class="location" ng-class="{ invisible: !activity.location }">
+        <div class="location" ng-class="{ invisible: !event.activity.location }">
             <i class="fa fa-location-arrow"></i>
             <span>
                 {{ activity.location }}
@@ -24,7 +24,7 @@
         </div>
 
         <div class="title">
-            <span>{{ activity.title }}</span>
+            <span>{{ activity.title || idea.title }}</span>
         </div>
 
     </div>

@@ -16,7 +16,7 @@
                         views: {
                             content: {
                                 templateUrl: 'dhc/game/game.html',
-                                controller: 'GameController'
+                                controller: 'GameController as gameController'
                             }
                         },
                         resolve: {
@@ -43,22 +43,19 @@
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
 
+                $scope.socialInteractions = socialInteractions;
                 $scope.invitations = _.filter(socialInteractions, { __t: 'Invitation' });
                 $scope.recommendations = _.filter(socialInteractions, { __t: 'Recommendation' });
 
                 $scope.events = _.filter(activityEvents, {status: 'open'}).reverse();
                 $scope.eventsByActivity = _.groupBy($scope.events, 'activity');
 
-                $scope.currentActivitiesHeightFactor = 1;
-                $scope.$watch('currentActivitiesHeightFactor', function () {
-                    $scope.currentActivitiesHeight = $scope.currentActivitiesHeightFactor * 22 + 'em';
+                $scope.doneEvents = _.filter(activityEvents, { status: 'done' });
+                _.forEach($scope.doneEvents, function (event) {
+                    event.activity = _.find($scope.activities, {id: event.activity });
                 });
 
-                $scope.hasOverflow = function (id) {
 
-                    var element = document.getElementById(id);
-                    return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
-                };
 
                 $scope.showIdeas = function(status, hovered) {
                     if(_.isUndefined(hovered) || hovered) {
@@ -66,8 +63,11 @@
                     }
                 };
 
-                $scope.openActivity = function(activity) {
+                $scope.openIdea = function(idea) {
+                    $window.location = $state.href('activity.content') + '?idea=' + idea.id;
+                };
 
+                $scope.openActivity = function(activity) {
 
                     if(activity.idea.action) {
                         if(activity.idea.action === 'assessment') {
