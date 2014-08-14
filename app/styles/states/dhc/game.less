@@ -3,7 +3,23 @@
 
 .dhc.game {
 
-  .current-activities {
+  @side-panel-width: @yp-activity-event-card-width + 30px;
+  game-area-side-panel > * {
+    width: @side-panel-width;
+  }
+  game-area-side-panel > *.toggled {
+    margin-left: -@side-panel-width;
+  }
+
+  game-area.current-activities .flex {
+    height: 22em;
+  }
+
+  game-area.offered-activities .flex {
+    height: 8em;
+  }
+
+  .flex {
 
     display: flex;
     flex-direction: column;
@@ -11,19 +27,16 @@
     justify-content: flex-start;
     align-content: flex-start;
     align-items: flex-start;
-    overflow: hidden;
+    overflow: scroll;
 
-    height: 20em;
-    width: 78%;
+    position: relative;
 
-    border: 1px solid @yp-color-grey1;
-    transition: 0.8s ease-in all;
-  }
+    transition: 0.2s ease-in height;
 
-  .current-activities > * {
-    flex: 0 1 auto;
-    align-self: auto;
-    margin: 5px 10px;
+    > * {
+      flex: 0 1 auto;
+      margin: 0 20px 20px 0;
+    }
 
   }
 
@@ -31,9 +44,14 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 0.8em;
+    width: @yp-activity-event-card-width;
+    padding: 1em 0;
+    text-align: center;
+
     border: 1px solid @yp-color-grey1;
+    background-color: white;
     z-index: 300;
-    opacity: 0.5;
+    opacity: 0.9;
+    margin: 0 6px 10px 0;
   }
 }

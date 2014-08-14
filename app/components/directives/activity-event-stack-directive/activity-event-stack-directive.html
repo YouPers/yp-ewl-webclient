@@ -1,30 +1,43 @@
-<div class="height-{{ !events.length ? 0 : positionIndex(events.length-1) }}">
+<div ng-class="heightClass">
 
-    <div class="activity-event-card {{ dueState(event) }} pos-{{ positionIndex($index) }}"
+    <div class="activity-event-card {{ dueState(event) }} pos-{{ event.offset }}"
 
          ng-repeat="event in events"
 
             >
 
-        <img ng-src="{{'/assets/actpics/' + activity.idea.number + '.jpg'}}">
+        <div>
 
-        <div class="date" ng-class="{ invisible: !event.start }">
-            <i class="fa fa-clock-o"></i>
-            <span>
-                {{ event.start | calendar }}
+            <img ng-src="{{'/assets/actpics/' + (event.idea.number || event.activity.number) + '.jpg'}}">
+
+            <div class="date">
+                <i class="fa fa-clock-o"></i>
+            <span ng-if="event.start">
+                {{ event.start | shortCalendar }}
             </span>
+            <span ng-if="!event.start">
+                {{ 'activityPlanFrequency.' + event.idea.defaultfrequency | translate }}
+            </span>
+            </div>
 
-        </div>
-
-        <div class="location" ng-class="{ invisible: !activity.location }">
-            <i class="fa fa-location-arrow"></i>
+            <div class="location" ng-class="{ invisible: !event.activity.location }">
+                <i class="fa fa-location-arrow"></i>
             <span>
                 {{ activity.location }}
             </span>
+            </div>
+        </div>
+
+        <div class="author" ng-show="socialInteraction">
+            <img ng-src="{{ socialInteraction.author.avatar }}">
+            <div>
+                <div translate>activityEventStack.recommendedBy</div>
+                <div ng-bind="socialInteraction.author.fullname"></div>
+            </div>
         </div>
 
         <div class="title">
-            <span>{{ activity.title }}</span>
+            <span>{{ activity.title || idea.title }}</span>
         </div>
 
     </div>

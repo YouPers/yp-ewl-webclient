@@ -87,11 +87,11 @@
         "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}>logge Dich ein</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
     },
     "activityPlanFrequency": {
-        "once": "Einmalig",
-        "day": "Täglich",
-        "week": "Wöchentlich",
-        "month": "Monatlich",
-        "year": "Jährlich"
+        "once": "einmalig",
+        "day": "täglich",
+        "week": "wöchentlich",
+        "month": "monatlich",
+        "year": "jährlich"
     },
     "activityPlanEditable": {
         "editable": "Eingeplante Aktivität ändern",

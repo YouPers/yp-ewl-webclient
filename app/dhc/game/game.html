@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-lg-12">
         <div class="state-header-1" translate>game.stateHeader1</div>
@@ -9,33 +8,34 @@
 <div class="row game-table">
     <div class="col-md-12">
 
+        <game-area class="current-activities" ng-init="currentActivitiesAreaHeight = 22" area-height="currentActivitiesAreaHeight">
 
-        <div id="current-activities" class="current-activities" ng-style="{ height: currentActivitiesHeight }">
+            <div><h4 translate>game.activities.current</h4></div>
 
-            <activity-event-stack activity="activity"
-                                  events="eventsByActivity[activity.id]"
-                                  ng-repeat="activity in activities"
-                                  ng-click="openActivity(activity)">
 
-            </activity-event-stack>
+            <div class="flex" ng-style="{ height: $parent.currentActivitiesAreaHeight + 'em' }">
 
-            <a href class="show-more" ng-show="hasOverflow('current-activities')" ng-click="currentActivitiesHeightFactor = currentActivitiesHeightFactor + 1">
-                <span translate>game.showMore</span>
-            </a>
 
-        </div>
+                <activity-event-stack idea="activity.idea" activity="activity"
+                                      events="eventsByActivity[activity.id]"
+                                      ng-repeat="activity in activities"
+                                      ng-click="openActivity(activity)">
 
-    </div>
-    <div class="right-side">
+                </activity-event-stack>
 
-        <h3 translate>game.activities.done</h3>
-
-        <div class="done-activities" ng-click="showIdeas('done')">
-            <div ng-repeat="activity in doneActivities">
-                <div class="idea-thumbnail" idea="activity.idea"></div>
             </div>
 
-        </div>
+            <game-area-side-panel icon-class="fa-check">
+
+                <div><h4 translate>game.activities.done</h4></div>
+
+                <div class="done-activities">
+                    <activity-event-stack events="doneEvents"></activity-event-stack>
+                </div>
+
+            </game-area-side-panel>
+
+        </game-area>
 
     </div>
 </div>
@@ -43,55 +43,38 @@
 <div class="row player">
     <div class="col-md-12">
 
-        <div class="offered-activities" ng-click="showIdeas('offered')">
+        <game-area class="offered-activities" ng-init="offeredActivitiesAreaHeight = 12" area-height="offeredActivitiesAreaHeight">
 
-            <div class="row">
-                <div class="col-md-6">
+            <div><h4 translate>game.activities.offered</h4></div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 translate>game.invitations</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div ng-repeat="offer in invitations" ng-click="showIdeas('offered')">
-                                <div class="idea-thumbnail" idea="offer.idea"></div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-                <div class="col-md-6">
+            <div class="flex" ng-style="{ height: $parent.offeredActivitiesAreaHeight + 'em' }">
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 translate>game.recommendations</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div ng-repeat="offer in recommendations">
-                                <div class="idea-thumbnail" idea="offer.idea"></div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
+                <activity-event-stack activity="socialInteraction.activity"
+                                      idea="socialInteraction.idea"
+                                      social-interaction="socialInteraction"
+                                      ng-repeat="socialInteraction in socialInteractions"
+                                      ng-click="socialInteraction.activity ? openActivity(socialInteraction.activity) : openIdea(socialInteraction.idea)"
+                        >
+
+                </activity-event-stack>
+
             </div>
 
+            <game-area-side-panel icon-class="fa-trash-o">
 
+                <div><h4 translate>game.activities.rejected</h4></div>
 
-        </div>
+                <div class="rejected-activities">
+                    <!--<activity-event-stack events="rejectedEvents"></activity-event-stack>-->
+                </div>
+
+            </game-area-side-panel>
+
+        </game-area>
 
     </div>
-    <div class="right-side">
 
-        <div class="profile-activities">
-            <i class="fa fa-star-o" ng-click="showIdeas('starred')"></i>
-            <i class="fa fa-trash-o" ng-click="showIdeas('rejected')"></i>
-        </div>
-
-    </div>
 </div>
 
