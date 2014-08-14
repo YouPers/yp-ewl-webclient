@@ -14,26 +14,26 @@
 
                 link: function (scope, elem, attrs) {
 
+                    var elements = elem[0].getElementsByClassName('flex');
+                    if(elements.length !== 1) {
+                        throw new Error('container with class "flex" not found or not unique');
+                    }
+                    var flex = elements[0];
 
                     scope.showMore = function() {
                         scope.areaHeight += 2;
                         $timeout(function () {
-                            if(scope.hasOverflow()) {
+                            if(scope.hasOverflow) {
                                 scope.showMore();
                             }
                         }, 200);
-
                     };
 
-                    // TODO: refactor to directive in order to get rid of the direct DOM access
-                    scope.hasOverflow = function () {
-                        var elements = elem[0].getElementsByClassName('flex');
-                        if(elements.length !== 1) {
-                            throw new Error('container with class "flex" not found or not unique');
-                        }
-                        var element = elements[0];
-                        return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
-                    };
+                    scope.$watch(function() {
+                        return flex.scrollWidth;
+                    }, function() {
+                        scope.hasOverflow =  flex.scrollWidth > flex.clientWidth;
+                    });
 
                 }
             };

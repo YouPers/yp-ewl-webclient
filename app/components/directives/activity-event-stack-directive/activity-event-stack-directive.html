@@ -1,4 +1,4 @@
-<div class="height-{{ !events.length ? 0 : events[events.length-1].offset }}">
+<div ng-class="heightClass">
 
     <div class="activity-event-card {{ dueState(event) }} pos-{{ event.offset }}"
 
@@ -6,23 +6,26 @@
 
             >
 
-        <img ng-src="{{'/assets/actpics/' + (event.idea.number || event.activity.number) + '.jpg'}}">
+        <div>
 
-        <div class="date">
-            <i class="fa fa-clock-o"></i>
+            <img ng-src="{{'/assets/actpics/' + (event.idea.number || event.activity.number) + '.jpg'}}">
+
+            <div class="date">
+                <i class="fa fa-clock-o"></i>
             <span ng-if="event.start">
                 {{ event.start | shortCalendar }}
             </span>
             <span ng-if="!event.start">
                 {{ 'activityPlanFrequency.' + event.idea.defaultfrequency | translate }}
             </span>
-        </div>
+            </div>
 
-        <div class="location" ng-class="{ invisible: !event.activity.location }">
-            <i class="fa fa-location-arrow"></i>
+            <div class="location" ng-class="{ invisible: !event.activity.location }">
+                <i class="fa fa-location-arrow"></i>
             <span>
                 {{ activity.location }}
             </span>
+            </div>
         </div>
 
         <div class="author" ng-show="socialInteraction">

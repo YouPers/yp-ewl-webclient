@@ -94,6 +94,13 @@
                         offset += 1;
                     });
 
+                    scope.heightClass = {};
+                    if(scope.socialInteraction) {
+                            scope.heightClass = 'height-recommendation';
+                    } else {
+                        scope.heightClass = 'height-' + (!scope.events.length ? 0 : scope.events[scope.events.length-1].offset);
+                    }
+
                     scope.showActivity = function(activity) {
                         $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
                     };
