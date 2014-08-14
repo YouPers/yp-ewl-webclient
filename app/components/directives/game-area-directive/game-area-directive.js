@@ -26,7 +26,7 @@
                             if(scope.hasOverflow) {
                                 scope.showMore();
                             }
-                        }, 200);
+                        }, 140);
                     };
 
                     scope.$watch(function() {

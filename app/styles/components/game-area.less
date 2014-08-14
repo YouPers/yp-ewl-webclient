@@ -2,10 +2,48 @@ game-area {
 
 
   .area {
+    margin-top: -1px;
     border: 1px solid @yp-color-grey1;
     padding: 0.2em 1.2em;
     position: relative;
     overflow: hidden;
+
+
+    .flex {
+
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+      align-items: flex-start;
+      overflow: scroll;
+
+      position: relative;
+
+      transition: 0.1s linear height;
+
+      > * {
+        flex: 0 1 auto;
+        margin: 0 20px 20px 0;
+      }
+
+    }
+
+    .show-more {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: @yp-activity-event-card-width;
+      padding: 1em 0;
+      text-align: center;
+
+      border: 1px solid @yp-color-grey1;
+      background-color: white;
+      z-index: 300;
+      opacity: 0.9;
+      margin: 0 6px 10px 0;
+    }
   }
 
 
