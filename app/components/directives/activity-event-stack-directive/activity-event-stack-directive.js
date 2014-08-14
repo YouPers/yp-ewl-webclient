@@ -14,28 +14,41 @@
      *
      */
     angular.module('yp.components.activityEventStack', [])
+
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('components/directives/activity-event-stack-directive/activity-event-stack-directive');
+        }])
+
         .directive('activityEventStack', ['$rootScope', '$sce', '$window', '$state', function ($rootScope, $sce, $window, $state) {
             return {
                 restrict: 'EA',
                 scope: {
                     events: '=?',
                     idea: '=',
-                    activity: '='
+                    activity: '=',
+                    socialInteraction: '='
                 },
                 templateUrl: 'components/directives/activity-event-stack-directive/activity-event-stack-directive.html',
 
                 link: function (scope, elem, attrs) {
 
-
-                    if(!attrs.events && !attrs.idea && !attrs.activity) {
-                        throw new Error("activityEventCard: attribute 'events' is required");
-                    }
-
                     if(!scope.events) {
-                        scope.events = [{
-                            idea: scope.idea,
-                            activity: scope.activity
-                        }];
+
+                        var event;
+
+                        if(scope.activity) {
+                            event = scope.activity.mainEvent;
+                            event.activity = scope.activity;
+                            event.idea = scope.activity.idea;
+                        } else if(scope.idea) {
+                            event = {
+                                idea: scope.idea
+                            };
+                        } else {
+                            throw new Error('one the attributes events, activity or idea is required');
+                        }
+                        scope.events = [event];
+
                     } else {
                         scope.events = _.sortBy(scope.events, function(event) {
                             return - new Date(event.start).getTime();
@@ -57,6 +70,9 @@
                     var dueState;
 
                     scope.dueState = function (event) {
+                        if(!event.start) {
+                            return false;
+                        }
                         var now = moment();
                         if(now.isAfter(event.start, 'day')) {
                             return 'overdue';

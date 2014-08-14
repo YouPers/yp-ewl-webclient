@@ -24,7 +24,7 @@
                                 return ActivityService.getActivities({ populate: 'idea' });
                             }],
                             socialInteractions: ['SocialInteractionService', function(SocialInteractionService) {
-                                return SocialInteractionService.getSocialInteractions();
+                                return SocialInteractionService.getSocialInteractions({ populate: 'author'});
                             }],
                             activityEvents: ['ActivityService', function(ActivityService) {
                                 return ActivityService.getActivityEvents();
