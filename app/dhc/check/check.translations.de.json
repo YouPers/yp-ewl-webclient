@@ -11,10 +11,22 @@
     "stateHeader2": "Selbstbeurteilung"
   },
   "questionCategory": {
+
     "work": "Stress am Arbeitsplatz",
     "leisure": "Stress in der Freizeit",
     "stresstypus": "Stressverstärker",
     "handling": "Stressausgleich",
-    "lunch": "Ernährung am Mittag"
+    "lunch": "Ernährung am Mittag",
+
+      "qualityAndQuantity": "Qualität und Quantität",
+      "time": "Zeitpunkte für Gesunde Ernährung",
+      "badHabbits": "Schlechte Angewohnheiten",
+      "attitudeAndAdaptability": "Persönliche Einstellung und Anpassungsfähigkeit",
+
+      "exercise": "Bewegung",
+      "musculature": "Muskulatur",
+      "stamina": "Kondition",
+      "agility": "Beweglichkeit",
+      "attitude": "Persönliche Einstellung"
   }
 }

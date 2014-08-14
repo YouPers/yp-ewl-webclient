@@ -40,7 +40,7 @@ welches Assessment zu welchem Topic wir hier darstellen sollen. <a ui-sref="camp
                         <!-- too low -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" ng-model="answers[question.id].answerType"
-                                    btn-radio="'min'">
+                                    btn-radio="'min'" ng-show="question.type !== 'rightSided'">
                                 {{ question.mintext }}
                             </button>
                         </div>
@@ -54,7 +54,7 @@ welches Assessment zu welchem Topic wir hier darstellen sollen. <a ui-sref="camp
                         <!-- too much -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" ng-model="answers[question.id].answerType"
-                                    btn-radio="'max'" ng-show="question.type == 'twoSided'">
+                                    btn-radio="'max'" ng-show="question.type !== 'leftSided'">
                                 {{ question.maxtext }}
                             </button>
                         </div>
