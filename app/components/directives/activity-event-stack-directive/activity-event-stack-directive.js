@@ -53,7 +53,7 @@
                             }
 
                         } else if(scope.idea) {
-                            scope.events = [event = {
+                            scope.events = [{
                                 idea: scope.idea
                             }];
                         } else {
