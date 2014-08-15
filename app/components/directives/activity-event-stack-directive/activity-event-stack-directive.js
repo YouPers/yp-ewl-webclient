@@ -34,20 +34,31 @@
 
                     if(!scope.events) {
 
-                        var event;
 
                         if(scope.activity) {
-                            event = scope.activity.mainEvent;
+
+                            var event = scope.activity.mainEvent;
                             event.activity = scope.activity;
                             event.idea = scope.activity.idea;
+
+                            scope.events = [event];
+
+                            var count = scope.activity.mainEvent.recurrence.endby.after;
+                            if(count) {
+                                _.times(count - 1, function () {
+                                    scope.events.unshift({
+                                        activity: scope.activity
+                                    });
+                                });
+                            }
+
                         } else if(scope.idea) {
-                            event = {
+                            scope.events = [{
                                 idea: scope.idea
-                            };
+                            }];
                         } else {
                             throw new Error('one the attributes events, activity or idea is required');
                         }
-                        scope.events = [event];
 
                     } else {
                         scope.events = _.sortBy(scope.events, function(event) {

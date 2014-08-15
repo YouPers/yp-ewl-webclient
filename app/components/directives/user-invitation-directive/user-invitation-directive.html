@@ -1,0 +1,26 @@
+<div class="input-group">
+
+    <script type="text/ng-template" id="customTemplate.html">
+        <a>
+            <img class="avatar" ng-src="{{ match.model.avatar }}"/>
+            <span bind-html-unsafe="match.model.fullname | typeaheadHighlight:query"></span>
+        </a>
+    </script>
+
+    <input type="text" ng-model="query"
+           placeholder="{{ 'userInvitation.placeholder.' + type | translate }}"
+           typeahead="user.fullname for user in getUsers($viewValue) | filter:$viewValue | limitTo:8"
+           typeahead-loading="loadingUsers"
+           typeahead-template-url="customTemplate.html"
+           typeahead-on-select="selectUser($item, $model, $label)"
+           class="form-control"
+           ng-focus="query = ''"
+            >
+
+    <span class="input-group-btn">
+
+        <i ng-show="loadingUsers" class="glyphicon glyphicon-refresh"></i>
+
+    </span>
+
+</div>

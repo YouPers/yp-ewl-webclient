@@ -77,6 +77,38 @@
 
     <div class="col-md-12">
 
+        <dl class="dl-horizontal">
+            <dt>
+
+            </dt>
+            <dd>
+                <user-invitation type="activity" ref-doc="activity" on-user-selected="onUserSelected"></user-invitation>
+
+                <div ng-repeat="user in invitedUsers">
+                    <img class="avatar" ng-src="{{ user.avatar }}"/>
+                    <span bind-html-unsafe="user.fullname"></span>
+                </div>
+
+            </dd>
+        </dl>
+
+    </div>
+
+</div>
+<div class="row">
+
+    <div class="col-md-12">
+
+        <hr/>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
 
         <dl class="dl-horizontal">
 

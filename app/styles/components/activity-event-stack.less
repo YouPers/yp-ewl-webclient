@@ -19,6 +19,7 @@ activity-event-stack {
     width: @yp-activity-event-card-width;
     box-shadow: 0 2px 3px -2px rgba(0,0,0,0.45);
 
+    line-height: 1.2em;
     border: 1px solid @yp-color-grey1;
     background: white;
 
@@ -34,6 +35,11 @@ activity-event-stack {
     > div:first-of-type {
 
       height: @yp-activity-event-image-height;
+
+      display: flex;
+      justify-content:center;
+      align-content:center;
+      flex-direction:column;
 
       img {
 
