@@ -7,7 +7,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dcm-home', {
-                        templateUrl: "layout/dcm-default.html",
+                        templateUrl: "layout/dcm-three-column.html",
                         access: accessLevels.all
                     })
                     .state('dcm-home.content', {

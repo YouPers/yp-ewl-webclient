@@ -71,7 +71,7 @@
 
 
                 var start = new Date(moment().hour(8).minutes(0).seconds(0));
-                var end = new Date(moment().hour(17).minutes(0).seconds(0).add('week', 6));
+                var end = new Date(moment().hour(17).minutes(0).seconds(0).add(6, 'weeks'));
 
                 if (campaign) {
                     $scope.campaign = campaign;
