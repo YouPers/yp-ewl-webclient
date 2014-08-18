@@ -50,10 +50,13 @@
                 $scope.events = _.filter(activityEvents, {status: 'open'}).reverse();
                 $scope.eventsByActivity = _.groupBy($scope.events, 'activity');
 
-                $scope.doneEvents = _.filter(activityEvents, { status: 'done' });
+                $scope.doneEvents = _.filter(activityEvents, function(event) {
+                    return event.status === 'done' || event.status === 'missed';
+                });
                 _.forEach($scope.doneEvents, function (event) {
                     event.activity = _.find($scope.activities, {id: event.activity });
                 });
+                $scope.dismissedEvents = [];
 
 
 

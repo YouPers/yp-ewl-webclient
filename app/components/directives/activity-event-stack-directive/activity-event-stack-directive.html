@@ -1,6 +1,6 @@
-<div ng-class="heightClass">
+<div ng-class="[heightClass, type]">
 
-    <div class="activity-event-card {{ dueState(event) }} pos-{{ event.offset }}"
+    <div class="activity-event-card {{ event.dueState }} pos-{{ event.offset }}"
 
          ng-repeat="event in events"
 
@@ -12,10 +12,11 @@
 
             <div class="date">
                 <i class="fa fa-clock-o"></i>
-                <span ng-if="event.start">
+
+                <span ng-if="type !== 'recommendation'">
                     {{ event.start | shortCalendar }}
                 </span>
-                <span ng-if="!event.start && socialInteraction.__t =='Recommendation'">
+                <span ng-if="type === 'recommendation'">
                     {{ 'activityPlanFrequency.' + event.idea.defaultfrequency | translate }}
                 </span>
             </div>
@@ -28,7 +29,7 @@
             </div>
         </div>
 
-        <div class="author" ng-show="socialInteraction">
+        <div class="author" ng-show="type === 'invitation' || type === 'recommendation'">
             <img ng-src="{{ socialInteraction.author.avatar }}">
             <div>
                 <div translate>activityEventStack.authorPrefix.{{ socialInteraction.__t }}</div>
@@ -37,7 +38,7 @@
         </div>
 
         <div class="title">
-            <span>{{ activity.title || idea.title }}</span>
+            <span>{{ event.activity.title || event.idea.title }}</span>
         </div>
 
     </div>
