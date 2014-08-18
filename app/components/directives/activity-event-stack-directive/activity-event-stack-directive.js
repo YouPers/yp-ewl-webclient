@@ -49,7 +49,7 @@
 
                     if(type === 'current' || type === 'past' || type === 'dismissed') {
                         if(!scope.events) {
-                            throw new Error('"events" is required for type "current"')
+                            throw new Error('"events" is required for type "current"');
                         }
 
                         scope.events = _.sortBy(scope.events, function(event) {
@@ -118,7 +118,7 @@
                         } else {
                             return 'upcoming';
                         }
-                    };
+                    }
 
                     var offset = 0;
                     var lastDueState;
@@ -135,7 +135,6 @@
                         offset += 1;
                     });
 
-                    scope.heightClass;
                     if(type === 'recommendation') {
                             scope.heightClass = 'height-recommendation';
                     } else {
