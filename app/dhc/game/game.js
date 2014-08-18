@@ -24,7 +24,7 @@
                                 return ActivityService.getActivities({ populate: 'idea' });
                             }],
                             socialInteractions: ['SocialInteractionService', function(SocialInteractionService) {
-                                return SocialInteractionService.getSocialInteractions({ populate: 'author'});
+                                return SocialInteractionService.getSocialInteractions({ populate: 'author', includeDismissed: true });
                             }],
                             activityEvents: ['ActivityService', function(ActivityService) {
                                 return ActivityService.getActivityEvents();
@@ -43,7 +43,17 @@
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
 
-                $scope.socialInteractions = socialInteractions;
+                $scope.socialInteractions = _.filter(socialInteractions, { dismissed: false });
+                var socialInteractionsDismissed = _.filter(socialInteractions, { dismissed: true });
+                $scope.dismissedEvents = [];
+                _.forEach(socialInteractionsDismissed, function (sid) {
+                    $scope.dismissedEvents.push({
+                        activity: sid.activity,
+                        idea: sid.idea || sid.activity.idea,
+                        socialInteraction: sid
+                    });
+                });
+
                 $scope.invitations = _.filter(socialInteractions, { __t: 'Invitation' });
                 $scope.recommendations = _.filter(socialInteractions, { __t: 'Recommendation' });
 
@@ -56,7 +66,6 @@
                 _.forEach($scope.doneEvents, function (event) {
                     event.activity = _.find($scope.activities, {id: event.activity });
                 });
-                $scope.dismissedEvents = [];
 
 
 

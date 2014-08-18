@@ -10,13 +10,13 @@
 
             <img ng-src="{{'/assets/actpics/' + (event.idea.number || event.activity.number) + '.jpg'}}">
 
-            <div class="date">
+            <div class="date" ng-init="showFrequency = (type === 'recommendation' || type === 'dismissed')">
                 <i class="fa fa-clock-o"></i>
 
-                <span ng-if="type !== 'recommendation'">
+                <span ng-if="!showFrequency">
                     {{ event.start | shortCalendar }}
                 </span>
-                <span ng-if="type === 'recommendation'">
+                <span ng-if="showFrequency">
                     {{ 'activityPlanFrequency.' + event.idea.defaultfrequency | translate }}
                 </span>
             </div>
@@ -29,16 +29,16 @@
             </div>
         </div>
 
-        <div class="author" ng-show="type === 'invitation' || type === 'recommendation'">
-            <img ng-src="{{ socialInteraction.author.avatar }}">
+        <div class="author" ng-show="type === 'invitation' || type === 'recommendation' || type === 'dismissed'" >
+            <img ng-src="{{ event.socialInteraction.author.avatar }}">
             <div>
-                <div translate>activityEventStack.authorPrefix.{{ socialInteraction.__t }}</div>
-                <div ng-bind="socialInteraction.author.fullname"></div>
+                <div translate>activityEventStack.authorPrefix.{{ event.socialInteraction.__t }}</div>
+                <div ng-bind="event.socialInteraction.author.fullname"></div>
             </div>
         </div>
 
         <div class="title">
-            <span>{{ event.activity.title || event.idea.title }}</span>
+            <div ng-bind-html="getRenderedText(event.activity.title || event.idea.title)"></div>
         </div>
 
     </div>
