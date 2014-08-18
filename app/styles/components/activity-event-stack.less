@@ -111,6 +111,10 @@ activity-event-stack {
     top: @index * @yp-activity-event-offset;
     z-index: @index;
   }
+  .pos-past(@index) {
+    top: @index * @yp-activity-event-offset * 5;
+    z-index: @index;
+  }
 
   .height(@max) {
     height: @yp-activity-event-card-height + @max * @yp-activity-event-offset;
@@ -190,5 +194,84 @@ activity-event-stack {
   .height-11 {
     .height(11);
   }
+  .height-12 {
+    .height(12);
+  }
+  .height-13 {
+    .height(13);
+  }
+  .height-14 {
+    .height(14);
+  }
+  .height-15 {
+    .height(15);
+  }
+  .height-16 {
+    .height(16);
+  }
+  .height-17 {
+    .height(17);
+  }
+  .height-19 {
+    .height(19);
+  }
+  .height-20 {
+    .height(20);
+  }
+  .height-21 {
+    .height(21);
+  }
+  .height-22 {
+    .height(22);
+  }
+  .height-23 {
+    .height(23);
+  }
+  .height-24 {
+    .height(24);
+  }
+  .height-25 {
+    .height(25);
+  }
 
+  .past {
+
+    .pos-0 {
+      .pos-past(0);
+    }
+    .pos-1 {
+      .pos-past(1);
+    }
+    .pos-2 {
+      .pos-past(2);
+    }
+    .pos-3 {
+      .pos-past(3);
+    }
+    .pos-4 {
+      .pos-past(4);
+    }
+    .pos-5 {
+      .pos-past(5);
+    }
+    .pos-6 {
+      .pos-past(6);
+    }
+    .pos-7 {
+      .pos-past(7);
+    }
+    .pos-8 {
+      .pos-past(8);
+    }
+    .pos-9 {
+      .pos-past(9);
+    }
+    .pos-10 {
+      .pos-past(10);
+    }
+    .pos-11 {
+      .pos-past(11);
+    }
+  }
+  
 }

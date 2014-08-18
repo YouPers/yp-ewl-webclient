@@ -16,7 +16,8 @@
             <div class="flex" ng-style="{ height: $parent.currentActivitiesAreaHeight + 'em' }">
 
 
-                <activity-event-stack idea="activity.idea" activity="activity"
+                <activity-event-stack type="current"
+                                      idea="activity.idea" activity="activity"
                                       events="eventsByActivity[activity.id]"
                                       ng-repeat="activity in activities"
                                       ng-click="openActivity(activity)">
@@ -30,7 +31,7 @@
                 <div><h4 translate>game.activities.done</h4></div>
 
                 <div class="done-activities">
-                    <activity-event-stack events="doneEvents"></activity-event-stack>
+                    <activity-event-stack type="past" events="doneEvents"></activity-event-stack>
                 </div>
 
             </game-area-side-panel>
@@ -51,7 +52,8 @@
             <div class="flex" ng-style="{ height: $parent.offeredActivitiesAreaHeight + 'em' }">
 
 
-                <activity-event-stack activity="socialInteraction.activity"
+                <activity-event-stack type="{{ socialInteraction.__t.toLowerCase() }}"
+                                      activity="socialInteraction.activity"
                                       idea="socialInteraction.idea"
                                       social-interaction="socialInteraction"
                                       ng-repeat="socialInteraction in socialInteractions"
@@ -67,7 +69,7 @@
                 <div><h4 translate>game.activities.rejected</h4></div>
 
                 <div class="rejected-activities">
-                    <!--<activity-event-stack events="rejectedEvents"></activity-event-stack>-->
+                    <activity-event-stack type="dismissed" events="dismissedEvents"></activity-event-stack>
                 </div>
 
             </game-area-side-panel>
