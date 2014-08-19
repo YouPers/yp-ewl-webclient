@@ -76,6 +76,7 @@
                         var event = scope.activity.mainEvent;
                         event.activity = scope.activity;
                         event.idea = scope.activity.idea;
+                        event.socialInteraction = scope.socialInteraction;
 
                         scope.events = [event];
 
@@ -83,7 +84,8 @@
                         if(count) {
                             _.times(count - 1, function () {
                                 scope.events.unshift({
-                                    activity: scope.activity
+                                    activity: scope.activity,
+                                    socialInteraction: scope.socialInteraction
                                 });
                             });
                         }
@@ -95,7 +97,8 @@
                             throw new Error('"socialInteraction" is required for type "invitation"');
                         }
                         scope.events = [{
-                            idea: scope.idea
+                            idea: scope.idea,
+                            socialInteraction: scope.socialInteraction
                         }];
 
                     } else {
@@ -145,6 +148,13 @@
                         $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
                     };
 
+                    scope.getRenderedText = function (text) {
+                        if (text) {
+                            return $sce.trustAsHtml(marked(text));
+                        } else {
+                            return "";
+                        }
+                    };
 
                 }
             };
