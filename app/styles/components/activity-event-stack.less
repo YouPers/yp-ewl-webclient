@@ -80,6 +80,9 @@ activity-event-stack {
       justify-content:center;
       align-content:center;
       flex-direction:column;
+      p {
+        margin: 0;
+      }
     }
 
     .invisible {
@@ -103,7 +106,7 @@ activity-event-stack {
   }
 
   .height-recommendation {
-    height: 10em;
+    height: 9em;
     width: @yp-activity-event-card-width;
   }
 
@@ -120,12 +123,16 @@ activity-event-stack {
     height: @yp-activity-event-card-height + @max * @yp-activity-event-offset;
     width: @yp-activity-event-card-width;
   }
+  .height-invitation(@max) {
+    height: @yp-activity-event-card-height + @max * @yp-activity-event-offset + 46px;
+    width: @yp-activity-event-card-width;
+  }
 
   @iterations: 30;
 
   // helper class, will never show up in resulting css
   // will be called as long the index is above 0
-  .loopingClass (@index) when (@index > 0) {
+  .loopingClass (@index) when (@index >= 0) {
 
     // create the actual css selector, example will result in
     // .myclass_30, .myclass_28, .... , .myclass_1
@@ -133,13 +140,19 @@ activity-event-stack {
     .pos-@{index} {
       .pos(@index);
     }
-    .past {
+
+    .past, .dismissed {
       .pos-@{index} {
         .pos-past(@index);
       }
     }
+
     .height-@{index} {
       .height(@index);
+    }
+
+    .invitation.height-@{index} {
+      .height-invitation(@index);
     }
 
     // next iteration
