@@ -6,12 +6,8 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('edit-ideas', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.campaignlead
-                    })
-                    .state('edit-ideas.content', {
-                        url: "/dcm/ideas",
+                    .state('dcm.ideas', {
+                        url: "/ideas",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
@@ -25,12 +21,8 @@
                             }]
                         }
                     })
-                    .state('edit-idea', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.campaignlead
-                    })
-                    .state('edit-idea.content', {
-                        url: "/dcm/ideas/:id",
+                    .state('dcm.idea', {
+                        url: "/ideas/:id",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
@@ -141,13 +133,6 @@
 
                 _initializeIdeas(resolvedIdeas);
 
-                $scope.$watch(function () {
-                    return CampaignService.currentCampaign;
-                }, function (newValue, oldValue) {
-                    ActivityService.getIdeas({campaign: CampaignService.currentCampaign.id}).then(function (ideas) {
-                        _initializeIdeas(ideas);
-                    });
-                });
             }
         ])
 

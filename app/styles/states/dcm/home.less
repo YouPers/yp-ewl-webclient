@@ -1,132 +1,85 @@
 
 @import "../../youpers-variables";
 
-// Home
-// ----------------
-.dcm-home-content {
-  position: relative;
-}
 
-.dcm-home-content .link-container {
-  background-image: url('/assets/img/healthcoach/dcm/healthcoach_hp_blank.png');
-  background-size: 401px 401px;
-  width: 401px;
-  height: 401px;
-  display: block;
-}
-.dcm-home-content .link-area {
-  position: absolute;
-  z-index: 10;
-  cursor: pointer;
-  text-align: center;
-}
+.dcm {
 
-.dcm-home-content .icon {
-  margin: auto;
-}
+  i.fa {
+    font-size: 2em;;
+  }
 
+  .organization {
 
-.dcm-home-content div:hover.activities span, .dcm-home-content div:hover.statistics span, .dcm-home-content div:hover.notifications span, .dcm-home-content div:hover.campaignoffers span, .dcm-home-content div:hover.statistics span {
-  color: @yp-color-green-hover
-}
+    position: relative;
 
-.dcm-home-content div:hover.organization span, .dcm-home-content div:hover.campaigns span {
-  color: @yp-color-turquoise
-}
+    * {
+//      display: inline-block;
+    }
 
-.dcm-home-content .link-area.disabled .icon {
-  opacity:.30;
-}
+    .title {
+      .header4();
+      text-align: left;
+    }
+    .new-campaign, .edit {
+      float: right;
+    }
+  }
 
-.dcm-home-content .link-area.disabled:hover .icon {
-  opacity:.30;
-  cursor: default;
-  color: inherit;
-}
+  .campaign-list {
 
-// campaigns
-.dcm-home-content .campaigns:hover .icon, .dcm-home-content .campaigns:active .icon {
-  background-image: url('/assets/img/healthcoach/dcm/campaigns_active.png');
-}
-.dcm-home-content .campaigns {
-  top: 74px;
-  left: 101px;
-}
-.dcm-home-content .campaigns .icon {
-  background-image: url('/assets/img/healthcoach/dcm/campaigns_inactive.png');
-  background-size: 60px 49px;
-  width: 60px;
-  height: 49px;
-}
+    .campaign {
+      i.fa {
+        opacity: 1;
+        transition: 0.4s ease-out opacity;
+      }
+    }
 
-// notifications
-.dcm-home-content .notifications:hover .icon, .dcm-home-content .notifications:active .icon {
-  background-image: url('/assets/img/healthcoach/dcm/notifications_active.png');
-}
-.dcm-home-content .notifications {
-  top: 77px;
-  left: 245px;
-}
-.dcm-home-content .notifications .icon {
-  background-image: url('/assets/img/healthcoach/dcm/notifications_inactive.png');
-  background-size: 56px 40px;
-  width: 56px;
-  height: 40px;
-}
+    .campaign:not(:hover) {
+      i.fa {
+        opacity: 0;
+      }
+    }
+    .campaign.active {
+      .title {
+        color: @yp-color-green;
+      }
+      outline: 1px solid @yp-color-grey1;
+    }
 
+    .campaign {
 
-// campaignoffers
-.dcm-home-content .campaignoffers:hover .icon, .dcm-home-content .campaignoffers:active .icon {
-  background-image: url('/assets/img/healthcoach/dcm/activities_active.png');
-}
-.dcm-home-content .campaignoffers {
-  top: 163px;
-  left: 289px;
-}
-.dcm-home-content .campaignoffers .icon {
-  background-image: url('/assets/img/healthcoach/dcm/activities_inactive.png');
-  background-size: 50px 56px;
-  width: 50px;
-  height: 56px;
-}
+      position: relative;
 
+      padding: 5px;
+      cursor: pointer;
 
-// statistics
-.dcm-home-content .statistics:hover .icon, .dcm-home-content .statistics:active .icon {
-  background-image: url('/assets/img/healthcoach/dcm/statistics_active.png');
-}
-.dcm-home-content .statistics {
-  top: 263px;
-  left: 235px;
-}
-.dcm-home-content .statistics .icon {
-  background-image: url('/assets/img/healthcoach/dcm/statistics_inactive.png');
-  background-size: 53px 44px;
-  width: 53px;
-  height: 44px;
-}
+      .avatar {
+        img {
+          width: 100%;
+        }
+      }
+      .icon {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+      .title {
 
-// organization
-.dcm-home-content .organization:hover .icon, .dcm-home-content .organization:active .icon {
-  background-image: url('/assets/img/healthcoach/dcm/organization_active.png');
-}
-.dcm-home-content .organization {
-  top: 165px;
-  left: 52px;
-}
-.dcm-home-content .organization .icon {
-  background-image: url('/assets/img/healthcoach/dcm/organization_inactive.png');
-  background-size: 59px 54px;
-  width: 59px;
-  height: 54px;
-}
+      }
+      .details {
 
+      }
+    }
 
-.dcm-home-content .link-area-center {
-  top: 170px;
-  left: 175px;
-  width: 100px;
-  height: 100px;
+  }
+
+  game-area.campaign-offers {
+    position: relative;
+    .icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+
 }
-
-

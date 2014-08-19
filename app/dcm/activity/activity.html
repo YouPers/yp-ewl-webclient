@@ -1,0 +1,63 @@
+<div class="column-layout" ng-class="$stateParams.mode">
+
+    <nav>
+
+        <idea-card idea="idea" activity="activity"></idea-card>
+
+    </nav>
+
+    <section ng-if="!$stateParams.mode">
+
+
+        <div class="pull-right">
+            <button class="btn btn-default" ui-sref="dcm.activity({ idea: idea.id, mode: 'schedule' })" ng-if="idea.defaultexecutiontype == 'group'" translate>activities.link.schedule</button>
+            <button class="btn btn-default" ui-sref="dcm.activity({ idea: idea.id, mode: 'recommend' })" translate>activities.link.recommend</button>
+        </div>
+
+    </section>
+
+    <section ng-if="$stateParams.mode == 'schedule'">
+
+        <activity-edit activity="activity"></activity-edit>
+
+    </section>
+
+    <section ng-if="$stateParams.mode == 'recommend'">
+
+        <form class="form-horizontal" ng-submit="saveRecommendation()">
+
+            <dl class="dl-horizontal">
+                <dt>
+                    <label translate>recommendationForm.title.label</label>
+                </dt>
+                <dd>
+                    <input ng-model="recommendation.title" placeholder="{{ 'recommendationForm.title.placeholder' | translate }}" />
+                </dd>
+                <dt>
+                    <label translate>recommendationForm.text.label</label>
+                </dt>
+                <dd>
+                    <textarea ng-model="recommendation.text" placeholder="{{ 'recommendationForm.text.placeholder' | translate }}"></textarea>
+                </dd>
+
+                <dt>
+                    <label translate>recommendationForm.publishFrom.label</label>
+                </dt>
+                <dd>
+                    <date-picker date="recommendation.publishFrom"></date-picker>
+                </dd>
+                <dt>
+                    <label translate>recommendationForm.publishTo.label</label>
+                </dt>
+                <dd>
+                    <date-picker date="recommendation.publishTo"></date-picker>
+                </dd>
+            </dl>
+
+            <button class="btn btn-primary pull-right" type="submit" translate>recommendationForm.submit</button>
+
+        </form>
+
+    </section>
+
+</div>

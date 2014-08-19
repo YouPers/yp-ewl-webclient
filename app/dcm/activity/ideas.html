@@ -1,13 +1,7 @@
-<div class="row">
-    <div class="col-sm-8">
-        <div class="state-header-1" translate>activities.stateHeader1</div>
-        <div class="state-header-2" translate>activities.stateHeader2</div>
-    </div>
-    <div class="col-sm-4">
-        <campaign-switcher mode="campaignlead"></campaign-switcher>
-    </div>
+<div>
+    <div class="state-header-1" translate>activities.stateHeader1</div>
+    <div class="state-header-2" translate>activities.stateHeader2</div>
 </div>
-
 
 <div class="activity-list">
 
@@ -39,7 +33,7 @@
 
         <!-- activities -->
 
-        <div class="row activity list-item" ng-repeat="idea in group.ideas | fulltext:query.query">
+        <div class="row activity list-item" ng-repeat="idea in group.ideas | fulltext:query.query" ui-sref="dcm.activity({ idea: idea.id })">
 
             <!-- image -->
             <div class="col-md-1 image">
@@ -75,12 +69,12 @@
 
             <div class="col-md-1 links">
                 <div ng-show="idea.defaultexecutiontype === 'group'">
-                    <a ui-sref="dcmschedule.content({id: 'NEW', idea: idea.id, offerType: 'campaignActivityPlan'})" translate>activities.link.schedule</a>
+                    <a ui-sref="dcm.activity({ idea: idea.id, mode: 'schedule' })" translate>activities.link.schedule</a>
                 </div>
             </div>
             <div class="col-md-1 links">
                 <div>
-                    <a ui-sref="dcmschedule.content({id: 'NEW', idea: idea.id, offerType: 'campaignActivity'})" translate>activities.link.recommend</a>
+                    <a ui-sref="dcm.activity({ idea: idea.id, mode: 'recommend' })" translate>activities.link.recommend</a>
                 </div>
             </div>
 

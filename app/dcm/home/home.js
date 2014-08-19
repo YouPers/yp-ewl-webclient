@@ -3,23 +3,25 @@
 
     angular.module('yp.dcm')
 
-        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
-            function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
+        .config(['$stateProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('dcm-home', {
-                        templateUrl: "layout/dcm-three-column.html",
-                        access: accessLevels.all
-                    })
-                    .state('dcm-home.content', {
-                        url: "/campaign/home",
+                    .state('dcm.home', {
+                        url: "/home",
+                        templateUrl: "layout/single-column.html",
                         access: accessLevels.all,
                         views: {
                             content: {
                                 templateUrl: 'dcm/home/home.html',
-                                controller: 'DcmHomeController'
+                                controller: 'HomeController as homeController'
                             }
+
                         },
                         resolve: {
+
+                            socialInteractions: ['$stateParams', 'SocialInteractionService', function($stateParams, SocialInteractionService) {
+                                return SocialInteractionService.getSocialInteractions({ populate: 'author', campaign: $stateParams.id });
+                            }]
 
                         }
                     });
@@ -27,16 +29,35 @@
                 $translateWtiPartialLoaderProvider.addPart('dcm/home/home');
             }])
 
-        .controller('DcmHomeController', ['$scope', '$rootScope', 'UserService', 'CampaignService',
-            function($scope, $rootScope, UserService, CampaignService) {
+        .controller('DcmController', ['$scope', '$rootScope', '$state', 'UserService', 'CampaignService', 'organization', 'campaign', 'campaigns',
+            function ($scope, $rootScope, $state, UserService, CampaignService, organization, campaign, campaigns) {
 
-            $scope.canAccess = function(stateName) {
-                return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access );
-            };
+                if(!campaign && campaigns.length > 0) {
+                    $state.go('dcm.home', { campaignId: campaigns[0].id });
+                }
 
-            $scope.$watch(function() {return CampaignService.currentCampaign;}, function(value, oldValue) {
-                $scope.currentCampaign =  CampaignService.currentCampaign;
-            });
+                $scope.organization = organization;
+                $scope.currentCampaign = campaign;
+                $scope.campaigns = campaigns;
 
-        }]);
+                $scope.editCampaign = function editCampaign($event, campaignId) {
+                    $state.go('dcm.campaign', { id: campaignId });
+                    $event.stopPropagation();
+                }
+
+                $scope.canAccess = function (stateName) {
+                    return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access);
+                };
+
+
+            }])
+
+
+        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'socialInteractions',
+            function ($scope, $rootScope, $state, UserService, socialInteractions) {
+
+                $scope.socialInteractions = socialInteractions;
+
+
+            }]);
 }());

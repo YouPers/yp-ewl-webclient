@@ -30,6 +30,7 @@
                 }
 
                 var SocialInteractionService = {
+
                     putSocialInteraction: function(socialInteraction) {
                         return socialInteraction.put();
                     },
@@ -47,9 +48,14 @@
                     deleteSocialInteraction: function(socialInteractionId) {
                         return socialInteractions.one(socialInteractionId).remove();
                     },
+
                     getRecommendations: function(options) {
                         return recommendations.getList(options);
                     },
+                    postRecommendation: function(recommendation) {
+                        return recommendations.post(recommendation);
+                    },
+
                     getInvitations: function(options) {
                         return invitations.getList(options).then(function(results) {
                             return extractRefDocs(results);
@@ -58,6 +64,7 @@
                     postInvitation: function(invitation) {
                         return invitations.post(invitation);
                     },
+
                     getMessages: function(options) {
                         return messages.getList(options);
                     }
