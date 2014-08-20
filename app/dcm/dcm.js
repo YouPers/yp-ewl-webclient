@@ -24,9 +24,9 @@
                     resolve: {
                         organization: ['OrganizationService', function (OrganizationService) {
                             return OrganizationService.getOrganizations().then(function (list) {
-                                if(!list || list.length === 0) {
+                                if (!list || list.length === 0) {
                                     return undefined;
-                                } else if(list.length > 1) {
+                                } else if (list.length > 1) {
                                     throw new Error('organization not unique');
                                 } else {
                                     return list[0];
@@ -47,7 +47,7 @@
 
                         }]
                     }
-                })
+                });
 
             $translateWtiPartialLoaderProvider.addPart('dcm/dcm');
         }]);

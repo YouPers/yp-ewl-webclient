@@ -48,6 +48,8 @@
                 $scope.activity = activity;
                 $scope.activity.idea = idea;
 
+
+
                 $scope.recommendation = {
 
                     idea: idea.id,
@@ -75,6 +77,10 @@
                         $scope.$emit('clientmsg:success', 'recommendation.saved');
                         $state.go('dcm.home');
                     });
+                };
+
+                $scope.onActivityEditReturn = function() {
+                    $state.go('dcm.home');
                 };
 
             }

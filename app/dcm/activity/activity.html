@@ -18,7 +18,13 @@
 
     <section ng-if="$stateParams.mode == 'schedule'">
 
-        <activity-edit activity="activity"></activity-edit>
+        <activity-edit activity="activity"
+
+                       on-save="onActivityEditReturn"
+                       on-cancel="onActivityEditReturn"
+                       on-delete="onActivityEditReturn"
+
+                ></activity-edit>
 
     </section>
 
@@ -31,7 +37,7 @@
                     <label translate>recommendationForm.title.label</label>
                 </dt>
                 <dd>
-                    <input ng-model="recommendation.title" placeholder="{{ 'recommendationForm.title.placeholder' | translate }}" />
+                    <input class="form-control" ng-model="recommendation.title" placeholder="{{ 'recommendationForm.title.placeholder' | translate }}" />
                 </dd>
                 <dt>
                     <label translate>recommendationForm.text.label</label>

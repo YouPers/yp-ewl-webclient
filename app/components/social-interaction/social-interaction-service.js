@@ -67,6 +67,9 @@
 
                     getMessages: function(options) {
                         return messages.getList(options);
+                    },
+                    postMessage: function(message) {
+                        return messages.post(message);
                     }
                 };
                 return SocialInteractionService;

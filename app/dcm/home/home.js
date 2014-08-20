@@ -43,7 +43,7 @@
                 $scope.editCampaign = function editCampaign($event, campaignId) {
                     $state.go('dcm.campaign', { id: campaignId });
                     $event.stopPropagation();
-                }
+                };
 
                 $scope.canAccess = function (stateName) {
                     return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access);

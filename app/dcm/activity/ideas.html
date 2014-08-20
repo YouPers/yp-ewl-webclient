@@ -33,7 +33,9 @@
 
         <!-- activities -->
 
-        <div class="row activity list-item" ng-repeat="idea in group.ideas | fulltext:query.query" ui-sref="dcm.activity({ idea: idea.id })">
+        <div class="row activity list-item" ng-repeat="idea in group.ideas | fulltext:query.query"
+
+             ui-sref="dcm.activity({ idea: idea.id, mode: 'recommend' })">
 
             <!-- image -->
             <div class="col-md-1 image">
