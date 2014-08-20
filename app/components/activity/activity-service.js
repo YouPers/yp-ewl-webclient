@@ -11,21 +11,6 @@
 
                 var ideaCache = {};
 
-                var _getIdeaCached = function (ideaId) {
-                    if (ideaCache[ideaId]) {
-                        var deferred = $q.defer();
-                        deferred.resolve(ideaCache[ideaId]);
-                        return deferred.promise;
-                    } else {
-                        return Restangular.one('ideas', ideaId).get()
-                            .then(function (idea) {
-                                ideaCache[idea.id] = idea;
-                                return idea;
-                            });
-
-                    }
-                };
-
                 var _populateIdeas = function (object) {
                     // make it work for arrays and single objects
                     var objects = Array.isArray(object) ? object : [object];
