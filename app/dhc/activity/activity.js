@@ -43,7 +43,7 @@
                                 var user = UserService.principal.getUser();
                                 var idea = $location.search().idea;
 
-                                var options = {  populate: 'idea owner joiningUsers' };
+                                var options = {  populate: 'owner joiningUsers' };
                                 if(idea) {
                                     options['filter[idea]'] = idea;
                                 }

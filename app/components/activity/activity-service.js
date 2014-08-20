@@ -9,6 +9,48 @@
                 var activities = Restangular.all('activities');
                 var activityEvents = Restangular.all('activityevents');
 
+                var ideaCache = {};
+
+                var _getIdeaCached = function (ideaId) {
+                    if (ideaCache[ideaId]) {
+                        var deferred = $q.defer();
+                        deferred.resolve(ideaCache[ideaId]);
+                        return deferred.promise;
+                    } else {
+                        return Restangular.one('ideas', ideaId).get()
+                            .then(function (idea) {
+                                ideaCache[idea.id] = idea;
+                                return idea;
+                            });
+
+                    }
+                };
+
+                var _populateIdeas = function (object) {
+                    var objects = Array.isArray(object) ? object : [object];
+                    var promises = [];
+
+                    _.forEach(objects, function (obj) {
+                        if (obj.idea && !_.isObject(obj.idea)) {
+                            promises.push(_getIdeaCached(obj.idea).then(function (idea) {
+                                obj.idea = idea;
+                                return obj;
+                            }));
+                        } else {
+                            var deferred = $q.defer();
+                            deferred.resolve(obj);
+                            promises.push(deferred.promise);
+                        }
+                    });
+                    return $q.all(promises).then(function (objs) {
+                        if (Array.isArray(object)) {
+                            return objs;
+                        } else {
+                            return objs[0];
+                        }
+                    });
+                };
+
                 var actService = {
                     getIdeas: function (params) {
                         if (!params) {
@@ -35,11 +77,13 @@
                         }
                     },
                     getActivity: function (activityId) {
-                        return Restangular.one('activities', activityId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'idea']});
+                        return Restangular.one('activities', activityId).get({'populate': ['owner', 'invitedBy', 'joiningUsers']})
+                            .then(_populateIdeas);
                     },
                     getActivities: function (options) {
                         if (UserService.principal.isAuthenticated()) {
-                            return activities.getList(options);
+
+                            return activities.getList(options).then(_populateIdeas);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);
@@ -48,7 +92,7 @@
                     },
                     getActivityEvents: function (options) {
                         if (UserService.principal.isAuthenticated()) {
-                            return activityEvents.getList(options);
+                            return activityEvents.getList(options).then(_populateIdeas);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);

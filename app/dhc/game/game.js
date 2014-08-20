@@ -21,7 +21,7 @@
                         },
                         resolve: {
                             activities: ['ActivityService', function(ActivityService) {
-                                return ActivityService.getActivities({ populate: 'idea' });
+                                return ActivityService.getActivities();
                             }],
                             socialInteractions: ['SocialInteractionService', function(SocialInteractionService) {
                                 return SocialInteractionService.getSocialInteractions({ populate: 'author'});
