@@ -11,11 +11,11 @@
             'yp.components'
         ])
 
-        .config(['$stateProvider', 'accessLevels', '$translateWtiPartialLoaderProvider', function($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
+        .config(['$stateProvider', 'accessLevels', '$translateWtiPartialLoaderProvider', function ($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
 
             $stateProvider
                 .state('dcm', {
-                    url: "/campaign/:campaignId",
+                    url: "/dcm/campaign/:campaignId",
                     templateUrl: "layout/single-column.html",
                     controller: 'DcmController as dcmController',
 
@@ -50,6 +50,27 @@
                 });
 
             $translateWtiPartialLoaderProvider.addPart('dcm/dcm');
-        }]);
+        }])
+
+        .controller('DcmController', ['$scope', '$rootScope', '$state', 'UserService', 'CampaignService', 'organization', 'campaign', 'campaigns',
+            function ($scope, $rootScope, $state, UserService, CampaignService, organization, campaign, campaigns) {
+
+                if (!campaign && campaigns.length > 0) {
+                    $state.go('dcm.home', { campaignId: campaigns[0].id });
+                }
+
+                $scope.organization = organization;
+                $scope.currentCampaign = campaign;
+                $scope.campaigns = campaigns;
+
+                $scope.editCampaign = function editCampaign($event, campaignId) {
+                    $state.go('dcm.campaign', { id: campaignId });
+                    $event.stopPropagation();
+                };
+
+                $scope.canAccess = function (stateName) {
+                    return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access);
+                };
+            }]);
 
 }());

@@ -6,11 +6,7 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('activity', {
-                        templateUrl: "layout/default.html",
-                        access: accessLevels.all
-                    })
-                    .state('activity.content', {
+                    .state('dhc.activity', {
                         url: "/activity/:id?idea&mode",
                         reloadOnSearch: false,
                         access: accessLevels.all,

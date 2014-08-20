@@ -6,11 +6,7 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('game', {
-                        templateUrl: "layout/three-column.html",
-                        access: accessLevels.all
-                    })
-                    .state('game.content', {
+                    .state('dhc.game', {
                         url: "/game",
                         access: accessLevels.all,
                         views: {
@@ -76,7 +72,7 @@
                 };
 
                 $scope.openIdea = function(idea) {
-                    $window.location = $state.href('activity.content') + '?idea=' + idea.id;
+                    $window.location = $state.href('dhc.activity') + '?idea=' + idea.id;
                 };
 
                 $scope.openActivity = function(activity) {
@@ -90,7 +86,7 @@
                             throw new Error('unknown action');
                         }
                     } else {
-                        $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
+                        $window.location = $state.href('dhc.activity', { id: activity.id }) + '?idea=' + activity.idea.id;
                     }
 
                     return false;
