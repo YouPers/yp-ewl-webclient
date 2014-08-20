@@ -27,28 +27,53 @@
                 };
 
                 var _populateIdeas = function (object) {
+                    // make it work for arrays and single objects
                     var objects = Array.isArray(object) ? object : [object];
-                    var promises = [];
 
+                    // determine whether we need to fetch anything from server
+                    var ideaIdsToFetch = [];
                     _.forEach(objects, function (obj) {
-                        if (obj.idea && !_.isObject(obj.idea)) {
-                            promises.push(_getIdeaCached(obj.idea).then(function (idea) {
-                                obj.idea = idea;
-                                return obj;
-                            }));
-                        } else {
-                            var deferred = $q.defer();
-                            deferred.resolve(obj);
-                            promises.push(deferred.promise);
+                        if (obj.idea && !_.isObject(obj.idea) && !ideaCache[obj.idea]) {
+                            ideaIdsToFetch.push(obj.idea);
                         }
                     });
-                    return $q.all(promises).then(function (objs) {
+
+                    /**
+                     * populate objects synchronously from Cache, assumes that all needed objects are in the cache
+                     * @returns {*}
+                     * @private
+                     */
+                    function _populateFromCache () {
+                        _.forEach(objects, function(obj) {
+                            if (obj.idea && !_.isObject(obj.idea)) {
+                                obj.idea = ideaCache[obj.idea];
+                            }
+                        });
+
+                        // when we first got an array we return array, otherwise object
                         if (Array.isArray(object)) {
-                            return objs;
+                            return objects;
                         } else {
-                            return objs[0];
+                            return objects[0];
                         }
-                    });
+                    }
+
+                    if (ideaIdsToFetch.length > 0) {
+                        // some ideas have to be fetched from server
+                        var options = {};
+                        options['filter[id]'] = ideaIdsToFetch.join(',');
+                        return ideas.getList(options).then(function (ideas) {
+                            _.forEach(ideas, function (idea) {
+                                ideaCache[idea.id] = idea;
+                            });
+                        }).then(_populateFromCache);
+                    } else {
+                        // all ideas already on client
+                        var deferred = $q.defer();
+
+                        deferred.resolve(_populateFromCache());
+                        return deferred.promise;
+                    }
                 };
 
                 var actService = {
@@ -246,7 +271,12 @@
                 };
 
                 return actService;
-            }]);
+            }
+        ])
+    ;
 
 
-}());
+}
+()
+    )
+;
