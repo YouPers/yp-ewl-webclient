@@ -20,7 +20,7 @@
                                 return ActivityService.getActivities({ populate: 'idea' });
                             }],
                             socialInteractions: ['SocialInteractionService', function(SocialInteractionService) {
-                                return SocialInteractionService.getSocialInteractions({ populate: 'author', includeDismissed: true });
+                                return SocialInteractionService.getSocialInteractions({ populate: 'author refDocs', includeDismissed: true });
                             }],
                             activityEvents: ['ActivityService', function(ActivityService) {
                                 return ActivityService.getActivityEvents();
@@ -71,12 +71,7 @@
                     }
                 };
 
-                $scope.openIdea = function(idea) {
-                    $window.location = $state.href('dhc.activity') + '?idea=' + idea.id;
-                };
-
                 $scope.openActivity = function(activity) {
-
                     if(activity.idea.action) {
                         if(activity.idea.action === 'assessment') {
                             $state.go('check.content');
@@ -85,11 +80,16 @@
                         } else {
                             throw new Error('unknown action');
                         }
-                    } else {
-                        $window.location = $state.href('dhc.activity', { id: activity.id }) + '?idea=' + activity.idea.id;
                     }
+                };
 
-                    return false;
+                $scope.openSocialInteraction = function(socialInteraction) {
+
+                    $state.go('dhc.activity', {
+                        idea: socialInteraction.idea.id,
+                        activity: socialInteraction.activity ? socialInteraction.activity.id : undefined,
+                        socialInteraction: socialInteraction.id
+                    });
 
                 };
 

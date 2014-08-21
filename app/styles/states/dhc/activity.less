@@ -1,37 +1,100 @@
-.dhc.activity {
-  .mode-icons {
-    width: 100%;
-    border-top: 1px solid @yp-color-grey1;
-    border-bottom: 1px solid @yp-color-grey1;
-    border-radius: 10px;
-    margin-bottom: 1em;
+@import "../../youpers-variables";
 
+.dhc.dhc-activity {
+
+  activity-edit {
+    .dl-horizontal {
+      dt {
+        width: 50px;
+        padding: 6px;
+      }
+      dd {
+        margin-left: 60px;
+      }
+
+      dt.time {
+        padding-top: 3em;
+      }
+      dd.time {
+        > *:first-of-type {
+          margin-right: 26px;
+        }
+        > * {
+          width: 40%;
+          float: left;
+        }
+      }
+    }
+
+    date-picker {
+      .input-group {
+        width: 100%;
+      }
+    }
+    dl.recurrence {
+
+      padding-top: 10px;
+
+      dt {
+        text-align: left;
+        width: 180px;
+      }
+      dd {
+        margin-left: 190px;
+      }
+    }
+  }
+
+  .invited-user {
+    position: relative;
+    i.fa:hover {
+      color: @yp-color-red;
+    }
     i.fa {
-      text-align: center;
-      padding: 10px 70px;
-      font-size: 3em;
-    }
-    i.fa:not(:last-of-type) {
-      border-right: 1px solid @yp-color-grey1;
+      position: absolute;
+      top: 15px;
+      right: 5px;
+      font-size: 1.5em;
     }
   }
 
-}
+  .btn.submit {
+    width: 100%;
+    height: 4em;
+    white-space: normal;
+  }
 
-activity-list .activity {
-  i.fa {
-    font-size: 30px;
-    padding: 0.5em;
+  .game-icon {
     float: right;
+    font-size: 3em;
   }
-}
 
-activity-view {
+  .layout {
 
-  .socialInteraction {
-    .title {
-      font-weight: bold;
+    @media(min-width: @screen-md) {
+      display: flex;
+
+      margin-bottom: 1em;
+
+      section:first-of-type {
+        border-left: 1px solid @yp-color-grey1;
+      }
+      section {
+        flex: 1 1 25%;
+        border-top: 1px solid @yp-color-grey1;
+        border-right: 1px solid @yp-color-grey1;
+
+        padding: 8px;
+
+        > div.box {
+          border-bottom: 1px solid @yp-color-grey1;
+        }
+        > div {
+          padding-bottom: 1em;
+        }
+      }
     }
+
   }
 
 }

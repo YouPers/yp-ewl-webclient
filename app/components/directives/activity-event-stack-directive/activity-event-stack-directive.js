@@ -25,11 +25,6 @@
      *
      */
     angular.module('yp.components.activityEventStack', [])
-
-        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('components/directives/activity-event-stack-directive/activity-event-stack-directive');
-        }])
-
         .directive('activityEventStack', ['$rootScope', '$sce', '$window', '$state', function ($rootScope, $sce, $window, $state) {
             return {
                 restrict: 'EA',
@@ -143,18 +138,6 @@
                     } else {
                         scope.heightClass = 'height-' + (!scope.events.length ? 0 : scope.events[scope.events.length-1].offset);
                     }
-
-                    scope.showActivity = function(activity) {
-                        $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
-                    };
-
-                    scope.getRenderedText = function (text) {
-                        if (text) {
-                            return $sce.trustAsHtml(marked(text));
-                        } else {
-                            return "";
-                        }
-                    };
 
                 }
             };

@@ -44,7 +44,7 @@
                 if (!campaign) {
                     var user = UserService.principal.getUser();
                     if(user.campaign) {
-                        $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign });
+                        $state.transitionTo('dhc.game', { campaignId: user.campaign.id || user.campaign });
                     } else {
                         $state.go('campaign-list.content');
                     }

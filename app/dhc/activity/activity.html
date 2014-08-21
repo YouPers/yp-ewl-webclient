@@ -1,75 +1,102 @@
-<div class="row">
-    <div class="col-lg-4">
-        <div class="state-header-1">{{ 'activity.' + mode + '.stateHeader1' | translate }}</div>
-        <div class="state-header-2">{{ 'activity.' + mode + '.stateHeader2' | translate }}</div>
+<div class="layout">
 
-        <div class="">
-            <i class="fa fa-backward" ui-sref="dhc.game($stateParams)"></i>
-        </div>
-    </div>
-    <div class="col-lg-8">
 
-        <div class="mode-icons pull-right" ng-init="parentScope = this">
+    <section>
+        <h4 translate>{{ 'activity.header.first.' + mode }}</h4>
 
-            <i class="fa fa-bars"
-               ng-class="{ active: mode == 'list', disabled: activities.length <= 1 }"
-               ng-click="parentScope.mode = activities.length > 1 ? 'list' : mode"
-               ></i>
-
-            <i class="fa fa-file-o"
-               ng-class="{ active: mode == 'view', disabled: !activity.id }"
-               ng-click="parentScope.mode = activity.id ? 'view' : mode"></i>
-
-            <i ng-if="activity.id"
-               class="fa fa-edit"
-               ng-class="{ active: mode == 'edit' }"
-               ng-click="parentScope.mode = 'edit'"
-               tooltip="{{ 'activity.list.editTooltip' | translate }}"
-               tooltip-popup-delay="700"
-               ></i>
-
-            <i ng-if="!activity.id"
-               class="fa fa-sign-in"
-               ng-class="{ active: mode == 'edit' }"
-               ng-click="parentScope.mode = 'edit'"
-               tooltip="{{ 'activity.list.newTooltip' | translate }}"
-               tooltip-popup-delay="700"
-               ></i>
+        <div>
+            <button class="btn btn-primary" translate>activity.link.schedule</button>
+            <button class="btn btn-primary" translate>activity.link.dismiss</button>
         </div>
 
-    </div>
-</div>
+        <div ng-if="socialInteraction">
+            <activity-event-stack type="{{ socialInteraction.__t.toLowerCase() }}"
+                                  activity="activity"
+                                  idea="idea"
+                                  social-interaction="socialInteraction">
 
-<div class="row">
-
-    <div class="col-lg-4">
-        <idea-card idea="idea" activity="activity" social-interaction="activity.socialInteraction"></idea-card>
-    </div>
-
-    <div class="col-lg-8">
-
-
-        <div ng-if="mode == 'list'">
-
-            <activity-list activities="activities" activity="activity" on-select="onSelect"></activity-list>
-
+                                  </activity-event-stack>
         </div>
 
-        <div ng-if="mode == 'view'">
+        <div>
 
-            <activity-view activity="activity"></activity-view>
-
-        </div>
-
-        <div ng-if="mode == 'edit'">
-
-            <activity-edit activity="activity" on-save="onSave" on-cancel="onCancel" on-delete="onDelete"></activity-edit>
+            <idea-card idea="idea"></idea-card>
 
         </div>
+    </section>
+
+    <section>
+        <h4 translate>activity.header.second</h4>
+
+        <div class="box">
+            <activity-edit activity="activity"></activity-edit>
+        </div>
+
+        <h4 translate>activity.header.inviteOthers</h4>
+
+        <div class="btn-group btn-group-justified" ng-init="inviteOthers = 'all'">
+
+            <a type="button" class="btn btn-default" ng-model="$parent.inviteOthers"
+               btn-radio="'selected'" translate>activity.inviteOthers.selected
+            </a>
+            <a type="button" class="btn btn-default" ng-model="$parent.inviteOthers"
+               btn-radio="'all'" translate>activity.inviteOthers.all
+            </a>
+        </div>
+
+        <div ng-if="inviteOthers == 'selected'">
+
+            <user-invitation type="activity" ref-doc="activity" on-user-selected="onUserSelected"></user-invitation>
+
+            <div class="invited-user"
+                    ng-repeat="user in invitedUsers">
+                <img class="avatar" ng-src="{{ user.avatar }}"/>
+                <span bind-html-unsafe="user.fullname"></span>
+                <i class="fa fa-times" ng-click="removeInvitedUser(user)"></i>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <h4 translate>activity.header.third</h4>
+
+        <div>
+            <activity-event-card
+
+                    ng-repeat="event in events"
+                    type="current"
+                    event="event"
+                    >
 
 
 
+            </activity-event-card>
+        </div>
 
-    </div>
+        <div>
+
+        </div>
+    </section>
+
+    <section>
+
+        <div class="box">
+            <i class="game-icon fa fa-desktop" ui-sref="dhc.game"></i>
+            <div class="clearfix"></div>
+
+            <button class="btn btn-primary submit" ng-click="saveActivity()">
+                {{ 'activity.link.' + (invitedUsers.length > 0 ? 'saveAndInvite' : 'save') | translate }}
+            </button>
+        </div>
+        <div class="box">
+            <h4>health coach messages</h4>
+        </div>
+        <div class="box">
+            <h4 translate>activity.header.comments</h4>
+        </div>
+
+    </section>
+
 
 </div>

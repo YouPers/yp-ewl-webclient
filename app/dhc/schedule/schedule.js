@@ -103,7 +103,7 @@
                 };
 
                 var _getConflictsDebounced = _.debounce(function(plan) {
-                    ActivityService.getSchedulingConflicts($scope.plan).then(function(conflicts) {
+                    ActivityService.validateActivity($scope.plan).then(function(conflicts) {
                         if (conflicts.length > 0) {
                             $rootScope.$emit('healthCoach:displayMessage',
                                 "hcmsg.schedulingConflict",
