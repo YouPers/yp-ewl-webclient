@@ -38,7 +38,7 @@
                         return socialInteractions.post(socialInteraction);
                     },
                     getSocialInteraction: function(socialInteractionId) {
-                        return socialInteractions.one(socialInteractionId);
+                        return socialInteractions.one(socialInteractionId).get();
                     },
                     getSocialInteractions: function(options) {
                         return socialInteractions.getList(options).then(function(results) {

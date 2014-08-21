@@ -6,13 +6,8 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('activity', {
-                        templateUrl: "layout/default.html",
-                        access: accessLevels.all
-                    })
-                    .state('activity.content', {
-                        url: "/activity/:id?idea&mode",
-                        reloadOnSearch: false,
+                    .state('dhc.activity', {
+                        url: "/idea/:idea/activity/:activity/socialInteraction/:socialInteraction/:mode",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -22,49 +17,28 @@
                         },
                         resolve: {
 
-                            activity: ['$stateParams', '$location', 'ActivityService', function($stateParams, $location, ActivityService) {
-                                if($stateParams.id) {
-                                    return  ActivityService.getActivity($stateParams.id);
-                                } else if($location.search().idea) {
-                                    return ActivityService.getDefaultActivity($location.search().idea, { populate: 'idea' });
-                                }
-                            }],
-
-                            idea: ['$location', 'ActivityService', function($location, ActivityService) {
-                                var idea = $location.search().idea;
-                                if(!idea) {
-                                    throw new Error('activity: the id of an idea is required');
+                            idea: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                                var idea = $stateParams.idea;
+                                if (!idea) {
+                                    throw new Error('activity: stateParam idea is required');
                                 }
                                 return  ActivityService.getIdea(idea);
                             }],
 
-                            activitiesParticipating: ['$location', 'ActivityService', 'UserService', function($location, ActivityService, UserService) {
-
-                                var user = UserService.principal.getUser();
-                                var idea = $location.search().idea;
-
-                                var options = {  populate: 'idea owner joiningUsers' };
-                                if(idea) {
-                                    options['filter[idea]'] = idea;
+                            activity: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                                if ($stateParams.activity) {
+                                    return  ActivityService.getActivity($stateParams.activity);
+                                } else {
+                                    return ActivityService.getDefaultActivity($stateParams.idea, { populate: 'idea' });
                                 }
-
-                                return ActivityService.getActivities(options).then(function(activities) {
-                                    _.forEach(activities, function (activity) {
-                                        activity.status = activity.owner.id === user.id ? 'owned' : 'joined';
-                                    });
-                                    return activities;
-                                });
                             }],
-                            activitiesFromInvitations: ['SocialInteractionService', function(SocialInteractionService) {
 
-                                return SocialInteractionService.getInvitations().then(function (invitations) {
-                                    return _.map(invitations, function(invitation) {
-                                        var activity = invitation.activity;
-                                        activity.socialInteraction = invitation;
-                                        activity.status = 'invited';
-                                        return activity;
-                                    });
-                                });
+                            socialInteraction: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
+                                if ($stateParams.socialInteraction) {
+                                    return  SocialInteractionService.getSocialInteraction($stateParams.socialInteraction);
+                                } else {
+                                    return undefined;
+                                }
                             }]
                         }
                     });
@@ -72,63 +46,95 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/activity/activity');
             }])
 
-        .controller('ActivityController', [ '$scope', '$rootScope', '$stateParams', '$location', '$window', '$timeout',
-            'activity', 'activitiesParticipating', 'activitiesFromInvitations', 'idea',
-            function ($scope, $rootScope, $stateParams, $location, $window, $timeout,
-                      activity, activitiesParticipating, activitiesFromInvitations, idea) {
+        .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams',
+            'UserService', 'ActivityService', 'SocialInteractionService',
+            'campaign', 'idea', 'activity', 'socialInteraction',
+            function ($scope, $rootScope, $state, $stateParams,
+                      UserService, ActivityService, SocialInteractionService,
+                      campaign, idea, activity, socialInteraction) {
 
-
-
-                var activities = $scope.activities = activitiesParticipating.concat(activitiesFromInvitations);
-
-
+                $scope.idea = idea;
                 $scope.activity = activity;
-                $scope.idea = $scope.activity.idea = idea;
+                $scope.socialInteraction = socialInteraction;
 
-                if($location.search().mode) {
-                    $scope.mode = $location.search().mode;
-                } else if($stateParams.id) {
-                    $scope.mode = 'view';
-                } else if(activities.length > 1) {
-                    $scope.mode = 'list';
-                } else if(activities.length === 1) {
-                    $scope.activity = activities[0];
-                    $scope.mode = 'view';
-                } else {
-                    $scope.mode = 'edit';
+                $scope.isOwned = activity && activity.owner === UserService.principal.getUser().id;
+
+                var mode = $stateParams.mode;
+
+                if (!mode) {
+                    if (socialInteraction) {
+                        mode = socialInteraction.__t.toLowerCase();
+                    } else if (activity && activity.id) {
+                        mode = activity.isParticipant() ? 'view' : 'join';
+                    } else {
+                        mode = 'schedule';
+                    }
                 }
 
-                $scope.$watch('mode', function(newValue, oldValue) {
-                    $location.search({mode: newValue, idea: idea.id});
-                });
+                $scope.mode = mode;
 
-                $scope.$watch(function () {
-                    return $location.search();
-                }, function (newValue, oldValue) {
-                    if($location.search().mode) {
-                        $scope.mode = $location.search().mode;
-                    }
-                });
-
-                $scope.onSelect = function (activity) {
-                    $scope.activity = activity;
-                    $scope.mode = 'view';
+                $scope.invitedUsers = [];
+                $scope.onUserSelected = function onUserSelected(user) {
+                    $scope.invitedUsers.push(user);
+                };
+                $scope.removeInvitedUser = function (user) {
+                    _.remove($scope.invitedUsers, { id: user.id });
                 };
 
-                $scope.onSave = function(activity) {
-                    $scope.activity = activity;
-                    $scope.activities.push(activity);
-                    $scope.mode = 'view';
-                };
+                var validateActivity = _.debounce(function () {
+                    ActivityService.validateActivity($scope.activity).then(function (activityValidationResults) {
 
-                $scope.onDelete = function() {
-                    $window.history.back();
-                };
+                        $scope.events = [];
+                        _.forEach(activityValidationResults, function (result) {
+                            var event = result.event;
+                            event.activity = $scope.activity;
+                            event.conflictingEvent = result.conflictingEvent;
+                            $scope.events.push(event);
+                        });
 
-                $scope.onCancel = function() {
-                    $window.history.back();
-                };
+                    });
+                }, 1000);
 
+                $scope.$watch('activity.mainEvent', validateActivity, true);
+
+                $scope.saveActivity = function saveActivity() {
+
+                    ActivityService.savePlan($scope.activity).then(function (savedActivity) {
+                        $rootScope.$emit('clientmsg:success', 'activityPlan.save');
+
+                        var inviteAll = $scope.inviteOthers === 'all';
+                        if(inviteAll || $scope.invitedUsers.length > 0) {
+
+                            var invitation = {
+                                author: UserService.principal.getUser().id,
+                                refDocs: [{
+                                    docId: $scope.activity.id,
+                                    model: 'Activity'
+                                }]
+                            };
+
+                            if(inviteAll) {
+                                invitation.targetSpaces = [{
+                                    type: 'campaign',
+                                    targetId: campaign.id
+                                }];
+                            } else {
+                                invitation.targetSpaces = [];
+                                _.forEach($scope.invitedUsers, function (user) {
+                                    invitation.targetSpaces.push({
+                                        type: 'user',
+                                        targetId: user.id
+                                    });
+                                });
+                            }
+
+                            SocialInteractionService.postInvitation(invitation);
+                        }
+
+                    });
+
+
+                };
             }
         ]);
 
