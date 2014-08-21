@@ -9,6 +9,58 @@
                 var activities = Restangular.all('activities');
                 var activityEvents = Restangular.all('activityevents');
 
+                var ideaCache = {};
+
+                var _populateIdeas = function (object) {
+                    // make it work for arrays and single objects
+                    var objects = Array.isArray(object) ? object : [object];
+
+                    // determine whether we need to fetch anything from server
+                    var ideaIdsToFetch = [];
+                    _.forEach(objects, function (obj) {
+                        if (obj.idea && !_.isObject(obj.idea) && !ideaCache[obj.idea]) {
+                            ideaIdsToFetch.push(obj.idea);
+                        }
+                    });
+
+                    /**
+                     * populate objects synchronously from Cache, assumes that all needed objects are in the cache
+                     * @returns {*}
+                     * @private
+                     */
+                    function _populateFromCache () {
+                        _.forEach(objects, function(obj) {
+                            if (obj.idea && !_.isObject(obj.idea)) {
+                                obj.idea = ideaCache[obj.idea];
+                            }
+                        });
+
+                        // when we first got an array we return array, otherwise object
+                        if (Array.isArray(object)) {
+                            return objects;
+                        } else {
+                            return objects[0];
+                        }
+                    }
+
+                    if (ideaIdsToFetch.length > 0) {
+                        // some ideas have to be fetched from server
+                        var options = {};
+                        options['filter[id]'] = ideaIdsToFetch.join(',');
+                        return ideas.getList(options).then(function (ideas) {
+                            _.forEach(ideas, function (idea) {
+                                ideaCache[idea.id] = idea;
+                            });
+                        }).then(_populateFromCache);
+                    } else {
+                        // all ideas already on client
+                        var deferred = $q.defer();
+
+                        deferred.resolve(_populateFromCache());
+                        return deferred.promise;
+                    }
+                };
+
                 var actService = {
                     getIdeas: function (params) {
                         if (!params) {
@@ -35,11 +87,13 @@
                         }
                     },
                     getActivity: function (activityId) {
-                        return Restangular.one('activities', activityId).get({'populate': ['owner', 'invitedBy', 'joiningUsers', 'idea']});
+                        return Restangular.one('activities', activityId).get({'populate': ['owner', 'invitedBy', 'joiningUsers']})
+                            .then(_populateIdeas);
                     },
                     getActivities: function (options) {
                         if (UserService.principal.isAuthenticated()) {
-                            return activities.getList(options);
+
+                            return activities.getList(options).then(_populateIdeas);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);
@@ -48,7 +102,7 @@
                     },
                     getActivityEvents: function (options) {
                         if (UserService.principal.isAuthenticated()) {
-                            return activityEvents.getList(options);
+                            return activityEvents.getList(options).then(_populateIdeas);
                         } else {
                             var deferred = $q.defer();
                             deferred.resolve([]);
@@ -137,7 +191,7 @@
                     },
 
                     getDefaultActivity: function (idea, options) {
-                        return ideas.one(idea.id || idea).one('defaultActivity').get(options);
+                        return ideas.one(idea.id || idea).one('defaultActivity').get(options).then(_populateIdeas);
                     },
 
                     getDefaultPlan: function (idea, campaignId) {
@@ -202,7 +256,12 @@
                 };
 
                 return actService;
-            }]);
+            }
+        ])
+    ;
 
 
-}());
+}
+()
+    )
+;

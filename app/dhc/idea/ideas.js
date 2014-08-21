@@ -22,7 +22,7 @@
                         },
                         resolve: {
                             ideasFromActivities: ['ActivityService', function(ActivityService) {
-                                return ActivityService.getActivities({ populate: 'idea owner' }).then(function(activities) {
+                                return ActivityService.getActivities({ populate: 'owner' }).then(function(activities) {
                                     return _.map(activities, function(activity) {
 
                                         var idea = activity.idea;
