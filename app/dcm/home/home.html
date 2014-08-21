@@ -1,46 +1,23 @@
-<div class="row">
-    <div class="col-sm-8">
-        <div class="state-header-1" translate>dcmhome.stateHeader1</div>
-        <div class="state-header-2" translate>dcmhome.stateHeader2</div>
-    </div>
-    <div class="col-sm-4">
-        <campaign-switcher mode="campaignlead"></campaign-switcher>
-    </div>
+<div class="column-layout">
+
+    <nav>
+
+        <ng-include src="'dcm/home/home-left.html'"></ng-include>
+
+    </nav>
+
+    <section>
+
+        <ng-include src="'dcm/home/home-content.html'"></ng-include>
+
+    </section>
+
+    <aside>
+
+        <social-interaction></social-interaction>
+
+    </aside>
+
 </div>
 
-<div class="col-sm-3 col-sm-offset-3">
-    <div class="dcm-home-content">
 
-        <div class="link-area campaigns" ng-click="canAccess('campaigns.content') && $state.go('campaigns.content')"
-             ng-class="{disabled: !canAccess('campaigns.content')}"
-             analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Campaigns">
-            <div class="icon"></div>
-            <span translate>dcmhome.campaigns</span>
-        </div>
-        <div class="link-area notifications" ng-click="currentCampaign && canAccess('notifications.content') && $state.go('notifications.content')"
-             ng-class="{disabled: !currentCampaign || !canAccess('notifications.content')}"
-             analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Notifications">
-            <div class="icon"></div>
-            <span translate>dcmhome.notifications</span>
-        </div>
-        <div class="link-area campaignoffers" ng-click="currentCampaign && canAccess('campaignoffers.content') && currentCampaign && $state.go('campaignoffers.content')"
-             ng-class="{disabled: !currentCampaign || !canAccess('campaignoffers.content')}"
-             analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Campaign Offers">
-            <div class="icon"></div>
-            <span translate>dcmhome.campaignoffers</span>
-        </div>
-        <div class="link-area statistics" ng-click="currentCampaign && canAccess('stats.content') && $state.go('stats.content')"
-             ng-class="{disabled: !currentCampaign || !canAccess('stats.content')}">
-            <div class="icon"></div>
-            <span translate>dcmhome.statistics</span>
-        </div>
-        <div class="link-area organization" ng-click="$state.go('organization.content')"
-             analytics-on="click" analytics-event="HomeNavigation" analytics-category="DCM_Navigation" analytics-label="Organization">
-            <div class="icon"></div>
-            <span translate>dcmhome.organization</span>
-        </div>
-
-        <!--<div class="link-area link-area-center" ng-click=""></div>-->
-        <div class="link-container"></div>
-    </div>
-</div>

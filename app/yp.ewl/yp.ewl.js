@@ -175,7 +175,7 @@ angular.module('yp-ewl',
                 console.log('Error on StateChange: '+ error.message);
                 console.log('Stack: ' + error.stack);
                 if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
-                    $state.go('dcm-home.content');
+                    $state.go('dcm.home');
                 } else {
                     $state.go('home.content');
                 }

@@ -8,8 +8,10 @@ form[name='campaignForm'] label {
   text-align: right;
   padding-top: (@padding-base-vertical + 1);
 }
-form[name='campaignForm'] input {
-  .make-sm-column(9);
+form[name='campaignForm'] {
+  input, select {
+    .make-sm-column(9);
+  }
 }
 
 form[name='campaignForm'] .validation {

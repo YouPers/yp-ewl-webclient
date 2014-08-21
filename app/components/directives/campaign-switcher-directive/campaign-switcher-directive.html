@@ -6,10 +6,10 @@
         <div class="topic">{{currentCampaign.title}}</div>
         <div class="details">{{currentCampaign.participants}}</div>
         <div class="details">{{currentCampaign.location}} {{currentCampaign.city}}</div>
-        <div class="details">{{currentCampaign.start | date:'d. MMMM'}} -  {{currentCampaign.end | date:'d. MMMM yyyy'}}</div>
+        <div class="details">{{currentCampaign.start | date:'d.MM.'}} -  {{currentCampaign.end | date:'d.MM.yyyy'}}</div>
 
         <div class="icon" ng-if="campaigns.length > 1">
-            <span class="glyphicon glyphicon-chevron-down"></span>
+            <i class="glyphicon glyphicon-chevron-down"></i>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
             <div class="topic">{{campaign.title}}</div>
             <div class="details">{{campaign.participants}}</div>
             <div class="details">{{campaign.location}} {{campaign.city}}</div>
-            <div class="details">{{campaign.start | date:'d. MMMM'}} -  {{campaign.end | date:'d. MMMM yyyy'}}</div>
+            <div class="details">{{campaign.start | date:'d.MM.'}} -  {{campaign.end | date:'d.MM.yyyy'}}</div>
         </li>
     </ul>
 </div>

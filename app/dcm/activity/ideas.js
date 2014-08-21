@@ -6,12 +6,8 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('edit-ideas', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.campaignlead
-                    })
-                    .state('edit-ideas.content', {
-                        url: "/dcm/ideas",
+                    .state('dcm.ideas', {
+                        url: "/ideas",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
@@ -25,12 +21,8 @@
                             }]
                         }
                     })
-                    .state('edit-idea', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.campaignlead
-                    })
-                    .state('edit-idea.content', {
-                        url: "/dcm/ideas/:id",
+                    .state('dcm.idea', {
+                        url: "/ideas/:id",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
@@ -45,51 +37,23 @@
                                     return ActivityService.getIdea($stateParams.id);
                                 } else {
 
-                                    // TODO: define default idea and options visible for the campaign lead
-                                    var currentCampaignTopic = (CampaignService.currentCampaign && CampaignService.currentCampaign.topic) || undefined;
-                                    var topics = [];
-                                    if (currentCampaignTopic) {
-                                        topics.push(currentCampaignTopic);
-                                    }
-                                    return {
-                                        "number": "CampaignActivity",
-                                        source: "campaign",
-                                        defaultfrequency: "once",
-                                        "defaultexecutiontype": "group",
-                                        "defaultvisibility": "campaign",
-                                        "defaultduration": 60,
-                                        topics: topics,
-                                        campaign: (CampaignService.currentCampaign && CampaignService.currentCampaign.id) || undefined
-                                    };
+                                    return CampaignService.getCampaign($stateParams.campaignId).then(function (campaign) {
+
+                                        return {
+                                            "number": "CampaignActivity",
+                                            source: "campaign",
+                                            defaultfrequency: "once",
+                                            "defaultexecutiontype": "group",
+                                            "defaultvisibility": "campaign",
+                                            "defaultduration": 60,
+                                            topics: [campaign.topic],
+                                            campaign: $stateParams.campaignId
+                                        };
+                                    });
+
                                 }
 
                             }]
-                        }
-                    })
-                    .state('campaignoffers', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.campaignlead
-                    })
-                    .state('campaignoffers.content', {
-                        url: "/campaignoffers/:id",
-                        access: accessLevels.campaignlead,
-                        views: {
-                            content: {
-                                templateUrl: 'dcm/activity/campaignoffers.html',
-                                controller: 'CampaignOffersController'
-                            }
-                        },
-                        resolve: {
-                            offers: ['$stateParams', 'ActivityService', 'CampaignService',
-                                function ($stateParams, ActivityService, CampaignService) {
-                                    if (CampaignService.currentCampaign) {
-                                        return ActivityService.getActivityOffers({campaign: CampaignService.currentCampaign.id,
-                                            populate: 'idea activity'});
-                                    } else {
-                                        return [];
-                                    }
-                                }
-                            ]
                         }
                     });
 
@@ -101,12 +65,6 @@
             function ($scope, $rootScope, $state, ActivityService, idea) {
 
                 $scope.idea = idea;
-
-                $scope.offer = {
-                    idea: idea,
-                    recommendedBy: [$scope.principal.getUser()],
-                    sourceType: 'campaign'
-                };
 
             }
         ])
@@ -141,42 +99,9 @@
 
                 _initializeIdeas(resolvedIdeas);
 
-                $scope.$watch(function () {
-                    return CampaignService.currentCampaign;
-                }, function (newValue, oldValue) {
-                    ActivityService.getIdeas({campaign: CampaignService.currentCampaign.id}).then(function (ideas) {
-                        _initializeIdeas(ideas);
-                    });
-                });
             }
         ])
 
-        // TODO: refactor to new file
-        .controller('CampaignOffersController', ['$scope', '$rootScope', 'offers', 'CampaignService', 'ActivityService', 'NotificationService',
-            function ($scope, $rootScope, offers, CampaignService, ActivityService) {
-
-                $scope.offers = offers;
-
-                $scope.getJoiningUsers = function (plan) {
-                    return _.pluck(plan.joiningUsers, 'fullname').join('<br/>');
-                };
-
-                $scope.$watch(function () {
-                    return CampaignService.currentCampaign;
-                }, function (newValue, oldValue) {
-                    if (newValue) {
-                        ActivityService.getActivityOffers(
-                            {
-                                campaign: newValue.id,
-                                populate: 'idea activity',
-                                populatedeep: 'activity.joiningUsers'
-                            }
-                        ).then(function (offers) {
-                                $scope.offers = offers;
-                            });
-                    }
-                });
-            }])
 
         .filter('fulltext', function () {
             return function (ideas, query) {

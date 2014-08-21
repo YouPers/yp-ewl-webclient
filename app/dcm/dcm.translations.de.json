@@ -1,4 +1,12 @@
 {
+    "dcm": {
+        "campaign": {
+            "stateHeader1": "deine",
+            "stateHeader2": "kampagne"
+        }
+    },
+
+
   "subnavbar": {
     "organization": "Organisation",
     "campaigns": "Kampagnen",

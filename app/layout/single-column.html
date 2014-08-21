@@ -1,7 +1,9 @@
-<ng-include src="'dhc/subnavbar.html'">
+
+<ng-include ng-init="parentState = $state.current.name.substr(0, $state.current.name.indexOf('.'))" src="parentState + '/subnavbar.html'">
 </ng-include>
-<div class="container main-layout  {{ $state.current.name.substr(0, $state.current.name.indexOf('.')) }}">
-    <div class="row main-content">
+
+<div class="container {{ parentState }} {{ $state.current.name.replace('.', '-') }}">
+    <div class="row">
         <div class="col-lg-12">
             <div  ui-view="content" autoscroll="false"></div>
         </div>
