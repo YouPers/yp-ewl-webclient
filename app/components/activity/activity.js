@@ -67,18 +67,29 @@
             Restangular.extendModel('ideas', extendIdeas);
 
             var extendActivities = function(activity) {
-                activity.isParticipant = function(user) {
+                activity.isOwner = function(user) {
                     if(!user) {
                         user = UserService.principal.getUser();
                     }
                     user = user.id || user;
 
                     var owner = activity.owner.id || activity.owner;
+                    return owner === user;
+                };
 
-                    return owner === user || _.any(activity.joiningUsers, function(joiningUser) {
+                activity.isJoiningUser = function (user) {
+                    if(!user) {
+                        user = UserService.principal.getUser();
+                    }
+                    user = user.id || user;
+                    return _.any(activity.joiningUsers, function(joiningUser) {
                         var joining = joiningUser.id || joiningUser;
                         return joining === user;
                     });
+                };
+
+                activity.isParticipant = function(user) {
+                    return activity.isOwner(user) || activity.isJoiningUser(user);
                 };
                 return activity;
             };

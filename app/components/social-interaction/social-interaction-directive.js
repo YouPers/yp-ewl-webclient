@@ -12,8 +12,14 @@
 
                     link: function (scope, elem, attrs) {
 
+                        var options = scope.options = {};
+
+
+                        var user = UserService.principal.getUser();
+                        options.isCampaignLead = _.contains(user.roles, 'campaignlead');
+
                         var messageTemplate = {
-                            author: UserService.principal.getUser().id,
+                            author: user.id,
                             authorType: 'campaignLead',
 
                             targetSpaces: [{
@@ -36,7 +42,7 @@
                             SocialInteractionService.postMessage(scope.message).then(function() {
                                 scope.socialInteractions.unshift(scope.message);
                                 scope.message = _.clone(messageTemplate);
-                                scope.composeMessage = false;
+                                scope.options.composeMessage = false;
                             });
                         };
 

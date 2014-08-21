@@ -12,7 +12,7 @@
                         views: {
                             content: {
                                 templateUrl: 'dhc/activity/activity.html',
-                                controller: 'ActivityController'
+                                controller: 'ActivityController as activityController'
                             }
                         },
                         resolve: {
@@ -53,25 +53,53 @@
                       UserService, ActivityService, SocialInteractionService,
                       campaign, idea, activity, socialInteraction) {
 
+                var activityController = this;
+
                 $scope.idea = idea;
                 $scope.activity = activity;
-                $scope.socialInteraction = socialInteraction;
 
-                $scope.isOwned = activity && activity.owner === UserService.principal.getUser().id;
+                if(socialInteraction) {
+                    $scope.socialInteraction = socialInteraction;
+                    $scope.socialInteractionEvent = activity ? activity.mainEvent : {} ;
+                    _.extend($scope.socialInteractionEvent, {
+                        idea: idea,
+                        socialInteraction: socialInteraction
+                    });
+                }
+
+
+                $scope.isScheduled = activity && activity.id;
 
                 var mode = $stateParams.mode;
-
                 if (!mode) {
                     if (socialInteraction) {
                         mode = socialInteraction.__t.toLowerCase();
-                    } else if (activity && activity.id) {
-                        mode = activity.isParticipant() ? 'view' : 'join';
+                    } else if ($scope.isScheduled && activity.isOwner()) {
+                        mode = 'owned';
+                    } else if ($scope.isScheduled && activity.isJoiningUser()) {
+                        mode = 'joined';
                     } else {
                         mode = 'schedule';
                     }
+                    $stateParams.mode = mode;
                 }
-
                 $scope.mode = mode;
+
+                $scope.canEdit = {
+                    'schedule': true,
+                    'recommendation': true,
+                    'invitation': false,
+                    'joined': false,
+                    'owned': true
+                };
+                $scope.canDismiss = {
+                    'schedule': false,
+                    'recommendation': true,
+                    'invitation': true,
+                    'joined': false,
+                    'owned': false
+                };
+
 
                 $scope.invitedUsers = [];
                 $scope.onUserSelected = function onUserSelected(user) {
@@ -93,14 +121,29 @@
                         });
 
                     });
-                }, 1000);
+                }, 200);
+
 
                 $scope.$watch('activity.mainEvent', validateActivity, true);
+                $scope.$watch('activity', function() {
+                    $scope.dirty = true;
+                }, true);
 
+                $scope.dismiss = function dismiss() {
+                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id).then(function (result) {
+                        console.log(result);
+                        activityController.dismissed = true;
+                    });
+
+                };
                 $scope.saveActivity = function saveActivity() {
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
                         $rootScope.$emit('clientmsg:success', 'activityPlan.save');
+
+                        $scope.activity = savedActivity;
+                        $scope.dirty = false;
+                        $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
 
                         var inviteAll = $scope.inviteOthers === 'all';
                         if(inviteAll || $scope.invitedUsers.length > 0) {
