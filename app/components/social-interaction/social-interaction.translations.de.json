@@ -8,5 +8,28 @@
 
       "invitation": "Einladung",
       "recommendation": "Empfehlung"
-  }
+  },
+
+    "composeMessageForm": {
+        "show": "Neue Nachricht",
+
+
+        "title": {
+            "label": "Titel",
+            "placeholder": "Titel"
+        },
+        "text": {
+            "label": "Nachricht",
+            "placeholder": "Nachricht"
+        },
+        "publishFrom": {
+            "label": "Von",
+            "placeholder": "Von"
+        },
+        "publishTo": {
+            "label": "Bis",
+            "placeholder": "Bis"
+        },
+        "submit": "Speichern"
+    }
 }

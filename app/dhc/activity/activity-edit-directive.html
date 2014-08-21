@@ -2,128 +2,78 @@
 
     <fieldset ng-disabled="activity.isScheduled && !activity.isEditable">
 
+        <dl class="dl-horizontal">
 
-        <div class="row">
-            <div class="col-md-12 form-group">
-
+            <dt>
+                <label translate>activityForm.title.label</label>
+            </dt>
+            <dd>
                 <input type="text" class="form-control" ng-model="activity.title"
-                       placeholder="{{ 'activityForm.title.placeholder' | translate }}">
-            </div>
-        </div>
+                       placeholder="{{ activity.idea.title }}">
+            </dd>
 
-        <div class="row">
-            <div class="col-md-12 form-group">
+            <dt>
+                <label translate>activityForm.location.label</label>
+            </dt>
+            <dd>
                 <input type="text" class="form-control" ng-model="activity.location"
                        placeholder="{{ 'activityForm.location.placeholder' | translate }}">
-            </div>
-        </div>
+            </dd>
 
-        <div class="row">
-            <div class="col-md-12 form-group">
-                <textarea class="form-control" ng-model="activity.text"
-                          ng-attr-placeholder="{{'activityForm.text.placeholder' | translate }}"></textarea>
-            </div>
-        </div>
+            <dt>
+                <label translate>activityForm.date.label</label>
+            </dt>
+            <dd>
+                <date-picker date="activity.mainEvent.start"></date-picker>
+            </dd>
+            <dt class="time">
+                <label translate>activityForm.time.label</label>
+            </dt>
+            <dd class="time">
 
-        <div ng-if="activity.idea.defaultexecutiontype == 'group'">
+                <timepicker ng-model="activity.mainEvent.start" id="timePickerStart" minute-step="15"
+                            show-meridian="false"></timepicker>
 
-            <div class="row">
-                <div class="col-md-12 form-group">
+                <timepicker ng-model="activity.mainEvent.end" id="timePickerEnd" minute-step="15"
+                            show-meridian="false"></timepicker>
+            </dd>
+        </dl>
 
-                    <div class="checkbox">
-                        <label>
-                            <input ng-model="activity.private" type="checkbox">
-                            <span translate>activityForm.private.label</span>
 
-                            <div ng-if="activity.private" translate>activityForm.private.text</div>
-                        </label>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- date and time -->
-            <div class="row">
-                <div class="col-md-12 form-group">
-
-                    <date-time-picker start="activity.mainEvent.start" end="activity.mainEvent.end"></date-time-picker>
-
-                </div>
-            </div>
+        <div>
 
             <!-- frequency -->
 
-            <div class="row">
-                <div class="col-md-12 frequency">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default" ng-model="activity.mainEvent.frequency"
-                                btn-radio="'once'" translate>activityPlanFrequency.once
-                        </button>
-                        <button type="button" class="btn btn-default" ng-model="activity.mainEvent.frequency"
-                                btn-radio="'day'" translate>activityPlanFrequency.day
-                        </button>
-                        <button type="button" class="btn btn-default" ng-model="activity.mainEvent.frequency"
-                                btn-radio="'week'" translate>activityPlanFrequency.week
-                        </button>
-                    </div>
-                </div>
+            <div class="btn-group btn-group-justified">
+                <a type="button" class="btn btn-default" ng-model="activity.mainEvent.frequency"
+                   btn-radio="'once'" translate>activityPlanFrequency.once
+                </a>
+                <a type="button" class="btn btn-default" ng-model="activity.mainEvent.frequency"
+                   btn-radio="'day'" translate>activityPlanFrequency.day
+                </a>
+                <a type="button" class="btn btn-default" ng-model="activity.mainEvent.frequency"
+                   btn-radio="'week'" translate>activityPlanFrequency.week
+                </a>
             </div>
 
             <!-- recurrence -->
 
-            <div class="row recurrence" ng-if="activity.mainEvent.frequency=='day' || activity.mainEvent.frequency=='week'">
-                <div class="col-md-6 recurrence-day">
-                    <label>
-                        <span translate>activityForm.recurrence.label</span>
-                        <input ng-init="activity.mainEvent.recurrence = activity.mainEvent.recurrence || {}"
-                               ng-model="activity.mainEvent.recurrence['endby'].after" min="1" type=number
-                               class="form-control input-sm">
-                    </label>
-                </div>
+            <dl class="dl-horizontal recurrence" ng-if="activity.mainEvent.frequency=='day' || activity.mainEvent.frequency=='week'">
 
-            </div>
+                <dt>
+                    <label translate>activityForm.recurrence.label</label>
+                </dt>
+                <dd>
+                    <input ng-init="activity.mainEvent.recurrence = activity.mainEvent.recurrence || {}"
+                           ng-model="activity.mainEvent.recurrence['endby'].after" min="1" type=number
+                           class="form-control input-sm">
+                </dd>
+
+            </dl>
 
         </div>
 
 
     </fieldset>
-
-    <div class="row">
-        <div class="col-md-12">
-
-
-            <ul class="list-inline pull-right">
-
-                <li>
-                    <button class="btn btn-default" type="button" ng-if="onCancel" ng-click="cancel()" translate>
-                        activityForm.cancel
-                    </button>
-                </li>
-
-                <li tooltip-placement="left"
-                    tooltip="{{ activity.isDeletable ? '' : ('activityPlanDeletable.' + activity.deleteStatus | translate) }}">
-                    <button ng-click="deleteActivity()" ng-hide="!activity.id" ng-disabled="!activity.isDeletable"
-                            type="button"
-                            class="btn btn-warning" translate>activityForm.delete
-                    </button>
-                </li>
-
-                <li tooltip-placement="left"
-                    tooltip="{{ (!activity.isScheduled || activity.isEditable) ? '' : ('activityPlanEditable.' + activity.editStatus | translate) }}">
-                    <button ng-show="!activity.id" ng-disabled="activityForm.$invalid" type="submit"
-                            class="btn btn-primary" translate>activityForm.create
-                    </button>
-
-                    <button ng-hide="!activity.id" ng-disabled="activityForm.$invalid || !activity.isEditable"
-                            type="submit"
-                            class="btn btn-primary" translate>activityForm.save
-                    </button>
-                </li>
-
-            </ul>
-
-        </div>
-    </div>
-
 
 </form>

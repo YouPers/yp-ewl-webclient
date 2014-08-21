@@ -7,6 +7,17 @@
      * activityEventStack
      *
      *  required scope attributes:
+     *
+     *      - type: one of
+     *
+     *          - current: currently active events of a single activity (default)
+     *          - past: list of done or missed events that have already past
+     *
+     *          - invitation: activity from an invitation, displays the author, mocks the number of events with the mainEvent
+     *          - recommendation: activity from a recommendation, displays the author
+     *
+     *          - dismissed: list of invitations and recommendation the user has dismissed
+     *
      *      - events: an event can be populated with an idea, and optionally, the activity ( needed for the location )
      *                  to show events with arbitrary ideas/activities
      *      - idea: default idea if no individual idea is attached to an event            
@@ -14,15 +25,12 @@
      *
      */
     angular.module('yp.components.activityEventStack', [])
-
-        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
-            $translateWtiPartialLoaderProvider.addPart('components/directives/activity-event-stack-directive/activity-event-stack-directive');
-        }])
-
         .directive('activityEventStack', ['$rootScope', '$sce', '$window', '$state', function ($rootScope, $sce, $window, $state) {
             return {
                 restrict: 'EA',
                 scope: {
+                    type: '@',
+
                     events: '=?',
                     idea: '=',
                     activity: '=',
@@ -32,28 +40,19 @@
 
                 link: function (scope, elem, attrs) {
 
-                    if(!scope.events) {
+                    var type = scope.type || 'current';
 
-                        var event;
-
-                        if(scope.activity) {
-                            event = scope.activity.mainEvent;
-                            event.activity = scope.activity;
-                            event.idea = scope.activity.idea;
-                        } else if(scope.idea) {
-                            event = {
-                                idea: scope.idea
-                            };
-                        } else {
-                            throw new Error('one the attributes events, activity or idea is required');
+                    if(type === 'current' || type === 'past' || type === 'dismissed') {
+                        if(!scope.events) {
+                            throw new Error('"events" is required for type "current"');
                         }
-                        scope.events = [event];
 
-                    } else {
                         scope.events = _.sortBy(scope.events, function(event) {
                             return - new Date(event.start).getTime();
                         });
-                        scope.events = scope.events.splice(0, Math.min(10, scope.events.length));
+
+                        scope.events = scope.events.splice(scope.events.length - Math.min(9, scope.events.length), scope.events.length); // limit number of events to 10
+
                         _.forEach(scope.events, function (event) {
                             if(typeof event.idea !== 'object') {
                                 event.idea = scope.idea;
@@ -62,14 +61,50 @@
                                 event.activity = scope.activity;
                             }
                         });
+                    } else if(type === 'invitation') {
+                        if(!scope.activity) {
+                            throw new Error('"activity" is required for type "invitation"');
+                        }
+                        if(!scope.socialInteraction) {
+                            throw new Error('"socialInteraction" is required for type "invitation"');
+                        }
+                        var event = scope.activity.mainEvent;
+                        event.activity = scope.activity;
+                        event.idea = scope.activity.idea;
+                        event.socialInteraction = scope.socialInteraction;
+
+                        scope.events = [event];
+
+                        var count = scope.activity.mainEvent.recurrence.endby.after;
+                        if(count) {
+                            _.times(count - 1, function () {
+                                scope.events.unshift({
+                                    activity: scope.activity,
+                                    socialInteraction: scope.socialInteraction
+                                });
+                            });
+                        }
+                    } else if(type === 'recommendation') {
+                        if(!scope.idea) {
+                            throw new Error('"idea" is required for type "recommendation"');
+                        }
+                        if(!scope.socialInteraction) {
+                            throw new Error('"socialInteraction" is required for type "invitation"');
+                        }
+                        scope.events = [{
+                            idea: scope.idea,
+                            socialInteraction: scope.socialInteraction
+                        }];
+
+                    } else {
+                        throw new Error('unknown type ' + type);
                     }
 
                     var partiallyVisibleCardOffset = 3; // a card with a different due state
                                                         // than the one before will be partially visible
-                    var offset = 0;
-                    var dueState;
 
-                    scope.dueState = function (event) {
+
+                    function dueState(event) {
                         if(!event.start) {
                             return false;
                         }
@@ -81,30 +116,28 @@
                         } else {
                             return 'upcoming';
                         }
-                    };
+                    }
 
+                    var offset = 0;
+                    var lastDueState;
                     _.forEach(scope.events, function (event, index) {
 
-                        var due = scope.dueState(event);
-                        if(dueState && due !== dueState) {
+                        var due = dueState(event);
+
+                        if(type === 'current' && lastDueState && due !== lastDueState) {
                             offset += partiallyVisibleCardOffset;
                         }
-                        dueState = due;
+
+                        event.dueState = lastDueState = due;
                         event.offset = offset;
                         offset += 1;
                     });
 
-                    scope.heightClass = {};
-                    if(scope.socialInteraction) {
+                    if(type === 'recommendation') {
                             scope.heightClass = 'height-recommendation';
                     } else {
                         scope.heightClass = 'height-' + (!scope.events.length ? 0 : scope.events[scope.events.length-1].offset);
                     }
-
-                    scope.showActivity = function(activity) {
-                        $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
-                    };
-
 
                 }
             };

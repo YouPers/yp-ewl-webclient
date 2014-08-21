@@ -50,7 +50,7 @@
 
                         scope.deleteActivity = function () {
 
-                            ActivityService.deletePlan(scope.plan).then(function (result) {
+                            ActivityService.deletePlan(scope.activity).then(function (result) {
                                 $rootScope.$emit('clientmsg:success', 'activityPlan.delete');
 
                                 if(attrs.onDelete && typeof scope.onDelete === 'function') {

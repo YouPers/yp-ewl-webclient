@@ -6,11 +6,7 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('campaigns', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.campaignlead
-                    })
-                    .state('campaigns.content', {
+                    .state('dcm.campaigns', {
                         url: "/campaigns",
                         access: accessLevels.campaignlead,
                         views: {
@@ -25,12 +21,8 @@
                             }]
                         }
                     })
-                    .state('campaign', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.campaignlead
-                    })
-                    .state('campaign.content', {
-                        url: "/campaigns/:id",
+                    .state('dcm.campaign', {
+                        url: "/campaign/:id/edit",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
@@ -59,7 +51,7 @@
 
 
         .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign', 'topics',
-            function ($scope, CampaignService, UserService, campaign, topics) {
+            function ($scope , CampaignService, UserService, campaign, topics) {
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
@@ -71,7 +63,7 @@
 
 
                 var start = new Date(moment().hour(8).minutes(0).seconds(0));
-                var end = new Date(moment().hour(17).minutes(0).seconds(0).add('week', 6));
+                var end = new Date(moment().hour(17).minutes(0).seconds(0).add(6, 'weeks'));
 
                 if (campaign) {
                     $scope.campaign = campaign;
@@ -87,16 +79,6 @@
                 $scope.$watch('campaign.topic', function (newTopic, oldTopic) {
                     if (newTopic) {
                         $scope.campaign.title = topics.byId[newTopic].name;
-                    }
-                });
-
-                CampaignService.currentCampaign = $scope.campaign;
-
-                $scope.$watch(function () {
-                    return CampaignService.currentCampaign;
-                }, function (newValue, oldValue) {
-                    if (newValue) {
-                        $scope.$state.go('campaign.content', {id: newValue.id});
                     }
                 });
 

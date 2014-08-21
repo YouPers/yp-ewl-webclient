@@ -1,5 +1,39 @@
 
 <ul class="list-group">
+
+    <li class="list-group-item">
+        
+        <button class="btn btn-default pull-right" ng-click="$parent.composeMessage = true" ng-show="!composeMessage" translate>composeMessageForm.show</button>
+        <div class="clearfix"></div>
+
+        <div ng-show="composeMessage">
+            
+            <form name="composeMessageForm" class="form-horizontal" ng-submit="saveMessage()">
+
+                <input class="form-control" ng-model="message.title" placeholder="{{ 'composeMessageForm.title.placeholder' | translate }}" />
+                <textarea class="form-control" ng-model="message.text" placeholder="{{ 'composeMessageForm.text.placeholder' | translate }}"></textarea>
+
+                <div>
+                    <label translate>composeMessageForm.publishFrom.label</label>
+                    <date-picker date="message.publishFrom"></date-picker>
+                </div>
+
+                <div>
+                    <label translate>composeMessageForm.publishTo.label</label>
+                    <date-picker date="message.publishTo"></date-picker>
+                </div>
+
+                <br/>
+
+                <button class="btn btn-primary pull-right" type="submit" translate>composeMessageForm.submit</button>
+                <div class="clearfix"></div>
+
+            </form>
+            
+        </div>
+        
+    </li>
+    
     <li class="list-group-item" ng-repeat="socialInteraction in socialInteractions">
 
         <div class="pull-right">

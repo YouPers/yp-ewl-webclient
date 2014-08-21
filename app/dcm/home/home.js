@@ -3,23 +3,24 @@
 
     angular.module('yp.dcm')
 
-        .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
-            function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
+        .config(['$stateProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('dcm-home', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.all
-                    })
-                    .state('dcm-home.content', {
-                        url: "/campaign/home",
+                    .state('dcm.home', {
+                        url: "/home",
                         access: accessLevels.all,
                         views: {
                             content: {
                                 templateUrl: 'dcm/home/home.html',
-                                controller: 'DcmHomeController'
+                                controller: 'HomeController as homeController'
                             }
+
                         },
                         resolve: {
+
+                            socialInteractions: ['$stateParams', 'SocialInteractionService', function($stateParams, SocialInteractionService) {
+                                return SocialInteractionService.getSocialInteractions({ populate: 'author', campaign: $stateParams.id });
+                            }]
 
                         }
                     });
@@ -27,16 +28,13 @@
                 $translateWtiPartialLoaderProvider.addPart('dcm/home/home');
             }])
 
-        .controller('DcmHomeController', ['$scope', '$rootScope', 'UserService', 'CampaignService',
-            function($scope, $rootScope, UserService, CampaignService) {
 
-            $scope.canAccess = function(stateName) {
-                return $scope.$state.get(stateName) && UserService.principal.isAuthorized($scope.$state.get(stateName).access );
-            };
 
-            $scope.$watch(function() {return CampaignService.currentCampaign;}, function(value, oldValue) {
-                $scope.currentCampaign =  CampaignService.currentCampaign;
-            });
+        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'socialInteractions',
+            function ($scope, $rootScope, $state, UserService, socialInteractions) {
 
-        }]);
+                $scope.socialInteractions = socialInteractions;
+
+
+            }]);
 }());

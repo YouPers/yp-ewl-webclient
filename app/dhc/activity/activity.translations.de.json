@@ -1,6 +1,31 @@
 {
   "activity": {
 
+      "header": {
+          "first": {
+              "recommendation": "Empfehlung",
+              "invitation": "Einladung"
+          },
+          "second": "Plan",
+          "third": "Termine",
+
+          "inviteOthers": "Andere einladen",
+          "comments": "Kommentare"
+      },
+
+      "inviteOthers": {
+          "selected": "ausgewählte",
+          "all": "alle"
+      },
+
+      "link": {
+          "schedule": "Einplanen",
+          "dismiss": "Verwerfen",
+          "save": "Termine speichern",
+          "saveAndInvite": "Termine speichern und Einladungen verschicken"
+      },
+
+
       "owner": "Organisator",
       "isJoining": "Teilnehmer",
       "isInvited": "Eingeladen",
@@ -51,20 +76,21 @@
   },
     "activityForm": {
         "title": {
-            "placeholder": "Was"
-        },
-        "text": {
-            "placeholder": "Beschreibung"
+            "label": "Titel",
+            "placeholder": "Titel"
         },
         "location": {
-            "placeholder": "Wo"
+            "label": "Ort",
+            "placeholder": "Ort"
+        },
+        "date": {
+            "label": "Datum"
+        },
+        "time": {
+            "label": "Zeit"
         },
         "recurrence": {
-            "label": "Wiederholungen"
-        },
-        "private": {
-            "label": "Private Aktivität",
-            "text": "Andere können nur an dieser Aktivität teilnehmen, falls du sie persönlich dazu einlädst."
+            "label": "Anzahl der Wiederholungen"
         },
 
         "create": "Erstellen",

@@ -1,0 +1,25 @@
+<ng-include src="'dcm/subnavbar.html'">
+</ng-include>
+<div class="container main-layout dcm {{ $state.current.name.substr(0, $state.current.name.indexOf('.')) }}">
+
+    <div class="column-layout">
+
+        <nav>
+
+            <div ui-view="left" autoscroll="false"></div>
+
+        </nav>
+
+        <section>
+            <div ui-view="content" autoscroll="false"></div>
+        </section>
+
+        <aside>
+
+            [ messages ]
+
+        </aside>
+
+    </div>
+
+</div>

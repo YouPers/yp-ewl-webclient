@@ -3,9 +3,8 @@
 .campaign-switcher {
   padding: 5px;
   border: 1px solid @yp-color-grey1;
-}
-
-.dcm .campaign-switcher {
+  position: relative;
+  width: 150px;
 }
 
 .dcm .campaign-preview  .campaign-switcher {
@@ -37,24 +36,28 @@
 }
 
 .campaign-switcher .campaign {
+  position: relative;
   overflow: hidden;
   * {
     white-space: nowrap;
   }
 }
 
-.campaign-switcher .glyphicon {
+.campaign-switcher .icon {
   color: @yp-color-grey1;
   position: absolute;
   right: 20px;
-  top: 35%;
-  font-size: 20px;
+  top: 20px;
+  i {
+    font-size: 20px;
+  }
 }
 
 .campaign-switcher.switchable .dropdown-menu {
-  padding: 0;
-  margin: -5px 15px;
-
+  padding: 5px;
+  margin: 2px 0 0 -1px;
+  min-width: inherit;
+  width: 101%;
 }
 .campaign-switcher.switchable .dropdown-menu .campaign:not(:first-of-type) {
   border-top: 1px solid @yp-color-grey1;
@@ -71,12 +74,4 @@
       color: @yp-color-green-hover;
   }
 
-}
-
-.dcm .top-bar .campaign-switcher .campaign:hover {
-  background-color: lighten(@yp-color-saffron, 30%);
-}
-
-.dcm .top-bar .campaign-switcher .campaign.selected {
-  background-color: lighten(@yp-color-saffron, 15%);
 }
