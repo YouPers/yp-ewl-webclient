@@ -191,7 +191,7 @@
                     },
 
                     getDefaultActivity: function (idea, options) {
-                        return ideas.one(idea.id || idea).one('defaultActivity').get(options);
+                        return ideas.one(idea.id || idea).one('defaultActivity').get(options).then(_populateIdeas);
                     },
 
                     getDefaultPlan: function (idea, campaignId) {

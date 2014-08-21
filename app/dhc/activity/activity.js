@@ -29,7 +29,7 @@
                                 if ($stateParams.activity) {
                                     return  ActivityService.getActivity($stateParams.activity);
                                 } else {
-                                    return ActivityService.getDefaultActivity($stateParams.idea, { populate: 'idea' });
+                                    return ActivityService.getDefaultActivity($stateParams.idea);
                                 }
                             }],
 
