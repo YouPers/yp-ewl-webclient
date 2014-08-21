@@ -44,7 +44,7 @@
 
                 var offers = _.filter(socialInteractions, function(si) {
                     return si.__t === 'Recommendation' || si.__t === 'Invitation';
-                })
+                });
                 $scope.socialInteractions = _.filter(offers, { dismissed: false });
                 var socialInteractionsDismissed = _.filter(offers, { dismissed: true });
                 $scope.dismissedEvents = [];
@@ -87,7 +87,7 @@
                             throw new Error('unknown action');
                         }
                     } else {
-                        $state.go('dhc.activity', { idea: activity.idea.id, activity: activity.id })
+                        $state.go('dhc.activity', { idea: activity.idea.id, activity: activity.id });
                     }
                 };
 
