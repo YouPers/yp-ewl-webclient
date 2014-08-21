@@ -2,6 +2,20 @@
 
 .dhc.dhc-activity {
 
+  .dismissed .activity-event-card {
+    filter: saturate(0%);
+  }
+
+  activity-view {
+    .dl-horizontal {
+      dt {
+        width: 50px;
+      }
+      dd {
+        margin-left: 60px;
+      }
+    }
+  }
   activity-edit {
     .dl-horizontal {
       dt {
@@ -45,6 +59,10 @@
     }
   }
 
+  .activity-event-card {
+    margin: 1em 2.4em;
+  }
+
   .invited-user {
     position: relative;
     i.fa:hover {
@@ -58,10 +76,17 @@
     }
   }
 
-  .btn.submit {
+  .btn.submit, .btn.backToGame {
     width: 100%;
-    height: 4em;
     white-space: normal;
+    margin-bottom: 0.5em;
+  }
+
+  .btn.submit {
+    height: 4em;
+  }
+  .btn.backToGame {
+    height: 3em;
   }
 
   .game-icon {
@@ -79,8 +104,9 @@
       section:first-of-type {
         border-left: 1px solid @yp-color-grey1;
       }
+
       section {
-        flex: 1 1 25%;
+        flex: 0 0 25%;
         border-top: 1px solid @yp-color-grey1;
         border-right: 1px solid @yp-color-grey1;
 
@@ -91,8 +117,17 @@
         }
         > div {
           padding-bottom: 1em;
+//          transition: 0.4s ease-in opacity;
         }
       }
+
+      section.inactive {
+        > div {
+          opacity: 0;
+        }
+      }
+
+
     }
 
   }

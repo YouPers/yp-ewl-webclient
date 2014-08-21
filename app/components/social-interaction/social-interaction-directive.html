@@ -1,12 +1,12 @@
 
-<ul class="list-group">
+<ul class="list-group" ng-init="options = {}">
 
-    <li class="list-group-item">
+    <li class="list-group-item" ng-if="options.isCampaignLead">
         
-        <button class="btn btn-default pull-right" ng-click="$parent.composeMessage = true" ng-show="!composeMessage" translate>composeMessageForm.show</button>
+        <button class="btn btn-default pull-right" ng-click="options.composeMessage = true" ng-show="!options.composeMessage" translate>composeMessageForm.show</button>
         <div class="clearfix"></div>
 
-        <div ng-show="composeMessage">
+        <div ng-show="options.composeMessage">
             
             <form name="composeMessageForm" class="form-horizontal" ng-submit="saveMessage()">
 

@@ -3,12 +3,15 @@
 
       "header": {
           "first": {
+              "owned": "Deine Aktivität",
+              "joined": "Teilnehmer dieser Aktivität",
               "recommendation": "Empfehlung",
               "invitation": "Einladung"
           },
           "second": "Plan",
           "third": "Termine",
 
+          "joiningUsers": "Teilnehmer",
           "inviteOthers": "Andere einladen",
           "comments": "Kommentare"
       },
@@ -20,7 +23,12 @@
 
       "link": {
           "schedule": "Einplanen",
+          "owned": "Bearbeiten",
+          "recommendation": "Einplanen",
+          "invitation": "Annehmen",
           "dismiss": "Verwerfen",
+          "back": "zurück zum Hauptmenü",
+          "undo": "Rückgängig",
           "save": "Termine speichern",
           "saveAndInvite": "Termine speichern und Einladungen verschicken"
       },

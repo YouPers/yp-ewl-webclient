@@ -26,7 +26,12 @@
 
                     scope.getUsers = function(val) {
                         return UserService.getUsers({ 'filter[fullname]': val }).then(function(users){
-                            return users;
+
+                            return _.filter(users, function(user) {
+                                return !scope.refDoc ||
+                                    !(scope.refDoc.isOwner && scope.refDoc.isOwner(user)) ||
+                                    !(scope.refDoc.isParticipant && scope.refDoc.isParticipant(user));
+                            });
                         });
                     };
 

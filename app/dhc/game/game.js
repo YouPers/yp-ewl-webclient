@@ -20,7 +20,10 @@
                                 return ActivityService.getActivities();
                             }],
                             socialInteractions: ['SocialInteractionService', function(SocialInteractionService) {
-                                return SocialInteractionService.getSocialInteractions({ populate: 'author refDocs', includeDismissed: true });
+                                return SocialInteractionService.getSocialInteractions({
+                                    populate: 'author refDocs',
+                                    includeDismissed: true
+                                });
                             }],
                             activityEvents: ['ActivityService', function(ActivityService) {
                                 return ActivityService.getActivityEvents();
@@ -39,8 +42,11 @@
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
 
-                $scope.socialInteractions = _.filter(socialInteractions, { dismissed: false });
-                var socialInteractionsDismissed = _.filter(socialInteractions, { dismissed: true });
+                var offers = _.filter(socialInteractions, function(si) {
+                    return si.__t === 'Recommendation' || si.__t === 'Invitation';
+                });
+                $scope.socialInteractions = _.filter(offers, { dismissed: false });
+                var socialInteractionsDismissed = _.filter(offers, { dismissed: true });
                 $scope.dismissedEvents = [];
                 _.forEach(socialInteractionsDismissed, function (sid) {
                     $scope.dismissedEvents.push({
@@ -80,6 +86,8 @@
                         } else {
                             throw new Error('unknown action');
                         }
+                    } else {
+                        $state.go('dhc.activity', { idea: activity.idea.id, activity: activity.id });
                     }
                 };
 
