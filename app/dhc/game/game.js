@@ -73,7 +73,7 @@
                 $scope.activities = _.sortBy($scope.activities, function(activity) {
                     return _.max(_.filter($scope.eventsByActivity, { status: 'open' }), function(event) {
                         return new Date(event.end).getTime();
-                    })
+                    });
                 });
 
                 $scope.showIdeas = function(status, hovered) {
