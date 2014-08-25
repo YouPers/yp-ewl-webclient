@@ -9,8 +9,8 @@
       "6": "<p>Je vollständiger Du die  <a href='/#/check'>Selbstbeurteilung</a> ausfüllst desto besser passen die vorgeschla&shy;genen Aktivitäten zu deiner persönlichen Situation. <p><p>Bis jetzt hast du weniger als die Hälfte der Fragen beantwortet.",
       "7": "<p>Sobald du die  <a href='/#/check'>Selbstbeurteilung</a> vollständig ausgefüllt hast, zeigen wir dir auf dieser Seite eine Auswertung aufgrund der du deinen persönlichen Fokus wählen kannst.",
       "8": "<p>Sobald du bei Empfehlungen eine Aktivität eingeplant hast, wird dir diese hier in deinem Plan angezeigt.",
-      "9": "<p>Erfasse hier einen ersten Tagebucheintrag und wiederhole dies gelegentlich, um deine Stresssituation zu verfolgen",
-      "10": "<p>Pflege deine offenen Rückmeldungen. Das Aktivitäts-Ergebnis wird automatisch in dein <a href='/#/diary'>Tagebuch</a> übertragen.",
+      "9": "<p>",
+      "10": "<p>Pflege deine offenen Rückmeldungen.",
       "11": "<p>Setze dir aufgrund deines aktuellen Handlungsbedarfes einen Fokus. Unter Empfehlungen werden dir zum Handlungsbedarf passende <a href='/#/select'>Aktivitätsempfehlungen</a> angezeigt.",
       "12": "<p>Überprüfe deinen Fokus und passe diesen bei Bedarf an, um entsprechend angepasste <a href='/#/select'>Aktivitäts-Empfehlungen</a> zu erhalten.",
       "13": "<p>Schau Dir die <a href='/#/select'>Aktivitäts-Vorschläge</a> an und plane etwas Passendes ein.",
@@ -18,5 +18,4 @@
       "15": "<p>Geplante Aktivitäten können auf dieser Seite geändert oder gelöscht werden. Neue Aktivitäten können auf der Seite <a href='/#/select'>Empfehlungen</a> eingeplant werden.",
       "schedulingConflict": "Du hast am {{beginDate}} - {{endDate}} bereits die Aktivität: '{{title}}' geplant.<p>Willst du wirklich gleichzeitig noch etwas planen?"
     }
-  }
 }
