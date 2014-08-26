@@ -18,6 +18,10 @@
                             throw new Error('attribute "activity" is required');
                         }
 
+                        if(!scope.activity.id) {
+                            throw new Error('activity.id is undefined');
+                        }
+
                         var user = scope.user = UserService.principal.getUser();
 
                         scope.keypress = function keypress($event) {
@@ -28,8 +32,8 @@
 
                         scope.saveMessage = function saveMessage() {
                             SocialInteractionService.postMessage(scope.message).then(function() {
-//                                scope.messages.unshift(scope.message);
-                                activate();
+                                scope.messages.unshift(scope.message);
+                                reset();
                             });
                         };
 
@@ -38,7 +42,7 @@
                             _.remove(scope.messages, { id: message.id });
                         };
 
-                        function activate() {
+                        function reset() {
 
                             var template = {
                                 author: user,
@@ -52,10 +56,16 @@
                                 ]
                             };
                             scope.message = _.clone(template);
+                        }
+
+                        function activate() {
+
+                            reset();
 
                             SocialInteractionService.getMessages({
                                 populate: 'author',
-                                targetId: scope.activity && scope.activity.id
+                                authored: true,
+                                targetId: scope.activity.id
                             }).then(function (messages) {
                                 scope.messages = _.sortBy(messages, function(message) {
                                     return - new Date(message.created).getTime();

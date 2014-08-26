@@ -12,6 +12,7 @@
                 var recommendations = Rest.all('recommendations');
                 var invitations = Rest.all('invitations');
                 var messages = Rest.all('messages');
+                var offers = Rest.all('offers');
 
                 function extractRefDocs(results) {
                     _.forEach(results, function (result) {
@@ -70,6 +71,12 @@
                     },
                     postMessage: function(message) {
                         return messages.post(message);
+                    },
+
+                    getOffers: function(options) {
+                        return offers.getList(options).then(function(results) {
+                            return extractRefDocs(results);
+                        });
                     }
                 };
                 return SocialInteractionService;

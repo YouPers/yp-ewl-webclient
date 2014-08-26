@@ -19,10 +19,9 @@
                             activities: ['ActivityService', function(ActivityService) {
                                 return ActivityService.getActivities();
                             }],
-                            socialInteractions: ['SocialInteractionService', function(SocialInteractionService) {
-                                return SocialInteractionService.getSocialInteractions({
-                                    populate: 'author refDocs',
-                                    includeDismissed: true
+                            offers: ['SocialInteractionService', function(SocialInteractionService) {
+                                return SocialInteractionService.getOffers({
+                                    populate: 'author refDocs'
                                 });
                             }],
                             activityEvents: ['ActivityService', function(ActivityService) {
@@ -36,28 +35,29 @@
             }])
 
 
-        .controller('GameController', [ '$scope', '$state', '$window', 'activities', 'socialInteractions', 'activityEvents',
-            function ($scope, $state, $window, activities, socialInteractions, activityEvents) {
+        .controller('GameController', [ '$scope', '$state', '$window', 'activities', 'offers', 'activityEvents',
+            function ($scope, $state, $window, activities, offers, activityEvents) {
 
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
 
-                var offers = _.filter(socialInteractions, function(si) {
+                var offers = _.filter(offers, function(si) {
                     return si.__t === 'Recommendation' || si.__t === 'Invitation';
                 });
-                $scope.socialInteractions = _.filter(offers, { dismissed: false });
-                var socialInteractionsDismissed = _.filter(offers, { dismissed: true });
+                $scope.offers = _.filter(offers, function(si) {
+                    return !(si.dismissed || si.rejected);
+                });
+                var offersDismissed = _.filter(offers, function(si) {
+                    return si.dismissed || si.rejected;
+                });
                 $scope.dismissedEvents = [];
-                _.forEach(socialInteractionsDismissed, function (sid) {
+                _.forEach(offersDismissed, function (sid) {
                     $scope.dismissedEvents.push({
                         activity: sid.activity,
                         idea: sid.idea || sid.activity.idea,
                         socialInteraction: sid
                     });
                 });
-
-                $scope.invitations = _.filter(socialInteractions, { __t: 'Invitation' });
-                $scope.recommendations = _.filter(socialInteractions, { __t: 'Recommendation' });
 
                 $scope.events = _.filter(activityEvents, {status: 'open'}).reverse();
                 $scope.eventsByActivity = _.groupBy($scope.events, 'activity');

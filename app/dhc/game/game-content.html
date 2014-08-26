@@ -52,12 +52,12 @@
             <div class="flex" ng-style="{ height: $parent.offeredActivitiesAreaHeight + 'em' }">
 
 
-                <activity-event-stack type="{{ socialInteraction.__t.toLowerCase() }}"
-                                      activity="socialInteraction.activity"
-                                      idea="socialInteraction.idea"
-                                      social-interaction="socialInteraction"
-                                      ng-repeat="socialInteraction in socialInteractions"
-                                      ng-click="openSocialInteraction(socialInteraction)"
+                <activity-event-stack type="{{ offer.__t.toLowerCase() }}"
+                                      activity="offer.activity"
+                                      idea="offer.idea"
+                                      social-interaction="offer"
+                                      ng-repeat="offer in offers"
+                                      ng-click="openSocialInteraction(offer)"
                         >
 
                 </activity-event-stack>
