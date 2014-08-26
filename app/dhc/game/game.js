@@ -69,7 +69,12 @@
                     event.activity = _.find($scope.activities, {id: event.activity });
                 });
 
-
+                // sort activities by the end date of the oldest event of an activity with the status 'open'
+                $scope.activities = _.sortBy($scope.activities, function(activity) {
+                    return _.max(_.filter($scope.eventsByActivity, { status: 'open' }), function(event) {
+                        return new Date(event.end).getTime();
+                    });
+                });
 
                 $scope.showIdeas = function(status, hovered) {
                     if(_.isUndefined(hovered) || hovered) {
