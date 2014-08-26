@@ -63,6 +63,11 @@
     "question": "Frage",
     "support": "Hilfe"
   },
+    "composeCommentForm": {
+        "comment": {
+            "paceholder": "Einen Kommentar schreiben"
+        }
+    },
   "feedbackForm": {
     "anonymous": {
       "label": "Anonymes Feedback"

@@ -112,6 +112,7 @@
 
     <!--directives-->
     <script src="components/directives/yp-input-directive/yp-input-directive.js"></script>
+    <script src="components/directives/activity-comments-directive/activity-comments-directive.js"></script>
     <script src="components/directives/activity-event-stack-directive/activity-event-stack-directive.js"></script>
     <script src="components/directives/activity-event-card-directive/activity-event-card-directive.js"></script>
     <script src="components/directives/user-invitation-directive/user-invitation-directive.js"></script>
@@ -239,7 +240,7 @@
 
     </div>
 
-    <div ui-view autoscroll="false"></div>
+    <div ui-view autoscroll="false" ng-cloak></div>
 
     <ng-include src="'partials/footer.html'"></ng-include>
 
