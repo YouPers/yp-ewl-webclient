@@ -41,9 +41,6 @@
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
 
-                var offers = _.filter(offers, function(si) {
-                    return si.__t === 'Recommendation' || si.__t === 'Invitation';
-                });
                 $scope.offers = _.filter(offers, function(si) {
                     return !(si.dismissed || si.rejected);
                 });
