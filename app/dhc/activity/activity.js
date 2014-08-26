@@ -25,19 +25,35 @@
                                 return  ActivityService.getIdea(idea);
                             }],
 
-                            activity: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
-                                if ($stateParams.activity) {
-                                    return  ActivityService.getActivity($stateParams.activity);
-                                } else {
-                                    return ActivityService.getDefaultActivity($stateParams.idea);
-                                }
-                            }],
-
                             socialInteraction: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
                                 if ($stateParams.socialInteraction) {
                                     return  SocialInteractionService.getSocialInteraction($stateParams.socialInteraction);
                                 } else {
                                     return undefined;
+                                }
+                            }],
+
+                            activity: ['$stateParams', 'ActivityService', 'socialInteraction', '$q',
+                                function ($stateParams, ActivityService, socialInteraction, $q) {
+                                // check whether we have a socialInteraction holding an activity
+                                var activityFromSoi;
+                                if (socialInteraction) {
+                                    _.forEach(socialInteraction.refDocs, function (refDoc) {
+                                        if (refDoc.doc && refDoc.model === 'Activity') {
+                                            activityFromSoi = refDoc.doc;
+                                        }
+                                    });
+                                }
+
+                                if (activityFromSoi) {
+                                    var deferred = $q.defer();
+                                    deferred.resolve(activityFromSoi);
+                                    return deferred.promise;
+                                } else
+                                if ($stateParams.activity) {
+                                    return  ActivityService.getActivity($stateParams.activity);
+                                } else {
+                                    return ActivityService.getDefaultActivity($stateParams.idea);
                                 }
                             }]
                         }
@@ -49,18 +65,16 @@
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams',
             'UserService', 'ActivityService', 'SocialInteractionService',
             'campaign', 'idea', 'activity', 'socialInteraction',
-            function ($scope, $rootScope, $state, $stateParams,
-                      UserService, ActivityService, SocialInteractionService,
-                      campaign, idea, activity, socialInteraction) {
+            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, SocialInteractionService, campaign, idea, activity, socialInteraction) {
 
                 var activityController = this;
 
                 $scope.idea = idea;
                 $scope.activity = activity;
 
-                if(socialInteraction) {
+                if (socialInteraction) {
                     $scope.socialInteraction = socialInteraction;
-                    $scope.socialInteractionEvent = activity ? activity.mainEvent : {} ;
+                    $scope.socialInteractionEvent = activity ? _.clone(activity.mainEvent) : {};
                     _.extend($scope.socialInteractionEvent, {
                         idea: idea,
                         socialInteraction: socialInteraction
@@ -125,7 +139,7 @@
 
 
                 $scope.$watch('activity.mainEvent', validateActivity, true);
-                $scope.$watch('activity', function() {
+                $scope.$watch('activity', function () {
                     $scope.dirty = true;
                 }, true);
 
@@ -146,21 +160,25 @@
                         $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
 
                         var inviteAll = $scope.inviteOthers === 'all';
-                        if(inviteAll || $scope.invitedUsers.length > 0) {
+                        if (inviteAll || $scope.invitedUsers.length > 0) {
 
                             var invitation = {
                                 author: UserService.principal.getUser().id,
-                                refDocs: [{
-                                    docId: $scope.activity.id,
-                                    model: 'Activity'
-                                }]
+                                refDocs: [
+                                    {
+                                        docId: $scope.activity.id,
+                                        model: 'Activity'
+                                    }
+                                ]
                             };
 
-                            if(inviteAll) {
-                                invitation.targetSpaces = [{
-                                    type: 'campaign',
-                                    targetId: campaign.id
-                                }];
+                            if (inviteAll) {
+                                invitation.targetSpaces = [
+                                    {
+                                        type: 'campaign',
+                                        targetId: campaign.id
+                                    }
+                                ];
                             } else {
                                 invitation.targetSpaces = [];
                                 _.forEach($scope.invitedUsers, function (user) {

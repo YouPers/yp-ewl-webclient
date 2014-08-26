@@ -68,7 +68,7 @@
                         if(!scope.socialInteraction) {
                             throw new Error('"socialInteraction" is required for type "invitation"');
                         }
-                        var event = scope.activity.mainEvent;
+                        var event = _.clone(scope.activity.mainEvent);
                         event.activity = scope.activity;
                         event.idea = scope.activity.idea;
                         event.socialInteraction = scope.socialInteraction;
