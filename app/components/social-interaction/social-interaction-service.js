@@ -46,8 +46,8 @@
                             return extractRefDocs(results);
                         });
                     },
-                    deleteSocialInteraction: function(socialInteractionId) {
-                        return socialInteractions.one(socialInteractionId).remove();
+                    deleteSocialInteraction: function(socialInteractionId, options) {
+                        return socialInteractions.one(socialInteractionId).remove(options);
                     },
 
                     getRecommendations: function(options) {

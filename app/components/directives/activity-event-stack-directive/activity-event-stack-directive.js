@@ -89,7 +89,7 @@
                             throw new Error('"idea" is required for type "recommendation"');
                         }
                         if(!scope.socialInteraction) {
-                            throw new Error('"socialInteraction" is required for type "invitation"');
+                            throw new Error('"socialInteraction" is required for type "recommendation"');
                         }
                         scope.events = [{
                             idea: scope.idea,

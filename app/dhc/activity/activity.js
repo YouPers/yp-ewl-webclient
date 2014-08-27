@@ -144,7 +144,7 @@
                 }, true);
 
                 $scope.dismiss = function dismiss() {
-                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id).then(function (result) {
+                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, { reason: 'denied'}).then(function (result) {
                         console.log(result);
                         activityController.dismissed = true;
                     });
