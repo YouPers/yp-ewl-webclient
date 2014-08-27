@@ -41,9 +41,30 @@
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
 
+                function sortByDate(offer) {
+                    return - new Date(offer.publishFrom || offer.created).getTime();
+                }
+                var slots = {};
+                function sortBySlot(offer) {
+                    var base = 0;
+                    if(!slots.first && offer.authorType === 'coach') {
+                        slots.first = base = 3;
+                    } else if(!slots.second && offer.authorType === 'campaignLead') {
+                        slots.second = base = 2;
+                    } else if(!slots.third && offer.authorType !== 'campaignLead' && offer.__t === 'Invitation') {
+                        slots.third = base = 1;
+                    }
+                    offer.priority = - base + 1 / new Date(offer.publishFrom || offer.created).getTime();
+                    return  offer.priority;
+                }
+
                 $scope.offers = _.filter(offers, function(si) {
                     return !(si.dismissed || si.rejected);
                 });
+
+                // sort by date first, then fill up the 3 slots with the first and newest match
+                $scope.offers = _.sortBy(_.sortBy($scope.offers, sortByDate), sortBySlot);
+
                 var offersDismissed = _.filter(offers, function(si) {
                     return si.dismissed || si.rejected;
                 });
