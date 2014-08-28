@@ -1,10 +1,5 @@
 {
   "check": {
-    "impactQuestion": {
-      "question": "Does this stress you?",
-      "leftCaption": "hardly",
-      "rightCaption": "very much"
-    },
     "toFocus": "Go to focus",
     "questionsAnswered": "criteria rated",
     "stateHeader1": "your",
