@@ -1,4 +1,12 @@
 {
+    "clientmsg": {
+        "success": {
+            "activity": {
+                "joined": "Einladung angenommen"
+            }
+        }
+    },
+
   "activity": {
 
       "header": {
@@ -38,7 +46,9 @@
           "save": "Termine speichern",
           "saveAndInvite": "Termine speichern und Einladungen verschicken"
       },
-
+      "submit": {
+          "invitation": "Einladung annehmen und Termine speichern"
+      },
 
       "owner": "Organisator",
       "isJoining": "Teilnehmer",

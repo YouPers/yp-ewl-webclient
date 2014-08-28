@@ -127,8 +127,8 @@
             <button class="btn btn-default backToGame" ui-sref="dhc.game" translate>
                 activity.link.back
             </button>
-            <button class="btn btn-primary submit" ng-disabled="!activityController.active || !dirty" ng-click="saveActivity()">
-                {{ 'activity.link.' + (invitedUsers.length > 0 ? 'saveAndInvite' : 'save') | translate }}
+            <button class="btn btn-primary submit" ng-disabled="!activityController.active || !dirty" ng-click="submit()">
+                {{ 'activity.submit.' + mode | translate }}
             </button>
         </div>
         <div class="box">

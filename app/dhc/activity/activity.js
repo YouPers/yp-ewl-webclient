@@ -32,14 +32,9 @@
                                     return undefined;
                                 }
                             }],
-                            invitations: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
+                            invitations: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 if ($stateParams.activity) {
-
-                                    return  SocialInteractionService.getInvitations({
-                                        refDocId: $stateParams.activity,
-                                        dismissed: true,
-                                        authored: true
-                                    });
+                                    return  ActivityService.getInvitationStatus($stateParams.activity);
                                 } else {
                                     return [];
                                 }
@@ -173,10 +168,26 @@
                     });
 
                 };
+
+                $scope.submit = function() {
+                    var user = UserService.principal.getUser();
+                    if( ($scope.activity.owner.id || $scope.activity.owner) === user.id) {
+                        $scope.saveActivity();
+                    } else {
+                        $scope.joinActivity();
+                    }
+                }
+
+                $scope.joinActivity = function joinActivity() {
+                    ActivityService.joinPlan($scope.activity).then(function (joinedActivity) {
+                        $rootScope.$emit('clientmsg:success', 'activity.joined');
+                        $state.go('dhc.activity', { idea: idea.id, activity: joinedActivity.id, socialInteraction: undefined });
+                    });
+                };
                 $scope.saveActivity = function saveActivity() {
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
-                        $rootScope.$emit('clientmsg:success', 'activityPlan.save');
+                        $rootScope.$emit('clientmsg:success', 'activity.saved');
 
                         $scope.activity = savedActivity;
                         $scope.dirty = false;

@@ -177,7 +177,7 @@ angular.module('yp-ewl',
                 if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
                     $state.go('dcm.home');
                 } else {
-                    $state.go('home.content');
+                    $state.go('dhc.game');
                 }
             });
 
