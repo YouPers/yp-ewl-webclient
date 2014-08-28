@@ -32,7 +32,13 @@
                                     return undefined;
                                 }
                             }],
-                            invitations: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                            campaignInvitation: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
+                                return  SocialInteractionService.getInvitations({
+                                    targetId: $stateParams.campaignId,
+                                    refDocId: $stateParams.activity
+                                });
+                            }],
+                            invitationStatus: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 if ($stateParams.activity) {
                                     return  ActivityService.getInvitationStatus($stateParams.activity);
                                 } else {
@@ -63,13 +69,15 @@
 
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams',
             'UserService', 'ActivityService', 'SocialInteractionService',
-            'campaign', 'idea', 'activity', 'socialInteraction', 'invitations',
-            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, SocialInteractionService, campaign, idea, activity, socialInteraction, invitations) {
+            'campaign', 'idea', 'activity', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
+            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, SocialInteractionService,
+                      campaign, idea, activity, socialInteraction, campaignInvitation, invitationStatus) {
 
                 var activityController = this;
 
                 $scope.idea = idea;
                 $scope.activity = activity;
+                $scope.campaignInvitation = campaignInvitation;
 
                 if (socialInteraction) {
                     $scope.socialInteraction = socialInteraction;
@@ -113,23 +121,19 @@
                     'owned': false
                 };
 
-                $scope.invitedUsers = activity.joiningUsers || [];
-
-                _.forEach($scope.invitedUsers, function(user) {
-                    user.invitationStatus = 'accepted';
-                });
-
-                _.forEach(_.flatten(invitations, 'targetSpaces'), function (space) {
-                    if(space.type === 'campaign' && space.targetId === activity.campaign) { //check if campaign is invited
-                        $scope.inviteOthers = 'all';
-                        $scope.inviteLocked = true;
-                    } else if(space.type === 'user') { // extract invited users
-                        $scope.inviteOthers = 'selected';
-                        var user = space.user;
-                        user.invitationStatus = user.dismissed || user.rejected ? 'rejected' : 'pending';
+                if(campaignInvitation) { // check if campaign is already invited
+                    $scope.inviteOthers = 'all';
+                    $scope.inviteLocked = true;
+                }
+                $scope.invitedUsers = [];
+                if(invitationStatus && invitationStatus.length > 0) {
+                    $scope.inviteOthers = 'selected';
+                    _.each(invitationStatus, function (status) {
+                        var user = status.user;
+                        user.invitationStatus = status.status;
                         $scope.invitedUsers.push(user);
-                    }
-                });
+                    });
+                }
 
                 $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
 
@@ -176,7 +180,7 @@
                     } else {
                         $scope.joinActivity();
                     }
-                }
+                };
 
                 $scope.joinActivity = function joinActivity() {
                     ActivityService.joinPlan($scope.activity).then(function (joinedActivity) {

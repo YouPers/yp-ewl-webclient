@@ -30,8 +30,8 @@
       },
 
       "invitationStatus": {
-          "accepted": "angenommen",
-          "rejected": "abgelehnt",
+          "activityJoined": "angenommen",
+          "denied": "abgelehnt",
           "pending": "?"
       },
 
