@@ -1,10 +1,5 @@
 {
   "check": {
-    "impactQuestion": {
-      "question": "Stresst dich das?",
-      "leftCaption": "kaum",
-      "rightCaption": "sehr"
-    },
     "toFocus": "Zu deinem Fokus",
     "questionsAnswered": "Kriterien beurteilt",
     "stateHeader1": "deine",

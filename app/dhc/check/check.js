@@ -61,7 +61,7 @@
                 }
                 $scope.orderedCategoryNames = _.uniq(_.map(assessment.questions, 'category'));
                 $scope.categories = _.groupBy(assessment.questions, 'category');
-
+                $scope.assessment = assessment;
 
                 // setup helper values for UI-controls
                 _.forEach(newestResult.answers, function(myAnswer) {

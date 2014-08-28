@@ -67,8 +67,8 @@ welches Assessment zu welchem Topic wir hier darstellen sollen. <a ui-sref="camp
 
                 <div class="col-sm-2 col-sm-offset-3 slider-left-container">
                     <div ng-if="answers[question.id].answerType == 'min'">
-                        <div class="impact-question" translate>check.impactQuestion.question</div>
-                        <div class="slider-caption-left" translate>check.impactQuestion.leftCaption</div>
+                        <div class="impact-question" >{{assessment.impactQuestion}}</div>
+                        <div class="slider-caption-left">{{assessment.impactQuestionLeft}}</div>
                         <slider ng-class="[question.type]"
                                 ng-model="answers[question.id].answerValue"
                                 ng-mousedown="answers[question.id].dirty = true"
@@ -77,13 +77,13 @@ welches Assessment zu welchem Topic wir hier darstellen sollen. <a ui-sref="camp
                                 step="1"
                                 precision="1">
                         </slider>
-                        <div class="slider-caption-right" translate>check.impactQuestion.rightCaption</div>
+                        <div class="slider-caption-right">{{assessment.impactQuestionRight}}</div>
                     </div>
                 </div>
                 <div class="col-sm-2 col-sm-offset-2 slider-right-container">
-                    <div ng-if="question.type == 'twoSided' && answers[question.id].answerType == 'max'">
-                        <div class="impact-question" translate>check.impactQuestion.question</div>
-                        <div class="slider-caption-left" translate>check.impactQuestion.leftCaption</div>
+                    <div ng-if="(question.type == 'twoSided' || question.type == 'rightSided' ) && answers[question.id].answerType == 'max'">
+                        <div class="impact-question">{{assessment.impactQuestion}}</div>
+                        <div class="slider-caption-left">{{assessment.impactQuestionLeft}}</div>
                         <slider ng-class="[question.type]"
                                 ng-model="answers[question.id].answerValue"
                                 ng-mousedown="answers[question.id].dirty = true"
@@ -92,7 +92,7 @@ welches Assessment zu welchem Topic wir hier darstellen sollen. <a ui-sref="camp
                                 step="1"
                                 precision="1">
                         </slider>
-                        <div class="slider-caption-right" translate>check.impactQuestion.rightCaption</div>
+                        <div class="slider-caption-right">{{assessment.impactQuestionRight}}</div>
                     </div>
                 </div>
 

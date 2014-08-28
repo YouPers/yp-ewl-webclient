@@ -1,10 +1,5 @@
 {
   "check": {
-    "impactQuestion": {
-      "question": "ça te stresse?",
-      "leftCaption": "à peine",
-      "rightCaption": "beaucoup"
-    },
     "toFocus": "à ton l'accent",
     "questionsAnswered": "juger des critères",
     "stateHeader1": "Ton",
