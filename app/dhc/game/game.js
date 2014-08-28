@@ -41,29 +41,29 @@
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
 
-                function sortByDate(offer) {
-                    return - new Date(offer.publishFrom || offer.created).getTime();
-                }
-                var slots = {};
-                function sortBySlot(offer) {
-                    var base = 0;
-                    if(!slots.first && offer.authorType === 'coach') {
-                        slots.first = base = 3;
-                    } else if(!slots.second && offer.authorType === 'campaignLead') {
-                        slots.second = base = 2;
-                    } else if(!slots.third && offer.authorType !== 'campaignLead' && offer.__t === 'Invitation') {
-                        slots.third = base = 1;
+                function sortOffers(list) {
+                    function sortByDate(offer) {
+                        return - new Date(offer.publishFrom || offer.created).getTime();
                     }
-                    offer.priority = - base + 1 / new Date(offer.publishFrom || offer.created).getTime();
-                    return  offer.priority;
+                    function addResult(target, source, cb) {
+                        return target.concat(source.splice(_.findIndex(source, cb), 1));
+                    }
+                    var sorted = _.sortBy(list, sortByDate); // newest first
+                    var result = [];
+                    // find and remove first 3 offer types, add them to the results
+                    result = addResult(result, sorted, { authorType: 'coach' });
+                    result = addResult(result, sorted, { authorType: 'campaignLead' });
+                    result = addResult(result, sorted, function(offer) {
+                        return offer.authorType !== 'campaignLead' && offer.__t === 'Invitation';
+                    });
+                    result = result.concat(sorted); // add the rest
+                    return result;
                 }
 
                 $scope.offers = _.filter(offers, function(si) {
                     return !(si.dismissed || si.rejected);
                 });
-
-                // sort by date first, then fill up the 3 slots with the first and newest match
-                $scope.offers = _.sortBy(_.sortBy($scope.offers, sortByDate), sortBySlot);
+                $scope.offers = sortOffers($scope.offers);
 
                 var offersDismissed = _.filter(offers, function(si) {
                     return si.dismissed || si.rejected;
