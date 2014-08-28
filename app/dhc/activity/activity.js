@@ -32,24 +32,29 @@
                                     return undefined;
                                 }
                             }],
+                            campaignInvitation: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
+                                return  SocialInteractionService.getInvitations({
+                                    targetId: $stateParams.campaignId,
+                                    refDocId: $stateParams.activity
+                                });
+                            }],
+                            invitationStatus: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+                                if ($stateParams.activity) {
+                                    return  ActivityService.getInvitationStatus($stateParams.activity);
+                                } else {
+                                    return [];
+                                }
+                            }],
 
                             activity: ['$stateParams', 'ActivityService', 'socialInteraction', '$q',
                                 function ($stateParams, ActivityService, socialInteraction, $q) {
-                                // check whether we have a socialInteraction holding an activity
-                                var activityFromSoi;
-                                if (socialInteraction) {
-                                    _.forEach(socialInteraction.refDocs, function (refDoc) {
-                                        if (refDoc.doc && refDoc.model === 'Activity') {
-                                            activityFromSoi = refDoc.doc;
-                                        }
+                                    // check whether we have a socialInteraction holding an activity
+                                    var activityRefDoc = socialInteraction && _.find(socialInteraction.refDocs, function (refDoc) {
+                                        return refDoc.doc && refDoc.model === 'Activity';
                                     });
-                                }
-
-                                if (activityFromSoi) {
-                                    var deferred = $q.defer();
-                                    deferred.resolve(activityFromSoi);
-                                    return deferred.promise;
-                                } else
+                                    if (activityRefDoc) {
+                                        return activityRefDoc.doc;
+                                    }
                                 if ($stateParams.activity) {
                                     return  ActivityService.getActivity($stateParams.activity);
                                 } else {
@@ -64,13 +69,15 @@
 
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams',
             'UserService', 'ActivityService', 'SocialInteractionService',
-            'campaign', 'idea', 'activity', 'socialInteraction',
-            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, SocialInteractionService, campaign, idea, activity, socialInteraction) {
+            'campaign', 'idea', 'activity', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
+            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, SocialInteractionService,
+                      campaign, idea, activity, socialInteraction, campaignInvitation, invitationStatus) {
 
                 var activityController = this;
 
                 $scope.idea = idea;
                 $scope.activity = activity;
+                $scope.campaignInvitation = campaignInvitation;
 
                 if (socialInteraction) {
                     $scope.socialInteraction = socialInteraction;
@@ -114,13 +121,28 @@
                     'owned': false
                 };
 
-
+                if(campaignInvitation) { // check if campaign is already invited
+                    $scope.inviteOthers = 'all';
+                    $scope.inviteLocked = true;
+                }
                 $scope.invitedUsers = [];
+                if(invitationStatus && invitationStatus.length > 0) {
+                    $scope.inviteOthers = 'selected';
+                    _.each(invitationStatus, function (status) {
+                        var user = status.user;
+                        user.invitationStatus = status.status;
+                        $scope.invitedUsers.push(user);
+                    });
+                }
+
+                $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
+
+                $scope.usersToBeInvited = [];
                 $scope.onUserSelected = function onUserSelected(user) {
-                    $scope.invitedUsers.push(user);
+                    $scope.usersToBeInvited.push(user);
                 };
-                $scope.removeInvitedUser = function (user) {
-                    _.remove($scope.invitedUsers, { id: user.id });
+                $scope.removeUserToBeInvited = function (user) {
+                    _.remove($scope.usersToBeInvited, { id: user.id });
                 };
 
                 var validateActivity = _.debounce(function () {
@@ -150,17 +172,33 @@
                     });
 
                 };
+
+                $scope.submit = function() {
+                    var user = UserService.principal.getUser();
+                    if( ($scope.activity.owner.id || $scope.activity.owner) === user.id) {
+                        $scope.saveActivity();
+                    } else {
+                        $scope.joinActivity();
+                    }
+                };
+
+                $scope.joinActivity = function joinActivity() {
+                    ActivityService.joinPlan($scope.activity).then(function (joinedActivity) {
+                        $rootScope.$emit('clientmsg:success', 'activity.joined');
+                        $state.go('dhc.activity', { idea: idea.id, activity: joinedActivity.id, socialInteraction: undefined });
+                    });
+                };
                 $scope.saveActivity = function saveActivity() {
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
-                        $rootScope.$emit('clientmsg:success', 'activityPlan.save');
+                        $rootScope.$emit('clientmsg:success', 'activity.saved');
 
                         $scope.activity = savedActivity;
                         $scope.dirty = false;
                         $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
 
                         var inviteAll = $scope.inviteOthers === 'all';
-                        if (inviteAll || $scope.invitedUsers.length > 0) {
+                        if (inviteAll || $scope.usersToBeInvited.length > 0) {
 
                             var invitation = {
                                 author: UserService.principal.getUser().id,
@@ -181,7 +219,7 @@
                                 ];
                             } else {
                                 invitation.targetSpaces = [];
-                                _.forEach($scope.invitedUsers, function (user) {
+                                _.forEach($scope.usersToBeInvited, function (user) {
                                     invitation.targetSpaces.push({
                                         type: 'user',
                                         targetId: user.id

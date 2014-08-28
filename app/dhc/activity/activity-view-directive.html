@@ -1,11 +1,24 @@
 
 
 <dl class="dl-horizontal">
+
     <dt translate>activity.view.title</dt>
     <dd>{{ activity.title }}</dd>
-    <dt translate>activity.view.date</dt>
-    <dd ng-if="activity.id">{{ activity.mainEvent.start | date }}</dd>
-    <dd ng-if="!activity.id">{{ 'activityPlanFrequency.' + activity.idea.defaultfrequency | translate }}</dd>
+
     <dt ng-if="activity.location" translate>activity.view.location</dt>
     <dd ng-if="activity.location">{{ activity.location || '&nbsp;' }}</dd>
+
+    <dt translate>activity.view.date</dt>
+    <dd ng-if="activity.id">{{ activity.mainEvent.start | date }}</dd>
+
+    <dt translate>activity.view.time</dt>
+    <dd ng-if="activity.id">{{ activity.mainEvent.start | time }} - {{ activity.mainEvent.end | time }}</dd>
+
+    <dt translate>activity.view.frequency</dt>
+    <dd ng-if="activity.id">{{ 'activityPlanFrequency.' + activity.mainEvent.frequency | translate }}</dd>
+    <dd ng-if="!activity.id">{{ 'activityPlanFrequency.' + activity.idea.defaultfrequency | translate }}</dd>
+
+    <dt ng-if="activity.id" class="recurrence" translate>activity.view.recurrence</dt>
+    <dd ng-if="activity.id" class="recurrence">{{ activity.mainEvent.recurrence.endby.after }}</dd>
+
 </dl>

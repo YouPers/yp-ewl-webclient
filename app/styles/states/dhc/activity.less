@@ -9,11 +9,12 @@
   activity-view {
     .dl-horizontal {
       dt {
-        width: 50px;
+        width: 90px;
       }
       dd {
-        margin-left: 60px;
+        margin-left: 105px;
       }
+
     }
   }
   activity-edit {
@@ -63,7 +64,27 @@
     margin: 1em 2.4em;
   }
 
-  .invited-user {
+  .invitedUser {
+    display: flex;
+    justify-content:flex-start;
+    align-content: flex-start;
+    align-items: center;
+
+    flex-direction:row;
+    *:first-of-type {
+      flex: 0 0 60px;
+    }
+    * {
+      flex: 1 1 auto;
+    }
+    *:last-of-type {
+      flex: 0 1 30%;
+    }
+
+    border-top: 1px solid @yp-color-grey1;
+  }
+
+  .user-to-be-invited {
     position: relative;
     i.fa:hover {
       color: @yp-color-red;

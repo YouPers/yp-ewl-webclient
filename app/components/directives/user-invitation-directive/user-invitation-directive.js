@@ -13,7 +13,7 @@
                 restrict: 'EA',
                 scope: {
                     type: '@',
-                    refDoc: '=',
+                    excludedUsers: '=',
                     onUserSelected: '='
                 },
                 templateUrl: 'components/directives/user-invitation-directive/user-invitation-directive.html',
@@ -28,9 +28,9 @@
                         return UserService.getUsers({ 'filter[fullname]': val }).then(function(users){
 
                             return _.filter(users, function(user) {
-                                return !scope.refDoc ||
-                                    !(scope.refDoc.isOwner && scope.refDoc.isOwner(user)) ||
-                                    !(scope.refDoc.isParticipant && scope.refDoc.isParticipant(user));
+                                return !_.any(scope.excludedUsers, function (excludedUser) {
+                                    return user.id === (excludedUser.id || excludedUser);
+                                });
                             });
                         });
                     };

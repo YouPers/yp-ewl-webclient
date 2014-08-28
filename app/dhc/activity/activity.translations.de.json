@@ -1,4 +1,12 @@
 {
+    "clientmsg": {
+        "success": {
+            "activity": {
+                "joined": "Einladung angenommen"
+            }
+        }
+    },
+
   "activity": {
 
       "header": {
@@ -11,7 +19,7 @@
           "second": "Plan",
           "third": "Termine",
 
-          "joiningUsers": "Teilnehmer",
+          "invitedUsers": "Teilnehmer",
           "inviteOthers": "Andere einladen",
           "comments": "Kommentare"
       },
@@ -19,6 +27,12 @@
       "inviteOthers": {
           "selected": "ausgewählte",
           "all": "alle"
+      },
+
+      "invitationStatus": {
+          "activityJoined": "angenommen",
+          "denied": "abgelehnt",
+          "pending": "?"
       },
 
       "link": {
@@ -32,7 +46,9 @@
           "save": "Termine speichern",
           "saveAndInvite": "Termine speichern und Einladungen verschicken"
       },
-
+      "submit": {
+          "invitation": "Einladung annehmen und Termine speichern"
+      },
 
       "owner": "Organisator",
       "isJoining": "Teilnehmer",
@@ -64,10 +80,13 @@
         "stateHeader1": "(d)eine",
         "stateHeader2": "aktivität",
 
-        "title": "Was",
+        "title": "Titel",
         "text": "Beschreibung",
-        "date": "Wann",
-        "location": "Wo",
+        "location": "Ort",
+        "date": "Datum",
+        "time": "Zeit",
+        "frequency": "Häufigkeit",
+        "recurrence": "Anzahl",
 
         "socialInteraction": {
             "title": "Nachricht"

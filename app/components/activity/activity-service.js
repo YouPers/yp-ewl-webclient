@@ -189,6 +189,10 @@
                     validateActivity: function (activity) {
                         return Restangular.all('activities/validate').post(activity);
                     },
+                    getInvitationStatus: function(activityId) {
+                        return Restangular.one('activities', activityId).one('invitationStatus').getList();
+                    },
+
 
                     getDefaultActivity: function (idea, options) {
                         return ideas.one(idea.id || idea).one('defaultActivity').get(options).then(_populateIdeas);
