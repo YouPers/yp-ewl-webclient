@@ -71,16 +71,15 @@
                 topics.byId = _.indexBy(topics, 'id');
                 $scope.topics = topics;
 
-                $scope.$watch('currentTopic', function(newValue, oldValue) {
+                $scope.$watch('currentTopic', function (newValue, oldValue) {
                     if (newValue) {
                         ActivityService.getRecommendations(newValue)
-                            .then(function(recs) {
+                            .then(function (recs) {
                                 allIdeas.enrichWithUserData([], recs, campaigns, user.profile.prefs);
                             });
 
                     }
                 });
-
 
 
                 $scope.hasRecommendations = (recommendations.length > 0);
@@ -214,14 +213,14 @@
 
                 angular.forEach(ideas, function (idea, key) {
 
-                        if ((allTopics || _.any(idea.topics, function (value) {
-                            return query.topic[value];
-                        })) &&
+                        if (
+                            (allTopics || _.any(idea.topics, function (value) {
+                                return query.topic[value];
+                            })) &&
                             (allExecutiontypes || query.executiontype[idea.defaultexecutiontype]) &&
-                            (allTimes || !idea.defaultduration || query.time[durationMapping(idea.defaultduration)]
-                                ) &&
+                            (allTimes || !idea.defaultduration || query.time[durationMapping(idea.defaultduration)]) &&
                             (!query.fulltext || (idea.title.toUpperCase() + idea.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
-                            (!idea.rejected)
+                            (!query.emptyTexts || idea.text === '' || idea.text === 'MISSING TRANSLATION')
                             ) {
                             out.push(idea);
                         }
@@ -267,7 +266,7 @@
 
                 $scope.topics = topics;
 
-                $scope.$watch('idea.topics', function(newValue, oldValue) {
+                $scope.$watch('idea.topics', function (newValue, oldValue) {
                         $scope.selectedTopics = _.filter(topics, function (topic) {
                             return _.contains(idea.topics, topic.id);
                         }, true);
