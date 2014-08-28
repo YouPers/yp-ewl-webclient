@@ -45,26 +45,28 @@
     <section>
         <h4 translate>activity.header.second</h4>
 
-        <div class="box" ng-show="!activityController.active || !canEdit[mode]">
+        <div ng-show="!activityController.active || !canEdit[mode]">
 
             <activity-view activity="activity"></activity-view>
 
         </div>
 
-        <div class="box" ng-if="activityController.active && canEdit[mode]">
+        <div ng-if="activityController.active && canEdit[mode]">
             <activity-edit activity="activity"></activity-edit>
         </div>
 
-        <div class="box" ng-show="activity.joiningUsers.length > 0">
+        <div>
 
-            <h4 translate>activity.header.joiningUsers</h4>
-
-            <div ng-repeat="user in activity.joiningUsers">
-
-                <img class="avatar" ng-src="{{ user.avatar }}"/>
-                <span bind-html-unsafe="user.fullname"></span>
+            <div>
+                <h4 translate>activity.header.invitedUsers</h4>
             </div>
 
+            <div class="invitedUser"
+                 ng-repeat="user in invitedUsers">
+                <div><img class="avatar" ng-src="{{ user.avatar }}"/></div>
+                <div bind-html-unsafe="user.fullname || user"></div>
+                <div>{{ 'activity.invitationStatus.' + user.invitationStatus | translate }}</div>
+            </div>
         </div>
 
         <div ng-show="activityController.active && canEdit[mode]">
@@ -73,25 +75,25 @@
                 <h4 translate>activity.header.inviteOthers</h4>
             </div>
 
-            <div class="btn-group btn-group-justified" ng-init="inviteOthers = 'all'">
+            <div class="btn-group btn-group-justified">
 
-                <a type="button" class="btn btn-default" ng-model="$parent.inviteOthers"
+                <a type="button" class="btn btn-default" ng-model="$parent.inviteOthers" ng-disabled="inviteLocked"
                    btn-radio="'selected'" translate>activity.inviteOthers.selected
                 </a>
-                <a type="button" class="btn btn-default" ng-model="$parent.inviteOthers"
+                <a type="button" class="btn btn-default" ng-model="$parent.inviteOthers" ng-disabled="inviteLocked"
                    btn-radio="'all'" translate>activity.inviteOthers.all
                 </a>
             </div>
 
             <div ng-if="inviteOthers == 'selected'">
 
-                <user-invitation type="activity" ref-doc="activity" on-user-selected="onUserSelected"></user-invitation>
+                <user-invitation type="activity" excluded-users="usersExcludedForInvitation" on-user-selected="onUserSelected"></user-invitation>
 
-                <div class="invited-user"
-                     ng-repeat="user in invitedUsers">
+                <div class="user-to-be-invited"
+                     ng-repeat="user in usersToBeInvited">
                     <img class="avatar" ng-src="{{ user.avatar }}"/>
                     <span bind-html-unsafe="user.fullname"></span>
-                    <i class="fa fa-times" ng-click="removeInvitedUser(user)"></i>
+                    <i class="fa fa-times" ng-click="removeUserToBeInvited(user)"></i>
                 </div>
 
             </div>

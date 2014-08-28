@@ -32,24 +32,28 @@
                                     return undefined;
                                 }
                             }],
+                            invitations: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
+                                if ($stateParams.activity) {
+
+                                    return  SocialInteractionService.getInvitations({
+                                        refDocId: $stateParams.activity,
+                                        dismissed: true,
+                                        authored: true
+                                    });
+                                } else {
+                                    return [];
+                                }
+                            }],
 
                             activity: ['$stateParams', 'ActivityService', 'socialInteraction', '$q',
                                 function ($stateParams, ActivityService, socialInteraction, $q) {
-                                // check whether we have a socialInteraction holding an activity
-                                var activityFromSoi;
-                                if (socialInteraction) {
-                                    _.forEach(socialInteraction.refDocs, function (refDoc) {
-                                        if (refDoc.doc && refDoc.model === 'Activity') {
-                                            activityFromSoi = refDoc.doc;
-                                        }
+                                    // check whether we have a socialInteraction holding an activity
+                                    var activityRefDoc = socialInteraction && _.find(socialInteraction.refDocs, function (refDoc) {
+                                        return refDoc.doc && refDoc.model === 'Activity';
                                     });
-                                }
-
-                                if (activityFromSoi) {
-                                    var deferred = $q.defer();
-                                    deferred.resolve(activityFromSoi);
-                                    return deferred.promise;
-                                } else
+                                    if (activityRefDoc) {
+                                        return activityRefDoc.doc;
+                                    }
                                 if ($stateParams.activity) {
                                     return  ActivityService.getActivity($stateParams.activity);
                                 } else {
@@ -64,8 +68,8 @@
 
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams',
             'UserService', 'ActivityService', 'SocialInteractionService',
-            'campaign', 'idea', 'activity', 'socialInteraction',
-            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, SocialInteractionService, campaign, idea, activity, socialInteraction) {
+            'campaign', 'idea', 'activity', 'socialInteraction', 'invitations',
+            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, SocialInteractionService, campaign, idea, activity, socialInteraction, invitations) {
 
                 var activityController = this;
 
@@ -114,13 +118,32 @@
                     'owned': false
                 };
 
+                $scope.invitedUsers = activity.joiningUsers || [];
 
-                $scope.invitedUsers = [];
+                _.forEach($scope.invitedUsers, function(user) {
+                    user.invitationStatus = 'accepted';
+                });
+
+                _.forEach(_.flatten(invitations, 'targetSpaces'), function (space) {
+                    if(space.type === 'campaign' && space.targetId === activity.campaign) { //check if campaign is invited
+                        $scope.inviteOthers = 'all';
+                        $scope.inviteLocked = true;
+                    } else if(space.type === 'user') { // extract invited users
+                        $scope.inviteOthers = 'selected';
+                        var user = space.user;
+                        user.invitationStatus = user.dismissed || user.rejected ? 'rejected' : 'pending';
+                        $scope.invitedUsers.push(user);
+                    }
+                });
+
+                $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
+
+                $scope.usersToBeInvited = [];
                 $scope.onUserSelected = function onUserSelected(user) {
-                    $scope.invitedUsers.push(user);
+                    $scope.usersToBeInvited.push(user);
                 };
-                $scope.removeInvitedUser = function (user) {
-                    _.remove($scope.invitedUsers, { id: user.id });
+                $scope.removeUserToBeInvited = function (user) {
+                    _.remove($scope.usersToBeInvited, { id: user.id });
                 };
 
                 var validateActivity = _.debounce(function () {
@@ -160,7 +183,7 @@
                         $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
 
                         var inviteAll = $scope.inviteOthers === 'all';
-                        if (inviteAll || $scope.invitedUsers.length > 0) {
+                        if (inviteAll || $scope.usersToBeInvited.length > 0) {
 
                             var invitation = {
                                 author: UserService.principal.getUser().id,
@@ -181,7 +204,7 @@
                                 ];
                             } else {
                                 invitation.targetSpaces = [];
-                                _.forEach($scope.invitedUsers, function (user) {
+                                _.forEach($scope.usersToBeInvited, function (user) {
                                     invitation.targetSpaces.push({
                                         type: 'user',
                                         targetId: user.id
