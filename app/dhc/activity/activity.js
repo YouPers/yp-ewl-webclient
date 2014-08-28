@@ -32,11 +32,11 @@
                                     return undefined;
                                 }
                             }],
-                            campaignInvitation: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
-                                return  SocialInteractionService.getInvitations({
+                            campaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', function ($stateParams, SocialInteractionService, activity) {
+                                return activity.id ? SocialInteractionService.getInvitations({
                                     targetId: $stateParams.campaignId,
-                                    refDocId: $stateParams.activity
-                                });
+                                    refDocId: activity.id
+                                }) : undefined;
                             }],
                             invitationStatus: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
                                 if ($stateParams.activity) {
