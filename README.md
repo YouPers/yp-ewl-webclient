@@ -28,11 +28,6 @@ does all needed css compilation and starts a development server and opens defaul
 all REST calls go to localhost:8000, so start your local backend before using this task.
 Watches all files, recompiles and reloads browser when changes occur
 
-    grunt mock
-**Not supported anymore, may or may not work!!!** does all needed css compilation and starts a development server and
- opens default browser. All REST call go to the angular BackendMock implementation, no local backend needed.
-
-
     grunt server:dist
 builds the distribution version of the project, starts a local server and opens a browser to
 test the distribution Version.
