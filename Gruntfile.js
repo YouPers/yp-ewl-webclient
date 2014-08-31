@@ -234,9 +234,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/assets',
+                        cwd: 'imgsources/tooptimize',
                         src: '**/{,*/}*.{png,jpg,jpeg}',
-                        dest: '<%= yeoman.dist %>/assets'
+                        dest: '<%= yeoman.app %>/assets'
                     }
                 ]
             },
