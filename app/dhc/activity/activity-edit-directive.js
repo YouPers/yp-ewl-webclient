@@ -22,7 +22,7 @@
                         _.extend(scope.activity, {
                             isScheduled: !!scope.activity.id,
                             isDeletable: scope.activity.deleteStatus.indexOf('deletable') === 0,
-                            isEditable: scope.activity.editStatus === 'editable'
+                            isEditable: scope.activity.editStatus.indexOf('editable') === 0
                         });
 
                         scope.saveActivity = function() {

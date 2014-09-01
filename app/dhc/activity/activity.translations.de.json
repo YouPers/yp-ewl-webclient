@@ -2,7 +2,8 @@
     "clientmsg": {
         "success": {
             "activity": {
-                "joined": "Einladung angenommen"
+                "joined": "Einladung angenommen",
+                "deleted": "Aktivität gelöscht"
             }
         }
     },
@@ -36,18 +37,24 @@
       },
 
       "link": {
-          "schedule": "Einplanen",
           "owned": "Bearbeiten",
           "recommendation": "Einplanen",
           "invitation": "Annehmen",
           "dismiss": "Verwerfen",
           "back": "zurück zum Hauptmenü",
           "undo": "Rückgängig",
+
+          "edit": "Ändern",
+          "delete": "Löschen",
+
           "save": "Termine speichern",
           "saveAndInvite": "Termine speichern und Einladungen verschicken"
       },
       "submit": {
-          "invitation": "Einladung annehmen und Termine speichern"
+          "invitation": "Einladung annehmen und Termine speichern",
+          "recommendation": "Termine speichern",
+          "owned": "Termine speichern",
+          "joined": "Termine speichern"
       },
 
       "owner": "Organisator",
