@@ -167,8 +167,8 @@
                             return activities.post(plan);
                         }
                     },
-                    deletePlan: function (plan) {
-                        return activities.one(plan.id).remove();
+                    deleteActivity: function (activity) {
+                        return activities.one(activity.id || activity).remove();
                     },
                     deleteOffer: function (offer) {
                         if (offer.plan && offer.plan.id) {

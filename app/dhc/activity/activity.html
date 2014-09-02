@@ -6,22 +6,16 @@
 
         <div class="btn-group btn-group-justified">
             <a class="btn btn-primary"
-               ng-click="activityController.active = true"
-               ng-show="!activityController.active && !activityController.dismissed"
+               ng-click="activityController.active = true; activityController.formActive = activityController.formEnabled"
+               ng-class="{ invisible: activityController.active || activityController.dismissed }"
+
                >{{ 'activity.link.' + mode | translate }}</a>
 
             <a class="btn btn-primary"
-
-                    ng-click="activityController.active = false; activityController.dismissed = false"
-                    ng-show="activityController.active || activityController.dismissed"
-                    ng-class="{ invisible: activityController.dismissed }"
-
-                    translate>activity.link.undo</a>
-
-            <a class="btn btn-primary"
-                    ng-show="canDismiss[mode]"
+                    ng-show="socialInteraction"
                     ng-click="dismiss()"
-                    ng-disabled="activityController.dismissed || activityController.active"
+
+                    ng-disabled="activityController.dismissed"
                     translate>activity.link.dismiss</a>
         </div>
 
@@ -45,17 +39,25 @@
     <section>
         <h4 translate>activity.header.second</h4>
 
-        <div ng-show="!activityController.active || !canEdit[mode]">
+        <div ng-show="activityController.active && !activityController.formActive">
+
+            <div class="btn-group-justified" ng-if="activityController.formEnabled">
+                <a class="btn btn-default" ng-click="activityController.formActive = activityController.formEnabled" ng-disabled="activity.editStatus.indexOf('editable') !== 0" translate>activity.link.edit</a>
+                <a class="btn btn-default" ng-click="deleteActivity()" ng-disabled="activity.deleteStatus.indexOf('deletable') !== 0" translate>activity.link.delete</a>
+
+            </div>
+
+            <br/>
 
             <activity-view activity="activity"></activity-view>
 
         </div>
 
-        <div ng-if="activityController.active && canEdit[mode]">
+        <div ng-if="activityController.active && activityController.formActive">
             <activity-edit activity="activity"></activity-edit>
         </div>
 
-        <div>
+        <div ng-if="activityController.active">
 
             <div>
                 <h4 translate>activity.header.invitedUsers</h4>
@@ -69,7 +71,7 @@
             </div>
         </div>
 
-        <div ng-show="activityController.active && canEdit[mode]">
+        <div ng-show="activityController.active && activityController.formEnabled">
 
             <div>
                 <h4 translate>activity.header.inviteOthers</h4>

@@ -67,16 +67,17 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/activity/activity');
             }])
 
-        .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams',
+        .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
             'UserService', 'ActivityService', 'SocialInteractionService',
             'campaign', 'idea', 'activity', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
-            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, SocialInteractionService,
+            function ($scope, $rootScope, $state, $stateParams, $timeout, UserService, ActivityService, SocialInteractionService,
                       campaign, idea, activity, socialInteraction, campaignInvitation, invitationStatus) {
 
-                var activityController = this;
 
                 $scope.idea = idea;
                 $scope.activity = activity;
+
+                // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
                 $scope.campaignInvitation = campaignInvitation;
 
                 if (socialInteraction) {
@@ -88,7 +89,6 @@
                     });
                 }
 
-
                 $scope.isScheduled = activity && activity.id;
 
                 var mode = $stateParams.mode;
@@ -99,27 +99,18 @@
                         mode = 'owned';
                     } else if ($scope.isScheduled && activity.isJoiningUser()) {
                         mode = 'joined';
-                    } else {
-                        mode = 'schedule';
                     }
+
                     $stateParams.mode = mode;
                 }
-                $scope.mode = mode;
 
-                $scope.canEdit = {
-                    'schedule': true,
-                    'recommendation': true,
-                    'invitation': false,
-                    'joined': false,
-                    'owned': true
-                };
-                $scope.canDismiss = {
-                    'schedule': false,
-                    'recommendation': true,
-                    'invitation': true,
-                    'joined': false,
-                    'owned': false
-                };
+                var activityController = this;
+                activityController.mode = $scope.mode = mode;
+
+                // only recommendations have to be activated
+                activityController.active = !socialInteraction || socialInteraction.__t !== 'Recommendation';
+                activityController.formEnabled = activity.id && activity.isOwner && activity.isOwner() || mode === 'recommendation';
+
 
                 if(campaignInvitation) { // check if campaign is already invited
                     $scope.inviteOthers = 'all';
@@ -161,9 +152,13 @@
 
 
                 $scope.$watch('activity.mainEvent', validateActivity, true);
-                $scope.$watch('activity', function () {
-                    $scope.dirty = true;
+                $scope.$watch('activity', function (val, old) {
+                    $scope.dirty = old && true;
                 }, true);
+                $timeout(function () {
+                    $scope.dirty  = false;
+                });
+
 
                 $scope.dismiss = function dismiss() {
                     SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, { reason: 'denied'}).then(function (result) {
@@ -182,6 +177,11 @@
                     }
                 };
 
+                $scope.deleteActivity = function deleteActivity() {
+                    ActivityService.deleteActivity($scope.activity.id);
+                    $rootScope.$emit('clientmsg:success', 'activity.deleted');
+                    $state.go('dhc.game');
+                };
                 $scope.joinActivity = function joinActivity() {
                     ActivityService.joinPlan($scope.activity).then(function (joinedActivity) {
                         $rootScope.$emit('clientmsg:success', 'activity.joined');
