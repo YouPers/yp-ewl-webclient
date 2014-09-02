@@ -13,9 +13,6 @@
      *          - current: currently active events of a single activity (default)
      *          - past: list of done or missed events that have already past
      *
-     *          - invitation: activity from an invitation, displays the author, mocks the number of events with the mainEvent
-     *          - recommendation: activity from a recommendation, displays the author
-     *
      *          - dismissed: list of invitations and recommendation the user has dismissed
      *
      *      - events: an event can be populated with an idea, and optionally, the activity ( needed for the location )
@@ -33,8 +30,7 @@
 
                     events: '=?',
                     idea: '=',
-                    activity: '=',
-                    socialInteraction: '='
+                    activity: '='
                 },
                 templateUrl: 'components/directives/activity-event-stack-directive/activity-event-stack-directive.html',
 
@@ -61,41 +57,6 @@
                                 event.activity = scope.activity;
                             }
                         });
-                    } else if(type === 'invitation') {
-                        if(!scope.activity) {
-                            throw new Error('"activity" is required for type "invitation"');
-                        }
-                        if(!scope.socialInteraction) {
-                            throw new Error('"socialInteraction" is required for type "invitation"');
-                        }
-                        var event = _.clone(scope.activity.mainEvent);
-                        event.activity = scope.activity;
-                        event.idea = scope.activity.idea;
-                        event.socialInteraction = scope.socialInteraction;
-
-                        scope.events = [event];
-
-                        var count = scope.activity.mainEvent.recurrence.endby.after;
-                        if(count) {
-                            _.times(count - 1, function () {
-                                scope.events.unshift({
-                                    activity: scope.activity,
-                                    socialInteraction: scope.socialInteraction
-                                });
-                            });
-                        }
-                    } else if(type === 'recommendation') {
-                        if(!scope.idea) {
-                            throw new Error('"idea" is required for type "recommendation"');
-                        }
-                        if(!scope.socialInteraction) {
-                            throw new Error('"socialInteraction" is required for type "recommendation"');
-                        }
-                        scope.events = [{
-                            idea: scope.idea,
-                            socialInteraction: scope.socialInteraction
-                        }];
-
                     } else {
                         throw new Error('unknown type ' + type);
                     }
@@ -110,11 +71,11 @@
                         }
                         var now = moment();
                         if(now.isAfter(event.start, 'day')) {
-                            return 'overdue';
+                            return 'Past';
                         } else if(now.isSame(event.start, 'day')) {
-                            return 'today';
+                            return 'Present';
                         } else {
-                            return 'upcoming';
+                            return 'Future';
                         }
                     }
 

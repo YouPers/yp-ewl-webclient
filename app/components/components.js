@@ -25,6 +25,7 @@
             'yp.components.activityComments',
             'yp.components.activityEventStack',
             'yp.components.activityEventCard',
+            'yp.components.activityOfferCard',
             'yp.components.gameArea',
             'yp.components.gameAreaSidePanel',
             'yp.components.ideaCard',
@@ -47,15 +48,13 @@
                     'de',
                     'en',
                     'fr',
-                    'it']
-
+                    'it'
+                ]
             };
         }])
 
         .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
             $translateWtiPartialLoaderProvider.addPart('components/components');
-        }])
-
-    ;
+        }]);
 
 })();

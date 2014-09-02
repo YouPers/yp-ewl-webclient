@@ -153,7 +153,8 @@
 
                 $scope.$watch('activity.mainEvent', validateActivity, true);
                 $scope.$watch('activity', function (val, old) {
-                    $scope.dirty = old && true;
+                    $scope.dirty = true;
+                    console.log('dirty');
                 }, true);
                 $timeout(function () {
                     $scope.dirty  = false;
