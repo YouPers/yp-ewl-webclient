@@ -15,6 +15,11 @@
               "user": "persönliche Empfehlung von",
               "campaignLead": "Kampagnenempfehlung von",
               "coach": "HealthCoach"
+          },
+          "Recommendation": {
+              "user": "persönliche Nachricht von",
+              "campaignLead": "Kampagnennachricht von",
+              "coach": "HealthCoach"
           }
       }
   },

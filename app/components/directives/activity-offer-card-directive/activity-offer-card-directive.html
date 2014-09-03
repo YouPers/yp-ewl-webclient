@@ -39,7 +39,7 @@
                     </span>
                 </div>
                 <div>
-                    <i class="fa fa-users"></i>
+                    <i class="fa {{ idea.defaultexecutiontype === 'self' ? 'fa-user' : 'fa-users' }}"></i>
                     <span>
                         {{ 'executiontype.' + idea.defaultexecutiontype | translate }}
                     </span>
