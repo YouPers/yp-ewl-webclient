@@ -1,0 +1,61 @@
+<div class="activity-offer-card {{ componentClass   }} pos-{{ event.offset }}">
+
+    <div class="sheet primary">
+        <div>
+            <i class="fa {{ iconClass }}"></i>
+        </div>
+        <div ng-bind-html="getRenderedText(activity.title || idea.title)"></div>
+    </div>
+
+    <div class="sheet secondary">
+
+        <div>
+            <!-- placeholder -->
+        </div>
+
+        <div ng-init="isRecommendation = socialInteraction.__t === 'Recommendation'">
+
+            <div ng-if="!isRecommendation">
+                <div>
+                    <i class="fa fa-clock-o"></i>
+                    <span>
+                        {{ activity.mainEvent.start | shortCalendar }}
+                    </span>
+                </div>
+                <div>
+                    <i class="fa fa-location-arrow"></i>
+                    <span>
+                        {{ activity.location }}
+                    </span>
+                </div>
+            </div>
+
+            <div ng-if="isRecommendation">
+
+                <div>
+                    <i class="fa fa-clock-o"></i>
+                    <span>
+                        {{ 'activityPlanFrequency.' + idea.defaultfrequency | translate }}
+                    </span>
+                </div>
+                <div>
+                    <i class="fa fa-users"></i>
+                    <span>
+                        {{ 'executiontype.' + idea.defaultexecutiontype | translate }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="author sheet tertiary">
+        <div>
+            <img ng-src="{{ socialInteraction.author.avatar }}">
+        </div>
+        <div>
+            <div translate>activityOfferCard.authorPrefix.{{ socialInteraction.__t }}</div>
+            <div ng-bind="socialInteraction.author.fullname"></div>
+        </div>
+    </div>
+</div>

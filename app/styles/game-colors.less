@@ -1,0 +1,87 @@
+@import "util";
+// http://www.google.com/design/spec/style/color.html
+
+// factors used to reduce the lightness of the primary color for the other shades
+// tbd: the function used to apply this factor: e.g. lighten(lightness) or fade(opacity)
+@yp-secondary-factor: 15%;
+@yp-tertiary-factor: 35%;
+
+
+@yp-brand-primary: #C0CA33;
+@yp-brand-secondary: lighten(@yp-brand-primary, @yp-secondary-factor);
+
+@yp-accent-primary: @yp-brand-primary;
+@yp-accent-secondary: @yp-brand-secondary;
+@yp-warning-primary: #F4BA14;
+@yp-warning-secondary: lighten(#F4BA14, @yp-secondary-factor);
+
+// gray shades
+@yp-app-primary: rgba(0,0,0,0.87);
+@yp-app-secondary: rgba(0,0,0,0.54);
+@yp-app-tertiary: rgba(0,0,0,0.26);
+
+@yp-dhc-primary: @yp-app-primary;
+@yp-dhc-secondary: @yp-app-secondary;
+@yp-dcm-primary: @yp-app-primary;
+@yp-dcm-secondary: @yp-app-secondary;
+
+
+// Colors: list of components and their primary color
+// Syntax: primary secondaryContrast
+@pas:
+  topicStress #306ed1,
+  topicNutrition #0f0,
+  topicFitness #f00,
+  eventFuture #BDBDBD,
+  eventPresent #5677FC #5677FC,
+  eventPast #E91E63 #E91E63,
+  eventCoach @yp-brand-primary,
+  offerCampaignLead #FF9800,
+  offerCoach @yp-brand-primary,
+  offerUser #9E9E9E,
+  idea @yp-brand-primary;
+
+
+@threshold: 10%;
+
+.fallback(@color) when (iscolor(@color)) {
+  @fallback: @color;
+}
+.fallback(@color) when (default()) {
+  @fallback: @yp-app-primary;
+}
+
+& {
+  .for(@pas); .-each(@pa) {
+
+  @name:  extract(@pa, 1);
+
+  @primary: extract(@pa, 2);
+  @primaryContrast: white;
+  @secondary: fade(@primary, 10%);
+  .fallback(extract(@pa, 3));
+  @secondaryContrast: @fallback;
+  @tertiary: white;
+  @tertiaryContrast: @yp-app-primary;
+
+
+  .@{name} .sheet.primary {
+    background-color: @primary;
+    color: @primaryContrast;
+  }
+  .@{name} .sheet.secondary {
+    background-color: @secondary;
+    color: @secondaryContrast;
+    i.fa {
+      color: fade(@secondaryContrast, 60%);
+    }
+  }
+  .@{name} .sheet.tertiary {
+    background-color: @tertiary;
+    color: @tertiaryContrast;
+  }
+}
+}
+
+
+

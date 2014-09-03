@@ -19,14 +19,18 @@
                     translate>activity.link.dismiss</a>
         </div>
 
-        <div ng-if="socialInteraction" ng-class="{ dismissed: activityController.dismissed }">
+        <div>
 
-            <activity-event-card
+            <activity-offer-card
 
-                    type="{{ socialInteraction.__t.toLowerCase() }}"
-                    event="socialInteractionEvent"
+                    ng-if="socialInteraction" ng-class="{ dismissed: activityController.dismissed }"
 
-                    ></activity-event-card>
+                    idea="idea"
+                    activity="activity"
+                    social-interaction="socialInteraction"
+
+                    ></activity-offer-card>
+
         </div>
 
         <div>
@@ -129,7 +133,7 @@
             <button class="btn btn-default backToGame" ui-sref="dhc.game" translate>
                 activity.link.back
             </button>
-            <button class="btn btn-primary submit" ng-disabled="!activityController.active || !dirty" ng-click="submit()">
+            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!dirty && (mode === 'recommendation' || mode === 'owned')) || (activity.isParticipant())" ng-click="submit()">
                 {{ 'activity.submit.' + mode | translate }}
             </button>
         </div>

@@ -1,12 +1,25 @@
-<div class="campaign-switcher" dropdown is-open="status.isopen" ng-if="campaigns.length > 0" ng-class="{ switchable: campaigns.length > 1 }">
+<div class="campaign-switcher topic{{ topicName() }}" dropdown is-open="status.isopen" ng-if="campaigns.length > 0" ng-class="{ switchable: campaigns.length > 1 }">
     <div class="campaign dropdown-toggle">
         <div class="avatar">
             <img ng-src="/assets/img/square_stressManagement.jpg">
         </div>
-        <div class="topic">{{currentCampaign.title}}</div>
-        <div class="details">{{currentCampaign.participants}}</div>
-        <div class="details">{{currentCampaign.location}} {{currentCampaign.city}}</div>
-        <div class="details">{{currentCampaign.start | date:'d.MM.'}} -  {{currentCampaign.end | date:'d.MM.yyyy'}}</div>
+        <div class="topic sheet primary">
+            <div>{{currentCampaign.title}}</div>
+        </div>
+        <div class="details sheet secondary">
+            <div>
+                <i class="fa fa-clock-o"></i>
+                <span>{{currentCampaign.start | date:'d.MM.'}} -  {{currentCampaign.end | date:'d.MM.yyyy'}}</span>
+            </div>
+            <div>
+                <i class="fa fa-location-arrow"></i>
+                <span>{{currentCampaign.location}} {{currentCampaign.city}}</span>
+            </div>
+        </div>
+        <div class="details sheet tertiary">
+            <div translate>Kampagneneinladung</div>
+            <div class="participants">{{currentCampaign.participants}}</div>
+        </div>
 
         <div class="icon" ng-if="campaigns.length > 1">
             <i class="glyphicon glyphicon-chevron-down"></i>

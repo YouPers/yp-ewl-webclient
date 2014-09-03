@@ -76,18 +76,10 @@
 
                 $scope.idea = idea;
                 $scope.activity = activity;
+                $scope.socialInteraction = socialInteraction;
 
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
                 $scope.campaignInvitation = campaignInvitation;
-
-                if (socialInteraction) {
-                    $scope.socialInteraction = socialInteraction;
-                    $scope.socialInteractionEvent = activity ? _.clone(activity.mainEvent) : {};
-                    _.extend($scope.socialInteractionEvent, {
-                        idea: idea,
-                        socialInteraction: socialInteraction
-                    });
-                }
 
                 $scope.isScheduled = activity && activity.id;
 
@@ -144,6 +136,7 @@
                             var event = result.event;
                             event.activity = $scope.activity;
                             event.conflictingEvent = result.conflictingEvent;
+                            event.dueState = ActivityService.getActivityEventDueState(event);
                             $scope.events.push(event);
                         });
 
@@ -153,7 +146,8 @@
 
                 $scope.$watch('activity.mainEvent', validateActivity, true);
                 $scope.$watch('activity', function (val, old) {
-                    $scope.dirty = old && true;
+                    $scope.dirty = true;
+                    console.log('dirty');
                 }, true);
                 $timeout(function () {
                     $scope.dirty  = false;

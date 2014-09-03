@@ -109,6 +109,20 @@
                             return deferred.promise;
                         }
                     },
+                    getActivityEventDueState: function(event) {
+
+                        if(!event.start) {
+                            return false;
+                        }
+                        var now = moment();
+                        if(now.isAfter(event.start, 'day')) {
+                            return 'Past';
+                        } else if(now.isSame(event.start, 'day')) {
+                            return 'Present';
+                        } else {
+                            return 'Future';
+                        }
+                    },
                     getRecommendations: function (topicId) {
                         var params = {
                             limit: 1000,
