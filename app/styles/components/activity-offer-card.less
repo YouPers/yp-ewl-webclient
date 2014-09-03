@@ -1,11 +1,11 @@
 
 activity-offer-card {
 
+  .game-card();
+
   position: relative;
 
   width: @yp-activity-event-card-width;
-
-  box-shadow: 0 2px 3px -2px rgba(0,0,0,0.45);
 
   line-height: 1.2em;
   border: 1px solid @yp-color-grey1;
@@ -16,10 +16,13 @@ activity-offer-card {
     font-size: 14px;
   }
 
+  div.sheet:not(:last-of-type) {
+    border-bottom: 1px solid @yp-color-grey1;
+  }
   div.sheet {
 
     position: relative;
-    border-bottom: 1px solid @yp-color-grey1;
+
     height: @yp-activity-event-image-height;
 
     display: flex;

@@ -111,6 +111,10 @@
                     },
                     getActivityEventDueState: function(event) {
 
+                        if(event.idea && event.idea.action) {
+                            return 'Coach';
+                        }
+
                         if(!event.start) {
                             return false;
                         }
