@@ -6,8 +6,17 @@
       "publishFrom": "Publiziert ab: ",
       "publishTo": "Publiziert bis: ",
 
-      "invitation": "Einladung",
-      "recommendation": "Empfehlung"
+      "header": {
+          "Invitation": {
+              "user": "persönliche Einladung von",
+              "campaignLead": "Kampagneneinladung von"
+          },
+          "Recommendation": {
+              "user": "persönliche Empfehlung von",
+              "campaignLead": "Kampagnenempfehlung von",
+              "coach": "HealthCoach"
+          }
+      }
   },
 
     "composeMessageForm": {

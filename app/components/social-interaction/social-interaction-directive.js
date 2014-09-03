@@ -30,11 +30,18 @@
                             publishFrom: new Date(moment().startOf('day')),
                             publishTo: new Date(moment().endOf('day'))
                         };
+
+                        scope.componentClass = function (socialInteraction) {
+                            var authorType = socialInteraction.authorType;
+                            return 'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1);
+
+                        };
+
                         scope.message = _.clone(messageTemplate);
 
                         if ($rootScope.principal.isAuthenticated()) {
-                            SocialInteractionService.getMessages({ populate: 'author' }).then(function (messages) {
-                                scope.socialInteractions = messages;
+                            SocialInteractionService.getSocialInteractions({ populate: 'author' }).then(function (socialInteractions) {
+                                scope.socialInteractions = socialInteractions;
                             });
                         }
 
