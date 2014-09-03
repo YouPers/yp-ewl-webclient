@@ -22,7 +22,7 @@
      *
      */
     angular.module('yp.components.activityEventStack', [])
-        .directive('activityEventStack', ['$rootScope', '$sce', '$window', '$state', function ($rootScope, $sce, $window, $state) {
+        .directive('activityEventStack', ['$rootScope', '$sce', '$window', '$state', 'ActivityService', function ($rootScope, $sce, $window, $state, ActivityService) {
             return {
                 restrict: 'EA',
                 scope: {
@@ -66,17 +66,7 @@
 
 
                     function dueState(event) {
-                        if(!event.start) {
-                            return false;
-                        }
-                        var now = moment();
-                        if(now.isAfter(event.start, 'day')) {
-                            return 'Past';
-                        } else if(now.isSame(event.start, 'day')) {
-                            return 'Present';
-                        } else {
-                            return 'Future';
-                        }
+                        return ActivityService.getActivityEventDueState(event);
                     }
 
                     var offset = 0;

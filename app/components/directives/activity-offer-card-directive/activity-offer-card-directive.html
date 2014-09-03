@@ -13,7 +13,7 @@
             <!-- placeholder -->
         </div>
 
-        <div ng-init="isRecommendation = (type === 'recommendation' || type === 'dismissed')">
+        <div ng-init="isRecommendation = socialInteraction.__t === 'Recommendation'">
 
             <div ng-if="!isRecommendation">
                 <div>
@@ -54,7 +54,7 @@
             <img ng-src="{{ socialInteraction.author.avatar }}">
         </div>
         <div>
-            <div translate>activityEventCard.authorPrefix.{{ socialInteraction.__t }}</div>
+            <div translate>activityOfferCard.authorPrefix.{{ socialInteraction.__t }}</div>
             <div ng-bind="socialInteraction.author.fullname"></div>
         </div>
     </div>

@@ -1,17 +1,10 @@
-.activity-event-card > * {
-  opacity: 0.5;
-  white-space: nowrap;
-}
-.activity-event-card:last-of-type > * {
-  opacity: 1;
-}
 
 .activity-event-card  {
 
   position: relative;
 
   width: @yp-activity-event-card-width;
-  box-shadow: 0 2px 3px -2px rgba(0,0,0,0.45);
+  .game-card();
 
   line-height: 1.2em;
   border: 1px solid @yp-color-grey1;
@@ -69,7 +62,7 @@
   .title {
     white-space: normal;
     min-height: 3em;
-    text-align: center;
+    text-align: left;
     display: flex;
     justify-content:center;
     align-content:center;

@@ -20,22 +20,21 @@
   }
 
   .image img {
-    width: @youpers-idea-card-image-width - 2 * @youpers-idea-card-padding - 2 * @youpers-idea-card-border;
+    width: @youpers-idea-card-image-width - 1px;
     height: @youpers-idea-card-image-height;
   }
 
   .title {
-    .title4();
-    padding-bottom: 0.3em;
+    .header3();
     overflow: hidden;
-    text-align: center;
+    padding-left: 0.3em;
   }
 
   .content {
 
     .shortDescription {
       .p2();
-      padding: 0 1em;
+      padding: 1em;
     }
   }
 
@@ -45,10 +44,10 @@
 
   ul.icons {
     width: 100%;
-//    height: 2em;
+    height: 48px;
     position: absolute;
     bottom: 0;
-    padding: 0;
+    padding: 5px;
     margin: 0;
     list-style: none;
 
@@ -69,14 +68,14 @@
       }
 
       a {
-        font-size: 36px;
+        font-size: 32px;
         display: table;
         width: 100%;
         height: 100%;
         text-align: center;
         color: @yp-color-grey2;
         i.fa {
-          font-size: 36px;
+          font-size: 32px;
           display: table-cell;
           vertical-align: middle;
           transition: 0.1s linear color;

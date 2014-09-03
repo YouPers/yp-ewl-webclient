@@ -1,5 +1,5 @@
 
-<div class="idea-card flip">
+<div class="idea-card idea flip">
 
     <div class="card page" ng-class="{ flipped: flipped }">
         <div class="front face" ng-click="flip()">
@@ -10,13 +10,13 @@
 
             <div class="content">
 
-                <div class="title" ng-bind-html="idea.title"></div>
+                <div class="title sheet secondary" ng-bind-html="idea.title"></div>
 
                 <div class="shortDescription" ng-bind-html="idea.description"></div>
 
             </div>
 
-            <ul class="icons">
+            <ul class="icons sheet secondary">
                 <li>
                     <!-- TODO: aggregation of social interactions for the same activity -->
 
