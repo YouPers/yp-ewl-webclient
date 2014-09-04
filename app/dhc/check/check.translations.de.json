@@ -1,9 +1,13 @@
 {
   "check": {
+
+      "link": {
+          "done": "Abschliessen",
+          "back": "Zurück"
+      },
+
     "toFocus": "Zu deinem Fokus",
-    "questionsAnswered": "Kriterien beurteilt",
-    "stateHeader1": "deine",
-    "stateHeader2": "Selbstbeurteilung"
+    "questionsAnswered": "Kriterien beurteilt"
   },
   "questionCategory": {
 
