@@ -58,6 +58,29 @@
     visibility: hidden;
   }
 
+  .status, .rating {
+    padding-top: 4px;
+    > div:first-of-type {
+      padding-top: 8px;
+      padding-left: 2px;
+    }
+    > div {
+      display: inline-block;
+    }
+
+    clear: both;
+
+    .control {
+      float: right;
+      i.fa-times.active {
+        color: @yp-color-red;
+      }
+      i {
+        font-size: 26px;
+      }
+    }
+  }
+
 }
 
 .height-recommendation {

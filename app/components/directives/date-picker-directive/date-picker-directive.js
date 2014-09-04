@@ -18,6 +18,8 @@
                         throw new Error('date attribute is required');
                     }
 
+                    scope.date = moment(scope.date).format();
+
                     // working copy for the datepicker to preserve the time in the attribute 'date'
                     scope.dateOnly = scope.date;
 

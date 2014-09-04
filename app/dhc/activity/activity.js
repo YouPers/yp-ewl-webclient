@@ -60,6 +60,13 @@
                                 } else {
                                     return ActivityService.getDefaultActivity($stateParams.idea);
                                 }
+                            }],
+
+
+                            activityEvents: ['ActivityService', 'activity', function(ActivityService, activity) {
+                                return ActivityService.getActivityEvents({
+                                    'filter[activity]': activity.id
+                                });
                             }]
                         }
                     });
@@ -69,14 +76,15 @@
 
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
             'UserService', 'ActivityService', 'SocialInteractionService',
-            'campaign', 'idea', 'activity', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
+            'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
             function ($scope, $rootScope, $state, $stateParams, $timeout, UserService, ActivityService, SocialInteractionService,
-                      campaign, idea, activity, socialInteraction, campaignInvitation, invitationStatus) {
+                      campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
 
 
                 $scope.idea = idea;
                 $scope.activity = activity;
                 $scope.socialInteraction = socialInteraction;
+                $scope.events = _.filter(activityEvents, { status: 'open'});
 
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
                 $scope.campaignInvitation = campaignInvitation;
@@ -129,16 +137,22 @@
                     _.remove($scope.usersToBeInvited, { id: user.id });
                 };
 
-                var validateActivity = _.debounce(function () {
+                var validateActivity = _.debounce(function (mainEvent, old) {
+
+                    if(!old || _.isEqual(mainEvent, old)) {
+                        return;
+                    }
+
                     ActivityService.validateActivity($scope.activity).then(function (activityValidationResults) {
 
                         $scope.events = [];
                         _.forEach(activityValidationResults, function (result) {
                             var event = result.event;
+
                             event.activity = $scope.activity;
                             event.conflictingEvent = result.conflictingEvent;
-                            event.dueState = ActivityService.getActivityEventDueState(event);
                             $scope.events.push(event);
+
                         });
 
                     });
@@ -150,6 +164,7 @@
                     $scope.dirty = true;
                     console.log('dirty');
                 }, true);
+
                 $timeout(function () {
                     $scope.dirty  = mode === 'recommendation';
                 });
