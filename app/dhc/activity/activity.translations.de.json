@@ -27,7 +27,9 @@
 
       "inviteOthers": {
           "selected": "ausgewählte",
-          "all": "alle"
+          "all": "alle",
+          "inviteByEmail": "Jemanden per Email einladen?",
+          "inviteByUser": "Nach Benutzern suchen"
       },
 
       "invitationStatus": {

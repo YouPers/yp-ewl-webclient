@@ -69,9 +69,18 @@
 
             <div class="invitedUser"
                  ng-repeat="user in invitedUsers">
-                <div><img class="avatar" ng-src="{{ user.avatar }}"/></div>
-                <div bind-html-unsafe="user.fullname || user"></div>
-                <div>{{ 'activity.invitationStatus.' + user.invitationStatus | translate }}</div>
+
+                <div ng-if="user.fullname">
+                    <div><img class="avatar" ng-src="{{ user.avatar }}"/></div>
+                    <div bind-html-unsafe="user.fullname || user"></div>
+                    <div>{{ 'activity.invitationStatus.' + user.invitationStatus | translate }}</div>
+                </div>
+                <div ng-if="!user.fullname">
+                    <div><i class="fa fa-envelope-o"></i></div>
+                    <div>{{ user }}</div>
+                    <div></div>
+                </div>
+
             </div>
         </div>
 
@@ -93,7 +102,15 @@
 
             <div ng-if="inviteOthers == 'selected'">
 
-                <user-invitation type="activity" excluded-users="usersExcludedForInvitation" on-user-selected="onUserSelected"></user-invitation>
+                <div ng-if="!activityController.inviteByEmail">
+                    <user-invitation type="activity" excluded-users="usersExcludedForInvitation" on-user-selected="onUserSelected"></user-invitation>
+                    <a ng-click="activityController.inviteByEmail = true" translate>activity.inviteOthers.inviteByEmail</a>
+                </div>
+                <div ng-if="activityController.inviteByEmail">
+                    <email-invitation type="activity" activity="activity" on-email-submitted="onUserSelected"></email-invitation>
+                    <a ng-click="activityController.inviteByEmail = false" translate>activity.inviteOthers.inviteByUser</a>
+                </div>
+
 
                 <div class="user-to-be-invited"
                      ng-repeat="user in usersToBeInvited">
