@@ -103,7 +103,7 @@
                 $scope.openActivity = function(activity) {
                     if(activity.idea.action) {
                         if(activity.idea.action === 'assessment') {
-                            $state.go('check.content');
+                            $state.go('dhc.check');
                         } else if(activity.idea.action === 'focus') {
                             $state.go('focus.content');
                         } else {

@@ -6,34 +6,23 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('check', {
-                        templateUrl: "layout/default.html",
-                        access: accessLevels.user
-                    })
-                    .state('check.content', {
+                    .state('dhc.check', {
                         url: "/check",
                         access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'dhc/check/check.html',
-                                controller: 'CheckController'
+                                controller: 'CheckController as checkController'
                             }
                         },
                         resolve: {
-                            assessment: ['AssessmentService', 'UserService', '$state', function (AssessmentService, UserService, $state) {
-                                var currentUsersCampaign = UserService.principal.getUser().campaign;
-                                if (!currentUsersCampaign) {
-                                    return null;
-                                }
-                                return AssessmentService.getAssessment(currentUsersCampaign.topic);
+                            assessment: ['campaign', 'AssessmentService', function (campaign, AssessmentService) {
+
+                                return AssessmentService.getAssessment(campaign.topic);
                             }],
-                            newestResult: ['AssessmentService', 'UserService', function (AssessmentService, UserService) {
-                                var currentUsersCampaign = UserService.principal.getUser().campaign;
-                                if (!currentUsersCampaign) {
-                                    return null;
-                                }
-                                var currentUsersTopic = currentUsersCampaign.topic;
-                                return AssessmentService.getNewestAssessmentResults(currentUsersTopic);
+                            newestResult: ['campaign', 'AssessmentService', 'UserService', function (campaign, AssessmentService, UserService) {
+
+                                return AssessmentService.getNewestAssessmentResults(campaign.topic);
                             }]
                         },
                         onExit: ['AssessmentService', function(AssessmentService) {

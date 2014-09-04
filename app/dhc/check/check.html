@@ -1,116 +1,36 @@
-<div class="row">
-    <div class="col-sm-12">
-        <div class="state-header-1" translate>check.stateHeader1</div>
-        <div class="state-header-2" translate>check.stateHeader2</div>
-    </div>
-</div>
-<div ng-if="!categories">Hier fehlt ein schöner Text darüber dass du in keiner Kampagne bist und wir darum nicht wissen
-welches Assessment zu welchem Topic wir hier darstellen sollen. <a ui-sref="campaign-list.content">Hier gibts eine Liste aller Kampagnen</a> , an denen du teilnehmen könntest:</div>
-<accordion class="check" close-others="true" ng-if="categories">
-
-    <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]" ng-class="{ open: !!cat[name]}"
-                     ng-click="reinitialize()"
-                     analytics-on="click" analytics-event="CheckCategoriesAccordion" analytics-category="InPageNavigation" analytics-label="Accordion Expanded Or Collapsed">
-        <accordion-heading>
-            <div>
-                <span>{{ 'questionCategory.' + name | translate }}</span>
-                <i class="pull-right glyphicon"
-                   ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
-                <span class="label3 pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} {{'check.questionsAnswered' | translate}}</span>
-            </div>
-        </accordion-heading>
 
 
-        <div ng-repeat="question in categories[name]" ng-click="displayInfo(question)">
+<div class="column-layout">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="question">
-                        <span>{{ question.title }}</span>
-                        <i ng-mouseover="displayInfo(question)" class="glyphicon glyphicon-info-sign"></i>
-                    </div>
+    <nav>
 
-                </div>
-            </div>
+        <ng-include src="'dhc/nav-campaign.html'"></ng-include>
 
-            <div class="row">
+    </nav>
 
-                <div class="col-sm-6 col-sm-offset-3">
-                    <div class="btn-group-justified">
-                        <!-- too low -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" ng-model="answers[question.id].answerType"
-                                    btn-radio="'min'" ng-show="question.type !== 'rightSided'">
-                                {{ question.mintext }}
-                            </button>
-                        </div>
-                        <!-- alright -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" ng-model="answers[question.id].answerType"
-                                    btn-radio="'mid'">
-                                {{ question.midtext }}
-                            </button>
-                        </div>
-                        <!-- too much -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" ng-model="answers[question.id].answerType"
-                                    btn-radio="'max'" ng-show="question.type !== 'leftSided'">
-                                {{ question.maxtext }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <section>
 
-            </div>
+        <ng-include src="'dhc/check/check-content.html'"></ng-include>
 
-            <div class="row">
+    </section>
 
-                <div class="col-sm-2 col-sm-offset-3 slider-left-container">
-                    <div ng-if="answers[question.id].answerType == 'min'">
-                        <div class="impact-question" >{{assessment.impactQuestion}}</div>
-                        <div class="slider-caption-left">{{assessment.impactQuestionLeft}}</div>
-                        <slider ng-class="[question.type]"
-                                ng-model="answers[question.id].answerValue"
-                                ng-mousedown="answers[question.id].dirty = true"
-                                floor="1"
-                                ceiling="100"
-                                step="1"
-                                precision="1">
-                        </slider>
-                        <div class="slider-caption-right">{{assessment.impactQuestionRight}}</div>
-                    </div>
-                </div>
-                <div class="col-sm-2 col-sm-offset-2 slider-right-container">
-                    <div ng-if="(question.type == 'twoSided' || question.type == 'rightSided' ) && answers[question.id].answerType == 'max'">
-                        <div class="impact-question">{{assessment.impactQuestion}}</div>
-                        <div class="slider-caption-left">{{assessment.impactQuestionLeft}}</div>
-                        <slider ng-class="[question.type]"
-                                ng-model="answers[question.id].answerValue"
-                                ng-mousedown="answers[question.id].dirty = true"
-                                floor="1"
-                                ceiling="100"
-                                step="1"
-                                precision="1">
-                        </slider>
-                        <div class="slider-caption-right">{{assessment.impactQuestionRight}}</div>
-                    </div>
-                </div>
+    <aside>
 
-            </div>
+        <div class="actions">
 
-        </div>
 
-    </accordion-group>
-
-</accordion>
-<div class="row btn-bottom-nav">
-    <div class="col-xs-12">
-        <div class="pull-left"></div>
-        <div class="pull-right">
-            <button class="btn btn-primary" translate ng-click="$state.go('focus.content')"
-                    analytics-on="click" analytics-event="ProcessNavigation" analytics-category="Navigation" analytics-label="Check to Focus">
-                check.toFocus
+            <button class="btn btn-default backToGame" ui-sref="dhc.game" translate>
+                check.link.back
             </button>
+
+            <button class="btn btn-primary" ui-sref="dhc.game" translate>
+                check.link.done
+            </button>
+
         </div>
-    </div>
+
+        <social-interaction></social-interaction>
+
+    </aside>
+
 </div>
