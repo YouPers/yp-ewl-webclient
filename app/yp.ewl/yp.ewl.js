@@ -171,14 +171,25 @@ angular.module('yp-ewl',
 
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
-                $rootScope.$emit('clientmsg:error', error);
+
                 console.log('Error on StateChange: '+ error.message);
-                console.log('Stack: ' + error.stack);
-                if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
-                    $state.go('dcm.home');
+
+                if(error.status === 401) { // Unauthorized
+
+                    $state.go('signin.content');
+
                 } else {
-                    $state.go('dhc.game');
+
+                    $rootScope.$emit('clientmsg:error', error);
+
+                    console.log('Stack: ' + error.stack);
+                    if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
+                        $state.go('dcm.home');
+                    } else {
+                        $state.go('dhc.game');
+                    }
                 }
+
             });
 
         }]);
