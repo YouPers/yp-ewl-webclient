@@ -61,6 +61,10 @@
       "isJoining": "Teilnehmer",
       "isInvited": "Eingeladen",
 
+      "event": {
+          "status": "Gemacht?",
+          "rating": "Wie war's?"
+      },
 
     "list": {
         "stateHeader1": "alle",

@@ -115,7 +115,7 @@
             <activity-event-card
 
                     ng-repeat="event in events"
-                    type="current"
+                    type="feedback"
                     event="event"
 
                     ></activity-event-card>
@@ -133,7 +133,7 @@
             <button class="btn btn-default backToGame" ui-sref="dhc.game" translate>
                 activity.link.back
             </button>
-            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!dirty && (mode === 'recommendation' || mode === 'owned')) || (activity.isParticipant())" ng-click="submit()">
+            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!dirty && (mode === 'recommendation' || mode === 'owned')) || (activity.isJoiningUser())" ng-click="submit()">
                 {{ 'activity.submit.' + mode | translate }}
             </button>
         </div>
