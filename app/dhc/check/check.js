@@ -23,12 +23,15 @@
                             newestResult: ['campaign', 'AssessmentService', 'UserService', function (campaign, AssessmentService, UserService) {
 
                                 return AssessmentService.getNewestAssessmentResults(campaign.topic);
-                            }]
-                        },
-                        onExit: ['AssessmentService', function(AssessmentService) {
-                            return AssessmentService.regenerateRecommendations();
-                        }]
+                            }],
+                            assessmentIdea: ['ActivityService', function (ActivityService) {
 
+                                return ActivityService.getIdea('5278c6accdeab69a25000008');
+                            }],
+                            onExit: ['AssessmentService', function (AssessmentService) {
+                                return AssessmentService.regenerateRecommendations();
+                            }]
+                        }
                     })
                     .state('check.notopic', {
                         url: "/check",
@@ -43,14 +46,15 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/check/check');
             }])
 
-        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessment', 'newestResult', 'AssessmentService',
-            function ($scope, $rootScope, $state, $timeout, assessment, newestResult, AssessmentService) {
+        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessment', 'newestResult', 'assessmentIdea', 'AssessmentService',
+            function ($scope, $rootScope, $state, $timeout, assessment, newestResult, assessmentIdea, AssessmentService) {
                 if (!assessment) {
                     return;
                 }
                 $scope.orderedCategoryNames = _.uniq(_.map(assessment.questions, 'category'));
                 $scope.categories = _.groupBy(assessment.questions, 'category');
                 $scope.assessment = assessment;
+                $scope.assessmentIdea = assessmentIdea;
 
                 // setup helper values for UI-controls
                 _.forEach(newestResult.answers, function(myAnswer) {
