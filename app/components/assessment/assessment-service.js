@@ -110,7 +110,9 @@
                             _answerDirty = false;
                             return Restangular.all('coachRecommendations').getList();
                         } else {
-                            return;
+                            var deferred = $q.defer();
+                            deferred.resolve();
+                            return deferred.promise;
                         }
                     },
                     getNewestAssessmentResults: function (topicId, options) {

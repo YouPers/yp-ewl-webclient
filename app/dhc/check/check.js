@@ -27,9 +27,6 @@
                             assessmentIdea: ['ActivityService', function (ActivityService) {
 
                                 return ActivityService.getIdea('5278c6accdeab69a25000008');
-                            }],
-                            onExit: ['AssessmentService', function (AssessmentService) {
-                                return AssessmentService.regenerateRecommendations();
                             }]
                         }
                     })
@@ -77,6 +74,14 @@
                         }
                     });
 
+                };
+
+                $scope.doneClicked = function(isDone) {
+                    // TODO: if (isDone) {mark the Activity for this assessment as Done}
+                    AssessmentService.regenerateRecommendations()
+                        .then(function () {
+                            return $state.go('dhc.game');
+                        });
                 };
 
 
