@@ -195,9 +195,11 @@
                 };
 
                 $scope.deleteActivity = function deleteActivity() {
-                    ActivityService.deleteActivity($scope.activity.id);
-                    $rootScope.$emit('clientmsg:success', 'activity.deleted');
-                    $state.go('dhc.game');
+                    ActivityService.deleteActivity($scope.activity.id)
+                        .then(function () {
+                            $rootScope.$emit('clientmsg:success', 'activity.deleted');
+                            $state.go('dhc.game');
+                        });
                 };
                 $scope.joinActivity = function joinActivity() {
                     ActivityService.joinPlan($scope.activity).then(function (joinedActivity) {
