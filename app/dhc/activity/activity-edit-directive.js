@@ -8,16 +8,16 @@
                 return {
                     restrict: 'E',
                     scope: {
-                        activity: '&',
-                        onSave: '=',
-                        onCancel: '=',
-                        onDelete: '='
+                        activity: '=',
+                        onSave: '&',
+                        onCancel: '&',
+                        onDelete: '&'
                     },
                     templateUrl: 'dhc/activity/activity-edit-directive.html',
 
                     link: function (scope, elem, attrs) {
 
-                        scope.activity = _.clone(scope.activity());
+                        scope.activity = _.clone(scope.activity);
 
                         _.extend(scope.activity, {
                             isScheduled: !!scope.activity.id,
