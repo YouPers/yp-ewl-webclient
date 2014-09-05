@@ -199,8 +199,6 @@
                         .then(function () {
                             $rootScope.$emit('clientmsg:success', 'activity.deleted');
                             $state.go('dhc.game');
-                        }, function (err) {
-                            $rootScope.$emit('clientmsg:err', err);
                         });
                 };
                 $scope.joinActivity = function joinActivity() {
