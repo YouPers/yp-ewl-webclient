@@ -28,7 +28,11 @@
 
                                 return ActivityService.getIdea('5278c6accdeab69a25000008');
                             }]
-                        }
+                        },
+
+                        onExit: ['AssessmentService', function (AssessmentService) {
+                            return AssessmentService.regenerateRecommendations();
+                        }]
                     })
                     .state('check.notopic', {
                         url: "/check",

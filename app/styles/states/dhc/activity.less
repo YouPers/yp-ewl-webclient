@@ -68,7 +68,7 @@
     margin: 1em 0.2em;
   }
 
-  .invitedUser {
+  .invitedUser > div {
     display: flex;
     justify-content:flex-start;
     align-content: flex-start;
@@ -86,6 +86,24 @@
     }
 
     border-top: 1px solid @yp-color-grey1;
+
+    i {
+      font-size: 32px;
+      padding: 4px 12px;
+    }
+  }
+
+  user-invitation {
+    display: block;
+    margin-bottom: 1em;
+  }
+
+  email-invitation {
+    display: block;
+    margin-top: 1em;
+    .btn {
+      width: 100%;
+    }
   }
 
   .user-to-be-invited {

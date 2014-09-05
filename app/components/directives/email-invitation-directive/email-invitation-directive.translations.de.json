@@ -1,0 +1,9 @@
+{
+  "emailInvitation": {
+      "email": {
+          "placeholder": "Jemanden per Email einladen"
+      },
+      "inviteSubmit": "Senden"
+  }
+
+}

@@ -1,0 +1,19 @@
+<form class="form" ng-if="!invitationSent"
+      role="form"
+      ng-submit="emailInvitation.$valid && $parent.inviteEmails(emailAddresses, activity)"
+      name="emailInvitation">
+    <div class="form-group"
+         ng-class="{'has-error': inviteEmailForm.email.$dirty && inviteEmailForm.email.$invalid}">
+        <label class="sr-only" translate>emailInvitation.email.label</label>
+        <input class="form-control email-field" name="email" type="text"
+               ng-model="emailAddresses"
+               placeholder="{{'emailInvitation.email.placeholder' | translate}}"
+               multiple-emails required>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary"
+                ng-disabled="inviteEmailForm.$invalid"
+                translate>emailInvitation.inviteSubmit
+        </button>
+    </div>
+</form>

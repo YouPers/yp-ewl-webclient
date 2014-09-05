@@ -22,6 +22,7 @@
 
             // directives
             'yp.components.userInvitation',
+            'yp.components.emailInvitation',
             'yp.components.activityComments',
             'yp.components.activityEventStack',
             'yp.components.activityEventCard',
