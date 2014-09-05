@@ -19,7 +19,7 @@
                         scope.event.dueState = ActivityService.getActivityEventDueState(scope.event);
 
                         scope.isFutureEvent = function (event) {
-                            return moment().diff(event.start) < 0;
+                            return moment().diff(event.end) < 0;
                         };
 
                         var updateEvent = function updateEvent(event, old) {
