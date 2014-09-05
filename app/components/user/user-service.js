@@ -164,9 +164,7 @@
                         ipCookie.remove(AUTH_COOKIE_NAME);
                         $http.defaults.headers.common.Authorization = '';
                         _deauthorize();
-                        var deferred = $q.defer();
-                        deferred.resolve();
-                        return deferred.promise;
+                        return $q.when(null);
                     },
                     validateUser: function (user) {
                         return validateUser.post(user);

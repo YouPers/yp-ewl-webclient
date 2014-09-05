@@ -110,18 +110,14 @@
                             _answerDirty = false;
                             return Restangular.all('coachRecommendations').getList();
                         } else {
-                            var deferred = $q.defer();
-                            deferred.resolve();
-                            return deferred.promise;
+                            return $q.when(null);
                         }
                     },
                     getNewestAssessmentResults: function (topicId, options) {
                         return _topicId2Assessment(topicId)
                             .then(function (assessment) {
                                 if (!UserService.principal.isAuthenticated()) {
-                                    var deferred = $q.defer();
-                                    deferred.resolve(assessment.getNewEmptyAssResult());
-                                    return deferred.promise;
+                                    return $q.when(assessment.getNewEmptyAssResult());
                                 }
 
                                 return Restangular
@@ -148,9 +144,7 @@
                     },
                     topStressors: function (topicId) {
                         if (!UserService.principal.isAuthenticated()) {
-                            var deferred = $q.defer();
-                            deferred.resolve([]);
-                            return deferred.promise;
+                            return $q.when([]);
                         }
 
                         return assService.getNewestAssessmentResults(topicId, {populatedeep: 'answers.question'}).then(function (result) {

@@ -18,9 +18,7 @@
                     if (UserService.principal.isAuthenticated()) {
                         return Restangular.all(baseUrl).getList(options);
                     } else {
-                        var deferred = $q.defer();
-                        deferred.resolve([]);
-                        return deferred.promise;
+                        return $q.when([]);
                     }
 
                 },

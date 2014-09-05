@@ -54,10 +54,7 @@
                         }).then(_populateFromCache);
                     } else {
                         // all ideas already on client
-                        var deferred = $q.defer();
-
-                        deferred.resolve(_populateFromCache());
-                        return deferred.promise;
+                        return $q.when(_populateFromCache());
                     }
                 };
 
@@ -74,9 +71,7 @@
                         if (ideaId) {
                             return Restangular.one('ideas', ideaId).get();
                         } else {
-                            var deferred = $q.defer();
-                            deferred.resolve(null);
-                            return deferred.promise;
+                           return $q.when(null);
                         }
                     },
                     saveIdea: function (idea) {
@@ -92,21 +87,16 @@
                     },
                     getActivities: function (options) {
                         if (UserService.principal.isAuthenticated()) {
-
                             return activities.getList(options).then(_populateIdeas);
                         } else {
-                            var deferred = $q.defer();
-                            deferred.resolve([]);
-                            return deferred.promise;
+                            return $q.when([]);
                         }
                     },
                     getActivityEvents: function (options) {
                         if (UserService.principal.isAuthenticated()) {
                             return activityEvents.getList(options).then(_populateIdeas);
                         } else {
-                            var deferred = $q.defer();
-                            deferred.resolve([]);
-                            return deferred.promise;
+                            return $q.when([]);
                         }
                     },
                     getActivityEventDueState: function(event) {
