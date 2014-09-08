@@ -7,7 +7,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dhc.game', {
-                        url: "/game",
+                        url: "/game/:view",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -35,8 +35,10 @@
             }])
 
 
-        .controller('GameController', [ '$scope', '$state', '$window', 'activities', 'offers', 'activityEvents',
-            function ($scope, $state, $window, activities, offers, activityEvents) {
+        .controller('GameController', [ '$scope', '$state', '$stateParams', '$window', 'activities', 'offers', 'activityEvents',
+            function ($scope, $state, $stateParams, $window, activities, offers, activityEvents) {
+
+                $scope.view = $stateParams.view;
 
                 $scope.activities = _.filter(activities, { status: 'active' });
                 $scope.doneActivities = _.filter(activities, { status: 'old' });
@@ -68,9 +70,9 @@
                 var offersDismissed = _.filter(offers, function(si) {
                     return si.dismissed || si.rejected;
                 });
-                $scope.dismissedEvents = [];
+                $scope.offersDismissed = [];
                 _.forEach(offersDismissed, function (sid) {
-                    $scope.dismissedEvents.push({
+                    $scope.offersDismissed.push({
                         activity: sid.activity,
                         idea: sid.idea || sid.activity.idea,
                         socialInteraction: sid
@@ -89,7 +91,9 @@
 
                 // sort activities by the end date of the oldest event of an activity with the status 'open'
                 $scope.activities = _.sortBy($scope.activities, function(activity) {
-                    return _.max(_.filter($scope.eventsByActivity, { status: 'open' }), function(event) {
+                    return _.max(_.filter($scope.eventsByActivity, function(activity) {
+                        return activity.status === 'active';
+                    }), function(event) {
                         return new Date(event.end).getTime();
                     });
                 });
@@ -123,7 +127,6 @@
                     });
 
                 };
-
             }]);
 
 }());

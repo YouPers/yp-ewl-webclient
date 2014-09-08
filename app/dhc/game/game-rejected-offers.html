@@ -1,0 +1,26 @@
+<game-area class="rejected-offers" ng-init="areaHeight = 36" area-height="areaHeight">
+
+
+    <a href class="toggleZoom" ui-sref="dhc.game({ view: undefined })">
+        <i class="fa fa-compress" ></i>
+    </a>
+
+    <div><h4 translate>game.activities.rejected</h4></div>
+
+
+    <div class="flex" ng-style="{ height: $parent.areaHeight + 'em' }">
+
+
+        <activity-offer-card
+
+                activity="offer.activity"
+                idea="offer.idea"
+                social-interaction="offer.socialInteraction"
+                ng-repeat="offer in offersDismissed"
+                ng-click="openSocialInteraction(offer.socialInteraction)"
+
+                ></activity-offer-card>
+
+    </div>
+
+</game-area>

@@ -8,7 +8,9 @@
 
     <section>
 
-        <ng-include src="'dhc/game/game-content.html'"></ng-include>
+        <ng-include ng-if="!view" src="'dhc/game/game-content.html'"></ng-include>
+        <ng-include ng-if="view == 'done'" src="'dhc/game/game-done-events.html'"></ng-include>
+        <ng-include ng-if="view == 'rejected'" src="'dhc/game/game-rejected-offers.html'"></ng-include>
 
     </section>
 

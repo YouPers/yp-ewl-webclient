@@ -99,7 +99,11 @@
                             return $q.when([]);
                         }
                     },
-                    getActivityEventDueState: function(event) {
+                    getActivityEventDueState: function(event, type) {
+
+                        if(type && type !== 'current') {
+                            return 'Future';
+                        }
 
                         if(event.idea && event.idea.action) {
                             return 'Coach';

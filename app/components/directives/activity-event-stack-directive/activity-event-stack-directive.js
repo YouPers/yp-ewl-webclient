@@ -66,7 +66,7 @@
 
 
                     function dueState(event) {
-                        return ActivityService.getActivityEventDueState(event);
+                        return ActivityService.getActivityEventDueState(event, scope.type);
                     }
 
                     var offset = 0;

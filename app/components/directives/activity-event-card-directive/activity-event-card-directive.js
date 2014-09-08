@@ -16,7 +16,7 @@
 
                     link: function (scope, elem, attrs) {
 
-                        scope.event.dueState = ActivityService.getActivityEventDueState(scope.event);
+                        scope.event.dueState = ActivityService.getActivityEventDueState(scope.event, scope.type);
 
                         scope.isFutureEvent = function (event) {
                             // TODO: We should compare against event.end, but because of WL-998 we use event.start as a workaround
