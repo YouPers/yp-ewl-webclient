@@ -19,7 +19,8 @@
                         scope.event.dueState = ActivityService.getActivityEventDueState(scope.event);
 
                         scope.isFutureEvent = function (event) {
-                            return moment().diff(event.end) < 0;
+                            // TODO: We should compare against event.end, but because of WL-998 we use event.start as a workaround
+                            return moment().diff(event.start) < 0;
                         };
 
                         var updateEvent = function updateEvent(event, old) {
