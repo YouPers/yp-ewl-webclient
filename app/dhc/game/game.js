@@ -124,6 +124,9 @@
 
                 };
 
+                $scope.$on('gameAreaSidePanel:zoom', function (event, zoom) {
+                    console.log('zoom:', zoom);
+                });
             }]);
 
 }());

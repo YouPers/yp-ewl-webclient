@@ -1,3 +1,11 @@
+game-area-side-panel:hover {
+
+  cursor: pointer;
+
+  .toggleZoom {
+    color: @yp-color-green-hover;
+  }
+}
 game-area-side-panel > * {
 
   position: absolute;
@@ -12,13 +20,13 @@ game-area-side-panel > * {
 
   background-color: white;
 
-  transition: 1.2s ease margin;
+  transition: 0.2s ease margin;
 
 
-  .toggle:hover {
+  .togglePreview:hover {
     color: @yp-color-green-hover;
   }
-  .toggle {
+  .togglePreview {
 
     position: absolute;
     right: 100%;
@@ -28,16 +36,27 @@ game-area-side-panel > * {
     padding: 6px;
     i {
       font-size: 22px;
+    }
+  }
+  .toggleZoom {
 
+    position: absolute;
+    right: 0;
+    white-space: nowrap;
+    color: @yp-color-grey1;
+    outline: 1px solid @yp-color-grey1;
+    padding: 6px;
+    i {
+      font-size: 22px;
     }
   }
 }
 
-game-area-side-panel > *.toggled {
+game-area-side-panel > *.preview {
   margin-left: -100%;
   outline: 1px solid @yp-color-grey1;
 
-  .toggle {
+  .togglePreview {
     margin-right: 1px;
   }
 }

@@ -1,9 +1,13 @@
-<div ng-init="toggled = false" ng-class="{ toggled: toggled }">
+<div ng-init="preview = false" ng-class="{ preview: preview }">
 
-    <a href class="toggle" ng-click="toggled = !toggled">
-        <i class="fa" ng-class="{ 'fa-chevron-right': toggled, 'fa-chevron-left': !toggled }"></i>
+    <a href class="togglePreview" ng-click="preview = !preview">
+        <i class="fa" ng-class="{ 'fa-chevron-right': preview, 'fa-chevron-left': !preview }"></i>
 
         <i ng-if="iconClass" class="fa {{ iconClass }}"></i>
+    </a>
+
+    <a href class="toggleZoom">
+        <i class="fa" ng-class="{ 'fa-compress': zoom, 'fa-expand': !zoom }"></i>
     </a>
 
     <div ng-transclude></div>
