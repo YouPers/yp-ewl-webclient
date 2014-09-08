@@ -13,9 +13,7 @@
                 templateUrl: 'dhc/game/game-area-side-panel-directive.html',
 
                 link: function (scope, elem, attrs) {
-                    scope.$watch('zoom', function(zoom) {
-                        scope.$emit('gameAreaSidePanel:zoom', zoom);
-                    })
+
                 }
             };
 
