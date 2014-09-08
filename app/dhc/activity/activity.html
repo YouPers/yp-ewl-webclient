@@ -129,13 +129,29 @@
         <h4 translate>activity.header.third</h4>
 
         <div ng-show="activityController.active || activity.isOwner()">
-            <activity-event-card
 
-                    ng-repeat="event in events"
-                    type="feedback"
-                    event="event"
+            <div ng-repeat="event in events" class="event-list"
 
-                    ></activity-event-card>
+
+                    >
+
+                <activity-event-card
+
+                        type="feedback"
+                        event="event"
+
+                        ></activity-event-card>
+
+
+                <activity-event-card ng-if="event.conflictingEvent"
+                                     class="conflict"
+                                     type="conflict"
+                                     event="event.conflictingEvent"
+
+                        ></activity-event-card>
+
+            </div>
+
         </div>
 
         <div>
