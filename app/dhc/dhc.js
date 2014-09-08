@@ -34,8 +34,6 @@
                         }]
                     }
                 });
-
-            $translateWtiPartialLoaderProvider.addPart('dhc/dhc');
         }])
 
         .controller('DhcController', ['$scope', '$rootScope', '$state', 'UserService', 'campaign',

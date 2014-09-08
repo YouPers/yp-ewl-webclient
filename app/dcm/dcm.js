@@ -49,7 +49,6 @@
                     }
                 });
 
-            $translateWtiPartialLoaderProvider.addPart('dcm/dcm');
         }])
 
         .controller('DcmController', ['$scope', '$rootScope', '$state', 'UserService', 'CampaignService', 'organization', 'campaign', 'campaigns',
