@@ -1,7 +1,3 @@
-
-<ng-include ng-init="parentState = $state.current.name.substr(0, $state.current.name.indexOf('.'))" src="parentState + '/subnavbar.html'">
-</ng-include>
-
 <div class="container {{ parentState }} {{ $state.current.name.replace('.', '-') }}">
     <div  ui-view="content" autoscroll="false"></div>
 </div>
