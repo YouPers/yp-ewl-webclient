@@ -20,7 +20,7 @@
 
             </div>
 
-            <game-area-side-panel icon-class="fa-check">
+            <game-area-side-panel icon-class="fa-check" ui-sref="dhc.game({ view: 'done' })">
 
                 <div><h4 translate>game.activities.done</h4></div>
 
@@ -58,16 +58,18 @@
 
             </div>
 
-            <game-area-side-panel icon-class="fa-trash-o">
+            <game-area-side-panel icon-class="fa-trash-o" ui-sref="dhc.game({ view: 'rejected' })">
 
                 <div><h4 translate>game.activities.rejected</h4></div>
 
                 <div class="rejected-activities">
+
                     <activity-offer-card
-                            activity="event.activity"
-                            idea="event.idea"
-                            social-interaction="event.socialInteraction"
-                            ng-repeat="event in dismissedEvents"
+
+                            activity="offer.activity"
+                            idea="offer.idea"
+                            social-interaction="offer.socialInteraction"
+                            ng-repeat="offer in offersDismissed"
 
                             ></activity-offer-card>
                 </div>

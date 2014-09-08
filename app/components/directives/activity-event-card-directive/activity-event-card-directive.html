@@ -27,7 +27,7 @@
         <div ng-bind-html="getRenderedText(event.activity.title || event.idea.title)"></div>
     </div>
 
-    <div class="feedback sheet tertiary" ng-if="event.id && type === 'feedback' && !isFutureEvent(event)">
+    <div class="feedback sheet tertiary" ng-if="type === 'done' || event.id && type === 'feedback' && !isFutureEvent(event)">
 
 
         <fieldset>

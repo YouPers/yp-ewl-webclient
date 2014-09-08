@@ -1,6 +1,6 @@
 <div ng-init="preview = false" ng-class="{ preview: preview }">
 
-    <a href class="togglePreview" ng-click="preview = !preview">
+    <a href class="togglePreview" ng-click="preview = !preview; $event.stopPropagation();">
         <i class="fa" ng-class="{ 'fa-chevron-right': preview, 'fa-chevron-left': !preview }"></i>
 
         <i ng-if="iconClass" class="fa {{ iconClass }}"></i>

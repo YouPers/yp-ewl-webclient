@@ -7,7 +7,7 @@
 
         "activities": {
             "current": "Laufende Aktivitäten",
-            "done": "Ergebnisse",
+            "done": "Vergangene",
             "offered": "Angebotene Aktivitäten",
             "rejected": "Verworfen"
         },

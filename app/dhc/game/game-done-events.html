@@ -1,0 +1,25 @@
+<game-area class="done-events" ng-init="areaHeight = 36" area-height="areaHeight">
+
+
+    <a href class="toggleZoom" ui-sref="dhc.game({ view: undefined })">
+        <i class="fa fa-compress" ></i>
+    </a>
+
+    <div><h4 translate>game.activities.done</h4></div>
+
+
+    <div class="flex" ng-style="{ height: $parent.areaHeight + 'em' }">
+
+
+        <activity-event-card  ng-repeat="event in doneEvents"
+
+                              type="done"
+                              event="event"
+                              idea="event.idea" activity="event.activity"
+                              ng-click="openActivity(event.activity)">
+
+        </activity-event-card>
+
+    </div>
+
+</game-area>
