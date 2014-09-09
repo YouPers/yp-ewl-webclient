@@ -17,12 +17,12 @@
 
             <div class="nav navbar-left">
 
-                <ul class="nav navbar-nav" ng-if="isCampaignAdmin">
+                <ul class="nav navbar-nav" ng-if="isCampaignAdmin" ng-init="parentState = $state.$current.parent.name">
                     <li class="nav navbar-nav">
-                        <a ui-sref="dhc.game">Digital Health Coach</a>
+                        <a ui-sref="dhc.game" ng-class="{ inactive: $state.current.name.indexOf('dhc') !== 0 }" translate>topmenu.dhc</a>
                     </li>
                     <li class="nav navbar-nav">
-                        <a ui-sref="dcm.home">Digital Campaign Management</a>
+                        <a ui-sref="dcm.home" ng-class="{ inactive: $state.current.name.indexOf('dcm') !== 0 }" translate>topmenu.dcm</a>
                     </li>
                     <li class="nav navbar-nav" ng-if="isProductAdmin">
                         <a ui-sref="admin-home.content">Product Configuration</a>
