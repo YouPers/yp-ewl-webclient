@@ -75,10 +75,12 @@
                     };
                 }
 
-                $scope.$watch('campaign.topic', function (newTopic, oldTopic) {
+                $scope.$watch('campaign.topic.id', function (newTopic, oldTopic) {
                     if (newTopic) {
-                        $scope.campaign.title = topics.byId[newTopic].name;
-                        $scope.campaign.avatar = topics.byId[newTopic].picture;
+                        var topic = topics.byId[newTopic];
+                        $scope.campaign.topic = topic;
+                        $scope.campaign.title = topic.name;
+                        $scope.campaign.avatar = topic.picture;
                     }
                 });
 
@@ -101,12 +103,9 @@
                         } else {
                             CampaignService.postCampaign($scope.campaign)
                                 .then(function (campaign) {
-                                    $scope.campaign = campaign;
 
-                                    return UserService.reload();
-                                })
-                                .then(function () {
-                                    return $scope.$emit('clientmsg:success', 'campaign.saved');
+                                    $scope.$emit('clientmsg:success', 'campaign.saved');
+                                    $scope.$state.go('dcm.home', { campaignId: campaign.id });
                                 });
                         }
 

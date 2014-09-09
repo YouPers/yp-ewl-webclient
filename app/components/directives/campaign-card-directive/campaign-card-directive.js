@@ -15,14 +15,6 @@
 
                 link: function (scope, elem, attrs) {
 
-                    scope.topicName = function () {
-                        var topicNames = {
-                            '53b416cfa43aac62a2debda1': 'Stress',
-                            '53b416fba43aac62a2debda2': 'Nutrition',
-                            '53b416fba43aac62a2debda3': 'Fitness'
-                        };
-                        return topicNames[scope.campaign.topic];
-                    };
                 }
             };
         }]);

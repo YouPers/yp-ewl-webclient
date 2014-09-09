@@ -19,7 +19,7 @@
 
                         <div class="form-group date">
                             <label class="control-label" translate>Kampagnen-Thema</label>
-                            <select class="form-control" ng-model="campaign.topic" ng-options="topic.id as topic.name for topic in topics">
+                            <select class="form-control" ng-model="campaign.topic.id" ng-options="topic.id as topic.name for topic in topics">
                             </select>
                         </div>
                         <yp-input name="participants"></yp-input>
@@ -40,7 +40,7 @@
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary pull-right" ng-disabled="campaignForm.$invalid">
-                                <span translate>campaignForm.{{ campaign.id ? 'save' : 'create' }}</span>
+                                <span translate>campaignForm.save</span>
                             </button>
                             <button type="button" class="btn btn-default pull-right" ui-sref="campaigns.content">
                                 <span translate>campaignForm.back</span>
