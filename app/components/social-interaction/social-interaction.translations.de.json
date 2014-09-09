@@ -16,14 +16,13 @@
               "campaignLead": "Kampagnenempfehlung von",
               "coach": "HealthCoach"
           },
-          "Recommendation": {
+          "Message": {
               "user": "persönliche Nachricht von",
               "campaignLead": "Kampagnennachricht von",
               "coach": "HealthCoach"
           }
       }
   },
-
     "composeMessageForm": {
         "show": "Nachricht an die Kampagne",
 
