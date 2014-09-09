@@ -101,8 +101,14 @@
                     },
                     getActivityEventDueState: function(event, type) {
 
-                        if(type && type !== 'current') {
-                            return 'Future';
+                        if(type) {
+
+                            if(type === 'conflict') {
+                                return 'Conflict';
+                            } else if(type !== 'current') {
+                                return 'Future'; // reuse 'neutral' eventFuture component type
+                            }
+
                         }
 
                         if(event.idea && event.idea.action) {

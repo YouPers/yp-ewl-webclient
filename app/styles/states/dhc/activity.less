@@ -6,6 +6,23 @@
     filter: saturate(0%);
   }
 
+  .event-list {
+    position: relative;
+
+    .activity-event-card.conflict  {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: -0.4em 0 0 3em;
+      z-index: -1;
+    }
+  }
+
+  .event-list:hover .activity-event-card.conflict {
+    z-index: 1;
+  }
+
+
   activity-view {
     .dl-horizontal {
       dt {
@@ -118,6 +135,7 @@
       font-size: 1.5em;
     }
   }
+
 
   .btn.submit, .btn.backToGame {
     width: 100%;

@@ -158,6 +158,7 @@
 
                             event.activity = $scope.activity;
                             event.conflictingEvent = result.conflictingEvent;
+
                             $scope.events.push(event);
 
                         });
