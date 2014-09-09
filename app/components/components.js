@@ -36,7 +36,6 @@
             'yp.components.campaignSwitcher',
             'yp.components.campaignCard',
             'yp.components.datePicker',
-            'yp.components.dateTimePicker',
             'yp.components.multipleViewCarousel',
             'yp.components.recommendedBySlider',
             'yp.components.scheduledDate',
