@@ -15,7 +15,8 @@
               "owned": "Deine Aktivität",
               "joined": "Teilnehmer dieser Aktivität",
               "recommendation": "Empfehlung",
-              "invitation": "Einladung"
+              "invitation": "Einladung",
+              "schedule": "Selber einplanen"
           },
           "second": "Plan",
           "third": "Termine",
@@ -56,12 +57,15 @@
           "invitation": "Einladung annehmen und Termine speichern",
           "recommendation": "Termine speichern",
           "owned": "Termine speichern",
-          "joined": "Termine speichern"
+          "joined": "Termine speichern",
+          "schedule": "Termine speichern"
       },
 
       "owner": "Organisator",
       "isJoining": "Teilnehmer",
       "isInvited": "Eingeladen",
+
+      "reschedule": "Erneut einplanen",
 
       "event": {
           "status": "Gemacht?",

@@ -4,6 +4,8 @@
     <div class="card page" ng-class="{ flipped: flipped }">
         <div class="front face" ng-click="flip()">
 
+            <div class="upper-border"></div>
+
             <div class="image">
                 <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}">
             </div>
@@ -17,43 +19,24 @@
             </div>
 
             <ul class="icons sheet secondary">
-                <li>
-                    <!-- TODO: aggregation of social interactions for the same activity -->
-
-
-                    <div ng-if="activity && activity.owner.avatar">
-                        <img ng-src="{{ activity.owner.avatar }}">
-                    </div>
-                    <a class="execution-type" ng-if="!activity && idea.defaultexecutiontype == 'self'">
+                <li tooltip="{{ 'executiontype.' + idea.defaultexecutiontype | translate }}">
+                    <a class="execution-type" ng-if="idea.defaultexecutiontype == 'self'">
                         <i class="fa fa-user"></i>
                     </a>
-                    <a class="execution-type" ng-if="!activity && idea.defaultexecutiontype == 'group'">
+                    <a class="execution-type" ng-if="idea.defaultexecutiontype == 'group'">
                         <i class="fa fa-users"></i>
                     </a>
                 </li>
                 <li>
-                    <a ng-if="activity">
-                        <i class="fa fa-comments-o"></i>
-                    </a>
-
-                    <div ng-if="!activity && socialInteraction">
-                        <img ng-src="{{ socialInteraction.author.avatar }}">
-                    </div>
-                </li>
-                <li ng-init="isParticipant = activity.isParticipant()">
-                    <a ng-if="activity && isParticipant && activity.status == 'active'" ng-click="showActivity(activity)">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                    <a ng-if="activity && isParticipant && activity.status != 'active'" ng-click="showIdea(idea)">
+                    <a ng-if="activity.id"
+                       ui-sref="dhc.activity({ activity: undefined })"
+                       tooltip="{{ 'activity.reschedule' | translate }}"
+                       ng-click="$event.stopPropagation()"
+                            >
                         <i class="fa fa-repeat"></i>
                     </a>
-                    <a ng-if="activity && !isParticipant" ng-click="showActivity(activity)">
-                        <i class="fa fa-sign-in"></i>
-                    </a>
-                    <a ng-if="!activity" ng-click="showIdea(idea)">
-                        <i class="fa fa-sign-in"></i>
-                    </a>
                 </li>
+                <li></li>
                 <li>
                     <a>
                         <i class="fa fa-angle-double-right"></i>
@@ -66,6 +49,8 @@
         <div class="back face" ng-click="flip()"
              analytics-on="click" analytics-event="IdeaCardFlip" analytics-category="InPageNavigation" analytics-label="Idea Card Flipped">
 
+            <div class="upper-border"></div>
+
             <div class="content">
                 <div class="title" ng-bind-html="idea.title">
                 </div>
@@ -76,19 +61,9 @@
 
 
             <ul class="icons">
-                <li>
-                    <a>
-                        <i class="fa fa-trash-o"></i>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <i class="fa fa-star"></i>
-                    </a>
-                </li>
-                <li>
-
-                </li>
+                <li></li>
+                <li></li>
+                <li></li>
                 <li>
                     <a>
                         <i class="fa fa-angle-double-left"></i>
