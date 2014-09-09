@@ -4,8 +4,6 @@
     <div class="card page" ng-class="{ flipped: flipped }">
         <div class="front face" ng-click="flip()">
 
-            <div class="upper-border"></div>
-
             <div class="image">
                 <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}">
             </div>
@@ -48,8 +46,6 @@
 
         <div class="back face" ng-click="flip()"
              analytics-on="click" analytics-event="IdeaCardFlip" analytics-category="InPageNavigation" analytics-label="Idea Card Flipped">
-
-            <div class="upper-border"></div>
 
             <div class="content">
                 <div class="title" ng-bind-html="idea.title">
