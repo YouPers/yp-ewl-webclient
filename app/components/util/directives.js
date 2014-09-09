@@ -4,6 +4,27 @@
 
     angular.module('yp.components.util.directives', [])
 
+        .directive('synchronizedDate', [function () {
+            return {
+                restrict: 'A',
+                scope: {
+                    date: '=ngModel',
+                    synchronizedDate: '=' // date that will be updated accordingly when the first date changes
+                },
+                link: function (scope, element, attrs, ctrl) {
+
+
+                    scope.$watch('date', function(val, old) {
+                        if(old !== val) {
+                            var synchronizedDate = moment(scope.synchronizedDate).add(moment(val).diff(old)).toISOString();
+                            scope.synchronizedDate = old ? synchronizedDate : val;
+                        }
+                    });
+
+                }
+            };
+        }])
+
         .directive('form', [function () {
             return {
                 restrict: 'E',
