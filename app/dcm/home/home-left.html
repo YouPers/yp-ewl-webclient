@@ -23,26 +23,19 @@
 
 <div class="campaign-list">
 
-    <div class="campaign"
-         ng-repeat="campaign in campaigns"
-         ng-class="{ active: campaign.id === $stateParams.campaignId }"
-         ui-sref="dcm.home({ campaignId: campaign.id })">
+    <campaign-card
+            ng-repeat="campaign in campaigns"
+            ng-class="{ active: campaign.id === $stateParams.campaignId }"
+            campaign="campaign"
 
-        <div class="avatar">
-            <img ng-src="{{ campaign.avatar }}">
-        </div>
+            ui-sref="dcm.home({ campaignId: campaign.id })">
+
 
         <div class="icon" ng-click="editCampaign($event, campaign.id)">
             <i class="fa fa-pencil-square-o"></i>
         </div>
 
-        <div class="title">{{campaign.title}}</div>
-        <div class="details">{{campaign.participants}}</div>
-        <div class="details">{{campaign.location}} {{campaign.city}}</div>
-        <div class="details">{{campaign.start | date:'d.MM.'}} -  {{campaign.end | date:'d.MM.yyyy'}}</div>
-
-
-    </div>
+            </campaign-card>
 
 
 </div>

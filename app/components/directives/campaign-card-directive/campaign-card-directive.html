@@ -1,0 +1,28 @@
+<div ng-class="'topic' + topicName()">
+    <div class="avatar">
+        <img ng-src="{{ campaign.avatar }}">
+    </div>
+    <div class="topic sheet primary">
+        <div>{{campaign.title}}</div>
+    </div>
+    <div class="details sheet secondary">
+        <div>
+            <i class="fa fa-clock-o"></i>
+            <span>{{campaign.start | date:'d.MM.'}} -  {{campaign.end | date:'d.MM.yyyy'}}</span>
+        </div>
+        <div>
+            <i class="fa fa-location-arrow"></i>
+            <span>{{campaign.location}} {{campaign.city}}</span>
+        </div>
+    </div>
+    <div class="details sheet tertiary">
+        <div translate>Kampagneneinladung</div>
+        <div class="participants">{{campaign.participants}}</div>
+    </div>
+
+    <div class="icon" ng-if="campaigns.length > 1">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </div>
+
+    <div ng-transclude></div>
+</div>

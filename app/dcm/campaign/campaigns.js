@@ -22,7 +22,7 @@
                         }
                     })
                     .state('dcm.campaign', {
-                        url: "/campaign/:id/edit",
+                        url: "/edit",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
@@ -33,8 +33,8 @@
                         resolve: {
                             campaign: ['$stateParams', 'CampaignService', function ($stateParams, CampaignService) {
 
-                                if ($stateParams.id) {
-                                    return CampaignService.getCampaign($stateParams.id);
+                                if ($stateParams.campaignId) {
+                                    return CampaignService.getCampaign($stateParams.campaignId);
                                 } else {
                                     return undefined;
                                 }
@@ -71,14 +71,14 @@
                     $scope.campaign = {
                         title: '',
                         start: start,
-                        end: end,
-                        avatar: '/assets/img/stressManagement.jpg'
+                        end: end
                     };
                 }
 
                 $scope.$watch('campaign.topic', function (newTopic, oldTopic) {
                     if (newTopic) {
                         $scope.campaign.title = topics.byId[newTopic].name;
+                        $scope.campaign.avatar = topics.byId[newTopic].picture;
                     }
                 });
 
@@ -96,7 +96,7 @@
 
                         if ($scope.campaign.id) {
                             CampaignService.putCampaign($scope.campaign).then(function (campaign) {
-                                $scope.$state.go('campaigns.content');
+                                $scope.$state.go('dcm.home');
                             });
                         } else {
                             CampaignService.postCampaign($scope.campaign)

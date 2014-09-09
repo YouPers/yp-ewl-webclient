@@ -63,7 +63,7 @@
                 $scope.campaigns = campaigns;
 
                 $scope.editCampaign = function editCampaign($event, campaignId) {
-                    $state.go('dcm.campaign', { id: campaignId });
+                    $state.go('dcm.campaign', { campaignId: campaignId });
                     $event.stopPropagation();
                 };
 
