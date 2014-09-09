@@ -24,12 +24,12 @@
                 <label translate>activityForm.date.label</label>
             </dt>
             <dd>
-                <date-picker ng-model="activity.mainEvent.start" date="activity.mainEvent.start"></date-picker>
+                <date-picker date="activity.mainEvent.start"></date-picker>
             </dd>
             <dt class="time">
                 <label translate>activityForm.time.label</label>
             </dt>
-            <dd class="time">
+            <dd class="time" ng-model="activity.mainEvent.start" synchronized-date="activity.mainEvent.end">
 
                 <timepicker ng-model="activity.mainEvent.start" id="timePickerStart" minute-step="15"
                             show-meridian="false"></timepicker>

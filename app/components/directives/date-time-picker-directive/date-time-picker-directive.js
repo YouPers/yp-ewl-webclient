@@ -19,13 +19,6 @@
                         throw new Error('start and end date attributes are required');
                     }
 
-                    scope.$watch('start', function(val, old) {
-                        if(old !== val) {
-                            var end = moment(scope.end).add(moment(val).diff(old)).toISOString();
-                            scope.end = old ? end : val;
-                        }
-                    });
-
                 }
             };
         }]);
