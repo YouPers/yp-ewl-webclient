@@ -18,11 +18,11 @@
                         resolve: {
                             assessment: ['campaign', 'AssessmentService', function (campaign, AssessmentService) {
 
-                                return AssessmentService.getAssessment(campaign.topic);
+                                return AssessmentService.getAssessment(campaign.topic.id || campaign.topic);
                             }],
                             newestResult: ['campaign', 'AssessmentService', 'UserService', function (campaign, AssessmentService, UserService) {
 
-                                return AssessmentService.getNewestAssessmentResults(campaign.topic);
+                                return AssessmentService.getNewestAssessmentResults(campaign.topic.id || campaign.topic);
                             }],
                             assessmentIdea: ['ActivityService', function (ActivityService) {
 
