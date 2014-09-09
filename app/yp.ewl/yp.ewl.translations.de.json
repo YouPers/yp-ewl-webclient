@@ -13,7 +13,21 @@
   },
   "topmenu": {
     "dhc": "Sicht als Teilnehmer",
-    "dcm": "Kampagnenverwaltung"
+    "dcm": "Kampagnenverwaltung",
+
+      "commit": "commit",
+      "assess": "assess",
+      "plan": "plan",
+      "do": "do",
+      "evaluate": "evaluate",
+      "logout": "Abmelden",
+      "signin": "Anmelden",
+      "signup": "Registrieren",
+      "account": "Konto",
+      "profile": "Profil",
+      "language": "Sprache",
+      "feedback": "Feedback",
+      "moreinfo": "Mehr Erfahren"
   },
   "home": {
     "for": "für",
