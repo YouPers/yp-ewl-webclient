@@ -34,6 +34,7 @@
             'yp.components.ideaEdit',
             'yp.components.avatarUpload',
             'yp.components.campaignSwitcher',
+            'yp.components.campaignCard',
             'yp.components.datePicker',
             'yp.components.dateTimePicker',
             'yp.components.multipleViewCarousel',

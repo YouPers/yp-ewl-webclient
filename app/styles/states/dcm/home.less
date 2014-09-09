@@ -2,7 +2,7 @@
 @import "../../youpers-variables";
 
 
-.dcm {
+.dcm-home {
 
 
   .organization {
@@ -26,9 +26,13 @@
     }
   }
 
-  .campaign-list {
+  campaign-card {
 
-    .campaign {
+    margin-bottom: 1em;
+    cursor: pointer;
+
+    .icon {
+
       i.fa {
         font-size: 2em;
         opacity: 1;
@@ -36,43 +40,34 @@
       }
     }
 
-    .campaign:not(:hover) {
-      i.fa {
-        opacity: 0;
+    .avatar {
+      img {
+        width: 100%;
       }
     }
-    .campaign.active {
-      .title {
-        color: @yp-color-green;
-      }
-      outline: 1px solid @yp-color-grey1;
+    .icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
     }
+    .title {
 
-    .campaign {
-
-      position: relative;
-
-      padding: 5px;
-      cursor: pointer;
-
-      .avatar {
-        img {
-          width: 100%;
-        }
-      }
-      .icon {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-      }
-      .title {
-
-      }
-      .details {
-
-      }
     }
+    .details {
 
+    }
+  }
+
+  campaign-card:not(:hover) {
+    .icon i.fa {
+      opacity: 0;
+    }
+  }
+  campaign-card.active {
+    .title {
+      color: @yp-color-green;
+    }
+    outline: 1px solid @yp-color-grey1;
   }
 
   game-area.campaign-offers {

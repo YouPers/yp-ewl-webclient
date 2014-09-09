@@ -35,8 +35,13 @@
 
 
 
-        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'socialInteractions',
-            function ($scope, $rootScope, $state, UserService, socialInteractions) {
+        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'socialInteractions', 'campaign', 'campaigns',
+            function ($scope, $rootScope, $state, UserService, socialInteractions, campaign, campaigns) {
+
+
+                if (!campaign && campaigns.length > 0) {
+                    $state.go('dcm.home', { campaignId: campaigns[0].id });
+                }
 
                 $scope.socialInteractions = socialInteractions;
 

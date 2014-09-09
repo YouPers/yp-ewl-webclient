@@ -35,7 +35,7 @@
 
                         }],
                         campaigns: ['CampaignService', function (CampaignService) {
-                            return CampaignService.getCampaigns();
+                            return CampaignService.getCampaigns({ populate: 'topic' });
                         }],
                         campaign: ['$stateParams', 'CampaignService', function ($stateParams, CampaignService) {
 
@@ -54,16 +54,13 @@
         .controller('DcmController', ['$scope', '$rootScope', '$state', 'UserService', 'CampaignService', 'organization', 'campaign', 'campaigns',
             function ($scope, $rootScope, $state, UserService, CampaignService, organization, campaign, campaigns) {
 
-                if (!campaign && campaigns.length > 0) {
-                    $state.go('dcm.home', { campaignId: campaigns[0].id });
-                }
 
                 $scope.organization = organization;
                 $scope.currentCampaign = campaign;
                 $scope.campaigns = campaigns;
 
                 $scope.editCampaign = function editCampaign($event, campaignId) {
-                    $state.go('dcm.campaign', { id: campaignId });
+                    $state.go('dcm.campaign', { campaignId: campaignId });
                     $event.stopPropagation();
                 };
 
