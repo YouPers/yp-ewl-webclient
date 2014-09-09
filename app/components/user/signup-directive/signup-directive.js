@@ -13,12 +13,6 @@
 
                     scope.user = {};
 
-                    scope.$watchCollection('[user.firstname, user.lastname]', function () {
-                        if (scope.registerform && !scope.registerForm.username.$dirty && scope.user.firstname) {
-                            scope.user.username = (scope.user.firstname.substr(0, 1) || '').toLowerCase() + (scope.user.lastname || '').toLowerCase();
-                        }
-                    });
-
                     scope.submit = function() {
 
                         var user = scope.newUser;

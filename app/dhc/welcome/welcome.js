@@ -48,7 +48,8 @@
                             $state.go('dhc.game');
                         });
                     } else {
-                        $state.go('dhc.game');
+                        // user is not authenticated, we redirect him to signUp / signIn
+                        $state.go('signup.content');
                     }
 
                 };
