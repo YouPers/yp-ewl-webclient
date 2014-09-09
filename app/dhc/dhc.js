@@ -39,6 +39,8 @@
         .controller('DhcController', ['$scope', '$rootScope', '$state', 'UserService', 'campaign',
             function ($scope, $rootScope, $state, UserService, campaign) {
 
+                $scope.parentState = 'dhc';
+
                 if (!campaign) {
                     var user = UserService.principal.getUser();
                     if(user.campaign) {

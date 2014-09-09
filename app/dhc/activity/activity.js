@@ -100,6 +100,8 @@
                         mode = 'owned';
                     } else if ($scope.isScheduled && activity.isJoiningUser()) {
                         mode = 'joined';
+                    } else {
+                        mode = 'schedule';
                     }
 
                     $stateParams.mode = mode;
@@ -110,7 +112,10 @@
 
                 // only recommendations have to be activated
                 activityController.active = !socialInteraction || socialInteraction.__t !== 'Recommendation';
-                activityController.formEnabled = activity.id && activity.isOwner && activity.isOwner() || mode === 'recommendation';
+                activityController.formEnabled = (activity.id && activity.isOwner && activity.isOwner()) ||
+                    mode === 'recommendation' ||
+                    mode === 'schedule';
+                activityController.formActive = mode === 'schedule';
 
 
                 if(campaignInvitation) { // check if campaign is already invited

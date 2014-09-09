@@ -54,6 +54,7 @@
         .controller('DcmController', ['$scope', '$rootScope', '$state', 'UserService', 'CampaignService', 'organization', 'campaign', 'campaigns',
             function ($scope, $rootScope, $state, UserService, CampaignService, organization, campaign, campaigns) {
 
+                $scope.parentState = 'dcm';
 
                 $scope.organization = organization;
                 $scope.currentCampaign = campaign;
