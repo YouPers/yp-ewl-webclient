@@ -33,6 +33,11 @@
           "inviteByUser": "Nach Benutzern suchen"
       },
 
+      "emailToBeInvited": {
+          "placeholder": "Email",
+          "submit": "Hinzufügen"
+      },
+
       "invitationStatus": {
           "activityJoined": "angenommen",
           "denied": "abgelehnt",

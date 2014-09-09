@@ -110,25 +110,65 @@
     }
   }
 
-  user-invitation {
-    display: block;
-    margin-bottom: 1em;
+  .invite-users {
+    margin: 1em 0;
+    a {
+      margin-top: 1em;
+    }
   }
 
-  email-invitation {
-    display: block;
-    margin-top: 1em;
-    .btn {
-      width: 100%;
+  .input-group-addon:hover {
+    background-color: @yp-color-green-hover;
+  }
+  .input-group-addon {
+    background-color: @yp-color-green;
+
+    .btn, .btn:hover , .btn:focus {
+      padding: 0;
+      background: none;
+      border: none;
+      color: white;
+      box-shadow: none;
     }
   }
 
   .user-to-be-invited {
     position: relative;
-    i.fa:hover {
-      color: @yp-color-red;
+
+    > div {
+
+      height: 3em;
+
+      display: flex;
+      justify-content:flex-start;
+      align-content: flex-start;
+      align-items: center;
+
+      flex-direction:row;
+
+      > *:first-child {
+        flex: 0 0 48px;
+      }
+      > * {
+        flex: 1 1 auto;
+      }
     }
-    i.fa {
+
+    i:hover {
+      color: inherit;
+      cursor: default;
+    }
+    i:not(.remove) {
+      font-size: 32px;
+      margin-left: 0.3em;
+      margin-right: 0.0em;
+    }
+
+    i.remove:hover {
+      color: @yp-color-red;
+      cursor: pointer;
+    }
+    i.remove {
       position: absolute;
       top: 15px;
       right: 5px;
