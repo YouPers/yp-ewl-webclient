@@ -36,7 +36,7 @@
                 } else {
                     day = m.format('D. MMM');
                 }
-                return day + ', ' + m.format('h:mm');
+                return day + ', ' + m.format('HH:mm');
             };
         }])
         .filter('eventDate', function () {
