@@ -14,7 +14,7 @@
 
                     link: function (scope, elem, attrs) {
 
-                        scope.activity = _.clone(scope.activity);
+                        scope.activity = scope.activity;
 
                         _.extend(scope.activity, {
                             isScheduled: !!scope.activity.id,

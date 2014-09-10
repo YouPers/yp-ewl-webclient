@@ -114,11 +114,12 @@
                 activityController.active = !socialInteraction || socialInteraction.__t !== 'Recommendation';
                 activityController.formEnabled = (activity.id && activity.isOwner && activity.isOwner()) ||
                     mode === 'recommendation' ||
+                    mode === 'campaignlead' ||
                     mode === 'schedule';
-                activityController.formActive = mode === 'schedule';
+                activityController.formActive = mode === 'schedule' || mode === 'campaignlead';
 
 
-                if(campaignInvitation) { // check if campaign is already invited
+                if(campaignInvitation || mode === 'campaignlead') { // check if campaign is already invited
                     $scope.inviteOthers = 'all';
                     $scope.inviteLocked = true;
                 }
@@ -179,9 +180,16 @@
                 }, true);
 
                 $timeout(function () {
-                    $scope.dirty  = mode === 'recommendation';
+                    $scope.dirty  = activityController.formActive && !activity.id;
                 });
 
+                $scope.backToGame = function() {
+                    if(mode === 'campaignlead') {
+                        $state.go('dcm.home');
+                    } else {
+                        $state.go('dhc.game');
+                    }
+                }
 
                 $scope.dismiss = function dismiss() {
                     SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, { reason: 'denied'}).then(function (result) {
@@ -226,6 +234,7 @@
 
                             var invitation = {
                                 author: UserService.principal.getUser().id,
+                                authorType: mode === 'campaignlead' ? 'campaignLead' : 'user',
                                 refDocs: [
                                     {
                                         docId: $scope.activity.id,
@@ -234,14 +243,19 @@
                                 ]
                             };
 
-                            if (inviteAll) {
+                            var newActivity = !activity.id;
+
+                            if (inviteAll && newActivity) {
                                 invitation.targetSpaces = [
                                     {
                                         type: 'campaign',
                                         targetId: campaign.id
                                     }
                                 ];
-                            } else {
+
+                                SocialInteractionService.postInvitation(invitation);
+
+                            } else if(!inviteAll) {
 
                                 var toBeInvited = _.groupBy($scope.usersToBeInvited, function(user) {
                                     return typeof user;
@@ -257,18 +271,17 @@
                                         targetId: user.id
                                     });
                                 });
+
                                 SocialInteractionService.postInvitation(invitation);
 
                                 if(emails.length > 0) {
                                     ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity);
                                 }
-
                             }
-
-                            $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
 
                         }
 
+                        $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
                     });
 
 

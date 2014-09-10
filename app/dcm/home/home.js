@@ -43,7 +43,8 @@
                     $state.go('dcm.home', { campaignId: campaigns[0].id });
                 }
 
-                $scope.socialInteractions = _.filter(socialInteractions, function(si) {
+                $scope.offers = _.filter(socialInteractions, function(si) {
+                    si.idea = si.idea || si.activity.idea;
                     return si.__t === 'Recommendation' || si.__t === 'Invitation';
                 } );
 

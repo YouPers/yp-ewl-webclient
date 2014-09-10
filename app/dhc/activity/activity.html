@@ -61,7 +61,7 @@
             <activity-edit activity="activity"></activity-edit>
         </div>
 
-        <div ng-if="activityController.active">
+        <div ng-if="activityController.active && activity.id">
 
             <div>
                 <h4 translate>activity.header.invitedUsers</h4>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div ng-show="activityController.active && activityController.formEnabled">
+        <div ng-show="activityController.active && activityController.formEnabled" ng-if="mode !== 'campaignlead'">
 
             <div>
                 <h4 translate>activity.header.inviteOthers</h4>
@@ -193,10 +193,10 @@
 
         <div class="box">
 
-            <button class="btn btn-default backToGame" ui-sref="dhc.game" translate>
+            <button class="btn btn-default backToGame" ng-click="backToGame()" translate>
                 activity.link.back
             </button>
-            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!dirty && usersToBeInvited.length == 0 && (mode === 'recommendation' || mode === 'owned')) || (activity.isJoiningUser())" ng-click="submit()">
+            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!dirty && usersToBeInvited.length == 0 && (activityController.formEnabled)) || (activity.isJoiningUser())" ng-click="submit()">
                 {{ 'activity.submit.' + mode | translate }}
             </button>
         </div>

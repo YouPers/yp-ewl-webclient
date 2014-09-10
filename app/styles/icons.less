@@ -2,13 +2,16 @@
 
 i.fa {
   font-size: 30px;
-  transition: color 0.1s linear;
   padding: 2px;
 }
 i.fa.disabled {
   color: @yp-color-grey1;
 }
-i.fa:not(.disabled):hover, i.fa.active {
+
+a {
+  transition: color 0.1s linear;
+}
+a:hover, a i.fa:not(.disabled):hover, i.fa.active {
   cursor: pointer;
   color: @yp-color-green-hover;
 }

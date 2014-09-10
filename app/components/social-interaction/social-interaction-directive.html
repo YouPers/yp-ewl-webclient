@@ -38,7 +38,7 @@
 
         ng-repeat="socialInteraction in socialInteractions"
 
-        ui-sref="dhc.activity({ idea: socialInteraction.idea.id, socialInteraction: socialInteraction.id })"
+        ui-sref="dhc.activity({ campaignId: $root.$stateParams.campaignId, idea: socialInteraction.idea.id, activity: socialInteraction.activity.id, socialInteraction: socialInteraction.id })"
 
             >
 
@@ -60,10 +60,11 @@
 
         </div>
 
-        <div class="title">{{ socialInteraction.title || socialInteraction.refDocs[0].doc.title }}</div>
-        <div class="text" ng-if="socialInteraction.text">{{ socialInteraction.text }}</div>
-
-        <div class="clearfix"></div>
+        <div class="content sheet tertiary">
+            <div class="ref-title" ng-if="socialInteraction.refDocs.length > 0">{{ socialInteraction.refDocs[0].doc.title }}</div>
+            <div class="title" ng-if="socialInteraction.title">{{ socialInteraction.title }}</div>
+            <div class="text" ng-if="socialInteraction.text">{{ socialInteraction.text }}</div>
+        </div>
 
     </li>
 </ul>

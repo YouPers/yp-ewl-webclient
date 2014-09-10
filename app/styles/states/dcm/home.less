@@ -55,10 +55,19 @@
 
   game-area.campaign-offers {
     position: relative;
-    .icon {
+    .add-offer:hover {
+      color: @yp-accent-primary;
+    }
+    .add-offer {
+      .header5();
+      color: @yp-app-primary;
       position: absolute;
       top: 10px;
       right: 10px;
+
+      i.fa {
+        font-size: 16px;
+      }
     }
   }
 
