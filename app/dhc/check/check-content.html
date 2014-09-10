@@ -5,7 +5,7 @@
 <div ng-if="!categories">Hier fehlt ein schöner Text darüber dass du in keiner Kampagne bist und wir darum nicht wissen
     welches Assessment zu welchem Topic wir hier darstellen sollen. <a ui-sref="campaign-list.content">Hier gibts eine Liste aller Kampagnen</a> , an denen du teilnehmen könntest:</div>
 
-
+<a name="top" class="invisible"></a>
 
 <accordion class="check" close-others="true" ng-if="categories">
 
@@ -115,15 +115,5 @@
 
     </accordion-group>
 
+
 </accordion>
-<div class="row btn-bottom-nav">
-    <div class="col-xs-12">
-        <div class="pull-left"></div>
-        <div class="pull-right">
-            <button class="btn btn-primary" translate ng-click="$state.go('focus.content')"
-                    analytics-on="click" analytics-event="ProcessNavigation" analytics-category="Navigation" analytics-label="Check to Focus">
-                check.toFocus
-            </button>
-        </div>
-    </div>
-</div>

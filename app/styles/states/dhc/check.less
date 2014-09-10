@@ -65,7 +65,7 @@ accordion.check .panel-heading a {
 .check .btn:hover {
 //  border: 1px solid rgba(1,1,1,0.08) !important;
 }
-.check .btn {
+.check accordion .btn {
   .header5();
   border: none;
   border-radius: 2px !important;
@@ -88,13 +88,21 @@ accordion.check .panel-heading a {
   }
 }
 
-.check .btn.active {
+.check accordion .btn.active {
   background-color: transparent !important;
 }
 
 accordion.check .glyphicon-info-sign {
   font-size: 70%;
   color: @yp-color-green;
+}
+
+.back-to-top {
+  float:right;
+  margin: 1em;
+  i {
+    font-size: 18px;
+  }
 }
 
 .impact-question {
