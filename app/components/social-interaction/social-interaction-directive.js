@@ -40,7 +40,7 @@
                         scope.message = _.clone(messageTemplate);
 
                         if ($rootScope.principal.isAuthenticated()) {
-                            SocialInteractionService.getSocialInteractions({ populate: 'author' }).then(function (socialInteractions) {
+                            SocialInteractionService.getSocialInteractions({ populate: 'author', limit: 10 }).then(function (socialInteractions) {
                                 scope.socialInteractions = socialInteractions;
                             });
                         }
