@@ -220,7 +220,6 @@
 
                         $scope.activity = savedActivity;
                         $scope.dirty = false;
-                        $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
 
                         var inviteAll = $scope.inviteOthers === 'all';
                         if (inviteAll || $scope.usersToBeInvited.length > 0) {
@@ -261,10 +260,12 @@
                                 SocialInteractionService.postInvitation(invitation);
 
                                 if(emails.length > 0) {
-                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), activity);
+                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity);
                                 }
 
                             }
+
+                            $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
 
                         }
 
