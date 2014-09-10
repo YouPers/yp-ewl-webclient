@@ -35,7 +35,10 @@
                             campaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', function ($stateParams, SocialInteractionService, activity) {
                                 return activity.id ? SocialInteractionService.getInvitations({
                                     targetId: $stateParams.campaignId,
-                                    refDocId: activity.id
+                                    refDocId: activity.id,
+                                    authored: true
+                                }).then(function(invitations) {
+                                    return invitations.length > 0 ? invitations[0] : undefined;
                                 }) : undefined;
                             }],
                             invitationStatus: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
@@ -125,12 +128,12 @@
 
 
                 if(campaignInvitation || mode === 'campaignlead') { // check if campaign is already invited
-                    $scope.inviteOthers = 'all';
+                    activityController.inviteOthers = 'all';
                     $scope.inviteLocked = true;
                 }
                 $scope.invitedUsers = [];
                 if(invitationStatus && invitationStatus.length > 0) {
-                    $scope.inviteOthers = 'selected';
+                    activityController.inviteOthers = 'selected';
                     _.each(invitationStatus, function (status) {
                         var user = status.user || status.email;
                         user.invitationStatus = status.status;
@@ -179,13 +182,18 @@
 
 
                 $scope.$watch('activity.mainEvent', validateActivity, true);
-                $scope.$watch('activity', function (val, old) {
-                    $scope.dirty = true;
+
+                function dirtyWatch(val, old) {
+                    activityController.dirty = true;
                     console.log('dirty');
-                }, true);
+                }
+
+                $scope.$watch('activityController.inviteOthers', dirtyWatch);
+                $scope.$watch('usersToBeInvited', dirtyWatch);
+                $scope.$watch('activity', dirtyWatch, true);
 
                 $timeout(function () {
-                    $scope.dirty  = activityController.formActive && !activity.id;
+                    activityController.dirty  = activityController.formActive && !activity.id;
                 });
 
                 $scope.backToGame = function() {
@@ -232,9 +240,9 @@
                         $rootScope.$emit('clientmsg:success', 'activity.saved');
 
                         $scope.activity = savedActivity;
-                        $scope.dirty = false;
+                        activityController.dirty = false;
 
-                        var inviteAll = $scope.inviteOthers === 'all';
+                        var inviteAll = activityController.inviteOthers === 'all';
                         if (inviteAll || $scope.usersToBeInvited.length > 0) {
 
                             var invitation = {
@@ -248,9 +256,7 @@
                                 ]
                             };
 
-                            var newActivity = !activity.id;
-
-                            if (inviteAll && newActivity) {
+                            if (inviteAll && !campaignInvitation) {
                                 invitation.targetSpaces = [
                                     {
                                         type: 'campaign',
