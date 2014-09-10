@@ -74,8 +74,8 @@
                         end: end
                     };
                 }
-
-                $scope.$watch('campaign.topic.id', function (newTopic, oldTopic) {
+                $scope.topicId = $scope.campaign.topic.id;
+                $scope.$watch('topicId', function (newTopic, oldTopic) {
                     if (newTopic) {
                         var topic = topics.byId[newTopic];
                         $scope.campaign.topic = topic;

@@ -1,0 +1,18 @@
+<div class="organization">
+    <div class="avatar">
+        <img ng-src="{{ organization.avatar }}">
+    </div>
+    <div class="name sheet primary">
+        <div>{{organization.name}}</div>
+    </div>
+    <div class="details sheet secondary">
+        <div>
+            {{ organization.address.street }}
+        </div>
+        <div>
+            {{ organization.address.zipCode }} {{ organization.address.city }}
+        </div>
+    </div>
+
+    <div ng-transclude></div>
+</div>

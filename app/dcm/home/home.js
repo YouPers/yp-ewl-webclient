@@ -45,6 +45,7 @@
 
                 $scope.socialInteractions = socialInteractions;
 
+                $scope.isOrganizationAdmin = _.contains(UserService.principal.getUser().roles, 'orgadmin');
 
             }]);
 }());
