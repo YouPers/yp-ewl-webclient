@@ -71,7 +71,7 @@
 
             <div class="col-md-1 links">
                 <div ng-show="idea.defaultexecutiontype === 'group'">
-                    <a ui-sref="dhc.activity({ campaignId: $stateParams.campaignId, idea: idea.id, mode: 'campaignlead' })" ng-click="$event.stopPropagation()" translate>activities.link.schedule</a>
+                    <a ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })" ng-click="$event.stopPropagation()" translate>activities.link.schedule</a>
                 </div>
             </div>
             <div class="col-md-1 links">

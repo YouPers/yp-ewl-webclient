@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
-        .directive('activityList', ['$rootScope', '$state','accessLevels', 'SocialInteractionService',
-            function ($rootScope, $state, accessLevels) {
+    angular.module('yp.components.activity')
+        .directive('activityList', [
+            function () {
                 return {
                     restrict: 'E',
                     scope: {
@@ -12,7 +12,7 @@
                         activity: '=',
                         onSelect: '='
                     },
-                    templateUrl: 'dhc/activity/activity-list-directive.html',
+                    templateUrl: 'components/activity/activity-list-directive.html',
 
                     link: function (scope, elem, attrs) {
 

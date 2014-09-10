@@ -2,15 +2,15 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
-        .directive('activityEdit', ['$rootScope', '$state','accessLevels', 'ActivityService', 'UserService',
-            function ($rootScope, $state, accessLevels, ActivityService, UserService) {
+    angular.module('yp.components.activity')
+        .directive([
+            function () {
                 return {
                     restrict: 'E',
                     scope: {
                         activity: '='
                     },
-                    templateUrl: 'dhc/activity/activity-edit-directive.html',
+                    templateUrl: 'components/activity/activity-edit-directive.html',
 
                     link: function (scope, elem, attrs) {
 
