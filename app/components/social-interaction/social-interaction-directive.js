@@ -19,13 +19,15 @@
                         options.isCampaignLead = _.contains(user.roles, 'campaignlead');
 
                         var messageTemplate = {
-                            author: user.id,
+                            author: user,
                             authorType: 'campaignLead',
 
                             targetSpaces: [{
                                 type: 'campaign',
                                 targetId: $stateParams.campaignId
                             }],
+
+                            __t: 'Message',
 
                             publishFrom: new Date(moment().startOf('day')),
                             publishTo: new Date(moment().endOf('day'))
@@ -40,14 +42,24 @@
                         scope.message = _.clone(messageTemplate);
 
                         if ($rootScope.principal.isAuthenticated()) {
-                            SocialInteractionService.getSocialInteractions({ populate: 'author', limit: 10 }).then(function (socialInteractions) {
-                                scope.socialInteractions = socialInteractions;
+                            var params = {
+                                targetId: $stateParams.campaignId,
+                                populate: 'author',
+                                limit: 10
+                            };
+                            if($state.current.name.indexOf('dcm') === 0) {
+                                params.authored = true;
+                            }
+                            SocialInteractionService.getSocialInteractions(params).then(function (socialInteractions) {
+                                scope.socialInteractions = _.sortBy(socialInteractions, function(si) {
+                                    return new Date(si.publishFrom || si.created).getTime();
+                                }).reverse();
                             });
                         }
 
                         scope.saveMessage = function saveMessage() {
                             SocialInteractionService.postMessage(scope.message).then(function() {
-                                scope.socialInteractions.unshift(scope.message);
+                                scope.socialInteractions.push(scope.message);
                                 scope.message = _.clone(messageTemplate);
                                 scope.options.composeMessage = false;
                             });
