@@ -3,7 +3,8 @@
         "success": {
             "activity": {
                 "joined": "Einladung angenommen",
-                "deleted": "Aktivität gelöscht"
+                "deleted": "Aktivität gelöscht",
+                "saved": "Aktivität gespeichert"
             }
         }
     },
