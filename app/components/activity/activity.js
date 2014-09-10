@@ -113,7 +113,7 @@
                     mode === 'recommendation' ||
                     mode === 'campaignlead' ||
                     mode === 'schedule';
-                activityController.formActive = mode === 'schedule' || mode === 'campaignlead';
+                activityController.formActive = mode === 'schedule' || (mode === 'campaignlead' && !activity.id);
 
 
                 if (campaignInvitation || mode === 'campaignlead') { // check if campaign is already invited
@@ -172,17 +172,21 @@
 
                 $scope.$watch('activity.mainEvent', validateActivity, true);
 
+                var initialized = false;
                 function dirtyWatch(val, old) {
-                    activityController.dirty = true;
-                    console.log('dirty');
+                    if(initialized) {
+                        activityController.dirty = true;
+                        console.log('dirty');
+                    }
                 }
+                activityController.dirty = activityController.formActive && !activity.id;
 
                 $scope.$watch('activityController.inviteOthers', dirtyWatch);
                 $scope.$watch('usersToBeInvited', dirtyWatch);
                 $scope.$watch('activity', dirtyWatch, true);
 
                 $timeout(function () {
-                    activityController.dirty = activityController.formActive && !activity.id;
+                    initialized = true;
                 });
 
                 $scope.backToGame = function () {
@@ -281,7 +285,7 @@
 
                         }
 
-                        $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
+                        $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
                     });
 
 

@@ -67,6 +67,7 @@
 
                 if (campaign) {
                     $scope.campaign = campaign;
+                    $scope.topicId = $scope.campaign.topic.id;
                 } else {
                     $scope.campaign = {
                         title: '',
@@ -74,7 +75,7 @@
                         end: end
                     };
                 }
-                $scope.topicId = $scope.campaign.topic.id;
+
                 $scope.$watch('topicId', function (newTopic, oldTopic) {
                     if (newTopic) {
                         var topic = topics.byId[newTopic];

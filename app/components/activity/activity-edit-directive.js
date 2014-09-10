@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('yp.components.activity')
-        .directive([
+        .directive('activityEdit', [
             function () {
                 return {
                     restrict: 'E',
@@ -13,8 +13,6 @@
                     templateUrl: 'components/activity/activity-edit-directive.html',
 
                     link: function (scope, elem, attrs) {
-
-                        scope.activity = scope.activity;
 
                         _.extend(scope.activity, {
                             isScheduled: !!scope.activity.id,

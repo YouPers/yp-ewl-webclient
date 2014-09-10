@@ -55,7 +55,9 @@
                                     return new Date(si.publishFrom || si.created).getTime();
                                 }).reverse();
                                 _.each(scope.socialInteractions, function (si) {
-                                    si.idea = si.idea || si.activity.idea;
+                                    if(si.__t !== 'Message') {
+                                        si.idea = si.idea || si.activity.idea;
+                                    }
                                 });
                             });
                         }

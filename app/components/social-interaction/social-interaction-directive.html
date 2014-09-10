@@ -38,7 +38,7 @@
 
         ng-repeat="socialInteraction in socialInteractions"
 
-        ui-sref="dhc.activity({ campaignId: $root.$stateParams.campaignId, idea: socialInteraction.idea.id, activity: socialInteraction.activity.id, socialInteraction: socialInteraction.id })"
+        ui-sref="{{ options.isCampaignLead ? 'dcm' : 'dhc' }}.activity({ campaignId: $root.$stateParams.campaignId, idea: socialInteraction.idea.id, activity: socialInteraction.activity.id, socialInteraction: socialInteraction.id })"
 
             >
 
