@@ -64,6 +64,11 @@
 
 
                             activityEvents: ['ActivityService', 'activity', function(ActivityService, activity) {
+
+                                if(!activity.id) {
+                                    return [];
+                                }
+
                                 return ActivityService.getActivityEvents({
                                     'filter[activity]': activity.id,
                                     sort: 'start'

@@ -55,9 +55,11 @@
             <div class="info">
                 <div class="authorType">{{ 'socialInteraction.header.' + socialInteraction.__t + '.' + socialInteraction.authorType | translate }}</div>
                 <div class="author">{{ socialInteraction.author.fullname }}</div>
-                <div class="date">{{ (socialInteraction.publishFrom || socialInteraction.created) | fromNow }}</div>
             </div>
 
+        </div>
+        <div class="sheet tertiary">
+            <div class="date">{{ (socialInteraction.publishFrom || socialInteraction.created) | fromNow }}</div>
         </div>
 
         <div class="content sheet tertiary">

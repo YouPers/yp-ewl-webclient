@@ -44,9 +44,11 @@
                 }
 
                 $scope.offers = _.filter(socialInteractions, function(si) {
-                    si.idea = si.idea || si.activity.idea;
                     return si.__t === 'Recommendation' || si.__t === 'Invitation';
-                } );
+                });
+                _.each($scope.offers, function (offer) {
+                    offer.idea = offer.idea || offer.activity.idea;
+                });
 
                 $scope.isOrganizationAdmin = _.contains(UserService.principal.getUser().roles, 'orgadmin');
 
