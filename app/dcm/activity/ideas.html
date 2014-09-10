@@ -35,7 +35,7 @@
 
         <div class="row activity list-item" ng-repeat="idea in group.ideas | fulltext:query.query"
 
-             ui-sref="dcm.activity({ idea: idea.id, mode: 'recommend' })">
+             ui-sref="dcm.recommendation({ idea: idea.id })">
 
             <!-- image -->
             <div class="col-md-1 image">
@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-1 links">
                 <div>
-                    <a ui-sref="dcm.activity({ idea: idea.id, mode: 'recommend' })" translate>activities.link.recommend</a>
+                    <a ui-sref="dcm.recommendation({ idea: idea.id })" translate>activities.link.recommend</a>
                 </div>
             </div>
 

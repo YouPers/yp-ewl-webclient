@@ -115,6 +115,20 @@
                     mode === 'schedule';
                 activityController.formActive = mode === 'schedule' || (mode === 'campaignlead' && !activity.id);
 
+                // invitations
+
+                var invitation = {
+                    author: UserService.principal.getUser(),
+                    authorType: mode === 'campaignlead' ? 'campaignLead' : 'user',
+                    __t: 'Invitation'
+                };
+
+                if(mode === 'campaignlead') {
+                    $scope.socialInteraction = invitation;
+                }
+
+
+                // user, email & campaign wide selections
 
                 if (campaignInvitation || mode === 'campaignlead') { // check if campaign is already invited
                     activityController.inviteOthers = 'all';
@@ -238,16 +252,12 @@
                         var inviteAll = activityController.inviteOthers === 'all';
                         if (inviteAll || $scope.usersToBeInvited.length > 0) {
 
-                            var invitation = {
-                                author: UserService.principal.getUser().id,
-                                authorType: mode === 'campaignlead' ? 'campaignLead' : 'user',
-                                refDocs: [
-                                    {
-                                        docId: $scope.activity.id,
-                                        model: 'Activity'
-                                    }
-                                ]
-                            };
+                            invitation.refDocs = [
+                                {
+                                    docId: $scope.activity.id,
+                                    model: 'Activity'
+                                }
+                            ];
 
                             if (inviteAll && !campaignInvitation) {
                                 invitation.targetSpaces = [
