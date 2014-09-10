@@ -102,21 +102,51 @@
 
             <div ng-if="inviteOthers == 'selected'">
 
-                <div ng-if="!activityController.inviteByEmail">
-                    <user-invitation type="activity" excluded-users="usersExcludedForInvitation" on-user-selected="onUserSelected"></user-invitation>
-                    <a ng-click="activityController.inviteByEmail = true" translate>activity.inviteOthers.inviteByEmail</a>
-                </div>
-                <div ng-if="activityController.inviteByEmail">
-                    <email-invitation type="activity" activity="activity" on-email-submitted="onUserSelected"></email-invitation>
-                    <a ng-click="activityController.inviteByEmail = false" translate>activity.inviteOthers.inviteByUser</a>
+                <div class="invite-users">
+                    <div ng-if="!activityController.inviteByEmail">
+                        <user-invitation type="activity" excluded-users="usersExcludedForInvitation" on-user-selected="onUserSelected"></user-invitation>
+                        <a ng-click="activityController.inviteByEmail = true" translate>activity.inviteOthers.inviteByEmail</a>
+                    </div>
+                    <div ng-if="activityController.inviteByEmail">
+
+                        <form class="form" ng-if="!invitationSent"
+                              role="form"
+                              ng-submit="emailInvitation.$valid && onUserSelected(emailToBeInvited)"
+                              name="emailInvitation">
+
+                            <div class="input-group">
+                                <input type="email" required class="form-control" ng-model="emailToBeInvited" placeholder="{{ 'activity.emailToBeInvited.placeholder' | translate }}">
+
+                                <div class="input-group-addon">
+
+                                    <button type="submit" class="btn"
+                                            ng-disabled="inviteEmailForm.$invalid" translate>activity.emailToBeInvited.submit</button>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+
+                        <a ng-click="activityController.inviteByEmail = false" translate>activity.inviteOthers.inviteByUser</a>
+                    </div>
                 </div>
 
 
                 <div class="user-to-be-invited"
                      ng-repeat="user in usersToBeInvited">
-                    <img class="avatar" ng-src="{{ user.avatar }}"/>
-                    <span bind-html-unsafe="user.fullname"></span>
-                    <i class="fa fa-times" ng-click="removeUserToBeInvited(user)"></i>
+
+                    <div ng-if="user.fullname">
+                        <img class="avatar" ng-src="{{ user.avatar }}"/>
+                        <span bind-html-unsafe="user.fullname"></span>
+                        <i class="remove fa fa-times" ng-click="removeUserToBeInvited(user)"></i>
+                    </div>
+
+                    <div ng-if="!user.fullname">
+                        <i class="fa fa-envelope-o"></i>
+                        <span>{{ user }}</span>
+                        <i class="remove fa fa-times" ng-click="removeUserToBeInvited(user)"></i>
+                    </div>
                 </div>
 
             </div>
@@ -166,7 +196,7 @@
             <button class="btn btn-default backToGame" ui-sref="dhc.game" translate>
                 activity.link.back
             </button>
-            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!dirty && (mode === 'recommendation' || mode === 'owned')) || (activity.isJoiningUser())" ng-click="submit()">
+            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!dirty && usersToBeInvited.length == 0 && (mode === 'recommendation' || mode === 'owned')) || (activity.isJoiningUser())" ng-click="submit()">
                 {{ 'activity.submit.' + mode | translate }}
             </button>
         </div>

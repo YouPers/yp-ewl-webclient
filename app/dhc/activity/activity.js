@@ -126,7 +126,7 @@
                 if(invitationStatus && invitationStatus.length > 0) {
                     $scope.inviteOthers = 'selected';
                     _.each(invitationStatus, function (status) {
-                        var user = status.user;
+                        var user = status.user || status.email;
                         user.invitationStatus = status.status;
                         $scope.invitedUsers.push(user);
                     });
@@ -135,18 +135,18 @@
                 $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
 
                 $scope.usersToBeInvited = [];
-                $scope.onUserSelected = function onUserSelected(user) {
+                $scope.onUserSelected = function onUserSelected(selection) {
 
                     if(activityController.inviteByEmail) {
                         activityController.inviteByEmail = false;
-                        $scope.invitedUsers.push(user);
+                        $scope.usersToBeInvited.push(selection);
                     } else {
-                        $scope.usersToBeInvited.push(user);
-                        $scope.usersExcludedForInvitation.push(user);
+                        $scope.usersToBeInvited.push(selection);
+                        $scope.usersExcludedForInvitation.push(selection);
                     }
                 };
                 $scope.removeUserToBeInvited = function (user) {
-                    _.remove($scope.usersToBeInvited, { id: user.id });
+                    _.remove($scope.usersToBeInvited, user.id ? { id: user.id } : user);
                 };
 
                 var validateActivity = _.debounce(function (mainEvent, old) {
@@ -220,7 +220,6 @@
 
                         $scope.activity = savedActivity;
                         $scope.dirty = false;
-                        $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
 
                         var inviteAll = $scope.inviteOthers === 'all';
                         if (inviteAll || $scope.usersToBeInvited.length > 0) {
@@ -243,16 +242,31 @@
                                     }
                                 ];
                             } else {
+
+                                var toBeInvited = _.groupBy($scope.usersToBeInvited, function(user) {
+                                    return typeof user;
+                                });
+
+                                var users = toBeInvited.object;
+                                var emails = toBeInvited.string;
+
                                 invitation.targetSpaces = [];
-                                _.forEach($scope.usersToBeInvited, function (user) {
+                                _.forEach(users, function (user) {
                                     invitation.targetSpaces.push({
                                         type: 'user',
                                         targetId: user.id
                                     });
                                 });
+                                SocialInteractionService.postInvitation(invitation);
+
+                                if(emails.length > 0) {
+                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity);
+                                }
+
                             }
 
-                            SocialInteractionService.postInvitation(invitation);
+                            $state.go('dhc.activity', { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
+
                         }
 
                     });
