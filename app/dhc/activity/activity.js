@@ -194,7 +194,7 @@
                     } else {
                         $state.go('dhc.game');
                     }
-                }
+                };
 
                 $scope.dismiss = function dismiss() {
                     SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, { reason: 'denied'}).then(function (result) {
