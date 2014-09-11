@@ -43,8 +43,14 @@
                     $state.go('dcm.home', { campaignId: campaigns[0].id });
                 }
 
-                $scope.socialInteractions = socialInteractions;
+                $scope.offers = _.filter(socialInteractions, function(si) {
+                    return si.__t === 'Recommendation' || si.__t === 'Invitation';
+                });
+                _.each($scope.offers, function (offer) {
+                    offer.idea = offer.idea || offer.activity.idea;
+                });
 
+                $scope.isOrganizationAdmin = _.contains(UserService.principal.getUser().roles, 'orgadmin');
 
             }]);
 }());

@@ -1,22 +1,21 @@
 
 <div class="organization">
-    <!--<div class="avatar">-->
-        <!--<img ng-src="{{ organization.administrators[0].avatar }}">-->
-    <!--</div>-->
-    <div class="title">
-        {{ organization.name }}
-    </div>
 
+    <organization-card organization="organization" ng-if="isOrganizationAdmin">
 
-    <div class="new-campaign" ui-sref="dcm.campaign({ campaignId: undefined })">
-        <i class="fa fa-plus"></i>
-    </div>
+        <a class="edit" ui-sref="organization.content">
+            <span translate>dcmhome.organization.edit</span>
+            <i class="fa fa-pencil-square-o"></i>
+        </a>
 
-    <div class="edit" ui-sref="organization.content">
-        <i class="fa fa-pencil-square-o"></i>
-    </div>
+        <a class="new-campaign" ui-sref="dcm.campaign({ campaignId: undefined })">
+            <span translate>dcmhome.organization.addCampaign</span>
+            <i class="fa fa-plus"></i>
+        </a>
 
-    <div class="clearfix"></div>
+        <div class="clearfix"></div>
+
+    </organization-card>
 
 </div>
 

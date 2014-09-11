@@ -6,6 +6,10 @@
     "campaigns": "Kampagnen",
     "activities": "Aktivitäten",
     "statistics": "Statistiken",
-    "organization": "Organisation"
+    "addOffer": "Angebot hinzufügen",
+    "organization": {
+        "addCampaign": "Neue Kampagne",
+        "edit": "Bearbeiten"
+    }
   }
 }

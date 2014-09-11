@@ -1,6 +1,18 @@
 {
+    "clientmsg": {
+        "recommendation": {
+            "saved": "Empfehlung gespeichert"
+        }
+    },
+
   "activity": {
     "stateHeader1": "aktivität",
+
+      "header": {
+          "recommendation": "Kampagnenempfehlung"
+      },
+
+
     "title": {
       "label": "Titel",
       "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"

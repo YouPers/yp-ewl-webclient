@@ -13,7 +13,7 @@
                 if (myMoment.isBefore(moment().subtract(3, 'day')) || myMoment.isAfter(moment().add(3, 'day'))) {
                     return myMoment.format('L');
                 } else {
-                    return myMoment.fromNow(true);
+                    return myMoment.fromNow();
                 }
             };
         })

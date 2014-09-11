@@ -4,26 +4,9 @@
 
 .dcm-home {
 
+  organization-card {
 
-  .organization {
-
-    position: relative;
-
-    * {
-//      display: inline-block;
-    }
-
-    i.fa {
-      font-size: 2em;
-    }
-
-    .title {
-      .header4();
-      text-align: left;
-    }
-    .new-campaign, .edit {
-      float: right;
-    }
+    margin-bottom: 1em;
   }
 
   campaign-card {
@@ -67,15 +50,25 @@
     .title {
       color: @yp-color-green;
     }
-    outline: 1px solid @yp-color-grey1;
+    outline: 4px dashed @yp-accent-primary;
+    box-shadow: 0px 4px 4px @yp-accent-primary;
   }
 
   game-area.campaign-offers {
     position: relative;
-    .icon {
+    .add-offer:hover {
+      color: @yp-accent-primary;
+    }
+    .add-offer {
+      .header5();
+      color: @yp-app-primary;
       position: absolute;
       top: 10px;
       right: 10px;
+
+      i.fa {
+        font-size: 16px;
+      }
     }
   }
 

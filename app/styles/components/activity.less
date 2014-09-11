@@ -1,6 +1,20 @@
-@import "../../youpers-variables";
+@import "../youpers-variables";
 
-.dhc-activity {
+@keyframes ConflictAnimation {
+  30% {
+    margin: -0.4em 0 0 16em;
+    z-index: 0;
+  }
+  31% {
+    z-index: 1;
+  }
+  100% {
+    margin: -0.4em 0 0 3em;
+    z-index: 1;
+  }
+}
+
+.dhc-activity, .dcm-activity {
 
   .dismissed .activity-offer-card {
     filter: saturate(0%);
@@ -9,17 +23,21 @@
   .event-list {
     position: relative;
 
+    .activity-event-card {
+      z-index: 1;
+    }
     .activity-event-card.conflict  {
       position: absolute;
       left: 0;
       top: 0;
       margin: -0.4em 0 0 3em;
-      z-index: -1;
+      z-index: 0;
+
     }
   }
-
   .event-list:hover .activity-event-card.conflict {
-    z-index: 1;
+    animation: ConflictAnimation 0.8s;
+    animation-fill-mode: forwards;
   }
 
 
@@ -188,6 +206,24 @@
   }
   .btn.backToGame {
     height: 3em;
+  }
+
+  .publish {
+
+    * {
+      float: left;
+    }
+    > label:not(:first-of-type) {
+      margin-left: 1em;
+    }
+    > label {
+      margin: 8px 0.5em 0 0;
+    }
+
+    date-picker {
+      display: block;
+      width: 7em;
+    }
   }
 
   .game-icon {

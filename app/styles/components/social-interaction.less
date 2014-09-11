@@ -1,11 +1,14 @@
 social-interaction {
 
   .list-group {
-    .game-card();
+//    .game-card();
   }
 
   .list-group-item:not(:first-of-type) {
 //    border-top: 1px solid @yp-color-grey1;
+  }
+  .list-group-item.composeMessage {
+    padding: 1em;
   }
   .list-group-item {
     padding: 0;
@@ -26,13 +29,19 @@ social-interaction {
       padding: 5px 15px;
       width: 100%;
 
-      .date {
-        position: absolute;
-        top:5px;
-        right: 5px;
+      .dismiss a {
+        color: @yp-app-tertiary;
+      }
+      .dismiss a:hover {
+        color: @yp-warning-primary;
       }
     }
 
+  }
+
+
+  .date {
+    float: right;
   }
 
   .image {
@@ -43,7 +52,10 @@ social-interaction {
   }
 
 
-  .title {
+  .ref-title, .title, .text {
     padding: 0.6em;
+  }
+  .title, .text {
+    border-top: 1px solid rgba(0,0,0,0.05);
   }
 }

@@ -61,7 +61,7 @@
             <activity-edit activity="activity"></activity-edit>
         </div>
 
-        <div ng-if="activityController.active">
+        <div ng-if="activityController.active && activity.id">
 
             <div>
                 <h4 translate>activity.header.invitedUsers</h4>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div ng-show="activityController.active && activityController.formEnabled">
+        <div ng-show="activityController.active && activityController.formEnabled" ng-if="mode !== 'campaignlead'">
 
             <div>
                 <h4 translate>activity.header.inviteOthers</h4>
@@ -92,15 +92,15 @@
 
             <div class="btn-group btn-group-justified">
 
-                <a type="button" class="btn btn-default" ng-model="$parent.inviteOthers" ng-disabled="inviteLocked"
+                <a type="button" class="btn btn-default" ng-model="activityController.inviteOthers" ng-disabled="inviteLocked"
                    btn-radio="'selected'" translate>activity.inviteOthers.selected
                 </a>
-                <a type="button" class="btn btn-default" ng-model="$parent.inviteOthers" ng-disabled="inviteLocked"
+                <a type="button" class="btn btn-default" ng-model="activityController.inviteOthers" ng-disabled="inviteLocked"
                    btn-radio="'all'" translate>activity.inviteOthers.all
                 </a>
             </div>
 
-            <div ng-if="inviteOthers == 'selected'">
+            <div ng-if="activityController.inviteOthers == 'selected'">
 
                 <div class="invite-users">
                     <div ng-if="!activityController.inviteByEmail">
@@ -160,7 +160,7 @@
 
         <div ng-show="activityController.active || activity.isOwner()">
 
-            <div ng-repeat="event in events" class="event-list"
+            <div ng-repeat="event in events" class="event-list animate-repeat"
 
 
                     >
@@ -193,12 +193,23 @@
 
         <div class="box">
 
-            <button class="btn btn-default backToGame" ui-sref="dhc.game" translate>
+            <button class="btn btn-default backToGame" ng-click="backToGame()" translate>
                 activity.link.back
             </button>
-            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!dirty && usersToBeInvited.length == 0 && (mode === 'recommendation' || mode === 'owned')) || (activity.isJoiningUser())" ng-click="submit()">
+            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
                 {{ 'activity.submit.' + mode | translate }}
             </button>
+
+            <div class="publish" ng-if="mode === 'campaignlead'">
+
+                <label translate>activity.publishFrom.label</label>
+                <date-picker date="socialInteraction.publishFrom"></date-picker>
+                <label translate>activity.publishTo.label</label>
+                <date-picker date="socialInteraction.publishTo"></date-picker>
+
+            </div>
+
+            <div class="clearfix"></div>
         </div>
         <div class="box">
             <h4>health coach messages</h4>

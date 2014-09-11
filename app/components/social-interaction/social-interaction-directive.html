@@ -1,17 +1,17 @@
 
 <ul class="list-group" ng-init="options = {}">
 
-    <li class="list-group-item" ng-if="options.isCampaignLead">
+    <li class="list-group-item composeMessage" ng-if="options.isCampaignLead">
         
         <button class="btn btn-default pull-right" ng-click="options.composeMessage = true" ng-show="!options.composeMessage" translate>composeMessageForm.show</button>
         <div class="clearfix"></div>
 
-        <div ng-show="options.composeMessage">
+        <div ng-if="options.composeMessage">
             
             <form name="composeMessageForm" class="form-horizontal" ng-submit="saveMessage()">
 
-                <input class="form-control" ng-model="message.title" placeholder="{{ 'composeMessageForm.title.placeholder' | translate }}" />
-                <textarea class="form-control" ng-model="message.text" placeholder="{{ 'composeMessageForm.text.placeholder' | translate }}"></textarea>
+                <input class="form-control" ng-model="message.title" required placeholder="{{ 'composeMessageForm.title.placeholder' | translate }}" />
+                <textarea class="form-control" ng-model="message.text" required placeholder="{{ 'composeMessageForm.text.placeholder' | translate }}"></textarea>
 
                 <div>
                     <label translate>composeMessageForm.publishFrom.label</label>
@@ -25,7 +25,7 @@
 
                 <br/>
 
-                <button class="btn btn-primary pull-right" type="submit" translate>composeMessageForm.submit</button>
+                <button class="btn btn-primary pull-right" type="submit" ng-disabled="composeMessageForm.$invalid" translate>composeMessageForm.submit</button>
                 <div class="clearfix"></div>
 
             </form>
@@ -38,13 +38,10 @@
 
         ng-repeat="socialInteraction in socialInteractions"
 
-        ui-sref="dhc.activity({ idea: socialInteraction.idea.id, socialInteraction: socialInteraction.id })"
+        ng-click="openSocialInteraction(socialInteraction)"
 
             >
 
-        <!--<div class="pull-right">-->
-            <!--<a href><i ng-click="dismissSocialInteraction(socialInteraction)" class="glyphicon glyphicon-remove"></i></a>-->
-        <!--</div>-->
 
         <div class="headers sheet secondary">
 
@@ -53,16 +50,26 @@
             </div>
 
             <div class="info">
+
+
+                <div class="pull-right dismiss">
+                    <a><i ng-click="dismissSocialInteraction($event, socialInteraction)" class="glyphicon glyphicon-remove"></i></a>
+                </div>
+
                 <div class="authorType">{{ 'socialInteraction.header.' + socialInteraction.__t + '.' + socialInteraction.authorType | translate }}</div>
                 <div class="author">{{ socialInteraction.author.fullname }}</div>
-                <div class="date">{{ (socialInteraction.publishFrom || socialInteraction.created) | fromNow }}</div>
             </div>
 
         </div>
+        <div class="sheet tertiary">
+            <div class="date">{{ (socialInteraction.publishFrom || socialInteraction.created) | fromNow }}</div>
+        </div>
 
-        <div class="title">{{ socialInteraction.title || socialInteraction.refDocs[0].doc.title }}</div>
-
-        <div class="clearfix"></div>
+        <div class="content sheet tertiary">
+            <div class="ref-title" ng-if="socialInteraction.refDocs.length > 0">{{ socialInteraction.refDocs[0].doc.title }}</div>
+            <div class="title" ng-if="socialInteraction.title">{{ socialInteraction.title }}</div>
+            <div class="text" ng-if="socialInteraction.text">{{ socialInteraction.text }}</div>
+        </div>
 
     </li>
 </ul>

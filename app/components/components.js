@@ -35,6 +35,7 @@
             'yp.components.avatarUpload',
             'yp.components.campaignSwitcher',
             'yp.components.campaignCard',
+            'yp.components.organizationCard',
             'yp.components.datePicker',
             'yp.components.multipleViewCarousel',
             'yp.components.recommendedBySlider',

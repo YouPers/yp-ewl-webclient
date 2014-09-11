@@ -2,15 +2,15 @@
 
     'use strict';
 
-    angular.module('yp.dhc')
-        .directive('activityView', ['$rootScope', '$state','accessLevels', 'UserService', 'SocialInteractionService',
-            function ($rootScope, $state, accessLevels, UserService, SocialInteractionService) {
+    angular.module('yp.components.activity')
+        .directive('activityView', ['UserService', 'SocialInteractionService',
+            function (UserService, SocialInteractionService) {
                 return {
                     restrict: 'E',
                     scope: {
                         activity: '='
                     },
-                    templateUrl: 'dhc/activity/activity-view-directive.html',
+                    templateUrl: 'components/activity/activity-view-directive.html',
 
                     link: function (scope, elem, attrs) {
 
