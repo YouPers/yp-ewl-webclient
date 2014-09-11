@@ -54,7 +54,7 @@
                     if ($stateParams.activity) {
                         return  ActivityService.getActivity($stateParams.activity);
                     } else {
-                        return ActivityService.getDefaultActivity($stateParams.idea);
+                        return ActivityService.getDefaultActivity($stateParams.idea, { campaignId: $stateParams.campaignId });
                     }
                 }],
 
