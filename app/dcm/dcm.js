@@ -37,10 +37,10 @@
                         campaigns: ['CampaignService', function (CampaignService) {
                             return CampaignService.getCampaigns({ populate: 'topic' });
                         }],
-                        campaign: ['$stateParams', 'CampaignService', function ($stateParams, CampaignService) {
+                        campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
 
                             if ($stateParams.campaignId) {
-                                return CampaignService.getCampaign($stateParams.campaignId);
+                                return _.find(campaigns, { id: $stateParams.campaignId })
                             } else {
                                 return undefined;
                             }

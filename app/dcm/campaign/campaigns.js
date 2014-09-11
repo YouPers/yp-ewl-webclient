@@ -31,15 +31,6 @@
                             }
                         },
                         resolve: {
-                            campaign: ['$stateParams', 'CampaignService', function ($stateParams, CampaignService) {
-
-                                if ($stateParams.campaignId) {
-                                    return CampaignService.getCampaign($stateParams.campaignId);
-                                } else {
-                                    return undefined;
-                                }
-
-                            }],
                             topics: ['Restangular', function (Restangular) {
                                 return Restangular.all('topics').getList();
                             }]
