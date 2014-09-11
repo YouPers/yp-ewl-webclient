@@ -51,14 +51,22 @@
                                 params.authored = true;
                             }
                             SocialInteractionService.getSocialInteractions(params).then(function (socialInteractions) {
-                                scope.socialInteractions = _.sortBy(socialInteractions, function(si) {
+
+                                socialInteractions = _.filter(socialInteractions, function (si) {
+                                    return si.__t === 'Invitation' || si.__t === 'Message';
+                                });
+
+                                socialInteractions = _.sortBy(socialInteractions, function(si) {
                                     return new Date(si.publishFrom || si.created).getTime();
                                 }).reverse();
-                                _.each(scope.socialInteractions, function (si) {
+
+                                _.each(socialInteractions, function (si) {
                                     if(si.__t !== 'Message') {
                                         si.idea = si.idea || si.activity.idea;
                                     }
                                 });
+
+                                scope.socialInteractions = socialInteractions;
                             });
                         }
 
@@ -70,7 +78,23 @@
                             });
                         };
 
-                        scope.dismissSocialInteraction = function dismissSocialInteraction(socialInteraction) {
+                        scope.openSocialInteraction = function (socialInteraction) {
+
+                            if(socialInteraction.idea) {
+
+                                $state.go((options.isCampaignLead ? 'dcm' : 'dhc') + '.activity', {
+                                    campaignId: $stateParams.campaignId,
+                                    idea: socialInteraction.idea ? socialInteraction.idea.id : undefined,
+                                    activity: socialInteraction.activity ? socialInteraction.activity.id : undefined,
+                                    socialInteraction: socialInteraction.id,
+                                    mode: options.isCampaignLead ? 'campaignlead' : undefined
+                                });
+                            }
+
+                        };
+
+                        scope.dismissSocialInteraction = function dismissSocialInteraction($event, socialInteraction) {
+                            $event.stopPropagation();
                             SocialInteractionService.deleteSocialInteraction(socialInteraction.id);
                             _.remove(scope.socialInteractions, { id: socialInteraction.id });
                         };

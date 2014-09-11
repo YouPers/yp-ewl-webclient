@@ -38,13 +38,10 @@
 
         ng-repeat="socialInteraction in socialInteractions"
 
-        ui-sref="{{ options.isCampaignLead ? 'dcm' : 'dhc' }}.activity({ campaignId: $root.$stateParams.campaignId, idea: socialInteraction.idea.id, activity: socialInteraction.activity.id, socialInteraction: socialInteraction.id })"
+        ng-click="openSocialInteraction(socialInteraction)"
 
             >
 
-        <!--<div class="pull-right">-->
-            <!--<a href><i ng-click="dismissSocialInteraction(socialInteraction)" class="glyphicon glyphicon-remove"></i></a>-->
-        <!--</div>-->
 
         <div class="headers sheet secondary">
 
@@ -53,6 +50,12 @@
             </div>
 
             <div class="info">
+
+
+                <div class="pull-right dismiss">
+                    <a href><i ng-click="dismissSocialInteraction($event, socialInteraction)" class="glyphicon glyphicon-remove"></i></a>
+                </div>
+
                 <div class="authorType">{{ 'socialInteraction.header.' + socialInteraction.__t + '.' + socialInteraction.authorType | translate }}</div>
                 <div class="author">{{ socialInteraction.author.fullname }}</div>
             </div>
