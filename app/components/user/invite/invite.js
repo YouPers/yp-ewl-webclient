@@ -34,7 +34,11 @@
 
 
                 $scope.onSignIn = function() {
-                    $scope.$state.go('dhc.activity' , { idea: activity.idea.id, socialInteraction: invitation.id });
+                    $scope.$state.go('dhc.activity' , {
+                        idea: invitation.activity.idea.id,
+                        activity: invitation.activity.id,
+                        socialInteraction: invitation.id
+                    });
                 };
 
                 // if the user is authenticated we immediatly go to the corresponding activity so he can join
