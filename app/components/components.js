@@ -30,19 +30,18 @@
             'yp.components.gameArea',
             'yp.components.gameAreaSidePanel',
             'yp.components.ideaCard',
-            'yp.components.ideaThumbnail',
             'yp.components.ideaEdit',
             'yp.components.avatarUpload',
             'yp.components.campaignSwitcher',
             'yp.components.campaignCard',
             'yp.components.organizationCard',
             'yp.components.datePicker',
-            'yp.components.multipleViewCarousel',
-            'yp.components.recommendedBySlider',
-            'yp.components.scheduledDate',
             'yp.components.ypInput',
             'yp.components.statisticsChart'
-        ])
+
+//        'yp.components.multipleViewCarousel',
+
+    ])
 
         .run(['$rootScope', function ($rootScope) {
             $rootScope.enums = {

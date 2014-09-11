@@ -39,7 +39,10 @@
                         return socialInteractions.post(socialInteraction);
                     },
                     getSocialInteraction: function(socialInteractionId) {
-                        return socialInteractions.one(socialInteractionId).get();
+                        return socialInteractions.one(socialInteractionId).get().then(function (invitation) {
+                            extractRefDocs([invitation]);
+                            return invitation;
+                        });
                     },
                     getSocialInteractions: function(options) {
                         return socialInteractions.getList(options).then(function(results) {

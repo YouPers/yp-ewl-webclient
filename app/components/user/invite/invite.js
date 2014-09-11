@@ -11,7 +11,7 @@
                         access: accessLevels.all
                     })
                     .state('invite.content', {
-                        url: "/invite/:invitingUserId/activity/:ideaId",
+                        url: "/invite/:invitationId",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -20,24 +20,21 @@
                             }
                         },
                         resolve: {
-                            idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
-                                return ActivityService.getIdea($stateParams.ideaId);
-                            }],
-                            invitingUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
-                                return UserService.getUser($stateParams.invitingUserId);
-                            } ]
+                            invitation: ['SocialInteractionService', '$stateParams', function (SocialInteractionService, $stateParams) {
+                                return SocialInteractionService.getSocialInteraction($stateParams.invitationId);
+                            }]
                         }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('components/user/invite/invite');
             }])
 
-        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'idea', 'invitingUser',
-            function ($scope, $rootScope, $state, $stateParams, UserService, idea, invitingUser) {
+        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'invitation',
+            function ($scope, $rootScope, $state, $stateParams, UserService, invitation) {
 
 
                 $scope.onSignIn = function() {
-                    $scope.$state.go('schedule.offer' , { id: idea.id });
+                    $scope.$state.go('dhc.activity' , { idea: activity.idea.id, socialInteraction: invitation.id });
                 };
 
                 // if the user is authenticated we immediatly go to the corresponding activity so he can join
@@ -45,12 +42,9 @@
                     $scope.onSignIn();
                 }
 
-                $scope.offer = {
-                    idea: idea,
-                    recommendedBy: [invitingUser]
-                };
+                $scope.idea = invitation.idea;
 
-                $scope.invitingUser = invitingUser;
+                $scope.invitingUser = invitation.author;
                 $scope.toggleSignUp = function() {
                     $scope.showSignUp = !$scope.showSignUp;
                 };
