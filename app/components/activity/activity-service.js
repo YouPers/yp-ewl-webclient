@@ -82,7 +82,7 @@
                         }
                     },
                     getActivity: function (activityId) {
-                        return Restangular.one('activities', activityId).get({'populate': ['owner', 'invitedBy', 'joiningUsers']})
+                        return Restangular.one('activities', activityId).get({'populate': ['idea', 'owner', 'invitedBy', 'joiningUsers']})
                             .then(_populateIdeas);
                     },
                     getActivities: function (options) {
@@ -140,41 +140,6 @@
                         }
 
                     },
-                    getActivityOffers: function (options) {
-                        return Restangular.all('activityoffers').getList(options);
-                    },
-                    getActivityOffer: function (id) {
-                        return Restangular.one('activityoffers', id).get({
-                            'populate': 'idea activity recommendedBy',
-                            'populatedeep': 'activity.owner activity.joiningUsers'
-                        });
-                    },
-                    saveActivityOffer: function (offer) {
-                        var plan = offer.activity[0];
-
-                        function _saveActivityOffer(offer) {
-                            if (offer.id) {
-                                return Restangular.restangularizeElement(null, offer, "activityoffers").put();
-                            } else {
-                                return Restangular.all('activityoffers').post(offer);
-                            }
-                        }
-
-                        if (offer.offerType[0] === 'campaignActivityPlan') {
-                            // an event is being scheduled or edited, so we first save the plan
-                            return this.savePlan(plan)
-                                .then(function (savedPlan) {
-                                    offer.activity = [savedPlan];
-                                    return _saveActivityOffer(offer);
-                                });
-                        } else if (offer.offerType[0] === 'campaignActivity') {
-                            // no event, so just save the offer.
-                            offer.activity = [];
-                            return _saveActivityOffer(offer);
-                        } else {
-                            throw new Error('should never arrive here');
-                        }
-                    },
                     joinPlan: function (plan) {
                         return activities.one(plan.id).all('/join').post();
                     },
@@ -187,16 +152,6 @@
                     },
                     deleteActivity: function (activity) {
                         return activities.one(activity.id || activity).remove();
-                    },
-                    deleteOffer: function (offer) {
-                        if (offer.plan && offer.plan.id) {
-                            // if this is an offer with a saved plan, then we delete the plan
-                            // the backend will cascade delete the offer automafically
-                            return activities.one(offer.plan.id).remove();
-                        } else {
-                            // if this is an offer without plan, we just delete the offer
-                            return Restangular.one('activityoffers', offer.id).remove();
-                        }
                     },
                     updateActivityEvent: function (actEvent) {
                         return actEvent.put();
