@@ -42,7 +42,7 @@
                             <button type="submit" class="btn btn-primary pull-right" ng-disabled="campaignForm.$invalid">
                                 <span translate>campaignForm.save</span>
                             </button>
-                            <button type="button" class="btn btn-default pull-right" ui-sref="campaigns.content">
+                            <button type="button" class="btn btn-default pull-right" ui-sref="dcm.home">
                                 <span translate>campaignForm.back</span>
                             </button>
                         </div>
@@ -53,7 +53,7 @@
             </div>
 
 
-            <div class="row campaign-preview">
+            <div class="row campaign-preview" ng-if="topicId">
                 <div class="col-md-4">
 
                     <div class="main-header">
