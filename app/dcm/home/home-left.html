@@ -1,9 +1,9 @@
 
 <div class="organization">
 
-    <organization-card organization="organization" ng-if="isOrganizationAdmin">
+    <organization-card organization="organization" ng-if="organization">
 
-        <a class="edit" ui-sref="organization.content">
+        <a class="edit" ui-sref="organization.content" ng-if="isOrganizationAdmin">
             <span translate>dcmhome.organization.edit</span>
             <i class="fa fa-pencil-square-o"></i>
         </a>

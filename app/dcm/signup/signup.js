@@ -44,6 +44,8 @@
                                 name: user.organizationName
                             }).then(function (savedOrganization) {
 
+                                UserService.principal.getUser().roles.push('orgadmin');
+
                                 if ($rootScope.nextStateAfterLogin) {
                                     $state.go($rootScope.nextStateAfterLogin.toState, $rootScope.nextStateAfterLogin.toParams);
                                 } else {
