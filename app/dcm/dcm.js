@@ -40,7 +40,7 @@
                         campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
 
                             if ($stateParams.campaignId) {
-                                return _.find(campaigns, { id: $stateParams.campaignId })
+                                return _.find(campaigns, { id: $stateParams.campaignId });
                             } else {
                                 return undefined;
                             }
