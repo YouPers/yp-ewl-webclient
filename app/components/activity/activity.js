@@ -124,7 +124,7 @@
                 };
 
                 if(mode === 'campaignlead') {
-                    $scope.socialInteraction = invitation;
+                    $scope.socialInteraction = campaignInvitation || invitation;
                 }
 
 
@@ -198,6 +198,7 @@
                 $scope.$watch('activityController.inviteOthers', dirtyWatch);
                 $scope.$watch('usersToBeInvited', dirtyWatch);
                 $scope.$watch('activity', dirtyWatch, true);
+                $scope.$watch('socialInteraction', dirtyWatch, true);
 
                 $timeout(function () {
                     initialized = true;
@@ -259,7 +260,29 @@
                                 }
                             ];
 
-                            if (inviteAll && !campaignInvitation) {
+                            if ($scope.mode === 'campaignlead') {
+
+                                if(campaignInvitation) {
+                                    SocialInteractionService.putSocialInteraction(campaignInvitation).then(function () {
+                                        $state.transitionTo($state.current, $stateParams, {
+                                            reload: true,
+                                            inherit: false,
+                                            notify: true
+                                        });
+                                    });
+                                } else {
+                                    invitation.targetSpaces = [
+                                        {
+                                            type: 'campaign',
+                                            targetId: campaign.id
+                                        }
+                                    ];
+                                    SocialInteractionService.postInvitation($scope.socialInteraction).then(function (saved) {
+                                        $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: saved.id });
+                                    });
+                                }
+
+                            } else if (inviteAll && !campaignInvitation) {
                                 invitation.targetSpaces = [
                                     {
                                         type: 'campaign',
@@ -295,7 +318,10 @@
 
                         }
 
-                        $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
+                        if(mode !== 'campaignlead') {
+                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
+                        }
+
                     });
 
 

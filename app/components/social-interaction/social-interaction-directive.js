@@ -53,7 +53,7 @@
                             SocialInteractionService.getSocialInteractions(params).then(function (socialInteractions) {
 
                                 socialInteractions = _.filter(socialInteractions, function (si) {
-                                    return si.__t === 'Invitation' || si.__t === 'Message';
+                                    return si.authorType !== 'coach';
                                 });
 
                                 socialInteractions = _.sortBy(socialInteractions, function(si) {
@@ -71,8 +71,9 @@
                         }
 
                         scope.saveMessage = function saveMessage() {
-                            SocialInteractionService.postMessage(scope.message).then(function() {
-                                scope.socialInteractions.push(scope.message);
+                            SocialInteractionService.postMessage(scope.message).then(function(saved) {
+                                saved.author = user;
+                                scope.socialInteractions.push(saved);
                                 scope.message = _.clone(messageTemplate);
                                 scope.options.composeMessage = false;
                             });
@@ -80,7 +81,12 @@
 
                         scope.openSocialInteraction = function (socialInteraction) {
 
-                            if(socialInteraction.idea) {
+                            if(options.isCampaignLead && socialInteraction.__t === 'Recommendation') {
+                                $state.go('dcm.recommendation', {
+                                    idea: socialInteraction.idea.id,
+                                    socialInteraction: socialInteraction.id
+                                });
+                            }else if(socialInteraction.idea) {
 
                                 $state.go((options.isCampaignLead ? 'dcm' : 'dhc') + '.activity', {
                                     campaignId: $stateParams.campaignId,

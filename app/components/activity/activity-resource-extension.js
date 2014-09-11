@@ -97,7 +97,7 @@
 
                 Restangular.extendModel('activities', extendActivities);
 
-            }])
+            }]);
 
 
 })();

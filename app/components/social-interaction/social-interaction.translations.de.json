@@ -8,17 +8,17 @@
 
       "header": {
           "Invitation": {
-              "user": "persönliche Einladung von",
-              "campaignLead": "Kampagneneinladung von"
+              "user": "Persönliche Einladung",
+              "campaignLead": "Kampagneneinladung"
           },
           "Recommendation": {
               "user": "persönliche Empfehlung von",
-              "campaignLead": "Kampagnenempfehlung von",
+              "campaignLead": "Kampagnenempfehlung",
               "coach": "HealthCoach"
           },
           "Message": {
               "user": "persönliche Nachricht von",
-              "campaignLead": "Kampagnennachricht von",
+              "campaignLead": "Kampagnennachricht",
               "coach": "HealthCoach"
           }
       }

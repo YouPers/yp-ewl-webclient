@@ -199,6 +199,17 @@
             <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
                 {{ 'activity.submit.' + mode | translate }}
             </button>
+
+            <div class="publish" ng-if="mode === 'campaignlead'">
+
+                <label translate>activity.publishFrom.label</label>
+                <date-picker date="socialInteraction.publishFrom"></date-picker>
+                <label translate>activity.publishTo.label</label>
+                <date-picker date="socialInteraction.publishTo"></date-picker>
+
+            </div>
+
+            <div class="clearfix"></div>
         </div>
         <div class="box">
             <h4>health coach messages</h4>

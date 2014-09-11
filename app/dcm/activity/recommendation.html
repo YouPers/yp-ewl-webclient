@@ -2,15 +2,78 @@
 
 
     <section>
-        one
+
+        <h4 translate>{{ 'activity.header.recommendation' }}</h4>
+
+        <div>
+
+            <activity-offer-card
+
+                    idea="idea"
+                    social-interaction="recommendation"
+
+                    ></activity-offer-card>
+
+        </div>
+
+        <div>
+
+            <idea-card idea="idea" activity="activity"></idea-card>
+
+        </div>
+
+
     </section>
 
     <section>
-        two
+
+
+
+        <form class="form-horizontal" ng-submit="saveRecommendation()">
+
+            <dl class="dl-horizontal">
+                <dt>
+                    <label translate>recommendationForm.title.label</label>
+                </dt>
+                <dd>
+                    <input class="form-control" ng-model="recommendation.title" placeholder="{{ 'recommendationForm.title.placeholder' | translate }}" />
+                </dd>
+                <dt>
+                    <label translate>recommendationForm.text.label</label>
+                </dt>
+                <dd>
+                    <textarea class="form-control" ng-model="recommendation.text" placeholder="{{ 'recommendationForm.text.placeholder' | translate }}"></textarea>
+                </dd>
+
+                <dt>
+                    <label translate>recommendationForm.publishFrom.label</label>
+                </dt>
+                <dd class="publish">
+                    <date-picker date="recommendation.publishFrom"></date-picker>
+                    <label translate>recommendationForm.publishTo.label</label>
+                    <date-picker date="recommendation.publishTo"></date-picker>
+                </dd>
+            </dl>
+
+        </form>
+
+
     </section>
 
     <section>
-        three
+
+
+        <div class="box">
+
+            <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
+                activity.link.back
+            </button>
+            <button class="btn btn-primary submit" ng-disabled="!recommendationController.dirty" ng-click="saveRecommendation()">
+                {{ 'recommendationForm.submit' | translate }}
+            </button>
+        </div>
+
+
     </section>
 
 </div>

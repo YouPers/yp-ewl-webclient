@@ -64,7 +64,7 @@
       "submit": {
           "invitation": "Einladung annehmen und Termine speichern",
           "recommendation": "Termine speichern",
-          "campaignlead": "Kampagnenaktivität speichern",
+          "campaignlead": "Kampagnenaktivität publizieren",
           "owned": "Termine speichern",
           "joined": "Termine speichern",
           "schedule": "Termine speichern"
@@ -126,6 +126,13 @@
         "stateHeader1": "deine",
         "stateHeader2": "aktivität"
     }
+      ,
+      "publishFrom": {
+          "label": "Von"
+      },
+      "publishTo": {
+          "label": "Bis"
+      }
   },
     "activityForm": {
         "title": {
