@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    function _fillAndFormatStatsForCampaignDuration(sourceData, campaign, propsToPlot) {
+    function _fillAndFormatStatsForCampaignDuration(sourceData, campaign, propsToPlot, runningTotal) {
 
         if (!propsToPlot) {
             propsToPlot = ['count'];
@@ -21,18 +21,32 @@
         var current = moment().startOf('day');
         // use the start a bit before the start date, so the isAfter in the loop catches the first day of the campaign.
         var startOfCampaign = moment(campaign.start).startOf('day').subtract(1, 'hour');
+        var nrOfValues = 0;
 
-        while (current.isAfter(startOfCampaign)) {
+        var currentTotals = _.reduce(sourceData, function (sum, value) {
+            for (var i = 0; i < propsToPlot.length; i++) {
+                sum[i] = (sum[i] ||0) + value[propsToPlot[i]];
+            }
+            return sum;
+        }, []);
+
+        while (current.isAfter(startOfCampaign) && nrOfValues < 7) {
             var formattedCurrent = current.format('l');
-
             var values = [];
             for (var i = 0; i < propsToPlot.length; i++) {
-                values.push((valuesByFormattedDate[formattedCurrent] && valuesByFormattedDate[formattedCurrent][propsToPlot[i]]) || 0);
+                if (runningTotal) {
+                    values.push(currentTotals[i]);
+                    if (valuesByFormattedDate[formattedCurrent]) {
+                        currentTotals[i] = currentTotals[i] - valuesByFormattedDate[formattedCurrent][propsToPlot[i]];
+                    }
+                } else {
+                    values.push((valuesByFormattedDate[formattedCurrent] && valuesByFormattedDate[formattedCurrent][propsToPlot[i]]) || 0);
+                }
             }
             myChartData.data.push({
-                x: formattedCurrent,
+                x: current.format('DD.MM.'),
                 y: values});
-
+            nrOfValues++;
             current.subtract(1, 'day');
         }
         return myChartData;
@@ -70,9 +84,14 @@
             function ($http, Restangular, $q, UserService, $rootScope) {
                 var statsService = {};
 
-                statsService.loadStats = function (campaignId) {
-                    return Restangular.all('stats').getList({type: 'all', scopeType: 'campaign', scopeId: campaignId});
+                statsService.loadStats = function (campaignId, options) {
+                    if (!options) {
+                        options = {type: 'all', scopeType: 'campaign', scopeId: campaignId};
+                    }
+                    return Restangular.all('stats').getList(options);
                 };
+
+                statsService.fillAndFormatForPlot = _fillAndFormatStatsForCampaignDuration;
 
                 return statsService;
             }])

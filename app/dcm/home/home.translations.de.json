@@ -1,7 +1,9 @@
 {
   "dcmhome": {
-    "stateHeader1": "digitaler",
-    "stateHeader2": "Kampagnen-Manager",
+    "statsTitle": "Verlauf der Kampagne",
+    "participantsCount": "Anzahl angemeldete Teilnehmer",
+    "plannedActsCount": "Anzahl geplante Aktivitäten",
+    "moreStats": "Mehr",
     "notifications": "Mitteilungen",
     "campaigns": "Kampagnen",
     "activities": "Aktivitäten",
