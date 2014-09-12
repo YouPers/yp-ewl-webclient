@@ -57,11 +57,7 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('stats', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.campaignlead
-                    })
-                    .state('stats.content', {
+                    .state('dcm.stats', {
                         url: "/stats",
                         access: accessLevels.campaignlead,
                         views: {
@@ -96,8 +92,10 @@
                 return statsService;
             }])
 
-        .controller('StatsController', [ '$scope', '$rootScope', 'CampaignService', 'StatsService', 'Restangular',
-            function ($scope, $rootScope, CampaignService, StatsService, Restangular) {
+        .controller('StatsController', [ '$scope', '$rootScope',  'StatsService', 'Restangular', 'campaign',
+            function ($scope, $rootScope, StatsService, Restangular, campaign) {
+
+                $scope.campaign = campaign;
 
                 function loadStats(campaign) {
                     if (!campaign) {
@@ -119,15 +117,8 @@
                     });
                 }
 
-                if (CampaignService.currentCampaign) {
-                    loadStats(CampaignService.currentCampaign);
-                }
+                loadStats(campaign);
 
-                $scope.$watch(function () {
-                    return CampaignService.currentCampaign;
-                }, function (newValue) {
-                    loadStats(newValue);
-                });
 
 
             }
