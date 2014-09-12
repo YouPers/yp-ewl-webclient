@@ -60,14 +60,32 @@
 
         .controller('HomeStatsController', ['$scope', 'StatsService', function ($scope, StatsService) {
             $scope.chartData = {};
-            if ($scope.campaign) {
-                StatsService.loadStats($scope.campaign.id, {type: 'newUsersPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
-                    $scope.chartData.newUsers = StatsService.fillAndFormatForPlot(result[0].newUsersPerDay, $scope.campaign, ['count'], true);
-                });
 
-                StatsService.loadStats($scope.campaign.id, {type: 'activitiesPlannedPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
-                    $scope.chartData.plannedActs = StatsService.fillAndFormatForPlot(result[0].activitiesPlannedPerDay, $scope.campaign);
-                });
+            init();
+
+            ///////////////////
+
+            function init() {
+                if ($scope.campaign) {
+                    var options = {
+                        runningTotal: true,
+                        newestDay: moment.min(moment(), moment($scope.campaign.end)),
+                        nrOfDaysToPlot: 7
+                    };
+
+                    StatsService.loadStats($scope.campaign.id, {type: 'newUsersPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                        $scope.chartData.newUsers = StatsService.fillAndFormatForPlot(result[0].newUsersPerDay, options);
+                    });
+
+
+
+                    StatsService.loadStats($scope.campaign.id, {type: 'activitiesPlannedPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                        $scope.chartData.plannedActs = StatsService.fillAndFormatForPlot(result[0].activitiesPlannedPerDay,  {
+                            newestDay: moment(),
+                            nrOfDaysToPlot: 7
+                        });
+                    });
+                }
             }
 
         }]);

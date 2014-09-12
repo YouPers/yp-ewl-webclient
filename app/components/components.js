@@ -19,6 +19,7 @@
             'yp.components.socialInteraction',
             'yp.components.message',
             'yp.components.i18n',
+            'yp.components.stats',
 
             // directives
             'yp.components.userInvitation',
