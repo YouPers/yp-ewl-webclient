@@ -32,7 +32,7 @@
             propsToPlot: ['count'],
             runningTotal: false,
             newestDay: newestDataDate,
-            oldestDay: options.nrOfDaysToPlot ? newestDataDate.subtract(options.nrOfDaysToPlot,'days') : oldestDataDate,
+            oldestDay: options.nrOfDaysToPlot ? moment(options.newestDay || newestDataDate).subtract(options.nrOfDaysToPlot,'days') : oldestDataDate,
             dateFormat: 'D.M.'
         });
 
