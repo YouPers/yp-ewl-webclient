@@ -65,7 +65,7 @@
                     $scope.chartData.newUsers = StatsService.fillAndFormatForPlot(result[0].newUsersPerDay, $scope.campaign, ['count'], true);
                 });
 
-                StatsService.loadStats($scope.campaign.id, {type: 'activitiesPlannedPerDay', scopeType: 'Campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                StatsService.loadStats($scope.campaign.id, {type: 'activitiesPlannedPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
                     $scope.chartData.plannedActs = StatsService.fillAndFormatForPlot(result[0].activitiesPlannedPerDay, $scope.campaign);
                 });
             }
