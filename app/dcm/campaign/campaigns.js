@@ -22,7 +22,7 @@
                         }
                     })
                     .state('dcm.campaign', {
-                        url: "/edit",
+                        url: "/edit?newTopicId",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
@@ -33,7 +33,18 @@
                         resolve: {
                             topics: ['Restangular', function (Restangular) {
                                 return Restangular.all('topics').getList();
+                            }],
+                            newTopic: ['$stateParams', 'topics', function ($stateParams, topics) {
+                                var topicId = $stateParams.newTopicId;
+                                if (topicId) {
+                                    return _.find(topics, function(topic) {
+                                        return (topic.id === topicId);
+                                    });
+                                } else {
+                                    return null;
+                                }
                             }]
+
                         }
                     });
 
@@ -41,40 +52,31 @@
             }])
 
 
-        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign', 'topics',
-            function ($scope , CampaignService, UserService, campaign, topics) {
+        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign', 'topics', 'newTopic',
+            function ($scope , CampaignService, UserService, campaign, topics, newTopic) {
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
                     'starting-day': 1
                 };
 
-                topics.byId = _.indexBy(topics, 'id');
-                $scope.topics = topics;
-
-
                 var start = new Date(moment().hour(8).minutes(0).seconds(0));
                 var end = new Date(moment().hour(17).minutes(0).seconds(0).add(6, 'weeks'));
 
                 if (campaign) {
                     $scope.campaign = campaign;
-                    $scope.topicId = $scope.campaign.topic.id;
                 } else {
+                    if (!newTopic) {
+                        throw new Error("no topic found, we should always have a topic to create a new campaign");
+                    }
                     $scope.campaign = {
-                        title: '',
                         start: start,
-                        end: end
+                        end: end,
+                        topic: newTopic,
+                        title: newTopic.name,
+                        avatar: newTopic.picture
                     };
                 }
-
-                $scope.$watch('topicId', function (newTopic, oldTopic) {
-                    if (newTopic) {
-                        var topic = topics.byId[newTopic];
-                        $scope.campaign.topic = topic;
-                        $scope.campaign.title = topic.name;
-                        $scope.campaign.avatar = topic.picture;
-                    }
-                });
 
                 $scope.inviteCampaignLead = function (emails, campaign) {
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function () {

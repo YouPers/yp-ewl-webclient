@@ -32,6 +32,10 @@
       "label": "Avatar",
       "change": "ändern"
     },
+    "topic": {
+        "label": "Kampagnen-Thema",
+        "change": "ändern"
+    },
     "title": {
       "label": "Titel",
       "placeholder": "Titel",
