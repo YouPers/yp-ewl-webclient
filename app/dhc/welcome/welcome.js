@@ -28,6 +28,8 @@
 
                 if (!campaign) {
                     $state.go('dhc.game');
+                } else if ($scope.principal.isAuthorized('campaignlead')) {
+                    $scope.isCampaignlead = true;
                 } else if(!$stateParams.preview && UserService.principal.getUser().campaign && UserService.principal.getUser().campaign.id === campaign.id) {
                     // user is already in this campaign
                     $state.go('dhc.game');
