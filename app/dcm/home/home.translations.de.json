@@ -9,6 +9,8 @@
     "activities": "Aktivitäten",
     "statistics": "Statistiken",
     "addOffer": "Angebot hinzufügen",
+    "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
+    "addMoreUsers": "Lade weitere Teilnehmer ein indem du ihnen folgenden Link per Email versendest:",
     "organization": {
         "addCampaign": "Neue Kampagne",
         "edit": "Bearbeiten"
