@@ -81,7 +81,7 @@
 
                 };
 
-                $scope.doneClicked = function(isDone) {
+                $scope.doneClicked = function() {
 
                     ActivityService.getActivityEvents({
                         'filter[idea]': assessmentIdea.id
