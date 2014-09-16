@@ -18,18 +18,10 @@
                         },
                         resolve: {
 
-                            socialInteractions: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
-                                return SocialInteractionService.getSocialInteractions({
-                                    populate: 'author',
-                                    targetId: $stateParams.campaignId,
-                                    authored: true,
-                                    authorType: 'campaignLead'
-                                });
-                            }],
+
                             jsInclude: ["util", function (util) {
                                 return util.loadJSInclude('lib/d3/d3.js');
                             }]
-
 
                         }
                     });
@@ -38,21 +30,41 @@
             }])
 
 
-        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'socialInteractions', 'campaign', 'campaigns',
-            function ($scope, $rootScope, $state, UserService, socialInteractions, campaign, campaigns) {
 
+        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns',
+            function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns) {
+
+                $scope.$watch('homeController.filterByPublishDate', function (filterByPublishDate) {
+                    var options = {
+                        populate: 'author',
+                        targetId: campaign.id,
+                        authored: true,
+                        authorType: 'campaignLead'
+                    };
+
+                    if(!filterByPublishDate) {
+                        options.publishFrom = false;
+                        options.publishTo = false;
+                    }
+
+                    SocialInteractionService.getSocialInteractions(options).then(function (sis) {
+
+                        $scope.offers = _.filter(sis, function(si) {
+                            return si.__t === 'Recommendation' || si.__t === 'Invitation';
+                        });
+                        _.each($scope.offers, function (offer) {
+                            offer.idea = offer.idea || offer.activity.idea;
+                        });
+
+                    });
+                });
+
+                $scope.homeController = this;
+                $scope.homeController.filterByPublishDate = false;
                 $scope.campaign = campaign;
-
                 if (!campaign && campaigns.length > 0) {
                     $state.go('dcm.home', { campaignId: campaigns[0].id });
                 }
-
-                $scope.offers = _.filter(socialInteractions, function (si) {
-                    return si.__t === 'Recommendation' || si.__t === 'Invitation';
-                });
-                _.each($scope.offers, function (offer) {
-                    offer.idea = offer.idea || offer.activity.idea;
-                });
 
                 $scope.isOrganizationAdmin = _.contains(UserService.principal.getUser().roles, 'orgadmin');
 
