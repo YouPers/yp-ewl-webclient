@@ -92,7 +92,7 @@
 
                             if(event.status !== 'done') {
                                 event.status = 'done';
-                                updateEvents.push(ActivityService.updateActivityEvent(event))
+                                updateEvents.push(ActivityService.updateActivityEvent(event));
                             }
                         });
 
