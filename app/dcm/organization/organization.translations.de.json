@@ -59,20 +59,7 @@
     },
     "contact": {
       "header": "Kontakt",
-      "firstname": {
-        "label": "Name",
-        "placeholder": "Vorname",
-        "error": {
-          "required": "Bitte einen gültigen Vornamen eingeben"
-        }
-      },
-      "lastname": {
-        "placeholder": "Nachname",
-        "error": {
-          "required": "Bitte einen gültigen Nachnamen eingeben"
-        },
-        "label": "Nachname"
-      },
+
       "position": {
         "label": "Funktion",
         "placeholder": "Funktion / Organisationseinheit",
@@ -95,6 +82,29 @@
         }
       }
     },
+      "user": {
+          "firstname": {
+              "label": "Name",
+              "placeholder": "Vorname",
+              "error": {
+                  "required": "Bitte einen gültigen Vornamen eingeben"
+              }
+          },
+          "lastname": {
+              "placeholder": "Nachname",
+              "error": {
+                  "required": "Bitte einen gültigen Nachnamen eingeben"
+              },
+              "label": "Nachname"
+          },
+          "email": {
+              "label": "Email",
+              "placeholder": "Email Adresse",
+              "error": {
+                  "required": "Bitte eine gültige Email-Adresse eingeben"
+              }
+          }
+      },
     "save": "speichern",
     "create": "erstellen"
   },

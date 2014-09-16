@@ -72,14 +72,24 @@
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/organization/organization');
             }])
-        .controller('OrganizationController', [ '$scope', '$state', '$filter', 'OrganizationService', 'organizations',
-            function ($scope, $state, $filter, OrganizationService, organizations) {
+        .controller('OrganizationController', [ '$scope', '$state', '$filter', 'UserService', 'OrganizationService', 'organizations',
+            function ($scope, $state, $filter, UserService, OrganizationService, organizations) {
 
                 if(organizations.length > 1) {
                     $scope.$emit('clientmsg:error', 'organization.notUnique');
                 }
 
                 $scope.organization = organizations.length > 0 ? organizations[0] : {};
+
+                var user = UserService.principal.getUser();
+
+                var userFields = {
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    email: user.email
+                };
+
+                $scope.organization.user = _.clone(userFields);
 
                 $scope.localizedValues = function localizedValues(prefix, range) {
 
@@ -96,12 +106,21 @@
                 };
 
                 var onSave = function (organization) {
+
+                    // save user if the relevant fields where changed
+                    if(!_.isEqual($scope.organization.user, userFields)) {
+                        userFields.fullname = userFields.firstname + ' ' + userFields.lastname;
+                        _.extend(user, $scope.organization.user);
+                        UserService.putUser(user);
+                    }
+
                     $scope.$emit('clientmsg:success', 'organization.saved');
                     $scope.organization = organization;
                     $state.go('dcm.home');
                 };
 
                 $scope.saveOrganization = function() {
+
                     if($scope.organization.id) {
                         OrganizationService.putOrganization($scope.organization).then(onSave);
                     } else {
