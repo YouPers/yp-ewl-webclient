@@ -26,10 +26,22 @@ angular.module('yp-ewl',
         function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider) {
             //
             // For any unmatched url, send to /home
-            $urlRouterProvider.otherwise('/campaign//game/');
+            $urlRouterProvider.otherwise('/dispatch');
             //
             // Now set up the states
             $stateProvider
+                .state('homedispatcher', {
+                    url: "/dispatch",
+                    access: accessLevels.all,
+                    controller: ['UserService', '$state', function (UserService, $state) {
+                        if (UserService.principal.isAuthorized(accessLevels.campaignlead)) {
+                            return $state.go('dcm.home');
+                        } else {
+                            return $state.go('dhc.game');
+                        }
+                    }]
+                })
+
                 .state('terms', {
                     url: "/terms",
                     templateUrl: "partials/terms.html",
