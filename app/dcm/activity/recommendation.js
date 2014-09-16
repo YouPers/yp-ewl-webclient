@@ -76,7 +76,13 @@
                 });
 
                 $scope.saveRecommendation = function saveRecommendation() {
-                    SocialInteractionService.postRecommendation($scope.recommendation).then(function() {
+
+                    // ensure start of date / end of day for publish dates
+                    var rec = $scope.recommendation;
+                    rec.publishFrom = new Date(moment(rec.publishFrom).startOf('day'));
+                    rec.publishTo = new Date(moment(rec.publishTo).endOf('day'));
+
+                    SocialInteractionService.postRecommendation(rec).then(function() {
                         $scope.$emit('clientmsg:success', 'recommendation.saved');
                         $state.go('dcm.home');
                     });
