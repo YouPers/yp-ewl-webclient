@@ -2,37 +2,7 @@
 
 
     <div class="row">
-
-        <div class="col-md-6">
-
-            <div ng-if="principal.getUser().campaign">
-
-                <h2 translate>account.currentCampaign</h2>
-
-                <div class="panel panel-default row" >
-                    <div class="col-md-12">
-                        <h3>{{principal.getUser().campaign.title}}</h3>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label translate>account.start</label>
-                    </div>
-                    <div class="col-md-3">
-                        {{principal.getUser().campaign.start | date}}
-                    </div>
-                    <div class="col-md-3">
-                        <label translate>account.end</label>
-                    </div>
-                    <div class="col-md-3">
-                        {{principal.getUser().campaign.end | date}}
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-3">
 
             <h2 translate>account.account</h2>
 
@@ -70,6 +40,9 @@
                 
             </accordion>
             
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" ui-sref="homedispatcher" translate>account.backToHome</button>
         </div>
     </div>
 

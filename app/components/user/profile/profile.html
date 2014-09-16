@@ -3,14 +3,17 @@
 <form name="profileForm" ypModel="profileUserObj" class="form" role="form" ng-submit="saveProfile()" novalidate>
 
 <div class="row">
-    <div class="col-md-11">
+    <div class="col-md-9">
         <h2 translate>profileForm.profile.header</h2>
     </div>
-    <div class="col-md-1">
-        </br>
+    <div class="col-md-3">
         <button type="submit" class="btn btn-success btn-sm" ng-disabled="profileForm.$invalid" translate>
             profileForm.submit
         </button>
+        <button type="submit" class="btn btn-default btn-sm" ui-sref="homedispatcher" translate>
+            account.backToHome
+        </button>
+
     </div>
 </div>
 
