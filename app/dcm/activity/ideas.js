@@ -16,7 +16,7 @@
                             }
                         },
                         resolve: {
-                            ideas: ['ActivityService', 'CampaignService', 'campaign', function (ActivityService, CampaignService, campaign) {
+                            ideas: ['ActivityService', 'campaign', function (ActivityService, campaign) {
                                 return ActivityService.getIdeas({campaign: campaign.id || campaign, topic: campaign.topic.id || campaign.topic});
                             }]
                         }
