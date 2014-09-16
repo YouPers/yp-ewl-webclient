@@ -16,8 +16,8 @@
                             }
                         },
                         resolve: {
-                            ideas: ['ActivityService', 'CampaignService', function (ActivityService, CampaignService) {
-                                return ActivityService.getIdeas({campaign: CampaignService.currentCampaign && CampaignService.currentCampaign.id});
+                            ideas: ['ActivityService', 'campaign', function (ActivityService, campaign) {
+                                return ActivityService.getIdeas({campaign: campaign.id || campaign, topic: campaign.topic.id || campaign.topic});
                             }]
                         }
                     })
