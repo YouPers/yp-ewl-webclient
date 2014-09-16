@@ -77,12 +77,12 @@
 
   "recommendationForm": {
       "title": {
-          "label": "Titel",
-          "placeholder": "Titel"
+          "label": "Nachrichtentitel",
+          "placeholder": "Nachrichtentitel (optional)"
       },
       "text": {
           "label": "Nachricht",
-          "placeholder": "Nachricht"
+          "placeholder": "Nachricht (optional)"
       },
       "publishFrom": {
           "label": "Von",
