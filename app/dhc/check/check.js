@@ -24,9 +24,8 @@
 
                                 return AssessmentService.getNewestAssessmentResults(campaign.topic.id || campaign.topic);
                             }],
-                            assessmentIdea: ['ActivityService', function (ActivityService) {
-
-                                return ActivityService.getIdea('5278c6accdeab69a25000008');
+                            assessmentIdea: ['ActivityService', 'assessment', function (ActivityService, assessment) {
+                                return ActivityService.getIdea(assessment.idea.id || assessment.idea);
                             }]
                         },
 
@@ -47,8 +46,10 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/check/check');
             }])
 
-        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$timeout', 'assessment', 'newestResult', 'assessmentIdea', 'AssessmentService',
-            function ($scope, $rootScope, $state, $timeout, assessment, newestResult, assessmentIdea, AssessmentService) {
+        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$q',
+            'ActivityService', 'AssessmentService',
+            'assessment', 'newestResult', 'assessmentIdea',
+            function ($scope, $rootScope, $state, $q, ActivityService, AssessmentService, assessment, newestResult, assessmentIdea) {
                 if (!assessment) {
                     return;
                 }
@@ -80,12 +81,32 @@
 
                 };
 
-                $scope.doneClicked = function(isDone) {
-                    // TODO: if (isDone) {mark the Activity for this assessment as Done}
-                    AssessmentService.regenerateRecommendations()
-                        .then(function () {
-                            return $state.go('dhc.game');
+                $scope.doneClicked = function() {
+
+                    ActivityService.getActivityEvents({
+                        'filter[idea]': assessmentIdea.id
+                    }).then(function (events) {
+
+                        var updateEvents = [];
+                        _.each(events, function (event) {
+
+                            if(event.status !== 'done') {
+                                event.status = 'done';
+                                updateEvents.push(ActivityService.updateActivityEvent(event));
+                            }
                         });
+
+                        // update all events in parallel
+                        $q.all(updateEvents).then(function (results) {
+
+                            AssessmentService.regenerateRecommendations()
+                                .then(function () {
+                                    return $state.go('dhc.game');
+                                });
+                        });
+
+                    });
+
                 };
 
 

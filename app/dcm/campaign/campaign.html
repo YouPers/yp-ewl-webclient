@@ -18,9 +18,8 @@
                           ng-submit="saveCampaign()" novalidate>
 
                         <div class="form-group date">
-                            <label class="control-label" translate>Kampagnen-Thema</label>
-                            <select class="form-control" ng-model="topicId" ng-options="topic.id as topic.name for topic in topics">
-                            </select>
+                            <label class="control-label" translate>campaignForm.topic.label</label>
+                            <p>{{campaign.topic.name |uppercase}}: {{campaign.topic.shortDescription}} <a ui-sref="dcm.topics" translate ng-if="!campaign.id">campaignForm.topic.change</a></p>
                         </div>
                         <yp-input name="participants"></yp-input>
                         <yp-input name="location"></yp-input>
@@ -53,7 +52,7 @@
             </div>
 
 
-            <div class="row campaign-preview" ng-if="topicId">
+            <div class="row campaign-preview">
                 <div class="col-md-4">
 
                     <div class="main-header">
@@ -63,7 +62,7 @@
                     <div ui-sref="welcome({ campaignId: campaign.id})"
                          ng-disabled="!campaign.id">
 
-                        <campaign-switcher campaign="campaign"></campaign-switcher>
+                        <campaign-card campaign="campaign"></campaign-card>
                     </div>
 
                 </div>
@@ -74,7 +73,6 @@
                     <div translate>campaign.preview.welcomeLinkExplain</div>
                     <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
                     <div translate ng-hide="campaign.id">campaign.preview.welcomeLinkNotSaved</div>
-                    <a ui-sref="welcome({campaignId: campaign.id, preview: true})" ng-show="campaign.id" translate>campaign.preview.welcomeLinkTest</a>
 
                 </div>
             </div>

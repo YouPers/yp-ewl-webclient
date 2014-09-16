@@ -1,13 +1,17 @@
 {
   "dcmhome": {
-    "stateHeader1": "digitaler",
-    "stateHeader2": "Kampagnen-Manager",
+    "statsTitle": "Verlauf der Kampagne",
+    "participantsCount": "Anzahl angemeldete Teilnehmer",
+    "plannedActsCount": "Anzahl geplante Aktivitäten",
+    "moreStats": "Mehr",
     "notifications": "Mitteilungen",
     "campaigns": "Kampagnen",
     "activities": "Aktivitäten",
     "statistics": "Statistiken",
     "addOffer": "Angebot hinzufügen",
     "filterByPublishDate": "Nur aktuelle Angebote anzeigen",
+    "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
+    "addMoreUsers": "Lade weitere Teilnehmer ein indem du ihnen folgenden Link per Email versendest:",
     "organization": {
         "addCampaign": "Neue Kampagne",
         "edit": "Bearbeiten"

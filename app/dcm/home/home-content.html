@@ -1,24 +1,32 @@
-
-
-<div class="row">
-
+<div class="row" ng-controller="HomeStatsController">
     <div class="col-md-12">
+        <div class="area">
 
-        <game-area class="statistics" ng-init="statisticsAreaHeight = 10" area-height="areaHeight">
-
-            <div><h4 translate>dcmhome.statistics</h4></div>
-
-            <div class="flex" ng-style="{ height: $parent.statisticsAreaHeight + 'em' }">
-
-                [ flex ]
-
+            <div><h4 translate>dcmhome.statsTitle</h4>
+                <a class="show-stats" ui-sref="dcm.stats">
+                    <span translate>dcmhome.moreStats</span>
+                    <i class="fa fa-tachometer"></i>
+                </a>
             </div>
-
-        </game-area>
-
+            <div class="row" ng-if="currentUserCount > 0">
+                <div class="col-md-6">
+                    <statistics-chart chart-data="chartData.newUsers"
+                                      title="'dcmhome.participantsCount' | translate"></statistics-chart>
+                </div>
+                <div class="col-md-6">
+                    <statistics-chart chart-data="chartData.plannedActs"
+                                      title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
+                </div>
+            </div>
+            <div ng-if="!currentUserCount" class="panel panel-default">
+                <h4 translate>dcmhome.noParticipants</h4>
+                <p translate>dcmhome.addMoreUsers</p>
+                <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
+            </div>
+        </div>
     </div>
-
 </div>
+
 
 <div class="row">
 

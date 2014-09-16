@@ -5,6 +5,8 @@
     "link": {
       "info": "Mehr erfahren",
       "join": "Teilnehmen"
-    }
+    },
+    "isCampaignlead": "Dieser Benutzeraccount wird zur Verwaltung einer Kampagne eingesetzt. Er kann darum nicht selbst an einer Kampagne teilnehmen.",
+    "backToDcm": "zurück zur Kampagnenverwaltung"
   }
 }

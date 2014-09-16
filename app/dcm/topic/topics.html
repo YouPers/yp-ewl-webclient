@@ -1,0 +1,19 @@
+<div class="topics">
+
+    <h1 translate>topic.title</h1>
+    <div ng-repeat="topic in topics" class="row">
+        <div class="col-xs-3">
+
+            <div ng-class="'topic' + topic.name">
+                <div class="avatar">
+                    <img ng-src="{{ topic.picture }}">
+                </div>
+                <div class="topic sheet primary">
+                    <div>{{topic.name}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6"><h3>{{topic.shortDescription}}</h3><p>{{topic.text}}</p></div>
+        <div class="col-xs-3"><button ui-sref="dcm.campaign({newTopicId: '{{topic.id}}'})" class="form-control btn btn-primary" translate>topic.select</button></div>
+    </div>
+</div>

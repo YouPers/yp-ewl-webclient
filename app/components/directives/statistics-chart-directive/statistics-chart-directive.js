@@ -53,10 +53,11 @@
                         mouseout: function() {},
                         click: function() {},
                         legend: {
-                            display: true,
+                            display: false,
                             //could be 'left, right'
                             position: 'right'
-                        }
+                        },
+                        lineLegend: false
                     };
 
                 }
