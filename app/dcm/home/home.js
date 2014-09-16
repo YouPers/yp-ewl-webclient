@@ -17,16 +17,6 @@
 
                         },
                         resolve: {
-
-//                            socialInteractions: ['$stateParams', 'SocialInteractionService', function($stateParams, SocialInteractionService) {
-//                                return SocialInteractionService.getSocialInteractions({
-//                                    populate: 'author',
-//                                    targetId: $stateParams.campaignId,
-//                                    authored: true,
-//                                    authorType: 'campaignLead'
-//                                });
-//                            }]
-
                         }
                     });
 
