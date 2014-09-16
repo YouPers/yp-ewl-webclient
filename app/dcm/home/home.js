@@ -34,30 +34,32 @@
         .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns',
             function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns) {
 
-                $scope.$watch('homeController.filterByPublishDate', function (filterByPublishDate) {
-                    var options = {
-                        populate: 'author',
-                        targetId: campaign.id,
-                        authored: true,
-                        authorType: 'campaignLead'
-                    };
+                if(campaign) {
+                    $scope.$watch('homeController.filterByPublishDate', function (filterByPublishDate) {
+                        var options = {
+                            populate: 'author',
+                            targetId: campaign.id,
+                            authored: true,
+                            authorType: 'campaignLead'
+                        };
 
-                    if(!filterByPublishDate) {
-                        options.publishFrom = false;
-                        options.publishTo = false;
-                    }
+                        if(!filterByPublishDate) {
+                            options.publishFrom = false;
+                            options.publishTo = false;
+                        }
 
-                    SocialInteractionService.getSocialInteractions(options).then(function (sis) {
+                        SocialInteractionService.getSocialInteractions(options).then(function (sis) {
 
-                        $scope.offers = _.filter(sis, function(si) {
-                            return si.__t === 'Recommendation' || si.__t === 'Invitation';
+                            $scope.offers = _.filter(sis, function(si) {
+                                return si.__t === 'Recommendation' || si.__t === 'Invitation';
+                            });
+                            _.each($scope.offers, function (offer) {
+                                offer.idea = offer.idea || offer.activity.idea;
+                            });
+
                         });
-                        _.each($scope.offers, function (offer) {
-                            offer.idea = offer.idea || offer.activity.idea;
-                        });
-
                     });
-                });
+                }
 
                 $scope.homeController = this;
                 $scope.homeController.filterByPublishDate = false;

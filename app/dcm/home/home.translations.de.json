@@ -12,6 +12,10 @@
     "filterByPublishDate": "Nur aktuelle Angebote anzeigen",
     "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
     "addMoreUsers": "Lade weitere Teilnehmer ein indem du ihnen folgenden Link per Email versendest:",
+
+      "noCampaigns": "Du hast noch keine Kampagnen erstellt",
+      "addCampaign": "Hier kannst du eine neue Kampagne hinzufügen: ",
+
     "organization": {
         "addCampaign": "Neue Kampagne",
         "edit": "Bearbeiten"

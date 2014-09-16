@@ -3,25 +3,41 @@
         <div class="area">
 
             <div><h4 translate>dcmhome.statsTitle</h4>
-                <a class="show-stats" ui-sref="dcm.stats">
+                <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign">
                     <span translate>dcmhome.moreStats</span>
                     <i class="fa fa-tachometer"></i>
                 </a>
             </div>
-            <div class="row" ng-if="currentUserCount > 0">
-                <div class="col-md-6">
-                    <statistics-chart chart-data="chartData.newUsers"
-                                      title="'dcmhome.participantsCount' | translate"></statistics-chart>
-                </div>
-                <div class="col-md-6">
-                    <statistics-chart chart-data="chartData.plannedActs"
-                                      title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
-                </div>
+
+            <div ng-if="!campaign" class="panel panel-default">
+                <h4 translate>dcmhome.noCampaigns</h4>
+                <span translate>dcmhome.addCampaign</span>
+                <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
+                    <span translate>dcmhome.organization.addCampaign</span>
+                    <i class="fa fa-plus"></i>
+                </a>
+
             </div>
-            <div ng-if="!currentUserCount" class="panel panel-default">
-                <h4 translate>dcmhome.noParticipants</h4>
-                <p translate>dcmhome.addMoreUsers</p>
-                <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
+
+            <div ng-if="campaign">
+
+                <div class="row" ng-if="currentUserCount > 0">
+                    <div class="col-md-6">
+                        <statistics-chart chart-data="chartData.newUsers"
+                                          title="'dcmhome.participantsCount' | translate"></statistics-chart>
+                    </div>
+                    <div class="col-md-6">
+                        <statistics-chart chart-data="chartData.plannedActs"
+                                          title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
+                    </div>
+                </div>
+
+                <div ng-if="!currentUserCount" class="panel panel-default">
+                    <h4 translate>dcmhome.noParticipants</h4>
+                    <p translate>dcmhome.addMoreUsers</p>
+                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -38,16 +54,20 @@
             <div>
                 <h4 translate>dcmhome.activities</h4>
 
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="homeController.filterByPublishDate"> <span translate>dcmhome.filterByPublishDate</span>
-                    </label>
-                </div>
 
-                <a class="add-offer" ui-sref="dcm.ideas">
-                    <span translate>dcmhome.addOffer</span>
-                    <i class="fa fa-plus"></i>
-                </a>
+
+                <div ng-if="campaign">
+                    <div class="checkbox" ng-if="campaign">
+                        <label>
+                            <input type="checkbox" ng-model="homeController.filterByPublishDate"> <span translate>dcmhome.filterByPublishDate</span>
+                        </label>
+                    </div>
+
+                    <a class="add-offer" ui-sref="dcm.ideas" ng-if="campaign">
+                        <span translate>dcmhome.addOffer</span>
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
 
             </div>
 
