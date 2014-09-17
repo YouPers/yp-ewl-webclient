@@ -2,56 +2,74 @@
 @import "../../youpers-variables";
 
 .welcome-layout {
-  
-  background: url(../../../assets/img/bg.jpg);
-  
-}
-.welcome-layout > div {
-  padding-top: 4em;
-  height: 46em;
-  background: transparent;
-}
-.welcome-layout .welcome-box {
-  background: #ffffff;
-  width: 70em;
-  height: 32em;
-  margin: auto;
-}
 
-.welcome-layout .idea-card .content {
-  padding-top: 2em;
-}
+  margin-top: 1em;
+  padding: 12px;
 
-.welcome-layout .idea-card .text {
-  padding: 2em;
-  text-align: center;
-}
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
-.welcome-card, .welcome-content {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  height: 100%;
-}
+  > .welcome-box {
 
-.welcome-card {
-  width: 20em;
-}
-.welcome-content {
-  width: 49em;
-}
+    position: relative;
+    width: 62em;
 
-.welcome-header {
-  padding: 2em 3em 0em 3em;
-  font-weight: normal;
-}
-.welcome-links {
-  position: absolute;
-  bottom: 2em;
-  right: 2em;
-  padding: 1em;
-}
-.welcome-links .btn {
-  width: 12em;
-  height: 4em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    > section {
+      flex: 1 0 auto;
+    }
+
+    section.content {
+
+      display: flex;
+
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      > * {
+        margin:0 0 0.4em 0;
+      }
+
+      > .campaign-leads > * {
+        width: 15em;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        > * {
+          flex: 1 1 auto;
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+    }
+
+    .welcome-header {
+      padding: 2em 3em 0em 3em;
+      font-weight: normal;
+    }
+
+    .welcome-links {
+      padding: 2em;
+    }
+    .welcome-links .btn {
+      width: 236px;
+      height: 3em;
+    }
+
+
+  }
+
 }
