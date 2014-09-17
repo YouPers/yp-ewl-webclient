@@ -1,10 +1,13 @@
 <div class="organization">
+
     <div class="avatar">
         <img ng-src="{{ organization.avatar }}">
     </div>
+    
     <div class="name sheet primary">
         <div>{{organization.name}}</div>
     </div>
+
     <div class="details sheet secondary">
         <div>
             {{ organization.address.street }}
@@ -14,5 +17,19 @@
         </div>
     </div>
 
-    <div ng-transclude></div>
+    <div class="details sheet tertiary" ng-if="isOrganizationAdmin">
+
+        <a class="edit" ui-sref="organization.content">
+            <span translate>dcmhome.organization.edit</span>
+            <i class="fa fa-pencil-square-o"></i>
+        </a>
+
+        <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
+            <span translate>dcmhome.organization.addCampaign</span>
+            <i class="fa fa-plus"></i>
+        </a>
+
+        <div class="clearfix"></div>
+
+    </div>
 </div>

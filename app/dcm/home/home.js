@@ -67,9 +67,6 @@
                 if (!campaign && campaigns.length > 0) {
                     $state.go('dcm.home', { campaignId: campaigns[0].id });
                 }
-
-                $scope.isOrganizationAdmin = _.contains(UserService.principal.getUser().roles, 'orgadmin');
-
             }])
 
         .controller('HomeStatsController', ['$scope', 'StatsService', function ($scope, StatsService) {
