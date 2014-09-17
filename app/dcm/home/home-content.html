@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div ng-if="!currentUserCount" class="panel panel-default">
+                <div ng-if="currentUserCount === 0" class="panel panel-default">
                     <h4 translate>dcmhome.noParticipants</h4>
                     <p translate>dcmhome.addMoreUsers</p>
                     <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>

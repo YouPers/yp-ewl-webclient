@@ -80,6 +80,7 @@
             ///////////////////
 
             function init() {
+
                 if ($scope.campaign) {
                     var options = {
                         runningTotal: true,
