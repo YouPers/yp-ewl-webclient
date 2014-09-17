@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('yp.components.organizationCard', [])
-        .directive('organizationCard', [
-            function () {
+        .directive('organizationCard', [ 'UserService',
+            function (UserService) {
             return {
                 restrict: 'E',
                 scope: {
@@ -14,7 +14,7 @@
                 templateUrl: 'components/directives/organization-card-directive/organization-card-directive.html',
 
                 link: function (scope, elem, attrs) {
-
+                    scope.isOrganizationAdmin = _.contains(UserService.principal.getUser().roles, 'orgadmin');
                 }
             };
         }]);

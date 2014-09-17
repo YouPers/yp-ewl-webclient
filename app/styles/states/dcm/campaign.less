@@ -1,78 +1,83 @@
+.dcm-campaign {
 
-@import "../../youpers-variables";
+
+  @import "../../youpers-variables";
 
 
-form[name='campaignForm'] label {
-  .make-sm-column(3);
+  form[name='campaignForm'] label {
+    .make-sm-column(3);
 
-  text-align: right;
-  padding-top: (@padding-base-vertical + 1);
-}
-form[name='campaignForm'] {
-  input, select {
-    .make-sm-column(9);
+    text-align: right;
+    padding-top: (@padding-base-vertical + 1);
   }
-}
-
-form[name='campaignForm'] .validation {
-  margin-left: 25%;
-  padding-left: 0;
-  list-style-type: none;
-}
-
-form[name='campaignForm'] {
-  .btn-primary, .btn-default {
-    padding: 0.8em 1.6em;
-    margin-left: 0.5em;
+  form[name='campaignForm'] {
+    input, select {
+      .make-sm-column(9);
+    }
   }
 
-  .form-group.date .start {
+  form[name='campaignForm'] .validation {
+    margin-left: 25%;
+    padding-left: 0;
+    list-style-type: none;
+  }
+
+  form[name='campaignForm'] {
+    .btn-primary, .btn-default {
+      padding: 0.8em 1.6em;
+      margin-left: 0.5em;
+    }
+
+    .form-group.date .start {
+      float: left;
+      margin-right: 1em;
+    }
+    .form-group.date .end {
+      float: left;
+    }
+  }
+
+  .welcome-link {
+    border: 1px solid transparent;
+    padding: 5px;
+  }
+  .welcome-link:hover {
+    cursor: copy;
+    border: 1px solid @yp-color-grey1;
+    background-color: #fdfdfd;
+  }
+
+
+
+  // campaign avatar
+  form[name='campaignForm'] avatar-upload {
     float: left;
-    margin-right: 1em;
   }
-  .form-group.date .end {
-    float: left;
+  form[name='campaignForm'] .avatar-upload .avatar {
+    width: @yp-avatar-campaign-size;
+    height: @yp-avatar-campaign-size;
+    background-size: @yp-avatar-campaign-size @yp-avatar-campaign-size;
   }
-}
 
-.welcome-link {
-  border: 1px solid transparent;
-  padding: 5px;
-}
-.welcome-link:hover {
-  cursor: copy;
-  border: 1px solid @yp-color-grey1;
-  background-color: #fdfdfd;
-}
+  form[name='campaignForm'] .avatar-upload > div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  // invite campaign leads
+  .invite-campaign-lead input.form-control {
+    width: 25em;
+
+  }
 
 
+  // campaign lead avatar
+  .campaign-leads img {
+    width: 50px;
+    height: 50px;
+  }
+  .campaign-leads > div > div {
+    padding-top: (@padding-base-vertical * 2);
+  }
 
-// campaign avatar
-form[name='campaignForm'] avatar-upload {
-  float: left;
-}
-form[name='campaignForm'] .avatar-upload .avatar {
-  width: @yp-avatar-campaign-size;
-  height: @yp-avatar-campaign-size;
-  background-size: @yp-avatar-campaign-size @yp-avatar-campaign-size;
-}
-
-form[name='campaignForm'] .avatar-upload > div {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-// invite campaign leads
-.invite-campaign-lead input.form-control {
-  width: 25em;
-
-}
-
-// campaign lead avatar
-.campaign-leads img {
-  width: 50px;
-  height: 50px;
-}
-.campaign-leads > div > div {
-  padding-top: (@padding-base-vertical * 2);
 }
