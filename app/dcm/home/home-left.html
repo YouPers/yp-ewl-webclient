@@ -2,13 +2,18 @@
 <div class="organization">
 
     <organization-card organization="organization" ng-if="organization">
-
-
+        <div class="icon" ui-sref="organization.content" ng-if="principal.isAuthorized('orgadmin')">
+            <i class="fa fa-pencil-square-o"></i>
+        </div>
     </organization-card>
 
 </div>
-
-
+<div>
+    <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
+        <span translate>dcmhome.organization.addCampaign</span>
+        <i class="fa fa-plus"></i>
+    </a>
+</div>
 <div class="campaign-list">
 
     <campaign-card
