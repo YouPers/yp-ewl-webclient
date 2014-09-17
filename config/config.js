@@ -50,21 +50,12 @@ var environmentConfig = {
     },
     uat: {
         backendUrl: 'https://uat.youpers.com/api',
-        translationSource: 'wti',
+        translationSource: 'local',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-2'
         },
         ui: {
             showUserFeedbackLink: true
-        }
-    },
-
-
-    herokutest: {
-        backendUrl: 'http://yp-backend-test.herokuapp.com',
-        translationSource: 'wti',
-        googleAnalytics: {
-            webPropertyId: 'UA-39309635-4'
         }
     },
     nb: {
