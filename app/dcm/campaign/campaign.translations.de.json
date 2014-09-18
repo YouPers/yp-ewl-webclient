@@ -22,7 +22,8 @@
       "welcomeLinkNotSaved": "Sobald du die Kampagne speicherst, siehst du hier den Einladungslink."
     },
     "campaignLeads": {
-      "header": "kampagnenleiter"
+      "header": "Kampagnenleiter",
+      "add": "weitere hinzufügen"
     },
     "stateHeader1": "deine",
     "stateHeader2": "kampagne"
