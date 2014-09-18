@@ -46,7 +46,7 @@
                                             "defaultexecutiontype": "group",
                                             "defaultvisibility": "campaign",
                                             "defaultduration": 60,
-                                            topics: [campaign.topic],
+                                            topics: [campaign.topic.id],
                                             campaign: $stateParams.campaignId
                                         };
                                     });
@@ -63,8 +63,12 @@
 
         .controller('DcmIdeaController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'idea',
             function ($scope, $rootScope, $state, ActivityService, idea) {
+                $scope.options = {};
 
                 $scope.idea = idea;
+                $scope.onSave = function () {
+                    $scope.options.dropdownOpen = true;
+                };
 
             }
         ])

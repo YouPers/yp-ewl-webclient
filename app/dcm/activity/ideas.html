@@ -1,5 +1,3 @@
-
-
 <div class="three-column-layout">
 
     <section>
@@ -34,11 +32,15 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row" ng-if="group.name == 'all'">
+                    <div class="col-md-12">
+                        <button class="btn btn-default" ui-sref="dcm.idea" translate>campaignoffers.link.newActivity</button>
+                    </div>
+                </div>
 
                 <!-- activities -->
 
-        <div class="row activity idea-list-item" ng-repeat="idea in group.ideas | fulltext:query.query">
+                <div class="row activity idea-list-item" ng-repeat="idea in group.ideas | fulltext:query.query">
 
                     <!-- image -->
                     <div class="col-xs-2 image">
