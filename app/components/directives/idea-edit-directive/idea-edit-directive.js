@@ -10,7 +10,7 @@
 
                     restrict: 'EA',
                     templateUrl: 'components/directives/idea-edit-directive/idea-edit-directive.html',
-
+                    transclude: true,
                     scope: {
                         idea: "=",
                         topics: "=",
