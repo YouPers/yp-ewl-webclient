@@ -69,8 +69,9 @@
             }
         ])
 
-        .controller('DcmIdeasController', [ '$scope', '$rootScope', 'ideas', 'ActivityService', 'CampaignService',
-            function ($scope, $rootScope, resolvedIdeas, ActivityService, CampaignService) {
+        .controller('DcmIdeasController', [ '$scope', '$rootScope', 'ideas', 'campaign',
+            function ($scope, $rootScope, resolvedIdeas, campaign) {
+                $scope.campaign = campaign;
 
                 function _initializeIdeas(ideas) {
                     var grouped = _.groupBy(ideas, function (idea) {
