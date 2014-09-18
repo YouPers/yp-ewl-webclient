@@ -109,6 +109,12 @@
 
                 };
 
+                $scope.backClicked = function () {
+                    AssessmentService.regenerateRecommendations()
+                        .then(function () {
+                            return $state.go('dhc.game');
+                        });
+                };
 
                 $scope.answers = newestResult.keyedAnswers;
 
