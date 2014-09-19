@@ -82,10 +82,16 @@
                     rec.publishFrom = new Date(moment(rec.publishFrom).startOf('day'));
                     rec.publishTo = new Date(moment(rec.publishTo).endOf('day'));
 
-                    SocialInteractionService.postRecommendation(rec).then(function() {
+                    if (!rec.id) {
+                        SocialInteractionService.postRecommendation(rec).then(cb);
+                    } else {
+                        SocialInteractionService.putSocialInteraction(rec).then(cb);
+                    }
+
+                    function cb() {
                         $scope.$emit('clientmsg:success', 'recommendation.saved');
                         $state.go('dcm.home');
-                    });
+                    }
                 };
 
             }]);

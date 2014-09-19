@@ -33,7 +33,10 @@
                 var SocialInteractionService = {
 
                     putSocialInteraction: function(socialInteraction) {
-                        return socialInteraction.put();
+                        if (socialInteraction.idea && socialInteraction.idea.id) {
+                            socialInteraction.idea = socialInteraction.idea.id;
+                        }
+                        return Rest.restangularizeElement(null, socialInteraction, "socialInteractions").put();
                     },
                     postSocialInteraction: function(socialInteraction) {
                         return socialInteractions.post(socialInteraction);
