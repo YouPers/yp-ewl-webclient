@@ -34,7 +34,9 @@ angular.module('yp-ewl',
                     url: "/dispatch",
                     access: accessLevels.all,
                     controller: ['UserService', '$state', function (UserService, $state) {
-                        if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
+                        if (!UserService.principal.isAuthenticated()) {
+                            return $state.go('signup.content');
+                        } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
                             return $state.go('dcm.home');
                         } else {
                             return $state.go('dhc.game');
