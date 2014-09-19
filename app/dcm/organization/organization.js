@@ -123,7 +123,7 @@
                         if(!$scope.organization[model]) {
                             $scope.missingOrganizationFields.push(model);
                         }
-                    })
+                    });
                 };
 
                 $scope.$watch('organization', function (val, old) {
