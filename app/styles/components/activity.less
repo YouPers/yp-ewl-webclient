@@ -64,6 +64,11 @@
 
       dt.time {
         padding-top: 3em;
+
+        .btn-link {
+          border: none;
+        }
+
       }
       dd.time {
         > *:first-of-type {
@@ -120,7 +125,7 @@
       flex: 0 1 30%;
     }
 
-    border-top: 1px solid @yp-color-grey1;
+    border-top: 1px solid @yp-divider;
 
     i {
       font-size: 32px;
@@ -136,10 +141,10 @@
   }
 
   .input-group-addon:hover {
-    background-color: @yp-color-green-hover;
+    background-color: @yp-accent-hover;
   }
   .input-group-addon {
-    background-color: @yp-color-green;
+    background-color: @yp-accent;
 
     .btn, .btn:hover , .btn:focus {
       padding: 0;
@@ -183,7 +188,7 @@
     }
 
     i.remove:hover {
-      color: @yp-color-red;
+      color: @yp-warning;
       cursor: pointer;
     }
     i.remove {
