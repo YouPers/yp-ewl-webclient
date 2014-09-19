@@ -35,7 +35,7 @@ angular.module('yp-ewl',
                     access: accessLevels.all,
                     controller: ['UserService', '$state', function (UserService, $state) {
                         if (!UserService.principal.isAuthenticated()) {
-                            return $state.go('signup.content');
+                            return $state.go('signin.content');
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
                             return $state.go('dcm.home');
                         } else {
