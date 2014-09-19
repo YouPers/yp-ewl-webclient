@@ -8,7 +8,7 @@
     </organization-card>
 
 </div>
-<div>
+<div ng-if="principal.isAuthorized('orgadmin')">
     <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
         <span translate>dcmhome.organization.addCampaign</span>
         <i class="fa fa-plus"></i>
