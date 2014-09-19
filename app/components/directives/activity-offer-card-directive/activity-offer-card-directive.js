@@ -24,7 +24,7 @@
                     scope.componentClass = 'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1);
 
                     scope.iconClass = scope.socialInteraction.__t === 'Recommendation' ? 'fa-lightbulb-o' : 'fa-envelope-o';
-                    scope.isDcm = $state.current.name.startsWith('dcm');
+                    scope.isDcm = $state.current.name.indexOf('dcm') === 0;
                     scope.getRenderedText = function (text) {
                         if (text) {
                             return $sce.trustAsHtml(marked(text));
