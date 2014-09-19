@@ -39,12 +39,14 @@
 
 .btn {
   padding: 0.5em 1em;
+  text-transform: uppercase;
+  border: 1px solid @yp-divider;
 }
 
 // default
 
 .btn-default {
-
+  border: 1px solid @yp-accent;
 }
 
 .btn-default:hover {
@@ -63,7 +65,7 @@
 // disabled
 
 .btn-default:disabled, .btn-primary:disabled {
-  background-color: @yp-divider;
+  background-color: white;
   border-color: @yp-outline;
   color: @yp-outline;
 }
