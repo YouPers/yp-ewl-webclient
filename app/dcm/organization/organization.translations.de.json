@@ -12,7 +12,7 @@
     }
   },
   "organizationForm": {
-    "header": "Neue Organisation",
+    "header": "Organisation",
     "name": {
       "label": "Name",
       "placeholder": "Name der Organisation",
@@ -84,7 +84,7 @@
     },
       "user": {
           "firstname": {
-              "label": "Name",
+              "label": "Vorname",
               "placeholder": "Vorname",
               "error": {
                   "required": "Bitte einen gültigen Vornamen eingeben"
@@ -105,8 +105,12 @@
               }
           }
       },
-    "save": "speichern",
-    "create": "erstellen"
+    "save": "Speichern",
+    "create": "Erstellen",
+      "missingOrganizationFieldsWarning": {
+          "header": "Achtung:",
+          "text": "Du hast die folgenden Informationen deiner Organisation noch nicht ausgefüllt:"
+      }
   },
   "organization": {
     "stateHeader1": "deine",

@@ -1,69 +1,102 @@
-
-<div class="row">
-    <div class="col-sm-12">
-        <div class="state-header-1" translate>organization.stateHeader1</div>
-        <div class="state-header-2" translate>organization.stateHeader2</div>
-    </div>
-</div>
-
-<div class="organization">
-
-    <div class="row">
-        <div class="col-md-10">
-
-            <form name="organizationForm" ypModel="organization" class="form-horizontal" role="form" ng-submit="saveOrganization()" novalidate>
+<div class="three-column-layout">
 
 
-                <div class="main-header">
-                    <span translate>organizationForm.header</span>
+    <section>
+        <organization-card organization="organization"></organization-card>
+    </section>
+
+    <section>
+
+        <div class="organization">
+
+            <div class="row">
+                <div class="col-md-10">
+
+                    <form name="organizationForm" ypModel="organization" class="form-horizontal" role="form" novalidate
+                          ng-submit="saveOrganization()">
+
+
+                        <div class="main-header">
+                            <span translate>organizationForm.header</span>
+                        </div>
+
+                        <yp-input name="name"></yp-input>
+                        <yp-input name="address.street"></yp-input>
+
+                        <yp-input name="address.zipCode"></yp-input>
+                        <yp-input name="address.city"></yp-input>
+
+                        <div class="form-group">
+                            <label translate>organizationForm.legalForm.label</label>
+                            <select class="form-control" ng-model="organization.legalForm" ng-options="item.key as item.value for item in localizedValues('organization.legalForm.', 7)"></select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label translate>organizationForm.sector.label</label>
+                            <select class="form-control sector" ng-model="organization.sector" ng-options="item.key as item.value for item in localizedValues('organization.sector.', 38)"></select>
+
+                            <input class="form-control sector"
+                                   type="text"
+
+                                   ng-model="sectorSearchModel"
+                                   typeahead-min-length="0"
+                                   placeholder="{{ 'organizationForm.sector.placeholder' | translate }}"
+                                   typeahead="item.key as item.value for item in (localizedValues('organization.sector.', 38) | filter:$viewValue | limitTo:10)"
+                                   typeahead-on-select="organization.sector = $item.key; sectorSearchModel = ''"
+
+                                    >
+                        </div>
+
+                        <div class="main-header">
+                            <span translate>organizationForm.contact.header</span>
+                        </div>
+
+                        <yp-input name="user.firstname" required></yp-input>
+                        <yp-input name="user.lastname" required></yp-input>
+
+                        <yp-input name="contact.position"></yp-input>
+                        <yp-input name="user.email" required></yp-input>
+                        <yp-input name="contact.phone"></yp-input>
+
+                    </form>
+
                 </div>
+            </div>
+        </div>
 
-                <yp-input name="name" required></yp-input>
-                <yp-input name="address.street" required></yp-input>
+    </section>
 
-                <yp-input name="address.zipCode" required></yp-input>
-                <yp-input name="address.city" required></yp-input>
+    <section>
 
-                <div class="form-group">
-                    <label translate>organizationForm.legalForm.label</label>
-                    <select class="form-control" required ng-model="organization.legalForm" ng-options="item.key as item.value for item in localizedValues('organization.legalForm.', 7)"></select>
-                </div>
+        <div class="box">
 
+            <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
+                activity.link.back
+            </button>
 
-                <div class="form-group">
-                    <label translate>organizationForm.sector.label</label>
-                    <select class="form-control sector" required ng-model="organization.sector" ng-options="item.key as item.value for item in localizedValues('organization.sector.', 38)"></select>
-
-                    <input class="form-control sector"
-                           type="text"
-
-                           ng-model="sectorSearchModel"
-                           typeahead-min-length="0"
-                           placeholder="{{ 'organizationForm.sector.placeholder' | translate }}"
-                           typeahead="item.key as item.value for item in (localizedValues('organization.sector.', 38) | filter:$viewValue | limitTo:10)"
-                           typeahead-on-select="organization.sector = $item.key; sectorSearchModel = ''"
-
-                            >
-                </div>
-
-                <div class="main-header">
-                    <span translate>organizationForm.contact.header</span>
-                </div>
-
-                <yp-input required name="user.firstname"></yp-input>
-                <yp-input required name="user.lastname"></yp-input>
-
-                <yp-input required name="contact.position"></yp-input>
-                <yp-input required name="user.email"></yp-input>
-                <yp-input required name="contact.phone"></yp-input>
-
-                <button type="submit" class="btn btn-primary pull-right" ng-disabled="organizationForm.$invalid">
-                    <span translate ng-if="!organization.id">organizationForm.create</span>
-                    <span translate ng-if="organization.id">organizationForm.save</span>
-                </button>
-
-            </form>
+            <button type="submit" class="submit btn btn-primary"
+                    ng-disabled="organizationForm.$invalid || !organizationForm.$dirty"
+                    ng-click="saveOrganization()">
+                <span translate ng-if="!organization.id">organizationForm.create</span>
+                <span translate ng-if="organization.id">organizationForm.save</span>
+            </button>
 
         </div>
-    </div>
+
+        <div ng-show="missingOrganizationFields.length > 0">
+
+            <h5 translate>organizationForm.missingOrganizationFieldsWarning.header</h5>
+            <p translate>organizationForm.missingOrganizationFieldsWarning.text</p>
+
+            <ul>
+                <li ng-repeat="field in missingOrganizationFields">
+                    {{ 'organizationForm.' + field + '.label' | translate }}
+                </li>
+            </ul>
+
+        </div>
+
+    </section>
+
 </div>

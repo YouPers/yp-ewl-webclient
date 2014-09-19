@@ -7,7 +7,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('organization', {
-                        templateUrl: "layout/dcm-default.html",
+                        templateUrl: "layout/single-column.html",
                         access: accessLevels.user
                     })
                     .state('organization.content', {
@@ -16,7 +16,7 @@
                         views: {
                             content: {
                                 templateUrl: 'dcm/organization/organization.html',
-                                controller: 'OrganizationController'
+                                controller: 'OrganizationController as organizationController'
                             }
                         },
                         resolve: {
@@ -72,8 +72,10 @@
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/organization/organization');
             }])
-        .controller('OrganizationController', [ '$scope', '$state', '$filter', 'UserService', 'OrganizationService', 'organizations',
-            function ($scope, $state, $filter, UserService, OrganizationService, organizations) {
+        .controller('OrganizationController', [ '$scope', '$state', '$filter', '$timeout', 'UserService', 'OrganizationService', 'organizations',
+            function ($scope, $state, $filter, $timeout, UserService, OrganizationService, organizations) {
+
+                $scope.organizationController = this;
 
                 if(organizations.length > 1) {
                     $scope.$emit('clientmsg:error', 'organization.notUnique');
@@ -105,6 +107,29 @@
 
                 };
 
+                $scope.validateOrganizationModel = function () {
+                    $scope.missingOrganizationFields = [];
+                    _.each($scope.organizationForm, function (val, key) {
+                        if(key.indexOf('$') !== 0 && !val.$modelValue) {
+                            $scope.missingOrganizationFields.push(val.$name);
+                        }
+                    });
+
+                    // select form components are not children of the form
+                    var requiredSelectModels = [
+                        'legalForm', 'sector'
+                    ];
+                    _.each(requiredSelectModels, function (model) {
+                        if(!$scope.organization[model]) {
+                            $scope.missingOrganizationFields.push(model);
+                        }
+                    });
+                };
+
+                $scope.$watch('organization', function (val, old) {
+                    $scope.validateOrganizationModel();
+                }, true);
+
                 var onSave = function (organization) {
 
                     // save user if the relevant fields where changed
@@ -115,8 +140,7 @@
                     }
 
                     $scope.$emit('clientmsg:success', 'organization.saved');
-                    $scope.organization = organization;
-                    $state.go('dcm.home');
+                    $scope.validateOrganizationModel();
                 };
 
                 $scope.saveOrganization = function() {
