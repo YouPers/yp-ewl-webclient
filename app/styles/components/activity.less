@@ -17,10 +17,16 @@
 .dhc-activity, .dcm-activity {
 
   .btn-group .btn {
-    display: inline-block;
-    width: 48%;
-    &:not(:last-of-type) {
-      margin-right: 4%;
+    left: -1px;
+  }
+
+  section:first-of-type {
+    .btn-group .btn {
+      display: inline-block;
+      width: 48%;
+      &:not(:last-of-type) {
+        margin-right: 4%;
+      }
     }
   }
 
@@ -80,10 +86,10 @@
       }
       dd.time {
         > *:first-of-type {
-          margin-right: 24px;
+          margin-right: 8px;
         }
         > * {
-          width: 40%;
+          width: 38%;
           float: left;
         }
       }
