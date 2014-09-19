@@ -62,12 +62,12 @@
     <div class="sheet publish" ng-if="isDcm">
 
         <div>
-            <span translate>activityOfferCard.publishFrom</span>
-            {{socialInteraction.publishFrom | date}}
+            <span translate>activityOfferCard.published</span>
+
         </div>
         <div>
-            <span translate>activityOfferCard.publishTo</span>
-            {{socialInteraction.publishTo | date}}
+            <span>{{socialInteraction.publishFrom | date}} -</span>
+            <span>{{socialInteraction.publishTo | date}}</span>
         </div>
     </div>
 </div>
