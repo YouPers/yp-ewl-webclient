@@ -18,7 +18,7 @@ accordion.check .panel-title > a {
 accordion.check .panel-title i {
   font-size: 14px;
   padding: 2px 6px;
-  color: @yp-color-grey3;
+  color: @yp-primary;
 }
 accordion.check .panel-heading {
   padding: 0;
@@ -29,7 +29,7 @@ accordion.check .panel-heading a {
 }
 
 .check .question:not(:last-of-type) {
-  border-bottom: 1px solid @yp-color-grey1;
+  border-bottom: 1px solid @yp-divider;
 }
 .check .question {
 
@@ -37,7 +37,7 @@ accordion.check .panel-heading a {
 
 
   .title:hover {
-    color: @yp-color-green-hover;
+    color: @yp-accent-hover;
     text-decoration: none;
   }
   .title {
@@ -54,7 +54,7 @@ accordion.check .panel-heading a {
     }
     i:before {
       font-size: 18px;
-      color: @yp-color-green-hover;
+      color: @yp-accent-hover;
     }
   }
 }
@@ -71,15 +71,15 @@ accordion.check .panel-heading a {
 .check .btn-group-justified {
   .btn-group:first-of-type, .btn-group:last-of-type {
     .btn.active {
-      color: @yp-warning-primary !important;
+      color: @yp-warning !important;
     }
   }
   .btn-group {
     .btn {
-      color: @yp-app-secondary !important;
+      background-color: @yp-secondary !important;
     }
     .btn.active {
-      color: @yp-accent-primary !important;
+      color: @yp-accent !important;
     }
   }
 }
@@ -90,7 +90,7 @@ accordion.check .panel-heading a {
 
 accordion.check .glyphicon-info-sign {
   font-size: 70%;
-  color: @yp-color-green;
+  color: @yp-accent;
 }
 
 .back-to-top {
@@ -158,13 +158,13 @@ slider span.bar {
   width: 100%;
   border-radius: 3px;
   background: @yp-ass-slider-red; /* Old browsers */
-  background: -moz-linear-gradient(left, @yp-color-white 0%, @yp-ass-slider-red 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,@yp-ass-slider-red ), color-stop(100%,@yp-color-white)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, @yp-color-white 0%, @yp-ass-slider-red 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left,@yp-color-white 0%, @yp-ass-slider-red 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, @yp-color-white 0%, @yp-ass-slider-red 100%); /* IE10+ */
-  background: linear-gradient(to right, @yp-color-white 0%, @yp-ass-slider-red 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=@yp-ass-slider-red, endColorstr=@yp-color-white ,GradientType=1 ); /* IE6-9 */
+  background: -moz-linear-gradient(left, white 0%, @yp-ass-slider-red 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,@yp-ass-slider-red ), color-stop(100%,white)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, white 0%, @yp-ass-slider-red 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,white 0%, @yp-ass-slider-red 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, white 0%, @yp-ass-slider-red 100%); /* IE10+ */
+  background: linear-gradient(to right, white 0%, @yp-ass-slider-red 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=@yp-ass-slider-red, endColorstr=white ,GradientType=1 ); /* IE6-9 */
 }
 
 slider span.bar.selection, slider span.bar.unselected {
@@ -186,7 +186,7 @@ slider span.pointer {
   width:            4px;
   top:              2px;
   bottom:           1px;
-  background-color: @yp-color-grey4;
+  background-color: @yp-primary;
   border-radius: 3px;
 }
 

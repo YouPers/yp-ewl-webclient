@@ -6,11 +6,7 @@
 
 .idea-card {
 
-  font-size: @youpers-font-size-6;
-
   position: relative;
-
-
 
   width: @youpers-idea-card-width;
   height: @youpers-idea-card-height;
@@ -25,12 +21,18 @@
   }
 
   .title {
-    .header3();
-    overflow: hidden;
-    padding-left: 0.3em;
+    height: 3em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
   }
 
   .content {
+
+    .title {
+      text-align: center;
+    }
 
     .shortDescription {
       .p2();
@@ -44,12 +46,14 @@
 
   ul.icons {
     width: 100%;
-    height: 48px;
+    height: 56px;
     position: absolute;
     bottom: 0;
     padding: 5px;
     margin: 0;
     list-style: none;
+
+    border-top: 1px solid @yp-secondary;
 
     li:empty {
 //      border: 1px dashed #0088cc;
@@ -68,20 +72,17 @@
       }
 
       a {
-        font-size: 32px;
+        font-size: 42px;
         display: table;
         width: 100%;
         height: 100%;
         text-align: center;
-        color: @yp-color-grey2;
+        color: @yp-primary;
         i.fa {
-          font-size: 32px;
+          font-size: 42px;
           display: table-cell;
           vertical-align: middle;
           transition: 0.1s linear color;
-        }
-        i.fa:hover {
-          color: @yp-color-green-hover;
         }
       }
     }

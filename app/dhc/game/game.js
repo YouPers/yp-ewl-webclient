@@ -104,15 +104,30 @@
                     }
                 };
 
-                $scope.openActivity = function(activity) {
-                    if(activity.idea.action) {
-                        if(activity.idea.action === 'assessment') {
+                $scope.openIdea = function(idea) {
+
+                    if(idea.action) {
+
+                        if(idea.action === 'assessment') {
                             $state.go('dhc.check');
-                        } else if(activity.idea.action === 'focus') {
+                        } else if(idea.action === 'focus') {
                             $state.go('focus.content');
                         } else {
                             throw new Error('unknown action');
                         }
+                    } else {
+                        $state.go('dhc.activity', { idea: idea.id });
+                    }
+
+                };
+                $scope.openDoneEvent = function(event) {
+                    if(event.idea && event.idea.action) {
+                        $scope.openIdea(event.idea);
+                    }
+                };
+                $scope.openActivity = function(activity) {
+                    if(activity.idea.action) {
+                        $scope.openIdea(activity.idea);
                     } else {
                         $state.go('dhc.activity', { idea: activity.idea.id, activity: activity.id });
                     }

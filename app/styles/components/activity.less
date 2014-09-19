@@ -16,6 +16,20 @@
 
 .dhc-activity, .dcm-activity {
 
+  .btn-group .btn {
+    left: -1px;
+  }
+
+  section:first-of-type {
+    .btn-group .btn {
+      display: inline-block;
+      width: 48%;
+      &:not(:last-of-type) {
+        margin-right: 4%;
+      }
+    }
+  }
+
   .dismissed .activity-offer-card {
     filter: saturate(0%);
   }
@@ -64,13 +78,18 @@
 
       dt.time {
         padding-top: 3em;
+
+        .btn-link {
+          border: none;
+        }
+
       }
       dd.time {
         > *:first-of-type {
-          margin-right: 24px;
+          margin-right: 8px;
         }
         > * {
-          width: 40%;
+          width: 38%;
           float: left;
         }
       }
@@ -100,7 +119,7 @@
   }
 
   .activity-event-card {
-    margin: 1em 0.2em;
+    margin: 1em 2.4em;
   }
 
   .invitedUser > div {
@@ -120,7 +139,7 @@
       flex: 0 1 30%;
     }
 
-    border-top: 1px solid @yp-color-grey1;
+    border-top: 1px solid @yp-divider;
 
     i {
       font-size: 32px;
@@ -136,10 +155,10 @@
   }
 
   .input-group-addon:hover {
-    background-color: @yp-color-green-hover;
+    background-color: @yp-accent-hover;
   }
   .input-group-addon {
-    background-color: @yp-color-green;
+    background-color: @yp-accent;
 
     .btn, .btn:hover , .btn:focus {
       padding: 0;
@@ -183,7 +202,7 @@
     }
 
     i.remove:hover {
-      color: @yp-color-red;
+      color: @yp-warning;
       cursor: pointer;
     }
     i.remove {
