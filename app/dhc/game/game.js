@@ -124,7 +124,7 @@
                     if(event.idea && event.idea.action) {
                         $scope.openIdea(event.idea);
                     }
-                }
+                };
                 $scope.openActivity = function(activity) {
                     if(activity.idea.action) {
                         $scope.openIdea(activity.idea);
