@@ -8,10 +8,19 @@
 <div class="row idea-edit">
 
     <div class="col-md-8">
-        <idea-edit idea="idea" on-save="$state.go('dcmschedule.content', {id: 'NEW', idea: idea.id})" on-cancel="back()"></idea-edit>
+        <idea-edit idea="idea" on-save="onSave()" on-cancel="back()">
+            <div dropdown is-open="options.dropdownOpen">
+                <ul class="dropdown-menu">
+                    <li role="presentation"><a role="menuitem" ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })">Einplanen und Einladen</a></li>
+                    <li role="presentation"><a role="menuitem" ui-sref="dcm.recommendation({ idea: idea.id })">Nur Empfehlen</a></li>
+                </ul>
+            </div>
+        </idea-edit>
     </div>
 
     <div class="col-md-4">
         <idea-card idea="idea"></idea-card>
+
     </div>
+
 </div>

@@ -35,14 +35,14 @@
                                 var token = $stateParams.token;
                                 CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
                                     $rootScope.$emit('clientmsg:success', 'campaign.lead');
-                                    $state.go('campaign', {id: campaignId});
+                                    $state.go('dcm.home');
                                 }, function(err) {
 
                                     if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {
                                         UserService.logout();
                                         $window.location.reload();
                                     } else {
-                                        $state.go('home');
+                                        $state.go('dcm.home');
                                     }
                                 });
                             }]

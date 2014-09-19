@@ -35,7 +35,7 @@
             function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns) {
 
                 if(campaign) {
-                    $scope.$watch('homeController.filterByPublishDate', function (filterByPublishDate) {
+                    $scope.$watch('homeController.showOld', function (showOld) {
                         var options = {
                             populate: 'author',
                             targetId: campaign.id,
@@ -43,15 +43,20 @@
                             authorType: 'campaignLead'
                         };
 
-                        if(!filterByPublishDate) {
+                        if(showOld) {
                             options.publishFrom = false;
                             options.publishTo = false;
+                        } else {
+                            options.publishFrom = false;
+                            options.publishTo = new Date();
                         }
 
                         SocialInteractionService.getSocialInteractions(options).then(function (sis) {
 
-                            $scope.offers = _.filter(sis, function(si) {
+                            $scope.offers = _.sortBy(_.filter(sis, function(si) {
                                 return si.__t === 'Recommendation' || si.__t === 'Invitation';
+                            }), function (si) {
+                                return si.publishFrom;
                             });
                             _.each($scope.offers, function (offer) {
                                 offer.idea = offer.idea || offer.activity.idea;

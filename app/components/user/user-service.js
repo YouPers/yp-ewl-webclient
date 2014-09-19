@@ -68,11 +68,21 @@
                         authenticatedUser.roles = [authenticatedUser.role];
                     }
 
-
-                    // copy the following user properties from the current user,
-                    // if the user is not already authenticated
+                    // if the user is not already authenticated we need to manage data he collected on the user
                     if (!_authenticated) {
-                        authenticatedUser.campaign = _currentUser.campaign || authenticatedUser.campaign;
+                        // the current, unauthenticated User has a campaign set, this means he clicked on a
+                        // campaign welcome message "participate"-link
+                        // --> we need to check whether the authenticated user has the same campaign set, and if
+                        // not update the authenticated user
+                        if (_currentUser.campaign) {
+                            if (!authenticatedUser.campaign ||
+                                (authenticatedUser.campaign.id !== _currentUser.campaign.id)) {
+                                console.log('need to update user');
+                                authenticatedUser.campaign = _currentUser.campaign;
+                                authenticatedUser.put();
+                            }
+                        }
+
                     }
 
                     // clean current user in order to keep the same reference,
@@ -130,7 +140,7 @@
 
                         return login.post()
                             .then(function success(result) {
-                                var user = result.user;
+                                var user = Rest.restangularizeElement(null,result.user, 'users');
                                 var expires = result.expires;
 
                                 if (result.token) {

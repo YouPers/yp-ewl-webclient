@@ -102,8 +102,11 @@
         </div>
 
         <div class="col-md-3 idea-edit-link">
-            <button type="submit" class="btn btn-primary pull-right" ng-disabled="validate()" translate>activity.save</button>
+            <button type="submit" class="btn btn-primary pull-right" ng-disabled="validate()" translate>activity.save
+            </button>
+            <div ng-transclude></div>
             <button type="button" class="btn btn-default" ng-click="cancel()" translate>activity.back</button>
+
         </div>
     </div>
 </form>

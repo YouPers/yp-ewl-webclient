@@ -101,12 +101,18 @@
                     },
                     getActivityEventDueState: function(event, type) {
 
+                        // Due State is one of: [Conflict, Future, Coach, Past, Present, Future]
+
                         if(type) {
 
                             if(type === 'conflict') {
                                 return 'Conflict';
                             } else if(type !== 'current') {
-                                return 'Future'; // reuse 'neutral' eventFuture component type
+                                if(event.idea && event.idea.action) {
+                                    return 'Coach';
+                                } else {
+                                    return 'Future'; // reuse 'neutral' eventFuture component type
+                                }
                             }
 
                         }

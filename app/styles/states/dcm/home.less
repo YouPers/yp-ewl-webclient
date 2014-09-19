@@ -47,9 +47,30 @@
     }
   }
 
+  .new-campaign {
+    padding-bottom: 10px;
+  }
+
   organization-card {
+    .icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      i.fa {
+        font-size: 2em;
+        opacity: 1;
+        transition: 0.4s ease-out opacity;
+      }
+    }
 
     margin-bottom: 1em;
+  }
+
+  organization-card:not(:hover) {
+    .icon i.fa {
+      opacity: 0;
+    }
   }
 
   campaign-card {
@@ -58,7 +79,9 @@
     cursor: pointer;
 
     .icon {
-
+      position: absolute;
+      top: 5px;
+      right: 5px;
       i.fa {
         font-size: 2em;
         opacity: 1;
@@ -71,11 +94,7 @@
         width: 100%;
       }
     }
-    .icon {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-    }
+
     .title {
 
     }
@@ -95,6 +114,11 @@
     }
     outline: 4px dashed @yp-accent-primary;
     box-shadow: 0px 4px 4px @yp-accent-primary;
+    cursor: default;
+
+    i.fa {
+      cursor: pointer;
+    }
   }
 
   game-area.campaign-offers {
@@ -112,6 +136,15 @@
 
       i.fa {
         font-size: 16px;
+      }
+    }
+  }
+
+  activity-offer-card {
+    .activity-offer-card {
+      box-shadow: 0 0 0 0;
+      .author {
+        box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
       }
     }
   }

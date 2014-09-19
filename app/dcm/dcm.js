@@ -35,7 +35,7 @@
 
                         }],
                         campaigns: ['CampaignService', function (CampaignService) {
-                            return CampaignService.getCampaigns({ populate: 'topic' });
+                            return CampaignService.getCampaigns({ populate: 'topic campaignLeads' });
                         }],
                         campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
 

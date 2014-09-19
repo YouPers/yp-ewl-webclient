@@ -2,14 +2,14 @@
   "dcmhome": {
     "statsTitle": "Verlauf der Kampagne",
     "participantsCount": "Anzahl angemeldete Teilnehmer",
-    "plannedActsCount": "Anzahl geplante Aktivitäten",
+    "plannedActsCount": "Aktivitäten geplant durch Teilnehmer",
     "moreStats": "Mehr",
     "notifications": "Mitteilungen",
     "campaigns": "Kampagnen",
     "activities": "Angebotene Aktivitäten",
     "statistics": "Statistiken",
     "addOffer": "Angebot hinzufügen",
-    "filterByPublishDate": "Nur aktuelle Angebote anzeigen",
+    "showOld": "auch vergangene Angebote anzeigen",
     "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
     "addMoreUsers": "Lade weitere Teilnehmer ein indem du ihnen folgenden Link per Email versendest:",
 

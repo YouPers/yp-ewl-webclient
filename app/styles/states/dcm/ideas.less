@@ -1,21 +1,24 @@
 
 @import "../../youpers-variables";
 
-.activity.list-item .title {
-  padding-left: 1em;
+.idea-list-item {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  padding-top: 5px;
+}
+.idea-list-item:hover {
+  border-left: 10px solid @yp-hover;
+  border-right: 10px solid @yp-hover;
+}
+
+.activity.idea-list-item .title {
+  padding-left: 0.5em;
   .header4();
 }
 
-.activity.list-item img {
+.activity.idea-list-item img {
   height: 45.3333px;
   width: 68px;
-}
-.activity.list-item .links a:hover {
-  color: @yp-color-green-hover;
-
-}
-.activity.list-item .links a {
-  color: @yp-color-grey2;
 }
 
 .search .input-group {
