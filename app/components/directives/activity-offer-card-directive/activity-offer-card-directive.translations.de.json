@@ -3,6 +3,8 @@
       "authorPrefix": {
           "Recommendation": "empfohlen durch",
           "Invitation": "Einladung von"
-      }
+      },
+      "publishFrom": "publiziert ab",
+      "publishTo": "publiziert bis"
   }
 }
