@@ -60,7 +60,7 @@
 
                 $scope.logout = function () {
                     UserService.logout().then(function() {
-                        $window.location.reload();
+                        $window.location = '/';
                     });
                 };
 

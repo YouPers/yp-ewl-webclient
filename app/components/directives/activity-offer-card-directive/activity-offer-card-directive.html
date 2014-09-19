@@ -58,4 +58,16 @@
             <div ng-bind="socialInteraction.author.fullname"></div>
         </div>
     </div>
+
+    <div class="sheet publish" ng-if="isDcm">
+
+        <div>
+            <span translate>activityOfferCard.published</span>
+
+        </div>
+        <div>
+            <span>{{socialInteraction.publishFrom | date}} -</span>
+            <span>{{socialInteraction.publishTo | date}}</span>
+        </div>
+    </div>
 </div>

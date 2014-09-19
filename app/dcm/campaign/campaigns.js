@@ -84,6 +84,11 @@
                     });
                 };
 
+                $scope.showForm = function () {
+                    $scope.formVisible = true;
+                    $scope.invitationSent = false;
+                };
+
                 $scope.saveCampaign = function () {
 
                     var startDate = moment($scope.campaign.start);

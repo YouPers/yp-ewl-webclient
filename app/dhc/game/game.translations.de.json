@@ -6,10 +6,10 @@
         "showMore": "weitere",
 
         "activities": {
-            "current": "Laufende Aktivitäten",
-            "done": "Vergangene",
+            "current": "Eingeplante Aktivitäten",
+            "done": "Abgeschlossene Akt.",
             "offered": "Angebotene Aktivitäten",
-            "rejected": "Verworfen"
+            "rejected": "Verworfene Akt."
         },
         "invitations": "Einladungen",
         "recommendations": "Empfehlungen"
