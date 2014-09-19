@@ -106,5 +106,71 @@
                 }
             }
 
+        }])
+
+    .controller('HomeMessagesController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService',
+        function ($scope, $rootScope, $state, UserService, SocialInteractionService) {
+            $scope.options = {};
+
+            $scope.saveMessage = _saveMessage;
+
+
+            init();
+
+
+           //-----------
+
+            var messageTemplate = {
+                author: $scope.principal.getUser(),
+                authorType: 'campaignLead',
+
+                targetSpaces: [{
+                    type: 'campaign',
+                    targetId: $scope.campaign.id
+                }],
+
+                __t: 'Message',
+
+                publishFrom: new Date(moment().startOf('day')),
+                publishTo: new Date(moment().endOf('day'))
+            };
+
+
+            function init() {
+                var options = {
+                    populate: 'author',
+                    targetId: $scope.campaign.id,
+                    authored: true,
+                    authorType: 'campaignLead'
+                };
+
+
+                $scope.message = _.clone(messageTemplate);
+
+                var showOld = false;
+                if(showOld) {
+                    options.publishFrom = false;
+                    options.publishTo = false;
+                } else {
+                    options.publishFrom = false;
+                    options.publishTo = new Date();
+                }
+
+                SocialInteractionService.getMessages(options).then(function (messages) {
+                    $scope.messages = messages;
+                });
+            }
+
+            function _saveMessage(message) {
+                SocialInteractionService.postMessage(message).then(function(saved) {
+                    saved.author = $scope.principal.getUser();
+                    $scope.messages.push(saved);
+                    $scope.message = _.clone(messageTemplate);
+                    $scope.options.composeMessage = false;
+                });
+            }
+
+
         }]);
+
 }());
