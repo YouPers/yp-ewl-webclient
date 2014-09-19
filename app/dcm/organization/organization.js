@@ -114,6 +114,16 @@
                             $scope.missingOrganizationFields.push(val.$name);
                         }
                     });
+
+                    // select form components are not children of the form
+                    var requiredSelectModels = [
+                        'legalForm', 'sector'
+                    ];
+                    _.each(requiredSelectModels, function (model) {
+                        if(!$scope.organization[model]) {
+                            $scope.missingOrganizationFields.push(model);
+                        }
+                    });
                 };
 
                 $scope.$watch('organization', function (val, old) {
