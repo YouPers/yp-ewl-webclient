@@ -1,0 +1,240 @@
+@import "../../styles/youpers-variables";
+
+@keyframes ConflictAnimation {
+  30% {
+    margin: -0.4em 0 0 16em;
+    z-index: 0;
+  }
+  31% {
+    z-index: 1;
+  }
+  100% {
+    margin: -0.4em 0 0 3em;
+    z-index: 1;
+  }
+}
+
+.dhc-activity, .dcm-activity {
+
+  .btn-group .btn {
+    left: -1px;
+  }
+
+  section:first-of-type {
+    .btn-group .btn {
+      display: inline-block;
+      width: 48%;
+      &:not(:last-of-type) {
+        margin-right: 4%;
+      }
+    }
+  }
+
+  .dismissed .activity-offer-card {
+    filter: saturate(0%);
+  }
+
+  .event-list {
+    position: relative;
+
+    .activity-event-card {
+      z-index: 1;
+    }
+    .activity-event-card.conflict  {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: -0.4em 0 0 3em;
+      z-index: 0;
+
+    }
+  }
+  .event-list:hover .activity-event-card.conflict {
+    animation: ConflictAnimation 0.8s;
+    animation-fill-mode: forwards;
+  }
+
+
+  activity-view {
+    .dl-horizontal {
+      dt {
+        width: 90px;
+      }
+      dd {
+        margin-left: 105px;
+      }
+
+    }
+  }
+  activity-edit {
+    .dl-horizontal {
+      dt {
+        width: 50px;
+        padding: 6px;
+      }
+      dd {
+        margin-left: 60px;
+      }
+
+      dt.time {
+        padding-top: 3em;
+
+        .btn-link {
+          border: none;
+        }
+
+      }
+      dd.time {
+        > *:first-of-type {
+          margin-right: 8px;
+        }
+        > * {
+          width: 38%;
+          float: left;
+        }
+      }
+    }
+
+    date-picker {
+      .input-group {
+        width: 100%;
+      }
+    }
+    dl.recurrence {
+
+      padding-top: 10px;
+
+      dt {
+        text-align: left;
+        width: 180px;
+      }
+      dd {
+        margin-left: 190px;
+      }
+    }
+  }
+
+  .activity-offer-card {
+    width: 200px;
+  }
+
+  .activity-event-card {
+    margin: 1em 2.4em;
+  }
+
+  .invitedUser > div {
+    display: flex;
+    justify-content:flex-start;
+    align-content: flex-start;
+    align-items: center;
+
+    flex-direction:row;
+    *:first-of-type {
+      flex: 0 0 60px;
+    }
+    * {
+      flex: 1 1 auto;
+    }
+    *:last-of-type {
+      flex: 0 1 30%;
+    }
+
+    border-top: 1px solid @yp-divider;
+
+    i {
+      font-size: 32px;
+      padding: 4px 12px;
+    }
+  }
+
+  .invite-users {
+    margin: 1em 0;
+    a {
+      margin-top: 1em;
+    }
+  }
+
+  .input-group-addon:hover {
+    background-color: @yp-accent-hover;
+  }
+  .input-group-addon {
+    background-color: @yp-accent;
+
+    .btn, .btn:hover , .btn:focus {
+      padding: 0;
+      background: none;
+      border: none;
+      color: white;
+      box-shadow: none;
+    }
+  }
+
+  .user-to-be-invited {
+    position: relative;
+
+    > div {
+
+      height: 3em;
+
+      display: flex;
+      justify-content:flex-start;
+      align-content: flex-start;
+      align-items: center;
+
+      flex-direction:row;
+
+      > *:first-child {
+        flex: 0 0 48px;
+      }
+      > * {
+        flex: 1 1 auto;
+      }
+    }
+
+    i:hover {
+      color: inherit;
+      cursor: default;
+    }
+    i:not(.remove) {
+      font-size: 32px;
+      margin-left: 0.3em;
+      margin-right: 0.0em;
+    }
+
+    i.remove:hover {
+      color: @yp-warning;
+      cursor: pointer;
+    }
+    i.remove {
+      position: absolute;
+      top: 15px;
+      right: 5px;
+      font-size: 1.5em;
+    }
+  }
+
+  .publish {
+
+    * {
+      float: left;
+    }
+    > label:not(:first-of-type) {
+      margin-left: 1em;
+    }
+    > label {
+      margin: 8px 0.5em 0 0;
+    }
+
+    date-picker {
+      display: block;
+      width: 7em;
+    }
+  }
+
+  .game-icon {
+    float: right;
+    font-size: 3em;
+  }
+
+
+}

@@ -10,14 +10,12 @@
 // --------------------------------------------------
 
 @import "youpers-variables";
-@import "util";
 
 
 // base
 // --------------------------------------------------
 
 @import "typography";
-@import "game-colors";
 @import "game-cards";
 
 @import "bootstrap-customizations";
@@ -25,7 +23,6 @@
 @import "view-transitions";
 @import "navigation";
 @import "icons";
-@import "hover";
 @import "layout";
 @import "validation";
 
@@ -37,32 +34,23 @@
 // components
 // --------------------------------------------------
 
-@import "components/activity";
-@import "components/game-area";
-@import "components/game-area-side-panel";
-@import "components/user-invitation";
-@import "components/activity-comments";
-@import "components/activity-event-card";
-@import "components/activity-event-stack";
-@import "components/activity-offer-card";
-@import "components/idea-card";
-@import "components/idea-card-flip";
-@import "components/campaign-switcher";
-@import "components/campaign-card";
-@import "components/organization-card";
-@import "components/health-coach";
-//@import "components/multiple-view-carousel";
-@import "components/statistics-chart";
-@import "components/user";
-@import "components/social-interaction";
+@import "../components/activity/activity";
+@import "../components/directives/user-invitation-directive/user-invitation";
+@import "../components/directives/activity-comments-directive/activity-comments";
+@import "../components/directives/activity-event-card-directive/activity-event-card";
+@import "../components/directives/activity-event-stack-directive/activity-event-stack";
+@import "../components/directives/activity-offer-card-directive/activity-offer-card";
+@import "../components/directives/idea-card-directive/idea-card";
+@import "../components/directives/idea-card-directive/idea-card-flip";
+@import "../components/directives/campaign-switcher-directive/campaign-switcher";
+@import "../components/directives/campaign-card-directive/campaign-card";
+@import "../components/directives/organization-card-directive/organization-card";
+@import "../components/health-coach/health-coach";
+@import "../components/directives/statistics-chart-directive/statistics-chart";
+@import "../components/user/user-directive/user";
+@import "../components/user/invite/invite";
+@import "../components/social-interaction/social-interaction";
 
-
-// shared
-// --------------------------------------------------
-
-@import "shared/refactor-me";
-
-@import "shared/avatar";
 
 
 // states
@@ -70,27 +58,27 @@
 
 // dcm
 
-@import "states/dcm/ideas";
-@import "states/dcm/campaign";
-@import "states/dcm/topics";
-@import "states/dcm/campaignoffers";
-@import "states/dcm/campaigns";
-@import "states/dcm/dcm";
-@import "states/dcm/home";
-@import "states/dcm/organization";
-@import "states/dcm/recommendation";
+@import "../dcm/dcm";
+@import "../dcm/home/home";
+@import "../dcm/activity/ideas";
+@import "../dcm/activity/recommendation";
+@import "../dcm/campaign/campaign";
+@import "../dcm/campaign/campaigns";
+@import "../dcm/topic/topics";
+@import "../dcm/organization/organization";
 
 // dhc
 
-@import "states/dhc/check";
-@import "states/dhc/invite";
-@import "states/dhc/welcome";
-@import "states/dhc/game";
+@import "../dhc/check/check";
+@import "../dhc/welcome/welcome";
+@import "../dhc/game/game";
+@import "../dhc/game/game-area";
+@import "../dhc/game/game-area-side-panel";
 
 // user
 
-@import "states/user/profile";
-@import "states/user/signin";
-@import "states/user/signup";
+@import "../components/user/profile/profile";
+@import "../components/user/signin-directive/signin";
+@import "../components/user/signup-directive/signup";
 
 

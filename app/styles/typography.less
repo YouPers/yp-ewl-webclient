@@ -7,14 +7,21 @@
 
 // base definitions
 
-body, p, span {
+body, p, span, .btn, .form-control {
   font-size: 14px;
+  font-style: normal;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, .form-control  {
-  font-family: @youpers-brand-font-family;
+body, h1, h2, h3, h4, h5, h6, p, .form-control, .btn  {
+  font-family: @yp-primary;
   font-weight: 400;
   font-style: normal;
+}
+
+.form-control, input, textarea {
+  color: @yp-input;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 // hover styles
@@ -25,7 +32,7 @@ a:hover, .link:hover * {
 }
 
 .link-hover {
-  color: @yp-color-green-hover;
+  color: @yp-accent-hover;
 }
 
 
@@ -33,29 +40,12 @@ a:hover, .link:hover * {
 // -------------------------
 
 
-// state headers
-.state-header-1 {
-  color: @yp-color-grey1;
-  font-size: 20px;
-  font-weight: 300;
-
-}
-.state-header-2 {
-  color: @yp-color-grey2;
-  font-size: 28px;
-  font-weight: 200;
-  text-transform: uppercase;
-
-  line-height: 0.7em;
-  padding-bottom: 0.5em;
-}
-
 // h1
 // welcome header, used in campaign welcome screen
 h1, h1 *,
 .welcome-header, .welcome-header *,
 .header1, .header1 * {
-  color: @yp-color-grey2;
+  color: @yp-primary;
   font-size: 48px;
   font-weight: 200;
 }
@@ -72,7 +62,7 @@ h1 b, h1 strong,
 h2, h2 * ,
 .header2,.header2 * ,
 .main-header,.main-header * {
-  color: @yp-color-green;
+  color: @yp-accent;
   font-size: 28px;
   font-weight: 200;
 
@@ -82,21 +72,21 @@ h2, h2 * ,
 .header2:hover, .header2:hover * ,
 .main-header:hover, .main-header:hover * {
   text-decoration: none;
-  color: @yp-color-green-hover;
+  color: @yp-accent-hover;
 }
 
 // h3
 h3, h3 *,
 .header3, .header3 * {
-  color: @yp-color-grey2;
-  font-size: 20px;
+  color: @yp-primary;
+  font-size: 16px;
   font-weight: 400;
 }
 
 // h4
 h4, h4 *,
 .header4, .header4 *, {
-  color: @yp-color-grey2;
+  color: @yp-primary;
   font-size: 20px;
   font-weight: 300;
   line-height: 19px;
@@ -104,15 +94,15 @@ h4, h4 *,
 
 // h5
 h5, .header5 {
-  color: @yp-color-grey1;
-  font-size: 14px;
-  font-weight: 400;
+//  color: @yp-primary;
+  font-size: 16px;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
 // h6
 h6, .header6 {
-  color: @yp-color-grey2;
+  color: @yp-primary;
   font-size: 14px;
   font-weight: 300;
 }
@@ -122,60 +112,54 @@ h6, .header6 {
 // -------------------------
 
 label, .label1 {
-  color: @yp-color-grey2;
-  font-size: 13px;
-  font-weight: 300;
-}
-
-.label2 {
-  color: @yp-color-grey2;
-  font-size: 12px;
-  font-weight: 400;
-}
-.label3 {
-  color: @yp-color-grey3;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.form-control, input, textarea {
-  color: @yp-color-grey2;
+  color: @yp-primary;
   font-size: 14px;
   font-weight: 300;
 }
 
+.label2 {
+  color: @yp-primary;
+  font-size: 14px;
+  font-weight: 400;
+}
+.label3 {
+  color: @yp-divider;
+  font-size: 14px;
+  font-weight: 400;
+}
+
 ::-webkit-input-placeholder {
-  color: @yp-color-grey3 !important;
+  color: @yp-placeholder !important;
 }
 :-ms-input-placeholder  {
-  color: @yp-color-grey3 !important;
+  color: @yp-placeholder !important;
 }
 
 ::-moz-placeholder {
-  color: @yp-color-grey3 !important;
+  color: @yp-placeholder !important;
 }
 
 // titles
 // -------------------------
 
 .title1 {
-  color: @yp-color-grey2;
-  font-size: 14px;
+  color: @yp-primary;
+  font-size: 16px;
   font-weight: 400;
 }
 
 .title2 {
-  color: @yp-color-grey3;
+  color: @yp-primary;
   font-size: 20px;
   font-weight: 400;
 }
 .title3 {
-  color: @yp-color-grey2;
+  color: @yp-primary;
   font-size: 14px;
   font-weight: 300;
 }
 .title4 {
-  color: @yp-color-grey2;
+  color: @yp-primary;
   font-size: 24px;
   font-weight: 400;
   line-height: 25px;
@@ -187,11 +171,11 @@ p, .p1 {
   // baseline
 }
 .p2 {
-  font-weight: 300;
+  font-weight: 400;
 }
 .p3 {
-  color: @yp-color-grey3;
-  font-weight: 300;
+  color: @yp-primary;
+  font-weight: 400;
 }
 
 
@@ -199,4 +183,4 @@ p, .p1 {
 
 // primary: forward / submit
 // default: back buttons
-// warning: just the border color: @yp-color-saffron
+// warning: just the border color: @yp-saffron

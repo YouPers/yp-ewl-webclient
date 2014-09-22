@@ -12,7 +12,7 @@
     }
   },
   "organizationForm": {
-    "header": "Nouvelle organisation",
+    "header": "Organisation",
     "name": {
       "label": "Nom",
       "placeholder": "Nom d'organisation",

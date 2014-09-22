@@ -1,0 +1,55 @@
+@import "../../../styles/youpers-variables";
+
+
+
+
+campaign-card {
+
+  display: block; // needed for custom html elements, they are not initialized by bootstrap
+
+  position: relative;
+  overflow: hidden;
+
+  width: 190px;
+
+  * {
+    white-space: nowrap;
+  }
+
+  .game-card();
+
+
+
+  .avatar {
+    width: 100%;
+    height: 90px;
+    margin: 0;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+
+  .topic {
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 8px;
+  }
+
+  .details {
+    height: 48px;
+    padding-top: 4px;
+    padding-left: 6px;
+    i {
+      font-size: 14px;
+    }
+    .participants {
+      font-weight: 400;
+    }
+  }
+}

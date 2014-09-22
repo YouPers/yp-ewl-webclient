@@ -3,13 +3,13 @@
 @yp-layout-gutter: 0.6em;
 
 body {
-  background: white;
+  background: @yp-secondary;
 }
 
 .container.dcm, .container.dhc {
   margin-top: 1em;
   padding: 0.2em;
-  // background-color: white;
+  background-color: @yp-secondary;
 }
 
 .column-layout {
@@ -17,7 +17,7 @@ body {
   nav,
   aside,
   section {
-    background-color: white;
+//    background-color: white;
     padding: 0.2em;
   }
 
@@ -59,7 +59,7 @@ body {
     margin-bottom: 1em;
 
     section:not(:first-of-type) {
-      border-left: 1px solid @yp-color-grey1;
+      border-left: 1px solid @yp-divider;
     }
 
 
@@ -68,7 +68,7 @@ body {
       padding: 12px;
 
       > div.box {
-        border-bottom: 1px solid @yp-color-grey1;
+        border-bottom: 1px solid @yp-divider;
       }
       > div {
         padding-bottom: 1em;
@@ -99,7 +99,7 @@ body {
     margin-bottom: 1em;
 
     section:not(:first-of-type) {
-      border-left: 1px solid @yp-color-grey1;
+      border-left: 1px solid @yp-divider;
     }
 
     section {
@@ -108,7 +108,7 @@ body {
       padding: 12px;
 
       > div.box {
-        border-bottom: 1px solid @yp-color-grey1;
+        border-bottom: 1px solid @yp-divider;
       }
       > div {
         padding-bottom: 1em;
@@ -120,6 +120,29 @@ body {
       > div {
         opacity: 0;
       }
+    }
+
+
+  }
+
+}
+
+.three-column-layout, .four-column-layout {
+
+  section:last-of-type {
+
+
+    .btn.submit, .btn.backToGame {
+      width: 100%;
+      white-space: normal;
+      margin-bottom: 0.5em;
+    }
+
+    .btn.submit {
+      height: 4em;
+    }
+    .btn.backToGame {
+      height: 3em;
     }
 
 

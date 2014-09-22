@@ -1,0 +1,24 @@
+@import "../../../styles/youpers-variables";
+
+activity-event-stack {
+
+  position: relative;
+
+  activity-event-card:not(:first-of-type) .activity-event-card {
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+  .activity-event-card {
+
+    position: absolute;
+  }
+
+  .activity-event-card > * {
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+  .activity-event-card:last-of-type > * {
+    opacity: 1;
+  }
+
+
+}

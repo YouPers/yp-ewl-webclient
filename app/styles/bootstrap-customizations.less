@@ -10,29 +10,28 @@
 @border-radius-large:       0px;
 @border-radius-small:       0px;
 
-@brand-primary: @yp-color-green;
-@brand-warning: @yp-color-saffron;
-@brand-danger: @yp-color-red;
+@brand-primary: @yp-accent;
+@color-warning: @yp-warning;
 
 @font-family-base: @youpers-brand-font-family;
 @btn-font-weight: 300;
-@body-bg: @yp-color-grey1;
+@body-bg: @yp-secondary;
 
 
-@btn-default-color:              @yp-color-grey3;
-@btn-default-bg:                 @yp-color-white;
-@btn-default-border:             @yp-color-grey1;
+@btn-default-color:              @yp-accent;
+@btn-default-bg:                 transparent;
+@btn-default-border:             @yp-accent;
 
-@btn-primary-color:              @yp-color-white;
-@btn-primary-bg:                 @yp-color-green;
-@btn-primary-border:             darken(@yp-color-green, 5%);
+@btn-primary-color:              white;
+@btn-primary-bg:                 @yp-accent;
+@btn-primary-border:             @yp-accent;
 
 
-@btn-warning-color:              @yp-color-saffron;
-@btn-warning-bg:                 @yp-color-white;
-@btn-warning-border:             @yp-color-saffron;
+@btn-warning-color:              white;
+@btn-warning-bg:                 @yp-warning;
+@btn-warning-border:             @yp-warning;
 
-@input-color-placeholder:        @yp-color-grey3;
+@input-color-placeholder:        @yp-placeholder;
 
 
 // buttons
@@ -40,65 +39,78 @@
 
 .btn {
   padding: 0.5em 1em;
+  text-transform: uppercase;
+  border: 1px solid @yp-divider;
+
+  font-size: 16px;
+  font-weight: 400;
 }
+
+// default
 
 .btn-default {
-
+  border: 1px solid @yp-accent;
 }
 
-.btn:focus, .btn-default:focus {
+.btn-default:hover {
+  border: 1px solid;
+  border-color: @yp-accent-hover !important;
+  color: @yp-accent !important;
   background-color: white;
 }
-.btn.active, .btn-default.active {
-  background-color: #ebebeb;
-  color: @yp-color-green-hover;
 
+.btn:focus, .btn-default:focus, .btn.active, .btn-default.active  {
+  background-color: @yp-accent !important;
+  border-color: @yp-accent;
+  box-shadow: none;
+  color: white !important;
 }
+
+// disabled
+
+.btn-default:disabled, .btn-primary:disabled {
+  background-color: white;
+  border-color: @yp-outline;
+  color: @yp-outline;
+}
+
+// primary
 
 .btn-primary {
-  color: #ffffff;
-  background-color: @yp-button-primary;
-  border-color: @yp-button-primary-border;
-}
-.btn-primary:disabled {
-  background-color: @yp-button-primary-disabled;
-  border-color: @yp-button-primary-disabled-border;
-
-}
-.btn-primary:hover, .btn-primary:focus {
-  background-color: @yp-button-primary-hover;
-  border-color: @yp-button-primary-hover-border;
   color: white;
+  background-color: @yp-accent;
+  border-color: transparent;
+}
+.btn-primary:hover {
+  color: white;
+  background-color: @yp-accent;
+  border-color: @yp-accent;
 }
 
-.btn-default:hover, .btn-default:focus {
-  border: 1px solid;
-  border-color: @yp-color-green-hover !important;
-  background-color: white;
-  color: @yp-color-green-hover !important;
+.btn-primary:focus, .btn-primary:active {
+  color: white;
+  background-color: @yp-accent;
+  border-color: @yp-accent-hover;
 }
 
-.btn-warning:hover, .btn-warning:focus {
-  border: 1px solid;
-  border-color: @yp-color-green-hover !important;
-  background-color: white;
-  color: @yp-color-green-hover !important;
-}
-.btn.active {
-    background-color: @yp-color-green-hover !important;
-    background-color: @yp-color-green-hover !important;
-    color: white !important;
-}
+
 .btn:hover, input:hover, textarea:hover, select:hover {
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.035), 0 0 2px @yp-color-green-hover;
-  border-color: @yp-color-green-hover;
+//  box-shadow: inset 0 1px 1px rgba(0,0,0,.035), 0 0 2px @yp-accent-hover;
+  border-color: @yp-accent-hover;
 }
 .btn:focus, input:focus, textarea:focus, select:focus, .form-control:focus{
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.035), 0 0 2px @yp-color-green-hover;
-  border-color: @yp-color-green-hover;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.035), 0 0 2px @yp-accent-hover;
+  border-color: @yp-accent-hover;
 }
 .btn, input, textarea, select, .dropdown-menu *:focus {
   outline: none !important;
+}
+
+
+.btn-link, .btn-link:hover {
+  border-radius: 50%;
+  border: 1px solid transparent;
+  box-shadow: none;
 }
 
 // accordion
@@ -117,12 +129,12 @@
   padding: 3px 7px;
   font-size: 12px;
   font-weight: bold;
-  color: @yp-color-grey3;
+  color: @yp-primary;
   line-height: 1;
   vertical-align: baseline;
   white-space: nowrap;
   text-align: center;
   background-color: transparent;
-  border: 1px solid @yp-color-grey1;
+  border: 1px solid @yp-divider;
   border-radius: 10px;
 }

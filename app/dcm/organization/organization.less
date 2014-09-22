@@ -1,0 +1,49 @@
+
+@import "../../styles/youpers-variables";
+
+.organization-content {
+
+  organization-card {
+    .sheet:last-child {
+      display: none;
+    }
+  }
+
+}
+
+form[name='organizationForm'] label {
+  .make-sm-column(3);
+
+  text-align: right;
+  padding-top: (@padding-base-vertical + 1);
+}
+form[name='organizationForm'] {
+  input, select {
+    .make-sm-column(9);
+  }
+  input.sector {
+    float: left;
+    width: 31.3%;
+    margin-left: 2%;
+  }
+  select.sector {
+    .make-sm-column(5);
+  }
+}
+
+//form[name='organizationForm'] input[name='address.zipCode'],
+//form[name='organizationForm'] input[name='contact.firstname'] {
+//  .make-sm-column(2);
+//}
+//form[name='organizationForm'] input[name='address.city'],
+//form[name='organizationForm'] input[name='contact.lastname'] {
+//  .make-sm-column(6);
+//  float: right !important;
+//}
+
+
+form[name='organizationForm'] .validation {
+  margin-left: 25%;
+  padding-left: 0;
+  list-style-type: none;
+}
