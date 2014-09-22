@@ -6,27 +6,37 @@
 @import "../lib/bootstrap/less/variables";
 
 
-@yp-primary: #424242;
-@yp-primary-contrast: #898989;
-@yp-secondary: #FAFAFA;
-@yp-accent: #03a9f4;
-@yp-accent-hover: #0277bd;
-@yp-divider: rgba(0,0,0, 0.12);
-@yp-outline: rgba(0,0,0, 0.56);
-@yp-input: rgba(0,0,0, 0.56);
-@yp-placeholder: rgba(0,0,0, 0.32);
+@yp-primary: #424242; // primary color for the app
+@yp-primary-contrast: #898989; // contrast color for text
+@yp-secondary: #FAFAFA; // secondary, used for background
+@yp-accent: #03a9f4; // accent color for clickable UI elements
+@yp-accent-hover: #0277bd; // hover
+@yp-divider: rgba(0,0,0, 0.12); // borders / dividers
+@yp-outline: rgba(0,0,0, 0.56); // disabled buttons
+@yp-input: rgba(0,0,0, 0.56); // text color for form input elements
+@yp-placeholder: rgba(0,0,0, 0.32); // text color for placeholder in form elements
 
-@yp-warning: #F4BA14;
+@yp-warning: #F4BA14; // warning, used for warnings within the normal use cases
+@yp-error: #f43e27; // unexpected errors
 
-@yp-primary-campaignLead: #FF9800;
-@yp-secondary-campaignLead: fade(#FF9800, 15%);
-@yp-tertiary-campaignLead: fade(#FF9800, 30%);
-@yp-primary-coach: @yp-accent;
-@yp-secondary-coach: fade(@yp-accent, 15%);
-@yp-tertiary-coach: fade(@yp-accent, 30%);
-@yp-primary-user: @yp-primary;
-@yp-secondary-user: fade(@yp-primary, 15%);
-@yp-tertiary-user: fade(@yp-primary, 30%);
+@yp-event-future: @yp-primary; // text color for date of upcoming events
+@yp-event-present: @yp-accent; // today
+@yp-event-past: red; // overdue
+
+@yp-campaignLead: fade(#FF9800, 45%);
+@yp-coach: fade(@yp-accent, 45%);
+@yp-user: fade(@yp-primary, 45%);
+
+
+//@yp-primary-campaignLead: #FF9800;
+//@yp-secondary-campaignLead: fade(#FF9800, 15%);
+//@yp-tertiary-campaignLead: fade(#FF9800, 30%);
+//@yp-primary-coach: @yp-accent;
+//@yp-secondary-coach: fade(@yp-accent, 15%);
+//@yp-tertiary-coach: fade(@yp-accent, 30%);
+//@yp-primary-user: @yp-primary;
+//@yp-secondary-user: fade(@yp-primary, 15%);
+//@yp-tertiary-user: fade(@yp-primary, 30%);
 
 
 
