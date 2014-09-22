@@ -102,36 +102,6 @@
 
             <div ng-if="activityController.inviteOthers == 'selected'">
 
-                <div class="invite-users">
-                    <div ng-if="!activityController.inviteByEmail">
-                        <user-invitation type="activity" excluded-users="usersExcludedForInvitation" on-user-selected="onUserSelected"></user-invitation>
-                        <a ng-click="activityController.inviteByEmail = true" translate>activity.inviteOthers.inviteByEmail</a>
-                    </div>
-                    <div ng-if="activityController.inviteByEmail">
-
-                        <form class="form" ng-if="!invitationSent"
-                              role="form"
-                              ng-submit="emailInvitation.$valid && onUserSelected(emailToBeInvited)"
-                              name="emailInvitation">
-
-                            <div class="input-group">
-                                <input type="email" required class="form-control" ng-model="emailToBeInvited" placeholder="{{ 'activity.emailToBeInvited.placeholder' | translate }}">
-
-                                <div class="input-group-addon">
-
-                                    <button type="submit" class="btn"
-                                            ng-disabled="inviteEmailForm.$invalid" translate>activity.emailToBeInvited.submit</button>
-                                </div>
-
-                            </div>
-
-                        </form>
-
-
-                        <a ng-click="activityController.inviteByEmail = false" translate>activity.inviteOthers.inviteByUser</a>
-                    </div>
-                </div>
-
 
                 <div class="user-to-be-invited"
                      ng-repeat="user in usersToBeInvited">
@@ -148,6 +118,34 @@
                         <i class="remove fa fa-times" ng-click="removeUserToBeInvited(user)"></i>
                     </div>
                 </div>
+
+
+                <div class="invite-users">
+
+                    <h3 translate>activity.inviteOthers.inviteByUser</h3>
+                    <div>
+                        <user-invitation type="activity" excluded-users="usersExcludedForInvitation" on-user-selected="onUserSelected"></user-invitation>
+                    </div>
+
+                    <h3 translate>activity.inviteOthers.inviteByEmail</h3>
+                    <div>
+
+                        <form class="form" ng-if="!invitationSent"
+                              role="form"
+                              ng-submit="emailInvitation.$valid && onEmailSelected(emailToBeInvited); emailToBeInvited = ''"
+                              name="emailInvitation">
+
+                            <input type="email" required class="form-control" ng-model="emailToBeInvited" placeholder="{{ 'activity.emailToBeInvited.placeholder' | translate }}">
+
+                            <button type="submit" class="btn btn-default pull-right"
+                                    ng-disabled="inviteEmailForm.$invalid" translate>activity.emailToBeInvited.submit</button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+
 
             </div>
 
