@@ -23,9 +23,10 @@
   section:first-of-type {
     .btn-group .btn {
       display: inline-block;
+      float: left;
       width: 48%;
-      &:not(:last-of-type) {
-        margin-right: 4%;
+      &:not(:first-of-type) {
+        float: right;
       }
     }
   }
@@ -87,12 +88,15 @@
 
       }
       dd.time {
-        > *:first-of-type {
-          margin-right: 8px;
-        }
-        > * {
-          width: 38%;
+        > *:nth-child(0) {
           float: left;
+        }
+        > *:nth-child(1) {
+          float: right;
+        }
+
+        > * {
+          width: 36%;
         }
       }
     }
