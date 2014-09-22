@@ -51,9 +51,9 @@
                         <li ng-show="!principal.isAuthenticated()">
                             <a ui-sref="signin.content" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signin</a>
                         </li>
-                        <li ng-show="!principal.isAuthenticated()">
-                            <a ui-sref="signup.content" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signup</a>
-                        </li>
+                        <!--<li ng-show="!principal.isAuthenticated()">-->
+                            <!--<a ui-sref="signup.content" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signup</a>-->
+                        <!--</li>-->
                         <li class="dropdown" ng-controller="i18nCtrl">
                             <a class="dropdown-toggle" data-toggle="dropdown">{{currentLocale}}
                                 <b class="caret"></b></a>
