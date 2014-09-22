@@ -32,43 +32,38 @@
         </form>
 
     </div>
-
-    <li class="list-group-item offerCampaignLead"
-
-        ng-repeat="socialInteraction in messages"
-
-        ng-click="openSocialInteraction(socialInteraction)"
-
-            >
+    <div class="campaignMessages">
+        <li class="list-group-item offerCampaignLead"
+            ng-repeat="socialInteraction in messages"
+            ng-click="openSocialInteraction(socialInteraction)">
 
 
-        <div class="headers sheet secondary">
+            <div class="author sheet tertiary">
 
-            <div class="image">
-                <img ng-src="{{ socialInteraction.author.avatar }}">
-            </div>
-
-            <div class="info">
-
-
-                <div class="pull-right dismiss">
-                    <a><i ng-click="dismissSocialInteraction($event, socialInteraction)" class="glyphicon glyphicon-remove"></i></a>
+                <div class="image">
+                    <img ng-src="{{ socialInteraction.author.avatar }}">
                 </div>
 
-                <div class="authorType">{{ 'socialInteraction.header.' + socialInteraction.__t + '.' + socialInteraction.authorType | translate }}</div>
-                <div class="author">{{ socialInteraction.author.fullname }}</div>
+                <div class="info">
+                    <div class="authorType">{{ 'socialInteraction.header.' + socialInteraction.__t + '.' +
+                        socialInteraction.authorType | translate }}
+                    </div>
+                    <div class="author">{{ socialInteraction.author.fullname }}</div>
+                </div>
+
+            </div>
+            <div class="sheet secondary">
+                <div class="date">{{ (socialInteraction.publishFrom || socialInteraction.created) | fromNow }}</div>
             </div>
 
-        </div>
-        <div class="sheet tertiary">
-            <div class="date">{{ (socialInteraction.publishFrom || socialInteraction.created) | fromNow }}</div>
-        </div>
+            <div class="content sheet secondary">
+                <div class="ref-title" ng-if="socialInteraction.refDocs.length > 0">{{
+                    socialInteraction.refDocs[0].doc.title }}
+                </div>
+                <div class="title" ng-if="socialInteraction.title">{{ socialInteraction.title }}</div>
+                <div class="text" ng-if="socialInteraction.text">{{ socialInteraction.text }}</div>
+            </div>
 
-        <div class="content sheet tertiary">
-            <div class="ref-title" ng-if="socialInteraction.refDocs.length > 0">{{ socialInteraction.refDocs[0].doc.title }}</div>
-            <div class="title" ng-if="socialInteraction.title">{{ socialInteraction.title }}</div>
-            <div class="text" ng-if="socialInteraction.text">{{ socialInteraction.text }}</div>
-        </div>
-
-    </li>
+        </li>
+    </div>
 </div>
