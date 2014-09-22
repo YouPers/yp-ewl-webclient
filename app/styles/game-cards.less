@@ -8,6 +8,91 @@
   overflow: hidden;
 }
 
-.sheet.primary.title, .sheet.primary.title * {
-  font-size: 16px;
+
+.component,
+.topicStress,
+.topicNutrition,
+.topicFitness,
+.topicHealthyAtWork,
+.topicSafety,
+.eventFuture,
+.eventPresent,
+.eventPast,
+.eventConflict,
+.eventCoach,
+.offerCampaignLead,
+.offerCoach,
+.offerUser,
+.organization,
+.idea {
+
+  .sheet {
+
+  }
+
+  .sheet.primary {
+    background: @yp-primary;
+    color: white;
+    font-size: 16px;
+  }
+
+
+}
+
+
+
+// Event Cards
+
+
+.eventFuture {
+  .date {
+    color: @yp-event-future;
+  }
+}
+.eventPresent {
+  .date {
+    color: @yp-event-present;
+  }
+}
+.eventPast {
+  .date {
+    color: @yp-event-past;
+  }
+}
+.eventConflict {
+  .sheet.primary {
+    background-color: @yp-warning;
+  }
+}
+.eventCoach {
+  .sheet.primary {
+    background-color: @yp-accent;
+  }
+  .sheet:not(.primary) {
+    background-color: white;
+    color: @yp-accent;
+  }
+}
+
+
+// Offer Cards
+
+
+.offerCampaignLead {
+  .sheet.tertiary {
+    background-color: @yp-campaignLead;
+    color: @yp-primary;
+  }
+}
+.offerCoach {
+  .sheet.tertiary {
+    background-color: @yp-coach;
+    color: @yp-primary;
+  }
+}
+.offerUser {
+  .sheet.tertiary {
+    background-color: @yp-user;
+    color: @yp-primary;
+  }
 }
