@@ -7,11 +7,11 @@
     "angular-bootstrap": "~0.11.0",
     "angular-i18n": "~1.2.21",
     "angular-sanitize": "~1.2.21",
-    "angular-translate": "~2.2.x",
-    "angular-translate-interpolation-messageformat": "~2.1.x",
+    "angular-translate": "~2.3.x",
+    "angular-translate-interpolation-messageformat": "~2.2.x",
     "angular-cookie": "~4.0.x",
-    "angular-translate-storage-cookie": "~2.1.x",
-    "angular-translate-loader-partial": "~2.0.x",
+    "angular-translate-storage-cookie": "~2.3.x",
+    "angular-translate-loader-partial": "~2.1.x",
     "angular-ui-router": "0.2.10",
     "angular-file-upload": "~1.0.x",
     "bootstrap": "~3.2.x",
@@ -32,7 +32,6 @@
     "angular-scenario": "~1.2.7"
   },
   "resolutions": {
-    "angular-translate": "~2.2.x",
     "d3": "~3.4.x"
   }
 }
