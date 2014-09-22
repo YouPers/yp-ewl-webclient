@@ -262,6 +262,7 @@
                         .then(function success(user) {
                             UserService.initialized = true;
                         }, function error(err) {
+                            ipCookie.remove(AUTH_COOKIE_NAME);
                             UserService.initialized = true;
                         });
                 } else {
