@@ -148,14 +148,12 @@
 
                 $scope.usersToBeInvited = [];
                 $scope.onUserSelected = function onUserSelected(selection) {
-
-                    if (activityController.inviteByEmail) {
-                        activityController.inviteByEmail = false;
-                        $scope.usersToBeInvited.push(selection);
-                    } else {
-                        $scope.usersToBeInvited.push(selection);
-                        $scope.usersExcludedForInvitation.push(selection);
-                    }
+                    $scope.usersToBeInvited.push(selection);
+                    $scope.usersExcludedForInvitation.push(selection);
+                };
+                $scope.onEmailSelected = function onEmailSelected(selection) {
+                    $scope.usersToBeInvited.push(selection);
+                    $scope.emailToBeInvited = "";
                 };
                 $scope.removeUserToBeInvited = function (user) {
                     _.remove($scope.usersToBeInvited, user.id ? { id: user.id } : user);
