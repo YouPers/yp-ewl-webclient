@@ -31,8 +31,8 @@
       "inviteOthers": {
           "selected": "ausgewählte",
           "all": "alle",
-          "inviteByEmail": "Jemanden per Email einladen?",
-          "inviteByUser": "Nach Benutzern suchen"
+          "inviteByEmail": "Jemanden per Email einladen",
+          "inviteByUser": "In der Kampagne suchen"
       },
 
       "emailToBeInvited": {
