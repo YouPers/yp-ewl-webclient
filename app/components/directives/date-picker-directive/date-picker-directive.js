@@ -8,6 +8,8 @@
                 restrict: 'EA',
                 scope: {
                     date: '=',
+                    minDate: '=?',
+                    maxDate: '=?',
                     required: '='
                 },
                 templateUrl: 'components/directives/date-picker-directive/date-picker-directive.html',
@@ -18,22 +20,32 @@
                         throw new Error('date attribute is required');
                     }
 
-                    scope.date = moment(scope.date).format();
+                    var clearDateOnlyWatch;
+
+                    scope.$watch('date', function () {
+
+                        if(clearDateOnlyWatch) {
+                            clearDateOnlyWatch();
+                        }
+
+                        scope.dateOnly = moment(scope.date).format();
+
+                        clearDateOnlyWatch = scope.$watch('dateOnly', function(val, old) {
+
+                            if(val) {
+                                var dateOnly = moment(val);
+                                var date = moment(scope.date);
+                                date.year(dateOnly.year());
+                                date.dayOfYear(dateOnly.dayOfYear());
+
+                                scope.date = date.toISOString();
+                            }
+                        });
+                    });
 
                     // working copy for the datepicker to preserve the time in the attribute 'date'
                     scope.dateOnly = scope.date;
 
-                    scope.$watch('dateOnly', function(val, old) {
-
-                        if(val) {
-                            var dateOnly = moment(val);
-                            var date = moment(scope.date);
-                            date.year(dateOnly.year());
-                            date.dayOfYear(dateOnly.dayOfYear());
-
-                            scope.date = date.toISOString();
-                        }
-                    });
 
                     scope.showWeeks = false;
                     scope.minDate = moment().toISOString();

@@ -68,9 +68,10 @@
           "joinedSave": "Termine speichern",
           "scheduleSave": "Termine speichern",
 
+          "campaignleadSaveAndInvite": "Kampagnenaktivität publizieren",
+
           "ownedSaveAndInvite": "Termine speichern und Einladungen verschicken",
           "recommendationSaveAndInvite": "Termine speichern und Einladungen verschicken",
-          "campaignleadSaveAndInvite": "Kampagnenaktivität publizieren und Einladungen verschicken",
           "scheduleSaveAndInvite": "Termine speichern und Einladungen verschicken"
       },
 

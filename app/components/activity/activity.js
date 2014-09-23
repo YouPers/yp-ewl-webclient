@@ -81,6 +81,7 @@
                       campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
 
 
+                $scope.campaign = campaign;
                 $scope.idea = idea;
                 $scope.activity = activity;
                 $scope.socialInteraction = socialInteraction;
@@ -122,11 +123,27 @@
                 var invitation = {
                     author: UserService.principal.getUser(),
                     authorType: mode === 'campaignlead' ? 'campaignLead' : 'user',
-                    __t: 'Invitation'
+                    __t: 'Invitation',
+
+                    publishFrom: moment().startOf('day').toDate(),
+                    publishTo: moment().endOf('day').toDate()
                 };
 
                 if(mode === 'campaignlead') {
                     $scope.socialInteraction = campaignInvitation || invitation;
+
+                    $scope.$watch('socialInteraction.publishFrom', function (date) {
+                        var si = $scope.socialInteraction;
+                        if(moment(si.publishFrom).isAfter(moment(si.publishTo))) {
+                            si.publishTo = moment(si.publishFrom).startOf('end').toString();
+                        }
+                    });
+                    $scope.$watch('socialInteraction.publishTo', function (date) {
+                        var si = $scope.socialInteraction;
+                        if(moment(si.publishFrom).isAfter(moment(si.publishTo))) {
+                            si.publishFrom = moment(si.publishTo).startOf('day').toString();
+                        }
+                    });
                 }
 
 
@@ -194,7 +211,7 @@
                     if(initialized) {
                         activityController.dirty = true;
 
-                        if((!$scope.inviteLocked  && activityController.inviteOthers === 'all') ||
+                        if((!activity.id  && activityController.inviteOthers === 'all') ||
                             $scope.usersToBeInvited.length > 0) {
                             activityController.submitMode = 'SaveAndInvite';
                         } else {

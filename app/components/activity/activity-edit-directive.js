@@ -8,7 +8,8 @@
                 return {
                     restrict: 'E',
                     scope: {
-                        activity: '='
+                        activity: '=',
+                        campaign: '=' // used to set the min/max range for the date picker
                     },
                     templateUrl: 'components/activity/activity-edit-directive.html',
 

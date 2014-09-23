@@ -58,7 +58,7 @@
         </div>
 
         <div ng-if="activityController.active && activityController.formActive">
-            <activity-edit activity="activity"></activity-edit>
+            <activity-edit activity="activity" campaign="campaign"></activity-edit>
         </div>
 
         <div ng-if="activityController.active && activity.id">
@@ -201,9 +201,9 @@
             <div class="publish" ng-if="mode === 'campaignlead'">
 
                 <label translate>activity.publishFrom.label</label>
-                <date-picker date="socialInteraction.publishFrom"></date-picker>
+                <date-picker date="socialInteraction.publishFrom" min-date="campaign.start" max-date="campaign.end"></date-picker>
                 <label translate>activity.publishTo.label</label>
-                <date-picker date="socialInteraction.publishTo"></date-picker>
+                <date-picker date="socialInteraction.publishTo" min-date="campaign.start" max-date="campaign.end"></date-picker>
 
             </div>
 
