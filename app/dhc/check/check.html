@@ -16,22 +16,26 @@
 
     <section>
 
-        <div class="actions">
+        <div scroll-along>
+
+            <div class="actions">
 
 
-            <button class="btn btn-default backToGame" ng-click="backClicked()" translate>
-                check.link.back
-            </button>
+                <button class="btn btn-default backToGame" ng-click="backClicked()" translate>
+                    check.link.back
+                </button>
 
-            <button class="btn btn-primary" ng-click="doneClicked()" translate>
-                check.link.done
-            </button>
+                <button class="btn btn-primary submit" ng-click="doneClicked()" translate>
+                    check.link.done
+                </button>
+
+            </div>
+
+            <health-coach></health-coach>
+
+            <social-interaction></social-interaction>
 
         </div>
-
-        <health-coach></health-coach>
-
-        <social-interaction></social-interaction>
 
     </section>
 

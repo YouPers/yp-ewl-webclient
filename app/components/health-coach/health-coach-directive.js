@@ -15,26 +15,6 @@
                         scope.coachMessages = result;
                     });
 
-                    scope.style = {
-                        top: 0
-                    };
-
-                    var offset = 0;
-
-                    scope.updateStyle = function updateStyle() {
-                        offset = $window.pageYOffset;
-                        scope.style = {
-                            'top': Math.max(0, offset - 90) + 'px',
-                            position: 'relative'
-                        };
-                    };
-
-                    angular.element($window).on('scroll', function() {
-                        if($window.pageYOffset < offset) {
-                            scope.$apply(scope.updateStyle);
-                        }
-                    });
-
 
                     scope.isTranslatable = function() {
                         return (scope.coachMessages &&
@@ -66,7 +46,7 @@
                         }
                         scope.coachMessages.unshift(message);
                         scope.interpolateParams = interpolateParams;
-                        scope.updateStyle();
+                        scope.$parent.$broadcast('initialize-scroll-along');
                     });
 
                     $rootScope.$on('event:authority-deauthorized', function() {
