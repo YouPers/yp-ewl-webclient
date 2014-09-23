@@ -191,7 +191,7 @@
                     if(initialized) {
                         activityController.dirty = true;
 
-                        if((!activity.id && activityController.inviteOthers === 'all') ||
+                        if((!$scope.inviteLocked  && activityController.inviteOthers === 'all') ||
                             $scope.usersToBeInvited.length > 0) {
                             activityController.submitMode = 'SaveAndInvite';
                         } else {
