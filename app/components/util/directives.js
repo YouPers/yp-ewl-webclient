@@ -25,6 +25,45 @@
             };
         }])
 
+        .directive('scrollAlong', ['$window', function ($window) {
+            return {
+                restrict: 'A',
+
+                link: function (scope, element, attrs, ctrl) {
+
+                    scope.style = {
+                        top: 0
+                    };
+
+                    var offset = 0;
+                    var initialOffset = element[0].offsetTop;
+
+                    function initStyle() {
+                        offset = $window.pageYOffset;
+                        element.css('top', Math.max(0, offset - initialOffset) + 'px');
+                        element.css('position', 'relative');
+                        scope.style = {
+                            'top': Math.max(0, initialOffset - 90) + 'px',
+                            position: 'relative'
+                        };
+                    }
+
+                    // initialize vertical position
+                    // typical use case: content changes the user should be aware of
+                    scope.$on('initialize-scroll-along', initStyle);
+
+                    // scroll along when the user scrolls back to top
+                    angular.element($window).on('scroll', function() {
+                        if($window.pageYOffset < offset) {
+                            scope.$apply(initStyle);
+                        }
+                    });
+
+
+                }
+            };
+        }])
+
         .directive('form', [function () {
             return {
                 restrict: 'E',
