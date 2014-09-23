@@ -119,6 +119,10 @@
                 _.remove($scope.messages, { id: soi.id });
             };
 
+            $scope.soiEdited = function (soi) {
+                $scope.editedMessage = soi;
+            };
+
             init();
            //-----------
 

@@ -25,6 +25,7 @@
   },
     "composeMessageForm": {
         "show": "Hinzufügen",
+        "cancel": "abbrechen",
 
 
         "title": {

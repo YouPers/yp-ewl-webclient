@@ -60,7 +60,8 @@
                     restrict: 'E',
                     scope: {
                         soi: '=',
-                        onRemove: '&'
+                        onRemove: '&',
+                        onEdit: '&'
                     },
                     templateUrl: 'components/social-interaction/social-interaction-directive.html',
 
@@ -84,6 +85,13 @@
                             SocialInteractionService.deleteSocialInteraction(socialInteraction.id, deleteOptions);
                             if (scope.onRemove) {
                                 scope.onRemove({socialInteraction: socialInteraction});
+                            }
+                        };
+
+                        scope.editSocialInteraction = function ($event, socialInteraction) {
+                            socialInteraction._editMode = true;
+                            if (scope.onEdit) {
+                                scope.onEdit({socialInteraction: socialInteraction});
                             }
                         };
 
@@ -119,11 +127,13 @@
                 return {
                     restrict: 'E',
                     scope: {
-                        onPost: '&'
+                        onPost: '&',
+                        editedMessage: '='
                     },
                     templateUrl: 'components/social-interaction/social-interaction-message-compose-directive.html',
 
                     link: function (scope, elem, attrs) {
+
                         var messageTemplate = {
                             author: UserService.principal.getUser(),
                             authorType: 'campaignLead',
@@ -145,17 +155,46 @@
                             composeFormShown: false
                         };
 
-                        scope.message = _.clone(messageTemplate);
+                        scope.$watch('editedMessage', function (newVal, oldVal) {
+                            if (newVal) {
+                                scope.message = newVal;
+                                scope.options.composeFormShown = true;
+                            }
+                        });
+
+
+                        if (!scope.message) {
+                            scope.message = _.clone(messageTemplate);
+                        }
+
+                        scope.cancel = function (message) {
+                            delete message._editMode;
+                            scope.options.composeFormShown = false;
+                            scope.message = _.clone(messageTemplate);
+                            scope.editedMessage = null;
+                        };
 
                         scope.saveMessage = function saveMessage(message) {
-                            SocialInteractionService.postMessage(message).then(function (saved) {
-                                saved.author = $rootScope.principal.getUser();
-                                if (scope.onPost && _.isFunction(scope.onPost)) {
-                                    scope.onPost({message: saved});
-                                }
-                                scope.message = _.clone(messageTemplate);
-                                scope.options.composeFormShown = false;
-                            });
+                            if (message.id) {
+                                SocialInteractionService.putSocialInteraction(message).then(function (saved) {
+                                    saved.author = $rootScope.principal.getUser();
+                                    delete message._editMode;
+                                    _.merge(message, saved);
+                                    scope.options.composeFormShown = false;
+                                    scope.message = _.clone(messageTemplate);
+                                    scope.editedMessage = null;
+                                });
+
+                            } else {
+                                SocialInteractionService.postMessage(message).then(function (saved) {
+                                    saved.author = $rootScope.principal.getUser();
+                                    if (scope.onPost && _.isFunction(scope.onPost)) {
+                                        scope.onPost({message: saved});
+                                    }
+                                    scope.message = _.clone(messageTemplate);
+                                    scope.options.composeFormShown = false;
+                                });
+                            }
                         };
                     }
                 };

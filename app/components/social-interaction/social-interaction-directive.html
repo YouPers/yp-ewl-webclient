@@ -1,4 +1,4 @@
-<li class="list-group-item {{ componentClass(soi) }}" ng-click="openSocialInteraction(soi)">
+<li class="list-group-item {{ componentClass(soi) }}" ng-click="openSocialInteraction(soi)" ng-if="!soi._editMode">
     <div class="headers sheet secondary">
 
         <div class="image">
@@ -9,6 +9,8 @@
 
 
             <div class="pull-right dismiss">
+                <a ng-if="options.isCampaignLead"><i ng-click="editSocialInteraction($event, soi)"
+                      class="fa fa-pencil-square-o"></i></a>
                 <a><i ng-click="dismissSocialInteraction($event, soi)"
                       class="{{options.isCampaignLead ? 'fa fa-trash-o' : 'glyphicon glyphicon-remove'}}"></i></a>
             </div>

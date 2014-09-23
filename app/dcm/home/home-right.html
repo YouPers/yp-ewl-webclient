@@ -1,9 +1,9 @@
 <div ng-controller="HomeMessagesController" class="campaignMessages">
     <h4 translate>dcmhome.messages</h4>
-    <social-interaction-message-composer on-post="onMessageSaved(message)"></social-interaction-message-composer>
+    <social-interaction-message-composer on-post="onMessageSaved(message)" edited-message="editedMessage"></social-interaction-message-composer>
 
     <div>
-        <social-interaction soi="message" on-remove="soiRemoved(socialInteraction)"
+        <social-interaction soi="message" on-remove="soiRemoved(socialInteraction)" on-edit="soiEdited(socialInteraction)"
                             ng-repeat="message in messages"></social-interaction>
     </div>
 </div>
