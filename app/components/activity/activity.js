@@ -76,7 +76,9 @@
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
             'UserService', 'ActivityService', 'SocialInteractionService',
             'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
-            function ($scope, $rootScope, $state, $stateParams, $timeout, UserService, ActivityService, SocialInteractionService, campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
+            function ($scope, $rootScope, $state, $stateParams, $timeout,
+                      UserService, ActivityService, SocialInteractionService,
+                      campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
 
 
                 $scope.idea = idea;
@@ -144,7 +146,8 @@
                     });
                 }
 
-                $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
+                // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
+                $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner).concat(campaign.campaignLeads);
 
                 $scope.usersToBeInvited = [];
                 $scope.onUserSelected = function onUserSelected(selection) {
