@@ -9,7 +9,7 @@
 
 
         <div class="pull-right dismiss">
-            <a><i ng-click="dismissSocialInteraction($event, soi)" class="glyphicon glyphicon-remove"></i></a>
+            <a><i ng-click="dismissSocialInteraction($event, soi)" class="{{options.isCampaignLead ? 'fa fa-trash-o' : 'glyphicon glyphicon-remove'}}"></i></a>
         </div>
 
         <div class="authorType">{{ 'socialInteraction.header.' + soi.__t + '.' + soi.authorType | translate }}</div>

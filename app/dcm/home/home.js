@@ -115,6 +115,10 @@
                 $scope.messages.unshift(message);
             };
 
+            $scope.soiRemoved = function (soi) {
+                _.remove($scope.messages, { id: soi.id });
+            };
+
             init();
            //-----------
 

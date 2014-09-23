@@ -118,22 +118,18 @@
     }
   }
 
-  game-area.campaign-offers {
-    position: relative;
+  .add-offer:hover {
+    color: @yp-accent-hover;
+  }
+  .add-offer {
+    .header5();
+    color: @yp-primary;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 
-    .add-offer:hover {
-      color: @yp-accent-hover;
-    }
-    .add-offer {
-      .header5();
-      color: @yp-primary;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-
-      i.fa {
-        font-size: 16px;
-      }
+    i.fa {
+      font-size: 16px;
     }
   }
 
@@ -153,6 +149,11 @@
   .campaignMessages {
     .date {
       float: right;
+    }
+
+    .add-offer {
+      top: -30px;
+      right: 10px;
     }
   }
 

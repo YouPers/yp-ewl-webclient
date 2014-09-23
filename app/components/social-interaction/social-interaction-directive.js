@@ -18,6 +18,10 @@
                         var user = UserService.principal.getUser();
                         options.isCampaignLead = _.contains(user.roles, 'campaignlead');
 
+                        scope.soiRemoved = function (soi) {
+                            _.remove(scope.socialInteractions, { id: soi.id });
+                        };
+
                         if ($rootScope.principal.isAuthenticated()) {
                             var params = {
                                 targetId: $stateParams.campaignId,
@@ -55,7 +59,8 @@
                 return {
                     restrict: 'E',
                     scope: {
-                        soi: '='
+                        soi: '=',
+                        onRemove: '&'
                     },
                     templateUrl: 'components/social-interaction/social-interaction-directive.html',
 
@@ -72,8 +77,14 @@
 
                         scope.dismissSocialInteraction = function dismissSocialInteraction($event, socialInteraction) {
                             $event.stopPropagation();
-                            SocialInteractionService.deleteSocialInteraction(socialInteraction.id);
-                            _.remove(scope.socialInteractions, { id: socialInteraction.id });
+                            var deleteOptions = {
+                                mode: options.isCampaignLead ? 'administrate' : 'normal'
+                            };
+
+                            SocialInteractionService.deleteSocialInteraction(socialInteraction.id, deleteOptions);
+                            if (scope.onRemove) {
+                                scope.onRemove({socialInteraction: socialInteraction});
+                            }
                         };
 
                         scope.openSocialInteraction = function (socialInteraction) {
