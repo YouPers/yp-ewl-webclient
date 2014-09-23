@@ -2,9 +2,9 @@
 <div class="organization">
 
     <organization-card organization="organization" ng-if="organization">
-        <div class="icon" ui-sref="organization.content" ng-if="principal.isAuthorized('orgadmin')">
+        <a href class="icon" ui-sref="organization.content" ng-if="principal.isAuthorized('orgadmin')">
             <i class="fa fa-pencil-square-o"></i>
-        </div>
+        </a>
     </organization-card>
 
 </div>
@@ -24,9 +24,9 @@
             ui-sref="dcm.home({ campaignId: campaign.id })">
 
 
-        <div class="icon" ng-click="editCampaign($event, campaign.id)">
+        <a href class="icon" ng-click="editCampaign($event, campaign.id)">
             <i class="fa fa-pencil-square-o"></i>
-        </div>
+        </a>
 
     </campaign-card>
 
