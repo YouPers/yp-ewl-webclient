@@ -1,25 +1,50 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="state-header-1" translate>activity.stateHeader1</div>
-        <div class="state-header-2" ng-bind-html="activity.title"></div>
+
     </div>
 </div>
+
+
+        <div class="three-column-layout">
+
+            <section>
+
+                <h2 translate>activity.stateHeader1</h2>
+                <h2 ng-bind-html="idea.title"></h2>
+
+                <br/>
+
+                <idea-card idea="idea"></idea-card>
+
+            </section>
+
+            <section>
+
+                <idea-edit idea="idea" on-save="onSave()" on-cancel="back()">
+                    <div dropdown is-open="options.dropdownOpen">
+                        <ul class="dropdown-menu">
+                            <li role="presentation"><a role="menuitem" ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })">Einplanen und Einladen</a></li>
+                            <li role="presentation"><a role="menuitem" ui-sref="dcm.recommendation({ idea: idea.id })">Nur Empfehlen</a></li>
+                        </ul>
+                    </div>
+                </idea-edit>
+
+            </section>
+
+            <section>
+
+            </section>
+
+
+        </div>
 
 <div class="row idea-edit">
 
     <div class="col-md-8">
-        <idea-edit idea="idea" on-save="onSave()" on-cancel="back()">
-            <div dropdown is-open="options.dropdownOpen">
-                <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })">Einplanen und Einladen</a></li>
-                    <li role="presentation"><a role="menuitem" ui-sref="dcm.recommendation({ idea: idea.id })">Nur Empfehlen</a></li>
-                </ul>
-            </div>
-        </idea-edit>
     </div>
 
     <div class="col-md-4">
-        <idea-card idea="idea"></idea-card>
+
 
     </div>
 
