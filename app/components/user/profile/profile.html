@@ -193,45 +193,16 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <label translate>profileForm.firstDayOfWeek</label>
-                </div>
-                <div class="col-md-8">
-                    <div class="btn-group" data-toggle="buttons-radio">
-                        <input type="radio" value="MO" ng-model="profileUserObj.prefs.firstDayOfWeek"
-                               ng-click="profileUserObj.prefs.firstDayOfWeek = 'MO'">&NonBreakingSpace;{{
-                        'weekday.SU' | translate }} <br/></input>
-                        <input type="radio" value="SU" ng-model="profileUserObj.prefs.firstDayOfWeek"
-                               ng-click="profileUserObj.prefs.firstDayOfWeek = 'SU'">&NonBreakingSpace;{{
-                        'weekday.MO' | translate }}</input>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
         <div class="col-md-6">
             <div class="row">
-                <div class="col-md-6">
-                    <label translate>profileForm.timeZone</label>
-                </div>
-
-                <div class="col-md-6">
-                    <select ng-model="profileUserObj.prefs.timezone" ng-options="'timezone.'+value | translate for value in enums.timezone">
-                    </select>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label translate>profileForm.language</label>
                 </div>
 
-                <div class="col-md-6">
-                    <select ng-model="profileUserObj.language" ng-options="'language.'+value | translate for value in enums.language">
+                <div class="col-md-9">
+                    <select class="form-control" ng-model="profileUserObj.language" ng-options="'language.'+value | translate for value in enums.language">
                     </select>
                 </div>
 
