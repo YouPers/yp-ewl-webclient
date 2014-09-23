@@ -88,11 +88,13 @@
                     <label translate>profileForm.birthdate.label</label>
                 </div>
                 <div class="col-md-4">
+
                     <input ng-model="profileUserObj.birthDate"
-                           class="form-control" type="text" id="datePickerStart"
-                           datepicker-popup="dd.MM.yyyy"
-                           datepicker-append-to-body="true"
-                           is-open="opened"/>
+                           class="form-control" id="datePickerStart"
+
+                           date-formatter="dd.MM.yyyy"
+                           date-parser="dd.MM.yyyy"
+                           placeholder="DD.MM.YYYY"/>
                 </div>
             </div>
         </div>
@@ -103,7 +105,9 @@
                 <label translate>profileForm.maritalStatus.label</label>
             </div>
             <div class="col-md-4">
-                <select ng-model="profileUserObj.maritalStatus" ng-options="'maritalStatus.' + value | translate for value in enums.maritalStatus">
+                <select class="form-control"
+                        ng-model="profileUserObj.maritalStatus"
+                        ng-options="'maritalStatus.' + value | translate for value in enums.maritalStatus">
                 </select>
             </div>
         </div>
@@ -127,7 +131,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <yp-input name="homeAddress.zipCode" label="false"></yp-input>
+                    <yp-input name="homeAddress.zipCode" type="number" label="false"></yp-input>
                 </div>
 
                 <div class="col-md-9">

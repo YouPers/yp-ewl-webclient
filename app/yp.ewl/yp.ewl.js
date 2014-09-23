@@ -98,6 +98,7 @@ angular.module('yp-ewl',
             $rootScope.currentLocale = $translate.use() || $translate.proposedLanguage();
             $rootScope.config = config;
 
+
             $rootScope.$on('event:authority-authorized', function() {
 
                 $rootScope.isProductAdmin = _.any(UserService.principal.getUser().roles, function (role) {

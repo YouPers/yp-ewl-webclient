@@ -93,12 +93,38 @@
 
                         var date = moment(data, format);
 
-                        var isRecent = date.year() > moment().year() - 2;
-                        var valid = data && date.isValid() && isRecent;
+                        var valid = data && date.isValid();
 
                         ctrl.$setValidity('date', valid);
 
                         return valid ? date : undefined;
+                    });
+                }
+            };
+
+        })
+        .directive('dateFormatter', function () {
+            return {
+                restrict: 'A',
+                require: 'ngModel',
+                link: function (scope, element, attrs, ctrl) {
+
+                    // remove vendor dateParser from datepicker
+                    _.remove(ctrl.$formatters, function(parser) {
+                        return parser.name === 'formatDate';
+                    });
+
+                    ctrl.$formatters.push(function (date) {
+
+                        if(!attrs.dateFormatter) {
+                            throw new Error('date format is required');
+                        }
+
+                        var format = attrs.dateFormatter.toUpperCase();
+
+                        var formattedDate = moment(date).format(format);
+
+                        return formattedDate;
                     });
                 }
             };

@@ -22,7 +22,7 @@
         }])
 
         .run(['$rootScope', function ($rootScope) {
-            _.merge($rootScope.enums, {
+            $rootScope.enums = _.merge($rootScope.enums || {}, {
                 maritalStatus: [
                     'undefined',
                     'single',
