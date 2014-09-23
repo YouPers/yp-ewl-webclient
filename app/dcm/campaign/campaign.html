@@ -12,31 +12,28 @@
         <form name="campaignForm" ypModel="campaign" role="form" class="form-horizontal"
               ng-submit="saveCampaign()" novalidate>
             <div class="col-md-12">
-            <div class="form-group">
-                <label class="control-label" translate>campaignForm.topic.label</label>
+                <div class="form-group topic">
+                    <label class="control-label" translate>campaignForm.topic.label</label>
 
-                <p>{{campaign.topic.name |uppercase}}: {{campaign.topic.shortDescription}}
-                    <a ui-sref="dcm.topics"
-                       translate
-                       ng-if="!campaign.id">campaignForm.topic.change</a>
-                </p>
-            </div>
-            <yp-input name="participants"></yp-input>
-            <yp-input name="location"></yp-input>
-            <yp-input name="city"></yp-input>
-            <yp-input name="slogan"></yp-input>
-
-            <div class="form-group date">
-                <label class="control-label" translate>campaignForm.start.label</label>
-
-                <div class="start">
-                    <date-picker date="campaign.start"></date-picker>
+                    <p>{{campaign.topic.name |uppercase}}: {{campaign.topic.shortDescription}}
+                        <a ui-sref="dcm.topics"
+                           translate
+                           ng-if="!campaign.id">campaignForm.topic.change</a>
+                    </p>
                 </div>
+                <yp-input name="participants"></yp-input>
+                <yp-input name="location"></yp-input>
+                <yp-input name="city"></yp-input>
+                <yp-input name="slogan"></yp-input>
 
-                <div class="end">
-                    <date-picker date="campaign.end"></date-picker>
+                <div class="form-group date">
+                        <label class="control-label" translate>campaignForm.start.label</label>
+                    <div class="start">
+                        <date-picker date="campaign.start"></date-picker>
+                        <date-picker date="campaign.end"></date-picker>
+                        <label class="" translate>campaignForm.end.label</label>
+                    </div>
                 </div>
-            </div>
             </div>
         </form>
         <div class="row">
