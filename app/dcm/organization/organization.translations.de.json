@@ -32,6 +32,7 @@
         "label": "PLZ",
         "placeholder": "PLZ",
         "error": {
+            "pattern": "Bitte eine gültige Postleitzahl eingeben",
           "required": "Bitte eine gültige Postleitzahl eingeben"
         }
       },

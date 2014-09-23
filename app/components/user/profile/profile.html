@@ -131,7 +131,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <yp-input name="homeAddress.zipCode" type="number" label="false"></yp-input>
+                    <yp-input name="homeAddress.zipCode" ng-pattern="/\d{3,}/" label="false"></yp-input>
                 </div>
 
                 <div class="col-md-9">
@@ -159,7 +159,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <yp-input name="workAddress.zipCode" label="false"></yp-input>
+                    <yp-input name="workAddress.zipCode" ng-pattern="/\d{3,}/" label="false"></yp-input>
                 </div>
 
                 <div class="col-md-9">
