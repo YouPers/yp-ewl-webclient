@@ -7,8 +7,10 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
 
             $scope.currentLang = $translate.use();
 
+
             $scope.changeLang = function (key) {
                 moment.locale(key);
+                $scope.currentLang = key;
                 $http.defaults.headers.common['yp-language'] = key;
                 $translate.use(key).then(function (key) {
                     $translate.refresh();
@@ -25,6 +27,10 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
                     console.log('could not switch language, err: ' + err);
                 });
             };
+
+            $scope.$on('language:changed', function (event, value) {
+                $scope.changeLang(value);
+            });
 
         }
     ]);

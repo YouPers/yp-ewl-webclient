@@ -6,17 +6,13 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('focus', {
-                        templateUrl: "layout/default.html",
-                        access: accessLevels.user
-                    })
-                    .state('focus.content', {
+                    .state('dhc.focus', {
                         url: "/focus",
                         access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'dhc/focus/focus.html',
-                                controller: 'FocusController'
+                                controller: 'FocusController as focusController'
                             }
                         },
                         resolve: {
@@ -40,21 +36,30 @@
                                     return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
                                 }
                                 return AssessmentService.getAssessment(currentUsersCampaign.topic);
+                            }],
+                            assessmentIdea: ['ActivityService', 'assessment', function (ActivityService, assessment) {
+                                return ActivityService.getIdea(assessment.idea.id || assessment.idea);
                             }]
+
                         }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/focus/focus');
             }])
 
-        .controller('FocusController', [ '$scope', 'assessmentResult', 'topStressors', 'assessment', 'ProfileService', 'AssessmentService',
-            function ($scope, assessmentResult, topStressors, assessment, ProfileService, AssessmentService) {
+        .controller('FocusController', [ '$scope',
+            'ProfileService', 'AssessmentService',
+            'assessmentResult', 'topStressors', 'assessment', 'assessmentIdea',
+            function ($scope,
+                      ProfileService, AssessmentService,
+                      assessmentResult, topStressors, assessment, assessmentIdea) {
 
                 $scope.needForAction = assessmentResult? assessmentResult.needForAction : null;
 
                 $scope.categories = _.uniq(_.map(assessment.questions, 'category'));
 
                 $scope.topStressors = topStressors;
+                $scope.assessmentIdea = assessmentIdea;
 
                 var profile = $scope.principal.getUser().profile;
 

@@ -101,7 +101,7 @@
 
                             AssessmentService.regenerateRecommendations()
                                 .then(function () {
-                                    return $state.go('dhc.game');
+                                    return $state.go('dhc.focus');
                                 });
                         });
 

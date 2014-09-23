@@ -24,7 +24,7 @@
                 <label translate>activityForm.date.label</label>
             </dt>
             <dd>
-                <date-picker date="activity.mainEvent.start"></date-picker>
+                <date-picker date="activity.mainEvent.start" min-date="campaign.start" max-date="campaign.end"></date-picker>
             </dd>
             <dt class="time">
                 <label translate>activityForm.time.label</label>
@@ -44,16 +44,25 @@
 
             <!-- frequency -->
 
-            <div class="btn-group btn-group-justified">
-                <a type="button" class="btn" ng-model="activity.mainEvent.frequency"
-                   btn-radio="'once'" translate>activityPlanFrequency.once
-                </a>
-                <a type="button" class="btn" ng-model="activity.mainEvent.frequency"
-                   btn-radio="'day'" translate>activityPlanFrequency.day
-                </a>
-                <a type="button" class="btn" ng-model="activity.mainEvent.frequency"
-                   btn-radio="'week'" translate>activityPlanFrequency.week
-                </a>
+            <div class="frequency">
+                <label for="frequency.once">
+                    <input id="frequency.once" type="radio" ng-model="activity.mainEvent.frequency"
+                           ng-value="'once'" translate>
+                    </input>
+                    <span translate>activityPlanFrequency.once</span>
+                </label>
+                <label for="frequency.day">
+                    <input id="frequency.day" type="radio" ng-model="activity.mainEvent.frequency"
+                           ng-value="'day'" translate>
+                    </input>
+                    <span translate>activityPlanFrequency.day</span>
+                </label>
+                <label for="frequency.week">
+                    <input id="frequency.week" type="radio" ng-model="activity.mainEvent.frequency"
+                           ng-value="'week'" translate>
+                    </input>
+                    <span translate>activityPlanFrequency.week</span>
+                </label>
             </div>
 
             <!-- recurrence -->

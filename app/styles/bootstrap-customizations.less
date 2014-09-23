@@ -31,6 +31,10 @@
 @btn-warning-bg:                 @yp-warning;
 @btn-warning-border:             @yp-warning;
 
+@btn-danger-color:              white;
+@btn-danger-bg:                 @yp-warning;
+@btn-danger-border:             @yp-warning;
+
 @input-color-placeholder:        @yp-placeholder;
 
 
@@ -48,18 +52,21 @@
 
 // default
 
-.btn-default {
+.btn-default, .btn-info {
+  color: @yp-accent;
   border: 1px solid @yp-accent;
+  background-color: @yp-secondary;
 }
 
-.btn-default:hover {
+.btn-default:hover, .btn-info:hover {
   border: 1px solid;
   border-color: @yp-accent-hover !important;
   color: @yp-accent !important;
   background-color: white;
 }
 
-.btn:focus, .btn-default:focus, .btn.active, .btn-default.active  {
+.btn:focus, .btn-default:focus, .btn-info:focus,
+.btn.active, .btn-default.active, .btn-info.active  {
   background-color: @yp-accent !important;
   border-color: @yp-accent;
   box-shadow: none;
@@ -76,18 +83,19 @@
 
 // primary
 
-.btn-primary {
+.btn-primary, .btn-success {
   color: white;
   background-color: @yp-accent;
   border-color: transparent;
 }
-.btn-primary:hover {
+.btn-primary:hover, .btn-success:hover {
   color: white;
   background-color: @yp-accent;
   border-color: @yp-accent;
 }
 
-.btn-primary:focus, .btn-primary:active {
+.btn-primary:focus, .btn-primary:active,
+.btn-success:focus, .btn-success:active {
   color: white;
   background-color: @yp-accent;
   border-color: @yp-accent-hover;

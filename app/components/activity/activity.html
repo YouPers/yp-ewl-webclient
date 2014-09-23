@@ -58,10 +58,10 @@
         </div>
 
         <div ng-if="activityController.active && activityController.formActive">
-            <activity-edit activity="activity"></activity-edit>
+            <activity-edit activity="activity" campaign="campaign"></activity-edit>
         </div>
 
-        <div ng-if="activityController.active && activity.id">
+        <div ng-if="activityController.active && activity.id && idea.defaultexecutiontype !== 'self'">
 
             <div>
                 <h4 translate>activity.header.invitedUsers</h4>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div ng-show="activityController.active && activityController.formEnabled" ng-if="mode !== 'campaignlead'">
+        <div ng-show="activityController.active && activityController.formEnabled" ng-if="mode !== 'campaignlead' && idea.defaultexecutiontype !== 'self'">
 
             <div>
                 <h4 translate>activity.header.inviteOthers</h4>
@@ -195,15 +195,15 @@
                 activity.link.back
             </button>
             <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
-                {{ 'activity.submit.' + mode | translate }}
+                {{ 'activity.submit.' + mode + activityController.submitMode | translate }}
             </button>
 
             <div class="publish" ng-if="mode === 'campaignlead'">
 
                 <label translate>activity.publishFrom.label</label>
-                <date-picker date="socialInteraction.publishFrom"></date-picker>
+                <date-picker date="socialInteraction.publishFrom" min-date="campaign.start" max-date="campaign.end"></date-picker>
                 <label translate>activity.publishTo.label</label>
-                <date-picker date="socialInteraction.publishTo"></date-picker>
+                <date-picker date="socialInteraction.publishTo" min-date="campaign.start" max-date="campaign.end"></date-picker>
 
             </div>
 

@@ -30,8 +30,8 @@
                 };
             }])
 
-        .controller('profileCtrl', ['$scope', '$rootScope', 'UserService', 'ProfileService', 'ActivityService',
-            function ($scope, $rootScope, UserService, ProfileService, ActivityService) {
+        .controller('profileCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$translate', 'UserService', 'ProfileService', 'ActivityService',
+            function ($scope, $rootScope, $state, $stateParams, $translate, UserService, ProfileService, ActivityService) {
 
                 $scope.profileUserObj = _.clone($scope.principal.getUser().profile, true);
 
@@ -68,6 +68,9 @@
                     ProfileService.putProfile($scope.profileUserObj).then(function (profile) {
                         $rootScope.$emit('clientmsg:success', 'profile.save');
                         $scope.principal.getUser().profile = profile;
+                        if(profile.language) {
+                            $scope.$root.$broadcast('language:changed', profile.language);
+                        }
                     });
                 };
 

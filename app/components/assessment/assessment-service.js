@@ -148,7 +148,7 @@
                         }
 
                         return assService.getNewestAssessmentResults(topicId, {populatedeep: 'answers.question'}).then(function (result) {
-                            if (!result || result.missingAnswers > 0) {
+                            if (!result) {
                                 return null;
                             } else {
 

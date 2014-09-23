@@ -50,6 +50,22 @@
     padding-bottom: 10px;
   }
 
+
+  .icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    i.fa:hover {
+      color: @yp-accent-hover;
+    }
+    i.fa {
+
+      font-size: 24px;
+      opacity: 1;
+      transition: 0.4s ease-out opacity;
+    }
+  }
+
   organization-card {
     .icon {
       position: absolute;
@@ -57,7 +73,6 @@
       right: 5px;
       cursor: pointer;
       i.fa {
-        font-size: 2em;
         opacity: 1;
         transition: 0.4s ease-out opacity;
       }
@@ -76,17 +91,6 @@
 
     margin-bottom: 1em;
     cursor: pointer;
-
-    .icon {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      i.fa {
-        font-size: 2em;
-        opacity: 1;
-        transition: 0.4s ease-out opacity;
-      }
-    }
 
     .avatar {
       img {

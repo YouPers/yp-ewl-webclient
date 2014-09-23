@@ -136,7 +136,10 @@
         "placeholder": "Nr."
       },
       "zipCode": {
-        "placeholder": "PLZ"
+        "placeholder": "PLZ",
+          "error": {
+              "number": "Bitte eine gültige Nummer eingeben"
+          }
       },
       "city": {
         "placeholder": "Ort"

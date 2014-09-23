@@ -6,6 +6,10 @@
            is-open="opened" min="minDate"
            datepicker-append-to-body="true"
            datepicker-options="dateOptions"
+
+           min-date="minDate"
+           max-date="maxDate"
+
            ng-required="!!attrs.date"
            ng-click="opened = !opened"
            date-parser="{{dateFormat}}"
