@@ -321,13 +321,9 @@
                                     ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity);
                                 }
                             }
-
-                            $rootScope.$emit('clientmsg:success', 'activity.saveAndInvite');
-
-                        } else {
-                            $rootScope.$emit('clientmsg:success', 'activity.save');
                         }
 
+                        $rootScope.$emit('clientmsg:success', 'activity.' + activityController.submitMode);
 
                         if(mode !== 'campaignlead') {
                             $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });

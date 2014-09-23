@@ -4,8 +4,8 @@
             "activity": {
                 "joined": "Einladung angenommen",
                 "deleted": "Aktivität gelöscht",
-                "save": "Aktivität gespeichert",
-                "saveAndInvite": "Termine gespeichert und Einladungen verschickt"
+                "Save": "Aktivität gespeichert",
+                "SaveAndInvite": "Termine gespeichert und Einladungen verschickt"
             }
         }
     },
