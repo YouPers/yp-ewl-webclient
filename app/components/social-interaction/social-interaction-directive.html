@@ -1,75 +1,30 @@
+<li class="list-group-item {{ componentClass(soi) }}" ng-click="openSocialInteraction(soi)">
+    <div class="headers sheet secondary">
 
-<ul class="list-group" ng-init="options = {}">
+    <div class="image">
+        <img ng-src="{{ soi.author.avatar }}">
+    </div>
 
-    <li class="list-group-item composeMessage" ng-if="options.isCampaignLead">
-        
-        <button class="btn btn-default pull-right" ng-click="options.composeMessage = true" ng-show="!options.composeMessage" translate>composeMessageForm.show</button>
-        <div class="clearfix"></div>
-
-        <div ng-if="options.composeMessage">
-            
-            <form name="composeMessageForm" class="form-horizontal" ng-submit="saveMessage()">
-
-                <input class="form-control" ng-model="message.title" required placeholder="{{ 'composeMessageForm.title.placeholder' | translate }}" />
-                <textarea class="form-control" ng-model="message.text" required placeholder="{{ 'composeMessageForm.text.placeholder' | translate }}"></textarea>
-
-                <div>
-                    <label translate>composeMessageForm.publishFrom.label</label>
-                    <date-picker date="message.publishFrom"></date-picker>
-                </div>
-
-                <div>
-                    <label translate>composeMessageForm.publishTo.label</label>
-                    <date-picker date="message.publishTo"></date-picker>
-                </div>
-
-                <br/>
-
-                <button class="btn btn-primary pull-right" type="submit" ng-disabled="composeMessageForm.$invalid" translate>composeMessageForm.submit</button>
-                <div class="clearfix"></div>
-
-            </form>
-            
-        </div>
-        
-    </li>
-    
-    <li class="list-group-item {{ componentClass(socialInteraction) }}"
-
-        ng-repeat="socialInteraction in socialInteractions"
-
-        ng-click="openSocialInteraction(socialInteraction)"
-
-            >
+    <div class="info">
 
 
-        <div class="headers sheet secondary">
-
-            <div class="image">
-                <img ng-src="{{ socialInteraction.author.avatar }}">
-            </div>
-
-            <div class="info">
-
-
-                <div class="pull-right dismiss">
-                    <a><i ng-click="dismissSocialInteraction($event, socialInteraction)" class="glyphicon glyphicon-remove"></i></a>
-                </div>
-
-                <div class="authorType">{{ 'socialInteraction.header.' + socialInteraction.__t + '.' + socialInteraction.authorType | translate }}</div>
-                <div class="author">{{ socialInteraction.author.fullname }}</div>
-            </div>
-
-        </div>
-        <div class="sheet tertiary">
-            <div class="date">{{ (socialInteraction.publishFrom || socialInteraction.created) | fromNow }}</div>
+        <div class="pull-right dismiss">
+            <a><i ng-click="dismissSocialInteraction($event, soi)" class="glyphicon glyphicon-remove"></i></a>
         </div>
 
-        <div class="content sheet tertiary">
-            <div class="ref-title" ng-if="socialInteraction.refDocs.length > 0">{{ socialInteraction.refDocs[0].doc.title }}</div>
-            <div class="title" ng-if="socialInteraction.title">{{ socialInteraction.title }}</div>
-            <div class="text" ng-if="socialInteraction.text">{{ socialInteraction.text }}</div>
-        </div>
+        <div class="authorType">{{ 'socialInteraction.header.' + soi.__t + '.' + soi.authorType | translate }}</div>
+        <div class="author">{{ soi.author.fullname }}</div>
+    </div>
 
-    </li>
-</ul>
+</div>
+<div class="sheet tertiary">
+    <div class="date">{{ (soi.publishFrom || soi.created) | fromNow }}</div>
+</div>
+
+<div class="content sheet tertiary">
+    <div class="ref-title" ng-if="soi.refDocs.length > 0">{{ soi.refDocs[0].doc.title }}</div>
+    <div class="title" ng-if="soi.title">{{ soi.title }}</div>
+    <div class="text" ng-if="soi.text">{{ soi.text }}</div>
+</div>
+
+</li>
