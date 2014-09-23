@@ -73,7 +73,7 @@
                     values.push((indexedValues[curIndex] && indexedValues[curIndex][propsToPlot[i]]) || 0);
                 }
             }
-            myChartData.data.push({
+            myChartData.data.unshift({
                 x: current.format(options.dateFormat),
                 y: values});
             current.subtract(1, 'day');
