@@ -76,7 +76,9 @@
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
             'UserService', 'ActivityService', 'SocialInteractionService',
             'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
-            function ($scope, $rootScope, $state, $stateParams, $timeout, UserService, ActivityService, SocialInteractionService, campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
+            function ($scope, $rootScope, $state, $stateParams, $timeout,
+                      UserService, ActivityService, SocialInteractionService,
+                      campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
 
 
                 $scope.idea = idea;
@@ -144,7 +146,8 @@
                     });
                 }
 
-                $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
+                // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
+                $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner).concat(campaign.campaignLeads);
 
                 $scope.usersToBeInvited = [];
                 $scope.onUserSelected = function onUserSelected(selection) {
@@ -185,16 +188,24 @@
                 $scope.$watch('activity.mainEvent', validateActivity, true);
 
                 var initialized = false;
+                activityController.submitMode = 'Save';
+
                 function dirtyWatch(val, old) {
                     if(initialized) {
                         activityController.dirty = true;
-                        console.log('dirty');
+
+                        if((!$scope.inviteLocked  && activityController.inviteOthers === 'all') ||
+                            $scope.usersToBeInvited.length > 0) {
+                            activityController.submitMode = 'SaveAndInvite';
+                        } else {
+                            activityController.submitMode = 'Save';
+                        }
                     }
                 }
                 activityController.dirty = activityController.formActive && !activity.id;
 
                 $scope.$watch('activityController.inviteOthers', dirtyWatch);
-                $scope.$watch('usersToBeInvited', dirtyWatch);
+                $scope.$watch('usersToBeInvited', dirtyWatch, true);
                 $scope.$watch('activity', dirtyWatch, true);
                 $scope.$watch('socialInteraction', dirtyWatch, true);
 
@@ -243,7 +254,7 @@
                 $scope.saveActivity = function saveActivity() {
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
-                        $rootScope.$emit('clientmsg:success', 'activity.saved');
+
 
                         $scope.activity = savedActivity;
                         activityController.dirty = false;
@@ -309,12 +320,13 @@
 
                                 SocialInteractionService.postInvitation(invitation);
 
-                                if (emails.length > 0) {
+                                if (emails && emails.length > 0) {
                                     ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity);
                                 }
                             }
-
                         }
+
+                        $rootScope.$emit('clientmsg:success', 'activity.' + activityController.submitMode);
 
                         if(mode !== 'campaignlead') {
                             $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });

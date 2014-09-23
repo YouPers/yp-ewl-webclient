@@ -195,7 +195,7 @@
                 activity.link.back
             </button>
             <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
-                {{ 'activity.submit.' + mode | translate }}
+                {{ 'activity.submit.' + mode + activityController.submitMode | translate }}
             </button>
 
             <div class="publish" ng-if="mode === 'campaignlead'">
