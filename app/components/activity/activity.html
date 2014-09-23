@@ -61,7 +61,7 @@
             <activity-edit activity="activity" campaign="campaign"></activity-edit>
         </div>
 
-        <div ng-if="activityController.active && activity.id">
+        <div ng-if="activityController.active && activity.id && idea.defaultexecutiontype !== 'self'">
 
             <div>
                 <h4 translate>activity.header.invitedUsers</h4>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div ng-show="activityController.active && activityController.formEnabled" ng-if="mode !== 'campaignlead'">
+        <div ng-show="activityController.active && activityController.formEnabled" ng-if="mode !== 'campaignlead' && idea.defaultexecutiontype !== 'self'">
 
             <div>
                 <h4 translate>activity.header.inviteOthers</h4>
