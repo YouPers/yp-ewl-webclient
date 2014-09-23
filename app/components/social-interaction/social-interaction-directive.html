@@ -1,30 +1,43 @@
 <li class="list-group-item {{ componentClass(soi) }}" ng-click="openSocialInteraction(soi)">
     <div class="headers sheet secondary">
 
-    <div class="image">
-        <img ng-src="{{ soi.author.avatar }}">
-    </div>
-
-    <div class="info">
-
-
-        <div class="pull-right dismiss">
-            <a><i ng-click="dismissSocialInteraction($event, soi)" class="{{options.isCampaignLead ? 'fa fa-trash-o' : 'glyphicon glyphicon-remove'}}"></i></a>
+        <div class="image">
+            <img ng-src="{{ soi.author.avatar }}">
         </div>
 
-        <div class="authorType">{{ 'socialInteraction.header.' + soi.__t + '.' + soi.authorType | translate }}</div>
-        <div class="author">{{ soi.author.fullname }}</div>
+        <div class="info">
+
+
+            <div class="pull-right dismiss">
+                <a><i ng-click="dismissSocialInteraction($event, soi)"
+                      class="{{options.isCampaignLead ? 'fa fa-trash-o' : 'glyphicon glyphicon-remove'}}"></i></a>
+            </div>
+
+            <div class="authorType">{{ 'socialInteraction.header.' + soi.__t + '.' + soi.authorType | translate }}</div>
+            <div class="author">{{ soi.author.fullname }}</div>
+        </div>
+
+    </div>
+    <div class="sheet tertiary">
+        <div class="date">{{ (soi.publishFrom || soi.created) | fromNow }}</div>
     </div>
 
-</div>
-<div class="sheet tertiary">
-    <div class="date">{{ (soi.publishFrom || soi.created) | fromNow }}</div>
-</div>
+    <div class="content sheet tertiary">
+        <div class="ref-title" ng-if="soi.refDocs.length > 0">{{ soi.refDocs[0].doc.title }}</div>
+        <div class="title" ng-if="soi.title">{{ soi.title }}</div>
+        <div class="text" ng-if="soi.text">{{ soi.text }}</div>
+    </div>
 
-<div class="content sheet tertiary">
-    <div class="ref-title" ng-if="soi.refDocs.length > 0">{{ soi.refDocs[0].doc.title }}</div>
-    <div class="title" ng-if="soi.title">{{ soi.title }}</div>
-    <div class="text" ng-if="soi.text">{{ soi.text }}</div>
-</div>
+    <div class="sheet publish" ng-if="options.isCampaignLead">
+
+        <div class="text">
+            <span translate>activityOfferCard.published</span>
+
+        </div>
+        <div class="text">
+            <span>{{soi.publishFrom | date}} -</span>
+            <span>{{soi.publishTo | date}}</span>
+        </div>
+    </div>
 
 </li>
