@@ -103,6 +103,9 @@
                                     socialInteraction: socialInteraction.id,
                                     mode: options.isCampaignLead ? 'campaignlead' : undefined
                                 });
+                            } else {
+                                // sois that cannot be opened come here and do Nothing!
+                                // e.g. Messages
                             }
 
                         };
@@ -148,7 +151,7 @@
                             SocialInteractionService.postMessage(message).then(function (saved) {
                                 saved.author = $rootScope.principal.getUser();
                                 if (scope.onPost && _.isFunction(scope.onPost)) {
-                                    scope.onPost({message: message});
+                                    scope.onPost({message: saved});
                                 }
                                 scope.message = _.clone(messageTemplate);
                                 scope.options.composeFormShown = false;
