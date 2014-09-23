@@ -1,0 +1,94 @@
+
+
+<div ng-if="!topStressors">
+    <div class="row">
+        <div class="col-md-7 center-block text-center">
+            <span translate>focus.assessmentNotCompleted</span>
+        </div>
+    </div>
+</div>
+
+<div ng-if="topStressors.length == 0">
+    <div class="row">
+        <div class="col-md-7 center-block text-center">
+            <span translate>focus.assessmentNoStressors</span>
+        </div>
+    </div>
+</div>
+
+<div ng-if="topStressors">
+
+    <div class="row">
+
+        <div class="col-md-10 center-block">
+
+            <table class="table focus">
+                <thead>
+                <tr>
+                    <th class="left" translate>focus.header</th>
+
+                    <th translate>focus.none</th>
+                    <th class="active" translate>focus.low</th>
+                    <th translate>focus.medium</th>
+                    <th class="active" translate>focus.high</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="category in categories">
+                    <td class="left" translate>questionCategory.{{category}}</td>
+
+                    <td>
+                        <div class="bar" ng-class="needForActionClass(category)" ng-style="needForActionStyle(category)">
+
+                        </div>
+                    </td>
+
+                    <td class="active"><div></div></td>
+                    <td><div></div></td>
+                    <td class="active"><div></div></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!--<div class="row">-->
+
+        <!--<div class="col-md-10 center-block">-->
+
+
+            <!--<div class="row">-->
+                <!--<div class="col-md-12 focus-title">-->
+                    <!--<div translate>focus.whatFocus</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+
+                <!--<div class="col-md-8 col-md-offset-2">-->
+                    <!--<div class="row stressor" ng-repeat="stressor in topStressors">-->
+                        <!--<div class="col-md-1 index">{{$index + 1}}</div>-->
+                        <!--<div class="col-md-5 title">{{stressor.question.title}}</div>-->
+                        <!--<div class="col-md-5 category">{{'questionCategory.' + stressor.question.category | translate}}</div>-->
+                        <!--<div class="col-md-1 selection">-->
+                            <!--<input type="checkbox" ng-model="stressor.selected" ng-change="stressorSelected(stressor)"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-12 focus-title">-->
+                    <!--<div translate>focus.yourPersonalGoal.question</div>-->
+                    <!--<textarea id="personalGoal" ng-model="prefs.personalGoal" class="form-control" ng-blur="savePersonalGoal()" ng-attr-placeholder="{{'focus.yourPersonalGoal.placeholder' | translate}}"></textarea>-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+
+    <!--</div>-->
+
+</div>
