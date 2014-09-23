@@ -7,9 +7,11 @@
 
         "activities": {
             "current": "Eingeplante Aktivitäten",
-            "done": "Abgeschlossene Akt.",
+            "donePreview": "Abgeschlossene Akt.",
+            "done": "Abgeschlossene Aktivitäten",
             "offered": "Angebotene Aktivitäten",
-            "rejected": "Verworfene Akt."
+            "rejectedPreview": "Verworfene Akt.",
+            "rejected": "Verworfene Aktivitäten"
         },
         "invitations": "Einladungen",
         "recommendations": "Empfehlungen"
