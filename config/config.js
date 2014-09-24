@@ -9,8 +9,9 @@
 
 var environmentConfig = {
     dev: {
-        webclientUrl: 'http://localhost:9000',
-        backendUrl: 'http://localhost:8000',
+        name: 'dev',
+        webclientUrl: 'http://dev:9000',
+        backendUrl: 'http://dev:8000',
         translationSource: 'local',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-4'
@@ -20,8 +21,9 @@ var environmentConfig = {
         }
     },
     test: {
-        webclientUrl: 'http://localhost:9000',
-        backendUrl: 'http://localhost:8000',
+        name: 'test',
+        webclientUrl: 'http://dev:9000',
+        backendUrl: 'http://dev:8000',
         translationSource: 'local',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-4'
@@ -31,6 +33,7 @@ var environmentConfig = {
         }
     },
     ci: {
+        name: 'ci',
         webclientUrl: 'http://localhost:9000',
         backendUrl: 'https://cimaster.youpers.com/api',
         translationSource: 'local',
@@ -40,6 +43,7 @@ var environmentConfig = {
         }
     },
     cimaster: {
+        name: 'cimaster',
         webclientUrl: 'https://cimaster.youpers.com',
         backendUrl: 'https://cimaster.youpers.com/api',
         translationSource: 'local',
@@ -49,6 +53,7 @@ var environmentConfig = {
         }
     },
     uat: {
+        name: 'uat',
         backendUrl: 'https://uat.youpers.com/api',
         translationSource: 'local',
         googleAnalytics: {

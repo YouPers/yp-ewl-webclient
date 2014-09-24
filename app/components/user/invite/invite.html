@@ -23,7 +23,7 @@
 
         <div ng-if="showSignUp">
             <div class="row">
-                <div class="col-md-7 center-block">
+                <div class="col-md-7 col-md-offset-2">
 
                     <sign-up on-sign-up="onSignIn()"></sign-up>
 
@@ -35,17 +35,14 @@
         <div ng-if="!showSignUp">
 
             <div class="row">
-                <div class="col-md-10 center-block">
+                <div class="col-md-6 col-md-offset-3">
 
                     <sign-in on-sign-in="onSignIn()"></sign-in>
 
-                </div>
-            </div>
+                    <br/>
 
-            <div class="row">
-                <div class="col-md-12 text-center">
 
-                    <button class="btn btn-default" ng-click="toggleSignUp()" translate>
+                    <button class="btn btn-default pull-right" ng-click="toggleSignUp()" translate>
                         invite.signup
                     </button>
 

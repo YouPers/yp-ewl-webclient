@@ -9,10 +9,17 @@
 game-area {
 
   display: block;
+  position: relative;
 
   .area {
 
+    position: relative;
+
     .flex {
+
+      position: relative;
+
+      width: 645px;
 
       display: flex;
       flex-direction: column;
@@ -21,8 +28,6 @@ game-area {
       align-content: flex-start;
       align-items: flex-start;
       overflow: hidden;
-
-      position: relative;
 
       transition: 0.1s ease-out height;
 
@@ -36,7 +41,7 @@ game-area {
     .show-more {
       position: absolute;
       bottom: 20px;
-      right: 29px;
+      right: 20px;
       width: @yp-activity-event-card-width;
       padding: 1em 0;
       text-align: center;

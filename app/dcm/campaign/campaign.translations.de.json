@@ -1,4 +1,13 @@
 {
+    "clientmsg": {
+        "success": {
+            "campaign": {
+                "saved": "Kampagne gespeichert"
+            }
+        }
+    },
+
+
   "campaigns": {
     "group": {
       "active": "aktive kampagnen",

@@ -22,6 +22,26 @@
                         resolve: {
                             invitation: ['SocialInteractionService', '$stateParams', function (SocialInteractionService, $stateParams) {
                                 return SocialInteractionService.getSocialInteraction($stateParams.invitationId);
+                            }],
+
+                            onSignIn: ['$state', 'UserService', 'invitation', function ($state, UserService, invitation) {
+                                var onSignIn = function() {
+                                    $state.go('dhc.activity' , {
+                                        campaignId: invitation.activity.campaign, //TODO: check if it is the same as the users campaign
+                                        idea: invitation.activity.idea.id,
+                                        activity: invitation.activity.id,
+                                        socialInteraction: invitation.id
+                                    });
+                                };
+
+
+                                // if the user is authenticated we immediatly go to the corresponding activity so he can join
+                                if (UserService.principal.isAuthenticated()) {
+                                    onSignIn();
+                                } else {
+                                    return onSignIn;
+                                }
+
                             }]
                         }
                     });
@@ -29,22 +49,11 @@
                 $translateWtiPartialLoaderProvider.addPart('components/user/invite/invite');
             }])
 
-        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'invitation',
-            function ($scope, $rootScope, $state, $stateParams, UserService, invitation) {
+        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'invitation', 'onSignIn',
+            function ($scope, $rootScope, $state, $stateParams, UserService, invitation, onSignIn) {
 
 
-                $scope.onSignIn = function() {
-                    $scope.$state.go('dhc.activity' , {
-                        idea: invitation.activity.idea.id,
-                        activity: invitation.activity.id,
-                        socialInteraction: invitation.id
-                    });
-                };
-
-                // if the user is authenticated we immediatly go to the corresponding activity so he can join
-                if ($scope.principal.isAuthenticated()) {
-                    $scope.onSignIn();
-                }
+                $scope.onSignIn = onSignIn;
 
                 $scope.idea = invitation.idea;
 
