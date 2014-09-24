@@ -110,16 +110,17 @@
 
     .controller('HomeMessagesController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService',
         function ($scope, $rootScope, $state, UserService, SocialInteractionService) {
+            var self = this;
 
-            $scope.onMessageSaved = function (message) {
-                $scope.messages.unshift(message);
+            self.onMessageSaved = function (message) {
+                self.messages.unshift(message);
             };
 
-            $scope.soiRemoved = function (soi) {
-                _.remove($scope.messages, { id: soi.id });
+            self.soiRemoved = function (soi) {
+                _.remove(self.messages, { id: soi.id });
             };
 
-            $scope.soiEdited = function (soi) {
+            self.soiEdited = function (soi) {
                 $scope.editedMessage = soi;
             };
 
@@ -134,17 +135,18 @@
                     authorType: 'campaignLead'
                 };
 
-                var showOld = false;
-                if(showOld) {
-                    options.publishFrom = false;
-                    options.publishTo = false;
-                } else {
-                    options.publishFrom = false;
-                    options.publishTo = new Date();
-                }
+                $scope.$watch('homeController.showOld', function (showOld) {
+                    if(showOld) {
+                        options.publishFrom = false;
+                        options.publishTo = false;
+                    } else {
+                        options.publishFrom = false;
+                        options.publishTo = new Date();
+                    }
+                    SocialInteractionService.getMessages(options).then(function (messages) {
+                        self.messages = messages;
+                    });
 
-                SocialInteractionService.getMessages(options).then(function (messages) {
-                    $scope.messages = messages;
                 });
             }
         }]);
