@@ -1,0 +1,14 @@
+<div ng-controller="HomeMessagesController as msgCtrl" class="campaignMessages">
+    <h4 translate>dcmhome.messages</h4>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="homeController.showOld"> <span translate>dcmhome.showOld</span>
+        </label>
+    </div>
+    <social-interaction-message-composer on-post="msgCtrl.onMessageSaved(message)" edited-message="editedMessage"></social-interaction-message-composer>
+
+    <div>
+        <social-interaction soi="message" on-remove="msgCtrl.soiRemoved(socialInteraction)" on-edit="msgCtrl.soiEdited(socialInteraction)"
+                            ng-repeat="message in msgCtrl.messages"></social-interaction>
+    </div>
+</div>

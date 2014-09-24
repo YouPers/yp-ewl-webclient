@@ -33,7 +33,8 @@
             runningTotal: false,
             newestDay: newestDataDate,
             oldestDay: options.nrOfDaysToPlot ? moment(options.newestDay || newestDataDate).subtract(options.nrOfDaysToPlot,'days') : oldestDataDate,
-            dateFormat: 'D.M.'
+            dateFormat: 'D.M.',
+            reverseX: false
         });
 
         var propsToPlot = options.propsToPlot;
@@ -73,9 +74,15 @@
                     values.push((indexedValues[curIndex] && indexedValues[curIndex][propsToPlot[i]]) || 0);
                 }
             }
-            myChartData.data.unshift({
-                x: current.format(options.dateFormat),
-                y: values});
+            if (options.reverseX) {
+                myChartData.data.push({
+                    x: current.format(options.dateFormat),
+                    y: values});
+            } else {
+                myChartData.data.unshift({
+                    x: current.format(options.dateFormat),
+                    y: values});
+            }
             current.subtract(1, 'day');
         }
         return myChartData;

@@ -1,0 +1,37 @@
+<div class="composeMessage">
+    <a class="add-offer" ng-click="options.composeFormShown = true">
+        <span translate>composeMessageForm.show</span>
+        <i class="fa fa-plus"></i>
+    </a>
+
+    <div class="list-group-item" ng-if="options.composeFormShown">
+        <form name="composeMessageForm" class="form-horizontal" ng-submit="saveMessage(message)"
+              >
+
+            <input class="form-control" ng-model="message.title" required
+                   placeholder="{{ 'composeMessageForm.title.placeholder' | translate }}"/>
+            <textarea class="form-control" ng-model="message.text" required
+                      placeholder="{{ 'composeMessageForm.text.placeholder' | translate }}"></textarea>
+
+            <div>
+                <label translate>composeMessageForm.publishFrom.label</label>
+                <date-picker date="message.publishFrom"></date-picker>
+            </div>
+
+            <div>
+                <label translate>composeMessageForm.publishTo.label</label>
+                <date-picker date="message.publishTo"></date-picker>
+            </div>
+
+            <br/>
+            <button class="btn btn-default pull-right" ng-click="cancel(message)" translate>
+                composeMessageForm.cancel
+            </button>
+            <button class="btn btn-primary pull-right" type="submit" ng-disabled="composeMessageForm.$invalid"
+                    translate>
+                composeMessageForm.submit
+            </button>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>

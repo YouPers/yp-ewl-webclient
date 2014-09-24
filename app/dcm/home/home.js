@@ -106,5 +106,49 @@
                 }
             }
 
+        }])
+
+    .controller('HomeMessagesController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService',
+        function ($scope, $rootScope, $state, UserService, SocialInteractionService) {
+            var self = this;
+
+            self.onMessageSaved = function (message) {
+                self.messages.unshift(message);
+            };
+
+            self.soiRemoved = function (soi) {
+                _.remove(self.messages, { id: soi.id });
+            };
+
+            self.soiEdited = function (soi) {
+                $scope.editedMessage = soi;
+            };
+
+            init();
+           //-----------
+
+            function init() {
+                var options = {
+                    populate: 'author',
+                    targetId: $scope.campaign.id,
+                    authored: true,
+                    authorType: 'campaignLead'
+                };
+
+                $scope.$watch('homeController.showOld', function (showOld) {
+                    if(showOld) {
+                        options.publishFrom = false;
+                        options.publishTo = false;
+                    } else {
+                        options.publishFrom = false;
+                        options.publishTo = new Date();
+                    }
+                    SocialInteractionService.getMessages(options).then(function (messages) {
+                        self.messages = messages;
+                    });
+
+                });
+            }
         }]);
+
 }());

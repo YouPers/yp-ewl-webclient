@@ -24,7 +24,8 @@
       }
   },
     "composeMessageForm": {
-        "show": "Nachricht an die Kampagne",
+        "show": "Hinzufügen",
+        "cancel": "abbrechen",
 
 
         "title": {

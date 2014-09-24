@@ -3,12 +3,12 @@
     'use strict';
 
     angular.module('yp.components.socialInteraction')
-        .directive('socialInteraction', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService',
+        .directive('socialInteractionInbox', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService',
             function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService) {
                 return {
                     restrict: 'E',
                     scope: {},
-                    templateUrl: 'components/social-interaction/social-interaction-directive.html',
+                    templateUrl: 'components/social-interaction/social-interaction-inbox-directive.html',
 
                     link: function (scope, elem, attrs) {
 
@@ -18,28 +18,9 @@
                         var user = UserService.principal.getUser();
                         options.isCampaignLead = _.contains(user.roles, 'campaignlead');
 
-                        var messageTemplate = {
-                            author: user,
-                            authorType: 'campaignLead',
-
-                            targetSpaces: [{
-                                type: 'campaign',
-                                targetId: $stateParams.campaignId
-                            }],
-
-                            __t: 'Message',
-
-                            publishFrom: new Date(moment().startOf('day')),
-                            publishTo: new Date(moment().endOf('day'))
+                        scope.soiRemoved = function (soi) {
+                            _.remove(scope.socialInteractions, { id: soi.id });
                         };
-
-                        scope.componentClass = function (socialInteraction) {
-                            var authorType = socialInteraction.authorType;
-                            return 'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1);
-
-                        };
-
-                        scope.message = _.clone(messageTemplate);
 
                         if ($rootScope.principal.isAuthenticated()) {
                             var params = {
@@ -47,7 +28,7 @@
                                 populate: 'author',
                                 limit: 10
                             };
-                            if($state.current.name.indexOf('dcm') === 0) {
+                            if ($state.current.name.indexOf('dcm') === 0) {
                                 params.authored = true;
                             }
                             SocialInteractionService.getSocialInteractions(params).then(function (socialInteractions) {
@@ -56,12 +37,12 @@
                                     return si.authorType !== 'coach';
                                 });
 
-                                socialInteractions = _.sortBy(socialInteractions, function(si) {
+                                socialInteractions = _.sortBy(socialInteractions, function (si) {
                                     return new Date(si.publishFrom || si.created).getTime();
                                 }).reverse();
 
                                 _.each(socialInteractions, function (si) {
-                                    if(si.__t !== 'Message') {
+                                    if (si.__t !== 'Message') {
                                         si.idea = si.idea || si.activity.idea;
                                     }
                                 });
@@ -69,24 +50,59 @@
                                 scope.socialInteractions = socialInteractions;
                             });
                         }
+                    }
+                };
+            }])
 
-                        scope.saveMessage = function saveMessage() {
-                            SocialInteractionService.postMessage(scope.message).then(function(saved) {
-                                saved.author = user;
-                                scope.socialInteractions.push(saved);
-                                scope.message = _.clone(messageTemplate);
-                                scope.options.composeMessage = false;
-                            });
+        .directive('socialInteraction', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService',
+            function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService) {
+                return {
+                    restrict: 'E',
+                    scope: {
+                        soi: '=',
+                        onRemove: '&',
+                        onEdit: '&'
+                    },
+                    templateUrl: 'components/social-interaction/social-interaction-directive.html',
+
+                    link: function (scope, elem, attrs) {
+                        var user = UserService.principal.getUser();
+                        var options = scope.options = {};
+                        options.isCampaignLead = _.contains(user.roles, 'campaignlead');
+
+                        scope.componentClass = function (socialInteraction) {
+                            var authorType = socialInteraction.authorType;
+                            return 'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1);
+
+                        };
+
+                        scope.dismissSocialInteraction = function dismissSocialInteraction($event, socialInteraction) {
+                            $event.stopPropagation();
+                            var deleteOptions = {
+                                mode: options.isCampaignLead ? 'administrate' : 'normal'
+                            };
+
+                            SocialInteractionService.deleteSocialInteraction(socialInteraction.id, deleteOptions);
+                            if (scope.onRemove) {
+                                scope.onRemove({socialInteraction: socialInteraction});
+                            }
+                        };
+
+                        scope.editSocialInteraction = function ($event, socialInteraction) {
+                            socialInteraction._editMode = true;
+                            if (scope.onEdit) {
+                                scope.onEdit({socialInteraction: socialInteraction});
+                            }
                         };
 
                         scope.openSocialInteraction = function (socialInteraction) {
 
-                            if(options.isCampaignLead && socialInteraction.__t === 'Recommendation') {
+                            if (options.isCampaignLead && socialInteraction.__t === 'Recommendation') {
                                 $state.go('dcm.recommendation', {
                                     idea: socialInteraction.idea.id,
                                     socialInteraction: socialInteraction.id
                                 });
-                            }else if(socialInteraction.idea) {
+                            } else if (socialInteraction.idea) {
 
                                 $state.go((options.isCampaignLead ? 'dcm' : 'dhc') + '.activity', {
                                     campaignId: $stateParams.campaignId,
@@ -95,18 +111,92 @@
                                     socialInteraction: socialInteraction.id,
                                     mode: options.isCampaignLead ? 'campaignlead' : undefined
                                 });
+                            } else {
+                                // sois that cannot be opened come here and do Nothing!
+                                // e.g. Messages
                             }
 
                         };
 
-                        scope.dismissSocialInteraction = function dismissSocialInteraction($event, socialInteraction) {
-                            $event.stopPropagation();
-                            SocialInteractionService.deleteSocialInteraction(socialInteraction.id);
-                            _.remove(scope.socialInteractions, { id: socialInteraction.id });
+                    }
+                };
+            }])
+
+        .directive('socialInteractionMessageComposer', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService',
+            function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService) {
+                return {
+                    restrict: 'E',
+                    scope: {
+                        onPost: '&',
+                        editedMessage: '='
+                    },
+                    templateUrl: 'components/social-interaction/social-interaction-message-compose-directive.html',
+
+                    link: function (scope, elem, attrs) {
+
+                        var messageTemplate = {
+                            author: UserService.principal.getUser(),
+                            authorType: 'campaignLead',
+
+                            targetSpaces: [
+                                {
+                                    type: 'campaign',
+                                    targetId: $stateParams.campaignId
+                                }
+                            ],
+
+                            __t: 'Message',
+
+                            publishFrom: new Date(moment().startOf('day')),
+                            publishTo: new Date(moment().endOf('day'))
                         };
 
+                        scope.options = {
+                            composeFormShown: false
+                        };
+
+                        scope.$watch('editedMessage', function (newVal, oldVal) {
+                            if (newVal) {
+                                scope.message = newVal;
+                                scope.options.composeFormShown = true;
+                            }
+                        });
+
+
+                        if (!scope.message) {
+                            scope.message = _.clone(messageTemplate);
+                        }
+
+                        scope.cancel = function (message) {
+                            delete message._editMode;
+                            scope.options.composeFormShown = false;
+                            scope.message = _.clone(messageTemplate);
+                            scope.editedMessage = null;
+                        };
+
+                        scope.saveMessage = function saveMessage(message) {
+                            if (message.id) {
+                                SocialInteractionService.putSocialInteraction(message).then(function (saved) {
+                                    saved.author = $rootScope.principal.getUser();
+                                    delete message._editMode;
+                                    _.merge(message, saved);
+                                    scope.options.composeFormShown = false;
+                                    scope.message = _.clone(messageTemplate);
+                                    scope.editedMessage = null;
+                                });
+
+                            } else {
+                                SocialInteractionService.postMessage(message).then(function (saved) {
+                                    saved.author = $rootScope.principal.getUser();
+                                    if (scope.onPost && _.isFunction(scope.onPost)) {
+                                        scope.onPost({message: saved});
+                                    }
+                                    scope.message = _.clone(messageTemplate);
+                                    scope.options.composeFormShown = false;
+                                });
+                            }
+                        };
                     }
                 };
             }]);
-
 }());
