@@ -69,6 +69,9 @@
                 $scope.onSave = function () {
                     $scope.options.dropdownOpen = true;
                 };
+                $scope.back = function() {
+                    $state.go('homedispatcher');
+                };
 
             }
         ])
