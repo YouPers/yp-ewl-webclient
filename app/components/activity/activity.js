@@ -181,7 +181,8 @@
 
                 var validateActivity = _.debounce(function (mainEvent, old) {
 
-                    if (!old || _.isEqual(mainEvent, old)) {
+                    // cancel if mainEvent did not change, and the activity is not new
+                    if (_.isEqual(mainEvent, old) && !$scope.isScheduled && $scope.events.length > 0) {
                         return;
                     }
 
@@ -200,7 +201,6 @@
 
                     });
                 }, 200);
-
 
                 $scope.$watch('activity.mainEvent', validateActivity, true);
 
