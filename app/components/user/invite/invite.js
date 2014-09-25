@@ -39,9 +39,9 @@
                 var inviteController = this;
 
                 // if the user is authenticated, display a continue button
-                $scope.isAuthenticated = UserService.principal.isAuthenticated();
+                inviteController.isAuthenticated = UserService.principal.isAuthenticated();
 
-                if($scope.isAuthenticated) {
+                if(inviteController.isAuthenticated) {
 
                     // check the users campaign against the campaign of the activity
                     // log him out if it does not match, and show a message
@@ -54,7 +54,7 @@
 
                     if(invitation.activity.campaign !== user.campaign.id) {
                         UserService.logout().then(function () {
-                            $scope.isAuthenticated = false;
+                            inviteController.isAuthenticated = false;
                             inviteController.invalidCampaignUser = user;
                         });
                     }

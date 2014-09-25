@@ -19,8 +19,8 @@
 
                 <br/>
 
-                <h4 ng-if="!isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageUnauthenticated</h4>
-                <h4 ng-if="isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageAuthenticated</h4>
+                <h4 ng-if="!inviteController.isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageUnauthenticated</h4>
+                <h4 ng-if="inviteController.isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageAuthenticated</h4>
 
             </div>
         </div>
@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-                    <div ng-if="!isAuthenticated">
+                    <div ng-if="!inviteController.isAuthenticated">
 
                         <sign-in on-sign-in="onSignIn()"></sign-in>
 
@@ -52,7 +52,7 @@
 
                     </div>
 
-                    <div ng-if="isAuthenticated">
+                    <div ng-if="inviteController.isAuthenticated">
                         <br/>
                         <button class="btn btn-primary center-block" translate ng-click="showActivity()">
                             invite.continueToActivity
