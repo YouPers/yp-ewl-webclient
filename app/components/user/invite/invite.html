@@ -20,19 +20,7 @@
             </div>
         </div>
 
-
-        <div ng-if="showSignUp">
-            <div class="row">
-                <div class="col-md-7 col-md-offset-2">
-
-                    <sign-up on-sign-up="onSignIn()"></sign-up>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div ng-if="!showSignUp">
+        <div>
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -42,9 +30,19 @@
                     <br/>
 
 
-                    <button class="btn btn-default pull-right" ng-click="toggleSignUp()" translate>
-                        invite.signup
-                    </button>
+                    <p ng-if="!inviteController.invalidCampaignUser"
+                       translate
+                       translate-values="{ campaign: campaign }"
+                            >invite.noAccount</p>
+
+                    <div class="invalid-campaign" ng-if="inviteController.invalidCampaignUser">
+                        <h2 translate>invite.invalidCampaignHeader</h2>
+                        <p
+                                translate
+                                translate-values="{ campaign: campaign, invalidCampaignUser: inviteController.invalidCampaignUser }"
+                                >invite.invalidCampaign</p>
+                    </div>
+
 
                 </div>
             </div>

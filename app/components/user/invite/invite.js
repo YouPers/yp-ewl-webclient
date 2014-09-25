@@ -11,12 +11,12 @@
                         access: accessLevels.all
                     })
                     .state('invite.content', {
-                        url: "/invite/:invitationId",
+                        url: "/invite/:invitationId?invalidCampaign",
                         access: accessLevels.all,
                         views: {
                             content: {
                                 templateUrl: 'components/user/invite/invite.html',
-                                controller: 'InviteController'
+                                controller: 'InviteController as inviteController'
                             }
                         },
                         resolve: {
@@ -24,14 +24,30 @@
                                 return SocialInteractionService.getSocialInteraction($stateParams.invitationId);
                             }],
 
-                            onSignIn: ['$state', 'UserService', 'invitation', function ($state, UserService, invitation) {
+                            campaign: ['CampaignService', 'invitation', function (CampaignService, invitation) {
+                                return CampaignService.getCampaign(invitation.activity.campaign);
+                            }],
+
+                            onSignIn: ['$state', '$stateParams', 'UserService', 'invitation', function ($state, $stateParams, UserService, invitation) {
                                 var onSignIn = function() {
-                                    $state.go('dhc.activity' , {
-                                        campaignId: invitation.activity.campaign, //TODO: check if it is the same as the users campaign
-                                        idea: invitation.activity.idea.id,
-                                        activity: invitation.activity.id,
-                                        socialInteraction: invitation.id
-                                    });
+
+                                    // check the users campaign against the campaign of the activity
+                                    // log him out if it does not match, and show a message
+
+                                    var inviteController = this.inviteController;
+                                    var user = UserService.principal.getUser();
+                                    if(invitation.activity.campaign !== user.campaign.id) {
+                                        UserService.logout().then(function () {
+                                            inviteController.invalidCampaignUser = user;
+                                        });
+                                    } else {
+                                        $state.go('dhc.activity' , {
+                                            campaignId: invitation.activity.campaign, //TODO: check if it is the same as the users campaign
+                                            idea: invitation.activity.idea.id,
+                                            activity: invitation.activity.id,
+                                            socialInteraction: invitation.id
+                                        });
+                                    }
                                 };
 
 
@@ -49,12 +65,13 @@
                 $translateWtiPartialLoaderProvider.addPart('components/user/invite/invite');
             }])
 
-        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'invitation', 'onSignIn',
-            function ($scope, $rootScope, $state, $stateParams, UserService, invitation, onSignIn) {
+        .controller('InviteController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'invitation', 'campaign', 'onSignIn',
+            function ($scope, $rootScope, $state, $stateParams, UserService, invitation, campaign, onSignIn) {
 
 
                 $scope.onSignIn = onSignIn;
 
+                $scope.campaign = campaign;
                 $scope.idea = invitation.idea;
 
                 $scope.invitingUser = invitation.author;
