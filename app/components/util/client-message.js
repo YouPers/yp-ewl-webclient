@@ -208,8 +208,11 @@
 
                     $log[type].apply( $log, arguments );
 
-                    // post to backend
-                    if(_.contains(['error'], type)) {
+                    // post to backend if it is of type 'error' and it the error was not already caused by the backend
+                    // we identify whether this was caused by the backend by checking whether we have already a
+                    // request-id because the backend assigns each request a unique 'request-id'
+                    var isCausedByBackend = client.headers && client.headers['request-id'];
+                    if(_.contains(['error'], type) && !isCausedByBackend) {
                         var args = {
                             error: arguments,
                             client: client
