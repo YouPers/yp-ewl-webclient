@@ -38,7 +38,10 @@
 
                 var inviteController = this;
 
-                var onSignIn = function() {
+                // if the user is authenticated, display a continue button
+                $scope.isAuthenticated = UserService.principal.isAuthenticated();
+
+                if($scope.isAuthenticated) {
 
                     // check the users campaign against the campaign of the activity
                     // log him out if it does not match, and show a message
@@ -51,32 +54,27 @@
 
                     if(invitation.activity.campaign !== user.campaign.id) {
                         UserService.logout().then(function () {
+                            $scope.isAuthenticated = false;
                             inviteController.invalidCampaignUser = user;
                         });
-                    } else {
-                        $state.transitionTo('dhc.activity' , {
-                            campaignId: invitation.activity.campaign, //TODO: check if it is the same as the users campaign
-                            idea: invitation.activity.idea.id,
-                            activity: invitation.activity.id,
-                            socialInteraction: invitation.id
-                        });
                     }
-                };
 
-
-                // if the user is authenticated we immediatly go to the corresponding activity so he can join
-                if (UserService.principal.isAuthenticated()) {
-                    onSignIn();
                 }
-
-                $scope.onSignIn = onSignIn;
 
                 $scope.campaign = campaign;
                 $scope.idea = invitation.idea;
 
                 $scope.invitingUser = invitation.author;
-                $scope.toggleSignUp = function() {
-                    $scope.showSignUp = !$scope.showSignUp;
+
+
+
+                $scope.showActivity = function() {
+                    $state.transitionTo('dhc.activity' , {
+                        campaignId: invitation.activity.campaign, //TODO: check if it is the same as the users campaign
+                        idea: invitation.activity.idea.id,
+                        activity: invitation.activity.id,
+                        socialInteraction: invitation.id
+                    });
                 };
 
             }

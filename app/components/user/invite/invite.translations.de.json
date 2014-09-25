@@ -6,8 +6,11 @@
     },
 
   "invite": {
-    "header": "Herzlich willkommen - YouPers Digital Health",
-    "message": "<strong>{{user}}</strong> hat dich zu einer Aktivität eingeladen. Melde dich an, um daran teilzunehmen",
+    "header1": "Herzlich willkommen",
+    "header2": "YouPers Digital Health",
+    "continueToActivity": "Weiter zur Aktivität",
+    "messageUnauthenticated": "<strong>{{user}}</strong> hat dich zu der Aktivität <strong>{{ idea.title }}</strong> eingeladen. Melde dich an, um daran teilzunehmen",
+    "messageAuthenticated": "<strong>{{user}}</strong> hat dich zu der Aktivität <strong>{{ idea.title }}</strong> eingeladen.",
     "noAccount": "Noch nicht registriert? Öffne den Link in deiner Einladungsmail von <strong>{{ campaign.campaignLeads[0].fullname }}</strong> um an der Kampagne <strong>{{ campaign.title }}</strong> teilzunehmen!",
 
     "invalidCampaignHeader": "Achtung!",
