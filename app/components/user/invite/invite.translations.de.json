@@ -1,4 +1,10 @@
 {
+    "clientmsg": {
+        "error": {
+            "userWithoutcampaign": "Der aktuelle Benutzer hat keine Kampagne!"
+        }
+    },
+
   "invite": {
     "header": "Herzlich willkommen - YouPers Digital Health",
     "message": "<strong>{{user}}</strong> hat dich zu einer Aktivität eingeladen. Melde dich an, um daran teilzunehmen",
