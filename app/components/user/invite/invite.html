@@ -12,42 +12,55 @@
 
 
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-8 col-md-offset-2 text-center">
 
-                <h1 translate>invite.header</h1>
-                <h4 translate translate-values="{ user: invitingUser.fullname }">invite.message</h4>
+                <h1 translate>invite.header1</h1>
+                <h1 translate>invite.header2</h1>
+
+                <br/>
+
+                <h4 ng-if="!isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageUnauthenticated</h4>
+                <h4 ng-if="isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageAuthenticated</h4>
 
             </div>
         </div>
 
-
-        <div ng-if="showSignUp">
-            <div class="row">
-                <div class="col-md-7 col-md-offset-2">
-
-                    <sign-up on-sign-up="onSignIn()"></sign-up>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div ng-if="!showSignUp">
+        <div>
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
 
-                    <sign-in on-sign-in="onSignIn()"></sign-in>
+                    <div ng-if="!isAuthenticated">
 
-                    <br/>
+                        <sign-in on-sign-in="onSignIn()"></sign-in>
+
+                        <br/>
 
 
-                    <button class="btn btn-default pull-right" ng-click="toggleSignUp()" translate>
-                        invite.signup
-                    </button>
+                        <p ng-if="!inviteController.invalidCampaignUser"
+                           translate
+                           translate-values="{ campaign: campaign }"
+                                >invite.noAccount</p>
 
-                </div>
+                        <div class="invalid-campaign" ng-if="inviteController.invalidCampaignUser">
+                            <h2 translate>invite.invalidCampaignHeader</h2>
+                            <p
+                                    translate
+                                    translate-values="{ campaign: campaign, invalidCampaignUser: inviteController.invalidCampaignUser }"
+                                    >invite.invalidCampaign</p>
+                        </div>
+
+                    </div>
+
+                    <div ng-if="isAuthenticated">
+                        <br/>
+                        <button class="btn btn-primary center-block" translate ng-click="showActivity()">
+                            invite.continueToActivity
+                        </button>
+                    </div>
             </div>
+
+
 
         </div>
 
