@@ -3,7 +3,7 @@
 
     <section>
         <div class="header-row">
-            <h4 translate>{{ 'activity.header.first.' + mode }}</h4>
+            <h3 translate>{{ 'activity.header.first.' + mode }}</h3>
         </div>
 
         <div class="button-row">
@@ -14,7 +14,7 @@
 
                         >{{ 'activity.link.' + mode | translate }}</a>
 
-                <a class="btn btn-primary"
+                <a class="btn btn-default"
                    ng-show="socialInteraction"
                    ng-click="dismiss()"
 
@@ -46,7 +46,7 @@
 
     <section>
         <div class="header-row">
-            <h4 translate>activity.header.second</h4>
+            <h3 translate>activity.header.second</h3>
         </div>
 
         <div class="button-row">
@@ -77,7 +77,7 @@
         <div ng-if="activityController.active && activity.id && idea.defaultexecutiontype !== 'self'">
 
             <div>
-                <h4 translate>activity.header.invitedUsers</h4>
+                <h3 translate>activity.header.invitedUsers</h3>
             </div>
 
             <div class="invitedUser"
@@ -100,7 +100,7 @@
         <div ng-show="activityController.active && activityController.formEnabled" ng-if="mode !== 'campaignlead' && idea.defaultexecutiontype !== 'self'">
 
             <div>
-                <h4 translate>activity.header.inviteOthers</h4>
+                <h3 translate>activity.header.inviteOthers</h3>
             </div>
 
             <div class="btn-group btn-group-justified">
@@ -168,7 +168,7 @@
 
     <section>
         <div class="header-row">
-            <h4 translate>activity.header.third</h4>
+            <h3 translate>activity.header.third</h3>
         </div>
 
         <div class="button-row">
@@ -233,10 +233,10 @@
 
 
         <div class="box">
-            <h4>health coach messages</h4>
+            <h3>health coach messages</h3>
         </div>
         <div class="box">
-            <h4 translate>activity.header.comments</h4>
+            <h3 translate>activity.header.comments</h3>
 
             <div ng-if="isScheduled">
                 <activity-comments activity="activity"></activity-comments>

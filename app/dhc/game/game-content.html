@@ -2,7 +2,7 @@
 <div class="game-table">
     <game-area class="current-activities" ng-init="currentActivitiesAreaHeight = 22" area-height="currentActivitiesAreaHeight">
 
-        <div><h4 translate>game.activities.current</h4></div>
+        <div><h3 translate>game.activities.current</h3></div>
 
 
         <div class="flex" ng-style="{ height: $parent.currentActivitiesAreaHeight + 'em' }">
@@ -20,7 +20,7 @@
 
         <game-area-side-panel icon-class="fa-check" ui-sref="dhc.game({ view: 'done' })">
 
-            <div><h4 translate>game.activities.donePreview</h4></div>
+            <div><h3 translate>game.activities.donePreview</h3></div>
 
             <div class="done-activities">
                 <activity-event-stack type="past" events="doneEvents"></activity-event-stack>
@@ -35,7 +35,7 @@
 
     <game-area class="offered-activities" ng-init="offeredActivitiesAreaHeight = 11" area-height="offeredActivitiesAreaHeight">
 
-        <div><h4 translate>game.activities.offered</h4></div>
+        <div><h3 translate>game.activities.offered</h3></div>
 
 
         <div class="flex" ng-style="{ height: $parent.offeredActivitiesAreaHeight + 'em' }">
@@ -55,7 +55,7 @@
 
         <game-area-side-panel icon-class="fa-trash-o" ui-sref="dhc.game({ view: 'rejected' })">
 
-            <div><h4 translate>game.activities.rejectedPreview</h4></div>
+            <div><h3 translate>game.activities.rejectedPreview</h3></div>
 
             <div class="rejected-activities">
 

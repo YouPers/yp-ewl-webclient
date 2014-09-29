@@ -10,20 +10,22 @@
 body {
   color: @yp-text;
 }
-.subtitle {
-  color: @yp-subtitle;
+
+strong, .strong {
+  font-weight: 600;
 }
 
 body, p, span, .btn, .form-control {
   font-size: 14px;
-  font-style: normal;
-
 }
 
 body, h1, h2, h3, h4, h5, h6, p, .form-control, .btn  {
-  font-family: @yp-primary;
-  font-weight: 400;
-  font-style: normal;
+  font-family: @youpers-brand-font-family;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 10px 0 10px 0;
+
 }
 
 .form-control, input, textarea {
@@ -55,7 +57,7 @@ h1, h1 *,
 .header1, .header1 * {
   color: @yp-primary;
   font-size: 48px;
-  font-weight: 200;
+  font-weight: 300;
 }
 // h1 strong
 // welcome header, bold variation
@@ -70,70 +72,51 @@ h1 b, h1 strong,
 h2, h2 * ,
 .header2,.header2 * ,
 .main-header,.main-header * {
-  color: @yp-accent;
-  font-size: 28px;
-  font-weight: 200;
-
-//  padding: 1em 0;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
-.h2:hover, .h2:hover * ,
-.header2:hover, .header2:hover * ,
-.main-header:hover, .main-header:hover * {
-  text-decoration: none;
-  color: @yp-accent-hover;
-}
-
 // h3
 h3, h3 *,
 .header3, .header3 * {
-  color: @yp-primary;
-  font-size: 16px;
-  font-weight: 400;
-}
-
-// h4
-h4, h4 *,
-.header4, .header4 *, {
-  color: @yp-primary;
+  color: @yp-subtitle;
   font-size: 20px;
   font-weight: 300;
-  line-height: 19px;
 }
 
-// h5
-h5, .header5 {
-//  color: @yp-primary;
-  font-size: 16px;
-  font-weight: 500;
+.button {
+  font-size: 14px;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
-// h6
-h6, .header6 {
-  color: @yp-primary;
-  font-size: 14px;
-  font-weight: 300;
+.subhead {
+  font-size: 16px;
+  font-weight: 400;
 }
 
 
-// form components
-// -------------------------
+.caption {
+  font-size: 13px;
+  font-weight: 600;
+  color: @yp-subtitle;
+
+}
+.username {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 400;
+}
+
 
 label, .label1 {
-  color: @yp-primary;
-  font-size: 14px;
-  font-weight: 300;
-}
-
-.label2 {
-  color: @yp-primary;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
-}
-.label3 {
-  color: @yp-divider;
-  font-size: 14px;
-  font-weight: 400;
+  color: @yp-subtitle;
 }
 
 ::-webkit-input-placeholder {
@@ -146,46 +129,46 @@ label, .label1 {
 ::-moz-placeholder {
   color: @yp-placeholder !important;
 }
-
-// titles
-// -------------------------
-
-.title1 {
-  color: @yp-primary;
-  font-size: 16px;
-  font-weight: 400;
-}
-
-.title2 {
-  color: @yp-primary;
-  font-size: 20px;
-  font-weight: 400;
-}
-.title3 {
-  color: @yp-primary;
-  font-size: 14px;
-  font-weight: 300;
-}
-.title4 {
-  color: @yp-primary;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 25px;
-}
-
-// paragraphs
-
-p, .p1 {
-  // baseline
-}
-.p2 {
-  font-weight: 400;
-}
-.p3 {
-  color: @yp-primary;
-  font-weight: 400;
-}
-
+//
+//// titles
+//// -------------------------
+//
+//.title1 {
+//  color: @yp-primary;
+//  font-size: 16px;
+//  font-weight: 400;
+//}
+//
+//.title2 {
+//  color: @yp-primary;
+//  font-size: 20px;
+//  font-weight: 400;
+//}
+//.title3 {
+//  color: @yp-primary;
+//  font-size: 14px;
+//  font-weight: 300;
+//}
+//.title4 {
+//  color: @yp-primary;
+//  font-size: 24px;
+//  font-weight: 400;
+//  line-height: 25px;
+//}
+//
+//// paragraphs
+//
+//p, .p1 {
+//  // baseline
+//}
+//.p2 {
+//  font-weight: 400;
+//}
+//.p3 {
+//  color: @yp-primary;
+//  font-weight: 400;
+//}
+//
 
 // buttons
 

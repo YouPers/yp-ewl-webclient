@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="area">
 
-            <div><h4 translate>dcmhome.statsTitle</h4>
+            <div><h3 translate>dcmhome.statsTitle</h3>
                 <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign">
                     <span translate>dcmhome.moreStats</span>
                     <i class="fa fa-tachometer"></i>
@@ -10,7 +10,7 @@
             </div>
 
             <div ng-if="!campaign" class="panel panel-default">
-                <h4 translate>dcmhome.noCampaigns</h4>
+                <h3 translate>dcmhome.noCampaigns</h3>
                 <span translate>dcmhome.addCampaign</span>
                 <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
                     <span translate>dcmhome.organization.addCampaign</span>
@@ -33,7 +33,7 @@
                 </div>
 
                 <div ng-if="currentUserCount === 0" class="panel panel-default">
-                    <h4 translate>dcmhome.noParticipants</h4>
+                    <h3 translate>dcmhome.noParticipants</h3>
                     <p translate>dcmhome.addMoreUsers</p>
                     <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
                 </div>
@@ -52,7 +52,7 @@
         <game-area class="campaign-offers" ng-init="offersAreaHeight = 22" area-height="offersAreaHeight">
 
             <div>
-                <h4 translate>dcmhome.activities</h4>
+                <h3 translate>dcmhome.activities</h3>
 
 
 
