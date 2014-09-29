@@ -22,10 +22,26 @@ accordion.check .panel-title i {
 }
 accordion.check .panel-heading {
   padding: 0;
+  background-color: white;
+}
+accordion.check .panel-heading a:hover {
+  i {
+    color: @yp-accent-hover;
+  }
 }
 accordion.check .panel-heading a {
+
   text-decoration: none;
   cursor: pointer;
+  *.question-category-header {
+    .subhead();
+    color: @yp-primary;
+  }
+
+  i {
+    color: @yp-accent;
+    top:-2px;
+  }
 }
 
 .check .question:not(:last-of-type) {
@@ -45,6 +61,11 @@ accordion.check .panel-heading a {
     display: inline-block;
     cursor: pointer;
     margin-bottom: 0.5em;
+
+    span {
+      .subhead();
+      color: @yp-subtitle;
+    }
 
     i {
       margin: 3px 0 0 6px;
@@ -99,19 +120,19 @@ accordion.check .glyphicon-info-sign {
 }
 
 .impact-question {
-
+  .label1();
   text-align: center;
   padding-top: 5px;
 
 }
 
 .slider-caption-left {
-
+  .label1();
   float: left;
 }
 
 .slider-caption-right {
-
+  .label1();
   padding-left: 0;
   float: right;
 }
