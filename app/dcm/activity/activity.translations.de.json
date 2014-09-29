@@ -1,7 +1,8 @@
 {
     "clientmsg": {
         "recommendation": {
-            "saved": "Empfehlung gespeichert"
+            "saved": "Empfehlung gespeichert",
+            "deleted": "Empfehlung gelöscht"
         }
     },
 
@@ -92,6 +93,7 @@
           "label": "Bis",
           "placeholder": "Bis"
       },
-      "submit": "Speichern"
+      "submit": "Speichern",
+      "delete": "Empfehlung löschen"
   }
 }

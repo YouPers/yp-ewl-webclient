@@ -259,7 +259,7 @@
                     ActivityService.deleteActivity($scope.activity.id)
                         .then(function () {
                             $rootScope.$emit('clientmsg:success', 'activity.deleted');
-                            $state.go('dhc.game');
+                            $state.go('homedispatcher');
                         });
                 };
                 $scope.joinActivity = function joinActivity() {

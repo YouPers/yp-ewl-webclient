@@ -75,6 +75,15 @@
 
                 });
 
+                $scope.deleteRecommendation = function () {
+
+                    SocialInteractionService.deleteSocialInteraction($scope.recommendation.id).then(function () {
+                        $scope.$emit('clientmsg:success', 'recommendation.deleted');
+                        $state.go('homedispatcher');
+                    });
+
+                };
+
                 $scope.saveRecommendation = function saveRecommendation() {
 
                     // ensure start of date / end of day for publish dates
@@ -90,7 +99,7 @@
 
                     function cb() {
                         $scope.$emit('clientmsg:success', 'recommendation.saved');
-                        $state.go('dcm.home');
+                        $state.go('homedispatcher');
                     }
                 };
 
