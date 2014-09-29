@@ -1,84 +1,77 @@
 
-<div class="row game-table">
-    <div class="col-md-12">
+<div class="game-table">
+    <game-area class="current-activities" ng-init="currentActivitiesAreaHeight = 22" area-height="currentActivitiesAreaHeight">
 
-        <game-area class="current-activities" ng-init="currentActivitiesAreaHeight = 22" area-height="currentActivitiesAreaHeight">
-
-            <div><h4 translate>game.activities.current</h4></div>
+        <div><h4 translate>game.activities.current</h4></div>
 
 
-            <div class="flex" ng-style="{ height: $parent.currentActivitiesAreaHeight + 'em' }">
+        <div class="flex" ng-style="{ height: $parent.currentActivitiesAreaHeight + 'em' }">
 
 
-                <activity-event-stack type="current"
-                                      idea="activity.idea" activity="activity"
-                                      events="eventsByActivity[activity.id]"
-                                      ng-repeat="activity in activities"
-                                      ng-click="openActivity(activity)">
+            <activity-event-stack type="current"
+                                  idea="activity.idea" activity="activity"
+                                  events="eventsByActivity[activity.id]"
+                                  ng-repeat="activity in activities"
+                                  ng-click="openActivity(activity)">
 
-                </activity-event-stack>
+            </activity-event-stack>
 
+        </div>
+
+        <game-area-side-panel icon-class="fa-check" ui-sref="dhc.game({ view: 'done' })">
+
+            <div><h4 translate>game.activities.donePreview</h4></div>
+
+            <div class="done-activities">
+                <activity-event-stack type="past" events="doneEvents"></activity-event-stack>
             </div>
 
-            <game-area-side-panel icon-class="fa-check" ui-sref="dhc.game({ view: 'done' })">
+        </game-area-side-panel>
 
-                <div><h4 translate>game.activities.donePreview</h4></div>
-
-                <div class="done-activities">
-                    <activity-event-stack type="past" events="doneEvents"></activity-event-stack>
-                </div>
-
-            </game-area-side-panel>
-
-        </game-area>
-
-    </div>
+    </game-area>
 </div>
 
-<div class="row player">
-    <div class="col-md-12">
+<div class="player">
 
-        <game-area class="offered-activities" ng-init="offeredActivitiesAreaHeight = 11" area-height="offeredActivitiesAreaHeight">
+    <game-area class="offered-activities" ng-init="offeredActivitiesAreaHeight = 11" area-height="offeredActivitiesAreaHeight">
 
-            <div><h4 translate>game.activities.offered</h4></div>
-
-
-            <div class="flex" ng-style="{ height: $parent.offeredActivitiesAreaHeight + 'em' }">
+        <div><h4 translate>game.activities.offered</h4></div>
 
 
-                <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
-                                      activity="offer.activity"
-                                      idea="offer.idea"
-                                      social-interaction="offer"
-                                      ng-repeat="offer in offers"
-                                      ng-click="openSocialInteraction(offer)"
-                        >
+        <div class="flex" ng-style="{ height: $parent.offeredActivitiesAreaHeight + 'em' }">
 
-                </activity-offer-card>
 
+            <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
+                                 activity="offer.activity"
+                                 idea="offer.idea"
+                                 social-interaction="offer"
+                                 ng-repeat="offer in offers"
+                                 ng-click="openSocialInteraction(offer)"
+                    >
+
+            </activity-offer-card>
+
+        </div>
+
+        <game-area-side-panel icon-class="fa-trash-o" ui-sref="dhc.game({ view: 'rejected' })">
+
+            <div><h4 translate>game.activities.rejectedPreview</h4></div>
+
+            <div class="rejected-activities">
+
+                <activity-offer-card
+
+                        activity="offer.activity"
+                        idea="offer.idea"
+                        social-interaction="offer.socialInteraction"
+                        ng-repeat="offer in offersDismissed"
+
+                        ></activity-offer-card>
             </div>
 
-            <game-area-side-panel icon-class="fa-trash-o" ui-sref="dhc.game({ view: 'rejected' })">
+        </game-area-side-panel>
 
-                <div><h4 translate>game.activities.rejectedPreview</h4></div>
-
-                <div class="rejected-activities">
-
-                    <activity-offer-card
-
-                            activity="offer.activity"
-                            idea="offer.idea"
-                            social-interaction="offer.socialInteraction"
-                            ng-repeat="offer in offersDismissed"
-
-                            ></activity-offer-card>
-                </div>
-
-            </game-area-side-panel>
-
-        </game-area>
-
-    </div>
+    </game-area>
 
 </div>
 

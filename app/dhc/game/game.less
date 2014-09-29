@@ -3,6 +3,19 @@
 
 .dhc-game {
 
+  .three-column-layout {
+    section {
+      flex: 0 0 668px;
+      border: none;
+    }
+    section:first-of-type {
+      flex: 0 0 204px;
+    }
+    section:last-of-type {
+      flex: 0 0 265px;
+    }
+  }
+
   @side-panel-width: @yp-activity-event-card-width + 30px;
   game-area-side-panel > * {
     width: @side-panel-width;

@@ -2,28 +2,32 @@
 
 
     <section>
-        <h4 translate>{{ 'activity.header.first.' + mode }}</h4>
-
-        <div class="btn-group btn-group-justified">
-            <a class="btn btn-primary"
-               ng-click="activityController.active = true; activityController.formActive = activityController.formEnabled"
-               ng-class="{ invisible: activityController.active || activityController.dismissed }"
-
-               >{{ 'activity.link.' + mode | translate }}</a>
-
-            <a class="btn btn-primary"
-                    ng-show="socialInteraction"
-                    ng-click="dismiss()"
-
-                    ng-disabled="activityController.dismissed"
-                    translate>activity.link.dismiss</a>
+        <div class="header-row">
+            <h4 translate>{{ 'activity.header.first.' + mode }}</h4>
         </div>
 
-        <div>
+        <div class="button-row">
+            <div class="btn-group btn-group-justified">
+                <a class="btn btn-primary"
+                   ng-click="activityController.active = true; activityController.formActive = activityController.formEnabled"
+                   ng-class="{ invisible: activityController.active || activityController.dismissed }"
+
+                        >{{ 'activity.link.' + mode | translate }}</a>
+
+                <a class="btn btn-primary"
+                   ng-show="socialInteraction"
+                   ng-click="dismiss()"
+
+                   ng-disabled="activityController.dismissed"
+                   translate>activity.link.dismiss</a>
+            </div>
+        </div>
+
+        <div ng-if="socialInteraction">
 
             <activity-offer-card
 
-                    ng-if="socialInteraction" ng-class="{ dismissed: activityController.dismissed }"
+                    ng-class="{ dismissed: activityController.dismissed }"
 
                     idea="idea"
                     activity="activity"
@@ -41,25 +45,34 @@
     </section>
 
     <section>
-        <h4 translate>activity.header.second</h4>
+        <div class="header-row">
+            <h4 translate>activity.header.second</h4>
+        </div>
 
-        <div ng-show="activityController.active && !activityController.formActive">
+        <div class="button-row">
 
-            <div class="btn-group-justified" ng-if="activityController.formEnabled">
-                <a class="btn btn-default" ng-click="activityController.formActive = activityController.formEnabled" ng-disabled="activity.editStatus.indexOf('editable') !== 0" translate>activity.link.edit</a>
-                <a class="btn btn-default" ng-click="deleteActivity()" ng-disabled="activity.deleteStatus.indexOf('deletable') !== 0" translate>activity.link.delete</a>
+            <div ng-show="activityController.active && !activityController.formActive">
+
+
+                <div class="activity-edit-buttons btn-group-justified" ng-if="activityController.formEnabled">
+                    <a class="btn btn-primary" ng-click="activityController.formActive = activityController.formEnabled" ng-disabled="activity.editStatus.indexOf('editable') !== 0" translate>activity.link.edit</a>
+                    <a class="btn btn-warning" ng-click="deleteActivity()" ng-disabled="activity.deleteStatus.indexOf('deletable') !== 0" translate>activity.link.delete</a>
+
+                </div>
+
 
             </div>
 
-            <br/>
+        </div>
 
+        <div ng-show="activityController.active && !activityController.formActive">
             <activity-view activity="activity"></activity-view>
-
         </div>
 
         <div ng-if="activityController.active && activityController.formActive">
             <activity-edit activity="activity" campaign="campaign"></activity-edit>
         </div>
+
 
         <div ng-if="activityController.active && activity.id && idea.defaultexecutiontype !== 'self'">
 
@@ -154,7 +167,13 @@
     </section>
 
     <section>
-        <h4 translate>activity.header.third</h4>
+        <div class="header-row">
+            <h4 translate>activity.header.third</h4>
+        </div>
+
+        <div class="button-row">
+
+        </div>
 
         <div ng-show="activityController.active || activity.isOwner()">
 
@@ -189,13 +208,15 @@
 
     <section>
 
-        <div class="box">
+        <div class="header-row"></div>
+
+        <div class="button-row">
 
             <button class="btn btn-default backToGame" ng-click="backToGame()" translate>
                 activity.link.back
             </button>
             <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
-                {{ 'activity.submit.' + mode + activityController.submitMode | translate }}
+                {{ 'activity.submit.save' | translate }}
             </button>
 
             <div class="publish" ng-if="mode === 'campaignlead'">
@@ -209,6 +230,8 @@
 
             <div class="clearfix"></div>
         </div>
+
+
         <div class="box">
             <h4>health coach messages</h4>
         </div>

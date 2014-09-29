@@ -18,17 +18,18 @@
 
             <ul class="icons sheet secondary">
                 <li tooltip="{{ 'executiontype.' + idea.defaultexecutiontype | translate }}">
-                    <a class="execution-type" ng-if="idea.defaultexecutiontype == 'self'">
+                    <div class="execution-type" ng-if="idea.defaultexecutiontype == 'self'">
                         <i class="fa fa-user"></i>
-                    </a>
-                    <a class="execution-type" ng-if="idea.defaultexecutiontype == 'group'">
+                    </div>
+                    <div class="execution-type" ng-if="idea.defaultexecutiontype == 'group'">
                         <i class="fa fa-users"></i>
-                    </a>
+                    </div>
                 </li>
                 <li>
                     <a ng-if="activity.id"
                        ui-sref="dhc.activity({ activity: undefined })"
                        tooltip="{{ 'activity.reschedule' | translate }}"
+                       tooltip-append-to-body="true"
                        ng-click="$event.stopPropagation()"
                             >
                         <i class="fa fa-repeat"></i>

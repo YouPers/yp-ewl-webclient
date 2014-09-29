@@ -3,15 +3,21 @@
 i.fa {
   font-size: 30px;
   padding: 2px;
+  color: @yp-icon;
 }
 i.fa.disabled {
   color: @yp-divider;
 }
 
-a {
-//  color: @yp-accent;
-  transition: color 0.1s linear;
+
+
+a i.fa {
+  color: @yp-accent;
 }
+a:hover i.fa {
+  color: @yp-accent-hover;
+}
+
 a:hover, a i.fa:not(.disabled):hover, i.fa.active {
   cursor: pointer;
   color: @yp-accent-hover;

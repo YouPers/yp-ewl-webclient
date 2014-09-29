@@ -182,7 +182,7 @@
                 var validateActivity = _.debounce(function (mainEvent, old) {
 
                     // cancel if mainEvent did not change, and the activity is not new
-                    if (_.isEqual(mainEvent, old) && !$scope.isScheduled && $scope.events.length > 0) {
+                    if (_.isEqual(mainEvent, old) && $scope.isScheduled && $scope.events.length > 0) {
                         return;
                     }
 

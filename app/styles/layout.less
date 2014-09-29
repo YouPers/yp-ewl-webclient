@@ -64,8 +64,8 @@ body {
 
 
     section {
-      flex: 0 0 50%;
-      padding: 12px;
+      flex: 0 0 645px;
+      padding: 0 12px 12px 12px;
 
       > div.box {
         border-bottom: 1px solid @yp-divider;
@@ -98,14 +98,14 @@ body {
 
     margin-bottom: 1em;
 
+
     section:not(:first-of-type) {
       border-left: 1px solid @yp-divider;
     }
 
     section {
       flex: 0 0 25%;
-
-      padding: 12px;
+      padding: 0 12px 12px 12px;
 
       > div.box {
         border-bottom: 1px solid @yp-divider;
@@ -129,20 +129,30 @@ body {
 
 .three-column-layout, .four-column-layout {
 
+
+  .header-row {
+    height: 2em;
+    > * {
+      margin: 0;
+    }
+  }
+  .button-row {
+    height: 4em;
+  }
+
   section:last-of-type {
 
 
     .btn.submit, .btn.backToGame {
-      width: 100%;
-      white-space: normal;
       margin-bottom: 0.5em;
+      width: 48%;
     }
 
     .btn.submit {
-      height: 4em;
+      float: left;
     }
     .btn.backToGame {
-      height: 3em;
+      float: right;
     }
 
 

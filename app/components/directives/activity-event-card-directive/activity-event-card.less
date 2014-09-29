@@ -29,6 +29,10 @@ activity-event-card {
 
   > div:first-of-type {
 
+    .date, .location {
+      width: 50px;
+    }
+
     height: @yp-activity-event-image-height;
 
     display: flex;
@@ -81,13 +85,22 @@ activity-event-card {
 
     .control {
       float: right;
-      i.fa-times.active {
-        color: @yp-warning;
-      }
+
       i {
         font-size: 26px;
       }
     }
+  }
+
+  .status i.done.active {
+    color: @yp-done-selected;
+  }
+  .status i.missed.active {
+    color: @yp-missed-selected;
+  }
+
+  .rating i.active {
+    color: @yp-smiley-selected;
   }
 
 }
