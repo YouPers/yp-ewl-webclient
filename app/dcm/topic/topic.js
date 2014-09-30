@@ -25,12 +25,20 @@
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/topic/topic');
             }])
-        .controller('TopicController', [ '$scope', '$state', 'topics',
-            function ($scope, $state, topics) {
+        .controller('TopicController', [ '$scope', '$state', 'topics', '$sce',
+            function ($scope, $state, topics, $sce) {
                 if(topics.length < 1) {
                     $scope.$emit('clientmsg:error', 'topics.notFound');
                 }
                 $scope.topics = topics;
+
+                $scope.getRenderedText = function (text) {
+                    if (text) {
+                        return $sce.trustAsHtml(marked(text));
+                    } else {
+                        return "";
+                    }
+                };
             }
         ]);
 
