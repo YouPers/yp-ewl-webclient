@@ -16,17 +16,134 @@
                             }
                         },
                         resolve: {
+
                             activities: ['ActivityService', function(ActivityService) {
                                 return ActivityService.getActivities();
                             }],
+
+                            currentActivities: ['activities', function (activities) {
+                                return _.filter(activities, { status: 'active' });
+                            }],
+                            doneActivities: ['activities', function (activities) {
+                                return _.filter(activities, { status: 'old' });
+                            }],
+
                             offers: ['SocialInteractionService', function(SocialInteractionService) {
                                 return SocialInteractionService.getOffers({
                                     populate: 'author refDocs'
                                 });
                             }],
-                            activityEvents: ['ActivityService', function(ActivityService) {
+                            sortedOffers: ['offers', function (offers) {
+
+
+                                function sortOffers(list) {
+                                    function sortByDate(offer) {
+                                        return - new Date(offer.publishFrom || offer.created).getTime();
+                                    }
+                                    function addResult(target, source, cb) {
+                                        return target.concat(source.splice(_.findIndex(source, cb), 1));
+                                    }
+                                    var sorted = _.sortBy(list, sortByDate); // newest first
+                                    var result = [];
+                                    // find and remove first 3 offer types, add them to the results
+                                    result = addResult(result, sorted, { authorType: 'coach' });
+                                    result = addResult(result, sorted, { authorType: 'campaignLead' });
+                                    result = addResult(result, sorted, function(offer) {
+                                        return offer.authorType !== 'campaignLead' && offer.__t === 'Invitation';
+                                    });
+                                    result = result.concat(sorted); // add the rest
+                                    return result;
+                                }
+
+                                var filteredOffers = _.filter(offers, function(si) {
+                                    return !(si.dismissed || si.rejected);
+                                });
+                                return sortOffers(filteredOffers);
+
+                            }],
+                            dismissedOffers: ['offers', function (offers) {
+
+                                var offersDismissed = _.filter(offers, function(si) {
+                                    return si.dismissed || si.rejected;
+                                });
+                                var dismissedOffers = [];
+                                _.forEach(dismissedOffers, function (sid) {
+                                    dismissedOffers.push({
+                                        activity: sid.activity,
+                                        idea: sid.idea || sid.activity.idea,
+                                        socialInteraction: sid
+                                    });
+                                });
+                                return dismissedOffers;
+                            }],
+
+
+                            events: ['ActivityService', function(ActivityService) {
                                 return ActivityService.getActivityEvents();
-                            }]
+                            }],
+
+                            openEvents: ['events', function (events) {
+                                return _.filter(events, {status: 'open'}).reverse();
+                            }],
+
+                            missedEvents: ['events', function (events) {
+                                return _.filter(events, {status: 'missed'});
+                            }],
+
+                            doneEvents: ['events', function (events) {
+                                return _.filter(events, {status: 'done'});
+                            }],
+
+                            closedEvents: ['missedEvents', 'doneEvents', function (missedEvents, doneEvents) {
+                                return missedEvents.concat(doneEvents);
+                            }],
+
+                            pastEvents: ['ActivityService', 'openEvents', function (ActivityService, openEvents) {
+                                return _.filter(openEvents, function (event) {
+                                    return ActivityService.getActivityEventDueState(event) === 'Past';
+                                });
+                            }],
+                            presentEvents: ['ActivityService', 'openEvents', function (ActivityService, openEvents) {
+                                return _.filter(openEvents, function (event) {
+                                    return ActivityService.getActivityEventDueState(event) === 'Present';
+                                });
+                            }],
+
+
+                            healthCoachEvent: ['campaign', 'currentActivities', 'closedEvents', 'pastEvents', 'presentEvents',
+                                function (campaign, currentActivities, closedEvents, pastEvents, presentEvents) {
+
+                                    if(!campaign) {
+                                        return;
+                                    }
+
+                                    function getEventName() {
+
+                                        var daysUntilCampaignEnd = moment(campaign.end).diff(moment(), 'days');
+
+                                        if(currentActivities.length === 1 && closedEvents.length === 0) {
+                                            return 'noDoneEvents';
+                                        } else if(currentActivities.length === 0 && daysUntilCampaignEnd < 7) {
+                                            return 'noCurrentActivities';
+                                        } else if(pastEvents.length + presentEvents.length === 0 && currentActivities.length <=2 &&
+                                            daysUntilCampaignEnd >= 7) {
+                                            return 'noPastOrPresentEventsAndTooFewActivities';
+                                        } else if(pastEvents.length + presentEvents.length === 0 && currentActivities.length > 2) {
+                                            return 'noPastOrPresentEventsAndEnoughActivities';
+                                        } else if(pastEvents.length + presentEvents.length > 0) {
+                                            return 'pastOrPresentEvents';
+                                        } else if(pastEvents.length > 0) {
+                                            return 'pastEvents';
+                                        } else if(currentActivities.length > 0 && daysUntilCampaignEnd < 7) {
+                                            return 'campaignEndingWithCurrentActivities';
+                                        } else if(daysUntilCampaignEnd < 0) {
+                                            return 'campaignEnded';
+                                        }
+                                    }
+
+                                    return getEventName();
+
+                                }]
                         }
                     });
 
@@ -35,56 +152,33 @@
             }])
 
 
-        .controller('GameController', [ '$scope', '$state', '$stateParams', '$window', 'activities', 'offers', 'activityEvents',
-            function ($scope, $state, $stateParams, $window, activities, offers, activityEvents) {
+        .controller('GameController', [ '$scope', '$state', '$stateParams', '$window',
+            'activities', 'currentActivities', 'doneActivities',
+            'offers', 'sortedOffers', 'dismissedOffers',
+            'events', 'openEvents', 'missedEvents', 'doneEvents', 'closedEvents',
+            'healthCoachEvent',
+
+            function ($scope, $state, $stateParams, $window,
+                      activities, currentActivities, doneActivities,
+                      offers, sortedOffers, dismissedOffers,
+                      events, openEvents, missedEvents, doneEvents, closedEvents,
+                      healthCoachEvent
+                ) {
+
+                $scope.healthCoachEvent = healthCoachEvent;
 
                 $scope.view = $stateParams.view;
 
-                $scope.activities = _.filter(activities, { status: 'active' });
-                $scope.doneActivities = _.filter(activities, { status: 'old' });
+                $scope.activities = currentActivities;
+                $scope.doneActivities = doneActivities;
 
-                function sortOffers(list) {
-                    function sortByDate(offer) {
-                        return - new Date(offer.publishFrom || offer.created).getTime();
-                    }
-                    function addResult(target, source, cb) {
-                        return target.concat(source.splice(_.findIndex(source, cb), 1));
-                    }
-                    var sorted = _.sortBy(list, sortByDate); // newest first
-                    var result = [];
-                    // find and remove first 3 offer types, add them to the results
-                    result = addResult(result, sorted, { authorType: 'coach' });
-                    result = addResult(result, sorted, { authorType: 'campaignLead' });
-                    result = addResult(result, sorted, function(offer) {
-                        return offer.authorType !== 'campaignLead' && offer.__t === 'Invitation';
-                    });
-                    result = result.concat(sorted); // add the rest
-                    return result;
-                }
+                $scope.offers = sortedOffers;
+                $scope.offersDimissed = dismissedOffers;
 
-                $scope.offers = _.filter(offers, function(si) {
-                    return !(si.dismissed || si.rejected);
-                });
-                $scope.offers = sortOffers($scope.offers);
-
-                var offersDismissed = _.filter(offers, function(si) {
-                    return si.dismissed || si.rejected;
-                });
-                $scope.offersDismissed = [];
-                _.forEach(offersDismissed, function (sid) {
-                    $scope.offersDismissed.push({
-                        activity: sid.activity,
-                        idea: sid.idea || sid.activity.idea,
-                        socialInteraction: sid
-                    });
-                });
-
-                $scope.events = _.filter(activityEvents, {status: 'open'}).reverse();
+                $scope.events = openEvents;
                 $scope.eventsByActivity = _.groupBy($scope.events, 'activity');
 
-                $scope.doneEvents = _.filter(activityEvents, function(event) {
-                    return event.status === 'done' || event.status === 'missed';
-                });
+                $scope.closedEvents = closedEvents;
                 _.forEach($scope.doneEvents, function (event) {
                     event.activity = _.find($scope.activities, {id: event.activity });
                 });

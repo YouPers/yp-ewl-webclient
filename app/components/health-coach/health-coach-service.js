@@ -3,14 +3,23 @@
     'use strict';
 
     angular.module('yp.components.healthCoach')
-        .factory('HealthCoachService', ['Restangular',
-        function (Restangular) {
-            var baseUrl = '/coachmessages';
+        .factory('HealthCoachService', ['$state',
+        function ($state) {
+
+            var queuedMessage = undefined;
 
             var service = {
-                getCoachMessages: function(uistate) {
-                    return Restangular.all(baseUrl).getList({uistate: uistate});
+
+                queueMessage: function (message) {
+
+
+                },
+                getQueuedMessage: function () {
+                    var message = _.clone(queuedMessage);
+                    queuedMessage = undefined;
+                    return message;
                 }
+
             };
 
             return service;

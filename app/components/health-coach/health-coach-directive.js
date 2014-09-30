@@ -7,58 +7,22 @@
             function ($rootScope, HealthCoachService, $window, $timeout, $state, $translate, $sce) {
             return {
                 restrict: 'E',
-                scope: {},
+                scope: {
+                    event: '='
+                },
                 templateUrl: 'components/health-coach/health-coach-directive.html',
 
                 link: function (scope, elem, attrs) {
-                    HealthCoachService.getCoachMessages($state.current.name).then(function (result) {
-                        scope.coachMessages = result;
-                    });
-
-
-                    scope.isTranslatable = function() {
-                        return (scope.coachMessages &&
-                            scope.coachMessages.length >0 &&
-                            scope.coachMessages[0].lastIndexOf('hcmsg.') === 0);
-                    };
 
                     scope.getFormattedMessage = function(message) {
-                        if (scope.coachMessages && scope.coachMessages.length >0) {
-                            var myMsg = scope.coachMessages[0];
-                            if (myMsg.lastIndexOf('hcmsg.') === 0) {
-                                // this is a translatable ressource key
-                                return $sce.trustAsHtml('key' + myMsg);
-                            } else {
-                                return $sce.trustAsHtml(marked(myMsg));
-                            }
-                        } else {
-                            return "";
-                        }
+                        return $sce.trustAsHtml(marked(message));
                     };
 
-                    scope.dismiss = function() {
-                        scope.coachMessages = [];
-                    };
+                    scope.eventKey = scope.event ? $state.current.name + '.' + scope.event : undefined;
 
                     $rootScope.$on('healthCoach:displayMessage', function (event, message, interpolateParams) {
-                        if (!scope.coachMessages) {
-                            scope.coachMessages = [];
-                        }
-                        scope.coachMessages.unshift(message);
-                        scope.interpolateParams = interpolateParams;
+                        scope.coachMessage = scope.getFormattedMessage(message);
                         scope.$parent.$broadcast('initialize-scroll-along');
-                    });
-
-                    $rootScope.$on('event:authority-deauthorized', function() {
-                        HealthCoachService.getCoachMessages($state.current.name).then(function (result) {
-                            scope.coachMessages = result;
-                        });
-                    });
-
-                    $rootScope.$on('event:authority-authorized', function() {
-                        HealthCoachService.getCoachMessages($state.current.name).then(function (result) {
-                            scope.coachMessages = result;
-                        });
                     });
 
                 }
