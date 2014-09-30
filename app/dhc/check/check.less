@@ -22,10 +22,26 @@ accordion.check .panel-title i {
 }
 accordion.check .panel-heading {
   padding: 0;
+  background-color: white;
+}
+accordion.check .panel-heading a:hover {
+  i {
+    color: @yp-accent-hover;
+  }
 }
 accordion.check .panel-heading a {
+
   text-decoration: none;
   cursor: pointer;
+  *.question-category-header {
+    .subhead();
+    color: @yp-primary;
+  }
+
+  i {
+    color: @yp-accent;
+    top:-2px;
+  }
 }
 
 .check .question:not(:last-of-type) {
@@ -47,8 +63,10 @@ accordion.check .panel-heading a {
     margin-bottom: 0.5em;
 
     span {
-      .header3();
+      .subhead();
+      color: @yp-subtitle;
     }
+
     i {
       margin: 3px 0 0 6px;
     }
@@ -62,7 +80,7 @@ accordion.check .panel-heading a {
 //  border: 1px solid rgba(1,1,1,0.08) !important;
 }
 .check accordion .btn {
-  .header5();
+  .button();
   border: none;
   border-radius: 2px !important;
   box-shadow: none !important;
@@ -71,7 +89,7 @@ accordion.check .panel-heading a {
 .check .btn-group-justified {
   .btn-group:first-of-type, .btn-group:last-of-type {
     .btn.active {
-      color: @yp-warning !important;
+      color: @yp-accent !important;
     }
   }
   .btn-group {
@@ -102,25 +120,19 @@ accordion.check .glyphicon-info-sign {
 }
 
 .impact-question {
-  .p2();
-
-
+  .label1();
   text-align: center;
   padding-top: 5px;
 
 }
 
 .slider-caption-left {
-
   .label1();
-
   float: left;
 }
 
 .slider-caption-right {
-
   .label1();
-
   padding-left: 0;
   float: right;
 }

@@ -3,8 +3,10 @@
 
       "link": {
           "done": "Abschliessen",
-          "back": "Zurück zur Hauptseite"
+          "back": "Hauptseite"
       },
+
+      "header": "Selbstbeurteilung",
 
     "questionsAnswered": "Kriterien beurteilt"
   },

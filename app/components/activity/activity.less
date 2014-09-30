@@ -52,16 +52,34 @@
 
     }
   }
+
+  .event-list activity-event-card {
+    padding-bottom: 10px;
+  }
+
   .event-list:hover activity-event-card.conflict {
     animation: ConflictAnimation 0.8s;
     animation-fill-mode: forwards;
   }
 
+  .activity-edit-buttons {
+    > *:first-of-type {
+      float: left;
+    }
+    > *:last-of-type {
+      float: right;
+    }
+    > * {
+      width: 48%;
+    }
+  }
 
   activity-view {
     .dl-horizontal {
       dt {
         width: 90px;
+        padding-top: 2px;
+        .label1();
       }
       dd {
         margin-left: 105px;
@@ -140,7 +158,7 @@
   }
 
   .activity-event-card {
-    margin: 1em 2.4em;
+    margin: 0;
   }
 
   .invitedUser > div {

@@ -4,11 +4,19 @@
 
     <section>
 
+        <div class="header-row">
+            <h3 translate>check.header</h3>
+        </div>
+        <div class="button-row"></div>
+
         <idea-card idea="assessmentIdea"></idea-card>
 
     </section>
 
     <section>
+
+        <div class="header-row"></div>
+        <div class="button-row"></div>
 
         <ng-include src="'dhc/check/check-content.html'"></ng-include>
 
@@ -16,18 +24,27 @@
 
     <section>
 
+
+        <div class="header-row"></div>
+
+
         <div scroll-along>
 
-            <div class="actions">
+            <div class="button-row">
 
 
-                <button class="btn btn-default backToGame" ng-click="backClicked()" translate>
-                    check.link.back
-                </button>
+                <div class="actions">
 
-                <button class="btn btn-primary submit" ng-click="doneClicked()" translate>
-                    check.link.done
-                </button>
+
+                    <button class="btn btn-default backToGame" ng-click="backClicked()" translate>
+                        check.link.back
+                    </button>
+
+                    <button class="btn btn-primary submit" ng-click="doneClicked()" translate>
+                        check.link.done
+                    </button>
+
+                </div>
 
             </div>
 

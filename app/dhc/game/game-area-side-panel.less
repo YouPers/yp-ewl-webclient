@@ -1,11 +1,5 @@
-game-area-side-panel:hover {
 
-  cursor: pointer;
 
-  .toggleZoom {
-    color: @yp-accent-hover;
-  }
-}
 game-area-side-panel > * {
 
   position: absolute;
@@ -22,10 +16,19 @@ game-area-side-panel > * {
 
   transition: 0.2s ease margin;
 
-
-  .togglePreview:hover {
+  .togglePreview i.fa:first-of-type {
+    color: @yp-accent;
+  }
+  .togglePreview {
+    i.fa:not(first-of-type), i.fa:not(first-of-type):hover {
+      color: @yp-icon;
+    }
+  }
+  .togglePreview:hover i.fa:first-of-type {
     color: @yp-accent-hover;
   }
+
+
   .togglePreview {
 
     position: absolute;
@@ -35,9 +38,9 @@ game-area-side-panel > * {
     outline: 1px solid @yp-divider;
     z-index: 100;
     padding: 6px;
+
     i {
       font-size: 22px;
-      color: @yp-accent;
     }
   }
 }

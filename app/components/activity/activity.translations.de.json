@@ -53,13 +53,15 @@
           "recommendation": "Einplanen",
           "invitation": "Annehmen",
           "dismiss": "Verwerfen",
-          "back": "Zurück zur Hauptseite",
+          "back": "Hauptseite",
           "undo": "Rückgängig",
 
           "edit": "Ändern",
           "delete": "Löschen"
       },
       "submit": {
+
+          "save": "Speichern",
 
           "invitationSave": "Einladung annehmen und Termine speichern",
 

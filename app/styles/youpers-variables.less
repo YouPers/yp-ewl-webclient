@@ -7,25 +7,35 @@
 
 
 @yp-primary: #424242; // primary color for the app
+
 @yp-primary-contrast: #898989; // contrast color for text
 @yp-secondary: #FAFAFA; // secondary, used for background
 @yp-accent: #03a9f4; // accent color for clickable UI elements
 @yp-accent-hover: #0277bd; // hover
+
+@yp-warning: #ff8a80; // warning, used for warnings within the normal use cases
+@yp-error: #d50000; // unexpected errors
+
+@yp-text: rgba(0,0,0, 0.87); // contrast color for text
+@yp-subtitle: rgba(0,0,0, 0.54); // contrast color for text
 @yp-divider: rgba(0,0,0, 0.12); // borders / dividers
 @yp-outline: rgba(0,0,0, 0.56); // disabled buttons
 @yp-input: rgba(0,0,0, 0.56); // text color for form input elements
-@yp-placeholder: rgba(0,0,0, 0.32); // text color for placeholder in form elements
+@yp-placeholder: rgba(0,0,0, 0.36); // text color for placeholder in form elements
+@yp-icon: rgba(0,0,0, 0.36); // icons
 
-@yp-warning: #F4BA14; // warning, used for warnings within the normal use cases
-@yp-error: #f43e27; // unexpected errors
 
-@yp-event-future: @yp-primary; // text color for date of upcoming events
+@yp-done-selected: #0277bd; // "gemacht" icon selected
+@yp-missed-selected: #ff5252; // "verpasst" icon selected
+@yp-smiley-selected: @yp-accent-hover; // smiley selected, clicked
+
+@yp-event-future: @yp-subtitle; // text color for date of upcoming events
 @yp-event-present: @yp-accent; // today
-@yp-event-past: red; // overdue
+@yp-event-past: #FF5252; // overdue
 
-@yp-campaignLead: fade(#FF9800, 45%);
-@yp-coach: fade(@yp-accent, 45%);
-@yp-user: fade(@yp-primary, 45%);
+@yp-campaignLead: fade(#ffcfc0, 50%);
+@yp-coach: #e1f5fe;
+@yp-user: transparent;
 
 
 //@yp-primary-campaignLead: #FF9800;
@@ -44,7 +54,7 @@
 
 // assessment styling
 @yp-ass-slider-green: rgba(142,200,98, 0.7);
-@yp-ass-slider-red: rgba(228,79,80, 0.7);
+@yp-ass-slider-red: #ff1744;
 
 @yp-focus-color-low: rgba(142,200,98, 0.8);
 @yp-focus-color-low-gradient: rgba(142,200,98, 0.4);

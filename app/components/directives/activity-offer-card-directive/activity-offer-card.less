@@ -35,9 +35,6 @@ activity-offer-card {
       text-align: center;
       flex: 0 0 auto;
 
-      i {
-        font-size: 32px;
-      }
     }
 
     > div {
@@ -63,6 +60,13 @@ activity-offer-card {
 
   }
 
+  div.sheet.primary {
+
+    i {
+      font-size: 32px;
+      color: white;
+    }
+  }
   div.sheet.secondary {
     i {
       font-size: 14px;
@@ -98,12 +102,14 @@ activity-offer-card {
     white-space: normal;
     min-height: 3em;
     text-align: left;
+
     display: flex;
     justify-content:center;
     align-content:center;
     flex-direction:column;
     p {
       margin: 0;
+      .subhead();
     }
   }
 

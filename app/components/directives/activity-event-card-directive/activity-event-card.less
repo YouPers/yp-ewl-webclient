@@ -27,7 +27,16 @@ activity-event-card {
     font-size: 14px;
   }
 
+
+
+  .date, .location {
+    i.fa {
+      margin: 0 8px;
+    }
+  }
+
   > div:first-of-type {
+
 
     height: @yp-activity-event-image-height;
 
@@ -57,7 +66,11 @@ activity-event-card {
     align-items: center;
     justify-content: space-between;
 
+
+
     p {
+      .subhead();
+
       margin: 0;
       padding-left: 4px;
     }
@@ -81,13 +94,22 @@ activity-event-card {
 
     .control {
       float: right;
-      i.fa-times.active {
-        color: @yp-warning;
-      }
+
       i {
         font-size: 26px;
       }
     }
+  }
+
+  .status i.done.active {
+    color: @yp-done-selected;
+  }
+  .status i.missed.active {
+    color: @yp-missed-selected;
+  }
+
+  .rating i.active {
+    color: @yp-smiley-selected;
   }
 
 }
