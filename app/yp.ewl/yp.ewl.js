@@ -86,8 +86,8 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'yp.config', '$analytics',
-        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, config, $analytics) {
+    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'yp.config', '$analytics', '$sce',
+        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, config, $analytics, $sce) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -117,19 +117,14 @@ angular.module('yp-ewl',
                 });
             });
 
-            // TODO: goto proper history entry instead of forwarding to a new location
 
-            $rootScope.back = function() {
-                if (!$state.current.previous ||
-                    !$state.current.previous.name ||
-                    $state.current.previous.name === 'invite.content') {
 
-                    $state.go('home.content');
 
-                } else if($state.current.previous.name.indexOf('schedule') >= 0) {
-                    $state.go('select.content');
+            $rootScope.getRenderedText = function (text) {
+                if (text) {
+                    return $sce.trustAsHtml(marked(text));
                 } else {
-                    $state.go($state.current.previous.name);
+                    return "";
                 }
             };
 

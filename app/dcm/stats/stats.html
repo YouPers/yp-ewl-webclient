@@ -4,11 +4,19 @@
 
     <section>
 
+
+        <div class="header-row"></div>
+        <div class="button-row"></div>
+
+
         <campaign-card campaign="campaign"></campaign-card>
 
     </section>
 
     <section>
+
+        <div class="header-row"></div>
+        <div class="button-row"></div>
 
         <ng-include src="'dcm/stats/stats-content.html'"></ng-include>
 
@@ -16,11 +24,17 @@
 
     <section>
 
-        <div class="actions">
-            <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
-                check.link.back
-            </button>
+        <div class="header-row"></div>
+        <div class="button-row">
+
+            <div class="actions">
+                <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
+                    check.link.back
+                </button>
+            </div>
+            
         </div>
+
 
         <health-coach></health-coach>
     </section>

@@ -2,10 +2,24 @@
 
 
     <section>
+
+
+        <div class="header-row">
+            <h3 translate>organizationForm.header</h3>
+        </div>
+        <div class="button-row">
+
+        </div>
+
         <organization-card organization="organization"></organization-card>
+
     </section>
 
     <section>
+
+
+        <div class="header-row"></div>
+        <div class="button-row"></div>
 
         <div class="organization">
 
@@ -14,11 +28,6 @@
 
                     <form name="organizationForm" ypModel="organization" class="form-horizontal" role="form" novalidate
                           ng-submit="saveOrganization()">
-
-
-                        <div class="main-header">
-                            <span translate>organizationForm.header</span>
-                        </div>
 
                         <yp-input name="name"></yp-input>
                         <yp-input name="address.street"></yp-input>
@@ -48,9 +57,9 @@
                                     >
                         </div>
 
-                        <div class="main-header">
+                        <h3>
                             <span translate>organizationForm.contact.header</span>
-                        </div>
+                        </h3>
 
                         <yp-input name="user.firstname" required></yp-input>
                         <yp-input name="user.lastname" required></yp-input>
@@ -69,7 +78,8 @@
 
     <section>
 
-        <div class="box">
+        <div class="header-row"></div>
+        <div class="button-row">
 
             <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
                 activity.link.back

@@ -1,14 +1,19 @@
 <div class="three-column-layout">
 
     <section>
-        <div class="main-header">
-            <div translate>campaign.preview.header</div>
+        <div class="header-row">
+            <h3 translate>campaign.preview.header</h3>
         </div>
+        <div class="button-row"></div>
         <campaign-card campaign="campaign"></campaign-card>
 
     </section>
 
     <section>
+
+        <div class="header-row"></div>
+        <div class="button-row"></div>
+
         <form name="campaignForm" ypModel="campaign" role="form" class="form-horizontal"
               ng-submit="saveCampaign()" novalidate>
             <div class="col-md-12">
@@ -38,9 +43,9 @@
         </form>
         <div class="row">
             <div class="col-md-12">
-                <div class="main-header">
+                <h3>
                     <div translate>campaign.preview.welcomeLink</div>
-                </div>
+                </h3>
                 <div translate>campaign.preview.welcomeLinkExplain</div>
                 <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId:
                     campaign.id}, {absolute: true})}}
@@ -53,7 +58,7 @@
         <div ng-show="campaign.id">
             <div class="row">
                 <div class="col-md-12">
-                    <div translate class="main-header">campaign.campaignLeads.header</div>
+                    <h3 translate>campaign.campaignLeads.header</h3>
                 </div>
             </div>
             <div class="row campaign-leads" ng-repeat="campaignLead in campaign.campaignLeads">
@@ -105,14 +110,21 @@
     </section>
 
     <section>
-        <div class="actions">
-            <button type="button" class="btn btn-default backToGame" ui-sref="dcm.home">
-                <span translate>check.link.back</span>
-            </button>
-            <button ng-click="saveCampaign()" class="btn btn-primary backToGame" ng-disabled="campaignForm.$invalid">
-                <span translate>campaignForm.save</span>
-            </button>
+
+
+        <div class="header-row"></div>
+        <div class="button-row">
+            <div class="actions">
+                <button type="button" class="btn btn-default backToGame" ui-sref="dcm.home">
+                    <span translate>check.link.back</span>
+                </button>
+                <button ng-click="saveCampaign()" class="btn btn-primary submit" ng-disabled="campaignForm.$invalid">
+                    <span translate>campaignForm.save</span>
+                </button>
+            </div>
         </div>
+
+
 
         <health-coach></health-coach>
     </section>

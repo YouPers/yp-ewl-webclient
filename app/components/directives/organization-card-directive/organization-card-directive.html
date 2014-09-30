@@ -1,7 +1,8 @@
 <div class="organization">
 
     <div class="name sheet primary">
-        <i class="fa fa-institution"></i><span>{{organization.name}}</span>
+        <i class="fa fa-institution"></i>
+        <h2>{{organization.name}}</h2>
     </div>
 
     <div class="details sheet secondary">
@@ -11,6 +12,8 @@
         <div>
             {{ organization.address.zipCode }} {{ organization.address.city }}
         </div>
+
+
+        <div ng-transclude></div>
     </div>
-    <div ng-transclude></div>
 </div>
