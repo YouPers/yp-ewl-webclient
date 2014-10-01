@@ -26,7 +26,7 @@
                     scope.$watch('event', function () {
                         var eventKey = scope.event ? $state.current.name + '.' + scope.event : undefined;
                         $translate(eventKey).then(function (eventMessage) {
-                            scope.eventMessage = eventMessage;
+                            scope.eventMessage = scope.getFormattedMessage(eventMessage);
                         });
                     });
 

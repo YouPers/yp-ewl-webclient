@@ -32,5 +32,12 @@
           "stateEnter": "User ist auf der Handlungsbedarf-Seite"
       }
 
-  }
+  },
+
+    "dcm": {
+        "home": {
+            "organizationIncomplete": "Willkommen heissen. Erfasse zuerst die weiteren Daten zu deiner <a href='/#/organization/'>Organisation</a>.",
+            "noCampaigns": "Erstelle eine neue Kampagne"
+        }
+    }
 }
