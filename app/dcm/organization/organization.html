@@ -94,18 +94,8 @@
 
         </div>
 
-        <div ng-show="missingOrganizationFields.length > 0">
+        <health-coach></health-coach>
 
-            <h5 translate>organizationForm.missingOrganizationFieldsWarning.header</h5>
-            <p translate>organizationForm.missingOrganizationFieldsWarning.text</p>
-
-            <ul>
-                <li ng-repeat="field in missingOrganizationFields">
-                    {{ 'organizationForm.' + field + '.label' | translate }}
-                </li>
-            </ul>
-
-        </div>
 
     </section>
 

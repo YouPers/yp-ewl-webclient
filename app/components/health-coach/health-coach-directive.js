@@ -33,7 +33,7 @@
                     $rootScope.$on('healthCoach:event', function (event, healthCoachEvent) {
                         scope.event = healthCoachEvent;
                     });
-                    $rootScope.$on('healthCoach:displayMessage', function (event, message, interpolateParams) {
+                    $rootScope.$on('healthCoach:displayMessage', function (event, message) {
                         scope.coachMessage = scope.getFormattedMessage(message);
                         scope.$parent.$broadcast('initialize-scroll-along');
                     });

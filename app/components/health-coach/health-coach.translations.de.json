@@ -38,6 +38,9 @@
         "home": {
             "organizationIncomplete": "Willkommen heissen. Erfasse zuerst die weiteren Daten zu deiner <a href='/#/organization/'>Organisation</a>.",
             "noCampaigns": "Erstelle eine neue Kampagne"
+        },
+        "organization": {
+            "missingFields": "Folgende Angaben zu deiner Organisation fehlen noch: {{ fields }}"
         }
     }
 }
