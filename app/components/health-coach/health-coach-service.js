@@ -6,18 +6,17 @@
         .factory('HealthCoachService', ['$state',
         function ($state) {
 
-            var queuedMessage = undefined;
+            var queuedEvent = undefined;
 
             var service = {
 
-                queueMessage: function (message) {
-
-
+                queueEvent: function (event) {
+                    queuedEvent = event;
                 },
-                getQueuedMessage: function () {
-                    var message = _.clone(queuedMessage);
-                    queuedMessage = undefined;
-                    return message;
+                getQueuedEvent: function () {
+                    var event = _.clone(queuedEvent);
+                    queuedEvent = undefined;
+                    return event;
                 }
 
             };

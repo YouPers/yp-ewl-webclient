@@ -15,6 +15,9 @@
 
             $stateProvider
                 .state('dcm', {
+
+                    abstract: true,
+
                     url: "/dcm/campaign/:campaignId",
                     templateUrl: "layout/single-column.html",
                     controller: 'DcmController as dcmController',

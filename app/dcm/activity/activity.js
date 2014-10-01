@@ -7,7 +7,8 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, activityResolveConfiguration) {
                 $stateProvider
                     .state('dcm.activity', {
-                        url: "/idea/:idea/activity/:activity/socialInteraction/:socialInteraction/:mode",
+                        parent: 'dcm',
+                        url: "/idea/:idea/activity/:activity/socialInteraction/:socialInteraction",
                         access: accessLevels.all,
                         views: {
                             content: {

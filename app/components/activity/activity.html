@@ -9,7 +9,7 @@
         <div class="button-row">
             <div class="btn-group btn-group-justified">
                 <a class="btn btn-primary"
-                   ng-click="activityController.active = true; activityController.formActive = activityController.formEnabled"
+                   ng-click="acceptRecommendation()"
                    ng-class="{ invisible: activityController.active || activityController.dismissed }"
 
                         >{{ 'activity.link.' + mode | translate }}</a>
@@ -186,6 +186,7 @@
 
                         type="feedback"
                         event="event"
+                        isLastEvent="{{ $index === events.length - 1 }}"
 
                         ></activity-event-card>
 
@@ -236,6 +237,8 @@
 
         <div class="box">
             <h3>health coach messages</h3>
+
+            <health-coach event="healthCoachEvent"/>
         </div>
 
         <div class="box">

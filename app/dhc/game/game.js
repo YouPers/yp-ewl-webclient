@@ -121,7 +121,11 @@
 
                                         var daysUntilCampaignEnd = moment(campaign.end).diff(moment(), 'days');
 
-                                        if(currentActivities.length === 1 && closedEvents.length === 0) {
+                                        if(currentActivities.length > 0 && daysUntilCampaignEnd < 7) {
+                                            return 'campaignEndingWithCurrentActivities';
+                                        } else if(daysUntilCampaignEnd < 0) {
+                                            return 'campaignEnded';
+                                        } else if(currentActivities.length === 1 && closedEvents.length === 0) {
                                             return 'noDoneEvents';
                                         } else if(currentActivities.length === 0 && daysUntilCampaignEnd < 7) {
                                             return 'noCurrentActivities';
@@ -134,10 +138,6 @@
                                             return 'pastOrPresentEvents';
                                         } else if(pastEvents.length > 0) {
                                             return 'pastEvents';
-                                        } else if(currentActivities.length > 0 && daysUntilCampaignEnd < 7) {
-                                            return 'campaignEndingWithCurrentActivities';
-                                        } else if(daysUntilCampaignEnd < 0) {
-                                            return 'campaignEnded';
                                         }
                                     }
 
@@ -217,13 +217,15 @@
                 $scope.openDoneEvent = function(event) {
                     if(event.idea && event.idea.action) {
                         $scope.openIdea(event.idea);
+                    } else {
+                        $state.go('dhc.activity', { idea: event.idea.id, activity: event.activity, socialInteraction: '', mode: '' });
                     }
                 };
                 $scope.openActivity = function(activity) {
                     if(activity.idea.action) {
                         $scope.openIdea(activity.idea);
                     } else {
-                        $state.go('dhc.activity', { idea: activity.idea.id, activity: activity.id });
+                        $state.go('dhc.activity', { idea: activity.idea.id, activity: activity.id, socialInteraction: '', mode: '' });
                     }
                 };
 
@@ -231,7 +233,7 @@
 
                     $state.go('dhc.activity', {
                         idea: socialInteraction.idea.id,
-                        activity: socialInteraction.activity ? socialInteraction.activity.id : undefined,
+                        activity: socialInteraction.activity ? socialInteraction.activity.id : '',
                         socialInteraction: socialInteraction.id
                     });
 

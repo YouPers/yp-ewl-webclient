@@ -1,12 +1,12 @@
 <div class="health-coach">
 
-    <div ng-if="coachMessage || eventKey">
+    <div ng-if="coachMessage || eventMessage">
 
         <div class="avatar">
             <img ng-src="/assets/img/healthcoach.png">
         </div>
         <div class="message" ng-bind-html="coachMessage" ng-if="coachMessage"></div>
-        <div class="message" ng-if="eventKey" translate>{{eventKey}}</div>
+        <div class="message" ng-if="eventMessage" ng-bind="eventMessage"></div>
 
         <div class="clearfix"></div>
     </div>

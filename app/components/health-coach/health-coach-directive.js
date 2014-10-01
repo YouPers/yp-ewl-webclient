@@ -18,8 +18,21 @@
                         return $sce.trustAsHtml(marked(message));
                     };
 
-                    scope.eventKey = scope.event ? $state.current.name + '.' + scope.event : undefined;
+                    var queuedEvent = HealthCoachService.getQueuedEvent();
+                    if(queuedEvent) {
+                        scope.event = queuedEvent;
+                    }
 
+                    scope.$watch('event', function () {
+                        var eventKey = scope.event ? $state.current.name + '.' + scope.event : undefined;
+                        $translate(eventKey).then(function (eventMessage) {
+                            scope.eventMessage = eventMessage;
+                        });
+                    });
+
+                    $rootScope.$on('healthCoach:event', function (event, healthCoachEvent) {
+                        scope.event = healthCoachEvent;
+                    });
                     $rootScope.$on('healthCoach:displayMessage', function (event, message, interpolateParams) {
                         scope.coachMessage = scope.getFormattedMessage(message);
                         scope.$parent.$broadcast('initialize-scroll-along');

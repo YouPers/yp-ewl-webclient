@@ -11,6 +11,19 @@
           "campaignEndingWithCurrentActivities": "User ist auf der Hauptseite und die Kampagne dauert weniger als eine Woche und es hat noch eingeplante Aktivitäten.",
           "campaignEnded": "Der User ist auf der Hauptseite und die Kampagne ist zu Ende."
       },
+      "activity": {
+          "scheduleRecommendedActivity": "Hinweis, dass er hier das Angebot nun einplanen oder verwerfen kann. Für Aktivitäten, die auch in Gruppen durchgeführt werden können, kann er Leute gezielt einladen oder die Aktivität als offene Einladung an alle Arbeitskollegen verfügbar machen. Auch kann er in der rechten Spalte Kommentare hinterlassen, die bei Gruppenaktivitäten auch von anderen Mitarbeitern gelesen und und mit eigenen Kommentaren ergänzt werden können.",
+          "invitationAccepted": "Gratulation. Die Aktivität ist nun angenommen. Er wird auf der Hauptseite nun unter eingeplante Aktivitäten den/die entsprechenden Termin(e) sehen.",
+          "activitySaved": "Gratulation. Hinweis, das Aktivität nun unter eingeplante erscheint und (bei Gruppenaktivitäten) diese Aktivität nun für Eingeladene im unteren Bereich als dein Angebot sichtbar sein wird.",
+          "invitationDismissed": "Es kann durchaus Sinn machen, auch einmal bewusst auf eine Aktivität zu verzichten. Die verworfene Einladung wird auf der Hauptseite unter 'Verworfene Aktivitäten' erscheinen.",
+          "recommendationDismissed": "Es kann durchaus Sinn machen, auch einmal bewusst auf eine Aktivität zu verzichten. Die verworfene Einladung wird auf der Hauptseite unter 'Verworfene Aktivitäten' erscheinen.",
+          "recommendationAccepted": "Hinweise geben, dass die Aktivität erst dann eingeplant ist (und auf der Hauptseite unter eingeplante Aktivitäten erscheinen wird), wenn er nach der Einplanung auf 'abspeichern' klicken wird. Bei Gruppenaktivitäten kann er auch andere Mitarbeiter persönlich einladen oder auch die Gruppenaktivität für alle zugänglich machen.",
+          "eventDone": "Gratulation zur durchgeführten Aktivität. Weiter so auch beim nächsten Termin.",
+          "eventMissed": "Schade, kann mal passieren. Schaue, dass du den nächsten Termin durchführen kannst.",
+          "lastEventDone": "Gratulation zur abgeschlossenen Aktivität. Diese wird nun unter abgeschlossene Aktivitäten angezeigt.",
+          "lastEventMissed": "Diese wird nun unter abgeschlossene Aktivitäten angezeigt."
+      },
+
       "check": {
           "stateEnter": "User klickt auf die Assessmentkarte"
       },
