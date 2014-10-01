@@ -81,19 +81,19 @@
                     function getEventName() {
 
                         // workaround until we find a fix to have 2 distinct activity states with a dhc/dcm parent
-
-
                         if($state.$current.parent && $state.$current.parent.toString() === 'dhc') { // dhc
 
                             if(socialInteraction && socialInteraction.__t === 'Recommendation') {
                                 return 'scheduleRecommendedActivity';
+                            } else {
+                                return 'stateEnter';
                             }
 
 
 
                         } else { // dcm
 
-
+                            return 'stateEnter';
                         }
 
                     }
@@ -126,7 +126,10 @@
                 $scope.isScheduled = activity && activity.id;
 
                 var mode;
-                if (socialInteraction) {
+
+                if($state.$current.parent.name === 'dcm') {
+                    mode = 'campaignlead';
+                } else if (socialInteraction) {
                     mode = socialInteraction.__t.toLowerCase();
                 } else if ($scope.isScheduled && activity.isOwner()) {
                     mode = 'owned';
@@ -261,6 +264,7 @@
 
                 $scope.backToGame = function () {
                     if (mode === 'campaignlead') {
+                        HealthCoachService.queueEvent('invitationCreated');
                         $state.go('dcm.home');
                     } else {
                         $state.go('dhc.game');
@@ -291,6 +295,10 @@
                     }
                 };
 
+                $scope.editMode = function () {
+                    activityController.formActive = activityController.formEnabled;
+                    $scope.$root.$broadcast('healthCoach:event', 'editActivity');
+                };
                 $scope.deleteMode = function () {
                     activityController.deleteMode = true;
                     $scope.$root.$broadcast('healthCoach:event', 'deleteActivity');
@@ -386,10 +394,7 @@
                             }
                         }
 
-                        $rootScope.$emit('clientmsg:success', 'activity.' + activityController.submitMode);
-
                         if(mode !== 'campaignlead') {
-//                            $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
                             $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' });
                         }
 

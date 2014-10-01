@@ -15,7 +15,7 @@
                         >{{ 'activity.link.' + mode | translate }}</a>
 
                 <a class="btn btn-default"
-                   ng-show="socialInteraction"
+                   ng-show="mode !== 'campaignlead' && socialInteraction"
                    ng-click="dismiss()"
 
                    ng-disabled="activityController.dismissed"
@@ -55,7 +55,7 @@
 
 
                 <div class="activity-edit-buttons btn-group-justified" ng-if="activityController.formEnabled">
-                    <a class="btn btn-primary" ng-click="activityController.formActive = activityController.formEnabled" ng-disabled="activity.editStatus.indexOf('editable') !== 0" translate>activity.link.edit</a>
+                    <a class="btn btn-primary" ng-click="editMode()" ng-disabled="activity.editStatus.indexOf('editable') !== 0" translate>activity.link.edit</a>
                     <a class="btn btn-warning" ng-click="deleteMode()" ng-disabled="activity.deleteStatus.indexOf('deletable') !== 0" translate>activity.link.delete</a>
 
                 </div>

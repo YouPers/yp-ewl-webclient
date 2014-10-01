@@ -24,13 +24,28 @@
                             }],
 
 
-                            healthCoachEvent: ['OrganizationService', 'organization', 'campaigns',
-                                function (OrganizationService, organization, campaigns) {
+                            healthCoachEvent: ['OrganizationService', 'organization', 'campaigns', 'campaign',
+                                function (OrganizationService, organization, campaigns, campaign) {
+
+
+                                    var daysSinceCampaignStart = campaign ? moment().diff(moment(campaign.start), 'days') : undefined;
+                                    var daysUntilCampaignEnd = campaign ? moment(campaign.end).diff(moment(), 'days') : undefined;
+
 
                                     if(!OrganizationService.isComplete(organization)) {
                                         return 'organizationIncomplete'
                                     } else if(campaigns.length === 0) {
                                         return 'noCampaigns';
+                                    } else if(daysSinceCampaignStart === 0) {
+                                        return 'campaignStartedToday';
+                                    } else if(daysSinceCampaignStart >= 2 && daysSinceCampaignStart <= 7) {
+                                        return 'campaignFirstWeek';
+                                    } else if(daysSinceCampaignStart > 7 && daysUntilCampaignEnd > 7) {
+                                        return 'campaignAfterFirstWeek';
+                                    } else if(daysUntilCampaignEnd <= 7) {
+                                        return 'campaignLastWeek';
+                                    } else if(daysUntilCampaignEnd <= 0) {
+                                        return 'campaignEnded';
                                     }
 
 

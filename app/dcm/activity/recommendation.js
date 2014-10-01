@@ -38,8 +38,8 @@
             }])
 
         .controller('RecommendationController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
-            'UserService', 'SocialInteractionService', 'idea', 'socialInteraction',
-            function ($scope, $rootScope, $state, $stateParams, $timeout,  UserService, SocialInteractionService, idea, socialInteraction) {
+            'UserService', 'SocialInteractionService', 'HealthCoachService', 'idea', 'socialInteraction',
+            function ($scope, $rootScope, $state, $stateParams, $timeout,  UserService, SocialInteractionService, HealthCoachService, idea, socialInteraction) {
 
                 $scope.idea = idea;
 
@@ -78,8 +78,8 @@
                 $scope.deleteRecommendation = function () {
 
                     SocialInteractionService.deleteSocialInteraction($scope.recommendation.id).then(function () {
-                        $scope.$emit('clientmsg:success', 'recommendation.deleted');
-                        $state.go('homedispatcher');
+                        HealthCoachService.queueEvent('recommendationDeleted');
+                        $state.go('dcm.home', $stateParams);
                     });
 
                 };
@@ -98,8 +98,8 @@
                     }
 
                     function cb() {
-                        $scope.$emit('clientmsg:success', 'recommendation.saved');
-                        $state.go('homedispatcher');
+                        HealthCoachService.queueEvent('recommendationCreated');
+                        $state.go('dcm.home', $stateParams);
                     }
                 };
 
