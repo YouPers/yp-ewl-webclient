@@ -26,7 +26,8 @@
 
           "invitedUsers": "Teilnehmer",
           "inviteOthers": "Andere einladen",
-          "comments": "Kommentare"
+          "comments": "Kommentare",
+          "publish": "Einladung publizieren"
       },
 
       "inviteOthers": {

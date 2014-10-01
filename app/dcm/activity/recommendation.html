@@ -36,23 +36,26 @@
     <section>
 
         <div class="header-row"></div>
-        <div class="button-row"></div>
+        <div class="button-row">
 
-            <dl class="dl-horizontal">
-                <dt>
-                    <label translate>recommendationForm.title.label</label>
-                </dt>
-                <dd>
-                    <input class="form-control" ng-model="recommendation.title" placeholder="{{ 'recommendationForm.title.placeholder' | translate }}" />
-                </dd>
-                <dt>
-                    <label translate>recommendationForm.text.label</label>
-                </dt>
-                <dd>
-                    <textarea class="form-control" ng-model="recommendation.text" placeholder="{{ 'recommendationForm.text.placeholder' | translate }}"></textarea>
-                </dd>
+            <button ng-if="recommendation.id" class="btn btn-warning delete pull-right" ng-click="deleteRecommendation()"  translate>
+                recommendationForm.delete
+            </button>
 
-            </dl>
+        </div>
+
+        <h3 translate>recommendationForm.header.publish</h3>
+
+        <div class="publish">
+
+            <label translate>recommendationForm.publishFrom.label</label>
+            <date-picker date="recommendation.publishFrom"></date-picker>
+            <label translate>recommendationForm.publishTo.label</label>
+            <date-picker date="recommendation.publishTo"></date-picker>
+
+        </div>
+
+        <div class="clearfix"></div>
 
 
     </section>
@@ -76,22 +79,7 @@
 
 
 
-        <div class="publish">
 
-            <label translate>recommendationForm.publishFrom.label</label>
-            <date-picker date="recommendation.publishFrom"></date-picker>
-            <label translate>recommendationForm.publishTo.label</label>
-            <date-picker date="recommendation.publishTo"></date-picker>
-
-        </div>
-
-        <div class="clearfix"></div>
-
-        <div class="box" ng-if="recommendation.id">
-            <button class="btn btn-warning delete" ng-click="deleteRecommendation()"  translate>
-                recommendationForm.delete
-            </button>
-        </div>
 
         <health-coach event="'stateEnter'"></health-coach>
 

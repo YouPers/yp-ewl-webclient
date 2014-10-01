@@ -74,6 +74,24 @@
         </div>
 
 
+        <div  ng-if="mode === 'campaignlead'">
+
+            <h3 translate>activity.header.publish</h3>
+
+            <div class="publish">
+
+
+                <label translate>activity.publishFrom.label</label>
+                <date-picker date="socialInteraction.publishFrom" min-date="campaign.start" max-date="campaign.end"></date-picker>
+                <label translate>activity.publishTo.label</label>
+                <date-picker date="socialInteraction.publishTo" min-date="campaign.start" max-date="campaign.end"></date-picker>
+
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+
         <div ng-if="activityController.active && activity.id && idea.defaultexecutiontype !== 'self'">
 
             <div>
@@ -229,17 +247,6 @@
 
         </div>
 
-
-        <div class="publish" ng-if="mode === 'campaignlead'">
-
-            <label translate>activity.publishFrom.label</label>
-            <date-picker date="socialInteraction.publishFrom" min-date="campaign.start" max-date="campaign.end"></date-picker>
-            <label translate>activity.publishTo.label</label>
-            <date-picker date="socialInteraction.publishTo" min-date="campaign.start" max-date="campaign.end"></date-picker>
-
-        </div>
-
-        <div class="clearfix"></div>
 
 
         <div class="box">
