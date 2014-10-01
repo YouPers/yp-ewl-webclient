@@ -291,10 +291,14 @@
                     }
                 };
 
+                $scope.deleteMode = function () {
+                    activityController.deleteMode = true;
+                    $scope.$root.$broadcast('healthCoach:event', 'deleteActivity');
+                };
+
                 $scope.deleteActivity = function deleteActivity() {
                     ActivityService.deleteActivity($scope.activity.id)
                         .then(function () {
-                            $rootScope.$emit('clientmsg:success', 'activity.deleted');
                             $state.go('homedispatcher');
                         });
                 };

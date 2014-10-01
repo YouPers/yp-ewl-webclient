@@ -21,7 +21,8 @@
           "eventDone": "Gratulation zur durchgeführten Aktivität. Weiter so auch beim nächsten Termin.",
           "eventMissed": "Schade, kann mal passieren. Schaue, dass du den nächsten Termin durchführen kannst.",
           "lastEventDone": "Gratulation zur abgeschlossenen Aktivität. Diese wird nun unter abgeschlossene Aktivitäten angezeigt.",
-          "lastEventMissed": "Diese wird nun unter abgeschlossene Aktivitäten angezeigt."
+          "lastEventMissed": "Diese wird nun unter abgeschlossene Aktivitäten angezeigt.",
+          "deleteActivity": "Warnung, was die Löschung einer Planung auslöst."
       },
 
       "check": {

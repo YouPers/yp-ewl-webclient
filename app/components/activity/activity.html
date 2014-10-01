@@ -51,12 +51,12 @@
 
         <div class="button-row">
 
-            <div ng-show="activityController.active && !activityController.formActive">
+            <div ng-show="activityController.active && !activityController.formActive && !activityController.deleteMode">
 
 
                 <div class="activity-edit-buttons btn-group-justified" ng-if="activityController.formEnabled">
                     <a class="btn btn-primary" ng-click="activityController.formActive = activityController.formEnabled" ng-disabled="activity.editStatus.indexOf('editable') !== 0" translate>activity.link.edit</a>
-                    <a class="btn btn-warning" ng-click="deleteActivity()" ng-disabled="activity.deleteStatus.indexOf('deletable') !== 0" translate>activity.link.delete</a>
+                    <a class="btn btn-warning" ng-click="deleteMode()" ng-disabled="activity.deleteStatus.indexOf('deletable') !== 0" translate>activity.link.delete</a>
 
                 </div>
 
@@ -212,13 +212,20 @@
         <div class="header-row"></div>
 
         <div class="button-row">
-
             <button class="btn btn-default backToGame" ng-click="backToGame()" translate>
                 activity.link.back
             </button>
-            <button class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
+
+            <button ng-if="!activityController.deleteMode" class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
                 {{ 'activity.submit.save' | translate }}
             </button>
+
+
+            <button ng-if="activityController.deleteMode" class="btn btn-warning submit" ng-click="deleteActivity()">
+                {{ 'activity.submit.delete' | translate }}
+            </button>
+
+
 
         </div>
 
