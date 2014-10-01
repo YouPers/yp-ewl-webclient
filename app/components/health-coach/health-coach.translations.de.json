@@ -37,10 +37,17 @@
     "dcm": {
         "home": {
             "organizationIncomplete": "Willkommen heissen. Erfasse zuerst die weiteren Daten zu deiner <a href='/#/organization/'>Organisation</a>.",
-            "noCampaigns": "Erstelle eine neue Kampagne"
+            "noCampaigns": "Gratulation zum Erfassen der Organisation. Und nun kannst du deine erste Kampagne erfassen. Beachte hierbei, dass du pro Ort, Teilnehmerkreis, Zeit und Thema unterschiedliche Kampagnen erstellen und durchführen kannst.",
+            "campaignCreated": "User klickt nach Ausfüllen einer neuen Kampagne auf 'Speichern'"
         },
         "organization": {
             "missingFields": "Folgende Angaben zu deiner Organisation fehlen noch: {{ fields }}"
+        },
+        "campaign": {
+            "stateEnter": "Der User ist auf der Kampagnen-Edit Seite."
+        },
+        "ideas": {
+            "stateEnter": "Der User ist auf der Aktivitätenliste."
         }
     }
 }

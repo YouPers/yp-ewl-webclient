@@ -144,7 +144,6 @@
                         UserService.putUser(user);
                     }
 
-                    $scope.$emit('clientmsg:success', 'organization.saved');
                     $scope.validateOrganizationModel();
                 };
 
