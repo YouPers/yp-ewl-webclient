@@ -67,7 +67,7 @@
                                     return si.dismissed || si.rejected;
                                 });
                                 var dismissedOffers = [];
-                                _.forEach(dismissedOffers, function (sid) {
+                                _.forEach(offersDismissed, function (sid) {
                                     dismissedOffers.push({
                                         activity: sid.activity,
                                         idea: sid.idea || sid.activity.idea,

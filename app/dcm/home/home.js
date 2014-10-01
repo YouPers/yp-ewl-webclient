@@ -33,7 +33,7 @@
 
 
                                     if(!OrganizationService.isComplete(organization)) {
-                                        return 'organizationIncomplete'
+                                        return 'organizationIncomplete';
                                     } else if(campaigns.length === 0) {
                                         return 'noCampaigns';
                                     } else if(daysSinceCampaignStart === 0) {

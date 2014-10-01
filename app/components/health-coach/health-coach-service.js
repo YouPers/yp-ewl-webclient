@@ -6,7 +6,7 @@
         .factory('HealthCoachService', ['$state',
         function ($state) {
 
-            var queuedEvent = undefined;
+            var queuedEvent;
 
             var service = {
 
