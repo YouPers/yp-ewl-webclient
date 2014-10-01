@@ -108,10 +108,10 @@
                 };
 
                 $scope.validateOrganizationModel = function () {
-                    $scope.missingOrganizationFields = [];
+                    var missingOrganizationFields = [];
                     _.each($scope.organizationForm, function (val, key) {
                         if(key.indexOf('$') !== 0 && !val.$modelValue) {
-                            $scope.missingOrganizationFields.push(val.$name);
+                            missingOrganizationFields.push(val.$name);
                         }
                     });
 
@@ -121,14 +121,19 @@
                     ];
                     _.each(requiredSelectModels, function (model) {
                         if(!$scope.organization[model]) {
-                            $scope.missingOrganizationFields.push(model);
+                            missingOrganizationFields.push(model);
                         }
                     });
-                };
 
-                $scope.$watch('organization', function (val, old) {
-                    $scope.validateOrganizationModel();
-                }, true);
+                    if(missingOrganizationFields.length > 0) {
+                        var markdown = '';
+                        _.each(missingOrganizationFields, function (field) {
+                            markdown += '\n - ' + $filter('translate')('organizationForm.' + field + '.label');
+                        });
+                        var message = $filter('translate')('dcm.organization.missingFields', { fields: markdown });
+                        $scope.$root.$emit('healthCoach:displayMessage', message);
+                    }
+                };
 
                 var onSave = function (organization) {
 
@@ -139,7 +144,6 @@
                         UserService.putUser(user);
                     }
 
-                    $scope.$emit('clientmsg:success', 'organization.saved');
                     $scope.validateOrganizationModel();
                 };
 

@@ -50,6 +50,7 @@
             'ActivityService', 'AssessmentService',
             'assessment', 'newestResult', 'assessmentIdea',
             function ($scope, $rootScope, $state, $q, ActivityService, AssessmentService, assessment, newestResult, assessmentIdea) {
+
                 if (!assessment) {
                     return;
                 }

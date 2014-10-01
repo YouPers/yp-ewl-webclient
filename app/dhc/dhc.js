@@ -16,6 +16,9 @@
 
             $stateProvider
                 .state('dhc', {
+
+                    abstract: true,
+
                     url: "/campaign/:campaignId",
                     templateUrl: "layout/single-column.html",
                     controller: 'DhcController as dhcController',

@@ -1,14 +1,13 @@
 <div class="health-coach">
-    <div ng-if="coachMessages.length > 0">
-        <div class="pull-right dismiss" ng-click="dismiss()" ng-if="!preview">
-            <span class="glyphicon glyphicon-remove"></span>
-        </div>
+
+    <div ng-if="coachMessage || eventMessage">
 
         <div class="avatar">
             <img ng-src="/assets/img/healthcoach.png">
         </div>
-        <div class="message" ng-bind-html="getFormattedMessage()" ng-if="!isTranslatable()"></div>
-        <div class="message" ng-if="isTranslatable()" ng-bind-html="('healthCoach.' + coachMessages[0]) | translate:interpolateParams"></div>
+        <div class="message" ng-bind-html="coachMessage" ng-if="coachMessage"></div>
+        <div class="message" ng-if="eventMessage" ng-bind-html="eventMessage"></div>
+
         <div class="clearfix"></div>
     </div>
 </div>

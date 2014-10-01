@@ -62,6 +62,7 @@
       "submit": {
 
           "save": "Speichern",
+          "delete": "Löschen",
 
           "invitationSave": "Einladung annehmen und Termine speichern",
 

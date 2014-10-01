@@ -52,8 +52,8 @@
             }])
 
 
-        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'campaign', 'topics', 'newTopic',
-            function ($scope , CampaignService, UserService, campaign, topics, newTopic) {
+        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'campaign', 'topics', 'newTopic',
+            function ($scope , CampaignService, UserService, HealthCoachService, campaign, topics, newTopic) {
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
@@ -103,7 +103,10 @@
                             CampaignService.postCampaign($scope.campaign)
                                 .then(function (campaign) {
 
-                                    $scope.$emit('clientmsg:success', 'campaign.saved');
+                                    // queue healthCoach message for new campaigns
+                                    if(!$scope.campaign.id) {
+                                        HealthCoachService.queueEvent('campaignCreated');
+                                    }
                                     $scope.$state.go('dcm.home', { campaignId: campaign.id });
                                 });
                         }

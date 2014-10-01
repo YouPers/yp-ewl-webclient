@@ -21,8 +21,35 @@
 
                             jsInclude: ["util", function (util) {
                                 return util.loadJSInclude('lib/d3/d3.js');
-                            }]
+                            }],
 
+
+                            healthCoachEvent: ['OrganizationService', 'organization', 'campaigns', 'campaign',
+                                function (OrganizationService, organization, campaigns, campaign) {
+
+
+                                    var daysSinceCampaignStart = campaign ? moment().diff(moment(campaign.start), 'days') : undefined;
+                                    var daysUntilCampaignEnd = campaign ? moment(campaign.end).diff(moment(), 'days') : undefined;
+
+
+                                    if(!OrganizationService.isComplete(organization)) {
+                                        return 'organizationIncomplete';
+                                    } else if(campaigns.length === 0) {
+                                        return 'noCampaigns';
+                                    } else if(daysSinceCampaignStart === 0) {
+                                        return 'campaignStartedToday';
+                                    } else if(daysSinceCampaignStart >= 2 && daysSinceCampaignStart <= 7) {
+                                        return 'campaignFirstWeek';
+                                    } else if(daysSinceCampaignStart > 7 && daysUntilCampaignEnd > 7) {
+                                        return 'campaignAfterFirstWeek';
+                                    } else if(daysUntilCampaignEnd <= 7) {
+                                        return 'campaignLastWeek';
+                                    } else if(daysUntilCampaignEnd <= 0) {
+                                        return 'campaignEnded';
+                                    }
+
+
+                                }]
                         }
                     });
 
@@ -31,8 +58,8 @@
 
 
 
-        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns',
-            function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns) {
+        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns', 'healthCoachEvent',
+            function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns, healthCoachEvent) {
 
                 if(campaign) {
                     $scope.$watch('homeController.showOld', function (showOld) {
@@ -66,6 +93,7 @@
                     });
                 }
 
+                $scope.healthCoachEvent = healthCoachEvent;
                 $scope.homeController = this;
                 $scope.homeController.filterByPublishDate = false;
                 $scope.campaign = campaign;
@@ -128,26 +156,32 @@
            //-----------
 
             function init() {
-                var options = {
-                    populate: 'author',
-                    targetId: $scope.campaign.id,
-                    authored: true,
-                    authorType: 'campaignLead'
-                };
 
-                $scope.$watch('homeController.showOld', function (showOld) {
-                    if(showOld) {
-                        options.publishFrom = false;
-                        options.publishTo = false;
-                    } else {
-                        options.publishFrom = false;
-                        options.publishTo = new Date();
-                    }
-                    SocialInteractionService.getMessages(options).then(function (messages) {
-                        self.messages = messages;
+                if ($scope.campaign) {
+
+                    var options = {
+                        populate: 'author',
+                        targetId: $scope.campaign.id,
+                        authored: true,
+                        authorType: 'campaignLead'
+                    };
+
+                    $scope.$watch('homeController.showOld', function (showOld) {
+                        if(showOld) {
+                            options.publishFrom = false;
+                            options.publishTo = false;
+                        } else {
+                            options.publishFrom = false;
+                            options.publishTo = new Date();
+                        }
+                        SocialInteractionService.getMessages(options).then(function (messages) {
+                            self.messages = messages;
+                        });
+
                     });
 
-                });
+                }
+
             }
         }]);
 

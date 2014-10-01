@@ -32,6 +32,17 @@
                     },
                     getOrganizations: function() {
                         return organizations.getList();
+                    },
+
+                    isComplete: function (organization) {
+                        return !!organization.name &&
+                            !!organization.address.street &&
+                            !!organization.address.zipCode &&
+                            !!organization.address.city &&
+                            !!organization.legalForm &&
+                            !!organization.sector &&
+                            !!organization.contact.position &&
+                            !!organization.contact.phone;
                     }
                 };
                 return OrganizationService;

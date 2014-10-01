@@ -69,18 +69,51 @@
                     'filter[activity]': activity.id,
                     sort: 'start'
                 });
-            }]
+            }],
+
+            healthCoachEvent: ['$state', 'campaign', 'socialInteraction',
+                function ($state, campaign, socialInteraction) {
+
+                    if(!campaign) {
+                        return;
+                    }
+
+                    function getEventName() {
+
+                        // workaround until we find a fix to have 2 distinct activity states with a dhc/dcm parent
+                        if($state.$current.parent && $state.$current.parent.toString() === 'dhc') { // dhc
+
+                            if(socialInteraction && socialInteraction.__t === 'Recommendation') {
+                                return 'scheduleRecommendedActivity';
+                            } else {
+                                return 'stateEnter';
+                            }
+
+
+
+                        } else { // dcm
+
+                            return 'stateEnter';
+                        }
+
+                    }
+
+                    return getEventName();
+
+                }]
         })
 
 
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
-            'UserService', 'ActivityService', 'SocialInteractionService',
+            'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService',
+            'healthCoachEvent', // this resolve is from dhc or dcm activity state
             'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
             function ($scope, $rootScope, $state, $stateParams, $timeout,
-                      UserService, ActivityService, SocialInteractionService,
+                      UserService, ActivityService, SocialInteractionService, HealthCoachService, healthCoachEvent,
                       campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
 
 
+                $scope.healthCoachEvent = healthCoachEvent;
                 $scope.campaign = campaign;
                 $scope.idea = idea;
                 $scope.activity = activity;
@@ -92,19 +125,18 @@
 
                 $scope.isScheduled = activity && activity.id;
 
-                var mode = $stateParams.mode;
-                if (!mode) {
-                    if (socialInteraction) {
-                        mode = socialInteraction.__t.toLowerCase();
-                    } else if ($scope.isScheduled && activity.isOwner()) {
-                        mode = 'owned';
-                    } else if ($scope.isScheduled && activity.isJoiningUser()) {
-                        mode = 'joined';
-                    } else {
-                        mode = 'schedule';
-                    }
+                var mode;
 
-                    $stateParams.mode = mode;
+                if($state.$current.parent.name === 'dcm') {
+                    mode = 'campaignlead';
+                } else if (socialInteraction) {
+                    mode = socialInteraction.__t.toLowerCase();
+                } else if ($scope.isScheduled && activity.isOwner()) {
+                    mode = 'owned';
+                } else if ($scope.isScheduled && activity.isJoiningUser()) {
+                    mode = 'joined';
+                } else {
+                    mode = 'schedule';
                 }
 
                 var activityController = this;
@@ -232,16 +264,24 @@
 
                 $scope.backToGame = function () {
                     if (mode === 'campaignlead') {
+                        HealthCoachService.queueEvent('invitationCreated');
                         $state.go('dcm.home');
                     } else {
                         $state.go('dhc.game');
                     }
                 };
 
+                $scope.acceptRecommendation = function () {
+                    $scope.healthCoachEvent = 'recommendationAccepted';
+                    activityController.active = true;
+                    activityController.formActive = activityController.formEnabled;
+                };
+
                 $scope.dismiss = function dismiss() {
                     SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, { reason: 'denied'}).then(function (result) {
-                        console.log(result);
+
                         activityController.dismissed = true;
+                        $scope.healthCoachEvent = $scope.socialInteraction.__t.toLowerCase() + 'Dismissed';
                     });
 
                 };
@@ -255,23 +295,34 @@
                     }
                 };
 
+                $scope.editMode = function () {
+                    activityController.formActive = activityController.formEnabled;
+                    $scope.$root.$broadcast('healthCoach:event', 'editActivity');
+                };
+                $scope.deleteMode = function () {
+                    activityController.deleteMode = true;
+                    $scope.$root.$broadcast('healthCoach:event', 'deleteActivity');
+                };
+
                 $scope.deleteActivity = function deleteActivity() {
                     ActivityService.deleteActivity($scope.activity.id)
                         .then(function () {
-                            $rootScope.$emit('clientmsg:success', 'activity.deleted');
                             $state.go('homedispatcher');
                         });
                 };
                 $scope.joinActivity = function joinActivity() {
                     ActivityService.joinPlan($scope.activity).then(function (joinedActivity) {
-                        $rootScope.$emit('clientmsg:success', 'activity.joined');
-                        $state.go('dhc.activity', { idea: idea.id, activity: joinedActivity.id, socialInteraction: undefined });
+                        // queue event for next state
+                        HealthCoachService.queueEvent('invitationAccepted');
+                        $state.go('dhc.activity', { idea: idea.id, activity: joinedActivity.id, socialInteraction: '' });
                     });
                 };
                 $scope.saveActivity = function saveActivity() {
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
 
+                        // queue event for next state
+                        HealthCoachService.queueEvent('activitySaved');
 
                         $scope.activity = savedActivity;
                         activityController.dirty = false;
@@ -343,10 +394,8 @@
                             }
                         }
 
-                        $rootScope.$emit('clientmsg:success', 'activity.' + activityController.submitMode);
-
                         if(mode !== 'campaignlead') {
-                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: undefined });
+                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' });
                         }
 
                     });

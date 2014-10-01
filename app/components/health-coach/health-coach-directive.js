@@ -2,63 +2,55 @@
 
     'use strict';
 
+    /**
+     * directive health-coach
+     *
+     * there 4 ways to display a health coach message:
+     *
+     *  - scope attribute 'event' - the event name will be localized according to the state: [dhc,dcm].stateName.eventName
+     *  - $rootScope.$emit('healthCoach:event', eventName) - will be localized as above
+     *  - $rootScope.$emit('healthCoach:displayMessage') - display an already localized message
+     *  - queue an event for the next state using HealthCoachService.queueEvent,
+     *    it will be consumed and cleared on the next invocation of the health-coach directive
+     *
+     *
+     *
+     */
+
     angular.module('yp.components.healthCoach')
         .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state', '$translate','$sce',
             function ($rootScope, HealthCoachService, $window, $timeout, $state, $translate, $sce) {
             return {
                 restrict: 'E',
-                scope: {},
+                scope: {
+                    event: '='
+                },
                 templateUrl: 'components/health-coach/health-coach-directive.html',
 
                 link: function (scope, elem, attrs) {
-                    HealthCoachService.getCoachMessages($state.current.name).then(function (result) {
-                        scope.coachMessages = result;
-                    });
-
-
-                    scope.isTranslatable = function() {
-                        return (scope.coachMessages &&
-                            scope.coachMessages.length >0 &&
-                            scope.coachMessages[0].lastIndexOf('hcmsg.') === 0);
-                    };
 
                     scope.getFormattedMessage = function(message) {
-                        if (scope.coachMessages && scope.coachMessages.length >0) {
-                            var myMsg = scope.coachMessages[0];
-                            if (myMsg.lastIndexOf('hcmsg.') === 0) {
-                                // this is a translatable ressource key
-                                return $sce.trustAsHtml('key' + myMsg);
-                            } else {
-                                return $sce.trustAsHtml(marked(myMsg));
-                            }
-                        } else {
-                            return "";
-                        }
+                        return $sce.trustAsHtml(marked(message));
                     };
 
-                    scope.dismiss = function() {
-                        scope.coachMessages = [];
-                    };
+                    var queuedEvent = HealthCoachService.getQueuedEvent();
+                    if(queuedEvent) {
+                        scope.event = queuedEvent;
+                    }
 
-                    $rootScope.$on('healthCoach:displayMessage', function (event, message, interpolateParams) {
-                        if (!scope.coachMessages) {
-                            scope.coachMessages = [];
-                        }
-                        scope.coachMessages.unshift(message);
-                        scope.interpolateParams = interpolateParams;
+                    scope.$watch('event', function () {
+                        var eventKey = scope.event ? $state.current.name + '.' + scope.event : undefined;
+                        $translate(eventKey).then(function (eventMessage) {
+                            scope.eventMessage = scope.getFormattedMessage(eventMessage);
+                        });
+                    });
+
+                    $rootScope.$on('healthCoach:event', function (event, healthCoachEvent) {
+                        scope.event = healthCoachEvent;
+                    });
+                    $rootScope.$on('healthCoach:displayMessage', function (event, message) {
+                        scope.coachMessage = scope.getFormattedMessage(message);
                         scope.$parent.$broadcast('initialize-scroll-along');
-                    });
-
-                    $rootScope.$on('event:authority-deauthorized', function() {
-                        HealthCoachService.getCoachMessages($state.current.name).then(function (result) {
-                            scope.coachMessages = result;
-                        });
-                    });
-
-                    $rootScope.$on('event:authority-authorized', function() {
-                        HealthCoachService.getCoachMessages($state.current.name).then(function (result) {
-                            scope.coachMessages = result;
-                        });
                     });
 
                 }
