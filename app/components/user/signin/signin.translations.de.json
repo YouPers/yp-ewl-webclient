@@ -1,2 +1,5 @@
 {
+    "signin": {
+        "instructions": "<h3>*test* **text** \n - a\n - b\n</h3> <a href='www.youpers.com'>Get me out of here!</a>"
+    }
 }

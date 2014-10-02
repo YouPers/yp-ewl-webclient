@@ -4,6 +4,21 @@
 
     angular.module('yp.components.util.directives', [])
 
+        .directive('translateMarkdown', ['$filter', function ($filter) {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+
+                    if(!attrs.translateMarkdown) {
+                        throw new Error('translateMarkdown: attribute value is required');
+                    }
+//                    $sce.trustAsHtml()
+                    element.html(marked($filter('translate')(attrs.translateMarkdown)));
+
+                }
+            };
+        }])
+
         .directive('selectOnClick', function () {
             return {
                 restrict: 'A',
