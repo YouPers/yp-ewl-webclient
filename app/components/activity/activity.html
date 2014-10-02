@@ -234,8 +234,8 @@
                 activity.link.back
             </button>
 
-            <button ng-if="!activityController.deleteMode" class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
-                {{ 'activity.submit.save' | translate }}
+            <button ng-if="!activityController.deleteMode && !activity.isJoiningUser()" class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
+                {{ 'activity.submit.' + mode + activityController.submitMode | translate }}
             </button>
 
 

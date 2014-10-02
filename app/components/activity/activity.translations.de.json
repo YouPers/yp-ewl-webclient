@@ -65,19 +65,19 @@
           "save": "Speichern",
           "delete": "Löschen",
 
-          "invitationSave": "Einladung annehmen und Termine speichern",
+          "invitationSave": "Annehmen",
 
-          "recommendationSave": "Termine speichern",
-          "ownedSave": "Termine speichern",
-          "joinedSave": "Termine speichern",
-          "scheduleSave": "Termine speichern",
+          "recommendationSave": "Einplanen",
+          "ownedSave": "Einplanen",
+          "joinedSave": "Einplanen",
+          "scheduleSave": "Einplanen",
 
-          "campaignleadSave": "Kampagnenaktivität publizieren",
-          "campaignleadSaveAndInvite": "Kampagnenaktivität publizieren",
+          "campaignleadSave": "Publizieren",
+          "campaignleadSaveAndInvite": "Publizieren",
 
-          "ownedSaveAndInvite": "Termine speichern und Einladungen verschicken",
-          "recommendationSaveAndInvite": "Termine speichern und Einladungen verschicken",
-          "scheduleSaveAndInvite": "Termine speichern und Einladungen verschicken"
+          "ownedSaveAndInvite": "Einplanen und Abschicken",
+          "recommendationSaveAndInvite": "Einplanen und Abschicken",
+          "scheduleSaveAndInvite": "Einplanen und Abschicken"
       },
 
       "owner": "Organisator",

@@ -123,6 +123,7 @@
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
                 $scope.campaignInvitation = campaignInvitation;
 
+                $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isScheduled = activity && activity.id;
 
                 var mode;
@@ -144,7 +145,7 @@
 
                 // only recommendations have to be activated
                 activityController.active = !socialInteraction || socialInteraction.__t !== 'Recommendation';
-                activityController.formEnabled = (activity.id && activity.isOwner && activity.isOwner()) ||
+                activityController.formEnabled = (activity.id && $scope.isOwner) ||
                     mode === 'recommendation' ||
                     mode === 'campaignlead' ||
                     mode === 'schedule';

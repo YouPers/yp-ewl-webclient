@@ -96,7 +96,7 @@
           "label": "Bis",
           "placeholder": "Bis"
       },
-      "submit": "Speichern",
+      "submit": "Abschicken",
       "delete": "Empfehlung löschen"
   }
 }
