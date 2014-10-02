@@ -4,6 +4,26 @@
 
     angular.module('yp.components.util.directives', [])
 
+        .directive('selectOnClick', function () {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+
+                    function selectElementContents(el) {
+                        var range = document.createRange();
+                        range.selectNodeContents(el[0]);
+                        var sel = window.getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    }
+
+                    element.on('click', function () {
+                        selectElementContents(element);
+                    });
+                }
+            };
+        })
+
         .directive('synchronizedDate', [function () {
             return {
                 restrict: 'A',

@@ -1,5 +1,11 @@
 {
   "dcmhome": {
+
+      "campaignStart": {
+          "header": "Start der Kampagne",
+          "welcomeLinkExplain": "Mit diesem Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer."
+      },
+
     "statsTitle": "Verlauf der Kampagne",
     "participantsCount": "Anzahl angemeldete Teilnehmer",
     "plannedActsCount": "Aktivitäten geplant durch Teilnehmer",
