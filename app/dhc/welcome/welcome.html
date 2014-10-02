@@ -51,6 +51,14 @@
 
             </div>
 
+            <div class="campaign-start" ng-if="!campaignHasStarted">
+
+                <p translate>welcome.campaignNotStartedYet</p>
+
+                <h3>{{ campaign.start | date }}</h3>
+
+            </div>
+
             <div class="welcome-links">
                 <a target="_blank" ui-sref="moreinfo.content"
                    analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="More Info">
@@ -58,7 +66,8 @@
                         <span translate>welcome.link.info</span>
                     </button>
                 </a>
-                <button class="btn btn-default join" ng-click="join()"
+
+                <button class="btn btn-default join" ng-click="join()" ng-if="campaignHasStarted"
                         analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="Join">
                     <span translate>welcome.link.join</span>
                 </button>

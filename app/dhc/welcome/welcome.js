@@ -58,6 +58,8 @@
                     $scope.campaign = campaign;
                 }
 
+                $scope.campaignHasStarted = moment().isAfter(moment(campaign.start));
+
                 $scope.join = function () {
 
                     UserService.principal.getUser().campaign = campaign;
