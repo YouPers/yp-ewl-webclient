@@ -1,3 +1,29 @@
+<div class="row">
+    <div class="col-md-12">
+
+
+        <accordion class="campaign-start" close-others="true">
+
+            <accordion-group is-open="showCampaignStart">
+                <accordion-heading>
+                    <h3 translate>dcmhome.campaignStart.header</h3>
+
+                    <i class="fa "
+                       ng-class="{ 'fa-chevron-up': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
+
+                </accordion-heading>
+
+
+                <div translate>dcmhome.campaignStart.welcomeLinkExplain</div>
+                <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId:
+                    campaign.id}, {absolute: true})}}
+                </div>
+
+            </accordion-group>
+        </accordion>
+    </div>
+</div>
+
 <div class="row" ng-controller="HomeStatsController">
     <div class="col-md-12">
         <div class="area">

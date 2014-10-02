@@ -4,6 +4,41 @@
 
 .dcm-home {
 
+  .campaign-start {
+
+    a.accordion-toggle {
+      text-transform: none;
+      > * {
+        display: inline-block;
+      }
+      margin-left: 15px;
+    }
+
+    .panel-group {
+      margin: 0;
+    }
+
+    .panel, .panel-heading {
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .welcome-link {
+      border: 1px solid transparent;
+      padding: 5px;
+    }
+    .welcome-link:hover {
+      cursor: copy;
+      border: 1px solid @yp-divider;
+      background-color: #fdfdfd;
+    }
+
+
+  }
+
   .ac-chart {
     text {
       font-size: 13px;
@@ -36,10 +71,8 @@
     border-radius: 15px;
   }
 
-
   a {
     .button();
-    display: inline-block;
 
     i.fa {
       font-size: 16px;

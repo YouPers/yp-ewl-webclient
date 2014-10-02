@@ -2,7 +2,7 @@
 
     <section>
         <div class="header-row">
-            <h3 translate>campaign.preview.header</h3>
+            <h3 translate>campaign.header</h3>
         </div>
         <div class="button-row"></div>
         <campaign-card campaign="campaign"></campaign-card>
@@ -41,19 +41,6 @@
                 </div>
             </div>
         </form>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>
-                    <div translate>campaign.preview.welcomeLink</div>
-                </h3>
-                <div translate>campaign.preview.welcomeLinkExplain</div>
-                <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId:
-                    campaign.id}, {absolute: true})}}
-                </div>
-                <div translate ng-hide="campaign.id">campaign.preview.welcomeLinkNotSaved</div>
-
-            </div>
-        </div>
 
         <div ng-show="campaign.id">
             <div class="row">
