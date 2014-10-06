@@ -71,8 +71,8 @@
                 });
             }],
 
-            healthCoachEvent: ['$state', 'campaign', 'socialInteraction',
-                function ($state, campaign, socialInteraction) {
+            healthCoachEvent: ['$state', 'ActivityService', 'campaign', 'socialInteraction', 'activity', 'activityEvents',
+                function ($state, ActivityService, campaign, socialInteraction, activity, activityEvents) {
 
                     if(!campaign) {
                         return;
@@ -83,8 +83,16 @@
                         // workaround until we find a fix to have 2 distinct activity states with a dhc/dcm parent
                         if($state.$current.parent && $state.$current.parent.toString() === 'dhc') { // dhc
 
+                            var hasDueEvents = _.filter(activityEvents, function (event) {
+                                return moment().diff((event).end) > 0;
+                            }).length > 0;
+
                             if(socialInteraction && socialInteraction.__t === 'Recommendation') {
                                 return 'scheduleRecommendedActivity';
+                            } else if(hasDueEvents) {
+                                return 'eventsDue';
+                            }else if(!hasDueEvents && activity.executionType === 'group') {
+                                return 'groupActivityNoEventsDue';
                             } else {
                                 return 'stateEnter';
                             }
@@ -298,11 +306,11 @@
 
                 $scope.editMode = function () {
                     activityController.formActive = activityController.formEnabled;
-                    $scope.$root.$broadcast('healthCoach:event', 'editActivity');
+                    $scope.$root.$broadcast('healthCoach:event', 'editOwnActivity');
                 };
                 $scope.deleteMode = function () {
                     activityController.deleteMode = true;
-                    $scope.$root.$broadcast('healthCoach:event', 'deleteActivity');
+                    $scope.$root.$broadcast('healthCoach:event', $scope.isOwner ? 'deleteOwnActivity' : 'deleteJoinedActivity');
                 };
 
                 $scope.deleteActivity = function deleteActivity() {
