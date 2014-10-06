@@ -251,7 +251,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>/assets',
-                        src: '{,*/}*.svg',
+                        src: '**/{,*/}*.svg',
                         dest: '<%= yeoman.dist %>/assets'
                     }
                 ]
@@ -323,7 +323,7 @@ module.exports = function (grunt) {
                             'dhc/**/*.json',
                             'dcm/**/*.json',
                             'components/**/*.json',
-                            'assets/**/*.{gif,webp,png,jpg,ico}',
+                            'assets/**/*.{gif,webp,png,jpg,ico,svg}',
                             'styles/fonts/{,*/}*.woff'
                         ]
                     },
