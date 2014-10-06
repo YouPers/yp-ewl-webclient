@@ -3,23 +3,34 @@
         <img ng-src="{{ campaign.avatar }}">
     </div>
     <div class="topic sheet primary">
+
         <h2>{{campaign.title}}</h2>
+        <span translate>campaign.card.title</span>
+
     </div>
-    <div class="details sheet secondary">
+    <div class="details sheet">
         <div>
             <i class="fa fa-clock-o"></i>
-            <span>{{campaign.start | date:'d.MM.'}} -  {{campaign.end | date:'d.MM.yyyy'}}</span>
+            <span>{{campaign.start | date:'d.MM.yyyy'}} -  {{campaign.end | date:'d.MM.yyyy'}}</span>
         </div>
         <div>
             <i class="fa fa-location-arrow"></i>
-            <span>{{campaign.location}} {{campaign.city}}</span>
+            <div>
+                <span>{{campaign.location}}</span>
+                <span ng-show="campaign.location && campaign.city">, </span>
+                <span>{{campaign.city}}</span>
+            </div>
+        </div>
+        <div>
+            <i class="fa fa-building-o"></i>
+            <div>
+                <span class="organization">{{campaign.organization.name}}</span>
+                <span ng-show="campaign.participants">,<br/></span>
+                <span class="participants">{{campaign.participants}}</span>
+            </div>
         </div>
 
-
         <div ng-transclude></div>
-    </div>
-    <div class="details sheet tertiary">
-        <div class="participants">{{campaign.participants}}</div>
     </div>
 
     <div class="icon" ng-if="campaigns.length > 1">

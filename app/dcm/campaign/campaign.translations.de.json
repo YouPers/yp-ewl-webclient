@@ -17,6 +17,9 @@
     "stateHeader2": "kampagnen"
   },
   "campaign": {
+      "card": {
+          "title": "Health Campaign"
+      },
     "header": "Kampagne erstellen/ändern",
     "link": {
       "new": "neue kampagne",
