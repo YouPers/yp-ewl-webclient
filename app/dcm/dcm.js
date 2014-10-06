@@ -37,8 +37,13 @@
                             });
 
                         }],
-                        campaigns: ['CampaignService', function (CampaignService) {
-                            return CampaignService.getCampaigns({ populate: 'topic campaignLeads' });
+                        campaigns: ['CampaignService', 'organization', function (CampaignService, organization) {
+                            return CampaignService.getCampaigns({ populate: 'topic campaignLeads' }).then(function (campaigns) {
+                                _.each(campaigns, function (campaign) {
+                                    campaign.organization = organization;
+                                });
+                                return campaigns;
+                            });
                         }],
                         campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
 
