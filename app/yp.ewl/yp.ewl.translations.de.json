@@ -12,6 +12,9 @@
     }
   },
   "topmenu": {
+
+      "logoHeader": "Health Campaign",
+
     "dhc": "Sicht als Teilnehmer",
     "dcm": "Kampagnenverwaltung",
 
