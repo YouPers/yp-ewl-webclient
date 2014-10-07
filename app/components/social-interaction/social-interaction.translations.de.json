@@ -1,6 +1,8 @@
 {
   "socialInteraction": {
 
+      "mainHeader": "inbox",
+
       "important": "Wichtig",
 
       "publishFrom": "Publiziert ab: ",

@@ -1,13 +1,20 @@
-<div class="health-coach">
+<div ng-if="coachMessage || eventMessage">
 
-    <div ng-if="coachMessage || eventMessage">
+    <div class="inbox-item">
 
         <div class="avatar">
             <img ng-src="/assets/img/healthcoach.png">
         </div>
-        <div class="message" ng-bind-html="coachMessage" ng-if="coachMessage"></div>
-        <div class="message" ng-if="eventMessage" ng-bind-html="eventMessage"></div>
 
-        <div class="clearfix"></div>
+        <div>
+
+            <div class="author">
+                <span translate>healthCoach.fullname</span>
+            </div>
+
+            <div class="message" ng-if="coachMessage" ng-bind-html="coachMessage" ></div>
+            <div class="message" ng-if="!coachMessage && eventMessage" ng-bind-html="eventMessage"></div>
+
+        </div>
     </div>
 </div>

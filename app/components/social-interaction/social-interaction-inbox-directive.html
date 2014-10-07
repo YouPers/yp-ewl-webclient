@@ -1,4 +1,12 @@
-<ul class="list-group" ng-init="options = {}">
-    <social-interaction soi="socialInteraction" on-remove="soiRemoved(socialInteraction)"
-                        ng-repeat="socialInteraction in socialInteractions"></social-interaction>
-</ul>
+
+<div class="main-header">
+
+    <i class="fa fa-inbox"></i>
+
+    <div class="title" translate>socialInteraction.mainHeader</div>
+
+</div>
+
+
+<social-interaction soi="socialInteraction" on-remove="soiRemoved(socialInteraction)"
+                    ng-repeat="socialInteraction in socialInteractions"></social-interaction>

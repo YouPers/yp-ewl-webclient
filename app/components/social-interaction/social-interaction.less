@@ -1,60 +1,21 @@
-social-interaction {
+social-interaction-inbox {
 
-  .list-group {
-//    .game-card();
-  }
+  display: block;
+  .game-card();
 
-  .list-group-item:not(:first-of-type) {
-//    border-top: 1px solid @yp-divider;
-  }
-
-  .list-group-item {
-    padding: 0;
-    border: inherit;
-
-  }
-
-  .headers {
-    display: flex;
-    justify-content:flex-start;
-    align-content:center;
-    flex-direction:row;
-
-    height: 50px;
-
-    > div.info {
-
-      padding: 5px 15px;
-      flex: 1 1 auto;
-
-      .dismiss a {
-        color: @yp-primary;
-      }
-      .dismiss a:hover {
-        color: @yp-warning;
-      }
+  .main-header {
+    ;
+    > * {
+      display: inline-block;
     }
 
-  }
-
-
-  .date {
-    float: right;
-  }
-
-  .image {
-    img {
-      width: 50px;
-      height: 50px;
+    > i {
+      padding: 15px;
     }
-  }
-
-
-  .ref-title, .title, .text {
-    padding: 0.6em;
-  }
-  .title, .text {
-    border-top: 1px solid rgba(0,0,0,0.05);
+    > :not(i) {
+      padding: 5px;
+      margin: 0;
+    }
   }
 
   .publish {
@@ -63,11 +24,48 @@ social-interaction {
       width: 50%;
     }
   }
+}
 
+social-interaction {
+  display: block;
+  .dismiss i {
+    color: @yp-warning;
+  }
+  .authorType {
+    color: @yp-subtitle;
+  }
+  .date {
+    float: right;
+  }
 
 }
 
 .composeMessage {
   border: none;
   position: relative;
+}
+
+
+
+.inbox-item {
+
+  border-top: 1px solid @yp-divider;
+  display: flex;
+  flex-direction: row;
+
+  > *:first-child {
+    flex: 0 0 48px;
+
+    padding: 5px;
+
+    > img {
+      width: 32px;
+    }
+  }
+  > *:not(:first-child) {
+    flex: 1 1 auto;
+    > * {
+      padding: 8px;
+    }
+  }
 }
