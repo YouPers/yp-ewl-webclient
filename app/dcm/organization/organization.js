@@ -130,7 +130,7 @@
                         _.each(missingOrganizationFields, function (field) {
                             markdown += '\n - ' + $filter('translate')('organizationForm.' + field + '.label');
                         });
-                        var message = $filter('translate')('dcm.organization.missingFields', { fields: markdown });
+                        var message = $filter('translate')('healthCoach.dcm.organization.missingFields', { fields: markdown });
                         $scope.$root.$emit('healthCoach:displayMessage', message);
                     }
                 };
