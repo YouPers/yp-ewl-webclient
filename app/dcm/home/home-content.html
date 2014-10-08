@@ -2,14 +2,14 @@
     <div class="col-md-12">
 
 
-        <accordion class="campaign-start" close-others="true">
+        <accordion class="campaign-start" close-others="true" ng-init="showCampaignStart = !campaignStarted">
 
-            <accordion-group is-open="!campaignStarted">
+            <accordion-group is-open="showCampaignStart">
                 <accordion-heading>
                     <h3 translate>dcmhome.campaignStart.header</h3>
 
                     <i class="fa "
-                       ng-class="{ 'fa-chevron-up': !campaignStarted, 'fa-chevron-right': campaignStarted }"></i>
+                       ng-class="{ 'fa-chevron-up': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
 
                 </accordion-heading>
 
