@@ -404,7 +404,7 @@
                         }
 
                         if(mode !== 'campaignlead') {
-                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' });
+                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' }, { reload: true });
                         }
 
                     });
