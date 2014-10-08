@@ -71,10 +71,6 @@
       "label": "Ort",
       "placeholder": "Ort"
     },
-    "slogan": {
-      "label": "Slogan",
-      "placeholder": "Slogan"
-    },
     "back": "Zurück",
     "save": "Speichern",
     "create": "Speichern"

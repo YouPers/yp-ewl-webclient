@@ -61,10 +61,6 @@
       "label": "Le lieu",
       "placeholder": "Le lieu"
     },
-    "slogan": {
-      "label": "Le slogan",
-      "placeholder": "Le slogan"
-    },
     "save": "Enregistrer",
     "create": "Enregistrer"
   },

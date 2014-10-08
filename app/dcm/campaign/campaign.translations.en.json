@@ -61,10 +61,6 @@
       "label": "City",
       "placeholder": "City"
     },
-    "slogan": {
-      "label": "Slogan",
-      "placeholder": "Slogan"
-    },
     "save": "Save",
     "create": "Save"
   },
