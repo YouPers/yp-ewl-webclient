@@ -30,9 +30,34 @@
         </div>
 
         <div class="content sheet">
+
             <div class="ref-title" ng-if="soi.refDocs.length > 0">{{ soi.refDocs[0].doc.title }}</div>
-            <div class="title" ng-if="soi.title">{{ soi.title }}</div>
-            <div class="text" ng-if="soi.text">{{ soi.text }}</div>
+
+            <!--  show title or text, if one is missing. for both the accordion below is used  -->
+            <div class="title" ng-if="soi.title && !soi.text">{{ soi.title }}</div>
+            <div class="text" ng-if="soi.text && !soi.title">{{ soi.text }}</div>
+
+            <accordion class="message" ng-if="soi.title && soi.text">
+
+                <accordion-group is-open="isOpen">
+                    <accordion-heading>
+
+                        <div>{{ soi.title }}</div>
+
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-up': isOpen, 'fa-chevron-right': !isOpen }"></i>
+
+                    </accordion-heading>
+
+                    <div class="text" ng-if="soi.text">{{ soi.text }}</div>
+
+                </accordion-group>
+            </accordion>
+
+
+
+
+
         </div>
 
         <div class="sheet publish" ng-if="options.isCampaignLead">

@@ -42,6 +42,46 @@ social-interaction {
     float: right;
   }
 
+
+  a.accordion-toggle {
+    text-transform: none;
+    > * {
+      display: inline-block;
+    }
+  }
+
+  .panel-group {
+    margin: 0;
+  }
+
+  .panel-title {
+    margin: 0;
+     a {
+       display: block;
+       padding-bottom: 5px;
+       i.fa {
+         font-size: 14px;
+         float: right;
+       }
+     }
+    div {
+      .baseline();
+      color: @yp-primary;
+    }
+  }
+  .panel-group .panel-heading + .panel-collapse > .panel-body {
+    border-top: 1px solid @yp-divider;
+    padding: 10px 0 0 0;
+  }
+
+  .panel, .panel-default > .panel-heading {
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
 }
 
 .composeMessage {
