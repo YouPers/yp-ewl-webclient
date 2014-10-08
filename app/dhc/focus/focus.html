@@ -6,32 +6,46 @@
 
     <section>
 
+        <div class="header-row"></div>
+        <div class="button-row"></div>
+
         <idea-card idea="assessmentIdea"></idea-card>
 
     </section>
 
     <section>
 
+        <div class="header-row"></div>
+        <div class="button-row"></div>
         <ng-include src="'dhc/focus/focus-content.html'"></ng-include>
 
     </section>
 
     <section>
 
-        <div scroll-along>
-
-            <div class="actions">
 
 
-                <button class="btn btn-primary backToGame" ui-sref="homedispatcher" translate>
-                    focus.link.back
-                </button>
+            <div scroll-along>
+
+
+
+                <div class="header-row"></div>
+                <div class="button-row">
+
+                    <button class="btn btn-primary backToGame" ui-sref="homedispatcher" translate>
+                        focus.link.back
+                    </button>
+
+                </div>
+
+                <health-coach event="'stateEnter'"></health-coach>
+
+
 
             </div>
 
-            <health-coach event="'stateEnter'"></health-coach>
 
-        </div>
+
 
     </section>
 
