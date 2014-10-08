@@ -42,12 +42,8 @@
     "back": "Zurück"
   },
   "activities": {
-    "stateHeader1": "kampagnen",
-    "stateHeader2": "aktivitäten",
-    "group": {
-      "campaign": "eigene aktivitäten",
-      "all": "YouPers Aktivitäts-Ideen"
-    },
+    "header": "YouPers Aktivitäts-Ideen",
+
     "duration": {
       "suffix": "min"
     },
@@ -62,7 +58,7 @@
     "stateHeader1": "kampagnen",
     "stateHeader2": "Aktivitäten",
     "link": {
-      "newActivity": "Eigene Aktivität <br/>erstellen",
+      "newActivity": "Eigene Aktivität erstellen",
       "publishActivity": "Bestehende Aktivität <br/>empfehlen/einplanen"
     },
     "published": "publiziert",

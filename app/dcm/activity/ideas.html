@@ -1,105 +1,102 @@
-<div class="three-column-layout">
+<div class="column-layout">
 
-    <section>
+    <nav>
+
+
+        <div class="header-row"></div>
+        <div class="button-row"></div>
 
         <campaign-card campaign="campaign"></campaign-card>
 
-    </section>
+    </nav>
 
     <section>
 
-        <div class="activity-list">
 
-            <!-- groups -->
-            <div class="group" ng-repeat="group in groups">
+        <div class="header-row">
+            <h3 translate>activities.header</h3>
+        </div>
 
-                <div class="row">
-                    <div class="col-xs-8">
-                        <h2 translate>{{ 'activities.group.' + group.name }}</h2>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="search" ng-if="group.name == 'all'">
+        <div class="button-row">
 
-                            <div class="input-group">
+            <button class="btn btn-default pull-right" ui-sref="dcm.idea" translate>campaignoffers.link.newActivity</button>
+
+            <div class="search" ng-if="group.name == 'all'">
+
+                <div class="input-group">
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
-                                <input ng-model="query.query" type="text" class="form-control"
-                                       placeholder="{{ 'activities.search' | translate }}" name="query">
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row" ng-if="group.name == 'all'">
-                    <div class="col-md-12">
-                        <button class="btn btn-default" ui-sref="dcm.idea" translate>campaignoffers.link.newActivity</button>
-                    </div>
-                </div>
-
-                <!-- activities -->
-
-                <div class="row activity idea-list-item" ng-repeat="idea in group.ideas | fulltext:query.query">
-
-                    <!-- image -->
-                    <div class="col-xs-2 image">
-                        <div>
-                            <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}">
-                        </div>
-                    </div>
-
-                    <!-- title -->
-                    <div class="col-xs-4 title">
-                        <div ng-bind-html="idea.title">
-                        </div>
-                    </div>
-
-
-                    <!-- duration -->
-                    <div class="col-xs-2 duration">
-                        <div class="fa"
-                             ng-class="{ 'fa-users': idea.defaultexecutiontype == 'group',
-                                 'fa-user': idea.defaultexecutiontype == 'self'}">
-                        </div>
-                        <div>
-                            <span>{{ idea.defaultduration }}</span>
-                            <span translate>activities.duration.suffix</span>
-                        </div>
-                    </div>
-
-                    <!-- links -->
-
-                    <div class="col-xs-4">
-                        <div ng-show="idea.defaultexecutiontype === 'group'"
-                             class="btn btn-default btn-sm"
-                             ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })" translate>
-                            activities.link.schedule
-                        </div>
-                        <div class="btn btn-default btn-sm" ui-sref="dcm.recommendation({ idea: idea.id })" translate>
-                            activities.link.recommend
-                        </div>
-                    </div>
-
+                    <input ng-model="query.query" type="text" class="form-control"
+                           placeholder="{{ 'activities.search' | translate }}" name="query">
 
                 </div>
 
             </div>
 
+        </div>
 
+        <div class="idea-list">
+
+            <div class="idea-list-item" ng-repeat="idea in ideas | fulltext:query.query">
+
+                <!-- image -->
+                <div>
+                    <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}">
+                </div>
+
+                <!-- title -->
+                <div>
+                    <div ng-bind-html="idea.title"></div>
+                </div>
+
+                <!-- duration -->
+                <div>
+                    <div>
+                        <i class="fa fa-clock-o"></i>
+                        <span>{{ idea.defaultduration }}</span>
+                        <span>&nbsp;</span>
+                        <span translate>activities.duration.suffix</span>
+                    </div>
+
+                    <i class="fa"
+                       ng-class="{ 'fa-users': idea.defaultexecutiontype == 'group',
+                                 'fa-user': idea.defaultexecutiontype == 'self'}">
+                    </i>
+                </div>
+
+                <!-- links -->
+
+                <div>
+
+                    <a ui-sref="dcm.recommendation({ idea: idea.id })">
+                        <i class="fa fa-share-square"></i>
+                    </a>
+
+                    <a ng-show="idea.defaultexecutiontype === 'group'"
+                       ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })">
+                        <i class="fa fa-calendar"></i>
+                    </a>
+
+                </div>
+
+
+            </div>
         </div>
 
     </section>
 
-    <section>
+    <aside>
 
-        <div class="actions">
+        <div class="header-row"></div>
+        <div class="button-row">
             <button class="btn btn-primary backToGame" ui-sref="dcm.home" translate>
                 check.link.back
             </button>
         </div>
 
         <health-coach event="'stateEnter'"></health-coach>
-    </section>
+
+    </aside>
 
 </div>

@@ -77,36 +77,9 @@
         ])
 
         .controller('DcmIdeasController', [ '$scope', '$rootScope', 'ideas', 'campaign',
-            function ($scope, $rootScope, resolvedIdeas, campaign) {
+            function ($scope, $rootScope, ideas, campaign) {
                 $scope.campaign = campaign;
-
-                function _initializeIdeas(ideas) {
-                    var grouped = _.groupBy(ideas, function (idea) {
-                        return idea.campaign ? "campaign" : "all";
-                    });
-                    $scope.query = {query: ''};
-
-                    var groups = [
-//                        'campaign',
-                        'all'
-                    ];
-
-                    $scope.groups = [];
-
-                    _.forEach(groups, function (group) {
-                        if (grouped[group]) {
-
-                            $scope.groups.push({
-                                name: group,
-                                ideas: grouped[group]
-                            });
-                        }
-                    });
-
-                }
-
-                _initializeIdeas(resolvedIdeas);
-
+                $scope.ideas = ideas;
             }
         ])
 
