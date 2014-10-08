@@ -158,7 +158,9 @@
       },
       "zipCode": {
         "placeholder": "PLZ",
-          "pattern": "Bitte eine gültige Nummer eingeben"
+        "error": {
+            "pattern": "Bitte eine gültige Nummer eingeben"
+        }
       },
       "city": {
         "placeholder": "Ort"
