@@ -100,7 +100,7 @@
                 if (!campaign && campaigns.length > 0) {
                     $state.go('dcm.home', { campaignId: campaigns[0].id });
                 } else {
-                    $scope.showCampaignStart = moment().isBefore(moment(campaign.start));
+                    $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
                 }
             }])
 

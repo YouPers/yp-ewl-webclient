@@ -36,6 +36,7 @@
 
                     isComplete: function (organization) {
                         return !!organization.name &&
+                            organization.address &&
                             !!organization.address.street &&
                             !!organization.address.zipCode &&
                             !!organization.address.city &&

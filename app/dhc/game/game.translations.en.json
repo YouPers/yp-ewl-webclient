@@ -1,6 +1,11 @@
 {
     "game": {
-        "stateHeader1": null,
-        "stateHeader2": null
+
+
+        "noActivities": "Once you have scheduled an offered activity, the corresponding activity appointments are displayed here.",
+        "noOffers": "The activity recommendations and invitations from the campaign manager, from the YOUPERS Coach and from your co-workers are displayed here.",
+        "noClosedEvents": "Once you have reported a scheduled activity as executed or missed, the corresponding appointment is displayed as closed activity.",
+        "noDismissedOffers": "If you dismiss an offer, it is displayed here."
+
     }
 }

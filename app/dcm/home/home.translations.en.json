@@ -6,7 +6,12 @@
     "activities": "New activities",
     "statistics": "Statistics",
     "organization": "Organization",
-    "stateHeader1": "digital",
-    "stateHeader2": "Campaign Manager"
+
+
+      "noCampaigns": "No campaigns have been created yet: ",
+      "campaignNotStarted": "Once the campaign has started, the statistics about the campaign will be displayed here",
+      "noOffers": "Once the campaign is launched, some basic data on the progress of your campaign will be shown to you here.\n\nOnce you, as a campaign manager, have recommended an activity to the campaign participants to perform, or you, as an organizer, have invited campaign participants to participate in a joint campaign activity, the offered activity is displayed here. Click on \"Add offer\" to offer an activity to the campaign participants.",
+      "noMessages": "Your messages to the campaign participants are displayed here. Click \"Add message\" to record a message to the campaign participants.",
+
   }
 }

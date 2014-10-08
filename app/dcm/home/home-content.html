@@ -1,15 +1,15 @@
-<div class="row">
+<div class="row" ng-if="campaign">
     <div class="col-md-12">
 
 
         <accordion class="campaign-start" close-others="true">
 
-            <accordion-group is-open="showCampaignStart">
+            <accordion-group is-open="!campaignStarted">
                 <accordion-heading>
                     <h3 translate>dcmhome.campaignStart.header</h3>
 
                     <i class="fa "
-                       ng-class="{ 'fa-chevron-up': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
+                       ng-class="{ 'fa-chevron-up': !campaignStarted, 'fa-chevron-right': campaignStarted }"></i>
 
                 </accordion-heading>
 
@@ -35,9 +35,8 @@
                 </a>
             </div>
 
-            <div ng-if="!campaign" class="panel panel-default">
-                <h3 translate>dcmhome.noCampaigns</h3>
-                <span translate>dcmhome.addCampaign</span>
+            <div ng-if="!campaign">
+                <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
                 <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
                     <span translate>dcmhome.organization.addCampaign</span>
                     <i class="fa fa-plus"></i>
@@ -45,7 +44,13 @@
 
             </div>
 
-            <div ng-if="campaign">
+            <div ng-if="campaign && !campaignStarted">
+
+                <span class="empty-content-hint" translate>dcmhome.campaignNotStarted</span>
+
+            </div>
+
+            <div ng-if="campaign && campaignStarted">
 
                 <div class="row" ng-if="currentUserCount > 0">
                     <div class="col-md-6">
@@ -60,7 +65,7 @@
 
                 <div ng-if="currentUserCount === 0" class="panel panel-default">
                     <h3 translate>dcmhome.noParticipants</h3>
-                    <p translate>dcmhome.addMoreUsers</p>
+                    <span class="empty-content-hint" translate>dcmhome.addMoreUsers</span>
                     <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
                 </div>
 
@@ -80,8 +85,6 @@
             <div>
                 <h3 translate>dcmhome.activities</h3>
 
-
-
                 <div ng-if="campaign">
                     <div class="checkbox" ng-if="campaign">
                         <label>
@@ -98,6 +101,13 @@
             </div>
 
             <div class="flex" ng-style="{ height: $parent.offersAreaHeight + 'em' }">
+
+
+                <div ng-if="campaign && offers.length === 0">
+
+                    <span class="empty-content-hint" translate>dcmhome.noOffers</span>
+
+                </div>
 
                 <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
                                      activity="offer.activity"

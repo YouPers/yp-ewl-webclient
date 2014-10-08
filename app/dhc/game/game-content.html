@@ -7,6 +7,12 @@
         <div class="flex" ng-style="{ height: $parent.currentActivitiesAreaHeight + 'em' }">
 
 
+            <div ng-if="activities.length === 0">
+
+                <span class="empty-content-hint" translate>game.noActivities</span>
+
+            </div>
+
             <activity-event-stack type="current"
                                   idea="activity.idea" activity="activity"
                                   events="eventsByActivity[activity.id]"
@@ -22,6 +28,13 @@
             <div><h3 translate>game.activities.donePreview</h3></div>
 
             <div class="done-activities">
+
+                <div ng-if="closedEvents.length === 0">
+
+                    <span class="empty-content-hint" translate>game.noClosedEvents</span>
+
+                </div>
+
                 <activity-event-stack type="past" events="closedEvents"></activity-event-stack>
             </div>
 
@@ -39,6 +52,11 @@
 
         <div class="flex" ng-style="{ height: $parent.offeredActivitiesAreaHeight + 'em' }">
 
+            <div ng-if="offers.length === 0">
+
+                <span class="empty-content-hint" translate>game.noOffers</span>
+
+            </div>
 
             <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
                                  activity="offer.activity"
@@ -58,12 +76,19 @@
 
             <div class="rejected-activities">
 
+
+                <div ng-if="offersDimissed.length === 0">
+
+                    <span class="empty-content-hint" translate>game.noDismissedOffers</span>
+
+                </div>
+
                 <activity-offer-card
 
                         activity="offer.activity"
                         idea="offer.idea"
                         social-interaction="offer.socialInteraction"
-                        ng-repeat="offer in offersDismissed"
+                        ng-repeat="offer in offersDimissed"
 
                         ></activity-offer-card>
             </div>
