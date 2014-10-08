@@ -7,34 +7,26 @@ social-interaction-inbox {
   display: block;
   .game-card();
 
-  .main-header {
-
-    > * {
-      display: inline-block;
-    }
-
-    > i {
-      padding: 15px;
-    }
-    > :not(i) {
-      padding: 5px;
-      margin: 0;
-    }
+  .inbox-item .title {
+    padding-top: 10px;
   }
 
-  .publish {
-    display: flex;
-    div {
-      width: 50%;
-    }
-  }
 }
 
 social-interaction {
   display: block;
-  .dismiss i {
-    color: @yp-warning;
+
+
+
+  .dismiss {
+    float: right;
+    padding: 2px 2px 2px 6px;
   }
+
+  .dismiss i {
+//    color: @yp-warning;
+  }
+
   .authorType {
     color: @yp-subtitle;
   }
@@ -58,8 +50,10 @@ social-interaction {
     margin: 0;
      a {
        display: block;
+       padding-top: 5px;
        padding-bottom: 5px;
        i.fa {
+         padding-top: 7px;
          font-size: 14px;
          float: right;
        }
@@ -80,6 +74,11 @@ social-interaction {
     border: none;
     box-shadow: none;
     padding: 0;
+  }
+
+  .sheet.publish {
+    padding: 2px;
+
   }
 
 }
@@ -105,11 +104,14 @@ social-interaction {
     > img {
       width: 32px;
     }
+    > i {
+       padding: 10px 15px;
+     }
   }
   > *:not(:first-child) {
     flex: 1 1 auto;
     > * {
-      padding: 8px;
+      padding: 5px;
     }
   }
 }

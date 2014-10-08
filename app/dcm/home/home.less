@@ -176,17 +176,19 @@
       }
     }
 
+
   }
 
   .campaign-messages {
     .game-card();
 
-    .header {
-      padding: 20px 0 40px 65px;
+    > div > .inbox-item:first-child {
+      margin-bottom: 20px;
       .checkbox {
-        margin: 0;
+        margin-top: 0;
       }
     }
+
     .add-offer {
       .button();
       position: absolute;
@@ -199,6 +201,10 @@
     .empty-content-hint {
       display: block;
       margin: 10px 15px 10px 65px;
+    }
+
+    social-interaction .panel-title a i.fa {
+      padding: 0;
     }
   }
 

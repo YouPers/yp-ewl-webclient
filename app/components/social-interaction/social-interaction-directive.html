@@ -13,18 +13,18 @@
 
             <div class="info">
 
-
-                <div class="pull-right dismiss">
+                <div class="dismiss">
                     <a ng-if="options.isCampaignLead"><i ng-click="editSocialInteraction($event, soi)"
                                                          class="fa fa-pencil-square-o"></i></a>
                     <a><i ng-click="dismissSocialInteraction($event, soi)"
                           class="{{options.isCampaignLead ? 'fa fa-trash-o' : 'glyphicon glyphicon-remove'}}"></i></a>
                 </div>
+                <div class="date">{{ (soi.publishFrom || soi.created) | fromNow }}</div>
 
+
+                <div class="clearfix"></div>
                 <div class="authorType">{{ 'socialInteraction.header.' + soi.__t + '.' + soi.authorType | translate }}</div>
                 <div class="author">{{ soi.author.fullname }}</div>
-                <div class="date">{{ (soi.publishFrom || soi.created) | fromNow }}</div>
-                <div class="clearfix"></div>
             </div>
 
         </div>

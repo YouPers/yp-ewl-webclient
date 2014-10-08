@@ -4,17 +4,18 @@
 
         <div class="avatar">
             <img ng-src="/assets/img/healthcoach.png">
-        </div>
-
-        <div>
-
-            <div class="author">
-                <span translate>healthCoach.fullname</span>
-            </div>
-
-            <div class="message" ng-if="coachMessage" ng-bind-html="coachMessage" ></div>
-            <div class="message" ng-if="!coachMessage && eventMessage" ng-bind-html="eventMessage"></div>
 
         </div>
+
+        <div class="author">
+            <h3 translate>healthCoach.fullname</h3>
+        </div>
+    </div>
+
+    <div class="message">
+
+        <div ng-if="coachMessage" ng-bind-html="coachMessage" ></div>
+        <div ng-if="!coachMessage && eventMessage" ng-bind-html="eventMessage"></div>
+
     </div>
 </div>
