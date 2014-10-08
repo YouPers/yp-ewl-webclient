@@ -47,7 +47,11 @@ organization-card {
   .name {
     font-weight: 400;
     font-size: 14px;
-    height: 52px;
+
+    > *:nth-child(2) {
+      display: inline;
+      white-space: pre-wrap;
+    }
 
     display: flex;
     justify-content: center;
