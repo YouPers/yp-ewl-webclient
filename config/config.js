@@ -64,7 +64,7 @@ var specificConfigs = {
     uat: {
         name: 'uat',
         backendUrl: 'https://uat.youpers.com/api',
-        translationSource: 'local',
+        translationSource: 'wti',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-2'
         }
