@@ -21,21 +21,21 @@
                                 if (!currentUsersCampaign) {
                                     return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
                                 }
-                                return AssessmentService.getNewestAssessmentResults(currentUsersCampaign.topic);
+                                return AssessmentService.getNewestAssessmentResults(currentUsersCampaign.topic.id || currentUsersCampaign.topic);
                             }],
                             topStressors: ['AssessmentService','UserService', '$q', function (AssessmentService, UserService, $q) {
                                 var currentUsersCampaign = UserService.principal.getUser().campaign;
                                 if (!currentUsersCampaign) {
                                     return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
                                 }
-                                return AssessmentService.topStressors(currentUsersCampaign.topic);
+                                return AssessmentService.topStressors(currentUsersCampaign.topic.id || currentUsersCampaign.topic);
                             }],
                             assessment: ['AssessmentService','UserService', '$q', function (AssessmentService, UserService, $q) {
                                 var currentUsersCampaign = UserService.principal.getUser().campaign;
                                 if (!currentUsersCampaign) {
                                     return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
                                 }
-                                return AssessmentService.getAssessment(currentUsersCampaign.topic);
+                                return AssessmentService.getAssessment(currentUsersCampaign.topic.id || currentUsersCampaign.topic);
                             }],
                             assessmentIdea: ['ActivityService', 'assessment', function (ActivityService, assessment) {
                                 return ActivityService.getIdea(assessment.idea.id || assessment.idea);
