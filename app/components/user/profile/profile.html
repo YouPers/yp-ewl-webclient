@@ -3,27 +3,37 @@
 <form name="profileForm" ypModel="profileUserObj" class="form" role="form" ng-submit="saveProfile()" novalidate>
 
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-10 col-md-offset-1">
         <h3 translate>profileForm.profile.header</h3>
     </div>
-    <div class="col-md-3">
-        <button type="submit" class="btn btn-success btn-sm" ng-disabled="profileForm.$invalid" translate>
-            profileForm.submit
-        </button>
-        <button type="submit" class="btn btn-default btn-sm" ui-sref="homedispatcher" translate>
-            account.backToHome
-        </button>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
 
+        <div class="pull-right">
+            <button type="submit" class="btn btn-success btn-sm" ng-disabled="profileForm.$invalid" translate>
+                profileForm.submit
+            </button>
+            <button type="submit" class="btn btn-default btn-sm" ui-sref="homedispatcher" translate>
+                account.backToHome
+            </button>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <br/>
     </div>
 </div>
 
 <div class="row">
 
-<div class="col-md-12">
+<div class="col-md-10 col-md-offset-1">
 
 <accordion close-others="true">
 
-<accordion-group heading="{{ 'profileForm.profile.header' | translate }}" is-open="isOpen" ng-init="isOpen= true" class="user-profile">
+<accordion-group heading="{{ 'profileForm.profile.header' | translate }}" is-open="isOpen" ng-init="isOpen= true"
+                 class="user-profile">
 
     <div class="col-md-6">
 
@@ -73,9 +83,11 @@
                 <div class="col-md-8">
                     <div class="btn-group" data-toggle="buttons-radio">
                         <input id="female" type="radio" value="female" ng-model="profileUserObj.gender"
-                               ng-click="profileUserObj.gender = 'female'"><label for="female">&NonBreakingSpace;{{ 'gender.female' | translate }}</label></input></br>
+                               ng-click="profileUserObj.gender = 'female'"><label for="female">&NonBreakingSpace;{{
+                        'gender.female' | translate }}</label></input></br>
                         <input id="male" type="radio" value="male" ng-model="profileUserObj.gender"
-                               ng-click="profileUserObj.gender = 'male'"><label for="male">&NonBreakingSpace;{{ 'gender.male' | translate }}</label></input></br>
+                               ng-click="profileUserObj.gender = 'male'"><label for="male">&NonBreakingSpace;{{
+                        'gender.male' | translate }}</label></input></br>
                     </div>
                 </div>
             </div>
@@ -202,7 +214,8 @@
                 </div>
 
                 <div class="col-md-9">
-                    <select class="form-control" ng-model="profileUserObj.language" ng-options="'language.'+value | translate for value in enums.language">
+                    <select class="form-control" ng-model="profileUserObj.language"
+                            ng-options="'language.'+value | translate for value in enums.language">
                     </select>
                 </div>
 
@@ -214,6 +227,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label translate>profileForm.emailNotificationsSettings</label>
+
             <div class="row">
                 <div class="col-md-6" ng-repeat="(emailsetting, value) in profileUserObj.prefs.email">
                     <div class="input-group">
@@ -225,9 +239,11 @@
                 </div>
             </div>
             <label translate>profileForm.calendarNotificationSettings</label>
+
             <div class="row">
                 <div class="col-md-6">
-                    <select ng-model="profileUserObj.prefs.calendarNotification" ng-options="'calendarNotification.'+ setting | translate for setting in enums.calendarNotifications">
+                    <select ng-model="profileUserObj.prefs.calendarNotification"
+                            ng-options="'calendarNotification.'+ setting | translate for setting in enums.calendarNotifications">
                     </select>
                 </div>
             </div>
@@ -238,8 +254,9 @@
 <accordion-group heading="{{ 'profileForm.rejectedActivities.header' | translate }}">
     <div class="col-md-4" ng-repeat="recIdea in profileUserObj.prefs.rejectedIdeas">
         <div class="row">
-            <div class="col-md-8">  {{ideas.byId(recIdea.idea).title}}</div>
-            <div class="col-md-4"> <a class="btn btn-sm btn-primary" ng-click="reactivateActivity(recIdea)">wieder aktivieren</a></div>
+            <div class="col-md-8"> {{ideas.byId(recIdea.idea).title}}</div>
+            <div class="col-md-4"><a class="btn btn-sm btn-primary" ng-click="reactivateActivity(recIdea)">wieder
+                aktivieren</a></div>
         </div>
     </div>
 </accordion-group>
