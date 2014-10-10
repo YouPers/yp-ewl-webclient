@@ -37,13 +37,13 @@
 
                         <div class="form-group">
                             <label translate>organizationForm.legalForm.label</label>
-                            <select class="form-control" ng-model="organization.legalForm" ng-options="item.key as item.value for item in localizedValues('organization.legalForm.', 7)"></select>
+                            <select class="form-control" ng-model="organization.legalForm" ng-options="item.key as item.value for item in legalForms"></select>
                         </div>
 
 
                         <div class="form-group">
                             <label translate>organizationForm.sector.label</label>
-                            <select class="form-control sector" ng-model="organization.sector" ng-options="item.key as item.value for item in localizedValues('organization.sector.', 38)"></select>
+                            <select class="form-control sector" ng-model="organization.sector" ng-options="item.key as item.value for item in sectors"></select>
 
                             <input class="form-control sector"
                                    type="text"
@@ -51,7 +51,7 @@
                                    ng-model="sectorSearchModel"
                                    typeahead-min-length="0"
                                    placeholder="{{ 'organizationForm.sector.placeholder' | translate }}"
-                                   typeahead="item.key as item.value for item in (localizedValues('organization.sector.', 38) | filter:$viewValue | limitTo:10)"
+                                   typeahead="item.key as item.value for item in (sectors | filter:$viewValue | limitTo:10)"
                                    typeahead-on-select="organization.sector = $item.key; sectorSearchModel = ''"
 
                                     >
