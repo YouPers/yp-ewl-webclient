@@ -1,22 +1,5 @@
 {
   "healthCoach": {
-    "hcmsg": {
-      "1": "<p> Commences par une <a href='/#/check'>auto-évaluation</a> ou  regardes premières <a href='/#/select'>suggestions d'activités</a> à.",
-      "2": "<p> Vos <a href='/#/check'>auto-évaluation</a> s 'depuis quelques jours. Regardes à nouveau tes réponses à travers et savoir si quelque chose a changé dans l'intervalle. <p> Si tu règles tes réponses, tu obtiens des suggestions d'activités qui correspondent mieux à ta situation personnelle.",
-      "3": "<p> Tu n'as pas encore prévues des activités . Faire un premier pas vers l'amélioration de l'hygiène de vie en permettant une <a href='/#/select'>activité de einplanst</a> et sont performants.",
-      "4": "<p> Si vous mets ta <a href='/#/check'>remplissage dans l'auto-évaluation</a> , alors nous pouvons te proposer des activités qui sont adaptés à ta situation personnelle.",
-      "5": "<p> En remplissant cette <a href='/#/check'>auto-évaluation</a> tu nous permets te proposer des activités sur mesure avec laquelle tu peux mettre dans de petites mesures pour améliorer le comportement de ta santé. <p> Tes données seront chiffrées et stockées dans une base de données sécurisée en Suisse. <p> Ta employeur a accès à cette information en toutes circonstances.",
-      "6": "<p> Le plus tu remplisses l' <a href='/#/check'>auto-évaluation</a> à remplir le meilleur ajustement des activités proposées à ta situation personnelle. <p><p> Jusqu'à présent, ta as répondu à moins de la moitié des questions.",
-      "7": "<p> Une fois que tu as l' <a href='/#/check'>auto-évaluation</a> ont complètement rempli, nous allons te montrer sur cette analyse de page à partir de laquelle tu peux sélectionner ton attention personnelle.",
-      "8": "<p> Une fois que tu as planifié une activité avec des recommandations, tu verras ici dans votre plan.",
-      "9": "<p> ",
-      "10": "<p> Inquiétes-tu ta rétroaction ouverte. ",
-      "11": "<p> Fixes-tu en raison de ton besoin actuel de l'action mise au point. Sous les recommandations appropriées, tu auras besoin de l'action <a href='/#/select'>des conseils d'activité</a> affiché.",
-      "12": "<p> Vérifies ton attention et l'adapter aux cas de besoin pour adapter de manière appropriée <a href='/#/select'>les recommandations d'activité</a> à obtenir.",
-      "13": "<p> Regardes les <a href='/#/select'>suggestions d'activités</a> et de planifier pour te donner un peu rotules.",
-      "14": "<p> Pour obtenir d'autres recommandations passe ton <a href='/#/check'>auto-évaluation</a> ou de ton <a href='/#/focus'>foyer</a> sur.",
-      "15": "<p> Les activités prévues peuvent être modifiées ou supprimées sur cette page. De nouvelles activités peuvent être trouvés sur la page <a href='/#/select'>des recommandations</a> à être réguliers.",
-      "schedulingConflict": "Tu as le {{beginDate}} - {{endDate}} déjà l'activité: « {{title}} 'prévu. <p> Veux-tu vraiment le même plan de quelque chose d'autre?"
-    }
+
   }
 }
