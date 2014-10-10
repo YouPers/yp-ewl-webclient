@@ -37,12 +37,12 @@
 
             }])
 
-        .controller('RecommendationController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
-            'UserService', 'SocialInteractionService', 'HealthCoachService', 'idea', 'socialInteraction',
-            function ($scope, $rootScope, $state, $stateParams, $timeout,  UserService, SocialInteractionService, HealthCoachService, idea, socialInteraction) {
+        .controller('RecommendationController', [ '$scope', '$state', '$stateParams', '$timeout',
+            'UserService', 'SocialInteractionService', 'HealthCoachService', 'idea', 'socialInteraction', 'campaign',
+            function ($scope, $state, $stateParams, $timeout,  UserService, SocialInteractionService, HealthCoachService, idea, socialInteraction, campaign) {
 
                 $scope.idea = idea;
-
+                $scope.campaign = campaign;
                 $scope.recommendation = socialInteraction ? socialInteraction :  {
 
                     idea: idea.id,
