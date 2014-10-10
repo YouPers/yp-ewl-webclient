@@ -38,6 +38,12 @@
                     getCampaignStats: function (campaignId, type) {
                         var stats = Rest.all('campaigns/' + campaignId + '/stats');
                         return stats.getList({ type: type });
+                    },
+                    inviteParticipants: function(campaignId, particpantEmails, mailSubject, mailText) {
+                        return campaigns.one(campaignId).all('inviteParticipantsEmail')
+                            .post({email: particpantEmails,
+                                   subject: mailSubject,
+                                   text: mailText});
                     }
 
                 };

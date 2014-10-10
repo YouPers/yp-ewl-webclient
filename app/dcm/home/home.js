@@ -58,8 +58,8 @@
 
 
 
-        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns', 'healthCoachEvent',
-            function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns, healthCoachEvent) {
+        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns', 'CampaignService', 'healthCoachEvent', '$translate',
+            function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns, CampaignService, healthCoachEvent, $translate) {
 
                 $scope.healthCoachEvent = healthCoachEvent;
                 $scope.homeController = this;
@@ -67,6 +67,9 @@
                 $scope.campaign = campaign;
                 $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
 
+                $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
+                    CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText);
+                };
 
                 init();
 
@@ -106,6 +109,15 @@
 
                             });
                         });
+
+                        $translate('dcmhome.emailInvite.emailSubject.defaultSubject').then(function (translatedText) {
+                            $scope.emailSubject = translatedText;
+                        });
+
+                        $translate('dcmhome.emailInvite.emailText.defaultText').then(function (translatedText) {
+                            $scope.emailText = translatedText;
+                        });
+
                     }
 
                 }
