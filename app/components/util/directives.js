@@ -4,7 +4,7 @@
 
     angular.module('yp.components.util.directives', [])
 
-        .directive('translateMarkdown', ['$filter', function ($filter) {
+        .directive('translateMarkdown', ['$translate', function ($translate) {
             return {
                 restrict: 'A',
                 link: function (scope, element, attrs) {
@@ -12,8 +12,9 @@
                     if(!attrs.translateMarkdown) {
                         throw new Error('translateMarkdown: attribute value is required');
                     }
-//                    $sce.trustAsHtml()
-                    element.html(marked($filter('translate')(attrs.translateMarkdown)));
+                    $translate(attrs.translateMarkdown).then(function (translatedValue) {
+                        element.html(marked(translatedValue));
+                    });
 
                 }
             };

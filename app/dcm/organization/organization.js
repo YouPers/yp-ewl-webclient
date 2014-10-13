@@ -93,7 +93,7 @@
 
                 $scope.organization.user = _.clone(userFields);
 
-                $scope.localizedValues = function localizedValues(prefix, range) {
+                function _localizedValues(prefix, range) {
 
                     var values = _.map(_.range(range), function(val) {
                         var key = prefix + (val+1);
@@ -104,8 +104,10 @@
                         };
                     });
                     return values;
+                }
 
-                };
+                $scope.sectors = _localizedValues('organization.sector.', 38);
+                $scope.legalForms = _localizedValues('organization.legalForm.', 7);
 
                 $scope.validateOrganizationModel = function () {
                     var missingOrganizationFields = [];

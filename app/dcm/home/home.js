@@ -61,47 +61,55 @@
         .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns', 'healthCoachEvent',
             function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns, healthCoachEvent) {
 
-                if(campaign) {
-                    $scope.$watch('homeController.showOld', function (showOld) {
-                        var options = {
-                            populate: 'author',
-                            targetId: campaign.id,
-                            authored: true,
-                            authorType: 'campaignLead'
-                        };
-
-                        if(showOld) {
-                            options.publishFrom = false;
-                            options.publishTo = false;
-                        } else {
-                            options.publishFrom = false;
-                            options.publishTo = new Date();
-                        }
-
-                        SocialInteractionService.getSocialInteractions(options).then(function (sis) {
-
-                            $scope.offers = _.sortBy(_.filter(sis, function(si) {
-                                return si.__t === 'Recommendation' || si.__t === 'Invitation';
-                            }), function (si) {
-                                return si.publishFrom;
-                            });
-                            _.each($scope.offers, function (offer) {
-                                offer.idea = offer.idea || offer.activity.idea;
-                            });
-
-                        });
-                    });
-                }
-
                 $scope.healthCoachEvent = healthCoachEvent;
                 $scope.homeController = this;
                 $scope.homeController.filterByPublishDate = false;
                 $scope.campaign = campaign;
-                if (!campaign && campaigns.length > 0) {
-                    $state.go('dcm.home', { campaignId: campaigns[0].id });
-                } else {
-                    $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
+                $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
+
+
+                init();
+
+                /////////////////////
+                function init () {
+                    if (!campaign && campaigns.length > 0) {
+                        $state.go('dcm.home', { campaignId: campaigns[0].id });
+                    }
+
+                    if(campaign) {
+                        $scope.$watch('homeController.showOld', function (showOld) {
+                            var options = {
+                                populate: 'author',
+                                targetId: campaign.id,
+                                authored: true,
+                                authorType: 'campaignLead'
+                            };
+
+                            if(showOld) {
+                                options.publishFrom = false;
+                                options.publishTo = false;
+                            } else {
+                                options.publishFrom = false;
+                                options.publishTo = new Date();
+                            }
+
+                            SocialInteractionService.getSocialInteractions(options).then(function (sis) {
+
+                                $scope.offers = _.sortBy(_.filter(sis, function(si) {
+                                    return si.__t === 'Recommendation' || si.__t === 'Invitation';
+                                }), function (si) {
+                                    return si.publishFrom;
+                                });
+                                _.each($scope.offers, function (offer) {
+                                    offer.idea = offer.idea || offer.activity.idea;
+                                });
+
+                            });
+                        });
+                    }
+
                 }
+
             }])
 
         .controller('HomeStatsController', ['$scope', 'StatsService', function ($scope, StatsService) {

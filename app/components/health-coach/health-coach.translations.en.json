@@ -1,22 +1,5 @@
 {
   "healthCoach": {
-    "hcmsg": {
-      "1": "<p> Start with a <a href='/#/check'>self-check</a> or have a look at some  <a href='/#/select'>activity suggestions</a>.",
-      "2": "<p>Your last update of the <a href='/#/check'>self-check</a> has been a few days ago. Look again at your answers and find out if something has changed in the meantime. <p>If you adjust your answers you get activity suggestions that better fit your personal situation.",
-      "3": "<p>You have not yet planned any activities. Make a first step towards improved health behavior by <a href='/#/select'>scheduling an activity</a> and then execute on it.",
-      "4": "<p> If you perform the <a href='/#/check'>Self-Check</a> we can propose you activities that are tailored to your personal situation.",
-      "5": "<p> By completing this <a href='/#/check'>Self-Check</a> you enable us to propose tailor-made activities helping you to improve your health behavior in small steps.<p> Your data will be encrypted and stored in a secure database in Switzerland. <p> Your employer does not gain access to this data under any circumstances.",
-      "6": "<p> The more complete you perform the <a href='/#/check'>Self-Check</a> the better will the proposed activities fit to your personal situation. <p><p> Until now you have answered less than half of the questions.",
-      "7": "<p>Once you have completely filled out the <a href='/#/check'>self-assessment</a>, we will show you on this page an analysis based on which you can select your personal focus.",
-      "8": "<p>Once you have scheduled an activity under recommendations, it will be shown here in your plan.",
-      "9": "<p>",
-      "10": "<p>Maintain your open feedback.</a>.",
-      "11": "<p>Set yourself a focus because of your current need for action. Under recommendations you will be displayed appropriate <a href='/#/select'>activity recommendations</a> that suit the need for action.",
-      "12": "<p>Check your focus and adjust it as needed to obtain appropriately adapted <a href='/#/select'>activity recommendations</a>.",
-      "13": "<p>Look at the <a href='/#/select'>activity suggestions</a> and schedule something suitable.",
-      "14": "<p>In order to obtain other recommendations, adjust your <a href='/#/check'>self-assessment</a> or your <a href='/#/focus'>focus</a>.",
-      "15": "<p>Planned activities can be modified or deleted on this page. New activities can be scheduled on the page <a href='/#/select'>recommendations</a>.",
-      "schedulingConflict": "You already have scheduled the activity: '{{title}}' on {{beginDate}} - {{endDate}}. <p>Do you really want the schedule anything else at once?"
-    }
+
   }
 }

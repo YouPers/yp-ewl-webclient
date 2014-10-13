@@ -48,7 +48,7 @@
 
 
                     scope.showWeeks = false;
-                    scope.minDate = moment().toISOString();
+                    scope.minDate = scope.minDate || moment().toISOString();
 
                     scope.dateFormat = 'dd.MM.yyyy';
 
