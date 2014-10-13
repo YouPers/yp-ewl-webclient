@@ -31,7 +31,8 @@
                 "lastEventMissed": "Schade, kann mal passieren.\n\nIch habe die Aktivität bei dir auf der Hauptseite von \"Eingeplante Aktivitäten\" zu \"Abgeschlossene Aktivitäten\" verschoben.",
                 "editOwnActivity": "Die Änderung einer Aktivität \"zum selber machen\" hat keine weiteren Auswirkungen.\n\nDie Änderung einer eingeplanten Gruppenaktivität hat zur Folge, dass die Aktivität bei den eingeladenen Mitarbeitern unter \"Angebotene Aktivitäten\" entsprechend angepasst wird. \n\nHat ein Mitarbeiter die Einladung bereits angenommen und sich den Gruppenaktivitätstermin eingeplant, wird die Aktivitätsplanung beim Mitarbeiter unter \"Eingeplante Aktivitäten\" automatisch angepasst und dem Mitarbeiter ein entsprechender Kalender-Termineintrags-Update geschickt.",
                 "deleteOwnActivity": "Die Löschung einer Aktivität \"zum selber machen\" hat keine weiteren Auswirkungen, ausser dass die Karte vom Bereich \"Eingeplante Aktivität\" in den Bereich \"Abgeschlossene Aktivität\" verschoben wird.\n\nDie Löschung einer Gruppenaktivität hat zur Folge, dass die eingeladenen Mitarbeiter deine Einladungskarte unter \"Angebotene Aktivitäten\" nicht mehr sehen. \n\nHat ein Mitarbeiter deine Einladung bereits angenommen und sich den Aktivitätstermin eingeplant, wird die Aktivitätsplanung beim Mitarbeiter unter \"Eingeplante Aktivitäten\" automatisch gelöscht und der Mitarbeiter erhält eine entsprechende Kalender-Termin-Absage.",
-                "deleteJoinedActivity": "Die Löschung hat zur Folge, dass der Organisator sieht, dass du deine Teilnahme an der Gruppenaktivität abgesagt hast."
+                "deleteJoinedActivity": "Die Löschung hat zur Folge, dass der Organisator sieht, dass du deine Teilnahme an der Gruppenaktivität abgesagt hast.",
+                "conflictingEvent": "TODO: here goes an appropriate health coach message for a conflicting event"
             },
 
             "check": {

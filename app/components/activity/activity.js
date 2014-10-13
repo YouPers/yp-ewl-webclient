@@ -234,7 +234,11 @@
                             var event = result.event;
 
                             event.activity = $scope.activity;
-                            event.conflictingEvent = result.conflictingEvent;
+
+                            if(result.conflictingEvent) {
+                                event.conflictingEvent = result.conflictingEvent;
+                                $scope.healthCoachEvent = 'conflictingEvent';
+                            }
 
                             $scope.events.push(event);
 
@@ -281,7 +285,9 @@
                 };
 
                 $scope.acceptRecommendation = function () {
-                    $scope.healthCoachEvent = 'recommendationAccepted';
+                    if($scope.healthCoachEvent !== 'conflictingEvent') {
+                        $scope.healthCoachEvent = 'recommendationAccepted';
+                    }
                     activityController.active = true;
                     activityController.formActive = activityController.formEnabled;
                 };
