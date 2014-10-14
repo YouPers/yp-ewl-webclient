@@ -70,12 +70,12 @@
                 <div>
 
                     <a ui-sref="dcm.recommendation({ idea: idea.id })">
-                        <i class="fa fa-share-square"></i>
+                        <i class="fa fa-share-square" popover-placement="top"  popover="{{'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
                     </a>
 
                     <a ng-show="idea.defaultexecutiontype === 'group'"
-                       ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })">
-                        <i class="fa fa-calendar"></i>
+                       ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })" >
+                        <i class="fa fa-calendar" popover-placement="top"  popover="{{'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
                     </a>
 
                 </div>
