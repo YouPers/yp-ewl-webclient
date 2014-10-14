@@ -151,6 +151,8 @@
                             publishTo: new Date(moment().endOf('day'))
                         };
 
+                        scope.hasCampaign = $stateParams.campaignId;
+
                         scope.options = {
                             composeFormShown: false
                         };
