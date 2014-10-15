@@ -38,20 +38,19 @@ activity-offer-card {
     }
 
     > div {
+
       display: flex;
       justify-content: center;
-      align-content:flex-start;
+      align-content:center;
       flex-direction:column;
-      p {
-        margin: 0;
+      > .caption {
+        margin-top: -4px;
       }
     }
 
     img {
 
       position: absolute;
-
-//      width: 50px;
       height: 100%;
 
       top: 0;
@@ -71,6 +70,7 @@ activity-offer-card {
     i {
       font-size: 14px;
     }
+    .caption();
   }
 
   > .author {
@@ -93,6 +93,7 @@ activity-offer-card {
 
   div.publishedDate {
     padding: 5px;
+    .caption();
   }
 
   .title {

@@ -56,13 +56,13 @@ var specificConfigs = {
         googleAnalytics: {}
     },
     cimaster: { // used by automtatic deploys on cimaster machine
-        name: 'cimaster',
+        name: '',
         webclientUrl: 'https://cimaster.youpers.com',
         backendUrl: 'https://cimaster.youpers.com/api',
         googleAnalytics: {}
     },
     uat: {
-        name: 'uat',
+        name: '',
         backendUrl: 'https://uat.youpers.com/api',
         translationSource: 'wti',
         googleAnalytics: {
@@ -70,6 +70,7 @@ var specificConfigs = {
         }
     },
     prod: {
+        name: '',
         backendUrl: 'https://prod.youpers.com/api',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-3'

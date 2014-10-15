@@ -75,8 +75,8 @@
                 };
 
 
-                var avatarMale = '/assets/img/avatar_man.png';
-                var avatarFemale = '/assets/img/avatar_woman.png';
+                var avatarMale = '/assets/img/default_avatar_man.svg';
+                var avatarFemale = '/assets/img/default_avatar_woman.svg';
 
                 $scope.defaultAvatar = function defaultAvatar(ev) {
                     var user = $scope.principal.getUser();

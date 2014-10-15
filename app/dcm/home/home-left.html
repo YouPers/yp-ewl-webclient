@@ -2,7 +2,7 @@
 <div class="organization">
 
     <organization-card organization="organization" ng-if="organization">
-        <a href class="icon" ui-sref="organization.content" ng-if="principal.isAuthorized('orgadmin')">
+        <a href class="icon" ui-sref="organization" ng-if="principal.isAuthorized('orgadmin')">
             <i class="fa fa-pencil-square-o"></i>
         </a>
     </organization-card>

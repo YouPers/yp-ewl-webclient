@@ -170,13 +170,13 @@ slider span.bar {
   width: 100%;
   border-radius: 3px;
   background: @yp-ass-slider-red; /* Old browsers */
-  background: -moz-linear-gradient(left, white 0%, @yp-ass-slider-red 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,@yp-ass-slider-red ), color-stop(100%,white)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, white 0%, @yp-ass-slider-red 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left,white 0%, @yp-ass-slider-red 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, white 0%, @yp-ass-slider-red 100%); /* IE10+ */
-  background: linear-gradient(to right, white 0%, @yp-ass-slider-red 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=@yp-ass-slider-red, endColorstr=white ,GradientType=1 ); /* IE6-9 */
+  background: -moz-linear-gradient(left, @yp-ass-slider-white 0%, @yp-ass-slider-red 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,@yp-ass-slider-red ), color-stop(100%,@yp-ass-slider-white)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, @yp-ass-slider-white 0%, @yp-ass-slider-red 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,@yp-ass-slider-white 0%, @yp-ass-slider-red 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, @yp-ass-slider-white 0%, @yp-ass-slider-red 100%); /* IE10+ */
+  background: linear-gradient(to right, @yp-ass-slider-white 0%, @yp-ass-slider-red 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=@yp-ass-slider-red, endColorstr=@yp-ass-slider-white ,GradientType=1 ); /* IE6-9 */
 }
 
 slider span.bar.selection, slider span.bar.unselected {

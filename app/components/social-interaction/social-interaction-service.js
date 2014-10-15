@@ -42,7 +42,7 @@
                         return socialInteractions.post(socialInteraction);
                     },
                     getSocialInteraction: function(socialInteractionId) {
-                        return socialInteractions.one(socialInteractionId).get().then(function (invitation) {
+                        return socialInteractions.one(socialInteractionId).get({ 'populate': ['author'] }).then(function (invitation) {
                             extractRefDocs([invitation]);
                             return invitation;
                         });
