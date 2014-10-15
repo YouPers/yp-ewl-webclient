@@ -17,7 +17,9 @@
                         },
                         resolve: {
                             ideas: ['ActivityService', 'campaign', function (ActivityService, campaign) {
-                                return ActivityService.getIdeas({campaign: campaign.id || campaign, topic: campaign.topic.id || campaign.topic});
+                                return ActivityService.getIdeas({campaign: campaign.id || campaign, topic: campaign.topic.id || campaign.topic}).then(function (ideas) {
+                                    return _.sortBy(ideas, "title");
+                                });
                             }]
                         }
                     })
