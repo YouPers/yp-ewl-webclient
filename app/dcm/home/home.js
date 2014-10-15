@@ -64,11 +64,20 @@
                 $scope.healthCoachEvent = healthCoachEvent;
                 $scope.homeController = this;
                 $scope.homeController.filterByPublishDate = false;
+                $scope.homeController.formStatus = 'beforeTest';
                 $scope.campaign = campaign;
                 $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
 
                 $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
-                    CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText);
+                    CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
+                        $scope.homeController.formStatus = 'sentSuccessful';
+                    });
+                };
+
+                $scope.sendTestInvitationMail= function(mailSubject, mailText) {
+                    CampaignService.inviteParticipants(campaign.id, $scope.principal.getUser().email, mailSubject, mailText).then(function () {
+                        $scope.homeController.formStatus = 'afterTest';
+                    });
                 };
 
                 init();

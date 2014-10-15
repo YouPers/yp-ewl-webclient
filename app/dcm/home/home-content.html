@@ -17,56 +17,82 @@
 
                     <form class="form"
                           role="form"
-                          ng-submit="emailInvitation.$valid && onEmailInviteSubmit(emailToBeInvited, emailSubject, emailText); emailToBeInvited = ''"
                           name="emailInvitation">
                         <div class="row">
                             <div class="col-md-12">
                                 <label translate>dcmhome.emailInvite.emailSubject.label</label>
                                 <input type="text" required class="form-control" ng-model="emailSubject"
+                                       ng-disabled="!(homeController.formStatus=='beforeTest')"
                                        placeholder="{{ 'dcmhome.emailInvite.emailSubject.placeholder' | translate }}">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mail-text">
                             <div class="col-md-12">
                                 <label translate>dcmhome.emailInvite.emailText.label</label>
                                 <textarea required class="form-control" ng-model="emailText"
+                                          ng-disabled="!(homeController.formStatus=='beforeTest')"
                                           placeholder="{{ 'dcmhome.emailInvite.emailText.placeholder' | translate }}">
                                 </textarea>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12" ng-if="inviteEmailFormStatus=='enterAdresses'">
+
+                        <div class="row"
+                             ng-if="homeController.formStatus=='beforeTest'">
+                            <div class="col-md-6">
+                                Sende dir selbst eine Test-Einladung:
+                            </div>
+                            <div class="col-md-6">
+                                <button ng-click="sendTestInvitationMail(emailSubject, emailText)"
+                                        class="btn btn-default"
+                                        translate>test
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-if="homeController.formStatus=='afterTest'">
+                            <div class="col-md-12">
+                                Einladung gesendet an {{principal.getUser().email}}. <br>Bitte prüfe die Einladung in
+                                deinem Mail-Eingang.
+                            </div>
+                            <div class="col-md-4">
+                                <button ng-click="homeController.formStatus='beforeTest'"
+                                        class="btn btn-default"
+                                        translate>korrigieren
+                                </button>
+                            </div>
+                            <div class="col-md-8">
+                                <button ng-click="homeController.formStatus='enterAdresses'"
+                                        class="btn btn-default"
+                                        translate>weiter
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="row" ng-if="homeController.formStatus=='enterAdresses'">
+                            <div class="col-md-12">
                                 <label translate>dcmhome.emailInvite.label</label>
                                 <input type="text" multiple-emails required class="form-control"
                                        ng-model="emailToBeInvited"
                                        placeholder="{{ 'dcmhome.emailInvite.placeholder' | translate }}">
                             </div>
-                        </div>
-                        <div class="row" ng-if="inviteEmailFormStatus=='afterTest'">
-                            <div class="col-md-4">
-
-                            </div>
-                            <div class="col-md-4">
-                                <button ng-click="inviteEmailFormStatus='beforeTest'"
+                            <div class="col-md-6 col-md-offset-6">
+                                <button ng-click="emailInvitation.$valid && onEmailInviteSubmit(emailToBeInvited, emailSubject, emailText); emailToBeInvited = ''"
                                         class="btn btn-default"
-                                        translate>anpassen
-                                </button>
-                            </div>
-                            <div class="col-md-4">
-                                <button ng-click="inviteEmailFormStatus='enterAdresses'"
-                                        class="btn btn-default"
-                                        translate>Email ist OK
+                                        ng-disabled="emailInvitation.$invalid" translate>versenden
                                 </button>
                             </div>
 
                         </div>
 
-                        <div class="row" ng-if="inviteEmailFormStatus=='enterAdresses'">
+                        <div class="row" ng-if="homeController.formStatus=='sentSuccessful'">
+                            <div class="col-md-6">
+                                Einladungen erfolgreich versendet
+                            </div>
 
-                            <div class="col-md-4 col-md-offset-8">
-                                <button type="submit"
+                            <div class="col-md-6">
+                                <button ng-click="homeController.formStatus='enterAdresses'"
                                         class="btn btn-default"
-                                        ng-disabled="emailInvitation.$invalid" translate>dcmhome.emailInvite.test
+                                        ng-disabled="emailInvitation.$invalid" translate>weitere einladen
                                 </button>
                             </div>
                         </div>
