@@ -172,6 +172,10 @@ angular.module('yp-ewl',
 
                 $analytics.pageTrack(toState.name);
 
+                $rootScope.stateTransition = 'state-change-success-active';
+                $timeout(function () {
+                    $rootScope.stateTransition  = 'state-change-success';
+                }, 200);
             });
 
             $rootScope.$on('loginMessageShow', function (event, data) {

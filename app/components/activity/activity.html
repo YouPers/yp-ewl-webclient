@@ -54,9 +54,9 @@
             <div ng-show="activityController.active && !activityController.formActive && !activityController.deleteMode">
 
 
-                <div class="activity-edit-buttons btn-group-justified" ng-if="activityController.formEnabled">
-                    <a class="btn btn-primary" ng-click="editMode()" ng-disabled="activity.editStatus.indexOf('editable') !== 0" translate>activity.link.edit</a>
-                    <a class="btn btn-warning" ng-click="deleteMode()" ng-disabled="activity.deleteStatus.indexOf('deletable') !== 0" translate>activity.link.delete</a>
+                <div class="activity-edit-buttons btn-group-justified">
+                    <a class="btn btn-primary" ng-click="editMode()" ng-if="activityController.formEnabled && activity.editStatus.indexOf('editable') === 0" translate>activity.link.edit</a>
+                    <a class="btn btn-warning" ng-click="deleteMode()" ng-if="activity.deleteStatus.indexOf('deletable') === 0" translate>activity.link.delete</a>
 
                 </div>
 
