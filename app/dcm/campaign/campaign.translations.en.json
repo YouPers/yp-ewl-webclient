@@ -76,7 +76,7 @@
   "clientmsg": {
     "success": {
       "campaign": {
-        "lead": null,
+        "lead": "The invitation as campaignlead has been accepted",
         "saved": "Campaign saved"
       }
     }

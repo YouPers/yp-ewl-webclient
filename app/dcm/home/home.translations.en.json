@@ -18,31 +18,31 @@
     "campaignStart": {
       "header": "Start of campaign",
       "welcomeLinkExplain": "By clicking on this link, you can sign up to this campaign. Send this link as part of an email to all potential participants.",
-      "welcomeLinkTitle": null
+      "welcomeLinkTitle": "Manual Invitation Mail"
     },
     "emailInvite": {
-      "adjust": null,
+      "adjust": "adjust",
       "emailSubject": {
-        "defaultSubject": null,
-        "label": null,
-        "placeholder": null
+        "defaultSubject": "Invitation for Health Campaign",
+        "label": "Email subject",
+        "placeholder": "Email subject"
       },
       "emailText": {
-        "defaultText": null,
-        "label": null,
-        "placeholder": null
+        "defaultText": "This is the default text of the emails, it has not been defined ...",
+        "label": "Email body",
+        "placeholder": "Email body"
       },
-      "explain": null,
-      "inviteMore": null,
-      "label": null,
-      "next": null,
-      "placeholder": null,
-      "sendTestButton": null,
-      "sendYourselfTest": null,
-      "submit": null,
-      "success": null,
-      "testEmailSent": null,
-      "title": null
+      "explain": "Send an automated Email invitation to the campaign participants. You may adjust the Subject and Message body.",
+      "inviteMore": "Invite more",
+      "label": "Adresses of participants to invite",
+      "next": "next",
+      "placeholder": "use comma, semicolon or blank to separate multiple",
+      "sendTestButton": "Test",
+      "sendYourselfTest": "Send yourself a test invitation:",
+      "submit": "Invite",
+      "success": "Invitations were sent successfully.",
+      "testEmailSent": "Invitation sent to {{address}}.<br>Please review the invitation in your inbox.",
+      "title": "Automatic Email Invitations"
     },
     "messages": "News",
     "noCampaigns": "You have not created any campaign yet",
