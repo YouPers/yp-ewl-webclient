@@ -1,14 +1,18 @@
 @import "youpers-variables";
 
+
+.navbar-inverse {
+  background-color: @yp-primary;
+  border-color: @yp-primary;
+}
+
 .navbar {
   margin: 0;
   height: 50px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 
   .navbar-nav > li > a {
-    font-size: 14px;
-    font-weight: 600;
-    color: @yp-menu;
+    .menu();
 
     margin-top: 12px;
   }
@@ -23,15 +27,12 @@
   position: relative;
 
   img {
-    height: 32px;
+    margin-top: -10px;
+    height: 65px;
   }
   span {
     .header4();
 
     white-space: nowrap;
-
-    position: absolute;
-    left: 26px;
-    top: 12px;
   }
 }
