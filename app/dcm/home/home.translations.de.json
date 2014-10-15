@@ -43,6 +43,13 @@
             "placeholder": "Email-Text",
             "defaultText": "Das hier ist der Default-Text des Emails, er ist noch nicht definiert worden..."
         },
+        "sendYourselfTest": "Sende dir selbst eine Test-Einladung:",
+        "sendTestButton": "Test",
+        "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Mail-Eingang.",
+        "adjust": "korrigiere",
+        "next": "weiter",
+        "success": "Einladungen erfolgreich versendet",
+        "inviteMore": "weitere einladen",
         "explain": "Füge hier die Email-Adressen derjenigen Kollegen ein, die du zur Kampagne einladen möchstest. An diese Email-Adressen wird automatisch eine Einladung zur Teilnahme an der Kampagne versandt.",
         "placeholder": "Adressen mittels Komma, Semikolon oder Leerschlag trennen",
         "label": "Email-Adressen der einzuladenden Mitarbeiter",

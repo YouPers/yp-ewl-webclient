@@ -39,32 +39,27 @@
 
                         <div class="row"
                              ng-if="homeController.formStatus=='beforeTest'">
-                            <div class="col-md-6">
-                                Sende dir selbst eine Test-Einladung:
-                            </div>
+                            <div class="col-md-6" translate>dcmhome.emailInvite.sendYourselfTest</div>
                             <div class="col-md-6">
                                 <button ng-click="sendTestInvitationMail(emailSubject, emailText)"
                                         class="btn btn-default"
-                                        translate>test
+                                        translate>dcmhome.emailInvite.sendTestButton
                                 </button>
                             </div>
                         </div>
 
                         <div class="row" ng-if="homeController.formStatus=='afterTest'">
-                            <div class="col-md-12">
-                                Einladung gesendet an {{principal.getUser().email}}. <br>Bitte prüfe die Einladung in
-                                deinem Mail-Eingang.
-                            </div>
+                            <div class="col-md-12" translate translate-values='{ address: principal.getUser().email}'>dcmhome.emailInvite.testEmailSent</div>
                             <div class="col-md-4">
                                 <button ng-click="homeController.formStatus='beforeTest'"
                                         class="btn btn-default"
-                                        translate>korrigieren
+                                        translate>dcmhome.emailInvite.adjust
                                 </button>
                             </div>
                             <div class="col-md-8">
                                 <button ng-click="homeController.formStatus='enterAdresses'"
                                         class="btn btn-default"
-                                        translate>weiter
+                                        translate>dcmhome.emailInvite.next
                                 </button>
                             </div>
 
@@ -86,14 +81,12 @@
                         </div>
 
                         <div class="row" ng-if="homeController.formStatus=='sentSuccessful'">
-                            <div class="col-md-6">
-                                Einladungen erfolgreich versendet
-                            </div>
+                            <div class="col-md-6" translate>dcmhome.emailInvite.success</div>
 
                             <div class="col-md-6">
                                 <button ng-click="homeController.formStatus='enterAdresses'"
                                         class="btn btn-default"
-                                        ng-disabled="emailInvitation.$invalid" translate>weitere einladen
+                                        ng-disabled="emailInvitation.$invalid" translate>dcmhome.emailInvite.inviteMore
                                 </button>
                             </div>
                         </div>

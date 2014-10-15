@@ -68,7 +68,7 @@
                 $scope.campaign = campaign;
                 $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
                 $scope.showCampaignStart =  !$scope.campaignStarted;
-                $scope.showCampaignStats =  $scope.campaignStats;
+                $scope.showCampaignStats =  $scope.campaignStarted;
 
 
                 $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
