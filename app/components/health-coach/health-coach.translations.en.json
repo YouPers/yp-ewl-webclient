@@ -2,72 +2,72 @@
   "healthCoach": {
     "dcm": {
       "activity": {
-        "activitySaved": null,
-        "deleteActivity": null,
-        "editActivity": null,
-        "stateEnter": null
+        "activitySaved": "",
+        "deleteActivity": "",
+        "editActivity": "",
+        "stateEnter": ""
       },
       "campaign": {
-        "stateEnter": null
+        "stateEnter": ""
       },
       "home": {
-        "campaignAfterFirstWeek": null,
-        "campaignCreated": null,
-        "campaignEnded": null,
-        "campaignFirstWeek": null,
-        "campaignLastWeek": null,
-        "campaignStartedToday": null,
-        "invitationCreated": null,
-        "noCampaigns": null,
-        "organizationIncomplete": null,
-        "recommendationCreated": null,
-        "recommendationDeleted": null
+        "campaignAfterFirstWeek": "",
+        "campaignCreated": "",
+        "campaignEnded": "",
+        "campaignFirstWeek": "",
+        "campaignLastWeek": "",
+        "campaignStartedToday": "",
+        "invitationCreated": "",
+        "noCampaigns": "",
+        "organizationIncomplete": "",
+        "recommendationCreated": "",
+        "recommendationDeleted": ""
       },
       "ideas": {
-        "stateEnter": null
+        "stateEnter": ""
       },
       "organization": {
-        "missingFields": null
+        "missingFields": ""
       },
       "recommendation": {
-        "stateEnter": null
+        "stateEnter": ""
       }
     },
     "dhc": {
       "activity": {
-        "activitySaved": null,
-        "conflictingEvent": null,
-        "deleteJoinedActivity": null,
-        "deleteOwnActivity": null,
-        "editOwnActivity": null,
-        "eventDone": null,
-        "eventMissed": null,
-        "eventsDue": null,
-        "groupActivityNoEventsDue": null,
-        "invitationAccepted": null,
-        "invitationDismissed": null,
-        "lastEventDone": null,
-        "lastEventMissed": null,
-        "recommendationAccepted": null,
-        "recommendationDismissed": null,
-        "scheduleRecommendedActivity": null,
-        "stateEnter": null
+        "activitySaved": "",
+        "conflictingEvent": "",
+        "deleteJoinedActivity": "",
+        "deleteOwnActivity": "",
+        "editOwnActivity": "",
+        "eventDone": "",
+        "eventMissed": "",
+        "eventsDue": "",
+        "groupActivityNoEventsDue": "",
+        "invitationAccepted": "",
+        "invitationDismissed": "",
+        "lastEventDone": "",
+        "lastEventMissed": "",
+        "recommendationAccepted": "",
+        "recommendationDismissed": "",
+        "scheduleRecommendedActivity": "",
+        "stateEnter": ""
       },
       "check": {
-        "stateEnter": null
+        "stateEnter": ""
       },
       "focus": {
-        "stateEnter": null
+        "stateEnter": ""
       },
       "game": {
-        "campaignEnded": null,
-        "campaignEndingWithCurrentActivities": null,
-        "noCurrentActivities": null,
-        "noDoneEvents": null,
-        "noPastOrPresentEventsAndEnoughActivities": null,
-        "noPastOrPresentEventsAndTooFewActivities": null,
-        "pastEvents": null,
-        "pastOrPresentEvents": null
+        "campaignEnded": "",
+        "campaignEndingWithCurrentActivities": "",
+        "noCurrentActivities": "",
+        "noDoneEvents": "",
+        "noPastOrPresentEventsAndEnoughActivities": "",
+        "noPastOrPresentEventsAndTooFewActivities": "",
+        "pastEvents": "",
+        "pastOrPresentEvents": ""
       }
     },
     "fullname": "YOUPERS Coach"

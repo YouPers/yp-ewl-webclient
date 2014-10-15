@@ -47,7 +47,7 @@
     "stateHeader1": "campaigns",
     "stateHeader2": "Activities",
     "link": {
-      "newActivity": "Create own activities",
+      "newActivity": "Create custom activity",
       "publishActivity": "Schedule existing activities"
     },
     "published": "Published",
