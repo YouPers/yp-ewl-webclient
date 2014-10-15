@@ -22,10 +22,7 @@
     "account": "Le compte",
     "changeAccount": "Changer de compte",
     "changePassword": "Changer mot de passe",
-    "currentCampaign": "La campagne actuelle",
-    "start": "a été lancée le",
-    "end": "se clôture le",
-    "noCurrentCampaign": "Tu n'as pas de campagne en cours, commencer un ici"
+    "backToHome": null
   },
   "accountForm": {
     "firstname": {
@@ -138,7 +135,10 @@
         "placeholder": "Numéro"
       },
       "zipCode": {
-        "placeholder": "Code postal"
+        "placeholder": "Code postal",
+        "error": {
+          "pattern": null
+        }
       },
       "city": {
         "placeholder": "Lieu"
@@ -156,7 +156,10 @@
         "placeholder": "Numéro"
       },
       "zipCode": {
-        "placeholder": "Code postal"
+        "placeholder": "Code postal",
+        "error": {
+          "pattern": null
+        }
       },
       "city": {
         "placeholder": "Lieu"

@@ -1,6 +1,21 @@
 {
-    "game": {
-        "stateHeader1": null,
-        "stateHeader2": null
-    }
+  "game": {
+    "stateHeader1": "tuo",
+    "stateHeader2": "Attività",
+    "showMore": "Altri",
+    "activities": {
+      "current": null,
+      "done": "Risultati",
+      "offered": null,
+      "rejected": null,
+      "donePreview": null,
+      "rejectedPreview": null
+    },
+    "invitations": "Inviti",
+    "recommendations": "Suggerimenti",
+    "noActivities": null,
+    "noClosedEvents": null,
+    "noDismissedOffers": null,
+    "noOffers": null
+  }
 }

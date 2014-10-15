@@ -2,21 +2,28 @@
   "stats": {
     "overview": "Sommario",
     "usersTotal": "Numero di utenti nella campagna",
-    "updatesTotal": "Anzahl ausgefüllte Selbstbeurteilungen (vollständige und unvollständige Selbstbeurteilungen)",
+    "updatesTotal": "Numero di autocontrolli registrati (completi e incompleti)",
     "totalActsPlanned": "Numero di attività programmate",
-    "totalEventsPlanned": "Anzahl geplante Durchführungen von Aktivitäten",
-    "assUpdatesPerDay": "Anzahl Anpassungen der Selbstbeurteilung pro Tag",
-    "activityName": "Aktivität",
-    "day": "Datum",
-    "totalFocusSet": "Anzahl User mit gesetztem Fokus",
-    "topStressors": "Häufigste Stressverursacher",
-    "stressorCount": "Anzahl Nennungen",
-    "count": "Anzahl",
-    "average": "durchschnittlich",
-    "stressor": "Stressverursacher",
-    "activityEvents": "Anzahl Ausführungen von Aktivitäten",
-    "status": "Status der Ausführung",
-    "stateHeader1": "kampagnen",
-    "stateHeader2": "Statistiken"
+    "totalEventsPlanned": null,
+    "eventsDonePerDay": null,
+    "actPlannedPerDay": null,
+    "assUpdatesPerDay": "Numero delle modifiche di auto-controllo al giorno",
+    "activityName": "Attività",
+    "day": "Data",
+    "topStressors": "Fattori stressanti piu' comuni",
+    "stressorCount": "Numero di nomine",
+    "count": "Numero",
+    "average": "Media",
+    "stressor": "Fattore stressante",
+    "activityEvents": "Numero di esecuzioni di attività",
+    "status": "Stato di esecuzione",
+    "stateHeader1": "Campagne",
+    "stateHeader2": "Statistiche",
+    "event": {
+      "done": null,
+      "future": null,
+      "missed": null,
+      "open": null
+    }
   }
 }

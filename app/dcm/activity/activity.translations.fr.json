@@ -1,5 +1,6 @@
 {
   "activity": {
+    "stateHeader1": "L'activité",
     "title": {
       "label": "Le title",
       "placeholder": "Enregistrez un titre court, s.v.p. (2x20 caractères max.)"
@@ -26,13 +27,11 @@
     "duration": "Le temps nécessaire (min.) ",
     "save": "Enregistrer",
     "back": "Retour",
-    "stateHeader1": "L'activité"
+    "header": {
+      "recommendation": null
+    }
   },
   "activities": {
-    "group": {
-      "campaign": "Les activités propers",
-      "all": "Les idées d'activités de YouPers"
-    },
     "duration": {
       "suffix": "Min"
     },
@@ -42,10 +41,11 @@
       "recommend": "Recommander"
     },
     "search": "Chercher",
-    "stateHeader1": "Les campagnes",
-    "stateHeader2": "Les activités"
+    "header": "Les idées d'activités de YouPers"
   },
   "campaignoffers": {
+    "stateHeader1": "Les campagnes",
+    "stateHeader2": "Les activité",
     "link": {
       "newActivity": "Créer une activité propre",
       "publishActivity": "L'activité existant <br/>recommander/planifier"
@@ -55,11 +55,38 @@
       "campaignActivity": "Recommandé",
       "campaignActivityPlan": "Planifié"
     },
-    "userNamesNotShown": "Noms ne sont pas affichés pour la protection de la vie privée",
-    "stateHeader1": "Les campagnes",
-    "stateHeader2": "Les activité"
+    "userNamesNotShown": "Noms ne sont pas affichés pour la protection de la vie privée"
   },
   "scheduledDate": {
     "daily": "Quotidien"
+  },
+  "recommendationForm": {
+    "title": {
+      "label": "Titre",
+      "placeholder": "Titre"
+    },
+    "text": {
+      "label": "Écrire",
+      "placeholder": "Écrire"
+    },
+    "publishFrom": {
+      "label": "De",
+      "placeholder": "De"
+    },
+    "publishTo": {
+      "label": "…",
+      "placeholder": "…"
+    },
+    "submit": "Sauver",
+    "delete": null,
+    "header": {
+      "publish": null
+    }
+  },
+  "clientmsg": {
+    "recommendation": {
+      "deleted": null,
+      "saved": null
+    }
   }
 }

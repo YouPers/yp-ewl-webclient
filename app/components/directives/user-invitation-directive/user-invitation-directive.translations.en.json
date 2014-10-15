@@ -1,5 +1,7 @@
 {
-    "userInvitation": {
-
+  "userInvitation": {
+    "placeholder": {
+      "activity": "Invite someone to this activity"
     }
+  }
 }

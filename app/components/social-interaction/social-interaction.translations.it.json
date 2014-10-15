@@ -1,5 +1,45 @@
 {
-    "socialInteraction": {
-
-    }
+  "socialInteraction": {
+    "important": "importante",
+    "publishFrom": null,
+    "publishTo": null,
+    "header": {
+      "Invitation": {
+        "user": null,
+        "campaignLead": null
+      },
+      "Recommendation": {
+        "user": null,
+        "campaignLead": null,
+        "coach": null
+      },
+      "Message": {
+        "user": null,
+        "campaignLead": null,
+        "coach": null
+      }
+    },
+    "mainHeader": null
+  },
+  "composeMessageForm": {
+    "show": null,
+    "title": {
+      "label": "Tracce",
+      "placeholder": "Tracce"
+    },
+    "text": {
+      "label": "Lettera",
+      "placeholder": "Lettera"
+    },
+    "publishFrom": {
+      "label": "Da",
+      "placeholder": "Da"
+    },
+    "publishTo": {
+      "label": "…",
+      "placeholder": "…"
+    },
+    "submit": "salva",
+    "cancel": "Stop"
+  }
 }

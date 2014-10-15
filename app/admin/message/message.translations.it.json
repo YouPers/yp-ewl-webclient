@@ -1,12 +1,42 @@
 {
-    "clientmsg": {
-
-    },
-
-    "admin": {
-
-        "message": {
-
-        }
+  "admin": {
+    "message": {
+      "stateHeader1": "Sistema",
+      "stateHeader2": "Notizie",
+      "publishFrom": null,
+      "publishTo": null,
+      "important": "importante"
     }
+  },
+  "adminMessageForm": {
+    "title": {
+      "label": "Tracce",
+      "placeholder": "Tracce",
+      "error": {
+        "required": null
+      }
+    },
+    "text": {
+      "label": "Testo",
+      "placeholder": "Testo"
+    },
+    "important": {
+      "label": "importante"
+    },
+    "campaign": {
+      "label": "Campagna",
+      "none": null
+    },
+    "language": {
+      "label": "Voce",
+      "none": null
+    },
+    "publishFrom": {
+      "label": null
+    },
+    "publishTo": {
+      "label": "Pubblico al"
+    },
+    "submit": "Inv"
+  }
 }

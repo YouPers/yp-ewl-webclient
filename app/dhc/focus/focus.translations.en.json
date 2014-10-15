@@ -1,5 +1,7 @@
 {
   "focus": {
+    "stateHeader1": "your",
+    "stateHeader2": "focus",
     "assessmentNotCompleted": "Once you completely filled out your <a href='/#/check'>self-assessment</a>  , we present you with an evaluation of your stress situation with problem areas, due to which you can set your personal focus.",
     "assessmentNoStressors": "Congratulations - your <a href='/#/check'>self-check</a> has revealed no acute need for action!",
     "header": "need for action",
@@ -12,9 +14,9 @@
       "question": "Your goal for this campaign is:",
       "placeholder": "Here, you can optionally capture a goal or a slogan as a personal resolution."
     },
-    "toCheck": "Back to self-check",
     "toSelect": "Go to recommendations",
-    "stateHeader1": "your",
-    "stateHeader2": "focus"
+    "link": {
+      "back": "Home"
+    }
   }
 }

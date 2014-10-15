@@ -1,5 +1,75 @@
 {
   "healthCoach": {
-
+    "dcm": {
+      "activity": {
+        "activitySaved": null,
+        "deleteActivity": null,
+        "editActivity": null,
+        "stateEnter": null
+      },
+      "campaign": {
+        "stateEnter": null
+      },
+      "home": {
+        "campaignAfterFirstWeek": null,
+        "campaignCreated": null,
+        "campaignEnded": null,
+        "campaignFirstWeek": null,
+        "campaignLastWeek": null,
+        "campaignStartedToday": null,
+        "invitationCreated": null,
+        "noCampaigns": null,
+        "organizationIncomplete": null,
+        "recommendationCreated": null,
+        "recommendationDeleted": null
+      },
+      "ideas": {
+        "stateEnter": null
+      },
+      "organization": {
+        "missingFields": null
+      },
+      "recommendation": {
+        "stateEnter": null
+      }
+    },
+    "dhc": {
+      "activity": {
+        "activitySaved": null,
+        "conflictingEvent": null,
+        "deleteJoinedActivity": null,
+        "deleteOwnActivity": null,
+        "editOwnActivity": null,
+        "eventDone": null,
+        "eventMissed": null,
+        "eventsDue": null,
+        "groupActivityNoEventsDue": null,
+        "invitationAccepted": null,
+        "invitationDismissed": null,
+        "lastEventDone": null,
+        "lastEventMissed": null,
+        "recommendationAccepted": null,
+        "recommendationDismissed": null,
+        "scheduleRecommendedActivity": null,
+        "stateEnter": null
+      },
+      "check": {
+        "stateEnter": null
+      },
+      "focus": {
+        "stateEnter": null
+      },
+      "game": {
+        "campaignEnded": null,
+        "campaignEndingWithCurrentActivities": null,
+        "noCurrentActivities": null,
+        "noDoneEvents": null,
+        "noPastOrPresentEventsAndEnoughActivities": null,
+        "noPastOrPresentEventsAndTooFewActivities": null,
+        "pastEvents": null,
+        "pastOrPresentEvents": null
+      }
+    },
+    "fullname": null
   }
 }

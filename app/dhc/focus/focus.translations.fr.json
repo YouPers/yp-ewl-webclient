@@ -1,5 +1,7 @@
 {
   "focus": {
+    "stateHeader1": "Ton",
+    "stateHeader2": "l'accent",
     "assessmentNotCompleted": "Une fois que tu ton <a href='/#/check'>auto-évaluation</a> ont complètement rempli, nous te présentons une évaluation de ton situation stressante avec des zones à problèmes, grâce à laquelle tu peux mettre ton attention personnelle.",
     "assessmentNoStressors": "Félicitations - ton <a href='/#/check'>auto-évaluation</a> n'a révélé aucun besoin urgent d'agir!",
     "header": "L'action",
@@ -12,9 +14,9 @@
       "question": "Ton objectif pour cette campagne est:",
       "placeholder": "Option pour un but ou un slogan comme une capture intention personnelle ici."
     },
-    "toCheck": "retour au'auto-évaluation",
     "toSelect": "aux recommandations",
-    "stateHeader1": "Ton",
-    "stateHeader2": "l'accent"
+    "link": {
+      "back": "Accueil"
+    }
   }
 }

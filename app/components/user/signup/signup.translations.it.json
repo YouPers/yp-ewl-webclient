@@ -60,6 +60,13 @@
         "required": "Prego accetta i termini e le condizioni"
       }
     },
-    "register": "Registrati"
+    "register": "Registrati",
+    "organizationName": {
+      "error": {
+        "required": null
+      },
+      "label": "Nome società",
+      "placeholder": "Nome società"
+    }
   }
 }

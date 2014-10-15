@@ -2,84 +2,94 @@
   "clientmsg": {
     "success": {
       "comment": {
-        "save": "Kommentar gespeichert"
+        "save": null
       }
     },
     "error": {
       "avatar": {
-        "invalid": "Kein gültiges Avatar Bild",
-        "error": "Ein Fehler ist aufgetreten"
+        "invalid": null,
+        "error": "Si è verificato un errore"
       }
     }
   },
+  "calendar": {
+    "tomorrow": "Domani",
+    "today": "Oggi",
+    "yesterday": "Ieri"
+  },
   "executiontype": {
-    "self": "Selber",
-    "group": "Gruppe"
+    "self": "Da solo",
+    "group": "Group"
   },
   "gender": {
-    "undefined": "unbekannt",
-    "male": "männlich",
-    "female": "weiblich"
+    "undefined": "sconosciuto",
+    "male": "Uomo",
+    "female": "Donna"
   },
   "maritalStatus": {
-    "maritalStatus": "Zivilstand",
-    "undefined": "unbekannt",
-    "single": "single",
-    "unmarried": "in Partnerschaft",
-    "married": "verheiratet",
-    "separated": "getrennt",
-    "divorced": "geschieden",
-    "widowed": "verwitwet"
+    "maritalStatus": null,
+    "undefined": "sconosciuto",
+    "single": null,
+    "unmarried": null,
+    "married": null,
+    "separated": "Disconnesso",
+    "divorced": null,
+    "widowed": null
   },
   "weekday": {
-    "MO": "Montag",
-    "TU": "Dienstag",
-    "WE": "Mittwoch",
-    "TH": "Donnerstag",
-    "FR": "Freitag",
-    "SA": "Samstag",
-    "SU": "Sonntag"
+    "MO": "Lunedi",
+    "TU": "Martedi",
+    "WE": "Mercoledì",
+    "TH": "giovedì",
+    "FR": "Venerdì",
+    "SA": "Sabato",
+    "SU": "Domenica"
   },
   "timezone": {
-    "00:00": "UTC",
-    "+01:00": "Zürich (+01:00)",
-    "+03:00": "Sotschi (+03:00)"
+    "00:00": null,
+    "+01:00": null,
+    "+03:00": null
   },
   "language": {
-    "de": "Deutsch",
-    "en": "English",
-    "fr": "Français",
-    "it": "Italiano"
+    "de": "Tedesco",
+    "en": null,
+    "fr": null,
+    "it": null
   },
   "feedbackCategory": {
-    "bug": "Fehler",
-    "improvement": "Verbesserung",
-    "other": "Anderes",
-    "question": "Frage",
-    "support": "Hilfe"
+    "bug": "Errore",
+    "improvement": "idea",
+    "other": "Altro",
+    "question": "domanda",
+    "support": "Aiuto"
+  },
+  "composeCommentForm": {
+    "comment": {
+      "paceholder": null
+    }
   },
   "feedbackForm": {
     "anonymous": {
-      "label": "Anonymes Feedback"
+      "label": null
     },
-    "close": "Schliessen",
+    "close": "Chiudi",
     "contactInfo": {
       "error": {
-        "email": "Bitte eine gültige Email Adresse eingeben oder anonymes Feedback auswählen"
+        "email": null
       },
-      "label": "Email",
+      "label": "E-mail",
       "placeholder": "Email"
     },
     "description": {
-      "label": "Beschreibung"
+      "label": "Biografia"
     },
     "feedbackCategory": {
-      "label": "Kategorie"
+      "label": "Padre"
     },
-    "submit": "Abschicken",
-    "submitted": "Danke für dein Feedback!",
+    "submit": "Invia",
+    "submitted": "Grazie per aver inviato un feedback!",
     "username": {
-      "label": "Username"
+      "label": "Nome utente"
     }
   }
 }

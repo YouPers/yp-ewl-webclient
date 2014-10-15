@@ -1,5 +1,45 @@
 {
-    "socialInteraction": {
-
-    }
+  "socialInteraction": {
+    "important": "important",
+    "publishFrom": null,
+    "publishTo": null,
+    "header": {
+      "Invitation": {
+        "user": null,
+        "campaignLead": null
+      },
+      "Recommendation": {
+        "user": null,
+        "campaignLead": null,
+        "coach": null
+      },
+      "Message": {
+        "user": null,
+        "campaignLead": null,
+        "coach": null
+      }
+    },
+    "mainHeader": null
+  },
+  "composeMessageForm": {
+    "show": null,
+    "title": {
+      "label": "Titre",
+      "placeholder": "Titre"
+    },
+    "text": {
+      "label": "Écrire",
+      "placeholder": "Écrire"
+    },
+    "publishFrom": {
+      "label": "de",
+      "placeholder": "de"
+    },
+    "publishTo": {
+      "label": "…",
+      "placeholder": "…"
+    },
+    "submit": "Sauver",
+    "cancel": "Annuler"
+  }
 }

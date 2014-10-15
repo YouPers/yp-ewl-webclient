@@ -12,22 +12,22 @@
     }
   },
   "topmenu": {
-      "dhc": "View as Participant",
-      "dcm": "Campaignmanagement",
-
-      "commit": "commit",
-      "assess": "assess",
-      "plan": "plan",
-      "do": "do",
-      "evaluate": "evaluate",
-      "logout": "Logout",
-      "signin": "Login",
-      "signup": "Sign up",
-      "account": "Account",
-      "profile": "Profile",
-      "language": "Language",
-      "feedback": "Feedback",
-      "moreinfo": "More Information"
+    "commit": "commit",
+    "assess": "assess",
+    "plan": "plan",
+    "do": "do",
+    "evaluate": "evaluate",
+    "logout": "Logout",
+    "signin": "Login",
+    "signup": "Sign up",
+    "account": "Account",
+    "profile": "Profile",
+    "language": "Language",
+    "feedback": "Feedback",
+    "moreinfo": "More Information",
+    "dcm": "Campaign administration",
+    "dhc": "View as participant",
+    "logoHeader": "Health Campaign"
   },
   "home": {
     "for": "for",
@@ -44,7 +44,7 @@
   "loginform": {
     "usernameOrEmail": {
       "label": "Username/Email",
-      "$invalid": "Please enter a valid Username or Email"
+      "$invalid": "Please enter a valid username or email"
     },
     "password": {
       "label": "Password",

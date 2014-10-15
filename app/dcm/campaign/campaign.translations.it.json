@@ -1,68 +1,70 @@
 {
   "campaigns": {
     "group": {
-      "active": "aktive kampagnen",
-      "inactive": "beendete kampagnen"
+      "active": "campagne attive",
+      "inactive": "campagne terminate"
     },
     "stateHeader1": "Tuo",
     "stateHeader2": "CAMPAGNE"
   },
   "campaign": {
-    "header": "Stress Management",
+    "header": "Gestione dello stress",
     "link": {
-      "new": "neue kampagne",
-      "campaignoffers": "Aktivitäten",
-      "notifications": "Mitteilungen"
-    },
-    "preview": {
-      "header": "Vorschau",
-      "welcomeLink": "Einladungs-Link",
-      "welcomeLinkExplain": "Mittels Klick auf diesen Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer",
-      "welcomeLinkTest": "Teste den Link",
-      "welcomeLinkNotSaved": "Sobald du die Kampagne speicherst, siehst du hier den Einladungslink."
+      "new": "nuova campagna",
+      "campaignoffers": "Attività",
+      "notifications": "Notifiche"
     },
     "campaignLeads": {
-      "header": "kampagnenleiter"
+      "header": "Leader della campagna",
+      "add": "Aggiungi ancora"
     },
     "stateHeader1": "Tuo",
-    "stateHeader2": "campagna"
+    "stateHeader2": "campagna",
+    "card": {
+      "title": null
+    }
   },
   "campaignForm": {
     "avatar": {
       "label": "Avatar",
-      "change": "ändern"
+      "change": "cambia"
     },
     "title": {
-      "label": "Titel",
-      "placeholder": "Titel",
+      "label": "Titolo",
+      "placeholder": "Titolo",
       "error": {
         "required": "Prego inserire un titolo valido"
       }
     },
     "start": {
-      "label": "Start"
+      "label": "Inizio"
     },
     "end": {
-      "label": "Ende"
+      "label": "Fine"
     },
     "participants": {
-      "label": "Personenkreis",
-      "placeholder": "Personenkreis",
+      "label": "Gruppo di persone",
+      "placeholder": "Gruppo di persone",
       "$invalid": "Prego inserire un valido gruppo di persone"
     },
     "location": {
-      "label": "Lokalität",
-      "placeholder": "Lokalität",
+      "label": "Luogo",
+      "placeholder": "Luogo",
       "error": {
-        "required": "Prego inserire una località valida"
+        "required": "Prego inserire un luogo valido"
       }
     },
     "city": {
       "label": "Città",
       "placeholder": "Città"
     },
+    "back": "Indietro",
     "save": "Salva",
-    "create": "Salva"
+    "create": "Salva",
+    "topic": {
+      "change": "Cambia",
+      "label": null
+    }
   },
   "inviteCampaignLeadForm": {
     "email": {
@@ -70,5 +72,13 @@
     },
     "inviteSubmit": "Invia",
     "invitationSent": "Invito spedito via e-mail, il nuovo leader della campagna deve confermare"
+  },
+  "clientmsg": {
+    "success": {
+      "campaign": {
+        "lead": null,
+        "saved": null
+      }
+    }
   }
 }

@@ -1,5 +1,8 @@
 {
-    "userInvitation": {
-
-    }
+  "emailInvitation": {
+    "email": {
+      "placeholder": null
+    },
+    "inviteSubmit": "Envoi"
+  }
 }

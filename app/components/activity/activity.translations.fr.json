@@ -1,5 +1,146 @@
 {
-    "activity": {
-
+  "clientmsg": {
+    "success": {
+      "activity": {
+        "joined": null,
+        "deleted": "Activité supprimée",
+        "Save": "Activité enregistrée",
+        "SaveAndInvite": null
+      }
     }
+  },
+  "activity": {
+    "header": {
+      "first": {
+        "campaignlead": null,
+        "owned": null,
+        "joined": null,
+        "recommendation": null,
+        "invitation": "Invitation",
+        "schedule": null
+      },
+      "second": "Le plan",
+      "third": "Rendez-vous",
+      "invitedUsers": "Invité",
+      "inviteOthers": null,
+      "comments": "Notes",
+      "publish": null
+    },
+    "inviteOthers": {
+      "selected": "Avec sélectionnées",
+      "all": "T",
+      "inviteByEmail": null,
+      "inviteByUser": null
+    },
+    "emailToBeInvited": {
+      "placeholder": "Sujet",
+      "submit": "Ajouter"
+    },
+    "invitationStatus": {
+      "activityJoined": "Relevé",
+      "denied": "Refusé",
+      "pending": null
+    },
+    "link": {
+      "campaignlead": "Prévoir",
+      "owned": "éd",
+      "recommendation": "Prévoir",
+      "invitation": "Relever",
+      "dismiss": "Rejeter",
+      "back": "Accueil",
+      "undo": "Annuler",
+      "edit": "Éditer",
+      "delete": "Remove"
+    },
+    "submit": {
+      "save": "Sauver",
+      "delete": "Remove",
+      "invitationSave": "Relever",
+      "recommendationSave": "Prévoir",
+      "ownedSave": "Prévoir",
+      "joinedSave": "Prévoir",
+      "scheduleSave": "Prévoir",
+      "campaignleadSave": "Publier",
+      "campaignleadSaveAndInvite": "Publier",
+      "ownedSaveAndInvite": null,
+      "recommendationSaveAndInvite": null,
+      "scheduleSaveAndInvite": null
+    },
+    "owner": "Hôte",
+    "isJoining": "Invité",
+    "isInvited": "Invité",
+    "reschedule": null,
+    "event": {
+      "status": null,
+      "rating": null
+    },
+    "list": {
+      "stateHeader1": "T",
+      "stateHeader2": "Activité",
+      "editTooltip": null,
+      "newTooltip": null,
+      "statusFilter": {
+        "all": "Toutes les activités",
+        "invited": "Invitations",
+        "owned": null,
+        "joined": null
+      },
+      "item": {
+        "title": null,
+        "text": "Bio",
+        "date": null,
+        "location": null
+      }
+    },
+    "view": {
+      "stateHeader1": null,
+      "stateHeader2": "Activité",
+      "title": "Titre",
+      "text": "Bio",
+      "location": "Où",
+      "date": "Le",
+      "time": "Date",
+      "frequency": "Période",
+      "recurrence": "Compte",
+      "socialInteraction": {
+        "title": "Écrire"
+      },
+      "comment": {
+        "placeholder": null
+      }
+    },
+    "edit": {
+      "stateHeader1": "Ta",
+      "stateHeader2": "Activité"
+    },
+    "publishFrom": {
+      "label": "De"
+    },
+    "publishTo": {
+      "label": "…"
+    }
+  },
+  "activityForm": {
+    "title": {
+      "label": "Titre",
+      "placeholder": "Titre"
+    },
+    "location": {
+      "label": "Où",
+      "placeholder": "Où"
+    },
+    "date": {
+      "label": "Le"
+    },
+    "time": {
+      "label": "Date"
+    },
+    "recurrence": {
+      "label": "répétition"
+    },
+    "create": "Créer",
+    "save": "Sauver",
+    "delete": "Remove",
+    "cancel": "Annuler"
+  }
 }

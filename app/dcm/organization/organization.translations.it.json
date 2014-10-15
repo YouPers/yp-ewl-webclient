@@ -12,7 +12,7 @@
     }
   },
   "organizationForm": {
-    "header": "Organizzazione",
+    "header": "Nuova organizzazione",
     "name": {
       "label": "Nome",
       "placeholder": "Nome dell'organizzazione",
@@ -32,7 +32,8 @@
         "label": "CAP / Città",
         "placeholder": "CAP",
         "error": {
-          "required": "Inserisci un codice postale valido"
+          "required": "Inserisci un codice postale valido",
+          "pattern": "Inserisci un codice postale valido"
         }
       },
       "city": {
@@ -44,35 +45,21 @@
       }
     },
     "legalForm": {
-      "label": "Rechtsform",
-      "placeholder": "Rechtsform",
+      "label": "Modulo legale",
+      "placeholder": "Modulo legale",
       "error": {
-        "required": "Bitte eine gültige Rechtsform eingeben"
+        "required": "Si prega di inserire un modulo legale valido"
       }
     },
     "sector": {
-      "label": "Industria",
-      "placeholder": "Industria",
+      "label": "Industria/settore",
+      "placeholder": "Industria/settore",
       "error": {
         "required": "Inserisci un settore valido"
       }
     },
     "contact": {
       "header": "Contatto",
-      "firstname": {
-        "label": "Nome",
-        "placeholder": "Nome",
-        "error": {
-          "required": "Prego inserire un nome valido"
-        }
-      },
-      "lastname": {
-        "placeholder": "Cognome",
-        "error": {
-          "required": "Prego inserire un cognome valido"
-        },
-        "label": "Cognome"
-      },
       "position": {
         "label": "Ruolo",
         "placeholder": "Ruolo / unità organizzativa",
@@ -96,7 +83,34 @@
       }
     },
     "save": "salva",
-    "create": "crea"
+    "create": "crea",
+    "missingOrganizationFieldsWarning": {
+      "header": "ATTENZIONE:",
+      "text": null
+    },
+    "user": {
+      "email": {
+        "error": {
+          "required": "Inserire un indirizzo e-mail valido."
+        },
+        "label": "Email",
+        "placeholder": "E-mail"
+      },
+      "firstname": {
+        "error": {
+          "required": "Prego inserire un nome valido"
+        },
+        "label": "Nome",
+        "placeholder": "Nome"
+      },
+      "lastname": {
+        "error": {
+          "required": "Prego inserire un cognome valido"
+        },
+        "label": "Cognome",
+        "placeholder": "Cognome"
+      }
+    }
   },
   "organization": {
     "stateHeader1": "Tuo",

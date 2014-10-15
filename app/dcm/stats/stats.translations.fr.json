@@ -5,10 +5,11 @@
     "updatesTotal": "Nombre de autoévaluations (auto-évaluations complètes et incomplètes)",
     "totalActsPlanned": "Nombre d'activités planifier",
     "totalEventsPlanned": "Nombre des réalisations d'activités",
+    "eventsDonePerDay": null,
+    "actPlannedPerDay": null,
     "assUpdatesPerDay": "Nombre d'ajustements à l'auto-évaluation par jour",
     "activityName": "Activité",
     "day": "Date",
-    "totalFocusSet": "Nombre d'utilisateurs avec accent",
     "topStressors": "Cause de stress la plus fréquente",
     "stressorCount": "Nombre de mentions",
     "count": "Nombre",
@@ -17,6 +18,12 @@
     "activityEvents": "Nombre de réalisation d'activité",
     "status": "Statut de réalisation",
     "stateHeader1": "Les campagnes",
-    "stateHeader2": "Statistiques"
+    "stateHeader2": "Statistiques",
+    "event": {
+      "done": null,
+      "future": null,
+      "missed": null,
+      "open": null
+    }
   }
 }

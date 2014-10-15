@@ -1,12 +1,42 @@
 {
-    "clientmsg": {
-
-    },
-
-    "admin": {
-
-        "message": {
-
-        }
+  "admin": {
+    "message": {
+      "stateHeader1": "About",
+      "stateHeader2": "messages",
+      "publishFrom": "Published from: ",
+      "publishTo": "Published to: ",
+      "important": "important"
     }
+  },
+  "adminMessageForm": {
+    "title": {
+      "label": "Tab",
+      "placeholder": "Tab",
+      "error": {
+        "required": "Please enter the title"
+      }
+    },
+    "text": {
+      "label": "Text",
+      "placeholder": "Text"
+    },
+    "important": {
+      "label": "important"
+    },
+    "campaign": {
+      "label": "Campaign",
+      "none": " - no -"
+    },
+    "language": {
+      "label": "Speech",
+      "none": " - no -"
+    },
+    "publishFrom": {
+      "label": "Published by"
+    },
+    "publishTo": {
+      "label": "Publish To Date"
+    },
+    "submit": "Up"
+  }
 }

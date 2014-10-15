@@ -1,5 +1,6 @@
 {
   "activity": {
+    "stateHeader1": "Attività",
     "title": {
       "label": "Titolo",
       "placeholder": "Inserisci un breve titolo (max 2x20 caratteri)"
@@ -26,13 +27,11 @@
     "duration": "Durata (min) ",
     "save": "Salva",
     "back": "Indietro",
-    "stateHeader1": "aktivität"
+    "header": {
+      "recommendation": null
+    }
   },
   "activities": {
-    "group": {
-      "campaign": "Proprie attività",
-      "all": "Idee di attività da YouPers"
-    },
     "duration": {
       "suffix": "min."
     },
@@ -42,10 +41,11 @@
       "recommend": "Consigliato"
     },
     "search": "Cerca",
-    "stateHeader1": "kampagnen",
-    "stateHeader2": "aktivitäten"
+    "header": "Idee di attività da YouPers"
   },
   "campaignoffers": {
+    "stateHeader1": "Campagne",
+    "stateHeader2": "Attività",
     "link": {
       "newActivity": "Crea le tue attività",
       "publishActivity": "Pianifica le attività esistenti"
@@ -55,11 +55,38 @@
       "campaignActivity": "Consigliato",
       "campaignActivityPlan": "Programmato"
     },
-    "userNamesNotShown": "I nomi non sono visualizzati per motivi di privacy",
-    "stateHeader1": "kampagnen",
-    "stateHeader2": "Aktivitäten"
+    "userNamesNotShown": "I nomi non sono visualizzati per motivi di privacy"
   },
   "scheduledDate": {
     "daily": "Giornaliero"
+  },
+  "recommendationForm": {
+    "title": {
+      "label": "Brani",
+      "placeholder": "Title"
+    },
+    "text": {
+      "label": "Lettera",
+      "placeholder": "Lettera"
+    },
+    "publishFrom": {
+      "label": "Da",
+      "placeholder": "Da"
+    },
+    "publishTo": {
+      "label": "…",
+      "placeholder": "…"
+    },
+    "submit": "salva",
+    "delete": null,
+    "header": {
+      "publish": null
+    }
+  },
+  "clientmsg": {
+    "recommendation": {
+      "deleted": null,
+      "saved": null
+    }
   }
 }

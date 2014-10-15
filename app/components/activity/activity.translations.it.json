@@ -1,5 +1,146 @@
 {
-    "activity": {
-
+  "clientmsg": {
+    "success": {
+      "activity": {
+        "joined": null,
+        "deleted": "Attività cancellata",
+        "Save": "Attività salvata",
+        "SaveAndInvite": null
+      }
     }
+  },
+  "activity": {
+    "header": {
+      "first": {
+        "campaignlead": null,
+        "owned": null,
+        "joined": null,
+        "recommendation": null,
+        "invitation": "invito",
+        "schedule": null
+      },
+      "second": null,
+      "third": "Appuntamenti",
+      "invitedUsers": "Persone",
+      "inviteOthers": null,
+      "comments": "Note",
+      "publish": null
+    },
+    "inviteOthers": {
+      "selected": null,
+      "all": "Ogni",
+      "inviteByEmail": null,
+      "inviteByUser": null
+    },
+    "emailToBeInvited": {
+      "placeholder": "Email",
+      "submit": "Aggiugi"
+    },
+    "invitationStatus": {
+      "activityJoined": "Accettate",
+      "denied": "Negato",
+      "pending": null
+    },
+    "link": {
+      "campaignlead": "Programma",
+      "owned": "mod",
+      "recommendation": "Programma",
+      "invitation": "Accetta",
+      "dismiss": "Azzera",
+      "back": "Home",
+      "undo": "Ripristina",
+      "edit": "Cambia",
+      "delete": "Acqua"
+    },
+    "submit": {
+      "save": "salva",
+      "delete": "Acqua",
+      "invitationSave": "Accetta",
+      "recommendationSave": "Programma",
+      "ownedSave": "Programma",
+      "joinedSave": "Programma",
+      "scheduleSave": "Programma",
+      "campaignleadSave": "Pubblica",
+      "campaignleadSaveAndInvite": "Pubblica",
+      "ownedSaveAndInvite": null,
+      "recommendationSaveAndInvite": null,
+      "scheduleSaveAndInvite": null
+    },
+    "owner": "Ospite",
+    "isJoining": "Persone",
+    "isInvited": "Invitati",
+    "reschedule": null,
+    "event": {
+      "status": null,
+      "rating": null
+    },
+    "list": {
+      "stateHeader1": "Ogni",
+      "stateHeader2": "Attività",
+      "editTooltip": null,
+      "newTooltip": null,
+      "statusFilter": {
+        "all": "Tutte le Attività",
+        "invited": "Inviti",
+        "owned": null,
+        "joined": null
+      },
+      "item": {
+        "title": null,
+        "text": "biografia",
+        "date": null,
+        "location": null
+      }
+    },
+    "view": {
+      "stateHeader1": null,
+      "stateHeader2": "Attività",
+      "title": "Brani",
+      "text": "biografia",
+      "location": "Dove",
+      "date": "Data",
+      "time": "Ora",
+      "frequency": "Periodo",
+      "recurrence": "Count",
+      "socialInteraction": {
+        "title": "Lettera"
+      },
+      "comment": {
+        "placeholder": null
+      }
+    },
+    "edit": {
+      "stateHeader1": "tuo",
+      "stateHeader2": "Attività"
+    },
+    "publishFrom": {
+      "label": "Da"
+    },
+    "publishTo": {
+      "label": "…"
+    }
+  },
+  "activityForm": {
+    "title": {
+      "label": "Brani",
+      "placeholder": "Brani"
+    },
+    "location": {
+      "label": "Dove",
+      "placeholder": "Dove"
+    },
+    "date": {
+      "label": "Data"
+    },
+    "time": {
+      "label": "Ora"
+    },
+    "recurrence": {
+      "label": "numero di ripetizioni"
+    },
+    "create": "Crea",
+    "save": "salva",
+    "delete": "Acqua",
+    "cancel": "Stop"
+  }
 }

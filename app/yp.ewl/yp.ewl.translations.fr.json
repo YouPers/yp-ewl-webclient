@@ -24,7 +24,10 @@
     "profile": "Le profil",
     "language": "La Langue",
     "feedback": "Les réactions",
-    "moreinfo": "En savoir plus"
+    "moreinfo": "En savoir plus",
+    "dcm": null,
+    "dhc": null,
+    "logoHeader": null
   },
   "home": {
     "for": "pour",

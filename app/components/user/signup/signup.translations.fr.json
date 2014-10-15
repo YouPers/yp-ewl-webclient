@@ -60,6 +60,13 @@
         "required": "S'il te plaît, acceptes les condition générales"
       }
     },
-    "register": "Enregistrer"
+    "register": "Enregistrer",
+    "organizationName": {
+      "error": {
+        "required": null
+      },
+      "label": "Nom de société",
+      "placeholder": "Nom de société"
+    }
   }
 }
