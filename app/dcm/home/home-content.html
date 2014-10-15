@@ -1,60 +1,94 @@
 <div class="row" ng-if="campaign">
-    <div class="col-md-12">
-
-
-        <accordion class="campaign-start" close-others="true" ng-init="showCampaignStart = !campaignStarted">
-
-            <accordion-group is-open="showCampaignStart">
-                <accordion-heading>
-                    <h3 translate>dcmhome.campaignStart.header</h3>
-
+    <div class="col-md-12  campaign-start">
+        <div class="area">
+            <div>
+                <h3><span translate>dcmhome.campaignStart.header</span> <a href=""
+                                                                           ng-click="showCampaignStart=!showCampaignStart">
                     <i class="fa "
-                       ng-class="{ 'fa-chevron-up': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
+                       ng-class="{ 'fa-chevron-down': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
+                </a></h3>
+            </div>
+            <div class="row" ng-if="showCampaignStart">
+                <div class="col-md-6">
+                    <h3 translate>dcmhome.emailInvite.title</h3>
 
-                </accordion-heading>
-                <h3 translate>dcmhome.emailInvite.title</h3>
-                <div translate>dcmhome.emailInvite.explain</div>
-                <p>
-                <form class="form"
-                      role="form"
-                      ng-submit="emailInvitation.$valid && onEmailInviteSubmit(emailToBeInvited, emailSubject, emailText); emailToBeInvited = ''"
-                      name="emailInvitation">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label translate>dcmhome.emailInvite.emailSubject.label</label>
-                            <input type="text" required class="form-control" ng-model="emailSubject" placeholder="{{ 'dcmhome.emailInvite.emailSubject.placeholder' | translate }}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label translate>dcmhome.emailInvite.emailText.label</label>
-                            <textarea required class="form-control" ng-model="emailText" placeholder="{{ 'dcmhome.emailInvite.emailText.placeholder' | translate }}">
-                            </textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label translate>dcmhome.emailInvite.label</label>
-                            <input type="text" multiple-emails required class="form-control" ng-model="emailToBeInvited" placeholder="{{ 'dcmhome.emailInvite.placeholder' | translate }}">
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" class="btn btn-default"
-                                    ng-disabled="emailInvitation.$invalid" translate>dcmhome.emailInvite.submit</button>
-                        </div>
-                    </div>
+                    <div translate>dcmhome.emailInvite.explain</div>
+                    <p>
 
+                    <form class="form"
+                          role="form"
+                          ng-submit="emailInvitation.$valid && onEmailInviteSubmit(emailToBeInvited, emailSubject, emailText); emailToBeInvited = ''"
+                          name="emailInvitation">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label translate>dcmhome.emailInvite.emailSubject.label</label>
+                                <input type="text" required class="form-control" ng-model="emailSubject"
+                                       placeholder="{{ 'dcmhome.emailInvite.emailSubject.placeholder' | translate }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label translate>dcmhome.emailInvite.emailText.label</label>
+                                <textarea required class="form-control" ng-model="emailText"
+                                          placeholder="{{ 'dcmhome.emailInvite.emailText.placeholder' | translate }}">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" ng-if="inviteEmailFormStatus=='enterAdresses'">
+                                <label translate>dcmhome.emailInvite.label</label>
+                                <input type="text" multiple-emails required class="form-control"
+                                       ng-model="emailToBeInvited"
+                                       placeholder="{{ 'dcmhome.emailInvite.placeholder' | translate }}">
+                            </div>
+                        </div>
+                        <div class="row" ng-if="inviteEmailFormStatus=='afterTest'">
+                            <div class="col-md-4">
 
-                </form>
-                <h3 translate>dcmhome.campaignStart.welcomeLinkTitle</h3>
+                            </div>
+                            <div class="col-md-4">
+                                <button ng-click="inviteEmailFormStatus='beforeTest'"
+                                        class="btn btn-default"
+                                        translate>anpassen
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button ng-click="inviteEmailFormStatus='enterAdresses'"
+                                        class="btn btn-default"
+                                        translate>Email ist OK
+                                </button>
+                            </div>
 
-                <div translate>dcmhome.campaignStart.welcomeLinkExplain</div>
-                <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId:
-                    campaign.id}, {absolute: true})}}
+                        </div>
+
+                        <div class="row" ng-if="inviteEmailFormStatus=='enterAdresses'">
+
+                            <div class="col-md-4 col-md-offset-8">
+                                <button type="submit"
+                                        class="btn btn-default"
+                                        ng-disabled="emailInvitation.$invalid" translate>dcmhome.emailInvite.test
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
+                <div class="col-md-6">
 
-            </accordion-group>
-        </accordion>
+                    <h3 translate>dcmhome.campaignStart.welcomeLinkTitle</h3>
+
+                    <div translate>dcmhome.campaignStart.welcomeLinkExplain</div>
+                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{
+                        $state.href('welcome',{campaignId:
+                        campaign.id}, {absolute: true})}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+</div>
 </div>
 
 <div class="row" ng-controller="HomeStatsController">
@@ -99,7 +133,10 @@
                 <div ng-if="currentUserCount === 0" class="panel panel-default">
                     <h3 translate>dcmhome.noParticipants</h3>
                     <span class="empty-content-hint" translate>dcmhome.addMoreUsers</span>
-                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
+
+                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{
+                        $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}
+                    </div>
                 </div>
 
             </div>
@@ -121,7 +158,8 @@
                 <div ng-if="campaign">
                     <div class="checkbox" ng-if="campaign">
                         <label>
-                            <input type="checkbox" ng-model="homeController.showOld"> <span translate>dcmhome.showOld</span>
+                            <input type="checkbox" ng-model="homeController.showOld"> <span
+                                translate>dcmhome.showOld</span>
                         </label>
                     </div>
 
