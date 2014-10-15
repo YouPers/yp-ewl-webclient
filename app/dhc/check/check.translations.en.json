@@ -1,14 +1,26 @@
 {
   "check": {
-    "toFocus": "Go to focus",
+    "link": {
+      "done": "Finish",
+      "back": "back"
+    },
     "questionsAnswered": "criteria rated",
-    "stateHeader1": "your",
-    "stateHeader2": "Self-assessment"
+    "header": "Self-Check"
   },
   "questionCategory": {
     "work": "Stress at Work",
     "leisure": "Stress in Leisure Time",
     "stresstypus": "Stress Intensifier",
-    "handling": "Stress Compensation"
+    "handling": "Stress Compensation",
+    "lunch": "Nutrition at noon",
+    "qualityAndQuantity": "Quality and quantity",
+    "time": "Moments for healthy nutrition",
+    "badHabbits": "Bad habbits",
+    "attitudeAndAdaptability": "Personal attitude and flexibility",
+    "exercise": "Motion",
+    "musculature": "Musculature",
+    "stamina": "Endurance",
+    "agility": "Mobility",
+    "attitude": "Personal attitude"
   }
 }

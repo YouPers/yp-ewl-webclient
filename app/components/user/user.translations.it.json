@@ -2,187 +2,190 @@
   "clientmsg": {
     "success": {
       "account": {
-        "save": "Konto gespeichert"
+        "save": null
       },
       "password": {
-        "save": "Passwort geändert"
+        "save": null
       },
       "profile": {
-        "save": "Profil gespeichert"
+        "save": null
       }
     },
     "error": {
       "password": {
-        "invalid": "Das aktuelle Passwort ist nicht korrekt",
-        "reset": "Benutzername/Email ist uns nicht bekannt"
+        "invalid": "Password attuale non valida",
+        "reset": null
       }
     }
   },
   "account": {
-    "account": "Konto",
-    "changeAccount": "Konto ändern",
-    "changePassword": "Passwort ändern",
-    "currentCampaign": "Aktuelle Kampagne",
-    "start": "Begann am",
-    "end": "Endet am",
-    "noCurrentCampaign": "Du hast keine laufende Kampagne, starte eine hier"
+    "account": "Conto",
+    "changeAccount": "Cambia account",
+    "changePassword": "Cambio password",
+    "backToHome": null
   },
   "accountForm": {
     "firstname": {
-      "label": "Vorname",
-      "placeholder": "Vorname",
+      "label": "Nome",
+      "placeholder": "Nome",
       "error": {
-        "required": "Bitte einen Vornamen eingeben"
+        "required": null
       }
     },
     "lastname": {
-      "label": "Nachname",
-      "placeholder": "Nachname",
+      "label": "Cognome",
+      "placeholder": "Cognome",
       "error": {
-        "required": "Bitte einen Nachnamen eingeben"
+        "required": null
       }
     },
     "username": {
-      "label": "Benutzername",
-      "placeholder": "Benutzername",
+      "label": "Utente",
+      "placeholder": "Utente",
       "error": {
-        "required": "Bitte einen Benutzernamen eingeben"
+        "required": null
       }
     },
     "email": {
-      "label": "Email",
-      "placeholder": "Email",
+      "label": "E-mail",
+      "placeholder": "E-mail",
       "error": {
-        "required": "Bitte eine EMail-Adresse eingeben",
-        "email": "Bitte eine gültige EMail-Adresse eingeben",
-        "unique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein"
+        "required": "Prego inserire un indirizzo email valido",
+        "email": "Inserire un indirizzo e-mail valido.",
+        "unique": "L'indirizzo email è già registrato, per favore autenticarsi"
       }
     },
-    "save": "speichern",
-    "reset": "zurücksetzen"
+    "save": "salva",
+    "reset": "Reset"
   },
   "passwordForm": {
     "password_old": {
-      "label": "Aktuelles Passwort",
-      "placeholder": "Aktuelles Passwort",
+      "label": "Password attuale",
+      "placeholder": "Password attuale",
       "error": {
-        "required": "Dein aktuelles Passwort"
+        "required": "Password attuale"
       }
     },
     "password": {
-      "label": "Neues Passwort",
-      "placeholder": "Neues Passwort",
+      "label": "Nuova password",
+      "placeholder": "Nuova password",
       "error": {
-        "minlength": "Mindestens 6 Zeichen",
-        "required": "Dein neues Passwort"
+        "minlength": "Almeno 6 caratteri",
+        "required": null
       }
     },
     "password2": {
-      "label": "Passwort bestätigen",
-      "placeholder": "Passwort bestätigen",
+      "label": "Conferma password",
+      "placeholder": "Conferma password",
       "error": {
-        "unique": "Die Passwörter stimmen nicht überein"
+        "unique": "Le password non coincidono"
       }
     },
-    "save": "Ändern"
+    "save": "Cambia"
   },
   "emailVerification": {
-    "emailValid": "Email-Adresse bestätigt!",
-    "thankYou": "Vielen für die Bestätigung der Email-Adresse - du kannst nun fortfahren.",
-    "next": "weiter"
+    "emailValid": null,
+    "thankYou": null,
+    "next": "OK"
   },
   "passwordResetRequest": {
-    "resetPasswordFor": "Passwort zurücksetzen",
-    "identification": "Identifikation",
-    "checkYourEmails": "Überprüfe deine Emails",
-    "weSentALink": "Wir haben eine Email an dich versendet mit einem Link, um dein Passwort zurückzusetzen. Bitte überprüfe deine Mailbox"
+    "resetPasswordFor": "Resetta Password",
+    "identification": "Identità",
+    "checkYourEmails": null,
+    "weSentALink": null
   },
   "passwordResetRequestForm": {
-    "usernameOrEmail": "Benutzername oder Email",
-    "$invalid": "Bitte gültigen Benutzername oder Email eingeben",
-    "submit": "Weiter",
-    "reset": "zurücksetzen"
+    "usernameOrEmail": "Nome utente o indirizzo e-mail",
+    "$invalid": null,
+    "submit": "OK",
+    "reset": "Reset"
   },
   "passwordReset": {
-    "hello": "Hallo",
-    "setNewPassword": "Du kannst Dir nun ein neues Passwort setzen:",
-    "newPassword": "Neues Passwort",
-    "success": "Passwort erfolgreich gesetzt",
-    "loginAgainWithNewPassword": "Logge Dich mit deinem neuen Passwort ein..."
+    "hello": "Ciao",
+    "setNewPassword": null,
+    "newPassword": "Nuova password",
+    "success": null,
+    "loginAgainWithNewPassword": null
   },
   "profileForm": {
     "profile": {
-      "header": "Profil"
+      "header": "Profilo"
     },
     "avatar": {
-      "change": "Bild ändern",
-      "default": "Standard",
-      "upload": "Hochladen"
+      "change": null,
+      "default": "Base",
+      "upload": "File"
     },
     "gender": {
-      "label": "Geschlecht"
+      "label": "sesso"
     },
     "birthdate": {
-      "label": "Geburtstag",
-      "$invalid": "Bitte einen gültigen Geburtstag eingeben."
+      "label": "Compleanno",
+      "$invalid": null
     },
     "maritalStatus": {
-      "label": "Zivilstand"
+      "label": null
     },
     "homeAddress": {
-      "header": "Heimadresse",
+      "header": null,
       "street": {
-        "placeholder": "Strasse"
+        "placeholder": null
       },
       "houseNumber": {
-        "placeholder": "Nr."
+        "placeholder": null
       },
       "zipCode": {
-        "placeholder": "PLZ"
+        "placeholder": "CAP",
+        "error": {
+          "pattern": null
+        }
       },
       "city": {
-        "placeholder": "Ort"
+        "placeholder": "Dove"
       },
       "country": {
-        "placeholder": "Land"
+        "placeholder": "PAESE"
       }
     },
     "workAddress": {
-      "header": "Arbeitsort",
+      "header": null,
       "street": {
-        "placeholder": "Strasse"
+        "placeholder": null
       },
       "houseNumber": {
-        "placeholder": "Nr."
+        "placeholder": null
       },
       "zipCode": {
-        "placeholder": "PLZ"
+        "placeholder": "CAP",
+        "error": {
+          "pattern": null
+        }
       },
       "city": {
-        "placeholder": "Ort"
+        "placeholder": "Dove"
       },
       "country": {
-        "placeholder": "Land"
+        "placeholder": "PAESE"
       }
     },
     "settings": {
-      "header": "Einstellungen"
+      "header": "Admin"
     },
-    "submit": "Speichern",
-    "defaultWorkWeek": "Grundeinstellung für Arbeitswoche",
-    "firstDayOfWeek": "Erster Tag der Woche",
-    "timeZone": "Zeitzone",
-    "language": "Sprache",
-    "$invalid": "Bitte gültigen Wert eintragen",
+    "submit": "salva",
+    "defaultWorkWeek": null,
+    "firstDayOfWeek": "Primo giorno della settimana",
+    "timeZone": "fuso orario",
+    "language": "Voce",
+    "$invalid": null,
     "email": {
-      "actPlanInvites": "Einladungen zu Aktivitäten ",
-      "dailyUserMail": "Tägliche Zusammenfassung",
-      "iCalInvites": "Kalender-Einträge per Email"
+      "actPlanInvites": null,
+      "dailyUserMail": null,
+      "iCalInvites": null
     },
-    "emailNotificationsSettings": "E-Mailbenachrichtigungen erhalten?",
-    "calendarNotificationSettings": "Hinweise im Bürokalendar",
+    "emailNotificationsSettings": null,
+    "calendarNotificationSettings": null,
     "rejectedActivities": {
-      "header": "Abgelehnte Aktivitäten"
+      "header": null
     }
   }
 }

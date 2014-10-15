@@ -1,7 +1,17 @@
 {
+  "clientmsg": {
+    "error": {
+      "userWithoutcampaign": null
+    }
+  },
   "invite": {
-    "header": "Bienvenue - YouPers Digital Health Plattform",
-    "message": "<strong>{{user}}</strong> t' a invité à une activité. Inscrives-toi pour participer",
-    "signup": "Créer un nouveau compte"
+    "continueToActivity": null,
+    "header1": "Merci de votre retour",
+    "header2": null,
+    "invalidCampaign": null,
+    "invalidCampaignHeader": "Alerte",
+    "messageAuthenticated": null,
+    "messageUnauthenticated": null,
+    "noAccount": null
   }
 }

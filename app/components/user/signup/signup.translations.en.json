@@ -60,6 +60,13 @@
         "required": "Please accept the Terms and Conditions"
       }
     },
-    "register": "Sign up"
+    "register": "Sign up",
+    "organizationName": {
+      "error": {
+        "required": "Please enter the company name"
+      },
+      "label": "Company name",
+      "placeholder": "Company name"
+    }
   }
 }

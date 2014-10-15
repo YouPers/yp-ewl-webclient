@@ -1,12 +1,45 @@
 {
-    "socialInteraction": {
-
-        "important": "Important",
-
-        "publishFrom": "Published from: ",
-        "publishTo": "Published to: ",
-
-        "invitation": "Einladung",
-        "recommendation": "Empfehlung"
-    }
+  "socialInteraction": {
+    "important": "important",
+    "publishFrom": "Published from: ",
+    "publishTo": "Published to: ",
+    "header": {
+      "Invitation": {
+        "user": "Personal invitation from",
+        "campaignLead": "Campaign invitation from"
+      },
+      "Recommendation": {
+        "user": "personal recommendation from",
+        "campaignLead": "Campaign recommendation from",
+        "coach": "Health Coach"
+      },
+      "Message": {
+        "user": "personal message from",
+        "campaignLead": "Campaign message from",
+        "coach": "Health Coach"
+      }
+    },
+    "mainHeader": "inbox"
+  },
+  "composeMessageForm": {
+    "show": "Message for the campaign",
+    "title": {
+      "label": "Tab",
+      "placeholder": "Tab"
+    },
+    "text": {
+      "label": "𐑥𐑧𐑕𐑩𐑡",
+      "placeholder": "𐑥𐑧𐑕𐑩𐑡"
+    },
+    "publishFrom": {
+      "label": "Of",
+      "placeholder": "Of"
+    },
+    "publishTo": {
+      "label": "…",
+      "placeholder": "…"
+    },
+    "submit": "Save",
+    "cancel": "Stop"
+  }
 }

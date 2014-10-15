@@ -1,5 +1,6 @@
 {
   "activity": {
+    "stateHeader1": "activity",
     "title": {
       "label": "Title",
       "placeholder": "Enter a short title (2x20 chars max)"
@@ -26,13 +27,11 @@
     "duration": "Duration (min) ",
     "save": "Save",
     "back": "Back",
-    "stateHeader1": "activity"
+    "header": {
+      "recommendation": "Campaign recommendation"
+    }
   },
   "activities": {
-    "group": {
-      "campaign": "Own activities",
-      "all": "YouPers Activity Ideas"
-    },
     "duration": {
       "suffix": "min."
     },
@@ -42,12 +41,13 @@
       "recommend": "Recommend"
     },
     "search": "Search",
-    "stateHeader1": "Campaigns",
-    "stateHeader2": "activities"
+    "header": "YouPers Activity Ideas"
   },
   "campaignoffers": {
+    "stateHeader1": "campaigns",
+    "stateHeader2": "Activities",
     "link": {
-      "newActivity": "Create own activities",
+      "newActivity": "Create custom activity",
       "publishActivity": "Schedule existing activities"
     },
     "published": "Published",
@@ -55,11 +55,38 @@
       "campaignActivity": "recommended",
       "campaignActivityPlan": "scheduled"
     },
-    "userNamesNotShown": "Names are not displayed for privacy protection",
-    "stateHeader1": "campaigns",
-    "stateHeader2": "Activities"
+    "userNamesNotShown": "Names are not displayed for privacy protection"
   },
   "scheduledDate": {
     "daily": "Daily"
+  },
+  "recommendationForm": {
+    "title": {
+      "label": "Tab",
+      "placeholder": "Tab"
+    },
+    "text": {
+      "label": "Txt",
+      "placeholder": "Txt"
+    },
+    "publishFrom": {
+      "label": "By",
+      "placeholder": "By"
+    },
+    "publishTo": {
+      "label": "…",
+      "placeholder": "…"
+    },
+    "submit": "save",
+    "delete": "Delete recommendation",
+    "header": {
+      "publish": "Publish recommendation"
+    }
+  },
+  "clientmsg": {
+    "recommendation": {
+      "deleted": "Recommendation deleted",
+      "saved": "Recommendation saved"
+    }
   }
 }

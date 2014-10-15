@@ -1,3 +1,6 @@
 {
-
+  "topic": {
+    "select": "mark",
+    "title": "Select a campaign topic:"
+  }
 }

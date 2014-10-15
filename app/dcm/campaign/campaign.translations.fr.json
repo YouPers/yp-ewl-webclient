@@ -14,18 +14,15 @@
       "campaignoffers": "Activités",
       "notifications": "Les messages"
     },
-    "preview": {
-      "header": "L'aperçu",
-      "welcomeLink": "Le lien d'invitation",
-      "welcomeLinkExplain": "Le participant peut s'inscrire à cette campagne en cliquant sur ce lien. Inserts ce lien dans le e-mail qui sera envoyé à tous les participants potentiels.",
-      "welcomeLinkTest": "Teste le lien",
-      "welcomeLinkNotSaved": "Une fois que tu enregistres la campagne, tu vois le lien de parrainage ici."
-    },
     "campaignLeads": {
-      "header": "Le directeur de campagne"
+      "header": "Le directeur de campagne",
+      "add": "Ajouter plus"
     },
     "stateHeader1": "Ta",
-    "stateHeader2": "Campagne"
+    "stateHeader2": "Campagne",
+    "card": {
+      "title": null
+    }
   },
   "campaignForm": {
     "avatar": {
@@ -61,8 +58,13 @@
       "label": "Le lieu",
       "placeholder": "Le lieu"
     },
+    "back": "dos",
     "save": "Enregistrer",
-    "create": "Enregistrer"
+    "create": "Enregistrer",
+    "topic": {
+      "change": "ajuster",
+      "label": null
+    }
   },
   "inviteCampaignLeadForm": {
     "email": {
@@ -70,5 +72,13 @@
     },
     "inviteSubmit": "Envoyer",
     "invitationSent": "Invitation envoyée par e-mail, le nouveau directeur de campagne doit maintenant confirmer"
+  },
+  "clientmsg": {
+    "success": {
+      "campaign": {
+        "lead": null,
+        "saved": null
+      }
+    }
   }
 }

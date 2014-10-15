@@ -1,5 +1,75 @@
 {
   "healthCoach": {
-
+    "dcm": {
+      "activity": {
+        "activitySaved": "",
+        "deleteActivity": "",
+        "editActivity": "",
+        "stateEnter": ""
+      },
+      "campaign": {
+        "stateEnter": ""
+      },
+      "home": {
+        "campaignAfterFirstWeek": "",
+        "campaignCreated": "",
+        "campaignEnded": "",
+        "campaignFirstWeek": "",
+        "campaignLastWeek": "",
+        "campaignStartedToday": "",
+        "invitationCreated": "",
+        "noCampaigns": "",
+        "organizationIncomplete": "",
+        "recommendationCreated": "",
+        "recommendationDeleted": ""
+      },
+      "ideas": {
+        "stateEnter": ""
+      },
+      "organization": {
+        "missingFields": ""
+      },
+      "recommendation": {
+        "stateEnter": ""
+      }
+    },
+    "dhc": {
+      "activity": {
+        "activitySaved": "",
+        "conflictingEvent": "",
+        "deleteJoinedActivity": "",
+        "deleteOwnActivity": "",
+        "editOwnActivity": "",
+        "eventDone": "",
+        "eventMissed": "",
+        "eventsDue": "",
+        "groupActivityNoEventsDue": "",
+        "invitationAccepted": "",
+        "invitationDismissed": "",
+        "lastEventDone": "",
+        "lastEventMissed": "",
+        "recommendationAccepted": "",
+        "recommendationDismissed": "",
+        "scheduleRecommendedActivity": "",
+        "stateEnter": ""
+      },
+      "check": {
+        "stateEnter": ""
+      },
+      "focus": {
+        "stateEnter": ""
+      },
+      "game": {
+        "campaignEnded": "",
+        "campaignEndingWithCurrentActivities": "",
+        "noCurrentActivities": "",
+        "noDoneEvents": "",
+        "noPastOrPresentEventsAndEnoughActivities": "",
+        "noPastOrPresentEventsAndTooFewActivities": "",
+        "pastEvents": "",
+        "pastOrPresentEvents": ""
+      }
+    },
+    "fullname": "YOUPERS Coach"
   }
 }

@@ -14,18 +14,15 @@
       "campaignoffers": "Acitivities",
       "notifications": "Notifications"
     },
-    "preview": {
-      "header": "Preview",
-      "welcomeLink": "Invitation link",
-      "welcomeLinkExplain": "By clicking on this link, you can sign up to this campaign. Send this link as part of an email to all potential participants you would like to invite.",
-      "welcomeLinkTest": "Test the link",
-      "welcomeLinkNotSaved": "Once you save the campaign, you will see the referral link here."
-    },
     "campaignLeads": {
-      "header": "campaign lead"
+      "header": "campaign lead",
+      "add": "Add More"
     },
     "stateHeader1": "your",
-    "stateHeader2": "campaign"
+    "stateHeader2": "campaign",
+    "card": {
+      "title": "Health Campaign"
+    }
   },
   "campaignForm": {
     "avatar": {
@@ -61,8 +58,13 @@
       "label": "City",
       "placeholder": "City"
     },
+    "back": "back",
     "save": "Save",
-    "create": "Save"
+    "create": "Save",
+    "topic": {
+      "change": "Edit",
+      "label": "Campaign topic"
+    }
   },
   "inviteCampaignLeadForm": {
     "email": {
@@ -70,5 +72,13 @@
     },
     "inviteSubmit": "Send",
     "invitationSent": "Invitation email sent, the new campaign lead needs to confirm"
+  },
+  "clientmsg": {
+    "success": {
+      "campaign": {
+        "lead": "The invitation as campaignlead has been accepted",
+        "saved": "Campaign saved"
+      }
+    }
   }
 }

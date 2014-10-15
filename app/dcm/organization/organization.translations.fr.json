@@ -12,7 +12,7 @@
     }
   },
   "organizationForm": {
-    "header": "Organisation",
+    "header": "Nouvelle organisation",
     "name": {
       "label": "Nom",
       "placeholder": "Nom d'organisation",
@@ -32,7 +32,8 @@
         "label": "Code postal / Lieu",
         "placeholder": "Code postal",
         "error": {
-          "required": "S'il te plaît, entrer un code postale valide"
+          "required": "S'il te plaît, entrer un code postale valide",
+          "pattern": "Saisissez un code postal valide."
         }
       },
       "city": {
@@ -59,20 +60,6 @@
     },
     "contact": {
       "header": "Contact",
-      "firstname": {
-        "label": "Nom",
-        "placeholder": "Prénom",
-        "error": {
-          "required": "S'il te plaît, entrer un prénom valide"
-        }
-      },
-      "lastname": {
-        "placeholder": "Nom",
-        "error": {
-          "required": "S'il te plaît, entrer un nom valide"
-        },
-        "label": "Nom"
-      },
       "position": {
         "label": "Rôle",
         "placeholder": "Rôle / Organisation",
@@ -96,7 +83,34 @@
       }
     },
     "save": "Enregistrer",
-    "create": "Créer"
+    "create": "Créer",
+    "missingOrganizationFieldsWarning": {
+      "header": "WARNING:",
+      "text": null
+    },
+    "user": {
+      "email": {
+        "error": {
+          "required": "S'il te plaît, entrer une adresse email valide"
+        },
+        "label": "email",
+        "placeholder": "Alias mail"
+      },
+      "firstname": {
+        "error": {
+          "required": "S'il te plaît, entrer un prénom valide"
+        },
+        "label": "Nom",
+        "placeholder": "Nom"
+      },
+      "lastname": {
+        "error": {
+          "required": "S'il te plaît, entrer un nom valide"
+        },
+        "label": "Nom",
+        "placeholder": "Nom"
+      }
+    }
   },
   "organization": {
     "stateHeader1": "Ta",

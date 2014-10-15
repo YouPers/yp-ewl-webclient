@@ -1,16 +1,54 @@
 {
   "dcmhome": {
+    "statsTitle": "Progress of campaign",
+    "participantsCount": "Number of registered participants",
+    "plannedActsCount": "Number of planned activities",
+    "moreStats": "More",
     "notifications": "Notifications",
     "campaigns": "Campaigns",
-    "campaignoffers": "Activities",
     "activities": "New activities",
     "statistics": "Statistics",
-    "organization": "Organization",
-
-
-      "noCampaigns": "No campaigns have been created yet: ",
-      "campaignNotStarted": "Once the campaign has started, the statistics about the campaign will be displayed here",
-      "noOffers": "Once the campaign is launched, some basic data on the progress of your campaign will be shown to you here.\n\nOnce you, as a campaign manager, have recommended an activity to the campaign participants to perform, or you, as an organizer, have invited campaign participants to participate in a joint campaign activity, the offered activity is displayed here. Click on \"Add offer\" to offer an activity to the campaign participants.",
-      "noMessages": "Your messages to the campaign participants are displayed here. Click \"Add message\" to record a message to the campaign participants."
+    "addOffer": "Add offer",
+    "organization": {
+      "addCampaign": "new campaign",
+      "edit": "Edit"
+    },
+    "addMoreUsers": "Invite more participants by sending them the following link by email:",
+    "campaignNotStarted": "Once the campaign is launched, some key data on the progress of your campaign are displayed here.",
+    "campaignStart": {
+      "header": "Start of campaign",
+      "welcomeLinkExplain": "By clicking on this link, you can sign up to this campaign. Send this link as part of an email to all potential participants.",
+      "welcomeLinkTitle": "Manual Invitation Mail"
+    },
+    "emailInvite": {
+      "adjust": "adjust",
+      "emailSubject": {
+        "defaultSubject": "Invitation for Health Campaign",
+        "label": "Email subject",
+        "placeholder": "Email subject"
+      },
+      "emailText": {
+        "defaultText": "This is the default text of the emails, it has not been defined ...",
+        "label": "Email body",
+        "placeholder": "Email body"
+      },
+      "explain": "Send an automated Email invitation to the campaign participants. You may adjust the Subject and Message body.",
+      "inviteMore": "Invite more",
+      "label": "Adresses of participants to invite",
+      "next": "next",
+      "placeholder": "use comma, semicolon or blank to separate multiple",
+      "sendTestButton": "Test",
+      "sendYourselfTest": "Send yourself a test invitation:",
+      "submit": "Invite",
+      "success": "Invitations were sent successfully.",
+      "testEmailSent": "Invitation sent to {{address}}.<br>Please review the invitation in your inbox.",
+      "title": "Automatic Email Invitations"
+    },
+    "messages": "News",
+    "noCampaigns": "You have not created any campaign yet",
+    "noMessages": "Your messages for the campaign participants are displayed here. Click on \"Add\" to post a message for the campaign participants.",
+    "noOffers": "Once you, as a campaign manager, have recommended to perform an activity to the campaign participants or you, as an organisator, have invited the campaign participants to a joint campaign activity, the offered activity will be displayed here. Click on \"Add offer\" to offer an activity to the campaign participants.",
+    "noParticipants": "There are no campaign participants yet",
+    "showOld": "Show past"
   }
 }

@@ -12,6 +12,11 @@
       }
     }
   },
+  "calendar": {
+    "tomorrow": "Demain",
+    "today": "aujourd’hui",
+    "yesterday": "Hier"
+  },
   "executiontype": {
     "self": "Soi-même",
     "group": "Le groupe"
@@ -57,6 +62,11 @@
     "other": "Autre",
     "question": "La question",
     "support": "Le support"
+  },
+  "composeCommentForm": {
+    "comment": {
+      "paceholder": null
+    }
   },
   "feedbackForm": {
     "anonymous": {

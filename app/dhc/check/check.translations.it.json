@@ -1,14 +1,26 @@
 {
   "check": {
-    "toFocus": "Zu deinem Fokus",
-    "questionsAnswered": "Kriterien beurteilt",
-    "stateHeader1": "deine",
-    "stateHeader2": "Selbstbeurteilung"
+    "link": {
+      "done": null,
+      "back": "Prec"
+    },
+    "questionsAnswered": null,
+    "header": null
   },
   "questionCategory": {
-    "work": "Stress am Arbeitsplatz",
-    "leisure": "Stress in der Freizeit",
-    "stresstypus": "Stressverstärker",
-    "handling": "Stressausgleich"
+    "work": null,
+    "leisure": null,
+    "stresstypus": null,
+    "handling": null,
+    "lunch": null,
+    "qualityAndQuantity": null,
+    "time": null,
+    "badHabbits": null,
+    "attitudeAndAdaptability": null,
+    "exercise": "Velocità",
+    "musculature": null,
+    "stamina": null,
+    "agility": null,
+    "attitude": null
   }
 }

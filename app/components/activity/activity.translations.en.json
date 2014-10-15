@@ -1,5 +1,146 @@
 {
-    "activity": {
-
+  "clientmsg": {
+    "success": {
+      "activity": {
+        "joined": "Invitation accepted",
+        "deleted": "Activity deleted",
+        "Save": "Activity saved",
+        "SaveAndInvite": "Dates stored and sent out invitations"
+      }
     }
+  },
+  "activity": {
+    "header": {
+      "first": {
+        "campaignlead": "Campaign activity",
+        "owned": "Your activity",
+        "joined": "Participants of this activity",
+        "recommendation": "Recommendation",
+        "invitation": "invitation",
+        "schedule": "Schedule myself"
+      },
+      "second": "plan",
+      "third": "Appointments",
+      "invitedUsers": "People",
+      "inviteOthers": "Invite others",
+      "comments": "Notes",
+      "publish": "Publish invitation"
+    },
+    "inviteOthers": {
+      "selected": "With selected",
+      "all": "A",
+      "inviteByEmail": "Invite someone by email",
+      "inviteByUser": "Search within campaign"
+    },
+    "emailToBeInvited": {
+      "placeholder": "Email",
+      "submit": "Add"
+    },
+    "invitationStatus": {
+      "activityJoined": "Assumed",
+      "denied": "Denied",
+      "pending": "?"
+    },
+    "link": {
+      "campaignlead": "Schedule it",
+      "owned": "Edit",
+      "recommendation": "Schedule it",
+      "invitation": "Accept",
+      "dismiss": "Reset",
+      "back": "Home",
+      "undo": "UNDO",
+      "edit": "Edit",
+      "delete": "Date"
+    },
+    "submit": {
+      "save": "save",
+      "delete": "Date",
+      "invitationSave": "Accept",
+      "recommendationSave": "Schedule it",
+      "ownedSave": "Schedule it",
+      "joinedSave": "Schedule it",
+      "scheduleSave": "Schedule it",
+      "campaignleadSave": "Publish",
+      "campaignleadSaveAndInvite": "Publish",
+      "ownedSaveAndInvite": "Schedule and send",
+      "recommendationSaveAndInvite": "Schedule and send",
+      "scheduleSaveAndInvite": "Schedule and send"
+    },
+    "owner": "Host",
+    "isJoining": "People",
+    "isInvited": "Invited",
+    "reschedule": "Re-schedule",
+    "event": {
+      "status": "Done?",
+      "rating": "How was it?"
+    },
+    "list": {
+      "stateHeader1": "A",
+      "stateHeader2": "Activity",
+      "editTooltip": "Edit activity",
+      "newTooltip": "Schedule new activity",
+      "statusFilter": {
+        "all": "All Activities",
+        "invited": "1NV1735",
+        "owned": "Activities organized by me",
+        "joined": "Activities I participate in"
+      },
+      "item": {
+        "title": "What",
+        "text": "Bio",
+        "date": "When",
+        "location": "Where"
+      }
+    },
+    "view": {
+      "stateHeader1": "your/one",
+      "stateHeader2": "Activity",
+      "title": "Tab",
+      "text": "Bio",
+      "location": "City",
+      "date": "Date",
+      "time": "Time",
+      "frequency": "Period",
+      "recurrence": "Count",
+      "socialInteraction": {
+        "title": "Txt"
+      },
+      "comment": {
+        "placeholder": "write comment"
+      }
+    },
+    "edit": {
+      "stateHeader1": "your",
+      "stateHeader2": "Activity"
+    },
+    "publishFrom": {
+      "label": "By"
+    },
+    "publishTo": {
+      "label": "…"
+    }
+  },
+  "activityForm": {
+    "title": {
+      "label": "Tab",
+      "placeholder": "Tab"
+    },
+    "location": {
+      "label": "City",
+      "placeholder": "City"
+    },
+    "date": {
+      "label": "Date"
+    },
+    "time": {
+      "label": "Time"
+    },
+    "recurrence": {
+      "label": "repeat count"
+    },
+    "create": "Forge",
+    "save": "save",
+    "delete": "Date",
+    "cancel": "Stop"
+  }
 }

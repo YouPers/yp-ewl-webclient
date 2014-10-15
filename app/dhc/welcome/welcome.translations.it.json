@@ -1,10 +1,13 @@
 {
   "welcome": {
-    "header": "Willkommen zur Kampagne",
-    "organizationPrefix": "",
+    "header": "Benvenuto nella campagna",
+    "organizationPrefix": null,
     "link": {
-      "info": "Mehr erfahren",
-      "join": "Teilnehmen"
-    }
+      "info": "Impara di piu'",
+      "join": "Partecipa"
+    },
+    "backToDcm": null,
+    "campaignNotStartedYet": null,
+    "isCampaignlead": null
   }
 }

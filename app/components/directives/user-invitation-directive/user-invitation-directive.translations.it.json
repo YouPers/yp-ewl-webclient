@@ -1,5 +1,7 @@
 {
-    "userInvitation": {
-
+  "userInvitation": {
+    "placeholder": {
+      "activity": null
     }
+  }
 }

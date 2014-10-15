@@ -1,5 +1,11 @@
 {
-    "activityOfferCard": {
-
-    }
+  "activityOfferCard": {
+    "authorPrefix": {
+      "Recommendation": null,
+      "Invitation": null
+    },
+    "published": null,
+    "from": "de",
+    "to": "…"
+  }
 }

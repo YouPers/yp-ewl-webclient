@@ -12,7 +12,7 @@
     }
   },
   "organizationForm": {
-    "header": "Organization",
+    "header": "New Organization",
     "name": {
       "label": "Name",
       "placeholder": "Name of Organization",
@@ -32,7 +32,8 @@
         "label": "Postal code / City",
         "placeholder": "Postal code",
         "error": {
-          "required": "Please enter a valid postal code"
+          "required": "Please enter a valid postal code",
+          "pattern": "Enter a valid postal code"
         }
       },
       "city": {
@@ -59,20 +60,6 @@
     },
     "contact": {
       "header": "Contact",
-      "firstname": {
-        "label": "First name",
-        "placeholder": "First name",
-        "error": {
-          "required": "Please enter a valid first name"
-        }
-      },
-      "lastname": {
-        "placeholder": "Last name",
-        "error": {
-          "required": "Please enter a valid last name"
-        },
-        "label": "Lastname"
-      },
       "position": {
         "label": "Role",
         "placeholder": "Role / Organizational Unit",
@@ -84,7 +71,7 @@
         "label": "Email",
         "placeholder": "Email address",
         "error": {
-          "required": "Please enter a valid Email address"
+          "required": "Please enter a valid email address"
         }
       },
       "phone": {
@@ -96,7 +83,34 @@
       }
     },
     "save": "save",
-    "create": "create"
+    "create": "create",
+    "missingOrganizationFieldsWarning": {
+      "header": "WARNING: ",
+      "text": "You have not filled out the following information of your organization:"
+    },
+    "user": {
+      "email": {
+        "error": {
+          "required": "Please enter a valid email address"
+        },
+        "label": "Email",
+        "placeholder": "Email address"
+      },
+      "firstname": {
+        "error": {
+          "required": "Please enter a valid first name"
+        },
+        "label": "Name",
+        "placeholder": "First"
+      },
+      "lastname": {
+        "error": {
+          "required": "Please enter a valid last name"
+        },
+        "label": "Last",
+        "placeholder": "Last"
+      }
+    }
   },
   "organization": {
     "stateHeader1": "your",

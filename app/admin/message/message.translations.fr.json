@@ -1,12 +1,42 @@
 {
-    "clientmsg": {
-
-    },
-
-    "admin": {
-
-        "message": {
-
-        }
+  "admin": {
+    "message": {
+      "stateHeader1": "Système",
+      "stateHeader2": "Messages",
+      "publishFrom": null,
+      "publishTo": null,
+      "important": "important"
     }
+  },
+  "adminMessageForm": {
+    "title": {
+      "label": "Titre",
+      "placeholder": "Titre",
+      "error": {
+        "required": null
+      }
+    },
+    "text": {
+      "label": "Texte",
+      "placeholder": "Texte"
+    },
+    "important": {
+      "label": "important"
+    },
+    "campaign": {
+      "label": "Campagne",
+      "none": null
+    },
+    "language": {
+      "label": "Langue",
+      "none": null
+    },
+    "publishFrom": {
+      "label": null
+    },
+    "publishTo": {
+      "label": "Publié jusqu'au"
+    },
+    "submit": "Envoi"
+  }
 }

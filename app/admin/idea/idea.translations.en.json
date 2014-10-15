@@ -1,121 +1,121 @@
 {
-    "clientmsg": {
-        "success": {
-            "activity": {
-                "save": "Activity saved"
-            },
-            "activityPlan": {
-                "save": "Activity scheduled",
-                "join": "Activity planned",
-                "invite": "You've invited {{email}} to this activity",
-                "delete": "Activity deleted",
-                "sampleInvitationSent": "Invitation mail sent to {{email}}"
-            }
-        },
-        "error": {
-            "activity": {
-                "join": "This activity could not be planned"
-            }
-        }
+  "clientmsg": {
+    "success": {
+      "activity": {
+        "save": "Activity saved"
+      },
+      "activityPlan": {
+        "save": "Activity scheduled",
+        "join": "Activity planned",
+        "invite": "You've invited {{email}} to this activity",
+        "delete": "Activity deleted",
+        "sampleInvitationSent": "Invitation mail sent to {{email}}"
+      }
     },
-    "list": {
-        "planAnActivity": "Schedule an activity",
-        "createNewActivity": "Create a new activity",
-        "search": "Search",
-        "setFocus": "Focus on",
-        "areas": "Areas",
-        "togetherWith": "together with",
-        "alone": "Myself",
-        "asAGroup": "as a group",
-        "duration": "Duration",
-        "lt15min": "< 15 min",
-        "15-30min": "15-30 min",
-        "30-60min": "30 min - 1 hour",
-        "mt60min": "more than 1 hour",
-        "rating": "Rating",
-        "activities": "Activities",
-        "recommendedForYou": "Recommended for You",
-        "campaignActivities": "Campaign Activities",
-        "all": "All",
-        "ofTotal": "of totally",
-        "done": "done",
-        "recommended": "recommended",
-        "planned": "planned",
-        "ifYouFillAssessment": "By filling out the assessment we will provide you with personal recommendations.",
-        "toAssessment": "Go to Self-Check",
-        "showAllActivities": "show all activities",
-        "planIt": "Schedule it",
-        "notForMe": "not for me!"
-    },
-    "admin": {
-        "navigation": {
-            "start": "Start",
-            "activities": "Activities"
-        },
-        "matrix": {
-            "header": "Assessment Matrix, Recommendations for questions: ",
-            "recommendationSliderLeft": "Recommendation <br/>Left Slider",
-            "recommendationSliderRight": "Recommendation <br/>Right Slider",
-            "valueRangeHint": "Value range from 0 to 10<br/>0 = not recommended, 10 = recommended"
-        }
-    },
-    "visibility": {
-        "public": "Public",
-        "campaign": "Campaign",
-        "private": "private"
-    },
-    "source": {
-        "youpers": "YOUPERS",
-        "community": "Community",
-        "campaign": "Campaign"
-    },
-    "calendarNotification": {
-        "none": "no notification",
-        "0": "at begin time",
-        "300": "5 minutes before",
-        "600": "10 minutes before",
-        "900": "15 minutes before",
-        "1800": "30 minutes before",
-        "3600": "1 hour before",
-        "7200": "2 hours before",
-        "86400": "1 day before",
-        "172800": "2 days before"
-    },
-    "activityPlanInvite": {
-        "header": "Welcome - YouPers Digital Health Plattform",
-        "subheader": " has invited you to join an activity.",
-        "inviteMessage": "To join this activity please <a {{loginLinkAttribute}}>sign in</a> or <a href='' {{registerLinkAttribute}}>register</a>"
-    },
-    "activityPlanFrequency": {
-        "once": "Once",
-        "day": "Daily",
-        "week": "Weekly",
-        "month": "Monthly",
-        "year": "Yearly"
-    },
-    "activityPlanEditable": {
-        "editable": "Change a planned activity",
-        "notEditableJoinedPlan": "Hint: This activity cannot be edited, because other users have already joined.",
-        "notEditablePastEvent": "Hint: This activity cannot be edited, because it has already passed."
-    },
-    "activityPlanDeletable": {
-        "deletable": "Delete a planned activity",
-        "deletableOnlyFutureEvents": "Delete future executions",
-        "notDeletableNoFutureEvents": "Hint: This activity cannot be deleted, because all events are in the past."
-    },
-    "activityField": {
-        "awarenessAbility": "Awareness and Ability",
-        "timeManagement": "Time Management",
-        "workStructuring": "Work Arrangement",
-        "physicalActivity": "Physical Activity",
-        "nutrition": "Nutrition",
-        "leisureActivity": "Leisure Activity",
-        "breaks": "Breaks",
-        "relaxation": "Relaxation",
-        "socialInteraction": "Social Interaction"
-    },
-    "executiontype": {
-        "self": "Alone",
-        "group": "Group"
+    "error": {
+      "activity": {
+        "join": "This activity could not be planned"
+      }
     }
+  },
+  "list": {
+    "planAnActivity": "Schedule an activity",
+    "createNewActivity": "Create a new activity",
+    "search": "Search",
+    "setFocus": "Focus on",
+    "areas": "Areas",
+    "togetherWith": "together with",
+    "alone": "Myself",
+    "asAGroup": "as a group",
+    "duration": "Duration",
+    "lt15min": "< 15 min",
+    "15-30min": "15-30 min",
+    "30-60min": "30 min - 1 hour",
+    "mt60min": "more than 1 hour",
+    "rating": "Rating",
+    "activities": "Activities",
+    "recommendedForYou": "Recommended for You",
+    "campaignActivities": "Campaign Activities",
+    "all": "All",
+    "ofTotal": "of totally",
+    "done": "done",
+    "recommended": "recommended",
+    "planned": "planned",
+    "ifYouFillAssessment": "By filling out the assessment we will provide you with personal recommendations.",
+    "toAssessment": "Go to Self-Check",
+    "showAllActivities": "show all activities",
+    "planIt": "Schedule it",
+    "notForMe": "not for me!"
+  },
+  "admin": {
+    "navigation": {
+      "start": "Start",
+      "activities": "Activities"
+    },
+    "matrix": {
+      "header": "Assessment Matrix, Recommendations for questions: ",
+      "recommendationSliderLeft": "Recommendation <br/>Left Slider",
+      "recommendationSliderRight": "Recommendation <br/>Right Slider",
+      "valueRangeHint": "Value range from 0 to 10<br/>0 = not recommended, 10 = recommended"
+    }
+  },
+  "visibility": {
+    "public": "Public",
+    "campaign": "Campaign",
+    "private": "private"
+  },
+  "source": {
+    "youpers": "YOUPERS",
+    "community": "Community",
+    "campaign": "Campaign"
+  },
+  "calendarNotification": {
+    "none": "no notification",
+    "0": "at begin time",
+    "300": "5 minutes before",
+    "600": "10 minutes before",
+    "900": "15 minutes before",
+    "1800": "30 minutes before",
+    "3600": "1 hour before",
+    "7200": "2 hours before",
+    "86400": "1 day before",
+    "172800": "2 days before"
+  },
+  "activityPlanInvite": {
+    "header": "Welcome - YouPers Digital Health Plattform",
+    "subheader": " has invited you to join an activity.",
+    "inviteMessage": "To join this activity please <a {{loginLinkAttribute}}>sign in</a> or <a href='' {{registerLinkAttribute}}>register</a>"
+  },
+  "activityPlanFrequency": {
+    "once": "Once",
+    "day": "Daily",
+    "week": "Weekly",
+    "month": "Monthly",
+    "year": "Yearly"
+  },
+  "activityPlanEditable": {
+    "editable": "Change a planned activity",
+    "notEditableJoinedPlan": "Hint: This activity cannot be edited, because other users have already joined.",
+    "notEditablePastEvent": "Hint: This activity cannot be edited, because it has already passed."
+  },
+  "activityPlanDeletable": {
+    "deletable": "Delete a planned activity",
+    "deletableOnlyFutureEvents": "Delete future executions",
+    "notDeletableNoFutureEvents": "Hint: This activity cannot be deleted, because all events are in the past."
+  },
+  "activityField": {
+    "awarenessAbility": "Awareness and Ability",
+    "timeManagement": "Time Management",
+    "workStructuring": "Work Arrangement",
+    "physicalActivity": "Physical Activity",
+    "nutrition": "Nutrition",
+    "leisureActivity": "Leisure Activity",
+    "breaks": "Breaks",
+    "relaxation": "Relaxation",
+    "socialInteraction": "Social Interaction"
+  },
+  "executiontype": {
+    "self": "Alone",
+    "group": "Group"
+  }
 }

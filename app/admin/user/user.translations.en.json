@@ -1,13 +1,11 @@
 {
-    "clientmsg": {
-
-    },
-
-    "admin": {
-
-        "user": {
-            "stateHeader1": "user",
-            "stateHeader2": "management"
-        }
+  "admin": {
+    "user": {
+      "stateHeader1": "user",
+      "stateHeader2": "Admin",
+      "typeahead": {
+        "placeholder": "Go"
+      }
     }
+  }
 }

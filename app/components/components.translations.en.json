@@ -12,6 +12,11 @@
       }
     }
   },
+  "calendar": {
+    "tomorrow": "Tomorrow",
+    "today": "Today",
+    "yesterday": "Yesterday"
+  },
   "executiontype": {
     "self": "self",
     "group": "group"
@@ -57,6 +62,11 @@
     "other": "Miscellaneous",
     "question": "Question",
     "support": "Help"
+  },
+  "composeCommentForm": {
+    "comment": {
+      "paceholder": "Write a comment"
+    }
   },
   "feedbackForm": {
     "anonymous": {

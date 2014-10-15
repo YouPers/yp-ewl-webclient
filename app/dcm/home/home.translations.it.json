@@ -1,12 +1,54 @@
 {
   "dcmhome": {
+    "statsTitle": null,
+    "participantsCount": null,
+    "plannedActsCount": null,
+    "moreStats": "+",
     "notifications": "Notifiche",
     "campaigns": "Campagne",
-    "campaignoffers": "Attività",
     "activities": "Nuove attività",
     "statistics": "Statistiche",
-    "organization": "Organizzazione",
-    "stateHeader1": "digitale",
-    "stateHeader2": "Responsabile della campagna"
+    "addOffer": null,
+    "organization": {
+      "addCampaign": "nuova campagna",
+      "edit": "mod"
+    },
+    "addMoreUsers": null,
+    "campaignNotStarted": null,
+    "campaignStart": {
+      "header": null,
+      "welcomeLinkExplain": null,
+      "welcomeLinkTitle": null
+    },
+    "emailInvite": {
+      "adjust": null,
+      "emailSubject": {
+        "defaultSubject": null,
+        "label": null,
+        "placeholder": null
+      },
+      "emailText": {
+        "defaultText": null,
+        "label": null,
+        "placeholder": null
+      },
+      "explain": null,
+      "inviteMore": null,
+      "label": null,
+      "next": null,
+      "placeholder": null,
+      "sendTestButton": null,
+      "sendYourselfTest": null,
+      "submit": null,
+      "success": null,
+      "testEmailSent": null,
+      "title": null
+    },
+    "messages": "News",
+    "noCampaigns": null,
+    "noMessages": null,
+    "noOffers": null,
+    "noParticipants": null,
+    "showOld": null
   }
 }

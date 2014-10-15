@@ -1,14 +1,26 @@
 {
   "check": {
-    "toFocus": "à ton l'accent",
+    "link": {
+      "done": null,
+      "back": "dos"
+    },
     "questionsAnswered": "juger des critères",
-    "stateHeader1": "Ton",
-    "stateHeader2": "l'auto-évaluation"
+    "header": "l'auto-évaluation"
   },
   "questionCategory": {
     "work": "Le stress sur le lieu de travail",
     "leisure": "Stress dans la vie personnelle",
     "stresstypus": "Amplificateurs de stress",
-    "handling": "Compensation du stress"
+    "handling": "Compensation du stress",
+    "lunch": null,
+    "qualityAndQuantity": null,
+    "time": null,
+    "badHabbits": null,
+    "attitudeAndAdaptability": null,
+    "exercise": "Animation",
+    "musculature": null,
+    "stamina": null,
+    "agility": null,
+    "attitude": null
   }
 }

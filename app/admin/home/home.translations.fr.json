@@ -1,9 +1,9 @@
 {
   "admin": {
     "home": {
-      "activities": "Les activités",
       "stateHeader1": "Le produit",
-      "stateHeader2": "La configuration"
+      "stateHeader2": "La configuration",
+      "activities": "Les activités"
     }
   }
 }

@@ -22,10 +22,7 @@
     "account": "Account",
     "changeAccount": "Change Account",
     "changePassword": "Change password",
-    "currentCampaign": "Current Campaign",
-    "start": "Started",
-    "end": "Ends on",
-    "noCurrentCampaign": "You are currently not part of a campaign, join or start a campaign here"
+    "backToHome": "back to main screen"
   },
   "accountForm": {
     "firstname": {
@@ -53,9 +50,9 @@
       "label": "Email",
       "placeholder": "Email",
       "error": {
-        "required": "Please enter an Email address",
-        "email": "Please enter a valid Email address",
-        "unique": "This Email address is already registered, please login"
+        "required": "Please enter an email address",
+        "email": "Please enter a valid email address",
+        "unique": "This email address is already registered, please login"
       }
     },
     "save": "save",
@@ -88,18 +85,18 @@
   },
   "emailVerification": {
     "emailValid": "Email address confirmed!",
-    "thankYou": "Thank you for confirming the Email address. You can continue now.",
+    "thankYou": "Thank you for confirming the email address. You can continue now.",
     "next": "Next"
   },
   "passwordResetRequest": {
     "resetPasswordFor": "Reset password",
     "identification": "Identification",
-    "checkYourEmails": "Check your Emails",
-    "weSentALink": "We sent an Email to you with a link to reset your password. Please check your mailbox."
+    "checkYourEmails": "Check your emails",
+    "weSentALink": "We sent an email to you with a link to reset your password. Please check your mailbox."
   },
   "passwordResetRequestForm": {
-    "usernameOrEmail": "Username or Email",
-    "$invalid": "Please enter a valid Username or Email",
+    "usernameOrEmail": "Username or email",
+    "$invalid": "Please enter a valid username or email",
     "submit": "Submit",
     "reset": "Reset"
   },
@@ -138,7 +135,10 @@
         "placeholder": "No."
       },
       "zipCode": {
-        "placeholder": "Zip"
+        "placeholder": "Zip",
+        "error": {
+          "pattern": "Please enter a valid number"
+        }
       },
       "city": {
         "placeholder": "City"
@@ -156,7 +156,10 @@
         "placeholder": "No."
       },
       "zipCode": {
-        "placeholder": "Zip"
+        "placeholder": "Zip",
+        "error": {
+          "pattern": "Please enter a valid number"
+        }
       },
       "city": {
         "placeholder": "City"

@@ -1,13 +1,11 @@
 {
-    "clientmsg": {
-
-    },
-
-    "admin": {
-
-        "user": {
-            "stateHeader1": null,
-            "stateHeader2": null
-        }
+  "admin": {
+    "user": {
+      "stateHeader1": "Compte",
+      "stateHeader2": "Admin",
+      "typeahead": {
+        "placeholder": "Trouver"
+      }
     }
+  }
 }

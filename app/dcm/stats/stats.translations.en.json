@@ -5,10 +5,11 @@
     "updatesTotal": "Number of recorded self-checks (complete and incomplete self-checks)",
     "totalActsPlanned": "Number of scheduled activities",
     "totalEventsPlanned": "Number of planned occurances",
+    "eventsDonePerDay": "Number of executed and missed events per day",
+    "actPlannedPerDay": "Number of planned events on one day",
     "assUpdatesPerDay": "Number of self-check adjustments per day",
     "activityName": "Activity",
     "day": "Date",
-    "totalFocusSet": "Number of users with set focus",
     "topStressors": "Most common stressors",
     "stressorCount": "Number of nominations",
     "count": "Number",
@@ -17,6 +18,12 @@
     "activityEvents": "Number of executions of activities",
     "status": "Status of execution",
     "stateHeader1": "campaigns",
-    "stateHeader2": "statistics"
+    "stateHeader2": "statistics",
+    "event": {
+      "done": "Done executions",
+      "future": "Future executions",
+      "missed": "Not executed",
+      "open": "Still without feedback"
+    }
   }
 }
