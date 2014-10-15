@@ -2,6 +2,7 @@
     "clientmsg": {
         "success": {
             "campaign": {
+                "lead": "Die Einladung als Kampagnenleiter wurde akzeptiert",
                 "saved": "Kampagne gespeichert"
             }
         }

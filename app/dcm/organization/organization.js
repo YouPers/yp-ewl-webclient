@@ -27,12 +27,12 @@
                         }
                     })
                     .state('assignCampaignLead', {
-                        url: '/campaigns/{id}/becomeCampaignLead?token',
+                        url: '/campaigns/{id}/becomeCampaignLead?accessToken',
                         access: accessLevels.user,
                         onEnter:['$state','$stateParams','CampaignService', 'UserService', '$rootScope', '$window',
                             function($state, $stateParams, CampaignService, UserService, $rootScope, $window) {
                                 var campaignId = $stateParams.id;
-                                var token = $stateParams.token;
+                                var token = $stateParams.accessToken;
                                 CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
                                     $rootScope.$emit('clientmsg:success', 'campaign.lead');
                                     $state.go('dcm.home');
