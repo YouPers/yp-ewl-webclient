@@ -27,6 +27,7 @@
             }],
             campaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', function ($stateParams, SocialInteractionService, activity) {
                 return activity.id ? SocialInteractionService.getInvitations({
+                    populate: 'author',
                     targetId: $stateParams.campaignId,
                     refDocId: activity.id,
                     authored: true
