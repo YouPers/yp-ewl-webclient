@@ -67,6 +67,9 @@
                 $scope.homeController.formStatus = 'beforeTest';
                 $scope.campaign = campaign;
                 $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
+                $scope.showCampaignStart =  !$scope.campaignStarted;
+                $scope.showCampaignStats =  $scope.campaignStats;
+
 
                 $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
                     CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {

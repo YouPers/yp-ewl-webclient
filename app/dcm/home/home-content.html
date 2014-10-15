@@ -2,11 +2,12 @@
     <div class="col-md-12  campaign-start">
         <div class="area">
             <div>
-                <h3><span translate>dcmhome.campaignStart.header</span> <a href=""
-                                                                           ng-click="showCampaignStart=!showCampaignStart">
-                    <i class="fa "
-                       ng-class="{ 'fa-chevron-down': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
-                </a></h3>
+                <h3><span translate>dcmhome.campaignStart.header</span>
+                    <a href="" ng-click="showCampaignStart=!showCampaignStart">
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
+                    </a>
+                </h3>
             </div>
             <div class="row" ng-if="showCampaignStart">
                 <div class="col-md-6">
@@ -121,50 +122,59 @@
     <div class="col-md-12">
         <div class="area">
 
-            <div><h3 translate>dcmhome.statsTitle</h3>
-                <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign">
+            <div>
+                <h3><span translate>dcmhome.statsTitle</span>
+                    <a href="" ng-click="showCampaignStats=!showCampaignStats">
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': showCampaignStats, 'fa-chevron-right': !showCampaignStats }"></i>
+                    </a>
+                </h3>
+
+
+                <h3 translate></h3>
+                <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">
                     <span translate>dcmhome.moreStats</span>
                     <i class="fa fa-tachometer"></i>
                 </a>
             </div>
+            <div ng-if="showCampaignStats">
+                <div ng-if="!campaign">
+                    <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
+                    <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
+                        <span translate>dcmhome.organization.addCampaign</span>
+                        <i class="fa fa-plus"></i>
+                    </a>
 
-            <div ng-if="!campaign">
-                <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
-                <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
-                    <span translate>dcmhome.organization.addCampaign</span>
-                    <i class="fa fa-plus"></i>
-                </a>
-
-            </div>
-
-            <div ng-if="campaign && !campaignStarted">
-
-                <span class="empty-content-hint" translate>dcmhome.campaignNotStarted</span>
-
-            </div>
-
-            <div ng-if="campaign && campaignStarted">
-
-                <div class="row" ng-if="currentUserCount > 0">
-                    <div class="col-md-6">
-                        <statistics-chart chart-data="chartData.newUsers"
-                                          title="'dcmhome.participantsCount' | translate"></statistics-chart>
-                    </div>
-                    <div class="col-md-6">
-                        <statistics-chart chart-data="chartData.plannedActs"
-                                          title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
-                    </div>
                 </div>
 
-                <div ng-if="currentUserCount === 0" class="panel panel-default">
-                    <h3 translate>dcmhome.noParticipants</h3>
-                    <span class="empty-content-hint" translate>dcmhome.addMoreUsers</span>
+                <div ng-if="campaign && !campaignStarted">
 
-                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{
-                        $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}
-                    </div>
+                    <span class="empty-content-hint" translate>dcmhome.campaignNotStarted</span>
+
                 </div>
 
+                <div ng-if="campaign && campaignStarted">
+
+                    <div class="row" ng-if="currentUserCount > 0">
+                        <div class="col-md-6">
+                            <statistics-chart chart-data="chartData.newUsers"
+                                              title="'dcmhome.participantsCount' | translate"></statistics-chart>
+                        </div>
+                        <div class="col-md-6">
+                            <statistics-chart chart-data="chartData.plannedActs"
+                                              title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
+                        </div>
+                    </div>
+
+                    <div ng-if="currentUserCount === 0" class="panel panel-default">
+                        <h3 translate>dcmhome.noParticipants</h3>
+                        <span class="empty-content-hint" translate>dcmhome.addMoreUsers</span>
+
+                        <div class="welcome-link" select-on-click ng-show="campaign.id">{{
+                            $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
