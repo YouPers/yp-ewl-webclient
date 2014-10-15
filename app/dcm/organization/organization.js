@@ -7,18 +7,10 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('organization', {
-                        templateUrl: "layout/single-column.html",
-                        access: accessLevels.user
-                    })
-                    .state('organization.content', {
                         url: "/organization/",
                         access: accessLevels.user,
-                        views: {
-                            content: {
-                                templateUrl: 'dcm/organization/organization.html',
-                                controller: 'OrganizationController as organizationController'
-                            }
-                        },
+                        templateUrl: 'dcm/organization/organization.html',
+                        controller: 'OrganizationController as organizationController',
                         resolve: {
 
                             organizations: ['$stateParams', 'OrganizationService', function($stateParams, OrganizationService) {

@@ -42,7 +42,6 @@
                                     return CampaignService.getCampaign($stateParams.campaignId).then(function (campaign) {
 
                                         return {
-                                            "number": "CampaignActivity",
                                             source: "campaign",
                                             defaultfrequency: "once",
                                             "defaultexecutiontype": "group",
