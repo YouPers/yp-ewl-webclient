@@ -3,7 +3,8 @@
 
       "campaignStart": {
           "header": "Start der Kampagne",
-          "welcomeLinkExplain": "Mit diesem Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer."
+          "welcomeLinkTitle": "Manuelle Einladungsemails",
+          "welcomeLinkExplain": "Alternativ kannst du ein selber ein Einladungs-Mail gestalten und an deine Mitarbeiter versenden. Füge diesen Link in den Text deines Einladungs-Mails hinzu - damit können sich die Kollegen zur Kampagne anmelden."
       },
 
     "statsTitle": "Verlauf der Kampagne",
@@ -28,6 +29,31 @@
     "organization": {
         "addCampaign": "Neue Kampagne",
         "edit": "Bearbeiten"
+    },
+
+    "emailInvite": {
+        "submit": "Einladen",
+        "emailSubject": {
+            "label": "Email-Betreff",
+            "placeholder": "Email-Betreff",
+            "defaultSubject": "Einladung zur Kampagne"
+        },
+        "emailText": {
+            "label": "Email-Text",
+            "placeholder": "Email-Text",
+            "defaultText": "Das hier ist der Default-Text des Emails, er ist noch nicht definiert worden..."
+        },
+        "sendYourselfTest": "Sende dir selbst eine Test-Einladung:",
+        "sendTestButton": "Test",
+        "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Mail-Eingang.",
+        "adjust": "korrigiere",
+        "next": "weiter",
+        "success": "Einladungen erfolgreich versendet",
+        "inviteMore": "weitere einladen",
+        "explain": "Füge hier die Email-Adressen derjenigen Kollegen ein, die du zur Kampagne einladen möchstest. An diese Email-Adressen wird automatisch eine Einladung zur Teilnahme an der Kampagne versandt.",
+        "placeholder": "Adressen mittels Komma, Semikolon oder Leerschlag trennen",
+        "label": "Email-Adressen der einzuladenden Mitarbeiter",
+        "title": "Automatische Kampagnen-Einladungsmails"
     }
   }
 }

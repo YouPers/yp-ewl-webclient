@@ -1,74 +1,173 @@
 <div class="row" ng-if="campaign">
-    <div class="col-md-12">
+    <div class="col-md-12  campaign-start">
+        <div class="area">
+            <div>
+                <h3><span translate>dcmhome.campaignStart.header</span>
+                    <a href="" ng-click="showCampaignStart=!showCampaignStart">
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
+                    </a>
+                </h3>
+            </div>
+            <div class="row" ng-if="showCampaignStart">
+                <div class="col-md-6">
+                    <h3 translate>dcmhome.emailInvite.title</h3>
 
+                    <div translate>dcmhome.emailInvite.explain</div>
+                    <p>
 
-        <accordion class="campaign-start" close-others="true" ng-init="showCampaignStart = !campaignStarted">
+                    <form class="form"
+                          role="form"
+                          name="emailInvitation">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label translate>dcmhome.emailInvite.emailSubject.label</label>
+                                <input type="text" required class="form-control" ng-model="emailSubject"
+                                       ng-disabled="!(homeController.formStatus=='beforeTest')"
+                                       placeholder="{{ 'dcmhome.emailInvite.emailSubject.placeholder' | translate }}">
+                            </div>
+                        </div>
+                        <div class="row mail-text">
+                            <div class="col-md-12">
+                                <label translate>dcmhome.emailInvite.emailText.label</label>
+                                <textarea required class="form-control" ng-model="emailText"
+                                          ng-disabled="!(homeController.formStatus=='beforeTest')"
+                                          placeholder="{{ 'dcmhome.emailInvite.emailText.placeholder' | translate }}">
+                                </textarea>
+                            </div>
+                        </div>
 
-            <accordion-group is-open="showCampaignStart">
-                <accordion-heading>
-                    <h3 translate>dcmhome.campaignStart.header</h3>
+                        <div class="row"
+                             ng-if="homeController.formStatus=='beforeTest'">
+                            <div class="col-md-6" translate>dcmhome.emailInvite.sendYourselfTest</div>
+                            <div class="col-md-6">
+                                <button ng-click="sendTestInvitationMail(emailSubject, emailText)"
+                                        class="btn btn-default"
+                                        translate>dcmhome.emailInvite.sendTestButton
+                                </button>
+                            </div>
+                        </div>
 
-                    <i class="fa "
-                       ng-class="{ 'fa-chevron-up': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
+                        <div class="row" ng-if="homeController.formStatus=='afterTest'">
+                            <div class="col-md-12" translate translate-values='{ address: principal.getUser().email}'>dcmhome.emailInvite.testEmailSent</div>
+                            <div class="col-md-4">
+                                <button ng-click="homeController.formStatus='beforeTest'"
+                                        class="btn btn-default"
+                                        translate>dcmhome.emailInvite.adjust
+                                </button>
+                            </div>
+                            <div class="col-md-8">
+                                <button ng-click="homeController.formStatus='enterAdresses'"
+                                        class="btn btn-default"
+                                        translate>dcmhome.emailInvite.next
+                                </button>
+                            </div>
 
-                </accordion-heading>
+                        </div>
+                        <div class="row" ng-if="homeController.formStatus=='enterAdresses'">
+                            <div class="col-md-12">
+                                <label translate>dcmhome.emailInvite.label</label>
+                                <input type="text" multiple-emails required class="form-control"
+                                       ng-model="emailToBeInvited"
+                                       placeholder="{{ 'dcmhome.emailInvite.placeholder' | translate }}">
+                            </div>
+                            <div class="col-md-6 col-md-offset-6">
+                                <button ng-click="emailInvitation.$valid && onEmailInviteSubmit(emailToBeInvited, emailSubject, emailText); emailToBeInvited = ''"
+                                        class="btn btn-default"
+                                        ng-disabled="emailInvitation.$invalid" translate>versenden
+                                </button>
+                            </div>
 
+                        </div>
 
-                <div translate>dcmhome.campaignStart.welcomeLinkExplain</div>
-                <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId:
-                    campaign.id}, {absolute: true})}}
+                        <div class="row" ng-if="homeController.formStatus=='sentSuccessful'">
+                            <div class="col-md-6" translate>dcmhome.emailInvite.success</div>
+
+                            <div class="col-md-6">
+                                <button ng-click="homeController.formStatus='enterAdresses'"
+                                        class="btn btn-default"
+                                        ng-disabled="emailInvitation.$invalid" translate>dcmhome.emailInvite.inviteMore
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
+                <div class="col-md-6">
 
-            </accordion-group>
-        </accordion>
+                    <h3 translate>dcmhome.campaignStart.welcomeLinkTitle</h3>
+
+                    <div translate>dcmhome.campaignStart.welcomeLinkExplain</div>
+                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{
+                        $state.href('welcome',{campaignId:
+                        campaign.id}, {absolute: true})}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+</div>
 </div>
 
 <div class="row" ng-controller="HomeStatsController">
     <div class="col-md-12">
         <div class="area">
 
-            <div><h3 translate>dcmhome.statsTitle</h3>
-                <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign">
+            <div>
+                <h3><span translate>dcmhome.statsTitle</span>
+                    <a href="" ng-click="showCampaignStats=!showCampaignStats">
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': showCampaignStats, 'fa-chevron-right': !showCampaignStats }"></i>
+                    </a>
+                </h3>
+
+
+                <h3 translate></h3>
+                <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">
                     <span translate>dcmhome.moreStats</span>
                     <i class="fa fa-tachometer"></i>
                 </a>
             </div>
+            <div ng-if="showCampaignStats">
+                <div ng-if="!campaign">
+                    <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
+                    <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
+                        <span translate>dcmhome.organization.addCampaign</span>
+                        <i class="fa fa-plus"></i>
+                    </a>
 
-            <div ng-if="!campaign">
-                <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
-                <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
-                    <span translate>dcmhome.organization.addCampaign</span>
-                    <i class="fa fa-plus"></i>
-                </a>
-
-            </div>
-
-            <div ng-if="campaign && !campaignStarted">
-
-                <span class="empty-content-hint" translate>dcmhome.campaignNotStarted</span>
-
-            </div>
-
-            <div ng-if="campaign && campaignStarted">
-
-                <div class="row" ng-if="currentUserCount > 0">
-                    <div class="col-md-6">
-                        <statistics-chart chart-data="chartData.newUsers"
-                                          title="'dcmhome.participantsCount' | translate"></statistics-chart>
-                    </div>
-                    <div class="col-md-6">
-                        <statistics-chart chart-data="chartData.plannedActs"
-                                          title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
-                    </div>
                 </div>
 
-                <div ng-if="currentUserCount === 0" class="panel panel-default">
-                    <h3 translate>dcmhome.noParticipants</h3>
-                    <span class="empty-content-hint" translate>dcmhome.addMoreUsers</span>
-                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{ $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}</div>
+                <div ng-if="campaign && !campaignStarted">
+
+                    <span class="empty-content-hint" translate>dcmhome.campaignNotStarted</span>
+
                 </div>
 
+                <div ng-if="campaign && campaignStarted">
+
+                    <div class="row" ng-if="currentUserCount > 0">
+                        <div class="col-md-6">
+                            <statistics-chart chart-data="chartData.newUsers"
+                                              title="'dcmhome.participantsCount' | translate"></statistics-chart>
+                        </div>
+                        <div class="col-md-6">
+                            <statistics-chart chart-data="chartData.plannedActs"
+                                              title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
+                        </div>
+                    </div>
+
+                    <div ng-if="currentUserCount === 0" class="panel panel-default">
+                        <h3 translate>dcmhome.noParticipants</h3>
+                        <span class="empty-content-hint" translate>dcmhome.addMoreUsers</span>
+
+                        <div class="welcome-link" select-on-click ng-show="campaign.id">{{
+                            $state.href('welcome',{campaignId: campaign.id}, {absolute: true})}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -88,7 +187,8 @@
                 <div ng-if="campaign">
                     <div class="checkbox" ng-if="campaign">
                         <label>
-                            <input type="checkbox" ng-model="homeController.showOld"> <span translate>dcmhome.showOld</span>
+                            <input type="checkbox" ng-model="homeController.showOld"> <span
+                                translate>dcmhome.showOld</span>
                         </label>
                     </div>
 

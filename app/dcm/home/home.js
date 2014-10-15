@@ -58,15 +58,30 @@
 
 
 
-        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns', 'healthCoachEvent',
-            function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns, healthCoachEvent) {
+        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService', 'campaign', 'campaigns', 'CampaignService', 'healthCoachEvent', '$translate',
+            function ($scope, $rootScope, $state, UserService, SocialInteractionService, campaign, campaigns, CampaignService, healthCoachEvent, $translate) {
 
                 $scope.healthCoachEvent = healthCoachEvent;
                 $scope.homeController = this;
                 $scope.homeController.filterByPublishDate = false;
+                $scope.homeController.formStatus = 'beforeTest';
                 $scope.campaign = campaign;
                 $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
+                $scope.showCampaignStart =  !$scope.campaignStarted;
+                $scope.showCampaignStats =  $scope.campaignStarted;
 
+
+                $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
+                    CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
+                        $scope.homeController.formStatus = 'sentSuccessful';
+                    });
+                };
+
+                $scope.sendTestInvitationMail= function(mailSubject, mailText) {
+                    CampaignService.inviteParticipants(campaign.id, $scope.principal.getUser().email, mailSubject, mailText).then(function () {
+                        $scope.homeController.formStatus = 'afterTest';
+                    });
+                };
 
                 init();
 
@@ -106,6 +121,15 @@
 
                             });
                         });
+
+                        $translate('dcmhome.emailInvite.emailSubject.defaultSubject').then(function (translatedText) {
+                            $scope.emailSubject = translatedText;
+                        });
+
+                        $translate('dcmhome.emailInvite.emailText.defaultText').then(function (translatedText) {
+                            $scope.emailText = translatedText;
+                        });
+
                     }
 
                 }
