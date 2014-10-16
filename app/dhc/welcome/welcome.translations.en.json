@@ -1,7 +1,7 @@
 {
   "welcome": {
     "header": "Welcome to the campaign",
-    "organizationPrefix": "welcome.organizationPrefix",
+    "organizationPrefix": "",
     "link": {
       "info": "Learn more",
       "join": "Participate"
