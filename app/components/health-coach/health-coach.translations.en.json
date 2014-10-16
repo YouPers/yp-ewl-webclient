@@ -54,10 +54,10 @@
         "stateEnter": "The user is on the schedule page"
       },
       "check": {
-        "stateEnter": null
+        "stateEnter": "You can answer as many questions as you want. The more questions you answer, the better the activity recommendations that I show you on the main page under \"Offered Activities\".\n\nFor each question, you can determine for yourself to what extent this point affects your well-being.\n\nAs long as you do not complete the self-assessment, you can always come back here and answer more questions."
       },
       "focus": {
-        "stateEnter": null
+        "stateEnter": "Congratulations to the execute self-assessment. That way, you have already made an important first step for yourself by actively giving thoughts to your health situation.\n\nBased on your answers, you can see, where the biggest need for action is. \n\nTo promote your health, I recommend to make some small steps. That is why from now on, you will receive on the main page under \"Offered Activities\" corresponding activity recommendation cards every day. \n\nSince you have completed the self-assessment, I will move the self-assessment card on the main page from the area \"Scheduled Activities\" to the area \"Completed Activities\"."
       },
       "game": {
         "campaignEnded": "Dear User\n\nThank you for participating in this health campaign! \n\nKind regards\n\nYour YOUPERS Coach",
