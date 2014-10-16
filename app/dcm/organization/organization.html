@@ -1,102 +1,111 @@
-<div class="column-layout">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="column-layout">
 
 
-    <nav>
+                <nav>
 
 
-        <div class="header-row">
-            <h3 translate>organizationForm.header</h3>
-        </div>
-        <div class="button-row">
+                    <div class="header-row">
+                        <h3 translate>organizationForm.header</h3>
+                    </div>
+                    <div class="button-row">
 
-        </div>
+                    </div>
 
-        <organization-card organization="organization"></organization-card>
+                    <organization-card organization="organization"></organization-card>
 
-    </nav>
+                </nav>
 
-    <section>
+                <section>
 
 
-        <div class="header-row"></div>
-        <div class="button-row"></div>
+                    <div class="header-row"></div>
+                    <div class="button-row"></div>
 
-        <div class="organization">
+                    <div class="organization">
 
-            <div class="row">
-                <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-10">
 
-                    <form name="organizationForm" ypModel="organization" class="form-horizontal" role="form" novalidate
-                          ng-submit="saveOrganization()">
+                                <form name="organizationForm" ypModel="organization" class="form-horizontal" role="form" novalidate
+                                      ng-submit="saveOrganization()">
 
-                        <yp-input name="name"></yp-input>
-                        <yp-input name="address.street"></yp-input>
+                                    <yp-input name="name"></yp-input>
+                                    <yp-input name="address.street"></yp-input>
 
-                        <yp-input name="address.zipCode" ng-pattern="/\d{3,}/"></yp-input>
-                        <yp-input name="address.city"></yp-input>
+                                    <yp-input name="address.zipCode" ng-pattern="/\d{3,}/"></yp-input>
+                                    <yp-input name="address.city"></yp-input>
 
-                        <div class="form-group">
-                            <label translate>organizationForm.legalForm.label</label>
-                            <select class="form-control" ng-model="organization.legalForm" ng-options="item.key as item.value for item in legalForms"></select>
+                                    <div class="form-group">
+                                        <label translate>organizationForm.legalForm.label</label>
+                                        <select class="form-control" ng-model="organization.legalForm" ng-options="item.key as item.value for item in legalForms"></select>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label translate>organizationForm.sector.label</label>
+                                        <select class="form-control sector" ng-model="organization.sector" ng-options="item.key as item.value for item in sectors"></select>
+
+                                        <input class="form-control sector"
+                                               type="text"
+
+                                               ng-model="sectorSearchModel"
+                                               typeahead-min-length="0"
+                                               placeholder="{{ 'organizationForm.sector.placeholder' | translate }}"
+                                               typeahead="item.key as item.value for item in (sectors | filter:$viewValue | limitTo:10)"
+                                               typeahead-on-select="organization.sector = $item.key; sectorSearchModel = ''"
+
+                                                >
+                                    </div>
+
+                                    <h3>
+                                        <span translate>organizationForm.contact.header</span>
+                                    </h3>
+
+                                    <yp-input name="user.firstname" required></yp-input>
+                                    <yp-input name="user.lastname" required></yp-input>
+
+                                    <yp-input name="contact.position"></yp-input>
+                                    <yp-input name="user.email" required></yp-input>
+                                    <yp-input name="contact.phone"></yp-input>
+
+                                </form>
+
+                            </div>
                         </div>
+                    </div>
+
+                </section>
+
+                <aside>
+
+                    <div class="header-row"></div>
+                    <div class="button-row">
+
+                        <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
+                            activity.link.back
+                        </button>
+
+                        <button type="submit" class="submit btn btn-primary"
+                                ng-disabled="organizationForm.$invalid || !organizationForm.$dirty"
+                                ng-click="saveOrganization()">
+                            <span translate ng-if="!organization.id">organizationForm.create</span>
+                            <span translate ng-if="organization.id">organizationForm.save</span>
+                        </button>
+
+                    </div>
+
+                    <health-coach></health-coach>
 
 
-                        <div class="form-group">
-                            <label translate>organizationForm.sector.label</label>
-                            <select class="form-control sector" ng-model="organization.sector" ng-options="item.key as item.value for item in sectors"></select>
+                </aside>
 
-                            <input class="form-control sector"
-                                   type="text"
-
-                                   ng-model="sectorSearchModel"
-                                   typeahead-min-length="0"
-                                   placeholder="{{ 'organizationForm.sector.placeholder' | translate }}"
-                                   typeahead="item.key as item.value for item in (sectors | filter:$viewValue | limitTo:10)"
-                                   typeahead-on-select="organization.sector = $item.key; sectorSearchModel = ''"
-
-                                    >
-                        </div>
-
-                        <h3>
-                            <span translate>organizationForm.contact.header</span>
-                        </h3>
-
-                        <yp-input name="user.firstname" required></yp-input>
-                        <yp-input name="user.lastname" required></yp-input>
-
-                        <yp-input name="contact.position"></yp-input>
-                        <yp-input name="user.email" required></yp-input>
-                        <yp-input name="contact.phone"></yp-input>
-
-                    </form>
-
-                </div>
             </div>
-        </div>
 
-    </section>
-
-    <aside>
-
-        <div class="header-row"></div>
-        <div class="button-row">
-
-            <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
-                activity.link.back
-            </button>
-
-            <button type="submit" class="submit btn btn-primary"
-                    ng-disabled="organizationForm.$invalid || !organizationForm.$dirty"
-                    ng-click="saveOrganization()">
-                <span translate ng-if="!organization.id">organizationForm.create</span>
-                <span translate ng-if="organization.id">organizationForm.save</span>
-            </button>
 
         </div>
-
-        <health-coach></health-coach>
-
-
-    </aside>
-
+    </div>
 </div>
