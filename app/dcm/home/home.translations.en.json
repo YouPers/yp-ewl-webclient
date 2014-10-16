@@ -32,7 +32,7 @@
         "label": "Email body",
         "placeholder": "Email body"
       },
-      "explain": "Send an automated Email invitation to the campaign participants. You may adjust the Subject and Message body.",
+      "explain": "Send an automated Email invitation to the campaign participants. You may adjust the Subject and Message body. Then send yourself a test invitation.",
       "inviteMore": "Invite more",
       "label": "Adresses of participants to invite",
       "next": "next",

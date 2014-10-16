@@ -2,72 +2,72 @@
   "healthCoach": {
     "dcm": {
       "activity": {
-        "activitySaved": "",
-        "deleteActivity": "",
-        "editActivity": "",
-        "stateEnter": ""
+        "activitySaved": "Congratulations! The recommendation card will be displayed to your employees under \"Offered Activities\" during the defined period.\n\nCreate more recommendations or invitations where appropriate.",
+        "deleteActivity": "The cancellation of a scheduled campaign activity has no consequences for your employees, as long as it has not been published yet.\n\nThe cancellation of a scheduled campaign activity after publication results in the fact that the employees no longer see the invitation card under \"Offered Activities\". If an employee has already accepted the invitation and scheduled the campaign activity event, the activity planning is automatically deleted and a corresponding cancellation message for the calendar appointment is sent to the employee.",
+        "editActivity": "The change of a scheduled campaign activity has no consequences for your employees, as long as it has not been published yet.\n\nThe change of a scheduled campaign activity after publication leads to un update of the invitation card for the employee under \"Offered Activities\" accordingly. If an employee has already accepted the invitation and scheduled the campaign activity event, the activity planning is automatically adjusted under \"Scheduled Activities\" and a corresponding calendar update for the event is sent to the employee.",
+        "stateEnter": "Here, you appear as the organizer of this campaign activity. \n\nAll the information that you record on this page, have an impact on the invitation card which is displayed to your employees. In the left column, you see the invitation card as a preview.\n\nWith the help of the publication date (from, to) you define when your employees will see this invitation card under \"Offered Activities\"."
       },
       "campaign": {
-        "stateEnter": ""
+        "stateEnter": "Concretize your campaign on this page in terms of participants, place and period of the performance. \n\nEverything you complete on this page, has an impact on the campaign map, which is shown in the left column on this page as a preview. \n\nAfter the campaign launch, this campaign map is displayed to the employee. It contains the most important key data for the campaign."
       },
       "home": {
-        "campaignAfterFirstWeek": "",
-        "campaignCreated": "",
-        "campaignEnded": "",
-        "campaignFirstWeek": "",
-        "campaignLastWeek": "",
-        "campaignStartedToday": "",
-        "invitationCreated": "",
-        "noCampaigns": "",
-        "organizationIncomplete": "",
-        "recommendationCreated": "",
-        "recommendationDeleted": ""
+        "campaignAfterFirstWeek": "Check if your employees are actively participating in the campaign. \n\nEncourage the employees to continue to participate actively in the campaign, e.g. with messages or new offers, and tell the employees how much longer the campaign will last.",
+        "campaignCreated": "Congratulations on creating a new campaign! \n\nAs a Campaign Manager you can now do the following:\n\n- Click on the edit icon on the campaign map to change key data of your campaign or to add another campaign manager to the campaign.\n\n- Only prior to the campaign launch, enter the email addresses of your employees on this page to invite them to the campaign, or use the invitation link on this page to create your own invitation email.\n\n- Click on \"ADD MESSAGES\" to record campaign messages. I recommend to send a welcome message at the beginning of the campaign, a motivational message in the course of the campaign and a thank-you message towards the end of the campaign. Ideally, you create the planned messages already before the campaign start and define the publication with the publication date (from-to). \n\n- Click on \"ADD OFFERS\" to recommend to the employees a campaign activity to execute \"alone\" or \"in the group\", or to invite the employees to a joint campaign activity event. In the latter case, you appear as the organizer. \n\nI recommend to advise the employees every day a new activity and to organize a campaign activity event once a week. Ideally, you also create the activity recommendations and invitations before the campaign start and define the publication with the publication date (from-to).",
+        "campaignEnded": "The campaign is over now. Thank you very much for managing this campaign! \n\nThe employees will also be informed about the end of the campaign by me. Nevertheless, I suggest that you, as the campaign manager, inform the employees with a final message about the end of the campaign.\n\nPlease tell us under \"Feedback\" what you liked and what we could do even better. Thank you!\n\nThink about it, if you would like to manage such a campaign with other groups of employees. Of course, you can also plan another campaign concerning another health topic for your employees.",
+        "campaignFirstWeek": "Check if your employees participate in the campaign and if they are active. \n\nCall upon the employees again with the campaign link to participate in the campaign or write a message that they should schedule activities.\n\nAlso create more offers for campaign activities for the next days. \n\nTo be active together is motivating and fun! Therefore, encourage the employees to invite their colleagues to group activities.",
+        "campaignLastWeek": "Tell the employees in another message that the campaign draws to a close and encourage them to finish their scheduled activities.\n\nThis is also a good moment and a good opportunity, respectively for you to thank the employees for their active participation.",
+        "campaignStartedToday": "According to your requirements, your web-based health campaign starts today! \n\nDid you already sent the campaign invitation to all the employees who are going to participate in the campaign? If not, I recommend you do it this very day.\n\nHave you already recorded and published a welcome message, a first recommendation and a first invitation to a campaign activity?\n\nFrom this day forward, follow daily the progress of your campaign at the top of this page and ask yourself whether the employees log in for the campaign as desired, schedule first activities, etc. \n\nIf the campaign does not run as desired, think about what else you could do (e.g. send another calling / a \"friendly reminder\" to participate incl. invitation link to the employees, etc.)",
+        "invitationCreated": "Create new recommendations or invitations where appropriate.",
+        "noCampaigns": "Congratulations. You have entered all the information about your organization. \n\nNow, you can start creating your first campaign by clicking on \"NEW CAMPAIGN\". \n\nI recommend to perform one campaign per operating location. Also consider, if it makes sense to conduct separate campaigns for different groups of employees. \n\nAlso note, that each campaign is linked with a selected topic and a fixed performance period.",
+        "organizationIncomplete": "Welcome! \n\nI am your YOUPERS coach. \n\nI will assist you in creating and managing your HealthCampaigns with tips and hints. \n\nMy first tip for you: Enter additional data about your organization before you begin to create a first campaign.",
+        "recommendationCreated": "Congratulations! The recommendation card will be displayed to your employees under \"Offered Activities\" during the defined period.\n\nCreate more recommendations or invitations where appropriate.",
+        "recommendationDeleted": "Your recommendation card was deleted.\nCreate new recommendations or invitations where appropriate."
       },
       "ideas": {
-        "stateEnter": ""
+        "stateEnter": "Have a look at the activity ideas I provided and think about which activity ideas you want to recommend to the employees \"to execute alone\" or which you want to schedule as the organizer of a campaign activity event. \n\nAlternatively, you can also create an activity idea yourself that you either recommend to the employees or to which you invite the employees.\n\nIdeally, you as a campaign manager create one activity offer to the employees per day."
       },
       "organization": {
-        "missingFields": ""
+        "missingFields": "I would like to point out that the following information is missing to completely capture your organization: {{ fields }}"
       },
       "recommendation": {
-        "stateEnter": ""
+        "stateEnter": "With the help of the publication date (from, to) you define when your employees will see this recommendation card under \"Offered Activities\"."
       }
     },
     "dhc": {
       "activity": {
-        "activitySaved": "",
-        "conflictingEvent": "",
-        "deleteJoinedActivity": "",
-        "deleteOwnActivity": "",
-        "editOwnActivity": "",
-        "eventDone": "",
-        "eventMissed": "",
-        "eventsDue": "",
-        "groupActivityNoEventsDue": "",
-        "invitationAccepted": "",
-        "invitationDismissed": "",
-        "lastEventDone": "",
-        "lastEventMissed": "",
-        "recommendationAccepted": "",
-        "recommendationDismissed": "",
-        "scheduleRecommendedActivity": "",
-        "stateEnter": ""
+        "activitySaved": null,
+        "conflictingEvent": "TODO: here goes an appropriate health coach message for a conflicting event",
+        "deleteJoinedActivity": null,
+        "deleteOwnActivity": null,
+        "editOwnActivity": null,
+        "eventDone": null,
+        "eventMissed": null,
+        "eventsDue": null,
+        "groupActivityNoEventsDue": null,
+        "invitationAccepted": null,
+        "invitationDismissed": null,
+        "lastEventDone": null,
+        "lastEventMissed": null,
+        "recommendationAccepted": null,
+        "recommendationDismissed": null,
+        "scheduleRecommendedActivity": null,
+        "stateEnter": "The user is on the schedule page"
       },
       "check": {
-        "stateEnter": ""
+        "stateEnter": null
       },
       "focus": {
-        "stateEnter": ""
+        "stateEnter": null
       },
       "game": {
-        "campaignEnded": "",
-        "campaignEndingWithCurrentActivities": "",
-        "noCurrentActivities": "",
-        "noDoneEvents": "",
-        "noPastOrPresentEventsAndEnoughActivities": "",
-        "noPastOrPresentEventsAndTooFewActivities": "",
-        "pastEvents": "",
-        "pastOrPresentEvents": ""
+        "campaignEnded": "Dear User\n\nThank you for participating in this health campaign! \n\nKind regards\n\nYour YOUPERS Coach",
+        "campaignEndingWithCurrentActivities": "The campaign lasts only a little while.\n\nI recommend, you finish the already scheduled activities and only, if required, schedule new activities.",
+        "noCurrentActivities": "In the middle at the bottom of this page, new activity recommendation and invitation cards are displayed every day under \"Offered Activities\" from me, from the campaign manager and from your work colleagues. Schedule some activity!\n\nClick on the map to look at the details about an activity recommendation or invitation and to schedule the activity.\n\nI recommend, out of all the offered activities, you select that activity which suits your personal need for action the best.",
+        "noDoneEvents": "<h3>Welcome!</h3> \n\nI am your YOUPERS coach. \n\nI support you in your participation in the health campaign with tips and hints.\n\nBelow my first clues or tips for you: \n\nAs a first campaign activity, I recommend the accomplishment of a short **self-assessment** (about 10 minutes). The self-assessment allows me to show you possible matching activity cards during the campaign under \"Offered Activities\". You will get from me from now on a daily activity recommendation card.\n\nI have already scheduled for you the self-assessment, which is why the self-assessment card appears above in the middle under \"Scheduled Activities\". Click on the map to start the self-assessment.",
+        "noPastOrPresentEventsAndEnoughActivities": "Currently, you have no appointments due today or already expired under \"Scheduled Activities\".\n\nBefore you schedule more offered activities, I suggest you perform the already scheduled activities.",
+        "noPastOrPresentEventsAndTooFewActivities": "Currently, you have no appointments due today or already expired under \"Scheduled Activities\".\n\nMaybe you can still find a new recommendation or invitation to an activity under \"Offered Activities\" that suits you and that you could therefore accept and schedule.",
+        "pastEvents": "Under \"Scheduled Activities\", I have marked those activity appointments in terms of color, which are due today.\n\nPerform the activities due today and let me know then, whether you have completed the activities or not, by clicking on the corresponding event card.",
+        "pastOrPresentEvents": "Under \"Scheduled Activities\", I have marked those activity appointments in terms of color, which are due today or have already expired.\n\nPerform the activities due today and let me know for past activities, whether you have carried them out or not, by clicking on the corresponding event card."
       }
     },
     "fullname": "YOUPERS Coach"

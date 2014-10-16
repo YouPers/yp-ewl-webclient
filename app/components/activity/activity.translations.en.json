@@ -23,12 +23,12 @@
       "third": "Appointments",
       "invitedUsers": "People",
       "inviteOthers": "Invite others",
-      "comments": "Notes",
+      "comments": "Comments",
       "publish": "Publish invitation"
     },
     "inviteOthers": {
-      "selected": "With selected",
-      "all": "A",
+      "selected": "selected",
+      "all": "all",
       "inviteByEmail": "Invite someone by email",
       "inviteByUser": "Search within campaign"
     },
@@ -46,15 +46,15 @@
       "owned": "Edit",
       "recommendation": "Schedule it",
       "invitation": "Accept",
-      "dismiss": "Reset",
+      "dismiss": "Dismiss",
       "back": "Home",
       "undo": "UNDO",
       "edit": "Edit",
-      "delete": "Date"
+      "delete": "Delete"
     },
     "submit": {
       "save": "save",
-      "delete": "Date",
+      "delete": "Delete",
       "invitationSave": "Accept",
       "recommendationSave": "Schedule it",
       "ownedSave": "Schedule it",
@@ -75,7 +75,7 @@
       "rating": "How was it?"
     },
     "list": {
-      "stateHeader1": "A",
+      "stateHeader1": "all",
       "stateHeader2": "Activity",
       "editTooltip": "Edit activity",
       "newTooltip": "Schedule new activity",
@@ -140,7 +140,7 @@
     },
     "create": "Forge",
     "save": "save",
-    "delete": "Date",
+    "delete": "Delete",
     "cancel": "Stop"
   }
 }
