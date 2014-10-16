@@ -71,15 +71,22 @@ angular.module('yp-ewl',
 
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
 
-            $translateProvider.preferredLanguage('de');
-            $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
-            $translateProvider.useCookieStorage();
-            $translateProvider.useLoader('$translateWtiPartialLoader', {
-                urlTemplate: '/{part}.translations.{lang}.json',
-                wtiProjectId: '8233-eWL',
-                wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
-                fromWti: config.translationSource === 'wti'
-            });
+            $translateProvider.
+                registerAvailableLanguageKeys(['en', 'de', 'fr', 'it'], {
+                    'en_US': 'en',
+                    'en_UK': 'en',
+                    'de_DE': 'de',
+                    'de_CH': 'de'
+                })
+                .determinePreferredLanguage()
+                .addInterpolation('$translateMessageFormatInterpolation')
+                .useCookieStorage()
+                .useLoader('$translateWtiPartialLoader', {
+                    urlTemplate: '/{part}.translations.{lang}.json',
+                    wtiProjectId: '8233-eWL',
+                    wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
+                    fromWti: config.translationSource === 'wti'
+                });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl/yp.ewl');
         }])
 
