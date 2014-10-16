@@ -1,13 +1,12 @@
 {
   "welcome": {
     "header": "Willkommen zur Kampagne",
-    "organizationPrefix": "",
     "link": {
       "info": "Mehr erfahren",
       "join": "Teilnehmen"
     },
-      "campaignNotStartedYet": "Du bist noch etwas zu früh, diese Kampagne startet am",
-    "isCampaignlead": "Dieser Benutzeraccount wird zur Verwaltung einer Kampagne eingesetzt. Er kann darum nicht selbst an einer Kampagne teilnehmen.",
-    "backToDcm": "zurück zur Kampagnenverwaltung"
+    "backToDcm": "zurück zur Kampagnenverwaltung",
+    "campaignNotStartedYet": "Du bist noch etwas zu früh, diese Kampagne startet am",
+    "isCampaignlead": "Dieser Benutzeraccount wird zur Verwaltung einer Kampagne eingesetzt. Er kann darum nicht selbst an einer Kampagne teilnehmen."
   }
 }

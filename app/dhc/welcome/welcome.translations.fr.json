@@ -1,7 +1,6 @@
 {
   "welcome": {
     "header": "Bienvenue au campagne ",
-    "organizationPrefix": null,
     "link": {
       "info": "en savoir plus",
       "join": "Participer"
