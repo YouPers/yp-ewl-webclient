@@ -1,59 +1,54 @@
 {
   "dcmhome": {
-
-      "campaignStart": {
-          "header": "Start der Kampagne",
-          "welcomeLinkTitle": "Manuelle Einladungsemails",
-          "welcomeLinkExplain": "Alternativ kannst du ein selber ein Einladungs-Mail gestalten und an deine Mitarbeiter versenden. Füge diesen Link in den Text deines Einladungs-Mails hinzu - damit können sich die Kollegen zur Kampagne anmelden."
-      },
-
     "statsTitle": "Verlauf der Kampagne",
     "participantsCount": "Anzahl angemeldete Teilnehmer",
-    "plannedActsCount": "Aktivitäten geplant durch Teilnehmer",
+    "plannedActsCount": "Anzahl geplante Aktivitäten",
     "moreStats": "Mehr",
     "notifications": "Mitteilungen",
     "campaigns": "Kampagnen",
-    "activities": "Angebotene Aktivitäten",
+    "activities": "Aktivitäten",
     "statistics": "Statistiken",
     "addOffer": "Angebot hinzufügen",
-    "showOld": "Vergangene anzeigen",
-    "messages": "Nachrichten",
-    "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
-    "addMoreUsers": "Lade weitere Teilnehmer ein indem du ihnen folgenden Link per Email versendest:",
-
-    "noCampaigns": "Du hast noch keine Kampagnen erstellt: ",
-    "campaignNotStarted": "Sobald die Kampagne gestartet ist, werden hier einige Eckdaten zum Verlauf deiner Kampagne angezeigt.",
-    "noOffers": "Sobald du als Kampagnen-Leiter den Kampagnen-Teilnehmern eine Aktivität zur Durchführung empfohlen hast oder als Organisator die Kampagnen-Teilnehmer zur Teilnahme an einer gemeinsamen Kampagnen-Aktivität eingeladen hast, wird dir die angebotene Aktivität hier angezeigt. Klicke auf \"Angebot hinzufügen\", um den Kampagnen-Teilnehmern eine Aktivität anzubieten.",
-    "noMessages": "Hier werden deine Nachrichten an die Kampagnen-Teilnehmer angezeigt. Klicke auf \"Hinzufügen\", um eine Nachricht an die Kampagnen-Teilnehmer zu verfassen.",
-
     "organization": {
-        "addCampaign": "Neue Kampagne",
-        "edit": "Bearbeiten"
+      "addCampaign": "Neue Kampagne",
+      "edit": "Bearbeiten"
     },
-
+    "addMoreUsers": "Lade weitere Teilnehmer ein, indem du ihnen folgenden Link per Email versendest:",
+    "campaignNotStarted": "Sobald die Kampagne gestartet ist, werden hier einige Eckdaten zum Verlauf deiner Kampagne angezeigt.",
+    "campaignStart": {
+      "header": "Start der Kampagne",
+      "welcomeLinkExplain": "Mit diesem Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer.",
+      "welcomeLinkTitle": "Manuelle Einladungsemails"
+    },
     "emailInvite": {
-        "submit": "Einladen",
-        "emailSubject": {
-            "label": "Email-Betreff",
-            "placeholder": "Email-Betreff",
-            "defaultSubject": "Einladung zur Kampagne"
-        },
-        "emailText": {
-            "label": "Email-Text",
-            "placeholder": "Email-Text",
-            "defaultText": "Das hier ist der Default-Text des Emails, er ist noch nicht definiert worden..."
-        },
-        "sendYourselfTest": "Sende dir selbst eine Test-Einladung:",
-        "sendTestButton": "Test",
-        "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Mail-Eingang.",
-        "adjust": "korrigiere",
-        "next": "weiter",
-        "success": "Einladungen erfolgreich versendet",
-        "inviteMore": "weitere einladen",
-        "explain": "Füge hier die Email-Adressen derjenigen Kollegen ein, die du zur Kampagne einladen möchstest. An diese Email-Adressen wird automatisch eine Einladung zur Teilnahme an der Kampagne versandt.",
-        "placeholder": "Adressen mittels Komma, Semikolon oder Leerschlag trennen",
-        "label": "Email-Adressen der einzuladenden Mitarbeiter",
-        "title": "Automatische Kampagnen-Einladungsmails"
-    }
+      "adjust": "korrigiere",
+      "emailSubject": {
+        "defaultSubject": "Einladung zur Kampagne",
+        "label": "Email-Betreff",
+        "placeholder": "Email-Betreff"
+      },
+      "emailText": {
+        "defaultText": "Das hier ist der Default-Text des Emails, er ist noch nicht definiert worden...",
+        "label": "Email-Text",
+        "placeholder": "Email-Text"
+      },
+      "explain": "Hier kannst du automatisch Einladungs-Mails zur Kampagne für die zukünftigen Teilnehmer versenden. Prüfe zuerst den vorgeschlagenen Betreff und Text und sende dir eine Test-Einladung.",
+      "inviteMore": "weitere einladen",
+      "label": "Email-Adressen der einzuladenden Mitarbeiter",
+      "next": "weiter",
+      "placeholder": "Adressen mittels Komma, Semikolon oder Leerschlag trennen",
+      "sendTestButton": "Test",
+      "sendYourselfTest": "Sende dir selbst eine Test-Einladung:",
+      "submit": "Einladen",
+      "success": "Einladungen erfolgreich versendet",
+      "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Mail-Eingang.",
+      "title": "Automatische Kampagnen-Einladungsmails"
+    },
+    "messages": "Nachrichten",
+    "noCampaigns": "Du hast noch keine Kampagnen erstellt",
+    "noMessages": "Hier werden deine Nachrichten an die Kampagnen-Teilnehmer angezeigt. Klicke auf \"Hinzufügen\", um eine Nachricht an die Kampagnen-Teilnehmer zu verfassen.",
+    "noOffers": "Sobald du als Kampagnen-Leiter den Kampagnen-Teilnehmern eine Aktivität zur Durchführung empfohlen hast oder als Organisator die Kampagnen-Teilnehmer zur Teilnahme an einer gemeinsamen Kampagnen-Aktivität eingeladen hast, wird dir die angebotene Aktivität hier angezeigt. Klicke auf \"Angebot hinzufügen\", um den Kampagnen-Teilnehmern eine Aktivität anzubieten.",
+    "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
+    "showOld": "Vergangene anzeigen"
   }
 }
