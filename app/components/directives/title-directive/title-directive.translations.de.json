@@ -1,7 +1,14 @@
 {
   "pageTitle": {
+
+      "default": "YouPers HealthCampaign {{ campaign.topic.name }}",
+
+      "signin": {
+          "content": "Anmeldung - YouPers HealthCampaigns"
+      },
+
       "dcm": {
-          "home": "YouPers HealthCampaigns {{ campaign.topic.name }}"
+          "home": "YouPers HealthCampaign {{ campaign.topic.name }}"
       }
   }
 }

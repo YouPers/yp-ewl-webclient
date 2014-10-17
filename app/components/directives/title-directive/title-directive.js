@@ -8,8 +8,8 @@
             $translateWtiPartialLoaderProvider.addPart('components/directives/title-directive/title-directive');
         }])
 
-        .directive('title', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService',
-            function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService) {
+        .directive('title', ['$rootScope', '$state', '$translate',
+            function ($rootScope, $state, $translate) {
                 return {
                     restrict: 'E',
                     scope: {
@@ -21,10 +21,21 @@
 
                         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
-                            scope.translationKey = 'pageTitle.' + toState.name;
+
                             $state.$current.locals.resolve.then(function (values) {
-                                scope.interpolationParams = values;
+
+                                $translate('pageTitle.default', values).then(function (translation) {
+                                    scope.pageTitle = translation;
+                                });
+
+                                var key = 'pageTitle.' + toState.name;
+                                console.log('pageTitle key: ' + key)
+                                $translate(key, values).then(function (translation) {
+                                    scope.pageTitle = translation;
+                                });
                             });
+
+
                         });
                     }
                 };
