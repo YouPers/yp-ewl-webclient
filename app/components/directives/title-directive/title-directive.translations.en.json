@@ -5,7 +5,19 @@
       "content": "Sign In - YOUPERS HealthCampaign"
     },
     "dcm": {
-      "home": "YOUPERS HealthCampaign {{ campaign.topic.name }}"
-    }
+      "home": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
+      "activity": "{{ activity.title }}",
+      "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} edit",
+      "ideas": "Ideas for {{ campaign.title }}",
+      "recommendation": "{{idea.title}}",
+      "topics": "Choose Topic"
+    },
+    "account": "Account",
+    "dhc": {
+      "activity": "{{activity.title}}",
+      "check": "Self-assessment",
+      "game": "Home"
+    },
+    "profile": "Profile"
   }
 }
