@@ -1,7 +1,11 @@
 {
-    "pageTitle": {
-
-        "default": "YouPers HealthCampaign {{ campaign.topic.name }}"
-
+  "pageTitle": {
+    "default": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
+    "signin": {
+      "content": "Sign In - YOUPERS HealthCampaign"
+    },
+    "dcm": {
+      "home": "YOUPERS HealthCampaign {{ campaign.topic.name }}"
     }
+  }
 }

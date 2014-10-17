@@ -1,14 +1,20 @@
 {
-  "pageTitle": {
-
-      "default": "YouPers HealthCampaign {{ campaign.topic.name }}",
-
-      "signin": {
-          "content": "Anmeldung - YouPers HealthCampaigns"
-      },
-
-      "dcm": {
-          "home": "YouPers HealthCampaign {{ campaign.topic.name }}"
-      }
-  }
+    "pageTitle": {
+        "default": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
+        "signin": {
+            "content": "Anmeldung - YOUPERS HealthCampaign"
+        },
+        "dcm": {
+            "home": "{{ campaign.topic.name | uppercase }} - Home",
+            "activity": "{{ activity.title }}",
+            "ideas": "Ideen für {{ campaign.title }}",
+            "recommendation": "{{idea.title}}",
+            "topics": "Thema auswählen",
+            "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} editieren"
+        },
+        "dhc": {
+            "game": "{{ campaign.topic.name | uppercase }} - Home",
+            "activity": "{{ activity.title }}"
+        }
+    }
 }
