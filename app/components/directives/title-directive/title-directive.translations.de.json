@@ -1,0 +1,7 @@
+{
+  "pageTitle": {
+      "dcm": {
+          "home": "YouPers HealthCampaigns {{ campaign.topic.name }}"
+      }
+  }
+}

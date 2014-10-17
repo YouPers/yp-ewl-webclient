@@ -178,11 +178,6 @@ angular.module('yp-ewl',
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
                 $analytics.pageTrack(toState.name);
-
-                $rootScope.stateTransition = 'state-change-success-active';
-                $timeout(function () {
-                    $rootScope.stateTransition  = 'state-change-success';
-                }, 200);
             });
 
             $rootScope.$on('loginMessageShow', function (event, data) {
