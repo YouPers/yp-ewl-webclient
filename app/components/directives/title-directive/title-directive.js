@@ -12,29 +12,26 @@
             function ($rootScope, $state, $translate) {
                 return {
                     restrict: 'E',
-                    scope: {
-                        interpolation: '='
-                    },
-                    templateUrl: 'components/directives/title-directive/title-directive.html',
+                    scope: { },
 
                     link: function (scope, elem, attrs) {
 
                         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
-
                             $state.$current.locals.resolve.then(function (values) {
 
+                                // default
                                 $translate('pageTitle.default', values).then(function (translation) {
-                                    scope.pageTitle = translation;
+                                    elem.text(translation);
                                 });
 
+                                // translation for current state, promise does not resolve when no translation is found -> default
                                 var key = 'pageTitle.' + toState.name;
                                 console.log('pageTitle key: ' + key)
                                 $translate(key, values).then(function (translation) {
-                                    scope.pageTitle = translation;
+                                    elem.text(translation);
                                 });
                             });
-
 
                         });
                     }
