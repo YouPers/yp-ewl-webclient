@@ -123,6 +123,16 @@
                     $rootScope.$broadcast('event:authority-deauthorized');
                 };
 
+                var _authorizeLoginResponse = function _authorizeLoginResponse(result) {
+
+                    var user = Rest.restangularizeElement(null,result.user, 'users');
+
+                    if (result.token) {
+                        $http.defaults.headers.common.Authorization = 'Bearer ' + result.token;
+                    }
+                    return _authorize(user);
+                };
+
                 var UserService = {
                     encodeCredentials: function (username, password) {
                         return ({username: username, password: password});
@@ -140,17 +150,11 @@
 
                         return login.post()
                             .then(function success(result) {
-                                var user = Rest.restangularizeElement(null,result.user, 'users');
                                 var expires = result.expires;
-
-                                if (result.token) {
-                                    $http.defaults.headers.common.Authorization = 'Bearer ' + result.token;
-                                }
-
                                 if (keepMeLoggedIn) {
                                     ipCookie(AUTH_COOKIE_NAME, result.token || cred, {expires: expires});
                                 }
-                                return _authorize(user);
+                                _authorizeLoginResponse(result);
 
                             }, function error(err) {
                                 $http.defaults.headers.common.Authorization = '';
@@ -166,9 +170,7 @@
                             });
                     },
                     reload: function () {
-                        return login.post({}).then(function success(result) {
-                            return _authorize(result);
-                        });
+                        return login.post({}).then(_authorizeLoginResponse);
                     },
                     logout: function () {
                         ipCookie.remove(AUTH_COOKIE_NAME);
