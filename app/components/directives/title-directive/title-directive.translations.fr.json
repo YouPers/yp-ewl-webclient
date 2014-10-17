@@ -1,0 +1,7 @@
+{
+    "pageTitle": {
+
+        "default": "YouPers HealthCampaign {{ campaign.topic.name }}"
+
+    }
+}

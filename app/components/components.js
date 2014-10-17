@@ -22,6 +22,7 @@
             'yp.components.stats',
 
             // directives
+            'yp.components.title',
             'yp.components.userInvitation',
             'yp.components.emailInvitation',
             'yp.components.activityComments',
