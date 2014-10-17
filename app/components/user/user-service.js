@@ -167,7 +167,13 @@
                     },
                     reload: function () {
                         return login.post({}).then(function success(result) {
-                            return _authorize(result);
+                            var user = Rest.restangularizeElement(null,result.user, 'users');
+                            var expires = result.expires;
+
+                            if (result.token) {
+                                $http.defaults.headers.common.Authorization = 'Bearer ' + result.token;
+                            }
+                            return _authorize(user);
                         });
                     },
                     logout: function () {

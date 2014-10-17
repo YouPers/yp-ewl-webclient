@@ -71,6 +71,9 @@
                         options.isCampaignLead = _.contains(user.roles, 'campaignlead');
 
                         scope.componentClass = function (socialInteraction) {
+                            if(!socialInteraction) {
+                                return undefined;
+                            }
                             var authorType = socialInteraction.authorType;
                             return 'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1);
 

@@ -28,7 +28,6 @@
                                 CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
                                     $rootScope.$emit('clientmsg:success', 'campaign.lead');
                                     $state.go('dcm.home');
-                                    $window.location.reload();
                                 }, function(err) {
 
                                     if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {
