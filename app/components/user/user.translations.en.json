@@ -22,7 +22,7 @@
     "account": "Account",
     "changeAccount": "Change Account",
     "changePassword": "Change password",
-    "backToHome": "back to main screen"
+    "backToHome": "Main Page"
   },
   "accountForm": {
     "firstname": {

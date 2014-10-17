@@ -43,7 +43,7 @@
   },
   "loginform": {
     "usernameOrEmail": {
-      "label": "Username/Email",
+      "label": "Email",
       "$invalid": "Bitte gültigen Usernamen oder Email eingeben"
     },
     "password": {
