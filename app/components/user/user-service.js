@@ -154,7 +154,7 @@
                                 if (keepMeLoggedIn) {
                                     ipCookie(AUTH_COOKIE_NAME, result.token || cred, {expires: expires});
                                 }
-                                _authorizeLoginResponse(result);
+                                return _authorizeLoginResponse(result);
 
                             }, function error(err) {
                                 $http.defaults.headers.common.Authorization = '';
