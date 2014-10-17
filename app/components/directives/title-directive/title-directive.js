@@ -27,7 +27,8 @@
 
                                 // translation for current state, promise does not resolve when no translation is found -> default
                                 var key = 'pageTitle.' + toState.name;
-                                console.log('pageTitle key: ' + key)
+                                console.log('pageTitle key: ' + key);
+
                                 $translate(key, values).then(function (translation) {
                                     elem.text(translation);
                                 });
