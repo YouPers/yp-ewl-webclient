@@ -2,10 +2,8 @@
   "pageTitle": {
     "default": "YouPers HealthCampaign {{ campaign.topic.name }}",
     "signin": {
-      "content": null
     },
     "dcm": {
-      "home": null
     }
   }
 }
