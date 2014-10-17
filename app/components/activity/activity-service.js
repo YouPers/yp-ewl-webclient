@@ -11,6 +11,11 @@
 
                 var ideaCache = {};
 
+                $rootScope.$on('$translateChangeSuccess', function () {
+                    console.log('IdeaService: resetting IdeaCache');
+                    ideaCache = {};
+                });
+
                 var _populateIdeas = function (object) {
                     // make it work for arrays and single objects
                     var objects = Array.isArray(object) ? object : [object];
@@ -82,7 +87,7 @@
                         }
                     },
                     getActivity: function (activityId) {
-                        return Restangular.one('activities', activityId).get({'populate': ['idea', 'owner', 'invitedBy', 'joiningUsers']})
+                        return Restangular.one('activities', activityId).get({'populate': ['idea', 'owner', 'joiningUsers']})
                             .then(_populateIdeas);
                     },
                     getActivities: function (options) {
