@@ -42,7 +42,8 @@
       "submit": "Einladen",
       "success": "Einladungen erfolgreich versendet",
       "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Mail-Eingang.",
-      "title": "Automatische Kampagnen-Einladungsmails"
+      "title": "Automatische Kampagnen-Einladungsmails",
+      "send": "absenden"
     },
     "messages": "Nachrichten",
     "noCampaigns": "Du hast noch keine Kampagnen erstellt",
