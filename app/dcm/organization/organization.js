@@ -139,6 +139,8 @@
                     }
 
                     $scope.validateOrganizationModel();
+
+                    $scope.$emit('clientmsg:success', 'organization.saved');
                 };
 
                 $scope.saveOrganization = function() {
