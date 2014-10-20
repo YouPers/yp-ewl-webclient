@@ -23,7 +23,7 @@
     "emailInvite": {
       "adjust": "adjust",
       "emailSubject": {
-        "defaultSubject": "Invitation for HealthCampaign",
+        "defaultSubject": "Invitation to HealthCampaign",
         "label": "Email subject",
         "placeholder": "Email subject"
       },

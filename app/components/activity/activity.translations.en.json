@@ -62,9 +62,9 @@
       "scheduleSave": "Schedule it",
       "campaignleadSave": "Publish",
       "campaignleadSaveAndInvite": "Publish",
-      "ownedSaveAndInvite": "Schedule and send",
-      "recommendationSaveAndInvite": "Schedule and send",
-      "scheduleSaveAndInvite": "Schedule and send"
+      "ownedSaveAndInvite": "Plan & send",
+      "recommendationSaveAndInvite": "Plan & send",
+      "scheduleSaveAndInvite": "Plan & send"
     },
     "owner": "Host",
     "isJoining": "People",
