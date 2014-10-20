@@ -100,12 +100,12 @@
 
                             pastEvents: ['ActivityService', 'openEvents', function (ActivityService, openEvents) {
                                 return _.filter(openEvents, function (event) {
-                                    return ActivityService.getActivityEventDueState(event) === 'Past';
+                                    return moment().isAfter(event.start, 'day');
                                 });
                             }],
                             presentEvents: ['ActivityService', 'openEvents', function (ActivityService, openEvents) {
                                 return _.filter(openEvents, function (event) {
-                                    return ActivityService.getActivityEventDueState(event) === 'Present';
+                                    return moment().isSame(event.start, 'day');
                                 });
                             }],
 
