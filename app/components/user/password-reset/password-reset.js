@@ -18,7 +18,7 @@
 
                     .state('passwordReset', {
                         url: "/password_reset/:token?firstname&lastname",
-                        templateUrl: "components/user/password-reset/password-request.html",
+                        templateUrl: "components/user/password-reset/password-reset.html",
                         controller: "PasswordResetCtrl",
                         access: accessLevels.anonymous,
                         resolve: { }
