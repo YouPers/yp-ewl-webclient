@@ -9,14 +9,11 @@
 
 
     <div class="flex" ng-style="{ height: $parent.areaHeight + 'em' }">
-
-
         <activity-offer-card
-
+                ng-repeat="offer in offersDismissed"
                 activity="offer.activity"
                 idea="offer.idea"
                 social-interaction="offer.socialInteraction"
-                ng-repeat="offer in offersDismissed"
                 ng-click="openSocialInteraction(offer.socialInteraction)"
 
                 ></activity-offer-card>

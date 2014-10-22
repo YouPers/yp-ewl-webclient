@@ -173,7 +173,7 @@
                 $scope.doneActivities = doneActivities;
 
                 $scope.offers = sortedOffers;
-                $scope.offersDimissed = dismissedOffers;
+                $scope.offersDismissed = dismissedOffers;
 
                 $scope.events = openEvents;
                 $scope.eventsByActivity = _.groupBy($scope.events, 'activity');
