@@ -199,7 +199,7 @@
                 if (invitationStatus && invitationStatus.length > 0) {
                     activityController.inviteOthers = 'selected';
                     _.each(invitationStatus, function (status) {
-                        var user = status.user || status.email;
+                        var user = status.user || {email: status.email};
                         user.invitationStatus = status.status;
                         $scope.invitedUsers.push(user);
                     });
