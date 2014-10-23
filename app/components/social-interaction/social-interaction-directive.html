@@ -16,7 +16,7 @@
                 <div class="dismiss">
                     <a ng-if="options.isCampaignLead"><i ng-click="editSocialInteraction($event, soi)"
                                                          class="fa fa-pencil-square-o"></i></a>
-                    <a><i ng-click="dismissSocialInteraction($event, soi)"
+                    <a><i ng-click="dismissSocialInteraction($event, soi)" ng-if="soi.__t == 'Message'"
                           class="{{options.isCampaignLead ? 'fa fa-trash-o' : 'glyphicon glyphicon-remove'}}"></i></a>
                 </div>
                 <div class="date">{{ (soi.publishFrom || soi.created) | fromNow }}</div>
