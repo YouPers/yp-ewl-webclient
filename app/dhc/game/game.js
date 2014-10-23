@@ -169,7 +169,6 @@
 
                 $scope.view = $stateParams.view;
 
-                $scope.activities = currentActivities;
                 $scope.doneActivities = doneActivities;
 
                 $scope.offers = sortedOffers;
@@ -184,12 +183,19 @@
                 });
 
                 // sort activities by the end date of the oldest event of an activity with the status 'open'
-                $scope.activities = _.sortBy($scope.activities, function(activity) {
-                    return _.max(_.filter($scope.eventsByActivity, function(activity) {
-                        return activity.status === 'active';
-                    }), function(event) {
-                        return new Date(event.end).getTime();
+                $scope.activities = _.sortBy(currentActivities, function(activity) {
+
+                    var openEventsOfThisActivity = _.filter($scope.eventsByActivity[activity.id], function(event) {
+                        return event.status === 'open';
                     });
+
+                    console.log('openEventOfThisAct: ' + openEventsOfThisActivity.length);
+                    var min = _.min(openEventsOfThisActivity, function(event) {
+                        console.log('event.end: ' + event.end);
+                        return moment(event.end).valueOf();
+                    });
+                    console.log('min event.end: ' + min.end);
+                    return min.end;
                 });
 
                 $scope.showIdeas = function(status, hovered) {
