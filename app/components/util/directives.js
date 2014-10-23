@@ -57,6 +57,12 @@
                         }
                     });
 
+                    scope.$watch('synchronizedDate', function(newVal) {
+                        if(moment(newVal).isBefore(moment(scope.date))) {
+                            scope.synchronizedDate = scope.date;
+                        }
+                    });
+
                 }
             };
         }])
