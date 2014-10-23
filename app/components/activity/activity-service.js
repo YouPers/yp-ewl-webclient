@@ -106,7 +106,7 @@
                     },
                     getActivityEventDueState: function(event, type) {
                         // type may be one of ["current, "past", "done", "feedback", "conflict"]
-                        // and is used to determine which type of event Card to show
+                        // and is used to determine which type of event Card is to be showed
 
                         // "current": stacks of cards in the "running Acts" section
                         // "past": stacks of cards in the "completed Acts" section
@@ -114,7 +114,7 @@
                         // "feedback": single cards in the activityDetail View
                         // "conflict": single cards int activity Detail View representing conflicts.
 
-                        // Due State is one of: [Conflict, Future, Coach, Past, Present, Future]
+                        // Due State is one of: [Conflict, Coach, Past, Present, Future]
 
                         function _getTimeBasedState (myEvent) {
                             var now = moment();
