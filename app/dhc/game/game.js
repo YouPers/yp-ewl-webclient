@@ -189,13 +189,10 @@
                         return event.status === 'open';
                     });
 
-                    console.log('openEventOfThisAct: ' + openEventsOfThisActivity.length);
-                    var min = _.min(openEventsOfThisActivity, function(event) {
-                        console.log('event.end: ' + event.end);
+                    var oldestEvent = _.min(openEventsOfThisActivity, function(event) {
                         return moment(event.end).valueOf();
                     });
-                    console.log('min event.end: ' + min.end);
-                    return min.end;
+                    return oldestEvent.end;
                 });
 
                 $scope.showIdeas = function(status, hovered) {
