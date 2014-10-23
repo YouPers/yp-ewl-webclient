@@ -180,6 +180,13 @@
                         };
 
                         scope.saveMessage = function saveMessage(message) {
+
+                            // fix for publishFrom if publishFrom is today, because otherwise it looks as if the
+                            // Message was written this morning at midnight
+                            if (moment(message.publishFrom).isBefore(moment())) {
+                                message.publishFrom = new Date();
+                            }
+
                             if (message.id) {
                                 SocialInteractionService.putSocialInteraction(message).then(function (saved) {
                                     saved.author = $rootScope.principal.getUser();
