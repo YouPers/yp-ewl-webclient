@@ -1,5 +1,5 @@
 <form name="activityForm" class="form" role="form" ng-submit="saveActivity()">
-
+    form is valid: {{activityForm.$valid}}
     <fieldset ng-disabled="activity.isScheduled && !activity.isEditable">
 
         <dl class="dl-horizontal">
@@ -74,7 +74,7 @@
                 </dt>
                 <dd>
                     <input ng-init="activity.mainEvent.recurrence = activity.mainEvent.recurrence || {}"
-                           ng-model="activity.mainEvent.recurrence['endby'].after" min="1" type=number
+                           ng-model="activity.mainEvent.recurrence['endby'].after" min="1"  required type="number"
                            class="form-control input-sm">
                 </dd>
 

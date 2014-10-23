@@ -68,9 +68,8 @@
         <div ng-show="activityController.active && !activityController.formActive">
             <activity-view activity="activity"></activity-view>
         </div>
-
         <div ng-if="activityController.active && activityController.formActive">
-            <activity-edit activity="activity" campaign="campaign"></activity-edit>
+            <activity-edit activity="activity" campaign="campaign" form="formContainer.form"></activity-edit>
         </div>
 
 

@@ -135,6 +135,8 @@
                 $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isScheduled = activity && activity.id;
 
+                $scope.formContainer = {};
+
                 var mode;
 
                 if($state.$current.parent.name === 'dcm') {
@@ -222,7 +224,10 @@
                 };
 
                 var validateActivity = _.debounce(function (mainEvent, old) {
-
+                    // return if the form is in invalid state
+                    if ($scope.formContainer.form && !$scope.formContainer.form.$valid) {
+                        return;
+                    }
                     // cancel if mainEvent did not change, and the activity is not new
                     if (_.isEqual(mainEvent, old) && $scope.isScheduled && $scope.events.length > 0) {
                         return;
