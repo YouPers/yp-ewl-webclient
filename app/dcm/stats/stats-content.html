@@ -27,7 +27,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="act in stats.activitiesPlanned">
-                        <td>{{act.idea}}</td>
+                        <td ng-bind-html="getRenderedText(act.idea)"></td>
                         <td>{{act.count}}</td>
                     </tr>
                     </tbody>
