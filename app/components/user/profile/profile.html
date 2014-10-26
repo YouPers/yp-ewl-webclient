@@ -46,13 +46,17 @@
                     <avatar-upload avatar-object="avatarObject">
 
 
-                        <span class="dropdown" on-toggle="toggled(open)">
+                    </avatar-upload>
+
+
+
+                        <span class="dropdown">
                               <a href class="dropdown-toggle">
                                   <span translate>profileForm.avatar.change</span>
                               </a>
                               <ul class="dropdown-menu">
                                   <li>
-                                      <a href ng-click="avatarUpload()">
+                                      <a href onclick="document.getElementById('avatarUpload').click()">
                                           <span translate>profileForm.avatar.upload</span>
                                       </a>
                                   </li>
@@ -63,8 +67,6 @@
                                   </li>
                               </ul>
                         </span>
-
-                    </avatar-upload>
 
 
                 </div>
