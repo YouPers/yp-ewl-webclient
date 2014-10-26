@@ -17,9 +17,9 @@
                 <strong translate>{{ campaign.title }}</strong>
             </h1>
 
-            <h4>
+            <h2>
                 <span>{{ campaign.organization.name }}</span>
-            </h4>
+            </h2>
 
             <h3>
                 <div>
@@ -34,6 +34,30 @@
                     {{ campaign.city }}
                 </div>
             </h3>
+
+
+
+            <div class="campaign-start" ng-if="!campaignHasStarted">
+
+                <p translate>welcome.campaignNotStartedYet</p>
+
+                <h2>{{ campaign.start | date }}</h2>
+
+            </div>
+
+            <div class="welcome-links">
+                <a target="_blank" ui-sref="moreinfo.content"
+                   analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="More Info">
+                    <button class="btn btn-default info">
+                        <span translate>welcome.link.info</span>
+                    </button>
+                </a>
+
+                <button class="btn btn-default join" ng-click="join()" ng-if="campaignHasStarted"
+                        analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="Join">
+                    <span translate>welcome.link.join</span>
+                </button>
+            </div>
 
             <div class="campaign-leads">
                 <h2 translate>welcome.yourCampaignLeads</h2>
@@ -51,27 +75,6 @@
 
             </div>
 
-            <div class="campaign-start" ng-if="!campaignHasStarted">
-
-                <p translate>welcome.campaignNotStartedYet</p>
-
-                <h3>{{ campaign.start | date }}</h3>
-
-            </div>
-
-            <div class="welcome-links">
-                <a target="_blank" ui-sref="moreinfo.content"
-                   analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="More Info">
-                    <button class="btn btn-default info">
-                        <span translate>welcome.link.info</span>
-                    </button>
-                </a>
-
-                <button class="btn btn-default join" ng-click="join()" ng-if="campaignHasStarted"
-                        analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="Join">
-                    <span translate>welcome.link.join</span>
-                </button>
-            </div>
 
 
         </section>
