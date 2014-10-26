@@ -110,8 +110,8 @@
                             }],
 
 
-                            healthCoachEvent: ['campaign', 'currentActivities', 'closedEvents', 'pastEvents', 'presentEvents',
-                                function (campaign, currentActivities, closedEvents, pastEvents, presentEvents) {
+                            healthCoachEvent: ['campaign', 'currentActivities', 'closedEvents', 'pastEvents', 'presentEvents', 'offers',
+                                function (campaign, currentActivities, closedEvents, pastEvents, presentEvents, offers) {
 
                                     if(!campaign) {
                                         return;
@@ -125,8 +125,10 @@
                                             return 'campaignEndingWithCurrentActivities';
                                         } else if(daysUntilCampaignEnd < 0) {
                                             return 'campaignEnded';
-                                        } else if(currentActivities.length === 1 && closedEvents.length === 0) {
+                                        } else if(currentActivities.length === 1 && closedEvents.length === 0 && offers.length > 0) {
                                             return 'noDoneEvents';
+                                        } else if(currentActivities.length === 1 && closedEvents.length === 0) {
+                                            return 'noOffers';
                                         } else if(currentActivities.length === 0 && daysUntilCampaignEnd < 7) {
                                             return 'noCurrentActivities';
                                         } else if(pastEvents.length + presentEvents.length === 0 && currentActivities.length <=2 &&
