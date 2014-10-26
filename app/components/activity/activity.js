@@ -343,7 +343,7 @@
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
 
                         // queue event for next state
-                        HealthCoachService.queueEvent('activitySaved');
+                        HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
                         $scope.activity = savedActivity;
                         activityController.dirty = false;

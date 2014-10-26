@@ -35,7 +35,8 @@
     },
     "dhc": {
       "activity": {
-        "activitySaved": "Your activity is scheduled now.\n\nI have moved the activity on your main page from \"Offered Activities\" to \"Scheduled Activities\".\n\nThe activity is now visible on the main page under \"Offered Activities\" for the invitees (\"personally invited\" or \"all campaign participants\"). The personally invited also receive from me a personal invitation in the Inbox or via email.",
+        "selfActivitySaved": "Your activity is scheduled now.\n\nI have moved the activity on your main page from \"Offered Activities\" to \"Scheduled Activities\".",
+        "groupActivitySaved": "Your activity is scheduled now.\n\nI have moved the activity on your main page from \"Offered Activities\" to \"Scheduled Activities\".\n\nThe activity is now visible on the main page under \"Offered Activities\" for the invitees (\"personally invited\" or \"all campaign participants\"). The personally invited also receive from me a personal invitation in the Inbox or via email.",
         "conflictingEvent": "TODO: here goes an appropriate health coach message for a conflicting event",
         "deleteJoinedActivity": "The deletion results in the fact that the organizer sees that you have canceled your participation in the group activity.",
         "deleteOwnActivity": "The deletion of an activity \"to execute alone\" has no other effects, except that the card is moved from the area \"Scheduled Activity\" to the area \"Completed Activity\".\n\nThe deletion of a group activity results in the fact that the invited employees no longer see your invitation card under \"Offered Activities\". \n\nIf an employee has already accepted your invitation and scheduled the activity event, the activity planning for the employee will be automatically deleted under \"Scheduled Activities\" and the employee receives a corresponding calendar appointment cancellation message.",
