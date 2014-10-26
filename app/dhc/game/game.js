@@ -125,9 +125,9 @@
                                             return 'campaignEndingWithCurrentActivities';
                                         } else if(daysUntilCampaignEnd < 0) {
                                             return 'campaignEnded';
-                                        } else if(currentActivities.length === 1 && closedEvents.length === 0 && offers.length > 0) {
+                                        } else if(closedEvents.length === 0 && offers.length > 0) {
                                             return 'noDoneEvents';
-                                        } else if(currentActivities.length === 1 && closedEvents.length === 0) {
+                                        } else if(closedEvents.length === 0 && offers.length === 0) {
                                             return 'noOffers';
                                         } else if(currentActivities.length === 0 && daysUntilCampaignEnd < 7) {
                                             return 'noCurrentActivities';
