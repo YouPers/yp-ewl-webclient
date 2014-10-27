@@ -17,23 +17,23 @@
                 <strong translate>{{ campaign.title }}</strong>
             </h1>
 
-            <h2>
-                <span>{{ campaign.organization.name }}</span>
-            </h2>
+            <div class="organization">
+                <div>{{ campaign.organization.name }}</div>
+            </div>
 
-            <h3>
+            <div class="participants">
                 <div>
                     {{ campaign.participants }}
                 </div>
-            </h3>
+            </div>
 
-            <h3>
+            <div class="location">
                 <div>
                     {{ campaign.location }}
                     {{ campaign.location && campaign.city ? ' / ' : '' }}
                     {{ campaign.city }}
                 </div>
-            </h3>
+            </div>
 
 
 
@@ -41,7 +41,7 @@
 
                 <p translate>welcome.campaignNotStartedYet</p>
 
-                <h2>{{ campaign.start | date }}</h2>
+                <h4>{{ campaign.start | date }}</h4>
 
             </div>
 
@@ -60,7 +60,7 @@
             </div>
 
             <div class="campaign-leads">
-                <h2 translate>welcome.yourCampaignLeads</h2>
+                <h4 translate>welcome.yourCampaignLeads</h4>
 
                 <div ng-repeat="campaignLead in campaign.campaignLeads">
 
