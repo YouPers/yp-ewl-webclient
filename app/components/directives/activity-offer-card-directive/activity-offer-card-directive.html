@@ -1,13 +1,17 @@
+
+<activity-lookahead activity="activity" ng-if="activity.id && activity.executionType === 'group'"></activity-lookahead>
+
 <div class="activity-offer-card {{ componentClass   }} pos-{{ event.offset }}">
+
+
 
     <div class="title sheet primary">
         <div>
             <i class="fa {{ iconClass }}"></i>
-
-            <activity-lookahead activity="activity" ng-if="activity.id && activity.executionType === 'group'"></activity-lookahead>
-
         </div>
         <div ng-bind-html="getRenderedText(activity.title || idea.title)"></div>
+
+
     </div>
 
     <div class="sheet secondary" ng-init="isRecommendation = socialInteraction.__t === 'Recommendation'">
@@ -68,7 +72,6 @@
             <div class="caption">{{'activityOfferCard.authorPrefix.' + socialInteraction.__t | translate}}</div>
             <div class="author" ng-bind="socialInteraction.author.fullname"></div>
         </div>
-
 
 
     </div>

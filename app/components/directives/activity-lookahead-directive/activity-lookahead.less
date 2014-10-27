@@ -2,4 +2,26 @@
 
 activity-lookahead {
   display: block;
+
+  position: absolute;
+//  bottom: -15px;
+  top: 0;
+  right: 0;
+
+  z-index: 1000;
+
+  > div {
+    line-height: 1.4em;
+    font-size: 12px;
+    font-weight: 600;
+
+    text-align: center;
+
+    margin: 6px;
+//    border: 1px solid @yp-secondary;
+    background-color: white;
+    border-radius: 8px;
+    color: @yp-accent;
+    padding: 0 5px;
+  }
 }
