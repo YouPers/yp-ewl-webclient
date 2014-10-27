@@ -68,9 +68,8 @@
         <div ng-show="activityController.active && !activityController.formActive">
             <activity-view activity="activity"></activity-view>
         </div>
-
         <div ng-if="activityController.active && activityController.formActive">
-            <activity-edit activity="activity" campaign="campaign"></activity-edit>
+            <activity-edit activity="activity" campaign="campaign" form="formContainer.form"></activity-edit>
         </div>
 
 
@@ -103,12 +102,12 @@
 
                 <div ng-if="user.fullname">
                     <div><img class="avatar" ng-src="{{ user.avatar }}"/></div>
-                    <div bind-html-unsafe="user.fullname || user"></div>
+                    <div bind-html-unsafe="user.fullname"></div>
                     <div>{{ 'activity.invitationStatus.' + user.invitationStatus | translate }}</div>
                 </div>
                 <div ng-if="!user.fullname">
                     <div><i class="fa fa-envelope-o"></i></div>
-                    <div>{{ user }}</div>
+                    <div>{{ user.email }}</div>
                     <div></div>
                 </div>
 

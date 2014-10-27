@@ -43,8 +43,8 @@
   },
   "loginform": {
     "usernameOrEmail": {
-      "label": "Username/Email",
-      "$invalid": "Please enter a valid username or email"
+      "label": "Email",
+      "$invalid": "Please enter a valid email address"
     },
     "password": {
       "label": "Password",
@@ -56,7 +56,7 @@
     }
   },
   "footer": {
-    "copyright": "&copy; YouPers 2014"
+    "copyright": "&copy; YOUPERS 2014"
   },
   "terms": {
     "termsAndConditionsHeading": "Terms and Conditions",
@@ -67,7 +67,7 @@
   "topic": {
     "chooseATopic": "Choose a Topic",
     "setGoal": {
-      "title": "Welcome to the YouPers personal Stress-Management Campaign",
+      "title": "Welcome to the YOUPERS personal Stress-Management Campaign",
       "text": "<p> Improve your work life balance through sustainable behavioral change. </p><p> Congratulations: the first step is already done! </p><h2> Technical review </h2><p> We review our technical content - the questionnaire, the activities and proposals. <ul><li> Feedback on the questionnaire is collected in Excel. </li><li> Corrections / feedback on the activities can be entered directly, via the admin button on the website. </li></ul></p><p> Start: Wednesday 20th Novemeber </p><p> End: Monday, December 25 </p>"
     }
   }

@@ -9,11 +9,15 @@
                     restrict: 'E',
                     scope: {
                         activity: '=',
-                        campaign: '=' // used to set the min/max range for the date picker
+                        campaign: '=',// used to set the min/max range for the date picker
+                        form: '=' // we pass the form to the parent scope, to react on validations.
                     },
                     templateUrl: 'components/activity/activity-edit-directive.html',
 
                     link: function (scope, elem, attrs) {
+                        scope.$watch('activityForm', function(val) {
+                            scope.form = val;
+                        });
 
                         _.extend(scope.activity, {
                             isScheduled: !!scope.activity.id,

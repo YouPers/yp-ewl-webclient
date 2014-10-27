@@ -20,9 +20,14 @@
                     })
                     .state('assignCampaignLead', {
                         url: '/campaigns/{id}/becomeCampaignLead?accessToken',
-                        access: accessLevels.user,
+                        access: accessLevels.all,
                         onEnter:['$state','$stateParams','CampaignService', 'UserService', '$rootScope', '$window',
                             function($state, $stateParams, CampaignService, UserService, $rootScope, $window) {
+                                if (!$rootScope.principal.isAuthenticated()) {
+                                    $rootScope.nextStateAfterLogin = {toState: 'assignCampaignLead', toParams: $stateParams};
+                                    return $state.go('signup.content');
+                                }
+
                                 var campaignId = $stateParams.id;
                                 var token = $stateParams.accessToken;
                                 CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
@@ -139,6 +144,8 @@
                     }
 
                     $scope.validateOrganizationModel();
+
+                    $scope.$emit('clientmsg:success', 'organization.saved');
                 };
 
                 $scope.saveOrganization = function() {

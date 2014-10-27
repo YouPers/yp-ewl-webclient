@@ -23,7 +23,6 @@
     "changeAccount": "Konto ändern",
     "changePassword": "Passwort ändern",
     "backToHome": "Hauptseite"
-
   },
   "accountForm": {
     "firstname": {
@@ -86,7 +85,7 @@
   },
   "emailVerification": {
     "emailValid": "Email-Adresse bestätigt!",
-    "thankYou": "Vielen Dank für die Bestätigung der Email-Adresse - du kannst nun fortfahren.",
+    "thankYou": "Vielen für die Bestätigung der Email-Adresse - du kannst nun fortfahren.",
     "next": "weiter"
   },
   "passwordResetRequest": {
@@ -96,7 +95,7 @@
     "weSentALink": "Wir haben eine Email an dich versendet mit einem Link, um dein Passwort zurückzusetzen. Bitte überprüfe deine Mailbox"
   },
   "passwordResetRequestForm": {
-    "usernameOrEmail": "Benutzername oder Email",
+    "usernameOrEmail": "Email",
     "$invalid": "Bitte gültigen Benutzername oder Email eingeben",
     "submit": "Weiter",
     "reset": "zurücksetzen"
@@ -137,9 +136,9 @@
       },
       "zipCode": {
         "placeholder": "PLZ",
-          "error": {
-              "pattern": "Bitte eine gültige Nummer eingeben"
-          }
+        "error": {
+          "pattern": "Bitte eine gültige Nummer eingeben"
+        }
       },
       "city": {
         "placeholder": "Ort"
@@ -159,7 +158,7 @@
       "zipCode": {
         "placeholder": "PLZ",
         "error": {
-            "pattern": "Bitte eine gültige Nummer eingeben"
+          "pattern": "Bitte eine gültige Nummer eingeben"
         }
       },
       "city": {

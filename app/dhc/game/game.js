@@ -100,18 +100,18 @@
 
                             pastEvents: ['ActivityService', 'openEvents', function (ActivityService, openEvents) {
                                 return _.filter(openEvents, function (event) {
-                                    return ActivityService.getActivityEventDueState(event) === 'Past';
+                                    return moment().isAfter(event.start, 'day');
                                 });
                             }],
                             presentEvents: ['ActivityService', 'openEvents', function (ActivityService, openEvents) {
                                 return _.filter(openEvents, function (event) {
-                                    return ActivityService.getActivityEventDueState(event) === 'Present';
+                                    return moment().isSame(event.start, 'day');
                                 });
                             }],
 
 
-                            healthCoachEvent: ['campaign', 'currentActivities', 'closedEvents', 'pastEvents', 'presentEvents',
-                                function (campaign, currentActivities, closedEvents, pastEvents, presentEvents) {
+                            healthCoachEvent: ['campaign', 'currentActivities', 'closedEvents', 'pastEvents', 'presentEvents', 'offers',
+                                function (campaign, currentActivities, closedEvents, pastEvents, presentEvents, offers) {
 
                                     if(!campaign) {
                                         return;
@@ -125,8 +125,10 @@
                                             return 'campaignEndingWithCurrentActivities';
                                         } else if(daysUntilCampaignEnd < 0) {
                                             return 'campaignEnded';
-                                        } else if(currentActivities.length === 1 && closedEvents.length === 0) {
+                                        } else if(closedEvents.length === 0 && offers.length > 0) {
                                             return 'noDoneEvents';
+                                        } else if(closedEvents.length === 0 && offers.length === 0) {
+                                            return 'noOffers';
                                         } else if(currentActivities.length === 0 && daysUntilCampaignEnd < 7) {
                                             return 'noCurrentActivities';
                                         } else if(pastEvents.length + presentEvents.length === 0 && currentActivities.length <=2 &&
@@ -169,11 +171,10 @@
 
                 $scope.view = $stateParams.view;
 
-                $scope.activities = currentActivities;
                 $scope.doneActivities = doneActivities;
 
                 $scope.offers = sortedOffers;
-                $scope.offersDimissed = dismissedOffers;
+                $scope.offersDismissed = dismissedOffers;
 
                 $scope.events = openEvents;
                 $scope.eventsByActivity = _.groupBy($scope.events, 'activity');
@@ -184,12 +185,16 @@
                 });
 
                 // sort activities by the end date of the oldest event of an activity with the status 'open'
-                $scope.activities = _.sortBy($scope.activities, function(activity) {
-                    return _.max(_.filter($scope.eventsByActivity, function(activity) {
-                        return activity.status === 'active';
-                    }), function(event) {
-                        return new Date(event.end).getTime();
+                $scope.activities = _.sortBy(currentActivities, function(activity) {
+
+                    var openEventsOfThisActivity = _.filter($scope.eventsByActivity[activity.id], function(event) {
+                        return event.status === 'open';
                     });
+
+                    var oldestEvent = _.min(openEventsOfThisActivity, function(event) {
+                        return moment(event.end).valueOf();
+                    });
+                    return oldestEvent.end;
                 });
 
                 $scope.showIdeas = function(status, hovered) {

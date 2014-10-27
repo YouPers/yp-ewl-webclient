@@ -15,7 +15,7 @@
       "notifications": "Notifications"
     },
     "campaignLeads": {
-      "header": "campaign lead",
+      "header": "campaign leader",
       "add": "Add More"
     },
     "stateHeader1": "your",
@@ -76,7 +76,7 @@
   "clientmsg": {
     "success": {
       "campaign": {
-        "lead": "The invitation as campaignlead has been accepted",
+        "lead": "The invitation as campaign leader was accepted",
         "saved": "Campaign saved"
       }
     }

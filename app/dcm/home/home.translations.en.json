@@ -23,7 +23,7 @@
     "emailInvite": {
       "adjust": "adjust",
       "emailSubject": {
-        "defaultSubject": "Invitation for HealthCampaign",
+        "defaultSubject": "Invitation to HealthCampaign",
         "label": "Email subject",
         "placeholder": "Email subject"
       },
@@ -37,6 +37,7 @@
       "label": "Adresses of participants to invite",
       "next": "next",
       "placeholder": "use comma, semicolon or blank to separate multiple",
+      "send": "send",
       "sendTestButton": "Test",
       "sendYourselfTest": "Send yourself a test invitation:",
       "submit": "Invite",

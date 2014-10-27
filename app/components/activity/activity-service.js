@@ -105,38 +105,49 @@
                         }
                     },
                     getActivityEventDueState: function(event, type) {
+                        // type may be one of ["current, "past", "done", "feedback", "conflict"]
+                        // and is used to determine which type of event Card is to be showed
 
-                        // Due State is one of: [Conflict, Future, Coach, Past, Present, Future]
+                        // "current": stacks of cards in the "running Acts" section
+                        // "past": stacks of cards in the "completed Acts" section
+                        // "done": single cards in the fullsized completed Acts section
+                        // "feedback": single cards in the activityDetail View
+                        // "conflict": single cards int activity Detail View representing conflicts.
 
-                        if(type) {
+                        // Due State is one of: [Conflict, Coach, Past, Present, Future]
 
-                            if(type === 'conflict') {
-                                return 'Conflict';
-                            } else if(type !== 'current') {
-                                if(event.idea && event.idea.action) {
-                                    return 'Coach';
-                                } else {
-                                    return 'Future'; // reuse 'neutral' eventFuture component type
-                                }
+                        function _getTimeBasedState (myEvent) {
+                            var now = moment();
+                            if(now.isAfter(myEvent.start, 'day')) {
+                                return 'Past';
+                            } else if(now.isSame(myEvent.start, 'day')) {
+                                return 'Present';
+                            } else {
+                                return 'Future';
                             }
 
                         }
 
-                        if(event.idea && event.idea.action) {
-                            return 'Coach';
+                        if(type === 'conflict') {
+                            return 'Conflict';
+
+                        } else if (type === 'current') {
+                            if(event.idea && event.idea.action) {
+                                return 'Coach';
+                            } else {
+                                return _getTimeBasedState(event);
+                            }
+
+
+                        } else if (type === 'past' || type=== 'done' || type === 'feedback') {
+                            if(event.idea && event.idea.action) {
+                                return 'Coach';
+                            } else {
+                                return _getTimeBasedState(event); // reuse 'neutral' eventFuture component type
+                            }
+
                         }
 
-                        if(!event.start) {
-                            return false;
-                        }
-                        var now = moment();
-                        if(now.isAfter(event.start, 'day')) {
-                            return 'Past';
-                        } else if(now.isSame(event.start, 'day')) {
-                            return 'Present';
-                        } else {
-                            return 'Future';
-                        }
                     },
                     getRecommendations: function (topicId) {
                         var params = {

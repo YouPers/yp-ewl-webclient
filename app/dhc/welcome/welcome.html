@@ -17,45 +17,31 @@
                 <strong translate>{{ campaign.title }}</strong>
             </h1>
 
-            <h4>
-                <span>{{ campaign.organization.name }}</span>
-            </h4>
+            <div class="organization">
+                <div>{{ campaign.organization.name }}</div>
+            </div>
 
-            <h3>
+            <div class="participants">
                 <div>
                     {{ campaign.participants }}
                 </div>
-            </h3>
+            </div>
 
-            <h3>
+            <div class="location">
                 <div>
                     {{ campaign.location }}
                     {{ campaign.location && campaign.city ? ' / ' : '' }}
                     {{ campaign.city }}
                 </div>
-            </h3>
-
-            <div class="campaign-leads">
-                <h2>Deine Kampagnenleiter:</h2>
-
-                <div ng-repeat="campaignLead in campaign.campaignLeads">
-
-                    <div class="avatar">
-                        <img ng-src="{{ campaignLead.avatar }}">
-                    </div>
-                    <div>
-                        {{ campaignLead.fullname }}
-                    </div>
-
-                </div>
-
             </div>
+
+
 
             <div class="campaign-start" ng-if="!campaignHasStarted">
 
                 <p translate>welcome.campaignNotStartedYet</p>
 
-                <h3>{{ campaign.start | date }}</h3>
+                <h4>{{ campaign.start | date }}</h4>
 
             </div>
 
@@ -72,6 +58,23 @@
                     <span translate>welcome.link.join</span>
                 </button>
             </div>
+
+            <div class="campaign-leads">
+                <h4 translate>welcome.yourCampaignLeads</h4>
+
+                <div ng-repeat="campaignLead in campaign.campaignLeads">
+
+                    <div class="avatar">
+                        <img ng-src="{{ campaignLead.avatar }}">
+                    </div>
+                    <div>
+                        {{ campaignLead.fullname }}
+                    </div>
+
+                </div>
+
+            </div>
+
 
 
         </section>

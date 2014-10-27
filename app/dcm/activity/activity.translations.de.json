@@ -1,19 +1,6 @@
 {
-    "clientmsg": {
-        "recommendation": {
-            "saved": "Empfehlung gespeichert",
-            "deleted": "Empfehlung gelöscht"
-        }
-    },
-
   "activity": {
-    "stateHeader1": "Aktivität",
-
-      "header": {
-          "recommendation": "Kampagnenempfehlung"
-      },
-
-
+    "stateHeader1": "aktivität",
     "title": {
       "label": "Titel",
       "placeholder": "Hier einen kuzen Titel erfassen (2x20 Zeichen max)"
@@ -39,11 +26,12 @@
     "qualityFactor": "Qualitäts-Faktor (1-10)",
     "duration": "Benötigte Zeit (min) ",
     "save": "Speichern",
-    "back": "Zurück"
+    "back": "Zurück",
+    "header": {
+      "recommendation": "Kampagnenempfehlung"
+    }
   },
   "activities": {
-    "header": "YouPers Aktivitäts-Ideen",
-
     "duration": {
       "suffix": "min"
     },
@@ -52,13 +40,14 @@
       "schedule": "Einplanen",
       "recommend": "Empfehlen"
     },
-    "search": "suchen"
+    "search": "suchen",
+    "header": "YOUPERS Aktivitäts-Ideen"
   },
   "campaignoffers": {
     "stateHeader1": "kampagnen",
     "stateHeader2": "Aktivitäten",
     "link": {
-      "newActivity": "Eigene Aktivität erstellen",
+      "newActivity": "Eigene Aktivität <br/>erstellen",
       "publishActivity": "Bestehende Aktivität <br/>empfehlen/einplanen"
     },
     "published": "publiziert",
@@ -71,28 +60,33 @@
   "scheduledDate": {
     "daily": "täglich"
   },
-
   "recommendationForm": {
-      "header": {
-          "publish": "Empfehlung publizieren"
-      },
-      "title": {
-          "label": "Nachrichtentitel",
-          "placeholder": "Nachrichtentitel (optional)"
-      },
-      "text": {
-          "label": "Nachricht",
-          "placeholder": "Nachricht (optional)"
-      },
-      "publishFrom": {
-          "label": "Von",
-          "placeholder": "Von"
-      },
-      "publishTo": {
-          "label": "Bis",
-          "placeholder": "Bis"
-      },
-      "submit": "Abschicken",
-      "delete": "Empfehlung löschen"
+    "title": {
+      "label": "Titel",
+      "placeholder": "Titel"
+    },
+    "text": {
+      "label": "Nachricht",
+      "placeholder": "Nachricht"
+    },
+    "publishFrom": {
+      "label": "Von",
+      "placeholder": "Von"
+    },
+    "publishTo": {
+      "label": "Bis",
+      "placeholder": "Bis"
+    },
+    "submit": "Speichern",
+    "delete": "Empfehlung löschen",
+    "header": {
+      "publish": "Empfehlung publizieren"
+    }
+  },
+  "clientmsg": {
+    "recommendation": {
+      "deleted": "Empfehlung gelöscht",
+      "saved": "Empfehlung gespeichert"
+    }
   }
 }

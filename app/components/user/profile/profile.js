@@ -82,7 +82,7 @@
                     var user = $scope.principal.getUser();
                     user.avatar = $scope.profileUserObj.gender === 'male' ? avatarMale : avatarFemale;
                     UserService.putUser(user).then(function(result) {
-                        $scope.avatarObject = result;
+                        _.extend($scope.avatarObject, result);
                     });
                     if(ev) {
                         ev.stopPropagation();

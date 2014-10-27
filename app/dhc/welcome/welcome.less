@@ -36,16 +36,18 @@
         margin:0 0 0.4em 0;
       }
 
-      .campaign-leads > div {
-          background: @yp-campaignLead;
-      }
-
       > .campaign-leads > * {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        align-content: flex-start;
+        justify-content: flex-start;
 
+        color: @yp-text;
+
+        > *:first-of-type {
+          flex: 0 0 60px;
+        }
         > * {
           flex: 1 1 auto;
         }
@@ -56,19 +58,28 @@
         }
       }
 
+      .organization, .participants, .location {
+        .header4();
+        line-height: 1em;
+      }
+      .organization {
+        color: @yp-text;
+      }
+      .participants {
+        color: @yp-subtitle;
+      }
+      .location {
+        color: @yp-subtitle;
+      }
+
     }
 
     .campaign-start {
       text-align: center;
     }
 
-    .welcome-header {
-      padding: 2em 3em 0em 3em;
-      font-weight: normal;
-    }
-
     .welcome-links {
-      padding: 2em;
+      padding: 1em;
     }
     .welcome-links .btn {
       width: 236px;

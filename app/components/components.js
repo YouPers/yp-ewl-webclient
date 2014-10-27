@@ -13,7 +13,6 @@
             'yp.components.assessment',
             'yp.components.organization',
             'yp.components.campaign',
-            'yp.components.notifications',
             'yp.components.healthCoach',
             'yp.components.feedback',
             'yp.components.socialInteraction',

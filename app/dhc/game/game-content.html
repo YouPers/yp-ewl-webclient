@@ -77,7 +77,7 @@
             <div class="rejected-activities">
 
 
-                <div ng-if="offersDimissed.length === 0">
+                <div ng-if="offersDismissed.length === 0">
 
                     <span class="empty-content-hint" translate>game.noDismissedOffers</span>
 
@@ -88,7 +88,7 @@
                         activity="offer.activity"
                         idea="offer.idea"
                         social-interaction="offer.socialInteraction"
-                        ng-repeat="offer in offersDimissed"
+                        ng-repeat="offer in offersDismissed"
 
                         ></activity-offer-card>
             </div>

@@ -135,6 +135,8 @@
                 $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isScheduled = activity && activity.id;
 
+                $scope.formContainer = {};
+
                 var mode;
 
                 if($state.$current.parent.name === 'dcm') {
@@ -199,7 +201,7 @@
                 if (invitationStatus && invitationStatus.length > 0) {
                     activityController.inviteOthers = 'selected';
                     _.each(invitationStatus, function (status) {
-                        var user = status.user || status.email;
+                        var user = status.user || {email: status.email};
                         user.invitationStatus = status.status;
                         $scope.invitedUsers.push(user);
                     });
@@ -222,7 +224,10 @@
                 };
 
                 var validateActivity = _.debounce(function (mainEvent, old) {
-
+                    // return if the form is in invalid state
+                    if ($scope.formContainer.form && !$scope.formContainer.form.$valid) {
+                        return;
+                    }
                     // cancel if mainEvent did not change, and the activity is not new
                     if (_.isEqual(mainEvent, old) && $scope.isScheduled && $scope.events.length > 0) {
                         return;
@@ -338,7 +343,7 @@
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
 
                         // queue event for next state
-                        HealthCoachService.queueEvent('activitySaved');
+                        HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
                         $scope.activity = savedActivity;
                         activityController.dirty = false;

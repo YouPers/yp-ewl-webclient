@@ -82,7 +82,7 @@
     "172800": "2 days before"
   },
   "activityPlanInvite": {
-    "header": "Welcome - YouPers Digital Health Plattform",
+    "header": "Welcome - YOUPERS Digital Health Plattform",
     "subheader": " has invited you to join an activity.",
     "inviteMessage": "To join this activity please <a {{loginLinkAttribute}}>sign in</a> or <a href='' {{registerLinkAttribute}}>register</a>"
   },

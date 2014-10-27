@@ -13,8 +13,6 @@
      *          - current: currently active events of a single activity (default)
      *          - past: list of done or missed events that have already past
      *
-     *          - dismissed: list of invitations and recommendation the user has dismissed
-     *
      *      - events: an event can be populated with an idea, and optionally, the activity ( needed for the location )
      *                  to show events with arbitrary ideas/activities
      *      - idea: default idea if no individual idea is attached to an event            
@@ -38,7 +36,7 @@
 
                     var type = scope.type || 'current';
 
-                    if(type === 'current' || type === 'past' || type === 'dismissed') {
+                    if(type === 'current' || type === 'past') {
                         if(!scope.events) {
                             throw new Error('"events" is required for type "current"');
                         }

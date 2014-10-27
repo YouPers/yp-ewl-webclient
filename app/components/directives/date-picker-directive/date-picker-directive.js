@@ -120,11 +120,12 @@
                             throw new Error('date format is required');
                         }
 
-                        var format = attrs.dateFormatter.toUpperCase();
-
-                        var formattedDate = moment(date).format(format);
-
-                        return formattedDate;
+                        if(date) {
+                            var format = attrs.dateFormatter.toUpperCase();
+                            return moment(date).format(format);
+                        } else {
+                            return undefined;
+                        }
                     });
                 }
             };
