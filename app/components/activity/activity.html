@@ -249,15 +249,13 @@
 
 
         <div class="box">
-            <h3>health coach messages</h3>
-
             <health-coach event="healthCoachEvent"/>
         </div>
 
-        <div class="box">
-            <h3 translate>activity.header.comments</h3>
+        <div class="box" ng-if="isScheduled">
 
-            <div ng-if="isScheduled">
+            <h3 translate>activity.header.comments</h3>
+            <div>
                 <activity-comments activity="activity"></activity-comments>
             </div>
         </div>
