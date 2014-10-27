@@ -186,6 +186,8 @@
     "calendarNotificationSettings": "Hinweise im Bürokalendar",
     "rejectedActivities": {
       "header": "Abgelehnte Aktivitäten"
-    }
+
+    },
+      "reactivateIdea": "Wieder aktivieren"
   }
 }
