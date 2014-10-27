@@ -135,12 +135,6 @@
                 $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isScheduled = activity && activity.id;
 
-                if(activity.id) {
-                    var lastAccess = localStorageService.get('lastAccess') || {};
-                    lastAccess[activity.id] = moment();
-                    localStorageService.set('lastAccess', lastAccess);
-                }
-
                 $scope.formContainer = {};
 
                 var mode;

@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('yp.components.activityComments', [])
-        .directive('activityComments', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService',
-            function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService) {
+        .directive('activityComments', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService', 'localStorageService',
+            function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService, localStorageService) {
                 return {
                     restrict: 'E',
                     scope: {
@@ -56,6 +56,14 @@
                                 ]
                             };
                             scope.message = _.clone(template);
+
+
+                            if(scope.activity.id) {
+                                var lastAccess = localStorageService.get('lastAccess') || {};
+                                lastAccess[scope.activity.id] = moment();
+                                localStorageService.set('lastAccess', lastAccess);
+                            }
+
                         }
 
                         function activate() {
