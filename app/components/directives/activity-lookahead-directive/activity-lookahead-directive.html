@@ -1,2 +1,16 @@
-<div class="comments" tooltip="{{ 'activityLookahead.comments'}}" tooltip-append-to-body="true">{{ comments }}</div>
-<div class="joiningUsers" tooltip="{{ 'activityLookahead.joiningUsers'}}" tooltip-append-to-body="true">{{ joiningUsers }}</div>
+<div class="comments"
+     ng-class="{ invisible: !comments }"
+        >
+    <i class="fa fa-comment-o"
+       tooltip="{{ 'activityLookahead.comments' | translate }}" tooltip-append-to-body="true"
+            ></i>
+    {{ comments }}
+</div>
+<div class="joiningUsers"
+     ng-class="{ invisible: !joiningUsers }">
+
+    <i class="fa fa-group"
+       tooltip="{{ 'activityLookahead.joiningUsers' | translate }}" tooltip-append-to-body="true"
+            ></i>
+    {{ joiningUsers }}
+</div>

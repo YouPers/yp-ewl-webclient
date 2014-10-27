@@ -3,6 +3,11 @@
     'use strict';
 
     angular.module('yp.components.activityLookahead', [])
+
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('components/directives/activity-lookahead-directive/activity-lookahead-directive');
+        }])
+
         .directive('activityLookahead', ['localStorageService', 'ActivityService',
             function (localStorageService, ActivityService) {
                 return {
