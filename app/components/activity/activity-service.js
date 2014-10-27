@@ -104,6 +104,9 @@
                             return $q.when([]);
                         }
                     },
+                    getActivityLookaheadCounters: function(activityId, lastAccessSince) {
+                        return Restangular.one('activities', activityId).one('lookAheadCounters').get({ since: lastAccessSince });
+                    },
                     getActivityEventDueState: function(event, type) {
                         // type may be one of ["current, "past", "done", "feedback", "conflict"]
                         // and is used to determine which type of event Card is to be showed

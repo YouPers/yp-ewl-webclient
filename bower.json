@@ -26,12 +26,14 @@
     "venturocket-angular-slider": "~0.3.x",
     "angular-mousewheel": "~1.0.4",
     "angular-charts": "~0.2.3",
-    "angular-fontawesome": "~0.1.2"
+    "angular-fontawesome": "~0.1.2",
+    "angular-local-storage": "~0.1.3"
   },
   "devDependencies": {
     "angular-scenario": "~1.2.7"
   },
   "resolutions": {
-    "d3": "~3.4.x"
+    "d3": "~3.4.x",
+    "angular": "~1.2.21"
   }
 }

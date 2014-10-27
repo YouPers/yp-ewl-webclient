@@ -113,11 +113,11 @@
         })
 
 
-        .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
+        .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'localStorageService',
             'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService',
             'healthCoachEvent', // this resolve is from dhc or dcm activity state
             'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
-            function ($scope, $rootScope, $state, $stateParams, $timeout,
+            function ($scope, $rootScope, $state, $stateParams, $timeout, localStorageService,
                       UserService, ActivityService, SocialInteractionService, HealthCoachService, healthCoachEvent,
                       campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
 
@@ -134,6 +134,12 @@
 
                 $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isScheduled = activity && activity.id;
+
+                if(activity.id) {
+                    var lastAccess = localStorageService.get('lastAccess') || {};
+                    lastAccess[activity.id] = moment();
+                    localStorageService.set('lastAccess', lastAccess);
+                }
 
                 $scope.formContainer = {};
 

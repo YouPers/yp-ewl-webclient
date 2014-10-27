@@ -25,6 +25,7 @@
             'yp.components.userInvitation',
             'yp.components.emailInvitation',
             'yp.components.activityComments',
+            'yp.components.activityLookahead',
             'yp.components.activityEventStack',
             'yp.components.activityEventCard',
             'yp.components.activityOfferCard',

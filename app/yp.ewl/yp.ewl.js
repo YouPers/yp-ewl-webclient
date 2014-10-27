@@ -5,7 +5,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl',
         [
-            'restangular', 'ui.router', 'ui.bootstrap',  'ngAnimate', 'ipCookie',
+            'restangular', 'ui.router', 'ui.bootstrap',  'ngAnimate', 'ipCookie', 'LocalStorageModule',
             'angulartics','angulartics.google.analytics',
 
             'yp.config',
@@ -22,8 +22,8 @@ angular.module('yp-ewl',
 
         ]).
 
-    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translateWtiPartialLoaderProvider',
-        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider) {
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translateWtiPartialLoaderProvider', 'localStorageServiceProvider',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider, localStorageServiceProvider) {
 
             // For any unmatched url, send to /home
             $urlRouterProvider.otherwise('/dispatch');
@@ -88,6 +88,9 @@ angular.module('yp-ewl',
                     fromWti: config.translationSource === 'wti'
                 });
             $translateWtiPartialLoaderProvider.addPart('yp.ewl/yp.ewl');
+
+            localStorageServiceProvider
+                .setPrefix('yp-ewl');
         }])
 
 /**
