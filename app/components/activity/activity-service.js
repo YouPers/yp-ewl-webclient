@@ -198,15 +198,27 @@
 
                     getDefaultPlan: function (idea, campaignId) {
                         var now = moment();
-                        var newMainEvent = {
+
+                        var duration = idea.defaultduration ? idea.defaultduration : 60;
+
+                        var plan = {
+                            idea: idea,
+                            status: 'active',
+                            source: campaignId ? 'campaign' : 'community',
+                            executionType: idea.defaultexecutiontype,
+                            visibility: campaignId ? 'campaign' : idea.defaultvisibility,
+                            fields: idea.fields,
+                            topics: idea.topics,
+                            title: idea.title,
+                            number: idea.number,
                             "allDay": false
                         };
-                        var duration = idea.defaultduration ? idea.defaultduration : 60;
+
                         if (idea.defaultfrequency === 'week') {
-                            newMainEvent.start = moment(now).startOf('hour').toDate();
-                            newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
-                            newMainEvent.frequency = 'week';
-                            newMainEvent.recurrence = {
+                            plan.start = moment(now).startOf('hour').toDate();
+                            plan.end = moment(plan.start).add('m', duration).toDate();
+                            plan.frequency = 'week';
+                            plan.recurrence = {
                                 "endby": {
                                     "type": "after",
                                     "after": 6
@@ -214,10 +226,10 @@
                                 every: 1
                             };
                         } else if (idea.defaultfrequency === 'day') {
-                            newMainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
-                            newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
-                            newMainEvent.frequency = 'day';
-                            newMainEvent.recurrence = {
+                            plan.start = moment(now).add('d', 1).startOf('hour').toDate();
+                            plan.end = moment(plan.start).add('m', duration).toDate();
+                            plan.frequency = 'day';
+                            plan.recurrence = {
                                 "endby": {
                                     "type": "after",
                                     "after": 6
@@ -225,10 +237,10 @@
                                 every: 1
                             };
                         } else { // default is "once"
-                            newMainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
-                            newMainEvent.end = moment(newMainEvent.start).add('m', duration).toDate();
-                            newMainEvent.frequency = 'once';
-                            newMainEvent.recurrence = {
+                            plan.start = moment(now).add('d', 1).startOf('hour').toDate();
+                            plan.end = moment(plan.start).add('m', duration).toDate();
+                            plan.frequency = 'once';
+                            plan.recurrence = {
                                 "endby": {
                                     "type": "after",
                                     "after": 6
@@ -236,19 +248,6 @@
                                 every: 1
                             };
                         }
-
-                        var plan = {
-                            idea: idea,
-                            status: 'active',
-                            mainEvent: newMainEvent,
-                            source: campaignId ? 'campaign' : 'community',
-                            executionType: idea.defaultexecutiontype,
-                            visibility: campaignId ? 'campaign' : idea.defaultvisibility,
-                            fields: idea.fields,
-                            topics: idea.topics,
-                            title: idea.title,
-                            number: idea.number
-                        };
 
                         if (campaignId) {
                             plan.campaign = campaignId;

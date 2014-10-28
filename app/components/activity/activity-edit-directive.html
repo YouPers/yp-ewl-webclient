@@ -23,17 +23,17 @@
                 <label translate>activityForm.date.label</label>
             </dt>
             <dd>
-                <date-picker date="activity.mainEvent.start" min-date="campaign.start" max-date="campaign.end"></date-picker>
+                <date-picker date="activity.start" min-date="campaign.start" max-date="campaign.end"></date-picker>
             </dd>
             <dt class="time">
                 <label translate>activityForm.time.label</label>
             </dt>
-            <dd class="time" ng-model="activity.mainEvent.start" synchronized-date="activity.mainEvent.end">
+            <dd class="time" ng-model="activity.start" synchronized-date="activity.end">
 
-                <timepicker ng-model="activity.mainEvent.start" id="timePickerStart" minute-step="15"
+                <timepicker ng-model="activity.start" id="timePickerStart" minute-step="15"
                             show-meridian="false"></timepicker>
 
-                <timepicker ng-model="activity.mainEvent.end" id="timePickerEnd" minute-step="15"
+                <timepicker ng-model="activity.end" id="timePickerEnd" minute-step="15"
                             show-meridian="false"></timepicker>
             </dd>
         </dl>
@@ -45,19 +45,19 @@
 
             <div class="frequency">
                 <label for="frequency.once">
-                    <input id="frequency.once" type="radio" ng-model="activity.mainEvent.frequency"
+                    <input id="frequency.once" type="radio" ng-model="activity.frequency"
                            ng-value="'once'" translate>
                     </input>
                     <span translate>activityPlanFrequency.once</span>
                 </label>
                 <label for="frequency.day">
-                    <input id="frequency.day" type="radio" ng-model="activity.mainEvent.frequency"
+                    <input id="frequency.day" type="radio" ng-model="activity.frequency"
                            ng-value="'day'" translate>
                     </input>
                     <span translate>activityPlanFrequency.day</span>
                 </label>
                 <label for="frequency.week">
-                    <input id="frequency.week" type="radio" ng-model="activity.mainEvent.frequency"
+                    <input id="frequency.week" type="radio" ng-model="activity.frequency"
                            ng-value="'week'" translate>
                     </input>
                     <span translate>activityPlanFrequency.week</span>
@@ -66,14 +66,14 @@
 
             <!-- recurrence -->
 
-            <dl class="dl-horizontal recurrence" ng-if="activity.mainEvent.frequency=='day' || activity.mainEvent.frequency=='week'">
+            <dl class="dl-horizontal recurrence" ng-if="activity.frequency=='day' || activity.frequency=='week'">
 
                 <dt>
                     <label translate>activityForm.recurrence.label</label>
                 </dt>
                 <dd>
-                    <input ng-init="activity.mainEvent.recurrence = activity.mainEvent.recurrence || {}"
-                           ng-model="activity.mainEvent.recurrence['endby'].after" min="1"  required type="number"
+                    <input ng-init="activity.recurrence = activity.recurrence || {}"
+                           ng-model="activity.recurrence['endby'].after" min="1"  required type="number"
                            class="form-control input-sm">
                 </dd>
 

@@ -223,13 +223,13 @@
                     _.remove($scope.usersToBeInvited, user.id ? { id: user.id } : user);
                 };
 
-                var validateActivity = _.debounce(function (mainEvent, old) {
+                var validateActivity = _.debounce(function (newActivity, old) {
                     // return if the form is in invalid state
                     if ($scope.formContainer.form && !$scope.formContainer.form.$valid) {
                         return;
                     }
-                    // cancel if mainEvent did not change, and the activity is not new
-                    if (_.isEqual(mainEvent, old) && $scope.isScheduled && $scope.events.length > 0) {
+                    // cancel if activity did not change, and the activity is not new
+                    if (_.isEqual(newActivity, old) && $scope.isScheduled && $scope.events.length > 0) {
                         return;
                     }
 
@@ -253,7 +253,7 @@
                     });
                 }, 200);
 
-                $scope.$watch('activity.mainEvent', validateActivity, true);
+                $scope.$watch('activity', validateActivity, true);
 
                 var initialized = false;
                 activityController.submitMode = 'Save';
