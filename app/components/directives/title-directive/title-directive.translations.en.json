@@ -10,7 +10,7 @@
       "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} edit",
       "ideas": "Ideas for {{ campaign.title }}",
       "recommendation": "{{idea.title}}",
-      "topics": "Choose Topic"
+      "topics": "Choose Program"
     },
     "account": "Account",
     "dhc": {

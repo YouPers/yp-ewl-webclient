@@ -1,6 +1,6 @@
 {
-    "topic": {
-        "select": "auswählen",
-        "title": "Wähle ein Kampagnen-Thema:"
-   }
+  "topic": {
+    "select": "auswählen",
+    "title": "Wähle ein Programm:"
+  }
 }

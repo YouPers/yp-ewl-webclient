@@ -1,23 +1,23 @@
 {
-    "game": {
+  "game": {
 
-        "showMore": "weitere",
+    "showMore": "weitere",
 
-        "activities": {
-            "current": "Eingeplante Aktivitäten",
-            "donePreview": "Abgeschlossene Akt.",
-            "done": "Abgeschlossene Aktivitäten",
-            "offered": "Angebotene Aktivitäten",
-            "rejectedPreview": "Verworfene Akt.",
-            "rejected": "Verworfene Aktivitäten"
-        },
-        "invitations": "Einladungen",
-        "recommendations": "Empfehlungen",
+    "activities": {
+      "current": "Eingeplante Aktivitäten",
+      "donePreview": "Abgeschlossene Akt.",
+      "done": "Abgeschlossene Aktivitäten",
+      "offered": "Angebotene Aktivitäten",
+      "rejectedPreview": "Verworfene Akt.",
+      "rejected": "Verworfene Aktivitäten"
+    },
+    "invitations": "Einladungen",
+    "recommendations": "Empfehlungen",
 
-        "noActivities": "Sobald du eine angebotene Aktivität eingeplant hast, werden dir hier die entsprechenden Aktivitätstermine angezeigt.",
-        "noOffers": "Hier werden dir Aktivitäts-Empfehlungen und -Einladungen vom Kampagnen-Leiter, vom YOUPERS Coach und von deinen Arbeitskolleginnen und -kollegen angezeigt.",
-        "noClosedEvents": "Sobald du einen eingeplanten Aktivitätstermin als durchgeführt oder verpasst zurückgemeldet hast, wird dir hier der entsprechende Termin als abgeschlossene Aktivität angezeigt.",
-        "noDismissedOffers": "Wenn du eine angebotene Aktivität verwirfst, wird dir diese Aktivität hier angezeigt."
+    "noActivities": "Sobald du eine angebotene Aktivität eingeplant hast, werden dir hier die entsprechenden Aktivitätstermine angezeigt.",
+    "noOffers": "Hier werden dir Aktivitäts-Empfehlungen und -Einladungen vom Kampagnen-Leiter, vom YOUPERS Coach und von deinen Arbeitskolleginnen und -kollegen angezeigt.",
+    "noClosedEvents": "Sobald du einen eingeplanten Aktivitätstermin als durchgeführt oder verpasst zurückgemeldet hast, wird dir hier der entsprechende Termin als abgeschlossene Aktivität angezeigt.",
+    "noDismissedOffers": "Wenn du eine angebotene Aktivität verwirfst, wird dir diese Aktivität hier angezeigt."
 
-    }
+  }
 }

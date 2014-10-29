@@ -37,6 +37,7 @@
       "label": null,
       "next": null,
       "placeholder": null,
+      "send": null,
       "sendTestButton": null,
       "sendYourselfTest": null,
       "submit": null,

@@ -17,7 +17,7 @@
                 <span class="question-category-header">{{ 'questionCategory.' + name | translate }}</span>
                 <i class="pull-right glyphicon"
                    ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
-                <span class="label1 pull-right">{{categories[name] | answeredCount:answers}} von {{categories[name].length}} {{'check.questionsAnswered' | translate}}</span>
+                <span class="label1 pull-right">{{categories[name] | answeredCount:answers}} {{'check.of' | translate}} {{categories[name].length}} {{'check.questionsAnswered' | translate}}</span>
             </div>
         </accordion-heading>
 

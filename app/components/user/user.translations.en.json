@@ -186,7 +186,6 @@
     "calendarNotificationSettings": "calendar alerts",
     "rejectedActivities": {
       "header": "Rejected Activities"
-    },
-    "reactivateIdea": "Reactivate"
+    }
   }
 }
