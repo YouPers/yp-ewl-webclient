@@ -1,24 +1,24 @@
 {
-    "pageTitle": {
-        "default": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
-        "signin": {
-            "content": "Anmeldung - YOUPERS HealthCampaign"
-        },
-        "account": "Benutzerkonto",
-        "profile": "Benutzerprofil",
-        "dcm": {
-            "home": "{{ campaign.topic.name | uppercase }} - Home",
-            "activity": "{{ activity.title }}",
-            "ideas": "Ideen für {{ campaign.title }}",
-            "recommendation": "{{idea.title}}",
-            "topics": "Thema auswählen",
-            "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} editieren"
-        },
-        "dhc": {
-            "game": "Hauptseite",
-            "activity": "{{ activity.title }}",
-            "check": "Selbstbeurteilung"
+  "pageTitle": {
+    "default": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
+    "signin": {
+      "content": "Anmeldung - YOUPERS HealthCampaign"
+    },
+      "account": "Benutzerkonto",
+      "profile": "Benutzerprofil",
+    "dcm": {
+      "home": "{{ campaign.topic.name | uppercase }} - Home",
+      "activity": "{{ activity.title }}",
+      "ideas": "Ideen für {{ campaign.title }}",
+      "recommendation": "{{idea.title}}",
+      "topics": "Programm auswählen",
+      "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} editieren"
+    },
+    "dhc": {
+      "game": "Hauptseite",
+      "activity": "{{ activity.title }}",
+      "check": "Selbstbeurteilung"
 
-        }
     }
+  }
 }

@@ -14,7 +14,7 @@
     "error": {
       "password": {
         "invalid": "Das aktuelle Passwort ist nicht korrekt",
-        "reset": "Benutzername/Email ist uns nicht bekannt"
+        "reset": "Email-Adresse ist uns nicht bekannt"
       }
     }
   },
@@ -186,8 +186,6 @@
     "calendarNotificationSettings": "Hinweise im Bürokalendar",
     "rejectedActivities": {
       "header": "Abgelehnte Aktivitäten"
-
-    },
-      "reactivateIdea": "Wieder aktivieren"
+    }
   }
 }

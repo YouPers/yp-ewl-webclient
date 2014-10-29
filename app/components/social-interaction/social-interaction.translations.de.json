@@ -1,51 +1,49 @@
 {
   "socialInteraction": {
 
-      "mainHeader": "Inbox",
+      "mainHeader": "inbox",
 
-      "important": "Wichtig",
+    "important": "Wichtig",
 
-      "publishFrom": "Publiziert ab: ",
-      "publishTo": "Publiziert bis: ",
+    "publishFrom": "Publiziert ab: ",
+    "publishTo": "Publiziert bis: ",
 
-      "header": {
-          "Invitation": {
+    "header": {
+      "Invitation": {
               "user": "Persönliche Einladung",
               "campaignLead": "Kampagneneinladung"
-          },
-          "Recommendation": {
-              "user": "persönliche Empfehlung von",
-              "campaignLead": "Kampagnenempfehlung",
-              "coach": "HealthCoach"
-          },
-          "Message": {
-              "user": "persönliche Nachricht von",
-              "campaignLead": "Kampagnennachricht",
-              "coach": "HealthCoach"
-          }
+      },
+      "Recommendation": {
+        "user": "persönliche Empfehlung",
+        "campaignLead": "Kampagnenempfehlung",
+        "coach": "HealthCoach"
+      },
+      "Message": {
+        "user": "persönliche Nachricht",
+        "campaignLead": "Kampagnennachricht",
+        "coach": "HealthCoach"
       }
-  },
-    "composeMessageForm": {
-        "show": "Hinzufügen",
-        "cancel": "abbrechen",
-
-
-        "title": {
-            "label": "Titel",
-            "placeholder": "Titel"
-        },
-        "text": {
-            "label": "Nachricht",
-            "placeholder": "Nachricht"
-        },
-        "publishFrom": {
-            "label": "Von",
-            "placeholder": "Von"
-        },
-        "publishTo": {
-            "label": "Bis",
-            "placeholder": "Bis"
-        },
-        "submit": "Speichern"
     }
+  },
+  "composeMessageForm": {
+    "show": "Nachricht an die Kampagne",
+    "cancel": "abbrechen",
+    "title": {
+      "label": "Titel",
+      "placeholder": "Titel"
+    },
+    "text": {
+      "label": "Nachricht",
+      "placeholder": "Nachricht"
+    },
+    "publishFrom": {
+      "label": "Von",
+      "placeholder": "Von"
+    },
+    "publishTo": {
+      "label": "Bis",
+      "placeholder": "Bis"
+    },
+    "submit": "Speichern"
+  }
 }

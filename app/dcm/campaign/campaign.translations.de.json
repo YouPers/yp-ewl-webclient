@@ -1,14 +1,4 @@
 {
-    "clientmsg": {
-        "success": {
-            "campaign": {
-                "lead": "Die Einladung als Kampagnenleiter wurde akzeptiert",
-                "saved": "Kampagne gespeichert"
-            }
-        }
-    },
-
-
   "campaigns": {
     "group": {
       "active": "aktive kampagnen",
@@ -18,9 +8,6 @@
     "stateHeader2": "kampagnen"
   },
   "campaign": {
-      "card": {
-          "title": "HealthCampaign"
-      },
     "header": "Kampagne erstellen/ändern",
     "link": {
       "new": "neue kampagne",
@@ -32,16 +19,15 @@
       "add": "weitere hinzufügen"
     },
     "stateHeader1": "deine",
-    "stateHeader2": "kampagne"
+    "stateHeader2": "Kampagne",
+    "card": {
+      "title": "HealthCampaign"
+    }
   },
   "campaignForm": {
     "avatar": {
       "label": "Avatar",
       "change": "ändern"
-    },
-    "topic": {
-        "label": "Kampagnen-Thema",
-        "change": "ändern"
     },
     "title": {
       "label": "Titel",
@@ -74,7 +60,11 @@
     },
     "back": "Zurück",
     "save": "Speichern",
-    "create": "Speichern"
+    "create": "Speichern",
+    "topic": {
+      "change": "ändern",
+      "label": "Programm"
+    }
   },
   "inviteCampaignLeadForm": {
     "email": {
@@ -82,5 +72,13 @@
     },
     "inviteSubmit": "Senden",
     "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"
+  },
+  "clientmsg": {
+    "success": {
+      "campaign": {
+        "lead": "Die Einladung als Kampagnenleiter wurde akzeptiert",
+        "saved": "Kampagne gespeichert"
+      }
+    }
   }
 }

@@ -63,7 +63,7 @@
     "create": "Save",
     "topic": {
       "change": "Edit",
-      "label": "Campaign topic"
+      "label": "Program"
     }
   },
   "inviteCampaignLeadForm": {
