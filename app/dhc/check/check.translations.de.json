@@ -27,6 +27,18 @@
       "musculature": "Muskulatur",
       "stamina": "Kondition",
       "agility": "Beweglichkeit",
-      "attitude": "Persönliche Einstellung"
+      "attitude": "Persönliche Einstellung",
+
+      "workEquipment": "Arbeitsmittel",
+      "seating": "Tisch und Stuhl",
+      "officeEquipment": "Büroeinrichtung",
+      "transportation": "Transport",
+
+      "risks": "Gefahren und Risiken erkennen",
+      "workEnvironment": "Arbeits- und Bewegungsraum",
+      "extendedEnvironment": "Türen, Treppen, Böden",
+      "equipment": "Einrichtung und Ausrüstung",
+      "safetyRelatedWorkBehavior": "Sicherheitsgerechtes Arbeitsverhalten",
+      "safetyRelatedFreetimeBehavior": "Sicherheitsgerechtes Freizeitverhalten"
   }
 }
