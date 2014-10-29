@@ -5,7 +5,8 @@
       "back": "back"
     },
     "questionsAnswered": "criteria rated",
-    "header": "Self-Check"
+    "header": "Self-Check",
+    "of": "of"
   },
   "questionCategory": {
     "work": "Stress at Work",
