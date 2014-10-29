@@ -12,25 +12,18 @@
 
                     link: function (scope, elem, attrs) {
 
-                        var options = scope.options = {};
-
-
-                        var user = UserService.principal.getUser();
-                        options.isCampaignLead = _.contains(user.roles, 'campaignlead');
-
                         scope.soiRemoved = function (soi) {
                             _.remove(scope.socialInteractions, { id: soi.id });
                         };
 
-                        if ($rootScope.principal.isAuthenticated()) {
+                        // only load data if user is authenticated and we have loaded the campaign
+
+                        if ($rootScope.principal.isAuthenticated() && $stateParams.campaignId) {
                             var params = {
-                                targetId: $stateParams.campaignId,
                                 populate: 'author',
                                 limit: 10
                             };
-                            if ($state.current.name.indexOf('dcm') === 0) {
-                                params.authored = true;
-                            }
+
                             SocialInteractionService.getSocialInteractions(params).then(function (socialInteractions) {
 
                                 socialInteractions = _.filter(socialInteractions, function (si) {
