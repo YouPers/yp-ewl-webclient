@@ -39,11 +39,15 @@
                         var stats = Rest.all('campaigns/' + campaignId + '/stats');
                         return stats.getList({ type: type });
                     },
-                    inviteParticipants: function(campaignId, particpantEmails, mailSubject, mailText) {
+                    inviteParticipants: function(campaignId, particpantEmails, mailSubject, mailText, testOnly) {
+                        var postBody = {email: particpantEmails,
+                            subject: mailSubject,
+                            text: mailText};
+                        if (testOnly) {
+                            postBody.testOnly = true;
+                        }
                         return campaigns.one(campaignId).all('inviteParticipantsEmail')
-                            .post({email: particpantEmails,
-                                   subject: mailSubject,
-                                   text: mailText});
+                            .post(postBody);
                     }
 
                 };

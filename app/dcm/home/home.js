@@ -78,7 +78,7 @@
                 };
 
                 $scope.sendTestInvitationMail= function(mailSubject, mailText) {
-                    CampaignService.inviteParticipants(campaign.id, $scope.principal.getUser().email, mailSubject, mailText).then(function () {
+                    CampaignService.inviteParticipants(campaign.id, $scope.principal.getUser().email, mailSubject, mailText, true).then(function () {
                         $scope.homeController.formStatus = 'afterTest';
                     });
                 };
