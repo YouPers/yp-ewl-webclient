@@ -194,16 +194,20 @@
                     $scope.inviteLocked = true;
                 }
 
-                // set the organizer's invitation status
-                activity.owner.invitationStatus = 'organizer';
-                $scope.invitedUsers = [activity.owner];
-                if (invitationStatus && invitationStatus.length > 0) {
-                    activityController.inviteOthers = 'selected';
-                    _.each(invitationStatus, function (status) {
-                        var user = status.user || {email: status.email};
-                        user.invitationStatus = status.status;
-                        $scope.invitedUsers.push(user);
-                    });
+                // set the organizer's invitation status if this is already scheduled
+                if ($scope.isScheduled) {
+                    activity.owner.invitationStatus = 'organizer';
+                    $scope.invitedUsers = [activity.owner];
+                    if (invitationStatus && invitationStatus.length > 0) {
+                        activityController.inviteOthers = 'selected';
+                        _.each(invitationStatus, function (status) {
+                            var user = status.user || {email: status.email};
+                            user.invitationStatus = status.status;
+                            $scope.invitedUsers.push(user);
+                        });
+                    }
+                } else {
+                    $scope.invitedUsers = [];
                 }
 
                 // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
