@@ -62,11 +62,17 @@
                     </input>
                     <span translate>activityPlanFrequency.week</span>
                 </label>
+                <label for="frequency.month">
+                    <input id="frequency.month" type="radio" ng-model="activity.frequency"
+                           ng-value="'month'" translate>
+                    </input>
+                    <span translate>activityPlanFrequency.month</span>
+                </label>
             </div>
 
             <!-- recurrence -->
 
-            <dl class="dl-horizontal recurrence" ng-if="activity.frequency=='day' || activity.frequency=='week'">
+            <dl class="dl-horizontal recurrence" ng-if="activity.frequency=='day' || activity.frequency=='week' || activity.frequency=='month'">
 
                 <dt>
                     <label translate>activityForm.recurrence.label</label>
