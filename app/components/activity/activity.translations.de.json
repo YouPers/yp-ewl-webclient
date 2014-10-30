@@ -45,7 +45,8 @@
       "invitationStatus": {
           "activityJoined": "angenommen",
           "denied": "abgelehnt",
-          "pending": "?"
+          "pending": "?",
+          "organizer": "Organisator"
       },
 
       "link": {

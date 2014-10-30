@@ -45,12 +45,8 @@
 
             activity: ['$stateParams', 'ActivityService', 'socialInteraction', '$q',
                 function ($stateParams, ActivityService, socialInteraction, $q) {
-                    // check whether we have a socialInteraction holding an activity
-                    var activityRefDoc = socialInteraction && _.find(socialInteraction.refDocs, function (refDoc) {
-                        return refDoc.doc && refDoc.model === 'Activity';
-                    });
-                    if (activityRefDoc) {
-                        return activityRefDoc.doc;
+                    if (socialInteraction && socialInteraction.activity) {
+                        return socialInteraction.activity;
                     }
                     if ($stateParams.activity) {
                         return  ActivityService.getActivity($stateParams.activity);
@@ -197,7 +193,10 @@
                     activityController.inviteOthers = 'all';
                     $scope.inviteLocked = true;
                 }
-                $scope.invitedUsers = [];
+
+                // set the organizer's invitation status
+                activity.owner.invitationStatus = 'organizer';
+                $scope.invitedUsers = [activity.owner];
                 if (invitationStatus && invitationStatus.length > 0) {
                     activityController.inviteOthers = 'selected';
                     _.each(invitationStatus, function (status) {
