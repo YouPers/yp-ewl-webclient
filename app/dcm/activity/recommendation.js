@@ -43,6 +43,10 @@
 
                 $scope.idea = idea;
                 $scope.campaign = campaign;
+
+
+                $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
+
                 $scope.recommendation = socialInteraction ? socialInteraction :  {
 
                     idea: idea.id,
@@ -55,8 +59,8 @@
                         targetId: $stateParams.campaignId
                     }],
 
-                    publishFrom: moment().startOf('day').toDate(),
-                    publishTo: moment.min(moment().add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate(),
+                    publishFrom: $scope.minPublishDate,
+                    publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate(),
 
                     refDocs: [{
                         docId: idea.id,
@@ -65,6 +69,7 @@
                     __t: "Recommendation"
 
                 };
+
 
                 $timeout(function () {
 

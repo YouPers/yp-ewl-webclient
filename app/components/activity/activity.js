@@ -160,13 +160,15 @@
 
                 // invitations
 
+                $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
+
                 var invitation = {
                     author: UserService.principal.getUser(),
                     authorType: mode === 'campaignlead' ? 'campaignLead' : 'user',
                     __t: 'Invitation',
 
-                    publishFrom: moment().startOf('day').toDate(),
-                    publishTo: moment.min(moment().add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate()
+                    publishFrom: $scope.minPublishDate,
+                    publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate()
                 };
 
                 if(mode === 'campaignlead') {
