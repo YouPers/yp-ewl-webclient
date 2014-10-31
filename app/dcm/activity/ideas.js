@@ -106,8 +106,7 @@
                     'once',
                     'day',
                     'week',
-                    'month',
-                    'year'
+                    'month'
                 ],
                 visibility: [
                     'public',

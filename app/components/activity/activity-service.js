@@ -20,6 +20,8 @@
                     // make it work for arrays and single objects
                     var objects = Array.isArray(object) ? object : [object];
 
+                    var usersCampaign = $rootScope.$stateParams.campaignId || UserService.principal.getUser().campaign.id;
+
                     // determine whether we need to fetch anything from server
                     var ideaIdsToFetch = [];
                     _.forEach(objects, function (obj) {
@@ -52,6 +54,9 @@
                         // some ideas have to be fetched from server
                         var options = {};
                         options['filter[id]'] = ideaIdsToFetch.join(',');
+                        if (usersCampaign) {
+                            options.campaign = usersCampaign;
+                        }
                         return ideas.getList(options).then(function (ideas) {
                             _.forEach(ideas, function (idea) {
                                 ideaCache[idea.id] = idea;

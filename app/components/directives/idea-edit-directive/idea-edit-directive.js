@@ -43,13 +43,6 @@
                             idea.qualityFactor = 1;
                         }
 
-                        $scope.validate = function () {
-                            if (!idea.title || idea.title === "" ||
-                                !idea.description || idea.description === "") {
-                                return true;
-                            }
-                        };
-
                         $scope.isProductAdmin = function() {
                             return (UserService.principal.getUser().roles.indexOf('productadmin') !== -1);
                         };
