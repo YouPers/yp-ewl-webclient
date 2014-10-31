@@ -28,7 +28,7 @@
                                 if ($rootScope.nextStateAfterLogin) {
                                     $state.go($rootScope.nextStateAfterLogin.toState, $rootScope.nextStateAfterLogin.toParams);
                                 } else {
-                                    var homeStateName = _.contains(response.roles, 'campaignlead') ? 'dcm.home' : 'dhc.game';
+                                    var homeStateName = (_.contains(response.roles, 'campaignlead') || _.contains(response.roles, 'orgadmin')) ? 'dcm.home' : 'dhc.game';
                                     $state.go(homeStateName);
                                 }
 
