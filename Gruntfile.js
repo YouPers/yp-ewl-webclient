@@ -38,7 +38,7 @@ module.exports = function (grunt) {
         yeoman: yeomanConfig,
         watch: {
             less: {
-                files: ['<%= yeoman.app %>/**/*.less'],
+                files: ['<%= yeoman.app %>/**/*.less', '!<%= yeoman.app %>/lib/**'],
                 tasks: ['less:server', 'autoprefixer']
             },
             styles: {
@@ -56,8 +56,9 @@ module.exports = function (grunt) {
                 files: [
                     '<%= yeoman.app %>/**/*.html',
                     '.tmp/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/**/*.js', '{.tmp,<%= yeoman.app %>}/**/*.json',
-                    '<%= yeoman.app %>/assets/**/*.{png,jpg,jpeg,gif,webp,svg,ico}'
+                    '<%= yeoman.app %>/**/*.js',
+                    '!<%= yeoman.app %>/lib/**',
+                    '{<%= yeoman.app %>}/**/*.json'
                 ]
             }
         },
