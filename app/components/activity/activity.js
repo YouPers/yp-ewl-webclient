@@ -166,7 +166,7 @@
                     __t: 'Invitation',
 
                     publishFrom: moment().startOf('day').toDate(),
-                    publishTo: moment().endOf('day').toDate()
+                    publishTo: moment.min(moment().add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate()
                 };
 
                 if(mode === 'campaignlead') {

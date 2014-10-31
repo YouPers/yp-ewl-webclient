@@ -55,8 +55,8 @@
                         targetId: $stateParams.campaignId
                     }],
 
-                    publishFrom: new Date(moment().startOf('day')),
-                    publishTo: new Date(moment().endOf('day')),
+                    publishFrom: moment().startOf('day').toDate(),
+                    publishTo: moment.min(moment().add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate(),
 
                     refDocs: [{
                         docId: idea.id,

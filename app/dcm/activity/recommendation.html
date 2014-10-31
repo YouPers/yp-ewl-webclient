@@ -46,7 +46,7 @@
 
         <h3 translate>recommendationForm.header.publish</h3>
 
-        <div class="publish">
+        <div class="publish" ng-model="recommendation.publishFrom" synchronized-date="recommendation.publishTo">
 
             <label translate>recommendationForm.publishFrom.label</label>
             <date-picker min-date="campaign.start" max-date="campaign.end" date="recommendation.publishFrom"></date-picker>
