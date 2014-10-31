@@ -1,42 +1,43 @@
 
 
-<form name="ideaForm" ypModel="idea" class="form-horizontal" role="form"
-      ng-submit="save()" novalidate>
+<form name="ideaForm" ypModel="idea" class="form-horizontal" role="form" ng-class="{submitted: ideaForm.submitted}"
+      ng-submit="(ideaForm.$valid && save()) || (ideaForm.submitted = true)" novalidate>
 
     <div class="form-group">
         <label for="number" class="col-md-3 control-label" translate>activity.image.label</label>
         <div class="col-md-9">
             <span class="idea-image-link">
-                <a href ng-click="selectIdeaImage()" translate>activity.image.select</a>
+                <a href ng-click="selectIdeaImage()"><span translate>activity.image.select</span> <span class="error-msg" ng-show="!ideaForm.number.$valid && ideaForm.submitted" translate>activity.image.required</span></a>
             </span>
+
         </div>
     </div>
 
-    <div class="form-group" ng-if="isProductAdmin()">
+    <div class="form-group" ng-show="isProductAdmin()">
         <label for="number" class="col-md-3 control-label" translate>activity.number</label>
         <div class="col-md-9">
-            <input id="number" type="text" ng-model="idea.number" class="form-control">
+            <input name="number" id="number" required type="text" ng-model="idea.number" class="form-control">
         </div>
     </div>
 
     <div class="form-group">
         <label for="title" class="col-md-3 control-label" translate>activity.title.label</label>
         <div class="col-md-9">
-            <textarea id="title" type="text" class="form-control" ng-model="idea.title" ng-attr-placeholder="{{'activity.title.placeholder' | translate}}"></textarea>
+            <input type="text" required id="title" name="title" class="form-control" ng-model="idea.title" ng-attr-placeholder="{{'activity.title.placeholder' | translate}}"></textarea>
         </div>
     </div>
 
     <div class="form-group">
         <label for="description" class="col-md-3 control-label" translate>activity.description.label</label>
         <div class="col-md-9">
-            <textarea rows="5" id="description" type="text" class="form-control" ng-model="idea.description" ng-attr-placeholder="{{'activity.description.placeholder' | translate}}"></textarea>
+            <textarea rows="5" required id="description" type="text" class="form-control" ng-model="idea.description" ng-attr-placeholder="{{'activity.description.placeholder' | translate}}"></textarea>
         </div>
     </div>
 
     <div class="form-group">
         <label for="text" class="col-md-3 control-label" translate>activity.text.label</label>
         <div class="col-md-9">
-            <textarea rows="8" id="text" type="text" class="form-control" ng-model="idea.text" ng-attr-placeholder="{{'activity.text.placeholder' | translate}}"></textarea>
+            <textarea rows="8" id="text" type="text" name="text" class="form-control" ng-model="idea.text" ng-attr-placeholder="{{'activity.text.placeholder' | translate}}"></textarea>
         </div>
     </div>
 
@@ -102,7 +103,7 @@
         </div>
 
         <div class="col-md-5 idea-edit-link">
-            <button type="submit" class="btn btn-primary pull-right" ng-disabled="validate()" translate>activity.save
+            <button type="submit" class="btn btn-primary pull-right" translate>activity.save
             </button>
             <div ng-transclude></div>
             <button type="button" class="btn btn-default" ng-click="cancel()" translate>activity.back</button>

@@ -5,7 +5,22 @@ form.ng-dirty.ng-invalid {
   border: none;
   box-shadow: none;
 }
-.ng-dirty.ng-invalid {
+
+.error-bordered {
   border-color: @yp-warning;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.ng-dirty.ng-invalid {
+  .error-bordered;
+}
+
+.submitted .ng-invalid {
+  .error-bordered;
+}
+
+.error-msg {
+  border: 1px solid;
+  padding: 3px;
+  .error-bordered;
 }
