@@ -20,7 +20,8 @@
                     // make it work for arrays and single objects
                     var objects = Array.isArray(object) ? object : [object];
 
-                    var usersCampaign = $rootScope.$stateParams.campaignId || UserService.principal.getUser().campaign.id;
+                    var usersCampaign = $rootScope.$stateParams.campaignId ||
+                        (UserService.principal.getUser().campaign && UserService.principal.getUser().campaign.id);
 
                     // determine whether we need to fetch anything from server
                     var ideaIdsToFetch = [];
