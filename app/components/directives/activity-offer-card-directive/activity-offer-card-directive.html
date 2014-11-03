@@ -1,5 +1,5 @@
 
-<activity-lookahead activity="activity" ng-if="activity.id && activity.executionType === 'group'"></activity-lookahead>
+
 
 <div class="activity-offer-card {{ componentClass   }} pos-{{ event.offset }}">
 
@@ -7,11 +7,11 @@
 
     <div class="title sheet primary">
         <div>
-            <i class="fa {{ iconClass }}"></i>
+            <i class="fa {{ iconClass }} offer"></i>
         </div>
         <div ng-bind-html="getRenderedText(activity.title || idea.title)"></div>
 
-
+        <activity-lookahead activity="activity" ng-if="activity.id && activity.executionType === 'group'"></activity-lookahead>
     </div>
 
     <div class="sheet secondary" ng-init="isRecommendation = socialInteraction.__t === 'Recommendation'">
