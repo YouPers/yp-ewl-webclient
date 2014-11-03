@@ -213,7 +213,7 @@
                         // local only node.js: down/unreachable or proxied setup: nginx down/unreachable
                         // no answer at all from the backend
                         client.backendNotReachableAtAll = error.status === 0 && (error.config && error.config.url);
-                        client.backendNotRunningBehindNginx = error.status === 502;
+                        client.backendNotRunningBehindNginx = error.status === 502 || error.status === 503 || error.status === 504;
                         client.backendNotRunning = client.backendNotReachableAtAll || client.backendNotRunningBehindNginx;
 
                         // we identify whether this was caused by the backend by checking whether we have already a
