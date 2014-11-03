@@ -158,7 +158,6 @@
 
                             }, function error(err) {
                                 $http.defaults.headers.common.Authorization = '';
-                                $rootScope.$emit('clientmsg:error', err);
 
                                 if (err.data && err.data.code === 'UnauthorizedError') {
                                     $rootScope.$emit('clientmsg:error', 'loginFailed', { error: err });
