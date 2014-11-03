@@ -415,7 +415,9 @@
                                 SocialInteractionService.postInvitation(invitation);
 
                                 if (emails && emails.length > 0) {
-                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity);
+                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                        $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' }, { reload: true });
+                                    });
                                 }
                             }
                         }
