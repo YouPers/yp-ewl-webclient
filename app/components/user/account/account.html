@@ -6,6 +6,19 @@
 
             <h3 translate>account.account</h3>
 
+            <button class="btn btn-primary pull-right" ui-sref="homedispatcher" translate>account.backToHome</button>
+
+            <div class="clearfix"></div>
+            <br/>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+
             <accordion close-others="true">
                 
                 <accordion-group heading="{{'account.changeAccount' | translate}}" is-open="true">
@@ -17,8 +30,8 @@
                         <yp-input name="username" required></yp-input>
                         <yp-input name="email" type="email" required unique-user-field></yp-input>
 
-                        <button type="button" class="btn btn-sm" ng-click="accountUserObjReset()" translate>accountForm.reset</button>
-                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="accountForm.$invalid" translate>accountForm.save</button>
+                        <button type="button" class="btn btn-default" ng-click="accountUserObjReset()" translate>accountForm.reset</button>
+                        <button type="submit" class="btn btn-success" ng-disabled="accountForm.$invalid" translate>accountForm.save</button>
 
                     </form>
                     
@@ -32,7 +45,7 @@
                         <yp-input name="password" type="password" required ng-minlength="6"></yp-input>
                         <yp-input name="password2" type="password" required password-match="passwordUserObj.password"></yp-input>
 
-                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="passwordForm.$invalid" translate>passwordForm.save</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="passwordForm.$invalid" translate>passwordForm.save</button>
 
                     </form>
                     
@@ -40,9 +53,6 @@
                 
             </accordion>
             
-        </div>
-        <div class="col-md-3">
-            <button class="btn btn-primary" ui-sref="homedispatcher" translate>account.backToHome</button>
         </div>
     </div>
 
