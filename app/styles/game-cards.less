@@ -39,22 +39,25 @@
 
 // Event Cards
 
+activity-event-stack[type=current] {
 
-.eventFuture {
-  .date {
-    color: @yp-event-future;
+  .eventFuture {
+    .date {
+      color: @yp-event-future;
+    }
+  }
+  .eventPresent {
+    .date {
+      color: @yp-event-present;
+    }
+  }
+  .eventPast {
+    .date {
+      color: @yp-event-past;
+    }
   }
 }
-.eventPresent {
-  .date {
-    color: @yp-event-present;
-  }
-}
-.eventPast {
-  .date {
-    color: @yp-event-past;
-  }
-}
+
 .eventCoach {
   .sheet.primary {
     background-color: @yp-accent;
