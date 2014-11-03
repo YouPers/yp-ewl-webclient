@@ -1,6 +1,6 @@
 {
   "activity": {
-    "stateHeader1": "activity",
+    "stateHeader1": "Activity",
     "title": {
       "label": "Title",
       "placeholder": "Enter a short title (2x20 chars max)"
