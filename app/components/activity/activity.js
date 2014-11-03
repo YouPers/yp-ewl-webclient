@@ -137,12 +137,12 @@
 
                 if($state.$current.parent.name === 'dcm') {
                     mode = 'campaignlead';
+                } else if ($scope.isScheduled && ActivityService.isOwner(activity)) {
+                    mode = 'owned';
+                } else if ($scope.isScheduled && ActivityService.isJoiningUser(activity)) {
+                    mode = 'joined';
                 } else if (socialInteraction) {
                     mode = socialInteraction.__t.toLowerCase();
-                } else if ($scope.isScheduled && activity.isOwner()) {
-                    mode = 'owned';
-                } else if ($scope.isScheduled && activity.isJoiningUser()) {
-                    mode = 'joined';
                 } else {
                     mode = 'schedule';
                 }

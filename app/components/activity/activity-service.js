@@ -197,6 +197,26 @@
                         return Restangular.one('activities', activityId).one('invitationStatus').getList();
                     },
 
+                    isOwner: function (activity, user) {
+                        if (!user) {
+                            user = UserService.principal.getUser();
+                        }
+                        user = user.id || user;
+
+                        var owner = activity.owner.id || activity.owner;
+                        return owner === user;
+                    },
+                    isJoiningUser: function (activity, user) {
+
+                        if (!user) {
+                            user = UserService.principal.getUser();
+                        }
+                        user = user.id || user;
+                        return _.any(activity.joiningUsers, function (joiningUser) {
+                            var joining = joiningUser.id || joiningUser;
+                            return joining === user;
+                        });
+                    },
 
                     getDefaultActivity: function (idea, options) {
                         return ideas.one(idea.id || idea).one('defaultActivity').get(options).then(_populateIdeas);

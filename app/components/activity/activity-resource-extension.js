@@ -69,24 +69,11 @@
 
                 var extendActivities = function (activity) {
                     activity.isOwner = function (user) {
-                        if (!user) {
-                            user = UserService.principal.getUser();
-                        }
-                        user = user.id || user;
-
-                        var owner = activity.owner.id || activity.owner;
-                        return owner === user;
+                        return ActivityService.isOwner(activity, user);
                     };
 
                     activity.isJoiningUser = function (user) {
-                        if (!user) {
-                            user = UserService.principal.getUser();
-                        }
-                        user = user.id || user;
-                        return _.any(activity.joiningUsers, function (joiningUser) {
-                            var joining = joiningUser.id || joiningUser;
-                            return joining === user;
-                        });
+                        return ActivityService.isJoiningUser(activity, user);
                     };
 
                     activity.isParticipant = function (user) {
