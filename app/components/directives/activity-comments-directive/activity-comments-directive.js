@@ -59,9 +59,11 @@
 
 
                             if(scope.activity.id) {
-                                var lastAccess = localStorageService.get('lastAccess') || {};
-                                lastAccess[scope.activity.id] = moment();
-                                localStorageService.set('lastAccess', lastAccess);
+
+                                var localStorageKey = 'user=' + user.id;
+                                var localStorage = localStorageService.get(localStorageKey) || {};
+                                localStorage[scope.activity.id] = moment();
+                                localStorageService.set(localStorageKey, localStorage);
                             }
 
                         }

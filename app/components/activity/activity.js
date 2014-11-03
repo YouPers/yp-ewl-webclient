@@ -109,11 +109,11 @@
         })
 
 
-        .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'localStorageService',
+        .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
             'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService',
             'healthCoachEvent', // this resolve is from dhc or dcm activity state
             'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
-            function ($scope, $rootScope, $state, $stateParams, $timeout, localStorageService,
+            function ($scope, $rootScope, $state, $stateParams, $timeout,
                       UserService, ActivityService, SocialInteractionService, HealthCoachService, healthCoachEvent,
                       campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
 
