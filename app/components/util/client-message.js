@@ -130,7 +130,11 @@
 
 
                 // log notification
-                ClientMessageService.clientmsg(opts.type)(message, options);
+                var parsedError = ClientMessageService.clientmsg(opts.type)(message, options);
+
+                if (parsedError.backendNotRunning) {
+                    opts.message = 'clientmsg.error.502';
+                }
 
                 if(opts.type !== 'error' && opts.type !== 'success') {
                     return false; // skip user feedback below
@@ -189,6 +193,7 @@
                         userAgent: navigator.userAgent
                     };
 
+
                     if(typeof arguments[1] === 'object') {
                         var error = arguments[1].error || arguments[1];
                         if(error.headers) {
@@ -201,6 +206,20 @@
                         }
                         $log[type].apply( $log, [client.requestId, client.location, client.error] );
 
+
+                        // depending whether are on a proxied setup or without proxy the error we get for an unreachable
+                        // backend is very different.
+
+                        // local only node.js: down/unreachable or proxied setup: nginx down/unreachable
+                        // no answer at all from the backend
+                        client.backendNotReachableAtAll = error.status === 0 && (error.config && error.config.url);
+                        client.backendNotRunningBehindNginx = error.status === 502;
+                        client.backendNotRunning = client.backendNotReachableAtAll || client.backendNotRunningBehindNginx;
+
+                        // we identify whether this was caused by the backend by checking whether we have already a
+                        // request-id because the backend assigns each request a unique 'request-id'
+                        client.isCausedByBackendError = client.headers && client.headers['request-id'];
+
                     }
 
 
@@ -209,16 +228,16 @@
                     $log[type].apply( $log, arguments );
 
                     // post to backend if it is of type 'error' and it the error was not already caused by the backend
-                    // we identify whether this was caused by the backend by checking whether we have already a
-                    // request-id because the backend assigns each request a unique 'request-id'
-                    var isCausedByBackend = client.headers && client.headers['request-id'];
-                    if(_.contains(['error'], type) && !isCausedByBackend) {
+                    // and we don't have a backendNotRunning Error.
+                    if(_.contains(['error'], type) && !client.isCausedByBackendError && !client.backendNotRunning) {
                         var args = {
                             error: arguments,
                             client: client
                         };
                         _postToBackend(args);
                     }
+
+                    return client;
 
                 };
 

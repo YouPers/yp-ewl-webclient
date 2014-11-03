@@ -9,7 +9,9 @@
       "avatar": {
         "invalid": "Kein gültiges Avatar Bild",
         "error": "Ein Fehler ist aufgetreten"
-      }
+      },
+      "502": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals."
+
     }
   },
     "calendar": {
