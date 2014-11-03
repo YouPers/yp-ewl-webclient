@@ -20,7 +20,7 @@
 
 
                             jsInclude: ["util", function (util) {
-                                return util.loadJSInclude('lib/d3/d3.js');
+                                return util.loadJSInclude('lib/d3/d3.min.js');
                             }],
 
 
