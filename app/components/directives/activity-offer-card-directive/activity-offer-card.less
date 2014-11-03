@@ -4,7 +4,9 @@ activity-offer-card {
   .game-card();
 
   display: block;
-  position: relative;
+
+  // crashes IE10 see WL-1105
+//  position: relative;
 
   width: @yp-activity-event-card-width;
 
