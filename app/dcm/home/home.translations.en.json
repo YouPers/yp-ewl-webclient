@@ -28,7 +28,7 @@
         "placeholder": "Email subject"
       },
       "emailText": {
-        "defaultText": "This is the default text of the emails, it has not been defined ...",
+        "defaultText": "Dear employee \n\n {{ campaign.organization.name }} invites you, to join the health campaign {{ campaign.title }}.",
         "label": "Email body",
         "placeholder": "Email body"
       },
