@@ -20,7 +20,7 @@
 
                         if ($rootScope.principal.isAuthenticated() && $stateParams.campaignId) {
                             var params = {
-                                populate: 'author',
+                                populate: 'author idea activity',
                                 limit: 10
                             };
 

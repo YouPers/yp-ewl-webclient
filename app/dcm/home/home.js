@@ -94,7 +94,7 @@
                     if(campaign) {
                         $scope.$watch('homeController.showOld', function (showOld) {
                             var options = {
-                                populate: 'author',
+                                populate: 'author idea activity',
                                 targetId: campaign.id,
                                 authored: true,
                                 authorType: 'campaignLead'
