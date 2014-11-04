@@ -173,9 +173,6 @@
                         };
 
                         scope.saveMessage = function saveMessage(message) {
-
-
-
                             if (message.id) {
                                 SocialInteractionService.putSocialInteraction(message).then(function (saved) {
                                     saved.author = $rootScope.principal.getUser();

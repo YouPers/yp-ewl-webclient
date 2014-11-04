@@ -357,7 +357,7 @@
                         if (inviteAll || $scope.usersToBeInvited.length > 0) {
 
                             invitation.activity = $scope.activity.id;
-                            invitation.idea = $scope.activity.idea.id || $scope.activity.idea;
+                            invitation.idea = $scope.idea.id;
 
                             if ($scope.mode === 'campaignlead') {
 
