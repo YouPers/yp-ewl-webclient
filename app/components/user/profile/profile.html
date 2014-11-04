@@ -253,25 +253,6 @@
     </div>
 
 </accordion-group>
-<accordion-group heading="{{ 'profileForm.rejectedActivities.header' | translate }}">
-    <div class="col-md-8" ng-repeat="recIdea in profileUserObj.prefs.rejectedIdeas">
-
-        <div class="rejected-idea">
-
-            <span>
-                {{ideas.byId(recIdea.idea).title}}
-            </span>
-
-            <a ng-click="reactivateIdea(recIdea)"
-                    tooltip="{{ 'profileForm.reactivateIdea' | translate }}"
-                    >
-                <i class="fa fa-repeat"></i>
-            </a>
-
-
-        </div>
-    </div>
-</accordion-group>
 
 </accordion>
 </div>
