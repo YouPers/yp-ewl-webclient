@@ -61,11 +61,6 @@
 
                     publishFrom: $scope.minPublishDate,
                     publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate(),
-
-                    refDocs: [{
-                        docId: idea.id,
-                        model: 'Idea'
-                    }],
                     __t: "Recommendation"
 
                 };
