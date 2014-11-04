@@ -124,7 +124,7 @@
                     <tbody>
                     <tr ng-repeat="eventStatus in stats.activityEvents">
                         <td translate>{{ 'stats.event.' + eventStatus.status}}</td>
-                        <td>{{stats.count}}</td>
+                        <td>{{eventStatus.count}}</td>
                     </tr>
                     </tbody>
                 </table>

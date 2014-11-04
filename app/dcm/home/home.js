@@ -126,7 +126,9 @@
                             $scope.emailSubject = translatedText;
                         });
 
-                        $translate('dcmhome.emailInvite.emailText.defaultText').then(function (translatedText) {
+                        $translate('dcmhome.emailInvite.emailText.defaultText', {
+                            campaign: campaign
+                        }).then(function (translatedText) {
                             $scope.emailText = translatedText;
                         });
 
