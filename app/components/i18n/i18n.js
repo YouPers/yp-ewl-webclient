@@ -1,14 +1,15 @@
 'use strict';
 
-angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.user'])
-
-    .controller('i18nCtrl', ['$scope', '$translate', '$http', '$rootScope', 'ProfileService',
-        function ($scope, $translate, $http, $rootScope, ProfileService) {
+angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.user', 'tmh.dynamicLocale'])
+    .config(function(tmhDynamicLocaleProvider) {
+        tmhDynamicLocaleProvider.localeLocationPattern('lib/angular-i18n/angular-locale_{{locale}}.js');
+    })
+    .controller('i18nCtrl', ['$scope', '$translate', '$http', '$rootScope', 'ProfileService', 'tmhDynamicLocale',
+        function ($scope, $translate, $http, $rootScope, ProfileService, tmhDynamicLocale) {
 
             $scope.currentLang = $translate.use();
-
-
             $scope.changeLang = function (key) {
+                tmhDynamicLocale.set(key);
                 moment.locale(key);
                 $scope.currentLang = key;
                 $http.defaults.headers.common['yp-language'] = key;
@@ -33,4 +34,15 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
             });
 
         }
-    ]);
+    ])
+
+    .directive('datepicker', function () {
+        return {
+            restrict: 'EA',
+            link: function(scope) {
+                scope.$on('$localeChangeSuccess', function () {
+                    scope.$$childHead.move(0);
+                });
+            }
+        };
+    });

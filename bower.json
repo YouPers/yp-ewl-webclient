@@ -9,6 +9,7 @@
     "angular-sanitize": "~1.2.21",
     "angular-translate": "~2.3.x",
     "angular-translate-interpolation-messageformat": "~2.2.x",
+    "angular-dynamic-locale": "~0.1.21",
     "angular-cookie": "~4.0.x",
     "angular-translate-storage-cookie": "~2.3.x",
     "angular-translate-loader-partial": "~2.1.x",
