@@ -36,6 +36,9 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
         }
     ])
 
+    // somehow fixes the issue that datepicker does not dynamically change locale...
+    // see here: https://github.com/lgalfaso/angular-dynamic-locale/issues/40
+
     .directive('datepicker', function () {
         return {
             restrict: 'EA',
