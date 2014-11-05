@@ -7,30 +7,20 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dcmSignup', {
-                        templateUrl: "layout/dcm-default.html",
-                        access: accessLevels.all
-                    })
-                    .state('dcmSignup.content', {
                         url: "/dcm/signup",
                         access: accessLevels.all,
-                        views: {
-                            content: {
-                                templateUrl: 'dcm/signup/signup.html',
-                                controller: 'DcmSignupController as dcmSignupController'
-                            }
-                        },
-                        resolve: {
-
-                        }
+                        templateUrl: 'dcm/signup/signup.html',
+                        controller: 'DcmSignupController as dcmSignupController',
+                        resolve: {}
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/signup/signup');
             }])
 
-        .controller('DcmSignupController', [ '$scope', '$rootScope', '$timeout', '$state', 'UserService', 'OrganizationService',
+        .controller('DcmSignupController', ['$scope', '$rootScope', '$timeout', '$state', 'UserService', 'OrganizationService',
             function ($scope, $rootScope, $timeout, $state, UserService, OrganizationService) {
 
-
+                $scope.healthCoachEvent = 'stateEnter';
                 $scope.submit = function () {
 
                     var user = $scope.newUser;
@@ -38,7 +28,7 @@
 
                     UserService.submitNewUser(user).then(function (newUser) {
                         var keepMeLoggedIn = true;
-                        UserService.login(UserService.encodeCredentials(user.username, user.password), keepMeLoggedIn).then(function() {
+                        UserService.login(UserService.encodeCredentials(user.username, user.password), keepMeLoggedIn).then(function () {
 
                             OrganizationService.postOrganization({
                                 name: user.organizationName

@@ -33,6 +33,8 @@
         "stateEnter": "Mit dem Publizierungs-von/-bis-Datum definierst du, wann deine Mitarbeiter diese Empfehlungskarte unter \"Angebotene Aktivitäten\" sehen werden."
       }
     },
+    "dcmSignup": {"stateEnter": "Herzlich Willkommen!<br>Ich bin dein YOUPERS Coach und freue mich, dass du dich für den HealthCampaign Service interessiersts.\n\nBitte registriere dich und deinen Betrieb auf dieser Seite. Nach der Registration kannst du mit der Erstellung deiner ersten Kampagne starten.\n\nIch werde dich bei der Erstellung und Verwaltung deiner Kampagnen mit Tipps und Hinweisen unterstützen."
+    },
     "dhc": {
       "activity": {
         "selfActivitySaved": "Deine Aktivität ist jetzt eingeplant.\n\nIch habe die Aktivität bei dir auf der Hauptseite von \"Angebotene Aktivitäten\" zu \"Eingeplante Aktivitäten\" verschoben.",
