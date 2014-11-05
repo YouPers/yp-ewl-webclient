@@ -9,7 +9,10 @@
       "avatar": {
         "invalid": null,
         "error": "Si è verificato un errore"
-      }
+      },
+      "502": null,
+      "503": null,
+      "504": null
     }
   },
   "calendar": {

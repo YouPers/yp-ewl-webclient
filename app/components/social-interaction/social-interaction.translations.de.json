@@ -1,17 +1,13 @@
 {
   "socialInteraction": {
-
-      "mainHeader": "inbox",
-
+    "mainHeader": "inbox",
     "important": "Wichtig",
-
     "publishFrom": "Publiziert ab: ",
     "publishTo": "Publiziert bis: ",
-
     "header": {
       "Invitation": {
-              "user": "Persönliche Einladung",
-              "campaignLead": "Kampagneneinladung"
+        "user": "Persönliche Einladung",
+        "campaignLead": "Kampagneneinladung"
       },
       "Recommendation": {
         "user": "persönliche Empfehlung",

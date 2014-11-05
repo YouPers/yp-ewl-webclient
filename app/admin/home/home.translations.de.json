@@ -1,15 +1,9 @@
 {
-    "clientmsg": {
-
-    },
-
-
-    "admin": {
-        "home": {
-            "stateHeader1": "product",
-            "stateHeader2": "configuration",
-            "activities": "Aktivitäten"
-        }
+  "admin": {
+    "home": {
+      "stateHeader1": "product",
+      "stateHeader2": "configuration",
+      "activities": "Aktivitäten"
     }
-
+  }
 }

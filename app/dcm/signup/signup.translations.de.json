@@ -1,13 +1,5 @@
 {
-  "clientmsg": {
-    "success": {
-
-    }
-
-  },
   "dcmSignup": {
-
-      "welcome": "Willkommen bei YouPers!"
-
+    "welcome": "Willkommen bei YOUPERS!"
   }
 }

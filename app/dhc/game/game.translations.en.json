@@ -1,21 +1,19 @@
 {
   "game": {
-    "stateHeader1": "your",
-    "stateHeader2": "Activity",
     "showMore": "More",
     "activities": {
       "current": "Running Activities",
+      "donePreview": "Completed act.",
       "done": "Results",
       "offered": "Offered activities",
-      "rejected": "Dismissed",
-      "donePreview": "Completed act.",
-      "rejectedPreview": "Dismissed act."
+      "rejectedPreview": "Dismissed act.",
+      "rejected": "Dismissed"
     },
     "invitations": "1NV1735",
     "recommendations": "Recommendations",
     "noActivities": "Once you have scheduled an offered activity, the relevant activity dates are displayed here.",
+    "noOffers": "Activity recommendations and invitations from the campaign manager, from the YOUPERS coach, and from your co-workers are displayed here.",
     "noClosedEvents": "Once you have reported a scheduled activity event as carried out or missed, the corresponding appointment is displayed as completed activity here.",
-    "noDismissedOffers": "If you dismiss an offered activity, it will be displayed here.",
-    "noOffers": "Activity recommendations and invitations from the campaign manager, from the YOUPERS coach, and from your co-workers are displayed here."
+    "noDismissedOffers": "If you dismiss an offered activity, it will be displayed here."
   }
 }

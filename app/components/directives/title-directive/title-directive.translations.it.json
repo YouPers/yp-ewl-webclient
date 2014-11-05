@@ -4,20 +4,20 @@
     "signin": {
       "content": null
     },
+    "account": null,
+    "profile": null,
     "dcm": {
       "home": null,
       "activity": null,
-      "campaign": null,
       "ideas": null,
       "recommendation": null,
-      "topics": null
+      "topics": null,
+      "campaign": null
     },
-    "account": null,
     "dhc": {
+      "game": null,
       "activity": null,
-      "check": null,
-      "game": null
-    },
-    "profile": null
+      "check": null
+    }
   }
 }

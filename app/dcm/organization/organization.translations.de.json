@@ -12,7 +12,7 @@
     }
   },
   "organizationForm": {
-    "header": "Organisation",
+    "header": "Neue Organisation",
     "name": {
       "label": "Name",
       "placeholder": "Name der Organisation",
@@ -32,8 +32,8 @@
         "label": "PLZ",
         "placeholder": "PLZ",
         "error": {
-            "pattern": "Bitte eine gültige Postleitzahl eingeben",
-          "required": "Bitte eine gültige Postleitzahl eingeben"
+          "required": "Bitte eine gültige Postleitzahl eingeben",
+          "pattern": "Bitte eine gültige Postleitzahl eingeben"
         }
       },
       "city": {
@@ -60,7 +60,6 @@
     },
     "contact": {
       "header": "Kontakt",
-
       "position": {
         "label": "Funktion",
         "placeholder": "Funktion / Organisationseinheit",
@@ -83,35 +82,35 @@
         }
       }
     },
-      "user": {
-          "firstname": {
-              "label": "Vorname",
-              "placeholder": "Vorname",
-              "error": {
-                  "required": "Bitte einen gültigen Vornamen eingeben"
-              }
-          },
-          "lastname": {
-              "placeholder": "Nachname",
-              "error": {
-                  "required": "Bitte einen gültigen Nachnamen eingeben"
-              },
-              "label": "Nachname"
-          },
-          "email": {
-              "label": "Email",
-              "placeholder": "Email Adresse",
-              "error": {
-                  "required": "Bitte eine gültige Email-Adresse eingeben"
-              }
-          }
-      },
     "save": "Speichern",
     "create": "Erstellen",
-      "missingOrganizationFieldsWarning": {
-          "header": "Achtung:",
-          "text": "Du hast die folgenden Informationen deiner Organisation noch nicht ausgefüllt:"
+    "missingOrganizationFieldsWarning": {
+      "header": "Achtung:",
+      "text": "Du hast die folgenden Informationen deiner Organisation noch nicht ausgefüllt:"
+    },
+    "user": {
+      "email": {
+        "error": {
+          "required": "Bitte eine gültige Email-Adresse eingeben"
+        },
+        "label": "Email",
+        "placeholder": "Email Adresse"
+      },
+      "firstname": {
+        "error": {
+          "required": "Bitte einen gültigen Vornamen eingeben"
+        },
+        "label": "Name",
+        "placeholder": "Vorname"
+      },
+      "lastname": {
+        "error": {
+          "required": "Bitte einen gültigen Nachnamen eingeben"
+        },
+        "label": "Nachname",
+        "placeholder": "Nachname"
       }
+    }
   },
   "organization": {
     "stateHeader1": "deine",

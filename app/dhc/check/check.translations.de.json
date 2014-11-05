@@ -1,45 +1,37 @@
 {
   "check": {
-
-      "link": {
-          "done": "Abschliessen",
-          "back": "Hauptseite"
-      },
-
-      "header": "Selbstbeurteilung",
-      "of": "von",
-
+    "link": {
+      "done": "Abschliessen",
+      "back": "Hauptseite"
+    },
+    "header": "Selbstbeurteilung",
+    "of": "von",
     "questionsAnswered": "Kriterien beurteilt"
   },
   "questionCategory": {
-
     "work": "Stress am Arbeitsplatz",
     "leisure": "Stress in der Freizeit",
     "stresstypus": "Stressverstärker",
     "handling": "Stressausgleich",
     "lunch": "Ernährung am Mittag",
-
-      "qualityAndQuantity": "Qualität und Quantität",
-      "time": "Zeitpunkte für Gesunde Ernährung",
-      "badHabbits": "Schlechte Angewohnheiten",
-      "attitudeAndAdaptability": "Persönliche Einstellung und Anpassungsfähigkeit",
-
-      "exercise": "Bewegung",
-      "musculature": "Muskulatur",
-      "stamina": "Kondition",
-      "agility": "Beweglichkeit",
-      "attitude": "Persönliche Einstellung",
-
-      "workEquipment": "Arbeitsmittel",
-      "seating": "Tisch und Stuhl",
-      "officeEquipment": "Büroeinrichtung",
-      "transportation": "Transport",
-
-      "risks": "Gefahren und Risiken erkennen",
-      "workEnvironment": "Arbeits- und Bewegungsraum",
-      "extendedEnvironment": "Türen, Treppen, Böden",
-      "equipment": "Einrichtung und Ausrüstung",
-      "safetyRelatedWorkBehavior": "Sicherheitsgerechtes Arbeitsverhalten",
-      "safetyRelatedFreetimeBehavior": "Sicherheitsgerechtes Freizeitverhalten"
+    "qualityAndQuantity": "Qualität und Quantität",
+    "time": "Zeitpunkte für Gesunde Ernährung",
+    "badHabbits": "Schlechte Angewohnheiten",
+    "attitudeAndAdaptability": "Persönliche Einstellung und Anpassungsfähigkeit",
+    "exercise": "Bewegung",
+    "musculature": "Muskulatur",
+    "stamina": "Kondition",
+    "agility": "Beweglichkeit",
+    "attitude": "Persönliche Einstellung",
+    "equipment": "Einrichtung und Ausrüstung",
+    "extendedEnvironment": "Türen, Treppen, Böden",
+    "officeEquipment": "Büroeinrichtung",
+    "risks": "Gefahren und Risiken erkennen",
+    "safetyRelatedFreetimeBehavior": "Sicherheitsgerechtes Freizeitverhalten",
+    "safetyRelatedWorkBehavior": "Sicherheitsgerechtes Arbeitsverhalten",
+    "seating": "Tisch und Stuhl",
+    "transportation": "Transport",
+    "workEnvironment": "Arbeits- und Bewegungsraum",
+    "workEquipment": "Arbeitsmittel"
   }
 }

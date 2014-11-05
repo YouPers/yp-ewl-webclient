@@ -2,10 +2,22 @@
   "pageTitle": {
     "default": "YouPers HealthCampaign {{ campaign.topic.name }}",
     "signin": {
+      "content": null
     },
+    "account": null,
+    "profile": null,
     "dcm": {
+      "home": null,
+      "activity": null,
+      "ideas": null,
+      "recommendation": null,
+      "topics": null,
+      "campaign": null
     },
     "dhc": {
+      "game": null,
+      "activity": null,
+      "check": null
     }
   }
 }

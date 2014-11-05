@@ -4,9 +4,9 @@
       "done": "Finish",
       "back": "back"
     },
-    "questionsAnswered": "criteria rated",
     "header": "Self-Check",
-    "of": "of"
+    "of": "of",
+    "questionsAnswered": "criteria rated"
   },
   "questionCategory": {
     "work": "Stress at Work",
@@ -22,6 +22,16 @@
     "musculature": "Musculature",
     "stamina": "Endurance",
     "agility": "Mobility",
-    "attitude": "Personal attitude"
+    "attitude": "Personal attitude",
+    "equipment": null,
+    "extendedEnvironment": null,
+    "officeEquipment": null,
+    "risks": null,
+    "safetyRelatedFreetimeBehavior": null,
+    "safetyRelatedWorkBehavior": null,
+    "seating": null,
+    "transportation": null,
+    "workEnvironment": null,
+    "workEquipment": null
   }
 }

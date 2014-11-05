@@ -1,172 +1,147 @@
 {
-    "clientmsg": {
-        "success": {
-            "activity": {
-                "joined": "Einladung angenommen",
-                "deleted": "Aktivität gelöscht",
-                "Save": "Aktivität gespeichert",
-                "SaveAndInvite": "Termine gespeichert und Einladungen verschickt"
-            }
-        }
-    },
-
+  "clientmsg": {
+    "success": {
+      "activity": {
+        "joined": "Einladung angenommen",
+        "deleted": "Aktivität gelöscht",
+        "Save": "Aktivität gespeichert",
+        "SaveAndInvite": "Termine gespeichert und Einladungen verschickt"
+      }
+    }
+  },
   "activity": {
-
-      "header": {
-          "first": {
-              "campaignlead": "Kampagnen Aktivität",
-              "owned": "Deine Aktivität",
-              "joined": "Teilnehmer dieser Aktivität",
-              "recommendation": "Empfehlung",
-              "invitation": "Einladung",
-              "schedule": "Selber einplanen"
-          },
-          "second": "Plan",
-          "third": "Termine",
-
-          "invitedUsers": "Teilnehmer",
-          "inviteOthers": "Andere einladen",
-          "comments": "Kommentare",
-          "publish": "Einladung publizieren"
+    "header": {
+      "first": {
+        "campaignlead": "Kampagnen Aktivität",
+        "owned": "Deine Aktivität",
+        "joined": "Teilnehmer dieser Aktivität",
+        "recommendation": "Empfehlung",
+        "invitation": "Einladung",
+        "schedule": "Selber einplanen"
       },
-
-      "inviteOthers": {
-          "selected": "ausgewählte",
-          "all": "alle",
-          "inviteByEmail": "Jemanden per Email einladen",
-          "inviteByUser": "In der Kampagne suchen"
-      },
-
-      "emailToBeInvited": {
-          "placeholder": "Email",
-          "submit": "Hinzufügen"
-      },
-
-      "invitationStatus": {
-          "activityJoined": "angenommen",
-          "denied": "abgelehnt",
-          "pending": "?",
-          "organizer": "Organisator"
-      },
-
-      "link": {
-          "campaignlead": "Einplanen",
-          "owned": "Bearbeiten",
-          "recommendation": "Einplanen",
-          "invitation": "Annehmen",
-          "dismiss": "Verwerfen",
-          "back": "Hauptseite",
-          "undo": "Rückgängig",
-
-          "edit": "Ändern",
-          "delete": "Löschen"
-      },
-      "submit": {
-
-          "save": "Speichern",
-          "delete": "Löschen",
-
-          "invitationSave": "Annehmen",
-
-          "recommendationSave": "Einplanen",
-          "ownedSave": "Einplanen",
-          "joinedSave": "Einplanen",
-          "scheduleSave": "Einplanen",
-
-          "campaignleadSave": "Publizieren",
-          "campaignleadSaveAndInvite": "Publizieren",
-
-          "ownedSaveAndInvite": "Einplanen und Abschicken",
-          "recommendationSaveAndInvite": "Einplanen und Abschicken",
-          "scheduleSaveAndInvite": "Einplanen und Abschicken"
-      },
-
-      "owner": "Organisator",
-      "isJoining": "Teilnehmer",
-      "isInvited": "Eingeladen",
-
-      "reschedule": "Erneut einplanen",
-
-      "event": {
-          "status": "Gemacht?",
-          "rating": "Wie war's?"
-      },
-
+      "second": "Plan",
+      "third": "Termine",
+      "invitedUsers": "Teilnehmer",
+      "inviteOthers": "Andere einladen",
+      "comments": "Kommentare",
+      "publish": "Einladung publizieren"
+    },
+    "inviteOthers": {
+      "selected": "ausgewählte",
+      "all": "alle",
+      "inviteByEmail": "Jemanden per Email einladen",
+      "inviteByUser": "In der Kampagne suchen"
+    },
+    "emailToBeInvited": {
+      "placeholder": "Email",
+      "submit": "Hinzufügen"
+    },
+    "invitationStatus": {
+      "activityJoined": "angenommen",
+      "denied": "abgelehnt",
+      "pending": "?",
+      "organizer": "Organisator"
+    },
+    "link": {
+      "campaignlead": "Einplanen",
+      "owned": "Bearbeiten",
+      "recommendation": "Einplanen",
+      "invitation": "Annehmen",
+      "dismiss": "Verwerfen",
+      "back": "Hauptseite",
+      "undo": "Rückgängig",
+      "edit": "Ändern",
+      "delete": "Löschen"
+    },
+    "submit": {
+      "save": "Speichern",
+      "delete": "Löschen",
+      "invitationSave": "Annehmen",
+      "recommendationSave": "Einplanen",
+      "ownedSave": "Einplanen",
+      "joinedSave": "Einplanen",
+      "scheduleSave": "Einplanen",
+      "campaignleadSave": "Publizieren",
+      "campaignleadSaveAndInvite": "Publizieren",
+      "ownedSaveAndInvite": "Einplanen und Abschicken",
+      "recommendationSaveAndInvite": "Einplanen und Abschicken",
+      "scheduleSaveAndInvite": "Einplanen und Abschicken"
+    },
+    "owner": "Organisator",
+    "isJoining": "Teilnehmer",
+    "isInvited": "Eingeladen",
+    "reschedule": "Erneut einplanen",
+    "event": {
+      "status": "Gemacht?",
+      "rating": "Wie war's?"
+    },
     "list": {
-        "stateHeader1": "alle",
-        "stateHeader2": "aktivitäten",
-
-        "editTooltip": "Aktivität bearbeiten",
-        "newTooltip": "Neue Aktivität einplanen",
-
-        "statusFilter": {
-            "all": "Alle Aktivitäten",
-            "invited": "Einladungen",
-            "owned": "Von mir organisierte Aktivitäten",
-            "joined": "Aktivitäten an denen ich teilnehme"
-        },
-
-        "item": {
-            "title": "Was",
-            "text": "Beschreibung",
-            "date": "Wann",
-            "location": "Wo"
-        }
+      "stateHeader1": "alle",
+      "stateHeader2": "Aktivitäten",
+      "editTooltip": "Aktivität bearbeiten",
+      "newTooltip": "Neue Aktivität einplanen",
+      "statusFilter": {
+        "all": "Alle Aktivitäten",
+        "invited": "Einladungen",
+        "owned": "Von mir organisierte Aktivitäten",
+        "joined": "Aktivitäten an denen ich teilnehme"
+      },
+      "item": {
+        "title": "Was",
+        "text": "Beschreibung",
+        "date": "Wann",
+        "location": "Wo"
+      }
     },
     "view": {
-        "stateHeader1": "(d)eine",
-        "stateHeader2": "aktivität",
-
-        "title": "Titel",
-        "text": "Beschreibung",
-        "location": "Ort",
-        "date": "Datum",
-        "time": "Zeit",
-        "frequency": "Häufigkeit",
-        "recurrence": "Anzahl",
-
-        "socialInteraction": {
-            "title": "Nachricht"
-        },
-
-        "comment": {
-            "placeholder": "Kommentar schreiben"
-        }
+      "stateHeader1": "(d)eine",
+      "stateHeader2": "Aktivität",
+      "title": "Titel",
+      "text": "Beschreibung",
+      "location": "Ort",
+      "date": "Datum",
+      "time": "Zeit",
+      "frequency": "Häufigkeit",
+      "recurrence": "Anzahl",
+      "socialInteraction": {
+        "title": "Nachricht"
+      },
+      "comment": {
+        "placeholder": "Kommentar schreiben"
+      }
     },
     "edit": {
-        "stateHeader1": "deine",
-        "stateHeader2": "aktivität"
+      "stateHeader1": "deine",
+      "stateHeader2": "Aktivität"
+    },
+    "publishFrom": {
+      "label": "Von"
+    },
+    "publishTo": {
+      "label": "Bis"
     }
-      ,
-      "publishFrom": {
-          "label": "Von"
-      },
-      "publishTo": {
-          "label": "Bis"
-      }
   },
-    "activityForm": {
-        "title": {
-            "label": "Titel",
-            "placeholder": "Titel"
-        },
-        "location": {
-            "label": "Ort",
-            "placeholder": "Ort"
-        },
-        "date": {
-            "label": "Datum"
-        },
-        "time": {
-            "label": "Zeit"
-        },
-        "recurrence": {
-            "label": "Anzahl der Wiederholungen"
-        },
-
-        "create": "Erstellen",
-        "save": "Speichern",
-        "delete": "Löschen",
-        "cancel": "Abbrechen"
-    }
+  "activityForm": {
+    "title": {
+      "label": "Titel",
+      "placeholder": "Titel"
+    },
+    "location": {
+      "label": "Ort",
+      "placeholder": "Ort"
+    },
+    "date": {
+      "label": "Datum"
+    },
+    "time": {
+      "label": "Zeit"
+    },
+    "recurrence": {
+      "label": "Anzahl der Wiederholungen"
+    },
+    "create": "Erstellen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "cancel": "Abbrechen"
+  }
 }

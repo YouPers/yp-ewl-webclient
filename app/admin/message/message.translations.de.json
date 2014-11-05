@@ -1,52 +1,42 @@
 {
-    "clientmsg": {
-
-    },
-
-    "admin": {
-
-        "message": {
-            "stateHeader1": "system",
-            "stateHeader2": "mitteilungen",
-
-            "publishFrom": "Publiziert ab: ",
-            "publishTo": "Publiziert bis: ",
-            "important": "Wichtig"
-        }
-    },
-
-    "adminMessageForm": {
-
-        "title": {
-            "label": "Titel",
-            "placeholder": "Titel",
-            "error": {
-                "required": "Bitte den Title eingeben"
-            }
-        },
-        "text": {
-            "label": "Text",
-            "placeholder": "Text"
-        },
-
-        "important": {
-            "label": "Wichtig"
-        },
-        "campaign": {
-            "label": "Kampagne",
-            "none": " - keine -"
-        },
-        "language": {
-            "label": "Sprache",
-            "none": " - keine -"
-        },
-        "publishFrom": {
-            "label": "Publiziert von"
-        },
-        "publishTo": {
-            "label": "Publiziert bis"
-        },
-
-        "submit": "Senden"
+  "admin": {
+    "message": {
+      "stateHeader1": "system",
+      "stateHeader2": "mitteilungen",
+      "publishFrom": "Publiziert ab: ",
+      "publishTo": "Publiziert bis: ",
+      "important": "Wichtig"
     }
+  },
+  "adminMessageForm": {
+    "title": {
+      "label": "Titel",
+      "placeholder": "Titel",
+      "error": {
+        "required": "Bitte den Title eingeben"
+      }
+    },
+    "text": {
+      "label": "Text",
+      "placeholder": "Text"
+    },
+    "important": {
+      "label": "Wichtig"
+    },
+    "campaign": {
+      "label": "Kampagne",
+      "none": " - keine -"
+    },
+    "language": {
+      "label": "Sprache",
+      "none": " - keine -"
+    },
+    "publishFrom": {
+      "label": "Publiziert von"
+    },
+    "publishTo": {
+      "label": "Publiziert bis"
+    },
+    "submit": "Senden"
+  }
 }

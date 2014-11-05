@@ -4,8 +4,9 @@
       "done": null,
       "back": "Prec"
     },
-    "questionsAnswered": null,
-    "header": null
+    "header": null,
+    "of": null,
+    "questionsAnswered": null
   },
   "questionCategory": {
     "work": null,
@@ -21,6 +22,16 @@
     "musculature": null,
     "stamina": null,
     "agility": null,
-    "attitude": null
+    "attitude": null,
+    "equipment": null,
+    "extendedEnvironment": null,
+    "officeEquipment": null,
+    "risks": null,
+    "safetyRelatedFreetimeBehavior": null,
+    "safetyRelatedWorkBehavior": null,
+    "seating": null,
+    "transportation": null,
+    "workEnvironment": null,
+    "workEquipment": null
   }
 }

@@ -55,7 +55,7 @@
         "unique": "This email address is already registered, please login"
       }
     },
-    "save": "save",
+    "save": "Save",
     "reset": "Reset"
   },
   "passwordForm": {

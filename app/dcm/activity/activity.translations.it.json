@@ -7,7 +7,8 @@
     },
     "image": {
       "label": "Immagine dell'attività",
-      "select": "Seleziona"
+      "select": "Seleziona",
+      "required": null
     },
     "description": {
       "label": "Breve descrizione",

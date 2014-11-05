@@ -52,13 +52,6 @@
         "unique": "Die Passwörter stimmen nicht überein"
       }
     },
-    "organizationName": {
-      "label": "Firmenname",
-      "placeholder": "Firmenname",
-      "error": {
-        "required": "Bitte gib den Firmennamen ein"
-      }
-    },
     "termsAccepted": {
       "label1": "Ich habe die ",
       "label2": "Allgemeinen Geschäftsbedingungen",
@@ -67,6 +60,13 @@
         "required": "Bitte akzeptiere die Geschäftsbedingungen"
       }
     },
-    "register": "registrieren"
+    "register": "registrieren",
+    "organizationName": {
+      "error": {
+        "required": "Bitte gib den Firmennamen ein"
+      },
+      "label": "Firmenname",
+      "placeholder": "Firmenname"
+    }
   }
 }

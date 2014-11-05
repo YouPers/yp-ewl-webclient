@@ -39,7 +39,8 @@
     "invitationStatus": {
       "activityJoined": "Relevé",
       "denied": "Refusé",
-      "pending": null
+      "pending": null,
+      "organizer": null
     },
     "link": {
       "campaignlead": "Prévoir",
