@@ -14,9 +14,9 @@
       "question": "Dein Ziel für diese Kampagne lautet:",
       "placeholder": "Optional kannst du hier ein Ziel oder einen Slogan als persönlichen Vorsatz erfassen."
     },
+    "toSelect": "zu deinen Empfehlungen",
     "link": {
-        "back": "Hauptseite"
-    },
-    "toSelect": "zu deinen Empfehlungen"
+      "back": "Hauptseite"
+    }
   }
 }

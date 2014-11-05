@@ -39,7 +39,8 @@
     "invitationStatus": {
       "activityJoined": "Accettate",
       "denied": "Negato",
-      "pending": null
+      "pending": null,
+      "organizer": null
     },
     "link": {
       "campaignlead": "Programma",

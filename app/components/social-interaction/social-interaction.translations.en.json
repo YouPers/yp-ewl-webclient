@@ -1,5 +1,6 @@
 {
   "socialInteraction": {
+    "mainHeader": "inbox",
     "important": "important",
     "publishFrom": "Published from: ",
     "publishTo": "Published to: ",
@@ -18,11 +19,11 @@
         "campaignLead": "Campaign message from",
         "coach": "Health Coach"
       }
-    },
-    "mainHeader": "inbox"
+    }
   },
   "composeMessageForm": {
     "show": "Message for the campaign",
+    "cancel": "Stop",
     "title": {
       "label": "Tab",
       "placeholder": "Tab"
@@ -39,7 +40,6 @@
       "label": "…",
       "placeholder": "…"
     },
-    "submit": "Save",
-    "cancel": "Stop"
+    "submit": "Save"
   }
 }

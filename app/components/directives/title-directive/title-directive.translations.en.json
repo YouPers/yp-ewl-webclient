@@ -4,20 +4,20 @@
     "signin": {
       "content": "Sign In - YOUPERS HealthCampaign"
     },
+    "account": "Account",
+    "profile": "Profile",
     "dcm": {
       "home": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
       "activity": "{{ activity.title }}",
-      "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} edit",
       "ideas": "Ideas for {{ campaign.title }}",
       "recommendation": "{{idea.title}}",
-      "topics": "Choose Program"
+      "topics": "Choose Program",
+      "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} edit"
     },
-    "account": "Account",
     "dhc": {
+      "game": "Home",
       "activity": "{{activity.title}}",
-      "check": "Self-assessment",
-      "game": "Home"
-    },
-    "profile": "Profile"
+      "check": "Self-assessment"
+    }
   }
 }

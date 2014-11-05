@@ -28,7 +28,7 @@
         "placeholder": "Email-Betreff"
       },
       "emailText": {
-        "defaultText": "Liebe Mitarbeiterin, lieber Mitarbeiter\n\n{{ campaign.organization.name }} lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema {{ campaign.title }} teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS AG durch.",
+        "defaultText": "Das hier ist der Default-Text des Emails, er ist noch nicht definiert worden...",
         "label": "Email-Text",
         "placeholder": "Email-Text"
       },
@@ -37,13 +37,13 @@
       "label": "Email-Adressen der einzuladenden Mitarbeiter",
       "next": "weiter",
       "placeholder": "Adressen mittels Komma, Semikolon oder Leerschlag trennen",
+      "send": "absenden",
       "sendTestButton": "Test",
       "sendYourselfTest": "Sende dir selbst eine Test-Einladung:",
       "submit": "Einladen",
       "success": "Einladungen erfolgreich versendet",
       "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Mail-Eingang.",
-      "title": "Automatische Kampagnen-Einladungsmails",
-      "send": "absenden"
+      "title": "Automatische Kampagnen-Einladungsmails"
     },
     "messages": "Nachrichten",
     "noCampaigns": "Du hast noch keine Kampagnen erstellt",

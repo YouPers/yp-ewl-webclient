@@ -1,5 +1,6 @@
 {
   "socialInteraction": {
+    "mainHeader": null,
     "important": "importante",
     "publishFrom": null,
     "publishTo": null,
@@ -18,11 +19,11 @@
         "campaignLead": null,
         "coach": null
       }
-    },
-    "mainHeader": null
+    }
   },
   "composeMessageForm": {
     "show": null,
+    "cancel": "Stop",
     "title": {
       "label": "Tracce",
       "placeholder": "Tracce"
@@ -39,7 +40,6 @@
       "label": "…",
       "placeholder": "…"
     },
-    "submit": "salva",
-    "cancel": "Stop"
+    "submit": "salva"
   }
 }

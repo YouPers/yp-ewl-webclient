@@ -1,21 +1,19 @@
 {
   "game": {
-    "stateHeader1": "Ta",
-    "stateHeader2": "Activité",
     "showMore": "Plus",
     "activities": {
       "current": "ich weiss nicht",
+      "donePreview": null,
       "done": "Résultats",
       "offered": null,
-      "rejected": null,
-      "donePreview": null,
-      "rejectedPreview": null
+      "rejectedPreview": null,
+      "rejected": null
     },
     "invitations": "Invitations",
     "recommendations": "Recommandations",
     "noActivities": null,
+    "noOffers": null,
     "noClosedEvents": null,
-    "noDismissedOffers": null,
-    "noOffers": null
+    "noDismissedOffers": null
   }
 }

@@ -15,11 +15,11 @@
       "504": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals."
     }
   },
-    "calendar": {
-        "tomorrow": "morgen",
-        "today": "heute",
-        "yesterday": "gestern"
-    },
+  "calendar": {
+    "tomorrow": "morgen",
+    "today": "heute",
+    "yesterday": "gestern"
+  },
   "executiontype": {
     "self": "Selber",
     "group": "Gruppe"
@@ -66,11 +66,11 @@
     "question": "Frage",
     "support": "Hilfe"
   },
-    "composeCommentForm": {
-        "comment": {
-            "paceholder": "Einen Kommentar schreiben"
-        }
-    },
+  "composeCommentForm": {
+    "comment": {
+      "paceholder": "Einen Kommentar schreiben"
+    }
+  },
   "feedbackForm": {
     "anonymous": {
       "label": "Anonymes Feedback"

@@ -4,8 +4,8 @@
     "signin": {
       "content": "Anmeldung - YOUPERS HealthCampaign"
     },
-      "account": "Benutzerkonto",
-      "profile": "Benutzerprofil",
+    "account": "Benutzerkonto",
+    "profile": "Benutzerprofil",
     "dcm": {
       "home": "{{ campaign.topic.name | uppercase }} - Home",
       "activity": "{{ activity.title }}",
@@ -18,7 +18,6 @@
       "game": "Hauptseite",
       "activity": "{{ activity.title }}",
       "check": "Selbstbeurteilung"
-
     }
   }
 }

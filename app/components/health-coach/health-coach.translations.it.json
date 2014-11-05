@@ -2,9 +2,9 @@
   "healthCoach": {
     "dcm": {
       "activity": {
-        "activitySaved": null,
-        "deleteActivity": null,
-        "editActivity": null,
+        "groupActivitySaved": null,
+        "deleteOwnActivity": null,
+        "editOwnActivity": null,
         "stateEnter": null
       },
       "campaign": {
@@ -35,7 +35,8 @@
     },
     "dhc": {
       "activity": {
-        "activitySaved": null,
+        "selfActivitySaved": null,
+        "groupActivitySaved": null,
         "conflictingEvent": null,
         "deleteJoinedActivity": null,
         "deleteOwnActivity": null,
@@ -64,6 +65,7 @@
         "campaignEndingWithCurrentActivities": null,
         "noCurrentActivities": null,
         "noDoneEvents": null,
+        "noOffers": null,
         "noPastOrPresentEventsAndEnoughActivities": null,
         "noPastOrPresentEventsAndTooFewActivities": null,
         "pastEvents": null,

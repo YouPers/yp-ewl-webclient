@@ -9,7 +9,10 @@
       "avatar": {
         "invalid": "Not a valid avatar image",
         "error": "An error occurred"
-      }
+      },
+      "502": null,
+      "503": null,
+      "504": null
     }
   },
   "calendar": {

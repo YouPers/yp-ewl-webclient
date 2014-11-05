@@ -4,8 +4,9 @@
       "done": null,
       "back": "dos"
     },
-    "questionsAnswered": "juger des critères",
-    "header": "l'auto-évaluation"
+    "header": "l'auto-évaluation",
+    "of": null,
+    "questionsAnswered": "juger des critères"
   },
   "questionCategory": {
     "work": "Le stress sur le lieu de travail",
@@ -21,6 +22,16 @@
     "musculature": null,
     "stamina": null,
     "agility": null,
-    "attitude": null
+    "attitude": null,
+    "equipment": null,
+    "extendedEnvironment": null,
+    "officeEquipment": null,
+    "risks": null,
+    "safetyRelatedFreetimeBehavior": null,
+    "safetyRelatedWorkBehavior": null,
+    "seating": null,
+    "transportation": null,
+    "workEnvironment": null,
+    "workEquipment": null
   }
 }

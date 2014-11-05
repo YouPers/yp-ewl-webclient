@@ -19,11 +19,11 @@
     "status": "Status der Ausführung",
     "stateHeader1": "kampagnen",
     "stateHeader2": "Statistiken",
-      "event": {
-          "missed": "Nicht ausgeführt",
-          "future": "Zukünftige Ausführungen",
-          "done": "Erledigte Ausführungen",
-          "open": "Noch ohne Rückmeldung"
-      }
+    "event": {
+      "missed": "Nicht ausgeführt",
+      "future": "Zukünftige Ausführungen",
+      "done": "Erledigte Ausführungen",
+      "open": "Noch ohne Rückmeldung"
+    }
   }
 }

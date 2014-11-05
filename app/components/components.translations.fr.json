@@ -9,7 +9,10 @@
       "avatar": {
         "invalid": "Cette image d'Avatar n'est pas valable.",
         "error": "Il y a eu un problème."
-      }
+      },
+      "502": null,
+      "503": null,
+      "504": null
     }
   },
   "calendar": {

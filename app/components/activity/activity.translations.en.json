@@ -39,7 +39,8 @@
     "invitationStatus": {
       "activityJoined": "Assumed",
       "denied": "Denied",
-      "pending": "?"
+      "pending": "?",
+      "organizer": null
     },
     "link": {
       "campaignlead": "Schedule it",
@@ -53,7 +54,7 @@
       "delete": "Delete"
     },
     "submit": {
-      "save": "save",
+      "save": "Save",
       "delete": "Delete",
       "invitationSave": "Accept",
       "recommendationSave": "Schedule it",
@@ -139,7 +140,7 @@
       "label": "repeat count"
     },
     "create": "Forge",
-    "save": "save",
+    "save": "Save",
     "delete": "Delete",
     "cancel": "Stop"
   }

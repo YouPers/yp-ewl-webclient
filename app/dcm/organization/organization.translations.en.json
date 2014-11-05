@@ -82,8 +82,8 @@
         }
       }
     },
-    "save": "save",
-    "create": "create",
+    "save": "Save",
+    "create": "Create",
     "missingOrganizationFieldsWarning": {
       "header": "WARNING: ",
       "text": "You have not filled out the following information of your organization:"

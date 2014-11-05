@@ -1,11 +1,11 @@
 {
   "activityOfferCard": {
-      "authorPrefix": {
-          "Recommendation": "empfohlen durch",
-          "Invitation": "Einladung von"
-      },
-      "published": "publiziert:",
-      "from": "ab",
-      "to": "bis"
+    "authorPrefix": {
+      "Recommendation": "empfohlen durch",
+      "Invitation": "Einladung von"
+    },
+    "published": "publiziert:",
+    "from": "ab",
+    "to": "bis"
   }
 }
