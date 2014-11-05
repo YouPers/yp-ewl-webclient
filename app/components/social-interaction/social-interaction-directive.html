@@ -31,7 +31,7 @@
 
         <div class="content sheet">
 
-            <div class="ref-title" ng-if="soi.refDocs.length > 0">{{ soi.refDocs[0].doc.title }}</div>
+            <div class="ref-title" ng-if="soi.activity || soi.idea">{{ soi.activity ? soi.activity.title : soi.idea.title }}</div>
 
             <!--  show title or text, if one is missing. for both the accordion below is used  -->
             <div class="title" ng-if="soi.title && !soi.text">{{ soi.title }}</div>

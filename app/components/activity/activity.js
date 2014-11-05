@@ -356,12 +356,8 @@
                         var inviteAll = activityController.inviteOthers === 'all';
                         if (inviteAll || $scope.usersToBeInvited.length > 0) {
 
-                            invitation.refDocs = [
-                                {
-                                    docId: $scope.activity.id,
-                                    model: 'Activity'
-                                }
-                            ];
+                            invitation.activity = $scope.activity.id;
+                            invitation.idea = $scope.idea.id;
 
                             if ($scope.mode === 'campaignlead') {
 

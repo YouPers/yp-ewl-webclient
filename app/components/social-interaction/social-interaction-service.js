@@ -14,21 +14,6 @@
                 var messages = Rest.all('messages');
                 var offers = Rest.all('offers');
 
-                function extractRefDocs(results) {
-                    _.forEach(results, function (result) {
-                        _.forEach(result.refDocs, function (refDoc) {
-                            if(refDoc.doc) {
-                                if(refDoc.model === 'Idea') {
-                                    result.idea = refDoc.doc;
-                                } else if(refDoc.model === 'Activity') {
-                                    result.activity = refDoc.doc;
-                                    result.idea = refDoc.doc.idea;
-                                }
-                            }
-                        });
-                    });
-                    return results;
-                }
 
                 var SocialInteractionService = {
 
@@ -47,15 +32,12 @@
                         return socialInteractions.post(socialInteraction);
                     },
                     getSocialInteraction: function(socialInteractionId) {
-                        return socialInteractions.one(socialInteractionId).get({ 'populate': ['author'] }).then(function (invitation) {
-                            extractRefDocs([invitation]);
+                        return socialInteractions.one(socialInteractionId).get({ 'populate': ['author', 'idea', 'activity'] }).then(function (invitation) {
                             return invitation;
                         });
                     },
                     getSocialInteractions: function(options) {
-                        return socialInteractions.getList(options).then(function(results) {
-                            return extractRefDocs(results);
-                        });
+                        return socialInteractions.getList(options);
                     },
                     deleteSocialInteraction: function(socialInteractionId, options) {
                         return socialInteractions.one(socialInteractionId).remove(options);
@@ -74,9 +56,7 @@
                     },
 
                     getInvitations: function(options) {
-                        return invitations.getList(options).then(function(results) {
-                            return extractRefDocs(results);
-                        });
+                        return invitations.getList(options);
                     },
                     postInvitation: function(invitation) {
                         // fix for publishFrom if publishFrom is today, because otherwise it looks as if the
@@ -100,9 +80,7 @@
                     },
 
                     getOffers: function(options) {
-                        return offers.getList(options).then(function(results) {
-                            return extractRefDocs(results);
-                        });
+                        return offers.getList(options);
                     }
                 };
                 return SocialInteractionService;

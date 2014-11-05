@@ -30,7 +30,7 @@
 
                             offers: ['SocialInteractionService', function(SocialInteractionService) {
                                 return SocialInteractionService.getOffers({
-                                    populate: ['author', 'refDocs']
+                                    populate: ['author', 'idea', 'activity']
                                 });
                             }],
                             sortedOffers: ['offers', function (offers) {

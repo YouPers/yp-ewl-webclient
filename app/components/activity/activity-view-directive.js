@@ -25,10 +25,8 @@
                                     targetId: user.id
                                 }],
                                 author: UserService.principal.getUser().id,
-                                refDocs: [{
-                                    docId: scope.activity.id,
-                                    model: 'Activity'
-                                }]
+                                activity: scope.activity.id,
+                                idea: scope.activity.idea.id || scope.activity.idea
                             };
 
                             SocialInteractionService.postInvitation(invitation);

@@ -20,7 +20,7 @@
 
                         if ($rootScope.principal.isAuthenticated() && $stateParams.campaignId) {
                             var params = {
-                                populate: 'author',
+                                populate: 'author idea activity',
                                 limit: 10
                             };
 
@@ -173,9 +173,6 @@
                         };
 
                         scope.saveMessage = function saveMessage(message) {
-
-
-
                             if (message.id) {
                                 SocialInteractionService.putSocialInteraction(message).then(function (saved) {
                                     saved.author = $rootScope.principal.getUser();
