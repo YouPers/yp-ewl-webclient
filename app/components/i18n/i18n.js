@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.user', 'tmh.dynamicLocale'])
-    .config(function(tmhDynamicLocaleProvider) {
+    .config(['tmhDynamicLocaleProvider', function(tmhDynamicLocaleProvider) {
         tmhDynamicLocaleProvider.localeLocationPattern('lib/angular-i18n/angular-locale_{{locale}}.js');
-    })
+    }])
     .controller('i18nCtrl', ['$scope', '$translate', '$http', '$rootScope', 'ProfileService', 'tmhDynamicLocale',
         function ($scope, $translate, $http, $rootScope, ProfileService, tmhDynamicLocale) {
 
