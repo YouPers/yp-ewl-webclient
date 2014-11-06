@@ -1,52 +1,67 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dhc')
+    angular.module('yp.admin')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('dhc.check', {
-                        url: "/check",
-                        access: accessLevels.user,
-                        views: {
-                            content: {
-                                templateUrl: 'dhc/check/check.html',
-                                controller: 'CheckController as checkController'
-                            }
-                        },
+                    .state('admin', {
+                        abstract: true,
+                        url: "/topic/:topicId",
+                        templateUrl: "layout/single-column.html",
+                        access: accessLevels.all,
+
                         resolve: {
-                            assessment: ['campaign', 'AssessmentService', function (campaign, AssessmentService) {
+                            campaign: ['$stateParams', function ($stateParams) {
 
-                                return AssessmentService.getAssessment(campaign.topic.id || campaign.topic);
-                            }],
-                            newestResult: ['campaign', 'AssessmentService', 'UserService', function (campaign, AssessmentService, UserService) {
+                                if ($stateParams.topicId) {
+                                    // returning a fake campaign to allow administration of assessments
+                                    return {
+                                        id: "fakecampaign",
+                                        topic: $stateParams.topicId
+                                    };
+                                } else {
+                                    return undefined;
+                                }
 
-                                return AssessmentService.getNewestAssessmentResults(campaign.topic.id || campaign.topic);
-                            }],
-                            assessmentIdea: ['ActivityService', 'assessment', function (ActivityService, assessment) {
-                                return ActivityService.getIdea(assessment.idea.id || assessment.idea);
                             }]
                         },
-
-                        onExit: ['AssessmentService', function (AssessmentService) {
-                            return AssessmentService.regenerateRecommendations();
+                        controller: ['$scope', function($scope) {
+                            $scope.parentState = 'admin';
                         }]
                     })
-                    .state('check.notopic', {
-                        url: "/check",
-                        access: accessLevels.user,
-                        views: {
-                            content: {
-                                templateUrl: 'dhc/check/check.notopic.html'
-                            }
-                        }
-                    });
 
-                $translateWtiPartialLoaderProvider.addPart('dhc/check/check');
+                    .state('admin.check', {
+                    url: "/check",
+                    access: accessLevels.admin,
+                    views: {
+                        content: {
+                            templateUrl: 'dhc/check/check.html',
+                            controller: 'CheckController as checkController'
+                        }
+                    },
+                    resolve: {
+                        assessment: ['campaign', 'AssessmentService', function (campaign, AssessmentService) {
+
+                            return AssessmentService.getAssessment(campaign.topic.id || campaign.topic);
+                        }],
+                        newestResult: ['campaign', 'AssessmentService', 'UserService', function (campaign, AssessmentService, UserService) {
+
+                            return AssessmentService.getNewestAssessmentResults(campaign.topic.id || campaign.topic);
+                        }],
+                        assessmentIdea: ['ActivityService', 'assessment', function (ActivityService, assessment) {
+                            return ActivityService.getIdea(assessment.idea.id || assessment.idea);
+                        }]
+                    },
+
+                    onExit: ['AssessmentService', function (AssessmentService) {
+                        return AssessmentService.regenerateRecommendations();
+                    }]
+                });
             }])
 
-        .controller('CheckController', [ '$scope', '$rootScope', '$state', '$q',
+        .controller('CheckController', ['$scope', '$rootScope', '$state', '$q',
             'ActivityService', 'AssessmentService',
             'assessment', 'newestResult', 'assessmentIdea',
             function ($scope, $rootScope, $state, $q, ActivityService, AssessmentService, assessment, newestResult, assessmentIdea) {
@@ -60,7 +75,7 @@
                 $scope.assessmentIdea = assessmentIdea;
 
                 // setup helper values for UI-controls
-                _.forEach(newestResult.answers, function(myAnswer) {
+                _.forEach(newestResult.answers, function (myAnswer) {
                     if (!_.isNull(myAnswer.answer)) {
                         myAnswer.answerType = myAnswer.answer === 0 ? 'mid' :
                             (myAnswer.answer < 0 ? 'min' : 'max');
@@ -74,15 +89,15 @@
 
                 // FIX for slider issue: not working if they have not been visible, reinitialize with a string value
                 $scope.reinitialize = function () {
-                    _.forEach($scope.answers, function(answer) {
-                        if(answer.answerValue) {
+                    _.forEach($scope.answers, function (answer) {
+                        if (answer.answerValue) {
                             answer.answerValue = answer.answerValue.toString();
                         }
                     });
 
                 };
 
-                $scope.doneClicked = function() {
+                $scope.doneClicked = function () {
 
                     ActivityService.getActivityEvents({
                         'filter[idea]': assessmentIdea.id
@@ -91,7 +106,7 @@
                         var updateEvents = [];
                         _.each(events, function (event) {
 
-                            if(event.status !== 'done') {
+                            if (event.status !== 'done') {
                                 event.status = 'done';
                                 updateEvents.push(ActivityService.updateActivityEvent(event));
                             }
@@ -102,7 +117,7 @@
 
                             AssessmentService.regenerateRecommendations()
                                 .then(function () {
-                                    return _gotoHome(true);
+                                    return $state.go('dhc.focus');
                                 });
                         });
 
@@ -111,33 +126,21 @@
                 };
 
                 $scope.backClicked = function () {
-                    var params = {};
-                    if ($scope.principal.isAuthorized('admin')) {
-                        params.topic = assessment.topic;
-                    }
-                    AssessmentService.regenerateRecommendations(params)
+                    AssessmentService.regenerateRecommendations()
                         .then(function () {
-                            return _gotoHome();
+                            return $state.go('dhc.game');
                         });
                 };
 
                 $scope.answers = newestResult.keyedAnswers;
 
                 function firstUnansweredCategory() {
-                    return _.find($scope.orderedCategoryNames, function(catName) {
-                        return _.any($scope.categories[catName], function(question) {
+                    return _.find($scope.orderedCategoryNames, function (catName) {
+                        return _.any($scope.categories[catName], function (question) {
                             return _.isNull($scope.answers[question.id].answer);
                         });
                     });
 
-                }
-
-                function _gotoHome(done) {
-                    if ($scope.principal.isAuthorized('admin')) {
-                        return $state.go('admin-idea.list', {topic: assessment.topic});
-                    } else {
-                        return $state.go(done ? 'dhc.focus' : 'dhc.game');
-                    }
                 }
 
 
@@ -149,14 +152,14 @@
                     $scope.cat[firstUnansweredCat] = true;
                 }
 
-                _.forEach($scope.answers, function(answer, key) {
+                _.forEach($scope.answers, function (answer, key) {
 
-                    $scope.$watch('answers["'+key+'"].answerType', function(value, oldValue) {
+                    $scope.$watch('answers["' + key + '"].answerType', function (value, oldValue) {
 
                         var answer = $scope.answers[key];
-                        if(value && value !== oldValue) {
+                        if (value && value !== oldValue) {
 
-                            if(value === 'mid') {
+                            if (value === 'mid') {
                                 answer.answer = 0;
                                 answer.answerValue = 0;
                             } else {
@@ -167,10 +170,10 @@
                         }
 
                     });
-                    $scope.$watch('answers["'+key+'"].answerValue', function(value, oldValue) {
+                    $scope.$watch('answers["' + key + '"].answerValue', function (value, oldValue) {
 
 
-                        if((!value && value !== 0) || parseInt(value) === parseInt(oldValue)) {
+                        if ((!value && value !== 0) || parseInt(value) === parseInt(oldValue)) {
                             return;
                         }
 
@@ -186,14 +189,10 @@
 
                 var throtteledFunctions = {};
 
-                var putAnswer = function(answer) {
+                var putAnswer = function (answer) {
                     if (!throtteledFunctions[answer.question]) {
                         throtteledFunctions[answer.question] = _.throttle(function putAnswer(answer) {
-                            if ($scope.principal.isAuthorized('admin')) {
-                                AssessmentService.putAnswer(answer, assessment.topic);
-                            } else {
-                                AssessmentService.putAnswer(answer);
-                            }
+                            AssessmentService.putAnswer(answer);
                         }, 1000);
                     }
                     return throtteledFunctions[answer.question](answer);
@@ -201,23 +200,21 @@
                 };
 
 
-
-
-                $scope.displayInfo = function(question) {
+                $scope.displayInfo = function (question) {
                     $rootScope.$emit('healthCoach:displayMessage', renderCoachMessageFromQuestion(question));
                 };
 
                 function renderCoachMessageFromQuestion(question) {
                     // the Coach speaks MARKDOWN!
-                    var myText =  question.exptext + '\n\n';
+                    var myText = question.exptext + '\n\n';
                     if (question.mintext && question.mintext !== 'n/a') {
-                        myText += '**' + question.mintext + ':** ' + question.mintextexample +'\n\n';
+                        myText += '**' + question.mintext + ':** ' + question.mintextexample + '\n\n';
                     }
                     if (question.midtext && question.midtext !== 'n/a') {
-                        myText += '**' + question.midtext + ':** ' + question.midtextexample +'\n\n';
+                        myText += '**' + question.midtext + ':** ' + question.midtextexample + '\n\n';
                     }
                     if (question.maxtext && question.maxtext !== 'n/a') {
-                        myText += '**' + question.maxtext + ':** ' + question.maxtextexample +'\n\n';
+                        myText += '**' + question.maxtext + ':** ' + question.maxtextexample + '\n\n';
                     }
                     return myText;
                 }
@@ -225,8 +222,8 @@
             }
         ])
 
-        .filter('answeredCount', function() {
-            return function(questions, answers) {
+        .filter('answeredCount', function () {
+            return function (questions, answers) {
                 var answered = 0;
                 for (var i = 0; i < questions.length; i++) {
                     if (!_.isNull(answers[questions[i].id].answer)) {

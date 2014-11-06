@@ -158,11 +158,7 @@
                         }
 
                     },
-                    getRecommendations: function (topicId) {
-                        var params = {
-                            limit: 1000,
-                            topic: topicId
-                        };
+                    getRecommendations: function (params) {
 
                         if (UserService.principal.isAuthenticated()) {
                             return Restangular.all('coachRecommendations').getList(params);

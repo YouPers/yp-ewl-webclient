@@ -99,16 +99,20 @@
                             };
                         });
                     },
-                    putAnswer: function (answer) {
+                    putAnswer: function (answer, topic) {
                         var assessment = Restangular.one('assessments', answer.assessment);
                         answer.id = answer.question;
                         _answerDirty = true;
-                        return Restangular.restangularizeElement(assessment, answer, 'answers').put();
+                        var params = {};
+                        if (topic) {
+                            params.topic = topic;
+                        }
+                        return Restangular.restangularizeElement(assessment, answer, 'answers').put(params);
                     },
-                    regenerateRecommendations: function() {
+                    regenerateRecommendations: function(params) {
                         if (_answerDirty) {
                             _answerDirty = false;
-                            return Restangular.all('coachRecommendations').getList();
+                            return Restangular.all('coachRecommendations').getList(params);
                         } else {
                             return $q.when(null);
                         }

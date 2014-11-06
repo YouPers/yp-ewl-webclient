@@ -14,7 +14,7 @@
                     })
 
                     .state('admin-idea.list', {
-                        url: "/admin/ideas?tab&page",
+                        url: "/admin/ideas?tab&page&topic",
                         access: accessLevels.admin,
                         views: {
                             content: {
@@ -68,12 +68,23 @@
                 }
 
                 var recommendations = [];
+
+                if ($scope.$stateParams.topic) {
+                    $scope.currentTopic = $scope.$stateParams.topic;
+                }
+
                 topics.byId = _.indexBy(topics, 'id');
                 $scope.topics = topics;
 
                 $scope.$watch('currentTopic', function (newValue, oldValue) {
                     if (newValue) {
-                        ActivityService.getRecommendations(newValue)
+                        var params = {
+                            limit: 1000,
+                            topic: newValue,
+                            dontStore: true
+                        };
+
+                        ActivityService.getRecommendations(params)
                             .then(function (recs) {
                                 allIdeas.enrichWithUserData([], recs, campaigns, user.profile.prefs);
                             });

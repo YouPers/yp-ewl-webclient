@@ -11,6 +11,7 @@
             <select ng-model="currentTopic" ng-options="topic.id as topic.name for topic in topics">
             </select>
         </div>
+        <a class="btn btn-default" ng-disabled="!currentTopic" ui-sref="admin.check({topicId: currentTopic})" translate>assessment</a>
     </div>
 </header>
 

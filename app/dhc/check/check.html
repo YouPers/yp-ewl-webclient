@@ -40,7 +40,7 @@
                         check.link.back
                     </button>
 
-                    <button class="btn btn-primary submit" ng-click="doneClicked()" translate>
+                    <button ng-if="!principal.isAuthorized('admin')" class="btn btn-primary submit" ng-click="doneClicked()" translate>
                         check.link.done
                     </button>
 
