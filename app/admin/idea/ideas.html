@@ -179,7 +179,7 @@
                     <div class="col-md-2">
                         {{ 'executiontype.' + idea.defaultexecutiontype | translate}}
                         <div ng-if="principal.isAuthorized('admin')"><a class="btn btn-sm btn-primary cockpit"
-                                                                          ui-sref="admin-idea.edit({ideaId: idea.id, page: currentPage, tab: $stateParams.tab})"
+                                                                          ui-sref="admin-idea.edit({ideaId: idea.id, page: currentPage, tab: $stateParams.tab, topic: currentTopic})"
                                                                           ng-click="$event.stopPropagation()">admin</a>
                             Gewicht: {{idea.score | number: 0}}
                         </div>

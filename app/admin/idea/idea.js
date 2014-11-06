@@ -33,7 +33,7 @@
                         }
                     })
                     .state('admin-idea.edit', {
-                        url: "/admin/ideas/:ideaId/admin?tab&page",
+                        url: "/admin/ideas/:ideaId/admin?tab&page&topic",
                         views: {
                             content: {
                                 templateUrl: "admin/idea/idea-admin.html",
@@ -78,6 +78,7 @@
 
                 $scope.$watch('currentTopic', function (newValue, oldValue) {
                     if (newValue) {
+                        $scope.query.topic = newValue;
                         var params = {
                             limit: 1000,
                             topic: newValue,
@@ -160,7 +161,8 @@
                     executiontype: {
                         self: false,
                         group: false
-                    }
+                    },
+                    topic: null
                 };
 
                 $scope.pageSize = 20;
@@ -226,7 +228,7 @@
 
                         if (
                             (allTopics || _.any(idea.topics, function (value) {
-                                return query.topic[value];
+                                return query.topic === value;
                             })) &&
                             (allExecutiontypes || query.executiontype[idea.defaultexecutiontype]) &&
                             (allTimes || !idea.defaultduration || query.time[durationMapping(idea.defaultduration)]) &&
@@ -320,7 +322,7 @@
                 };
 
                 $scope.onCancel = function () {
-                    $scope.$state.go('admin-idea.list');
+                    $scope.$state.go('admin-idea.list', $rootScope.$stateParams);
                 };
             }]);
 
