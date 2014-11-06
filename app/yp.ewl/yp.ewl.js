@@ -36,12 +36,20 @@ angular.module('yp-ewl',
                     controller: ['UserService', '$state', function (UserService, $state) {
                         if (!UserService.principal.isAuthenticated()) {
                             return $state.go('signin.content');
+                        } else if (UserService.principal.isAuthorized(accessLevels.admin)) {
+                            return $state.go('admin-home.content');
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
                             return $state.go('dcm.home');
                         } else {
                             return $state.go('dhc.game');
                         }
                     }]
+                })
+
+                .state('error', {
+                    url: "/error",
+                    access: accessLevels.all,
+                    template: "<html><body><h3>an error has occurred, we are working on it.</h3></body></html>"
                 })
 
                 .state('terms', {
@@ -192,7 +200,7 @@ angular.module('yp-ewl',
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
 
-                console.log('Error on StateChange: '+ error.message);
+                console.log('Error on StateChange from: "' + fromState.name + '" to:  "'+ toState.name + '", err:' + error.message);
 
                 if(error.status === 401) { // Unauthorized
 
@@ -202,12 +210,19 @@ angular.module('yp-ewl',
 
                     $rootScope.$emit('clientmsg:error', error);
 
-                    console.log('Stack: ' + error.stack);
-                    if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
-                        $state.go('dcm.home');
+                    // check if we tried to go to a home state, then we cannot redirect again to the same
+                    // homestate, because that would lead to a loop
+                    if (toState.name === 'dcm.home' || toState.name === 'dhc.game' || toState.name === 'admin-home.content') {
+                        $state.go('error');
                     } else {
-                        $state.go('dhc.game');
+                        console.log('Stack: ' + error.stack);
+                        if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
+                            $state.go('dcm.home');
+                        } else {
+                            $state.go('dhc.game');
+                        }
                     }
+
                 }
 
             });
