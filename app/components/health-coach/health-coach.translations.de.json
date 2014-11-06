@@ -33,8 +33,6 @@
         "stateEnter": "Mit dem Publizierungs-von/-bis-Datum definierst du, wann deine Mitarbeiter diese Empfehlungskarte unter \"Angebotene Aktivitäten\" sehen werden."
       }
     },
-    "dcmSignup": {"stateEnter": "Herzlich Willkommen!<br>Ich bin dein YOUPERS Coach und freue mich, dass du dich für den HealthCampaign Service interessiersts.\n\nBitte registriere dich und deinen Betrieb auf dieser Seite. Nach der Registration kannst du mit der Erstellung deiner ersten Kampagne starten.\n\nIch werde dich bei der Erstellung und Verwaltung deiner Kampagnen mit Tipps und Hinweisen unterstützen."
-    },
     "dhc": {
       "activity": {
         "selfActivitySaved": "Deine Aktivität ist jetzt eingeplant.\n\nIch habe die Aktivität bei dir auf der Hauptseite von \"Angebotene Aktivitäten\" zu \"Eingeplante Aktivitäten\" verschoben.",
@@ -66,14 +64,17 @@
         "campaignEnded": "Lieber User\n\nBesten Dank, dass du an dieser Gesundheits-Kampagne teilgenommen hast! \n\nHerzliche Grüsse\n\nDein YOUPERS Coach",
         "campaignEndingWithCurrentActivities": "Die Kampagne dauert nur noch kurze Zeit.\n\nIch empfehle dir, insbesondere die bereits eingeplanten Aktivitäten noch durchzuführen und nur ergänzend und bei Bedarf noch neue Aktivitäten einzuplanen.",
         "noCurrentActivities": "In der Mitte unten auf dieser Seite werden dir unter \"Angebotene Aktivitäten\" täglich neue Aktivitätsempfehlungs- und Einladungskarten von mir, vom Kampagnen-Leiter und von deinen Arbeitskolleginnen und -kollegen angezeigt. Plane dir doch etwas ein!\n\nKlicke auf die Karte, um dir die Details zu einer Aktivitäts-Empfehlung bzw. -Einladung anzuschauen und um dir die Aktivität einzuplanen.\n\nIch empfehle Dir, aus den angebotenen Aktivitäten diejenige auszuwählen, welche deinem persönlichen Handlungsbedarf am Besten entspricht.",
-        "noDoneEvents": "Aufgrund deiner ersten Antworten in der Selbstbeurteilung kann ich dir bereits eine erste Aktivitäts-Empfehlung anzeigen. \n\nIch empfehle Dir, die weiteren Fragen in der Selbstbeurteilung zu beantworten, damit ich dir noch besser passende Aktivitäten empfehlen kann.",
-        "noOffers": "<h3>Herzlich Willkommen!</h3> \n\nIch bin dein YOUPERS Coach. \n\nIch unterstütze dich bei deiner Teilnahme an der Gesundheits-Kampagne mit Tipps und Hinweisen. \n\nNachfolgend meine ersten Hinweise bzw. Tipps für dich: \n\nAls erste Kampagnen-Aktivität empfehle ich dir die Durchführung einer kurzen **Selbstbeurteilung** (ca. 10 Minuten). Die Selbstbeurteilung ermöglicht mir, dir im Verlauf der Kampagne unter \"Angebotene Aktivitäten\" möglichst passende Aktivitäts-Emfpfehlungskarten anzuzeigen. Du wirst von mir ab jetzt täglich eine Aktivitäts-Empfehlungskarte erhalten.\n\nIch habe die Selbstbeurteilung für dich bereits eingeplant, weshalb die Selbstbeurteilungs-Karte in der Mitte oben unter \"Eingeplante Aktivitäten\" erscheint. Klicke auf die Karte, um mit der Selbstbeurteilung zu beginnen.",
+        "noDoneEvents": "noDoneEvents",
+        "noOffers": "<h3>Herzlich Willkommen!</h3> \n\nIch bin dein YOUPERS Coach. \n\nIch unterstütze dich bei deiner Teilnahme an der Gesundheits-Kampagne mit Tipps und Hinweisen. \n\nAls erste Kampagnen-Aktivität empfehle ich dir die Durchführung einer kurzen **Selbstbeurteilung** (ca. 10 Minuten). \n\nDeine Selbstbeurteilung ermöglicht mir, dir unter \"Angebotene Aktivitäten\" täglich eine möglichst passende Aktivitäts-Empfehlungskarte anzuzeigen.\n\nIch habe die Selbstbeurteilung für dich bereits eingeplant, weshalb die Selbstbeurteilungs-Karte in der Mitte oben unter \"Eingeplante Aktivitäten\" erscheint. Klicke auf die Karte, um mit der Selbstbeurteilung zu beginnen.",
         "noPastOrPresentEventsAndEnoughActivities": "Aktuell hast du unter \"Eingeplante Aktivitäten\" keine heute fälligen oder bereits abgelaufene Termine.\n\nBevor du weitere angebotene Aktivitäten einplanst, empfehle ich dir, die bereits eingeplanten Aktivitäten durchzuführen.",
         "noPastOrPresentEventsAndTooFewActivities": "Aktuell hast du unter \"Eingeplante Aktivitäten\" keine heute fälligen oder bereits abgelaufene Termine.\n\nVielleicht findest du unter \"Angebotene Aktivitäten\" ja noch eine neue Empfehlung oder Einladung zu einer Aktivität, welche dir entspricht und du somit annehmen und noch einplanen könntest.",
-        "pastEvents": "Ich habe dir unter \"Eingeplante Aktivitäten\" diejenigen Aktivitäts-Termine farblich markiert, welche heute fällig sind.\n\nFühre die heute fälligen Aktivitäten durch und teile mir anschliessend mit, ob du die Aktivitäten durchgeführt hast oder nicht, indem du auf die entsprechende Terminkarte klickst.",
-        "pastOrPresentEvents": "Ich habe dir unter \"Eingeplante Aktivitäten\" diejenigen Aktivitäts-Termine farblich markiert, welche heute fällig oder bereits abgelaufen sind.\n\nFühre die heute fälligen Aktivitäten durch und teile mir bei abgelaufenen Aktivitäten mit, ob du sie durchgeführt hast oder nicht, indem du auf die entsprechende Terminkarte klickst."
+        "pastEvents": "Ich habe dir unter \"Eingeplante Aktivitäten\" diejenigen Aktivitäts-Termine farblich markiert, welche bereits abgelaufen sind. \n\nTeile mir bitte mit, ob du diese durchgeführt hast und wenn ja, wie du dich dabei gefühlt hast, indem du auf die entsprechende Terminkarte klickst. ",
+        "pastOrPresentEvents": "Ich habe dir unter \"Eingeplante Aktivitäten\" diejenigen Aktivitäts-Termine farblich markiert, welche heute fällig oder bereits abgelaufen sind.\n\nFühre die heute fälligen Aktivitäten durch und teile mir bei abgelaufenen Aktivitäten mit, ob du sie durchgeführt hast und wenn ja, wie du dich dabei gefühlt hast, indem du auf die entsprechende Terminkarte klickst."
       }
     },
-    "fullname": "YOUPERS Coach"
+    "fullname": "YOUPERS Coach",
+    "dcmSignup": {
+      "stateEnter": "Herzlich Willkommen!<br>Ich bin dein YOUPERS Coach und freue mich, dass du dich für den HealthCampaign Service interessiersts.\n\nBitte registriere dich und deinen Betrieb auf dieser Seite. Nach der Registration kannst du mit der Erstellung deiner ersten Kampagne starten.\n\nIch werde dich bei der Erstellung und Verwaltung deiner Kampagnen mit Tipps und Hinweisen unterstützen."
+    }
   }
 }

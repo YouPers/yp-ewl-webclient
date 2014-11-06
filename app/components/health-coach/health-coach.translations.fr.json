@@ -72,6 +72,9 @@
         "pastOrPresentEvents": null
       }
     },
-    "fullname": null
+    "fullname": null,
+    "dcmSignup": {
+      "stateEnter": null
+    }
   }
 }

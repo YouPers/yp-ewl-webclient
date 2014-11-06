@@ -20,9 +20,9 @@
     "stateHeader1": "Les campagnes",
     "stateHeader2": "Statistiques",
     "event": {
-      "done": null,
-      "future": null,
       "missed": null,
+      "future": null,
+      "done": null,
       "open": null
     }
   }

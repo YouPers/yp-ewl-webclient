@@ -1,6 +1,6 @@
 {
   "activityLookahead": {
-      "comments": "new comments",
-      "joiningUsers": "new participants"
+    "comments": null,
+    "joiningUsers": null
   }
 }

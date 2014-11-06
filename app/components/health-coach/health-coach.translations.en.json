@@ -72,6 +72,9 @@
         "pastOrPresentEvents": "Under \"Scheduled Activities\", I have marked those activity appointments in terms of color, which are due today or have already expired.\n\nPerform the activities due today and let me know for expired activities, whether you have carried them out or not, by clicking on the corresponding event card."
       }
     },
-    "fullname": "YOUPERS Coach"
+    "fullname": "YOUPERS Coach",
+    "dcmSignup": {
+      "stateEnter": null
+    }
   }
 }

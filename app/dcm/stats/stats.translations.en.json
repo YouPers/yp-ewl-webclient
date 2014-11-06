@@ -20,9 +20,9 @@
     "stateHeader1": "campaigns",
     "stateHeader2": "statistics",
     "event": {
-      "done": "Done executions",
-      "future": "Future executions",
       "missed": "Not executed",
+      "future": "Future executions",
+      "done": "Done executions",
       "open": "Still without feedback"
     }
   }
