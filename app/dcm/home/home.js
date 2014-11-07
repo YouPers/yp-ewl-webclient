@@ -24,15 +24,15 @@
                             }],
 
 
-                            healthCoachEvent: ['OrganizationService', 'organization', 'campaigns', 'campaign',
-                                function (OrganizationService, organization, campaigns, campaign) {
+                            healthCoachEvent: ['OrganizationService', 'organization', 'campaigns', 'campaign', 'UserService',
+                                function (OrganizationService, organization, campaigns, campaign, UserService) {
 
 
                                     var daysSinceCampaignStart = campaign ? moment().diff(moment(campaign.start), 'days') : undefined;
                                     var daysUntilCampaignEnd = campaign ? moment(campaign.end).diff(moment(), 'days') : undefined;
 
 
-                                    if(!OrganizationService.isComplete(organization)) {
+                                    if(!OrganizationService.isComplete(organization) && UserService.principal.isAuthorized('orgadmin')) {
                                         return 'organizationIncomplete';
                                     } else if(campaigns.length === 0) {
                                         return 'noCampaigns';
