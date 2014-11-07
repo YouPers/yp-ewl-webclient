@@ -125,21 +125,21 @@
                                             return 'campaignEndingWithCurrentActivities';
                                         } else if(daysUntilCampaignEnd < 0) {
                                             return 'campaignEnded';
-                                        } else if(closedEvents.length === 0 && offers.length > 0) {
-                                            return 'noDoneEvents';
                                         } else if(closedEvents.length === 0 && offers.length === 0) {
                                             return 'noOffers';
-                                        } else if(currentActivities.length === 0 && daysUntilCampaignEnd < 7) {
+                                        } else if(currentActivities.length === 0 && daysUntilCampaignEnd > 7) {
                                             return 'noCurrentActivities';
                                         } else if(pastEvents.length + presentEvents.length === 0 && currentActivities.length <=2 &&
                                             daysUntilCampaignEnd >= 7) {
                                             return 'noPastOrPresentEventsAndTooFewActivities';
                                         } else if(pastEvents.length + presentEvents.length === 0 && currentActivities.length > 2) {
                                             return 'noPastOrPresentEventsAndEnoughActivities';
-                                        } else if(pastEvents.length + presentEvents.length > 0) {
-                                            return 'pastOrPresentEvents';
+                                        } else if((pastEvents.length > 0) && (presentEvents.length > 0)) {
+                                            return 'pastAndPresentEvents';
                                         } else if(pastEvents.length > 0) {
                                             return 'pastEvents';
+                                        } else if(presentEvents.length > 0) {
+                                            return 'presentEvents';
                                         }
                                     }
 
