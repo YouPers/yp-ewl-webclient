@@ -28,7 +28,7 @@
         "placeholder": "Email-Betreff"
       },
       "emailText": {
-        "defaultText": "Liebe Mitarbeiterin, lieber Mitarbeiter\n\n{{ campaign.organization.name }} lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema {{ campaign.title }} teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS AG durch.",
+        "defaultText": "Liebe Mitarbeiterin, lieber Mitarbeiter<br><br>{{ campaign.organization.name }} lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema {{ campaign.title }} teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS AG durch.",
         "label": "Email-Text",
         "placeholder": "Email-Text"
       },
