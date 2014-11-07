@@ -10,12 +10,19 @@
 
         .constant('activityResolveConfiguration', {
 
-            idea: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
+            idea: ['$stateParams', 'ActivityService', 'activity', function ($stateParams, ActivityService, activity) {
                 var idea = $stateParams.idea;
+                // if we do not have an idea in the stateParams try to get it from the activity
                 if (!idea) {
-                    throw new Error('activity: stateParam idea is required');
+                    idea = activity && activity.idea;
                 }
-                return  ActivityService.getIdea(idea);
+                if (idea.id) { // we found a populated idea, just return it
+                    return idea;
+                } else if (idea) { // we found a idea id, get it from Service
+                    return  ActivityService.getIdea(idea);
+                } else {
+                    throw new Error('activity: idea is required');
+                }
             }],
 
             socialInteraction: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {

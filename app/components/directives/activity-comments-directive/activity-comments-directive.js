@@ -75,6 +75,7 @@
                             SocialInteractionService.getMessages({
                                 populate: 'author',
                                 authored: true,
+                                dismissed: true,
                                 targetId: scope.activity.id
                             }).then(function (messages) {
                                 scope.messages = _.sortBy(messages, function(message) {

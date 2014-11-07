@@ -13,7 +13,7 @@
                     link: function (scope, elem, attrs) {
 
                         scope.soiRemoved = function (soi) {
-                            _.remove(scope.socialInteractions, { id: soi.id });
+                            _.remove(scope.socialInteractions, {id: soi.id});
                         };
 
                         // only load data if user is authenticated and we have loaded the campaign
@@ -30,18 +30,18 @@
                                 .then(ActivityService.populateIdeas)
                                 .then(function (socialInteractions) {
 
-                                socialInteractions = _.sortBy(socialInteractions, function (si) {
-                                    return new Date(si.publishFrom || si.created).getTime();
-                                }).reverse();
+                                    socialInteractions = _.sortBy(socialInteractions, function (si) {
+                                        return new Date(si.publishFrom || si.created).getTime();
+                                    }).reverse();
 
-                                _.each(socialInteractions, function (si) {
-                                    if (si.__t !== 'Message') {
-                                        si.idea = si.idea || si.activity.idea;
-                                    }
+                                    _.each(socialInteractions, function (si) {
+                                        if (si.__t !== 'Message') {
+                                            si.idea = si.idea || si.activity.idea;
+                                        }
+                                    });
+
+                                    scope.socialInteractions = socialInteractions;
                                 });
-
-                                scope.socialInteractions = socialInteractions;
-                            });
                         }
                     }
                 };
@@ -64,7 +64,7 @@
                         options.isCampaignLead = _.contains(user.roles, 'campaignlead');
 
                         scope.componentClass = function (socialInteraction) {
-                            if(!socialInteraction) {
+                            if (!socialInteraction) {
                                 return undefined;
                             }
                             var authorType = socialInteraction.authorType;
@@ -93,23 +93,31 @@
 
                         scope.openSocialInteraction = function (socialInteraction) {
 
-                            if (options.isCampaignLead && socialInteraction.__t === 'Recommendation') {
-                                $state.go('dcm.recommendation', {
-                                    idea: socialInteraction.idea.id,
-                                    socialInteraction: socialInteraction.id
-                                });
-                            } else if (socialInteraction.idea) {
-
-                                $state.go((options.isCampaignLead ? 'dcm' : 'dhc') + '.activity', {
+                            if (socialInteraction.idea) {
+                                return $state.go('dhc.activity', {
                                     campaignId: $stateParams.campaignId,
                                     idea: socialInteraction.idea ? socialInteraction.idea.id : undefined,
                                     activity: socialInteraction.activity ? socialInteraction.activity.id : undefined,
                                     socialInteraction: socialInteraction.id,
                                     mode: options.isCampaignLead ? 'campaignlead' : undefined
                                 });
-                            } else {
-                                // sois that cannot be opened come here and do Nothing!
-                                // e.g. Messages
+                            } else if (socialInteraction.__t === 'Message'){
+
+                                // check whether this is a comment to a planned activity
+                                if (socialInteraction.targetSpaces.length >= 1) {
+                                    var space = _.find(socialInteraction.targetSpaces, function(space) {
+                                            return space.type === 'activity';
+                                        });
+
+                                    if (space) {
+                                        var actId = space.targetId;
+                                        return $state.go('dhc.activity', {
+                                            campaignId: $stateParams.campaignId,
+                                            activity: actId
+                                        });
+                                    }
+
+                                }
                             }
 
                         };
