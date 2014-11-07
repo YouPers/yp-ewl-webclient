@@ -23,7 +23,8 @@
             return {
                 restrict: 'E',
                 scope: {
-                    event: '='
+                    event: '=',
+                    data: '='
                 },
                 templateUrl: 'components/health-coach/health-coach-directive.html',
 
@@ -40,7 +41,7 @@
 
                     scope.$watch('event', function () {
                         var eventKey = 'healthCoach.' + ( scope.event ? $state.current.name + '.' + scope.event : undefined );
-                        $translate(eventKey).then(function (eventMessage) {
+                        $translate(eventKey, scope.data).then(function (eventMessage) {
                             scope.eventMessage = scope.getFormattedMessage(eventMessage);
                         });
                     });
