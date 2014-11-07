@@ -19,7 +19,7 @@
                     <form class="form"
                           role="form"
                           name="emailInvitation">
-                        <div class="row">
+                        <div class="row" ng-if="false">
                             <div class="col-md-12">
                                 <label translate>dcmhome.emailInvite.emailSubject.label</label>
                                 <input type="text" required class="form-control" ng-model="emailSubject"
@@ -27,7 +27,7 @@
                                        placeholder="{{ 'dcmhome.emailInvite.emailSubject.placeholder' | translate }}">
                             </div>
                         </div>
-                        <div class="row mail-text">
+                        <div class="row mail-text" ng-if="false">
                             <div class="col-md-12">
                                 <label translate>dcmhome.emailInvite.emailText.label</label>
                                 <textarea required class="form-control" ng-model="emailText"

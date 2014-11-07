@@ -122,7 +122,9 @@
                             });
                         });
 
-                        $translate('dcmhome.emailInvite.emailSubject.defaultSubject').then(function (translatedText) {
+                        $translate('dcmhome.emailInvite.emailSubject.defaultSubject', {
+                            campaign: campaign
+                        }).then(function (translatedText) {
                             $scope.emailSubject = translatedText;
                         });
 

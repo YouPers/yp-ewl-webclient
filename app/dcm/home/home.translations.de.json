@@ -23,7 +23,7 @@
     "emailInvite": {
       "adjust": "korrigiere",
       "emailSubject": {
-        "defaultSubject": "Einladung zur Kampagne",
+        "defaultSubject": "{{campaign.organization.name}} Kampagne {{campaign.topic.shortDescription}}: Persönliche Einladung",
         "label": "Email-Betreff",
         "placeholder": "Email-Betreff"
       },
