@@ -7,12 +7,18 @@
            datepicker-append-to-body="true"
            datepicker-options="dateOptions"
 
+           show-button-bar="false"
+
            min-date="minDate"
            max-date="maxDate"
 
            ng-required="!!attrs.date"
            ng-click="opened = !opened"
            date-parser="{{dateFormat}}"
+
+           current-text="{{'datePicker.current-text' | translate}}"
+           clear-text="{{'datePicker.clear-text' | translate}}"
+           close-text="{{'datePicker.close-text' | translate}}"
 
             />
 </div>

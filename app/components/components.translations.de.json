@@ -48,6 +48,11 @@
     "SA": "Samstag",
     "SU": "Sonntag"
   },
+  "datePicker": {
+    "current-text": "heute",
+    "clear-text": "",
+    "close-text": "schliessen"
+  },
   "timezone": {
     "00:00": "UTC",
     "+01:00": "Zürich (+01:00)",
