@@ -70,7 +70,7 @@
                     // just leave it in the client principal and store it when the user eventually register on our site.
                     if (UserService.principal.isAuthenticated()) {
                         UserService.putUser(UserService.principal.getUser()).then(function (result){
-                            $state.go('dhc.game', {view: ""});
+                            $state.go('dhc.game', {campaignId: campaign.id, view: ""});
                         });
                     } else {
                         // user is not authenticated, we redirect him to signUp / signIn
