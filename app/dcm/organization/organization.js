@@ -8,7 +8,7 @@
                 $stateProvider
                     .state('organization', {
                         url: "/organization/",
-                        access: accessLevels.user,
+                        access: accessLevels.orgadmin,
                         templateUrl: 'dcm/organization/organization.html',
                         controller: 'OrganizationController as organizationController',
                         resolve: {
