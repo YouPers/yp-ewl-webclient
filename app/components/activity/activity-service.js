@@ -79,8 +79,13 @@
                         return ideas.getList(params);
                     },
                     getIdea: function (ideaId) {
-                        if (ideaId) {
-                            return Restangular.one('ideas', ideaId).get();
+                        if (ideaId && ideaCache[ideaId]) {
+                            return $q.when(ideaCache[ideaId]);
+                        } else if (ideaId) {
+                            return Restangular.one('ideas', ideaId).get().then(function(idea) {
+                                ideaCache[idea.id] = idea;
+                                return idea;
+                            });
                         } else {
                            return $q.when(null);
                         }
