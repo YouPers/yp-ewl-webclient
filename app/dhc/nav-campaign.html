@@ -1,11 +1,6 @@
 
 <div>
-    <campaign-card ng-if="currentCampaign" campaign="currentCampaign" ui-sref="campaign-list.content">
+    <campaign-card ng-show="currentCampaign" campaign="currentCampaign" ui-sref="campaign-list.content">
 
     </campaign-card>
-
-    <div ng-if="!currentCampaign">
-        <br/>
-        <span translate>home.noCampaign</span>
-    </div>
 </div>
