@@ -25,18 +25,23 @@
                     return undefined;
                 }
             }],
-            campaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', function ($stateParams, SocialInteractionService, activity) {
-                return activity.id ? SocialInteractionService.getInvitations({
-                    populate: 'author',
-                    targetId: $stateParams.campaignId,
-                    refDocId: activity.id,
-                    authored: true
-                }).then(function (invitations) {
-                    return invitations.length > 0 ? invitations[0] : undefined;
-                }) : undefined;
+            campaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea',
+                function ($stateParams, SocialInteractionService, activity, idea) {
+                if (activity.id && idea.defaultexecutiontype !== 'self') {
+                    return SocialInteractionService.getInvitations({
+                        populate: 'author',
+                        targetId: $stateParams.campaignId,
+                        refDocId: activity.id,
+                        authored: true
+                    }).then(function (invitations) {
+                        return invitations.length > 0 ? invitations[0] : undefined;
+                    });
+                } else {
+                    return undefined;
+                }
             }],
-            invitationStatus: ['$stateParams', 'ActivityService', function ($stateParams, ActivityService) {
-                if ($stateParams.activity) {
+            invitationStatus: ['$stateParams', 'ActivityService', 'idea', function ($stateParams, ActivityService, idea) {
+                if ($stateParams.activity && idea.defaultexecutiontype !== 'self') {
                     return  ActivityService.getInvitationStatus($stateParams.activity);
                 } else {
                     return [];
