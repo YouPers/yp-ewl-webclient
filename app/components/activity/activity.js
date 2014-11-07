@@ -291,7 +291,7 @@
                         HealthCoachService.queueEvent('invitationCreated');
                         $state.go('dcm.home');
                     } else {
-                        $state.go('dhc.game');
+                        $state.go('dhc.game', {view: ""});
                     }
                 };
 

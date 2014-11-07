@@ -48,12 +48,12 @@
             function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, campaign) {
 
                 if (!campaign) {
-                    $state.go('dhc.game');
+                    $state.go('dhc.game', {view: ""});
                 } else if ($scope.principal.isAuthorized('campaignlead')) {
                     $scope.isCampaignlead = true;
                 } else if(!$stateParams.preview && UserService.principal.getUser().campaign && UserService.principal.getUser().campaign.id === campaign.id) {
                     // user is already in this campaign
-                    $state.go('dhc.game');
+                    $state.go('dhc.game', {view: ""});
                 } else {
                     $scope.campaign = campaign;
                 }
@@ -70,7 +70,7 @@
                     // just leave it in the client principal and store it when the user eventually register on our site.
                     if (UserService.principal.isAuthenticated()) {
                         UserService.putUser(UserService.principal.getUser()).then(function (result){
-                            $state.go('dhc.game');
+                            $state.go('dhc.game', {view: ""});
                         });
                     } else {
                         // user is not authenticated, we redirect him to signUp / signIn

@@ -41,7 +41,7 @@ angular.module('yp-ewl',
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
                             return $state.go('dcm.home');
                         } else {
-                            return $state.go('dhc.game');
+                            return $state.go('dhc.game', {view: ""});
                         }
                     }]
                 })
@@ -160,6 +160,8 @@ angular.module('yp-ewl',
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+                console.debug('stateChangeStart from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
+
                 toState.previous = fromState;
 
                 var requiredAccessLevel = toState.access;
@@ -188,7 +190,7 @@ angular.module('yp-ewl',
             });
 
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-
+                console.debug('stateChangeSuccess from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
                 $analytics.pageTrack(toState.name);
             });
 
@@ -200,7 +202,7 @@ angular.module('yp-ewl',
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
 
-                console.log('Error on StateChange from: "' + fromState.name + '" to:  "'+ toState.name + '", err:' + error.message);
+                console.log('Error on StateChange from: "' + (fromState && fromState.name) + '" to:  "'+ toState.name + '", err:' + error.message);
 
                 if(error.status === 401) { // Unauthorized
 
@@ -209,17 +211,17 @@ angular.module('yp-ewl',
                 } else {
 
                     $rootScope.$emit('clientmsg:error', error);
+                    console.log('Stack: ' + error.stack);
 
                     // check if we tried to go to a home state, then we cannot redirect again to the same
                     // homestate, because that would lead to a loop
                     if (toState.name === 'dcm.home' || toState.name === 'dhc.game' || toState.name === 'admin-home.content') {
                         $state.go('error');
                     } else {
-                        console.log('Stack: ' + error.stack);
                         if (toState.name.toUpperCase().indexOf('DCM') !== -1) {
-                            $state.go('dcm.home');
+                            return $state.go('dcm.home');
                         } else {
-                            $state.go('dhc.game');
+                            return $state.go('dhc.game', {view: ""});
                         }
                     }
 

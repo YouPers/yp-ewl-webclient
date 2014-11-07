@@ -35,6 +35,9 @@
                     },
 
                     isComplete: function (organization) {
+                        if (!organization) {
+                            return false;
+                        }
                         return !!organization.name &&
                             organization.address &&
                             !!organization.address.street &&

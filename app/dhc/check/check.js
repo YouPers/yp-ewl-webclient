@@ -49,7 +49,8 @@
         .controller('CheckController', [ '$scope', '$rootScope', '$state', '$q',
             'ActivityService', 'AssessmentService',
             'assessment', 'newestResult', 'assessmentIdea',
-            function ($scope, $rootScope, $state, $q, ActivityService, AssessmentService, assessment, newestResult, assessmentIdea) {
+            'HealthCoachService',
+            function ($scope, $rootScope, $state, $q, ActivityService, AssessmentService, assessment, newestResult, assessmentIdea, HealthCoachService) {
 
                 if (!assessment) {
                     return;
@@ -117,7 +118,8 @@
                     }
                     AssessmentService.regenerateRecommendations(params)
                         .then(function () {
-                            return _gotoHome();
+                            _gotoHome();
+                            return HealthCoachService.queueEvent('checkBackClicked');
                         });
                 };
 
@@ -136,7 +138,7 @@
                     if ($scope.principal.isAuthorized('admin')) {
                         return $state.go('admin-idea.list', {topic: assessment.topic});
                     } else {
-                        return $state.go(done ? 'dhc.focus' : 'dhc.game');
+                        return $state.go(done ? '^.focus' : '^.game', {view: ""});
                     }
                 }
 

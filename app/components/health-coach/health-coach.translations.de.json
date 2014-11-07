@@ -74,7 +74,8 @@
         "noPastOrPresentEventsAndEnoughActivities": "Aktuell hast du unter \"Eingeplante Aktivitäten\" keine heute fälligen oder bereits abgelaufene Termine.\n\nBevor du weitere angebotene Aktivitäten einplanst, empfehle ich dir, die bereits eingeplanten Aktivitäten durchzuführen.",
         "noPastOrPresentEventsAndTooFewActivities": "Aktuell hast du unter \"Eingeplante Aktivitäten\" keine heute fälligen oder bereits abgelaufene Termine.\n\nVielleicht findest du unter \"Angebotene Aktivitäten\" ja noch eine neue Empfehlung oder Einladung zu einer Aktivität, welche dir entspricht und du somit annehmen und noch einplanen könntest.",
         "pastEvents": "Ich habe dir unter \"Eingeplante Aktivitäten\" diejenigen Aktivitäts-Termine farblich markiert, welche bereits abgelaufen sind. \n\nTeile mir bitte mit, ob du diese durchgeführt hast und wenn ja, wie du dich dabei gefühlt hast, indem du auf die entsprechende Terminkarte klickst. ",
-        "pastOrPresentEvents": "Ich habe dir unter \"Eingeplante Aktivitäten\" diejenigen Aktivitäts-Termine farblich markiert, welche heute fällig oder bereits abgelaufen sind.\n\nFühre die heute fälligen Aktivitäten durch und teile mir bei abgelaufenen Aktivitäten mit, ob du sie durchgeführt hast und wenn ja, wie du dich dabei gefühlt hast, indem du auf die entsprechende Terminkarte klickst."
+        "pastOrPresentEvents": "Ich habe dir unter \"Eingeplante Aktivitäten\" diejenigen Aktivitäts-Termine farblich markiert, welche heute fällig oder bereits abgelaufen sind.\n\nFühre die heute fälligen Aktivitäten durch und teile mir bei abgelaufenen Aktivitäten mit, ob du sie durchgeführt hast und wenn ja, wie du dich dabei gefühlt hast, indem du auf die entsprechende Terminkarte klickst.",
+        "checkBackClicked": "gugugug"
       }
     },
     "fullname": "YOUPERS Coach",
