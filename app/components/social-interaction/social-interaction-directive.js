@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('yp.components.socialInteraction')
-        .directive('socialInteractionInbox', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService',
-            function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService) {
+        .directive('socialInteractionInbox', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'ActivityService', 'SocialInteractionService',
+            function ($rootScope, $state, $stateParams, accessLevels, UserService, ActivityService, SocialInteractionService) {
                 return {
                     restrict: 'E',
                     scope: {},
@@ -20,15 +20,15 @@
 
                         if ($rootScope.principal.isAuthenticated() && $stateParams.campaignId) {
                             var params = {
-                                populate: 'author idea activity',
-                                limit: 10
+                                populate: 'author activity',
+                                limit: 10,
+                                "filter[authorType]": '!coach'
                             };
 
-                            SocialInteractionService.getSocialInteractions(params).then(function (socialInteractions) {
-
-                                socialInteractions = _.filter(socialInteractions, function (si) {
-                                    return si.authorType !== 'coach';
-                                });
+                            SocialInteractionService
+                                .getSocialInteractions(params)
+                                .then(ActivityService.populateIdeas)
+                                .then(function (socialInteractions) {
 
                                 socialInteractions = _.sortBy(socialInteractions, function (si) {
                                     return new Date(si.publishFrom || si.created).getTime();

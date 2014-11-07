@@ -5,8 +5,8 @@
     angular.module('yp.components.socialInteraction')
 
 
-        .factory("SocialInteractionService", ['ErrorService', 'Restangular',
-            function (ErrorService, Rest) {
+        .factory("SocialInteractionService", ['ErrorService', 'Restangular', 'ActivityService',
+            function (ErrorService, Rest, ActivityService) {
 
                 var socialInteractions = Rest.all('socialInteractions');
                 var recommendations = Rest.all('recommendations');
@@ -32,9 +32,9 @@
                         return socialInteractions.post(socialInteraction);
                     },
                     getSocialInteraction: function(socialInteractionId) {
-                        return socialInteractions.one(socialInteractionId).get({ 'populate': ['author', 'idea', 'activity'] }).then(function (invitation) {
-                            return invitation;
-                        });
+                        return socialInteractions.one(socialInteractionId)
+                            .get({ 'populate': ['author', 'activity'] })
+                            .then(ActivityService.populateIdeas);
                     },
                     getSocialInteractions: function(options) {
                         return socialInteractions.getList(options);

@@ -223,6 +223,8 @@
                         return ideas.one(idea.id || idea).one('defaultActivity').get(options).then(_populateIdeas);
                     },
 
+                    populateIdeas: _populateIdeas,
+
                     getDefaultPlan: function (idea, campaignId) {
                         var now = moment();
 

@@ -28,10 +28,11 @@
                                 return _.filter(activities, { status: 'old' });
                             }],
 
-                            offers: ['SocialInteractionService', function(SocialInteractionService) {
-                                return SocialInteractionService.getOffers({
-                                    populate: ['author', 'idea', 'activity']
-                                });
+                            offers: ['SocialInteractionService', 'ActivityService', function(SocialInteractionService, ActivityService) {
+                                return SocialInteractionService
+                                        .getOffers({
+                                    populate: ['author', 'activity']
+                                    }).then(ActivityService.populateIdeas);
                             }],
                             sortedOffers: ['offers', function (offers) {
 
