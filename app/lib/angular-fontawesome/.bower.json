@@ -1,11 +1,16 @@
 {
   "name": "angular-fontawesome",
   "description": "Angular directive for FontAwesome",
-  "version": "0.1.2",
-  "devDependencies": {
-    "angular": "~1.2",
-    "angular-mocks": "~1.2",
+  "version": "0.3.0",
+  "main": [
+    "dist/angular-fontawesome.js"
+  ],
+  "dependencies": {
+    "angular": "^1.2",
     "font-awesome": "~4"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.2"
   },
   "ignore": [
     ".jshintrc",
@@ -16,14 +21,13 @@
     "Gruntfile.js"
   ],
   "homepage": "https://github.com/picardy/angular-fontawesome",
-  "_release": "0.1.2",
+  "_release": "0.3.0",
   "_resolution": {
     "type": "version",
-    "tag": "0.1.2",
-    "commit": "deb769b5ea236a6c33791459ad7f3f84d9702aca"
+    "tag": "v0.3.0",
+    "commit": "06067c545e03d9eacaac4adfb28673b146c0a7a1"
   },
   "_source": "git://github.com/picardy/angular-fontawesome.git",
-  "_target": "~0.1.2",
-  "_originalSource": "angular-fontawesome",
-  "_direct": true
+  "_target": "~0.3.0",
+  "_originalSource": "angular-fontawesome"
 }

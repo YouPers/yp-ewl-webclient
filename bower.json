@@ -2,39 +2,40 @@
   "name": "YouPers Webclient",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "~1.2.21",
-    "angular-animate": "~1.2.21",
+    "angular": "~1.3.1",
+    "angular-animate": "~1.3.1",
     "angular-bootstrap": "~0.11.0",
-    "angular-i18n": "~1.2.21",
-    "angular-sanitize": "~1.2.21",
-    "angular-translate": "~2.3.x",
-    "angular-translate-interpolation-messageformat": "~2.2.x",
+    "angular-i18n": "~1.3.1",
+    "angular-sanitize": "~1.3.1",
+    "angular-translate": "~2.4.2",
+    "angular-translate-interpolation-messageformat": "~2.4.2",
     "angular-dynamic-locale": "~0.1.21",
     "angular-cookie": "~4.0.x",
-    "angular-translate-storage-cookie": "~2.3.x",
-    "angular-translate-loader-partial": "~2.1.x",
+    "angular-translate-storage-cookie": "~2.4.2",
+    "angular-translate-loader-partial": "~2.4.2",
     "angular-ui-router": "0.2.10",
-    "angular-file-upload": "~1.0.x",
-    "bootstrap": "~3.2.x",
+    "angular-file-upload": "~1.1.5",
+    "bootstrap": "~3.3.x",
     "d3": "~3.4.x",
     "jquery": "~2.1.1",
     "less": "~1.7.x",
     "less-elements": "",
     "lodash": "~2.4.1",
-    "messageformat": "~0.1.x",
+    "messageformat": "~0.2.x",
     "momentjs": "~2.8.x",
     "restangular": "~1.4.x",
     "venturocket-angular-slider": "~0.3.x",
     "angular-mousewheel": "~1.0.4",
     "angular-charts": "~0.2.3",
-    "angular-fontawesome": "~0.1.2",
+    "angular-fontawesome": "~0.3.0",
     "angular-local-storage": "~0.1.3"
   },
   "devDependencies": {
-    "angular-scenario": "~1.2.7"
+    "angular-scenario": "~1.3.1"
   },
   "resolutions": {
     "d3": "~3.4.x",
-    "angular": "~1.2.21"
+    "angular": "~1.3.1",
+    "messageformat": "~0.1.6"
   }
 }

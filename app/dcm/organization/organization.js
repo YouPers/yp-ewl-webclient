@@ -106,6 +106,11 @@
                 $scope.sectors = _localizedValues('organization.sector.', 38);
                 $scope.legalForms = _localizedValues('organization.legalForm.', 7);
 
+                $scope.sectorSelected = function($item, $model, $label) {
+                    $scope.organization.sector = $item.key;
+                    $scope.sectorSearchModel = '';
+                };
+
                 $scope.validateOrganizationModel = function () {
                     var missingOrganizationFields = [];
                     _.each($scope.organizationForm, function (val, key) {

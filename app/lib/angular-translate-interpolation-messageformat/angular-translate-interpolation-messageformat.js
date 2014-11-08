@@ -1,6 +1,6 @@
 /*!
- * angular-translate - v2.3.0 - 2014-09-16
- * http://github.com/PascalPrecht/angular-translate
+ * angular-translate - v2.4.2 - 2014-10-21
+ * http://github.com/angular-translate/angular-translate
  * Copyright (c) 2014 ; Licensed MIT
  */
 angular.module('pascalprecht.translate').constant('TRANSLATE_MF_INTERPOLATION_CACHE', '$translateMessageFormatInterpolation').factory('$translateMessageFormatInterpolation', [
