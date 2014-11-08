@@ -180,7 +180,7 @@
     <div class="col-md-12">
 
 
-        <game-area class="campaign-offers" ng-init="offersAreaHeight = 22" area-height="offersAreaHeight">
+        <game-area class="campaign-offers" ng-init="homeController.offersAreaHeight = 22" area-height="homeController.offersAreaHeight">
 
             <div>
                 <h3 translate>dcmhome.activities</h3>
@@ -201,7 +201,7 @@
 
             </div>
 
-            <div class="flex" ng-style="{ height: $parent.offersAreaHeight + 'em' }">
+            <div class="flex" ng-style="{ height: homeController.offersAreaHeight + 'em' }">
 
 
                 <div ng-if="campaign && offers.length === 0" class="empty-content">
