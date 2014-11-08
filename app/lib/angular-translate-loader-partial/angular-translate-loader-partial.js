@@ -1,6 +1,6 @@
 /*!
- * angular-translate - v2.3.0 - 2014-09-16
- * http://github.com/PascalPrecht/angular-translate
+ * angular-translate - v2.4.2 - 2014-10-21
+ * http://github.com/angular-translate/angular-translate
  * Copyright (c) 2014 ; Licensed MIT
  */
 angular.module('pascalprecht.translate').provider('$translatePartialLoader', function () {
@@ -12,14 +12,14 @@ angular.module('pascalprecht.translate').provider('$translatePartialLoader', fun
   Part.prototype.parseUrl = function (urlTemplate, targetLang) {
     return urlTemplate.replace(/\{part\}/g, this.name).replace(/\{lang\}/g, targetLang);
   };
-  Part.prototype.getTable = function (lang, $q, $http, urlTemplate, errorHandler) {
+  Part.prototype.getTable = function (lang, $q, $http, $httpOptions, urlTemplate, errorHandler) {
     var deferred = $q.defer();
     if (!this.tables[lang]) {
       var self = this;
-      $http({
+      $http(angular.extend({
         method: 'GET',
         url: this.parseUrl(urlTemplate, lang)
-      }).success(function (data) {
+      }, $httpOptions)).success(function (data) {
         self.tables[lang] = data;
         deferred.resolve(data);
       }).error(function () {
@@ -126,7 +126,8 @@ angular.module('pascalprecht.translate').provider('$translatePartialLoader', fun
         }
         for (var part in parts) {
           if (hasPart(part) && parts[part].isActive) {
-            loaders.push(parts[part].getTable(options.key, $q, $http, options.urlTemplate, errorHandler).then(addTablePart));
+            loaders.push(parts[part].getTable(options.key, $q, $http, options.$http, options.urlTemplate, errorHandler).then(addTablePart));
+            parts[part].urlTemplate = options.urlTemplate;
           }
         }
         if (loaders.length) {
@@ -169,6 +170,16 @@ angular.module('pascalprecht.translate').provider('$translatePartialLoader', fun
         if (hasPart(name)) {
           var wasActive = parts[name].isActive;
           if (removeData) {
+            var $translate = $injector.get('$translate');
+            var cache = $translate.loaderCache();
+            if (typeof cache === 'string') {
+              cache = $injector.get(cache);
+            }
+            if (typeof cache === 'object') {
+              angular.forEach(parts[name].tables, function (value, key) {
+                cache.remove(parts[name].parseUrl(parts[name].urlTemplate, key));
+              });
+            }
             delete parts[name];
           } else {
             parts[name].isActive = false;
