@@ -42,25 +42,25 @@
 
                 <!-- image -->
                 <div>
-                    <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}">
+                    <img ng-src="{{::'/assets/actpics/' + idea.number + '.jpg'}}">
                 </div>
 
                 <!-- title -->
                 <div>
-                    <div ng-bind-html="idea.title"></div>
+                    <div ng-bind-html="::idea.title"></div>
                 </div>
 
                 <!-- duration -->
                 <div>
                     <div>
                         <i class="fa fa-clock-o"></i>
-                        <span>{{ idea.defaultduration }}</span>
+                        <span>{{:: idea.defaultduration }}</span>
                         <span>&nbsp;</span>
                         <span translate>activities.duration.suffix</span>
                     </div>
 
                     <i class="fa"
-                       ng-class="{ 'fa-users': idea.defaultexecutiontype == 'group',
+                       ng-class="::{ 'fa-users': idea.defaultexecutiontype == 'group',
                                  'fa-user': idea.defaultexecutiontype == 'self'}">
                     </i>
                 </div>
@@ -69,13 +69,13 @@
 
                 <div>
 
-                    <a ui-sref="dcm.recommendation({ idea: idea.id })">
-                        <i class="fa fa-share-square" popover-placement="top"  popover="{{'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
+                    <a ui-sref="dcm.recommendation(::{ idea: idea.id })">
+                        <i class="fa fa-share-square" popover-placement="top"  popover="{{::'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
                     </a>
 
                     <a ng-show="idea.defaultexecutiontype === 'group'"
-                       ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })" >
-                        <i class="fa fa-calendar" popover-placement="top"  popover="{{'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
+                       ui-sref="dcm.activity(::{ idea: idea.id, mode: 'campaignlead' })" >
+                        <i class="fa fa-calendar" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
                     </a>
 
                 </div>
