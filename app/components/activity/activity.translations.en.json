@@ -40,7 +40,7 @@
       "activityJoined": "Assumed",
       "denied": "Denied",
       "pending": "?",
-      "organizer": null
+      "organizer": "Organizer"
     },
     "link": {
       "campaignlead": "Schedule it",
@@ -115,10 +115,10 @@
       "stateHeader2": "Activity"
     },
     "publishFrom": {
-      "label": "By"
+      "label": "From"
     },
     "publishTo": {
-      "label": "…"
+      "label": "To"
     }
   },
   "activityForm": {

@@ -8,7 +8,7 @@
     "image": {
       "label": "Activity image",
       "select": "select",
-      "required": null
+      "required": "Please select a picture"
     },
     "description": {
       "label": "Short description",
@@ -63,22 +63,22 @@
   },
   "recommendationForm": {
     "title": {
-      "label": "Tab",
-      "placeholder": "Tab"
+      "label": "Title",
+      "placeholder": "Title"
     },
     "text": {
-      "label": "Txt",
-      "placeholder": "Txt"
+      "label": "Message",
+      "placeholder": "Message"
     },
     "publishFrom": {
-      "label": "By",
-      "placeholder": "By"
+      "label": "From",
+      "placeholder": "From"
     },
     "publishTo": {
-      "label": "…",
-      "placeholder": "…"
+      "label": "To",
+      "placeholder": "To"
     },
-    "submit": "save",
+    "submit": "Save",
     "delete": "Delete recommendation",
     "header": {
       "publish": "Publish recommendation"

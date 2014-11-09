@@ -21,7 +21,12 @@
         "noCampaigns": null,
         "organizationIncomplete": null,
         "recommendationCreated": null,
-        "recommendationDeleted": null
+        "recommendationDeleted": null,
+        "enterAdresses": null,
+        "noAvatarPicture": null,
+        "noMessages": null,
+        "nothingOffered": null,
+        "testEmailSent": null
       },
       "ideas": {
         "stateEnter": null
@@ -64,12 +69,13 @@
         "campaignEnded": null,
         "campaignEndingWithCurrentActivities": null,
         "noCurrentActivities": null,
-        "noDoneEvents": null,
         "noOffers": null,
         "noPastOrPresentEventsAndEnoughActivities": null,
         "noPastOrPresentEventsAndTooFewActivities": null,
         "pastEvents": null,
-        "pastOrPresentEvents": null
+        "checkBackClicked": null,
+        "pastAndPresentEvents": null,
+        "presentEvents": null
       }
     },
     "fullname": null,
