@@ -10,6 +10,7 @@
                 var activityEvents = Restangular.all('activityevents');
 
                 var ideaCache = {};
+                var ideaCachePending = {};
 
                 $rootScope.$on('$translateChangeSuccess', function () {
                     console.log('IdeaService: resetting IdeaCache');
@@ -23,11 +24,19 @@
                     var usersCampaign = $rootScope.$stateParams.campaignId ||
                         (UserService.principal.getUser().campaign && UserService.principal.getUser().campaign.id);
 
-                    // determine whether we need to fetch anything from server
+                    // we have to wait for all pending requests that contain ids that we need
+                    var promisesToWaitFor = [];
+
+                    // determine whether we need to fetch anything from server or wait for something that is already
+                    // being fetched
                     var ideaIdsToFetch = [];
                     _.forEach(objects, function (obj) {
                         if (obj.idea && !_.isObject(obj.idea) && !ideaCache[obj.idea]) {
-                            ideaIdsToFetch.push(obj.idea);
+                            if (ideaCachePending[obj.idea]) {
+                                promisesToWaitFor.push(ideaCachePending[obj.idea]);
+                            } else {
+                                ideaIdsToFetch.push(obj.idea);
+                            }
                         }
                     });
 
@@ -51,6 +60,7 @@
                         }
                     }
 
+                    // are there some ids that are not in the cache and are not already being fetched?
                     if (ideaIdsToFetch.length > 0) {
                         // some ideas have to be fetched from server
                         var options = {};
@@ -58,11 +68,30 @@
                         if (usersCampaign) {
                             options.campaign = usersCampaign;
                         }
-                        return ideas.getList(options).then(function (ideas) {
-                            _.forEach(ideas, function (idea) {
-                                ideaCache[idea.id] = idea;
+
+                        var promise = ideas.getList(options)
+                            .then(function (ideas) {
+                                    _.forEach(ideas, function (idea) {
+                                        ideaCache[idea.id] = idea;
+                                    });
+                                })
+                            .finally(function (ideas) {
+                                // remove the ids from the pending
+                                _.forEach(ideaIdsToFetch, function(id) {
+                                    delete ideaCachePending[id];
+                                });
                             });
-                        }).then(_populateFromCache);
+
+                        // put the ids to the pending
+                        _.forEach(ideaIdsToFetch, function(id) {
+                            ideaCachePending[id] = promise;
+                        });
+
+                        promisesToWaitFor.push(promise);
+                    }
+
+                    if (promisesToWaitFor.length > 0) {
+                        return $q.all(promisesToWaitFor).then(_populateFromCache);
                     } else {
                         // all ideas already on client
                         return $q.when(_populateFromCache());
@@ -291,7 +320,4 @@
     ;
 
 
-}
-()
-    )
-;
+}());
