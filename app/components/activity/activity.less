@@ -16,19 +16,21 @@
 
 .dhc-activity, .dcm-activity {
 
-  .btn-group .btn {
-    left: -1px;
+  .edit-delete-icons a {
+    font-size: 1.3em;
   }
 
-  section:first-of-type {
-    .btn-group .btn {
-      display: inline-block;
-      float: left;
-      width: 48%;
-      &:not(:first-of-type) {
-        float: right;
-      }
-    }
+  section.dimmed {
+      background: white;
+      opacity: 0.2;
+  }
+
+  .btn.back-link {
+    border: none;
+  }
+
+  .btn {
+    width: 48%
   }
 
   .dismissed .activity-offer-card {
@@ -60,18 +62,6 @@
   .event-list:hover activity-event-card.conflict {
     animation: ConflictAnimation 0.8s;
     animation-fill-mode: forwards;
-  }
-
-  .activity-edit-buttons {
-    > *:first-of-type {
-      float: left;
-    }
-    > *:last-of-type {
-      float: right;
-    }
-    > * {
-      width: 48%;
-    }
   }
 
   activity-view {
@@ -262,6 +252,10 @@
   .game-icon {
     float: right;
     font-size: 3em;
+  }
+
+  section.no-left-border {
+    border-left: none;
   }
 
 

@@ -1,26 +1,9 @@
 <div class="four-column-layout">
 
 
-    <section>
+    <section ng-class="{dimmed: activityController.deleteModeEnabled}">
         <div class="header-row">
-            <h3 translate>{{ 'activity.header.first.' + mode }}</h3>
-        </div>
-
-        <div class="button-row">
-            <div class="btn-group btn-group-justified">
-                <a class="btn btn-primary"
-                   ng-click="acceptRecommendation()"
-                   ng-class="{ invisible: activityController.active || activityController.dismissed }"
-
-                        >{{ 'activity.link.' + mode | translate }}</a>
-
-                <a class="btn btn-default"
-                   ng-show="mode !== 'campaignlead' && socialInteraction"
-                   ng-click="dismiss()"
-
-                   ng-disabled="activityController.dismissed"
-                   translate>activity.link.dismiss</a>
-            </div>
+            <h3 translate>{{ 'activity.header.first.' + pageTitle }}</h3>
         </div>
 
         <div ng-if="socialInteraction">
@@ -44,54 +27,63 @@
         </div>
     </section>
 
-    <section>
+    <section ng-class="{dimmed: activityController.deleteModeEnabled}">
         <div class="header-row">
-            <h3 translate>activity.header.second</h3>
+            <h3><span translate>activity.header.second</span>
+                <span class="pull-right edit-delete-icons">
+                <a class="fa fa-edit" ng-click="enterEditMode()"
+                   ng-if="!activityController.formEnabled &&
+                    activity.editStatus.indexOf('editable') === 0 &&
+                    activityController.canEdit"></a>
+                <a class="fa fa-trash-o" ng-click="enterDeleteMode()"
+                   ng-if="!activityController.formEnabled &&
+                   activity.deleteStatus.indexOf('deletable') === 0 &&
+                   activityController.canDelete"></a>
+                </span>
+            </h3>
+
         </div>
 
-        <div class="button-row">
+        <!-- read only view -->
+        <div ng-if="!activityController.formEnabled">
+            <activity-view activity="activity"></activity-view>
 
-            <div ng-show="activityController.active && !activityController.formActive && !activityController.deleteMode">
+            <div ng-if="isCampaignLead">
+                <h3 translate>activity.header.publish</h3>
 
+                <div class="publish">
+                    <span translate>activity.publishFrom.label</span>
+                    <span>: {{ socialInteraction.publishFrom | date}} </span>
+                    <span translate>activity.publishTo.label</span>
+                    <span>: {{ socialInteraction.publishTo | date}}</span>
+                </div>
+            </div>
+        </div>
 
-                <div class="activity-edit-buttons btn-group-justified">
-                    <a class="btn btn-primary" ng-click="editMode()" ng-if="activityController.formEnabled && activity.editStatus.indexOf('editable') === 0" translate>activity.link.edit</a>
-                    <a class="btn btn-warning" ng-click="deleteMode()" ng-if="activity.deleteStatus.indexOf('deletable') === 0" translate>activity.link.delete</a>
+        <!-- new and edit view -->
+        <div ng-if="activityController.formEnabled">
+            <activity-edit activity="activity" campaign="campaign" form="formContainer.form"></activity-edit>
+            <div ng-if="isCampaignLead">
+
+                <h3 translate>activity.header.publish</h3>
+
+                <div class="publish" ng-model="socialInteraction.publishFrom" synchronizedDate="socialInteraction.publishTo">
+                    <label translate>activity.publishFrom.label</label>
+                    <date-picker date="socialInteraction.publishFrom" min-date="campaign.start" max-date="campaign.end"></date-picker>
+                    <label translate>activity.publishTo.label</label>
+                    <date-picker date="socialInteraction.publishTo" min-date="campaign.start" max-date="campaign.end"></date-picker>
 
                 </div>
-
-
-            </div>
-
-        </div>
-
-        <div ng-show="activityController.active && !activityController.formActive">
-            <activity-view activity="activity"></activity-view>
-        </div>
-        <div ng-if="activityController.active && activityController.formActive">
-            <activity-edit activity="activity" campaign="campaign" form="formContainer.form"></activity-edit>
-        </div>
-
-
-        <div  ng-if="mode === 'campaignlead'">
-
-            <h3 translate>activity.header.publish</h3>
-
-            <div class="publish" ng-model="socialInteraction.publishFrom" synchronizedDate="socialInteraction.publishTo">
-
-
-                <label translate>activity.publishFrom.label</label>
-                <date-picker date="socialInteraction.publishFrom" min-date="campaign.start" max-date="campaign.end"></date-picker>
-                <label translate>activity.publishTo.label</label>
-                <date-picker date="socialInteraction.publishTo" min-date="campaign.start" max-date="campaign.end"></date-picker>
-
             </div>
         </div>
+
+
+
 
         <div class="clearfix"></div>
 
-
-        <div ng-if="activityController.active && activity.id && idea.defaultexecutiontype !== 'self'">
+        <!-- list of participants including invitation-state -->
+        <div ng-if="isScheduled && idea.defaultexecutiontype !== 'self'">
 
             <div>
                 <h3 translate>activity.header.invitedUsers</h3>
@@ -114,7 +106,7 @@
             </div>
         </div>
 
-        <div ng-show="activityController.active && activityController.formEnabled" ng-if="mode !== 'campaignlead' && idea.defaultexecutiontype !== 'self'">
+        <div ng-if="!isCampaignLead && idea.defaultexecutiontype !== 'self' && isOwner">
 
             <div>
                 <h3 translate>activity.header.inviteOthers</h3>
@@ -183,16 +175,13 @@
 
     </section>
 
-    <section>
+    <section class="no-left-border" ng-class="{dimmed: activityController.deleteModeEnabled}">
         <div class="header-row">
-            <h3 translate>activity.header.third</h3>
-        </div>
-
-        <div class="button-row">
 
         </div>
 
-        <div ng-show="activityController.active || activity.isOwner()">
+
+        <div>
 
             <div ng-repeat="event in events" class="event-list animate-repeat"
 
@@ -226,26 +215,64 @@
 
     <section>
 
-        <div class="header-row"></div>
-
-        <div class="button-row">
-            <button class="btn btn-default backToGame" ng-click="backToGame()" translate>
-                activity.link.back
-            </button>
-
-            <button ng-if="!activityController.deleteMode && mode !== 'joined'" class="btn btn-primary submit" ng-disabled="!activityController.active || (!activityController.dirty && activityController.formEnabled) || (activity.isJoiningUser())" ng-click="submit()">
-                {{ 'activity.submit.' + mode + activityController.submitMode | translate }}
-            </button>
-
-
-            <button ng-if="activityController.deleteMode" class="btn btn-warning submit" ng-click="deleteActivity()">
-                {{ 'activity.submit.delete' | translate }}
-            </button>
-
-
-
+        <div class="header-row">
+            <div class="btn btn-default pull-right back-link" ng-click="backToGame()"><span class="fa fa-chevron-left"></span> <span translate>activity.link.back</span></div>
         </div>
 
+        <!-- buttons in delete Mode -->
+        <div class="button-row" ng-if="activityController.deleteModeEnabled">
+            <button class="btn btn-warning" ng-click="deleteActivity()">
+                {{ 'activity.submit.delete' | translate }}
+            </button>
+            <button class="btn btn-default pull-right" ng-click="activityController.deleteModeEnabled=false">
+                {{ 'activity.submit.cancel' | translate }}
+            </button>
+        </div>
+
+        <!-- buttons in edit Mode -->
+        <div class="button-row" ng-if="activityController.editModeEnabled">
+            <button class="btn btn-primary"
+                    ng-disabled="(!activityController.dirty)" ng-click="saveActivity()">
+                {{ 'activity.submit.save' | translate }}
+            </button>
+            <button class="btn btn-default pull-right" ng-click="activityController.editModeEnabled=false; activityController.formEnabled=false">
+                {{ 'activity.submit.cancel' | translate }}
+            </button>
+        </div>
+
+        <!-- buttons for new Recommendation -->
+        <div class="button-row" ng-if="isRecommendation">
+            <button class="btn btn-primary submit"
+                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()">
+                {{ 'activity.submit.recommendationSave' | translate }}
+            </button>
+            <button class="btn btn-default submit" ng-click="dismiss()">
+                {{ 'activity.submit.recommendationDismiss' | translate }}
+            </button>
+        </div>
+
+        <!-- buttons for new Invitation -->
+        <div class="button-row" ng-if="isInvitation">
+            <button class="btn btn-primary submit"
+                    ng-click="joinActivity()">
+                {{ 'activity.submit.joinedSave' | translate }}
+            </button>
+            <button  class="btn btn-default submit" ng-click="dismiss()">
+                {{ 'activity.submit.invitationDecline' | translate }}
+            </button>
+        </div>
+
+        <!--buttons for new CampaignActivity -->
+
+        <div class="button-row" ng-if="isNewCampaignActivity">
+            <button class="btn btn-primary submit"
+                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()">
+                {{ 'activity.submit.campaignleadSave' | translate }}
+            </button>
+            <button class="btn btn-default submit" ng-click="backToGame()">
+                {{ 'activity.submit.cancel' | translate }}
+            </button>
+        </div>
 
 
         <div class="box">
