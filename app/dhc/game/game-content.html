@@ -1,10 +1,10 @@
 <div>
-    <game-area class="current-activities" ng-init="currentActivitiesAreaHeight = 22" area-height="currentActivitiesAreaHeight">
+    <game-area class="current-activities" ng-init="gameController.currentActivitiesAreaHeight = 22" area-height="gameController.currentActivitiesAreaHeight">
 
         <div><h3 translate>game.activities.current</h3></div>
 
 
-        <div class="flex" ng-style="{ height: $parent.currentActivitiesAreaHeight + 'em' }">
+        <div class="flex" ng-style="{ height: gameController.currentActivitiesAreaHeight + 'em' }">
 
 
             <div ng-if="activities.length === 0">
