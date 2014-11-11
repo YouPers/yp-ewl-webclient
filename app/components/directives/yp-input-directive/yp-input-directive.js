@@ -63,7 +63,7 @@
 
                     input.attr('ng-model', $scope.ypModel + '.' + name);
 
-                    $scope.showLabel = _.isUndefined($attrs.label) ? true : $attrs.label;
+                    $scope.showLabel = _.isUndefined($attrs.label) ? true : $attrs.label === 'true';
 
                     // move all attributes from parent input to child input
                     _.forEach($attrs.$attr, function(value, key, list) {
