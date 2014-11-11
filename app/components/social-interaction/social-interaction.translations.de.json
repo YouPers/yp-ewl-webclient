@@ -15,7 +15,7 @@
         "coach": "HealthCoach"
       },
       "Message": {
-        "user": "persönliche Nachricht",
+        "user": "Aktivitäts-Kommentar",
         "campaignLead": "Kampagnennachricht",
         "coach": "HealthCoach"
       }
