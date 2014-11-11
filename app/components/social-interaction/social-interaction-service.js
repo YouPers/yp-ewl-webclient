@@ -54,7 +54,6 @@
                         }
                         return recommendations.post(recommendation);
                     },
-
                     getInvitations: function(options) {
                         return invitations.getList(options);
                     },

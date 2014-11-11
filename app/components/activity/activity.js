@@ -38,8 +38,8 @@
                     return SocialInteractionService.getInvitations({
                         populate: 'author',
                         targetId: $stateParams.campaignId,
-                        refDocId: activity.id,
-                        authored: true
+                        authored: true,
+                        "filter[activity]": activity.id
                     }).then(function (invitations) {
                         return invitations.length > 0 ? invitations[0] : undefined;
                     });
@@ -137,53 +137,50 @@
                 $scope.socialInteraction = socialInteraction;
                 $scope.events = _.filter(activityEvents, { status: 'open'});
 
+
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
                 $scope.campaignInvitation = campaignInvitation;
 
-                $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isScheduled = activity && activity.id;
+                $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
+                $scope.isJoiner = $scope.isScheduled && ActivityService.isJoiningUser(activity);
+                $scope.isCampaignLead = $state.$current.parent.name === 'dcm';
+                $scope.isInvitation = socialInteraction && socialInteraction.__t === 'Invitation';
+                $scope.isRecommendation = socialInteraction && socialInteraction.__t === 'Recommendation';
+                $scope.isNewCampaignActivity = $scope.isCampaignLead && !$scope.isScheduled;
+
+                if ($scope.isScheduled) {
+                    $scope.pageTitle = 'PlannedActivity';
+                } else if ($scope.isInvitation) {
+                    $scope.pageTitle = 'Invitation';
+                } else if ($scope.isRecommendation) {
+                    $scope.pageTitle = 'Recommendation';
+                } else if ($scope.isCampaignLead) {
+                    $scope.pageTitle = 'NewCampaignActivity';
+                } else {
+                    throw new Error('Unknown state');
+                }
 
                 $scope.formContainer = {};
 
-                var mode;
-
-                if($state.$current.parent.name === 'dcm') {
-                    mode = 'campaignlead';
-                } else if ($scope.isScheduled && ActivityService.isOwner(activity)) {
-                    mode = 'owned';
-                } else if ($scope.isScheduled && ActivityService.isJoiningUser(activity)) {
-                    mode = 'joined';
-                } else if (socialInteraction) {
-                    mode = socialInteraction.__t.toLowerCase();
-                } else {
-                    mode = 'schedule';
-                }
-
                 var activityController = this;
-                activityController.mode = $scope.mode = mode;
 
-                // only recommendations have to be activated
-                activityController.active = !socialInteraction || socialInteraction.__t !== 'Recommendation';
-                activityController.formEnabled = (activity.id && $scope.isOwner) ||
-                    mode === 'recommendation' ||
-                    mode === 'campaignlead' ||
-                    mode === 'schedule';
-                activityController.formActive = mode === 'schedule' || (mode === 'campaignlead' && !activity.id);
-
-                // invitations
+                activityController.formEnabled = !$scope.isScheduled;
+                activityController.canEdit = $scope.isScheduled && $scope.isOwner;
+                activityController.canDelete = $scope.isScheduled && ($scope.isOwner || $scope.isJoiner);
 
                 $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
 
                 var invitation = {
                     author: UserService.principal.getUser(),
-                    authorType: mode === 'campaignlead' ? 'campaignLead' : 'user',
+                    authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
                     __t: 'Invitation',
 
                     publishFrom: $scope.minPublishDate,
                     publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate()
                 };
 
-                if(mode === 'campaignlead') {
+                if($scope.isCampaignLead) {
                     $scope.socialInteraction = campaignInvitation || invitation;
 
                     $scope.$watch('socialInteraction.publishFrom', function (date) {
@@ -202,40 +199,56 @@
 
 
                 // user, email & campaign wide selections
-
-                if (campaignInvitation || mode === 'campaignlead') { // check if campaign is already invited
-                    activityController.inviteOthers = 'all';
-                    $scope.inviteLocked = true;
-                }
-
-                // set the organizer's invitation status if this is already scheduled
                 if ($scope.isScheduled) {
+
+                    // set the organizer's invitation status if this is already scheduled, so he shows up as organizer
                     activity.owner.invitationStatus = 'organizer';
                     $scope.invitedUsers = [activity.owner];
+
+                    if (campaignInvitation && campaignInvitation.id) { // check if campaign is already invited
+                        activityController.inviteOthers = 'all';
+                        $scope.inviteLocked = true;
+                    }
+
+                    // find out whether we do inviteAll oder Selected or nobody
                     if (invitationStatus && invitationStatus.length > 0) {
-                        activityController.inviteOthers = 'selected';
+                        activityController.inviteOthers = activityController.inviteOthers || 'selected';
                         _.each(invitationStatus, function (status) {
                             var user = status.user || {email: status.email};
                             user.invitationStatus = status.status;
                             $scope.invitedUsers.push(user);
                         });
                     }
+
+
                 } else {
                     $scope.invitedUsers = [];
+
+                    if ($scope.isCampaignLead) {
+                        activityController.inviteOthers = 'all';
+                        $scope.inviteLocked = true;
+                    }
                 }
+                activityController.inviteOthers = activityController.inviteOthers || 'none';
 
                 // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
                 $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner).concat(campaign.campaignLeads);
 
                 $scope.usersToBeInvited = [];
+
                 $scope.onUserSelected = function onUserSelected(selection) {
                     $scope.usersToBeInvited.push(selection);
                     $scope.usersExcludedForInvitation.push(selection);
+                    selection = '';
+                    $scope.noUserFound = false;
                 };
+
                 $scope.onEmailSelected = function onEmailSelected(selection) {
                     $scope.usersToBeInvited.push(selection);
                     $scope.emailToBeInvited = "";
+                    $scope.noUserFound = false;
                 };
+
                 $scope.removeUserToBeInvited = function (user) {
                     _.remove($scope.usersToBeInvited, user.id ? { id: user.id } : user);
                 };
@@ -272,74 +285,63 @@
 
                 $scope.$watch('activity', validateActivity, true);
 
-                var initialized = false;
-                activityController.submitMode = 'Save';
-
-                function dirtyWatch(val, old) {
-                    if(initialized) {
-                        activityController.dirty = true;
-
-                        if((!activity.id  && activityController.inviteOthers === 'all') ||
-                            $scope.usersToBeInvited.length > 0) {
-                            activityController.submitMode = 'SaveAndInvite';
-                        } else {
-                            activityController.submitMode = 'Save';
-                        }
+                $scope.$root.$on('InviteUserSearch:noCandidatesFound', function(event) {
+                        $scope.noUserFound = true;
                     }
-                }
-                activityController.dirty = activityController.formActive && !activity.id;
-
-                $scope.$watch('activityController.inviteOthers', dirtyWatch);
-                $scope.$watch('usersToBeInvited', dirtyWatch, true);
-                $scope.$watch('activity', dirtyWatch, true);
-                $scope.$watch('socialInteraction', dirtyWatch, true);
-
-                $timeout(function () {
-                    initialized = true;
-                });
+                );
 
                 $scope.backToGame = function () {
-                    if (mode === 'campaignlead') {
-                        HealthCoachService.queueEvent('invitationCreated');
+                    if ($scope.isCampaignLead) {
                         $state.go('dcm.home');
                     } else {
                         $state.go('dhc.game', {view: ""});
                     }
                 };
 
-                $scope.acceptRecommendation = function () {
-                    if($scope.healthCoachEvent !== 'conflictingEvent') {
-                        $scope.healthCoachEvent = 'recommendationAccepted';
-                    }
-                    activityController.active = true;
-                    activityController.formActive = activityController.formEnabled;
-                };
-
                 $scope.dismiss = function dismiss() {
-                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, { reason: 'denied'}).then(function (result) {
+                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, { reason: 'denied'})
+                        .then(function (result) {
+                            if ($scope.isRecommendation) {
+                                HealthCoachService.queueEvent('recommendationDismissed');
 
-                        activityController.dismissed = true;
-                        $scope.healthCoachEvent = $scope.socialInteraction.__t.toLowerCase() + 'Dismissed';
+                                // we wait 100ms here before we go back to the main Screen, because otherwise we
+                                // will not see a potentially created new Recommendation
+                                // reason: new CoachRecs are created asynchronously.
+                                $timeout(function () {
+                                    return $scope.backToGame();
+                                }, 100);
+
+                            } else {
+                                HealthCoachService.queueEvent('invitationDismissed');
+                                return $scope.backToGame();
+                            }
+
+
                     });
 
                 };
 
-                $scope.submit = function () {
-                    var user = UserService.principal.getUser();
-                    if (($scope.activity.owner.id || $scope.activity.owner) === user.id) {
-                        $scope.saveActivity();
+                $scope.enterEditMode = function () {
+                    activityController.editModeEnabled = true;
+                    activityController.formEnabled = true;
+                    if ($scope.activity.joiningUsers && $scope.activity.joiningUsers.length === 0) {
+                        $scope.healthCoachEvent = 'editOwnActivityAlone';
                     } else {
-                        $scope.joinActivity();
+                        $scope.healthCoachEvent = 'editOwnActivityWithJoiners';
                     }
                 };
 
-                $scope.editMode = function () {
-                    activityController.formActive = activityController.formEnabled;
-                    $scope.$root.$broadcast('healthCoach:event', 'editOwnActivity');
-                };
-                $scope.deleteMode = function () {
-                    activityController.deleteMode = true;
-                    $scope.$root.$broadcast('healthCoach:event', $scope.isOwner ? 'deleteOwnActivity' : 'deleteJoinedActivity');
+                $scope.enterDeleteMode = function () {
+                    activityController.deleteModeEnabled = true;
+                    if ($scope.isJoiner) {
+                        $scope.healthCoachEvent = 'deleteJoinedActivity';
+                    } else if ($scope.isOwner && $scope.activity.joiningUsers.length === 0) {
+                        $scope.healthCoachEvent = 'deleteOwnActivityAlone';
+                    } else if ($scope.isOwner && $scope.activity.joiningUsers.length >= 0) {
+                        $scope.healthCoachEvent = 'deleteOwnActivityWithJoiners';
+                    } else {
+                        throw new Error('Unexpected State');
+                    }
                 };
 
                 $scope.deleteActivity = function deleteActivity() {
@@ -363,7 +365,6 @@
                         HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
                         $scope.activity = savedActivity;
-                        activityController.dirty = false;
 
                         var inviteAll = activityController.inviteOthers === 'all';
                         if (inviteAll || $scope.usersToBeInvited.length > 0) {
@@ -371,7 +372,7 @@
                             invitation.activity = $scope.activity.id;
                             invitation.idea = $scope.idea.id;
 
-                            if ($scope.mode === 'campaignlead') {
+                            if ($scope.isCampaignLead) {
 
                                 if(campaignInvitation) {
                                     SocialInteractionService.putSocialInteraction(campaignInvitation).then(function () {
@@ -390,6 +391,7 @@
                                     ];
                                     SocialInteractionService.postInvitation($scope.socialInteraction).then(function (saved) {
                                         $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: saved.id });
+                                        HealthCoachService.queueEvent('invitationCreated');
                                     });
                                 }
 
@@ -430,9 +432,7 @@
                             }
                         }
 
-                        if(mode !== 'campaignlead') {
-                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' }, { reload: true });
-                        }
+                        $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' }, { reload: true });
 
                     });
 

@@ -26,7 +26,9 @@
 
                     scope.getUsers = function(val) {
                         return UserService.getUsers({ 'filter[fullname]': val }).then(function(users){
-
+                            if (val && val.length > 0 && users.length === 0) {
+                                scope.$root.$emit('InviteUserSearch:noCandidatesFound');
+                            }
                             return _.filter(users, function(user) {
                                 return !_.any(scope.excludedUsers, function (excludedUser) {
                                     return user.id === (excludedUser.id || excludedUser);
