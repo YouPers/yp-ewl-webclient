@@ -8,7 +8,9 @@
                 return {
                     restrict: 'E',
                     scope: {
-                        activity: '='
+                        activity: '=',
+                        isCampaignLead: '=',
+                        socialInteraction: '='
                     },
                     templateUrl: 'components/activity/activity-view-directive.html',
 

@@ -20,15 +20,16 @@
       "second": "Plan",
       "third": "Termine",
       "invitedUsers": "Teilnehmer",
-      "inviteOthers": "Andere einladen",
+      "inviteOthers": "Kampagnen-Teilnehmer einladen",
       "comments": "Kommentare",
       "publish": "Einladung publizieren"
     },
     "inviteOthers": {
       "selected": "ausgewählte",
       "all": "alle",
+      "none": "Niemand",
       "inviteByEmail": "Jemanden per Email einladen",
-      "inviteByUser": "In der Kampagne suchen"
+      "inviteByUser": "Person suchen"
     },
     "emailToBeInvited": {
       "placeholder": "Email",
@@ -104,6 +105,7 @@
       "time": "Zeit",
       "frequency": "Häufigkeit",
       "recurrence": "Anzahl",
+      "publish": "publiziert",
       "socialInteraction": {
         "title": "Nachricht"
       },

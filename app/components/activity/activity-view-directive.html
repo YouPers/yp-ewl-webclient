@@ -21,4 +21,14 @@
     <dt ng-if="activity.id && activity.frequency !== 'once'" class="recurrence" translate>activity.view.recurrence</dt>
     <dd ng-if="activity.id && activity.frequency !== 'once'" class="recurrence">{{ activity.recurrence.endby.after }}</dd>
 
+    <div ng-if="isCampaignLead">
+        <h3 translate>activity.header.publish</h3>
+
+        <dt translate>activity.publishFrom.label</dt>
+        <dd>{{ socialInteraction.publishFrom | date}}</dd>
+        <dt translate>activity.publishTo.label</dt>
+        <dd>{{ socialInteraction.publishTo | date}}</dd>
+
+    </div>
+
 </dl>
