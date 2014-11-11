@@ -28,15 +28,15 @@
         "placeholder": "Email-Betreff"
       },
       "emailText": {
-        "defaultText": "Liebe Mitarbeiterin, lieber Mitarbeiter<br><br>{{ campaign.organization.name }} lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema {{ campaign.title }} teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS AG durch.",
+        "defaultText": "Liebe Mitarbeiterin, lieber Mitarbeiter<br><br>{{ campaign.organization.name }} lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema {{ campaign.title }} teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS durch.",
         "label": "Email-Text",
         "placeholder": "Email-Text"
       },
-      "explain": "Hier kannst du automatisch Einladungs-Mails zur Kampagne für die zukünftigen Teilnehmer versenden. Prüfe zuerst den vorgeschlagenen Betreff und Text und sende dir eine Test-Einladung.",
+      "explain": "Hier kannst du automatisch Einladungs-Mails zur Kampagne für die zukünftigen Teilnehmer versenden.",
       "inviteMore": "weitere einladen",
-      "label": "Email-Adressen der einzuladenden Mitarbeiter",
+      "label": "Email-Adressen der einzuladenden Mitarbeiter, getrennt mittels Komma, Semikolon oder Leerschlag",
       "next": "weiter",
-      "placeholder": "Adressen mittels Komma, Semikolon oder Leerschlag trennen",
+      "placeholder": "Email-Addressen",
       "send": "absenden",
       "sendTestButton": "Test",
       "sendYourselfTest": "Sende dir selbst eine Test-Einladung:",

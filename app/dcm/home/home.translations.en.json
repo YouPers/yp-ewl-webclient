@@ -28,15 +28,15 @@
         "placeholder": "Email subject"
       },
       "emailText": {
-        "defaultText": "This is the default text of the emails, it has not been defined ...",
+        "defaultText": "Dear employee<br><br>{{ campaign.organization.name }} invites you to participate in the operational health campaign to the topic {{ campaign.title }}. This campaign is performed together with our partner YOUPERS.",
         "label": "Email body",
         "placeholder": "Email body"
       },
-      "explain": "Send an automated Email invitation to the campaign participants. You may adjust the Subject and Message body. Then send yourself a test invitation.",
+      "explain": "Send an automated Email invitation to the campaign participants.",
       "inviteMore": "Invite more",
-      "label": "Adresses of participants to invite",
+      "label": "Addresses of participants to invite, use comma, semicolon or blank to separate multiple addresses",
       "next": "next",
-      "placeholder": "use comma, semicolon or blank to separate multiple",
+      "placeholder": "Email-Addresses",
       "send": "send",
       "sendTestButton": "Test",
       "sendYourselfTest": "Send yourself a test invitation:",
