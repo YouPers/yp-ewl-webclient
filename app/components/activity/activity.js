@@ -165,7 +165,7 @@
 
                 var activityController = this;
 
-                activityController.formEnabled = !$scope.isScheduled || activityController.editModeEnabled;
+                activityController.formEnabled = !$scope.isScheduled;
                 activityController.canEdit = $scope.isScheduled && $scope.isOwner;
                 activityController.canDelete = $scope.isScheduled && ($scope.isOwner || $scope.isJoiner);
 
