@@ -220,7 +220,6 @@
                         });
                     }
 
-                    activityController.inviteOthers = activityController.inviteOthers || 'none';
 
                 } else {
                     $scope.invitedUsers = [];
@@ -230,22 +229,26 @@
                         $scope.inviteLocked = true;
                     }
                 }
+                activityController.inviteOthers = activityController.inviteOthers || 'none';
 
                 // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
                 $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner).concat(campaign.campaignLeads);
 
                 $scope.usersToBeInvited = [];
+
                 $scope.onUserSelected = function onUserSelected(selection) {
                     $scope.usersToBeInvited.push(selection);
                     $scope.usersExcludedForInvitation.push(selection);
                     selection = '';
                     $scope.noUserFound = false;
                 };
+
                 $scope.onEmailSelected = function onEmailSelected(selection) {
                     $scope.usersToBeInvited.push(selection);
                     $scope.emailToBeInvited = "";
                     $scope.noUserFound = false;
                 };
+
                 $scope.removeUserToBeInvited = function (user) {
                     _.remove($scope.usersToBeInvited, user.id ? { id: user.id } : user);
                 };
