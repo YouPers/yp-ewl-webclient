@@ -29,7 +29,9 @@
       "all": "alle",
       "none": "Niemand",
       "inviteByEmail": "Jemanden per Email einladen",
-      "inviteByUser": "Person suchen"
+      "inviteByUser": "Person suchen",
+      "invitedOnSave": "Beim Speichern werden eingeladen:",
+      "notFound": "nicht gefunden? - Lade mittels Email ein:"
     },
     "emailToBeInvited": {
       "placeholder": "Email",

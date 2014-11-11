@@ -93,7 +93,7 @@
 
                         <div ng-if="!invitationSent && noUserFound">
 
-                            <label translate>nicht gefunden? - Lade mittels Email ein:</label>
+                            <label translate>activity.inviteOthers.notFound</label>
 
                             <form class="form"
                                   role="form"
@@ -108,7 +108,7 @@
                         </div>
                     </div>
 
-                    <label ng-if="usersToBeInvited.length > 0">Beim Speichern werden eingeladen:</label>
+                    <label ng-if="usersToBeInvited.length > 0" translate>activity.inviteOther.invitedOnSave</label>
                     <div class="user-to-be-invited"
                          ng-repeat="user in usersToBeInvited">
 
