@@ -69,14 +69,14 @@
                      ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.executiontype.self">
-                        <translate>list.alone</translate>
+                        <span translate>list.alone</span>
                     </label>
                 </div>
                 <div class="checkbox filter-option"
                      ng-class="query.executiontype.group ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.executiontype.group">
-                        <translate>list.asAGroup</translate>
+                        <span translate>list.asAGroup</span>
                     </label>
                 </div>
             </div>
@@ -95,28 +95,28 @@
                      ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.time.t15">
-                        <translate>list.lt15min</translate>
+                        <span translate>list.lt15min</span>
                     </label>
                 </div>
                 <div class="checkbox filter-option"
                      ng-class="query.time.t30 ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.time.t30">
-                        <translate>list.15-30min</translate>
+                        <span translate>list.15-30min</span>
                     </label>
                 </div>
                 <div class="checkbox filter-option"
                      ng-class="query.time.t60 ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.time.t60">
-                        <translate>list.30-60min</translate>
+                        <span translate>list.30-60min</span>
                     </label>
                 </div>
                 <div class="checkbox filter-option"
                      ng-class="query.time.more ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
                         <input type="checkbox" value="" ng-model="query.time.more">
-                        <translate>list.mt60min</translate>
+                        <span translate>list.mt60min</span>
                     </label>
                 </div>
             </div>
@@ -138,7 +138,7 @@
         <!-- Tabs und Paginierung -->
         <div class="row">
             <div class="col-md-5">
-                <div> {{filteredIdeas.length}} <translate>list.ofTotal</translate> {{ideas.length}}</div>
+                <div> {{filteredIdeas.length}} <span translate>list.ofTotal</span> {{ideas.length}}</div>
                     <span>
                         <pagination total-items="filteredIdeas.length" items-per-page="pageSize" ng-model="currentPage"
                                     max-size="maxSize" class="pagination youpers" boundary-links="false" previous-text="<" next-text=">"/>

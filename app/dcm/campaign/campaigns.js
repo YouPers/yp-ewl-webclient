@@ -60,8 +60,8 @@
                     'starting-day': 1
                 };
 
-                var start = new Date(moment().hour(8).minutes(0).seconds(0).add(1, 'weeks'));
-                var end = new Date(moment(start).hour(17).minutes(0).seconds(0).add(4, 'weeks'));
+                var start = new Date(moment().day(1).hour(8).minutes(0).seconds(0).add(2, 'weeks'));
+                var end = new Date(moment(start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
 
                 if (campaign) {
                     $scope.campaign = campaign;
