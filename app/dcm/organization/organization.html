@@ -82,19 +82,24 @@
 
                 <aside>
 
-                    <div class="header-row"></div>
-                    <div class="button-row">
+                    <div class="header-row">
+                        <div class="back-link" ui-sref="dcm.home">
+                            <span class="fa fa-chevron-left"></span> <span translate>activity.link.back</span>
+                        </div>
+                    </div>
+                    <div class="button-row" ng-if="organizationForm.$dirty">
 
-                        <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
-                            activity.link.back
-                        </button>
 
-                        <button type="submit" class="submit btn btn-primary"
-                                ng-disabled="organizationForm.$invalid || !organizationForm.$dirty"
+                        <button type="submit" class="btn btn-primary"
+                                ng-disabled="organizationForm.$invalid"
                                 ng-click="saveOrganization()">
                             <span translate ng-if="!organization.id">organizationForm.create</span>
                             <span translate ng-if="organization.id">organizationForm.save</span>
                         </button>
+                        <button class="btn btn-default" ng-click="$state.go('organization', {}, {reload: true})" translate>
+                            organizationForm.cancel
+                        </button>
+
 
                     </div>
 

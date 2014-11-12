@@ -6,9 +6,6 @@
 
 
         <div class="header-row"></div>
-        <div class="button-row"></div>
-
-
         <campaign-card campaign="campaign"></campaign-card>
 
     </nav>
@@ -16,7 +13,6 @@
     <section>
 
         <div class="header-row"></div>
-        <div class="button-row"></div>
 
         <ng-include src="'dcm/stats/stats-content.html'"></ng-include>
 
@@ -24,15 +20,10 @@
 
     <aside>
 
-        <div class="header-row"></div>
-        <div class="button-row">
-
-            <div class="actions">
-                <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
-                    check.link.back
-                </button>
+        <div class="header-row">
+            <div class="back-link" ui-sref="^.home">
+                <span class="fa fa-chevron-left"></span> <span translate>activity.link.back</span>
             </div>
-            
         </div>
 
 

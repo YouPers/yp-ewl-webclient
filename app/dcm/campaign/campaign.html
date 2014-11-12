@@ -98,16 +98,18 @@
     <aside>
 
 
-        <div class="header-row"></div>
-        <div class="button-row">
-            <div class="actions">
-                <button type="button" class="btn btn-default backToGame" ui-sref="dcm.home">
-                    <span translate>check.link.back</span>
-                </button>
-                <button ng-click="saveCampaign()" class="btn btn-primary submit" ng-disabled="campaignForm.$invalid">
-                    <span translate>campaignForm.save</span>
-                </button>
+        <div class="header-row">
+            <div class="back-link" ui-sref="^.home">
+                <span class="fa fa-chevron-left"></span> <span translate>activity.link.back</span>
             </div>
+        </div>
+        <div class="button-row" ng-if="campaignForm.$dirty">
+            <button ng-click="saveCampaign()" class="btn btn-primary" ng-disabled="campaignForm.$invalid">
+                <span translate>campaignForm.save</span>
+            </button>
+                <button type="button" class="btn btn-default pull-right" ng-click="$state.go('dcm.campaign',{campaignId: campaign.id}, {reload: true})">
+                    <span translate>campaignForm.cancel</span>
+                </button>
         </div>
 
 

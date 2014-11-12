@@ -151,6 +151,7 @@
                     $scope.validateOrganizationModel();
 
                     $scope.$emit('clientmsg:success', 'organization.saved');
+                    $scope.organizationForm.$setPristine();
                 };
 
                 $scope.saveOrganization = function() {

@@ -64,7 +64,7 @@
 
             <!-- new invitations -->
             <div ng-if="!isCampaignLead && idea.defaultexecutiontype !== 'self' && isOwner && !inviteLocked"
-                 class="activity-edit">
+                 class="activity-edit radio-buttons form-section">
                 <div>
                     <label translate>activity.header.inviteOthers</label>
                 </div>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
 
-                    <label ng-if="usersToBeInvited.length > 0" translate>activity.inviteOther.invitedOnSave</label>
+                    <label ng-if="usersToBeInvited.length > 0" translate>activity.inviteOthers.invitedOnSave</label>
                     <div class="user-to-be-invited"
                          ng-repeat="user in usersToBeInvited">
 
