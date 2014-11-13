@@ -194,61 +194,47 @@
     <div class="col-md-6">
 
         <div class="form-group">
-            <label translate>profileForm.defaultWorkWeek</label>
 
-            <div class="row">
-                <div class="col-md-3" ng-repeat="weekday in enums.weekday">
-                    <div class="input-group">
-                         <span class="input-group-addon">
-                              <input name="{{'defWeekForScheduling'+weekday}}" type="checkbox"
-                                     ng-model="workdays[weekday]" ng-change="changedWorkDay(weekday)">&NonBreakingSpace;{{ 'weekday.'+weekday | translate }}
-                         </span>
-                    </div>
-                </div>
+            <h3 translate>profileForm.defaultWorkWeek</h3>
+            <div ng-repeat="weekday in enums.weekday">
+                <label>
+                    <input name="{{'defWeekForScheduling'+weekday}}" type="checkbox"
+                           ng-model="workdays[weekday]" ng-change="changedWorkDay(weekday)">
+                    <span>{{ 'weekday.'+weekday | translate }}</span>
+                </label>
+            </div>
+
+            <h3 translate>profileForm.language</h3>
+            <div>
+                <select class="form-control" ng-model="profileUserObj.language"
+                        ng-options="'language.'+value | translate for value in enums.language">
+                </select>
             </div>
 
         </div>
-
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
-                    <label translate>profileForm.language</label>
-                </div>
-
-                <div class="col-md-9">
-                    <select class="form-control" ng-model="profileUserObj.language"
-                            ng-options="'language.'+value | translate for value in enums.language">
-                    </select>
-                </div>
-
-            </div>
-        </div>
-
-
     </div>
+
+
+
     <div class="col-md-6">
         <div class="form-group">
-            <label translate>profileForm.emailNotificationsSettings</label>
 
-            <div class="row">
-                <div class="col-md-6" ng-repeat="(emailsetting, value) in profileUserObj.prefs.email">
-                    <div class="input-group">
-                         <span class="input-group-addon">
-                              <input name="{{'email.'+emailsetting}}" type="checkbox"
-                                     ng-model="profileUserObj.prefs.email[emailsetting]">&NonBreakingSpace;{{ 'profileForm.email.'+emailsetting | translate }}
-                         </span>
-                    </div>
-                </div>
+            <h3 translate>profileForm.emailNotificationsSettings</h3>
+            <div ng-repeat="(emailsetting, value) in profileUserObj.prefs.email">
+                <label>
+                    <input name="{{'email.'+emailsetting}}" type="checkbox"
+                           ng-model="profileUserObj.prefs.email[emailsetting]">
+                    <span>{{ 'profileForm.email.'+emailsetting | translate }}</span>
+                </label>
             </div>
-            <label translate>profileForm.calendarNotificationSettings</label>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <select ng-model="profileUserObj.prefs.calendarNotification"
-                            ng-options="'calendarNotification.'+ setting | translate for setting in enums.calendarNotifications">
-                    </select>
-                </div>
+            <h3 translate>profileForm.calendarNotificationSettings</h3>
+            <div>
+                <select class="form-control" ng-model="profileUserObj.prefs.calendarNotification"
+                        ng-options="'calendarNotification.'+ setting | translate for setting in enums.calendarNotifications">
+                </select>
             </div>
+
         </div>
     </div>
 
