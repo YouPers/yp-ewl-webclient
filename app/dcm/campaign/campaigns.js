@@ -60,7 +60,9 @@
                     'starting-day': 1
                 };
 
+                // default start date = Monday in 2 weeks
                 var start = new Date(moment().day(1).hour(8).minutes(0).seconds(0).add(2, 'weeks'));
+                // default end date = Friday of the 4th week since the start date
                 var end = new Date(moment(start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
 
                 if (campaign) {
@@ -77,6 +79,21 @@
                         avatar: newTopic.picture
                     };
                 }
+
+
+                // watch and ensure that start is before end date of a campaign, using the same default weekday/duration as above
+                $scope.$watch('campaign.start', function (date) {
+                    var campaign = $scope.campaign;
+                    if(moment(campaign.start).isAfter(moment(campaign.end))) {
+                        campaign.end = new Date(moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
+                    }
+                });
+                $scope.$watch('campaign.end', function (date) {
+                    var campaign = $scope.campaign;
+                    if(moment(campaign.start).isAfter(moment(campaign.end))) {
+                        campaign.start = new Date(moment(campaign.end).day(1).hour(8).minutes(0).seconds(0).subtract(3, 'weeks'));
+                    }
+                });
 
                 $scope.inviteCampaignLead = function (emails, campaign) {
                     CampaignService.inviteCampaignLead(emails, campaign.id).then(function () {
