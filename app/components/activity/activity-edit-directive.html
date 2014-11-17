@@ -92,11 +92,14 @@
             <h3 translate>activity.header.publish</h3>
 
             <div class="publish" ng-model="socialInteraction.publishFrom" synchronizedDate="socialInteraction.publishTo">
-                <label translate>activity.publishFrom.label</label>
-                <date-picker date="socialInteraction.publishFrom" min-date="campaign.start" max-date="campaign.end"></date-picker>
-                <label translate>activity.publishTo.label</label>
-                <date-picker date="socialInteraction.publishTo" min-date="campaign.start" max-date="campaign.end"></date-picker>
-
+                <div>
+                    <label translate>activity.publishFrom.label</label>
+                    <date-picker date="socialInteraction.publishFrom" min-date="campaign.start" max-date="campaign.end"></date-picker>
+                </div>
+                <div>
+                    <label translate>activity.publishTo.label</label>
+                    <date-picker date="socialInteraction.publishTo" min-date="campaign.start" max-date="campaign.end"></date-picker>
+                </div>
             </div>
         </div>
 
