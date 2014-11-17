@@ -24,7 +24,8 @@
                 restrict: 'E',
                 scope: {
                     event: '=',
-                    data: '='
+                    data: '=',
+                    coachMessage: '@'
                 },
                 templateUrl: 'components/health-coach/health-coach-directive.html',
 
