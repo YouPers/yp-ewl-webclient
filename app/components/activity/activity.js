@@ -186,7 +186,7 @@
                     $scope.$watch('socialInteraction.publishFrom', function (date) {
                         var si = $scope.socialInteraction;
                         if(moment(si.publishFrom).isAfter(moment(si.publishTo))) {
-                            si.publishTo = moment(si.publishFrom).startOf('end').toString();
+                            si.publishTo = moment(si.publishFrom).startOf('day').toString();
                         }
                     });
                     $scope.$watch('socialInteraction.publishTo', function (date) {
