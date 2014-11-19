@@ -11,26 +11,27 @@
   },
   "activity": {
     "header": {
-      "first": {
-        "campaignlead": null,
-        "owned": null,
-        "joined": null,
-        "recommendation": null,
-        "invitation": "invito",
-        "schedule": null
-      },
       "second": null,
       "third": "Appuntamenti",
       "invitedUsers": "Persone",
       "inviteOthers": null,
       "comments": "Note",
-      "publish": null
+      "publish": null,
+      "first": {
+        "Invitation": null,
+        "NewCampaignActivity": null,
+        "PlannedActivity": null,
+        "Recommendation": null
+      }
     },
     "inviteOthers": {
       "selected": null,
       "all": "Ogni",
       "inviteByEmail": null,
-      "inviteByUser": null
+      "inviteByUser": null,
+      "invitedOnSave": null,
+      "none": null,
+      "notFound": null
     },
     "emailToBeInvited": {
       "placeholder": "Email",
@@ -65,7 +66,10 @@
       "campaignleadSaveAndInvite": "Pubblica",
       "ownedSaveAndInvite": null,
       "recommendationSaveAndInvite": null,
-      "scheduleSaveAndInvite": null
+      "scheduleSaveAndInvite": null,
+      "cancel": null,
+      "invitationDecline": null,
+      "recommendationDismiss": null
     },
     "owner": "Ospite",
     "isJoining": "Persone",
@@ -108,7 +112,8 @@
       },
       "comment": {
         "placeholder": null
-      }
+      },
+      "publish": null
     },
     "edit": {
       "stateHeader1": "tuo",
