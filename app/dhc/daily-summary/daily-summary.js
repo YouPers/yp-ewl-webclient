@@ -26,12 +26,12 @@
                         $scope.dailySummary = $sce.trustAsHtml(result);
                     }, function (err) {
                         $scope.error = err;
-                        //$interval.cancel(promise);
+                        $interval.cancel(promise);
                     });
                 }
 
                 init();
-                //var promise = $interval(init, 10000);
+                var promise = $interval(init, 1000);
             }
         ]);
 
