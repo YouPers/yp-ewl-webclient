@@ -23,7 +23,7 @@
     "emailInvite": {
       "adjust": null,
       "emailSubject": {
-        "defaultSubject": null,
+        "defaultSubject": "{{campaign.organization.name}} campagne {{campaign.topic.shortDescription}} : Invitation personnelle",
         "label": null,
         "placeholder": null
       },

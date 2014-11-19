@@ -2,7 +2,7 @@
   "check": {
     "link": {
       "done": "Finish",
-      "back": "back"
+      "back": "Interrupt"
     },
     "header": "Self-Check",
     "of": "of",

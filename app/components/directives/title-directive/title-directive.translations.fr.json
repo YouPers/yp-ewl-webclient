@@ -7,12 +7,12 @@
     "account": null,
     "profile": null,
     "dcm": {
-      "home": null,
+      "home": "{{ campaign.topic.name | uppercase }} - Accueil",
       "activity": null,
       "ideas": null,
       "recommendation": null,
-      "topics": null,
-      "campaign": null
+      "topics": "Choisir un programme",
+      "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} modifier"
     },
     "dhc": {
       "game": null,

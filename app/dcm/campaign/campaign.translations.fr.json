@@ -62,8 +62,8 @@
     "save": "Enregistrer",
     "create": "Enregistrer",
     "topic": {
-      "change": "ajuster",
-      "label": null
+      "change": "modifier",
+      "label": "Programme"
     }
   },
   "inviteCampaignLeadForm": {

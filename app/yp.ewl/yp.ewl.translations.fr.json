@@ -65,10 +65,10 @@
     "privacyStatement": ""
   },
   "topic": {
-    "chooseATopic": "Sélectionne un secteur",
+    "chooseATopic": "Choisis un programme",
     "setGoal": {
-      "title": "Bienvenue à la gestion de votre stress personnel",
-      "text": "<p> Améliore ton équilibre de vie en changeant ton comportement de façon durable. </p><p> Félicitations! Le premier pas est franchi! </p><h2> Évaluation d'expertise </h2><p> Nous passons en revue notre contenu spécialisé: le questionnaire, les activités et les propositions. <ul><li> Les commentaires sur le questionnaire sont recueillis dans Excel. </li><li> Les commentaires sur les activités peuvent être saisis directement au moyen du bouton Admin sur le site. </li></ul></p><p> Début: Mercredi 20 novembre </p><p> Fin: lundi, 25 Décembre </p>"
+      "title": "Bienvenue à la Gestion du Stress personnel",
+      "text": "<p> Améliore ton équilibre de vie en changeant tes habitudes de façon durable. </p><p> Félicitations! Tu as franchi le premier pas! </p><h2> Évaluation d'expertise </h2><p> Nous passons en revue notre contenu spécialisé: le questionnaire, les activités et les propositions. <ul><li> Les commentaires sur le questionnaire sont recueillis dans Excel. </li><li> Les commentaires sur les activités peuvent être saisis directement au moyen du bouton Admin sur le site. </li></ul></p><p> Début: Mercredi 20 novembre </p><p> Fin: lundi, 25 Décembre </p>"
     }
   }
 }
