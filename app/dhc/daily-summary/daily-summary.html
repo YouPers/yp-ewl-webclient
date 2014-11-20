@@ -1,3 +1,30 @@
 <pre ng-if="error">{{ error | json }}</pre>
 
+
+        <div style="position: fixed; top: 60px; right: 0;">
+
+
+            <div class=" well">
+
+                <div>
+                    <h3>rangeEnd: {{ options.rangeEnd | fulldate }}</h3>
+                    <input type="date" ng-model="options.rangeEnd">
+                </div>
+
+
+                <div>
+                    <h3>rangeStart: {{ options.rangeStart | fulldate }}</h3>
+                    <input type="date" ng-model="options.rangeStart">
+                </div>
+
+
+            </div>
+
+            <span ng-show="refreshing">refreshing ... </span>
+
+        </div>
+
+
+
+
 <div ng-bind-html="dailySummary"></div>

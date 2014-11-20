@@ -10,17 +10,7 @@
                 var dailySummary = Rest.one('dailySummary');
 
                 var DailySummaryService = {
-                    getDailySummary: function (user, rangeStart, rangeEnd) {
-                        var options = {};
-                        if(user) {
-                            options.user = user | user.id
-                        }
-                        if(rangeStart) {
-                            options.rangeStart = rangeStart;
-                        }
-                        if(rangeEnd) {
-                            options.rangeEnd = rangeEnd;
-                        }
+                    getDailySummary: function (options) {
                         return dailySummary.get(options);
                     }
                 };
