@@ -78,7 +78,7 @@
     "close": "Schliessen",
     "contactInfo": {
       "error": {
-        "email": "Bitte eine gültige Email Adresse eingeben oder anonymes Feedback auswählen"
+        "email": "Bitte eine gültige Email-Adresse eingeben oder anonymes Feedback auswählen"
       },
       "label": "Email",
       "placeholder": "Email"
@@ -89,7 +89,7 @@
     "feedbackCategory": {
       "label": "Kategorie"
     },
-    "submit": "Abschicken",
+    "submit": "Senden",
     "submitted": "Danke für dein Feedback!",
     "username": {
       "label": "Username"

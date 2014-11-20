@@ -1,5 +1,5 @@
 {
   "signin": {
-    "instructions": "<p>Please login with your email-address and password. </p>\n<p>If you do not have a YOUPERS account yet, you can create one by clicking on the link in the HealthCampaign invitation e-mail of your campaign manager. </p>\n<p>On <a href='www.youpers.com'>this site</a> you can find the instructions how to start a YOUPERS HealthCampaign in your company."
+    "instructions": "<p>Please login with your email-address and password. </p>\n<p>If you do not have a YOUPERS account yet, you can create one by clicking on the link in the HealthCampaign invitation email of your campaign manager. </p>\n<p>On the website <a href='www.youpers.com'>here</a>, you find information on how to start a YOUPERS HealthCampaign in your company."
   }
 }

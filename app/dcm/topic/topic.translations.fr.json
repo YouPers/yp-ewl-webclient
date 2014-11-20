@@ -1,6 +1,6 @@
 {
   "topic": {
-    "select": "Select",
-    "title": null
+    "select": "sélectionner",
+    "title": "Choisis un programme:"
   }
 }

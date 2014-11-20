@@ -50,8 +50,8 @@
       "label": "Email",
       "placeholder": "Email",
       "error": {
-        "required": "Bitte eine EMail-Adresse eingeben",
-        "email": "Bitte eine gültige EMail-Adresse eingeben",
+        "required": "Bitte eine Email-Adresse eingeben",
+        "email": "Bitte eine gültige Email-Adresse eingeben",
         "unique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein"
       }
     },

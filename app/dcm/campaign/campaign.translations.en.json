@@ -71,7 +71,7 @@
       "placeholder": "One or multiple emails"
     },
     "inviteSubmit": "Send",
-    "invitationSent": "Invitation email sent, the new campaign lead needs to confirm"
+    "invitationSent": "Invitation email sent, the new campaign leader needs to confirm"
   },
   "clientmsg": {
     "success": {

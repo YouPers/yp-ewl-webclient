@@ -22,11 +22,11 @@
         "organizationIncomplete": "Welcome! \n\nI am your YOUPERS coach. \n\nI will assist you in creating and managing your HealthCampaigns with tips and hints. \n\nMy first tip for you: Enter additional data about your organization before you begin to create a first campaign.",
         "recommendationCreated": "Congratulations! The recommendation card will be displayed to your employees under \"Offered Activities\" during the defined period.\n\nCreate more recommendations or invitations where appropriate.",
         "recommendationDeleted": "Your recommendation card was deleted.\nCreate new recommendations or invitations where appropriate.",
-        "enterAdresses": null,
-        "noAvatarPicture": null,
-        "noMessages": null,
-        "nothingOffered": null,
-        "testEmailSent": null
+        "enterAdresses": "",
+        "noAvatarPicture": "",
+        "noMessages": "",
+        "nothingOffered": "",
+        "testEmailSent": ""
       },
       "ideas": {
         "stateEnter": "Have a look at the activity ideas I provided and think about which activity ideas you want to recommend to the employees \"to execute alone\" or which you want to schedule as the organizer of a campaign activity event. \n\nAlternatively, you can also create an activity idea yourself that you either recommend to the employees or to which you invite the employees."
@@ -44,19 +44,20 @@
         "groupActivitySaved": "Your activity is scheduled now.\n\nI have moved the activity on your main page from \"Offered Activities\" to \"Scheduled Activities\".\n\nThe activity is now visible on the main page under \"Offered Activities\" for the invitees (\"personally invited\" or \"all campaign participants\"). The personally invited also receive from me a personal invitation in the Inbox or via email.",
         "conflictingEvent": "TODO: here goes an appropriate health coach message for a conflicting event",
         "deleteJoinedActivity": "The deletion results in the fact that the organizer sees that you have canceled your participation in the group activity.",
-        "deleteOwnActivity": "The deletion of an activity \"to execute alone\" has no other effects, except that the card is moved from the area \"Scheduled Activity\" to the area \"Completed Activity\".\n\nThe deletion of a group activity results in the fact that the invited employees no longer see your invitation card under \"Offered Activities\". \n\nIf an employee has already accepted your invitation and scheduled the activity event, the activity planning for the employee will be automatically deleted under \"Scheduled Activities\" and the employee receives a corresponding calendar appointment cancellation message.",
-        "editOwnActivity": "The change of an activity \"to execute alone\" has no other effects.\n\nThe change of a scheduled group activity results in adjusting the activity for the invited employees under \"Offered Activities\" accordingly. \n\nIf an employee has already accepted the invitation and scheduled the group activity event, the activity planning for the employee will be automatically adjusted under \"Scheduled Activities\" and a corresponding calendar appointment update is sent to the employee.",
+        "deleteOwnActivityAlone": "",
+        "deleteOwnActivityWithJoiners": "",
+        "editOwnActivityAlone": "",
+        "editOwnActivityWithJoiners": "",
         "eventDone": "Congratulations on the completed activity! Keep it up also with the next appointment!",
         "eventMissed": "Too bad, can happen to anyone. Make sure you can carry out the next appointment.",
         "eventsDue": "Please enter for the expired appointments, if you have carried out the activity or if you missed it. And if you have carried it out, how did you feel doing it.",
         "groupActivityNoEventsDue": "Have a look at the comments from the participants of this group activity in the right column of this page and also write a new comment.",
         "invitationAccepted": "Congratulations. You have decided to participate in this group activity.\n\nI have moved the activity on your main page from \"Offered Activities\" to \"Scheduled Activities\".\n\nThe participants in this group activity can now see on the detail page about this activity that you are also participating in this group activity.\n\nWhy not write a comment to the participants of this group activity in the right column; for example, that you look forward to this group activity.",
-        "invitationDismissed": "You have decided to dismiss this activity offer. \n\nTherefore, I have moved the activity on your main page from \"Offered Activities\" to the area \"Dismissed Activities\". \n\nWith your decision you give me the chance to show you a new activity recommendation in the area \"Offered Activities\". Look at it!",
         "lastEventDone": "Congratulations on the completed activity! \n\nI have moved the activity on your main page from \"Scheduled Activities\" to \"Completed Activities\".",
         "lastEventMissed": "Too bad, can happen to anyone.\n\nI have moved the activity on your main page from \"Scheduled Activities\" to \"Completed Activities\".",
         "recommendationAccepted": "In the second column, you can now define when, where and how often you want to perform this activity. According to your information the event cards will be displayed in the third column.\n\nFor group activities, you can also personally invite other campaign participants in the second column or make the group activity publicly available for all campaign participants. If you want to invite someone personally who is not yet visible as a campaign participant in the selection list, you can also enter an email address as an alternative.\n\nIn the right column, enter a comment on the planned activity for the other campaign participants who see your invitation to a group activity. \n\nPlease note that the activity is only scheduled (and will appear on the main page under \"Scheduled Activities\"), when you click on \"Schedule\" on the top right.",
-        "recommendationDismissed": "You have decided to dismiss this activity offer. \n\nTherefore, I have moved the activity on your main page from \"Offered Activities\" to the area \"Dismissed Activities\". \n\nWith your decision you give me the chance to show you a new activity recommendation in the \"Offered Activities\". Look at it!",
         "scheduleRecommendedActivity": "Look at the details of the offered activity in the left column and then click on \"schedule\" if you like the offered activity, or click on \"dismiss\" if you do not like it.\n\nAfter you have clicked on \"schedule\", you can define when, where, how often and with whom at best (only possible for group activities) you want to perform the activity with. \n\nIn addition, you can leave comments in the right column for group activities that can also be read by other employees and complemented with own comments.",
+        "scheduleRecommendedActivityConflict": "",
         "stateEnter": "The user is on the schedule page"
       },
       "check": {
@@ -73,14 +74,16 @@
         "noPastOrPresentEventsAndEnoughActivities": "Currently, you have no appointments due today or already expired under \"Scheduled Activities\".\n\nBefore you schedule more offered activities, I suggest you perform the already scheduled activities.",
         "noPastOrPresentEventsAndTooFewActivities": "Currently, you have no appointments due today or already expired under \"Scheduled Activities\".\n\nMaybe you can still find a new recommendation or invitation to an activity under \"Offered Activities\" that suits you and that you could therefore accept and schedule.",
         "pastEvents": "Under \"Scheduled Activities\", I have marked those activity appointments in terms of color, which are due today.\n\nPerform the activities due today and let me know then, whether you have completed the activities or not, by clicking on the corresponding event card.",
-        "checkBackClicked": null,
+        "checkBackClicked": "",
         "pastAndPresentEvents": "I have marked you under &quot;Scheduled Activities&quot; Activity Schedules those colors, which are due today or already expired. Make the activities are due today by and share with me in the past activities, whether you have done it and if so, how you felt going by clicking on the corresponding date card.",
-        "presentEvents": null
+        "presentEvents": "",
+        "recommendationDismissed": "",
+        "invitationDismissed": ""
       }
     },
     "fullname": "YOUPERS Coach",
     "dcmSignup": {
-      "stateEnter": null
+      "stateEnter": ""
     }
   }
 }
