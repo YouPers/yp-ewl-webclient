@@ -18,10 +18,10 @@
       "comments": "Comments",
       "publish": "Publish invitation",
       "first": {
-        "Invitation": null,
-        "NewCampaignActivity": null,
-        "PlannedActivity": null,
-        "Recommendation": null
+        "Invitation": "Invitation",
+        "NewCampaignActivity": "New campaign activity",
+        "PlannedActivity": "Your activity",
+        "Recommendation": "Recommendation"
       }
     },
     "inviteOthers": {
@@ -29,9 +29,9 @@
       "all": "all",
       "inviteByEmail": "Invite someone by email",
       "inviteByUser": "Search within campaign",
-      "invitedOnSave": null,
-      "none": null,
-      "notFound": null
+      "invitedOnSave": "Invited when saved:",
+      "none": "Nobody",
+      "notFound": "not found? invite someone by email:"
     },
     "emailToBeInvited": {
       "placeholder": "Email",
@@ -67,9 +67,9 @@
       "ownedSaveAndInvite": "Plan & send",
       "recommendationSaveAndInvite": "Plan & send",
       "scheduleSaveAndInvite": "Plan & send",
-      "cancel": null,
-      "invitationDecline": null,
-      "recommendationDismiss": null
+      "cancel": "Cancel",
+      "invitationDecline": "Reject",
+      "recommendationDismiss": "No thanks!"
     },
     "owner": "Host",
     "isJoining": "People",
@@ -113,7 +113,7 @@
       "comment": {
         "placeholder": "write comment"
       },
-      "publish": null
+      "publish": "published"
     },
     "edit": {
       "stateHeader1": "your",
