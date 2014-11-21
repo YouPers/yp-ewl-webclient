@@ -39,7 +39,7 @@
     "loginReason": "So we can store your data",
     "register": "Register new account",
     "registerNewAccount": "Register new account",
-    "passwordForgotten": "Cannot remember your password?"
+    "passwordForgotten": "Forgot password?"
   },
   "loginform": {
     "usernameOrEmail": {

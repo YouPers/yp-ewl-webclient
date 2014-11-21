@@ -11,26 +11,26 @@
   },
   "activity": {
     "header": {
-      "first": {
-        "PlannedActivity": "Deine Aktivität",
-        "Recommendation": "Empfehlung",
-        "Invitation": "Einladung",
-        "NewCampaignActivity": "Neue Kampagnen-Aktivität"
-      },
       "second": "Plan",
       "third": "Termine",
       "invitedUsers": "Teilnehmer",
-      "inviteOthers": "Kampagnen-Teilnehmer einladen",
+      "inviteOthers": "Andere einladen",
       "comments": "Kommentare",
-      "publish": "Einladung publizieren"
+      "publish": "Einladung publizieren",
+      "first": {
+        "Invitation": "Einladung",
+        "NewCampaignActivity": "Neue Kampagnen-Aktivität",
+        "PlannedActivity": "Deine Aktivität",
+        "Recommendation": "Empfehlung"
+      }
     },
     "inviteOthers": {
       "selected": "ausgewählte",
       "all": "alle",
-      "none": "Niemand",
       "inviteByEmail": "Jemanden per Email einladen",
-      "inviteByUser": "Person suchen",
+      "inviteByUser": "In der Kampagne suchen",
       "invitedOnSave": "Beim Speichern werden eingeladen:",
+      "none": "Niemand",
       "notFound": "nicht gefunden? - Lade mittels Email ein:"
     },
     "emailToBeInvited": {
@@ -57,19 +57,19 @@
     "submit": {
       "save": "Speichern",
       "delete": "Löschen",
-      "cancel": "Abbrechen",
       "invitationSave": "Annehmen",
-      "invitationDecline": "Ablehnen",
       "recommendationSave": "Einplanen",
-      "recommendationDismiss": "Nein, Danke!",
       "ownedSave": "Einplanen",
-      "joinedSave": "Annehmen",
+      "joinedSave": "Einplanen",
       "scheduleSave": "Einplanen",
       "campaignleadSave": "Publizieren",
       "campaignleadSaveAndInvite": "Publizieren",
       "ownedSaveAndInvite": "Einplanen und Abschicken",
       "recommendationSaveAndInvite": "Einplanen und Abschicken",
-      "scheduleSaveAndInvite": "Einplanen und Abschicken"
+      "scheduleSaveAndInvite": "Einplanen und Abschicken",
+      "cancel": "Abbrechen",
+      "invitationDecline": "Ablehnen",
+      "recommendationDismiss": "Nein, Danke!"
     },
     "owner": "Organisator",
     "isJoining": "Teilnehmer",
@@ -107,13 +107,13 @@
       "time": "Zeit",
       "frequency": "Häufigkeit",
       "recurrence": "Anzahl",
-      "publish": "publiziert",
       "socialInteraction": {
         "title": "Nachricht"
       },
       "comment": {
         "placeholder": "Kommentar schreiben"
-      }
+      },
+      "publish": "publiziert"
     },
     "edit": {
       "stateHeader1": "deine",

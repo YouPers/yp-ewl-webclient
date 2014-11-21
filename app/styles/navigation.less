@@ -34,22 +34,33 @@
     margin-top: -10px;
     height: 65px;
   }
-  span {
-    .header4();
-
-    white-space: nowrap;
+  &:hover * {
+    color: @yp-accent;
+  }
+  * {
+    display: inline;
   }
 }
 
+.back-link:focus, .back-link:active {
+  color: @yp-accent !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.back-link:hover {
+  border: none;
+  color: @yp-accent-hover !important;
+}
 .back-link {
   .btn();
   .btn-default();
   .pull-right();
-  border: none;
-  width: 48%;
+//  width: 48%;
 
-  :hover {
-    border: none;
-    color: @yp-accent-hover;
-  }
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: @yp-accent !important;
+
 }

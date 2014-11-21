@@ -11,26 +11,27 @@
   },
   "activity": {
     "header": {
-      "first": {
-        "campaignlead": null,
-        "owned": null,
-        "joined": null,
-        "recommendation": null,
-        "invitation": "Invitation",
-        "schedule": null
-      },
       "second": "Le plan",
       "third": "Rendez-vous",
       "invitedUsers": "Invité",
       "inviteOthers": null,
       "comments": "Notes",
-      "publish": null
+      "publish": null,
+      "first": {
+        "Invitation": null,
+        "NewCampaignActivity": null,
+        "PlannedActivity": null,
+        "Recommendation": null
+      }
     },
     "inviteOthers": {
       "selected": "Avec sélectionnées",
       "all": "T",
       "inviteByEmail": null,
-      "inviteByUser": null
+      "inviteByUser": null,
+      "invitedOnSave": null,
+      "none": null,
+      "notFound": null
     },
     "emailToBeInvited": {
       "placeholder": "Sujet",
@@ -65,7 +66,10 @@
       "campaignleadSaveAndInvite": "Publier",
       "ownedSaveAndInvite": null,
       "recommendationSaveAndInvite": null,
-      "scheduleSaveAndInvite": null
+      "scheduleSaveAndInvite": null,
+      "cancel": null,
+      "invitationDecline": null,
+      "recommendationDismiss": null
     },
     "owner": "Hôte",
     "isJoining": "Invité",
@@ -108,7 +112,8 @@
       },
       "comment": {
         "placeholder": null
-      }
+      },
+      "publish": null
     },
     "edit": {
       "stateHeader1": "Ta",

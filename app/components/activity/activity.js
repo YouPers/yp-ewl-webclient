@@ -274,6 +274,8 @@
                             if(result.conflictingEvent) {
                                 event.conflictingEvent = result.conflictingEvent;
                                 $scope.healthCoachEvent = 'conflictingEvent';
+                            } else {
+                                $scope.healthCoachEvent = healthCoachEvent;
                             }
 
                             $scope.events.push(event);

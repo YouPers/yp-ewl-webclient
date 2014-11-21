@@ -36,7 +36,7 @@
       "inviteMore": "weitere einladen",
       "label": "Email-Adressen der einzuladenden Mitarbeiter, getrennt mittels Komma, Semikolon oder Leerschlag",
       "next": "weiter",
-      "placeholder": "Email-Addressen",
+      "placeholder": "Email-Adressen",
       "send": "absenden",
       "sendTestButton": "Test",
       "sendYourselfTest": "Sende dir selbst eine Test-Einladung:",
@@ -47,7 +47,7 @@
     },
     "messages": "Nachrichten",
     "noCampaigns": "Du hast noch keine Kampagnen erstellt",
-    "noMessages": "Hier werden deine Nachrichten an die Kampagnen-Teilnehmer angezeigt. Klicke auf \"Hinzufügen\", um eine Nachricht an die Kampagnen-Teilnehmer zu verfassen.",
+    "noMessages": "Hier werden deine Nachrichten an die Kampagnen-Teilnehmer angezeigt. Klicke auf \"Nachricht an die Kampagne\", um eine Nachricht zu verfassen.",
     "noOffers": "Sobald du als Kampagnen-Leiter den Kampagnen-Teilnehmern eine Aktivität zur Durchführung empfohlen hast oder als Organisator die Kampagnen-Teilnehmer zur Teilnahme an einer gemeinsamen Kampagnen-Aktivität eingeladen hast, wird dir die angebotene Aktivität hier angezeigt. Klicke auf \"Angebot hinzufügen\", um den Kampagnen-Teilnehmern eine Aktivität anzubieten.",
     "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
     "showOld": "Vergangene anzeigen"
