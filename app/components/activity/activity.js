@@ -148,6 +148,7 @@
                 $scope.isInvitation = socialInteraction && socialInteraction.__t === 'Invitation';
                 $scope.isRecommendation = socialInteraction && socialInteraction.__t === 'Recommendation';
                 $scope.isNewCampaignActivity = $scope.isCampaignLead && !$scope.isScheduled;
+                $scope.isNewActivity = !$scope.isCampaignLead && !$scope.isScheduled;
 
                 if ($scope.isScheduled) {
                     $scope.pageTitle = 'PlannedActivity';
@@ -158,7 +159,7 @@
                 } else if ($scope.isCampaignLead) {
                     $scope.pageTitle = 'NewCampaignActivity';
                 } else {
-                    throw new Error('Unknown state');
+                    $scope.pageTitle = 'NewActivity';
                 }
 
                 $scope.formContainer = {};
