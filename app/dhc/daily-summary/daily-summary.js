@@ -18,13 +18,17 @@
                     });
             }])
 
-        .controller('DailySummaryController', [ '$scope', '$interval', '$sce', 'DailySummaryService',
-            function ($scope, $interval, $sce, DailySummaryService) {
+        .controller('DailySummaryController', [ '$scope', '$interval', '$sce', 'UserService', 'DailySummaryService',
+            function ($scope, $interval, $sce, UserService, DailySummaryService) {
+
 
                 $scope.options = {};
 
+                $scope.lastSummaryMail = UserService.getUser().lastSummaryMail;
+
                 $scope.options.rangeEnd = moment().toDate();
-                $scope.options.rangeStart = moment($scope.options.rangeEnd).subtract(1, 'days').toDate();
+                $scope.options.rangeStart = $scope.lastSummaryMail ? moment($scope.lastSummaryMail) :
+                    moment($scope.options.rangeEnd).subtract(1, 'days').toDate();
 
 
                 function refresh() {
