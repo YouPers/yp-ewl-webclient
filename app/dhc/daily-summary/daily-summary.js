@@ -21,6 +21,7 @@
         .controller('DailySummaryController', [ '$scope', '$interval', '$sce', 'UserService', 'DailySummaryService',
             function ($scope, $interval, $sce, UserService, DailySummaryService) {
 
+                $scope.sendSummaryMail = DailySummaryService.sendDailySummary;
 
                 $scope.options = {};
 

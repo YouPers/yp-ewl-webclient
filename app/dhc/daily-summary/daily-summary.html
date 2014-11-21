@@ -23,6 +23,9 @@
                     <h3>lastSummaryMail: {{ $scope.lastSummaryMail | fulldate }}</h3>
                 </div>
 
+                <div>
+                    <button class="btn-flat" ng-click="sendSummaryMail()">send mail</button>
+                </div>
             </div>
 
             <span ng-show="refreshing">refreshing ... </span>

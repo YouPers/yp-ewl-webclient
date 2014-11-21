@@ -8,10 +8,14 @@
             function (ErrorService, Rest) {
 
                 var dailySummary = Rest.one('dailySummary');
+                var sendDailySummary = Rest.one('sendDailySummary');
 
                 var DailySummaryService = {
                     getDailySummary: function (options) {
                         return dailySummary.get(options);
+                    },
+                    sendDailySummary: function (options) {
+                        return sendDailySummary.post(options);
                     }
                 };
                 return DailySummaryService;
