@@ -34,7 +34,7 @@
                 $scope.lastSummaryMail = user.lastSummaryMail;
 
                 $scope.options.rangeEnd = moment().toDate();
-                $scope.options.rangeStart = $scope.lastSummaryMail ? moment($scope.lastSummaryMail) :
+                $scope.options.rangeStart = $scope.lastSummaryMail ? moment($scope.lastSummaryMail).toDate() :
                     moment($scope.options.rangeEnd).subtract(1, 'days').toDate();
 
 
