@@ -257,19 +257,6 @@
         </div>
 
 
-        <!--buttons for new Activity -->
-
-        <div class="button-row" ng-if="isNewActivity">
-            <button class="btn btn-primary"
-                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()">
-                {{ 'activity.submit.save' | translate }}
-            </button>
-            <button class="btn btn-default pull-right" ng-click="backToGame()">
-                {{ 'activity.submit.cancel' | translate }}
-            </button>
-        </div>
-
-
         <div class="box">
             <health-coach event="healthCoachEvent"/>
         </div>
