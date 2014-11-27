@@ -121,6 +121,8 @@
 </div>
 </div>
 
+
+
 <div class="row" ng-controller="HomeStatsController">
     <div class="col-md-12">
         <div class="area">
@@ -235,4 +237,76 @@
 
     </div>
 
+</div>
+
+
+<div class="row" ng-controller="HomeEndOfCampaignController">
+    <div class="col-md-12">
+        <div class="area" ng-if="campaignEnding">
+
+            <div >
+                <h3><span translate>dcmhome.endOfCampaignTitle</span>
+                    <a href="" ng-click="showEndOfCampaign=!showEndOfCampaign">
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': showEndOfCampaign, 'fa-chevron-right': !showEndOfCampaign }"></i>
+                    </a>
+                </h3>
+
+
+                <h3 translate></h3>
+                <a class="show-stats" ui-sref="dcm.stats">
+                    <span translate>dcmhome.moreStats</span>
+                    <i class="fa fa-tachometer"></i>
+                </a>
+            </div>
+
+            <div>
+
+
+                <nvd3-multi-bar-horizontal-chart
+                        data="campaignParticipants"
+                        id="campaignParticipants"
+
+                        height="160"
+                        showXAxis="true"
+                        showYAxis="true"
+                        showLegend="false">
+                    <svg></svg>
+                </nvd3-multi-bar-horizontal-chart>
+
+
+            </div>
+
+            <hr/>
+
+            <div>
+
+                <nvd3-multi-bar-chart
+                        data="eventStatusData"
+                        id="eventStatus"
+
+                        height="220"
+                        showXAxis="true"
+                        showYAxis="true"
+                        showLegend="true">
+                    <svg></svg>
+                </nvd3-multi-bar-chart>
+
+
+
+                <nvd3-multi-bar-chart
+                        data="eventFeedbackData"
+                        id="eventFeedback"
+                        yAxisTickFormat="eventFeedbackYAxisTickFormat"
+
+                        height="220"
+                        showXAxis="true"
+                        showYAxis="true"
+                        showLegend="true">
+                    <svg></svg>
+                </nvd3-multi-bar-chart>
+            </div>
+
+        </div>
+    </div>
 </div>

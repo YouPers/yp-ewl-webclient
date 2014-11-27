@@ -37,6 +37,8 @@
                         }]
                     }
                 });
+
+
         }])
 
         .controller('DhcController', ['$scope', '$rootScope', '$state', 'UserService', 'campaign',
@@ -52,14 +54,8 @@
                         $state.go('campaign-list.content');
                     }
 
-                } else {
-
-                    if(moment().diff(campaign.end, 'days') >= -2) {
-                        $state.go('dhc.end-of-campaign');
-                    }
-
-
                 }
+
                 $scope.currentCampaign = campaign;
             }]);
 

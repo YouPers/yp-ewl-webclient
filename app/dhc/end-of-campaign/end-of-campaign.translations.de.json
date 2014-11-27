@@ -8,6 +8,12 @@
     "surveyLink": "Umfrage",
 
     "reviewInfo": "Infotext zur End of Campaign Seite",
-    "reviewLink": "Rückblick"
+    "reviewLink": "Rückblick",
+
+    "eventStatus": {
+      "done": "gemacht",
+      "missed": "verpasst",
+      "open": "nicht zurückgemeldet"
+    }
   }
 }

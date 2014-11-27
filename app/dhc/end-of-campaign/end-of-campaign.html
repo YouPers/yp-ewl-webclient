@@ -1,8 +1,4 @@
-
-
-
 <div class="end-of-campaign container">
-
 
 
     <div class="two-column-layout">
@@ -12,7 +8,9 @@
             <div class="header-row"></div>
             <div class="button-row"></div>
 
-            <campaign-card campaign="campaign"></campaign-card>
+            <campaign-card campaign="campaign">
+
+            </campaign-card>
 
             <div class="survey-container">
 
@@ -37,7 +35,7 @@
             <div class="button-row">
 
                 <div ng-if="!campaignEnded"
-                        class="back-link" ui-sref="^.game({view: ''})"><span
+                     class="back-link" ui-sref="^.game({view: ''})"><span
                         class="fa fa-chevron-left"></span> <span translate>activity.link.back</span></div>
                 <div class="clearfix"></div>
             </div>
@@ -45,11 +43,10 @@
 
             <h1>
                 <span ng-hide="campaignEnded"
-                        translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"></span>
+                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"></span>
                 <span ng-show="campaignEnded"
-                        translate="end-of-campaign.campaignEndendHeader"></span>
+                      translate="end-of-campaign.campaignEndendHeader"></span>
             </h1>
-
 
 
             <table class="table focus">
@@ -68,29 +65,54 @@
                     <td class="left" translate>questionCategory.{{category}}</td>
 
                     <td>
-                        <div class="bar" ng-class="needForActionClass(category)" ng-style="needForActionStyle(category)">
+                        <div class="bar" ng-class="needForActionClass(category)"
+                             ng-style="needForActionStyle(category)">
 
                         </div>
                     </td>
 
-                    <td class="active"><div></div></td>
-                    <td><div></div></td>
-                    <td class="active"><div></div></td>
+                    <td class="active">
+                        <div></div>
+                    </td>
+                    <td>
+                        <div></div>
+                    </td>
+                    <td class="active">
+                        <div></div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
 
 
+            <div class="charts">
+
+                <nvd3-multi-bar-chart
+                        data="eventStatusData"
+                        id="eventStatus"
+
+                        height="220"
+                        showXAxis="true"
+                        showYAxis="true"
+                        showLegend="true">
+                    <svg></svg>
+                </nvd3-multi-bar-chart>
 
 
-            <div
-                    ac-chart="'bar'"
-                    ac-data="chartData"
-                    ac-config="config"
-                    class="stat-chart"
-                    >
 
-                    </div>
+                <nvd3-multi-bar-chart
+                        data="eventFeedbackData"
+                        id="eventFeedback"
+                        yAxisTickFormat="eventFeedbackYAxisTickFormat"
+
+                        height="220"
+                        showXAxis="true"
+                        showYAxis="true"
+                        showLegend="true">
+                    <svg></svg>
+                </nvd3-multi-bar-chart>
+
+            </div>
 
 
         </section>

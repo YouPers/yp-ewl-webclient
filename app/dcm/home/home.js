@@ -52,7 +52,7 @@
 
 
                             jsInclude: ["util", function (util) {
-                                return util.loadJSInclude('lib/d3/d3.min.js');
+                                return util.loadJSIncludes(['lib/d3/d3.min.js', 'lib/nvd3/nv.d3.min.js']);
                             }],
 
                             messages: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
@@ -188,6 +188,7 @@
 
             }])
 
+
         .controller('HomeStatsController', ['$scope', 'StatsService', function ($scope, StatsService) {
             $scope.chartData = {};
 
@@ -219,6 +220,62 @@
                     });
                 }
             }
+
+        }])
+
+
+        .controller('HomeEndOfCampaignController', ['$scope', 'UserService', function ($scope, UserService) {
+
+
+            var user = UserService.principal.getUser();
+            $scope.campaignEnding = moment().diff(user.campaign.end, 'days') >= -2;
+
+
+
+            if($scope.campaignEnding) {
+                init();
+            }
+
+            function init() {
+
+
+
+                $scope.campaignParticipants = [
+                    {
+                        "key": "Teilnehmer",
+                        "values": [ [ 'Deine Kampagne' , 40], [ 'Durschnitt aller Kampagnen' , 56]  ]
+                    }
+                ];
+
+
+                $scope.eventStatusData = [
+                    {
+                        "key": "Deine Kampagne",
+                        "values": [ [ 'done' , 2.3] , [ 'missed' , 2.1] , [ 'open' , 1.2] ]
+                    },
+                    {
+                        "key": "Durschnitt aller Kampagnen",
+                        "values": [ [ 'done' , 2.3] , [ 'missed' , 1.1] , [ 'open' , 4.6] ]
+                    }
+                ];
+
+                $scope.eventFeedbackYAxisTickFormat = function (value) {
+                    return value * 100 + '%';
+                };
+
+                $scope.eventFeedbackData = [
+                    {
+                        "key": "Durchschnittliche Bewertung",
+                        "values": [ [ '1' , 0.2] , [ '3' , 0.4] , [ '5' , 0.1] ]
+                    },
+                    {
+                        "key": "Durschnitt aller Kampagnen",
+                        "values": [ [ '1' , 0.4] , [ '3' , 0.4] , [ '5' , 0.2] ]
+                    }
+                ];
+
+            }
+
 
         }])
 

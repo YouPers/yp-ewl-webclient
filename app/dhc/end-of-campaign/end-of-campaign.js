@@ -17,6 +17,10 @@
                         },
                         resolve: {
 
+                            jsInclude: ["util", function (util) {
+                                return util.loadJSIncludes(['lib/d3/d3.min.js', 'lib/nvd3/nv.d3.min.js']);
+                            }],
+
                             assessmentResult: ['AssessmentService','UserService', '$q', function(AssessmentService, UserService, $q) {
                                 var currentUsersCampaign = UserService.principal.getUser().campaign;
                                 if (!currentUsersCampaign) {
@@ -45,13 +49,39 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/end-of-campaign/end-of-campaign');
             }])
 
-        .controller('EndOfCampaignController', [ '$scope', 'campaign',
+        .controller('EndOfCampaignController', [ '$scope', 'UserService',
             'assessmentResult', 'topStressors', 'assessment',
-            function ($scope, campaign, assessmentResult, topStressors, assessment) {
+            function ($scope, UserService, assessmentResult, topStressors, assessment) {
 
-                $scope.campaign = campaign;
-                $scope.daysLeft = - moment().diff(campaign.end, 'days');
-                $scope.campaignEnded = moment().diff(campaign.end) > 0;
+                $scope.campaign = UserService.principal.getUser().campaign;
+                $scope.daysLeft = - moment().diff($scope.campaign.end, 'days');
+                $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
+
+                $scope.eventStatusData = [
+                    {
+                        "key": "Deine Ergebnisse",
+                        "values": [ [ 'done' , 3] , [ 'missed' , 4] , [ 'open' , 2] ]
+                    },
+                    {
+                        "key": "Durschnitt der Kampagne",
+                        "values": [ [ 'done' , 2.4] , [ 'missed' , 2.3] , [ 'open' , 4.6] ]
+                    }
+                ];
+
+                $scope.eventFeedbackYAxisTickFormat = function (value) {
+                    return value * 100 + '%';
+                };
+
+                $scope.eventFeedbackData = [
+                    {
+                        "key": "Deine Bewertungen",
+                        "values": [ [ '1' , 0.2] , [ '3' , 0.4] , [ '5' , 0.1] ]
+                    },
+                    {
+                        "key": "Durschnitt der Kampagne",
+                        "values": [ [ '1' , 0.4] , [ '3' , 0.4] , [ '5' , 0.2] ]
+                    }
+                ];
 
 
 
