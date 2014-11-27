@@ -53,6 +53,13 @@
             };
         })
 
+        .filter('fulldate', function () {
+            return function (dateString) {
+                var myMoment = moment(dateString);
+                return myMoment.format('DD.MM.YYYY HH:mm');
+            };
+        })
+
 
     ;
 
