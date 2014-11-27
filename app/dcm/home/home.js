@@ -297,6 +297,12 @@
                     }
                 ];
 
+                $scope.colorFn = function (d, i) {
+
+                    var colors = ['#FF541E', '#FFD05C', '#20C63C', '#FFD05C', '#FF541E'];
+                    return colors[i];
+                }
+
             }
 
 
