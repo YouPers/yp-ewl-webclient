@@ -42,20 +42,20 @@
   }
 }
 
-.back-link:focus, .back-link:active {
+.back-link:focus, .btn-flat:focus,
+.back-link:active, .btn-flat:active {
   color: @yp-accent !important;
   background: none !important;
   box-shadow: none !important;
 }
 
-.back-link:hover {
+.back-link:hover, .btn-flat:hover {
   border: none;
   color: @yp-accent-hover !important;
 }
-.back-link {
+.back-link, .btn-flat {
   .btn();
   .btn-default();
-  .pull-right();
 //  width: 48%;
 
   background: none;
@@ -63,4 +63,16 @@
   box-shadow: none;
   color: @yp-accent !important;
 
+}
+.back-link {
+    .pull-right();
+}
+
+.btn-red {
+  color: @yp-warning !important;
+}
+.btn-big {
+  * {
+    font-size: 18px;
+  }
 }

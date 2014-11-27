@@ -1,0 +1,103 @@
+
+
+
+<div class="end-of-campaign container">
+
+
+
+    <div class="two-column-layout">
+
+        <section>
+
+            <div class="header-row"></div>
+            <div class="button-row"></div>
+
+            <campaign-card campaign="campaign"></campaign-card>
+
+            <div class="survey-container">
+
+                <br/>
+
+                <p>
+                    <span translate>end-of-campaign.surveyInfo</span>
+                </p>
+
+                <button class="btn btn-flat btn-big btn-red">
+                    <span translate>end-of-campaign.surveyLink</span>
+                    <span class="fa fa-chevron-right"></span>
+                </button>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <div class="header-row"></div>
+            <div class="button-row">
+
+                <div ng-if="!campaignEnded"
+                        class="back-link" ui-sref="^.game({view: ''})"><span
+                        class="fa fa-chevron-left"></span> <span translate>activity.link.back</span></div>
+                <div class="clearfix"></div>
+            </div>
+
+
+            <h1>
+                <span ng-hide="campaignEnded"
+                        translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"></span>
+                <span ng-show="campaignEnded"
+                        translate="end-of-campaign.campaignEndendHeader"></span>
+            </h1>
+
+
+
+            <table class="table focus">
+                <thead>
+                <tr>
+                    <th class="left" translate>focus.header</th>
+
+                    <th translate>focus.none</th>
+                    <th class="active" translate>focus.low</th>
+                    <th translate>focus.medium</th>
+                    <th class="active" translate>focus.high</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="category in categories">
+                    <td class="left" translate>questionCategory.{{category}}</td>
+
+                    <td>
+                        <div class="bar" ng-class="needForActionClass(category)" ng-style="needForActionStyle(category)">
+
+                        </div>
+                    </td>
+
+                    <td class="active"><div></div></td>
+                    <td><div></div></td>
+                    <td class="active"><div></div></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+            <div
+                    ac-chart="'bar'"
+                    ac-data="chartData"
+                    ac-config="config"
+                    class="stat-chart"
+                    >
+
+                    </div>
+
+
+        </section>
+
+
+    </div>
+
+</div>
+
+

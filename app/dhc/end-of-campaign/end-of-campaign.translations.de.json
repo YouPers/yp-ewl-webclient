@@ -1,0 +1,13 @@
+{
+  "end-of-campaign": {
+
+    "lastDaysHeader": "Noch {{daysLeft}} Tage bis zum Ende der Kampagne",
+    "campaignEndendHeader": "Kampagnen - Rückblick",
+
+    "surveyInfo": "Infotext zur Umfrage",
+    "surveyLink": "Umfrage",
+
+    "reviewInfo": "Infotext zur End of Campaign Seite",
+    "reviewLink": "Rückblick"
+  }
+}

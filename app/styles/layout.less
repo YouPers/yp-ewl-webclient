@@ -50,6 +50,25 @@ body {
 }
 
 
+.two-column-layout {
+
+  display: flex;
+
+  margin-bottom: 1em;
+
+  section {
+    flex: 0 0 auto;
+    padding: 0 12px 12px 12px;
+  }
+
+  section:first-of-type {
+    flex: 0 0 25%;
+  }
+
+}
+
+
+
 .three-column-layout {
 
   @media(min-width: @screen-md) {
