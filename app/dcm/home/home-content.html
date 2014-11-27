@@ -263,6 +263,7 @@
             <div>
 
 
+
                 <nvd3-multi-bar-horizontal-chart
                         data="campaignParticipants"
                         id="campaignParticipants"
@@ -309,6 +310,48 @@
                         showLegend="true">
                     <svg></svg>
                 </nvd3-multi-bar-chart>
+
+                <hr/>
+
+
+            </div>
+
+            <div>
+
+                Arbeitsmenge
+
+                <nvd3-multi-bar-horizontal-chart
+                        data="assessmentData"
+                        id="assessment1"
+                        class="assessment-chart"
+
+                        width="600"
+                        showXAxis="true"
+                        showYAxis="false"
+                        showLegend="true"
+                        stacked="true"
+                        rotateLabels="45"
+                        >
+                    <svg></svg>
+                </nvd3-multi-bar-horizontal-chart>
+
+                Erfolgsdruck
+
+                <nvd3-multi-bar-horizontal-chart
+                        data="assessmentData"
+                        id="assessment2"
+                        class="assessment-chart"
+
+                        width="600"
+                        showXAxis="true"
+                        showYAxis="false"
+                        showLegend="true"
+                        stacked="true"
+                        rotateLabels="45"
+                        >
+                    <svg></svg>
+                </nvd3-multi-bar-horizontal-chart>
+
             </div>
 
         </div>

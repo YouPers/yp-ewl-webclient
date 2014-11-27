@@ -235,7 +235,69 @@
     }
   }
 
-  nvd3-multi-bar-horizontal-chart {
+  nvd3-multi-bar-horizontal-chart.assessment-chart {
+    display: block;
+
+    @assessment-1: rgb(255, 84, 30);
+    @assessment-2: rgb(255, 208, 92);
+    @assessment-3: rgb(32, 198, 60);
+    @assessment-4: rgb(255, 208, 92);
+    @assessment-5: rgb(255, 84, 30);
+
+    svg {
+      overflow: visible;
+
+      .nv-legend {
+        .nv-series:nth-child(1) circle {
+            stroke: @assessment-1 !important;
+            fill: @assessment-1 !important;
+        }
+        .nv-series:nth-child(2) circle {
+            stroke: @assessment-2 !important;
+            fill: @assessment-2 !important;
+        }
+        .nv-series:nth-child(3) circle {
+            stroke: @assessment-3 !important;
+            fill: @assessment-3 !important;
+        }
+        .nv-series:nth-child(4) circle {
+            stroke: @assessment-4 !important;
+            fill: @assessment-4 !important;
+        }
+        .nv-series:nth-child(5) circle {
+            stroke: @assessment-5 !important;
+            fill: @assessment-5 !important;
+        }
+      }
+
+      .nv-barsWrap .nv-groups {
+
+        rect {
+          transform: scaleY(0.6) translateY(10px);
+        }
+
+        .nv-series-0 rect {
+          fill: @assessment-1;
+        }
+        .nv-series-1 rect {
+          fill: @assessment-2;
+        }
+        .nv-series-2 rect {
+          fill: @assessment-3;
+        }
+        .nv-series-3 rect {
+          fill: @assessment-4;
+        }
+        .nv-series-4 rect {
+          fill: @assessment-5;
+        }
+      }
+    }
+    margin-left: 4em;
+  }
+
+
+  nvd3-multi-bar-horizontal-chart#campaignParticipants {
     display: block;
 
     svg {

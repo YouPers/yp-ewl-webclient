@@ -274,6 +274,29 @@
                     }
                 ];
 
+                $scope.assessmentData = [
+                    {
+                        "key": "zu wenig",
+                        "values": [ [ 'Kampagne' , 0.2] , [ 'Vergleichswert' , 0.25]]
+                    },
+                    {
+                        "key": "etwas zu wenig",
+                        "values": [ [ 'Kampagne' , 0.3] , [ 'Vergleichswert' , 0.15] ]
+                    },
+                    {
+                        "key": "ausgewogen",
+                        "values": [ [ 'Kampagne' , 0.20] , [ 'Vergleichswert' , 0.2] ]
+                    },
+                    {
+                        "key": "etwas zu viel",
+                        "values": [ [ 'Kampagne' , 0.20] , [ 'Vergleichswert' , 0.25] ]
+                    },
+                    {
+                        "key": "zu viel",
+                        "values": [ [ 'Kampagne' , 0.10] , [ 'Vergleichswert' , 0.15] ]
+                    }
+                ];
+
             }
 
 
