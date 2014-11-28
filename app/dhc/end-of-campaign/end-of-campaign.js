@@ -12,7 +12,7 @@
                         views: {
                             content: {
                                 templateUrl: 'dhc/end-of-campaign/end-of-campaign.html',
-                                controller: 'EndOfCampaignController as endOfCampaignController'
+                                controller: 'DhcEndOfCampaignController as endOfCampaignController'
                             }
                         },
                         resolve: {
@@ -49,24 +49,43 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/end-of-campaign/end-of-campaign');
             }])
 
-        .controller('EndOfCampaignController', [ '$scope', 'UserService',
+        .controller('DhcEndOfCampaignController', [ '$scope', 'UserService', 'StatsService',
             'assessmentResult', 'topStressors', 'assessment',
-            function ($scope, UserService, assessmentResult, topStressors, assessment) {
+            function ($scope, UserService, StatsService, assessmentResult, topStressors, assessment) {
 
                 $scope.campaign = UserService.principal.getUser().campaign;
                 $scope.daysLeft = - moment().diff($scope.campaign.end, 'days');
                 $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
 
-                $scope.eventStatusData = [
-                    {
-                        "key": "Deine Ergebnisse",
-                        "values": [ [ 'done' , 3] , [ 'missed' , 4] , [ 'open' , 2] ]
-                    },
-                    {
-                        "key": "Durschnitt der Kampagne",
-                        "values": [ [ 'done' , 2.4] , [ 'missed' , 2.3] , [ 'open' , 4.6] ]
-                    }
-                ];
+
+                init();
+
+                function init() {
+
+
+                    StatsService.loadStats($scope.campaign.id,
+                        {
+                            type: 'all',
+                            scopeType: 'campaign',
+                            scopeId: $scope.campaign.id
+                        }).then(function (results) {
+                            var res = results[0].usersTotal;
+
+
+                            $scope.eventStatusData = [
+                                {
+                                    "key": "Deine Ergebnisse",
+                                    "values": [['done', 3], ['missed', 4], ['open', 2]]
+                                },
+                                {
+                                    "key": "Durschnitt der Kampagne",
+                                    "values": [['done', 2.4], ['missed', 2.3], ['open', 4.6]]
+                                }
+                            ];
+
+                        });
+                }
+
 
                 $scope.eventFeedbackYAxisTickFormat = function (value) {
                     return value * 100 + '%';
