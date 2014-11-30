@@ -10,10 +10,17 @@
     "reviewInfo": "Infotext zur End of Campaign Seite",
     "reviewLink": "Rückblick",
 
-    "eventStatus": {
+    "eventsStatus": {
+      "user": "Ergebnisse",
+      "campaign": "Durchschnitt",
+
       "done": "gemacht",
       "missed": "verpasst",
-      "open": "nicht zurückgemeldet"
+      "open": "offen"
+    },
+    "eventsRatings": {
+      "user": "Deine Bewertungen",
+      "campaign": "Kampagne"
     }
   }
 }

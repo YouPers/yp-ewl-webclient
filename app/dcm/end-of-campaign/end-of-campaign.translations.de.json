@@ -1,5 +1,5 @@
 {
-  "end-of-campaign": {
+  "dcm-end-of-campaign": {
 
     "lastDaysHeader": "Noch {{daysLeft}} Tage bis zum Ende der Kampagne",
     "campaignEndendHeader": "Kampagnen - Rückblick",
@@ -10,10 +10,32 @@
     "reviewInfo": "Infotext zur End of Campaign Seite",
     "reviewLink": "Rückblick",
 
-    "eventStatus": {
+    "usersTotal": {
+      "title": "Teilnehmer",
+      "campaign": "Diese Kampagne",
+      "average": "Durchschnitt"
+    },
+
+    "eventsStatus": {
+      "title": "Durchgeführte Aktivitäten im Vergleich zu allen YOUPERS Kampagnen",
+      "campaign": "Kampagne",
+      "average": "Durchschnitt",
+
       "done": "gemacht",
       "missed": "verpasst",
-      "open": "nicht zurückgemeldet"
+      "open": "offen"
+    },
+
+    "assessmentResults": {
+
+      "campaign": "Kampagne",
+      "average": "Vergleichswert",
+
+      "veryNeg": "--",
+      "neg": "-",
+      "zero": "0",
+      "pos": "+",
+      "veryPos": "++"
     }
   }
 }

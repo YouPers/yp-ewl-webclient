@@ -24,13 +24,14 @@
                         }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('dhc/end-of-campaign/end-of-campaign');
+                $translateWtiPartialLoaderProvider.addPart('dcm/end-of-campaign/end-of-campaign');
             }])
 
-        .controller('DcmEndOfCampaignController', [ '$scope', 'UserService', 'StatsService',
-            function ($scope, UserService, StatsService) {
+        .controller('DcmEndOfCampaignController', [ '$scope', '$q', '$translate', 'UserService', 'StatsService',
+            function ($scope, $q, $translate, UserService, StatsService) {
 
-                $scope.campaign = UserService.principal.getUser().campaign;
+                var user = UserService.principal.getUser();
+                $scope.campaign = user.campaign;
                 $scope.daysLeft = - moment().diff($scope.campaign.end, 'days');
                 $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
 
@@ -49,8 +50,9 @@
 
                             $scope.campaignParticipants = [
                                 {
-                                    "key": "Teilnehmer",
-                                    "values": [ [ 'Deine Kampagne' , res.usersTotal], [ 'Durschnitt aller Kampagnen' , res.usersAvg]  ]
+                                    "key": $translate.instant('dcm-end-of-campaign.usersTotal.title'),
+                                    "values": [ [ $translate.instant('dcm-end-of-campaign.usersTotal.campaign') , res.usersTotal],
+                                        [ $translate.instant('dcm-end-of-campaign.usersTotal.average') , res.usersAvg]  ]
                                 }
                             ];
 
@@ -58,63 +60,163 @@
 
 
 
+                    function findByStatus(results, type, status) {
+                        var res = results[0][type];
+                        return (_.find(res, { status: status}) || {}).count;
+                    }
+                    function getCount(results, type) {
+                        var res = results[0][type];
+                        return res[0].count;
+                    }
 
-                    $scope.eventStatusData = [
-                        {
-                            "key": "Deine Kampagne",
-                            "values": [ [ 'done' , 2.3] , [ 'missed' , 2.1] , [ 'open' , 1.2] ]
-                        },
-                        {
-                            "key": "Durschnitt aller Kampagnen",
-                            "values": [ [ 'done' , 2.3] , [ 'missed' , 1.1] , [ 'open' , 4.6] ]
-                        }
-                    ];
-
-                    $scope.eventFeedbackYAxisTickFormat = function (value) {
-                        return value * 100 + '%';
-                    };
-
-                    $scope.eventFeedbackData = [
-                        {
-                            "key": "Durchschnittliche Bewertung",
-                            "values": [ [ '1' , 0.2] , [ '3' , 0.4] , [ '5' , 0.1] ]
-                        },
-                        {
-                            "key": "Durschnitt aller Kampagnen",
-                            "values": [ [ '1' , 0.4] , [ '3' , 0.4] , [ '5' , 0.2] ]
-                        }
-                    ];
+                    // eventsStatus / eventsStatusAvg
+                    var eventStatus = [];
+                    $q.all([
 
 
+                        StatsService.loadStats($scope.campaign.id,
+                            {
+                                type: 'eventsStatusAvg',
+                                scopeType: 'campaign',
+                                scopeId: user.campaign.id
+                            }).then(function (results) {
+                                var type = 'eventsStatusAvg';
+                                eventStatus.push({
+                                    "key": $translate.instant('dcm-end-of-campaign.eventsStatus.campaign'),
+                                    "values": [
+                                        [$translate.instant('dcm-end-of-campaign.eventsStatus.done'), findByStatus(results, type, 'done')],
+                                        [$translate.instant('dcm-end-of-campaign.eventsStatus.missed'), findByStatus(results, type, 'missed')],
+                                        [$translate.instant('dcm-end-of-campaign.eventsStatus.open'), findByStatus(results, type, 'open')]]
+                                });
 
-                    $scope.assessmentData = [
+                            }),
+                        StatsService.loadStats($scope.campaign.id,
+                            {
+                                type: 'eventsStatusAvg'
+                            }).then(function (results) {
+                                var type = 'eventsStatusAvg';
+                                eventStatus.push({
+                                    "key": $translate.instant('dcm-end-of-campaign.eventsStatus.average'),
+                                    "values": [
+                                        [$translate.instant('dcm-end-of-campaign.eventsStatus.done'), findByStatus(results, type, 'done')],
+                                        [$translate.instant('dcm-end-of-campaign.eventsStatus.missed'), findByStatus(results, type, 'missed')],
+                                        [$translate.instant('dcm-end-of-campaign.eventsStatus.open'), findByStatus(results, type, 'open')]]
+                                });
+
+                            })
+
+                    ]).then(function () {
+                        $scope.eventStatus = eventStatus;
+                    });
+
+
+
+                    // assessmentResults
+                    var assessmentResults = [];
+
+                    var campaignLabel = $translate.instant('dcm-end-of-campaign.assessmentResults.campaign');
+                    var averageLabel = $translate.instant('dcm-end-of-campaign.assessmentResults.average');
+
+                    var veryNeg = $translate.instant('dcm-end-of-campaign.assessmentResults.veryNeg');
+                    var neg = $translate.instant('dcm-end-of-campaign.assessmentResults.neg');
+                    var zero = $translate.instant('dcm-end-of-campaign.assessmentResults.zero');
+                    var pos = $translate.instant('dcm-end-of-campaign.assessmentResults.pos');
+                    var veryPos = $translate.instant('dcm-end-of-campaign.assessmentResults.veryPos');
+
+                    StatsService.loadStats($scope.campaign.id,
                         {
-                            "key": "zu wenig",
-                            "values": [ [ 'Kampagne' , 0.2] , [ 'Vergleichswert' , 0.25]]
-                        },
-                        {
-                            "key": "etwas zu wenig",
-                            "values": [ [ 'Kampagne' , 0.3] , [ 'Vergleichswert' , 0.15] ]
-                        },
-                        {
-                            "key": "ausgewogen",
-                            "values": [ [ 'Kampagne' , 0.20] , [ 'Vergleichswert' , 0.2] ]
-                        },
-                        {
-                            "key": "etwas zu viel",
-                            "values": [ [ 'Kampagne' , 0.20] , [ 'Vergleichswert' , 0.25] ]
-                        },
-                        {
-                            "key": "zu viel",
-                            "values": [ [ 'Kampagne' , 0.10] , [ 'Vergleichswert' , 0.15] ]
-                        }
-                    ];
+                            type: 'assessmentResults',
+                            scopeType: 'campaign',
+                            scopeId: user.campaign.id
+                        }).then(function (results) {
+                            var type = 'assessmentResults';
+                            var res = results[0][type];
+
+                            _.each(res, function (assessmentResult) {
+                                assessmentResults.push(
+                                    {
+                                        question: assessmentResult.question,
+                                        result: [
+                                            {
+                                                "id": 'veryNeg',
+                                                "key": veryNeg,
+                                                "values": [ [ campaignLabel , assessmentResult.veryNeg] ] //, [ 'Vergleichswert' , 0.25]
+                                            },
+                                            {
+                                                "id": 'neg',
+                                                "key": neg,
+                                                "values": [ [ campaignLabel , assessmentResult.neg] ]
+                                            },
+                                            {
+                                                "id": 'zero',
+                                                "key": zero,
+                                                "values": [ [ campaignLabel , assessmentResult.zero] ]
+                                            },
+                                            {
+                                                "id": 'pos',
+                                                "key": pos,
+                                                "values": [ [ campaignLabel , assessmentResult.pos] ]
+                                            },
+                                            {
+                                                "id": 'veryPos',
+                                                "key": veryPos,
+                                                "values": [ [ campaignLabel , assessmentResult.veryPos] ]
+                                            }
+                                        ]
+                                    }
+                                );
+                            });
+
+                            StatsService.loadStats($scope.campaign.id,
+                                {
+                                    type: 'assessmentResults',
+                                    scopeType: 'topic',
+                                    scopeId: user.campaign.topic
+                                }).then(function (results) {
+                                    var type = 'assessmentResults';
+                                    var res = results[0][type];
+
+                                    _.each(res, function (assessmentResultAverage) {
+
+                                        var assessmentResult = _.find(assessmentResults, {question: assessmentResultAverage.question });
+                                        _.each(assessmentResult.result, function (cat) {
+                                            cat.values.push([averageLabel, assessmentResultAverage[cat.id]]);
+                                        })
+                                    });
+
+                                    $scope.assessmentResults = assessmentResults;
+
+
+                                });
+
+
+                        });
 
                     $scope.colorFn = function (d, i) {
 
                         var colors = ['#FF541E', '#FFD05C', '#20C63C', '#FFD05C', '#FF541E'];
                         return colors[i];
                     }
+
+
+                    // popular activities
+
+
+                    StatsService.loadStats($scope.campaign.id,
+                        {
+                            type: 'activitiesPlanned',
+                            scopeType: 'campaign',
+                            scopeId: user.campaign.id,
+                            dontReplaceIds: 'true'
+                        }).then(function (results) {
+                            var type = 'activitiesPlanned';
+                            var res = results[0][type];
+
+                            $scope.activitiesPlanned = res;
+
+
+
+                        });
 
                 }
 

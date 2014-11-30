@@ -41,18 +41,21 @@
             </div>
 
 
-            <h1>
+            <h2>
                 <span ng-hide="campaignEnded"
                       translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"></span>
                 <span ng-show="campaignEnded"
                       translate="end-of-campaign.campaignEndendHeader"></span>
-            </h1>
+            </h2>
 
 
 
             <div>
 
 
+                <h3 translate>
+                    dcm-end-of-campaign.usersTotal.title
+                </h3>
 
                 <nvd3-multi-bar-horizontal-chart
                         data="campaignParticipants"
@@ -72,47 +75,39 @@
 
             <div>
 
+                <h3 translate>
+                    dcm-end-of-campaign.eventsStatus.title
+                </h3>
+
                 <nvd3-multi-bar-chart
-                        data="eventStatusData"
+                        data="eventStatus"
                         id="eventStatus"
 
-                        width="340"
-                        height="210"
+                        width="380"
+                        height="240"
+
+                        showLegend="true"
 
                         showXAxis="true"
                         showYAxis="true"
-                        showLegend="true">
+                        >
                     <svg></svg>
                 </nvd3-multi-bar-chart>
 
 
-
-                <nvd3-multi-bar-chart
-                        data="eventFeedbackData"
-                        id="eventFeedback"
-                        yAxisTickFormat="eventFeedbackYAxisTickFormat"
-
-                        width="340"
-                        height="210"
-
-                        showXAxis="true"
-                        showYAxis="true"
-                        showLegend="true">
-                    <svg></svg>
-                </nvd3-multi-bar-chart>
 
                 <hr/>
 
 
             </div>
 
-            <div>
+            <div ng-repeat="assessmentResult in assessmentResults">
 
-                Arbeitsmenge
+                <h3>{{ assessmentResult.question }}</h3>
 
                 <nvd3-multi-bar-horizontal-chart
-                        data="assessmentData"
-                        id="assessment1"
+                        data="assessmentResult.result"
+                        id="assessment{{ $index }}"
                         class="assessment-chart"
 
                         width="630"
@@ -126,42 +121,28 @@
                     <svg></svg>
                 </nvd3-multi-bar-horizontal-chart>
 
-                Erfolgsdruck
-
-                <nvd3-multi-bar-horizontal-chart
-                        data="assessmentData"
-                        id="assessment2"
-                        class="assessment-chart"
-
-                        width="630"
-                        showXAxis="true"
-                        showYAxis="false"
-                        showLegend="false"
-                        stacked="true"
-                        color="colorFn"
-                        >
-                    <svg></svg>
-                </nvd3-multi-bar-horizontal-chart>
-
-                Erfolgsdruck
-
-                <nvd3-multi-bar-horizontal-chart
-                        data="assessmentData"
-                        id="assessment3"
-                        class="assessment-chart"
-
-                        width="630"
-                        showXAxis="true"
-                        showYAxis="false"
-                        showLegend="false"
-                        stacked="true"
-                        color="colorFn"
-                        showControls="true"
-                        >
-                    <svg></svg>
-                </nvd3-multi-bar-horizontal-chart>
 
             </div>
+
+
+            <h1>
+                Beliebte Aktivitäten
+            </h1>
+
+            <dl>
+
+                <dt>Idea</dt>
+                <dd>Count</dd>
+
+            </dl>
+
+            <dl ng-repeat="activity in activitiesPlanned">
+
+
+                <dt>{{ activity.idea }}</dt>
+                <dd>{{ activity.count }}</dd>
+
+            </dl>
 
 
         </section>

@@ -87,8 +87,8 @@
 
             <div class="charts">
 
-                <nvd3-multi-bar-chart
-                        data="eventStatusData"
+                <nvd3-multi-bar-chart ng-if="eventStatusData"
+                        data="eventStatus"
                         id="eventStatus"
 
                         height="220"
@@ -100,14 +100,13 @@
 
 
 
-                <nvd3-multi-bar-chart
-                        data="eventFeedbackData"
-                        id="eventFeedback"
-                        yAxisTickFormat="eventFeedbackYAxisTickFormat"
+                <nvd3-multi-bar-chart ng-if="eventsRatingsData"
+                        data="eventsRatingsData"
+                        id="eventsRatings"
 
                         height="220"
-                        showXAxis="true"
                         showYAxis="true"
+                        showXAxis="true"
                         showLegend="true">
                     <svg></svg>
                 </nvd3-multi-bar-chart>
