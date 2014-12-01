@@ -159,16 +159,20 @@
             'activities', 'currentActivities', 'doneActivities',
             'offers', 'sortedOffers', 'dismissedOffers',
             'events', 'openEvents', 'missedEvents', 'doneEvents', 'closedEvents',
-            'healthCoachEvent',
+            'healthCoachEvent', 'campaign',
 
             function ($scope, $state, $stateParams, $window,
                       activities, currentActivities, doneActivities,
                       offers, sortedOffers, dismissedOffers,
                       events, openEvents, missedEvents, doneEvents, closedEvents,
-                      healthCoachEvent
+                      healthCoachEvent, campaign
                 ) {
 
                 $scope.healthCoachEvent = healthCoachEvent;
+
+                $scope.campaign = campaign;
+                $scope.daysLeft = -moment().diff(campaign.end, 'days');
+                $scope.campaignEnding = $scope.daysLeft < 2;
 
                 $scope.view = $stateParams.view;
 

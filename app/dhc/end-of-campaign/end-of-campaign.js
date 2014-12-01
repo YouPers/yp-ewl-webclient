@@ -56,6 +56,7 @@
                 var user = UserService.principal.getUser();
                 $scope.campaign = user.campaign;
                 $scope.daysLeft = -moment().diff($scope.campaign.end, 'days');
+                $scope.campaignEnding = $scope.daysLeft < 2;
                 $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
 
                 $scope.percetageFn = function (value) {
