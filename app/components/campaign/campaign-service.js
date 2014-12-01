@@ -35,10 +35,6 @@
                             UserService.reload();
                         });
                     },
-                    getCampaignStats: function (campaignId, type) {
-                        var stats = Rest.all('campaigns/' + campaignId + '/stats');
-                        return stats.getList({ type: type });
-                    },
                     inviteParticipants: function(campaignId, particpantEmails, mailSubject, mailText, testOnly) {
                         var postBody = {email: particpantEmails,
                             subject: mailSubject,
