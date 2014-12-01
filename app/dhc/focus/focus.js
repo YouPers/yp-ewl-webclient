@@ -23,13 +23,6 @@
                                 }
                                 return AssessmentService.getNewestAssessmentResults(currentUsersCampaign.topic.id || currentUsersCampaign.topic);
                             }],
-                            topStressors: ['AssessmentService','UserService', '$q', function (AssessmentService, UserService, $q) {
-                                var currentUsersCampaign = UserService.principal.getUser().campaign;
-                                if (!currentUsersCampaign) {
-                                    return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
-                                }
-                                return AssessmentService.topStressors(currentUsersCampaign.topic.id || currentUsersCampaign.topic);
-                            }],
                             assessment: ['AssessmentService','UserService', '$q', function (AssessmentService, UserService, $q) {
                                 var currentUsersCampaign = UserService.principal.getUser().campaign;
                                 if (!currentUsersCampaign) {
@@ -49,60 +42,29 @@
 
         .controller('FocusController', [ '$scope',
             'ProfileService', 'AssessmentService',
-            'assessmentResult', 'topStressors', 'assessment', 'assessmentIdea',
+            'assessmentResult', 'assessment', 'assessmentIdea',
             function ($scope,
                       ProfileService, AssessmentService,
-                      assessmentResult, topStressors, assessment, assessmentIdea) {
+                      assessmentResult, assessment, assessmentIdea) {
 
                 $scope.needForAction = assessmentResult? assessmentResult.needForAction : null;
 
-                $scope.categories = _.uniq(_.map(assessment.questions, 'category'));
+                $scope.categories = _.map(assessmentResult.needForAction, 'category');
 
-                $scope.topStressors = topStressors;
                 $scope.assessmentIdea = assessmentIdea;
 
-                var profile = $scope.principal.getUser().profile;
-
-                $scope.prefs = profile.prefs;
-
-                if (profile.prefs.focus && profile.prefs.focus.length > 0) {
-                    _.forEach(profile.prefs.focus, function(foc) {
-                        var selectedStressor = null;
-                        selectedStressor = _.find(topStressors, function(stressor) {
-                            return stressor.question.id === foc.question;
-                        });
-                        if (selectedStressor) {
-                            selectedStressor.selected = true;
-                        }
+                function _getNeedForCategory (category) {
+                    var nfa = _.find($scope.needForAction, function(nfa) {
+                        return nfa.category === category;
                     });
+
+                    return  nfa ? nfa.value : 0;
                 }
-
-                $scope.stressorSelected = function(stressor) {
-                    var id  = stressor.question.id;
-
-                    var focus = profile.prefs.focus;
-
-                    if (stressor.selected) {
-                        if (!_.contains(focus, id)) {
-                            focus.push({question: id, timestamp: new Date()});
-                        }
-                    } else {
-                        _.remove(focus, function(foc) {
-                            return foc.question === id;
-                        });
-                    }
-
-                    ProfileService.putProfile($scope.principal.getUser().profile);
-                };
-
-                $scope.savePersonalGoal = function() {
-                    ProfileService.putProfile($scope.principal.getUser().profile);
-                };
 
                 $scope.needForActionClass = function(category) {
 
 
-                    var need = $scope.needForAction[category];
+                   var need = _getNeedForCategory(category);
 
                     var level = !need || need < 1 ? "none" :
                         need < 4 ? "low" :
@@ -116,7 +78,7 @@
 
                 $scope.needForActionStyle = function(category) {
                     return {
-                        width: $scope.needForAction[category] * 10 * 0.6 + '%'
+                        width: _getNeedForCategory(category) * 10 * 0.6 + '%'
                     };
                 };
 

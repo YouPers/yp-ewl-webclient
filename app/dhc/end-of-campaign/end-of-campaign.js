@@ -28,13 +28,6 @@
                                 }
                                 return AssessmentService.getNewestAssessmentResults(currentUsersCampaign.topic.id || currentUsersCampaign.topic);
                             }],
-                            topStressors: ['AssessmentService', 'UserService', '$q', function (AssessmentService, UserService, $q) {
-                                var currentUsersCampaign = UserService.principal.getUser().campaign;
-                                if (!currentUsersCampaign) {
-                                    return $q.reject('User is not part of a camapaign, Assessment only possible when user is part of a camapgin');
-                                }
-                                return AssessmentService.topStressors(currentUsersCampaign.topic.id || currentUsersCampaign.topic);
-                            }],
                             assessment: ['AssessmentService', 'UserService', '$q', function (AssessmentService, UserService, $q) {
                                 var currentUsersCampaign = UserService.principal.getUser().campaign;
                                 if (!currentUsersCampaign) {
@@ -42,7 +35,6 @@
                                 }
                                 return AssessmentService.getAssessment(currentUsersCampaign.topic.id || currentUsersCampaign.topic);
                             }]
-
                         }
                     });
 
@@ -50,8 +42,8 @@
             }])
 
         .controller('DhcEndOfCampaignController', ['$scope', '$q', '$translate', 'UserService', 'StatsService',
-            'assessmentResult', 'topStressors', 'assessment',
-            function ($scope, $q, $translate, UserService, StatsService, assessmentResult, topStressors, assessment) {
+            'assessmentResult', 'assessment',
+            function ($scope, $q, $translate, UserService, StatsService, assessmentResult, assessment) {
 
                 var user = UserService.principal.getUser();
                 $scope.campaign = user.campaign;
@@ -222,10 +214,17 @@
                 $scope.needForAction = assessmentResult ? assessmentResult.needForAction : null;
                 $scope.categories = _.uniq(_.map(assessment.questions, 'category'));
 
+                function _getNeedForCategory (category) {
+                    var nfa = _.find($scope.needForAction, function(nfa) {
+                        return nfa.category === category;
+                    });
+
+                    return  nfa ? nfa.value : 0;
+                }
+
+
                 $scope.needForActionClass = function (category) {
-
-
-                    var need = $scope.needForAction[category];
+                    var need = _getNeedForCategory(category);
 
                     var level = !need || need < 1 ? "none" :
                         need < 4 ? "low" :
@@ -234,12 +233,11 @@
                     var obj = {};
                     obj[level] = true;
                     return obj;
-
                 };
 
                 $scope.needForActionStyle = function (category) {
                     return {
-                        width: $scope.needForAction[category] * 10 * 0.6 + '%'
+                        width: _getNeedForCategory(category) * 10 * 0.6 + '%'
                     };
                 };
 
