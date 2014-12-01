@@ -135,16 +135,6 @@ angular.module('yp-ewl',
                 });
 
 
-                var user = UserService.principal.getUser();
-                var campaign = user.campaign;
-                // last 2 days of the users campaign -> redirect non-campaignAdmins to dhc end of campaign
-                // if endOfCampaignDisplayed has not been set yet, or it is more than 1 day in the past
-                if(!$rootScope.isCampaignAdmin &&
-                    (!campaign.endOfCampaignDisplayed || moment().diff(campaign.endOfCampaignDisplayed, 'days') > 1) &&
-                    moment().diff(campaign.end, 'days') >= -2) {
-                    campaign.endOfCampaignDisplayed = moment();
-                    $state.go('dhc.end-of-campaign', { campaignId: campaign.id });
-                }
             });
 
             $rootScope.getRenderedText = function (text) {
