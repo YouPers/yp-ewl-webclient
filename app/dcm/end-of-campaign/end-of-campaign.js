@@ -27,11 +27,10 @@
                 $translateWtiPartialLoaderProvider.addPart('dcm/end-of-campaign/end-of-campaign');
             }])
 
-        .controller('DcmEndOfCampaignController', [ '$scope', '$q', '$translate', 'UserService', 'StatsService', 'ActivityService',
-            function ($scope, $q, $translate, UserService, StatsService, ActivityService) {
+        .controller('DcmEndOfCampaignController', [ '$scope', '$q', '$translate', 'UserService', 'StatsService', 'ActivityService', 'campaign',
+            function ($scope, $q, $translate, UserService, StatsService, ActivityService, campaign) {
 
-                var user = UserService.principal.getUser();
-                $scope.campaign = user.campaign;
+                $scope.campaign = campaign;
                 $scope.daysLeft = - moment().diff($scope.campaign.end, 'days');
                 $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
 
@@ -81,7 +80,7 @@
                             {
                                 type: 'eventsStatusAvg',
                                 scopeType: 'campaign',
-                                scopeId: user.campaign.id
+                                scopeId: $scope.campaign.id
                             }).then(function (results) {
                                 var type = 'eventsStatusAvg';
                                 eventStatus.push({
@@ -130,7 +129,7 @@
                         {
                             type: 'assessmentResults',
                             scopeType: 'campaign',
-                            scopeId: user.campaign.id
+                            scopeId: $scope.campaign.id
                         }).then(function (results) {
                             var type = 'assessmentResults';
                             var res = results[0][type];
@@ -174,7 +173,7 @@
                                 {
                                     type: 'assessmentResults',
                                     scopeType: 'topic',
-                                    scopeId: user.campaign.topic
+                                    scopeId: $scope.campaign.topic.id
                                 }).then(function (results) {
                                     var type = 'assessmentResults';
                                     var res = results[0][type];
@@ -209,7 +208,7 @@
                         {
                             type: 'activitiesPlanned',
                             scopeType: 'campaign',
-                            scopeId: user.campaign.id,
+                            scopeId: $scope.campaign.id,
                             dontReplaceIds: 'true'
                         })
                         .then(function (results) {

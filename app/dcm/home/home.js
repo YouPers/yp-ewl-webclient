@@ -228,7 +228,10 @@
 
 
             var user = UserService.principal.getUser();
-            $scope.campaignEnding = moment().diff(user.campaign.end, 'days') >= -2;
+
+            if($scope.campaign) {
+                $scope.campaignEnding = moment().diff($scope.campaign.end, 'days') >= -2;
+            }
 
 
 

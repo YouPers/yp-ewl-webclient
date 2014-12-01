@@ -44,7 +44,7 @@
 
                         // last 2 days of the users campaign -> redirect non-campaignAdmins to dhc end of campaign
                         // if endOfCampaignDisplayed has not been set yet, or it is more than 1 day in the past
-                        if(!$rootScope.isCampaignAdmin &&
+                        if(campaign && !$rootScope.isCampaignAdmin &&
                             (!campaign.endOfCampaignDisplayed || moment().diff(campaign.endOfCampaignDisplayed, 'days') > 1) &&
                             moment().diff(campaign.end, 'days') >= -2) {
                             campaign.endOfCampaignDisplayed = moment();
