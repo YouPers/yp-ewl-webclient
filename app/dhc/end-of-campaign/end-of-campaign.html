@@ -87,29 +87,42 @@
 
             <div class="charts">
 
-                <nvd3-multi-bar-chart ng-if="eventStatusData"
-                        data="eventStatus"
-                        id="eventStatus"
+                <div>
+                    <h3 translate>end-of-campaign.eventsStatus.title</h3>
 
-                        height="220"
-                        showXAxis="true"
-                        showYAxis="true"
-                        showLegend="true">
-                    <svg></svg>
-                </nvd3-multi-bar-chart>
+                    <nvd3-multi-bar-chart ng-if="eventStatus"
+                                          data="eventStatus"
+                                          id="eventStatus"
+
+                                          width="420"
+                                          height="260"
+                                          showXAxis="true"
+                                          showYAxis="true"
+                                          showLegend="false">
+                        <svg></svg>
+                    </nvd3-multi-bar-chart>
+                </div>
+
+                <div>
+                    <h3 translate>end-of-campaign.eventsRatings.title</h3>
+
+                    <nvd3-multi-bar-chart ng-if="eventsRatings"
+                                          data="eventsRatings"
+                                          id="eventsRatings"
+
+                                          width="420"
+                                          height="260"
+                                          showYAxis="true"
+                                          showXAxis="true"
+                                          showLegend="true"
+                                          yAxisTickFormat="percetageFn"
+                            >
+                        <svg></svg>
+                    </nvd3-multi-bar-chart>
+
+                </div>
 
 
-
-                <nvd3-multi-bar-chart ng-if="eventsRatingsData"
-                        data="eventsRatingsData"
-                        id="eventsRatings"
-
-                        height="220"
-                        showYAxis="true"
-                        showXAxis="true"
-                        showLegend="true">
-                    <svg></svg>
-                </nvd3-multi-bar-chart>
 
             </div>
 

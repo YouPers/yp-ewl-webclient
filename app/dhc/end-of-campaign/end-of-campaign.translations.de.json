@@ -11,6 +11,8 @@
     "reviewLink": "Rückblick",
 
     "eventsStatus": {
+      "title": "Deine Ergebnisse / Durchschnitt der Kampagne",
+
       "user": "Ergebnisse",
       "campaign": "Durchschnitt",
 
@@ -19,8 +21,15 @@
       "open": "offen"
     },
     "eventsRatings": {
+      "title": "Deine Bewertungen / Durchschnitt der Kampagne",
+
       "user": "Deine Bewertungen",
-      "campaign": "Kampagne"
+      "campaign": "Kampagne",
+
+      "1": ":(",
+      "3": ":|",
+      "5": ":)",
+      "null": "offen"
     }
   }
 }

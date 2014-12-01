@@ -58,6 +58,9 @@
                 $scope.daysLeft = -moment().diff($scope.campaign.end, 'days');
                 $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
 
+                $scope.percetageFn = function (value) {
+                    return value * 100 + '%';
+                };
 
                 init();
 
@@ -66,10 +69,6 @@
                     function findByStatus(results, type, status) {
                         var res = results[0][type];
                         return (_.find(res, { status: status}) || {}).count;
-                    }
-                    function getCount(results, type) {
-                        var res = results[0][type];
-                        return res[0].count;
                     }
 
                     // eventsStatus / eventsStatusAvg
@@ -115,12 +114,12 @@
                     });
 
                     // eventsRatings
-                    var eventsRatingsData = [
-                        {
-                            key: "eventRatings",
-                            values: []
-                        }
-                    ];
+                    var eventsRatings = [];
+
+                    function getRatingsCount(results, type, rating) {
+                        return ( _.find(results[0][type], { rating: rating } ) || {} ).count  || 0;
+                    }
+
                     $q.all([
 
                         StatsService.loadStats($scope.campaign.id,
@@ -130,12 +129,33 @@
                                 scopeId: user.id
                             }).then(function (results) {
 
-                                console.log(results);
-
                                 var type = 'eventsRatings';
-                                eventsRatingsData[0].values.push(
-                                    [$translate.instant('end-of-campaign.eventsRatings.user'), getCount(results, type)]
-                                );
+
+                                var ratings = {
+                                    1: getRatingsCount(results, type, 1),
+                                    3: getRatingsCount(results, type, 3),
+                                    5: getRatingsCount(results, type, 5)
+                                    //,
+                                    //null: getRatingsCount(results, type, null)
+                                };
+                                var sum = _.reduce(ratings, function (result, num, key) {
+                                    return result + num;
+                                });
+                                function ratingValue(rating, sum) {
+                                    return [ $translate.instant('end-of-campaign.eventsRatings.' + rating), ratings[rating] / sum ];
+                                }
+
+
+                                eventsRatings.push({
+                                    "key": $translate.instant('end-of-campaign.eventsRatings.campaign'),
+                                    "values": [
+                                        ratingValue(1, sum),
+                                        ratingValue(3, sum),
+                                        ratingValue(5, sum)
+                                        //,
+                                        //ratingValue(null, sum)
+                                    ]
+                                });
 
                             }),
 
@@ -146,17 +166,38 @@
                                 scopeId: user.campaign.id
                             }).then(function (results) {
 
-                                console.log(results);
-
                                 var type = 'eventsRatings';
-                                eventsRatingsData[0].values.push(
-                                    [$translate.instant('end-of-campaign.eventsRatings.campaign'), getCount(results, type)]
-                                );
+
+                                var ratings = {
+                                    1: getRatingsCount(results, type, 1),
+                                    3: getRatingsCount(results, type, 3),
+                                    5: getRatingsCount(results, type, 5)
+                                    //,
+                                    //null: getRatingsCount(results, type, null)
+                                };
+                                var sum = _.reduce(ratings, function (result, num, key) {
+                                    return result + num;
+                                });
+                                function ratingValue(rating, sum) {
+                                    return [ $translate.instant('end-of-campaign.eventsRatings.' + rating), ratings[rating] / sum ];
+                                }
+                                
+
+                                eventsRatings.push({
+                                    "key": $translate.instant('end-of-campaign.eventsRatings.campaign'),
+                                    "values": [
+                                        ratingValue(1, sum),
+                                        ratingValue(3, sum),
+                                        ratingValue(5, sum)
+                                        //,
+                                        //ratingValue(null, sum)
+                                    ]
+                                });
 
                             })
 
                     ]).then(function () {
-                        $scope.eventsRatingsData = eventsRatingsData;
+                        $scope.eventsRatings = eventsRatings;
                     });
                 }
 
