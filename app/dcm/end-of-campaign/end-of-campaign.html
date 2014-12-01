@@ -33,13 +33,7 @@
         <section>
 
             <div class="header-row"></div>
-            <div class="button-row">
-
-                <div
-                     class="back-link" ui-sref="dcm.home"><span
-                        class="fa fa-chevron-left"></span> <span translate>activity.link.back</span></div>
-                <div class="clearfix"></div>
-            </div>
+            <div class="button-row"></div>
 
 
             <h2>
@@ -188,11 +182,14 @@
             </accordion>
 
 
+            <br/>
+            <br/>
+
             <div class="activitiesPlanned">
 
-                <h1>
+                <h3>
                     <span translate>dcm-end-of-campaign.activitiesPlanned.header</span>
-                </h1>
+                </h3>
 
                 <div class="activityPlanned" ng-repeat="activity in activitiesPlanned">
 
@@ -221,6 +218,16 @@
 
 
             <div scroll-along>
+
+
+                <div class="header-row"></div>
+                <div class="button-row">
+
+                    <div
+                            class="back-link" ui-sref="dcm.home"><span
+                            class="fa fa-chevron-left"></span> <span translate>activity.link.back</span></div>
+                    <div class="clearfix"></div>
+                </div>
 
                 <health-coach event="'stateEnter'"></health-coach>
 
