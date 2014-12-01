@@ -27,8 +27,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dcm/end-of-campaign/end-of-campaign');
             }])
 
-        .controller('DcmEndOfCampaignController', [ '$scope', '$q', '$translate', 'UserService', 'StatsService',
-            function ($scope, $q, $translate, UserService, StatsService) {
+        .controller('DcmEndOfCampaignController', [ '$scope', '$q', '$translate', 'UserService', 'StatsService', 'ActivityService',
+            function ($scope, $q, $translate, UserService, StatsService, ActivityService) {
 
                 var user = UserService.principal.getUser();
                 $scope.campaign = user.campaign;
@@ -181,7 +181,7 @@
                                         var assessmentResult = _.find(assessmentResults, {question: assessmentResultAverage.question });
                                         _.each(assessmentResult.result, function (cat) {
                                             cat.values.push([averageLabel, assessmentResultAverage[cat.id]]);
-                                        })
+                                        });
                                     });
 
                                     $scope.assessmentResults = assessmentResults;
@@ -196,7 +196,7 @@
 
                         var colors = ['#FF541E', '#FFD05C', '#20C63C', '#FFD05C', '#FF541E'];
                         return colors[i];
-                    }
+                    };
 
 
                     // popular activities
@@ -208,14 +208,16 @@
                             scopeType: 'campaign',
                             scopeId: user.campaign.id,
                             dontReplaceIds: 'true'
-                        }).then(function (results) {
+                        })
+                        .then(function (results) {
                             var type = 'activitiesPlanned';
                             var res = results[0][type];
 
+                            return res;
+                        })
+                        .then(ActivityService.populateIdeas)
+                        .then(function (res) {
                             $scope.activitiesPlanned = res;
-
-
-
                         });
 
                 }

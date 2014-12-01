@@ -3,7 +3,7 @@
         <accordion-heading><div translate>stats.overview</div></accordion-heading>
         <div class="row">
             <div class="col-sm-3" translate>stats.usersTotal</div>
-            <div class="col-sm-3" translate>{{stats.usersTotal[0].usersTotal}}</div>
+            <div class="col-sm-3" translate>{{stats.usersTotal.usersTotal}}</div>
             <div class="col-sm-3" translate>stats.updatesTotal</div>
             <div class="col-sm-3" translate>{{stats.assUpdatesTotal[0].updatesTotal}}</div>
         </div>
@@ -122,7 +122,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="eventStatus in stats.activityEvents">
+                    <tr ng-repeat="eventStatus in stats.eventsStatus">
                         <td translate>{{ 'stats.event.' + eventStatus.status}}</td>
                         <td>{{eventStatus.count}}</td>
                     </tr>
