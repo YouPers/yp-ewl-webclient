@@ -50,6 +50,14 @@
                             campaign.endOfCampaignDisplayed = moment();
                             return $state.transitionTo('dhc.end-of-campaign', { campaignId: campaign.id });
                         }
+
+                        if (!campaign) {
+                            if(user.campaign){
+                                $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign });
+                            } else {
+                                $state.go('campaign-list.content');
+                            }
+                        }
                     }]
                 });
 
@@ -61,16 +69,6 @@
 
                 $scope.parentState = 'dhc';
                 var user = UserService.principal.getUser();
-
-
-                if (!campaign) {
-                    if(user.campaign){
-                        $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign });
-                    } else {
-                        $state.go('campaign-list.content');
-                    }
-                }
-
                 $scope.currentCampaign = campaign;
             }]);
 

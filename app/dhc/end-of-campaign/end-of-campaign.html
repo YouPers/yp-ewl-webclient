@@ -43,11 +43,14 @@
 
             <h1>
                 <span ng-hide="campaignEnded"
-                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"></span>
+                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"  translate-interpolation="messageformat"></span>
                 <span ng-show="campaignEnded"
                       translate="end-of-campaign.campaignEndendHeader"></span>
             </h1>
 
+            <p translate="end-of-campaign.subheader"  translate-values="{ daysLeft: daysLeft }"  translate-interpolation="messageformat"></p>
+
+            <br/>
 
             <table class="table focus">
                 <thead>

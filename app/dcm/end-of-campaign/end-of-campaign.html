@@ -43,7 +43,7 @@
 
             <h2>
                 <span ng-hide="campaignEnded"
-                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"></span>
+                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }" translate-interpolation="messageformat"></span>
                 <span ng-show="campaignEnded"
                       translate="end-of-campaign.campaignEndendHeader"></span>
             </h2>
@@ -124,27 +124,30 @@
 
             </div>
 
+            <div class="activitiesPlanned">
 
-            <h1>
-                Beliebte Aktivitäten
-            </h1>
+                <h1>
+                    <span translate>dcm-end-of-campaign.activitiesPlanned.header</span>
+                </h1>
 
-            <dl>
+                <div class="activityPlanned" ng-repeat="activity in activitiesPlanned">
 
-                <dt>Idea</dt>
-                <dd>Count</dd>
+                    <div>
+                        <img ng-src="{{'/assets/actpics/' + activity.idea.number + '.jpg'}}">
 
-            </dl>
+                        <div>{{ activity.idea.title }}</div>
+                    </div>
 
-            <dl ng-repeat="activity in activitiesPlanned">
+                    <div>
+                        <div>
+                            {{ 'dcm-end-of-campaign.activitiesPlanned.content' | translate:{ count: activity.count }:"messageformat" }}
+                        </div>
+                    </div>
+
+                </div>
 
 
-                <dt>{{ activity.idea.title }}</dt>
-                <dd>{{ activity.count }}</dd>
-
-            </dl>
-
-
+            </div>
         </section>
 
 

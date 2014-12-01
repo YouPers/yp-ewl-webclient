@@ -1,8 +1,10 @@
 {
   "end-of-campaign": {
 
-    "lastDaysHeader": "Noch {{daysLeft}} Tage bis zum Ende der Kampagne",
+    "lastDaysHeader": "{ daysLeft, plural, 0{ Letzer Tag der Kampagne } one{Noch 1 Tag bis zum Ende der Kampagne} other{Noch # Tage bis zum Ende der Kampagne} }",
     "campaignEndendHeader": "Kampagnen - Rückblick",
+
+    "subheader": "DHC End of Campaign Subheader: { daysLeft, plural,  0{last day} one{one day left} other{# days left} }",
 
     "surveyInfo": "Infotext zur Umfrage",
     "surveyLink": "Umfrage",
