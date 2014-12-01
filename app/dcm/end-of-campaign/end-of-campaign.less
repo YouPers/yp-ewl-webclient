@@ -24,8 +24,45 @@
     }
   }
 
-  nvd3-multi-bar-horizontal-chart.assessment-chart {
-    display: block;
+  .question-legend {
+
+    padding: 0 1em;
+    margin-left: 33%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    > div {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+    > div:first-child {
+      text-align: left;
+    }
+    > div:last-child {
+      text-align: right;
+    }
+    > div:first-child, > div:last-child {
+      flex: 1 1 20%;
+    }
+  }
+
+  .assessment-chart-row {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+    padding: 4px 0;
+
+    > * {
+      flex: 1 1 auto;
+    }
+    > *:first-child {
+      flex: 0 0 30%;
+    }
+  }
+
+  .assessment-chart {
 
     @assessment-1: rgb(255, 84, 30);
     @assessment-2: rgb(255, 208, 92);
@@ -33,63 +70,53 @@
     @assessment-4: rgb(255, 208, 92);
     @assessment-5: rgb(255, 84, 30);
 
-    svg {
-      overflow: visible;
 
-      .nv-legend {
-        .nv-series:nth-child(1) circle {
-          stroke: @assessment-1 !important;
-          fill: @assessment-1 !important;
-        }
-        .nv-series:nth-child(2) circle {
-          stroke: @assessment-2 !important;
-          fill: @assessment-2 !important;
-        }
-        .nv-series:nth-child(3) circle {
-          stroke: @assessment-3 !important;
-          fill: @assessment-3 !important;
-        }
-        .nv-series:nth-child(4) circle {
-          stroke: @assessment-4 !important;
-          fill: @assessment-4 !important;
-        }
-        .nv-series:nth-child(5) circle {
-          stroke: @assessment-5 !important;
-          fill: @assessment-5 !important;
-        }
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+
+    > div {
+
+      box-shadow: 1px 1px 2px @yp-divider;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      color: white;
+      font-size: 12px;
+
+      > div {
+        padding: 2px;
+
+        text-shadow: 1px 1px 2px @yp-divider;
       }
 
-      .nv-barsWrap .nv-groups {
-
-        rect {
-          stroke: none;
-        }
+      &:not(:first-child) {
+        border-left: 1px solid @yp-divider;
       }
-      //
-      //      .nv-barsWrap .nv-groups {
-      //
-      //        rect {
-      //          transform: scaleY(0.6) translateY(10px);
-      //        }
-      //
-      //        .nv-series-0 rect {
-      //          fill: @assessment-1;
-      //        }
-      //        .nv-series-1 rect {
-      //          fill: @assessment-2;
-      //        }
-      //        .nv-series-2 rect {
-      //          fill: @assessment-3;
-      //        }
-      //        .nv-series-3 rect {
-      //          fill: @assessment-4;
-      //        }
-      //        .nv-series-4 rect {
-      //          fill: @assessment-5;
-      //        }
-      //      }
     }
-    margin-left: 4em;
+    > div {
+      &:nth-child(1) {
+        background-color: @assessment-1;
+      }
+      &:nth-child(2) {
+        background-color: @assessment-2;
+      }
+      &:nth-child(3) {
+        background-color: @assessment-3;
+      }
+      &:nth-child(4) {
+        background-color: @assessment-4;
+      }
+      &:nth-child(5) {
+        background-color: @assessment-5;
+      }
+    }
   }
 
 

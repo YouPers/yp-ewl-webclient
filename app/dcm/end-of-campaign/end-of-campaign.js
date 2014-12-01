@@ -27,8 +27,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dcm/end-of-campaign/end-of-campaign');
             }])
 
-        .controller('DcmEndOfCampaignController', [ '$scope', '$q', '$translate', 'UserService', 'StatsService', 'ActivityService', 'campaign',
-            function ($scope, $q, $translate, UserService, StatsService, ActivityService, campaign) {
+        .controller('DcmEndOfCampaignController', [ '$scope', '$q', '$translate', '$rootScope', 'UserService', 'StatsService', 'ActivityService', 'AssessmentService', 'campaign',
+            function ($scope, $q, $translate, $rootScope, UserService, StatsService, ActivityService, AssessmentService, campaign) {
 
                 $scope.campaign = campaign;
                 $scope.daysLeft = - moment().diff($scope.campaign.end, 'days');
@@ -66,11 +66,6 @@
                         var res = results[0][type];
                         return (_.find(res, { status: status}) || {}).count;
                     }
-                    function getCount(results, type) {
-                        var res = results[0][type];
-                        return res[0].count;
-                    }
-
                     // eventsStatus / eventsStatusAvg
                     var eventStatus = [];
                     $q.all([
@@ -114,81 +109,76 @@
 
 
                     // assessmentResults
-                    var assessmentResults = [];
 
-                    var campaignLabel = $translate.instant('dcm-end-of-campaign.assessmentResults.campaign');
-                    var averageLabel = $translate.instant('dcm-end-of-campaign.assessmentResults.average');
-
-                    var veryNeg = $translate.instant('dcm-end-of-campaign.assessmentResults.veryNeg');
-                    var neg = $translate.instant('dcm-end-of-campaign.assessmentResults.neg');
-                    var zero = $translate.instant('dcm-end-of-campaign.assessmentResults.zero');
-                    var pos = $translate.instant('dcm-end-of-campaign.assessmentResults.pos');
-                    var veryPos = $translate.instant('dcm-end-of-campaign.assessmentResults.veryPos');
+                    $scope.displayInfo = function(question) {
+                        $rootScope.$emit('healthCoach:displayMessage', AssessmentService.renderCoachMessageFromQuestion(question));
+                    };
 
                     StatsService.loadStats($scope.campaign.id,
                         {
                             type: 'assessmentResults',
                             scopeType: 'campaign',
-                            scopeId: $scope.campaign.id
+                            scopeId: $scope.campaign.id,
+                            dontReplaceIds: 'true'
                         }).then(function (results) {
                             var type = 'assessmentResults';
                             var res = results[0][type];
 
-                            _.each(res, function (assessmentResult) {
-                                assessmentResults.push(
-                                    {
-                                        question: assessmentResult.question,
-                                        result: [
-                                            {
-                                                "id": 'veryNeg',
-                                                "key": veryNeg,
-                                                "values": [ [ campaignLabel , assessmentResult.veryNeg] ] //, [ 'Vergleichswert' , 0.25]
-                                            },
-                                            {
-                                                "id": 'neg',
-                                                "key": neg,
-                                                "values": [ [ campaignLabel , assessmentResult.neg] ]
-                                            },
-                                            {
-                                                "id": 'zero',
-                                                "key": zero,
-                                                "values": [ [ campaignLabel , assessmentResult.zero] ]
-                                            },
-                                            {
-                                                "id": 'pos',
-                                                "key": pos,
-                                                "values": [ [ campaignLabel , assessmentResult.pos] ]
-                                            },
-                                            {
-                                                "id": 'veryPos',
-                                                "key": veryPos,
-                                                "values": [ [ campaignLabel , assessmentResult.veryPos] ]
-                                            }
-                                        ]
-                                    }
-                                );
-                            });
+                            $scope.assessmentResults = res;
 
-                            StatsService.loadStats($scope.campaign.id,
-                                {
-                                    type: 'assessmentResults',
-                                    scopeType: 'topic',
-                                    scopeId: $scope.campaign.topic.id
-                                }).then(function (results) {
-                                    var type = 'assessmentResults';
-                                    var res = results[0][type];
+                            $q.all(
+                                [
+                                    StatsService.loadStats($scope.campaign.id,
+                                        {
+                                            type: 'assessmentResults',
+                                            scopeType: 'topic',
+                                            scopeId: $scope.campaign.topic.id,
+                                            dontReplaceIds: 'true'
+                                        }).then(function (results) {
+                                            var type = 'assessmentResults';
+                                            var res = results[0][type];
 
-                                    _.each(res, function (assessmentResultAverage) {
+                                            $scope.assessmentResultsAverage = res;
 
-                                        var assessmentResult = _.find(assessmentResults, {question: assessmentResultAverage.question });
-                                        _.each(assessmentResult.result, function (cat) {
-                                            cat.values.push([averageLabel, assessmentResultAverage[cat.id]]);
+                                        }),
+                                    AssessmentService.getAssessment(campaign.topic.id || campaign.topic).then(function (assessment) {
+
+                                        $scope.orderedCategoryNames = _.uniq(_.map(assessment.questions, 'category'));
+                                        $scope.categories = _.groupBy(assessment.questions, 'category');
+                                        $scope.assessment = assessment;
+                                    })
+                                ])
+
+                                .then(function () {
+
+                                    $scope.assessmentResultStyle = function (val) {
+                                        return { flex: '1 0 ' + val * 100 + '%' };
+                                    };
+
+                                    _.each($scope.assessmentResults.concat($scope.assessmentResultsAverage), function (result, index) {
+                                        result.sum = result.veryNeg + result.neg + result.zero + result.pos + result.veryPos;
+                                        var percentages = [
+                                            result.veryNeg / result.sum,
+                                            result.neg / result.sum,
+                                            result.zero / result.sum,
+                                            result.pos / result.sum,
+                                            result.veryPos / result.sum
+                                        ];
+                                        result.percentages = [];
+                                        _.each(percentages, function (val, index) {
+                                            result.percentages.push(Math.floor(val * 100) / 100);
                                         });
                                     });
 
-                                    $scope.assessmentResults = assessmentResults;
-
-
+                                    // map assessment questions to stats questions
+                                    $scope.assessmentResultsByQuestion = {};
+                                    _.each($scope.assessmentResults, function (assessmentResult, index) {
+                                        $scope.assessmentResultsByQuestion[assessmentResult.question] = assessmentResult;
+                                    });
+                                    $scope.assessmentResultsAverageByQuestion = {};
+                                    _.each($scope.assessmentResultsAverage, function (assessmentResult, index) {
+                                        $scope.assessmentResultsAverageByQuestion[assessmentResult.question] = assessmentResult;
+                                    });
                                 });
 
 
@@ -198,6 +188,11 @@
 
                         var colors = ['#FF541E', '#FFD05C', '#20C63C', '#FFD05C', '#FF541E'];
                         return colors[i];
+                    };
+                    $scope.isCategoryEmpty = function (questions) {
+                        return !_.any(questions, function (question) {
+                            return $scope.assessmentResultsByQuestion[question.id];
+                        });
                     };
 
 

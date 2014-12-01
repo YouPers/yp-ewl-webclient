@@ -1,7 +1,7 @@
 <div class="end-of-campaign container">
 
 
-    <div class="two-column-layout">
+    <div class="three-column-layout">
 
         <section>
 
@@ -63,7 +63,7 @@
                         data="campaignParticipants"
                         id="campaignParticipants"
 
-                        width="600"
+                        width="500"
                         showXAxis="false"
                         showYAxis="true"
                         showLegend="false">
@@ -85,7 +85,7 @@
                         data="eventStatus"
                         id="eventStatus"
 
-                        width="540"
+                        width="440"
                         height="240"
 
                         showLegend="false"
@@ -114,28 +114,79 @@
 
             </div>
 
-            <div ng-repeat="assessmentResult in assessmentResults">
-
-                <h3>{{ assessmentResult.question }}</h3>
-
-                <nvd3-multi-bar-horizontal-chart
-                        data="assessmentResult.result"
-                        id="assessment{{ $index }}"
-                        class="assessment-chart"
-
-                        width="630"
-                        height="130"
-                        showXAxis="true"
-                        showYAxis="false"
-                        showLegend="false"
-                        stacked="true"
-                        color="colorFn"
-                        >
-                    <svg></svg>
-                </nvd3-multi-bar-horizontal-chart>
 
 
-            </div>
+            <accordion class="check" close-others="true" ng-if="categories">
+
+                <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]"
+                                 ng-if="!isCategoryEmpty(categories[name])"
+                                 analytics-on="click" analytics-event="CheckCategoriesAccordion" analytics-category="InPageNavigation" analytics-label="Accordion Expanded Or Collapsed">
+                    <accordion-heading>
+                        <div>
+                            <span class="question-category-header">{{ 'questionCategory.' + name | translate }}</span>
+                            <i class="pull-right glyphicon"
+                               ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
+                        </div>
+                    </accordion-heading>
+
+
+                    <div ng-repeat="question in categories[name]" ng-click="displayInfo(question)"
+
+                            ng-init="assessmentResult = assessmentResultsByQuestion[question.id]" >
+
+                        <div ng-if="assessmentResult" class="question">
+
+                            <div class="row" >
+                                <div class="col-sm-12">
+
+
+
+                                    <div class="question-legend">
+                                        <div>{{question.mintext}}</div>
+                                        <div class="title">
+                                            <span>{{ question.title }}</span>
+                                            <i ng-mouseover="displayInfo(question)" class="glyphicon glyphicon-info-sign"></i>
+                                        </div>
+                                        <div>{{question.maxtext}}</div>
+                                    </div>
+
+
+                                    <div class="assessment-chart-row">
+                                        <div translate>dcm-end-of-campaign.assessmentResults.campaign</div>
+
+                                        <div class="assessment-chart">
+
+                                            <div ng-if="val > 0" ng-repeat="val in assessmentResult.percentages track by $index" ng-style="assessmentResultStyle(val)">
+
+                                                <div ng-show="val > 0.05">{{ val == 1 ? ($index == 0 ? question.mintext : question.maxtext) : val * 100 + '%' }}</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="assessment-chart-row">
+                                        <div translate>dcm-end-of-campaign.assessmentResults.average</div>
+                                        <div class="assessment-chart">
+
+                                            <div ng-if="val > 0" ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index" ng-style="assessmentResultStyle(val)">
+
+                                                <div ng-show="val > 0.05">{{ val == 1 ? ($index == 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : val * 100 + '%' }}</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </accordion-group>
+            </accordion>
+
 
             <div class="activitiesPlanned">
 
@@ -162,6 +213,18 @@
 
             </div>
 
+
+        </section>
+
+        <section>
+
+
+
+            <div scroll-along>
+
+                <health-coach event="'stateEnter'"></health-coach>
+
+            </div>
 
         </section>
 

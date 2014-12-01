@@ -226,14 +226,9 @@
 
         .controller('HomeEndOfCampaignController', ['$scope', 'UserService', function ($scope, UserService) {
 
-
-            var user = UserService.principal.getUser();
-
             if($scope.campaign) {
                 $scope.campaignEnding = moment().diff($scope.campaign.end, 'days') >= -2;
             }
-
-
 
             if($scope.campaignEnding) {
                 init();

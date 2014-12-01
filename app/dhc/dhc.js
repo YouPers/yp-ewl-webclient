@@ -68,7 +68,6 @@
             function ($scope, $rootScope, $state, $timeout, UserService, campaign) {
 
                 $scope.parentState = 'dhc';
-                var user = UserService.principal.getUser();
                 $scope.currentCampaign = campaign;
             }]);
 
