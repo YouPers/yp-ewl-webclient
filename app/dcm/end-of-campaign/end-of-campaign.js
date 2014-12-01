@@ -51,8 +51,11 @@
                             $scope.campaignParticipants = [
                                 {
                                     "key": $translate.instant('dcm-end-of-campaign.usersTotal.title'),
-                                    "values": [ [ $translate.instant('dcm-end-of-campaign.usersTotal.campaign') , res.usersTotal],
-                                        [ $translate.instant('dcm-end-of-campaign.usersTotal.average') , res.usersAvg]  ]
+                                    "values": [ [ $translate.instant('dcm-end-of-campaign.usersTotal.title') , res.usersTotal]  ]
+                                },
+                                {
+                                    "key": $translate.instant('dcm-end-of-campaign.usersTotal.title'),
+                                    "values": [ [ $translate.instant('dcm-end-of-campaign.usersTotal.title') , res.usersAvg]  ]
                                 }
                             ];
 

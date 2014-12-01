@@ -15,4 +15,37 @@
 
   }
 
+  .color-legend {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 5px;
+
+      > span {
+        padding: 0 1em;
+      }
+      > div {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    > div:nth-child(1) {
+      > div {
+        background-color: rgb(31, 119, 180);
+      }
+    }
+    > div:nth-child(2) {
+      > div {
+        background-color: rgb(174, 199, 232);
+      }
+    }
+  }
 }
+

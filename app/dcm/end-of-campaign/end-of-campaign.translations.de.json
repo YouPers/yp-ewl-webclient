@@ -2,13 +2,13 @@
   "dcm-end-of-campaign": {
 
     "usersTotal": {
-      "title": "Teilnehmer",
+      "title": "Teilnehmer dieser Kampagne im Vergleich zu allen YOUPERS Kampagnen",
       "campaign": "Diese Kampagne",
       "average": "Durchschnitt"
     },
 
     "eventsStatus": {
-      "title": "Durchgeführte Aktivitäten im Vergleich zu allen YOUPERS Kampagnen",
+      "title": "Durchgeführte Aktivitäten im Vergleich",
       "campaign": "Kampagne",
       "average": "Durchschnitt",
 
@@ -32,6 +32,11 @@
       "header": "Beliebte Aktivitäten",
 
       "content": "{ count, plural, one{1 Aktivität} other{# Aktivitäten} }  eingeplant"
+    },
+
+    "legend": {
+      "campaign": "Diese Kampagne",
+      "average": "Durchschnitt aller Kampagnen"
     }
   }
 }

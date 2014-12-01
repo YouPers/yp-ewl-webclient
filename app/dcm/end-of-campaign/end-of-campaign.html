@@ -49,6 +49,7 @@
             </h2>
 
 
+            <br/>
 
             <div>
 
@@ -61,8 +62,8 @@
                         data="campaignParticipants"
                         id="campaignParticipants"
 
-                        width="400"
-                        showXAxis="true"
+                        width="600"
+                        showXAxis="false"
                         showYAxis="true"
                         showLegend="false">
                     <svg></svg>
@@ -83,10 +84,10 @@
                         data="eventStatus"
                         id="eventStatus"
 
-                        width="380"
+                        width="540"
                         height="240"
 
-                        showLegend="true"
+                        showLegend="false"
 
                         showXAxis="true"
                         showYAxis="true"
@@ -95,6 +96,17 @@
                 </nvd3-multi-bar-chart>
 
 
+
+                <div class="color-legend">
+                    <div>
+                        <div></div>
+                        <span translate>dcm-end-of-campaign.legend.campaign</span>
+                    </div>
+                    <div>
+                        <div></div>
+                        <span translate>dcm-end-of-campaign.legend.average</span>
+                    </div>
+                </div>
 
                 <hr/>
 
@@ -114,7 +126,7 @@
                         height="130"
                         showXAxis="true"
                         showYAxis="false"
-                        showLegend="true"
+                        showLegend="false"
                         stacked="true"
                         color="colorFn"
                         >
@@ -148,6 +160,8 @@
 
 
             </div>
+
+
         </section>
 
 

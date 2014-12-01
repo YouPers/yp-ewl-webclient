@@ -12,6 +12,11 @@
     "reviewInfo": "Infotext zur End of Campaign Seite",
     "reviewLink": "Rückblick",
 
+    "legend": {
+      "user": "Dein Ergebnis",
+      "campaign": "Durchschnitt der Kampagne"
+    },
+
     "eventsStatus": {
       "title": "Deine Ergebnisse / Durchschnitt der Kampagne",
 
