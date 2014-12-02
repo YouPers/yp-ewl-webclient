@@ -177,9 +177,7 @@
                                                  ng-class="'assessmentRange' + $index">
 
                                                 <div></div>
-                                                <div ng-show="val > 0">{{ val == 1 ? ($index == 2 ? question.midtext :
-                                                    ($index < 2 ? question.mintext : question.maxtext)) : val * 100 +
-                                                    '%' }}
+                                                <div ng-show="val > 0">{{ formatValue(val, $index, question) }}
                                                 </div>
 
                                             </div>
@@ -195,9 +193,7 @@
                                                  ng-style="$index == 2 && val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)"
                                                  ng-class="'assessmentRange' + $index">
 
-                                                <div ng-show="val > 0.05">{{ val == 1 ? ($index == 2 ? question.midtext
-                                                    : ($index < 2 ? question.mintext : question.maxtext)) : val * 100 +
-                                                    '%' }}
+                                                <div ng-show="val > 0.05">{{ formatValue(val, $index, question) }}
                                                 </div>
 
                                             </div>
