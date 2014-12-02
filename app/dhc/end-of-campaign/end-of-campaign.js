@@ -59,7 +59,7 @@
 
                 function init() {
 
-                    function findByStatus(results, type, status) {
+                    function _findByStatus(results, type, status) {
                         var res = results[0][type];
                         return (_.find(res, { status: status}) || {}).count;
                     }
@@ -77,9 +77,9 @@
                                 return {
                                     "key": $translate.instant('end-of-campaign.eventsStatus.user'),
                                     "values": [
-                                        [$translate.instant('end-of-campaign.eventsStatus.done'), findByStatus(results, type, 'done')],
-                                        [$translate.instant('end-of-campaign.eventsStatus.missed'), findByStatus(results, type, 'missed')],
-                                        [$translate.instant('end-of-campaign.eventsStatus.open'), findByStatus(results, type, 'open')]]
+                                        [$translate.instant('end-of-campaign.eventsStatus.done'), _findByStatus(results, type, 'done')],
+                                        [$translate.instant('end-of-campaign.eventsStatus.missed'), _findByStatus(results, type, 'missed')],
+                                        [$translate.instant('end-of-campaign.eventsStatus.open'), _findByStatus(results, type, 'open')]]
                                 };
 
                             }),
@@ -94,9 +94,9 @@
                                 return {
                                     "key": $translate.instant('end-of-campaign.eventsStatus.campaign'),
                                     "values": [
-                                        [$translate.instant('end-of-campaign.eventsStatus.done'), findByStatus(results, type, 'done')],
-                                        [$translate.instant('end-of-campaign.eventsStatus.missed'), findByStatus(results, type, 'missed')],
-                                        [$translate.instant('end-of-campaign.eventsStatus.open'), findByStatus(results, type, 'open')]]
+                                        [$translate.instant('end-of-campaign.eventsStatus.done'), _findByStatus(results, type, 'done')],
+                                        [$translate.instant('end-of-campaign.eventsStatus.missed'), _findByStatus(results, type, 'missed')],
+                                        [$translate.instant('end-of-campaign.eventsStatus.open'), _findByStatus(results, type, 'open')]]
                                 };
 
                             })
