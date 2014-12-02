@@ -1,0 +1,42 @@
+{
+  "dcm-end-of-campaign": {
+
+    "usersTotal": {
+      "title": "Teilnehmer dieser Kampagne im Vergleich zu allen YOUPERS Kampagnen",
+      "campaign": "Diese Kampagne",
+      "average": "Durchschnitt"
+    },
+
+    "eventsStatus": {
+      "title": "Durchgeführte Aktivitäten im Vergleich",
+      "campaign": "Kampagne",
+      "average": "Durchschnitt",
+
+      "done": "gemacht",
+      "missed": "verpasst",
+      "open": "offen"
+    },
+
+    "assessmentResults": {
+
+      "campaign": "Kampagne",
+      "average": "Vergleichswert",
+
+      "veryNeg": "--",
+      "neg": "-",
+      "zero": "0",
+      "pos": "+",
+      "veryPos": "++"
+    },
+    "eventsPlanned": {
+      "header": "Beliebte Aktivitäten",
+
+      "content": "{ plannedCount } mal von { byUsersCount, plural, one{einer Person} other{# Personen} }  eingeplant"
+    },
+
+    "legend": {
+      "campaign": "Diese Kampagne",
+      "average": "Durchschnitt aller Kampagnen"
+    }
+  }
+}

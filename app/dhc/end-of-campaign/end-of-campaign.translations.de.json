@@ -1,13 +1,43 @@
 {
   "end-of-campaign": {
 
-    "lastDaysHeader": "Noch {{daysLeft}} Tage bis zum Ende der Kampagne",
+    "lastDaysHeader": "{ daysLeft, plural, 0{ Letzer Tag der Kampagne } one{Noch 1 Tag bis zum Ende der Kampagne} other{Noch # Tage bis zum Ende der Kampagne} }",
     "campaignEndendHeader": "Kampagnen - Rückblick",
+
+    "subheader": "DHC End of Campaign Subheader: { daysLeft, plural,  0{last day} one{one day left} other{# days left} }",
 
     "surveyInfo": "Infotext zur Umfrage",
     "surveyLink": "Umfrage",
 
     "reviewInfo": "Infotext zur End of Campaign Seite",
-    "reviewLink": "Rückblick"
+    "reviewLink": "Rückblick",
+
+    "legend": {
+      "user": "Dein Ergebnis",
+      "campaign": "Durchschnitt der Kampagne",
+      "needForActionAvg": "Durchschnitt der Kampagne"
+    },
+
+    "eventsStatus": {
+      "title": "Deine Ergebnisse",
+
+      "user": "Ergebnisse",
+      "campaign": "Durchschnitt",
+
+      "done": "gemacht",
+      "missed": "verpasst",
+      "open": "offen"
+    },
+    "eventsRatings": {
+      "title": "Deine Bewertungen",
+
+      "user": "Deine Bewertungen",
+      "campaign": "Kampagne",
+
+      "1": "\uf119",
+      "3": "\uf11a",
+      "5": "\uf118",
+      "null": "offen"
+    }
   }
 }

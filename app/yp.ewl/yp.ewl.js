@@ -6,7 +6,7 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap',  'ngAnimate', 'ipCookie', 'LocalStorageModule',
-            'angulartics','angulartics.google.analytics',
+            'angulartics','angulartics.google.analytics', 'nvd3ChartDirectives',
 
             'yp.config',
 
@@ -34,6 +34,7 @@ angular.module('yp-ewl',
                     url: "/dispatch",
                     access: accessLevels.all,
                     controller: ['UserService', '$state', function (UserService, $state) {
+                        var user = UserService.principal.getUser();
                         if (!UserService.principal.isAuthenticated()) {
                             return $state.go('signin.content');
                         } else if (UserService.principal.isAuthorized(accessLevels.admin)) {
@@ -41,7 +42,8 @@ angular.module('yp-ewl',
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
                             return $state.go('dcm.home');
                         } else {
-                            return $state.go('dhc.game', {view: ""});
+                            return $state.go('dhc.game', {view: "", campaignId: user.campaign && user.campaign.id || user.campaign});
+//                            return $state.go('dhc.game', {view: ""});
                         }
                     }]
                 })
@@ -133,10 +135,9 @@ angular.module('yp-ewl',
                         'systemadmin'
                     ], role);
                 });
+
+
             });
-
-
-
 
             $rootScope.getRenderedText = function (text) {
                 if (text) {

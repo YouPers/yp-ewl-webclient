@@ -1,20 +1,18 @@
-
-
-
 <div class="end-of-campaign container">
 
 
-
-    <div class="two-column-layout">
+    <div class="three-column-layout">
 
         <section>
 
             <div class="header-row"></div>
             <div class="button-row"></div>
 
-            <campaign-card campaign="campaign"></campaign-card>
+            <campaign-card campaign="campaign">
 
-            <div class="survey-container">
+            </campaign-card>
+
+            <div class="survey-container" ng-if="campaign.leaderSurveyUrl">
 
                 <br/>
 
@@ -22,10 +20,10 @@
                     <span translate>end-of-campaign.surveyInfo</span>
                 </p>
 
-                <button class="btn btn-flat btn-big btn-red">
+                <a ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red">
                     <span translate>end-of-campaign.surveyLink</span>
                     <span class="fa fa-chevron-right"></span>
-                </button>
+                </a>
 
             </div>
 
@@ -37,22 +35,24 @@
             <div class="button-row">
 
                 <div ng-if="!campaignEnded"
-                        class="back-link" ui-sref="^.game({view: ''})"><span
+                     class="back-link" ui-sref="^.game({view: ''})"><span
                         class="fa fa-chevron-left"></span> <span translate>activity.link.back</span></div>
                 <div class="clearfix"></div>
             </div>
 
 
-            <h1>
+            <h2>
                 <span ng-hide="campaignEnded"
-                        translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"></span>
+                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"  translate-interpolation="messageformat"></span>
                 <span ng-show="campaignEnded"
-                        translate="end-of-campaign.campaignEndendHeader"></span>
-            </h1>
+                      translate="end-of-campaign.campaignEndendHeader"></span>
+            </h2>
 
+            <p translate="end-of-campaign.subheader"  translate-values="{ daysLeft: daysLeft }"  translate-interpolation="messageformat"></p>
 
+            <br/>
 
-            <table class="table focus">
+            <table class="table focus need-for-action" ng-if="needForAction">
                 <thead>
                 <tr>
                     <th class="left" translate>focus.header</th>
@@ -64,33 +64,102 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="category in categories">
-                    <td class="left" translate>questionCategory.{{category}}</td>
+                <tr ng-repeat="need in needForAction">
+                    <td class="left" translate>questionCategory.{{need.category}}</td>
 
                     <td>
-                        <div class="bar" ng-class="needForActionClass(category)" ng-style="needForActionStyle(category)">
-
+                        <div class="bar" ng-class="needForActionClass(need.avg)"
+                             ng-style="needForActionStyle(need.avg)">
                         </div>
+                        <div class="mark" ng-if="need.campaignAvg" ng-style="needForActionStyle(need.campaignAvg)"></div>
                     </td>
 
-                    <td class="active"><div></div></td>
-                    <td><div></div></td>
-                    <td class="active"><div></div></td>
+                    <td class="active">
+                        <div></div>
+                    </td>
+                    <td>
+                        <div></div>
+                    </td>
+                    <td class="active">
+                        <div></div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
 
 
+            <div class="need-for-action-legend">
+                <div>
+                    <div></div>
+                    <span translate>end-of-campaign.legend.needForActionAvg</span>
+                </div>
+            </div>
 
 
-            <div
-                    ac-chart="'bar'"
-                    ac-data="chartData"
-                    ac-config="config"
-                    class="stat-chart"
-                    >
+            <div class="charts">
 
-                    </div>
+                <div>
+                    <h3 translate>end-of-campaign.eventsStatus.title</h3>
+
+                    <nvd3-multi-bar-chart ng-if="eventStatus"
+                                          data="eventStatus"
+                                          id="dhcEventStatus"
+
+                                          width="320"
+                                          height="260"
+                                          showXAxis="true"
+                                          showYAxis="true"
+                                          showLegend="false">
+                        <svg></svg>
+                    </nvd3-multi-bar-chart>
+                </div>
+
+                <div class="ratings-chart">
+                    <h3 translate>end-of-campaign.eventsRatings.title</h3>
+
+                    <nvd3-multi-bar-chart ng-if="eventsRatings"
+                                          data="eventsRatings"
+                                          id="eventsRatings"
+
+                                          width="320"
+                                          height="260"
+                                          showYAxis="true"
+                                          showXAxis="true"
+                                          showLegend="false"
+                                          yAxisTickFormat="percetageFn"
+                            >
+                        <svg></svg>
+                    </nvd3-multi-bar-chart>
+
+                </div>
+
+
+
+
+
+            </div>
+
+            <div class="color-legend">
+                <div>
+                    <div></div>
+                    <span translate>end-of-campaign.legend.user</span>
+                </div>
+                <div>
+                    <div></div>
+                    <span translate>end-of-campaign.legend.campaign</span>
+                </div>
+            </div>
+
+
+        </section>
+
+        <section>
+
+
+            <div class="header-row"></div>
+            <div class="button-row"></div>
+
+            <health-coach coach-message="coach message"></health-coach>
 
 
         </section>

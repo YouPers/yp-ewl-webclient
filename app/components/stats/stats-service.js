@@ -92,8 +92,8 @@
 
     angular.module('yp.components.stats', ['yp.components.user'])
 
-        .factory('StatsService', ['Restangular',
-            function (Restangular) {
+        .factory('StatsService', ['Restangular', '$translate',
+            function (Restangular, $translate) {
                 var statsService = {};
 
                 statsService.loadStats = function (campaignId, options) {
@@ -104,6 +104,47 @@
                 };
 
                 statsService.fillAndFormatForPlot = fillAndFormatMongoDateSeries;
+
+                function _getRatingsCount(results, type, rating) {
+                    return ( _.find(results[0][type], { rating: rating } ) || {} ).count  || 0;
+                }
+
+                function _ratingValue(rating, ratings, sum) {
+                    return [ $translate.instant('end-of-campaign.eventsRatings.' + rating), ratings[rating] / sum ];
+                }
+
+                statsService.getRatingsStats = function (scopeType, scopeId) {
+                    return statsService.loadStats(scopeId,
+                        {
+                            type: 'eventsRatings',
+                            scopeType: scopeType,
+                            scopeId: scopeId
+                        })
+                        .then(function (results) {
+
+                            var type = 'eventsRatings';
+
+                            var ratings = {
+                                1: _getRatingsCount(results, type, 1),
+                                3: _getRatingsCount(results, type, 3),
+                                5: _getRatingsCount(results, type, 5)
+                            };
+                            var sum = _.reduce(ratings, function (result, num, key) {
+                                return result + num;
+                            });
+
+
+                           return {
+                                "key": $translate.instant('end-of-campaign.eventsRatings.campaign'),
+                                "values": [
+                                    _ratingValue(1, ratings, sum),
+                                    _ratingValue(3, ratings, sum),
+                                    _ratingValue(5, ratings, sum)
+                                ]
+                            };
+
+                        });
+                };
 
                 return statsService;
             }]);

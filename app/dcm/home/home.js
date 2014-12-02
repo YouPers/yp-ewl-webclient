@@ -52,7 +52,7 @@
 
 
                             jsInclude: ["util", function (util) {
-                                return util.loadJSInclude('lib/d3/d3.min.js');
+                                return util.loadJSIncludes(['lib/d3/d3.min.js', 'lib/nvd3/nv.d3.min.js']);
                             }],
 
                             messages: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
@@ -123,9 +123,15 @@
                 $scope.homeController.formStatus = 'beforeTest';
                 $scope.homeController.messages = messages;
                 $scope.campaign = campaign;
-                $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
-                $scope.showCampaignStart =  !$scope.campaignStarted;
-                $scope.showCampaignStats =  $scope.campaignStarted;
+                if (campaign) {
+                    $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
+                    $scope.campaignEnding = moment().diff(campaign.end, 'days') >= -2;
+                }
+
+                $scope.campaignStartAvailable = !$scope.campaignEnding;
+                $scope.offersSectionAvailable = !$scope.campaignEnding;
+                $scope.campaignStartOpen =  !$scope.campaignStarted;
+                $scope.campaignStatsOpen =  $scope.campaignStarted && !$scope.campaignEnding;
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
 
@@ -187,6 +193,7 @@
                 }
 
             }])
+
 
         .controller('HomeStatsController', ['$scope', 'StatsService', function ($scope, StatsService) {
             $scope.chartData = {};

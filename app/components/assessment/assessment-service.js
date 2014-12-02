@@ -184,7 +184,23 @@
                     },
                     isAnswerDirty: function() {
                         return _answerDirty;
+                    },
+
+                    renderCoachMessageFromQuestion: function renderCoachMessageFromQuestion(question) {
+                        // the Coach speaks MARKDOWN!
+                        var myText =  question.exptext + '\n\n';
+                        if (question.mintext && question.mintext !== 'n/a') {
+                            myText += '**' + question.mintext + ':** ' + question.mintextexample +'\n\n';
+                        }
+                        if (question.midtext && question.midtext !== 'n/a') {
+                            myText += '**' + question.midtext + ':** ' + question.midtextexample +'\n\n';
+                        }
+                        if (question.maxtext && question.maxtext !== 'n/a') {
+                            myText += '**' + question.maxtext + ':** ' + question.maxtextexample +'\n\n';
+                        }
+                        return myText;
                     }
+
 
                 };
 

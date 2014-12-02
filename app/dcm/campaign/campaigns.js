@@ -37,7 +37,7 @@
                             newTopic: ['$stateParams', 'topics', function ($stateParams, topics) {
                                 var topicId = $stateParams.newTopicId;
                                 if (topicId) {
-                                    return _.find(topics, function(topic) {
+                                    return _.find(topics, function (topic) {
                                         return (topic.id === topicId);
                                     });
                                 } else {
@@ -52,8 +52,8 @@
             }])
 
 
-        .controller('CampaignController', [ '$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'campaign', 'topics', 'newTopic',
-            function ($scope , CampaignService, UserService, HealthCoachService, campaign, topics, newTopic) {
+        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'campaign', 'topics', 'newTopic',
+            function ($scope, CampaignService, UserService, HealthCoachService, campaign, topics, newTopic) {
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
@@ -84,13 +84,13 @@
                 // watch and ensure that start is before end date of a campaign, using the same default weekday/duration as above
                 $scope.$watch('campaign.start', function (date) {
                     var campaign = $scope.campaign;
-                    if(moment(campaign.start).isAfter(moment(campaign.end))) {
+                    if (moment(campaign.start).isAfter(moment(campaign.end))) {
                         campaign.end = new Date(moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
                     }
                 });
                 $scope.$watch('campaign.end', function (date) {
                     var campaign = $scope.campaign;
-                    if(moment(campaign.start).isAfter(moment(campaign.end))) {
+                    if (moment(campaign.start).isAfter(moment(campaign.end))) {
                         campaign.start = new Date(moment(campaign.end).day(1).hour(8).minutes(0).seconds(0).subtract(3, 'weeks'));
                     }
                 });
@@ -108,28 +108,22 @@
 
                 $scope.saveCampaign = function () {
 
-                    var startDate = moment($scope.campaign.start);
-                    var endDate = moment($scope.campaign.end);
-                    if (startDate.diff(endDate) < 0) {
-
-                        if ($scope.campaign.id) {
-                            CampaignService.putCampaign($scope.campaign).then(function (campaign) {
-                                $scope.$state.go('dcm.home');
-                            });
-                        } else {
-                            CampaignService.postCampaign($scope.campaign)
-                                .then(function (campaign) {
-
-                                    // queue healthCoach message for new campaigns
-                                    if(!$scope.campaign.id) {
-                                        HealthCoachService.queueEvent('campaignCreated');
-                                    }
-                                    $scope.$state.go('dcm.home', { campaignId: campaign.id });
-                                });
-                        }
-
+                    $scope.campaign.start = moment($scope.campaign.start).startOf('day');
+                    $scope.campaign.end = moment($scope.campaign.end).endOf('day');
+                    if ($scope.campaign.id) {
+                        CampaignService.putCampaign($scope.campaign).then(function (campaign) {
+                            $scope.$state.go('dcm.home');
+                        });
                     } else {
-                        $scope.$emit('clientmsg:error', 'campaign.dateRange');
+                        CampaignService.postCampaign($scope.campaign)
+                            .then(function (campaign) {
+
+                                // queue healthCoach message for new campaigns
+                                if (!$scope.campaign.id) {
+                                    HealthCoachService.queueEvent('campaignCreated');
+                                }
+                                $scope.$state.go('dcm.home', {campaignId: campaign.id});
+                            });
                     }
                 };
 
@@ -137,7 +131,7 @@
             }
         ])
 
-        .controller('CampaignsController', [ '$scope', 'campaigns',
+        .controller('CampaignsController', ['$scope', 'campaigns',
             function ($scope, campaigns) {
 
                 var groupedCampaigns = _.groupBy(campaigns, function (campaign) {

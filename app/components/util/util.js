@@ -11,8 +11,8 @@
             'yp.components.util.base64'
         ])
 
-        .factory("util", ["$q",
-            function ($q) {
+        .factory("util", ["$q", '$timeout',
+            function ($q, $timeout) {
 
                 var util = {
 
@@ -37,12 +37,19 @@
                         var deferred = $q.defer();
 
                         var callback = function callback() {
-                            deferred.resolve(scriptPath);
+                            $timeout(function () {
+                                deferred.resolve(scriptPath);
+                            });
                         };
 
                         if (callback !== null) {
                             scriptNode.onreadystagechange = callback;
                             scriptNode.onload = callback;
+                            scriptNode.onerror = function (e) {
+                                $timeout(function () {
+                                    deferred.reject(e);
+                                });
+                            };
                         }
                     },
 

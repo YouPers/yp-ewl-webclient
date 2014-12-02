@@ -1,28 +1,32 @@
 
 <div>
-    <campaign-card ng-show="currentCampaign" campaign="currentCampaign" ui-sref="campaign-list.content">
+    <campaign-card ng-show="campaign" campaign="campaign" ui-sref="campaign-list.content">
 
     </campaign-card>
 
     <br/>
 
-    <p>
-        <span translate>end-of-campaign.surveyInfo</span>
-    </p>
+    <div ng-if="campaignEnding">
 
-    <button class="btn btn-flat btn-big btn-red">
-        <span translate>end-of-campaign.surveyLink</span>
-        <span class="fa fa-chevron-right"></span>
-    </button>
+        <p ng-if="campaign.leaderSurveyUrl">
+            <span translate>end-of-campaign.surveyInfo</span>
+        </p>
 
-    <p>
-        <span translate>end-of-campaign.reviewInfo</span>
-    </p>
 
-    <button class="btn btn-flat btn-big" ui-sref="dhc.end-of-campaign">
-        <span translate>end-of-campaign.reviewLink</span>
-        <span class="fa fa-chevron-right"></span>
-    </button>
+        <a ng-if="campaign.leaderSurveyUrl" ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red">
+            <span translate>end-of-campaign.surveyLink</span>
+            <span class="fa fa-chevron-right"></span>
+        </a>
+
+        <p>
+            <span translate>end-of-campaign.reviewInfo</span>
+        </p>
+
+        <button class="btn btn-flat btn-big" ui-sref="dhc.end-of-campaign">
+            <span translate>end-of-campaign.reviewLink</span>
+            <span class="fa fa-chevron-right"></span>
+        </button>
+    </div>
 
 
 </div>

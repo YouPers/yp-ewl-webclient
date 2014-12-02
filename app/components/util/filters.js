@@ -59,6 +59,11 @@
                 return myMoment.format('DD.MM.YYYY HH:mm');
             };
         })
+        .filter('stripTags', function () {
+            return function (val) {
+                return val.replace(/(<([^>]+)>)/ig, " ");
+            };
+        })
 
 
     ;

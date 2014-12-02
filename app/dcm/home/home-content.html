@@ -1,15 +1,15 @@
-<div class="row" ng-if="campaign">
+<div class="row" ng-if="campaign && campaignStartAvailable">
     <div class="col-md-12  campaign-start">
         <div class="area">
             <div>
                 <h3><span translate>dcmhome.campaignStart.header</span>
-                    <a href="" ng-click="showCampaignStart=!showCampaignStart">
+                    <a href="" ng-click="campaignStartOpen=!campaignStartOpen">
                         <i class="fa "
-                           ng-class="{ 'fa-chevron-down': showCampaignStart, 'fa-chevron-right': !showCampaignStart }"></i>
+                           ng-class="{ 'fa-chevron-down': campaignStartOpen, 'fa-chevron-right': !campaignStartOpen }"></i>
                     </a>
                 </h3>
             </div>
-            <div class="row" ng-if="showCampaignStart">
+            <div class="row" ng-if="campaignStartOpen">
                 <div class="col-md-6">
                     <h3 translate>dcmhome.emailInvite.title</h3>
 
@@ -121,15 +121,17 @@
 </div>
 </div>
 
+
+
 <div class="row" ng-controller="HomeStatsController">
-    <div class="col-md-12">
+    <div class="col-md-12 campaign-stats">
         <div class="area">
 
             <div>
                 <h3><span translate>dcmhome.statsTitle</span>
-                    <a href="" ng-click="showCampaignStats=!showCampaignStats">
+                    <a href="" ng-click="campaignStatsOpen=!campaignStatsOpen">
                         <i class="fa "
-                           ng-class="{ 'fa-chevron-down': showCampaignStats, 'fa-chevron-right': !showCampaignStats }"></i>
+                           ng-class="{ 'fa-chevron-down': campaignStatsOpen, 'fa-chevron-right': !campaignStatsOpen }"></i>
                     </a>
                 </h3>
 
@@ -140,7 +142,7 @@
                     <i class="fa fa-tachometer"></i>
                 </a>
             </div>
-            <div ng-if="showCampaignStats">
+            <div ng-if="campaignStatsOpen" class="area-content">
                 <div ng-if="!campaign">
                     <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
                     <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
@@ -184,7 +186,7 @@
 </div>
 
 
-<div class="row">
+<div class="row" ng-if="offersSectionAvailable">
 
     <div class="col-md-12">
 
@@ -235,4 +237,39 @@
 
     </div>
 
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="area" ng-if="campaignEnding">
+
+            <div >
+                <h3><span translate>dcmhome.endOfCampaignTitle</span>
+
+                </h3>
+
+
+                <h3 translate></h3>
+                <a class="show-stats" ui-sref="dcm.end-of-campaign">
+                    <span translate>dcmhome.end-of-campaign</span>
+                    <i class="fa fa-tachometer"></i>
+                </a>
+            </div>
+
+
+            <div ng-if="campaign.leaderSurveyUrl">
+                <p>
+                    <span translate>dcmhome.surveyInfo</span>
+                </p>
+
+                <a ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red">
+                    <span translate>dcmhome.surveyLink</span>
+                    <span class="fa fa-chevron-right"></span>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
 </div>

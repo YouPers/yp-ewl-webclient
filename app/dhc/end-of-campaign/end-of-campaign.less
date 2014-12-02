@@ -1,8 +1,87 @@
-
 @import "../../styles/youpers-variables";
-
 
 .end-of-campaign {
 
+  .need-for-action {
 
+  }
+
+  .need-for-action-legend {
+    > div {
+      text-align: center;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+
+
+      div {
+        border-left: 4px solid @yp-primary;
+        height: 1.2em;
+        padding-right: 5px;
+      }
+    }
+  }
+
+  .charts {
+    width: 100%;
+
+    display: flex;
+
+    > * {
+      flex: 0 0 50%;
+    }
+
+    nvd3-multi-bar-chart {
+
+    }
+
+  }
+
+  .ratings-chart .nv-x .nv-axis .tick > text {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    font-size: 1.5em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .color-legend {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 5px;
+
+      > span {
+        padding: 0 1em;
+      }
+      > div {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    > div:nth-child(1) {
+      > div {
+        background-color: rgb(31, 119, 180);
+      }
+    }
+    > div:nth-child(2) {
+      > div {
+        background-color: rgb(174, 199, 232);
+      }
+    }
+  }
 }
+

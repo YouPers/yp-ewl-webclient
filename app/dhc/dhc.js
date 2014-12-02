@@ -12,7 +12,8 @@
             'yp.components'
         ])
 
-        .config(['$stateProvider', 'accessLevels', '$translateWtiPartialLoaderProvider', function ($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
+        .config(['$stateProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
+            function ($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
 
             $stateProvider
                 .state('dhc', {
@@ -35,32 +36,41 @@
                             }
 
                         }]
-                    }
+                    },
+
+                    onEnter: ['$rootScope', '$state', '$stateParams', 'campaign', 'UserService', function($rootScope, $state, $stateParams, campaign, UserService){
+                    }]
                 });
+
+
         }])
 
-        .controller('DhcController', ['$scope', '$rootScope', '$state', 'UserService', 'campaign',
-            function ($scope, $rootScope, $state, UserService, campaign) {
-
-                $scope.parentState = 'dhc';
+        .controller('DhcController', ['$scope', '$rootScope', '$state', '$timeout', 'UserService', 'campaign',
+            function ($scope, $rootScope, $state, $timeout, UserService, campaign) {
+                var user = UserService.principal.getUser();
+                console.log('DhcController is run now.');
 
                 if (!campaign) {
-                    var user = UserService.principal.getUser();
-                    if(user.campaign) {
-                        $state.transitionTo('dhc.game', { campaignId: user.campaign.id || user.campaign });
+                    if(user.campaign){
+                        console.log('DhcController: redirecting to dhc.game (no campaign in URL');
+                        $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign , view: ""});
+
                     } else {
+                        console.log('DhcController: redirecting to campaign list(no campaign in URL, no campaign on user');
                         $state.go('campaign-list.content');
                     }
-
                 } else {
-
-                    if(moment().diff(campaign.end, 'days') >= -2) {
-                        $state.go('dhc.end-of-campaign');
+                    // last 2 days of the users campaign -> redirect non-campaignAdmins to dhc end of campaign
+                    // if endOfCampaignDisplayed has not been set yet, or it is more than 1 day in the past
+                    if(!$rootScope.isCampaignAdmin &&
+                        (!user.endOfCampaignDisplayed || moment().diff(user.endOfCampaignDisplayed, 'days') > 1) &&
+                        moment().diff(campaign.end, 'days') >= -2) {
+                        user.endOfCampaignDisplayed = moment();
+                        console.log('DhcController: redirecting end of campaign');
+                        return $state.go('dhc.end-of-campaign', { campaignId: campaign.id });
                     }
 
-
                 }
-                $scope.currentCampaign = campaign;
             }]);
 
 }());
