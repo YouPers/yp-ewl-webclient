@@ -52,7 +52,6 @@
 
                 if (!campaign) {
                     if(user.campaign){
-//                                $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign , view: ""});
                         console.log('DhcController: redirecting to dhc.game (no campaign in URL');
                         $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign , view: ""});
 
@@ -67,7 +66,6 @@
                         (!campaign.endOfCampaignDisplayed || moment().diff(campaign.endOfCampaignDisplayed, 'days') > 1) &&
                         moment().diff(campaign.end, 'days') >= -2) {
                         campaign.endOfCampaignDisplayed = moment();
-                        // return $state.go('dhc.end-of-campaign', { campaignId: campaign.id });
                         console.log('DhcController: redirecting end of campaign');
                         return $state.go('dhc.end-of-campaign', { campaignId: campaign.id });
                     }
