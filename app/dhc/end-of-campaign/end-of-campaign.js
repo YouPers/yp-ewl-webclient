@@ -116,12 +116,6 @@
                 }
 
 
-                $scope.eventsRatingsYAxisTickFormat = function (value) {
-                    return Math.round(value * 100) + '%';
-                };
-
-
-
                 // needForAction
 
                 $q.all([

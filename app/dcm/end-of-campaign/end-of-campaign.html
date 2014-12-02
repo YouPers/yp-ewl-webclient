@@ -38,7 +38,8 @@
 
             <h2>
                 <span ng-hide="campaignEnded"
-                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }" translate-interpolation="messageformat"></span>
+                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"
+                      translate-interpolation="messageformat"></span>
                 <span ng-show="campaignEnded"
                       translate="end-of-campaign.campaignEndendHeader"></span>
             </h2>
@@ -71,27 +72,46 @@
 
             <div>
 
-                <h3 translate>
-                    dcm-end-of-campaign.eventsStatus.title
-                </h3>
 
-                <nvd3-multi-bar-chart
-                        data="eventStatus"
-                        id="eventStatus"
+                <div class="charts">
+                    <div>
+                        <h3 translate>
+                            dcm-end-of-campaign.eventsStatus.title
+                        </h3>
+                        <nvd3-multi-bar-chart
+                                data="eventStatus"
+                                id="eventStatus"
 
-                        width="440"
-                        height="240"
+                                width="320"
+                                height="240"
 
-                        showLegend="false"
+                                showLegend="false"
 
-                        showXAxis="true"
-                        showYAxis="true"
-                        >
-                    <svg></svg>
-                </nvd3-multi-bar-chart>
+                                showXAxis="true"
+                                showYAxis="true"
+                                >
+                            <svg></svg>
+                        </nvd3-multi-bar-chart>
+                    </div>
+                    <div class="ratings-chart">
+                        <h3 translate>end-of-campaign.eventsRatings.title</h3>
 
+                        <nvd3-multi-bar-chart ng-if="eventsRatings"
+                                              data="eventsRatings"
+                                              id="eventsRatings"
 
+                                              width="320"
+                                              height="260"
+                                              showYAxis="true"
+                                              showXAxis="true"
+                                              showLegend="false"
+                                              yAxisTickFormat="percetageFn"
+                                >
+                            <svg></svg>
+                        </nvd3-multi-bar-chart>
 
+                    </div>
+                </div>
                 <div class="color-legend">
                     <div>
                         <div></div>
@@ -109,12 +129,13 @@
             </div>
 
 
-
             <accordion class="check" close-others="true" ng-if="categories">
 
                 <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]"
                                  ng-if="assessmentResultsByQuestion && !isCategoryEmpty(categories[name])"
-                                 analytics-on="click" analytics-event="CheckCategoriesAccordion" analytics-category="InPageNavigation" analytics-label="Accordion Expanded Or Collapsed">
+                                 analytics-on="click" analytics-event="CheckCategoriesAccordion"
+                                 analytics-category="InPageNavigation"
+                                 analytics-label="Accordion Expanded Or Collapsed">
                     <accordion-heading>
                         <div>
                             <span class="question-category-header">{{ 'questionCategory.' + name | translate }}</span>
@@ -126,20 +147,20 @@
 
                     <div ng-repeat="question in categories[name]" ng-click="displayInfo(question)"
 
-                            ng-init="assessmentResult = assessmentResultsByQuestion[question.id]" >
+                         ng-init="assessmentResult = assessmentResultsByQuestion[question.id]">
 
                         <div ng-if="assessmentResult" class="question">
 
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-sm-12">
-
 
 
                                     <div class="question-legend">
                                         <div>{{question.mintext}}</div>
                                         <div class="title">
                                             <span>{{ question.title }}</span>
-                                            <i ng-mouseover="displayInfo(question)" class="glyphicon glyphicon-info-sign"></i>
+                                            <i ng-mouseover="displayInfo(question)"
+                                               class="glyphicon glyphicon-info-sign"></i>
                                         </div>
                                         <div>{{question.maxtext}}</div>
                                     </div>
@@ -150,10 +171,16 @@
 
                                         <div class="assessment-chart">
 
-                                            <div ng-if="$index == 2 || val > 0" ng-repeat="val in assessmentResult.percentages track by $index" ng-style="val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)" ng-class="'assessmentRange' + $index">
+                                            <div ng-if="$index == 2 || val > 0"
+                                                 ng-repeat="val in assessmentResult.percentages track by $index"
+                                                 ng-style="val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)"
+                                                 ng-class="'assessmentRange' + $index">
 
                                                 <div></div>
-                                                <div ng-show="val > 0">{{ val == 1 ? ($index == 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : val * 100 + '%' }}</div>
+                                                <div ng-show="val > 0">{{ val == 1 ? ($index == 2 ? question.midtext :
+                                                    ($index < 2 ? question.mintext : question.maxtext)) : val * 100 +
+                                                    '%' }}
+                                                </div>
 
                                             </div>
                                         </div>
@@ -164,14 +191,18 @@
                                         <div translate>dcm-end-of-campaign.assessmentResults.average</div>
                                         <div class="assessment-chart">
 
-                                            <div ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index" ng-style="$index == 2 && val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)" ng-class="'assessmentRange' + $index">
+                                            <div ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index"
+                                                 ng-style="$index == 2 && val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)"
+                                                 ng-class="'assessmentRange' + $index">
 
-                                                <div ng-show="val > 0.05">{{ val == 1 ? ($index == 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : val * 100 + '%' }}</div>
+                                                <div ng-show="val > 0.05">{{ val == 1 ? ($index == 2 ? question.midtext
+                                                    : ($index < 2 ? question.mintext : question.maxtext)) : val * 100 +
+                                                    '%' }}
+                                                </div>
 
                                             </div>
                                         </div>
                                     </div>
-
 
 
                                 </div>
@@ -215,7 +246,6 @@
         </section>
 
         <section>
-
 
 
             <div scroll-along>
