@@ -34,6 +34,11 @@
                 $scope.daysLeft = - moment().diff($scope.campaign.end, 'days');
                 $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
 
+                $scope.percetageFn = function (value) {
+                    return Math.round(value *100) + '%';
+                };
+
+
                 init();
 
                 function init() {
@@ -106,6 +111,12 @@
                         $scope.eventStatus = eventStatus;
                     });
 
+                    $q.all([
+                        StatsService.getRatingsStats('campaign', $scope.campaign.id),
+                        StatsService.getRatingsStats('all', $scope.campaign.id)
+                    ]).then(function (results) {
+                        $scope.eventsRatings = results;
+                    });
 
 
                     // assessmentResults
