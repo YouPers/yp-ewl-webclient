@@ -196,25 +196,27 @@
                     };
 
 
-                    // popular activities
+                    // eventsPlanned, popular activities
 
 
                     StatsService.loadStats($scope.campaign.id,
                         {
-                            type: 'activitiesPlanned',
+                            type: 'eventsPlanned',
                             scopeType: 'campaign',
                             scopeId: $scope.campaign.id,
                             dontReplaceIds: 'true'
                         })
                         .then(function (results) {
-                            var type = 'activitiesPlanned';
+                            var type = 'eventsPlanned';
                             var res = results[0][type];
-
+                            _.each(res, function (event) {
+                                event.idea = event._id;
+                            });
                             return res;
                         })
                         .then(ActivityService.populateIdeas)
                         .then(function (res) {
-                            $scope.activitiesPlanned = res;
+                            $scope.eventsPlanned = res;
                         });
 
                 }

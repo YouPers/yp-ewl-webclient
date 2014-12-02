@@ -28,10 +28,10 @@
       "pos": "+",
       "veryPos": "++"
     },
-    "activitiesPlanned": {
+    "eventsPlanned": {
       "header": "Beliebte Aktivitäten",
 
-      "content": "{ count, plural, one{1 Aktivität} other{# Aktivitäten} }  eingeplant"
+      "content": "{ plannedCount } mal von { byUsersCount, plural, one{einer Person} other{# Personen} }  eingeplant"
     },
 
     "legend": {

@@ -185,23 +185,23 @@
             <br/>
             <br/>
 
-            <div class="activitiesPlanned">
+            <div>
 
                 <h3>
-                    <span translate>dcm-end-of-campaign.activitiesPlanned.header</span>
+                    <span translate>dcm-end-of-campaign.eventsPlanned.header</span>
                 </h3>
 
-                <div class="activityPlanned" ng-repeat="activity in activitiesPlanned">
+                <div class="eventPlanned" ng-repeat="eventPlanned in eventsPlanned">
 
                     <div>
-                        <img ng-src="{{'/assets/actpics/' + activity.idea.number + '.jpg'}}">
+                        <img ng-src="{{'/assets/actpics/' + eventPlanned.idea.number + '.jpg'}}">
 
-                        <div>{{ activity.idea.title }}</div>
+                        <div>{{ eventPlanned.idea.title | stripTags }}</div>
                     </div>
 
                     <div>
                         <div>
-                            {{ 'dcm-end-of-campaign.activitiesPlanned.content' | translate:{ count: activity.count }:"messageformat" }}
+                            {{ 'dcm-end-of-campaign.eventsPlanned.content' | translate:eventPlanned:"messageformat" }}
                         </div>
                     </div>
 
