@@ -12,7 +12,7 @@
 
             </campaign-card>
 
-            <div class="survey-container">
+            <div class="survey-container" ng-if="campaign.leaderSurveyUrl">
 
                 <br/>
 
@@ -113,7 +113,7 @@
             <accordion class="check" close-others="true" ng-if="categories">
 
                 <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]"
-                                 ng-if="!isCategoryEmpty(categories[name])"
+                                 ng-if="assessmentResultsByQuestion && !isCategoryEmpty(categories[name])"
                                  analytics-on="click" analytics-event="CheckCategoriesAccordion" analytics-category="InPageNavigation" analytics-label="Accordion Expanded Or Collapsed">
                     <accordion-heading>
                         <div>
@@ -150,9 +150,10 @@
 
                                         <div class="assessment-chart">
 
-                                            <div ng-if="val > 0" ng-repeat="val in assessmentResult.percentages track by $index" ng-style="assessmentResultStyle(val)">
+                                            <div ng-if="$index == 2 || val > 0" ng-repeat="val in assessmentResult.percentages track by $index" ng-style="val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)" ng-class="'assessmentRange' + $index">
 
-                                                <div ng-show="val > 0.05">{{ val == 1 ? ($index == 0 ? question.mintext : question.maxtext) : val * 100 + '%' }}</div>
+                                                <div></div>
+                                                <div ng-show="val > 0">{{ val == 1 ? ($index == 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : val * 100 + '%' }}</div>
 
                                             </div>
                                         </div>
@@ -163,7 +164,7 @@
                                         <div translate>dcm-end-of-campaign.assessmentResults.average</div>
                                         <div class="assessment-chart">
 
-                                            <div ng-if="val > 0" ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index" ng-style="assessmentResultStyle(val)">
+                                            <div ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index" ng-style="$index == 2 && val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)" ng-class="'assessmentRange' + $index">
 
                                                 <div ng-show="val > 0.05">{{ val == 1 ? ($index == 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : val * 100 + '%' }}</div>
 

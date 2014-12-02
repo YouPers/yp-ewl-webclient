@@ -229,9 +229,13 @@
 
                     console.log(results);
 
-                    $scope.needForAction = results[0];
+                    var needForAction = results[0];
+                    var needForActionCampaign = results[1];
 
-
+                    _.each(needForAction, function (need) {
+                        need.campaignAvg = _.find(needForActionCampaign, {question: need.question});
+                    });
+                    $scope.needForAction = needForAction;
                 });
 
                 $scope.needForActionClass = function (value) {
@@ -245,9 +249,12 @@
                     return obj;
                 };
 
+                function needForActionPercentage(value) {
+                    return Math.min(value * 4, 26) + '%';
+                }
                 $scope.needForActionStyle = function (value) {
                     return {
-                        width: Math.min(value * 4, 40) + '%'
+                        width: needForActionPercentage(value)
                     };
                 };
 

@@ -14,11 +14,12 @@
 
     "legend": {
       "user": "Dein Ergebnis",
-      "campaign": "Durchschnitt der Kampagne"
+      "campaign": "Durchschnitt der Kampagne",
+      "needForActionAvg": "Durchschnitt der Kampagne"
     },
 
     "eventsStatus": {
-      "title": "Deine Ergebnisse / Durchschnitt der Kampagne",
+      "title": "Deine Ergebnisse",
 
       "user": "Ergebnisse",
       "campaign": "Durchschnitt",
@@ -28,7 +29,7 @@
       "open": "offen"
     },
     "eventsRatings": {
-      "title": "Deine Bewertungen / Durchschnitt der Kampagne",
+      "title": "Deine Bewertungen",
 
       "user": "Deine Bewertungen",
       "campaign": "Kampagne",

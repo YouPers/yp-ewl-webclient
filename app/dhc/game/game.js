@@ -170,9 +170,11 @@
 
                 $scope.healthCoachEvent = healthCoachEvent;
 
-                $scope.campaign = campaign;
-                $scope.daysLeft = -moment().diff(campaign.end, 'days');
-                $scope.campaignEnding = $scope.daysLeft < 2;
+                if(campaign) {
+                    $scope.campaign = campaign;
+                    $scope.daysLeft = -moment().diff(campaign.end, 'days');
+                    $scope.campaignEnding = $scope.daysLeft < 2;
+                }
 
                 $scope.view = $stateParams.view;
 

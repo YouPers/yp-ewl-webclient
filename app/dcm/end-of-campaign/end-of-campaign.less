@@ -93,6 +93,8 @@
       align-content: center;
       color: white;
       font-size: 12px;
+      height: 2em;
+
 
       > div {
         padding: 2px;
@@ -100,27 +102,26 @@
         text-shadow: 1px 1px 2px @yp-divider;
       }
 
-      &:not(:first-child) {
-        border-left: 1px solid @yp-divider;
-      }
     }
-    > div {
-      &:nth-child(1) {
-        background-color: @assessment-1;
-      }
-      &:nth-child(2) {
-        background-color: @assessment-2;
-      }
-      &:nth-child(3) {
-        background-color: @assessment-3;
-      }
-      &:nth-child(4) {
-        background-color: @assessment-4;
-      }
-      &:nth-child(5) {
-        background-color: @assessment-5;
-      }
+
+
+    .assessmentRange0 {
+      background-color: @assessment-1;
     }
+    .assessmentRange1 {
+      background-color: @assessment-2;
+    }
+    .assessmentRange2 {
+      background-color: @assessment-3;
+    }
+    .assessmentRange3 {
+      background-color: @assessment-4;
+    }
+    .assessmentRange4 {
+      background-color: @assessment-5;
+    }
+
+
   }
 
 

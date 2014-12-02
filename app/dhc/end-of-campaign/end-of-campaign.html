@@ -1,7 +1,7 @@
 <div class="end-of-campaign container">
 
 
-    <div class="two-column-layout">
+    <div class="three-column-layout">
 
         <section>
 
@@ -70,8 +70,8 @@
                     <td>
                         <div class="bar" ng-class="needForActionClass(need.avg)"
                              ng-style="needForActionStyle(need.avg)">
-
                         </div>
+                        <div class="mark" ng-if="need.campaignAvg" ng-style="needForActionStyle(need.avg)"></div>
                     </td>
 
                     <td class="active">
@@ -88,6 +88,14 @@
             </table>
 
 
+            <div class="need-for-action-legend">
+                <div>
+                    <div></div>
+                    <span translate>end-of-campaign.legend.needForActionAvg</span>
+                </div>
+            </div>
+
+
             <div class="charts">
 
                 <div>
@@ -97,7 +105,7 @@
                                           data="eventStatus"
                                           id="dhcEventStatus"
 
-                                          width="380"
+                                          width="320"
                                           height="260"
                                           showXAxis="true"
                                           showYAxis="true"
@@ -113,11 +121,11 @@
                                           data="eventsRatings"
                                           id="eventsRatings"
 
-                                          width="380"
+                                          width="320"
                                           height="260"
                                           showYAxis="true"
                                           showXAxis="true"
-                                          showLegend="true"
+                                          showLegend="false"
                                           yAxisTickFormat="percetageFn"
                             >
                         <svg></svg>
@@ -141,6 +149,17 @@
                     <span translate>end-of-campaign.legend.campaign</span>
                 </div>
             </div>
+
+
+        </section>
+
+        <section>
+
+
+            <div class="header-row"></div>
+            <div class="button-row"></div>
+
+            <health-coach coach-message="coach message"></health-coach>
 
 
         </section>

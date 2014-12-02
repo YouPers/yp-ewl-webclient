@@ -143,8 +143,8 @@
                                         }),
                                     AssessmentService.getAssessment(campaign.topic.id || campaign.topic).then(function (assessment) {
 
-                                        $scope.orderedCategoryNames = _.uniq(_.map(assessment.questions, 'category'));
                                         $scope.categories = _.groupBy(assessment.questions, 'category');
+                                        $scope.orderedCategoryNames = _.uniq(_.map(assessment.questions, 'category'));
                                         $scope.assessment = assessment;
                                     })
                                 ])

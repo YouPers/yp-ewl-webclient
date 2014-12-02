@@ -8,6 +8,25 @@
 
   }
 
+  .need-for-action-legend {
+    > div {
+      text-align: center;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+
+
+      div {
+        border-left: 4px solid @yp-primary;
+        height: 1.2em;
+        padding-right: 5px;
+      }
+    }
+  }
+
   .charts {
     width: 100%;
 
@@ -18,7 +37,7 @@
     }
 
     nvd3-multi-bar-chart {
-      padding: 20px;
+
     }
 
   }
