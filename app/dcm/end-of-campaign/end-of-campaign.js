@@ -195,11 +195,10 @@
 
                         });
 
-                    $scope.colorFn = function (d, i) {
-
-                        var colors = ['#FF541E', '#FFD05C', '#20C63C', '#FFD05C', '#FF541E'];
-                        return colors[i];
+                    $scope.formatValue = function (val, $index, question) {
+                        return val === 1 ? ($index === 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : (val * 100 + '%');
                     };
+
                     $scope.isCategoryEmpty = function (questions) {
                         return !_.any(questions, function (question) {
                             return $scope.assessmentResultsByQuestion[question.id];
