@@ -196,7 +196,7 @@
                         });
 
                     $scope.formatValue = function (val, $index, question) {
-                        return val == 1 ? ($index == 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : (val * 100 + '%');
+                        return val === 1 ? ($index === 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : (val * 100 + '%');
                     };
 
                     $scope.isCategoryEmpty = function (questions) {
