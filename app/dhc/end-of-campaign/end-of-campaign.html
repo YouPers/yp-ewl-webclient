@@ -52,7 +52,7 @@
 
             <br/>
 
-            <table class="table focus" ng-if="needForAction">
+            <table class="table focus need-for-action" ng-if="needForAction">
                 <thead>
                 <tr>
                     <th class="left" translate>focus.header</th>
@@ -64,12 +64,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="category in categories">
-                    <td class="left" translate>questionCategory.{{category}}</td>
+                <tr ng-repeat="need in needForAction">
+                    <td class="left" translate>questionCategory.{{need.category}}</td>
 
                     <td>
-                        <div class="bar" ng-class="needForActionClass(category)"
-                             ng-style="needForActionStyle(category)">
+                        <div class="bar" ng-class="needForActionClass(need.avg)"
+                             ng-style="needForActionStyle(need.avg)">
 
                         </div>
                     </td>
@@ -95,9 +95,9 @@
 
                     <nvd3-multi-bar-chart ng-if="eventStatus"
                                           data="eventStatus"
-                                          id="eventStatus"
+                                          id="dhcEventStatus"
 
-                                          width="420"
+                                          width="380"
                                           height="260"
                                           showXAxis="true"
                                           showYAxis="true"
@@ -113,7 +113,7 @@
                                           data="eventsRatings"
                                           id="eventsRatings"
 
-                                          width="420"
+                                          width="380"
                                           height="260"
                                           showYAxis="true"
                                           showXAxis="true"

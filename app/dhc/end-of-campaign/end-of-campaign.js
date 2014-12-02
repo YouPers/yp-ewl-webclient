@@ -42,11 +42,11 @@
             }])
 
         .controller('DhcEndOfCampaignController', ['$scope', '$q', '$translate', 'UserService', 'StatsService',
-            'assessmentResult', 'assessment',
-            function ($scope, $q, $translate, UserService, StatsService, assessmentResult, assessment) {
+            'assessmentResult', 'assessment', 'campaign',
+            function ($scope, $q, $translate, UserService, StatsService, assessmentResult, assessment, campaign) {
 
                 var user = UserService.principal.getUser();
-                $scope.campaign = user.campaign;
+                $scope.campaign = campaign;
                 $scope.daysLeft = -moment().diff($scope.campaign.end, 'days');
                 $scope.campaignEnding = $scope.daysLeft < 2;
                 $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
@@ -89,7 +89,7 @@
                             {
                                 type: 'eventsStatusAvg',
                                 scopeType: 'campaign',
-                                scopeId: user.campaign.id
+                                scopeId: campaign.id
                             }).then(function (results) {
                                 var type = 'eventsStatusAvg';
                                 eventStatus.push({
@@ -156,7 +156,7 @@
                             {
                                 type: 'eventsRatings',
                                 scopeType: 'campaign',
-                                scopeId: user.campaign.id
+                                scopeId: campaign.id
                             }).then(function (results) {
 
                                 var type = 'eventsRatings';
@@ -199,45 +199,55 @@
                     return value * 100 + '%';
                 };
 
-                $scope.eventFeedbackData = [
-                    {
-                        "key": "Deine Bewertungen",
-                        "values": [['1', 0.2], ['3', 0.4], ['5', 0.1]]
-                    },
-                    {
-                        "key": "Durschnitt der Kampagne",
-                        "values": [['1', 0.4], ['3', 0.4], ['5', 0.2]]
-                    }
-                ];
 
 
-                $scope.needForAction = assessmentResult ? assessmentResult.needForAction : null;
-                $scope.categories = _.uniq(_.map(assessment.questions, 'category'));
+                // needForAction
 
-                function _getNeedForCategory (category) {
-                    var nfa = _.find($scope.needForAction, function(nfa) {
-                        return nfa.category === category;
-                    });
+                $q.all([
 
-                    return  nfa ? nfa.value : 0;
-                }
+                    StatsService.loadStats($scope.campaign.id,
+                        {
+                            type: 'needForAction',
+                            scopeType: 'owner',
+                            scopeId: user.id
+                        }).then(function (results) {
+
+                            return results[0].needForAction;
+                        })
+                    //,
+                    //StatsService.loadStats($scope.campaign.id,
+                    //    {
+                    //        type: 'needForAction',
+                    //        scopeType: 'campaign',
+                    //        scopeId: campaign.id
+                    //    }).then(function (results) {
+                    //
+                    //        return results;
+                    //    })
+
+                ]).then(function (results) {
+
+                    console.log(results);
+
+                    $scope.needForAction = results[0];
 
 
-                $scope.needForActionClass = function (category) {
-                    var need = _getNeedForCategory(category);
+                });
 
-                    var level = !need || need < 1 ? "none" :
-                        need < 4 ? "low" :
-                            need < 7 ? "medium" : "high";
+                $scope.needForActionClass = function (value) {
+
+                    var level = !value || value < 1 ? "none" :
+                        value < 4 ? "low" :
+                            value < 7 ? "medium" : "high";
 
                     var obj = {};
                     obj[level] = true;
                     return obj;
                 };
 
-                $scope.needForActionStyle = function (category) {
+                $scope.needForActionStyle = function (value) {
                     return {
-                        width: _getNeedForCategory(category) * 10 * 0.6 + '%'
+                        width: Math.min(value * 4, 40) + '%'
                     };
                 };
 
