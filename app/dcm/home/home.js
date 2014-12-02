@@ -123,9 +123,15 @@
                 $scope.homeController.formStatus = 'beforeTest';
                 $scope.homeController.messages = messages;
                 $scope.campaign = campaign;
-                $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
-                $scope.showCampaignStart =  !$scope.campaignStarted;
-                $scope.showCampaignStats =  $scope.campaignStarted;
+                if (campaign) {
+                    $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
+                    $scope.campaignEnding = moment().diff(campaign.end, 'days') >= -2;
+                }
+
+                $scope.campaignStartAvailable = !$scope.campaignEnding;
+                $scope.offersSectionAvailable = !$scope.campaignEnding;
+                $scope.campaignStartOpen =  !$scope.campaignStarted;
+                $scope.campaignStatsOpen =  $scope.campaignStarted && !$scope.campaignEnding;
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
 
@@ -219,23 +225,6 @@
                         });
                     });
                 }
-            }
-
-        }])
-
-
-        .controller('HomeEndOfCampaignController', ['$scope', 'UserService', function ($scope, UserService) {
-
-            if($scope.campaign) {
-                $scope.campaignEnding = moment().diff($scope.campaign.end, 'days') >= -2;
-            }
-
-            if($scope.campaignEnding) {
-                init();
-            }
-
-            function init() {
-
             }
 
         }])
