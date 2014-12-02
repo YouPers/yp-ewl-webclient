@@ -64,8 +64,7 @@
                         return (_.find(res, { status: status}) || {}).count;
                     }
 
-                    // eventsStatus / eventsStatusAvg
-                    var eventStatus = [];
+
                     $q.all([
 
                         StatsService.loadStats($scope.campaign.id,
@@ -75,13 +74,13 @@
                                 scopeId: user.id
                             }).then(function (results) {
                                 var type = 'eventsStatus';
-                                eventStatus.push({
+                                return {
                                     "key": $translate.instant('end-of-campaign.eventsStatus.user'),
                                     "values": [
                                         [$translate.instant('end-of-campaign.eventsStatus.done'), findByStatus(results, type, 'done')],
                                         [$translate.instant('end-of-campaign.eventsStatus.missed'), findByStatus(results, type, 'missed')],
                                         [$translate.instant('end-of-campaign.eventsStatus.open'), findByStatus(results, type, 'open')]]
-                                });
+                                };
 
                             }),
 
@@ -92,111 +91,33 @@
                                 scopeId: campaign.id
                             }).then(function (results) {
                                 var type = 'eventsStatusAvg';
-                                eventStatus.push({
+                                return {
                                     "key": $translate.instant('end-of-campaign.eventsStatus.campaign'),
                                     "values": [
                                         [$translate.instant('end-of-campaign.eventsStatus.done'), findByStatus(results, type, 'done')],
                                         [$translate.instant('end-of-campaign.eventsStatus.missed'), findByStatus(results, type, 'missed')],
                                         [$translate.instant('end-of-campaign.eventsStatus.open'), findByStatus(results, type, 'open')]]
-                                });
+                                };
 
                             })
 
-                    ]).then(function () {
-                        $scope.eventStatus = eventStatus;
+                    ]).then(function (results) {
+                        $scope.eventStatus = results;
                     });
 
                     // eventsRatings
-                    var eventsRatings = [];
-
-                    function getRatingsCount(results, type, rating) {
-                        return ( _.find(results[0][type], { rating: rating } ) || {} ).count  || 0;
-                    }
 
                     $q.all([
-
-                        StatsService.loadStats($scope.campaign.id,
-                            {
-                                type: 'eventsRatings',
-                                scopeType: 'owner',
-                                scopeId: user.id
-                            }).then(function (results) {
-
-                                var type = 'eventsRatings';
-
-                                var ratings = {
-                                    1: getRatingsCount(results, type, 1),
-                                    3: getRatingsCount(results, type, 3),
-                                    5: getRatingsCount(results, type, 5)
-                                    //,
-                                    //null: getRatingsCount(results, type, null)
-                                };
-                                var sum = _.reduce(ratings, function (result, num, key) {
-                                    return result + num;
-                                });
-                                function ratingValue(rating, sum) {
-                                    return [ $translate.instant('end-of-campaign.eventsRatings.' + rating), ratings[rating] / sum ];
-                                }
-
-
-                                eventsRatings.push({
-                                    "key": $translate.instant('end-of-campaign.eventsRatings.campaign'),
-                                    "values": [
-                                        ratingValue(1, sum),
-                                        ratingValue(3, sum),
-                                        ratingValue(5, sum)
-                                        //,
-                                        //ratingValue(null, sum)
-                                    ]
-                                });
-
-                            }),
-
-                        StatsService.loadStats($scope.campaign.id,
-                            {
-                                type: 'eventsRatings',
-                                scopeType: 'campaign',
-                                scopeId: campaign.id
-                            }).then(function (results) {
-
-                                var type = 'eventsRatings';
-
-                                var ratings = {
-                                    1: getRatingsCount(results, type, 1),
-                                    3: getRatingsCount(results, type, 3),
-                                    5: getRatingsCount(results, type, 5)
-                                    //,
-                                    //null: getRatingsCount(results, type, null)
-                                };
-                                var sum = _.reduce(ratings, function (result, num, key) {
-                                    return result + num;
-                                });
-                                function ratingValue(rating, sum) {
-                                    return [ $translate.instant('end-of-campaign.eventsRatings.' + rating), ratings[rating] / sum ];
-                                }
-                                
-
-                                eventsRatings.push({
-                                    "key": $translate.instant('end-of-campaign.eventsRatings.campaign'),
-                                    "values": [
-                                        ratingValue(1, sum),
-                                        ratingValue(3, sum),
-                                        ratingValue(5, sum)
-                                        //,
-                                        //ratingValue(null, sum)
-                                    ]
-                                });
-
-                            })
-
-                    ]).then(function () {
-                        $scope.eventsRatings = eventsRatings;
+                        StatsService.getRatingsStats('owner', user.id),
+                        StatsService.getRatingsStats('campaign', $scope.campaign.id)
+                    ]).then(function (results) {
+                        $scope.eventsRatings = results;
                     });
                 }
 
 
                 $scope.eventsRatingsYAxisTickFormat = function (value) {
-                    return value * 100 + '%';
+                    return Math.round(value * 100) + '%';
                 };
 
 
@@ -226,9 +147,6 @@
                         })
 
                 ]).then(function (results) {
-
-                    console.log(results);
-
                     var needForAction = results[0];
                     var needForActionCampaign = results[1];
 
