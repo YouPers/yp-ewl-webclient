@@ -258,15 +258,16 @@
             </div>
 
 
+            <div ng-if="campaign.leaderSurveyUrl">
+                <p>
+                    <span translate>dcmhome.surveyInfo</span>
+                </p>
 
-            <p>
-                <span translate>dcmhome.surveyInfo</span>
-            </p>
-
-            <a ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red">
-                <span translate>dcmhome.surveyLink</span>
-                <span class="fa fa-chevron-right"></span>
-            </a>
+                <a ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red">
+                    <span translate>dcmhome.surveyLink</span>
+                    <span class="fa fa-chevron-right"></span>
+                </a>
+            </div>
 
 
         </div>

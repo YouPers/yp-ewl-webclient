@@ -152,7 +152,7 @@
                                 .then(function () {
 
                                     $scope.assessmentResultStyle = function (val) {
-                                        return { flex: '1 0 ' + val * 100 + '%' };
+                                        return { flex: '0 0 ' + val * 100 + '%' };
                                     };
 
                                     _.each($scope.assessmentResults.concat($scope.assessmentResultsAverage), function (result, index) {
