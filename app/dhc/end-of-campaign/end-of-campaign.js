@@ -214,16 +214,16 @@
 
                             return results[0].needForAction;
                         })
-                    //,
-                    //StatsService.loadStats($scope.campaign.id,
-                    //    {
-                    //        type: 'needForAction',
-                    //        scopeType: 'campaign',
-                    //        scopeId: campaign.id
-                    //    }).then(function (results) {
-                    //
-                    //        return results;
-                    //    })
+                    ,
+                    StatsService.loadStats($scope.campaign.id,
+                        {
+                            type: 'needForAction',
+                            scopeType: 'campaign',
+                            scopeId: campaign.id
+                        }).then(function (results) {
+
+                            return results;
+                        })
 
                 ]).then(function (results) {
 
