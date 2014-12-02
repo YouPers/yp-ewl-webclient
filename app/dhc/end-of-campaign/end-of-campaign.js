@@ -250,7 +250,7 @@
                 };
 
                 function needForActionPercentage(value) {
-                    return Math.min(value * 4, 26) + '%';
+                    return Math.min(value * 2.6, 26) + '%';
                 }
                 $scope.needForActionStyle = function (value) {
                     return {
