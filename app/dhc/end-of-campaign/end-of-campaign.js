@@ -222,7 +222,7 @@
                             scopeId: campaign.id
                         }).then(function (results) {
 
-                            return results;
+                            return results[0].needForAction;
                         })
 
                 ]).then(function (results) {
@@ -233,7 +233,7 @@
                     var needForActionCampaign = results[1];
 
                     _.each(needForAction, function (need) {
-                        need.campaignAvg = _.find(needForActionCampaign, {question: need.question});
+                        need.campaignAvg = ( _.find(needForActionCampaign, {category: need.category}) || {}).avg;
                     });
                     $scope.needForAction = needForAction;
                 });
