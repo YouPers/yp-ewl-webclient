@@ -213,8 +213,8 @@
                         }).then(function (results) {
 
                             return results[0].needForAction;
-                        })
-                    ,
+                        }),
+
                     StatsService.loadStats($scope.campaign.id,
                         {
                             type: 'needForAction',

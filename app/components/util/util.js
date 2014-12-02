@@ -45,6 +45,11 @@
                         if (callback !== null) {
                             scriptNode.onreadystagechange = callback;
                             scriptNode.onload = callback;
+                            scriptNode.onerror = function (e) {
+                                $timeout(function () {
+                                    deferred.reject(e);
+                                });
+                            };
                         }
                     },
 
