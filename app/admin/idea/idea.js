@@ -263,6 +263,7 @@
                         "defaultexecutiontype": "self",
                         "defaultvisibility": "private",
                         "defaultduration": 60,
+                        "defaultStartTime": moment().minute(0).second(0),
                         fields: [],
                         recWeights: [],
                         topics: []
