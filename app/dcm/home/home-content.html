@@ -208,6 +208,20 @@
                         <span translate>dcmhome.addOffer</span>
                         <i class="fa fa-plus"></i>
                     </a>
+
+                    <div class="offer-filter">
+
+                        <i class="fa fa-lightbulb-o"
+                           ng-click="toggleOfferType('Recommendation')"
+                           ng-class="{ active: isOfferTypeEnabled('Recommendation') }"
+                           popover="{{ 'dcmhome.showRecommendations' | translate }}"></i>
+
+                        <i class="fa fa-envelope-o"
+                           ng-click="toggleOfferType('Invitation')"
+                           ng-class="{ active: isOfferTypeEnabled('Invitation') }"
+                           popover="{{ 'dcmhome.showInvitations' | translate }}"></i>
+
+                    </div>
                 </div>
 
             </div>

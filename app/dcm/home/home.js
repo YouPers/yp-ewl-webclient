@@ -122,6 +122,7 @@
                 $scope.homeController.healthCoachEvent = healthCoachEvent;
                 $scope.homeController.formStatus = 'beforeTest';
                 $scope.homeController.messages = messages;
+                $scope.homeController.offerTypes = ['Invitation'];
                 $scope.campaign = campaign;
                 if (campaign) {
                     $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
@@ -149,7 +150,28 @@
                     });
                 };
 
+                $scope.toggleOfferType = function (type) {
+                    if($scope.isOfferTypeEnabled(type)) {
+                        _.remove($scope.homeController.offerTypes, function (offerType) {
+                            return type === offerType;
+                        });
+                    } else {
+                        $scope.homeController.offerTypes.push(type);
+                    }
+                };
+                $scope.isOfferTypeEnabled = function(type) {
+                    return _.contains($scope.homeController.offerTypes, type);
+                };
+
                 init();
+
+                function _loadSocialInteractions() {
+                    SocialInteractionService.getSocialInteractions(_getOffersOptions)
+                        .then(_sortSois)
+                        .then(function (sortedSois) {
+                            $scope.offers = sortedSois;
+                        });
+                }
 
                 /////////////////////
                 function init () {
@@ -158,6 +180,12 @@
                     }
 
                     if(campaign) {
+
+                        $scope.$watch('homeController.offerTypes', function (offerType, oldValue) {
+                            _getOffersOptions.discriminators = offerType.join(',');
+                            _loadSocialInteractions();
+                        }, true);
+
                         $scope.$watch('homeController.showOld', function (showOld, oldValue) {
                             if(showOld === true) {
                                 _getOffersOptions.publishTo =  false;
@@ -169,11 +197,7 @@
                                 return;
                             }
 
-                            SocialInteractionService.getSocialInteractions(_getOffersOptions)
-                                .then(_sortSois)
-                                .then(function (sortedSois) {
-                                    $scope.offers = sortedSois;
-                                });
+                            _loadSocialInteractions();
                         });
 
                         $translate('dcmhome.emailInvite.emailSubject.defaultSubject', {

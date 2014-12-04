@@ -43,6 +43,12 @@
                             idea.qualityFactor = 1;
                         }
 
+                        $scope.$watch('noDefaultStartTime', function () {
+                            if(!idea.defaultStartTime) {
+                                idea.defaultStartTime = moment().startOf('hour');
+                            }
+                        });
+
                         $scope.isProductAdmin = function() {
                             return (UserService.principal.getUser().roles.indexOf('productadmin') !== -1);
                         };
