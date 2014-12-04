@@ -214,15 +214,13 @@
                         <i class="fa fa-lightbulb-o"
                            ng-click="toggleOfferType('Recommendation')"
                            ng-class="{ active: isOfferTypeEnabled('Recommendation') }"
-                           tooltip="{{ 'dcmhome.showRecommendations' | translate }}"
-                           tooltip-append-to-body="true"></i>
+                           popover="{{ 'dcmhome.showRecommendations' | translate }}"></i>
 
                         <i class="fa fa-envelope-o"
                            ng-click="toggleOfferType('Invitation')"
                            ng-class="{ active: isOfferTypeEnabled('Invitation') }"
-                           tooltip="{{ 'dcmhome.showInvitations' | translate }}"></i>
+                           popover="{{ 'dcmhome.showInvitations' | translate }}"></i>
 
-                        </a>
                     </div>
                 </div>
 
