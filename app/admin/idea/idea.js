@@ -45,8 +45,8 @@
                             idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
                                 return ActivityService.getIdea($stateParams.ideaId);
                             }],
-                            topics: ['Restangular', function (Restangular) {
-                                return Restangular.all('topics').getList();
+                            topics: ['TopicService', function (TopicService) {
+                                return TopicService.getTopics();
                             }]
                         }
                     });
@@ -252,8 +252,8 @@
             };
         }])
 
-        .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'ActivityService', 'AssessmentService', 'Restangular', 'topics',
-            function ($scope, $rootScope, idea, ActivityService, AssessmentService, Restangular, topics) {
+        .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'ActivityService', 'AssessmentService', 'TopicService', 'Restangular', 'topics',
+            function ($scope, $rootScope, idea, ActivityService, AssessmentService, TopicService, Restangular, topics) {
 
                 if (!idea) {
                     idea = Restangular.restangularizeElement(null, {
@@ -263,20 +263,15 @@
                         "defaultexecutiontype": "self",
                         "defaultvisibility": "private",
                         "defaultduration": 60,
+                        "defaultStartTime": moment().startOf('hour'),
                         fields: [],
                         recWeights: [],
                         topics: []
                     }, 'ideas');
                 }
+
                 $scope.idea = idea;
-
                 $scope.assessment = {questions: []};
-
-                $scope.offer = {
-                    idea: idea,
-                    recommendedBy: {}
-                };
-
                 $scope.topics = topics;
 
                 $scope.$watch('idea.topics', function (newValue, oldValue) {
@@ -303,6 +298,30 @@
                             });
                     }
                 });
+
+                $scope.addOffer = function addOffer(topic) {
+
+                    var week = 1;
+                    var weekday = 'MO';
+
+                    topic.templateCampaignOffers.push({
+                        idea: idea.id,
+                        type: 'Recommendation',
+                        week: week,
+                        weekday: weekday
+                    });
+                };
+
+                $scope.removeOffer = function removeOffer(topic, index) {
+                    topic.templateCampaignOffers.splice(index, 1);
+                };
+
+                $scope.saveTopic = function saveTopic(topic) {
+                    TopicService.putTopic(topic).then(function () {
+                        $rootScope.$emit('clientmsg:success', 'templateCampaign.save');
+                    });
+                };
+
 
                 // Weighting to generate recommendation of idea based on answers of this assessment
                 // initialize weights if they do not yet exist

@@ -19,6 +19,7 @@
             'yp.components.message',
             'yp.components.i18n',
             'yp.components.stats',
+            'yp.components.topic',
 
             // directives
             'yp.components.title',
@@ -52,6 +53,15 @@
                     'en',
                     'fr',
                     'it'
+                ],
+                weekday: [
+                    'MO',
+                    'TU',
+                    'WE',
+                    'TH',
+                    'FR',
+                    'SA',
+                    'SU'
                 ]
             });
         }])

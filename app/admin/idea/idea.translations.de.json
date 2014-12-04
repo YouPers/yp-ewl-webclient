@@ -10,6 +10,9 @@
         "invite": "Du hast {{email}} zu dieser Aktivität eingeladen",
         "delete": "Aktivität gelöscht",
         "sampleInvitationSent": "Einladung versandt {{email}}"
+      },
+      "templateCampaign": {
+        "save": "Standartangebote gespeichert"
       }
     },
     "error": {
@@ -51,6 +54,18 @@
     "navigation": {
       "start": "Start",
       "activities": "Aktivitäten"
+    },
+    "templateCampaign": {
+      "header": "Diese Idee als Standartangebot für das Thema {{ topic }} verwenden",
+      "type": {
+        "Recommendation": "Empfehlung",
+        "Invitation": "Einladung"
+      },
+      "week": "Woche",
+      "weekday": "Wochentag",
+      "addOffer": "Angebot hinzufügen +",
+      "save": "Standartangebote speichern",
+      "remove": "Entfernen"
     },
     "matrix": {
       "header": "Matrix zu Assessment, Fragen für Empfehlungen für: ",

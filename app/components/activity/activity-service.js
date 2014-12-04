@@ -257,66 +257,7 @@
                         return ideas.one(idea.id || idea).one('defaultActivity').get(options).then(_populateIdeas);
                     },
 
-                    populateIdeas: _populateIdeas,
-
-                    getDefaultPlan: function (idea, campaignId) {
-                        var now = moment();
-
-                        var duration = idea.defaultduration ? idea.defaultduration : 60;
-
-                        var plan = {
-                            idea: idea,
-                            status: 'active',
-                            source: campaignId ? 'campaign' : 'community',
-                            executionType: idea.defaultexecutiontype,
-                            visibility: campaignId ? 'campaign' : idea.defaultvisibility,
-                            fields: idea.fields,
-                            topics: idea.topics,
-                            title: idea.title,
-                            number: idea.number,
-                            "allDay": false
-                        };
-
-                        if (idea.defaultfrequency === 'week') {
-                            plan.start = moment(now).startOf('hour').toDate();
-                            plan.end = moment(plan.start).add('m', duration).toDate();
-                            plan.frequency = 'week';
-                            plan.recurrence = {
-                                "endby": {
-                                    "type": "after",
-                                    "after": 6
-                                },
-                                every: 1
-                            };
-                        } else if (idea.defaultfrequency === 'day') {
-                            plan.start = moment(now).add('d', 1).startOf('hour').toDate();
-                            plan.end = moment(plan.start).add('m', duration).toDate();
-                            plan.frequency = 'day';
-                            plan.recurrence = {
-                                "endby": {
-                                    "type": "after",
-                                    "after": 6
-                                },
-                                every: 1
-                            };
-                        } else { // default is "once"
-                            plan.start = moment(now).add('d', 1).startOf('hour').toDate();
-                            plan.end = moment(plan.start).add('m', duration).toDate();
-                            plan.frequency = 'once';
-                            plan.recurrence = {
-                                "endby": {
-                                    "type": "after",
-                                    "after": 6
-                                },
-                                every: 1
-                            };
-                        }
-
-                        if (campaignId) {
-                            plan.campaign = campaignId;
-                        }
-                        return plan;
-                    }
+                    populateIdeas: _populateIdeas
                 };
 
                 return actService;

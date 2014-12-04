@@ -17,8 +17,8 @@
                         },
                         resolve: {
 
-                            topics: ['Restangular', function(Restangular) {
-                                return Restangular.all('topics').getList();
+                            topics: ['TopicService', function(TopicService) {
+                                return TopicService.getTopics();
                             }]
                         }
                     });

@@ -4,64 +4,167 @@
             <idea-edit idea="idea" topics="topics" on-save="onSave()" on-cancel="onCancel()"></idea-edit>
         </div>
         <div class="col-md-4">
-            <idea-card idea="idea" reject="" schedule="" index="$index"/>
+
+            <idea-card idea="idea" reject="" schedule="" index="$index"></idea-card>
+
+
+
         </div>
 
     </div>
-    <div class="row activity-admin-matrix">
 
 
-        <div>
-            <div class="col-md-12">
-                <h3><span translate>admin.matrix.header</span> {{idea.number}}</h3>
-            </div>
-        </div>
+
+
+
+    <div class="row template-campaign">
+
+
         <div class="col-md-12">
-            <div class="form-group date">
-                <label class="control-label" translate>Show Assessment Questions for Topic </label>
-                <select ng-model="currentTopic" ng-options="topic.id as topic.name for topic in selectedTopics">
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-1" translate>
-                admin.matrix.recommendationSliderLeft
-            </div>
-            <div class="col-md-1" translate>
-                admin.matrix.recommendationSliderRight
-            </div>
-            <div class="col-md-4 col-md-offset-2 panel panel-danger" translate>
-                admin.matrix.valueRangeHint
-            </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <div class="col-md-12">
 
-                            <div class="row  panel panel-default" ng-repeat="question in assessment.questions">
-                                <form name="myForm" novalidate>
-                                    <div class="col-md-1 control-group"
-                                         ng-class="{'has-error': myForm.leftWeight.$dirty && myForm.leftWeight.$invalid}">
-                                        <Input type="number" name="leftWeight" min=0 max=10
-                                               ng-model="recWeights[question.id][1]"
-                                               class="form-control actWeightInput">
-                                        {{question.mintext}}
-                                    </div>
-                                    <div class="col-md-3 col-md-offset-1"><h5>{{question.title}}</h5>
-                                        {{question.midtext}}
-                                    </div>
-                                    <div class="col-md-1 control-group"
-                                         ng-class="{'has-error': myForm.rightWeight.$dirty && myForm.rightWeight.$invalid}">
-                                        <Input type="number" name="rightWeight" min=0 max=10
-                                               ng-model="recWeights[question.id][2]"
-                                               class="form-control actWeightInput">
-                                        {{question.maxtext}}
-                                    </div>
-                                </form>
+            <div class="row" ng-repeat="topic in selectedTopics">
+
+                <div class="col-md-12  panel panel-primary">
+
+
+                    <h3><span translate translate-values="{ topic: topic.name }">admin.templateCampaign.header</span></h3>
+
+
+
+                    <div class="row" ng-repeat="offer in topic.templateCampaignOffers" ng-if="(offer.idea || offer.idea.id) == idea.id">
+
+                        <div class="col-md-3">
+
+                            <label class="control-label" for="type.recommendation{{ $index }}">
+                                <input id="type.recommendation{{ $index }}" type="radio" ng-model="offer.type"
+                                       ng-value="'Recommendation'" translate>
+                                </input>
+                                <span translate>admin.templateCampaign.type.Recommendation</span>
+                            </label>
+
+                            <label class="control-label" for="type.invitation{{ $index }}">
+                                <input id="type.invitation{{ $index }}" type="radio" ng-model="offer.type"
+                                       ng-value="'Invitation'" translate>
+                                </input>
+                                <span translate>admin.templateCampaign.type.Invitation</span>
+                            </label>
+
+                            <label class="control-label" for="week">
+                                <span translate>admin.templateCampaign.week</span>
+                                <input id="week" type="number" ng-model="offer.week">
+                            </label>
+                        </div>
+
+                        <div class="col-md-8">
+
+
+                            <label for="weekday" class="control-label" translate>admin.templateCampaign.weekday</label>
+                            <div id="weekday" class="btn-group">
+                                <button type="button" ng-repeat="weekday in enums.weekday" class="btn btn-default btn-sm"
+                                        ng-model="offer.weekday" btn-radio="weekday" translate>
+                                    weekday.{{weekday}}
+                                </button>
                             </div>
 
+                        </div>
+
+
+                        <div class="col-md-1">
+
+                            <button type="button" class="btn btn-flat pull-right" ng-click="removeOffer(topic, $index)" translate>admin.templateCampaign.remove</button>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <button class="btn btn-flat" ng-click="addOffer(topic)" translate>admin.templateCampaign.addOffer</button>
+
+                            <br/>
+                            <button type="button" ng-click="saveTopic(topic)" class="btn btn-primary pull-right" translate>admin.templateCampaign.save</button>
+                            <div class="clearfix"></div>
+                            <br/>
+
+                        </div>
+                    </div>
+
+
                 </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row activity-admin-matrix panel panel-primary">
+
+        <div class="col-md-12">
+            <h3><span translate>admin.matrix.header</span> {{idea.number}}</h3>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-4">
+                <label class="control-label" translate>Show Assessment Questions for Topic </label>
+                <select class="form-control" ng-model="currentTopic" ng-options="topic.id as topic.name for topic in selectedTopics"></select>
+                <br/>
             </div>
         </div>
+
+        <div class="col-md-12">
+
+
+            <div class="row">
+                <div class="col-md-1" translate>
+                    admin.matrix.recommendationSliderLeft
+                </div>
+                <div class="col-md-1" translate>
+                    admin.matrix.recommendationSliderRight
+                </div>
+                <div class="col-md-4 col-md-offset-2 panel panel-danger" translate>
+                    admin.matrix.valueRangeHint
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="col-md-12">
+
+                        <div class="row  panel panel-default" ng-repeat="question in assessment.questions">
+                            <form name="myForm" novalidate>
+                                <div class="col-md-1 control-group"
+                                     ng-class="{'has-error': myForm.leftWeight.$dirty && myForm.leftWeight.$invalid}">
+                                    <Input type="number" name="leftWeight" min=0 max=10
+                                           ng-model="recWeights[question.id][1]"
+                                           class="form-control actWeightInput">
+                                    {{question.mintext}}
+                                </div>
+                                <div class="col-md-3 col-md-offset-1"><h5>{{question.title}}</h5>
+                                    {{question.midtext}}
+                                </div>
+                                <div class="col-md-1 control-group"
+                                     ng-class="{'has-error': myForm.rightWeight.$dirty && myForm.rightWeight.$invalid}">
+                                    <Input type="number" name="rightWeight" min=0 max=10
+                                           ng-model="recWeights[question.id][2]"
+                                           class="form-control actWeightInput">
+                                    {{question.maxtext}}
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
+
+
 </div>
