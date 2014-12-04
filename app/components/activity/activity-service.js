@@ -215,6 +215,11 @@
                         return activities.one(activity.id || activity).remove();
                     },
                     updateActivityEvent: function (actEvent) {
+                        // assure that we don't have feedback on a event that was missed
+                        // happens when event is first marked 'done', then rated, then edited back to 'missed'
+                        if (actEvent.status === 'missed') {
+                            actEvent.feedback = undefined;
+                        }
                         return actEvent.put();
                     },
                     inviteEmailToJoinPlan: function (email, plan) {
