@@ -2,7 +2,7 @@
 
     <div ng-transclude></div>
 
-    <a href class="btn btn-default show-more" ng-show="hasOverflow"
+    <a href class="btn btn-default show-more" ng-show="hasOverflow && areaHeight !== 0"
        ng-click="showMore()">
         <span translate>game.showMore</span>
     </a>
