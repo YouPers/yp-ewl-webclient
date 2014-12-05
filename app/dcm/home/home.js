@@ -187,15 +187,8 @@
                         }, true);
 
                         $scope.$watch('homeController.showOld', function (showOld, oldValue) {
-                            if(showOld === true) {
-                                _getOffersOptions.publishTo =  false;
-                            } else if (showOld === true) {
-                                _getOffersOptions.publishTo = new Date();
-                            } else {
-                                // it is undefined, so we don't reload our sois, we only need to do that
-                                // when the user really clicked on the control
-                                return;
-                            }
+
+                            _getOffersOptions.publishTo = showOld ? false : new Date();
 
                             _loadSocialInteractions();
                         });
