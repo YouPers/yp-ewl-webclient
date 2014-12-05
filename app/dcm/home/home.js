@@ -126,7 +126,7 @@
                 $scope.campaign = campaign;
                 if (campaign) {
                     $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
-                    $scope.campaignEnding = moment().diff(campaign.end, 'days') >= -2;
+                    $scope.campaignEnding = moment().diff(campaign.end, 'days') >= 0;
                 }
 
                 $scope.campaignStartAvailable = !$scope.campaignEnding;
