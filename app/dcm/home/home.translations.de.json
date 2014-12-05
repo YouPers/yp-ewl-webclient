@@ -11,8 +11,6 @@
     "statistics": "Statistiken",
     "end-of-campaign": "Rückblick",
     "addOffer": "Angebot hinzufügen",
-    "showRecommendations": "Empfehlungen anzeigen",
-    "showInvitations": "Einladungen anzeigen",
     "surveyInfo": "DCM Info zur Umfrage",
     "surveyLink": "Umfrage",
     "organization": {
@@ -38,7 +36,7 @@
         "label": "Email-Text",
         "placeholder": "Email-Text"
       },
-      "explain": "Hier kannst du automatisch Einladungs-Mails zur Kampagne für die zukünftigen Teilnehmer versenden.",
+      "explain": "Hier kannst du automatisch Einladungs-Emails zur Kampagne für die zukünftigen Teilnehmer versenden.",
       "inviteMore": "weitere einladen",
       "label": "Email-Adressen der einzuladenden Mitarbeiter, getrennt mittels Komma, Semikolon oder Leerschlag",
       "next": "weiter",
@@ -48,8 +46,8 @@
       "sendYourselfTest": "Sende dir selbst eine Test-Einladung:",
       "submit": "Einladen",
       "success": "Einladungen erfolgreich versendet",
-      "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Mail-Eingang.",
-      "title": "Automatische Kampagnen-Einladungsmails"
+      "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Email-Eingang.",
+      "title": "Automatische Einladungsemails für Kampagne"
     },
     "messages": "Nachrichten",
     "noCampaigns": "Du hast noch keine Kampagnen erstellt",

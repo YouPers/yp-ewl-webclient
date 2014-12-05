@@ -10,6 +10,9 @@
         "invite": "Tu as invité {{email}} à participer à cette activité",
         "delete": "Activité supprimée",
         "sampleInvitationSent": "Invitation envoyée à {{email}}"
+      },
+      "templateCampaign": {
+        "save": null
       }
     },
     "error": {
@@ -57,6 +60,18 @@
       "recommendationSliderLeft": "La recommandation<br/>Slider à gauche",
       "recommendationSliderRight": "La recommandation<br/>Slider à droite",
       "valueRangeHint": "Toutes les valeurs comprises entre 0 et 10 <br/> 0 = Ne pas recommander activité 10 = activité recommander"
+    },
+    "templateCampaign": {
+      "addOffer": null,
+      "header": null,
+      "remove": null,
+      "save": null,
+      "type": {
+        "Invitation": null,
+        "Recommendation": null
+      },
+      "week": null,
+      "weekday": null
     }
   },
   "visibility": {

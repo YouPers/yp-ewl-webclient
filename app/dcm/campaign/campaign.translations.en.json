@@ -15,11 +15,11 @@
       "notifications": "Notifications"
     },
     "campaignLeads": {
-      "header": "campaign leader",
-      "add": "Add More"
+      "header": "Campaign leader",
+      "add": "add more"
     },
     "stateHeader1": "your",
-    "stateHeader2": "campaign",
+    "stateHeader2": "Campaign",
     "card": {
       "title": "HealthCampaign"
     }
@@ -58,11 +58,12 @@
       "label": "City",
       "placeholder": "City"
     },
-    "back": "back",
+    "back": "Back",
     "save": "Save",
     "create": "Save",
+    "cancel": "cancel",
     "topic": {
-      "change": "Edit",
+      "change": "edit",
       "label": "Program"
     }
   },

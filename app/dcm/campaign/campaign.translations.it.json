@@ -61,6 +61,7 @@
     "back": "Indietro",
     "save": "Salva",
     "create": "Salva",
+    "cancel": null,
     "topic": {
       "change": "Cambia",
       "label": null

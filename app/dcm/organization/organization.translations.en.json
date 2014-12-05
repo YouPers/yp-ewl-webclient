@@ -83,6 +83,7 @@
       }
     },
     "save": "Save",
+    "cancel": null,
     "create": "Create",
     "missingOrganizationFieldsWarning": {
       "header": "WARNING: ",

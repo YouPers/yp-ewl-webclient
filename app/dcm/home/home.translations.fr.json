@@ -1,6 +1,7 @@
 {
   "dcmhome": {
     "statsTitle": null,
+    "endOfCampaignTitle": null,
     "participantsCount": null,
     "plannedActsCount": null,
     "moreStats": "Plus",
@@ -8,7 +9,10 @@
     "campaigns": "Les campagnes",
     "activities": "Les nouvelles activités",
     "statistics": "Les statistiques",
+    "end-of-campaign": null,
     "addOffer": null,
+    "surveyInfo": null,
+    "surveyLink": null,
     "organization": {
       "addCampaign": "Nouvelle Campagne",
       "edit": "éd"

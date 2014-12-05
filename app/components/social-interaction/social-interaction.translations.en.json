@@ -29,16 +29,16 @@
       "placeholder": "Tab"
     },
     "text": {
-      "label": "𐑥𐑧𐑕𐑩𐑡",
-      "placeholder": "𐑥𐑧𐑕𐑩𐑡"
+      "label": "Message",
+      "placeholder": "Message"
     },
     "publishFrom": {
-      "label": "Of",
-      "placeholder": "Of"
+      "label": "From",
+      "placeholder": "From"
     },
     "publishTo": {
-      "label": "…",
-      "placeholder": "…"
+      "label": "To",
+      "placeholder": "To"
     },
     "submit": "Save"
   }

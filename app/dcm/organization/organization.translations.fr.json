@@ -83,6 +83,7 @@
       }
     },
     "save": "Enregistrer",
+    "cancel": null,
     "create": "Créer",
     "missingOrganizationFieldsWarning": {
       "header": "WARNING:",
