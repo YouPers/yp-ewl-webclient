@@ -271,14 +271,8 @@
                 if ($scope.campaign) {
 
                     $scope.$watch('homeController.showOld', function (showOld) {
-                        if(showOld === true) {
-                            _getMessagesOptions = false;
-                        } else if (showOld === false) {
-                            _getMessagesOptions = new Date();
-                        } else {
-                            // initial state, we get Messages from resolves
-                            return;
-                        }
+                        _getMessagesOptions.puplishTo = showOld ? false : new Date();
+
                         SocialInteractionService.getMessages(_getMessagesOptions).then(function (messages) {
                             self.messages = messages;
                         });
