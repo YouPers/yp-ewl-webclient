@@ -156,7 +156,7 @@
                             return type === offerType;
                         });
                     } else {
-                        $scope.homeController.offerTypes.push(type);
+                        $scope.homeController.offerTypes = [type];
                     }
                 };
                 $scope.isOfferTypeEnabled = function(type) {
