@@ -10,6 +10,8 @@
 
                 var topicService = {
                     getTopics: function (options) {
+                        options = options || {};
+                        options.sort = options.sort || 'index';
                         return topics.getList(options);
                     },
                     putTopic: function (topic) {
