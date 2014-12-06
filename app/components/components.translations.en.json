@@ -15,6 +15,9 @@
       "504": null
     }
   },
+  "busy": {
+    "submitting": "Saving ..."
+  },
   "calendar": {
     "tomorrow": "Tomorrow",
     "today": "Today",

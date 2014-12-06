@@ -6,7 +6,7 @@
 angular.module('yp-ewl',
         [
             'restangular', 'ui.router', 'ui.bootstrap',  'ngAnimate', 'ipCookie', 'LocalStorageModule',
-            'angulartics','angulartics.google.analytics', 'nvd3ChartDirectives',
+            'angulartics','angulartics.google.analytics', 'nvd3ChartDirectives', 'ngBusy',
 
             'yp.config',
 

@@ -105,8 +105,10 @@
             </div>
         </div>
         <div class="button-row" ng-if="campaignForm.$dirty || !campaign.id">
-            <button ng-click="saveCampaign()" class="btn btn-primary" ng-disabled="campaignForm.$invalid">
+            <button ng-click="!submitting && saveCampaign();submitting = true" class="btn btn-primary" ng-disabled="campaignForm.$invalid" busy>
+                <busy-message><i class="fa fa-refresh fa-spin"></i><span translate>busy.submitting</span></busy-message>
                 <span translate>campaignForm.save</span>
+
             </button>
                 <button type="button" class="btn btn-default pull-right" ng-click="campaign.id ? $state.go('dcm.campaign',{campaignId: campaign.id}, {reload: true}) : $state.go('dcm.home')">
                     <span translate>campaignForm.cancel</span>

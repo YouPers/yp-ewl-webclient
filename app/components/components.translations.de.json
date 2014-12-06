@@ -15,6 +15,9 @@
       "504": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals."
     }
   },
+  "busy": {
+    "submitting": "Speichern ..."
+  },
   "calendar": {
     "tomorrow": "morgen",
     "today": "heute",
