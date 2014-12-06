@@ -177,7 +177,7 @@
                                         ];
                                         result.percentages = [];
                                         _.each(percentages, function (val, index) {
-                                            result.percentages.push(Math.floor(val * 100) / 100);
+                                            result.percentages.push(val);
                                         });
                                     });
 
@@ -196,7 +196,7 @@
                         });
 
                     $scope.formatValue = function (val, $index, question) {
-                        return val === 1 ? ($index === 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : (val * 100 + '%');
+                        return val === 1 ? ($index === 2 ? question.midtext : ($index < 2 ? question.mintext : question.maxtext)) : (Math.round(val * 100) + '%');
                     };
 
                     $scope.isCategoryEmpty = function (questions) {
