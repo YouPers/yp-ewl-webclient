@@ -33,8 +33,8 @@
                 <div class="form-group date">
                         <label class="control-label" translate>campaignForm.start.label</label>
                     <div class="start">
-                        <date-picker date="campaign.start"></date-picker>
-                        <date-picker date="campaign.end"></date-picker>
+                        <date-picker date="campaign.start" future-date ng-model="campaign.start"></date-picker>
+                        <date-picker date="campaign.end" future-date ng-model="campaign.end"></date-picker>
                         <label class="" translate>campaignForm.end.label</label>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div class="button-row" ng-if="campaignForm.$dirty || !campaign.id">
-            <button ng-click="!submitting && saveCampaign();submitting = true" class="btn btn-primary" ng-disabled="campaignForm.$invalid" busy>
+            <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true" class="btn btn-primary" ng-disabled="campaignForm.$invalid" busy>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                 <span translate>campaignForm.save</span>
 

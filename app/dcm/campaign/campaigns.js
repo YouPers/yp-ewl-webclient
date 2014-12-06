@@ -27,7 +27,7 @@
                         views: {
                             content: {
                                 templateUrl: 'dcm/campaign/campaign.html',
-                                controller: 'CampaignController'
+                                controller: 'CampaignController as campaignController'
                             }
                         },
                         resolve: {
@@ -54,6 +54,8 @@
 
         .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'campaign', 'topics', 'newTopic',
             function ($scope, CampaignService, UserService, HealthCoachService, campaign, topics, newTopic) {
+
+                $scope.campaignController = this;
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
@@ -84,13 +86,13 @@
                 // watch and ensure that start is before end date of a campaign, using the same default weekday/duration as above
                 $scope.$watch('campaign.start', function (date) {
                     var campaign = $scope.campaign;
-                    if (moment(campaign.start).isAfter(moment(campaign.end))) {
+                    if (moment(campaign.start).diff(moment(campaign.end), 'weeks') > -1) {
                         campaign.end = new Date(moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
                     }
                 });
                 $scope.$watch('campaign.end', function (date) {
                     var campaign = $scope.campaign;
-                    if (moment(campaign.start).isAfter(moment(campaign.end))) {
+                    if (moment(campaign.start).diff(moment(campaign.end), 'weeks') > -1) {
                         campaign.start = new Date(moment(campaign.end).day(1).hour(8).minutes(0).seconds(0).subtract(3, 'weeks'));
                     }
                 });
@@ -110,10 +112,16 @@
 
                     $scope.campaign.start = moment($scope.campaign.start).startOf('day');
                     $scope.campaign.end = moment($scope.campaign.end).endOf('day');
+
+                    function onError(err) {
+                        $scope.$emit('clientmsg:error', err);
+                        $scope.campaignController.submitting = false;
+                    }
+
                     if ($scope.campaign.id) {
                         CampaignService.putCampaign($scope.campaign).then(function (campaign) {
                             $scope.$state.go('dcm.home');
-                        });
+                        }, onError);
                     } else {
                         CampaignService.postCampaign($scope.campaign)
                             .then(function (campaign) {
@@ -123,7 +131,7 @@
                                     HealthCoachService.queueEvent('campaignCreated');
                                 }
                                 $scope.$state.go('dcm.home', {campaignId: campaign.id});
-                            });
+                            }, onError);
                     }
                 };
 

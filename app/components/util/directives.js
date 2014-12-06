@@ -140,6 +140,22 @@
             };
         }])
 
+        .directive('futureDate', [function () {
+            return {
+                restrict: 'A',
+                require: 'ngModel',
+                link: function (scope, elem, attrs, control) {
+
+                    scope.$watch(function () {
+                        return attrs.futureDate ? attrs[futureDate] : control.$modelValue;
+                    }, function (date) {
+                        var isValid = moment(date).isAfter(moment());
+                        control.$setValidity("future-date", isValid);
+                    });
+                }
+            };
+        }])
+
         .directive('passwordMatch', [function () {
             return {
                 restrict: 'A',
