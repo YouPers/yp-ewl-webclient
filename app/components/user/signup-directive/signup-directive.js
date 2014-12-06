@@ -21,7 +21,7 @@
                             var keepMeLoggedIn = true;
                             UserService.login(UserService.encodeCredentials(user.username, user.password), keepMeLoggedIn).then(function() {
 
-                                if(attrs.onSignIn) { // can't check isolated scope variable as it is always defined
+                                if(attrs.onSignUp) { // can't check isolated scope variable as it is always defined
                                     return scope.onSignUp();
                                 }
 

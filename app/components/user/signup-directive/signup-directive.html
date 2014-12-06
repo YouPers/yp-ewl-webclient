@@ -1,4 +1,4 @@
-<form name="registerForm" ypModel="newUser" class="form" role="form" ng-submit="submit()">
+<form name="registerForm" ypModel="newUser" class="form" role="form">
 
     <yp-input name="firstname" required></yp-input>
     <yp-input name="lastname" required></yp-input>
@@ -13,12 +13,12 @@
 
 
         <!-- toggle-value="termsAccepted" is used again in the <a> to revert the checkbox change when clicking on the link-->
-        <label class="p2" toggle-value="termsAccepted">
-            <input class="pull-left" name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
+        <label class="terms" ng-init="termsAccepted = false" >
+            <input name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
 
-            <div class="pull-left">
+            <div>
                 <span translate>registerForm.termsAccepted.label1</span>
-                <a href="#/terms" target="_blank" toggle-value="termsAccepted" translate>registerForm.termsAccepted.label2</a>
+                <a href="#/terms" target="_blank" ng-click="termsAccepted = !termsAccepted" translate>registerForm.termsAccepted.label2</a>
                 <span translate>registerForm.termsAccepted.label3</span>
             </div>
         </label>
@@ -26,6 +26,6 @@
         <span ng-show="registerForm.termsAccepted.$error.required" class="help-inline" translate>registerForm.termsAccepted.$error.required</span>
     </div>
 
-    <button type="submit" class="btn btn-primary" ng-disabled="registerForm.$invalid" translate>registerForm.register</button>
+    <button type="button" ng-click="submit()" class="btn btn-primary" ng-disabled="registerForm.$invalid" translate>registerForm.register</button>
 
 </form>
