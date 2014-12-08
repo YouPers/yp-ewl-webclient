@@ -58,16 +58,25 @@
                             <!--validate-->
                             <!--</button>-->
                             <!--</span>-->
+
                         </div>
 
                     </div>
 
-                    <div ng-if="validPaymentCode === false">
+                    <div class="validation-result" ng-if="validPaymentCode === false">
 
                         <span ng-if="paymentCode.status == 404" translate>campaignForm.paymentCode.invalidCode</span>
-                        <span ng-if="paymentCode.status == 409" translate translate-values="{ invalidTopic: invalidTopic.name }">campaignForm.paymentCode.invalidTopic</span>
+
+                        <div ng-if="paymentCode.status == 409">
+                            <span translate translate-values="{ invalidTopic: invalidTopic.name }">campaignForm.paymentCode.invalidTopic</span>
+
+                            <br/>
+                            <a onclick="history.go(-1)" translate>campaignForm.backToTopicSelection</a>
+
+                        </div>
 
                     </div>
+
                 </div>
             </div>
         </form>
