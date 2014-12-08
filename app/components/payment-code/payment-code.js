@@ -5,7 +5,7 @@
 
         .run(['$rootScope', function ($rootScope) {
             _.merge($rootScope.enums, {
-                productType: "type1 type2 type3".split(' ')
+                productType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' ')
             });
         }])
     ;

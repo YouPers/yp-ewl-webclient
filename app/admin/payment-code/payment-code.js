@@ -58,7 +58,7 @@
                 };
 
                 $scope.topics = topics;
-                $scope.productTypes = ['type1', 'type2', 'type3'];
+                $scope.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
 
                 $scope.paymentCode = {
                     productType: $rootScope.enums.productType[0],
