@@ -58,6 +58,14 @@
       "label": "Ort",
       "placeholder": "Ort"
     },
+
+    "paymentCode": {
+      "label": "Paycode",
+      "invalidCode": "Ungültiger Code",
+      "invalidTopic": "Dieser Code ist nur für Kampagnen mit dem Thema {{ invalidTopic }} gültig"
+    },
+
+
     "back": "Zurück",
     "save": "Speichern",
     "create": "Speichern",
