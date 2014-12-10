@@ -45,6 +45,7 @@
             'assessmentResult', 'assessment', 'campaign',
             function ($scope, $q, $translate, UserService, StatsService, assessmentResult, assessment, campaign) {
 
+                $scope.healthCoachEvent = moment().isAfter(campaign.end) ? 'ended' : 'endingsoon';
                 var user = UserService.principal.getUser();
                 $scope.campaign = campaign;
                 $scope.daysLeft = -moment().diff($scope.campaign.end, 'days');
