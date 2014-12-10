@@ -136,6 +136,8 @@
                         });
                         var message = $filter('translate')('healthCoach.dcm.organization.missingFields', { fields: markdown });
                         $scope.$root.$emit('healthCoach:displayMessage', message);
+                    } else {
+                        $scope.$root.$emit('healthCoach:displayMessage', '');
                     }
                 };
 
