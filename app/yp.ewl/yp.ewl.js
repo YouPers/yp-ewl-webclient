@@ -172,8 +172,9 @@ angular.module('yp-ewl',
                         event.preventDefault();
 
                         if (!UserService.principal.isAuthenticated()) {
-                            console.log('preventing state change, because user is not authenticated');
-                            $rootScope.$broadcast('loginMessageShow', {toState: toState, toParams: toParams});
+                            console.log('preventing state change, because user is not authenticated, redirect to signin.content');
+                            $rootScope.nextStateAfterLogin = {toState: toState, toParams: toParams};
+                            $state.go('signin.content');
                         } else {
                             console.log('preventing state change, because user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
                             $rootScope.$emit('clientmsg:error', 'user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
@@ -193,11 +194,6 @@ angular.module('yp-ewl',
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                 console.debug('stateChangeSuccess from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
                 $analytics.pageTrack(toState.name);
-            });
-
-            $rootScope.$on('loginMessageShow', function (event, data) {
-                $state.go('signin.content');
-                $rootScope.nextStateAfterLogin = data;
             });
 
             // log stateChangeErrors
