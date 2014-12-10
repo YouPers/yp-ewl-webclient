@@ -63,15 +63,6 @@
                         $window.location = '/';
                     });
                 };
-
-
-                $scope.$on('event:authority-authorized', function (event, data) {
-                    if ($scope.nextStateAfterLogin) {
-                        $scope.$state.go($scope.nextStateAfterLogin.toState, $scope.nextStateAfterLogin.toParams);
-                        $scope.nextStateAfterLogin = null;
-                    }
-                });
-
             }]);
 
 }());

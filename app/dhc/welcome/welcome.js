@@ -44,8 +44,8 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/welcome/welcome');
             }])
 
-        .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'ActivityService', 'campaign',
-            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, campaign) {
+        .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'ActivityService', 'campaign', 'HealthCoachService',
+            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, campaign, HealthCoachService) {
 
                 if (!campaign) {
                     $state.go('dhc.game', {view: ""});
@@ -68,12 +68,19 @@
                     // we need to save it, because we have just updated it.
                     // if it is NOT an authenticated user we cannot save this change at this moment, so we
                     // just leave it in the client principal and store it when the user eventually register on our site.
+
+                    HealthCoachService.queueEvent('campaignWelcome');
+
                     if (UserService.principal.isAuthenticated()) {
                         UserService.putUser(UserService.principal.getUser()).then(function (result){
+                            // TODO: queue a coach message dhc.game.campaignWelcome
+                            // with the existing text of dhc.hame.noOffers
+                            // remove noOffers
                             $state.go('dhc.game', {campaignId: campaign.id, view: ""});
                         });
                     } else {
                         // user is not authenticated, we redirect him to signUp / signIn
+                        $rootScope.nextStateAfterLogin = {toState: 'dhc.game', toParams: {campaignId: campaign.id, view: ""}};
                         $state.go('signup.content');
                     }
 

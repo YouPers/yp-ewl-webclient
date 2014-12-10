@@ -1,5 +1,33 @@
 {
   "end-of-campaign": {
-
+    "lastDaysHeader": null,
+    "campaignEndendHeader": null,
+    "subheader": null,
+    "surveyInfo": null,
+    "surveyLink": null,
+    "reviewInfo": null,
+    "reviewLink": null,
+    "legend": {
+      "user": null,
+      "campaign": null,
+      "needForActionAvg": null
+    },
+    "eventsStatus": {
+      "title": null,
+      "user": null,
+      "campaign": null,
+      "done": null,
+      "missed": null,
+      "open": null
+    },
+    "eventsRatings": {
+      "title": null,
+      "user": null,
+      "campaign": null,
+      "1": null,
+      "3": null,
+      "5": null,
+      "null": null
+    }
   }
 }

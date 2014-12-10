@@ -28,7 +28,7 @@
                                 if ($rootScope.nextStateAfterLogin) {
                                     $state.go($rootScope.nextStateAfterLogin.toState, $rootScope.nextStateAfterLogin.toParams);
                                 } else {
-                                    $state.go('dhc.game', {view: ""});
+                                    $state.go('homedispatcher');
                                 }
                             });
                         });

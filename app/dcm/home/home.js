@@ -87,22 +87,24 @@
                                         return 'organizationIncomplete';
                                     } else if (UserService.principal.getUser().avatar.indexOf('default') !== -1) {
                                         return 'noAvatarPicture';
+                                    } else if(campaigns.length === 0) {
+                                        return 'noCampaigns';
                                     } else if (socialInteractions.length === 0 && daysSinceCampaignStart <= -1) {
                                         return 'nothingOffered';
                                     } else if (messages.length === 0 && daysSinceCampaignStart <= -1) {
                                         return 'noMessages';
-                                    } else if(campaigns.length === 0) {
-                                        return 'noCampaigns';
+                                    } else if(daysSinceCampaignStart <= -1) {
+                                        return 'oneDayOrMoreUntilCampaignStart';
                                     } else if(daysSinceCampaignStart === 0) {
                                         return 'campaignStartedToday';
                                     } else if(daysSinceCampaignStart >= 2 && daysSinceCampaignStart <= 7) {
                                         return 'campaignFirstWeek';
                                     } else if(daysSinceCampaignStart > 7 && daysUntilCampaignEnd > 7) {
                                         return 'campaignAfterFirstWeek';
-                                    } else if(daysUntilCampaignEnd <= 7) {
-                                        return 'campaignLastWeek';
                                     } else if(daysUntilCampaignEnd <= 0) {
                                         return 'campaignEnded';
+                                    } else if(daysUntilCampaignEnd <= 7) {
+                                        return 'campaignLastWeek';
                                     }
 
 
