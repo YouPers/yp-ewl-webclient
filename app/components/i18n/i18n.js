@@ -35,11 +35,13 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
                     // store the last language a user chose in the user's profile, so we know a user's language when
                     // we need to send him notifications/emails from the backend.
                     var profile = $scope.principal.getUser().profile;
-                    profile.language = key;
-                    if ($scope.principal.isAuthenticated()) {
-                        ProfileService.putProfile(profile).then(function success() {
-                            console.log('successfully updated user profile');
-                        });
+                    if (profile.language !== key) {
+                        profile.language = key;
+                        if ($scope.principal.isAuthenticated()) {
+                            ProfileService.putProfile(profile).then(function success() {
+                                console.log('successfully updated user profile');
+                            });
+                        }
                     }
                 }, function (err) {
                     console.log('could not switch language, err: ' + err);
