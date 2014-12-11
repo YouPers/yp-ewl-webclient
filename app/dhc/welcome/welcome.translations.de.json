@@ -8,6 +8,7 @@
     "backToDcm": "zurück zur Kampagnenverwaltung",
     "campaignNotStartedYet": "Du bist noch etwas zu früh, diese Kampagne startet am",
     "isCampaignlead": "Dieser Benutzeraccount wird zur Verwaltung einer Kampagne eingesetzt. Er kann darum nicht selbst an einer Kampagne teilnehmen.",
-    "yourCampaignLeads": "Dein(e) Kampagnenleiter:"
+    "yourCampaignLeads": "Dein(e) Kampagnenleiter:",
+    "moreInfoLink": "http://yp-web2.youpers.com/mehr-erfahren/?lang=de"
   }
 }

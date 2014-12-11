@@ -63,6 +63,7 @@ var specificConfigs = {
     },
     uat: {
         name: '',
+        webclientUrl: 'https://uat.youpers.com',
         backendUrl: 'https://uat.youpers.com/api',
         translationSource: 'wti',
         googleAnalytics: {
@@ -71,6 +72,7 @@ var specificConfigs = {
     },
     prod: {
         name: '',
+        webclientUrl: 'https://prod.youpers.com',
         backendUrl: 'https://prod.youpers.com/api',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-3'

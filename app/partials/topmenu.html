@@ -37,7 +37,7 @@
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </li>
-                        <li><a ui-sref="moreinfo.content" target="_blank" translate>topmenu.moreinfo</a></li>
+                        <li><a href="{{'welcome.moreInfoLink' | translate}}" target="_blank" translate>topmenu.moreinfo</a></li>
                         <li class="dropdown" ng-show="principal.isAuthenticated()">
                             <a class="dropdown-toggle user-nav-link" data-toggle="dropdown">{{
                                 principal.getUser().fullname }}
