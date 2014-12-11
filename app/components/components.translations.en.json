@@ -16,7 +16,7 @@
     }
   },
   "busy": {
-    "submitting": "Saving ..."
+    "submitting": null
   },
   "calendar": {
     "tomorrow": "Tomorrow",

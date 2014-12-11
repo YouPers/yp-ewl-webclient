@@ -30,7 +30,9 @@
     "back": "Back",
     "header": {
       "recommendation": "Campaign recommendation"
-    }
+    },
+    "noDefaultStartTime": null,
+    "startTime": null
   },
   "activities": {
     "duration": {

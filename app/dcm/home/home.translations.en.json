@@ -51,8 +51,8 @@
     },
     "messages": "Messages",
     "noCampaigns": "You have not created any campaigns yet",
-    "noMessages": "Your messages for the campaign participants are displayed here. Click on \"Message for the campaign\" to post a message.",
-    "noOffers": "Once you, as a campaign manager, have recommended to perform an activity to the campaign participants or you, as an organisator, have invited the campaign participants to a joint campaign activity, the offered activity will be displayed here. Click on \"Add offer\" to offer an activity to the campaign participants.",
+    "noMessages": "Your messages for the campaign participants are displayed here. Click on \"Campaign message\" to post a message.",
+    "noOffers": "Once you, as a campaign leader, have recommended to perform an activity to the campaign participants or you, as an organizer, have invited the campaign participants to a joint campaign activity, the offered activities will be displayed here. Click on \"Add offer\" to offer an activity to the campaign participants.",
     "noParticipants": "There are no campaign participants yet",
     "showOld": "Show past"
   }

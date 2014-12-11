@@ -22,7 +22,7 @@
     }
   },
   "composeMessageForm": {
-    "show": "Message for the campaign",
+    "show": "Campaign message",
     "cancel": "Stop",
     "title": {
       "label": "Tab",

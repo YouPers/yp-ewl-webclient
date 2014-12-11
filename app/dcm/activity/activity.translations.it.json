@@ -30,7 +30,9 @@
     "back": "Indietro",
     "header": {
       "recommendation": null
-    }
+    },
+    "noDefaultStartTime": null,
+    "startTime": null
   },
   "activities": {
     "duration": {

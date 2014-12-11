@@ -65,6 +65,12 @@
     "topic": {
       "change": "Cambia",
       "label": null
+    },
+    "backToTopicSelection": null,
+    "paymentCode": {
+      "invalidCode": null,
+      "invalidTopic": null,
+      "label": null
     }
   },
   "inviteCampaignLeadForm": {

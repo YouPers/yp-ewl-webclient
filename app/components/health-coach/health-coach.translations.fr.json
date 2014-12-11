@@ -11,6 +11,7 @@
         "stateEnter": null
       },
       "home": {
+        "oneDayOrMoreUntilCampaignStart": null,
         "campaignAfterFirstWeek": null,
         "campaignCreated": null,
         "campaignEnded": null,
@@ -70,7 +71,7 @@
         "campaignEnded": null,
         "campaignEndingWithCurrentActivities": null,
         "noCurrentActivities": null,
-        "noOffers": null,
+        "campaignWelcome": null,
         "noPastOrPresentEventsAndEnoughActivities": null,
         "noPastOrPresentEventsAndTooFewActivities": null,
         "pastEvents": null,
@@ -78,7 +79,12 @@
         "pastAndPresentEvents": null,
         "presentEvents": null,
         "recommendationDismissed": null,
-        "invitationDismissed": null
+        "invitationDismissed": null,
+        "noOffers": null
+      },
+      "end-of-campaign": {
+        "endingsoon": null,
+        "ended": null
       }
     },
     "fullname": null,

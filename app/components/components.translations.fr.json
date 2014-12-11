@@ -15,6 +15,9 @@
       "504": null
     }
   },
+  "busy": {
+    "submitting": null
+  },
   "calendar": {
     "tomorrow": "Demain",
     "today": "aujourd’hui",

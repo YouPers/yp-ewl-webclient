@@ -65,6 +65,12 @@
     "topic": {
       "change": "modifier",
       "label": "Programme"
+    },
+    "backToTopicSelection": null,
+    "paymentCode": {
+      "invalidCode": null,
+      "invalidTopic": null,
+      "label": null
     }
   },
   "inviteCampaignLeadForm": {

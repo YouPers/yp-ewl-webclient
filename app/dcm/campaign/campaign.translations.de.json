@@ -81,7 +81,7 @@
       "placeholder": "Eine oder mehrere Email-Adressen"
     },
     "inviteSubmit": "Senden",
-    "invitationSent": "Einladung via Email versandt, der neue Kampagnen-Leiter muss nun bestätigen"
+    "invitationSent": "Einladung via Email versandt, der neue Kampagnenleiter muss nun bestätigen"
   },
   "clientmsg": {
     "success": {
