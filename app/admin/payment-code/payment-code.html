@@ -1,9 +1,12 @@
 <div class="container">
 
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-md-6">
+
+            <br/>
+            <br/>
 
             <div class="input-group">
 
@@ -17,21 +20,23 @@
                     <span ng-show="valid" class="glyphicon glyphicon-ok"></span>
                     <span ng-show="!valid" class="glyphicon glyphicon-remove"></span>
                 </span>
-                <input ng-model="code" type="text" class="form-control">
+                <input ng-model="code" type="text" class="form-control" ng-change="validate(code)">
             </div>
 
             <div class="input-group">
                 <span class="input-group-addon">
-                    <span>relatedService</span>
-                </span>
-                <input ng-model="paymentCode.relatedService" type="text" class="form-control">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">
                     <span>productType</span>
                 </span>
-                <input ng-model="paymentCode.productType" type="text" class="form-control">
+                <select required class="form-control" ng-model="paymentCode.productType" ng-options="type for type in productTypes"></select>
             </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>topic</span>
+                </span>
+                <select required class="form-control" ng-model="paymentCode.topic" ng-options="topic.id as topic.name for topic in topics"></select>
+            </div>
+
             <div class="input-group">
                 <span class="input-group-addon">
                     <span>users</span>
@@ -40,15 +45,16 @@
             </div>
 
 
-        </div>
-
-        <div class="col-md-6">
+            <br/>
+            <br/>
 
 
             <ul class="list-group">
                 <li ng-repeat="paymentCode in codes" class="list-group-item">
-                    <span>{{ paymentCode.code }}</span>
-                    <span class="badge">{{ paymentCode.campaign }}</span>
+                    <span select-on-click>{{ paymentCode.code }}</span>
+                    <span class="badge">{{ topic(paymentCode.topic).name }}</span>
+                    <span class="badge">{{ paymentCode.productType }}</span>
+                    <span class="badge" ng-show="paymentCode.users">{{ paymentCode.users }} users</span>
                 </li>
             </ul>
 

@@ -20,6 +20,7 @@
             'yp.components.i18n',
             'yp.components.stats',
             'yp.components.topic',
+            'yp.components.paymentCode',
 
             // directives
             'yp.components.title',

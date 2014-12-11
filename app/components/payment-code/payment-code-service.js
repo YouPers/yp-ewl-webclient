@@ -13,8 +13,8 @@
                     generatePaymentCode: function(paymentCode) {
                         return paymentResource.post('generate', paymentCode);
                     },
-                    validatePaymentCode: function(code) {
-                        return paymentResource.post('validate', { code: code });
+                    validatePaymentCode: function(options) {
+                        return paymentResource.post('validate', options);
                     },
                     redeemPaymentCode: function(code, campaign) {
                         return paymentResource.post('redeem', { code: code, campaign: campaign });

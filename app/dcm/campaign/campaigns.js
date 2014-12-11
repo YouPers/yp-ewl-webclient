@@ -52,8 +52,8 @@
             }])
 
 
-        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'campaign', 'topics', 'newTopic',
-            function ($scope, CampaignService, UserService, HealthCoachService, campaign, topics, newTopic) {
+        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'PaymentCodeService', 'campaign', 'topics', 'newTopic',
+            function ($scope, CampaignService, UserService, HealthCoachService, PaymentCodeService, campaign, topics, newTopic) {
 
                 $scope.campaignController = this;
 
@@ -106,6 +106,25 @@
                 $scope.showForm = function () {
                     $scope.formVisible = true;
                     $scope.invitationSent = false;
+                };
+
+
+                $scope.validatePaymentCode = function(code) {
+                    if(!code) {
+                        return;
+                    }
+                    PaymentCodeService.validatePaymentCode({ code: code, topic: $scope.campaign.topic.id}).then(function(result) {
+                        $scope.paymentCode = result;
+
+                        $scope.validPaymentCode = true;
+                        //$scope.campaign.productType = result.productType;
+
+                    }, function(reason) {
+
+                        $scope.invalidTopic = _.find(topics, { id: reason.data.data.expected });
+                        $scope.paymentCode = reason;
+                        $scope.validPaymentCode = false;
+                    });
                 };
 
                 $scope.saveCampaign = function () {

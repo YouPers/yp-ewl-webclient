@@ -40,8 +40,49 @@
                         <label class="" translate>campaignForm.end.label</label>
                     </div>
                 </div>
+
+
+                <div ng-if="!campaign.id" class="payment-code">
+
+                    <div class="form-group">
+                        <label translate>campaignForm.paymentCode.label</label>
+
+                        <div class="input-group">
+                            <input ng-model="code" type="text" class="form-control" ng-change="validatePaymentCode(code)">
+
+                            <span class="input-group-addon">
+                                <span ng-show="validPaymentCode" class="glyphicon glyphicon-ok"></span>
+                                <span ng-show="!validPaymentCode" class="glyphicon glyphicon-remove"></span>
+                            </span>
+
+                            <!--<span class="input-group-btn">-->
+                            <!--<button class="btn btn-default" type="button" ng-click="validatePaymentCode(code)">-->
+                            <!--validate-->
+                            <!--</button>-->
+                            <!--</span>-->
+
+                        </div>
+
+                    </div>
+
+                    <div class="validation-result" ng-if="validPaymentCode === false">
+
+                        <span ng-if="paymentCode.status == 404" translate>campaignForm.paymentCode.invalidCode</span>
+
+                        <div ng-if="paymentCode.status == 409">
+                            <span translate translate-values="{ invalidTopic: invalidTopic.name }">campaignForm.paymentCode.invalidTopic</span>
+
+                            <br/>
+                            <a onclick="history.go(-1)" translate>campaignForm.backToTopicSelection</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </form>
+
 
         <div ng-show="campaign.id">
             <div class="row">
@@ -106,7 +147,7 @@
                 <span translate>activity.link.back</span>
             </div>
         </div>
-        <div class="button-row" ng-if="campaignForm.$dirty || !campaign.id">
+        <div class="button-row" ng-if="(campaign.id && campaignForm.$dirty) || (!campaign.id && validPaymentCode)">
             <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true" class="btn btn-primary" ng-disabled="campaignForm.$invalid" busy>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                 <span translate>campaignForm.save</span>

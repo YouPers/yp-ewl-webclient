@@ -10,16 +10,22 @@
                 $stateProvider
                     .state('paymentCodeAdmin', {
                         url: '/paymentCode',
-                        templateUrl: 'yp.payment/yp.payment.code.admin.html',
+                        templateUrl: 'admin/payment-code/payment-code.html',
                         controller: 'PaymentCodeAdminController',
-                        access: accessLevels.user
+                        access: accessLevels.admin,
+
+                        resolve: {
+                            topics: ['TopicService', function(TopicService) {
+                                return TopicService.getTopics();
+                            }]
+                        }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('yp.payment/yp.payment');
+                //$translateWtiPartialLoaderProvider.addPart('admin/payment-code/payment-code');
             }])
 
-        .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'CampaignService',
-            function ($rootScope, $scope, PaymentCodeService) {
+        .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'topics',
+            function ($rootScope, $scope, PaymentCodeService, topics) {
 
 
                 $scope.validate = function(code) {
@@ -42,12 +48,21 @@
 
                         $scope.code = result.code;
                         $scope.valid = true;
+                    }, function (err) {
+                        $scope.$emit('clientmsg:error', err);
                     });
                 };
 
+                $scope.topic = function (topic) {
+                    return _.find(topics, {id: topic});
+                };
+
+                $scope.topics = topics;
+                $scope.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
+
                 $scope.paymentCode = {
                     productType: $rootScope.enums.productType[0],
-                    relatedService: $rootScope.enums.relatedService[0]
+                    topic: topics[0].id
                 };
 
                 PaymentCodeService.getPaymentCodes().then(function(codes) {
