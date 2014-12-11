@@ -25,8 +25,6 @@
                                     return scope.onSignIn();
                                 }
 
-                                $rootScope.$broadcast('language:changed', response.profile.language);
-
                                 if ($rootScope.nextStateAfterLogin) {
                                     $state.go($rootScope.nextStateAfterLogin.toState, $rootScope.nextStateAfterLogin.toParams);
                                 } else {
