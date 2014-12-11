@@ -67,6 +67,7 @@
       },
       "label": "Nom de société",
       "placeholder": "Nom de société"
-    }
+    },
+    "termsLink": null
   }
 }

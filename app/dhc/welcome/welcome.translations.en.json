@@ -8,6 +8,7 @@
     "backToDcm": "back to campaign administration",
     "campaignNotStartedYet": "You are still a little too early, this campaign will start on",
     "isCampaignlead": "This user account is used to manage a campaign. Therefore, she/he cannot take part in a campaign herself/himself.",
-    "yourCampaignLeads": "Your Campaign Leader(s):"
+    "yourCampaignLeads": "Your Campaign Leader(s):",
+    "moreInfoLink": null
   }
 }

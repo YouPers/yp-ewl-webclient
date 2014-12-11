@@ -29,7 +29,7 @@
       "all": "all",
       "inviteByEmail": "Invite someone by email",
       "inviteByUser": "Search within campaign",
-      "invitedOnSave": "Invited when saved:",
+      "invitedOnSave": "Invited when scheduled:",
       "none": "Nobody",
       "notFound": "not found? invite someone by email:"
     },

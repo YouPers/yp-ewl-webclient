@@ -8,6 +8,7 @@
     "backToDcm": null,
     "campaignNotStartedYet": null,
     "isCampaignlead": null,
-    "yourCampaignLeads": null
+    "yourCampaignLeads": null,
+    "moreInfoLink": null
   }
 }
