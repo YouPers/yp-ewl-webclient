@@ -25,16 +25,16 @@
 
         <div class="form-group"  ng-class="{'has-error': registerForm.termsAccepted.$dirty && registerForm.termsAccepted.$invalid}">
 
-            <!-- toggle-value="termsAccepted" is used again in the <a> to revert the checkbox change when clicking on the link-->
-            <label class="p2" toggle-value="termsAccepted">
-                <input class="pull-left" name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
 
-                <div class="pull-left">
+            <div class="terms">
+                <input id="termsAccepted" name="termsAccepted" type="checkbox" ng-model="termsAccepted" ng-required="true">
+
+                <label for="termsAccepted">
                     <span translate>registerForm.termsAccepted.label1</span>
-                    <a href="{{'registerForm.termsLink' | translate}}" target="_blank" toggle-value="termsAccepted" translate>registerForm.termsAccepted.label2</a>
+                    <a href="{{'registerForm.termsLink' | translate}}" target="_blank" translate>registerForm.termsAccepted.label2</a>
                     <span translate>registerForm.termsAccepted.label3</span>
-                </div>
-            </label>
+                </label>
+            </div>
             <br/>
             <span ng-show="registerForm.termsAccepted.$error.required" class="help-inline" translate>registerForm.termsAccepted.$error.required</span>
         </div>

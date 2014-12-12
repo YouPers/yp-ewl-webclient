@@ -13,7 +13,11 @@
 
                     scope.user = {};
 
+                    //scope.termsAccepted = false;
+
                     scope.submit = function() {
+
+                        scope.termsAccepted = true;
 
                         var user = scope.newUser;
 
