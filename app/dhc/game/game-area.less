@@ -20,7 +20,11 @@ game-area {
     .flex {
 
       position: relative;
-//      width: 640px;
+
+      // setting a width here is the cause for an infinite scrolling issue with IE10 and the DHC 'show more'
+      // -> clientWidth would be 0 in the hasOverflow check
+      // there seems to be no side effect of removing it
+      //      width: 640px;
 
       display: flex;
       flex-direction: column;
