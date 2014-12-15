@@ -66,15 +66,21 @@
 
                 $scope.invitingUser = invitation.author;
 
-
-
-                $scope.showActivity = function() {
+                function _goToActivity() {
                     $state.transitionTo('dhc.activity' , {
                         campaignId: invitation.activity.campaign, //TODO: check if it is the same as the users campaign
                         idea: invitation.activity.idea.id,
                         activity: invitation.activity.id,
                         socialInteraction: invitation.id
                     });
+                }
+
+                $scope.showActivity = function() {
+                    _goToActivity();
+                };
+
+                $scope.onSignIn = function () {
+                    _goToActivity();
                 };
 
             }

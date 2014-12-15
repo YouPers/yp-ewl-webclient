@@ -6,8 +6,6 @@
   },
   "invite": {
     "continueToActivity": null,
-    "header1": "Merci de votre retour",
-    "header2": null,
     "invalidCampaign": null,
     "invalidCampaignHeader": "Alerte",
     "messageAuthenticated": null,
