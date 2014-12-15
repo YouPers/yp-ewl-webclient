@@ -402,7 +402,7 @@
                             } else {
 
                                 invitation.publishFrom = $scope.minPublishDate;
-                                invitation.publishTo = $scope.events[$scope.events.length].end;
+                                invitation.publishTo = $scope.events[$scope.events.length - 1].end;
 
                                 if (inviteAll && !campaignInvitation) {
                                     invitation.targetSpaces = [
