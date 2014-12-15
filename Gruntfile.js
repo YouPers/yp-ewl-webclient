@@ -324,7 +324,7 @@ module.exports = function (grunt) {
                             'dhc/**/*.json',
                             'dcm/**/*.json',
                             'components/**/*.json',
-                            'assets/**/*.{gif,webp,png,jpg,ico,svg}',
+                            'assets/**/*.{gif,webp,png,jpg,jpeg,ico,svg}',
                             'styles/fonts/{,*/}*.woff'
                         ]
                     },
