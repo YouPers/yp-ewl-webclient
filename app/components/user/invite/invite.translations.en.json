@@ -6,8 +6,6 @@
   },
   "invite": {
     "continueToActivity": "Continue to activity",
-    "header1": "Welcome",
-    "header2": "YOUPERS Digital Health",
     "invalidCampaign": "<strong>{{ invalidCampaignUser.fullname }}</strong> is in a different campaign (<strong>{{ invalidCampaignUser.campaign.title }}</strong>). The invitation to this activity however is for campaign <strong>{{ campaign.title }}</strong>. Sign in for this campaign with a username to join the activity!",
     "invalidCampaignHeader": "Attention!",
     "messageAuthenticated": "<strong>{{user}}</strong> has invited you to activity <strong>{{ idea.title }}</strong>.",

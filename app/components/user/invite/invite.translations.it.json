@@ -6,8 +6,6 @@
   },
   "invite": {
     "continueToActivity": null,
-    "header1": null,
-    "header2": null,
     "invalidCampaign": null,
     "invalidCampaignHeader": "Avviso",
     "messageAuthenticated": null,
