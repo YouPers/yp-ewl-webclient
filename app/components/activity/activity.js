@@ -399,40 +399,47 @@
                                     });
                                 }
 
-                            } else if (inviteAll && !campaignInvitation) {
-                                invitation.targetSpaces = [
-                                    {
-                                        type: 'campaign',
-                                        targetId: campaign.id
+                            } else {
+
+                                invitation.publishFrom = $scope.minPublishDate;
+                                invitation.publishTo = $scope.events[$scope.events.length].end;
+
+                                if (inviteAll && !campaignInvitation) {
+                                    invitation.targetSpaces = [
+                                        {
+                                            type: 'campaign',
+                                            targetId: campaign.id
+                                        }
+                                    ];
+
+                                    SocialInteractionService.postInvitation(invitation);
+
+                                } else if (!inviteAll) {
+
+                                    var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
+                                        return typeof user;
+                                    });
+
+                                    var users = toBeInvited.object;
+                                    var emails = toBeInvited.string;
+
+                                    invitation.targetSpaces = [];
+                                    _.forEach(users, function (user) {
+                                        invitation.targetSpaces.push({
+                                            type: 'user',
+                                            targetId: user.id
+                                        });
+                                    });
+
+                                    SocialInteractionService.postInvitation(invitation);
+
+                                    if (emails && emails.length > 0) {
+                                        ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' }, { reload: true });
+                                        });
                                     }
-                                ];
-
-                                SocialInteractionService.postInvitation(invitation);
-
-                            } else if (!inviteAll) {
-
-                                var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
-                                    return typeof user;
-                                });
-
-                                var users = toBeInvited.object;
-                                var emails = toBeInvited.string;
-
-                                invitation.targetSpaces = [];
-                                _.forEach(users, function (user) {
-                                    invitation.targetSpaces.push({
-                                        type: 'user',
-                                        targetId: user.id
-                                    });
-                                });
-
-                                SocialInteractionService.postInvitation(invitation);
-
-                                if (emails && emails.length > 0) {
-                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
-                                        $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' }, { reload: true });
-                                    });
                                 }
+
                             }
                         }
 
