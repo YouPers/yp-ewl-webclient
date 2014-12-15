@@ -80,7 +80,7 @@
                         });
                     } else {
                         // user is not authenticated, we redirect him to signUp / signIn
-                        $rootScope.nextStateAfterLogin = {toState: 'dhc.game', toParams: {campaignId: campaign.id, view: ""}};
+                        $rootScope.nextStateAfterLogin = {toState: 'homedispatcher', toParams: {campaignId: campaign.id, view: ""}};
                         $state.go('signup.content');
                     }
 
