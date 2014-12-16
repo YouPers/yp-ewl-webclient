@@ -34,11 +34,11 @@
                     <a class="fa fa-edit" ng-click="enterEditMode()"
                        ng-if="!activityController.formEnabled &&
                         activity.editStatus.indexOf('editable') === 0 &&
-                        activityController.canEdit"></a>
+                        activityController.canEdit" popover="{{ 'activity.editPopover' | translate }}" popover-trigger="mouseenter" popover-placement="bottom" popover-append-to-body="true"></a>
                     <a class="fa fa-trash-o" ng-click="enterDeleteMode()"
                        ng-if="!activityController.formEnabled &&
                        activity.deleteStatus.indexOf('deletable') === 0 &&
-                       activityController.canDelete"></a>
+                       activityController.canDelete" popover="{{ 'activity.deletePopover' | translate }}" popover-trigger="mouseenter" popover-placement="bottom" popover-append-to-body="true"></a>
                 </span>
             </h3>
 

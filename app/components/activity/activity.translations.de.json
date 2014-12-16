@@ -75,6 +75,9 @@
     "isJoining": "Teilnehmer",
     "isInvited": "Eingeladen",
     "reschedule": "Erneut einplanen",
+
+    "editPopover": "Bearbeiten",
+    "deletePopover": "Löschen",
     "event": {
       "status": "Gemacht?",
       "rating": "Wie war's?"
