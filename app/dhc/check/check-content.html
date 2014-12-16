@@ -41,21 +41,21 @@
                                 <!-- too low -->
                                 <div class="btn-group">
                                     <button type="button" class="btn" ng-model="answers[question.id].answerType"
-                                            btn-radio="'min'" ng-show="question.type !== 'rightSided'">
+                                            btn-radio="'min'" ng-show="question.type !== 'rightSided'" ng-mouseover="displayInfo(question)">
                                         {{ question.mintext }}
                                     </button>
                                 </div>
                                 <!-- alright -->
                                 <div class="btn-group">
                                     <button type="button" class="btn" ng-model="answers[question.id].answerType"
-                                            btn-radio="'mid'">
+                                            btn-radio="'mid'" ng-mouseover="displayInfo(question)">
                                         {{ question.midtext }}
                                     </button>
                                 </div>
                                 <!-- too much -->
                                 <div class="btn-group">
                                     <button type="button" class="btn" ng-model="answers[question.id].answerType"
-                                            btn-radio="'max'" ng-show="question.type !== 'leftSided'">
+                                            btn-radio="'max'" ng-show="question.type !== 'leftSided'" ng-mouseover="displayInfo(question)">
                                         {{ question.maxtext }}
                                     </button>
                                 </div>
