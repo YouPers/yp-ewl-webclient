@@ -173,8 +173,16 @@
         .factory("ClientMessageService", [ '$log', '$window', 'Restangular', function( $log, $window, Restangular) {
 
             var errorResource = Restangular.all('error');
+
+            var backendErrorCount = 0;
+
             var _postToBackend = _.throttle(function(args) {
-                errorResource.post(args);
+                backendErrorCount++;
+                if (backendErrorCount < 10 ) {
+                    errorResource.post(args);
+                } else if (backendErrorCount === 10) {
+                    console.error("Stopped logging to the backend, we already logged the max of 10 errors from this client session");
+                }
             }, 10000);
 
 
@@ -234,7 +242,9 @@
                             error: arguments,
                             client: client
                         };
+
                         _postToBackend(args);
+
                     }
 
                     return client;
