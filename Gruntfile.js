@@ -414,7 +414,10 @@ module.exports = function (grunt) {
             }
         },
         uglify: {
-
+            options: {
+                sourceMap: true,
+                sourceMapIncludeSources: true
+            }
         },
         'template': {
             'options': {
