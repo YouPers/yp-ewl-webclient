@@ -19,7 +19,7 @@
       "publish": "Einladung publizieren",
       "first": {
         "Invitation": "Einladung",
-        "NewCampaignActivity": "Neue Kampagnen-Aktivität",
+        "NewCampaignActivity": "Neue Kampagnenaktivität",
         "PlannedActivity": "Deine Aktivität",
         "Recommendation": "Empfehlung"
       }
@@ -29,7 +29,7 @@
       "all": "alle",
       "inviteByEmail": "Jemanden per Email einladen",
       "inviteByUser": "In der Kampagne suchen",
-      "invitedOnSave": "Beim Speichern werden eingeladen:",
+      "invitedOnSave": "Beim Einplanen werden eingeladen:",
       "none": "Niemand",
       "notFound": "nicht gefunden? - Lade mittels Email ein:"
     },
