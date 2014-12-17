@@ -14,7 +14,7 @@
     "error": {
       "password": {
         "invalid": "The current password is not valid",
-        "reset": "Email-Address not found"
+        "reset": "Email address not found"
       }
     }
   },

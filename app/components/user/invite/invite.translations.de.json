@@ -10,6 +10,6 @@
     "invalidCampaignHeader": "Achtung!",
     "messageAuthenticated": "<strong>{{user}}</strong> hat dich zu der Aktivität <strong>{{ idea.title }}</strong> eingeladen.",
     "messageUnauthenticated": "<strong>{{user}}</strong> hat dich zu der Aktivität <strong>{{ idea.title }}</strong> eingeladen. Melde dich an, um daran teilzunehmen",
-    "noAccount": "Noch nicht registriert? Öffne den Link in deiner Einladungsmail von <strong>{{ campaign.campaignLeads[0].fullname }}</strong> um an der Kampagne <strong>{{ campaign.title }}</strong> teilzunehmen!"
+    "noAccount": "Noch nicht registriert? Öffne den Link in deiner Einladungsemail von <strong>{{ campaign.campaignLeads[0].fullname }}</strong>, um an der Kampagne <strong>{{ campaign.title }}</strong> teilzunehmen!"
   }
 }

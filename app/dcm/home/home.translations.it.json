@@ -54,6 +54,11 @@
     "noMessages": null,
     "noOffers": null,
     "noParticipants": null,
-    "showOld": null
+    "showOld": null,
+    "offerType": {
+      "Recommendation": null,
+      "Invitation": null,
+      "All": null
+    }
   }
 }

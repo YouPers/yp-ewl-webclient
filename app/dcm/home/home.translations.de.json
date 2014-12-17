@@ -40,6 +40,8 @@
       "inviteMore": "weitere einladen",
       "label": "Email-Adressen der einzuladenden Mitarbeiter, getrennt mittels Komma, Semikolon oder Leerschlag",
       "next": "weiter",
+      "add": "hinzufügen",
+      "reviewEmailAddresses": "Bitte prüfe die Emailadressen bevor du die Einladungen mit dem Absenden Button versendest",
       "placeholder": "Email-Adressen",
       "send": "absenden",
       "sendTestButton": "Test",

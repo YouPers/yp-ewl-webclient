@@ -54,7 +54,7 @@
     },
     "termsAccepted": {
       "label1": "I have read the ",
-      "label2": "General Terms and Conditions",
+      "label2": "terms of use",
       "label3": "and I agree",
       "$error": {
         "required": "Please accept the Terms and Conditions"

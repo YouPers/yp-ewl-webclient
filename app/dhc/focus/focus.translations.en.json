@@ -16,7 +16,8 @@
     },
     "toSelect": "Go to recommendations",
     "link": {
-      "back": "Home"
+      "back": "Home",
+      "backToAssessment": null
     }
   }
 }

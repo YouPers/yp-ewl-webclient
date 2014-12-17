@@ -16,7 +16,8 @@
     },
     "toSelect": "aux recommandations",
     "link": {
-      "back": "Accueil"
+      "back": "Accueil",
+      "backToAssessment": null
     }
   }
 }

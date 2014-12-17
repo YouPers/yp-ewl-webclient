@@ -54,6 +54,11 @@
     "noMessages": "Your messages for the campaign participants are displayed here. Click on \"Campaign message\" to post a message.",
     "noOffers": "Once you, as a campaign leader, have recommended to perform an activity to the campaign participants or you, as an organizer, have invited the campaign participants to a joint campaign activity, the offered activities will be displayed here. Click on \"Add offer\" to offer an activity to the campaign participants.",
     "noParticipants": "There are no campaign participants yet",
-    "showOld": "Show past"
+    "showOld": "Show past",
+    "offerType": {
+      "Recommendation": null,
+      "Invitation": null,
+      "All": null
+    }
   }
 }

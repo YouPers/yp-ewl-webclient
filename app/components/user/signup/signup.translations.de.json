@@ -54,7 +54,7 @@
     },
     "termsAccepted": {
       "label1": "Ich habe die ",
-      "label2": "Allgemeinen Geschäftsbedingungen",
+      "label2": "Nutzungsbedingungen",
       "label3": "gelesen und stimme ihnen zu",
       "$error": {
         "required": "Bitte akzeptiere die Geschäftsbedingungen"
