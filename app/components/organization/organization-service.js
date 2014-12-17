@@ -45,6 +45,7 @@
                             !!organization.address.city &&
                             !!organization.legalForm &&
                             !!organization.sector &&
+                            !!organization.contact &&
                             !!organization.contact.position &&
                             !!organization.contact.phone;
                     }
