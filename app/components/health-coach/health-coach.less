@@ -6,6 +6,8 @@
 
 health-coach {
   display: block;
+  position: relative;
+
   .game-card();
   background-color: white;
 
@@ -15,6 +17,19 @@ health-coach {
     color: @yp-subtitle;
   }
 
+  > div.expanded {
+    max-height: none !important;
+  }
 
+  .expand {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 4px;
+    text-align: center;
+    background-color: white;
+
+    box-shadow: 0 -2px 12px @yp-shadow;
+  }
 }
 

@@ -55,6 +55,15 @@
                         scope.$parent.$broadcast('initialize-scroll-along');
                     });
 
+                    var coach = elem[0];
+
+                    scope.$watch(function () {
+                        return coach.clientHeight;
+                    }, function () {
+                        scope.expandable = coach.scrollHeight > coach.clientHeight;
+                    });
+
+                    scope.style = { 'max-height': window.innerHeight /2 + 'px' };
                 }
             };
         }]);

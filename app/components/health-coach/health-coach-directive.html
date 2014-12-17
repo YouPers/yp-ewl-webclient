@@ -1,4 +1,4 @@
-<div ng-if="coachMessage || eventMessage">
+<div ng-if="coachMessage || eventMessage" ng-class="{ expanded: expanded }" ng-style="style">
 
     <div class="inbox-item">
 
@@ -18,4 +18,8 @@
         <div ng-if="!coachMessage && eventMessage" ng-bind-html="eventMessage"></div>
 
     </div>
+
+    <a ng-show="expandable" class="expand" ng-click="expanded = true; expandable = false">
+        <span translate>healthCoach.expand</span>
+    </a>
 </div>

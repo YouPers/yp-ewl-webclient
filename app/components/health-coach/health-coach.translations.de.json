@@ -88,6 +88,7 @@
       }
     },
     "fullname": "YOUPERS Coach",
+    "expand": "mehr",
     "dcmSignup": {
       "stateEnter": "Herzlich Willkommen!<br>Ich bin dein YOUPERS Coach und freue mich, dass du dich für den HealthCampaign Service interessierst.\n\nBitte registriere dich und deinen Betrieb auf dieser Seite. Nach der Registrierung kannst du mit der Erstellung deiner ersten Kampagne starten.\n\nIch werde dich bei der Erstellung und Verwaltung deiner Kampagnen mit Tipps und Hinweisen unterstützen."
     }
