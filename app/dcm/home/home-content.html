@@ -10,7 +10,26 @@
                 </h3>
             </div>
             <div class="row" ng-if="campaignStartOpen">
-                <div class="col-md-6">
+
+                <div class="col-md-12">
+
+                    <h3 translate>dcmhome.campaignStart.welcomeLinkTitle</h3>
+
+                    <div translate>dcmhome.campaignStart.welcomeLinkExplain</div>
+
+                    <!--
+
+                     HINT: manual concatenation of absolute url instead of { absolute: true }
+                           because there is an issue with html5mode in ui-router with angular 1.3
+                           see http://stackoverflow.com/questions/26220037/ui-sref-not-generating-hash-in-url-angular-1-3-0-rc-3
+                     -->
+                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{
+                        config.webclientUrl + '/#' + $state.href('welcome',{campaignId:
+                        campaign.id})}}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
                     <h3 translate>dcmhome.emailInvite.title</h3>
 
                     <div translate>dcmhome.emailInvite.explain</div>
@@ -67,28 +86,53 @@
 
                         </div>
                         <div class="row" ng-if="homeController.formStatus=='enterAdresses'">
+
                             <div class="col-md-12">
                                 <label translate>dcmhome.emailInvite.label</label>
-                                <input type="text" multiple-emails required class="form-control"
-                                       ng-model="emailToBeInvited"
-                                       placeholder="{{ 'dcmhome.emailInvite.placeholder' | translate }}">
-                            </div>
-                            <div class="col-md-6 col-md-offset-6">
+
+                                <textarea class="form-control email-addresses"
+                                          ng-model="homeController.rawEmailAddressesInput"
+                                          placeholder="{{ 'dcmhome.emailInvite.placeholder' | translate }}"></textarea>
+
                                 <br/>
-                                <button ng-click="emailInvitation.$valid && onEmailInviteSubmit(emailToBeInvited, emailSubject, emailText); emailToBeInvited = ''"
-                                        class="btn btn-default pull-right"
-                                        ng-disabled="emailInvitation.$invalid" translate>dcmhome.emailInvite.send
+                                <button ng-click="parseEmailAddresses(homeController.rawEmailAddressesInput);homeController.rawEmailAddressesInput = ''"
+                                        class="btn btn-default pull-right" translate>dcmhome.emailInvite.add
                                 </button>
+
+                            </div>
+
+                            <div class="col-md-12" ng-if="homeController.emailAddressesToBeInvited.length > 0">
+
+                                <label translate>dcmhome.emailInvite.reviewEmailAddresses</label>
+
+                                <div class="email-address-list-item" ng-repeat="email in homeController.emailAddressesToBeInvited">
+
+                                    <span>{{ email }}</span>
+                                    <a><i class="fa fa-times" ng-click="homeController.emailAddressesToBeInvited.splice($index, 1)"></i></a>
+
+                                </div>
+
+                                <div class="col-md-12" ng-if="homeController.emailAddressesToBeInvited.length > 0">
+                                    <br/>
+                                    <button ng-click="onEmailInviteSubmit(homeController.emailAddressesToBeInvited.join(', '), emailSubject, emailText); homeController.emailAddressesToBeInvited = []"
+                                            class="btn btn-default pull-right"
+                                            ng-disabled="homeController.emailAddressesToBeInvited.length == 0" translate>dcmhome.emailInvite.send
+                                    </button>
+                                </div>
+
                             </div>
 
                         </div>
 
-                        <div class="row" ng-if="homeController.formStatus=='sentSuccessful'">
-                            <div class="col-md-6" translate>dcmhome.emailInvite.success</div>
 
-                            <div class="col-md-6">
+                        <div class="row" ng-if="homeController.formStatus=='sentSuccessful'">
+
+                            <div class="col-md-12">
+
+                                <span translate>dcmhome.emailInvite.success</span>
+
                                 <button ng-click="homeController.formStatus='enterAdresses'"
-                                        class="btn btn-default"
+                                        class="btn btn-default pull-right"
                                         ng-disabled="emailInvitation.$invalid" translate>dcmhome.emailInvite.inviteMore
                                 </button>
                             </div>
@@ -97,23 +141,7 @@
                     </form>
 
                 </div>
-                <div class="col-md-6">
 
-                    <h3 translate>dcmhome.campaignStart.welcomeLinkTitle</h3>
-
-                    <div translate>dcmhome.campaignStart.welcomeLinkExplain</div>
-
-                    <!--
-
-                     HINT: manual concatenation of absolute url instead of { absolute: true }
-                           because there is an issue with html5mode in ui-router with angular 1.3
-                           see http://stackoverflow.com/questions/26220037/ui-sref-not-generating-hash-in-url-angular-1-3-0-rc-3
-                     -->
-                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{
-                        config.webclientUrl + '/#' + $state.href('welcome',{campaignId:
-                        campaign.id})}}
-                    </div>
-                </div>
             </div>
 
         </div>

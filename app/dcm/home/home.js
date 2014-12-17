@@ -138,6 +138,15 @@
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
 
+                $scope.parseEmailAddresses = function (input) {
+                    if(!input) {
+                        return;
+                    }
+                    var list = input.match(/([_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]+)*)/gi);
+                    if(list && list.length > 0) {
+                        $scope.homeController.emailAddressesToBeInvited = _.unique( ($scope.homeController.emailAddressesToBeInvited || []).concat(list) );
+                    }
+                };
 
                 $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
                     CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
