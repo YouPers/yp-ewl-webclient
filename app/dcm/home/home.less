@@ -199,8 +199,27 @@
         font-size: 16px;
         color: @yp-accent;
       }
-      .btn.active i.fa {
-        color: white;
+      .btn.active {
+        background-color: transparent !important;
+        color: @yp-accent !important;
+        border: none;
+
+        i.fa {
+          color: @yp-accent;;
+        }
+      }
+
+      .btn {
+        color: @yp-subtitle;
+        border: none;
+        text-transform: none;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 4px;
+
+        i.fa {
+          color: @yp-subtitle;
+        }
       }
     }
 
