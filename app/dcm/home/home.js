@@ -124,7 +124,7 @@
                 $scope.homeController.healthCoachEvent = healthCoachEvent;
                 $scope.homeController.formStatus = 'beforeTest';
                 $scope.homeController.messages = messages;
-                $scope.homeController.offerTypes = ['Invitation'];
+                $scope.homeController.offerTypes = 'Invitation';
                 $scope.campaign = campaign;
                 if (campaign) {
                     $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
@@ -161,19 +161,6 @@
                     });
                 };
 
-                $scope.toggleOfferType = function (type) {
-                    if($scope.isOfferTypeEnabled(type)) {
-                        _.remove($scope.homeController.offerTypes, function (offerType) {
-                            return type === offerType;
-                        });
-                    } else {
-                        $scope.homeController.offerTypes = [type];
-                    }
-                };
-                $scope.isOfferTypeEnabled = function(type) {
-                    return _.contains($scope.homeController.offerTypes, type);
-                };
-
                 init();
 
                 function _loadSocialInteractions() {
@@ -192,8 +179,8 @@
 
                     if(campaign) {
 
-                        $scope.$watch('homeController.offerTypes', function (offerType, oldValue) {
-                            _getOffersOptions.discriminators = offerType.join(',');
+                        $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
+                            _getOffersOptions.discriminators = offerTypes;
                             _loadSocialInteractions();
                         }, true);
 

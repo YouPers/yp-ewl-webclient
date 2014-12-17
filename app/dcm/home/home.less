@@ -196,13 +196,27 @@
     }
 
     .offer-filter {
+      position: relative;
+      margin-bottom: 20px;
+      margin-right: 15px;
+    }
+
+    .show-old {
+      margin-top: 20px;
+    }
+
+    .offer-type {
       position: absolute;
-      top: 40px;
-      right: 10px;
+      top: 35px;
+      right: 0;
 
       i.fa {
         cursor: pointer;
-        font-size: 24px;
+        font-size: 16px;
+        color: @yp-accent;
+      }
+      .btn.active i.fa {
+        color: white;
       }
     }
 

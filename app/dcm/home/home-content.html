@@ -221,11 +221,11 @@
 
         <game-area type="row" class="campaign-offers" ng-init="homeController.offersAreaHeight = 14" area-height="homeController.offersAreaHeight">
 
-            <div>
+            <div class="offer-filter">
                 <h3 translate>dcmhome.activities</h3>
 
                 <div ng-if="campaign">
-                    <div class="checkbox" ng-if="campaign">
+                    <div class="checkbox show-old" ng-if="campaign">
                         <label>
                             <input type="checkbox" ng-model="homeController.showOld"> <span
                                 translate>dcmhome.showOld</span>
@@ -237,19 +237,20 @@
                         <i class="fa fa-plus"></i>
                     </a>
 
-                    <div class="offer-filter">
+                    <div class="offer-type">
 
-                        <i class="fa fa-lightbulb-o"
-                           ng-click="toggleOfferType('Recommendation')"
-                           ng-class="{ active: isOfferTypeEnabled('Recommendation') }"
-                           popover="{{ 'dcmhome.showRecommendations' | translate }}"></i>
-
-                        <i class="fa fa-envelope-o"
-                           ng-click="toggleOfferType('Invitation')"
-                           ng-class="{ active: isOfferTypeEnabled('Invitation') }"
-                           popover="{{ 'dcmhome.showInvitations' | translate }}"></i>
+                        <button type="button" class="btn btn-default" ng-model="homeController.offerTypes" btn-radio="'Recommendation'">
+                            <i class="fa fa-lightbulb-o"></i><span translate>dcmhome.offerType.Recommendation</span>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-model="homeController.offerTypes" btn-radio="'Invitation'">
+                            <i class="fa fa-envelope-o"></i><span translate>dcmhome.offerType.Invitation</span>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-model="homeController.offerTypes" btn-radio="''">
+                            <span translate>dcmhome.offerType.All</span>
+                        </button>
 
                     </div>
+                    <div class="clearfix"></div>
                 </div>
 
             </div>
