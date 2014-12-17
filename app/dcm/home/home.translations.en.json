@@ -47,7 +47,9 @@
       "submit": "Invite",
       "success": "Invitations sent successfully.",
       "testEmailSent": "Invitation sent to {{address}}.<br>Please review the invitation in your inbox.",
-      "title": "Automatic email invitations to campaign"
+      "title": "Automatic email invitations to campaign",
+      "add": null,
+      "reviewEmailAddresses": null
     },
     "messages": "Messages",
     "noCampaigns": "You have not created any campaigns yet",

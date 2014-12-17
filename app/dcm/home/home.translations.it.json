@@ -47,7 +47,9 @@
       "submit": null,
       "success": null,
       "testEmailSent": null,
-      "title": null
+      "title": null,
+      "add": null,
+      "reviewEmailAddresses": null
     },
     "messages": "News",
     "noCampaigns": null,
