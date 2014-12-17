@@ -137,13 +137,18 @@
 
   campaign-card {
     box-sizing: content-box;
+    transition: opacity 0.3s ease;
+  }
+
+  campaign-card:not(.active) {
+    opacity: 0.4;
+  }
+
+  campaign-card.active, campaign-card:hover {
+    opacity: 1;
   }
   campaign-card.active {
-//    border-left: 10px solid @yp-primary;
-//    border-right: 5px solid @yp-primary;
-//    margin-left: -10px;
 
-    box-shadow: 0px 3px 6px 2px @yp-warning;
     cursor: default;
 
     i.fa {
