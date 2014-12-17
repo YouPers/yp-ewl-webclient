@@ -75,6 +75,8 @@
     "isJoining": "Invité",
     "isInvited": "Invité",
     "reschedule": null,
+    "editPopover": null,
+    "deletePopover": null,
     "event": {
       "status": null,
       "rating": null
