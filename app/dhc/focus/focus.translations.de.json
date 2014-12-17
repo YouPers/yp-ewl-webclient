@@ -16,7 +16,8 @@
     },
     "toSelect": "zu deinen Empfehlungen",
     "link": {
-      "back": "Hauptseite"
+      "back": "Hauptseite",
+      "backToAssessment": "zurück zur Selbstbeurteilung"
     }
   }
 }
