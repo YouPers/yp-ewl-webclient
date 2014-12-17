@@ -88,16 +88,18 @@
                             <span translate>activity.link.back</span>
                         </div>
                     </div>
-                    <div class="button-row" ng-if="organizationForm.$dirty">
+                    <div class="button-row">
 
 
                         <button type="submit" class="btn btn-primary"
-                                ng-disabled="organizationForm.$invalid"
+                                ng-disabled="organizationForm.$invalid || !organizationForm.$dirty"
                                 ng-click="saveOrganization()">
                             <span translate ng-if="!organization.id">organizationForm.create</span>
                             <span translate ng-if="organization.id">organizationForm.save</span>
                         </button>
-                        <button class="btn btn-default" ng-click="$state.go('organization', {}, {reload: true})" translate>
+                        <button class="btn btn-default"
+                                ng-disabled="!organizationForm.$dirty"
+                                ng-click="$state.go('organization', {}, {reload: true})" translate>
                             organizationForm.cancel
                         </button>
 

@@ -177,19 +177,21 @@ body {
     }
   }
 
-  > *:last-of-type {
+  > section:last-of-type, aside {
 
+    .button-row {
 
-    .btn.submit, .btn.backToGame {
-      margin-bottom: 0.5em;
-      width: 48%;
-    }
+      .btn {
+        margin-bottom: 0.5em;
+        width: 49%;
+      }
 
-    .btn.submit {
-      float: left;
-    }
-    .btn.backToGame {
-      float: right;
+      .btn:first-of-type {
+        float: left;
+      }
+      .btn:last-of-type {
+        float: right;
+      }
     }
   }
 
