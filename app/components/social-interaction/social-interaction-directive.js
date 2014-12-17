@@ -22,6 +22,7 @@
                             var params = {
                                 populate: 'author activity',
                                 limit: 10,
+                                sort: 'publishFrom:-1',
                                 "filter[authorType]": '!coach'
                             };
 
@@ -29,10 +30,6 @@
                                 .getSocialInteractions(params)
                                 .then(ActivityService.populateIdeas)
                                 .then(function (socialInteractions) {
-
-                                    socialInteractions = _.sortBy(socialInteractions, function (si) {
-                                        return new Date(si.publishFrom || si.created).getTime();
-                                    }).reverse();
 
                                     _.each(socialInteractions, function (si) {
                                         if (si.__t !== 'Message') {
