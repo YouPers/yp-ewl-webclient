@@ -11,7 +11,7 @@
         "error": "Ein Fehler ist aufgetreten"
       },
       "502": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals.",
-      "503": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals.",
+      "503": "Wir verbessern den HealthCampaign Service. Darum ist die Anwendung im Moment verfügbar. Bitte versuchen sie in einigen Minuten nochmals",
       "504": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals."
     }
   },
