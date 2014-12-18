@@ -224,7 +224,7 @@ module.exports = function (grunt) {
             }
         },
         usemin: {
-            html: ['<%= yeoman.dist %>/index.html', '<%= yeoman.dist %>/unsupportedBrowser.html'],
+            html: ['<%= yeoman.dist %>/index.html', '<%= yeoman.dist %>/unsupportedBrowser.html', '<%= yeoman.dist %>/maintenance.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
                 dirs: ['<%= yeoman.dist %>']
@@ -273,8 +273,8 @@ module.exports = function (grunt) {
                 },
                 files: [
                     {'dist/index.html': '.tmp/index.html'},
-                    {'dist/unsupportedBrowser.html': '<%= yeoman.app %>/unsupportedBrowser.html'}
-
+                    {'dist/unsupportedBrowser.html': '<%= yeoman.app %>/unsupportedBrowser.html'},
+                    {'dist/maintenance.html': '<%= yeoman.app %>/maintenance.html'}
                 ]
             }
         },
