@@ -12,7 +12,7 @@
         "sampleInvitationSent": "Invitation mail sent to {{email}}"
       },
       "templateCampaign": {
-        "save": null
+        "save": "Standard offers saved"
       }
     },
     "error": {
@@ -62,10 +62,10 @@
       "valueRangeHint": "Value range from 0 to 10<br/>0 = not recommended, 10 = recommended"
     },
     "templateCampaign": {
-      "addOffer": null,
-      "header": null,
-      "remove": null,
-      "save": null,
+      "addOffer": "Add offer +",
+      "header": "Use this idea as standard offer for the topic {{ topic }}",
+      "remove": "Remove",
+      "save": "Save standard offers",
       "type": {
         "Invitation": null,
         "Recommendation": null

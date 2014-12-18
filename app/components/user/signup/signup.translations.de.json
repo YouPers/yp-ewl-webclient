@@ -1,7 +1,7 @@
 {
   "signup": {
     "header": "Herzlich Willkommen bei YouPers!",
-    "signupNote": "Neu registieren",
+    "signupNote": "Neu registrieren",
     "signinNote": "Anmelden"
   },
   "registerForm": {

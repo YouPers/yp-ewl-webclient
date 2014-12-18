@@ -199,12 +199,16 @@ angular.module('yp-ewl',
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
 
-                console.log('Error on StateChange from: "' + (fromState && fromState.name) + '" to:  "'+ toState.name + '", err:' + error.message);
+                console.log('Error on StateChange from: "' + (fromState && fromState.name) + '" to:  "'+ toState.name + '", err:' + error.message + ", code: " + error.status);
 
                 if(error.status === 401) { // Unauthorized
 
                     $state.go('signin.content');
 
+                } else if (error.status === 503) {
+                    // the backend is down for maintenance, we stay on the page
+                    // a message is shown to the user automatically by the error interceptor
+                    event.preventDefault();
                 } else {
 
                     $rootScope.$emit('clientmsg:error', error);

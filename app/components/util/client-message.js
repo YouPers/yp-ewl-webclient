@@ -106,14 +106,16 @@
             });
 
             $rootScope.$on('clientmsg', function (event, message, options) {
-
+                console.debug('clientMsg');
+                console.debug(message);
+                console.debug(options);
                 var defaults = {
                     id: _.uniqueId(),
                     message: message,
                     values: {},
 
                     type: 'info',
-                    duration: 3000
+                    duration: 5000
                 };
 
                 // map log level types to alert types
@@ -132,11 +134,11 @@
                 // log notification
                 var parsedError = ClientMessageService.clientmsg(opts.type)(message, options);
 
-                if (parsedError.backendNotRunning) {
+                if (parsedError.backendNotRunning && !parsedError.maintenanceMode) {
                     opts.message = 'clientmsg.error.502';
                 }
 
-                if(opts.type !== 'error' && opts.type !== 'success') {
+                if(opts.type !== 'error' && opts.type !== 'warn' && opts.type !== 'success') {
                     return false; // skip user feedback below
                 }
 
@@ -221,13 +223,13 @@
                         // local only node.js: down/unreachable or proxied setup: nginx down/unreachable
                         // no answer at all from the backend
                         client.backendNotReachableAtAll = error.status === 0 && (error.config && error.config.url);
-                        client.backendNotRunningBehindNginx = error.status === 502 || error.status === 503 || error.status === 504;
-                        client.backendNotRunning = client.backendNotReachableAtAll || client.backendNotRunningBehindNginx;
+                        client.backendNotRunningBehindNginx = error.status === 502 || error.status === 504;
+                        client.maintenanceMode = error.status === 503;
+                        client.backendNotRunning = client.backendNotReachableAtAll || client.backendNotRunningBehindNginx || client.maintenanceMode;
 
                         // we identify whether this was caused by the backend by checking whether we have already a
                         // request-id because the backend assigns each request a unique 'request-id'
                         client.isCausedByBackendError = client.headers && client.headers['request-id'];
-
                     }
 
 
