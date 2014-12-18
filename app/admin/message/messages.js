@@ -76,6 +76,13 @@
                         });
                     }
 
+                    // set the start time to the startOf(day) if it is not published today
+                    if (!moment($scope.message.publishFrom).isSame(moment(), 'day')) {
+                        $scope.message.publishFrom = moment($scope.message.publishFrom).startOf('day').toDate();
+                    }
+
+                    $scope.message.publishTo = moment($scope.message.publishTo).endOf('day').toDate();
+
                     MessageService.postMessage($scope.message).then(function(response) {
                         $scope.messages.unshift(response);
                         $scope.message = _.clone(messageTemplate);
