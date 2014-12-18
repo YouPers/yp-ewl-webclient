@@ -134,7 +134,7 @@
                 // log notification
                 var parsedError = ClientMessageService.clientmsg(opts.type)(message, options);
 
-                if (parsedError.backendNotRunning) {
+                if (parsedError.backendNotRunning && !parsedError.maintenanceMode) {
                     opts.message = 'clientmsg.error.502';
                 }
 
