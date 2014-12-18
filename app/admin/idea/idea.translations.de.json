@@ -12,7 +12,7 @@
         "sampleInvitationSent": "Einladung versandt {{email}}"
       },
       "templateCampaign": {
-        "save": "Standartangebote gespeichert"
+        "save": "Standardangebote gespeichert"
       }
     },
     "error": {
@@ -38,7 +38,7 @@
     "rating": "Bewertung",
     "activities": "Aktivitäten",
     "recommendedForYou": "Empfohlen für Dich",
-    "campaignActivities": "Kampagnen-Aktionen",
+    "campaignActivities": "Kampagnenaktivitäten",
     "all": "Alle",
     "ofTotal": "von total",
     "done": "gemacht",
@@ -55,23 +55,23 @@
       "start": "Start",
       "activities": "Aktivitäten"
     },
-    "templateCampaign": {
-      "header": "Diese Idee als Standartangebot für das Thema {{ topic }} verwenden",
-      "type": {
-        "Recommendation": "Empfehlung",
-        "Invitation": "Einladung"
-      },
-      "week": "Woche",
-      "weekday": "Wochentag",
-      "addOffer": "Angebot hinzufügen +",
-      "save": "Standartangebote speichern",
-      "remove": "Entfernen"
-    },
     "matrix": {
       "header": "Matrix zu Assessment, Fragen für Empfehlungen für: ",
       "recommendationSliderLeft": "Empfehlung <br/>Slider links",
       "recommendationSliderRight": "Empfehlung <br/>Slider rechts",
       "valueRangeHint": "Alle Werte zwischen 0 und 10<br/>0 = Aktivität nicht empfehlen, 10 = Aktivität empfehlen"
+    },
+    "templateCampaign": {
+      "addOffer": "Angebot hinzufügen +",
+      "header": "Diese Idee als Standardangebot für das Thema {{ topic }} verwenden",
+      "remove": "Entfernen",
+      "save": "Standardangebote speichern",
+      "type": {
+        "Invitation": "Einladung",
+        "Recommendation": "Empfehlung"
+      },
+      "week": "Woche",
+      "weekday": "Wochentag"
     }
   },
   "visibility": {
