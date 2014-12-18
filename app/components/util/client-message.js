@@ -135,6 +135,9 @@
                 if (parsedError.backendNotRunning) {
                     opts.message = 'clientmsg.error.502';
                 }
+                if (parsedError.maintenanceMode) {
+                    opts.message = 'clientmsg.error.503';
+                }
 
                 if(opts.type !== 'error' && opts.type !== 'success') {
                     return false; // skip user feedback below
