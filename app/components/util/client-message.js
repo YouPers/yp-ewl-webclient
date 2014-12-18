@@ -115,7 +115,7 @@
                     values: {},
 
                     type: 'info',
-                    duration: 3000
+                    duration: 5000
                 };
 
                 // map log level types to alert types
