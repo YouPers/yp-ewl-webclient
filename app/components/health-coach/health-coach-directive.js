@@ -58,12 +58,20 @@
                     var coach = elem[0];
 
                     scope.$watch(function () {
-                        return coach.clientHeight;
+                        return window.innerHeight + coach.clientHeight; // listen to both the window height and the coach height
+
                     }, function () {
-                        scope.expandable = coach.scrollHeight > coach.clientHeight;
+                        if(!scope.expandable) { // one way only, no 'show-less'
+                            var availableHeight = window.innerHeight - 50; // minus an offset from the top
+                            scope.expandable = availableHeight < coach.clientHeight;
+                            if(scope.expandable) {
+                                scope.style = { 'max-height': availableHeight /2 + 'px' };
+                            }
+                        }
+
                     });
 
-                    scope.style = { 'max-height': window.innerHeight /2 + 'px' };
+
                 }
             };
         }]);
