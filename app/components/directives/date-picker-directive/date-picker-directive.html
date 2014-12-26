@@ -13,12 +13,18 @@
            max-date="maxDate"
 
            ng-required="!!attrs.date"
-           ng-click="opened = !opened"
-           date-parser="{{dateFormat}}"
 
            current-text="{{'datePicker.current-text' | translate}}"
            clear-text="{{'datePicker.clear-text' | translate}}"
            close-text="{{'datePicker.close-text' | translate}}"
 
             />
+
+       <!--date-parser="{{dateFormat}}"-->
+
+       <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="toggle($event)">
+                     <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+       </span>
 </div>
