@@ -39,7 +39,7 @@
 
             <accordion class="message" ng-if="soi.title && soi.text">
 
-                <accordion-group is-open="isOpen">
+                <accordion-group is-open="isOpen" ng-init="isOpen = true">
                     <accordion-heading>
 
                         <div>{{ soi.title }}</div>
