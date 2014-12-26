@@ -40,6 +40,23 @@
             };
         })
 
+        /**
+         * find all children that are input elements and register a select-on-click handler for each of them
+         */
+        .directive('selectOnChildInputClick', function () {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+
+                    _.each(element.find('input'), function (input) {
+                        angular.element(input).on('click', function () {
+                            this.setSelectionRange(0, this.value.length)
+                        });
+                    });
+                }
+            };
+        })
+
         .directive('synchronizedDate', [function () {
             return {
                 restrict: 'A',
@@ -51,7 +68,7 @@
 
 
                     scope.$watch('date', function(val, old) {
-                        if(old !== val) {
+                        if(val && old && old !== val) {
                             var synchronizedDate = moment(scope.synchronizedDate).add(moment(val).diff(old)).toISOString();
                             scope.synchronizedDate = old ? synchronizedDate : val;
                         }
