@@ -50,7 +50,7 @@
 
                     _.each(element.find('input'), function (input) {
                         angular.element(input).on('click', function () {
-                            this.setSelectionRange(0, this.value.length)
+                            this.setSelectionRange(0, this.value.length);
                         });
                     });
                 }
