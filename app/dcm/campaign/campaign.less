@@ -32,16 +32,13 @@
 
     .form-group.date {
 
-      .start {
-        *:first-child {
-          float: left;
-        }
-        * {
-          float: right;
-        }
-        label {
-          padding: 7px;
-        }
+      date-picker, .input-group, label.end {
+        float: left;
+        display: flex;
+      }
+
+      label {
+        padding: 7px;
       }
 
       input {
