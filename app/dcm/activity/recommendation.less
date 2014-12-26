@@ -1,24 +1,19 @@
 .dcm-recommendation {
 
-  .dl-horizontal {
-    dt {
-      width: 110px;
-      padding: 6px;
-    }
-    dd {
-      margin-left: 120px;
-      margin-bottom: 0.5em;
-    }
+  .publish {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 
-    .publish > * {
-      float: left;
+    label {
+      padding-right: 1em;
+      margin: 0;
     }
 
-    .publish > label:not(:first-child) {
-      margin: 8px 2em 0 2em;
-
+    label:not(:first-of-type) {
+      padding-left: 1em;
     }
-
   }
 
 
