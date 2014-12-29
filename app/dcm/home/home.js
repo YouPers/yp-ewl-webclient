@@ -101,7 +101,7 @@
                                         return 'campaignFirstWeek';
                                     } else if(daysSinceCampaignStart > 7 && daysUntilCampaignEnd > 7) {
                                         return 'campaignAfterFirstWeek';
-                                    } else if(daysUntilCampaignEnd <= 0) {
+                                    } else if(daysUntilCampaignEnd < 0) {
                                         return 'campaignEnded';
                                     } else if(daysUntilCampaignEnd <= 7) {
                                         return 'campaignLastWeek';
