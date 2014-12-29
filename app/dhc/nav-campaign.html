@@ -8,12 +8,12 @@
 
     <div ng-if="campaignEnding">
 
-        <p ng-if="campaign.leaderSurveyUrl">
+        <p ng-if="campaign.participantSurveyUrl">
             <span translate>end-of-campaign.surveyInfo</span>
         </p>
 
 
-        <a ng-if="campaign.leaderSurveyUrl" ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red">
+        <a ng-if="campaign.participantSurveyUrl" ng-href="{{campaign.participantSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red">
             <span translate>end-of-campaign.surveyLink</span>
             <span class="fa fa-chevron-right"></span>
         </a>
