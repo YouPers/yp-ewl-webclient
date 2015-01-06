@@ -3,7 +3,7 @@ set -e
 cd /home/youpers/yp-ewl-webclient
 git pull origin $1
 export NODE_ENV=$2
-npm update
+npm install  # actually npm upadte would be better but takes 10 minutes
 
 # enable maintenance mode: our nginx config looks for this file
 touch /home/youpers/maintenance
