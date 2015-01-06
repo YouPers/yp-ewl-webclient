@@ -69,12 +69,12 @@
 
                 <div>
 
-                    <a ui-sref="dcm.recommendation(::{ idea: idea.id })">
+                    <a ui-sref="dcm.recommendation(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '' })">
                         <i class="fa fa-lightbulb-o" popover-placement="top"  popover="{{::'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
                     </a>
 
                     <a ng-show="idea.defaultexecutiontype === 'group'"
-                       ui-sref="dcm.activity(::{ idea: idea.id, mode: 'campaignlead' })" >
+                       ui-sref="dcm.activity(::{ idea: idea.id, mode: 'campaignlead', campaignId: campaign.id, socialInteraction: '', activity: '' })" >
                         <i class="fa fa-envelope-o" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
                     </a>
 
