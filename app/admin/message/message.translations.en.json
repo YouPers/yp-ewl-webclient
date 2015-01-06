@@ -1,17 +1,17 @@
 {
   "admin": {
     "message": {
-      "stateHeader1": "About",
+      "stateHeader1": "system",
       "stateHeader2": "messages",
       "publishFrom": "Published from: ",
       "publishTo": "Published to: ",
-      "important": "important"
+      "important": "Important"
     }
   },
   "adminMessageForm": {
     "title": {
-      "label": "Tab",
-      "placeholder": "Tab",
+      "label": "Title",
+      "placeholder": "Title",
       "error": {
         "required": "Please enter the title"
       }
@@ -21,22 +21,22 @@
       "placeholder": "Text"
     },
     "important": {
-      "label": "important"
+      "label": "Important"
     },
     "campaign": {
       "label": "Campaign",
-      "none": " - no -"
+      "none": "- none -"
     },
     "language": {
-      "label": "Speech",
-      "none": " - no -"
+      "label": "Language",
+      "none": "- none -"
     },
     "publishFrom": {
-      "label": "Published by"
+      "label": "Published from"
     },
     "publishTo": {
-      "label": "Publish To Date"
+      "label": "Published to"
     },
-    "submit": "Up"
+    "submit": "Send"
   }
 }

@@ -101,7 +101,7 @@
     "reset": "zurücksetzen"
   },
   "passwordReset": {
-    "hello": "Hallo",
+    "hello": "Hallo!",
     "setNewPassword": "Du kannst Dir nun ein neues Passwort setzen:",
     "newPassword": "Neues Passwort",
     "success": "Passwort erfolgreich gesetzt",

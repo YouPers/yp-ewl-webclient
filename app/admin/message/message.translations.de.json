@@ -3,7 +3,7 @@
     "message": {
       "stateHeader1": "system",
       "stateHeader2": "mitteilungen",
-      "publishFrom": "Publiziert ab: ",
+      "publishFrom": "Publiziert von: ",
       "publishTo": "Publiziert bis: ",
       "important": "Wichtig"
     }
@@ -25,11 +25,11 @@
     },
     "campaign": {
       "label": "Kampagne",
-      "none": " - keine -"
+      "none": "- keine -"
     },
     "language": {
       "label": "Sprache",
-      "none": " - keine -"
+      "none": "- keine -"
     },
     "publishFrom": {
       "label": "Publiziert von"

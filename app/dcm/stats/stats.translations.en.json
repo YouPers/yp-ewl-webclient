@@ -6,7 +6,7 @@
     "totalActsPlanned": "Number of scheduled activities",
     "totalEventsPlanned": "Number of planned occurances",
     "eventsDonePerDay": "Number of executed and missed events per day",
-    "actPlannedPerDay": "Number of planned events on one day",
+    "actPlannedPerDay": "Number of scheduled activities per day",
     "assUpdatesPerDay": "Number of self-check adjustments per day",
     "activityName": "Activity",
     "day": "Date",

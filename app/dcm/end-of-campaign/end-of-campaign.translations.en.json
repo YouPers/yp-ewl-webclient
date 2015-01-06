@@ -1,34 +1,34 @@
 {
   "dcm-end-of-campaign": {
     "usersTotal": {
-      "title": null,
-      "campaign": null,
-      "average": null
+      "title": "Participants in this campaign compared to all YOUPERS campaigns",
+      "campaign": "This campaign",
+      "average": "Average"
     },
     "eventsStatus": {
-      "title": null,
-      "campaign": null,
-      "average": null,
-      "done": null,
-      "missed": null,
-      "open": null
+      "title": "Executed activities in comparison",
+      "campaign": "Campaign",
+      "average": "Average",
+      "done": "done",
+      "missed": "missed",
+      "open": "open"
     },
     "assessmentResults": {
-      "campaign": null,
-      "average": null,
-      "veryNeg": null,
-      "neg": null,
-      "zero": null,
-      "pos": null,
-      "veryPos": null
+      "campaign": "Campaign",
+      "average": "Reference value",
+      "veryNeg": "--",
+      "neg": "-",
+      "zero": "0",
+      "pos": "+",
+      "veryPos": "++"
     },
     "eventsPlanned": {
-      "header": null,
-      "content": null
+      "header": "Popular activities",
+      "content": "Scheduled { plannedCount } times by {byUsersCount, plural, one{one person} other{# persons} }"
     },
     "legend": {
-      "campaign": null,
-      "average": null
+      "campaign": "This campaign",
+      "average": "Average of all campaigns"
     }
   }
 }

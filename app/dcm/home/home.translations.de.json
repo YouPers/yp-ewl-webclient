@@ -3,7 +3,7 @@
     "statsTitle": "Verlauf der Kampagne",
     "endOfCampaignTitle": "Ende der Kampagne",
     "participantsCount": "Anzahl angemeldete Teilnehmer",
-    "plannedActsCount": "Anzahl geplante Aktivitäten",
+    "plannedActsCount": "Anzahl geplanter Aktivitäten",
     "moreStats": "Mehr",
     "notifications": "Mitteilungen",
     "campaigns": "Kampagnen",
@@ -21,7 +21,7 @@
     "campaignNotStarted": "Sobald die Kampagne gestartet ist, werden hier einige Eckdaten zum Verlauf deiner Kampagne angezeigt.",
     "campaignStart": {
       "header": "Start der Kampagne",
-      "welcomeLinkExplain": "Mit diesem Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einem Email an alle potentiellen Teilnehmer.",
+      "welcomeLinkExplain": "Mit diesem Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einer Email an alle potentiellen Teilnehmer.",
       "welcomeLinkTitle": "Manuelle Einladungsemails"
     },
     "emailInvite": {
@@ -38,10 +38,8 @@
       },
       "explain": "Hier kannst du automatisch Einladungsemails zur Kampagne für die zukünftigen Teilnehmer versenden.",
       "inviteMore": "weitere einladen",
-      "label": "Email-Adressen der einzuladenden Mitarbeiter, getrennt mittels Komma, Semikolon oder Leerschlag",
+      "label": "Email-Adressen der einzuladenden Mitarbeiter, getrennt mittels Komma, Semikolon, Leerschlag oder Zeilenumbruch",
       "next": "weiter",
-      "add": "hinzufügen",
-      "reviewEmailAddresses": "Bitte prüfe die Emailadressen bevor du die Einladungen mit dem Absenden Button versendest",
       "placeholder": "Email-Adressen",
       "send": "absenden",
       "sendTestButton": "Test",
@@ -49,7 +47,9 @@
       "submit": "Einladen",
       "success": "Einladungen erfolgreich versendet",
       "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Email-Eingang.",
-      "title": "Automatische Einladungsemails zur Kampagne"
+      "title": "Automatische Einladungsemails zur Kampagne",
+      "add": "hinzufügen",
+      "reviewEmailAddresses": "Bitte überprüfe die Email-Adressen, bevor du die Einladungen mit Hilfe des \"Absenden\"-Buttons versendest"
     },
     "messages": "Nachrichten",
     "noCampaigns": "Du hast noch keine Kampagnen erstellt",

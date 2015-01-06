@@ -3,7 +3,7 @@
     "statsTitle": "Progress of campaign",
     "endOfCampaignTitle": "End of campaign",
     "participantsCount": "Number of registered participants",
-    "plannedActsCount": "Number of planned activities",
+    "plannedActsCount": "Number of scheduled activities",
     "moreStats": "More",
     "notifications": "Notifications",
     "campaigns": "Campaigns",
@@ -38,7 +38,7 @@
       },
       "explain": "Automatically send email invitations to future campaign participants.",
       "inviteMore": "Invite others",
-      "label": "Email addresses of participants to invite, separated by comma, semicolon or space",
+      "label": "Email addresses of participants to invite, separated by comma, semicolon, space or line break",
       "next": "next",
       "placeholder": "Email addresses",
       "send": "send",
@@ -48,8 +48,8 @@
       "success": "Invitations sent successfully.",
       "testEmailSent": "Invitation sent to {{address}}.<br>Please review the invitation in your inbox.",
       "title": "Automatic email invitations to campaign",
-      "add": null,
-      "reviewEmailAddresses": null
+      "add": "add",
+      "reviewEmailAddresses": "Please verify the email addresses before you send the invitations using the \"send\" button"
     },
     "messages": "Messages",
     "noCampaigns": "You have not created any campaigns yet",
@@ -58,9 +58,9 @@
     "noParticipants": "There are no campaign participants yet",
     "showOld": "Show past",
     "offerType": {
-      "Recommendation": null,
-      "Invitation": null,
-      "All": null
+      "Recommendation": "Recommendations",
+      "Invitation": "Invitations",
+      "All": "All"
     }
   }
 }

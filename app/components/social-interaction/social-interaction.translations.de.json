@@ -15,14 +15,14 @@
         "coach": "HealthCoach"
       },
       "Message": {
-        "user": "Aktivitäts-Kommentar",
+        "user": "Aktivitätskommentar",
         "campaignLead": "Kampagnennachricht",
         "coach": "HealthCoach"
       }
     }
   },
   "composeMessageForm": {
-    "show": "Nachricht an die Kampagne",
+    "show": "Kampagnenmitteilung",
     "cancel": "abbrechen",
     "title": {
       "label": "Titel",

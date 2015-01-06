@@ -69,7 +69,7 @@
       },
       "email": {
         "label": "Email",
-        "placeholder": "Email Adresse",
+        "placeholder": "Email-Adresse",
         "error": {
           "required": "Bitte eine gültige Email-Adresse eingeben"
         }
@@ -95,7 +95,7 @@
           "required": "Bitte eine gültige Email-Adresse eingeben"
         },
         "label": "Email",
-        "placeholder": "Email Adresse"
+        "placeholder": "Email-Adresse"
       },
       "firstname": {
         "error": {

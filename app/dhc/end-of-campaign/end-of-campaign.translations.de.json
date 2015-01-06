@@ -1,36 +1,27 @@
 {
   "end-of-campaign": {
-
     "lastDaysHeader": "{ daysLeft, plural, 0{ Letzer Tag der Kampagne } one{Noch 1 Tag bis zum Ende der Kampagne} other{Noch # Tage bis zum Ende der Kampagne} }",
     "campaignEndendHeader": "Kampagnen - Rückblick",
-
     "subheader": "Handlungsbedarf aufgrund deiner Selbstbeurteilung",
-
     "surveyInfo": "Hier kannst du an der Umfrage teilnehmen",
     "surveyLink": "Umfrage",
-
-    "reviewInfo": "Infotext zur End of Campaign Seite",
+    "reviewInfo": "Hier kannst du auf die Kampagne zurückblicken",
     "reviewLink": "Rückblick",
-
     "legend": {
       "user": "Dein Ergebnis",
       "campaign": "Durchschnitt aller Kampagnenteilnehmer",
       "needForActionAvg": "Durchschnitt aller Kampagnenteilnehmer"
     },
-
     "eventsStatus": {
       "title": "Eingeplante Aktivitätstermine",
-
       "user": "Ergebnisse",
       "campaign": "Durchschnitt",
-
       "done": "gemacht",
       "missed": "verpasst",
       "open": "offen"
     },
     "eventsRatings": {
       "title": "Aktivitätsbewertungen",
-
       "user": "Deine Bewertungen",
       "campaign": "Kampagne",
 

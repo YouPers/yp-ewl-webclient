@@ -31,8 +31,8 @@
     "header": {
       "recommendation": "Campaign recommendation"
     },
-    "noDefaultStartTime": null,
-    "startTime": null
+    "noDefaultStartTime": "No recommendation",
+    "startTime": "Recommended time"
   },
   "activities": {
     "duration": {

@@ -15,18 +15,18 @@
         "coach": "Health Coach"
       },
       "Message": {
-        "user": "Activity Comment",
-        "campaignLead": "Campaign message from",
+        "user": "Activity comment",
+        "campaignLead": "Campaign message",
         "coach": "Health Coach"
       }
     }
   },
   "composeMessageForm": {
     "show": "Campaign message",
-    "cancel": "Stop",
+    "cancel": "cancel",
     "title": {
-      "label": "Tab",
-      "placeholder": "Tab"
+      "label": "Title",
+      "placeholder": "Title"
     },
     "text": {
       "label": "Message",

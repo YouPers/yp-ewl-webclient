@@ -66,11 +66,11 @@
       "change": "edit",
       "label": "Program"
     },
-    "backToTopicSelection": null,
+    "backToTopicSelection": "Back to topic selection",
     "paymentCode": {
-      "invalidCode": null,
-      "invalidTopic": null,
-      "label": null
+      "invalidCode": "Invalid Code",
+      "invalidTopic": "This code is valid only for campaigns to topic {{ invalidTopic }}",
+      "label": "Payment code"
     }
   },
   "inviteCampaignLeadForm": {

@@ -69,14 +69,14 @@
       "scheduleSaveAndInvite": "Plan & send",
       "cancel": "Cancel",
       "invitationDecline": "Reject",
-      "recommendationDismiss": "No thanks!"
+      "recommendationDismiss": "No, thank you!"
     },
     "owner": "Host",
     "isJoining": "People",
     "isInvited": "Invited",
     "reschedule": "Re-schedule",
-    "editPopover": null,
-    "deletePopover": null,
+    "editPopover": "Edit",
+    "deletePopover": "Delete",
     "event": {
       "status": "Done?",
       "rating": "How was it?"

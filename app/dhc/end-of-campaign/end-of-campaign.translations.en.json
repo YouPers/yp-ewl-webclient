@@ -1,33 +1,33 @@
 {
   "end-of-campaign": {
-    "lastDaysHeader": null,
-    "campaignEndendHeader": null,
+    "lastDaysHeader": "{ daysLeft, plural, 0{ Last day of the campaign } one {Still 1 day to the end of the campaign} other {Still # days to the end of the campaign} }",
+    "campaignEndendHeader": "Campaign - Review",
     "subheader": "Need for action due to your self-assessment",
-    "surveyInfo": null,
-    "surveyLink": null,
-    "reviewInfo": null,
-    "reviewLink": null,
+    "surveyInfo": "Participate in the survey here",
+    "surveyLink": "Survey",
+    "reviewInfo": "Here you can review the campaign",
+    "reviewLink": "Review",
     "legend": {
-      "user": null,
-      "campaign": null,
-      "needForActionAvg": null
+      "user": "Your result",
+      "campaign": "Average of all campaign participants",
+      "needForActionAvg": "Average of all campaign participants"
     },
     "eventsStatus": {
-      "title": null,
-      "user": null,
-      "campaign": null,
-      "done": null,
-      "missed": null,
-      "open": null
+      "title": "Scheduled activity appointments",
+      "user": "Results",
+      "campaign": "Average",
+      "done": "done",
+      "missed": "missed",
+      "open": "open"
     },
     "eventsRatings": {
-      "title": null,
-      "user": null,
-      "campaign": null,
-      "1": null,
-      "3": null,
-      "5": null,
-      "null": null
+      "title": "activity evaluations",
+      "user": "Your evaluations",
+      "campaign": "Campaign",
+      "1": "\uf119",
+      "3": "\uf11a",
+      "5": "\uf118",
+      "null": "open"
     }
   }
 }

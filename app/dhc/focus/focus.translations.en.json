@@ -14,7 +14,7 @@
       "question": "Your goal for this campaign is:",
       "placeholder": "Here, you can optionally capture a goal or a slogan as a personal resolution."
     },
-    "toSelect": "Go to recommendations",
+    "toSelect": "to your recommendations",
     "link": {
       "back": "Home",
       "backToAssessment": null

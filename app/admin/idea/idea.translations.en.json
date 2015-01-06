@@ -67,11 +67,11 @@
       "remove": "Remove",
       "save": "Save standard offers",
       "type": {
-        "Invitation": null,
-        "Recommendation": null
+        "Invitation": "Invitation",
+        "Recommendation": "Recommendation"
       },
-      "week": null,
-      "weekday": null
+      "week": "Week",
+      "weekday": "Weekday"
     }
   },
   "visibility": {
