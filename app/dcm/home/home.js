@@ -80,8 +80,8 @@
                                 function (OrganizationService, organization, campaigns, campaign, socialInteractions, messages, UserService) {
 
 
-                                    var daysSinceCampaignStart = campaign ? moment().diff(moment(campaign.start), 'days') : undefined;
-                                    var daysUntilCampaignEnd = campaign ? moment(campaign.end).diff(moment(), 'days') : undefined;
+                                    var daysSinceCampaignStart = campaign ? moment().diff(moment(campaign.start), 'days', true) : undefined;
+                                    var daysUntilCampaignEnd = campaign ? moment(campaign.end).diff(moment(), 'days', true) : undefined;
 
                                     if (!OrganizationService.isComplete(organization) && UserService.principal.isAuthorized('orgadmin')) {
                                         return 'organizationIncomplete';
@@ -93,11 +93,11 @@
                                         return 'nothingOffered';
                                     } else if (messages.length === 0 && daysSinceCampaignStart <= -1) {
                                         return 'noMessages';
-                                    } else if(daysSinceCampaignStart <= -1) {
+                                    } else if(daysSinceCampaignStart <= 0) {
                                         return 'oneDayOrMoreUntilCampaignStart';
-                                    } else if(daysSinceCampaignStart === 0) {
+                                    } else if(daysSinceCampaignStart <= 1) {
                                         return 'campaignStartedToday';
-                                    } else if(daysSinceCampaignStart >= 2 && daysSinceCampaignStart <= 7) {
+                                    } else if(daysSinceCampaignStart > 1 && daysSinceCampaignStart <= 7) {
                                         return 'campaignFirstWeek';
                                     } else if(daysSinceCampaignStart > 7 && daysUntilCampaignEnd > 7) {
                                         return 'campaignAfterFirstWeek';
@@ -106,8 +106,6 @@
                                     } else if(daysUntilCampaignEnd <= 7) {
                                         return 'campaignLastWeek';
                                     }
-
-
                                 }]
                         }
                     });
@@ -128,7 +126,7 @@
                 $scope.campaign = campaign;
                 if (campaign) {
                     $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
-                    $scope.campaignEnding = moment().diff(campaign.end, 'days') >= 0;
+                    $scope.campaignEnding = moment().isAfter(campaign.end);
                 }
 
                 $scope.campaignStartAvailable = !$scope.campaignEnding;
