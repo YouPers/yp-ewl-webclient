@@ -202,7 +202,8 @@
 
         <!-- buttons in delete Mode -->
         <div class="button-row" ng-if="activityController.deleteModeEnabled">
-            <button class="btn btn-warning" ng-click="deleteActivity()">
+            <button class="btn btn-warning" ng-click="deleteActivity()" busy busy-disabled>
+                <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                 {{ 'activity.submit.delete' | translate }}
             </button>
             <button class="btn btn-default pull-right" ng-click="activityController.deleteModeEnabled=false">
@@ -213,7 +214,9 @@
         <!-- buttons in edit Mode -->
         <div class="button-row" ng-if="activityController.editModeEnabled">
             <button class="btn btn-primary"
-                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()">
+                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
+                <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
+
                 {{ 'activity.submit.save' | translate }}
             </button>
             <button class="btn btn-default pull-right"
@@ -225,7 +228,9 @@
         <!-- buttons for new Recommendation -->
         <div class="button-row" ng-if="isRecommendation">
             <button class="btn btn-primary"
-                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()">
+                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
+                <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
+
                 {{ 'activity.submit.recommendationSave' | translate }}
             </button>
             <button class="btn btn-default pull-right" ng-click="dismiss()">
@@ -236,7 +241,9 @@
         <!-- buttons for new Invitation -->
         <div class="button-row" ng-if="isInvitation && !isCampaignLead">
             <button class="btn btn-primary"
-                    ng-click="joinActivity()">
+                    ng-click="joinActivity()" busy busy-disabled>
+                <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
+
                 {{ 'activity.submit.joinedSave' | translate }}
             </button>
             <button class="btn btn-default pull-right" ng-click="dismiss()">
@@ -248,7 +255,9 @@
 
         <div class="button-row" ng-if="isNewCampaignActivity">
             <button class="btn btn-primary"
-                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()">
+                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
+                <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
+
                 {{ 'activity.submit.campaignleadSave' | translate }}
             </button>
             <button class="btn btn-default pull-right" ng-click="backToGame()">
