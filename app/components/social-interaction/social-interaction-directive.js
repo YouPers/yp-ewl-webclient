@@ -178,6 +178,15 @@
                         };
 
                         scope.saveMessage = function saveMessage(message) {
+
+                            // if publishFrom is today, use current time instead of the start of the day
+                            // publishTo is always the end of the day set in the messageTemplate
+                            if(moment(message.publishFrom).isSame(moment(), 'day')) {
+                                message.publishFrom = new Date(moment());
+                            } else {
+                                message.publishFrom = new Date(moment(message.publishFrom).startOf('day'));
+                            }
+
                             if (message.id) {
                                 SocialInteractionService.putSocialInteraction(message).then(function (saved) {
                                     saved.author = $rootScope.principal.getUser();
