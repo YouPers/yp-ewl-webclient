@@ -2,10 +2,16 @@
 <ul class="list-group">
 
 
-    <li class="list-group-item">
+    <li class="list-group-item clearfix">
         <form name="composeCommentForm" class="form-horizontal" ng-submit="saveMessage()">
             <img class="avatar" ng-src="{{ user.avatar }}">
-            <textarea ng-keypress="keypress($event)" class="form-control" ng-model="message.text" placeholder="{{ 'composeCommentForm.comment.paceholder' | translate }}" ></textarea>
+            <textarea ng-keypress="keypress($event)"
+                      class="form-control"
+                      ng-model="message.text"
+                      ng-focus="showPostButton=true"
+                      ng-blur="onCommentAreaBlur()"
+                      placeholder="{{ 'composeCommentForm.comment.paceholder' | translate }}" ></textarea>
+            <button ng-show="showPostButton" class="btn btn-primary pull-right">Senden</button>
 
         </form>
     </li>

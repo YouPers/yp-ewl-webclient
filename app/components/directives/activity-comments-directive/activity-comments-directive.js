@@ -42,6 +42,14 @@
                             _.remove(scope.messages, { id: message.id });
                         };
 
+                        scope.onCommentAreaBlur = function onCommentAreaBlur() {
+                            if (scope.message && scope.message.text && scope.message.text.length > 0) {
+                                // dont hide the button, if we have a message
+                            } else {
+                                scope.showPostButton = false;
+                            }
+                        };
+
                         function reset() {
 
                             var template = {
@@ -56,7 +64,7 @@
                                 ]
                             };
                             scope.message = _.clone(template);
-
+                            scope.showPostButton = false;
 
                             if(scope.activity.id) {
 
