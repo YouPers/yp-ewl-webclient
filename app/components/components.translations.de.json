@@ -72,7 +72,8 @@
   "composeCommentForm": {
     "comment": {
       "paceholder": "Einen Kommentar schreiben"
-    }
+    },
+    "submit": "Senden"
   },
   "feedbackForm": {
     "anonymous": {
