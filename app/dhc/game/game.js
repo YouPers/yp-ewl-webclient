@@ -120,12 +120,14 @@
 
                                     function getEventName() {
 
-                                        var daysUntilCampaignEnd = moment(campaign.end).diff(moment(), 'days');
+                                        var daysUntilCampaignEnd = moment(campaign.end).diff(moment(), 'days', true);
 
-                                        if(currentActivities.length > 0 && daysUntilCampaignEnd < 7) {
-                                            return 'campaignEndingWithCurrentActivities';
-                                        } else if(daysUntilCampaignEnd < 0) {
+                                        if(daysUntilCampaignEnd < 0) {
                                             return 'campaignEnded';
+                                        } else if (daysUntilCampaignEnd < 1) {
+                                            return 'campaignLastDay';
+                                        } else if(currentActivities.length > 0 && daysUntilCampaignEnd < 7) {
+                                            return 'campaignEndingWithCurrentActivities';
                                         } else if(closedEvents.length === 0 && offers.length === 0) {
                                             return 'noOffers';
                                         } else if(currentActivities.length === 0 && daysUntilCampaignEnd > 7) {
