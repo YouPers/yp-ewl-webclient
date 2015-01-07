@@ -136,9 +136,15 @@
 
                 if (parsedError.backendNotRunning && !parsedError.maintenanceMode) {
                     opts.message = 'clientmsg.error.502';
+                    opts.type = 'error';
                 }
 
-                if(opts.type !== 'error' && opts.type !== 'warn' && opts.type !== 'success') {
+                if (parsedError.maintenanceMode) {
+                    opts.type = 'error';
+                }
+
+                // we do not want to bother the user with warnings, only show errors and successes
+                if(opts.type !== 'error' && opts.type !== 'success') {
                     return false; // skip user feedback below
                 }
 
