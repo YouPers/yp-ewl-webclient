@@ -25,6 +25,13 @@ var defaultConfig = {
     },
     ui: {
         showUserFeedbackLink: true
+    },
+    availableLanguages: ['en', 'de', 'fr', 'it'],
+    languageMappings: {
+        'en_US': 'en',
+        'en_UK': 'en',
+        'de_DE': 'de',
+        'de_CH': 'de'
     }
 };
 
@@ -76,7 +83,8 @@ var specificConfigs = {
         backendUrl: 'https://prod.youpers.com/api',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-3'
-        }
+        },
+        availableLanguages: [ 'de']
     }
 };
 

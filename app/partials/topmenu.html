@@ -61,13 +61,13 @@
                             <a class="dropdown-toggle" data-toggle="dropdown">{{currentLocale}}
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li ng-class="{active: currentLocale=='en'}"><a href="" ng-click="changeLang('en')">english</a>
+                                <li ng-class="{active: currentLocale=='en', disabled: isEnabled('en')}"><a href="" ng-click="changeLang('en')">english</a>
                                 </li>
-                                <li ng-class="{active: currentLocale=='de'}"><a href="" ng-click="changeLang('de')">deutsch</a>
+                                <li ng-class="{active: currentLocale=='de', disabled: isEnabled('de')}"><a href="" ng-click="changeLang('de')">deutsch</a>
                                 </li>
-                                <li ng-class="{active: currentLocale=='it'}"><a href="" ng-click="changeLang('it')">italiano</a>
+                                <li ng-class="{active: currentLocale=='it', disabled: isEnabled('it')}"><a href="" ng-click="changeLang('it')">italiano</a>
                                 </li>
-                                <li ng-class="{active: currentLocale=='fr'}"><a href="" ng-click="changeLang('fr')">français</a>
+                                <li ng-class="{active: currentLocale=='fr', disabled: isEnabled('fr')}"><a href="" ng-click="changeLang('fr')">français</a>
                                 </li>
                             </ul>
                         </li>

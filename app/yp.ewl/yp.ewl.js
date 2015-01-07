@@ -81,13 +81,9 @@ angular.module('yp-ewl',
 
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
 
-            $translateProvider.
-                registerAvailableLanguageKeys(['en', 'de', 'fr', 'it'], {
-                    'en_US': 'en',
-                    'en_UK': 'en',
-                    'de_DE': 'de',
-                    'de_CH': 'de'
-                })
+            $translateProvider
+                .registerAvailableLanguageKeys(config.availableLanguages, config.languageMappings)
+
                 .determinePreferredLanguage()
                 .addInterpolation('$translateMessageFormatInterpolation')
                 .useCookieStorage()

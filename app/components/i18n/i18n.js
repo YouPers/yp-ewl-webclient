@@ -4,12 +4,21 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
     .config(['tmhDynamicLocaleProvider', function(tmhDynamicLocaleProvider) {
         tmhDynamicLocaleProvider.localeLocationPattern('lib/angular-i18n/angular-locale_{{locale}}.js');
     }])
-    .controller('i18nCtrl', ['$scope', '$translate', '$http', '$rootScope', 'ProfileService', 'tmhDynamicLocale',
-        function ($scope, $translate, $http, $rootScope, ProfileService, tmhDynamicLocale) {
+    .controller('i18nCtrl', ['$scope', '$translate', '$http', '$rootScope', 'ProfileService', 'tmhDynamicLocale', 'yp.config',
+        function ($scope, $translate, $http, $rootScope, ProfileService, tmhDynamicLocale, config) {
 
             $scope.currentLang = $translate.use();
 
+            $scope.isEnabled = function(key) {
+                return !_.contains(config.availableLanguages, key);
+            };
+
             $scope.changeLang = function (key) {
+
+                // check whether the chosen language is currently supported
+                if (!_.contains(config.availableLanguages, key)) {
+                    return;
+                }
 
                 // change the the locale for the angular.js-internal i18n framework (date-, number-, currency-filters, etc.)
                 // using a special library (angular-dynamic-locale), because by design the angular language
