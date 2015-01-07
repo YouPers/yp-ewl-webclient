@@ -108,5 +108,5 @@
 			}
 		});
 
-	angular.module('ngBusy', ['ngBusy.interceptor', 'ngBusy.busy']);
+	angular.module('ngBusy', ['ngBusy.busy']);
 })(window, window.angular);

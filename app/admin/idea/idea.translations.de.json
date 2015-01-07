@@ -74,11 +74,6 @@
       "weekday": "Wochentag"
     }
   },
-  "visibility": {
-    "public": "Öffentlich",
-    "campaign": "Kampagne",
-    "private": "Privat"
-  },
   "source": {
     "youpers": "YOUPERS",
     "community": "Community",
