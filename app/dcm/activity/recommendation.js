@@ -85,21 +85,22 @@
                 };
 
                 $scope.saveRecommendation = function saveRecommendation() {
-
+                    $scope.$root.$broadcast('busy.begin', {url: "recommendations", name: "saveRecommendation"});
                     // ensure start of date / end of day for publish dates
                     var rec = $scope.recommendation;
                     rec.publishFrom = new Date(moment(rec.publishFrom).startOf('day'));
                     rec.publishTo = new Date(moment(rec.publishTo).endOf('day'));
 
                     if (!rec.id) {
-                        SocialInteractionService.postRecommendation(rec).then(cb);
+                        SocialInteractionService.postRecommendation(rec).then(_cb);
                     } else {
-                        SocialInteractionService.putSocialInteraction(rec).then(cb);
+                        SocialInteractionService.putSocialInteraction(rec).then(_cb);
                     }
 
-                    function cb() {
+                    function _cb(savedSoi) {
                         HealthCoachService.queueEvent('recommendationCreated');
                         $state.go('dcm.home', $stateParams);
+                        $scope.$root.$broadcast('busy.end', {url: "recommendations", name: "saveRecommendation"});
                     }
                 };
 

@@ -128,6 +128,7 @@
                 };
 
                 $scope.saveCampaign = function () {
+                    $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "saveCampaign"});
 
                     $scope.campaign.start = moment($scope.campaign.start).startOf('day');
                     $scope.campaign.end = moment($scope.campaign.end).endOf('day');
@@ -135,11 +136,15 @@
                     function onError(err) {
                         $scope.$emit('clientmsg:error', err);
                         $scope.campaignController.submitting = false;
+                        $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+
                     }
 
                     if ($scope.campaign.id) {
                         CampaignService.putCampaign($scope.campaign).then(function (campaign) {
                             $scope.$state.go('dcm.home');
+                            $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+
                         }, onError);
                     } else {
                         CampaignService.postCampaign($scope.campaign)
@@ -150,6 +155,7 @@
                                     HealthCoachService.queueEvent('campaignCreated');
                                 }
                                 $scope.$state.go('dcm.home', {campaignId: campaign.id});
+                                $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
                             }, onError);
                     }
                 };

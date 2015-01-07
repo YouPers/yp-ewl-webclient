@@ -349,21 +349,39 @@
                 };
 
                 $scope.deleteActivity = function deleteActivity() {
+                    $scope.$root.$broadcast('busy.begin', {url: "activities", name: "deleteActivity"});
+
                     ActivityService.deleteActivity($scope.activity.id)
                         .then(function () {
                             $state.go('homedispatcher');
+                            $scope.$root.$broadcast('busy.end', {url: "activities", name: "deleteActivity"});
                         });
                 };
                 $scope.joinActivity = function joinActivity() {
+                    $scope.$root.$broadcast('busy.begin', {url: "activities", name: "joinActivity"});
+
                     ActivityService.joinPlan($scope.activity).then(function (joinedActivity) {
                         // queue event for next state
                         HealthCoachService.queueEvent('invitationAccepted');
                         $state.go('dhc.activity', { idea: idea.id, activity: joinedActivity.id, socialInteraction: '' });
+                        $scope.$root.$broadcast('busy.end', {url: "activities", name: "joinActivity"});
                     });
                 };
                 $scope.saveActivity = function saveActivity() {
+                    $scope.$root.$broadcast('busy.begin', {url: "activities", name: "saveActivity"});
+
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
+
+
+                        function _finalCb(savedSoiId, healthCoachEvent) {
+                            if (healthCoachEvent) {
+                                HealthCoachService.queueEvent(healthCoachEvent);
+                            }
+                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: savedSoiId }, { reload: true });
+                            $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
+
+                        }
 
                         // queue event for next state
                         HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
@@ -378,13 +396,10 @@
 
                             if ($scope.isCampaignLead) {
 
+                                // is it PUT / update   or POST a new one
                                 if(campaignInvitation) {
-                                    SocialInteractionService.putSocialInteraction(campaignInvitation).then(function () {
-                                        $state.transitionTo($state.current, $stateParams, {
-                                            reload: true,
-                                            inherit: false,
-                                            notify: true
-                                        });
+                                    SocialInteractionService.putSocialInteraction(campaignInvitation).then(function (savedInv) {
+                                        return _finalCb(savedInv);
                                     });
                                 } else {
                                     invitation.targetSpaces = [
@@ -394,8 +409,7 @@
                                         }
                                     ];
                                     SocialInteractionService.postInvitation($scope.socialInteraction).then(function (saved) {
-                                        $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: saved.id });
-                                        HealthCoachService.queueEvent('invitationCreated');
+                                        return _finalCb(saved, 'invitationCreated');
                                     });
                                 }
 
@@ -412,7 +426,9 @@
                                         }
                                     ];
 
-                                    SocialInteractionService.postInvitation(invitation);
+                                    SocialInteractionService.postInvitation(invitation).then(function(savedInv) {
+                                        return _finalCb(savedInv);
+                                    });
 
                                 } else if (!inviteAll) {
 
@@ -431,20 +447,23 @@
                                         });
                                     });
 
-                                    SocialInteractionService.postInvitation(invitation);
+                                    SocialInteractionService.postInvitation(invitation).then(function(savedInv) {
+                                        if (emails && emails.length > 0) {
+                                            ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                                return _finalCb(savedInv);
+                                            });
+                                        } else {
+                                            return _finalCb(savedInv);
+                                        }
 
-                                    if (emails && emails.length > 0) {
-                                        ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
-                                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' }, { reload: true });
-                                        });
-                                    }
+                                    });
+
                                 }
 
                             }
+                        } else {
+                            return _finalCb('');
                         }
-
-                        $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: '' }, { reload: true });
-
                     });
 
 
