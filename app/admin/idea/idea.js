@@ -253,9 +253,10 @@
         }])
 
         .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'ActivityService', 'AssessmentService', 'TopicService', 'Restangular', 'topics',
-            function ($scope, $rootScope, idea, ActivityService, AssessmentService, TopicService, Restangular, topics) {
+            function ($scope, $rootScope, loadedIdea, ActivityService, AssessmentService, TopicService, Restangular, topics) {
 
-                if (!idea) {
+                var idea;
+                if (!loadedIdea) {
                     idea = Restangular.restangularizeElement(null, {
                         number: 'NEW',
                         source: "youpers",
@@ -268,6 +269,8 @@
                         recWeights: [],
                         topics: []
                     }, 'ideas');
+                } else {
+                    idea = loadedIdea.clone();
                 }
 
                 $scope.idea = idea;

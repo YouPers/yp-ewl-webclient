@@ -60,7 +60,7 @@
                             }
                             ActivityService.saveIdea($scope.idea).then(function (result) {
 
-                                $scope.idea.id = result.id;
+                                $scope.idea = result;
 
                                 if(attrs.onSave) {
                                     $scope.onSave(result);

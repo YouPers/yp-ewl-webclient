@@ -121,9 +121,15 @@
                     },
                     saveIdea: function (idea) {
                         if (idea.id) {
-                            return idea.put();
+                            return idea.put().then(function(storedIdea) {
+                                ideaCache[storedIdea.id] = storedIdea;
+                                return storedIdea;
+                            });
                         } else {
-                            return Restangular.restangularizeElement(null, idea, 'ideas').post();
+                            return Restangular.restangularizeElement(null, idea, 'ideas').post(function(storedIdea) {
+                                ideaCache[storedIdea.id] = storedIdea;
+                                return storedIdea;
+                            });
                         }
                     },
                     getActivity: function (activityId) {
