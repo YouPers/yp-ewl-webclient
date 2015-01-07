@@ -43,7 +43,7 @@
       "activity": {
         "selfActivitySaved": "Your activity is scheduled now.\n\nI have moved the activity on your main page from \"Offered Activities\" to \"Scheduled Activities\".",
         "groupActivitySaved": "Your activity is scheduled now.\n\nI have moved the activity on your main page from \"Offered Activities\" to \"Scheduled Activities\".\n\nThe activity is now visible on the main page under \"Offered Activities\" for the invitees (\"personally invited\" or \"all campaign participants\"). The personally invited also receive from me a personal invitation in the Inbox or via email.",
-        "conflictingEvent": "Watch Out! There is an appointment conflict to another, already scheduled activity.\n\nTherefore, plan an different time or appointment for this activity.",
+        "conflictingEvent": "Watch Out! There is an appointment conflict to another, already scheduled activity.\n\nTherefore, plan a different time or date for this activity.",
         "deleteJoinedActivity": "The deletion results in the fact that the organizer sees that you have canceled your participation in the group activity.",
         "deleteOwnActivityAlone": null,
         "deleteOwnActivityWithJoiners": "Deleting this activity has the consequence that the invited people no longer see your invitation card under \"Offered activities.\"\n\nIf an employee has already accepted your invitation and scheduled the activity event, the activity planning for the employee is deleted and the employee receives a cancellation message for the calendar appointment.",
@@ -58,7 +58,7 @@
         "lastEventMissed": "Too bad, can happen to anyone.\n\nI have moved the activity on your main page from \"Scheduled Activities\" to \"Completed Activities\".",
         "recommendationAccepted": "In the second column, you can now define when, where and how often you want to perform this activity. According to your information the event cards will be displayed in the third column.\n\nFor group activities, you can also personally invite other campaign participants in the second column or make the group activity publicly available for all campaign participants. If you want to invite someone personally who is not yet visible as a campaign participant in the selection list, you can also enter an email address as an alternative.\n\nIn the right column, enter a comment on the planned activity for the other campaign participants who see your invitation to a group activity. \n\nPlease note that the activity is only scheduled (and will appear on the main page under \"Scheduled Activities\"), when you click on \"Schedule\" on the top right.",
         "scheduleRecommendedActivity": "Look at the details of the offered activity in the left column and then click on \"schedule\" if you like the offered activity, or click on \"dismiss\" if you do not like it.\n\nAfter you have clicked on \"schedule\", you can define when, where, how often and with whom at best (only possible for group activities) you want to perform the activity with. \n\nIn addition, you can leave comments in the right column for group activities that can also be read by other employees and complemented with own comments.",
-        "scheduleRecommendedActivityConflict": "text is missing",
+        "scheduleRecommendedActivityConflict": "Watch Out! There is an appointment conflict to another, already scheduled activity.\n\nTherefore, plan a different time or date for this activity.",
         "stateEnter": "As soon as the appointment is done, you can report if you could execute the activity and how you felt about it."
       },
       "check": {
@@ -80,7 +80,8 @@
         "presentEvents": null,
         "recommendationDismissed": "You have decided to reject the recommendation.\n\nTherefore, I have moved the activity from section \"Offered activities\" to section \"Dismissed activities\".\n\nWith the decision you give me the opportunity to display a new activity recommendation in section \"Offered activities\". Look at it now!",
         "invitationDismissed": null,
-        "noOffers": "<h3>Welcome!</h3> \n\nI am your YOUPERS coach. \n\nI support you in your participation in the health campaign with tips and hints.\n\nBelow my first clues or tips for you: \n\nAs a first campaign activity, I recommend the accomplishment of a short **self-assessment** (about 10 minutes). The self-assessment allows me to show you possible matching activity cards during the campaign under \"Offered Activities\". You will get from me from now on a daily activity recommendation card.\n\nI have already scheduled for you the self-assessment, which is why the self-assessment card appears above in the middle under \"Scheduled Activities\". Click on the map to start the self-assessment."
+        "noOffers": "<h3>Welcome!</h3> \n\nI am your YOUPERS coach. \n\nI support you in your participation in the health campaign with tips and hints.\n\nBelow my first clues or tips for you: \n\nAs a first campaign activity, I recommend the accomplishment of a short **self-assessment** (about 10 minutes). The self-assessment allows me to show you possible matching activity cards during the campaign under \"Offered Activities\". You will get from me from now on a daily activity recommendation card.\n\nI have already scheduled for you the self-assessment, which is why the self-assessment card appears above in the middle under \"Scheduled Activities\". Click on the map to start the self-assessment.",
+        "campaignLastDay": null
       },
       "end-of-campaign": {
         "endingsoon": null,

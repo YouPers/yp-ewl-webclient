@@ -80,7 +80,8 @@
         "presentEvents": null,
         "recommendationDismissed": null,
         "invitationDismissed": null,
-        "noOffers": null
+        "noOffers": null,
+        "campaignLastDay": null
       },
       "end-of-campaign": {
         "endingsoon": null,

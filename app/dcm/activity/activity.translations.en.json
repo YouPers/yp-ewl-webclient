@@ -21,7 +21,6 @@
     "number": "Activity-number",
     "executiontype": "Execution",
     "frequency": "Frequency",
-    "visibility": "Visibility",
     "source": "Source",
     "activityField": "Activity fields",
     "qualityFactor": "Quality factor (1-10)",

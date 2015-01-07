@@ -21,18 +21,17 @@
     "number": "Aktivitätsnummer",
     "executiontype": "Ausführung",
     "frequency": "Frequenz",
-    "visibility": "Sichtbarkeit",
     "source": "Quelle",
     "activityField": "Aktivitäts Felder",
     "qualityFactor": "Qualitäts-Faktor (1-10)",
     "duration": "Benötigte Zeit (min) ",
-    "startTime": "Empfohlene Uhrzeit",
-    "noDefaultStartTime": "Keine Empfehlung",
     "save": "Speichern",
     "back": "Zurück",
     "header": {
       "recommendation": "Kampagnenempfehlung"
-    }
+    },
+    "noDefaultStartTime": "Keine Empfehlung",
+    "startTime": "Empfohlene Uhrzeit"
   },
   "activities": {
     "duration": {

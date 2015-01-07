@@ -21,7 +21,6 @@
     "number": "Attività - numero",
     "executiontype": "Esecuzione",
     "frequency": "Frequenza",
-    "visibility": "Visibilità",
     "source": "Fonte",
     "activityField": "Campi dell' attività",
     "qualityFactor": "Fattore qualità (1-10)",
