@@ -33,9 +33,9 @@
                 $scope.campaign = campaign;
                 $scope.lastSummaryMail = user.lastSummaryMail;
 
-                $scope.options.rangeEnd = moment().toDate();
-                $scope.options.rangeStart = $scope.lastSummaryMail ? moment($scope.lastSummaryMail).toDate() :
-                    moment($scope.options.rangeEnd).subtract(1, 'days').toDate();
+                $scope.options.currentDate = moment().toDate();
+                $scope.options.lastSentMailDate = $scope.lastSummaryMail ? moment($scope.lastSummaryMail).toDate() :
+                    moment($scope.options.currentDate).subtract(1, 'days').toDate();
 
 
                 function refresh() {
@@ -57,8 +57,8 @@
                     refresh();
                 }, true);
 
-                $scope.setRangeEnd = function (date) {
-                    $scope.options.rangeEnd = moment(date).toDate();
+                $scope.setcurrentDate = function (date) {
+                    $scope.options.currentDate = moment(date).toDate();
                 };
                 var midtermWeek = Math.floor(moment(user.campaign.end).diff(user.campaign.start, 'weeks') / 2);
                 _.extend($scope.campaign, {

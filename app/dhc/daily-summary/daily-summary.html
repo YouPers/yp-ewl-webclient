@@ -8,14 +8,14 @@
 
 
                 <div>
-                    <h3>rangeEnd: {{ options.rangeEnd | fulldate }}</h3>
-                    <input type="date" ng-model="options.rangeEnd">
+                    <h3>currentDate: {{ options.currentDate | fulldate }}</h3>
+                    <input type="date" ng-model="options.currentDate">
                 </div>
 
 
                 <div>
-                    <h3>rangeStart: {{ options.rangeStart | fulldate }}</h3>
-                    <input type="date" ng-model="options.rangeStart">
+                    <h3>lastSentMailDate: {{ options.lastSentMailDate | fulldate }}</h3>
+                    <input type="date" ng-model="options.lastSentMailDate">
                 </div>
 
 
@@ -26,27 +26,27 @@
                 <div>
                     <h3>
                         campaign.start:
-                        <a ng-click="setRangeEnd(campaign.start)">{{ campaign.start | fulldate }}</a>
+                        <a ng-click="setcurrentDate(campaign.start)">{{ campaign.start | fulldate }}</a>
                     </h3>
                     <h3>
                         campaign.end:
-                        <a ng-click="setRangeEnd(campaign.end)">{{ campaign.end | fulldate }}</a>
+                        <a ng-click="setcurrentDate(campaign.end)">{{ campaign.end | fulldate }}</a>
                     </h3>
                     <h3>
                         first monday:
-                        <a ng-click="setRangeEnd(campaign.firstMonday)">{{ campaign.firstMonday | fulldate }}</a>
+                        <a ng-click="setcurrentDate(campaign.firstMonday)">{{ campaign.firstMonday | fulldate }}</a>
                     </h3>
                     <h3>
                         midterm ({{ campaign.midtermWeek }}th) monday:
-                        <a ng-click="setRangeEnd(campaign.midtermMonday)">{{ campaign.midtermMonday | fulldate }}</a>
+                        <a ng-click="setcurrentDate(campaign.midtermMonday)">{{ campaign.midtermMonday | fulldate }}</a>
                     </h3>
                     <h3>
                         last monday:
-                        <a ng-click="setRangeEnd(campaign.lastMonday)">{{ campaign.lastMonday | fulldate }}</a>
+                        <a ng-click="setcurrentDate(campaign.lastMonday)">{{ campaign.lastMonday | fulldate }}</a>
                     </h3>
                     <h3>
                         last day:
-                        <a ng-click="setRangeEnd(campaign.end)">{{ campaign.end | fulldate }}</a>
+                        <a ng-click="setcurrentDate(campaign.end)">{{ campaign.end | fulldate }}</a>
                     </h3>
                 </div>
 
