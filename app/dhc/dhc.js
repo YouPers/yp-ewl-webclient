@@ -64,7 +64,7 @@
                     // if endOfCampaignDisplayed has not been set yet, or it is more than 1 day in the past
                     if(!$rootScope.isCampaignAdmin &&
                         (!user.endOfCampaignDisplayed || moment().diff(user.endOfCampaignDisplayed, 'days') > 1) &&
-                        moment().diff(campaign.end, 'days') >= -2) {
+                        moment().businessDiff(campaign.end) >= -2) {
                         user.endOfCampaignDisplayed = moment();
                         console.log('DhcController: redirecting end of campaign');
                         return $state.go('dhc.end-of-campaign', { campaignId: campaign.id });

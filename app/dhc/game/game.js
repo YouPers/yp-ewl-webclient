@@ -174,7 +174,7 @@
 
                 if(campaign) {
                     $scope.campaign = campaign;
-                    $scope.daysLeft = -moment().diff(campaign.end, 'days');
+                    $scope.daysLeft = -moment().businessDiff(campaign.end);
                     $scope.campaignEnding = $scope.daysLeft <= 2;
                 }
 
