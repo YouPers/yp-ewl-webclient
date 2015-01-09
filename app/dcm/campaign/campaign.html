@@ -11,7 +11,15 @@
 
     <section>
 
-        <div class="header-row"></div>
+        <div class="header-row">
+            <h3><span translate>activity.header.second</span>
+                <span class="pull-right edit-delete-icons">
+                    <a class="fa fa-trash-o" ng-click="deleteCampaign()"
+                       ng-if="canDelete" popover="{{ 'activity.deletePopover' | translate }}" popover-trigger="mouseenter" popover-placement="bottom" popover-append-to-body="true"></a>
+                </span>
+            </h3>
+
+        </div>
         <div class="button-row"></div>
 
         <form name="campaignForm" ypModel="campaign" role="form" class="form-horizontal"

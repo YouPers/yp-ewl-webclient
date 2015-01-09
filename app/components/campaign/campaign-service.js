@@ -27,6 +27,9 @@
                     getCampaigns: function(options) {
                         return campaigns.getList(options);
                     },
+                    deleteCampaign: function(campaign) {
+                        return campaigns.one(campaign.id || campaign).remove();
+                    },
                     inviteCampaignLead: function (email, campaignId) {
                         return campaigns.one(campaignId).all('/inviteCampaignLeadEmail').post({email: email});
                     },

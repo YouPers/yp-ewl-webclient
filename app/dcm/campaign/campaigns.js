@@ -52,8 +52,8 @@
             }])
 
 
-        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'PaymentCodeService', 'campaign', 'topics', 'newTopic',
-            function ($scope, CampaignService, UserService, HealthCoachService, PaymentCodeService, campaign, topics, newTopic) {
+        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'PaymentCodeService', 'campaign', 'campaigns', 'topics', 'newTopic',
+            function ($scope, CampaignService, UserService, HealthCoachService, PaymentCodeService, campaign, campaigns, topics, newTopic) {
 
                 $scope.campaignController = this;
 
@@ -127,18 +127,37 @@
                     });
                 };
 
+                $scope.canDelete = $scope.campaign.id;
+
+                $scope.deleteCampaign = function () {
+                    $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "deleteCampaign"});
+
+                    CampaignService.deleteCampaign($scope.campaign).then(function () {
+
+                        // remove the deleted campaign from the list in the state-parent resolve
+                        _.remove(campaigns, function (camp) {
+                            return camp.id === $scope.campaign.id;
+                        });
+                        $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+                        $scope.$state.go('dcm.home', {campaignId: ''});
+                    }, function(err) {
+                        $scope.$emit('clientmsg:error', 'alreadyJoinedUsers');
+                    });
+                };
+
+                function onError(err) {
+                    $scope.$emit('clientmsg:error', err);
+                    $scope.campaignController.submitting = false;
+                    $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+
+                }
+
                 $scope.saveCampaign = function () {
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "saveCampaign"});
 
                     $scope.campaign.start = moment($scope.campaign.start).startOf('day');
                     $scope.campaign.end = moment($scope.campaign.end).endOf('day');
 
-                    function onError(err) {
-                        $scope.$emit('clientmsg:error', err);
-                        $scope.campaignController.submitting = false;
-                        $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
-
-                    }
 
                     if ($scope.campaign.id) {
                         CampaignService.putCampaign($scope.campaign).then(function (campaign) {
