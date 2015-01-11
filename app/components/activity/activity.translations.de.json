@@ -27,7 +27,7 @@
     "inviteOthers": {
       "selected": "ausgewählte",
       "all": "alle",
-      "inviteByEmail": "Jemanden per Email einladen",
+      "inviteByEmail": "Email eingeben und Enter drücken",
       "inviteByUser": "In der Kampagne suchen",
       "invitedOnSave": "Beim Einplanen werden eingeladen:",
       "none": "Niemand",
@@ -75,7 +75,6 @@
     "isJoining": "Teilnehmer",
     "isInvited": "Eingeladen",
     "reschedule": "Erneut einplanen",
-
     "editPopover": "Bearbeiten",
     "deletePopover": "Löschen",
     "event": {

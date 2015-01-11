@@ -3,7 +3,7 @@
     "lastDaysHeader": "{ daysLeft, plural, 0{ Last day of the campaign } one {Still 1 day to the end of the campaign} other {Still # days to the end of the campaign} }",
     "campaignEndendHeader": "Campaign - Review",
     "subheader": "Need for action due to your self-assessment",
-    "surveyInfo": "Participate in the survey here",
+    "surveyInfo": "Here you can participate in the survey",
     "surveyLink": "Survey",
     "reviewInfo": "Here you can review the campaign",
     "reviewLink": "Review",

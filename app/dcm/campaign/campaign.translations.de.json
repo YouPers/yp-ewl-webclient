@@ -68,7 +68,7 @@
     },
     "backToTopicSelection": "Zurück zur Themenauswahl",
     "paymentCode": {
-      "invalidCode": "Ungültiger Bezahl-Code. Einen gültigen Bezahl-Code bekommen sie <a href=\"http://healthcampaign.youpers.com\">hier</a>",
+      "invalidCode": "Ungültiger Bezahl-Code. Einen gültigen Bezahl-Code bekommst du <a href=\"http://healthcampaign.youpers.com\">hier.</a>",
       "invalidTopic": "Dieser Code ist nur für Kampagnen zum Thema {{ invalidTopic }} gültig",
       "label": "Bezahl-Code"
     }

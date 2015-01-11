@@ -36,7 +36,7 @@
         "label": "Email body",
         "placeholder": "Email body"
       },
-      "explain": "Automatically send email invitations to future campaign participants.",
+      "explain": "Here you can automatically send email invitations to the future campaign participants.",
       "inviteMore": "Invite others",
       "label": "Email addresses of participants to invite, separated by comma, semicolon, space or line break",
       "next": "next",

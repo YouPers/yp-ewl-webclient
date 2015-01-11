@@ -1,7 +1,7 @@
 {
   "emailInvitation": {
     "email": {
-      "placeholder": "Invite someone by email"
+      "placeholder": "Enter email and press enter"
     },
     "inviteSubmit": "Up"
   }

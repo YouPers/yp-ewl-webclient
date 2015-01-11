@@ -36,7 +36,7 @@
         "label": "Email-Text",
         "placeholder": "Email-Text"
       },
-      "explain": "Hier kannst du automatisch Einladungsemails zur Kampagne für die zukünftigen Teilnehmer versenden.",
+      "explain": "Hier kannst du automatisch Einladungsemails für die zukünftigen Kampagnenteilnehmer versenden.",
       "inviteMore": "weitere einladen",
       "label": "Email-Adressen der einzuladenden Mitarbeiter, getrennt mittels Komma, Semikolon, Leerschlag oder Zeilenumbruch",
       "next": "weiter",

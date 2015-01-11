@@ -27,7 +27,7 @@
     "inviteOthers": {
       "selected": "selected",
       "all": "all",
-      "inviteByEmail": "Invite someone by email",
+      "inviteByEmail": "Enter email and press enter",
       "inviteByUser": "Search within campaign",
       "invitedOnSave": "Invited when scheduled:",
       "none": "Nobody",
