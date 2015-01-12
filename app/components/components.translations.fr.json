@@ -12,7 +12,8 @@
       },
       "502": null,
       "503": null,
-      "504": null
+      "504": null,
+      "alreadyJoinedUsers": null
     }
   },
   "busy": {

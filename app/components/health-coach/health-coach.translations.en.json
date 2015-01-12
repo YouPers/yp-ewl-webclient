@@ -25,7 +25,7 @@
         "recommendationDeleted": "Your recommendation card was deleted.\nCreate new recommendations or invitations where appropriate.",
         "enterAdresses": null,
         "noAvatarPicture": "Please upload a photo of you <a href=\"/#/profile\">in your profile</a>.\n\nThis photo can be seen by employees in your invitation email to the campaign and in the application to your planned campaigns activities and messages.",
-        "noMessages": "Click on \"ADD MESSAGES\" to compose campaign messages.\n\nI recommend you to send a welcome message at the beginning of the campaign, a motivational message during the campaign, and a thank-you message towards the end of the campaign.\n\nIdeally, you create the prepared messages already before the start of the campaign and define their publication by means of the dates of publication (from, to).",
+        "noMessages": "Click on CAMPAIGN MESSAGE to compose a campaign message.\n\nI recommend you to send a welcome message at the beginning of the campaign, a motivational message during the campaign, and a thank-you message towards the end of the campaign.\n\nIdeally, you create the prepared messages already before the start of the campaign and define their publication by means of the dates of publication (from, to).",
         "nothingOffered": "Ideally, you record your <a href='/#/dcm/campaign/{{campaign.id}}/ideas'> activity recommendations and invitations</a> before the start of the campaign and define their publication by means of the dates of publication (from, to).\n\nI recommend to advise the employees a new activity every day and to organize a campaign activity event once a week.",
         "testEmailSent": null
       },
