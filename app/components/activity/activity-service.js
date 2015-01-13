@@ -126,7 +126,7 @@
                                 return storedIdea;
                             });
                         } else {
-                            return Restangular.restangularizeElement(null, idea, 'ideas').post(function(storedIdea) {
+                            return Restangular.restangularizeElement(null, idea, 'ideas').post().then(function(storedIdea) {
                                 ideaCache[storedIdea.id] = storedIdea;
                                 return storedIdea;
                             });
