@@ -39,6 +39,8 @@
                         populate: 'author',
                         targetId: $stateParams.campaignId,
                         authored: true,
+                        publishFrom: false,
+                        publishTo: false,
                         "filter[activity]": activity.id
                     }).then(function (invitations) {
                         return invitations.length > 0 ? invitations[0] : undefined;
