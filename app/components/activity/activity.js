@@ -374,11 +374,12 @@
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
 
 
-                        function _finalCb(savedSoiId, healthCoachEvent) {
+                        function _finalCb(savedSoi, healthCoachEvent) {
                             if (healthCoachEvent) {
                                 HealthCoachService.queueEvent(healthCoachEvent);
                             }
-                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: savedSoiId }, { reload: true });
+
+                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: savedSoi ? savedSoi.id : '' }, { reload: true });
                             $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
 
                         }
@@ -462,7 +463,7 @@
 
                             }
                         } else {
-                            return _finalCb('');
+                            return _finalCb();
                         }
                     });
 
