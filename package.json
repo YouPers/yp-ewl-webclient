@@ -1,7 +1,7 @@
 {
-    "name": "yp-ewl-webapp",
-    "version": "0.0.1",
-    "description": "Youpers - eWorkLife Prototype",
+    "name": "HealthCampaign-Webapp",
+    "version": "1.0.0",
+    "description": "HealthCampaign by YOUPERS",
     "dependencies": {
         "grunt": "~0.4.x",
         "grunt-contrib-copy": "0.7.x",
