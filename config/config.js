@@ -16,7 +16,7 @@
 var _ = require('lodash');
 
 var defaultConfig = {
-    name: 'default',
+    name: process.env.NODE_ENV || 'dev',
     webclientUrl: 'https://'+ process.env.NODE_ENV +'.youpers.com',
     backendUrl: 'https://'+ process.env.NODE_ENV +'.youpers.com/api',
     translationSource: 'local',
