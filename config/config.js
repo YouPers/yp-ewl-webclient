@@ -17,8 +17,8 @@ var _ = require('lodash');
 
 var defaultConfig = {
     name: 'default',
-    webclientUrl: 'unspecified: adjust-config.js',
-    backendUrl: 'unspecified: adjust-config.js',
+    webclientUrl: 'https://'+ process.env.NODE_ENV +'.youpers.com',
+    backendUrl: 'https://'+ process.env.NODE_ENV +'.youpers.com/api',
     translationSource: 'local',
     googleAnalytics: {
         webPropertyId: 'UA-39309635-4'
@@ -36,6 +36,7 @@ var defaultConfig = {
 };
 
 var specificConfigs = {
+    default: {},
     dev: {
         name: 'dev',
         webclientUrl: 'http://localhost:9000',
