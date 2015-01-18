@@ -252,7 +252,9 @@
                 };
 
                 $scope.removeUserToBeInvited = function (user) {
-                    _.remove($scope.usersToBeInvited, user.id ? { id: user.id } : user);
+                    _.remove($scope.usersToBeInvited, function (item) {
+                        return user.id ? user.id === item.id : user === item;
+                    });
                 };
 
                 var validateActivity = _.debounce(function (newActivity, old) {
