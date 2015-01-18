@@ -155,8 +155,8 @@
                 $scope.saveCampaign = function () {
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "saveCampaign"});
 
-                    $scope.campaign.start = moment($scope.campaign.start).startOf('day');
-                    $scope.campaign.end = moment($scope.campaign.end).endOf('day');
+                    $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
+                    $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
 
 
                     if ($scope.campaign.id) {
