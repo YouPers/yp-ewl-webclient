@@ -1,0 +1,13 @@
+
+<ul class="list-group">
+
+    <li ng-repeat="campaign in campaigns" class="list-group-item">
+
+        <a ng-click="open(campaign)">{{ campaign.title }}</a>
+        <span class="badge">{{ campaign.organization.name }}</span>
+        <span class="badge" ng-repeat="campaignLead in campaign.campaignLeads">{{ campaignLead.fullname }}</span>
+        <span class="badge">{{ campaign.location }}</span>
+
+    </li>
+
+</ul>
