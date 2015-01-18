@@ -96,7 +96,10 @@
                             }],
 
                             closedEvents: ['missedEvents', 'doneEvents', function (missedEvents, doneEvents) {
-                                return missedEvents.concat(doneEvents);
+                                var closedEvents = missedEvents.concat(doneEvents);
+                                return _.sortBy(closedEvents, function (event) {
+                                    return - moment(event.start).valueOf();
+                                });
                             }],
 
                             pastEvents: ['ActivityService', 'openEvents', function (ActivityService, openEvents) {
