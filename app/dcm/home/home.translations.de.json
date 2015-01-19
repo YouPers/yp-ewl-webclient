@@ -24,6 +24,9 @@
       "welcomeLinkExplain": "Mit diesem Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einer Email an alle potentiellen Teilnehmer.",
       "welcomeLinkTitle": "Manuelle Einladungsemails"
     },
+    "participants": {
+      "header": "Teilnehmer"
+    },
     "emailInvite": {
       "adjust": "korrigiere",
       "emailSubject": {
