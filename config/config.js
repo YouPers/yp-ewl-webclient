@@ -65,8 +65,8 @@ var specificConfigs = {
     },
     "hc-ci": { // used by automtatic deploys on cimaster machine
         name: '',
-        webclientUrl: 'https://cimaster.youpers.com',
-        backendUrl: 'https://cimaster.youpers.com/api',
+        webclientUrl: 'https://hc-ci.youpers.com',
+        backendUrl: 'https://hc-ci.youpers.com/api',
         googleAnalytics: {},
         availableLanguages: [ 'de'],
         languageMappings: {
@@ -81,8 +81,8 @@ var specificConfigs = {
     },
     "hc-uat": {
         name: '',
-        webclientUrl: 'https://uat.youpers.com',
-        backendUrl: 'https://uat.youpers.com/api',
+        webclientUrl: 'https://hc-uat.youpers.com',
+        backendUrl: 'https://hc-uat.youpers.com/api',
         translationSource: 'wti',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-2'
