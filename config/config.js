@@ -67,7 +67,17 @@ var specificConfigs = {
         name: '',
         webclientUrl: 'https://cimaster.youpers.com',
         backendUrl: 'https://cimaster.youpers.com/api',
-        googleAnalytics: {}
+        googleAnalytics: {},
+        availableLanguages: [ 'de'],
+        languageMappings: {
+            'en_US': 'de',
+            'en_UK': 'de',
+            'de_DE': 'de',
+            'de_CH': 'de',
+            'en': 'de',
+            'fr': 'de',
+            'it': 'de'
+        }
     },
     uat: {
         name: '',
@@ -77,6 +87,7 @@ var specificConfigs = {
         googleAnalytics: {
             webPropertyId: 'UA-39309635-2'
         }
+
     },
     prod: {
         name: '',
@@ -85,7 +96,16 @@ var specificConfigs = {
         googleAnalytics: {
             webPropertyId: 'UA-39309635-3'
         },
-        availableLanguages: [ 'de']
+        availableLanguages: [ 'de'],
+        languageMappings: {
+            'en_US': 'de',
+            'en_UK': 'de',
+            'de_DE': 'de',
+            'de_CH': 'de',
+            'en': 'de',
+            'fr': 'de',
+            'it': 'de'
+        }
     }
 };
 
