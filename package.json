@@ -49,8 +49,7 @@
         "node": "0.10.22"
     },
     "scripts": {
-        "test": "grunt",
-        "postinstall": "node ./node_modules/protractor/bin/webdriver-manager update"
+        "test": "grunt"
     },
     "repository": {
         "type": "git",
