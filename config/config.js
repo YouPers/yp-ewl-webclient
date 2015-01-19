@@ -63,7 +63,7 @@ var specificConfigs = {
         backendUrl: 'https://cimaster.youpers.com/api',
         googleAnalytics: {}
     },
-    cimaster: { // used by automtatic deploys on cimaster machine
+    "hc-ci": { // used by automtatic deploys on cimaster machine
         name: '',
         webclientUrl: 'https://cimaster.youpers.com',
         backendUrl: 'https://cimaster.youpers.com/api',
@@ -79,7 +79,7 @@ var specificConfigs = {
             'it': 'de'
         }
     },
-    uat: {
+    "hc-uat": {
         name: '',
         webclientUrl: 'https://uat.youpers.com',
         backendUrl: 'https://uat.youpers.com/api',
