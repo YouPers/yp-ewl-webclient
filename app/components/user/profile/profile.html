@@ -95,38 +95,35 @@
                 </div>
             </div>
         </div>
-        </br>
+        <br/>
 
         <div class="row">
             <div class="form-group">
                 <div class="col-md-4">
                     <label translate>profileForm.birthdate.label</label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
 
-                    <input ng-model="profileUserObj.birthDate"
-                           class="form-control" id="datePickerStart"
-
-                           date-formatter="dd.MM.yyyy"
-                           date-parser="dd.MM.yyyy"
-                           placeholder="DD.MM.YYYY"/>
+                    <date-picker date="profileUserObj.birthDate"></date-picker>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            </br>
-            <div class="col-md-4">
-                <label translate>profileForm.maritalStatus.label</label>
-            </div>
-            <div class="col-md-4">
-                <select class="form-control"
-                        ng-model="profileUserObj.maritalStatus"
-                        ng-options="'maritalStatus.' + value | translate for value in enums.maritalStatus">
-                </select>
+            <div class="form-group">
+                <br/>
+                <div class="col-md-4">
+                    <label translate>profileForm.maritalStatus.label</label>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-control"
+                            ng-model="profileUserObj.maritalStatus"
+                            ng-options="'maritalStatus.' + value | translate for value in enums.maritalStatus">
+                    </select>
+                </div>
             </div>
         </div>
-        </br>
+        <br/>
     </div>
 
     <div class="col-md-6">
