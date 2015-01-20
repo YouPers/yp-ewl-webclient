@@ -228,7 +228,7 @@
             </accordion-heading>
 
 
-            <div ng-if="campaignStatsOpen">
+            <div>
                 <div ng-if="!campaign">
                     <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
                     <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
@@ -271,20 +271,28 @@
         </div>
     </accordion-group>
 
-</accordion>
+
+    <!-- campaign stats -->
+
+    <accordion-group ng-if="offerSectionAvailable" class="offer-section" is-open="offerSectionOpen">
+        <div>
+
+            <accordion-heading>
+
+                <span translate>dcmhome.activities</span>
+
+                <a href>
+                    <i class="fa "
+                       ng-class="{ 'fa-chevron-down': offerSectionOpen, 'fa-chevron-right': !offerSectionOpen }"></i>
+                </a>
+
+            </accordion-heading>
 
 
-<div class="row" ng-if="offersSectionAvailable">
+            <div>
 
-    <div class="col-md-12">
-
-
-        <game-area type="row" class="campaign-offers" ng-init="homeController.offersAreaHeight = 14" area-height="homeController.offersAreaHeight">
-
-            <div class="offer-filter">
-                <h3 translate>dcmhome.activities</h3>
-
-                <div ng-if="campaign">
+                <!-- header / filters -->
+                <div ng-if="campaign" class="offer-filter">
                     <div class="checkbox show-old" ng-if="campaign">
                         <label>
                             <input type="checkbox" ng-model="homeController.showOld"> <span
@@ -313,34 +321,37 @@
                     <div class="clearfix"></div>
                 </div>
 
-            </div>
+                <!-- activity offers -->
 
-            <div class="flex" ng-style="{ height: homeController.offersAreaHeight ? homeController.offersAreaHeight + 'em' : 'auto' }">
+                <div class="offer-section-content">
 
+                    <div ng-if="campaign && offers.length === 0" class="empty-content">
 
-                <div ng-if="campaign && offers.length === 0" class="empty-content">
+                        <span class="empty-content-hint" translate>dcmhome.noOffers</span>
 
-                    <span class="empty-content-hint" translate>dcmhome.noOffers</span>
+                    </div>
+
+                    <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
+                                         activity="offer.activity"
+                                         idea="offer.idea"
+                                         social-interaction="offer"
+                                         ng-repeat="offer in offers"
+                                         ui-sref="{{ offer.__t === 'Invitation' ? 'dcm.activity' : 'dcm.recommendation' }}({ idea: offer.idea.id, activity: offer.activity.id, socialInteraction: offer.id, mode: 'campaignlead' })"
+                            >
+
+                    </activity-offer-card>
+
 
                 </div>
 
-                <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
-                                     activity="offer.activity"
-                                     idea="offer.idea"
-                                     social-interaction="offer"
-                                     ng-repeat="offer in offers"
-                                     ui-sref="{{ offer.__t === 'Invitation' ? 'dcm.activity' : 'dcm.recommendation' }}({ idea: offer.idea.id, activity: offer.activity.id, socialInteraction: offer.id, mode: 'campaignlead' })"
-                        >
-
-                </activity-offer-card>
 
             </div>
+        </div>
+    </accordion-group>
 
-        </game-area>
+</accordion>
 
-    </div>
 
-</div>
 
 
 <div class="row">

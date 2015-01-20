@@ -130,7 +130,7 @@
                 }
 
                 $scope.campaignStartAvailable = !$scope.campaignEnding;
-                $scope.offersSectionAvailable = !$scope.campaignEnding;
+                $scope.offerSectionAvailable = !$scope.campaignEnding;
                 $scope.campaignStartOpen =  !$scope.campaignStarted;
                 $scope.campaignStatsOpen =  $scope.campaignStarted && !$scope.campaignEnding;
                 $scope.offers = socialInteractions;

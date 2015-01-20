@@ -96,6 +96,86 @@
 
   }
 
+  .offer-section {
+
+    .add-offer:hover {
+      color: @yp-accent-hover;
+    }
+    .add-offer {
+      .button();
+      color: @yp-primary;
+      position: absolute;
+
+      top: 0;
+      right: 10px;
+
+      i.fa {
+        font-size: 16px;
+      }
+    }
+
+    .offer-filter {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .offer-type {
+      position: absolute;
+      top: 25px;
+      right: 5px;
+
+      i.fa {
+        cursor: pointer;
+        font-size: 16px;
+        color: @yp-accent;
+      }
+      .btn.active {
+        background-color: transparent !important;
+        color: @yp-accent !important;
+        border: none;
+
+        i.fa {
+          color: @yp-accent;;
+        }
+      }
+
+      .btn {
+        color: @yp-subtitle;
+        border: none;
+        text-transform: none;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 4px;
+
+        i.fa {
+          color: @yp-subtitle;
+        }
+      }
+    }
+
+    .empty-content {
+      display: block;
+      position: relative;
+      width: 100%;
+    }
+
+    .empty-content-hint {
+      display: block;
+      white-space: normal;
+    }
+
+    .offer-section-content {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      > * {
+        margin: 0 8px 8px 0;
+      }
+    }
+
+
+  }
+
   a {
     .button();
 
@@ -179,90 +259,11 @@
     }
   }
 
-  .campaign-offers {
-
-    .area .flex {
-      width: 644px;
-      flex-direction: row;
-//      overflow: auto;
-    }
-
-    .area .show-more {
-      bottom: 2px;
-      right: 9px;
-    }
-
-    .add-offer:hover {
-      color: @yp-accent-hover;
-    }
-    .add-offer {
-      .button();
-      color: @yp-primary;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-
-      i.fa {
-        font-size: 16px;
-      }
-    }
-
-    .offer-filter {
-      position: relative;
-      margin-bottom: 20px;
-      margin-right: 15px;
-    }
-
-    .show-old {
-      margin-top: 20px;
-    }
-
-    .offer-type {
-      position: absolute;
-      top: 35px;
-      right: 0;
-
-      i.fa {
-        cursor: pointer;
-        font-size: 16px;
-        color: @yp-accent;
-      }
-      .btn.active {
-        background-color: transparent !important;
-        color: @yp-accent !important;
-        border: none;
-
-        i.fa {
-          color: @yp-accent;;
-        }
-      }
-
-      .btn {
-        color: @yp-subtitle;
-        border: none;
-        text-transform: none;
-        font-size: 14px;
-        font-weight: normal;
-        padding: 4px;
-
-        i.fa {
-          color: @yp-subtitle;
-        }
-      }
-    }
 
 
-    .empty-content {
-      display: block;
-      position: relative;
-      width: 100%;
-    }
 
-    .empty-content-hint {
-      display: block;
-      white-space: normal;
-    }
-  }
+
+
 
   .campaign-messages {
     .game-card();
