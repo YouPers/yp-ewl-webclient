@@ -20,14 +20,8 @@
                         throw new Error('date attribute is required');
                     }
 
-                    function dateWatch() {
-                        // working copy for the datepicker to preserve the time in the attribute 'date'
-                        scope.dateOnly = moment(scope.date).format();
-                    }
-
-                    dateWatch();
-                    var clearDateWatch;
-
+                    // working copy for the datepicker to preserve the time in the attribute 'date'
+                    scope.dateOnly = moment(scope.date).format();
 
                     scope.$watch('dateOnly', function(val, old) {
 
@@ -37,11 +31,7 @@
                             date.year(dateOnly.year());
                             date.dayOfYear(dateOnly.dayOfYear());
 
-                            if(clearDateWatch) {
-                                clearDateWatch();
-                            }
-                            scope.date = date.format();
-                            clearDateWatch = scope.$watch('date', dateWatch);
+                            scope.date = date.toISOString();
                         }
                     });
 
