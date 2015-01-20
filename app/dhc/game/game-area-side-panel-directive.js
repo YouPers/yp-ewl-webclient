@@ -7,7 +7,8 @@
             return {
                 restrict: 'EA',
                 scope: {
-                    iconClass: '@'
+                    iconClass: '@',
+                    type: '@'
                 },
                 transclude: true,
                 templateUrl: 'dhc/game/game-area-side-panel-directive.html',

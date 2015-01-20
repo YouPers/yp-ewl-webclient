@@ -3,7 +3,13 @@
     <a href class="togglePreview" ng-click="preview = !preview; $event.stopPropagation();">
         <i class="fa" ng-class="{ 'fa-chevron-right': preview, 'fa-chevron-left': !preview }"></i>
 
-        <i ng-if="iconClass" class="fa {{ iconClass }}"></i>
+        <i ng-if="iconClass" class="fa {{ iconClass }}"
+
+           popover="{{::'game.activities.' + type | translate}}"
+           popover-placement="top"
+           popover-trigger="mouseenter"
+           popover-append-to-body="true"
+                ></i>
     </a>
 
     <a href class="toggleZoom">
