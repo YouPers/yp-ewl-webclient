@@ -4,7 +4,6 @@
     var _getOffersOptions = {
         populate: 'author idea activity',
         authored: true,
-        authorType: 'campaignLead',
         publishTo: new Date(),
         publishFrom: false
     };
@@ -131,8 +130,8 @@
 
                 $scope.campaignStartAvailable = !$scope.campaignEnding;
                 $scope.offerSectionAvailable = !$scope.campaignEnding;
+                $scope.offerSectionOpen = !$scope.campaignEnding && $scope.campaignStarted;
                 $scope.campaignStartOpen =  !$scope.campaignStarted;
-                $scope.campaignStatsOpen =  $scope.campaignStarted && !$scope.campaignEnding;
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
 
@@ -178,7 +177,17 @@
                     if(campaign) {
 
                         $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
-                            _getOffersOptions.discriminators = offerTypes;
+                            if(offerTypes === 'All') {
+                                _getOffersOptions.discriminators = '';
+                                _getOffersOptions.authorType = undefined;
+                            } else if(offerTypes === 'UserInvitation') {
+                                _getOffersOptions.discriminators = 'Invitation';
+                                _getOffersOptions.authorType = undefined;
+                            } else {
+                                _getOffersOptions.discriminators = offerTypes;
+                                _getOffersOptions.authorType = 'campaignLead';
+                            }
+
                             _loadSocialInteractions();
                         }, true);
 

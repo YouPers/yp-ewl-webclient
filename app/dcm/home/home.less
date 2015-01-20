@@ -117,7 +117,7 @@
 
     .offer-filter {
       position: relative;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .offer-type {
@@ -130,10 +130,9 @@
         font-size: 16px;
         color: @yp-accent;
       }
-      .btn.active {
-        background-color: transparent !important;
+      .btn.active, .btn:focus {
+
         color: @yp-accent !important;
-        border: none;
 
         i.fa {
           color: @yp-accent;;
@@ -142,7 +141,9 @@
 
       .btn {
         color: @yp-subtitle;
+        background-color: transparent !important;
         border: none;
+        box-shadow: none;
         text-transform: none;
         font-size: 14px;
         font-weight: normal;
