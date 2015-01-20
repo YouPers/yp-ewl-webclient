@@ -64,8 +64,6 @@
 
   .campaign-stats {
 
-    position: relative;
-
     .ac-chart {
       text {
         font-size: 13px;
@@ -78,19 +76,21 @@
 
     .show-stats {
 
-      position: absolute;
-      top: 12px;
-      right: 10px;
+      float: right;
 
-      > span {
+      i.fa, > span {
         color: rgba(0, 0, 0, 0.87);
         font-size: 14px;
         font-weight: 400;
         text-transform: uppercase;
       }
 
+      &:hover i.fa {
+        color: @yp-accent-hover;
+      }
       i.fa {
         font-size: 16px;
+        color: @yp-accent;
       }
     }
 

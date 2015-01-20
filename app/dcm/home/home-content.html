@@ -220,13 +220,13 @@
                        ng-class="{ 'fa-chevron-down': campaignStatsOpen, 'fa-chevron-right': !campaignStatsOpen }"></i>
                 </a>
 
+                <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">
+                    <span translate>dcmhome.moreStats</span>
+                    <i class="fa fa-tachometer"></i>
+                </a>
+
             </accordion-heading>
 
-
-            <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">
-                <span translate>dcmhome.moreStats</span>
-                <i class="fa fa-tachometer"></i>
-            </a>
 
             <div ng-if="campaignStatsOpen">
                 <div ng-if="!campaign">
