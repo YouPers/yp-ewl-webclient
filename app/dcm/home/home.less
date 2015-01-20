@@ -17,6 +17,31 @@
       .header3();
       text-transform: none;
     }
+
+    .section-link:hover {
+      color: @yp-accent-hover;
+    }
+
+    .section-link {
+
+      float: right;
+      padding-top: 2px;
+
+      i.fa, > span {
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+
+      &:hover i.fa {
+        color: @yp-accent-hover;
+      }
+      i.fa {
+        font-size: 16px;
+        color: @yp-accent;
+      }
+    }
   }
 
   .campaign-start {
@@ -67,30 +92,6 @@
     .ac-chart {
       text {
         font-size: 13px;
-      }
-    }
-
-    .show-stats:hover {
-      color: @yp-accent-hover;
-    }
-
-    .show-stats {
-
-      float: right;
-
-      i.fa, > span {
-        color: rgba(0, 0, 0, 0.87);
-        font-size: 14px;
-        font-weight: 400;
-        text-transform: uppercase;
-      }
-
-      &:hover i.fa {
-        color: @yp-accent-hover;
-      }
-      i.fa {
-        font-size: 16px;
-        color: @yp-accent;
       }
     }
 
