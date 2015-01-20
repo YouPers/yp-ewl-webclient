@@ -208,6 +208,14 @@
             }])
 
 
+        .controller('HomeParticipantsController', ['$scope', 'UserService', function ($scope, UserService) {
+
+            UserService.getUsers({ sort: 'lastname:1'}).then(function (users) {
+                $scope.participants = users;
+            });
+
+        }])
+
         .controller('HomeStatsController', ['$scope', 'StatsService', function ($scope, StatsService) {
             $scope.chartData = {};
 

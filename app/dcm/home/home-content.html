@@ -140,6 +140,8 @@
 
                     </form>
 
+                    <br/>
+
                 </div>
 
             </div>
@@ -149,6 +151,51 @@
 </div>
 </div>
 
+
+<div class="row" ng-if="campaign" ng-controller="HomeParticipantsController">
+    <div class="col-md-12  participants">
+        <div class="area">
+            <div>
+                <h3><span translate>dcmhome.participants.header</span>
+                    <a href="" ng-click="participantsOpen=!participantsOpen">
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': participantsOpen, 'fa-chevron-right': !participantsOpen }"></i>
+                    </a>
+                </h3>
+            </div>
+            <div class="row" ng-if="participantsOpen">
+
+                <div class="col-md-12">
+
+
+                    <div class="participant" ng-repeat="participant in participants">
+
+                        <div class="avatar">
+                            <img ng-src="{{ participant.avatar }}">
+                        </div>
+
+                        <div class="details">
+
+                            <div class="name">
+                                <span>{{ participant.fullname }}</span>
+                            </div>
+
+                            <div class="email">
+                                <span>{{ participant.email }}</span>
+                                <span class="pull-right">{{ participant.created | fromNow }}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="row" ng-controller="HomeStatsController">
