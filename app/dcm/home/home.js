@@ -210,8 +210,9 @@
 
         .controller('HomeParticipantsController', ['$scope', 'UserService', function ($scope, UserService) {
 
+            var homeParticipantsController = this;
             UserService.getUsers({ sort: 'lastname:1'}).then(function (users) {
-                $scope.participants = users;
+                homeParticipantsController.participants = users;
             });
 
         }])

@@ -1,15 +1,22 @@
-<div class="row" ng-if="campaign && campaignStartAvailable">
-    <div class="col-md-12  campaign-start">
-        <div class="area">
-            <div>
-                <h3><span translate>dcmhome.campaignStart.header</span>
-                    <a href="" ng-click="campaignStartOpen=!campaignStartOpen">
-                        <i class="fa "
-                           ng-class="{ 'fa-chevron-down': campaignStartOpen, 'fa-chevron-right': !campaignStartOpen }"></i>
-                    </a>
-                </h3>
-            </div>
-            <div class="row" ng-if="campaignStartOpen">
+<accordion close-others="true">
+
+    <!-- campaign start -->
+
+    <accordion-group class="campaign-start" ng-if="campaign && campaignStartAvailable" is-open="campaignStartOpen">
+        <div>
+
+            <accordion-heading>
+
+                <span translate>dcmhome.campaignStart.header</span>
+
+                <a>
+                    <i class="fa "
+                       ng-class="{ 'fa-chevron-down': campaignStartOpen, 'fa-chevron-right': !campaignStartOpen }"></i>
+                </a>
+
+            </accordion-heading>
+
+            <div class="row">
 
                 <div class="col-md-12">
 
@@ -71,10 +78,10 @@
                         <div class="row" ng-if="homeController.formStatus=='afterTest'">
                             <div class="col-md-12" translate translate-values='{ address: principal.getUser().email}'>dcmhome.emailInvite.testEmailSent</div>
                             <!--<div class="col-md-4">-->
-                                <!--<button ng-click="homeController.formStatus='beforeTest'"-->
-                                        <!--class="btn btn-default"-->
-                                        <!--translate>dcmhome.emailInvite.adjust-->
-                                <!--</button>-->
+                            <!--<button ng-click="homeController.formStatus='beforeTest'"-->
+                            <!--class="btn btn-default"-->
+                            <!--translate>dcmhome.emailInvite.adjust-->
+                            <!--</button>-->
                             <!--</div>-->
                             <div class="col-md-12">
                                 <br/>
@@ -147,28 +154,30 @@
             </div>
 
         </div>
-    </div>
-</div>
-</div>
+    </accordion-group>
 
+    <!-- participants -->
 
-<div class="row" ng-if="campaign" ng-controller="HomeParticipantsController">
-    <div class="col-md-12  participants">
-        <div class="area">
-            <div>
-                <h3><span translate>dcmhome.participants.header</span>
-                    <a href="" ng-click="participantsOpen=!participantsOpen">
-                        <i class="fa "
-                           ng-class="{ 'fa-chevron-down': participantsOpen, 'fa-chevron-right': !participantsOpen }"></i>
-                    </a>
-                </h3>
-            </div>
-            <div class="row" ng-if="participantsOpen">
+    <accordion-group class="participants" is-open="participantsOpen">
+        <div ng-controller="HomeParticipantsController as homeParticipantsController">
+
+            <accordion-heading>
+
+                <span translate>dcmhome.participants.header</span>
+
+                <a href>
+                    <i class="fa "
+                       ng-class="{ 'fa-chevron-down': participantsOpen, 'fa-chevron-right': !participantsOpen }"></i>
+                </a>
+
+            </accordion-heading>
+
+            <div class="row">
 
                 <div class="col-md-12">
 
 
-                    <div class="participant" ng-repeat="participant in participants">
+                    <div class="participant" ng-repeat="participant in homeParticipantsController.participants">
 
                         <div class="avatar">
                             <img ng-src="{{ participant.avatar }}">
@@ -194,30 +203,32 @@
 
             </div>
         </div>
-    </div>
-</div>
+    </accordion-group>
 
 
-<div class="row" ng-controller="HomeStatsController">
-    <div class="col-md-12 campaign-stats">
-        <div class="area">
+    <!-- campaign stats -->
 
-            <div>
-                <h3><span translate>dcmhome.statsTitle</span>
-                    <a href="" ng-click="campaignStatsOpen=!campaignStatsOpen">
-                        <i class="fa "
-                           ng-class="{ 'fa-chevron-down': campaignStatsOpen, 'fa-chevron-right': !campaignStatsOpen }"></i>
-                    </a>
-                </h3>
+    <accordion-group class="campaign-stats" is-open="campaignStatsOpen">
+        <div ng-controller="HomeStatsController as homeStatsController">
 
+            <accordion-heading>
 
-                <h3 translate></h3>
-                <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">
-                    <span translate>dcmhome.moreStats</span>
-                    <i class="fa fa-tachometer"></i>
+                <span translate>dcmhome.statsTitle</span>
+
+                <a href>
+                    <i class="fa "
+                       ng-class="{ 'fa-chevron-down': campaignStatsOpen, 'fa-chevron-right': !campaignStatsOpen }"></i>
                 </a>
-            </div>
-            <div ng-if="campaignStatsOpen" class="area-content">
+
+            </accordion-heading>
+
+
+            <a class="show-stats" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">
+                <span translate>dcmhome.moreStats</span>
+                <i class="fa fa-tachometer"></i>
+            </a>
+
+            <div ng-if="campaignStatsOpen">
                 <div ng-if="!campaign">
                     <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
                     <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
@@ -256,9 +267,11 @@
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
-</div>
+    </accordion-group>
+
+</accordion>
 
 
 <div class="row" ng-if="offersSectionAvailable">
