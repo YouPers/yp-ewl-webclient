@@ -270,7 +270,8 @@
             <health-coach event="healthCoachEvent"/>
         </div>
 
-        <div class="box" ng-if="isScheduled">
+        <!-- disabled for campaignLeads if the activity is not owned -->
+        <div class="box" ng-if="isScheduled && !(isCampaignLead && !isOwner)">
 
             <h3 translate>activity.header.comments</h3>
 

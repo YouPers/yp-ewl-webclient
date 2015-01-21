@@ -154,14 +154,9 @@
 
                         scope.hasCampaign = $stateParams.campaignId;
 
-                        scope.options = {
-                            composeFormShown: false
-                        };
-
                         scope.$watch('editedMessage', function (newVal, oldVal) {
                             if (newVal) {
                                 scope.message = newVal;
-                                scope.options.composeFormShown = true;
                             }
                         });
 
@@ -172,7 +167,6 @@
 
                         scope.cancel = function (message) {
                             delete message._editMode;
-                            scope.options.composeFormShown = false;
                             scope.message = _.clone(messageTemplate);
                             scope.editedMessage = null;
                         };
@@ -192,8 +186,8 @@
                                     saved.author = $rootScope.principal.getUser();
                                     delete message._editMode;
                                     _.merge(message, saved);
-                                    scope.options.composeFormShown = false;
                                     scope.message = _.clone(messageTemplate);
+                                    scope.composeMessageForm.$setPristine();
                                     scope.editedMessage = null;
                                 });
 
@@ -204,7 +198,7 @@
                                         scope.onPost({message: saved});
                                     }
                                     scope.message = _.clone(messageTemplate);
-                                    scope.options.composeFormShown = false;
+                                    scope.composeMessageForm.$setPristine();
                                 });
                             }
                         };

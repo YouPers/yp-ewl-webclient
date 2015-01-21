@@ -4,7 +4,6 @@
     var _getOffersOptions = {
         populate: 'author idea activity',
         authored: true,
-        authorType: 'campaignLead',
         publishTo: new Date(),
         publishFrom: false
     };
@@ -130,9 +129,9 @@
                 }
 
                 $scope.campaignStartAvailable = !$scope.campaignEnding;
-                $scope.offersSectionAvailable = !$scope.campaignEnding;
+                $scope.offerSectionAvailable = !$scope.campaignEnding;
+                $scope.offerSectionOpen = !$scope.campaignEnding && $scope.campaignStarted;
                 $scope.campaignStartOpen =  !$scope.campaignStarted;
-                $scope.campaignStatsOpen =  $scope.campaignStarted && !$scope.campaignEnding;
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
 
@@ -178,7 +177,17 @@
                     if(campaign) {
 
                         $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
-                            _getOffersOptions.discriminators = offerTypes;
+                            if(offerTypes === 'All') {
+                                _getOffersOptions.discriminators = '';
+                                _getOffersOptions.authorType = undefined;
+                            } else if(offerTypes === 'UserInvitation') {
+                                _getOffersOptions.discriminators = 'Invitation';
+                                _getOffersOptions.authorType = 'user';
+                            } else {
+                                _getOffersOptions.discriminators = offerTypes;
+                                _getOffersOptions.authorType = 'campaignLead';
+                            }
+
                             _loadSocialInteractions();
                         }, true);
 
@@ -210,8 +219,9 @@
 
         .controller('HomeParticipantsController', ['$scope', 'UserService', function ($scope, UserService) {
 
+            var homeParticipantsController = this;
             UserService.getUsers({ sort: 'lastname:1'}).then(function (users) {
-                $scope.participants = users;
+                homeParticipantsController.participants = users;
             });
 
         }])
@@ -265,6 +275,11 @@
 
             self.soiEdited = function (soi) {
                 $scope.editedMessage = soi;
+                _.each(self.messages, function (message) {
+                    if(message.id !== soi.id) {
+                        message._editMode = false;
+                    }
+                });
             };
 
             init();

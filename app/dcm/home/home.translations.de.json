@@ -63,6 +63,7 @@
     "offerType": {
       "Recommendation": "Empfehlungen",
       "Invitation": "Einladungen",
+      "UserInvitation": "Einladungen von Teilnehmern",
       "All": "Alle"
     }
   }
