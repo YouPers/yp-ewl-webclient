@@ -30,6 +30,7 @@ var defaultConfig = {
     languageMappings: {
         'en_US': 'en',
         'en_UK': 'en',
+        'en_GB': 'en',
         'de_DE': 'de',
         'de_CH': 'de'
     }
@@ -69,6 +70,7 @@ var specificConfigs = {
         languageMappings: {
             'en_US': 'de',
             'en_UK': 'de',
+            'en_GB': 'de',
             'de_DE': 'de',
             'de_CH': 'de',
             'en': 'de',
@@ -95,6 +97,7 @@ var specificConfigs = {
         languageMappings: {
             'en_US': 'de',
             'en_UK': 'de',
+            'en_GB': 'de',
             'de_DE': 'de',
             'de_CH': 'de',
             'en': 'de',
