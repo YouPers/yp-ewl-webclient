@@ -135,10 +135,25 @@
                 $scope.healthCoachEvent = healthCoachEvent;
                 $scope.campaign = campaign;
                 $scope.idea = idea;
-                $scope.activity = activity;
                 $scope.socialInteraction = socialInteraction;
                 $scope.events = _.filter(activityEvents, { status: 'open'});
 
+                $scope.activity = activity;
+
+                // start and end times are stored/manipulated in distinct properties, because the date-picker removes the time in a date
+                $scope.activity.startTime = $scope.activity.start;
+                $scope.activity.endTime = $scope.activity.end;
+
+                function restoreActivityTime() {
+                    $scope.activity.start = moment($scope.activity.start)
+                        .hour(moment($scope.activity.startTime).hour())
+                        .minute(moment($scope.activity.startTime).minute())
+                        .format();
+                    $scope.activity.end = moment($scope.activity.end)
+                        .hour(moment($scope.activity.endTime).hour())
+                        .minute(moment($scope.activity.endTime).minute())
+                        .format();
+                }
 
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
                 $scope.campaignInvitation = campaignInvitation;
@@ -267,6 +282,8 @@
                         return;
                     }
 
+                    //restoreActivityTime();
+
                     ActivityService.validateActivity($scope.activity).then(function (activityValidationResults) {
 
                         $scope.events = [];
@@ -373,6 +390,8 @@
                 };
                 $scope.saveActivity = function saveActivity() {
                     $scope.$root.$broadcast('busy.begin', {url: "activities", name: "saveActivity"});
+
+                    restoreActivityTime();
 
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
