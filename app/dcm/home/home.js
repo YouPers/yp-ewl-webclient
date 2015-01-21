@@ -119,7 +119,6 @@
 
                 $scope.homeController = this;
                 $scope.homeController.healthCoachEvent = healthCoachEvent;
-                $scope.homeController.formStatus = 'beforeTest';
                 $scope.homeController.messages = messages;
                 $scope.homeController.offerTypes = 'Invitation';
                 $scope.campaign = campaign;
@@ -134,6 +133,7 @@
                 $scope.campaignStartOpen =  !$scope.campaignStarted;
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
+                $scope.emailAddress = UserService.principal.getUser().email;
 
                 $scope.parseEmailAddresses = function (input) {
                     if(!input) {
@@ -152,8 +152,9 @@
                 };
 
                 $scope.sendTestInvitationMail= function(mailSubject, mailText) {
+                    $scope.homeController.testEmailSent = false;
                     CampaignService.inviteParticipants(campaign.id, $scope.principal.getUser().email, mailSubject, mailText, true).then(function () {
-                        $scope.homeController.formStatus = 'afterTest';
+                        $scope.homeController.testEmailSent = true;
                         $scope.homeController.healthCoachEvent = 'testEmailSent';
                     });
                 };
