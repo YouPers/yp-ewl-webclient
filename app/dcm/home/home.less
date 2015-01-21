@@ -195,11 +195,12 @@
     position: absolute;
     top: 5px;
     right: 5px;
+
     i.fa:hover {
       color: @yp-accent-hover;
     }
-    i.fa {
 
+    i.fa {
       font-size: 24px;
       opacity: 1;
       transition: 0.4s ease-out opacity;
@@ -268,23 +269,23 @@
 
 
   .campaign-messages {
-    .game-card();
-    background-color: white;
 
-    > div > .inbox-item:first-child {
-      margin-bottom: 20px;
-      .checkbox {
-        margin-top: 0;
-      }
+    .dismiss {
+      display: block;
     }
 
-    .add-offer {
-      .button();
-      position: absolute;
-      top: 0;
-//      left: 65px;
-      right: 10px;
-      margin-top: -1.8em;
+    .content.sheet {
+      padding: 0;
+    }
+
+    .headers .info .clearfix {
+      display: none;
+    }
+    .publishDates {
+      padding: 0 0 5px 0;
+      .text {
+        display: inline;
+      }
     }
 
     .empty-content-hint {
@@ -292,8 +293,10 @@
       margin: 10px 15px 10px 65px;
     }
 
-    social-interaction .panel-title a i.fa {
-      padding: 0;
+    social-interaction {
+      .panel-title a i.fa {
+        padding: 0 5px 0 0;
+      }
     }
   }
 

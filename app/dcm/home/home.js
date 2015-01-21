@@ -275,6 +275,11 @@
 
             self.soiEdited = function (soi) {
                 $scope.editedMessage = soi;
+                _.each(self.messages, function (message) {
+                    if(message.id !== soi.id) {
+                        message._editMode = false;
+                    }
+                });
             };
 
             init();
