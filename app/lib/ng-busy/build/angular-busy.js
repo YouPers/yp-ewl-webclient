@@ -6,8 +6,52 @@
 */
 (function (window, angular, undefined) {
 	'use strict';
-	// RBLU: WL-1469: removed to whole http interceptor here, do automatic relationship  "a running http-call === we are busy" is
-	// not good enough, so we manage busy / not busy manually by sending the events in our code.
+
+	angular.module('ngBusy.interceptor', [])
+		.provider('busyInterceptor', function() {
+
+			this.$get = ['$rootScope', '$q', function($rootScope, $q) {
+				var _total = 0, _completed = 0;
+
+	            function complete() {
+	            	_total = _completed = 0;
+	            }
+
+	            function handleResponse(r) {
+	            	if (r.config.notBusy) return;
+
+	            	$rootScope.$broadcast('busy.end', {url: r.config.url, name: r.config.name, remaining: _total - ++_completed});
+	            	if (_completed >= _total) complete();
+	            }
+
+				return {
+					outstanding: function() {
+						return _total - _completed;
+					},
+					'request': function(config) {
+						if (!config.notBusy) {
+							$rootScope.$broadcast('busy.begin', {url: config.url, name: config.name});
+							_total++;
+						}
+						return config || $q.when(config);
+					},
+					'response': function(response) {
+						handleResponse(response);
+						return response;
+					},
+					'responseError': function(rejection) {
+						handleResponse(rejection);
+						return $q.reject(rejection);
+					}
+				};
+			}];
+		})
+		.config(['$httpProvider', function($httpProvider) {
+			$httpProvider.interceptors.push('busyInterceptor');
+		}]);
+
+    // minimal: <button busy="Loading..." />
+    // complete: <button busy="Loading..." busy-when-url="string" busy-when-name="string" busy-add-classes="string" busy-remove-classes="string" busy-disabled="bool" not-busy-when-url="string" not-busy-when-name="string" not-busy-add-classes="string" not-busy-remove-classes="string" not-busy-disabled="bool" />
 
 	angular.module('ngBusy.busy', [])
 		.directive('busy', ['$parse', '$timeout', function($parse, $timeout) {
@@ -108,5 +152,5 @@
 			}
 		});
 
-	angular.module('ngBusy', ['ngBusy.busy']);
+	angular.module('ngBusy', ['ngBusy.interceptor', 'ngBusy.busy']);
 })(window, window.angular);
