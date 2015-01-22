@@ -18,6 +18,10 @@
 
                     link: function (scope, elem, attrs) {
 
+                        scope.$watch('activityForm', function(val) {
+                            scope.form = val;
+                        });
+
                         _.extend(scope.activity, {
                             isScheduled: !!scope.activity.id,
                             isDeletable: scope.activity.deleteStatus.indexOf('deletable') === 0,

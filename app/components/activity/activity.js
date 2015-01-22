@@ -144,14 +144,10 @@
                 $scope.activity.startTime = $scope.activity.start;
                 $scope.activity.endTime = $scope.activity.end;
 
-                function restoreActivityTime() {
-                    $scope.activity.start = moment($scope.activity.start)
+                function restoreActivityTime(date) {
+                    return moment(date)
                         .hour(moment($scope.activity.startTime).hour())
                         .minute(moment($scope.activity.startTime).minute())
-                        .format();
-                    $scope.activity.end = moment($scope.activity.end)
-                        .hour(moment($scope.activity.endTime).hour())
-                        .minute(moment($scope.activity.endTime).minute())
                         .format();
                 }
 
@@ -282,9 +278,12 @@
                         return;
                     }
 
-                    //restoreActivityTime();
+                    // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
+                    var clonedActivity = _.clone($scope.activity);
+                    clonedActivity.start = restoreActivityTime(clonedActivity.start);
+                    clonedActivity.end = restoreActivityTime(clonedActivity.end);
 
-                    ActivityService.validateActivity($scope.activity).then(function (activityValidationResults) {
+                    ActivityService.validateActivity(clonedActivity).then(function (activityValidationResults) {
 
                         $scope.events = [];
                         _.forEach(activityValidationResults, function (result) {
@@ -391,7 +390,8 @@
                 $scope.saveActivity = function saveActivity() {
                     $scope.$root.$broadcast('busy.begin', {url: "activities", name: "saveActivity"});
 
-                    restoreActivityTime();
+                    $scope.activity.start = restoreActivityTime($scope.activity.start);
+                    $scope.activity.end = restoreActivityTime($scope.activity.end);
 
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {

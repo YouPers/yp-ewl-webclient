@@ -87,13 +87,13 @@
                 $scope.$watch('campaign.start', function (date) {
                     var campaign = $scope.campaign;
                     if (moment(campaign.start).diff(moment(campaign.end), 'weeks') > -1) {
-                        campaign.end = new Date(moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
+                        campaign.end = moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks').format();
                     }
                 });
                 $scope.$watch('campaign.end', function (date) {
                     var campaign = $scope.campaign;
                     if (moment(campaign.start).diff(moment(campaign.end), 'weeks') > -1) {
-                        campaign.start = new Date(moment(campaign.end).day(1).hour(8).minutes(0).seconds(0).subtract(3, 'weeks'));
+                        campaign.start = moment(campaign.end).day(1).hour(8).minutes(0).seconds(0).subtract(3, 'weeks').format();
                     }
                 });
 
@@ -155,8 +155,8 @@
                 $scope.saveCampaign = function () {
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "saveCampaign"});
 
-                    $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
-                    $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
+                    $scope.campaign.start = moment($scope.campaign.start).startOf('day').format();
+                    $scope.campaign.end = moment($scope.campaign.end).endOf('day').format();
 
 
                     if ($scope.campaign.id) {
