@@ -160,17 +160,6 @@
                     });
                 };
 
-                $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $state.href('welcome',{campaignId: campaign.id});
-                var createDraftLocals = {
-                    organizationName: campaign.organization.name,
-                    welcomeLink: $scope.homeController.welcomeLink
-                };
-
-                $scope.homeController.createDraftUrl =
-                    'mailto:' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
-                    '?subject=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
-                    '&body=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
-
                 init();
 
                 function _loadSocialInteractions() {
@@ -188,6 +177,17 @@
                     }
 
                     if(campaign) {
+
+                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $state.href('welcome',{campaignId: campaign.id});
+                        var createDraftLocals = {
+                            organizationName: campaign.organization.name,
+                            welcomeLink: $scope.homeController.welcomeLink
+                        };
+
+                        $scope.homeController.createDraftUrl =
+                            'mailto:' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
+                            '?subject=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
+                            '&body=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
 
                         $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
                             if(offerTypes === 'All') {
