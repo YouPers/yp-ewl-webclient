@@ -46,6 +46,62 @@
 
   .campaign-start {
 
+    .nav-tabs.nav-justified li.active a {
+      border-bottom-color: transparent;
+    }
+    .nav-tabs.nav-justified a {
+      text-align: left;
+      background: none;
+    }
+    tab-heading span {
+      font-size: 16px;
+      font-weight: 200;
+      color: @yp-subtitle;
+      text-transform: none;
+    }
+
+    h3 {
+      padding-top: 1em;
+    }
+
+    .step1 {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      > div:first-of-type {
+        flex: 0 0 70%;
+      }
+      > div:last-of-type {
+        flex: 1 1 auto;
+      }
+    }
+
+    .step2 {
+
+      > div {
+        display: flex;
+
+        > *:nth-child(1) {
+          flex: 0 0 240px;
+        }
+        > *:nth-child(2) {
+          flex: 0 0 150px;
+        }
+        > *:nth-child(3) {
+          flex: 1 1 auto;
+          border: 1px solid @yp-divider;
+
+          margin-left: 15px;
+          padding: 5px;
+
+          .email-address-list-item {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+
     .welcome-link {
       border: 1px solid transparent;
       padding: 5px;
@@ -56,14 +112,6 @@
       background-color: #fdfdfd;
     }
 
-    textarea.email-addresses {
-      max-width: 625px;
-      height: 100px;
-    }
-
-    .email-address-list-item {
-
-    }
 
     .mail-text {
        padding-bottom: 2em;

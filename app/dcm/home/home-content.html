@@ -16,13 +16,100 @@
 
             </accordion-heading>
 
-            <div class="row">
 
-                <div class="col-md-12">
+            <tabset justified="true">
 
-                    <h3 translate>dcmhome.campaignStart.welcomeLinkTitle</h3>
+                <!-- option A - emailInvite -->
+                <tab>
 
-                    <div translate>dcmhome.campaignStart.welcomeLinkExplain</div>
+                    <tab-heading>
+                        <span translate>dcmhome.campaignStart.emailInvite.header</span>
+                    </tab-heading>
+
+                    <br/>
+
+                    <div class="step1">
+                        <div>
+                            <p translate>dcmhome.campaignStart.emailInvite.subheader</p>
+
+                            <h3 translate>dcmhome.campaignStart.emailInvite.step1.title</h3>
+                            <p translate>dcmhome.campaignStart.emailInvite.step1.text</p>
+                            <p ng-if="homeController.testEmailSent" translate translate-values="{ email: emailAddress }">dcmhome.campaignStart.emailInvite.step1.success</p>
+                        </div>
+
+                        <div>
+                            <button ng-click="sendTestInvitationMail(emailSubject, emailText)"
+                                    class="btn btn-default pull-right"
+                                    translate>dcmhome.campaignStart.emailInvite.step1.sendTestMail
+                            </button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="step2">
+
+                        <h3 translate>dcmhome.campaignStart.emailInvite.step2.title</h3>
+
+                        <div>
+                            <textarea class="form-control email-addresses"
+                                      ng-model="homeController.rawEmailAddressesInput"
+                                      placeholder="{{ 'dcmhome.campaignStart.emailInvite.step2.emailList.placeholder' | translate }}"></textarea>
+
+
+                            <div>
+                                <button ng-disabled="!homeController.rawEmailAddressesInput || homeController.rawEmailAddressesInput.length === 0"
+                                        ng-click="parseEmailAddresses(homeController.rawEmailAddressesInput);homeController.rawEmailAddressesInput = ''"
+                                        class="btn btn-default pull-right" translate>dcmhome.campaignStart.emailInvite.step2.emailList.add
+                                </button>
+                            </div>
+
+                            <div>
+
+                                <div class="email-address-list-item badge" ng-repeat="email in homeController.emailAddressesToBeInvited">
+
+                                    <span>{{ email }}</span>
+                                    <a><i class="fa fa-times" ng-click="homeController.emailAddressesToBeInvited.splice($index, 1)"></i></a>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="step3">
+
+                        <h3 translate>dcmhome.campaignStart.emailInvite.step3.title</h3>
+                        <p translate>dcmhome.campaignStart.emailInvite.step3.text</p>
+
+                        <button ng-click="onEmailInviteSubmit(homeController.emailAddressesToBeInvited.join(', '), emailSubject, emailText); homeController.emailAddressesToBeInvited = []"
+                                class="btn btn-default pull-right"
+                                ng-disabled="!homeController.emailAddressesToBeInvited || homeController.emailAddressesToBeInvited.length == 0" translate>
+                            dcmhome.campaignStart.emailInvite.step3.submit
+                        </button>
+
+                        <div class="clearfix"></div>
+
+                        <p ng-if="homeController.emailInvitesSent" translate>dcmhome.campaignStart.emailInvite.step3.emailInvitesSent</p>
+                    </div>
+
+                </tab>
+
+                <!-- option B - welcomeLink -->
+                <tab>
+
+                    <tab-heading>
+                        <span translate>dcmhome.campaignStart.welcomeLink.header</span>
+                    </tab-heading>
+
+
+                    <p translate>dcmhome.campaignStart.welcomeLink.createDraft.text</p>
+
+                    <a ng-href="{{ homeController.createDraftUrl }}" class="btn btn-default" translate>
+                        dcmhome.campaignStart.welcomeLink.createDraft.link
+                    </a>
+
+                    <p translate>dcmhome.campaignStart.welcomeLink.copyLink</p>
 
                     <!--
 
@@ -30,128 +117,14 @@
                            because there is an issue with html5mode in ui-router with angular 1.3
                            see http://stackoverflow.com/questions/26220037/ui-sref-not-generating-hash-in-url-angular-1-3-0-rc-3
                      -->
-                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{
-                        config.webclientUrl + '/#' + $state.href('welcome',{campaignId:
-                        campaign.id})}}
+                    <div class="welcome-link" select-on-click ng-show="campaign.id">{{ homeController.welcomeLink }}
                     </div>
-                </div>
 
-                <div class="col-md-12">
-                    <h3 translate>dcmhome.emailInvite.title</h3>
-
-                    <div translate>dcmhome.emailInvite.explain</div>
-                    <p>
-
-                    <form class="form"
-                          role="form"
-                          name="emailInvitation">
-                        <!-- just hiding disabling for WL-1255, we expect that this will be enabled again later...
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label translate>dcmhome.emailInvite.emailSubject.label</label>
-                                <input type="text" required class="form-control" ng-model="emailSubject"
-                                       ng-disabled="!(homeController.formStatus=='beforeTest')"
-                                       placeholder="{{ 'dcmhome.emailInvite.emailSubject.placeholder' | translate }}">
-                            </div>
-                        </div>
-                        <div class="row mail-text">
-                            <div class="col-md-12">
-                                <label translate>dcmhome.emailInvite.emailText.label</label>
-                                <textarea required class="form-control" ng-model="emailText"
-                                          ng-disabled="!(homeController.formStatus=='beforeTest')"
-                                          placeholder="{{ 'dcmhome.emailInvite.emailText.placeholder' | translate }}">
-                                </textarea>
-                            </div>
-                        </div>
-                        -->
-                        <div class="row"
-                             ng-if="homeController.formStatus=='beforeTest'">
-                            <div class="col-md-6" translate>dcmhome.emailInvite.sendYourselfTest</div>
-                            <div class="col-md-6">
-                                <button ng-click="sendTestInvitationMail(emailSubject, emailText)"
-                                        class="btn btn-default pull-right"
-                                        translate>dcmhome.emailInvite.sendTestButton
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="row" ng-if="homeController.formStatus=='afterTest'">
-                            <div class="col-md-12" translate translate-values='{ address: principal.getUser().email}'>dcmhome.emailInvite.testEmailSent</div>
-                            <!--<div class="col-md-4">-->
-                            <!--<button ng-click="homeController.formStatus='beforeTest'"-->
-                            <!--class="btn btn-default"-->
-                            <!--translate>dcmhome.emailInvite.adjust-->
-                            <!--</button>-->
-                            <!--</div>-->
-                            <div class="col-md-12">
-                                <br/>
-                                <button ng-click="homeController.healthCoachEvent='enterAdresses';homeController.formStatus='enterAdresses'"
-                                        class="btn btn-default pull-right"
-                                        translate>dcmhome.emailInvite.next
-                                </button>
-                            </div>
-
-                        </div>
-                        <div class="row" ng-if="homeController.formStatus=='enterAdresses'">
-
-                            <div class="col-md-12">
-                                <label translate>dcmhome.emailInvite.label</label>
-
-                                <textarea class="form-control email-addresses"
-                                          ng-model="homeController.rawEmailAddressesInput"
-                                          placeholder="{{ 'dcmhome.emailInvite.placeholder' | translate }}"></textarea>
-
-                                <br/>
-                                <button ng-click="parseEmailAddresses(homeController.rawEmailAddressesInput);homeController.rawEmailAddressesInput = ''"
-                                        class="btn btn-default pull-right" translate>dcmhome.emailInvite.add
-                                </button>
-
-                            </div>
-
-                            <div class="col-md-12" ng-if="homeController.emailAddressesToBeInvited.length > 0">
-
-                                <label translate>dcmhome.emailInvite.reviewEmailAddresses</label>
-
-                                <div class="email-address-list-item" ng-repeat="email in homeController.emailAddressesToBeInvited">
-
-                                    <span>{{ email }}</span>
-                                    <a><i class="fa fa-times" ng-click="homeController.emailAddressesToBeInvited.splice($index, 1)"></i></a>
-
-                                </div>
-
-                                <div class="col-md-12" ng-if="homeController.emailAddressesToBeInvited.length > 0">
-                                    <br/>
-                                    <button ng-click="onEmailInviteSubmit(homeController.emailAddressesToBeInvited.join(', '), emailSubject, emailText); homeController.emailAddressesToBeInvited = []"
-                                            class="btn btn-default pull-right"
-                                            ng-disabled="homeController.emailAddressesToBeInvited.length == 0" translate>dcmhome.emailInvite.send
-                                    </button>
-                                </div>
-
-                            </div>
-
-                        </div>
+                </tab>
 
 
-                        <div class="row" ng-if="homeController.formStatus=='sentSuccessful'">
+            </tabset>
 
-                            <div class="col-md-12">
-
-                                <span translate>dcmhome.emailInvite.success</span>
-
-                                <button ng-click="homeController.formStatus='enterAdresses'"
-                                        class="btn btn-default pull-right"
-                                        ng-disabled="emailInvitation.$invalid" translate>dcmhome.emailInvite.inviteMore
-                                </button>
-                            </div>
-                        </div>
-
-                    </form>
-
-                    <br/>
-
-                </div>
-
-            </div>
 
         </div>
     </accordion-group>
