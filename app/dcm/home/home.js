@@ -4,7 +4,6 @@
     var _getOffersOptions = {
         populate: 'author idea activity',
         authored: true,
-        authorType: 'campaignLead',
         publishTo: new Date(),
         publishFrom: false
     };
@@ -120,7 +119,6 @@
 
                 $scope.homeController = this;
                 $scope.homeController.healthCoachEvent = healthCoachEvent;
-                $scope.homeController.formStatus = 'beforeTest';
                 $scope.homeController.messages = messages;
                 $scope.homeController.offerTypes = 'Invitation';
                 $scope.campaign = campaign;
@@ -130,11 +128,12 @@
                 }
 
                 $scope.campaignStartAvailable = !$scope.campaignEnding;
-                $scope.offersSectionAvailable = !$scope.campaignEnding;
+                $scope.offerSectionAvailable = !$scope.campaignEnding;
+                $scope.offerSectionOpen = !$scope.campaignEnding && $scope.campaignStarted;
                 $scope.campaignStartOpen =  !$scope.campaignStarted;
-                $scope.campaignStatsOpen =  $scope.campaignStarted && !$scope.campaignEnding;
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
+                $scope.emailAddress = UserService.principal.getUser().email;
 
                 $scope.parseEmailAddresses = function (input) {
                     if(!input) {
@@ -147,17 +146,30 @@
                 };
 
                 $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
+                    $scope.homeController.emailInvitesSent = false;
                     CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
-                        $scope.homeController.formStatus = 'sentSuccessful';
+                        $scope.homeController.emailInvitesSent = true;
                     });
                 };
 
                 $scope.sendTestInvitationMail= function(mailSubject, mailText) {
+                    $scope.homeController.testEmailSent = false;
                     CampaignService.inviteParticipants(campaign.id, $scope.principal.getUser().email, mailSubject, mailText, true).then(function () {
-                        $scope.homeController.formStatus = 'afterTest';
+                        $scope.homeController.testEmailSent = true;
                         $scope.homeController.healthCoachEvent = 'testEmailSent';
                     });
                 };
+
+                $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $state.href('welcome',{campaignId: campaign.id});
+                var createDraftLocals = {
+                    organizationName: campaign.organization.name,
+                    welcomeLink: $scope.homeController.welcomeLink
+                };
+
+                $scope.homeController.createDraftUrl =
+                    'mailto:' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
+                    '?subject=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
+                    '&body=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
 
                 init();
 
@@ -178,7 +190,17 @@
                     if(campaign) {
 
                         $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
-                            _getOffersOptions.discriminators = offerTypes;
+                            if(offerTypes === 'All') {
+                                _getOffersOptions.discriminators = '';
+                                _getOffersOptions.authorType = undefined;
+                            } else if(offerTypes === 'UserInvitation') {
+                                _getOffersOptions.discriminators = 'Invitation';
+                                _getOffersOptions.authorType = 'user';
+                            } else {
+                                _getOffersOptions.discriminators = offerTypes;
+                                _getOffersOptions.authorType = 'campaignLead';
+                            }
+
                             _loadSocialInteractions();
                         }, true);
 
@@ -187,18 +209,6 @@
                             _getOffersOptions.publishTo = showOld ? false : new Date();
 
                             _loadSocialInteractions();
-                        });
-
-                        $translate('dcmhome.emailInvite.emailSubject.defaultSubject', {
-                            campaign: campaign
-                        }).then(function (translatedText) {
-                            $scope.emailSubject = translatedText;
-                        });
-
-                        $translate('dcmhome.emailInvite.emailText.defaultText', {
-                            campaign: campaign
-                        }).then(function (translatedText) {
-                            $scope.emailText = translatedText;
                         });
 
                     }
@@ -210,8 +220,9 @@
 
         .controller('HomeParticipantsController', ['$scope', 'UserService', function ($scope, UserService) {
 
+            var homeParticipantsController = this;
             UserService.getUsers({ sort: 'lastname:1'}).then(function (users) {
-                $scope.participants = users;
+                homeParticipantsController.participants = users;
             });
 
         }])
@@ -265,6 +276,11 @@
 
             self.soiEdited = function (soi) {
                 $scope.editedMessage = soi;
+                _.each(self.messages, function (message) {
+                    if(message.id !== soi.id) {
+                        message._editMode = false;
+                    }
+                });
             };
 
             init();

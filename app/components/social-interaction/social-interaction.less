@@ -19,6 +19,7 @@ social-interaction {
   background-color: white;
 
   .dismiss {
+    display: none; // only available in the dcm message composer/list
     float: right;
     padding: 2px 2px 2px 6px;
   }
@@ -91,16 +92,45 @@ social-interaction {
     padding: 0;
   }
 
-  .sheet.publish {
-    padding: 2px;
+  .sheet.publishDates {
+    display: none; // only available within the campaign-messages
+    padding: 5px;
     .caption();
   }
 
 }
 
-.composeMessage {
-  border: none;
-  position: relative;
+social-interaction-message-composer {
+  display: block;
+
+  form[name='composeMessageForm'] {
+
+    display: flex;
+    flex-direction: row;
+
+    > div:first-of-type {
+      flex: 1 1 auto;
+
+      textarea {
+        min-height: 85px;
+      }
+    }
+    > div:last-of-type {
+      flex: 0 0 190px;
+      > div.form-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        > label {
+          padding-top: 9px;
+          padding-right: 10px;
+        }
+      }
+      > button {
+        width: 140px;
+      }
+    }
+  }
 }
 
 

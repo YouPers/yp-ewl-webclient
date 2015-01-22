@@ -4,11 +4,103 @@
 
 .dcm-home {
 
+  accordion {
+    .panel-group .panel:not(:first-of-type) {
+      margin-top: 0;
+      border-top: none;
+    }
+    .panel-heading {
+      background-color: @yp-secondary ;
+    }
+
+    h4 span {
+      .header3();
+      text-transform: none;
+    }
+
+    .section-link:hover {
+      color: @yp-accent-hover;
+    }
+
+    .section-link {
+
+      float: right;
+      padding-top: 2px;
+
+      i.fa, > span {
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+
+      &:hover i.fa {
+        color: @yp-accent-hover;
+      }
+      i.fa {
+        font-size: 16px;
+        color: @yp-accent;
+      }
+    }
+  }
+
   .campaign-start {
 
-    .area {
-      width: 640px;
+    .nav-tabs.nav-justified li.active a {
+      border-bottom-color: transparent;
     }
+    .nav-tabs.nav-justified a {
+      text-align: left;
+      background: none;
+    }
+    tab-heading span {
+      font-size: 16px;
+      font-weight: 200;
+      color: @yp-subtitle;
+      text-transform: none;
+    }
+
+    h3 {
+      padding-top: 1em;
+    }
+
+    .step1 {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      > div:first-of-type {
+        flex: 0 0 70%;
+      }
+      > div:last-of-type {
+        flex: 1 1 auto;
+      }
+    }
+
+    .step2 {
+
+      > div {
+        display: flex;
+
+        > *:nth-child(1) {
+          flex: 0 0 240px;
+        }
+        > *:nth-child(2) {
+          flex: 0 0 150px;
+        }
+        > *:nth-child(3) {
+          flex: 1 1 auto;
+          border: 1px solid @yp-divider;
+
+          margin-left: 15px;
+          padding: 5px;
+
+          .email-address-list-item {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
 
     .welcome-link {
       border: 1px solid transparent;
@@ -20,14 +112,6 @@
       background-color: #fdfdfd;
     }
 
-    textarea.email-addresses {
-      max-width: 625px;
-      height: 100px;
-    }
-
-    .email-address-list-item {
-
-    }
 
     .mail-text {
        padding-bottom: 2em;
@@ -51,36 +135,95 @@
     }
   }
 
-  .campaign-stats .area {
-    .area-content {
-      padding-bottom: 3em;
+  .campaign-stats {
+
+    .ac-chart {
+      text {
+        font-size: 13px;
+      }
     }
+
   }
 
-  .ac-chart {
-    text {
-      font-size: 13px;
+  .offer-section {
+
+    .add-offer:hover {
+      color: @yp-accent-hover;
     }
-  }
+    .add-offer {
+      .button();
+      color: @yp-primary;
+      position: absolute;
 
-  .show-stats:hover {
-    color: @yp-accent-hover;
-  }
+      top: 0;
+      right: 10px;
 
-  .show-stats {
-    color: rgba(0, 0, 0, 0.87);
-    font-size: 14px;
-    font-weight: 400;
-    position: absolute;
-    right: 10px;
-    text-transform: uppercase;
-    top: 10px;
-
-
-
-    i.fa {
-      font-size: 16px;
+      i.fa {
+        font-size: 16px;
+      }
     }
+
+    .offer-filter {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .offer-type {
+      position: absolute;
+      top: 25px;
+      right: 5px;
+
+      i.fa {
+        cursor: pointer;
+        font-size: 16px;
+        color: @yp-accent;
+      }
+      .btn.active, .btn:focus {
+
+        color: @yp-accent !important;
+
+        i.fa {
+          color: @yp-accent;;
+        }
+      }
+
+      .btn {
+        color: @yp-subtitle;
+        background-color: transparent !important;
+        border: none;
+        box-shadow: none;
+        text-transform: none;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 4px;
+
+        i.fa {
+          color: @yp-subtitle;
+        }
+      }
+    }
+
+    .empty-content {
+      display: block;
+      position: relative;
+      width: 100%;
+    }
+
+    .empty-content-hint {
+      display: block;
+      white-space: normal;
+    }
+
+    .offer-section-content {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      > * {
+        margin: 0 8px 8px 0;
+      }
+    }
+
+
   }
 
   a {
@@ -100,11 +243,12 @@
     position: absolute;
     top: 5px;
     right: 5px;
+
     i.fa:hover {
       color: @yp-accent-hover;
     }
-    i.fa {
 
+    i.fa {
       font-size: 24px;
       opacity: 1;
       transition: 0.4s ease-out opacity;
@@ -166,109 +310,30 @@
     }
   }
 
-  .campaign-offers {
-
-    .area .flex {
-      width: 644px;
-      flex-direction: row;
-//      overflow: auto;
-    }
-
-    .area .show-more {
-      bottom: 2px;
-      right: 9px;
-    }
-
-    .add-offer:hover {
-      color: @yp-accent-hover;
-    }
-    .add-offer {
-      .button();
-      color: @yp-primary;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-
-      i.fa {
-        font-size: 16px;
-      }
-    }
-
-    .offer-filter {
-      position: relative;
-      margin-bottom: 20px;
-      margin-right: 15px;
-    }
-
-    .show-old {
-      margin-top: 20px;
-    }
-
-    .offer-type {
-      position: absolute;
-      top: 35px;
-      right: 0;
-
-      i.fa {
-        cursor: pointer;
-        font-size: 16px;
-        color: @yp-accent;
-      }
-      .btn.active {
-        background-color: transparent !important;
-        color: @yp-accent !important;
-        border: none;
-
-        i.fa {
-          color: @yp-accent;;
-        }
-      }
-
-      .btn {
-        color: @yp-subtitle;
-        border: none;
-        text-transform: none;
-        font-size: 14px;
-        font-weight: normal;
-        padding: 4px;
-
-        i.fa {
-          color: @yp-subtitle;
-        }
-      }
-    }
 
 
-    .empty-content {
-      display: block;
-      position: relative;
-      width: 100%;
-    }
 
-    .empty-content-hint {
-      display: block;
-      white-space: normal;
-    }
-  }
+
+
 
   .campaign-messages {
-    .game-card();
-    background-color: white;
 
-    > div > .inbox-item:first-child {
-      margin-bottom: 20px;
-      .checkbox {
-        margin-top: 0;
-      }
+    .dismiss {
+      display: block;
     }
 
-    .add-offer {
-      .button();
-      position: absolute;
-      top: 0;
-//      left: 65px;
-      right: 10px;
-      margin-top: -1.8em;
+    .content.sheet {
+      padding: 0;
+    }
+
+    .headers .info .clearfix {
+      display: none;
+    }
+    .publishDates {
+      padding: 0 0 5px 0;
+      .text {
+        display: inline;
+      }
     }
 
     .empty-content-hint {
@@ -276,8 +341,13 @@
       margin: 10px 15px 10px 65px;
     }
 
-    social-interaction .panel-title a i.fa {
-      padding: 0;
+    social-interaction {
+      .panel-title a i.fa {
+        padding: 0 5px 0 0;
+      }
+      .sheet.publishDates {
+        display: block;
+      }
     }
   }
 
