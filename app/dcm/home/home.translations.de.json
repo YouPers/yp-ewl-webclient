@@ -21,9 +21,18 @@
     "campaignNotStarted": "Sobald die Kampagne gestartet ist, werden hier einige Eckdaten zum Verlauf deiner Kampagne angezeigt.",
     "campaignStart": {
       "header": "Start der Kampagne",
-      "welcomeLinkHeader": "<strong>Option B:</strong> Kampagnen-Einladungen mit deiner Email Anwendung versenden",
-      "welcomeLinkExplain": "Mit diesem Link kann man sich zu dieser Kampagne anmelden. Versende diesen Link in einer Email an alle potentiellen Teilnehmer.",
-      "welcomeLinkTitle": "Manuelle Einladungsemails",
+
+      "welcomeLink": {
+        "header": "<strong>Option B:</strong> Kampagnen-Einladungen mit deiner Email Anwendung versenden",
+        "createDraft": {
+          "text": "Du kannst die Einladungen mit deiner Email Anwendung versenden, indem du auf den nachfolgenden Button klickst:",
+          "link": "Email Entwurf<br/>erstellen",
+          "recipient": "deine.teilnehmer@deinunternehmen.com",
+          "subject": "{{ organizationName }} Kampagne Stressmanagement: Persönliche Einladung",
+          "body": "Liebe Mitarbeiterin, lieber Mitarbeiter\n\n{{ organizationName }} lädt dich ein... \n\nBenutze diesen Link: {{ welcomeLink }}"
+        },
+        "copyLink": "Falls die Email Generierung nicht funktioniert, kannst du den nachfolgenden Link in deine Email-Einladungen kopieren."
+      },
 
       "emailInvite": {
         "header": "<strong>Option A:</strong> Kampagnen-Einladungen mit HealthCampaign Service versenden",
@@ -46,41 +55,16 @@
 
         "step3": {
           "title": "3. Kampagnen-Einladungen versenden",
-          "text": "Bitte überprüfe die Email-Adressen in der Versandliste, bevor du die Einladungen mit Hilfe des \"Absenden\"-Buttons versendest."
+          "text": "Bitte überprüfe die Email-Adressen in der Versandliste, bevor du die Einladungen mit Hilfe des \"Absenden\"-Buttons versendest.",
+          "submit": "Absenden",
+          "emailInvitesSent": "Die Einladungen wurden erfolgreich versendet."
         }
       }
     },
     "participants": {
       "header": "Teilnehmer"
     },
-    "emailInvite": {
 
-      "adjust": "korrigiere",
-      "emailSubject": {
-        "defaultSubject": "{{campaign.organization.name}} Kampagne {{campaign.topic.shortDescription}}: Persönliche Einladung",
-        "label": "Email-Betreff",
-        "placeholder": "Email-Betreff"
-      },
-      "emailText": {
-        "defaultText": "Liebe Mitarbeiterin, lieber Mitarbeiter<br><br>{{ campaign.organization.name }} lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema {{ campaign.title }} teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS durch.",
-        "label": "Email-Text",
-        "placeholder": "Email-Text"
-      },
-      "explain": "Hier kannst du automatisch Einladungsemails für die zukünftigen Kampagnenteilnehmer versenden.",
-      "inviteMore": "weitere einladen",
-      "label": "Email-Adressen der einzuladenden Mitarbeiter, getrennt mittels Komma, Semikolon, Leerschlag oder Zeilenumbruch",
-      "next": "weiter",
-      "placeholder": "Email-Adressen",
-      "send": "absenden",
-      "sendTestButton": "Test",
-      "sendYourselfTest": "Sende dir selbst eine Einladungsemail zum Test:",
-      "submit": "Einladen",
-      "success": "Einladungen erfolgreich versendet",
-      "testEmailSent": "Einladung gesendet an {{address}}. <br>Bitte prüfe die Einladung in deinem Email-Eingang.",
-      "title": "Automatische Einladungsemails zur Kampagne",
-      "add": "hinzufügen",
-      "reviewEmailAddresses": "Bitte überprüfe die Email-Adressen, bevor du die Einladungen mit Hilfe des \"Absenden\"-Buttons versendest"
-    },
     "messages": "Nachrichten",
     "noCampaigns": "Du hast noch keine Kampagnen erstellt",
     "noMessages": "Hier werden deine Nachrichten an die Kampagnenteilnehmer angezeigt. Klicke auf KAMPAGNENMITTTEILUNG, um eine Nachricht zu verfassen.",

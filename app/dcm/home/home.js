@@ -146,8 +146,9 @@
                 };
 
                 $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
+                    $scope.homeController.emailInvitesSent = false;
                     CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
-                        $scope.homeController.formStatus = 'sentSuccessful';
+                        $scope.homeController.emailInvitesSent = true;
                     });
                 };
 
@@ -158,6 +159,17 @@
                         $scope.homeController.healthCoachEvent = 'testEmailSent';
                     });
                 };
+
+                $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $state.href('welcome',{campaignId: campaign.id});
+                var createDraftLocals = {
+                    organizationName: campaign.organization.name,
+                    welcomeLink: $scope.homeController.welcomeLink
+                };
+
+                $scope.homeController.createDraftUrl =
+                    'mailto:' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
+                    '?subject=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
+                    '&body=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
 
                 init();
 
@@ -197,18 +209,6 @@
                             _getOffersOptions.publishTo = showOld ? false : new Date();
 
                             _loadSocialInteractions();
-                        });
-
-                        $translate('dcmhome.emailInvite.emailSubject.defaultSubject', {
-                            campaign: campaign
-                        }).then(function (translatedText) {
-                            $scope.emailSubject = translatedText;
-                        });
-
-                        $translate('dcmhome.emailInvite.emailText.defaultText', {
-                            campaign: campaign
-                        }).then(function (translatedText) {
-                            $scope.emailText = translatedText;
                         });
 
                     }
