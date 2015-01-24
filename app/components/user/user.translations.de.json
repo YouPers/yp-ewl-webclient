@@ -182,8 +182,8 @@
       "dailyUserMail": "Tägliche Zusammenfassung",
       "iCalInvites": "Kalender-Einträge per Email"
     },
-    "emailNotificationsSettings": "EMail-Benachrichtigungen erhalten?",
-    "calendarNotificationSettings": "Hinweise im Bürokalendar",
+    "emailNotificationsSettings": "Email-Benachrichtigungen erhalten?",
+    "calendarNotificationSettings": "Hinweise im Bürokalender",
     "rejectedActivities": {
       "header": "Abgelehnte Aktivitäten"
     }
