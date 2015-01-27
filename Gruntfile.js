@@ -182,7 +182,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
-                        src: ['styles/styles.less', 'lib/less-elements/*.less'],
+                        src: ['styles/styles.less'],
                         dest: '.tmp/',
                         ext: '.css'
                     }
@@ -193,7 +193,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
-                        src: ['styles/styles.less', 'lib/less-elements/*.less'],
+                        src: ['styles/styles.less'],
                         dest: '.tmp/',
                         ext: '.css'
                     }
@@ -205,15 +205,13 @@ module.exports = function (grunt) {
         /*concat: {
          dist: {}
          },*/
-        rev: {
+        filerev: {
             dist: {
-                files: {
-                    src: [
-                        '<%= yeoman.dist %>/js/*.js',
-                        '<%= yeoman.dist %>/styles/{,*/}*.css'
+                src: [
+                    '<%= yeoman.dist %>/js/*.js',
+                    '<%= yeoman.dist %>/styles/{,*/}*.css'
 //                      ' <%= yeoman.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-                    ]
-                }
+                ]
             }
         },
         useminPrepare: {
@@ -265,7 +263,7 @@ module.exports = function (grunt) {
                     // https://github.com/yeoman/grunt-usemin/issues/44
                     // collapseWhitespace: true,
                     collapseBooleanAttributes: true,
-                    removeAttributeQuotes: true,
+                    removeAttributeQuotes: false,
                     removeRedundantAttributes: true,
                     useShortDoctype: true,
                     removeEmptyAttributes: true,
@@ -477,18 +475,18 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'template:server',
-        'useminPrepare',
         'less:dist',
+        'useminPrepare',
         'copy:styles',
         'htmlmin',
         'autoprefixer',
         'html2js',
         'copy:js',
-        'concat',
         'copy:dist',
-        'cssmin',
-        'uglify',
-        'rev',
+        'concat:generated',
+        'cssmin:generated',
+        'uglify:generated',
+        'filerev',
         'usemin'
     ]);
 

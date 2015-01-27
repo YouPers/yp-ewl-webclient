@@ -221,9 +221,16 @@
         .controller('HomeParticipantsController', ['$scope', 'UserService', function ($scope, UserService) {
 
             var homeParticipantsController = this;
-            UserService.getUsers({ sort: 'lastname:1'}).then(function (users) {
-                homeParticipantsController.participants = users;
-            });
+
+            if($scope.campaign) {
+                init();
+            }
+
+            function init() {
+                UserService.getUsers({campaign: $scope.campaign.id, sort: 'lastname:1'}).then(function (users) {
+                    homeParticipantsController.participants = users;
+                });
+            }
 
         }])
 

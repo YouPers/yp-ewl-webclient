@@ -21,35 +21,43 @@
     "campaignNotStarted": "Once the campaign is launched, some key data on the progress of your campaign are displayed here.",
     "campaignStart": {
       "header": "Start of campaign",
-      "welcomeLinkExplain": "By clicking on this link, you can sign up to this campaign. Send this link as part of an email to all potential participants.",
-      "welcomeLinkTitle": "Manual invitation emails"
+      "welcomeLink": {
+        "header": null,
+        "createDraft": {
+          "text": null,
+          "link": null,
+          "recipient": null,
+          "subject": null,
+          "body": null
+        },
+        "copyLink": null
+      },
+      "emailInvite": {
+        "header": null,
+        "subheader": null,
+        "step1": {
+          "title": null,
+          "text": null,
+          "success": null,
+          "sendTestMail": null
+        },
+        "step2": {
+          "title": null,
+          "emailList": {
+            "placeholder": null,
+            "add": null
+          }
+        },
+        "step3": {
+          "title": null,
+          "text": null,
+          "submit": null,
+          "emailInvitesSent": null
+        }
+      }
     },
-    "emailInvite": {
-      "adjust": "adjust",
-      "emailSubject": {
-        "defaultSubject": "Invitation to HealthCampaign",
-        "label": "Email subject",
-        "placeholder": "Email subject"
-      },
-      "emailText": {
-        "defaultText": "Dear employee<br><br>{{ campaign.organization.name }} invites you to participate in the operational health campaign to the topic {{ campaign.title }}. This campaign is performed together with our partner YOUPERS.",
-        "label": "Email body",
-        "placeholder": "Email body"
-      },
-      "explain": "Here you can automatically send email invitations to the future campaign participants.",
-      "inviteMore": "Invite others",
-      "label": "Email addresses of participants to invite, separated by comma, semicolon, space or line break",
-      "next": "next",
-      "placeholder": "Email addresses",
-      "send": "send",
-      "sendTestButton": "Test",
-      "sendYourselfTest": "Send yourself a test invitation:",
-      "submit": "Invite",
-      "success": "Invitations sent successfully.",
-      "testEmailSent": "Invitation sent to {{address}}.<br>Please review the invitation in your inbox.",
-      "title": "Automatic email invitations to campaign",
-      "add": "add",
-      "reviewEmailAddresses": "Please verify the email addresses before you send the invitations using the \"send\" button"
+    "participants": {
+      "header": null
     },
     "messages": "Messages",
     "noCampaigns": "You have not created any campaigns yet",
@@ -60,6 +68,7 @@
     "offerType": {
       "Recommendation": "Recommendations",
       "Invitation": "Invitations",
+      "UserInvitation": null,
       "All": "All"
     }
   }

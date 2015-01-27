@@ -21,35 +21,43 @@
     "campaignNotStarted": null,
     "campaignStart": {
       "header": null,
-      "welcomeLinkExplain": null,
-      "welcomeLinkTitle": null
+      "welcomeLink": {
+        "header": null,
+        "createDraft": {
+          "text": null,
+          "link": null,
+          "recipient": null,
+          "subject": null,
+          "body": null
+        },
+        "copyLink": null
+      },
+      "emailInvite": {
+        "header": null,
+        "subheader": null,
+        "step1": {
+          "title": null,
+          "text": null,
+          "success": null,
+          "sendTestMail": null
+        },
+        "step2": {
+          "title": null,
+          "emailList": {
+            "placeholder": null,
+            "add": null
+          }
+        },
+        "step3": {
+          "title": null,
+          "text": null,
+          "submit": null,
+          "emailInvitesSent": null
+        }
+      }
     },
-    "emailInvite": {
-      "adjust": null,
-      "emailSubject": {
-        "defaultSubject": null,
-        "label": null,
-        "placeholder": null
-      },
-      "emailText": {
-        "defaultText": null,
-        "label": null,
-        "placeholder": null
-      },
-      "explain": null,
-      "inviteMore": null,
-      "label": null,
-      "next": null,
-      "placeholder": null,
-      "send": null,
-      "sendTestButton": null,
-      "sendYourselfTest": null,
-      "submit": null,
-      "success": null,
-      "testEmailSent": null,
-      "title": null,
-      "add": null,
-      "reviewEmailAddresses": null
+    "participants": {
+      "header": null
     },
     "messages": "News",
     "noCampaigns": null,
@@ -60,6 +68,7 @@
     "offerType": {
       "Recommendation": null,
       "Invitation": null,
+      "UserInvitation": null,
       "All": null
     }
   }
