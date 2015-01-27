@@ -21,7 +21,6 @@
     "campaignNotStarted": "Sobald die Kampagne gestartet ist, werden hier einige Eckdaten zum Verlauf deiner Kampagne angezeigt.",
     "campaignStart": {
       "header": "Start der Kampagne",
-
       "welcomeLink": {
         "header": "<strong>Option B:</strong> Kampagnen-Einladungen mit deiner Email Anwendung versenden",
         "createDraft": {
@@ -33,26 +32,23 @@
         },
         "copyLink": "Falls die Email Generierung nicht funktioniert, kannst du den nachfolgenden Link in deine Email-Einladungen kopieren."
       },
-
       "emailInvite": {
         "header": "<strong>Option A:</strong> Kampagnen-Einladungen mit HealthCampaign Service versenden",
         "subheader": "Von dieser Seite aus kannst du direkt E-Mail Einladungen versenden.",
-
         "step1": {
           "title": "1. Testeinladung versenden (optional)",
           "text": "Sende dir selber eine Testeinladung, damit du eine Vorschau auf die Kampagneneinladung erhältst.",
           "success": "Einladung gesendet an {{ email }}. Bitte prüfe die Einladung in deinem Email-Eingang.",
           "sendTestMail": "Test-Einladung<br/>verschicken"
         },
-
         "step2": {
           "title": "2. Versandliste erstellen",
           "emailList": {
-            "placeholder": "Liste der Email-Adressen",
-            "add": "Email-Adressen<br/>hinzufügen"
+            "placeholder": "Email-Adressen einfügen",
+            "add": "Email-Adressen<br/>hinzufügen",
+            "parsedEmailsPlaceholder": "Liste der Email-Adressen"
           }
         },
-
         "step3": {
           "title": "3. Kampagnen-Einladungen versenden",
           "text": "Bitte überprüfe die Email-Adressen in der Versandliste, bevor du die Einladungen mit Hilfe des \"Absenden\"-Buttons versendest.",
@@ -64,7 +60,6 @@
     "participants": {
       "header": "Teilnehmer"
     },
-
     "messages": "Nachrichten",
     "noCampaigns": "Du hast noch keine Kampagnen erstellt",
     "noMessages": "Hier werden deine Nachrichten an die Kampagnenteilnehmer angezeigt. Klicke auf KAMPAGNENMITTTEILUNG, um eine Nachricht zu verfassen.",
