@@ -4,6 +4,18 @@
 
     angular.module('yp.components.util.directives', [])
 
+        // see https://github.com/angular-ui/bootstrap/issues/2659
+        .directive('datepickerPopup', function (){
+            return {
+                restrict: 'EAC',
+                require: 'ngModel',
+                link: function(scope, element, attr, controller) {
+                    //remove the default formatter from the input directive to prevent conflict
+                    controller.$formatters.shift();
+                }
+            }
+        })
+
         .directive('translateMarkdown', ['$translate', function ($translate) {
             return {
                 restrict: 'A',
