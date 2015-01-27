@@ -24,11 +24,10 @@
 
         <div ng-repeat="question in categories[name]" ng-click="displayInfo(question)" class="question">
 
-            <div class="row">
+            <div class="row" ng-mouseover="displayInfo(question)">
                 <div class="col-sm-12">
                     <div class="title">
                         <span>{{ question.title }}</span>
-                        <i ng-mouseover="displayInfo(question)" class="glyphicon glyphicon-info-sign"></i>
                     </div>
                 </div>
 
@@ -41,21 +40,21 @@
                                 <!-- too low -->
                                 <div class="btn-group">
                                     <button type="button" class="btn" ng-model="answers[question.id].answerType"
-                                            btn-radio="'min'" ng-show="question.type !== 'rightSided'" ng-mouseover="displayInfo(question)">
+                                            btn-radio="'min'" ng-show="question.type !== 'rightSided'">
                                         {{ question.mintext }}
                                     </button>
                                 </div>
                                 <!-- alright -->
                                 <div class="btn-group">
                                     <button type="button" class="btn" ng-model="answers[question.id].answerType"
-                                            btn-radio="'mid'" ng-mouseover="displayInfo(question)">
+                                            btn-radio="'mid'">
                                         {{ question.midtext }}
                                     </button>
                                 </div>
                                 <!-- too much -->
                                 <div class="btn-group">
                                     <button type="button" class="btn" ng-model="answers[question.id].answerType"
-                                            btn-radio="'max'" ng-show="question.type !== 'leftSided'" ng-mouseover="displayInfo(question)">
+                                            btn-radio="'max'" ng-show="question.type !== 'leftSided'">
                                         {{ question.maxtext }}
                                     </button>
                                 </div>
