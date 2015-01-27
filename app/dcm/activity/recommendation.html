@@ -63,15 +63,20 @@
     <section>
 
 
-        <div class="header-row"></div>
-        <div class="button-row">
+        <div class="header-row">
+            <div class="btn btn-default pull-right back-link" ui-sref="dcm.home">
+                <span class="fa fa-chevron-left"></span>
+                <span translate>activity.link.back</span>
+            </div>
+        </div>
 
-            <button class="btn btn-default backToGame" ui-sref="dcm.home" translate>
-                activity.link.back
-            </button>
+        <div class="button-row">
             <button class="btn btn-primary submit" busy busy-disabled>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                 {{ 'recommendationForm.submit' | translate }}
+            </button>
+            <button class="btn btn-default backToGame" ui-sref="dcm.ideas" translate>
+                activityForm.cancel
             </button>
 
 
