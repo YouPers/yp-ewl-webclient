@@ -51,8 +51,9 @@ angular.module('yp-ewl',
                 .state('error', {
                     url: "/error",
                     access: accessLevels.all,
-                    template: "<html><body><h3>an error has occurred, we are working on it. </h3>" +
-                    "<button class='btn btn-primary' ui-sref='homedispatcher'>try again</button></body></html>"
+                    template: "<html><body><div class='container'><h3>We are sorry, this should not have happened. </h3><p>An error has occurred, we are working on it. </p>" +
+                    "<p>you can contact us via <a ui-sref='feedback'>feedback</a> or email at support@youpers.com </p>" +
+                    "<button class='btn btn-primary' ui-sref='homedispatcher'>try again</button></div></body></html>"
                 })
 
 
