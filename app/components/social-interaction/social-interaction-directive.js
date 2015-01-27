@@ -108,7 +108,7 @@
 
                                     if (space) {
                                         var actId = space.targetId;
-                                        return $state.go('dhc.activity', {
+                                        return $state.go('^.activity', {
                                             campaignId: $stateParams.campaignId,
                                             activity: actId
                                         });
