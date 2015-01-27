@@ -20,7 +20,7 @@
                         throw new Error('date attribute is required');
                     }
 
-                    scope.date = moment(scope.date).format();
+                    scope.date = moment(scope.date).toDate();
 
                     scope.showWeeks = false;
 
