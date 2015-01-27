@@ -147,8 +147,7 @@
                 function restoreActivityTime(date) {
                     return moment(date)
                         .hour(moment($scope.activity.startTime).hour())
-                        .minute(moment($scope.activity.startTime).minute())
-                        .format();
+                        .minute(moment($scope.activity.startTime).minute()).toDate();
                 }
 
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
