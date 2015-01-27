@@ -65,6 +65,10 @@
 
                             <div>
 
+                                <div class="email-address-list-placeholder" ng-if="!homeController.emailAddressesToBeInvited || homeController.emailAddressesToBeInvited.length === 0">
+                                    <span translate>dcmhome.campaignStart.emailInvite.step2.emailList.parsedEmailsPlaceholder</span>
+                                </div>
+
                                 <div class="email-address-list-item badge" ng-repeat="email in homeController.emailAddressesToBeInvited">
 
                                     <span>{{ email }}</span>
