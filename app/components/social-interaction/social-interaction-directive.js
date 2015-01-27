@@ -56,7 +56,6 @@
                     templateUrl: 'components/social-interaction/social-interaction-directive.html',
 
                     link: function (scope, elem, attrs) {
-                        var user = UserService.principal.getUser();
                         var options = scope.options = {};
                         options.isCampaignLead = attrs.soiAdministration;
 
