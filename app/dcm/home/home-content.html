@@ -275,7 +275,7 @@
                 <span ng-if="msgCtrl.messages.length === 0" class="empty-content-hint" translate>dcmhome.noMessages</span>
 
                 <social-interaction soi="message" on-remove="msgCtrl.soiRemoved(socialInteraction)" on-edit="msgCtrl.soiEdited(socialInteraction)"
-                                    ng-repeat="message in msgCtrl.messages"></social-interaction>
+                                    ng-repeat="message in msgCtrl.messages" soi-administration="true"></social-interaction>
 
             </div>
 

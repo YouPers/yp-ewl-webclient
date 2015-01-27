@@ -58,7 +58,7 @@
                     link: function (scope, elem, attrs) {
                         var user = UserService.principal.getUser();
                         var options = scope.options = {};
-                        options.isCampaignLead = _.contains(user.roles, 'campaignlead');
+                        options.isCampaignLead = attrs.soiAdministration;
 
                         scope.componentClass = function (socialInteraction) {
                             if (!socialInteraction) {
