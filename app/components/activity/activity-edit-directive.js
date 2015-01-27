@@ -17,6 +17,7 @@
                     templateUrl: 'components/activity/activity-edit-directive.html',
 
                     link: function (scope, elem, attrs) {
+
                         scope.$watch('activityForm', function(val) {
                             scope.form = val;
                         });

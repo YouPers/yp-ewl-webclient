@@ -1,9 +1,9 @@
 <div class="input-group">
-    <input ng-model="dateOnly"
+    <input ng-model="date"
            class="form-control text-center" type="text" id="datePickerStart"
 
            datepicker-popup="{{dateFormat}}"
-           is-open="opened" min="minDate"
+           is-open="opened"
            datepicker-append-to-body="true"
            datepicker-options="dateOptions"
 
@@ -19,8 +19,6 @@
            close-text="{{'datePicker.close-text' | translate}}"
 
             />
-
-       <!--date-parser="{{dateFormat}}"-->
 
        <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="toggle($event)">

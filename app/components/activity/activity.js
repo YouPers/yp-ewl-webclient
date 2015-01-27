@@ -135,10 +135,20 @@
                 $scope.healthCoachEvent = healthCoachEvent;
                 $scope.campaign = campaign;
                 $scope.idea = idea;
-                $scope.activity = activity;
                 $scope.socialInteraction = socialInteraction;
                 $scope.events = _.filter(activityEvents, { status: 'open'});
 
+                $scope.activity = activity;
+
+                // start and end times are stored/manipulated in distinct properties, because the date-picker removes the time in a date
+                $scope.activity.startTime = $scope.activity.start;
+                $scope.activity.endTime = $scope.activity.end;
+
+                function restoreActivityTime(date) {
+                    return moment(date)
+                        .hour(moment($scope.activity.startTime).hour())
+                        .minute(moment($scope.activity.startTime).minute()).toDate();
+                }
 
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
                 $scope.campaignInvitation = campaignInvitation;
@@ -188,13 +198,13 @@
                     $scope.$watch('socialInteraction.publishFrom', function (date) {
                         var si = $scope.socialInteraction;
                         if(moment(si.publishFrom).isAfter(moment(si.publishTo))) {
-                            si.publishTo = moment(si.publishFrom).startOf('day').toString();
+                            si.publishTo = moment(si.publishFrom).startOf('day').toDate();
                         }
                     });
                     $scope.$watch('socialInteraction.publishTo', function (date) {
                         var si = $scope.socialInteraction;
                         if(moment(si.publishFrom).isAfter(moment(si.publishTo))) {
-                            si.publishFrom = moment(si.publishTo).startOf('day').toString();
+                            si.publishFrom = moment(si.publishTo).startOf('day').toDate();
                         }
                     });
                 }
@@ -267,7 +277,12 @@
                         return;
                     }
 
-                    ActivityService.validateActivity($scope.activity).then(function (activityValidationResults) {
+                    // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
+                    var clonedActivity = _.clone($scope.activity);
+                    clonedActivity.start = restoreActivityTime(clonedActivity.start);
+                    clonedActivity.end = restoreActivityTime(clonedActivity.end);
+
+                    ActivityService.validateActivity(clonedActivity).then(function (activityValidationResults) {
 
                         $scope.events = [];
                         _.forEach(activityValidationResults, function (result) {
@@ -373,6 +388,9 @@
                 };
                 $scope.saveActivity = function saveActivity() {
                     $scope.$root.$broadcast('busy.begin', {url: "activities", name: "saveActivity"});
+
+                    $scope.activity.start = restoreActivityTime($scope.activity.start);
+                    $scope.activity.end = restoreActivityTime($scope.activity.end);
 
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {

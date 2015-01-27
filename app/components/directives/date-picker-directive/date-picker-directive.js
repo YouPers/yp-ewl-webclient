@@ -20,21 +20,7 @@
                         throw new Error('date attribute is required');
                     }
 
-                    // working copy for the datepicker to preserve the time in the attribute 'date'
-                    scope.dateOnly = moment(scope.date).format();
-
-                    scope.$watch('dateOnly', function(val, old) {
-
-                        if(val) {
-                            var dateOnly = moment(val);
-                            var date = moment(scope.date);
-                            date.year(dateOnly.year());
-                            date.dayOfYear(dateOnly.dayOfYear());
-
-                            scope.date = date.toISOString();
-                        }
-                    });
-
+                    scope.date = moment(scope.date).toDate();
 
                     scope.showWeeks = false;
 
