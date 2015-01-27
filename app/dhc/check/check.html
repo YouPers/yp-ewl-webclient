@@ -37,7 +37,7 @@
             <div class="button-row">
 
 
-                <div class="actions">
+                <div class="actions" ng-if="!assessmentDone">
 
 
                     <button class="btn btn-default backToGame" ng-click="backClicked()" translate>
@@ -52,7 +52,7 @@
 
             </div>
 
-            <health-coach event="'stateEnter'"></health-coach>
+            <health-coach event="assessmentDone ? 'assessmentAlreadyDone' : 'stateEnter'"></health-coach>
 
         </div>
 

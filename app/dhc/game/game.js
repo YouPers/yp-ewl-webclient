@@ -234,9 +234,12 @@
                 $scope.openDoneEvent = function(event) {
                     if(event.idea && event.idea.action) {
                         $scope.openIdea(event.idea);
-                    } else {
-                        $state.go('dhc.activity', { idea: event.idea.id, activity: event.activity, socialInteraction: '', mode: '' });
                     }
+
+                    // disabled for all events but the special events like the self-assessment
+                    //else {
+                    //    $state.go('dhc.activity', { idea: event.idea.id, activity: event.activity, socialInteraction: '', mode: '' });
+                    //}
                 };
                 $scope.openActivity = function(activity) {
                     if(activity.idea.action) {

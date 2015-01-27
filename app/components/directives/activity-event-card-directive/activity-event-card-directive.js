@@ -48,6 +48,9 @@
                                 return "";
                             }
                         };
+                        scope.stopPropagation = function (event) {
+                            event.stopPropagation();
+                        };
 
                     }
                 };
