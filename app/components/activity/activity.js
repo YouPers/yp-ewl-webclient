@@ -450,7 +450,9 @@
                                     ];
 
                                     SocialInteractionService.postInvitation(invitation).then(function(savedInv) {
-                                        return _finalCb(savedInv);
+                                        // do not pass the savedInv to the Cb, because we don't want to show
+                                        // the soi on the following state. WL-1603
+                                        return _finalCb();
                                     });
 
                                 } else if (!inviteAll) {
@@ -473,10 +475,14 @@
                                     SocialInteractionService.postInvitation(invitation).then(function(savedInv) {
                                         if (emails && emails.length > 0) {
                                             ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
-                                                return _finalCb(savedInv);
+                                                // do not pass the savedInv to the Cb, because we don't want to show
+                                                // the soi on the following state. WL-1603
+                                                return _finalCb();
                                             });
                                         } else {
-                                            return _finalCb(savedInv);
+                                            // do not pass the savedInv to the Cb, because we don't want to show
+                                            // the soi on the following state. WL-1603
+                                            return _finalCb();
                                         }
 
                                     });
