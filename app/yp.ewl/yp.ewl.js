@@ -44,7 +44,6 @@ angular.module('yp-ewl',
                             return $state.go('dcm.home');
                         } else {
                             return $state.go('dhc.game', {view: "", campaignId: user.campaign && user.campaign.id || user.campaign});
-//                            return $state.go('dhc.game', {view: ""});
                         }
                     }]
                 })
@@ -52,7 +51,8 @@ angular.module('yp-ewl',
                 .state('error', {
                     url: "/error",
                     access: accessLevels.all,
-                    template: "<html><body><h3>an error has occurred, we are working on it.</h3></body></html>"
+                    template: "<html><body><h3>an error has occurred, we are working on it. </h3>" +
+                    "<button class='btn btn-primary' ui-sref='homedispatcher'>try again</button></body></html>"
                 })
 
 
