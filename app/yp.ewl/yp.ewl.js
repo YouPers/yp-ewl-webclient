@@ -22,12 +22,13 @@ angular.module('yp-ewl',
 
         ]).
 
-    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translateWtiPartialLoaderProvider', 'localStorageServiceProvider',
-        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider, localStorageServiceProvider) {
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translateWtiPartialLoaderProvider', 'localStorageServiceProvider', '$injector',
+        function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider, localStorageServiceProvider, $injector) {
 
-            // For any unmatched url, send to /home
-            $urlRouterProvider.otherwise('/dispatch');
-
+            $urlRouterProvider.otherwise( function($injector) {
+                var $state = $injector.get("$state");
+                $state.go("homedispatcher");
+            });
             // Now set up the states
             $stateProvider
                 .state('homedispatcher', {
@@ -54,16 +55,6 @@ angular.module('yp-ewl',
                     template: "<html><body><h3>an error has occurred, we are working on it.</h3></body></html>"
                 })
 
-                .state('terms', {
-                    url: "/terms",
-                    templateUrl: "partials/terms.html",
-                    access: accessLevels.all,
-                    controller: ['$scope','$window', function($scope, $window) {
-                        $scope.close = function() {
-                            $window.close();
-                        };
-                    }]
-                })
 
                 // temporary bounce state while we wait for this bug to be fixed: https://github.com/angular-ui/ui-router/issues/76
                 .state('bounce', {
@@ -183,7 +174,7 @@ angular.module('yp-ewl',
                     console.log('preventing state change, because UserService not ready to check Authorization');
                     $timeout(function () {
                         $state.go(toState, toParams);
-                    }, 100);
+                    }, 300);
                 }
             });
 
