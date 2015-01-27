@@ -15,8 +15,10 @@
 
                               type="done"
                               event="event"
-                              idea="event.idea" activity="event.activity">
-                              <!--ng-click="openDoneEvent(event)"-->
+                              idea="event.idea" activity="event.activity"
+
+                              ng-class="{ clickable: event.idea && event.idea.action }"
+                              ng-click="openDoneEvent(event)">
 
         </activity-event-card>
 

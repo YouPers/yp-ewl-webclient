@@ -26,6 +26,16 @@
                             }],
                             assessmentIdea: ['ActivityService', 'assessment', function (ActivityService, assessment) {
                                 return ActivityService.getIdea(assessment.idea.id || assessment.idea);
+                            }],
+                            assessmentEvent: ['ActivityService', 'assessmentIdea', function (ActivityService, assessmentIdea) {
+                                return ActivityService.getActivityEvents({
+                                    'filter[idea]': assessmentIdea.id
+                                }).then(function (events) {
+                                    if(events.length !== 1) {
+                                        throw new Error('assessment event not unique');
+                                    }
+                                    return events[0];
+                                });
                             }]
                         },
 
@@ -48,9 +58,11 @@
 
         .controller('CheckController', [ '$scope', '$rootScope', '$state', '$q',
             'ActivityService', 'AssessmentService',
-            'assessment', 'newestResult', 'assessmentIdea',
+            'assessment', 'newestResult', 'assessmentIdea', 'assessmentEvent',
             'HealthCoachService',
-            function ($scope, $rootScope, $state, $q, ActivityService, AssessmentService, assessment, newestResult, assessmentIdea, HealthCoachService) {
+            function ($scope, $rootScope, $state, $q,
+                      ActivityService, AssessmentService,
+                      assessment, newestResult, assessmentIdea, assessmentEvent, HealthCoachService) {
 
                 if (!assessment) {
                     return;
@@ -59,6 +71,7 @@
                 $scope.categories = _.groupBy(assessment.questions, 'category');
                 $scope.assessment = assessment;
                 $scope.assessmentIdea = assessmentIdea;
+                $scope.assessmentDone = assessmentEvent.status === 'done';
 
                 // setup helper values for UI-controls
                 _.forEach(newestResult.answers, function(myAnswer) {
