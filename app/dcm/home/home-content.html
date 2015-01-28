@@ -374,7 +374,7 @@
 
     <!-- end of campaign -->
 
-    <accordion-group ng-if="campaignEnding" class="campaign-end" is-open="campaignEndingOpen">
+    <accordion-group ng-if="campaignEnded" class="campaign-end" is-open="campaignEndOpen">
         <div>
 
             <accordion-heading>
@@ -384,7 +384,7 @@
 
                     <a href>
                         <i class="fa "
-                           ng-class="{ 'fa-chevron-down': campaignEndingOpen, 'fa-chevron-right': !campaignEndingOpen }"></i>
+                           ng-class="{ 'fa-chevron-down': campaignEndOpen, 'fa-chevron-right': !campaignEndOpen }"></i>
                     </a>
 
                     <a class="section-link" ui-sref="dcm.end-of-campaign">
