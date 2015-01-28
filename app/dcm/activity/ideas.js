@@ -84,7 +84,7 @@
                 $scope.ideas = ideas;
 
                 $scope.toggleListItem = function ($index) {
-                    dcmIdeasController.expanedListItem = dcmIdeasController.expanedListItem === $index ? undefined : $index
+                    dcmIdeasController.expanedListItem = dcmIdeasController.expanedListItem === $index ? undefined : $index;
                 };
             }
         ])
