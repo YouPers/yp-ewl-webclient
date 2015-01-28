@@ -27,7 +27,15 @@
         "noAvatarPicture": "Please upload a photo of you <a href=\"/#/profile\">in your profile</a>.\n\nThis photo can be seen by employees in your invitation email to the campaign and in the application to your planned campaigns activities and messages.",
         "noMessages": "Click on CAMPAIGN MESSAGE to compose a campaign message.\n\nI recommend you to send a welcome message at the beginning of the campaign, a motivational message during the campaign, and a thank-you message towards the end of the campaign.\n\nIdeally, you create the prepared messages already before the start of the campaign and define their publication by means of the dates of publication (from, to).",
         "nothingOffered": "Ideally, you record your <a href='/#/dcm/campaign/{{campaign.id}}/ideas'> activity recommendations and invitations</a> before the start of the campaign and define their publication by means of the dates of publication (from, to).\n\nI recommend to advise the employees a new activity every day and to organize a campaign activity event once a week.",
-        "testEmailSent": null
+        "testEmailSent": null,
+        "sectionOpening": {
+          "campaignEnd": null,
+          "CampaignMessages": null,
+          "CampaignStats": null,
+          "offers": null,
+          "participants": null,
+          "startOfCampaign": null
+        }
       },
       "ideas": {
         "stateEnter": "Have a look at the activity ideas I provided and think about which activity ideas you want to recommend to the employees \"to execute alone\" or which you want to schedule as the organizer of a campaign activity event.\n\nAlternatively, you can also create an activity idea yourself that you either recommend to the employees or to which you invite the employees."
@@ -62,7 +70,8 @@
         "stateEnter": "As soon as the appointment is done, you can report if you could execute the activity and how you felt about it."
       },
       "check": {
-        "stateEnter": "You can answer as many questions as you want. The more questions you answer, the better the activity recommendations that I show you on the main page under \"Offered Activities\".\n\nFor each question, you can determine for yourself to what extent this point affects your well-being.\n\nAs long as you do not \"finish\" the self-assessment, you can also \"postpone\" it and come back here any time later to answer more questions."
+        "stateEnter": "You can answer as many questions as you want. The more questions you answer, the better the activity recommendations that I show you on the main page under \"Offered Activities\".\n\nFor each question, you can determine for yourself to what extent this point affects your well-being.\n\nAs long as you do not \"finish\" the self-assessment, you can also \"postpone\" it and come back here any time later to answer more questions.",
+        "assessmentAlreadyDone": null
       },
       "focus": {
         "stateEnter": "Congratulations to the execute self-assessment. That way, you have already made an important first step for yourself by actively giving thoughts to your health situation.\n\nBased on your answers, you can see, where the biggest need for action is. \n\nTo promote your health, I recommend you to make some small steps. That is why from now on, you will receive on the main page under \"Offered Activities\" corresponding activity recommendation cards every day. \n\nSince you have completed the self-assessment, I will move the self-assessment card on the main page from the area \"Scheduled Activities\" to the area \"Completed Activities\"."

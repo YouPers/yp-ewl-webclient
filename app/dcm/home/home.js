@@ -160,6 +160,12 @@
                     });
                 };
 
+                $scope.displayCoachMsg = function(section) {
+                    $translate('healthCoach.dcm.home.sectionOpening.' + section).then(function (translated) {
+                        $rootScope.$emit('healthCoach:displayMessage', translated);
+                    });
+                };
+
                 init();
 
                 function _loadSocialInteractions() {

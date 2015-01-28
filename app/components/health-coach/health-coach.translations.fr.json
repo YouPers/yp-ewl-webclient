@@ -27,7 +27,15 @@
         "noAvatarPicture": null,
         "noMessages": null,
         "nothingOffered": null,
-        "testEmailSent": null
+        "testEmailSent": null,
+        "sectionOpening": {
+          "campaignEnd": null,
+          "CampaignMessages": null,
+          "CampaignStats": null,
+          "offers": null,
+          "participants": null,
+          "startOfCampaign": null
+        }
       },
       "ideas": {
         "stateEnter": null
@@ -62,7 +70,8 @@
         "stateEnter": null
       },
       "check": {
-        "stateEnter": null
+        "stateEnter": null,
+        "assessmentAlreadyDone": null
       },
       "focus": {
         "stateEnter": null
