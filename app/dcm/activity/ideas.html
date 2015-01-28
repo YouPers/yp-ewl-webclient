@@ -21,13 +21,13 @@
 
             <button class="btn btn-default pull-right" ui-sref="dcm.idea" translate>campaignoffers.link.newActivity</button>
 
-            <div class="search" ng-if="group.name == 'all'">
+            <div class="search">
 
                 <div class="input-group">
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
-                    <input ng-model="query.query" type="text" class="form-control"
+                    <input ng-model="query.query" ng-minlength="3" type="text" class="form-control"
                            placeholder="{{ 'activities.search' | translate }}" name="query">
 
                 </div>
@@ -38,48 +38,71 @@
 
         <div class="idea-list">
 
-            <div class="idea-list-item" ng-repeat="idea in ideas | fulltext:query.query">
+            <div class="idea-list-item" ng-repeat="idea in ideas | filter:query.query">
 
-                <!-- image -->
-                <div>
-                    <img ng-src="{{::'/assets/actpics/' + idea.number + '.jpg'}}">
-                </div>
+                <div class="heading">
 
-                <!-- title -->
-                <div>
-                    <div ng-bind-html="::idea.title"></div>
-                </div>
 
-                <!-- duration -->
-                <div>
-                    <div>
-                        <i class="fa fa-clock-o"></i>
-                        <span>{{:: idea.defaultduration }}</span>
-                        <span>&nbsp;</span>
-                        <span translate>activities.duration.suffix</span>
+
+                    <!-- image -->
+                    <div class="clickable" ng-click="toggleListItem($index)">
+                        <img ng-src="{{::'/assets/actpics/' + idea.number + '.jpg'}}">
                     </div>
 
-                    <i class="fa"
-                       ng-class="::{ 'fa-users': idea.defaultexecutiontype == 'group',
+                    <!-- title -->
+                    <div class="clickable" ng-click="toggleListItem($index)">
+                        <div ng-bind-html="::idea.title"></div>
+                    </div>
+
+                    <!-- duration -->
+                    <div>
+                        <div>
+                            <i class="fa fa-clock-o"></i>
+                            <span>{{:: idea.defaultduration }}</span>
+                            <span>&nbsp;</span>
+                            <span translate>activities.duration.suffix</span>
+                        </div>
+
+                        <i class="fa"
+                           ng-class="::{ 'fa-users': idea.defaultexecutiontype == 'group',
                                  'fa-user': idea.defaultexecutiontype == 'self'}">
-                    </i>
+                        </i>
+                    </div>
+
+                    <!-- links -->
+
+                    <div>
+
+                        <a ui-sref="dcm.recommendation(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '' })">
+                            <i class="fa fa-lightbulb-o" popover-placement="top"  popover="{{::'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
+                        </a>
+
+                        <a ng-show="idea.defaultexecutiontype === 'group'"
+                           ui-sref="dcm.activity(::{ idea: idea.id, mode: 'campaignlead', campaignId: campaign.id, socialInteraction: '', activity: '' })" >
+                            <i class="fa fa-envelope-o" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
+                        </a>
+
+                    </div>
+
+
+                    <!-- toggle list item content -->
+                    <div>
+
+                        <a href ng-click="toggleListItem($index)">
+                            <i class="fa "
+                               ng-class="{ 'fa-chevron-down': dcmIdeasController.expanedListItem === $index, 'fa-chevron-right': dcmIdeasController.expanedListItem !== $index }"></i>
+                        </a>
+
+                    </div>
+
+
                 </div>
 
-                <!-- links -->
+                <div class="content animate-if" ng-if="dcmIdeasController.expanedListItem === $index ">
 
-                <div>
-
-                    <a ui-sref="dcm.recommendation(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '' })">
-                        <i class="fa fa-lightbulb-o" popover-placement="top"  popover="{{::'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
-                    </a>
-
-                    <a ng-show="idea.defaultexecutiontype === 'group'"
-                       ui-sref="dcm.activity(::{ idea: idea.id, mode: 'campaignlead', campaignId: campaign.id, socialInteraction: '', activity: '' })" >
-                        <i class="fa fa-envelope-o" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
-                    </a>
+                    <idea-card idea="idea"></idea-card>
 
                 </div>
-
 
             </div>
         </div>

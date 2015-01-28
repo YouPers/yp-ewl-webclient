@@ -12,7 +12,7 @@
                         views: {
                             content: {
                                 templateUrl: 'dcm/activity/ideas.html',
-                                controller: 'DcmIdeasController'
+                                controller: 'DcmIdeasController as dcmIdeasController'
                             }
                         },
                         resolve: {
@@ -79,8 +79,13 @@
 
         .controller('DcmIdeasController', [ '$scope', '$rootScope', 'ideas', 'campaign',
             function ($scope, $rootScope, ideas, campaign) {
+                var dcmIdeasController = this;
                 $scope.campaign = campaign;
                 $scope.ideas = ideas;
+
+                $scope.toggleListItem = function ($index) {
+                    dcmIdeasController.expanedListItem = dcmIdeasController.expanedListItem === $index ? undefined : $index;
+                };
             }
         ])
 
