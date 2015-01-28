@@ -5,12 +5,16 @@
 
     <div class="form-group">
         <label for="number" class="col-md-3 control-label" translate>activity.image.label</label>
-        <div class="col-md-9">
+        <div class="col-md-4">
             <span class="idea-image-link">
                 <a href ng-click="selectIdeaImage()"><span translate>activity.image.select</span> <span class="error-msg" ng-show="!ideaForm.number.$valid && ideaForm.submitted" translate>activity.image.required</span></a>
             </span>
-
         </div>
+        <div class="col-md-5">
+            <button type="button" translate onclick="document.getElementById('uploadInput').click()">activity.image.upload</button>
+            <input id="uploadInput" type="file" nv-file-select uploader="uploader" ng-if="uploader" style="display:none"/>
+        </div>
+
     </div>
 
     <div class="form-group" ng-show="isProductAdmin()">

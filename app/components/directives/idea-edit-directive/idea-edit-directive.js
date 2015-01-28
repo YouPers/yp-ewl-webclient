@@ -4,8 +4,8 @@
 
     angular.module('yp.components.ideaEdit', [])
 
-        .directive('ideaEdit', ['$rootScope', '$modal', 'ActivityService', 'CampaignService', 'UserService',
-            function ($rootScope, $modal, ActivityService, CampaignService, UserService) {
+        .directive('ideaEdit', ['$rootScope', '$modal', 'ActivityService', 'CampaignService', 'UserService', 'ImageService',
+            function ($rootScope, $modal, ActivityService, CampaignService, UserService, ImageService) {
                 return {
 
                     restrict: 'EA',
@@ -93,6 +93,12 @@
                             });
 
                         };
+
+                        $scope.uploader = ImageService.getImageUploader('idea', $scope, function successCb (item, response, status, headers) {
+                            console.log('image upload success');
+                            $scope.idea.picture = headers.location;
+                        });
+
                     }
                 };
             }])
