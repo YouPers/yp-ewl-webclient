@@ -27,7 +27,7 @@
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
-                    <input ng-model="query.query" type="text" class="form-control"
+                    <input ng-model="query.query" ng-minlength="3" type="text" class="form-control"
                            placeholder="{{ 'activities.search' | translate }}" name="query">
 
                 </div>
@@ -45,12 +45,12 @@
 
 
                     <!-- image -->
-                    <div>
+                    <div class="clickable" ng-click="toggleListItem($index)">
                         <img ng-src="{{::'/assets/actpics/' + idea.number + '.jpg'}}">
                     </div>
 
                     <!-- title -->
-                    <div>
+                    <div class="clickable" ng-click="toggleListItem($index)">
                         <div ng-bind-html="::idea.title"></div>
                     </div>
 
@@ -88,7 +88,7 @@
                     <!-- toggle list item content -->
                     <div>
 
-                        <a href ng-click="dcmIdeasController.expanedListItem = dcmIdeasController.expanedListItem === $index ? undefined : $index">
+                        <a href ng-click="toggleListItem($index)">
                             <i class="fa "
                                ng-class="{ 'fa-chevron-down': dcmIdeasController.expanedListItem === $index, 'fa-chevron-right': dcmIdeasController.expanedListItem !== $index }"></i>
                         </a>
