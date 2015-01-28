@@ -122,15 +122,26 @@
                 $scope.homeController.messages = messages;
                 $scope.homeController.offerTypes = 'Invitation';
                 $scope.campaign = campaign;
+
+                var now = moment();
+
                 if (campaign) {
-                    $scope.campaignStarted = campaign && moment(campaign.start).isBefore(moment());
-                    $scope.campaignEnding = moment().isAfter(campaign.end);
+                    $scope.campaignStarted = campaign && moment(campaign.start).isBefore(now);
+                    $scope.campaignEnded = now.isAfter(campaign.end);
+
+                    $scope.campaignStartAvailable = !$scope.campaignEnded;
+                    $scope.offerSectionAvailable = !$scope.campaignEnded;
+
+                    // campaign start section is open on the day of the campaign start and the day before
+                    $scope.campaignStartOpen =  moment(campaign.start).isSame(now, 'day') ||
+                    moment(campaign.start).subtract(1, 'day').isSame(now, 'day');
+                    // campaign end section is open when the campaign has ended
+                    $scope.campaignEndOpen = $scope.campaignEnded;
+                    // offer section is open otherwise
+                    $scope.offerSectionOpen = !$scope.campaignEndOpen && !$scope.campaignStartOpen;
                 }
 
-                $scope.campaignStartAvailable = !$scope.campaignEnding;
-                $scope.offerSectionAvailable = !$scope.campaignEnding;
-                $scope.offerSectionOpen = !$scope.campaignEnding && $scope.campaignStarted;
-                $scope.campaignStartOpen =  !$scope.campaignStarted;
+
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
                 $scope.emailAddress = UserService.principal.getUser().email;
