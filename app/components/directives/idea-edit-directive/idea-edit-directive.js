@@ -87,7 +87,7 @@
                             });
 
                             return modalInstance.result.then(function (selection) {
-                                $scope.idea.number = selection;
+                                $scope.idea.picture = selection.path;
                             }, function () {
                                 // do nothing on dialog dismiss()
                             });
@@ -101,7 +101,7 @@
         .controller('IdeaImageModalController', ['$scope', '$modalInstance',
             function ($scope, $modalInstance) {
 
-                var prefix = '/assets/actpics/';
+                var prefix = 'https://dxjlk9p2h4a7j.cloudfront.net/ideas/';
                 $scope.list = [];
 
                 for(var i=0;i<12;i++) {
