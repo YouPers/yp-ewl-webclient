@@ -17,30 +17,44 @@ game-area {
     position: relative;
     width: 100%;
 
-    .flex {
+    @media(min-width: @screen-md) {
+      .flex {
 
-      position: relative;
+        position: relative;
 
-      // setting a width here is the cause for an infinite scrolling issue with IE10 and the DHC 'show more'
-      // -> clientWidth would be 0 in the hasOverflow check
-      // there seems to be no side effect of removing it
-      //      width: 640px;
+        // setting a width here is the cause for an infinite scrolling issue with IE10 and the DHC 'show more'
+        // -> clientWidth would be 0 in the hasOverflow check
+        // there seems to be no side effect of removing it
+        //      width: 640px;
 
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-content: flex-start;
-      align-items: flex-start;
-      overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-start;
+        align-items: flex-start;
+        overflow: hidden;
 
-      transition: 0.1s ease-out height;
+        transition: 0.1s ease-out height;
 
-      > * {
-        flex: 0 1 auto;
-        margin: 0 14px 20px 0;
+        > * {
+          flex: 0 1 auto;
+          margin: 0 14px 20px 0;
+        }
+
       }
-
+    }
+    @media(max-width: @screen-md) {
+      .flex {
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        > * {
+          margin-top: 10px;
+          margin-bottom: 20px;
+        }
+      }
     }
 
     .show-more {

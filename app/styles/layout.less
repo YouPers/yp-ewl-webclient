@@ -152,8 +152,10 @@ body {
     height: 2em;
     margin-bottom: 1em;
 
-    > * {
-      margin: 0;
+    @media(min-width: @screen-md) {
+      > * {
+        margin: 0;
+      }
     }
   }
   .button-row {
