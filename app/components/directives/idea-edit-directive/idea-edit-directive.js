@@ -94,9 +94,9 @@
 
                         };
 
-                        $scope.uploader = ImageService.getImageUploader('idea', $scope, function successCb (item, response, status, headers) {
+                        $scope.uploader = ImageService.getImageUploader('idea', $scope, function successCb (url) {
                             console.log('image upload success');
-                            $scope.idea.picture = headers.location;
+                            $scope.idea.picture = url;
                         });
 
                     }

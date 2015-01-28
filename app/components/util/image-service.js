@@ -38,7 +38,9 @@
                 };
 
                 // on file upload complete
-                uploader.onSuccessItem = successCb;
+                uploader.onSuccessItem = function(item, response, status, headers) {
+                    return successCb(headers.location);
+                };
                 return uploader;
             }
 
