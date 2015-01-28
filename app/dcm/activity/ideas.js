@@ -12,7 +12,7 @@
                         views: {
                             content: {
                                 templateUrl: 'dcm/activity/ideas.html',
-                                controller: 'DcmIdeasController'
+                                controller: 'DcmIdeasController as dcmIdeasController'
                             }
                         },
                         resolve: {
