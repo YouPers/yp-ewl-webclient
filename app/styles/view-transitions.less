@@ -1,10 +1,14 @@
 
-.animate-slide.ng-hide-remove {
-  transition: 1s ease height;
-  height: 460px;
+
+.animate-if.ng-enter {
+  transition: 1s ease all;
   overflow: hidden;
 }
-.animate-slide.ng-hide {
-  height:0;
-  display: none;
+.animate-if.ng-enter {
+  max-height: 0;
+  opacity: 0;
+}
+.animate-if.ng-enter.ng-enter-active {
+  max-height: 999px;
+  opacity:1;
 }
