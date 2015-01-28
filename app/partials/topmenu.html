@@ -11,6 +11,7 @@
             <a class="navbar-logo" href="http://yp-web2.youpers.com/">
                 <img src="../assets/img/logo-youpers-ffffff.svg" alt="YouPers">
                 <h4 translate>topmenu.logoHeader</h4>
+                <h4 ng-if="config.name" class="config-hint">{{ config.name }}</h4>
             </a>
         </div>
         <div class="navbar-collapse collapse" collapse="topnavCollapsed.collapsed">
@@ -20,9 +21,6 @@
                 <ul class="nav navbar-nav">
                     <li class="nav navbar-nav" ng-if="isProductAdmin">
                         <a ui-sref="admin-home.content">Product Configuration</a>
-                    </li>
-                    <li ng-if="config.name">
-                        <h4 style="color: orange; padding-left: 1em">{{ config.name }}</h4>
                     </li>
                 </ul>
             </div>
