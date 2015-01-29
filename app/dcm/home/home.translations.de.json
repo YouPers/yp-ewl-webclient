@@ -46,7 +46,7 @@
           "emailList": {
             "placeholder": "Email-Adressen einfügen",
             "add": "Email-Adressen<br/>hinzufügen",
-            "parsedEmailsPlaceholder": "Liste der Email-Adressen"
+            "parsedEmailsPlaceholder": "Eingefügte Email-Adressen anzeigen"
           }
         },
         "step3": {
@@ -62,8 +62,8 @@
     },
     "messages": "Nachrichten",
     "noCampaigns": "Du hast noch keine Kampagnen erstellt",
-    "noMessages": "Hier werden deine Nachrichten an die Kampagnenteilnehmer angezeigt. Klicke auf KAMPAGNENMITTTEILUNG, um eine Nachricht zu verfassen.",
-    "noOffers": "Sobald du als Kampagnenleiter den Kampagnenteilnehmern eine Aktivität zur Durchführung empfohlen hast oder als Organisator die Kampagnenteilnehmer zur Teilnahme an einer gemeinsamen Kampagnenaktivität eingeladen hast, werden dir die angebotenen Aktivitäten hier angezeigt. Klicke auf \"Angebot hinzufügen\", um den Kampagnenteilnehmern eine Aktivität anzubieten.",
+    "noMessages": "Hier werden deine Nachrichten an die Kampagnenteilnehmer angezeigt.",
+    "noOffers": "Hier werden meine vorgeschlagenen Empfehlungen und Einladungen zu Kampagnenevents als auch die von Kampagnenteilnehmern eingeplanten Gruppenaktivitäten angezeigt. Klicke auf \"Angebot hinzufügen\", um den Kampagnenteilnehmern eine Aktivität anzubieten.",
     "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
     "showOld": "Vergangene anzeigen",
     "offerType": {
