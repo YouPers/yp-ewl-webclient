@@ -113,6 +113,12 @@
                     if(!code) {
                         return;
                     }
+
+                    if (code.length < 14 || code.length > 14) {
+                        $scope.validPaymentCode = false;
+                        $scope.paymentCode = {status: 404};
+                        return;
+                    }
                     PaymentCodeService.validatePaymentCode({ code: code, topic: $scope.campaign.topic.id}).then(function(result) {
                         $scope.paymentCode = result;
 
