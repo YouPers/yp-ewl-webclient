@@ -45,7 +45,8 @@
           "title": null,
           "emailList": {
             "placeholder": null,
-            "add": null
+            "add": null,
+            "parsedEmailsPlaceholder": null
           }
         },
         "step3": {
