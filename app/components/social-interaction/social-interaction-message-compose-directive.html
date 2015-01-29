@@ -1,34 +1,33 @@
-<form name="composeMessageForm" ng-submit="saveMessage(message)">
-
-    <div>
-
-        <div class="form-group">
+<form name="composeMessageForm" ng-submit="saveMessage(message)" class="form-horizontal">
+    <div class="form-group">
+        <div class="col-md-7">
             <input class="form-control" ng-model="message.title" required
                    placeholder="{{ 'composeMessageForm.title.placeholder' | translate }}"/>
+
         </div>
-        <div class="form-group">
+        <label for="pubFrom" class="col-md-1 control-label" translate>composeMessageForm.publishFrom.label</label>
+
+        <div class="col-md-4">
+            <date-picker id="pubFrom" date="message.publishFrom"></date-picker>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-7">
             <textarea class="form-control" ng-model="message.text" required
                       placeholder="{{ 'composeMessageForm.text.placeholder' | translate }}"></textarea>
         </div>
+        <label class="col-md-1 control-label" for="pubTo" translate>composeMessageForm.publishTo.label</label>
 
+        <div class="col-md-4">
+            <date-picker id="pubTo" date="message.publishTo"></date-picker>
+        </div>
     </div>
-
-    <div>
-
-        <div class="form-group">
-            <label translate>composeMessageForm.publishFrom.label</label>
-            <date-picker date="message.publishFrom"></date-picker>
+    <div class="form-group">
+        <div class="col-md-2 col-md-push-10">
+            <button class="btn btn-primary pull-right" type="submit" ng-disabled="composeMessageForm.$invalid"
+                    translate>
+                composeMessageForm.submit
+            </button>
         </div>
-
-        <div class="form-group">
-            <label translate>composeMessageForm.publishTo.label</label>
-            <date-picker date="message.publishTo"></date-picker>
-        </div>
-
-        <button class="btn btn-primary pull-right" type="submit" ng-disabled="composeMessageForm.$invalid"
-                translate>
-            composeMessageForm.submit
-        </button>
-
     </div>
 </form>
