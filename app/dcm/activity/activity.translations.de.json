@@ -9,7 +9,7 @@
       "label": "Aktivitätsbild",
       "select": "auswählen aus unseren Voschlägen",
       "upload": "selber ein Bild hochladen",
-      "required": "Bitte ein Bild auswählen"
+      "required": "Bitte ein Bild auswählen oder hochladen"
     },
     "description": {
       "label": "Kurzbeschreibung",
