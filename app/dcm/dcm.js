@@ -63,8 +63,10 @@
 
                 $scope.parentState = 'dcm';
 
-                $scope.organization = organization;
                 $scope.currentCampaign = campaign;
+
+                // my org or the current campaign's org in case I am a product Admin looking at somebody else's campaign
+                $scope.organization = organization || campaign.organization;
                 $scope.campaigns = campaigns;
 
                 $scope.editCampaign = function editCampaign($event, campaignId) {
