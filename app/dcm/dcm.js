@@ -37,13 +37,12 @@
                             });
 
                         }],
-                        campaigns: ['CampaignService', 'organization', function (CampaignService, organization) {
-                            return CampaignService.getCampaigns({ populate: 'topic campaignLeads' }).then(function (campaigns) {
-                                _.each(campaigns, function (campaign) {
-                                    campaign.organization = organization;
+                        campaigns: ['CampaignService', 'organization', function (CampaignService) {
+                            return CampaignService
+                                .getCampaigns({ populate: 'topic campaignLeads organization' })
+                                .then(function (campaigns) {
+                                    return campaigns;
                                 });
-                                return campaigns;
-                            });
                         }],
                         campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
 
