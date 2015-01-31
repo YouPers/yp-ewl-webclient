@@ -71,7 +71,7 @@
       },
       "check": {
         "stateEnter": "Du kannst so viele Fragen beantworten wie du willst. Je mehr Fragen du beantwortest, um so bessere Aktivitäts-Empfehlungen kann ich dir auf der Hauptseite unter \"Angebotene Aktivitäten\" anzeigen.\n\nZu jeder Frage kannst du für dich beurteilen, inwieweit sich dieser Punkt auf dein Wohlbefinden auswirkt.\n\nSolange du die Selbstbeurteilung nicht \"abschliesst\", kannst du sie auch \"unterbrechen\" und jederzeit später wieder hierher zurückkommen, um weitere Fragen zu beantworten.",
-        "assessmentAlreadyDone": "assessmentAlreadyDone"
+        "assessmentAlreadyDone": "Hier siehst du die Antworten deiner Selbstbeurteilung, die du jetzt nochmals anpassen kannst.\n\nSomit kann ich dir noch passendere Aktivitäten empfehlen."
       },
       "focus": {
         "stateEnter": "Ich gratuliere dir zur durchgeführten Selbstbeurteilung. Damit hast du für dich bereits einen wichtigen ersten Schritt gemacht, indem du dir aktiv Gedanken zu deiner Gesundheitssituation gemacht hast.\n\nDu siehst nun anhand deiner Antworten, wo der grösste Handlungsbedarf besteht. \n\nZur Förderung deiner Gesundheit empfehle ich dir, einzelne kleine Schritte zu machen. Deshalb wirst du nun täglich von mir auf der Hauptseite unter \"Angebotene Aktivitäten\" entsprechende Aktivitäts-Emfehlungskarten erhalten. \n\nDa du ja nun die Selbstbeurteilung abgeschlossen hast, verschiebe ich die Selbstbeurteilungs-Karte auf der Hauptseite vom Bereich \"Eingeplante Aktivitäten\" in den Bereich \"Abgeschlossene Aktivitäten\"."
