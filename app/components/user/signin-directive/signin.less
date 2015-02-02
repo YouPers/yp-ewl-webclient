@@ -8,44 +8,34 @@
 sign-in {
 
   display: block;
-//  .game-card();
-
-//  background: white;
-  margin-bottom: 1em;
-  padding: 10px 20px;
   color: @yp-subtitle;
 
   button {
     width: 100%;
   }
   .login-options {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     padding: 15px 0;
 
-    span:hover {
-//      color: @yp-accent;
+    .remember-me {
+      white-space: nowrap;
+      @media (max-width: @screen-xs-max) {
+        float: right;
+      }
     }
     span {
       padding-left: 5px;
       cursor: pointer;
     }
-  }
-}
 
-.signin-content {
-  padding-top: 1em;
+    > div > * {
+      display: inline-block;
+      padding-top: 5px;
+    }
+  }
 }
 
 .signin-form .form-control {
   margin: 1em 0 0 0;
 }
 
-
-.login-options {
-
-  padding-top: 0.5em;
-  padding-left: 0.2em;
-
-}
