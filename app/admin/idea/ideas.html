@@ -1,11 +1,11 @@
 <div class="container cockpit">
 
 <header name="plan">
-    <div class="col-md-6" translate>list.planAnActivity</div>
-    <div class="col-md-3">
+    <div class="col-sm-6" translate>list.planAnActivity</div>
+    <div class="col-sm-3">
         <a class="btn btn-default" ui-sref="admin-idea.edit" ng-if="principal.isAuthorized('admin')" translate>list.createNewActivity</a>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-3">
         <div class="form-group date">
             <label class="control-label" translate>Topic</label>
             <select ng-model="currentTopic" ng-options="topic.id as topic.name for topic in topics">
@@ -21,7 +21,7 @@
 
 <!-- Linke Spalte: Suchen und Filtern -->
 
-<div class="col-md-2">
+<div class="col-sm-2">
 
     <!-- Suche -->
     <div class="panel sidebar">
@@ -30,7 +30,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="search-option" ng-class="query.fulltext ? 'filter-option-active' : 'filter-option-inactive'">
                     <input type="text" value="" ng-model="query.fulltext" size="16" maxlength="20">
                     <button type="button" class="btn btn-primary cockpit btn-sm" ng-click="query.fulltext=''">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div>
                     <input type="checkbox" value="" ng-model="query.emptyTexts">
                     <span>mit leerer Rückseite</span>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="checkbox filter-option"
                      ng-class="query.executiontype.self ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
@@ -90,7 +90,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="checkbox filter-option"
                      ng-class="query.time.t15 ? 'filter-option-active' : 'filter-option-inactive'">
                     <label>
@@ -129,7 +129,7 @@
 
 <!-- Rechter Hauptteil: Aktivitätenliste -->
 
-<div class="col-md-10">
+<div class="col-sm-10">
     <div class="panel cockpit">
         <div class="panel cockpit section-title" translate>
             list.activities
@@ -137,7 +137,7 @@
 
         <!-- Tabs und Paginierung -->
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-sm-5">
                 <div> {{filteredIdeas.length}} <span translate>list.ofTotal</span> {{ideas.length}}</div>
                     <span>
                         <pagination total-items="filteredIdeas.length" items-per-page="pageSize" ng-model="currentPage"
@@ -149,10 +149,10 @@
 
         <!-- die eigentliche Liste -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="row panel panel-default activityListItem"
                      ng-repeat="idea in filteredIdeas | orderBy:'-score' | startFrom:(currentPage -1) * pageSize | limitTo:pageSize">
-                    <div class="col-md-1">
+                    <div class="col-sm-1">
                         {{ idea.number }}
                         <div ng-if="idea.isRecommended" class="activityListPlannedEdge activityListPlannedEdgeRecommended" translate>
                             list.recommended
@@ -160,23 +160,23 @@
                         <div class="activityListStarred glyphicon" ng-click="toggleStar(idea, $event)"
                              ng-class="(idea.starred && 'glyphicon-star') || 'glyphicon-star-empty'"></div>
                     </div>
-                    <div class="col-md-5" ng-bind-html="idea.title">
+                    <div class="col-sm-5" ng-bind-html="idea.title">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-sm-1">
                         <img ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}" width='60' height="40">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-sm-2">
                         <div popover="{{ 'activityField.'+ fieldId | translate}}" popover-trigger="mouseenter"
                              ng-repeat="topicId in idea.topics" popover-placement="left" popover-append-to-body="true">
                             {{topics.byId[topicId].name}}
                         </div>
                     </div>
-                    <div class="col-md-1" popover="Überprüft und Empfohlen durch YouPers"
+                    <div class="col-sm-1" popover="Überprüft und Empfohlen durch YouPers"
                          popover-trigger="mouseenter">
                         <img ng-src="/assets/img/YouPersAvatar.png" ng-if="idea.source == 'youpers'"
                              class="activityListClusterIcon">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-sm-2">
                         {{ 'executiontype.' + idea.defaultexecutiontype | translate}}
                         <div ng-if="principal.isAuthorized('admin')"><a class="btn btn-sm btn-primary cockpit"
                                                                           ui-sref="admin-idea.edit({ideaId: idea.id, page: currentPage, tab: $stateParams.tab, topic: currentTopic})"
@@ -188,9 +188,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-sm-7">
             </div>
-            <div class="col-md-5">
+            <div class="col-sm-5">
                 </br>
                 <span ng-hide="filteredIdeas.length < maxSize">
                     <pagination total-items="filteredIdeas.length" items-per-page="pageSize" ng-model="currentPage"
