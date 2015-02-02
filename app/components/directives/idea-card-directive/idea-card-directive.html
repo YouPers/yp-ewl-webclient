@@ -5,8 +5,8 @@
         <div class="front face" ng-click="flip()">
 
             <div class="image">
-                <i ng-if="!idea.number" class="fa fa-picture-o"></i>
-                <img ng-if="idea.number" ng-src="{{'/assets/actpics/' + idea.number + '.jpg'}}">
+                <i ng-if="!idea.picture" class="fa fa-picture-o"></i>
+                <img ng-if="idea.picture" ng-src="{{idea.picture}}">
             </div>
 
             <div class="content">

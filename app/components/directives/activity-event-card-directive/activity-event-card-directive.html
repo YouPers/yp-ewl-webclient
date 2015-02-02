@@ -3,7 +3,7 @@
 
     <div class="sheet secondary">
 
-        <img ng-src="{{'/assets/actpics/' + (event.idea.number || event.activity.number) + '.jpg'}}">
+        <img ng-src="{{event.idea.picture}}">
 
         <div class="date" ng-init="showFrequency = (type === 'recommendation' || type === 'dismissed')">
             <i class="fa fa-clock-o"></i>
