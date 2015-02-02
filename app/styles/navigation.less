@@ -6,39 +6,19 @@
   border-color: @yp-primary;
 }
 
-@media (min-width: 768px) {
-  .navbar {
-    height: 50px;
-  }
-}
-
 .navbar {
-  margin: 0;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 
-  .navbar-header {
-    height: 50px;
-  }
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 
   .navbar-nav {
     text-align: right;
-  }
-  .navbar-nav > li > a {
-    .menu();
-
-    margin-top: 12px;
+    padding-top: 12px;
   }
 
-  a > span {
-    .menu();
-  }
-
+  // toggle button displayed for xs screens
   .navbar-toggle {
-    margin-top: 6px;
-  }
-
-  .navbar-left {
-    margin-left: 10em;
+    margin-top: 3px;
+    margin-right: 3px;
   }
 
   .navbar-logo {
@@ -46,22 +26,19 @@
     position: relative;
 
     img {
-      margin-top: -10px;
-      height: 65px;
+      margin-top: 1px;
+      margin-right: 10px;
+      height: 40px;
     }
     &:hover * {
       color: @yp-accent;
     }
-    * {
-      display: inline;
+    h4 {
+      vertical-align: middle;
+      display: inline; // display logo elements and headers in a line
     }
   }
 
-  @media(max-width: @screen-md) {
-    .config-hint {
-      display: none;
-    }
-  }
   .config-hint {
     color: orange;
     padding-left: 0.5em;
