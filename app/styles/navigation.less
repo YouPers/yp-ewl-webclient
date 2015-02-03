@@ -57,15 +57,21 @@
   border: none;
   color: @yp-accent-hover !important;
 }
-.back-link, .btn-flat {
+.back-link, .btn-flat, .btn-flat {
   .btn();
   .btn-default();
 //  width: 48%;
 
-  background: none;
-  border: none;
-  box-shadow: none;
-  color: @yp-accent !important;
+  &, i.fa {
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: @yp-accent !important;
+
+  }
+  &:hover i.fa {
+    color: @yp-accent-hover !important;
+  }
 
 }
 .back-link {

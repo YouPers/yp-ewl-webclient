@@ -11,6 +11,13 @@ body {
   background-color: @yp-secondary;
 }
 
+@media (max-width: @screen-sm) {
+  div[scroll-along] {
+    top: 0 !important;
+    position: fixed !important;
+  }
+}
+
 .column-layout {
 
   nav,
@@ -20,7 +27,7 @@ body {
     padding: 0.2em;
   }
 
-  @media(min-width: @screen-md) {
+  @media(min-width: 0) {
     display: flex;
 
     nav,
@@ -71,7 +78,7 @@ body {
 
 .three-column-layout {
 
-  @media(min-width: @screen-xs) {
+  @media(min-width: @screen-sm) {
     display: flex;
 
     margin-bottom: 1em;
@@ -111,7 +118,7 @@ body {
 
 .four-column-layout {
 
-  @media(min-width: @screen-md) {
+  @media(min-width: @screen-sm) {
     display: flex;
 
     margin-bottom: 1em;

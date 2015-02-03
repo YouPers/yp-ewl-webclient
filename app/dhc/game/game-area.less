@@ -17,7 +17,7 @@ game-area {
     position: relative;
     width: 100%;
 
-    @media(min-width: @screen-xs) {
+    @media(min-width: @screen-sm) {
       .flex {
 
         position: relative;
@@ -44,7 +44,8 @@ game-area {
 
       }
     }
-    @media(max-width: @screen-xs) {
+
+    @media(max-width: @screen-sm) {
       .flex {
         height: auto !important;
         display: flex;
@@ -54,6 +55,9 @@ game-area {
           margin-top: 10px;
           margin-bottom: 20px;
         }
+      }
+      .show-more {
+        display: none;
       }
     }
 
