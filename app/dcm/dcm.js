@@ -37,13 +37,12 @@
                             });
 
                         }],
-                        campaigns: ['CampaignService', 'organization', function (CampaignService, organization) {
-                            return CampaignService.getCampaigns({ populate: 'topic campaignLeads' }).then(function (campaigns) {
-                                _.each(campaigns, function (campaign) {
-                                    campaign.organization = organization;
+                        campaigns: ['CampaignService', 'organization', function (CampaignService) {
+                            return CampaignService
+                                .getCampaigns({ populate: 'topic campaignLeads organization' })
+                                .then(function (campaigns) {
+                                    return campaigns;
                                 });
-                                return campaigns;
-                            });
                         }],
                         campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
 
@@ -64,8 +63,10 @@
 
                 $scope.parentState = 'dcm';
 
-                $scope.organization = organization;
                 $scope.currentCampaign = campaign;
+
+                // my org or the current campaign's org in case I am a product Admin looking at somebody else's campaign
+                $scope.organization = organization || campaign.organization;
                 $scope.campaigns = campaigns;
 
                 $scope.editCampaign = function editCampaign($event, campaignId) {

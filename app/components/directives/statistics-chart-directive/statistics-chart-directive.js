@@ -57,7 +57,8 @@
                             //could be 'left, right'
                             position: 'right'
                         },
-                        lineLegend: false
+                        lineLegend: false,
+                        waitForHeightAndWidth: false
                     };
 
                 }
