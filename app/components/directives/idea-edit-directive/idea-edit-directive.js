@@ -51,7 +51,10 @@
                             if ($scope.idea.noDefaultStartTime) {
                                 $scope.idea.defaultStartTime = "";
                             } else {
-                                // noDefaultStartTime has not been clicked, check whether a real date is saved, if not set to current date
+                                // noDefaultStartTime is not selected, check whether a real date is in idea.defaultStartTime,
+                                // if not: set to current date
+                                // -> prevents the empty idea.defaultStartTime, when the
+                                // timepicker is not manually touched by the user
                                 if (!$scope.idea.defaultStartTime) {
                                     $scope.idea.defaultStartTime = new Date();
                                 }
