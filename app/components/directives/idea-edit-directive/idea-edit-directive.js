@@ -43,17 +43,23 @@
                             idea.qualityFactor = 1;
                         }
 
-                        $scope.$watch('noDefaultStartTime', function () {
-                            if(!idea.defaultStartTime) {
-                                idea.defaultStartTime = moment().startOf('hour');
-                            }
-                        });
-
                         $scope.isProductAdmin = function() {
                             return (UserService.principal.getUser().roles.indexOf('productadmin') !== -1);
                         };
 
                         $scope.save = function() {
+                            if ($scope.idea.noDefaultStartTime) {
+                                $scope.idea.defaultStartTime = "";
+                            } else {
+                                // noDefaultStartTime is not selected, check whether a real date is in idea.defaultStartTime,
+                                // if not: set to current date
+                                // -> prevents the empty idea.defaultStartTime, when the
+                                // timepicker is not manually touched by the user
+                                if (!$scope.idea.defaultStartTime) {
+                                    $scope.idea.defaultStartTime = new Date();
+                                }
+                            }
+
                             // reset the currentCampaign to the idea, the user might have changed it
                             if (CampaignService.currentCampaign) {
                                 $scope.idea.campaign = CampaignService.currentCampaign;
