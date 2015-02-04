@@ -17,6 +17,35 @@ body {
   }
 }
 
+
+// button bar for dhc mobile
+
+@media (max-width: @screen-sm) {
+  .dhc section:last-of-type {
+
+    .header-row, .button-row {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      padding: 5px;
+      z-index: 2;
+
+      border-top: 1px solid @yp-divider;
+    }
+
+    .header-row {
+      bottom: 0;
+      margin: 0;
+      height: auto;
+    }
+    .button-row {
+      bottom: 30px;
+    }
+
+  }
+}
+
 .column-layout {
 
   nav,
