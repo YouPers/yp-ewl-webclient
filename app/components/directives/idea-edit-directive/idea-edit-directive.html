@@ -104,12 +104,12 @@
             <label  translate>activity.startTime</label>
         </div>
 
-        <div class="col-sm-6" ng-init="noDefaultStartTime = !idea.defaultStartTime">
+        <div class="col-sm-6" ng-init="idea.noDefaultStartTime = !idea.defaultStartTime">
             <label class="control-label">
-                <input type="checkbox" ng-model="noDefaultStartTime">
+                <input type="checkbox" ng-model="idea.noDefaultStartTime">
                 <span translate>activity.noDefaultStartTime</span>
             </label>
-            <timepicker ng-if="!noDefaultStartTime" ng-model="idea.defaultStartTime"  minute-step="15" show-meridian="false" ></timepicker>
+            <timepicker ng-if="!idea.noDefaultStartTime" ng-model="idea.defaultStartTime"  minute-step="15" show-meridian="false" ></timepicker>
         </div>
 
     </div>

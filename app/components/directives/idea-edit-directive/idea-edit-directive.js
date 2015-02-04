@@ -48,8 +48,13 @@
                         };
 
                         $scope.save = function() {
-                            if ($scope.noDefaultStartTime) {
-                                $scope.idea.defaultStartTime = undefined;
+                            if ($scope.idea.noDefaultStartTime) {
+                                $scope.idea.defaultStartTime = "";
+                            } else {
+                                // noDefaultStartTime has not been clicked, check whether a real date is saved, if not set to current date
+                                if (!$scope.idea.defaultStartTime) {
+                                    $scope.idea.defaultStartTime = new Date();
+                                }
                             }
 
                             // reset the currentCampaign to the idea, the user might have changed it
