@@ -3,7 +3,15 @@
 
     <section ng-class="{dimmed: activityController.deleteModeEnabled}">
         <div class="header-row">
+
+            <div class="visible-xs btn btn-default pull-right back-link" ng-click="backToGame()">
+                <span class="fa fa-chevron-left"></span>
+                <span translate>activity.link.back</span>
+            </div>
+
             <h3 translate>{{ 'activity.header.first.' + pageTitle }}</h3>
+
+
         </div>
 
         <div ng-if="socialInteraction">

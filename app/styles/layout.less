@@ -11,6 +11,12 @@ body {
   background-color: @yp-secondary;
 }
 
+@media (max-width: @screen-sm) {
+  div[scroll-along] {
+    top: 0 !important;
+  }
+}
+
 .column-layout {
 
   nav,
@@ -20,7 +26,7 @@ body {
     padding: 0.2em;
   }
 
-  @media(min-width: @screen-md) {
+  @media(min-width: 0) {
     display: flex;
 
     nav,
@@ -43,7 +49,7 @@ body {
       flex: 0 0 18em;
     }
     section {
-          flex: 1 1  auto;
+      flex: 1 1  auto;
     }
   }
 
@@ -71,7 +77,7 @@ body {
 
 .three-column-layout {
 
-  @media(min-width: @screen-md) {
+  @media(min-width: @screen-sm) {
     display: flex;
 
     margin-bottom: 1em;
@@ -111,7 +117,7 @@ body {
 
 .four-column-layout {
 
-  @media(min-width: @screen-md) {
+  @media(min-width: @screen-sm) {
     display: flex;
 
     margin-bottom: 1em;
@@ -152,8 +158,10 @@ body {
     height: 2em;
     margin-bottom: 1em;
 
-    > * {
-      margin: 0;
+    @media(min-width: @screen-sm) {
+      > * {
+        margin: 0;
+      }
     }
   }
   .button-row {

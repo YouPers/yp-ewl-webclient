@@ -4,54 +4,54 @@
       ng-submit="(ideaForm.$valid && save()) || (ideaForm.submitted = true)" novalidate>
 
     <div class="form-group">
-        <label for="number" class="col-md-3 control-label" translate>activity.image.label</label>
-        <div class="col-md-4">
+        <label for="number" class="col-sm-3 control-label" translate>activity.image.label</label>
+        <div class="col-sm-4">
             <span class="idea-image-link">
                 <a href ng-click="selectIdeaImage()"><span translate>activity.image.select</span></a>
             </span>
         </div>
-        <div class="col-md-5">
+        <div class="col-sm-5">
             <button type="button" translate onclick="document.getElementById('uploadInput').click()">activity.image.upload</button>
             <input id="uploadInput" type="file" nv-file-select uploader="uploader" ng-if="uploader" style="display:none"/>
             <input name="picture" id="picture" required type="hidden" ng-model="idea.picture">
         </div>
     </div>
     <div class="row" ng-if="!ideaForm.picture.$valid && ideaForm.submitted">
-        <div class="col-md-9 col-md-push-3">
+        <div class="col-sm-9 col-sm-push-3">
             <span class="error-msg"  translate>activity.image.required</span>
         </div>
     </div>
     <div class="form-group" ng-show="isProductAdmin()">
-        <label for="number" class="col-md-3 control-label" translate>activity.number</label>
-        <div class="col-md-9">
+        <label for="number" class="col-sm-3 control-label" translate>activity.number</label>
+        <div class="col-sm-9">
             <input name="number" id="number" required type="text" ng-model="idea.number" class="form-control">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="title" class="col-md-3 control-label" translate>activity.title.label</label>
-        <div class="col-md-9">
+        <label for="title" class="col-sm-3 control-label" translate>activity.title.label</label>
+        <div class="col-sm-9">
             <input type="text" required id="title" name="title" class="form-control" ng-model="idea.title" ng-attr-placeholder="{{'activity.title.placeholder' | translate}}"></textarea>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="description" class="col-md-3 control-label" translate>activity.description.label</label>
-        <div class="col-md-9">
+        <label for="description" class="col-sm-3 control-label" translate>activity.description.label</label>
+        <div class="col-sm-9">
             <textarea rows="5" required id="description" type="text" class="form-control" ng-model="idea.description" ng-attr-placeholder="{{'activity.description.placeholder' | translate}}"></textarea>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="text" class="col-md-3 control-label" translate>activity.text.label</label>
-        <div class="col-md-9">
+        <label for="text" class="col-sm-3 control-label" translate>activity.text.label</label>
+        <div class="col-sm-9">
             <textarea rows="8" id="text" type="text" name="text" class="form-control" ng-model="idea.text" ng-attr-placeholder="{{'activity.text.placeholder' | translate}}"></textarea>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="executiontype" class="col-md-3 control-label" translate>activity.executiontype</label>
-        <div id ="executiontype" class="btn-group col-md-9">
+        <label for="executiontype" class="col-sm-3 control-label" translate>activity.executiontype</label>
+        <div id ="executiontype" class="btn-group col-sm-9">
             <button type="button" ng-repeat="executiontype in enums.executiontype" class="btn btn-default btn-sm" ng-model="idea.defaultexecutiontype" btn-radio="executiontype" translate>
                 executiontype.{{executiontype}}
             </button>
@@ -60,8 +60,8 @@
     </div>
 
     <div class="form-group">
-        <label for="frequency" class="col-md-3 control-label" translate>activity.frequency</label>
-        <div id="frequency" class="btn-group col-md-9">
+        <label for="frequency" class="col-sm-3 control-label" translate>activity.frequency</label>
+        <div id="frequency" class="btn-group col-sm-9">
             <button type="button" ng-repeat="activityPlanFrequency in enums.activityPlanFrequency" class="btn btn-default btn-sm" ng-model="idea.defaultfrequency" btn-radio="activityPlanFrequency" translate>
                 activityPlanFrequency.{{activityPlanFrequency}}
             </button>
@@ -69,8 +69,8 @@
     </div>
 
     <div class="form-group" ng-if="isProductAdmin()">
-        <label for="source" class="col-md-3 control-label" translate>activity.source</label>
-        <div id="source" class="btn-group col-md-9">
+        <label for="source" class="col-sm-3 control-label" translate>activity.source</label>
+        <div id="source" class="btn-group col-sm-9">
             <button type="button" ng-repeat="source in enums.source" class="btn btn-default btn-sm" ng-model="idea.source" btn-radio="source" translate>
                 source.{{source}}
             </button>
@@ -78,8 +78,8 @@
     </div>
 
     <div class="form-group" ng-if="isProductAdmin()">
-        <label for="topics" class="col-md-3 control-label" translate>activity.topics</label>
-        <div id="topics" class="btn-group col-md-9">
+        <label for="topics" class="col-sm-3 control-label" translate>activity.topics</label>
+        <div id="topics" class="btn-group col-sm-9">
             <button type="button" class="btn btn-default btn-sm" ng-repeat="topic in topics"
                     ng-model="topicsModel[topic.id]" btn-checkbox data-toggle="button">{{ topic.name }}
             </button>
@@ -87,12 +87,12 @@
     </div>
 
     <div class="form-group">
-        <label ng-if="isProductAdmin()" for="qualityFactor" class="col-md-3 control-label" translate>activity.qualityFactor</label>
-        <div class="col-md-2" ng-if="isProductAdmin()">
+        <label ng-if="isProductAdmin()" for="qualityFactor" class="col-sm-3 control-label" translate>activity.qualityFactor</label>
+        <div class="col-sm-2" ng-if="isProductAdmin()">
             <input id="qualityFactor" type="number" min=1 max=10 ng-model="idea.qualityFactor" class="form-control">
         </div>
-        <label for="duration" class="col-md-3 control-label" translate>activity.duration</label>
-        <div class="col-md-2">
+        <label for="duration" class="col-sm-3 control-label" translate>activity.duration</label>
+        <div class="col-sm-2">
             <input id="duration" type="number" min=0 ng-model="idea.defaultduration" class="form-control">
         </div>
     </div>
@@ -100,11 +100,11 @@
 
     <div class="form-group">
 
-        <div class="col-md-3 control-label start-time">
+        <div class="col-sm-3 control-label start-time">
             <label  translate>activity.startTime</label>
         </div>
 
-        <div class="col-md-6" ng-init="noDefaultStartTime = !idea.defaultStartTime">
+        <div class="col-sm-6" ng-init="noDefaultStartTime = !idea.defaultStartTime">
             <label class="control-label">
                 <input type="checkbox" ng-model="noDefaultStartTime">
                 <span translate>activity.noDefaultStartTime</span>
@@ -115,10 +115,10 @@
     </div>
 
     <div class="form-group">
-        <div class="col-md-7">
+        <div class="col-sm-7">
         </div>
 
-        <div class="col-md-5 idea-edit-link">
+        <div class="col-sm-5 idea-edit-link">
             <button type="submit" class="btn btn-primary pull-right" translate>activity.save
             </button>
             <div ng-transclude></div>
