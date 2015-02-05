@@ -1,83 +1,91 @@
-<div class="welcome-layout" ng-if="!isCampaignlead" >
-    <div class="welcome-box">
+<div class="container welcome" ng-if="!isCampaignlead" >
 
-        <section>
+    <div class="row">
+
+        <div class="col-sm-4">
 
             <campaign-card campaign="campaign"></campaign-card>
 
-        </section>
+        </div>
 
-        <section class="content">
+        <div class="col-sm-8">
+
+            <div class="content">
 
 
-            <h1>
-                <span translate>welcome.header</span><br/>
-            </h1>
-            <h1>
-                <strong translate>{{ campaign.title }}</strong>
-            </h1>
+                <h1>
+                    <span translate>welcome.header</span><br/>
+                </h1>
+                <h1>
+                    <strong translate>{{ campaign.title }}</strong>
+                </h1>
 
-            <div class="organization">
-                <div>{{ campaign.organization.name }}</div>
-            </div>
+                <br/>
 
-            <div class="participants">
-                <div>
-                    {{ campaign.participants }}
+                <div class="organization">
+                    <div>{{ campaign.organization.name }}</div>
                 </div>
-            </div>
 
-            <div class="location">
-                <div>
-                    {{ campaign.location }}
-                    {{ campaign.location && campaign.city ? ' / ' : '' }}
-                    {{ campaign.city }}
-                </div>
-            </div>
-
-
-
-            <div class="campaign-start" ng-if="!campaignHasStarted">
-
-                <p translate>welcome.campaignNotStartedYet</p>
-
-                <h4>{{ campaign.start | date }}</h4>
-
-            </div>
-
-            <div class="welcome-links">
-                <a target="_blank" href="{{'welcome.moreInfoLink' | translate }}"
-                   analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="More Info">
-                    <button class="btn btn-default info">
-                        <span translate>welcome.link.info</span>
-                    </button>
-                </a>
-
-                <button class="btn btn-default join" ng-click="join()" ng-if="campaignHasStarted"
-                        analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="Join">
-                    <span translate>welcome.link.join</span>
-                </button>
-            </div>
-
-            <div class="campaign-leads">
-                <h4 translate>welcome.yourCampaignLeads</h4>
-
-                <div ng-repeat="campaignLead in campaign.campaignLeads">
-
-                    <div class="avatar">
-                        <img ng-src="{{ campaignLead.avatar }}">
-                    </div>
+                <div class="participants">
                     <div>
-                        {{ campaignLead.fullname }}
+                        {{ campaign.participants }}
+                    </div>
+                </div>
+
+                <div class="location">
+                    <div>
+                        {{ campaign.location }}
+                        {{ campaign.location && campaign.city ? ' / ' : '' }}
+                        {{ campaign.city }}
+                    </div>
+                </div>
+
+
+
+                <div class="campaign-start" ng-if="!campaignHasStarted">
+
+                    <p translate>welcome.campaignNotStartedYet</p>
+
+                    <h4>{{ campaign.start | date }}</h4>
+
+                </div>
+
+                <div class="row welcome-links">
+                    <div class="col-sm-6">
+                        <a class="btn btn-default info" target="_blank" href="{{'welcome.moreInfoLink' | translate }}"
+                           analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="More Info">
+                            <span translate>welcome.link.info</span>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <button class="btn btn-default join" ng-click="join()" ng-if="campaignHasStarted"
+                                analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="Join">
+                            <span translate>welcome.link.join</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="campaign-leads">
+                    <h4 translate>welcome.yourCampaignLeads</h4>
+
+                    <div ng-repeat="campaignLead in campaign.campaignLeads">
+
+                        <div class="avatar">
+                            <img ng-src="{{ campaignLead.avatar }}">
+                        </div>
+                        <div>
+                            {{ campaignLead.fullname }}
+                        </div>
+
                     </div>
 
                 </div>
 
+
             </div>
 
-
-
-        </section>
+        </div>
 
 
     </div>

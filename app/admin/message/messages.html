@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="state-header-1" translate>admin.message.stateHeader1</div>
         <div class="state-header-2" translate>admin.message.stateHeader2</div>
     </div>
@@ -7,7 +7,7 @@
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6">
 
 
         <form name="adminMessageForm" ypModel="message" class="form" role="form" ng-submit="sendMessage()" novalidate>
@@ -34,13 +34,13 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label translate>adminMessageForm.publishFrom.label</label>
                         <date-picker date="message.publishFrom"></date-picker>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label translate>adminMessageForm.publishTo.label</label>
                         <date-picker date="message.publishTo"></date-picker>
@@ -72,7 +72,7 @@
         </form>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
 
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="message in messages">

@@ -10,7 +10,7 @@
 
 
     <div class="row" ng-if="principal.getUser().roles.indexOf('orgadmin') != -1">
-        <div class="col-md-12">
+        <div class="col-sm-12">
 
             <button class="btn btn-primary btn-large pull-right" type="button" ui-sref="dcm.campaign" translate>
                 campaign.link.new
@@ -34,21 +34,21 @@
         <div class="row campaign list-item link" ng-repeat="campaign in group.campaigns" ui-sref="dcm.campaign({ campaignId: campaign.id})">
 
             <!-- image -->
-            <div class="col-md-2 image">
+            <div class="col-sm-2 image">
                 <span>
                     <img ng-src="{{campaign.avatar}}">
                 </span>
             </div>
 
             <!-- title -->
-            <div class="col-md-4 title">
+            <div class="col-sm-4 title">
                 <a href="" ui-sref="campaign({id: '{{ campaign.id }}'})">
                     {{ campaign.topic.name }}
                 </a>
             </div>
 
             <!-- date and location -->
-            <div class="col-md-3 date">
+            <div class="col-sm-3 date">
 
                 <div>
                     <span>{{ campaign.participants }}</span>
@@ -63,7 +63,7 @@
 
 
             <!-- city -->
-            <div class="col-md-2">
+            <div class="col-sm-2">
                 <span>
                     {{ campaign.city }}
                 </span>
