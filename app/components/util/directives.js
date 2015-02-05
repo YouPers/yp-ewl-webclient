@@ -107,7 +107,7 @@
                     };
 
                     var offset = 0;
-                    var initialOffset = element[0].offsetTop;
+                    var initialOffset = element[0].offsetTop - 20;
 
                     function initStyle() {
                         offset = $window.pageYOffset;
