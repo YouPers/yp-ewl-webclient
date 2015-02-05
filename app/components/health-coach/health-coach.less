@@ -33,3 +33,81 @@ health-coach {
   }
 }
 
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: @screen-sm) {
+
+  .health-coach-notification {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    padding: 10px;
+    z-index: 101;
+
+    img {
+      width: 24px;
+    }
+
+    transition: 0.4s color linear;
+
+    &.new-message i {
+      animation-duration: 0.5s;
+      animation-fill-mode: both;
+      animation-name: bounce;
+
+      color: @yp-accent-hover;
+    }
+  }
+
+  body.dhc health-coach {
+
+    .expand {
+      display: none;
+    }
+    > div {
+      height: 0;
+      transition: 0.4s height ease;
+
+
+    }
+    > div.overlay {
+      height: auto;
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      padding-bottom: 24px;
+      width: 100%;
+      z-index: 101;
+      background-color: white;
+    }
+  }
+}
+
+@media (min-width: @screen-sm) {
+  .health-coach-notification {
+    display: none;
+  }
+}
+
+body.dcm {
+  .health-coach-notification {
+    display: none;
+  }
+}

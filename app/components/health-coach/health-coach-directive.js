@@ -40,19 +40,34 @@
                         scope.event = queuedEvent;
                     }
 
-                    scope.$watch('event', function () {
+                    function newMessage() {
+                        scope.newMessage = false;
+                        $timeout(function () {
+                            scope.newMessage = true;
+                        });
+                    }
+
+                    scope.$watch('event', function (val, old) {
                         var eventKey = 'healthCoach.' + ( scope.event ? $state.current.name + '.' + scope.event : undefined );
                         $translate(eventKey, scope.data).then(function (eventMessage) {
+
+                            if(scope.eventMessage) {
+                                newMessage();
+                            }
+
                             scope.eventMessage = scope.getFormattedMessage(eventMessage);
+
                         });
                     });
 
                     $rootScope.$on('healthCoach:event', function (event, healthCoachEvent) {
                         scope.event = healthCoachEvent;
+                        newMessage();
                     });
                     $rootScope.$on('healthCoach:displayMessage', function (event, message) {
                         scope.coachMessage = scope.getFormattedMessage(message);
                         scope.$parent.$broadcast('initialize-scroll-along');
+                        newMessage();
                     });
 
                     var coach = elem[0];

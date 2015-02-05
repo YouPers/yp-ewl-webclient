@@ -1,4 +1,6 @@
-<div ng-if="coachMessage || eventMessage" ng-class="{ expanded: expanded }" ng-style="style">
+<div ng-if="coachMessage || eventMessage" ng-class="{ expanded: expanded, overlay: overlay }" ng-style="style"
+     ng-click="overlay = !overlay; $parent.newMessage = false"
+        >
 
     <div class="inbox-item">
 
@@ -22,4 +24,11 @@
     <a ng-show="expandable" class="expand" ng-click="expanded = true; expandable = false">
         <span translate>healthCoach.expand</span>
     </a>
+
+    <div class="health-coach-notification" ng-class="{ 'new-message': $parent.newMessage}">
+
+        <img ng-src="/assets/img/avatar_coach_blue.svg">
+        <i class="fa" ng-class="overlay ? 'fa-chevron-down' : 'fa-chevron-up'"></i>
+
+    </div>
 </div>
