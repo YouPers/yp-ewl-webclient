@@ -144,10 +144,13 @@
                 $scope.activity.startTime = $scope.activity.start;
                 $scope.activity.endTime = $scope.activity.end;
 
-                function restoreActivityTime(date) {
-                    return moment(date)
-                        .hour(moment($scope.activity.startTime).hour())
-                        .minute(moment($scope.activity.startTime).minute()).toDate();
+                function restoreActivityTime(activity) {
+                    activity.start = moment(activity.start)
+                        .hour(moment(activity.startTime).hour())
+                        .minute(moment(activity.startTime).minute()).toDate();
+                    activity.end = moment(activity.end)
+                        .hour(moment(activity.endTime).hour())
+                        .minute(moment(activity.endTime).minute()).toDate();
                 }
 
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
@@ -279,8 +282,7 @@
 
                     // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
                     var clonedActivity = _.clone($scope.activity);
-                    clonedActivity.start = restoreActivityTime(clonedActivity.start);
-                    clonedActivity.end = restoreActivityTime(clonedActivity.end);
+                    restoreActivityTime(clonedActivity);
 
                     ActivityService.validateActivity(clonedActivity).then(function (activityValidationResults) {
 
@@ -389,9 +391,7 @@
                 $scope.saveActivity = function saveActivity() {
                     $scope.$root.$broadcast('busy.begin', {url: "activities", name: "saveActivity"});
 
-                    $scope.activity.start = restoreActivityTime($scope.activity.start);
-                    $scope.activity.end = restoreActivityTime($scope.activity.end);
-
+                    restoreActivityTime($scope.activity);
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
 
