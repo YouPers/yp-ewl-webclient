@@ -82,8 +82,8 @@
                 });
             }],
 
-            healthCoachEvent: ['$state', 'ActivityService', 'campaign', 'socialInteraction', 'activity', 'activityEvents',
-                function ($state, ActivityService, campaign, socialInteraction, activity, activityEvents) {
+            healthCoachEvent: ['$state', 'ActivityService', 'UserService', 'campaign', 'socialInteraction', 'activity', 'activityEvents',
+                function ($state, ActivityService, UserService, campaign, socialInteraction, activity, activityEvents) {
 
                     if(!campaign) {
                         return;
@@ -111,6 +111,10 @@
 
 
                         } else { // dcm
+
+                            if(!ActivityService.isOwner(activity, UserService.principal.getUser())) {
+                                return 'stateEnterAsSpectator';
+                            }
 
                             return 'stateEnter';
                         }
