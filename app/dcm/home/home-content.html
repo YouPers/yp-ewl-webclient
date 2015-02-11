@@ -254,7 +254,7 @@
 
     <!-- campaign messages -->
 
-    <accordion-group ng-if="campaign" class="campaign-messages" is-open="campaignMessagesOpen">
+    <accordion-group ng-if="campaignMessagesAvailable" class="campaign-messages" is-open="campaignMessagesOpen">
         <div ng-controller="HomeMessagesController as msgCtrl">
 
             <accordion-heading>
