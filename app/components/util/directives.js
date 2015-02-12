@@ -3,7 +3,7 @@
 
 
     angular.module('yp.components.util.directives', [])
-        .directive("head",function(){
+        .directive("head", function(){
             return {
                 restrict: "E",
                 link: function(scope, element, attr, controller) {
@@ -15,8 +15,7 @@
                         angular.element(document.querySelector("meta[name= viewport]")).attr('content', content);
                     });
                 }
-            }
-
+            };
         })
         // see https://github.com/angular-ui/bootstrap/issues/2659
         .directive('datepickerPopup', function (){
