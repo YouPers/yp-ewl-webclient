@@ -8,6 +8,7 @@
     "image": {
       "label": "Immagine dell'attività",
       "select": "Seleziona",
+      "upload": null,
       "required": null
     },
     "description": {

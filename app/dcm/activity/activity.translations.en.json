@@ -8,6 +8,7 @@
     "image": {
       "label": "Activity image",
       "select": "select",
+      "upload": null,
       "required": "Please select a picture"
     },
     "description": {
