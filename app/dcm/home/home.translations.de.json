@@ -61,7 +61,7 @@
       "header": "Teilnehmer"
     },
     "messages": "Nachrichten",
-    "noCampaigns": "Du hast noch keine Kampagnen erstellt",
+    "noCampaigns": "Es existiert noch keine Kampagne. Erstelle eine neue Kampagne.",
     "noMessages": "Hier werden deine Nachrichten an die Kampagnenteilnehmer angezeigt.",
     "noOffers": "Hier werden meine vorgeschlagenen Empfehlungen und Einladungen zu Kampagnenevents als auch die von Kampagnenteilnehmern eingeplanten Gruppenaktivitäten angezeigt. Klicke auf \"Angebot hinzufügen\", um den Kampagnenteilnehmern eine Aktivität anzubieten.",
     "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",

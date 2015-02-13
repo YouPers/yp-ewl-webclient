@@ -20,7 +20,7 @@
         "campaignStartedToday": "According to your requirements, your web-based health campaign starts today!\n\nDid you already sent the campaign invitation to all the employees who are going to participate in the campaign? If not, I recommend you to do it right now.\n\nHave you already recorded and published a welcome message, a first recommendation and a first invitation to a campaign activity?\n\nFrom this day forward, follow daily the progress of your campaign at the top of this page and ask yourself whether the employees log in for the campaign as desired, schedule first activities, etc.\n\nIf the campaign does not run as desired, think about what else you could do (e.g. send another calling or a \"friendly reminder\" to participate incl. invitation link to the employees, etc.)",
         "invitationCreated": "Create new recommendations or invitations where appropriate.",
         "noCampaigns": "Congratulations. You have entered all the information about your organization. \n\nNow, you can start creating your first campaign by clicking on \"NEW CAMPAIGN\". \n\nI recommend you to perform one campaign per operating location. Also consider, if it makes sense to conduct separate campaigns for different groups of employees. \n\nAlso note, that each campaign is linked with a selected program and a fixed performance period.",
-        "organizationIncomplete": "Welcome! \n\nI am your YOUPERS coach. \n\nI will assist you in creating and managing your HealthCampaigns with tips and hints. \n\nMy first tip for you: Enter additional data about your organization before you begin to create a first campaign.",
+        "organizationIncomplete": "Welcome! \n\nI am your Digital Coach. \n\nI will assist you in creating and managing your HealthCampaigns with tips and hints. \n\nMy first tip for you: Enter additional data about your organization before you begin to create a first campaign.",
         "recommendationCreated": "Congratulations! The recommendation card will be displayed to your employees under \"Offered Activities\" during the defined period.\n\nCreate more recommendations or invitations where appropriate.",
         "recommendationDeleted": "Your recommendation card was deleted.\nCreate new recommendations or invitations where appropriate.",
         "enterAdresses": null,
@@ -77,7 +77,7 @@
         "stateEnter": "Congratulations to the execute self-assessment. That way, you have already made an important first step for yourself by actively giving thoughts to your health situation.\n\nBased on your answers, you can see, where the biggest need for action is. \n\nTo promote your health, I recommend you to make some small steps. That is why from now on, you will receive on the main page under \"Offered Activities\" corresponding activity recommendation cards every day. \n\nSince you have completed the self-assessment, I will move the self-assessment card on the main page from the area \"Scheduled Activities\" to the area \"Completed Activities\"."
       },
       "game": {
-        "campaignEnded": "Dear User\n\nThank you for participating in this health campaign! \n\nKind regards\n\nYour YOUPERS Coach",
+        "campaignEnded": "Dear User\n\nThank you for participating in this health campaign! \n\nKind regards\n\nYour Digital Coach",
         "campaignEndingWithCurrentActivities": "The campaign lasts only a little while.\n\nI recommend you to finish the already scheduled activities and only, if required, schedule new activities.",
         "noCurrentActivities": "In the middle at the bottom of this page, new activity recommendation and invitation cards are displayed every day under \"Offered Activities\" from me, from the campaign manager and from your work colleagues. Schedule some activity!\n\nClick on the map to look at the details about an activity recommendation or invitation and to schedule the activity.\n\nI recommend, out of all the offered activities, you select that activity which suits your personal need for action the best.",
         "campaignWelcome": null,
@@ -89,7 +89,7 @@
         "presentEvents": null,
         "recommendationDismissed": "You have decided to reject the recommendation.\n\nTherefore, I have moved the activity from section \"Offered activities\" to section \"Dismissed activities\".\n\nWith the decision you give me the opportunity to display a new activity recommendation in section \"Offered activities\". Look at it now!",
         "invitationDismissed": null,
-        "noOffers": "<h3>Welcome!</h3> \n\nI am your YOUPERS coach. \n\nI support you in your participation in the health campaign with tips and hints.\n\nBelow my first clues or tips for you: \n\nAs a first campaign activity, I recommend the accomplishment of a short **self-assessment** (about 10 minutes). The self-assessment allows me to show you possible matching activity cards during the campaign under \"Offered Activities\". You will get from me from now on a daily activity recommendation card.\n\nI have already scheduled for you the self-assessment, which is why the self-assessment card appears above in the middle under \"Scheduled Activities\". Click on the map to start the self-assessment.",
+        "noOffers": "<h3>Welcome!</h3> \n\nI am your Digital Coach. \n\nI support you in your participation in the health campaign with tips and hints.\n\nBelow my first clues or tips for you: \n\nAs a first campaign activity, I recommend the accomplishment of a short **self-assessment** (about 10 minutes). The self-assessment allows me to show you possible matching activity cards during the campaign under \"Offered Activities\". You will get from me from now on a daily activity recommendation card.\n\nI have already scheduled for you the self-assessment, which is why the self-assessment card appears above in the middle under \"Scheduled Activities\". Click on the map to start the self-assessment.",
         "campaignLastDay": null
       },
       "end-of-campaign": {
@@ -97,7 +97,7 @@
         "ended": null
       }
     },
-    "fullname": "YOUPERS Coach",
+    "fullname": "Digital Coach",
     "expand": null,
     "dcmSignup": {
       "stateEnter": null
