@@ -290,7 +290,8 @@
 
                     ActivityService.validateActivity(clonedActivity).then(function (activityValidationResults) {
 
-                        $scope.events = [];
+                        var events = [];
+                        var conflictingEvents = [];
                         _.forEach(activityValidationResults, function (result) {
                             var event = result.event;
 
@@ -298,6 +299,7 @@
 
                             if(result.conflictingEvent) {
                                 event.conflictingEvent = result.conflictingEvent;
+                                conflictingEvents.push(event.conflictingEvent);
                                 $scope.healthCoachEvent = 'conflictingEvent';
                             } else {
                                 if ($scope.healthCoachEvent === 'conflictingEvent') {
@@ -305,9 +307,12 @@
                                 }
                             }
 
-                            $scope.events.push(event);
+                            events.push(event);
 
                         });
+                        ActivityService.populateIdeas(events);
+                        ActivityService.populateIdeas(conflictingEvents);
+                        $scope.events = events;
 
                     });
                 }, 200);
