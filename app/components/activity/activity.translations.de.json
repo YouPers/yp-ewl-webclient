@@ -24,6 +24,10 @@
         "Recommendation": "Empfehlung"
       }
     },
+    "comment": {
+      "placeholder": "Notizen",
+      "save": "Speichern"
+    },
     "inviteOthers": {
       "selected": "ausgewählte",
       "all": "alle",

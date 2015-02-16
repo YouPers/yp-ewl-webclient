@@ -85,7 +85,7 @@ activity-event-card {
   }
 
   .status, .rating {
-    padding-top: 4px;
+    padding: 4px 0;
     > div:first-of-type {
       padding-top: 8px;
       padding-left: 2px;
@@ -102,6 +102,25 @@ activity-event-card {
       i {
         font-size: 26px;
       }
+    }
+  }
+
+  .comment {
+    padding: 4px 0;
+//    border-top: 1px solid @yp-divider;
+    div {
+      padding: 2px 0;
+      position: relative;
+      a {
+        float: right;
+        i.fa {
+          font-size: 18px;
+        }
+      }
+    }
+    textarea {
+      width: 100%;
+      border: none;
     }
   }
 
