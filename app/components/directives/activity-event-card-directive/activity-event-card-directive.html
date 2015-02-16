@@ -58,6 +58,25 @@
 
             </div>
 
+            <div class="comment" ng-show="event.status !== 'open'" ng-init="event.saved = !!event.comment">
+
+                <div ng-show="event.saved">
+                    <span ng-bind="event.comment"></span>
+                    <a href ng-click="editComment()"><i class="fa fa-edit"></i></a>
+                </div>
+
+                <div ng-hide="event.saved">
+                    <textarea id="comment"
+                              ng-model="event.comment" ng-keydown="commentInput($event)"
+                              placeholder="{{ 'activity.comment.placeholder' | translate }}"></textarea>
+                    <a class="btn btn-flat" href ng-click="event.saved = true" ng-hide="!event.comment">
+                        <!--<i class="fa fa-save"></i>-->
+                        <span translate>activity.comment.save</span>
+                    </a>
+                </div>
+
+            </div>
+
         </fieldset>
 
     </div>
