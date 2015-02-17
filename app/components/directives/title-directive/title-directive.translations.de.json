@@ -1,8 +1,8 @@
 {
   "pageTitle": {
-    "default": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
+    "default": "HealthCampaign {{ campaign.topic.name }}",
     "signin": {
-      "content": "Anmeldung - YOUPERS HealthCampaign"
+      "content": "Anmeldung - HealthCampaign"
     },
     "account": "Benutzerkonto",
     "profile": "Benutzerprofil",

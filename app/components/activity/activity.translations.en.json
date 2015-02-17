@@ -24,6 +24,10 @@
         "Recommendation": "Recommendation"
       }
     },
+    "comment": {
+      "placeholder": null,
+      "save": null
+    },
     "inviteOthers": {
       "selected": "selected",
       "all": "all",

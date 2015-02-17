@@ -5,6 +5,7 @@
         "groupActivitySaved": null,
         "deleteOwnActivity": null,
         "editOwnActivity": null,
+        "stateEnterAsSpectator": null,
         "stateEnter": null
       },
       "campaign": {

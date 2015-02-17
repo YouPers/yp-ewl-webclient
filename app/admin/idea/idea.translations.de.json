@@ -44,7 +44,7 @@
     "done": "gemacht",
     "recommended": "empfohlen",
     "planned": "geplant",
-    "ifYouFillAssessment": "Wenn du das Assessment ausfüllst, empfiehlt dir YouPers individuell die für dich passendsten Aktivitäten",
+    "ifYouFillAssessment": "Wenn du das Assessment ausfüllst, empfiehlt dir dein Digital Coach individuell für dich zugeschnittene Aktivitäten",
     "toAssessment": "zur Selbstbeurteilung",
     "showAllActivities": "alle Aktivitäten zeigen",
     "planIt": "einplanen",
@@ -92,7 +92,7 @@
     "172800": "2 Tage vorher"
   },
   "activityPlanInvite": {
-    "header": "Herzlich willkommen - YOUPERS Digital Health Plattform",
+    "header": "HealthCampaign - Herzlich Willkommen",
     "subheader": " hat Dich eingeladen an einer Aktivität teilzunehmen.",
     "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}>logge Dich ein</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
   },
