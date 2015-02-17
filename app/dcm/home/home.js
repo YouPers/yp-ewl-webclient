@@ -271,6 +271,7 @@
 
 
                     StatsService.loadStats($scope.campaign.id, {type: 'eventsDonePerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                        var prefix = 'dcmhome.stats.eventsDonePerDay.legend.';
                         options = {
                             runningTotal: false,
                             newestDay: moment.min(moment(), moment($scope.campaign.end)),
@@ -278,9 +279,9 @@
                             nrOfDaysToPlot: 14,
                             propsToPlot: ['Done', 'Missed', 'Open'],
                             legend: [
-                                $translate.instant('dcmhome.eventsDonePerDay.' + 'Done'),
-                                $translate.instant('dcmhome.eventsDonePerDay.' + 'Missed'),
-                                $translate.instant('dcmhome.eventsDonePerDay.' + 'Open')
+                                $translate.instant(prefix + 'Done'),
+                                $translate.instant(prefix + 'Missed'),
+                                $translate.instant(prefix + 'Open')
                             ]
                         };
 
@@ -289,7 +290,11 @@
 
 
                     StatsService.loadStats($scope.campaign.id, {type: 'newUsersPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
-                        $scope.chartData.newUsers = StatsService.fillAndFormatForPlot(result[0].newUsersPerDay, options);
+                        var options = {
+                            newestDay: moment.min(moment(), moment($scope.campaign.end)),
+                            oldestDay: moment($scope.campaign.start)
+                        };
+                        $scope.chartData.newUsersPerDay = StatsService.fillAndFormatForPlot(result[0].newUsersPerDay, options);
                         $scope.currentUserCount = result[0].newUsersPerDay && result[0].newUsersPerDay[result[0].newUsersPerDay.length - 1] && result[0].newUsersPerDay[result[0].newUsersPerDay.length - 1].count;
                     });
 

@@ -9,10 +9,21 @@
     "campaigns": "Kampagnen",
     "activities": "Aktivitäten",
     "statistics": "Statistiken",
-    "eventsDonePerDay": {
-      "Done": "durchgeführt",
-      "Missed": "verpasst",
-      "Open": "offen"
+    "stats": {
+      "eventsDonePerDay": {
+        "title": "Anzahl Aktivitätstermine pro Tag",
+        "legend": {
+          "Done": "durchgeführt",
+          "Missed": "verpasst",
+          "Open": "offen"
+        }
+      },
+      "newUsersPerDay": {
+        "title": "Anzahl Kampagnenteilnehmer",
+        "legend": {
+          "count": "durchgeführt"
+        }
+      }
     },
     "end-of-campaign": "Rückblick",
     "addOffer": "Angebot hinzufügen",

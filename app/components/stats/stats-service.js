@@ -35,7 +35,7 @@
             oldestDay: options.nrOfDaysToPlot ? moment(options.newestDay || newestDataDate).subtract(options.nrOfDaysToPlot,'days') : oldestDataDate,
             dateFormat: 'D.',
             reverseX: false,
-            colors: ['#2ca02c', '#ffa', '#aaf'],
+            colors: ['#F4BA14', '#ff5252', '#0277bd'],
             colorFn: function (index) {
                 var colors = options.colors;
                 return colors && colors.length >= index ? colors[index] : '#aaa'

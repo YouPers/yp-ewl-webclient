@@ -1,16 +1,16 @@
-<div ng-if="chartData.data && chartData.data.length > 0">
+<div>
 
 
     <nvd3-line-chart
             data="chartData.nv"
-            id="colorExample"
             width="650"
-            height="300"
+            height="240"
             xAxisTickFormat="xAxisTickFormatFunction"
             yAxisTickFormat="yAxisTickFormatFunction"
             showXAxis="true"
             showYAxis="true"
             showLegend="true"
+            interpolate="monotone"
             >
         <svg></svg>
     </nvd3-line-chart>
