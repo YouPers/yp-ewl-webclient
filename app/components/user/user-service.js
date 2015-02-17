@@ -150,9 +150,9 @@
 
                         return login.post()
                             .then(function success(result) {
-                                var expires = result.expires;
+
                                 if (keepMeLoggedIn) {
-                                    ipCookie(AUTH_COOKIE_NAME, result.token || cred, {expires: expires, domain: $location.host(), path:'/'});
+                                    ipCookie(AUTH_COOKIE_NAME, result.token || cred);
                                 }
                                 return _authorizeLoginResponse(result);
 
