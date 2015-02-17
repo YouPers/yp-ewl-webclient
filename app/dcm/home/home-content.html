@@ -200,10 +200,10 @@
                            ng-class="{ 'fa-chevron-down': campaignStatsOpen, 'fa-chevron-right': !campaignStatsOpen }"></i>
                     </a>
 
-                    <a class="section-link" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">
-                        <span translate>dcmhome.moreStats</span>
-                        <i class="fa fa-tachometer"></i>
-                    </a>
+                    <!--<a class="section-link" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">-->
+                        <!--<span translate>dcmhome.moreStats</span>-->
+                        <!--<i class="fa fa-tachometer"></i>-->
+                    <!--</a>-->
                 </span>
             </accordion-heading>
 
@@ -224,16 +224,24 @@
 
                 </div>
 
-                <div ng-if="campaign && campaignStarted && campaignStatsOpen">
+                <div ng-if="campaign && campaignStarted && campaignStatsOpen && currentUserCount > 0">
 
-                    <div class="row" ng-if="currentUserCount > 0">
+
+
+                    <statistics-chart chart-data="chartData.eventsDonePerDay" title=""></statistics-chart>
+
+                    <!--<statistics-chart chart-data="chartData.newUsers"-->
+                                      <!--title="'dcmhome.participantsCount' | translate"></statistics-chart>-->
+                    <!--<statistics-chart chart-data="chartData.plannedActs"-->
+                                      <!--title="'dcmhome.plannedActsCount' | translate"></statistics-chart>-->
+
+
+                    <div class="row" >
                         <div class="col-sm-6">
-                            <statistics-chart chart-data="chartData.newUsers"
-                                              title="'dcmhome.participantsCount' | translate"></statistics-chart>
+
                         </div>
                         <div class="col-sm-6">
-                            <statistics-chart chart-data="chartData.plannedActs"
-                                              title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
+
                         </div>
                     </div>
 

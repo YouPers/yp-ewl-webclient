@@ -9,6 +9,11 @@
     "campaigns": "Kampagnen",
     "activities": "Aktivitäten",
     "statistics": "Statistiken",
+    "eventsDonePerDay": {
+      "Done": "durchgeführt",
+      "Missed": "verpasst",
+      "Open": "offen"
+    },
     "end-of-campaign": "Rückblick",
     "addOffer": "Angebot hinzufügen",
     "surveyInfo": "Bitte teile uns doch in diesem Fragebogen deine Erfahrungen mit HealthCampaign mit",

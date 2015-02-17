@@ -1,10 +1,18 @@
 <div ng-if="chartData.data && chartData.data.length > 0">
 
-    <div
-        ac-chart="'line'"
-        ac-data="chartData"
-        ac-config="config"
-        class="stat-chart"
-    ></div>
+
+    <nvd3-line-chart
+            data="chartData.nv"
+            id="colorExample"
+            width="650"
+            height="300"
+            xAxisTickFormat="xAxisTickFormatFunction"
+            yAxisTickFormat="yAxisTickFormatFunction"
+            showXAxis="true"
+            showYAxis="true"
+            showLegend="true"
+            >
+        <svg></svg>
+    </nvd3-line-chart>
 
 </div>

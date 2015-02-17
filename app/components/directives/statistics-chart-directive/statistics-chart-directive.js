@@ -45,20 +45,11 @@
                         throw new Error('chartData attribute is required');
                     }
 
-                    scope.config = {
-                        title: scope.title,
-                        tooltips: true,
-                        labels: false,
-                        mouseover: function() {},
-                        mouseout: function() {},
-                        click: function() {},
-                        legend: {
-                            display: false,
-                            //could be 'left, right'
-                            position: 'right'
-                        },
-                        lineLegend: false,
-                        waitForHeightAndWidth: false
+                    scope.xAxisTickFormatFunction = function (x) {
+                        return moment(x).format('D.M.'); //return moment(x).weekday() === 0 ? moment(x).format('D.M.') : '';
+                    };
+                    scope.yAxisTickFormatFunction = function (y) {
+                        return y;
                     };
 
                 }

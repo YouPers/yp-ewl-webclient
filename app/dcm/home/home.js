@@ -252,7 +252,7 @@
 
         }])
 
-        .controller('HomeStatsController', ['$scope', 'StatsService', function ($scope, StatsService) {
+        .controller('HomeStatsController', ['$scope', '$translate', 'StatsService', function ($scope, $translate, StatsService) {
             $scope.chartData = {};
 
             init();
@@ -267,6 +267,26 @@
                         newestDay: moment.min(moment(), moment($scope.campaign.end)),
                         nrOfDaysToPlot: 7
                     };
+
+
+
+                    StatsService.loadStats($scope.campaign.id, {type: 'eventsDonePerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                        options = {
+                            runningTotal: false,
+                            newestDay: moment.min(moment(), moment($scope.campaign.end)),
+                            oldestDay: moment($scope.campaign.start),
+                            nrOfDaysToPlot: 14,
+                            propsToPlot: ['Done', 'Missed', 'Open'],
+                            legend: [
+                                $translate.instant('dcmhome.eventsDonePerDay.' + 'Done'),
+                                $translate.instant('dcmhome.eventsDonePerDay.' + 'Missed'),
+                                $translate.instant('dcmhome.eventsDonePerDay.' + 'Open')
+                            ]
+                        };
+
+                        $scope.chartData.eventsDonePerDay = StatsService.fillAndFormatForPlot(result[0].eventsDonePerDay, options);
+                    });
+
 
                     StatsService.loadStats($scope.campaign.id, {type: 'newUsersPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
                         $scope.chartData.newUsers = StatsService.fillAndFormatForPlot(result[0].newUsersPerDay, options);

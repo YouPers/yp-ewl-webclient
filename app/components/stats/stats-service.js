@@ -34,14 +34,22 @@
             newestDay: newestDataDate,
             oldestDay: options.nrOfDaysToPlot ? moment(options.newestDay || newestDataDate).subtract(options.nrOfDaysToPlot,'days') : oldestDataDate,
             dateFormat: 'D.',
-            reverseX: false
+            reverseX: false,
+            colors: ['#2ca02c', '#ffa', '#aaf'],
+            colorFn: function (index) {
+                var colors = options.colors;
+                return colors && colors.length >= index ? colors[index] : '#aaa'
+            }
         });
 
         var propsToPlot = options.propsToPlot;
 
         var myChartData = {
             "series": propsToPlot,
-            "data": [ ]
+            "data": [ ],
+            nv: _.map(propsToPlot, function (key, index) {
+                return { key: options.legend ? options.legend[index] : key, values: [], color: options.colorFn(index), area: false }
+            })
         };
 
         // start with the newest data
@@ -73,6 +81,10 @@
                 } else {
                     values.push((indexedValues[curIndex] && indexedValues[curIndex][propsToPlot[i]]) || 0);
                 }
+
+                var key = options.legend && options.legend[i] ? options.legend[i] : propsToPlot[i];
+                _.find(myChartData.nv, { key: key }).values.push([current.toDate().getTime(), indexedValues[curIndex] ? indexedValues[curIndex][propsToPlot[i]] || 0 : 0]);
+
             }
             if (options.reverseX) {
                 myChartData.data.push({
