@@ -3,16 +3,23 @@
 
 .dhc-game {
 
-  .three-column-layout {
-    section {
-      flex: 0 0 668px;
-      border: none;
+  @media(max-width: @screen-sm) {
+    campaign-card {
+      margin: 0 auto;
     }
-    section:first-of-type {
-      flex: 0 0 204px;
-    }
-    section:last-of-type {
-      flex: 0 0 265px;
+  }
+  @media(min-width: @screen-sm) {
+    .three-column-layout {
+      section {
+        flex: 0 0 668px;
+        border: none;
+      }
+      section:first-of-type {
+        flex: 0 0 204px;
+      }
+      section:last-of-type {
+        flex: 0 0 265px;
+      }
     }
   }
 
@@ -28,8 +35,13 @@
     height: 22em;
   }
 
-  game-area.offered-activities .flex {
-    height: 8em;
+  game-area.offered-activities .offered-activities-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    > * {
+      margin: 0 8px 8px 0;
+    }
   }
   game-area.done-events, game-area.rejected-offers {
     .flex {

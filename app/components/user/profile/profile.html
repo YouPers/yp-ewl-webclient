@@ -3,12 +3,12 @@
 <form name="profileForm" ypModel="profileUserObj" class="form" role="form" ng-submit="saveProfile()" novalidate>
 
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-sm-10 col-sm-offset-1">
         <h3 translate>profileForm.profile.header</h3>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-sm-10 col-sm-offset-1">
 
         <div class="pull-right">
             <button type="submit" class="btn btn-primary" ng-disabled="profileForm.$invalid" translate>
@@ -29,18 +29,18 @@
 
 <div class="row">
 
-<div class="col-md-10 col-md-offset-1">
+<div class="col-sm-10 col-sm-offset-1">
 
 <accordion close-others="true">
 
 <accordion-group heading="{{ 'profileForm.profile.header' | translate }}" is-open="isOpen" ng-init="isOpen= true"
                  class="user-profile">
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
 
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-sm-12">
 
                 <div class="avatar-form">
 
@@ -51,7 +51,7 @@
 
 
 
-                        <span class="dropdown">
+                        <span class="dropdown" is-open="dropdownOpen">
                               <a href class="dropdown-toggle">
                                   <span translate>profileForm.avatar.change</span>
                               </a>
@@ -80,10 +80,10 @@
         <div class="row">
 
             <div class="form-group">
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <label translate>profileForm.gender.label</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-sm-8">
                     <div class="btn-group" data-toggle="buttons-radio">
                         <input id="female" type="radio" value="female" ng-model="profileUserObj.gender"
                                ng-click="profileUserObj.gender = 'female'"><label for="female">&NonBreakingSpace;{{
@@ -99,10 +99,10 @@
 
         <div class="row">
             <div class="form-group">
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <label translate>profileForm.birthdate.label</label>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6">
 
                     <date-picker date="profileUserObj.birthDate"></date-picker>
                 </div>
@@ -112,10 +112,10 @@
         <div class="row">
             <div class="form-group">
                 <br/>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <label translate>profileForm.maritalStatus.label</label>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <select class="form-control"
                             ng-model="profileUserObj.maritalStatus"
                             ng-options="'maritalStatus.' + value | translate for value in enums.maritalStatus">
@@ -126,27 +126,27 @@
         <br/>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
 
         <div class="form-group">
             <label translate>profileForm.homeAddress.header</label>
 
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-sm-9">
                     <yp-input name="homeAddress.street" label="false"></yp-input>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     <yp-input name="homeAddress.houseNumber" label="false"></yp-input>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     <yp-input name="homeAddress.zipCode" ng-pattern="/\d{3,}/" label="false"></yp-input>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-sm-9">
                     <yp-input name="homeAddress.city" label="false"></yp-input>
                 </div>
             </div>
@@ -160,21 +160,21 @@
             <label translate>profileForm.workAddress.header</label>
 
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-sm-9">
                     <yp-input name="workAddress.street" label="false"></yp-input>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     <yp-input name="workAddress.houseNumber" label="false"></yp-input>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     <yp-input name="workAddress.zipCode" ng-pattern="/\d{3,}/" label="false"></yp-input>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-sm-9">
                     <yp-input name="workAddress.city" label="false"></yp-input>
                 </div>
             </div>
@@ -189,7 +189,7 @@
 
 <accordion-group heading="{{ 'profileForm.settings.header' | translate }}">
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
 
         <div class="form-group">
 
@@ -214,7 +214,7 @@
 
 
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
         <div class="form-group">
 
             <h3 translate>profileForm.emailNotificationsSettings</h3>

@@ -51,8 +51,8 @@
 
         .constant('accessLevels', _accessLevels)
 
-        .factory("UserService", ['userRoles', 'ipCookie', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
-            function (userRoles, ipCookie, $rootScope, Rest, $location, $http, base64codec, $q) {
+        .factory("UserService", ['userRoles', 'localStorageService', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
+            function (userRoles, localStorageService, $rootScope, Rest, $location, $http, base64codec, $q) {
                 var users = Rest.all('users');
                 var profiles = Rest.all('profiles');
                 var login = Rest.all('login');
@@ -150,9 +150,9 @@
 
                         return login.post()
                             .then(function success(result) {
-                                var expires = result.expires;
+
                                 if (keepMeLoggedIn) {
-                                    ipCookie(AUTH_COOKIE_NAME, result.token || cred, {expires: expires});
+                                    localStorageService.set(AUTH_COOKIE_NAME, result.token || cred);
                                 }
                                 return _authorizeLoginResponse(result);
 
@@ -172,7 +172,7 @@
                         return login.post({}).then(_authorizeLoginResponse);
                     },
                     logout: function () {
-                        ipCookie.remove(AUTH_COOKIE_NAME);
+                        localStorageService.remove(AUTH_COOKIE_NAME);
                         $http.defaults.headers.common.Authorization = '';
                         _deauthorize();
                         return $q.when(null);
@@ -256,14 +256,14 @@
                     initialized: false
                 };
 
-                var tokenRetrieved = $location.search().token || ipCookie(AUTH_COOKIE_NAME);
+                var tokenRetrieved = $location.search().token || localStorageService.get(AUTH_COOKIE_NAME);
 
                 if (tokenRetrieved) {
                     UserService.login(tokenRetrieved, true)
                         .then(function success(user) {
                             UserService.initialized = true;
                         }, function error(err) {
-                            ipCookie.remove(AUTH_COOKIE_NAME);
+                            localStorageService.remove(AUTH_COOKIE_NAME);
                             UserService.initialized = true;
                         });
                 } else {

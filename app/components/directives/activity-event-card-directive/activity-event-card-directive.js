@@ -41,6 +41,19 @@
                             scope.$watch('event', _.debounce(updateEvent, 1000), true);
                         });
 
+                        scope.commentInput = function ($event) {
+                            if($event.keyCode === 13 && !$event.shiftKey) {
+                                updateEvent(scope.event);
+                                scope.event.saved = true;
+                            }
+                        };
+                        scope.editComment = function () {
+                            scope.event.saved = false;
+                            $timeout(function () {
+                                elem.find('textarea')[0].focus();
+                            });
+                        };
+
                         scope.getRenderedText = function (text) {
                             if (text) {
                                 return $sce.trustAsHtml(marked(text));

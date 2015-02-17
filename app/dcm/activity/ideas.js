@@ -48,7 +48,8 @@
                                             "defaultvisibility": "campaign",
                                             "defaultduration": 60,
                                             topics: [campaign.topic.id],
-                                            campaign: $stateParams.campaignId
+                                            campaign: $stateParams.campaignId,
+                                            number: "Custom"
                                         };
                                     });
 

@@ -11,6 +11,41 @@ body {
   background-color: @yp-secondary;
 }
 
+@media (max-width: @screen-sm) {
+  div[scroll-along] {
+    top: 0 !important;
+  }
+}
+
+
+// button bar for dhc mobile
+
+@media (max-width: @screen-sm) {
+  .dhc section:last-of-type {
+
+    .header-row, .button-row {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      padding: 5px;
+      z-index: 101;
+
+      border-top: 1px solid @yp-divider;
+    }
+
+    .header-row {
+      bottom: 0;
+      margin: 0;
+      height: auto;
+    }
+    .button-row {
+      bottom: 30px;
+    }
+
+  }
+}
+
 .column-layout {
 
   nav,
@@ -20,7 +55,7 @@ body {
     padding: 0.2em;
   }
 
-  @media(min-width: @screen-md) {
+  @media(min-width: 0) {
     display: flex;
 
     nav,
@@ -43,7 +78,7 @@ body {
       flex: 0 0 18em;
     }
     section {
-          flex: 1 1  auto;
+      flex: 1 1  auto;
     }
   }
 
@@ -71,7 +106,7 @@ body {
 
 .three-column-layout {
 
-  @media(min-width: @screen-md) {
+  @media(min-width: @screen-sm) {
     display: flex;
 
     margin-bottom: 1em;
@@ -111,7 +146,7 @@ body {
 
 .four-column-layout {
 
-  @media(min-width: @screen-md) {
+  @media(min-width: @screen-sm) {
     display: flex;
 
     margin-bottom: 1em;
@@ -152,8 +187,10 @@ body {
     height: 2em;
     margin-bottom: 1em;
 
-    > * {
-      margin: 0;
+    @media(min-width: @screen-sm) {
+      > * {
+        margin: 0;
+      }
     }
   }
   .button-row {

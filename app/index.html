@@ -120,7 +120,7 @@
     <script src="components/util/error.js"></script>
     <script src="components/util/client-message.js"></script>
     <script src="components/util/base64.js"></script>
-
+    <script src="components/util/image-service.js"></script>
 
     <!--directives-->
     <script src="components/directives/title-directive/title-directive.js"></script>
@@ -244,7 +244,7 @@
 </head>
 
 
-<body>
+<body class="{{ $state.current.name.substr(0, $state.current.name.indexOf('.')) }} {{ $state.current.name.replace('.', '-') }}">
 
 
 

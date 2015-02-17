@@ -7,8 +7,9 @@
     },
     "image": {
       "label": "Aktivitätsbild",
-      "select": "auswählen",
-      "required": "Bitte ein Bild auswählen"
+      "select": "auswählen aus unseren Voschlägen",
+      "upload": "selber ein Bild hochladen",
+      "required": "Bitte ein Bild auswählen oder hochladen"
     },
     "description": {
       "label": "Kurzbeschreibung",
@@ -43,7 +44,7 @@
       "recommend": "Empfehlen"
     },
     "search": "suchen",
-    "header": "YOUPERS Aktivitäts-Ideen"
+    "header": "HealthCampaign Aktivitäts-Ideen"
   },
   "campaignoffers": {
     "stateHeader1": "kampagnen",

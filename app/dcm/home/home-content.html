@@ -153,7 +153,7 @@
 
             <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-sm-12">
 
 
                     <div class="participant" ng-repeat="participant in homeParticipantsController.participants">
@@ -227,11 +227,11 @@
                 <div ng-if="campaign && campaignStarted && campaignStatsOpen">
 
                     <div class="row" ng-if="currentUserCount > 0">
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             <statistics-chart chart-data="chartData.newUsers"
                                               title="'dcmhome.participantsCount' | translate"></statistics-chart>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             <statistics-chart chart-data="chartData.plannedActs"
                                               title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
                         </div>
@@ -254,7 +254,7 @@
 
     <!-- campaign messages -->
 
-    <accordion-group ng-if="campaign" class="campaign-messages" is-open="campaignMessagesOpen">
+    <accordion-group ng-if="campaignMessagesAvailable" class="campaign-messages" is-open="campaignMessagesOpen">
         <div ng-controller="HomeMessagesController as msgCtrl">
 
             <accordion-heading>

@@ -24,7 +24,7 @@
 
         <form name="campaignForm" ypModel="campaign" role="form" class="form-horizontal"
               ng-submit="saveCampaign()" novalidate>
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="form-group topic">
                     <label class="control-label" translate>campaignForm.topic.label</label>
 
@@ -95,25 +95,25 @@
 
         <div ng-show="campaign.id">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <h3 translate>campaign.campaignLeads.header</h3>
                 </div>
             </div>
             <div class="row campaign-leads" ng-repeat="campaignLead in campaign.campaignLeads">
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <img ng-src="{{campaignLead.avatar}}">
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <div>{{ campaignLead.fullname }}</div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <div>{{ campaignLead.email }}</div>
                 </div>
             </div>
 
 
             <div class="row invite-campaign-lead" ng-show="formVisible">
-                <div class="col-md-12">
+                <div class="col-sm-12">
 
                     <div translate ng-if="invitationSent">inviteCampaignLeadForm.invitationSent</div>
 

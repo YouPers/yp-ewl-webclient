@@ -37,13 +37,26 @@
 
 @input-color-placeholder:        @yp-placeholder;
 
-
-@media (min-width: 900px) {
-
+// fixed container width for entire dcm app
+body.dcm  {
   .container {
-    width: 1158px;
+    width: @container-lg;
   }
 }
+// fixed container width for
+// - any screen width above xs
+// - dhc.game and dhc.activity states
+body.dhc-game, body.dhc-activity  {
+
+  @media (min-width: @screen-sm) {
+
+    .container {
+      width: 1158px;
+    }
+  }
+}
+
+
 
 
 // buttons

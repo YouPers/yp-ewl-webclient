@@ -131,6 +131,7 @@
 
                     $scope.campaignStartAvailable = !$scope.campaignEnded;
                     $scope.offerSectionAvailable = !$scope.campaignEnded;
+                    $scope.campaignMessagesAvailable = !$scope.campaignEnded;
 
                     // campaign start section is open on the day of the campaign start and the day before
                     $scope.campaignStartOpen =  moment(campaign.start).isSame(now, 'day') ||

@@ -1,92 +1,82 @@
 
 @import "../../styles/youpers-variables";
 
-.welcome-layout {
+.welcome.container {
 
-  margin-top: 1em;
-  padding: 12px;
+  margin-top: 30px;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  campaign-card {
+    margin: 0 auto;
+  }
 
-  > .welcome-box {
-
-    position: relative;
-    width: 62em;
+  .content {
 
     display: flex;
-    flex-direction: row;
+
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 
-    > section {
-      flex: 1 0 auto;
-    }
+    margin-top: 1em;
 
-    section.content {
-
-      display: flex;
-
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      > * {
-        margin:0 0 0.4em 0;
-      }
-
-      > .campaign-leads > * {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        align-content: flex-start;
-        justify-content: flex-start;
-
-        color: @yp-text;
-
-        > *:first-of-type {
-          flex: 0 0 60px;
-        }
-        > * {
-          flex: 1 1 auto;
-        }
-
-        img {
-          width: 50px;
-          height: 50px;
-        }
-      }
-
-      .organization, .participants, .location {
-        .header4();
-        line-height: 1em;
-      }
-      .organization {
-        color: @yp-text;
-      }
-      .participants {
-        color: @yp-subtitle;
-      }
-      .location {
-        color: @yp-subtitle;
-      }
-
-    }
-
-    .campaign-start {
+    > h1 {
       text-align: center;
+      margin: 20px 0;
     }
 
-    .welcome-links {
-      padding: 1em;
+    > div {
+      margin:0 0 0.4em 0;
     }
-    .welcome-links .btn {
+
+    > .campaign-leads > * {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      align-content: flex-start;
+      justify-content: flex-start;
+
+      color: @yp-text;
+
+      > *:first-of-type {
+        flex: 0 0 60px;
+      }
+      > * {
+        flex: 1 1 auto;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .organization, .participants, .location {
+      .header4();
+      line-height: 1em;
+    }
+    .organization {
+      color: @yp-text;
+    }
+    .participants {
+      color: @yp-subtitle;
+    }
+    .location {
+      color: @yp-subtitle;
+    }
+
+  }
+
+  .campaign-start {
+    text-align: center;
+  }
+
+  .welcome-links {
+
+    .btn {
+      margin-top: 1em;
+      padding: 10px 0;
       width: 236px;
-      height: 3em;
     }
-
-
   }
 
 }

@@ -1,7 +1,7 @@
 
 <div class="row">
 
-    <div class="col-lg-12">
+    <div class="col-sm-12">
         <ul class="list-inline pull-right filter-icons" ng-init="search = {}">
             <li>
                 <i class="fa fa-circle-o" ng-class="{ active: !search.status }" ng-click="search.status = undefined"  tooltip="{{ 'activity.list.statusFilter.all' | translate }}"></i>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="row" ng-show="activities.length == 0">
-    <div class="col-lg-12">
+    <div class="col-sm-12">
 
         <div>{{ 'activity.list.' + mode + '.noContent'}}</div>
 
@@ -34,16 +34,16 @@
      ng-click="onSelect(activity)"
 
         >
-    <div class="col-lg-12 background-hover">
+    <div class="col-sm-12 background-hover">
 
         <div class="row">
 
-            <div class="col-lg-2">
+            <div class="col-sm-2">
 
                 <div user="activity.owner"></div>
 
             </div>
-            <div class="col-lg-8">
+            <div class="col-sm-8">
 
                 <dl class="dl-horizontal">
                     <dt translate>activity.list.item.title</dt>
@@ -57,21 +57,21 @@
                 </dl>
 
             </div>
-            <div class="col-lg-2">
+            <div class="col-sm-2">
                 <i class="fa fa-angle-double-right" ng-click="onSelect(activity)"></i>
             </div>
 
         </div>
         <div class="row">
 
-            <div class="col-lg-10">
+            <div class="col-sm-10">
                 <div class="row">
-                    <div class="col-lg-1" ng-repeat="invitingUser in []">
+                    <div class="col-sm-1" ng-repeat="invitingUser in []">
                         <div user="invitingUser"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-sm-2">
 
                 <i class="fa fa-comments-o"></i>
 

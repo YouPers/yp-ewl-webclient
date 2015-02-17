@@ -82,8 +82,8 @@
                 });
             }],
 
-            healthCoachEvent: ['$state', 'ActivityService', 'campaign', 'socialInteraction', 'activity', 'activityEvents',
-                function ($state, ActivityService, campaign, socialInteraction, activity, activityEvents) {
+            healthCoachEvent: ['$state', 'ActivityService', 'UserService', 'campaign', 'socialInteraction', 'activity', 'activityEvents',
+                function ($state, ActivityService, UserService, campaign, socialInteraction, activity, activityEvents) {
 
                     if(!campaign) {
                         return;
@@ -111,6 +111,10 @@
 
 
                         } else { // dcm
+
+                            if(!ActivityService.isOwner(activity, UserService.principal.getUser())) {
+                                return 'stateEnterAsSpectator';
+                            }
 
                             return 'stateEnter';
                         }
@@ -144,10 +148,13 @@
                 $scope.activity.startTime = $scope.activity.start;
                 $scope.activity.endTime = $scope.activity.end;
 
-                function restoreActivityTime(date) {
-                    return moment(date)
-                        .hour(moment($scope.activity.startTime).hour())
-                        .minute(moment($scope.activity.startTime).minute()).toDate();
+                function restoreActivityTime(activity) {
+                    activity.start = moment(activity.start)
+                        .hour(moment(activity.startTime).hour())
+                        .minute(moment(activity.startTime).minute()).toDate();
+                    activity.end = moment(activity.end)
+                        .hour(moment(activity.endTime).hour())
+                        .minute(moment(activity.endTime).minute()).toDate();
                 }
 
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
@@ -279,12 +286,12 @@
 
                     // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
                     var clonedActivity = _.clone($scope.activity);
-                    clonedActivity.start = restoreActivityTime(clonedActivity.start);
-                    clonedActivity.end = restoreActivityTime(clonedActivity.end);
+                    restoreActivityTime(clonedActivity);
 
                     ActivityService.validateActivity(clonedActivity).then(function (activityValidationResults) {
 
-                        $scope.events = [];
+                        var events = [];
+                        var conflictingEvents = [];
                         _.forEach(activityValidationResults, function (result) {
                             var event = result.event;
 
@@ -292,6 +299,7 @@
 
                             if(result.conflictingEvent) {
                                 event.conflictingEvent = result.conflictingEvent;
+                                conflictingEvents.push(event.conflictingEvent);
                                 $scope.healthCoachEvent = 'conflictingEvent';
                             } else {
                                 if ($scope.healthCoachEvent === 'conflictingEvent') {
@@ -299,9 +307,12 @@
                                 }
                             }
 
-                            $scope.events.push(event);
+                            events.push(event);
 
                         });
+                        ActivityService.populateIdeas(events);
+                        ActivityService.populateIdeas(conflictingEvents);
+                        $scope.events = events;
 
                     });
                 }, 200);
@@ -389,9 +400,7 @@
                 $scope.saveActivity = function saveActivity() {
                     $scope.$root.$broadcast('busy.begin', {url: "activities", name: "saveActivity"});
 
-                    $scope.activity.start = restoreActivityTime($scope.activity.start);
-                    $scope.activity.end = restoreActivityTime($scope.activity.end);
-
+                    restoreActivityTime($scope.activity);
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
 

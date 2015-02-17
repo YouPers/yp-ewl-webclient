@@ -24,6 +24,10 @@
         "Recommendation": null
       }
     },
+    "comment": {
+      "placeholder": null,
+      "save": null
+    },
     "inviteOthers": {
       "selected": null,
       "all": "Ogni",

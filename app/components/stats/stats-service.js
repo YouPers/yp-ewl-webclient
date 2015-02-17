@@ -33,7 +33,7 @@
             runningTotal: false,
             newestDay: newestDataDate,
             oldestDay: options.nrOfDaysToPlot ? moment(options.newestDay || newestDataDate).subtract(options.nrOfDaysToPlot,'days') : oldestDataDate,
-            dateFormat: 'D.M.',
+            dateFormat: 'D.',
             reverseX: false
         });
 

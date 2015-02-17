@@ -4,8 +4,8 @@
 
     angular.module('yp.components.ideaEdit', [])
 
-        .directive('ideaEdit', ['$rootScope', '$modal', 'ActivityService', 'CampaignService', 'UserService',
-            function ($rootScope, $modal, ActivityService, CampaignService, UserService) {
+        .directive('ideaEdit', ['$rootScope', '$modal', 'ActivityService', 'CampaignService', 'UserService', 'ImageService',
+            function ($rootScope, $modal, ActivityService, CampaignService, UserService, ImageService) {
                 return {
 
                     restrict: 'EA',
@@ -43,17 +43,23 @@
                             idea.qualityFactor = 1;
                         }
 
-                        $scope.$watch('noDefaultStartTime', function () {
-                            if(!idea.defaultStartTime) {
-                                idea.defaultStartTime = moment().startOf('hour');
-                            }
-                        });
-
                         $scope.isProductAdmin = function() {
                             return (UserService.principal.getUser().roles.indexOf('productadmin') !== -1);
                         };
 
                         $scope.save = function() {
+                            if ($scope.idea.noDefaultStartTime) {
+                                $scope.idea.defaultStartTime = "";
+                            } else {
+                                // noDefaultStartTime is not selected, check whether a real date is in idea.defaultStartTime,
+                                // if not: set to current date
+                                // -> prevents the empty idea.defaultStartTime, when the
+                                // timepicker is not manually touched by the user
+                                if (!$scope.idea.defaultStartTime) {
+                                    $scope.idea.defaultStartTime = new Date();
+                                }
+                            }
+
                             // reset the currentCampaign to the idea, the user might have changed it
                             if (CampaignService.currentCampaign) {
                                 $scope.idea.campaign = CampaignService.currentCampaign;
@@ -87,12 +93,18 @@
                             });
 
                             return modalInstance.result.then(function (selection) {
-                                $scope.idea.number = selection;
+                                $scope.idea.picture = selection.path;
                             }, function () {
                                 // do nothing on dialog dismiss()
                             });
 
                         };
+
+                        $scope.uploader = ImageService.getImageUploader('idea', $scope, function successCb (url) {
+                            console.log('image upload success');
+                            $scope.idea.picture = url;
+                        });
+
                     }
                 };
             }])
@@ -101,7 +113,7 @@
         .controller('IdeaImageModalController', ['$scope', '$modalInstance',
             function ($scope, $modalInstance) {
 
-                var prefix = '/assets/actpics/';
+                var prefix = 'https://dxjlk9p2h4a7j.cloudfront.net/ideas/';
                 $scope.list = [];
 
                 for(var i=0;i<12;i++) {
