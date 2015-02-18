@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('yp.components.statisticsChart', ['angularCharts'])
+    angular.module('yp.components.statisticsChart', [])
 
     /**
      * statistics-chart directive: standard directive for displaying a line chart, supports multiple data sets / lines

@@ -200,10 +200,6 @@
                            ng-class="{ 'fa-chevron-down': campaignStatsOpen, 'fa-chevron-right': !campaignStatsOpen }"></i>
                     </a>
 
-                    <!--<a class="section-link" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">-->
-                        <!--<span translate>dcmhome.moreStats</span>-->
-                        <!--<i class="fa fa-tachometer"></i>-->
-                    <!--</a>-->
                 </span>
             </accordion-heading>
 
@@ -238,9 +234,14 @@
                     <div class="newestPlans">
                         <div ng-repeat="event in chartData.newestPlans">
                             <img ng-src="{{ event.idea.picture }}">
-                            <span>{{ event.idea.title }}</span>
-                            <span>{{ event.planned | fromNow }}</span>
-                            <span>{{ 'dcmhome.stats.newestPlans.count' | translate:{ count: event.count } }}</span>
+                            <span class="subhead" ng-bind-html="event.idea.title"></span>
+                            <span></span>
+                            <span ng-init="countValues = { count: event.count }">
+                                <span class="caption">{{ event.planned | fromNow }}</span>
+                                <span class="badge" popover-trigger="mouseenter" popover-placement="top"
+                                      popover="{{ 'dcmhome.stats.newestPlans.countTooltip' | translate:countValues }}"
+                                        >{{ 'dcmhome.stats.newestPlans.count' | translate:countValues }}</span>
+                            </span>
                         </div>
                     </div>
 

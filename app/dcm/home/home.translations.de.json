@@ -26,7 +26,8 @@
       },
       "newestPlans": {
         "title": "Neu eingeplant",
-        "count": "{{ count }} mal eingeplant"
+        "count": "{{ count }}",
+        "countTooltip": "{{ count }} mal eingeplant"
       }
     },
     "end-of-campaign": "Rückblick",
