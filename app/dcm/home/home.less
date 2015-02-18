@@ -141,9 +141,25 @@
 
   .campaign-stats {
 
-    .ac-chart {
-      text {
-        font-size: 13px;
+    .newestPlans {
+      > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: flex-start;
+        justify-content: flex-start;
+
+        > img {
+          width: 64px;
+          padding: 2px 0;
+        }
+        > span {
+          padding: 0 1em;
+          overflow: hidden;
+        }
+        > span:first-of-type {
+          flex: 1 1 auto;
+        }
       }
     }
 

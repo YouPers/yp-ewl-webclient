@@ -200,10 +200,6 @@
                            ng-class="{ 'fa-chevron-down': campaignStatsOpen, 'fa-chevron-right': !campaignStatsOpen }"></i>
                     </a>
 
-                    <a class="section-link" ui-sref="dcm.stats" ng-if="campaign && campaignStarted">
-                        <span translate>dcmhome.moreStats</span>
-                        <i class="fa fa-tachometer"></i>
-                    </a>
                 </span>
             </accordion-heading>
 
@@ -224,16 +220,42 @@
 
                 </div>
 
-                <div ng-if="campaign && campaignStarted && campaignStatsOpen">
+                <div ng-if="campaign && campaignStarted && campaignStatsOpen && currentUserCount > 0">
 
-                    <div class="row" ng-if="currentUserCount > 0">
+                    <h3 translate>dcmhome.stats.eventsDonePerDay.title</h3>
+                    <statistics-chart chart-data="chartData.eventsDonePerDay" title=""></statistics-chart>
+
+                    <h3 translate>dcmhome.stats.newUsersPerDay.title</h3>
+                    <div>
+                        <statistics-chart chart-data="chartData.newUsersPerDay" title=""></statistics-chart>
+                    </div>
+
+                    <h3 translate>dcmhome.stats.newestPlans.title</h3>
+                    <div class="newestPlans">
+                        <div ng-repeat="event in chartData.newestPlans">
+                            <img ng-src="{{ event.idea.picture }}">
+                            <span class="subhead">
+                                <span ng-bind-html="event.idea.title"></span>
+                                <span class="badge" popover-trigger="mouseenter" popover-placement="top"
+                                      popover="{{ 'dcmhome.stats.newestPlans.countTooltip' | translate:countValues }}"
+                                        >{{ 'dcmhome.stats.newestPlans.count' | translate:countValues }}</span>
+                            </span>
+                            <span></span>
+                            <span ng-init="countValues = { count: event.count }">
+                                <span class="caption">{{ event.planned | fromNow }}</span>
+                            </span>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row" >
                         <div class="col-sm-6">
-                            <statistics-chart chart-data="chartData.newUsers"
-                                              title="'dcmhome.participantsCount' | translate"></statistics-chart>
+
                         </div>
                         <div class="col-sm-6">
-                            <statistics-chart chart-data="chartData.plannedActs"
-                                              title="'dcmhome.plannedActsCount' | translate"></statistics-chart>
+
                         </div>
                     </div>
 

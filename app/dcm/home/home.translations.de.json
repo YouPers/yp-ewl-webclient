@@ -9,6 +9,27 @@
     "campaigns": "Kampagnen",
     "activities": "Aktivitäten",
     "statistics": "Statistiken",
+    "stats": {
+      "eventsDonePerDay": {
+        "title": "Anzahl Aktivitätstermine pro Tag",
+        "legend": {
+          "Done": "durchgeführt",
+          "Missed": "verpasst",
+          "Open": "offen"
+        }
+      },
+      "newUsersPerDay": {
+        "title": "Anzahl Kampagnenteilnehmer",
+        "legend": {
+          "count": "Kampagnenteilnehmer"
+        }
+      },
+      "newestPlans": {
+        "title": "Neu eingeplant",
+        "count": "{{ count }}",
+        "countTooltip": "{{ count }} mal eingeplant"
+      }
+    },
     "end-of-campaign": "Rückblick",
     "addOffer": "Angebot hinzufügen",
     "surveyInfo": "Bitte teile uns doch in diesem Fragebogen deine Erfahrungen mit HealthCampaign mit",
