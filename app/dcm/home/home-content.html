@@ -234,13 +234,15 @@
                     <div class="newestPlans">
                         <div ng-repeat="event in chartData.newestPlans">
                             <img ng-src="{{ event.idea.picture }}">
-                            <span class="subhead" ng-bind-html="event.idea.title"></span>
-                            <span></span>
-                            <span ng-init="countValues = { count: event.count }">
-                                <span class="caption">{{ event.planned | fromNow }}</span>
+                            <span class="subhead">
+                                <span ng-bind-html="event.idea.title"></span>
                                 <span class="badge" popover-trigger="mouseenter" popover-placement="top"
                                       popover="{{ 'dcmhome.stats.newestPlans.countTooltip' | translate:countValues }}"
                                         >{{ 'dcmhome.stats.newestPlans.count' | translate:countValues }}</span>
+                            </span>
+                            <span></span>
+                            <span ng-init="countValues = { count: event.count }">
+                                <span class="caption">{{ event.planned | fromNow }}</span>
                             </span>
                         </div>
                     </div>
