@@ -114,8 +114,10 @@
 
     "assessmentResults": {
 
+      "title": "Selbstbeurteilung",
+
       "campaign": "Kampagne",
-      "average": "Vergleichswert",
+      "average": "Durchschnitt aller Kampagnen",
 
       "veryNeg": "--",
       "neg": "-",

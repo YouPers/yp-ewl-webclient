@@ -531,6 +531,11 @@
 
 
 
+            <h3 translate>
+                dcm-end-of-campaign.assessmentResults.title
+            </h3>
+
+
             <div class="assessment-legend">
 
                 <div class="assessment-chart-row">
@@ -608,10 +613,7 @@
                                                  ng-style="val < 0.05 ? { flex: '0 0 24px' } : assessmentResultStyle(val)"
                                                  ng-class="'assessmentRange' + $index">
 
-                                                <div></div>
-                                                <div>{{ formatValue(val, $index, question) }}
-                                                </div>
-
+                                                {{ formatValue(val, $index, question) }}
                                             </div>
                                         </div>
                                     </div>
@@ -626,8 +628,8 @@
                                                  ng-style="val < 0.05 ? { flex: '0 0 24px' } : assessmentResultStyle(val)"
                                                  ng-class="'assessmentRange' + $index">
 
-                                                <div>{{ formatValue(val, $index, question) }}
-                                                </div>
+                                                {{ formatValue(val, $index, question) }}
+
 
                                             </div>
                                         </div>
