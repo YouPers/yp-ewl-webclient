@@ -471,11 +471,11 @@
 
 
                 <div class="charts">
-                    <div>
+                    <div class="event-status-chart">
                         <h3 translate>
                             dcm-end-of-campaign.eventsStatus.title
                         </h3>
-                        <nvd3-multi-bar-chart
+                        <nvd3-multi-bar-horizontal-chart
                                 data="eventStatus"
                                 id="eventStatus"
 
@@ -484,16 +484,18 @@
 
                                 showXAxis="true"
                                 showYAxis="true"
+                                valueFormat="round1Fn"
                                 showValues="true"
+                                yAxisTickFormat="roundFn"
                                 >
                             <svg></svg>
-                        </nvd3-multi-bar-chart>
+                        </nvd3-multi-bar-horizontal-chart>
                     </div>
 
                     <div class="ratings-chart">
                         <h3 translate>end-of-campaign.eventsRatings.title</h3>
 
-                        <nvd3-multi-bar-chart ng-if="eventsRatings"
+                        <nvd3-multi-bar-horizontal-chart ng-if="eventsRatings"
                                               data="eventsRatings"
                                               id="eventsRatings"
 
@@ -502,11 +504,12 @@
                                               showYAxis="true"
                                               showXAxis="true"
                                               showLegend="false"
+                                              valueFormat="percetageFn"
                                               showValues="true"
                                               yAxisTickFormat="percetageFn"
                                 >
                             <svg></svg>
-                        </nvd3-multi-bar-chart>
+                        </nvd3-multi-bar-horizontal-chart>
 
                     </div>
                 </div>
@@ -527,6 +530,35 @@
             </div>
 
 
+
+            <div class="assessment-legend">
+
+                <div class="assessment-chart-row">
+                    <div translate>dcm-end-of-campaign.assessmentResults.campaign</div>
+                    <div class="assessment-chart">
+                        <div
+                                ng-repeat="val in [10,20,32,15,23]"
+                                ng-style="{ flex: '0 0 '+val+'%' }"
+                                ng-class="'assessmentRange' + $index">
+                            {{ val }}%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-chart-row">
+                    <div translate>dcm-end-of-campaign.assessmentResults.average</div>
+                    <div class="assessment-chart dimmed">
+                        <div
+                                ng-repeat="val in [22,17,29,13,19]"
+                                ng-style="{ flex: '0 0 '+val+'%' }"
+                                ng-class="'assessmentRange' + $index">
+                            {{ val }}%
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
             <accordion class="check" close-others="true" ng-if="categories" ng-init="cat[orderedCategoryNames[0]]=true">
 
                 <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]"
@@ -541,6 +573,8 @@
                                ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
                         </div>
                     </accordion-heading>
+
+
 
 
                     <div ng-repeat="question in categories[name]" ng-click="displayInfo(question)"
@@ -565,17 +599,17 @@
 
 
                                     <div class="assessment-chart-row">
-                                        <div translate>dcm-end-of-campaign.assessmentResults.campaign</div>
 
+                                        <div></div>
                                         <div class="assessment-chart">
 
-                                            <div ng-if="$index == 2 || val > 0"
+                                            <div
                                                  ng-repeat="val in assessmentResult.percentages track by $index"
-                                                 ng-style="val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)"
+                                                 ng-style="val < 0.05 ? { flex: '0 0 24px' } : assessmentResultStyle(val)"
                                                  ng-class="'assessmentRange' + $index">
 
                                                 <div></div>
-                                                <div ng-show="val > 0">{{ formatValue(val, $index, question) }}
+                                                <div>{{ formatValue(val, $index, question) }}
                                                 </div>
 
                                             </div>
@@ -584,14 +618,15 @@
 
 
                                     <div class="assessment-chart-row">
-                                        <div translate>dcm-end-of-campaign.assessmentResults.average</div>
-                                        <div class="assessment-chart">
+
+                                        <div></div>
+                                        <div class="assessment-chart dimmed">
 
                                             <div ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index"
-                                                 ng-style="$index == 2 && val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)"
+                                                 ng-style="val < 0.05 ? { flex: '0 0 24px' } : assessmentResultStyle(val)"
                                                  ng-class="'assessmentRange' + $index">
 
-                                                <div ng-show="val > 0.05">{{ formatValue(val, $index, question) }}
+                                                <div>{{ formatValue(val, $index, question) }}
                                                 </div>
 
                                             </div>
@@ -617,10 +652,10 @@
                     <span translate>dcm-end-of-campaign.eventsPlanned.header</span>
                 </h3>
 
-                <div class="eventPlanned" ng-repeat="eventPlanned in eventsPlanned">
+                <div class="eventPlanned" ng-repeat="eventPlanned in eventsPlanned | orderBy:['-byUsersCount', '-plannedCount'] | limitTo:10">
 
                     <div>
-                        <img ng-src="{{idea.picture}}">
+                        <img ng-src="{{eventPlanned.idea.picture}}">
 
                         <div>{{ eventPlanned.idea.title | stripTags }}</div>
                     </div>

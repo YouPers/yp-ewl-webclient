@@ -379,17 +379,17 @@
     }
 
 
-    nvd3-multi-bar-chart#eventStatus {
+    #eventStatus {
       display: inline-block;
-      rect.nv-bar {
-
+      .nv-multiBarHorizontalChart {
+        transform: translate(100px,50px);
       }
     }
 
     .question-legend {
 
       padding: 0 1em;
-      margin-left: 33%;
+      margin: 0 auto;
 
       display: flex;
       flex-direction: row;
@@ -411,33 +411,46 @@
     }
 
     .assessment-chart-row {
-      display: flex;
-      flex-direction: row;
-      margin-left: 5%;
-      padding: 4px 0;
-
-      > * {
-        flex: 1 1 auto;
-      }
-      > *:first-child {
-        flex: 0 0 30%;
+      .assessment-chart {
+        margin: 0 auto;
       }
     }
 
+    .assessment-legend {
+      padding: 1em;
+
+      .assessment-chart-row {
+        display: flex;
+        flex-direction: row;
+        padding: 4px 0;
+
+        > * {
+          flex: 0 0 auto;
+        }
+        > *:first-child {
+          flex: 0 0 17%;
+        }
+      }
+    }
     .assessment-chart {
-
-      @assessment-1: rgb(255, 84, 30);
-      @assessment-2: rgb(255, 208, 92);
-      @assessment-3: rgb(32, 198, 60);
-      @assessment-4: rgb(255, 208, 92);
-      @assessment-5: rgb(255, 84, 30);
-
 
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       align-content: center;
+
+      width: 85%;
+
+      &.dimmed {
+        opacity: 0.5;
+      }
+
+      @assessment-1: rgb(255, 84, 30);
+      @assessment-2: rgb(255, 208, 92);
+      @assessment-3: rgb(32, 198, 60);
+      @assessment-4: rgb(255, 208, 92);
+      @assessment-5: rgb(255, 84, 30);
 
 
       > div {
