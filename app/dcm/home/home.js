@@ -274,7 +274,7 @@
                         var prefix = 'dcmhome.stats.eventsDonePerDay.legend.';
                         options = {
                             runningTotal: false,
-                            newestDay: moment.min(moment(), moment($scope.campaign.end)),
+                            newestDay: moment($scope.campaign.end),
                             oldestDay: moment($scope.campaign.start),
                             nrOfDaysToPlot: 14,
                             propsToPlot: ['Done', 'Missed', 'Open'],
@@ -304,7 +304,7 @@
 
 
 
-                    StatsService.loadStats($scope.campaign.id, {type: 'newestPlans', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                    StatsService.loadStats($scope.campaign.id, {type: 'newestPlans', scopeType: 'campaign', scopeId: $scope.campaign.id }).then(function (result) {
                         ActivityService.populateIdeas(result[0].newestPlans);
                         $scope.chartData.newestPlans = result[0].newestPlans;
                     });
