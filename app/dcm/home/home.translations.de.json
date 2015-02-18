@@ -21,7 +21,7 @@
       "newUsersPerDay": {
         "title": "Anzahl Kampagnenteilnehmer",
         "legend": {
-          "count": "durchgeführt"
+          "count": "Kampagnenteilnehmer"
         }
       }
     },

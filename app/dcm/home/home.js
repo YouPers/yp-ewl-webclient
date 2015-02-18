@@ -292,7 +292,10 @@
                     StatsService.loadStats($scope.campaign.id, {type: 'newUsersPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
                         var options = {
                             newestDay: moment.min(moment(), moment($scope.campaign.end)),
-                            oldestDay: moment($scope.campaign.start)
+                            oldestDay: moment($scope.campaign.start),
+                            legend: [
+                                $translate.instant('dcmhome.stats.newUsersPerDay.legend.count')
+                            ]
                         };
                         $scope.chartData.newUsersPerDay = StatsService.fillAndFormatForPlot(result[0].newUsersPerDay, options);
                         $scope.currentUserCount = result[0].newUsersPerDay && result[0].newUsersPerDay[result[0].newUsersPerDay.length - 1] && result[0].newUsersPerDay[result[0].newUsersPerDay.length - 1].count;

@@ -49,7 +49,7 @@
                         return moment(x).format('D.M.'); //return moment(x).weekday() === 0 ? moment(x).format('D.M.') : '';
                     };
                     scope.yAxisTickFormatFunction = function (y) {
-                        return y;
+                        return y == Math.round(y) ? y : '';
                     };
 
                 }
