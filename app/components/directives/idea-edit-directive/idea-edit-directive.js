@@ -65,7 +65,8 @@
                                 $scope.idea.campaign = CampaignService.currentCampaign;
                             }
                             ActivityService.saveIdea($scope.idea).then(function (result) {
-
+                                // reinitialize the UI flag for noDefaultStartTime
+                                result.noDefaultStartTime = !idea.defaultStartTime;
                                 $scope.idea = result;
 
                                 if(attrs.onSave) {
