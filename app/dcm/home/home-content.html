@@ -234,8 +234,17 @@
                         <statistics-chart chart-data="chartData.newUsersPerDay" title=""></statistics-chart>
                     </div>
 
-                    <!--<statistics-chart chart-data="chartData.plannedActs"-->
-                                      <!--title="'dcmhome.plannedActsCount' | translate"></statistics-chart>-->
+                    <h3 translate>dcmhome.stats.newestPlans.title</h3>
+                    <div class="newestPlans">
+                        <div ng-repeat="event in chartData.newestPlans">
+                            <img ng-src="{{ event.idea.picture }}">
+                            <span>{{ event.idea.title }}</span>
+                            <span>{{ event.planned | fromNow }}</span>
+                            <span>{{ 'dcmhome.stats.newestPlans.count' | translate:{ count: event.count } }}</span>
+                        </div>
+                    </div>
+
+
 
 
                     <div class="row" >

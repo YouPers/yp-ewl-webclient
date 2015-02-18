@@ -23,6 +23,10 @@
         "legend": {
           "count": "Kampagnenteilnehmer"
         }
+      },
+      "newestPlans": {
+        "title": "Neu eingeplant",
+        "count": "{{ count }} mal eingeplant"
       }
     },
     "end-of-campaign": "Rückblick",

@@ -252,7 +252,7 @@
 
         }])
 
-        .controller('HomeStatsController', ['$scope', '$translate', 'StatsService', function ($scope, $translate, StatsService) {
+        .controller('HomeStatsController', ['$scope', '$translate', 'StatsService', 'ActivityService', function ($scope, $translate, StatsService, ActivityService) {
             $scope.chartData = {};
 
             init();
@@ -303,11 +303,9 @@
 
 
 
-                    StatsService.loadStats($scope.campaign.id, {type: 'activitiesPlannedPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
-                        $scope.chartData.plannedActs = StatsService.fillAndFormatForPlot(result[0].activitiesPlannedPerDay,  {
-                            newestDay: moment(),
-                            nrOfDaysToPlot: 7
-                        });
+                    StatsService.loadStats($scope.campaign.id, {type: 'newestPlans', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                        ActivityService.populateIdeas(result[0].newestPlans);
+                        $scope.chartData.newestPlans = result[0].newestPlans;
                     });
                 }
             }
