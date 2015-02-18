@@ -38,7 +38,7 @@
             colors: ['#F4BA14', '#ff5252', '#0277bd'],
             colorFn: function (index) {
                 var colors = options.colors;
-                return colors && colors.length >= index ? colors[index] : '#aaa'
+                return colors && colors.length >= index ? colors[index] : '#aaa';
             }
         });
 
@@ -48,7 +48,7 @@
             "series": propsToPlot,
             "data": [ ],
             nv: _.map(propsToPlot, function (key, index) {
-                return { key: options.legend ? options.legend[index] : key, values: [], color: options.colorFn(index), area: false }
+                return { key: options.legend ? options.legend[index] : key, values: [], color: options.colorFn(index) };
             })
         };
 
