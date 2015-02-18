@@ -396,8 +396,8 @@
 
     <!-- end of campaign -->
 
-    <accordion-group ng-if="campaignEnded" class="campaign-end" is-open="campaignEndOpen">
-        <div>
+    <accordion-group ng-if="campaignEnded" class="campaign-end end-of-campaign" is-open="campaignEndOpen">
+        <div ng-controller="DcmEndOfCampaignController as dcmEndOfCampaignController">
 
             <accordion-heading>
                 <span  ng-click="displayCoachMsg('campaignEnd')">
@@ -431,6 +431,223 @@
                 </div>
 
             </div>
+
+            <h2>
+                <span ng-hide="campaignEnded"
+                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"
+                      translate-interpolation="messageformat"></span>
+                <span ng-show="campaignEnded"
+                      translate="end-of-campaign.campaignEndendHeader"></span>
+            </h2>
+
+
+            <br/>
+
+            <div>
+
+
+                <h3 translate>
+                    dcm-end-of-campaign.usersTotal.title
+                </h3>
+
+                <nvd3-multi-bar-horizontal-chart
+                        data="campaignParticipants"
+                        id="campaignParticipants"
+
+                        width="500"
+                        yAxisTickFormat="roundFn"
+                        valueFormat="round1Fn"
+                        showValues="true"
+                        showXAxis="false"
+                        showYAxis="true"
+                        showLegend="false">
+                    <svg></svg>
+                </nvd3-multi-bar-horizontal-chart>
+
+
+                <div class="color-legend">
+                    <div>
+                        <div></div>
+                        <span translate>dcm-end-of-campaign.legend.campaign</span>
+                    </div>
+                    <div>
+                        <div></div>
+                        <span translate>dcm-end-of-campaign.legend.average</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div>
+
+
+                <div class="charts">
+                    <div>
+                        <h3 translate>
+                            dcm-end-of-campaign.eventsStatus.title
+                        </h3>
+                        <nvd3-multi-bar-chart
+                                data="eventStatus"
+                                id="eventStatus"
+
+                                width="320"
+                                height="240"
+
+                                showLegend="false"
+                                showXAxis="true"
+                                showYAxis="true"
+                                showValues="true"
+                                >
+                            <svg></svg>
+                        </nvd3-multi-bar-chart>
+                    </div>
+                    <div class="ratings-chart">
+                        <h3 translate>end-of-campaign.eventsRatings.title</h3>
+
+                        <nvd3-multi-bar-chart ng-if="eventsRatings"
+                                              data="eventsRatings"
+                                              id="eventsRatings"
+
+                                              width="320"
+                                              height="260"
+                                              showYAxis="true"
+                                              showXAxis="true"
+                                              showLegend="false"
+                                              showValues="true"
+                                              yAxisTickFormat="percetageFn"
+                                >
+                            <svg></svg>
+                        </nvd3-multi-bar-chart>
+
+                    </div>
+                </div>
+                <div class="color-legend">
+                    <div>
+                        <div></div>
+                        <span translate>dcm-end-of-campaign.legend.campaign</span>
+                    </div>
+                    <div>
+                        <div></div>
+                        <span translate>dcm-end-of-campaign.legend.average</span>
+                    </div>
+                </div>
+
+                <hr/>
+
+
+            </div>
+
+
+            <accordion class="check" close-others="true" ng-if="categories" ng-init="cat[orderedCategoryNames[0]]=true">
+
+                <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]"
+                                 ng-if="assessmentResultsByQuestion && !isCategoryEmpty(categories[name])"
+                                 analytics-on="click" analytics-event="CheckCategoriesAccordion"
+                                 analytics-category="InPageNavigation"
+                                 analytics-label="Accordion Expanded Or Collapsed">
+                    <accordion-heading>
+                        <div>
+                            <span class="question-category-header">{{ 'questionCategory.' + name | translate }}</span>
+                            <i class="pull-right glyphicon"
+                               ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
+                        </div>
+                    </accordion-heading>
+
+
+                    <div ng-repeat="question in categories[name]" ng-click="displayInfo(question)"
+
+                         ng-init="assessmentResult = assessmentResultsByQuestion[question.id]">
+
+                        <div ng-if="assessmentResult" class="question">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+
+
+                                    <div class="question-legend">
+                                        <div>{{question.mintext}}</div>
+                                        <div class="title">
+                                            <span>{{ question.title }}</span>
+                                            <i ng-mouseover="displayInfo(question)"
+                                               class="glyphicon glyphicon-info-sign"></i>
+                                        </div>
+                                        <div>{{question.maxtext}}</div>
+                                    </div>
+
+
+                                    <div class="assessment-chart-row">
+                                        <div translate>dcm-end-of-campaign.assessmentResults.campaign</div>
+
+                                        <div class="assessment-chart">
+
+                                            <div ng-if="$index == 2 || val > 0"
+                                                 ng-repeat="val in assessmentResult.percentages track by $index"
+                                                 ng-style="val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)"
+                                                 ng-class="'assessmentRange' + $index">
+
+                                                <div></div>
+                                                <div ng-show="val > 0">{{ formatValue(val, $index, question) }}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="assessment-chart-row">
+                                        <div translate>dcm-end-of-campaign.assessmentResults.average</div>
+                                        <div class="assessment-chart">
+
+                                            <div ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index"
+                                                 ng-style="$index == 2 && val < 0.05 ? { flex: '0 0 2%' } : assessmentResultStyle(val)"
+                                                 ng-class="'assessmentRange' + $index">
+
+                                                <div ng-show="val > 0.05">{{ formatValue(val, $index, question) }}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </accordion-group>
+            </accordion>
+
+
+            <br/>
+            <br/>
+
+            <div>
+
+                <h3>
+                    <span translate>dcm-end-of-campaign.eventsPlanned.header</span>
+                </h3>
+
+                <div class="eventPlanned" ng-repeat="eventPlanned in eventsPlanned">
+
+                    <div>
+                        <img ng-src="{{idea.picture}}">
+
+                        <div>{{ eventPlanned.idea.title | stripTags }}</div>
+                    </div>
+
+                    <div>
+                        <div>
+                            {{ 'dcm-end-of-campaign.eventsPlanned.content' | translate:eventPlanned:"messageformat" }}
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
 
         </div>
 
