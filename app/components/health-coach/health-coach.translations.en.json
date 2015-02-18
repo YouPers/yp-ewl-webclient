@@ -5,6 +5,7 @@
         "groupActivitySaved": "Congratulations! The recommendation card will be displayed to your employees under \"Offered Activities\" during the defined period.\n\nCreate more recommendations or invitations where appropriate.",
         "deleteOwnActivity": "The cancellation of a scheduled campaign activity has no consequences for your employees, as long as it has not been published yet.\n\nThe cancellation of a scheduled campaign activity after publication results in the fact that the employees no longer see the invitation card under \"Offered Activities\". If an employee has already accepted the invitation and scheduled the campaign activity event, the activity planning under \"Scheduled Activities\" is automatically deleted and a corresponding cancellation message for the calendar appointment is sent to the employee.",
         "editOwnActivity": "The change of a scheduled campaign activity has no consequences for your employees, as long as it has not been published yet.\n\nThe change of a scheduled campaign activity after publication leads to un update of the invitation card for the employee under \"Offered Activities\" accordingly. If an employee has already accepted the invitation and scheduled the campaign activity event, the activity planning is automatically adjusted under \"Scheduled Activities\" and a corresponding calendar appointment update is sent to the employee.",
+        "stateEnterAsSpectator": null,
         "stateEnter": "Here, you appear as the organizer of this campaign activity.\n\nAll the information that you record on this page, have an impact on the invitation card which is displayed to your employees. In the left column, you see the invitation card as a preview.\n\nWith the help of the dates of publication (from, to) you define when your employees will see this invitation card under \"Offered Activities\"."
       },
       "campaign": {
@@ -77,7 +78,7 @@
         "stateEnter": "Congratulations to the execute self-assessment. That way, you have already made an important first step for yourself by actively giving thoughts to your health situation.\n\nBased on your answers, you can see, where the biggest need for action is. \n\nTo promote your health, I recommend you to make some small steps. That is why from now on, you will receive on the main page under \"Offered Activities\" corresponding activity recommendation cards every day. \n\nSince you have completed the self-assessment, I will move the self-assessment card on the main page from the area \"Scheduled Activities\" to the area \"Completed Activities\"."
       },
       "game": {
-        "campaignEnded": "Dear User\n\nThank you for participating in this health campaign! \n\nKind regards\n\nYour Digital Coach",
+        "campaignEnded": "Dear User\n\nThank you for participating in this health campaign! \n\nKind regards\n\nYour YOUPERS Coach",
         "campaignEndingWithCurrentActivities": "The campaign lasts only a little while.\n\nI recommend you to finish the already scheduled activities and only, if required, schedule new activities.",
         "noCurrentActivities": "In the middle at the bottom of this page, new activity recommendation and invitation cards are displayed every day under \"Offered Activities\" from me, from the campaign manager and from your work colleagues. Schedule some activity!\n\nClick on the map to look at the details about an activity recommendation or invitation and to schedule the activity.\n\nI recommend, out of all the offered activities, you select that activity which suits your personal need for action the best.",
         "campaignWelcome": null,
@@ -89,7 +90,7 @@
         "presentEvents": null,
         "recommendationDismissed": "You have decided to reject the recommendation.\n\nTherefore, I have moved the activity from section \"Offered activities\" to section \"Dismissed activities\".\n\nWith the decision you give me the opportunity to display a new activity recommendation in section \"Offered activities\". Look at it now!",
         "invitationDismissed": null,
-        "noOffers": "<h3>Welcome!</h3> \n\nI am your Digital Coach. \n\nI support you in your participation in the health campaign with tips and hints.\n\nBelow my first clues or tips for you: \n\nAs a first campaign activity, I recommend the accomplishment of a short **self-assessment** (about 10 minutes). The self-assessment allows me to show you possible matching activity cards during the campaign under \"Offered Activities\". You will get from me from now on a daily activity recommendation card.\n\nI have already scheduled for you the self-assessment, which is why the self-assessment card appears above in the middle under \"Scheduled Activities\". Click on the map to start the self-assessment.",
+        "noOffers": "<h3>Welcome!</h3> \n\nI am your YOUPERS coach. \n\nI support you in your participation in the health campaign with tips and hints.\n\nBelow my first clues or tips for you: \n\nAs a first campaign activity, I recommend the accomplishment of a short **self-assessment** (about 10 minutes). The self-assessment allows me to show you possible matching activity cards during the campaign under \"Offered Activities\". You will get from me from now on a daily activity recommendation card.\n\nI have already scheduled for you the self-assessment, which is why the self-assessment card appears above in the middle under \"Scheduled Activities\". Click on the map to start the self-assessment.",
         "campaignLastDay": null
       },
       "end-of-campaign": {
@@ -97,7 +98,7 @@
         "ended": null
       }
     },
-    "fullname": "Digital Coach",
+    "fullname": "YOUPERS Coach",
     "expand": null,
     "dcmSignup": {
       "stateEnter": null

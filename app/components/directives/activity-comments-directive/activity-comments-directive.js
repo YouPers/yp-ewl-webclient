@@ -55,6 +55,7 @@
                             var template = {
                                 author: user,
                                 authorType: 'user',
+                                publishFrom: new Date(),
 
                                 targetSpaces: [
                                     {
