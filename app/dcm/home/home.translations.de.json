@@ -95,30 +95,23 @@
     }
   },
   "dcm-end-of-campaign": {
-
     "usersTotal": {
       "title": "Kampagnenteilnehmer",
       "campaign": "Diese Kampagne",
       "average": "Durchschnitt"
     },
-
     "eventsStatus": {
       "title": "Aktivitäten pro Teilnehmer",
       "campaign": "Kampagne",
       "average": "Durchschnitt",
-
       "done": "gemacht",
       "missed": "verpasst",
       "open": "offen"
     },
-
     "assessmentResults": {
-
       "title": "Selbstbeurteilung",
-
       "campaign": "Kampagne",
       "average": "Durchschnitt aller Kampagnen",
-
       "veryNeg": "--",
       "neg": "-",
       "zero": "0",
@@ -127,14 +120,11 @@
     },
     "eventsPlanned": {
       "header": "Beliebte Aktivitäten",
-
       "content": "{ plannedCount } mal von { byUsersCount, plural, one{einer Person} other{# Personen} }  eingeplant"
     },
-
     "legend": {
       "campaign": "Diese Kampagne",
       "average": "Durchschnitt aller Kampagnen"
     }
   }
-
 }
