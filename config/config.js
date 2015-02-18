@@ -88,8 +88,8 @@ var specificConfigs = {
     },
     prod: {
         name: '',
-        webclientUrl: 'https://prod.youpers.com',
-        backendUrl: 'https://prod.youpers.com/api',
+        webclientUrl: 'https://hc.youpers.com',
+        backendUrl: 'https://hc.youpers.com/api',
         googleAnalytics: {
             webPropertyId: 'UA-39309635-3'
         },
