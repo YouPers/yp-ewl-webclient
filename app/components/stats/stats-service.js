@@ -73,17 +73,19 @@
             var curIndex = current.format(_indexingDateFormat);
             var values = [];
             for (var i = 0; i < propsToPlot.length; i++) {
+                var valueToPlot;
                 if (runningTotal) {
-                    values.push(runningTotal[i]);
+                    valueToPlot = runningTotal[i];
                     if (indexedValues[curIndex]) {
                         runningTotal[i] = runningTotal[i] - indexedValues[curIndex][propsToPlot[i]];
                     }
                 } else {
-                    values.push((indexedValues[curIndex] && indexedValues[curIndex][propsToPlot[i]]) || 0);
+                    valueToPlot = indexedValues[curIndex] ? indexedValues[curIndex][propsToPlot[i]] || 0 : 0;
                 }
 
+                values.push(valueToPlot);
                 var key = options.legend && options.legend[i] ? options.legend[i] : propsToPlot[i];
-                _.find(myChartData.nv, { key: key }).values.push([current.toDate().getTime(), indexedValues[curIndex] ? indexedValues[curIndex][propsToPlot[i]] || 0 : 0]);
+                _.find(myChartData.nv, { key: key }).values.push([current.toDate().getTime(), valueToPlot]);
 
             }
             if (options.reverseX) {
