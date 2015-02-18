@@ -232,7 +232,7 @@
 
                     <h3 translate>dcmhome.stats.newestPlans.title</h3>
                     <div class="newestPlans">
-                        <div ng-repeat="event in chartData.newestPlans">
+                        <div ng-repeat="event in chartData.newestPlans | limitTo:5">
                             <img ng-src="{{ event.idea.picture }}">
                             <span class="subhead">
                                 <span ng-bind-html="event.idea.title"></span>
