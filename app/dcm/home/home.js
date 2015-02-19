@@ -367,7 +367,7 @@
                 $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
 
                 $scope.percetageFn = function (value) {
-                    return Math.round(value *100) + '%';
+                    return Math.round((value || 0) *100) + '%';
                 };
                 $scope.roundFn = function (value) {
                     return Math.round(value);
