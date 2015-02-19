@@ -401,7 +401,7 @@
             </accordion-heading>
 
 
-            <div>
+            <div ng-if="campaignEndOpen">
 
                 <div ng-if="campaign.leaderSurveyUrl">
                     <p>
@@ -430,6 +430,7 @@
                         id="campaignParticipants"
 
                         width="500"
+                        height="150"
                         yAxisTickFormat="roundFn"
                         valueFormat="round1Fn"
                         showValues="true"
