@@ -20,7 +20,7 @@
 
             <section>
 
-                <idea-edit idea="idea" on-save="onSave()" on-cancel="back()">
+                <idea-edit idea="idea" on-save="onSave" on-cancel="back">
                     <div dropdown is-open="options.dropdownOpen">
                         <ul class="dropdown-menu">
                             <li role="presentation"><a role="menuitem" ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })">Einplanen und Einladen</a></li>
