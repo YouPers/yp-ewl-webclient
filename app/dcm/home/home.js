@@ -410,7 +410,7 @@
 
                     function findByStatus(results, type, status) {
                         var res = results[0][type];
-                        return (_.find(res, { status: status}) || {}).count;
+                        return (_.find(res, { status: status}) || {}).count || 0;
                     }
                     // eventsStatus / eventsStatusAvg
                     var eventStatus = [];
