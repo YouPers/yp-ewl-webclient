@@ -22,43 +22,43 @@
     "campaignStart": {
       "header": "Start of campaign",
       "welcomeLink": {
-        "header": null,
+        "header": "header",
         "createDraft": {
-          "text": null,
-          "link": null,
-          "recipient": null,
-          "subject": null,
-          "body": null
+          "text": "text",
+          "link": "link",
+          "recipient": "recipient",
+          "subject": "subject",
+          "body": "body"
         },
-        "copyLink": null
+        "copyLink": "copyLink"
       },
       "emailInvite": {
-        "header": null,
-        "subheader": null,
+        "header": "header",
+        "subheader": "subheader",
         "step1": {
-          "title": null,
-          "text": null,
-          "success": null,
-          "sendTestMail": null
+          "title": "title",
+          "text": "text",
+          "success": "success",
+          "sendTestMail": "sendTestMail"
         },
         "step2": {
-          "title": null,
+          "title": "title",
           "emailList": {
-            "placeholder": null,
-            "add": null,
-            "parsedEmailsPlaceholder": null
+            "placeholder": "placeholder",
+            "add": "add",
+            "parsedEmailsPlaceholder": "parsedEmailsPlaceholder"
           }
         },
         "step3": {
-          "title": null,
-          "text": null,
-          "submit": null,
-          "emailInvitesSent": null
+          "title": "title",
+          "text": "text",
+          "submit": "submit",
+          "emailInvitesSent": "emailInvitesSent"
         }
       }
     },
     "participants": {
-      "header": null
+      "header": "participants.header"
     },
     "messages": "Messages",
     "noCampaigns": "You have not created any campaigns yet",
