@@ -66,7 +66,7 @@ var specificConfigs = {
     },
     "hc-ci": { // used by automtatic deploys on cimaster machine
         googleAnalytics: {},
-        availableLanguages: [ 'de'],
+        availableLanguages: [ 'de', 'en'],
         languageMappings: {
             'en_US': 'de',
             'en_UK': 'de',
