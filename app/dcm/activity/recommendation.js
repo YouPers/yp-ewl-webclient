@@ -87,7 +87,7 @@
                 $scope.saveRecommendation = function saveRecommendation() {
                     $scope.$root.$broadcast('busy.begin', {url: "recommendations", name: "saveRecommendation"});
                     // ensure start of date / end of day for publish dates
-                    var rec = $scope.recommendation;
+                    var rec = _.clone($scope.recommendation);
                     rec.publishFrom = new Date(moment(rec.publishFrom).startOf('day'));
                     rec.publishTo = new Date(moment(rec.publishTo).endOf('day'));
 
