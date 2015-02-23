@@ -14,8 +14,8 @@
                     scope: {
                         idea: "=",
                         topics: "=",
-                        onSave: "&",
-                        onCancel: "&"
+                        onSave: "=",
+                        onCancel: "="
                     },
 
                     link: function ($scope, elem, attrs) {

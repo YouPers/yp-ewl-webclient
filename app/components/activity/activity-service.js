@@ -121,7 +121,7 @@
                     },
                     saveIdea: function (idea) {
                         if (idea.id) {
-                            return idea.put().then(function(storedIdea) {
+                            return Restangular.restangularizeElement(null, idea, "ideas").put().then(function(storedIdea) {
                                 ideaCache[storedIdea.id] = storedIdea;
                                 return storedIdea;
                             });

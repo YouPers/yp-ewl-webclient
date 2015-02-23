@@ -68,7 +68,8 @@
                 $scope.options = {};
 
                 $scope.idea = idea;
-                $scope.onSave = function () {
+                $scope.onSave = function (idea) {
+                    $scope.idea = idea;
                     $scope.options.dropdownOpen = true;
                 };
                 $scope.back = function() {
