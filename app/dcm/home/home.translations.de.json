@@ -27,7 +27,7 @@
       "newestPlans": {
         "title": "Neu eingeplant",
         "count": "{{ count }}",
-        "countTooltip": "{{ count }} mal eingeplant"
+        "countTooltip": "bisher {{ count }} mal eingeplant in dieser Kampagne"
       }
     },
     "end-of-campaign": "Rückblick",
@@ -128,7 +128,7 @@
     },
     "eventsPlanned": {
       "header": "Beliebte Aktivitäten",
-      "content": "{ plannedCount } mal von { byUsersCount, plural, one{einer Person} other{# Personen} }  eingeplant"
+      "content": "von { byUsersCount, plural, one{einer Person} other{# Personen} } { plannedCount } mal eingeplant"
     },
     "legend": {
       "campaign": "Diese Kampagne",
