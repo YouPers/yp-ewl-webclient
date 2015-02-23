@@ -18,8 +18,12 @@
                     var type = scope.type || 'column';
 
                     var flex = elem[0].querySelector('.flex');
-                    if(!flex) {
-                        throw new Error('container with class "flex" not found');
+                    if(flex) {
+                        scope.$watch(function() {
+                            return type === 'row' ? flex.scrollHeight : flex.scrollWidth;
+                        }, function() {
+                            scope.hasOverflow =  type === 'row' ? flex.scrollHeight > flex.clientHeight : flex.scrollWidth > flex.clientWidth;
+                        });
                     }
 
                     scope.showMore = function() {
@@ -31,11 +35,6 @@
                         }, 100);
                     };
 
-                    scope.$watch(function() {
-                        return type === 'row' ? flex.scrollHeight : flex.scrollWidth;
-                    }, function() {
-                        scope.hasOverflow =  type === 'row' ? flex.scrollHeight > flex.clientHeight : flex.scrollWidth > flex.clientWidth;
-                    });
 
                 }
             };

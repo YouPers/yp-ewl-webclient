@@ -9,6 +9,27 @@
     "campaigns": "Kampagnen",
     "activities": "Aktivitäten",
     "statistics": "Statistiken",
+    "stats": {
+      "eventsDonePerDay": {
+        "title": "Anzahl Aktivitätstermine pro Tag",
+        "legend": {
+          "Done": "durchgeführt",
+          "Missed": "verpasst",
+          "Open": "offen"
+        }
+      },
+      "newUsersPerDay": {
+        "title": "Anzahl Kampagnenteilnehmer",
+        "legend": {
+          "count": "Kampagnenteilnehmer"
+        }
+      },
+      "newestPlans": {
+        "title": "Neu eingeplant",
+        "count": "{{ count }}",
+        "countTooltip": "{{ count }} mal eingeplant"
+      }
+    },
     "end-of-campaign": "Rückblick",
     "addOffer": "Angebot hinzufügen",
     "surveyInfo": "Bitte teile uns doch in diesem Fragebogen deine Erfahrungen mit HealthCampaign mit",
@@ -71,6 +92,39 @@
       "Invitation": "Einladungen",
       "UserInvitation": "Einladungen von Teilnehmern",
       "All": "Alle"
+    }
+  },
+  "dcm-end-of-campaign": {
+    "usersTotal": {
+      "title": "Kampagnenteilnehmer",
+      "campaign": "Diese Kampagne",
+      "average": "Durchschnitt"
+    },
+    "eventsStatus": {
+      "title": "Aktivitäten pro Teilnehmer",
+      "campaign": "Kampagne",
+      "average": "Durchschnitt",
+      "done": "gemacht",
+      "missed": "verpasst",
+      "open": "offen"
+    },
+    "assessmentResults": {
+      "title": "Selbstbeurteilung",
+      "campaign": "Kampagne",
+      "average": "Durchschnitt aller Kampagnen",
+      "veryNeg": "--",
+      "neg": "-",
+      "zero": "0",
+      "pos": "+",
+      "veryPos": "++"
+    },
+    "eventsPlanned": {
+      "header": "Beliebte Aktivitäten",
+      "content": "{ plannedCount } mal von { byUsersCount, plural, one{einer Person} other{# Personen} }  eingeplant"
+    },
+    "legend": {
+      "campaign": "Diese Kampagne",
+      "average": "Durchschnitt aller Kampagnen"
     }
   }
 }

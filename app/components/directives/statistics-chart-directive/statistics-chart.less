@@ -1,6 +1,23 @@
 
 statistics-chart {
   display: block;
+
+  nvd3-line-chart {
+    .nv-line {
+      fill-opacity: 0 !important;
+      stroke-opacity: 1;
+      stroke-width: 2;
+    }
+    circle {
+        fill-opacity: 1;
+        stroke-opacity: 1;
+        stroke-width: 2;
+    }
+    circle[cy="220"] {
+        fill-opacity: 0;
+        stroke-opacity: 0;
+    }
+  }
 }
 
 .stat-chart {

@@ -34,14 +34,22 @@
             newestDay: newestDataDate,
             oldestDay: options.nrOfDaysToPlot ? moment(options.newestDay || newestDataDate).subtract(options.nrOfDaysToPlot,'days') : oldestDataDate,
             dateFormat: 'D.',
-            reverseX: false
+            reverseX: false,
+            colors: ['#F4BA14', '#ff5252', '#0277bd'],
+            colorFn: function (index) {
+                var colors = options.colors;
+                return colors && colors.length >= index ? colors[index] : '#aaa';
+            }
         });
 
         var propsToPlot = options.propsToPlot;
 
         var myChartData = {
             "series": propsToPlot,
-            "data": [ ]
+            "data": [ ],
+            nv: _.map(propsToPlot, function (key, index) {
+                return { key: options.legend ? options.legend[index] : key, values: [], color: options.colorFn(index) };
+            })
         };
 
         // start with the newest data
@@ -65,14 +73,20 @@
             var curIndex = current.format(_indexingDateFormat);
             var values = [];
             for (var i = 0; i < propsToPlot.length; i++) {
+                var valueToPlot;
                 if (runningTotal) {
-                    values.push(runningTotal[i]);
+                    valueToPlot = runningTotal[i];
                     if (indexedValues[curIndex]) {
                         runningTotal[i] = runningTotal[i] - indexedValues[curIndex][propsToPlot[i]];
                     }
                 } else {
-                    values.push((indexedValues[curIndex] && indexedValues[curIndex][propsToPlot[i]]) || 0);
+                    valueToPlot = indexedValues[curIndex] ? indexedValues[curIndex][propsToPlot[i]] || 0 : 0;
                 }
+
+                values.push(valueToPlot);
+                var key = options.legend && options.legend[i] ? options.legend[i] : propsToPlot[i];
+                _.find(myChartData.nv, { key: key }).values.push([current.toDate().getTime(), valueToPlot]);
+
             }
             if (options.reverseX) {
                 myChartData.data.push({
