@@ -7,7 +7,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels) {
                 $stateProvider
                     .state('profile', {
-                        url: "/profile",
+                        url: "/profile?settings",
                         templateUrl: "components/user/profile/profile.html",
                         controller: "profileCtrl",
                         access: accessLevels.user,
@@ -34,6 +34,11 @@
             function ($scope, $rootScope, $state, $stateParams, $translate, UserService, ProfileService, ActivityService) {
 
                 $scope.profileUserObj = _.clone($scope.principal.getUser().profile, true);
+
+                $scope.isOpen = {
+                    'profile': !$stateParams.settings,
+                    'settings': !!$stateParams.settings
+                };
 
                 $scope.workdays = {};
                  _.forEach($rootScope.enums.weekday, function(day) {
