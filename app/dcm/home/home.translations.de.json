@@ -27,7 +27,7 @@
       "newestPlans": {
         "title": "Neu eingeplant",
         "count": "{{ count }}",
-        "countTooltip": "{{ count }} mal eingeplant"
+        "countTooltip": "bisher {{ count }} mal eingeplant in dieser Kampagne"
       }
     },
     "end-of-campaign": "Rückblick",
@@ -110,17 +110,25 @@
     },
     "assessmentResults": {
       "title": "Selbstbeurteilung",
-      "campaign": "Kampagne",
-      "average": "Durchschnitt aller Kampagnen",
-      "veryNeg": "--",
-      "neg": "-",
-      "zero": "0",
-      "pos": "+",
-      "veryPos": "++"
+      "legend": {
+        "title": "Lesehilfe",
+        "min": "Zu wenig",
+        "max": "Zu viel",
+        "question": "Beispiel Lesehilfe",
+        "descriptions": {
+          "1": "10% aller Benutzer haben \"zu wenig\" gewählt und gesagt, <br/>dass sie dadurch <strong>stark beinträchtigt</strong> sind",
+          "2": "20% aller Benutzer haben \"zu wenig\" gewählt und gesagt, <br/>dass sie dadurch <strong>wenig beinträchtigt</strong> sind",
+          "3": "32% aller Benutzer haben \"angemessen\" gewählt und gesagt, <br/>dass sie dadurch <strong>nicht beinträchtigt</strong> sind",
+          "4": "15% aller Benutzer haben \"zu viel\" gewählt und gesagt, <br/>dass sie dadurch <strong>wenig beinträchtigt</strong> sind",
+          "5": "23% aller Benutzer haben \"zu viel\" gewählt und gesagt, <br/>dass sie dadurch <strong>stark beinträchtigt</strong> sind",
+          "6": "Durchschnittswerte aller bisher durchgeführten HealthCampaigns als Vergleich",
+          "7": "und so weiter"
+        }
+      }
     },
     "eventsPlanned": {
       "header": "Beliebte Aktivitäten",
-      "content": "{ plannedCount } mal von { byUsersCount, plural, one{einer Person} other{# Personen} }  eingeplant"
+      "content": "von { byUsersCount, plural, one{einer Person} other{# Personen} } { plannedCount } mal eingeplant"
     },
     "legend": {
       "campaign": "Diese Kampagne",

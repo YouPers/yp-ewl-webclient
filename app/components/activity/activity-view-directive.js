@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('yp.components.activity')
-        .directive('activityView', ['UserService', 'SocialInteractionService',
-            function (UserService, SocialInteractionService) {
+        .directive('activityView', ['UserService', 'SocialInteractionService', 'yp.config',
+            function (UserService, SocialInteractionService, config) {
                 return {
                     restrict: 'E',
                     scope: {
@@ -32,6 +32,10 @@
                             };
 
                             SocialInteractionService.postInvitation(invitation);
+                        };
+
+                        scope.getIcalUrl = function () {
+                            return config.backendUrl + '/activities/' + scope.activity.id + '/ical?type=' + (scope.activity.created === scope.activity.updated ? 'new': 'update') + '&user=' + UserService.principal.getUser().id;
                         };
 
                     }

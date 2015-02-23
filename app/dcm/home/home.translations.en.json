@@ -9,6 +9,27 @@
     "campaigns": "Campaigns",
     "activities": "Activities",
     "statistics": "Statistics",
+    "stats": {
+      "eventsDonePerDay": {
+        "title": null,
+        "legend": {
+          "Done": null,
+          "Missed": null,
+          "Open": null
+        }
+      },
+      "newUsersPerDay": {
+        "title": null,
+        "legend": {
+          "count": null
+        }
+      },
+      "newestPlans": {
+        "title": null,
+        "count": null,
+        "countTooltip": null
+      }
+    },
     "end-of-campaign": "Review",
     "addOffer": "Add offer",
     "surveyInfo": "Please let us know about your experiences with HealthCampaign by filling out the survey",
@@ -22,43 +43,43 @@
     "campaignStart": {
       "header": "Start of campaign",
       "welcomeLink": {
-        "header": "header",
+        "header": null,
         "createDraft": {
-          "text": "text",
-          "link": "link",
-          "recipient": "recipient",
-          "subject": "subject",
-          "body": "body"
+          "text": null,
+          "link": null,
+          "recipient": null,
+          "subject": null,
+          "body": null
         },
-        "copyLink": "copyLink"
+        "copyLink": null
       },
       "emailInvite": {
-        "header": "header",
-        "subheader": "subheader",
+        "header": null,
+        "subheader": null,
         "step1": {
-          "title": "title",
-          "text": "text",
-          "success": "success",
-          "sendTestMail": "sendTestMail"
+          "title": null,
+          "text": null,
+          "success": null,
+          "sendTestMail": null
         },
         "step2": {
-          "title": "title",
+          "title": null,
           "emailList": {
-            "placeholder": "placeholder",
-            "add": "add",
-            "parsedEmailsPlaceholder": "parsedEmailsPlaceholder"
+            "placeholder": null,
+            "add": null,
+            "parsedEmailsPlaceholder": null
           }
         },
         "step3": {
-          "title": "title",
-          "text": "text",
-          "submit": "submit",
-          "emailInvitesSent": "emailInvitesSent"
+          "title": null,
+          "text": null,
+          "submit": null,
+          "emailInvitesSent": null
         }
       }
     },
     "participants": {
-      "header": "participants.header"
+      "header": null
     },
     "messages": "Messages",
     "noCampaigns": "You have not created any campaigns yet",
@@ -71,6 +92,39 @@
       "Invitation": "Invitations",
       "UserInvitation": null,
       "All": "All"
+    }
+  },
+  "dcm-end-of-campaign": {
+    "usersTotal": {
+      "title": null,
+      "campaign": null,
+      "average": null
+    },
+    "eventsStatus": {
+      "title": null,
+      "campaign": null,
+      "average": null,
+      "done": null,
+      "missed": null,
+      "open": null
+    },
+    "assessmentResults": {
+      "title": null,
+      "campaign": null,
+      "average": null,
+      "veryNeg": null,
+      "neg": null,
+      "zero": null,
+      "pos": null,
+      "veryPos": null
+    },
+    "eventsPlanned": {
+      "header": null,
+      "content": null
+    },
+    "legend": {
+      "campaign": null,
+      "average": null
     }
   }
 }

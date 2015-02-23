@@ -113,6 +113,7 @@
       "time": "Zeit",
       "frequency": "Häufigkeit",
       "recurrence": "Anzahl",
+      "addToCalendar": "zum Kalender hinzufügen",
       "socialInteraction": {
         "title": "Nachricht"
       },

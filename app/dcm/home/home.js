@@ -504,8 +504,31 @@
 
                                 .then(function () {
 
-                                    $scope.assessmentResultStyle = function (val) {
-                                        return { flex: '0 0 ' + val * 100 + '%' };
+                                    $scope.assessmentResultVisible = function (questionType, index) {
+                                        if(questionType === 'leftSided') {
+                                            return index <=2;
+                                        } else if(questionType === 'rightSided') {
+                                            return index >= 2;
+                                        } else {
+                                            return true;
+                                        }
+                                    };
+                                    $scope.assessmentResultStyle = function (value, values, questionType) {
+
+                                        var threshold = 0.05, // minimum percentage/width
+                                            overflow = 0,// amount exceeding 1.0 / 100%
+                                            sum = 0;
+
+                                        _.each(values, function (val, index) {
+                                            if($scope.assessmentResultVisible(questionType, index)) {
+                                                sum += val;
+                                                if(val < threshold) {
+                                                    overflow += threshold - val;
+                                                }
+                                            }
+                                        });
+                                        var factor = sum / (sum + overflow); // factor for having 100% again
+                                        return { flex: '0 0 ' + (value < threshold ? threshold : value) * factor * 100 + '%' };
                                     };
 
                                     _.each($scope.assessmentResults.concat($scope.assessmentResultsAverage), function (result, index) {
