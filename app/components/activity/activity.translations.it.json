@@ -119,7 +119,8 @@
       "comment": {
         "placeholder": null
       },
-      "publish": null
+      "publish": null,
+      "addToCalendar": null
     },
     "edit": {
       "stateHeader1": "tuo",

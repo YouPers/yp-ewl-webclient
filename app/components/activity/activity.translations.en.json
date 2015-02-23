@@ -119,7 +119,8 @@
       "comment": {
         "placeholder": "write comment"
       },
-      "publish": "published"
+      "publish": "published",
+      "addToCalendar": null
     },
     "edit": {
       "stateHeader1": "your",
