@@ -33,7 +33,7 @@
 
 <accordion close-others="true">
 
-<accordion-group heading="{{ 'profileForm.profile.header' | translate }}" is-open="isOpen" ng-init="isOpen= true"
+<accordion-group heading="{{ 'profileForm.profile.header' | translate }}" is-open="isOpen.profile"
                  class="user-profile">
 
     <div class="col-sm-6">
@@ -187,7 +187,7 @@
 
 </accordion-group>
 
-<accordion-group heading="{{ 'profileForm.settings.header' | translate }}">
+<accordion-group heading="{{ 'profileForm.settings.header' | translate }}"is-open="isOpen.settings">
 
     <div class="col-sm-6">
 
