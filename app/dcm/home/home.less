@@ -390,6 +390,37 @@
       }
     }
 
+    .check .legend {
+      .accordion-toggle {
+        font-style: italic;
+        background-color: rgba(0,0,0,0.04);
+      }
+      .descriptions {
+        > div {
+          padding: 4px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          align-content: flex-start;
+          justify-content: flex-start;
+          > div {
+            padding: 4px 8px;
+          }
+          > div:first-of-type {
+            flex: 0 0 40px;
+            color: white;
+            font-size: 12px;
+          }
+          > div:last-of-type {
+            padding-left: 1em;
+          }
+          .dimmed {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+
     .question-legend {
 
       padding: 0 45px;
@@ -422,21 +453,7 @@
       }
     }
 
-    .assessment-legend {
-      padding: 2em 1em;
 
-      .assessment-chart-row {
-        display: flex;
-        flex-direction: row;
-
-        > * {
-          flex: 0 0 70%;
-        }
-        > *:first-child {
-          flex: 0 0 32%;
-        }
-      }
-    }
     .assessment-chart {
 
       display: flex;
@@ -452,13 +469,6 @@
       &.dimmed {
         opacity: 0.5;
       }
-
-      @assessment-1: rgb(255, 84, 30);
-      @assessment-2: rgb(255, 208, 92);
-      @assessment-3: rgb(32, 198, 60);
-      @assessment-4: rgb(255, 208, 92);
-      @assessment-5: rgb(255, 84, 30);
-
 
       > div {
 
@@ -482,26 +492,29 @@
 
       }
 
-
-      .assessmentRange0 {
-        background-color: @assessment-1;
-      }
-      .assessmentRange1 {
-        background-color: @assessment-2;
-      }
-      .assessmentRange2 {
-        background-color: @assessment-3;
-      }
-      .assessmentRange3 {
-        background-color: @assessment-4;
-      }
-      .assessmentRange4 {
-        background-color: @assessment-5;
-      }
-
-
     }
 
+    @assessment-1: rgb(255, 84, 30);
+    @assessment-2: rgb(255, 208, 92);
+    @assessment-3: rgb(32, 198, 60);
+    @assessment-4: rgb(255, 208, 92);
+    @assessment-5: rgb(255, 84, 30);
+
+    .assessmentRange0 {
+      background-color: @assessment-1;
+    }
+    .assessmentRange1 {
+      background-color: @assessment-2;
+    }
+    .assessmentRange2 {
+      background-color: @assessment-3;
+    }
+    .assessmentRange3 {
+      background-color: @assessment-4;
+    }
+    .assessmentRange4 {
+      background-color: @assessment-5;
+    }
 
     nvd3-multi-bar-horizontal-chart#campaignParticipants {
       display: block;
