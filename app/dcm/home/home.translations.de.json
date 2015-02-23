@@ -111,18 +111,18 @@
     "assessmentResults": {
       "title": "Selbstbeurteilung",
       "legend": {
-        "title": "Lesehilfe",
+        "title": "Lesehilfe (Anleitung)",
         "min": "Zu wenig",
         "max": "Zu viel",
         "question": "Beispiel Lesehilfe",
         "descriptions": {
           "1": "10% aller Benutzer haben \"zu wenig\" gewählt und gesagt, <br/>dass sie dadurch <strong>stark beinträchtigt</strong> sind",
           "2": "20% aller Benutzer haben \"zu wenig\" gewählt und gesagt, <br/>dass sie dadurch <strong>wenig beinträchtigt</strong> sind",
-          "3": "32% aller Benutzer haben \"angemessen\" gewählt und gesagt, <br/>dass sie dadurch <strong>nicht beinträchtigt</strong> sind",
+          "3": "32% aller Benutzer haben \"angemessen\" gewählt",
           "4": "15% aller Benutzer haben \"zu viel\" gewählt und gesagt, <br/>dass sie dadurch <strong>wenig beinträchtigt</strong> sind",
           "5": "23% aller Benutzer haben \"zu viel\" gewählt und gesagt, <br/>dass sie dadurch <strong>stark beinträchtigt</strong> sind",
-          "6": "Durchschnittswerte aller bisher durchgeführten HealthCampaigns als Vergleich",
-          "7": "und so weiter"
+          "6": "die untere Zeile zeigt die Durchschnittswerte aller bisher durchgeführten HealthCampaigns als Vergleich",
+          "7": ""
         }
       }
     },
