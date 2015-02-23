@@ -642,7 +642,7 @@
 
                                             <div ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index"
                                                  ng-if="assessmentResultVisible(question.type, $index)"
-                                                 ng-style="assessmentResultStyle(val, assessmentResult.percentages, question.type)"
+                                                 ng-style="assessmentResultStyle(val, assessmentResultsAverageByQuestion[question.id].percentages, question.type)"
                                                  ng-class="'assessmentRange' + $index">
 
                                                 {{ formatValue(val, $index, question) }}
