@@ -521,7 +521,6 @@
 
                                         _.each(values, function (val, index) {
                                             if($scope.assessmentResultVisible(questionType, index)) {
-
                                                 sum += val;
                                                 if(val < threshold) {
                                                     overflow += threshold - val;
@@ -529,10 +528,6 @@
                                             }
                                         });
                                         var factor = sum / (sum + overflow); // factor for having 100% again
-                                        //if(questionType !== 'twoSided') {
-                                        //    factor += 0.1; // take into account the two missing values
-                                        //}
-
                                         return { flex: '0 0 ' + (value < threshold ? threshold : value) * factor * 100 + '%' };
                                     };
 

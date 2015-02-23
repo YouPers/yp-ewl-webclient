@@ -581,13 +581,13 @@
 
 
                                     <div class="question-legend">
-                                        <div>{{question.type === 'rightSided' ? '&nbsp;' : question.mintext}}</div>
+                                        <div>{{question.type === 'rightSided' ? '' : question.mintext}}</div>
                                         <div class="title">
                                             <span>{{ question.title }}</span>
                                             <i ng-mouseover="displayInfo(question)"
                                                class="glyphicon glyphicon-info-sign"></i>
                                         </div>
-                                        <div>{{question.type === 'leftSided' ? '&nbsp;' : question.maxtext}}</div>
+                                        <div>{{question.type === 'leftSided' ? '' : question.maxtext}}</div>
                                     </div>
 
 
