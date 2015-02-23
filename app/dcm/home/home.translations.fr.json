@@ -9,6 +9,27 @@
     "campaigns": "Les campagnes",
     "activities": "Les nouvelles activités",
     "statistics": "Les statistiques",
+    "stats": {
+      "eventsDonePerDay": {
+        "title": null,
+        "legend": {
+          "Done": null,
+          "Missed": null,
+          "Open": null
+        }
+      },
+      "newUsersPerDay": {
+        "title": null,
+        "legend": {
+          "count": null
+        }
+      },
+      "newestPlans": {
+        "title": null,
+        "count": null,
+        "countTooltip": null
+      }
+    },
     "end-of-campaign": null,
     "addOffer": null,
     "surveyInfo": null,
@@ -71,6 +92,39 @@
       "Invitation": null,
       "UserInvitation": null,
       "All": null
+    }
+  },
+  "dcm-end-of-campaign": {
+    "usersTotal": {
+      "title": null,
+      "campaign": null,
+      "average": null
+    },
+    "eventsStatus": {
+      "title": null,
+      "campaign": null,
+      "average": null,
+      "done": null,
+      "missed": null,
+      "open": null
+    },
+    "assessmentResults": {
+      "title": null,
+      "campaign": null,
+      "average": null,
+      "veryNeg": null,
+      "neg": null,
+      "zero": null,
+      "pos": null,
+      "veryPos": null
+    },
+    "eventsPlanned": {
+      "header": null,
+      "content": null
+    },
+    "legend": {
+      "campaign": null,
+      "average": null
     }
   }
 }
