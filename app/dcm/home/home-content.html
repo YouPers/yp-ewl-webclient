@@ -581,13 +581,13 @@
 
 
                                     <div class="question-legend">
-                                        <div>{{question.mintext}}</div>
+                                        <div>{{question.type === 'rightSided' ? '' : question.mintext}}</div>
                                         <div class="title">
                                             <span>{{ question.title }}</span>
                                             <i ng-mouseover="displayInfo(question)"
                                                class="glyphicon glyphicon-info-sign"></i>
                                         </div>
-                                        <div>{{question.maxtext}}</div>
+                                        <div>{{question.type === 'leftSided' ? '' : question.maxtext}}</div>
                                     </div>
 
 
@@ -598,7 +598,8 @@
 
                                             <div
                                                  ng-repeat="val in assessmentResult.percentages track by $index"
-                                                 ng-style="val < 0.05 ? { flex: '0 0 24px' } : assessmentResultStyle(val)"
+                                                 ng-if="assessmentResultVisible(question.type, $index)"
+                                                 ng-style="assessmentResultStyle(val, assessmentResult.percentages, question.type)"
                                                  ng-class="'assessmentRange' + $index">
 
                                                 {{ formatValue(val, $index, question) }}
@@ -613,7 +614,8 @@
                                         <div class="assessment-chart dimmed">
 
                                             <div ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index"
-                                                 ng-style="val < 0.05 ? { flex: '0 0 24px' } : assessmentResultStyle(val)"
+                                                 ng-if="assessmentResultVisible(question.type, $index)"
+                                                 ng-style="assessmentResultStyle(val, assessmentResult.percentages, question.type)"
                                                  ng-class="'assessmentRange' + $index">
 
                                                 {{ formatValue(val, $index, question) }}
