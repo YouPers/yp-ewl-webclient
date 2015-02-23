@@ -646,17 +646,15 @@
 
                 <div class="eventPlanned" ng-repeat="eventPlanned in eventsPlanned | orderBy:['-byUsersCount', '-plannedCount'] | limitTo:10">
 
-                    <div>
-                        <img ng-src="{{eventPlanned.idea.picture}}">
+                    <img ng-src="{{eventPlanned.idea.picture}}">
 
-                        <div>{{ eventPlanned.idea.title | stripTags }}</div>
-                    </div>
+                    <span>
+                        {{ eventPlanned.idea.title | stripTags }}
+                    </span>
 
-                    <div>
-                        <div>
-                            {{ 'dcm-end-of-campaign.eventsPlanned.content' | translate:eventPlanned:"messageformat" }}
-                        </div>
-                    </div>
+                    <span>
+                        {{ 'dcm-end-of-campaign.eventsPlanned.content' | translate:eventPlanned:"messageformat" }}
+                    </span>
 
                 </div>
 
