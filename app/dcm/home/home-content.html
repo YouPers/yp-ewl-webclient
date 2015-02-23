@@ -524,35 +524,62 @@
             </h3>
 
 
-            <div class="assessment-legend">
-
-                <div class="assessment-chart-row">
-                    <div translate>dcm-end-of-campaign.assessmentResults.campaign</div>
-                    <div class="assessment-chart">
-                        <div
-                                ng-repeat="val in [10,20,32,15,23]"
-                                ng-style="{ flex: '0 0 '+val+'%' }"
-                                ng-class="'assessmentRange' + $index">
-                            {{ val }}%
-                        </div>
-                    </div>
-                </div>
-
-                <div class="assessment-chart-row">
-                    <div translate>dcm-end-of-campaign.assessmentResults.average</div>
-                    <div class="assessment-chart dimmed">
-                        <div
-                                ng-repeat="val in [22,17,29,13,19]"
-                                ng-style="{ flex: '0 0 '+val+'%' }"
-                                ng-class="'assessmentRange' + $index">
-                            {{ val }}%
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
             <accordion class="check" close-others="true" ng-if="categories" ng-init="cat[orderedCategoryNames[0]]=true">
+
+                <accordion-group class="legend" >
+
+                    <accordion-heading>
+                        <span class="question-category-header" translate>dcm-end-of-campaign.assessmentResults.legend.title</span>
+                        <i class="pull-right glyphicon"
+                           ng-class="{'glyphicon-chevron-down': cat['legend'], 'glyphicon-chevron-right': !cat['legend']}"></i>
+                    </accordion-heading>
+
+                    <div class="question">
+                        <div class="question-legend">
+                            <div translate>dcm-end-of-campaign.assessmentResults.legend.min</div>
+                            <div class="title">
+                                <span translate>dcm-end-of-campaign.assessmentResults.legend.question</span>
+                                <i ng-mouseover="displayInfo(question)"
+                                   class="glyphicon glyphicon-info-sign"></i>
+                            </div>
+                            <div translate>dcm-end-of-campaign.assessmentResults.legend.max</div>
+                        </div>
+
+                        <div class="assessment-chart-row">
+                            <div class="assessment-chart">
+                                <div
+                                        ng-repeat="val in [10,20,32,15,23]"
+                                        ng-style="{ flex: '0 0 '+val+'%' }"
+                                        ng-class="'assessmentRange' + $index">
+                                    {{ val }}%
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="assessment-chart-row">
+                            <div class="assessment-chart dimmed">
+                                <div
+                                        ng-repeat="val in [22,17,29,13,19]"
+                                        ng-style="{ flex: '0 0 '+val+'%' }"
+                                        ng-class="'assessmentRange' + $index">
+                                    {{ val }}%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="descriptions">
+                        <div><div class="assessmentRange0">10%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.1</div></div>
+                        <div><div class="assessmentRange1">20%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.2</div></div>
+                        <div><div class="assessmentRange2">32%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.3</div></div>
+                        <div><div class="assessmentRange3">15%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.4</div></div>
+                        <div><div class="assessmentRange4">23%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.5</div></div>
+                        <div><div class="assessmentRange0 dimmed">22%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.6</div></div>
+                        <div><div></div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.7</div></div>
+                    </div>
+
+
+                </accordion-group>
 
                 <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]"
                                  ng-if="assessmentResultsByQuestion && !isCategoryEmpty(categories[name])"
