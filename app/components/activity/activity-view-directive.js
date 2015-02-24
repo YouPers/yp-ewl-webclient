@@ -35,7 +35,7 @@
                         };
 
                         scope.getIcalUrl = function () {
-                            return config.backendUrl + '/activities/' + scope.activity.id + '/ical?type=' + (scope.activity.created === scope.activity.updated ? 'new': 'update') + '&user=' + UserService.principal.getUser().id;
+                            return config.backendUrl + '/activities/' + scope.activity.id + '/ical.ics?type=' + (scope.activity.created === scope.activity.updated ? 'new': 'update') + '&user=' + UserService.principal.getUser().id;
                         };
 
                     }
