@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('yp.components.ideaCard', [])
-        .directive('ideaCard', ['$rootScope', '$sce', '$window', '$state', function ($rootScope, $sce, $window, $state) {
+        .directive('ideaCard', ['$rootScope', '$sce', '$window', '$state', 'UserService', function ($rootScope, $sce, $window, $state, UserService) {
             return {
                 restrict: 'EA',
                 scope: {
@@ -20,12 +20,11 @@
                         throw new Error("ideaCard: attribute 'idea' is required");
                     }
 
-                    scope.showIdea = function(idea) {
-                        $window.location = $state.href('activity.content') + '?idea=' + idea.id;
-                    };
-                    scope.showActivity = function(activity) {
-                        $window.location = $state.href('activity.content', { id: activity.id }) + '?idea=' + activity.idea.id;
-                    };
+                    // show edit link:
+                    // - if we are not currently on one of the edit states
+                    // - the user is the author of the idea
+                    scope.showEditLink = $state.current.name !== 'dcm.idea' && $state.current.name !== 'admin-idea.edit' &&
+                        (scope.idea.author || scope.idea.author.id) === UserService.principal.getUser().id;
 
                     scope.flip = function() {
                         var flipped = scope.flipped;
