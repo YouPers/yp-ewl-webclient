@@ -27,7 +27,7 @@
                     </div>
                 </li>
                 <li>
-                    <div ng-if="$root.$state.current.name !== 'dcm.idea' && (idea.author || idea.author.id) === $root.principal.getUser().id">
+                    <div ng-if="showEditLink">
                         <a ui-sref="dcm.idea({ id: idea.id})" stop-propagation>
                             <i class="fa fa-edit"></i>
                         </a>

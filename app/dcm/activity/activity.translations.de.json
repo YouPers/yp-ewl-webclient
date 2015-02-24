@@ -28,6 +28,8 @@
     "duration": "Benötigte Zeit (min) ",
     "save": "Speichern",
     "back": "Zurück",
+    "newInvitation": "Einplanen und Einladen",
+    "newRecommendation": "Nur Empfehlen",
     "header": {
       "recommendation": "Kampagnenempfehlung"
     },
