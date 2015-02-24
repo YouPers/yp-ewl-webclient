@@ -96,7 +96,7 @@
   },
   "dcm-end-of-campaign": {
     "usersTotal": {
-      "title": "Kampagnenteilnehmer",
+      "title": "Anzahl Kampagnenteilnehmer",
       "campaign": "Diese Kampagne",
       "average": "Durchschnitt"
     },
@@ -121,8 +121,8 @@
           "3": "32% aller Benutzer haben \"angemessen\" gewählt",
           "4": "15% aller Benutzer haben \"zu viel\" gewählt und gesagt, <br/>dass sie dadurch <strong>wenig beinträchtigt</strong> sind",
           "5": "23% aller Benutzer haben \"zu viel\" gewählt und gesagt, <br/>dass sie dadurch <strong>stark beinträchtigt</strong> sind",
-          "6": "die untere Zeile zeigt die Durchschnittswerte aller bisher durchgeführten HealthCampaigns als Vergleich",
-          "7": ""
+          "6": "die untere Zeile zeigt die Durchschnittswerte aller bisher durchgeführten Kampagnen zum Vergleich",
+          "7": "Beim Führen des Mauszeigers über den blauen Punkt \"i\" wird das Bewertungskriterium und die Bedeutung der Ausprägungen im Fenster des Digital Coach angezeigt."
         }
       }
     },
