@@ -151,10 +151,10 @@
                 function restoreActivityTime(activity) {
                     activity.start = moment(activity.start)
                         .hour(moment(activity.startTime).hour())
-                        .minute(moment(activity.startTime).minute()).toDate();
+                        .minute(moment(activity.startTime).minute()).startOf('minute').toDate();
                     activity.end = moment(activity.end)
                         .hour(moment(activity.endTime).hour())
-                        .minute(moment(activity.endTime).minute()).toDate();
+                        .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
                 }
 
                 // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
