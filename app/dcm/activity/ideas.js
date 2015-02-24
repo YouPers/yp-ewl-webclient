@@ -63,17 +63,28 @@
             }])
 
 
-        .controller('DcmIdeaController', [ '$scope', '$rootScope', '$state', 'ActivityService', 'idea',
-            function ($scope, $rootScope, $state, ActivityService, idea) {
-                $scope.options = {};
+        .controller('DcmIdeaController', [ '$scope', '$rootScope', '$state', '$window', 'ActivityService', 'idea',
+            function ($scope, $rootScope, $state, $window, ActivityService, idea) {
 
+                $scope.options = {};
                 $scope.idea = idea;
+
+                var backToActivityDetail = $state.$current.previous.name === 'dcm.activity';
+
                 $scope.onSave = function (idea) {
-                    $scope.idea = idea;
-                    $scope.options.dropdownOpen = true;
+                    if(backToActivityDetail) {
+                        $scope.back();
+                    } else {
+                        $scope.idea = idea;
+                        $scope.options.dropdownOpen = true;
+                    }
                 };
                 $scope.back = function() {
-                    $state.go('homedispatcher');
+                    if(backToActivityDetail) {
+                        $window.history.back();
+                    } else {
+                        $state.go('homedispatcher');
+                    }
                 };
 
             }

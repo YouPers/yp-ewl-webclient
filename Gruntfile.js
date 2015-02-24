@@ -323,7 +323,7 @@ module.exports = function (grunt) {
                             'dcm/**/*.json',
                             'components/**/*.json',
                             'assets/**/*.{gif,webp,png,jpg,jpeg,ico,svg}',
-                            'styles/fonts/{,*/}*.woff'
+                            'fonts/{,*/}*.woff'
                         ]
                     },
                     {

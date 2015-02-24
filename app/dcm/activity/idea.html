@@ -5,47 +5,43 @@
 </div>
 
 
-        <div class="three-column-layout">
+<div class="three-column-layout">
 
-            <section>
+    <section>
 
-                <h2 translate>activity.stateHeader1</h2>
-                <h2 ng-bind-html="idea.title"></h2>
+        <h2 translate>activity.stateHeader1</h2>
 
-                <br/>
+        <h2 ng-bind-html="idea.title"></h2>
 
-                <idea-card idea="idea"></idea-card>
+        <br/>
 
-            </section>
+        <idea-card idea="idea"></idea-card>
 
-            <section>
+    </section>
 
-                <idea-edit idea="idea" on-save="onSave" on-cancel="back">
-                    <div dropdown is-open="options.dropdownOpen">
-                        <ul class="dropdown-menu">
-                            <li role="presentation"><a role="menuitem" ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })">Einplanen und Einladen</a></li>
-                            <li role="presentation"><a role="menuitem" ui-sref="dcm.recommendation({ idea: idea.id })">Nur Empfehlen</a></li>
-                        </ul>
-                    </div>
-                </idea-edit>
+    <section>
 
-            </section>
+        <idea-edit idea="idea" on-save="onSave" on-cancel="back">
+            <div dropdown is-open="options.dropdownOpen">
+                <ul class="dropdown-menu">
+                    <li role="presentation">
+                        <a role="menuitem" ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })" translate>
+                            activity.newInvitation
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" ui-sref="dcm.recommendation({ idea: idea.id })" translate>
+                            activity.newRecommendation
+                        </a></li>
+                </ul>
+            </div>
+        </idea-edit>
 
-            <section>
+    </section>
 
-            </section>
+    <section>
 
+    </section>
 
-        </div>
-
-<div class="row idea-edit">
-
-    <div class="col-sm-8">
-    </div>
-
-    <div class="col-sm-4">
-
-
-    </div>
 
 </div>
