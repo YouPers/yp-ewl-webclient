@@ -69,10 +69,11 @@
                 $scope.options = {};
                 $scope.idea = idea;
 
-                var backToActivityDetail = $state.$current.previous.name === 'dcm.activity';
+                var backToPreviousState = $state.$current.previous.name === 'dcm.activity' ||
+                    $state.$current.previous.name === 'dcm.recommendation';
 
                 $scope.onSave = function (idea) {
-                    if(backToActivityDetail) {
+                    if(backToPreviousState) {
                         $scope.back();
                     } else {
                         $scope.idea = idea;
@@ -80,7 +81,7 @@
                     }
                 };
                 $scope.back = function() {
-                    if(backToActivityDetail) {
+                    if(backToPreviousState) {
                         $window.history.back();
                     } else {
                         $state.go('homedispatcher');
