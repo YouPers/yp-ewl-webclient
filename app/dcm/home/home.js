@@ -277,7 +277,6 @@
                             runningTotal: false,
                             newestDay: moment($scope.campaign.end),
                             oldestDay: moment($scope.campaign.start),
-                            //nrOfDaysToPlot: 14,
                             propsToPlot: ['Done', 'Missed', 'Open'],
                             legend: [
                                 $translate.instant(prefix + 'Done'),
