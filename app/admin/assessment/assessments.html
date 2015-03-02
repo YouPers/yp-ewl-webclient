@@ -5,15 +5,73 @@
 
         <div class="col-sm-12">
 
-            <div class="btn-group-justified">
-                TEST
+
+            <div class="btn-group">
+
                 <div class="btn-group" ng-repeat="topic in topics">
-                    <button type="button" class="btn" ng-model="topic" btn-radio="topic.id">
+                    <button type="button" class="btn btn-default" ng-model="adminAssessmentController.topic" btn-radio="topic.id">
                         {{ topic.name }}
                     </button>
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div class="row" ng-if="assessment">
+
+        <div class="col-sm-6">
+
+            <h3>{{ assessment.name }}</h3>
+
+            <!--<idea-card idea="assessment.idea"></idea-card>-->
+
+
+
+        </div>
+        <div class="col-sm-6">
+
+            <dl class="dl-horizontal">
+                <dt>impact</dt>
+                <dd><input ng-model="assessment.impactQuestion"></dd>
+                <dt>impact left</dt>
+                <dd><input ng-model="assessment.impactQuestionLeft"></dd>
+                <dt>impact right</dt>
+                <dd><input ng-model="assessment.impactQuestionRight"></dd>
+            </dl>
+
+        </div>
+        <div class="col-sm-12">
+
+            <div class="question" ng-repeat="question in assessment.questions">
+
+                <div class="header">
+                    <input ng-model="question.title">
+                    <input ng-model="question.type" typeahead="type for type in uniqueValues('type')">
+                    <input ng-model="question.category"typeahead="type for type in uniqueValues('category')">
+                </div>
+
+                <div class="content">
+                    <div>
+                        <input ng-model="question.mintext">
+                        <textarea ng-model="question.mintextexample"></textarea>
+                        <textarea ng-model="question.mintextresult"></textarea>
+                    </div>
+                    <div>
+                        <input ng-model="question.midtext">
+                        <textarea ng-model="question.midtextexample"></textarea>
+                        <textarea ng-model="question.midtextresult"></textarea>
+                    </div>
+                    <div>
+                        <input ng-model="question.maxtext">
+                        <textarea ng-model="question.maxtextexample"></textarea>
+                        <textarea ng-model="question.maxtextresult"></textarea>
+                    </div>
+
+                </div>
+
+
+            </div>
         </div>
     </div>
 </div>

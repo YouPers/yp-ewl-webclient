@@ -6,8 +6,8 @@
 
 
         // provides methods to get Assessment Information from the server
-        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'UserService', '$rootScope',
-            function ($http, $q, Restangular, UserService, $rootScope) {
+        .factory('AssessmentService', ['$http', '$q', 'Restangular', 'UserService', 'ActivityService', '$rootScope',
+            function ($http, $q, Restangular, UserService, ActivityService, $rootScope) {
                 var _cachedAssessmentPromise = {};
                 var _answerDirty = false;
 

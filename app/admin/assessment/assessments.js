@@ -14,7 +14,7 @@
                         views: {
                             content: {
                                 templateUrl: 'admin/assessment/assessments.html',
-                                controller: 'AdminAssessmentController'
+                                controller: 'AdminAssessmentController as adminAssessmentController'
                             }
                         },
                         access: accessLevels.admin,
@@ -29,18 +29,24 @@
                 //$translateWtiPartialLoaderProvider.addPart('admin/assessment/assessments');
             }])
 
-        .controller('AdminAssessmentController', ['$rootScope', '$scope', 'AssessmentService', 'topics',
-            function ($rootScope, $scope, AssessmentService, topics) {
+        .controller('AdminAssessmentController', ['$rootScope', '$scope', 'AssessmentService', 'ActivityService', 'topics',
+            function ($rootScope, $scope, AssessmentService, ActivityService, topics) {
+                var adminAssessmentController = $scope.adminAssessmentController = this;
+                $scope.topics = topics;
+                adminAssessmentController.topic = topics[0].id;
 
-                $scope.topcis = topics;
-
-                $scope.$watch('topic', function (topic) {
+                $scope.$watch('adminAssessmentController.topic', function (topic) {
                     if(topic) {
                         AssessmentService.getAssessment(topic.id || topic).then(function (assessment) {
-                            $scope.assessment = assessment;
+                            ActivityService.populateIdeas(assessment).then(function (assessment) {
+                                $scope.assessment = assessment;
+                            });
                         });
                     }
                 });
+                $scope.uniqueValues = function (field) {
+                    return _.unique(_.map($scope.assessment.questions, field));
+                };
 
 
             }]);

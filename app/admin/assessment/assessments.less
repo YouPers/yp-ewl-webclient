@@ -1,0 +1,33 @@
+.admin-assessments {
+
+  .question {
+
+    input, textarea {
+      padding: 4px;
+    }
+
+    &:not(:first-of-type) {
+      border-top: 1px solid @yp-divider;
+      padding-top: 15px;
+    }
+    .header {
+      display: flex;
+      padding-right: 1em;
+    }
+
+    .content {
+      > div {
+        height: 6em;
+        display: flex;
+        flex-direction: row;
+        > *:first-child {
+
+        }
+        > *:not(:first-child) {
+          flex: auto;
+        }
+      }
+    }
+
+  }
+}
