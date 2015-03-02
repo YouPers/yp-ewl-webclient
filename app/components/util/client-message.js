@@ -106,9 +106,9 @@
             });
 
             $rootScope.$on('clientmsg', function (event, message, options) {
-                console.debug('clientMsg');
-                console.debug(message);
-                console.debug(options);
+                $rootScope.$log.log('clientMsg');
+                $rootScope.$log.log(message);
+                $rootScope.$log.log(options);
                 var defaults = {
                     id: _.uniqueId(),
                     message: message,

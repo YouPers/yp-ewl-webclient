@@ -277,7 +277,6 @@
                             runningTotal: false,
                             newestDay: moment($scope.campaign.end),
                             oldestDay: moment($scope.campaign.start),
-                            nrOfDaysToPlot: 14,
                             propsToPlot: ['Done', 'Missed', 'Open'],
                             legend: [
                                 $translate.instant(prefix + 'Done'),
@@ -293,7 +292,7 @@
                     StatsService.loadStats($scope.campaign.id, {type: 'newUsersPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
                         var options = {
                             runningTotal: true,
-                            newestDay: moment.min(moment(), moment($scope.campaign.end)),
+                            newestDay: moment($scope.campaign.end),
                             oldestDay: moment($scope.campaign.start),
                             legend: [
                                 $translate.instant('dcmhome.stats.newUsersPerDay.legend.count')

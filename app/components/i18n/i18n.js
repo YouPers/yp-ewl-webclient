@@ -48,12 +48,12 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
                         profile.language = key;
                         if ($scope.principal.isAuthenticated()) {
                             ProfileService.putProfile(profile).then(function success() {
-                                console.log('successfully updated user profile');
+                                $rootScope.$log.log('successfully updated user profile');
                             });
                         }
                     }
                 }, function (err) {
-                    console.log('could not switch language, err: ' + err);
+                    $rootScope.$log.log('could not switch language, err: ' + err);
                 });
             };
 

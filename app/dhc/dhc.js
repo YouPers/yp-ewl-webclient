@@ -48,15 +48,15 @@
         .controller('DhcController', ['$scope', '$rootScope', '$state', '$timeout', 'UserService', 'campaign',
             function ($scope, $rootScope, $state, $timeout, UserService, campaign) {
                 var user = UserService.principal.getUser();
-                console.log('DhcController is run now.');
+                $rootScope.$log.log('DhcController is run now.');
 
                 if (!campaign) {
                     if(user.campaign){
-                        console.log('DhcController: redirecting to dhc.game (no campaign in URL');
+                        $rootScope.$log.log('DhcController: redirecting to dhc.game (no campaign in URL');
                         $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign , view: ""});
 
                     } else {
-                        console.log('DhcController: redirecting to campaign list(no campaign in URL, no campaign on user');
+                        $rootScope.$log.log('DhcController: redirecting to campaign list(no campaign in URL, no campaign on user');
                         $state.go('campaign-list.content');
                     }
                 } else {
@@ -66,7 +66,7 @@
                         (!user.endOfCampaignDisplayed || moment().diff(user.endOfCampaignDisplayed, 'days') > 1) &&
                         moment().businessDiff(campaign.end) >= -2) {
                         user.endOfCampaignDisplayed = moment();
-                        console.log('DhcController: redirecting end of campaign');
+                        $rootScope.$log.log('DhcController: redirecting end of campaign');
                         return $state.go('dhc.end-of-campaign', { campaignId: campaign.id });
                     }
 

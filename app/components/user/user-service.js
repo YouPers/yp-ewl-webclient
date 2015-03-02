@@ -77,7 +77,7 @@
                         if (_currentUser.campaign) {
                             if (!authenticatedUser.campaign ||
                                 (authenticatedUser.campaign.id !== _currentUser.campaign.id)) {
-                                console.log('need to update user');
+                                $rootScope.$log.log('need to update user');
                                 authenticatedUser.campaign = _currentUser.campaign;
                                 authenticatedUser.put();
                             }

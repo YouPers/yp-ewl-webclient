@@ -10,7 +10,7 @@
                       ng-model="message.text"
                       ng-focus="showPostButton=true"
                       ng-blur="onCommentAreaBlur()"
-                      placeholder="{{ 'composeCommentForm.comment.paceholder' | translate }}" ></textarea>
+                      ng-attr-placeholder="{{ 'composeCommentForm.comment.paceholder' | translate }}" ></textarea>
             <button ng-show="showPostButton" class="btn btn-primary pull-right" translate>composeCommentForm.submit</button>
 
         </form>

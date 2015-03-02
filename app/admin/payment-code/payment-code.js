@@ -38,7 +38,7 @@
                 };
 
                 $scope.generate = function(paymentCode) {
-                    console.log('paymentCode: ' + paymentCode);
+                    $rootScope.$log.log('paymentCode: ' + paymentCode);
 
                     PaymentCodeService.generatePaymentCode(paymentCode).then(function(result) {
                         $scope.codes = $scope.codes || [];
