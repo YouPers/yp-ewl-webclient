@@ -149,7 +149,7 @@ angular.module('yp-ewl',
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-                console.debug('stateChangeStart from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
+                console.log('stateChangeStart from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
 
                 toState.previous = fromState;
 
@@ -180,7 +180,7 @@ angular.module('yp-ewl',
             });
 
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-                console.debug('stateChangeSuccess from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
+                console.log('stateChangeSuccess from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
                 $analytics.pageTrack(toState.name);
             });
 
