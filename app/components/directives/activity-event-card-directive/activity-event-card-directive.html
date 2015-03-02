@@ -68,7 +68,7 @@
                 <div ng-hide="event.saved">
                     <textarea id="comment"
                               ng-model="event.comment" ng-keydown="commentInput($event)"
-                              placeholder="{{ 'activity.comment.placeholder' | translate }}"></textarea>
+                              ng-attr-placeholder="{{ 'activity.comment.placeholder' | translate }}"></textarea>
                     <a class="btn btn-flat" href ng-click="event.saved = true" ng-hide="!event.comment">
                         <!--<i class="fa fa-save"></i>-->
                         <span translate>activity.comment.save</span>
