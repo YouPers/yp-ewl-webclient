@@ -94,8 +94,8 @@ angular.module('yp-ewl',
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'yp.config', '$analytics', '$sce','tmhDynamicLocale',
-        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, config, $analytics, $sce, tmhDynamicLocale) {
+    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'yp.config', '$analytics', '$sce','tmhDynamicLocale', '$log',
+        function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, config, $analytics, $sce, tmhDynamicLocale, $log) {
 
             // setup globally available objects on the top most scope, so all other controllers
             // do not have to inject them
@@ -105,7 +105,7 @@ angular.module('yp-ewl',
             $rootScope.principal = UserService.principal;
             $rootScope.currentLocale = $translate.use() || $translate.proposedLanguage();
             $rootScope.config = config;
-
+            $rootScope.$log = $log;
 
             $rootScope.$on('event:authority-authorized', function() {
 
@@ -149,7 +149,7 @@ angular.module('yp-ewl',
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-                console.log('stateChangeStart from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
+                $rootScope.$log.log('stateChangeStart from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
 
                 toState.previous = fromState;
 
@@ -160,11 +160,11 @@ angular.module('yp-ewl',
                         event.preventDefault();
 
                         if (!UserService.principal.isAuthenticated()) {
-                            console.log('preventing state change, because user is not authenticated, redirect to signin.content');
+                            $rootScope.$log.log('preventing state change, because user is not authenticated, redirect to signin.content');
                             $rootScope.nextStateAfterLogin = {toState: toState, toParams: toParams};
                             $state.go('signin.content');
                         } else {
-                            console.log('preventing state change, because user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
+                            $rootScope.$log.log('preventing state change, because user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
                             $rootScope.$emit('clientmsg:error', 'user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
                         }
 
@@ -172,7 +172,7 @@ angular.module('yp-ewl',
                 } else {
                     // if the UserService is not done initializing we cancel the stateChange and schedule it again in 100ms
                     event.preventDefault();
-                    console.log('preventing state change, because UserService not ready to check Authorization');
+                    $rootScope.$log.log('preventing state change, because UserService not ready to check Authorization');
                     $timeout(function () {
                         $state.go(toState, toParams);
                     }, 300);
@@ -180,14 +180,14 @@ angular.module('yp-ewl',
             });
 
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-                console.log('stateChangeSuccess from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
+                $rootScope.$log.log('stateChangeSuccess from: ' + (fromState && fromState.name) + ' to: ' + toState.name);
                 $analytics.pageTrack(toState.name);
             });
 
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
 
-                console.log('Error on StateChange from: "' + (fromState && fromState.name) + '" to:  "'+ toState.name + '", err:' + error.message + ", code: " + error.status);
+                $rootScope.$log.log('Error on StateChange from: "' + (fromState && fromState.name) + '" to:  "'+ toState.name + '", err:' + error.message + ", code: " + error.status);
 
                 if(error.status === 401) { // Unauthorized
 
@@ -200,7 +200,7 @@ angular.module('yp-ewl',
                 } else {
 
                     $rootScope.$emit('clientmsg:error', error);
-                    console.log('Stack: ' + error.stack);
+                    $rootScope.$log.log('Stack: ' + error.stack);
 
                     // check if we tried to go to a home state, then we cannot redirect again to the same
                     // homestate, because that would lead to a loop

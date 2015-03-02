@@ -13,7 +13,7 @@
                 var ideaCachePending = {};
 
                 $rootScope.$on('$translateChangeSuccess', function () {
-                    console.log('IdeaService: resetting IdeaCache');
+                    $rootScope.$log.log('IdeaService: resetting IdeaCache');
                     ideaCache = {};
                 });
 

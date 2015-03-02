@@ -102,7 +102,7 @@
                         };
 
                         $scope.uploader = ImageService.getImageUploader('idea', $scope, function successCb (url) {
-                            console.log('image upload success');
+                            $rootScope.$log.log('image upload success');
                             $scope.idea.picture = url;
                         });
 
