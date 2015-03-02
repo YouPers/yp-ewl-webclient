@@ -8,13 +8,9 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels',
             function ($stateProvider, $urlRouterProvider, accessLevels) {
                 $stateProvider
-                    .state('admin-campaigns', {
-                        templateUrl: "layout/admin-default.html",
-                        access: accessLevels.admin
-                    })
 
-                    .state('admin-campaigns.content', {
-                        url: "/admin/campaigns",
+                    .state('admin.campaigns', {
+                        url: "/campaigns",
                         access: accessLevels.admin,
                         views: {
                             content: {

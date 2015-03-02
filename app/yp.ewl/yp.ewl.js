@@ -39,7 +39,7 @@ angular.module('yp-ewl',
                         if (!UserService.principal.isAuthenticated()) {
                             return $state.go('signin.content');
                         } else if (UserService.principal.isAuthorized(accessLevels.admin)) {
-                            return $state.go('admin-home.content');
+                            return $state.go('admin.home');
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
                             return $state.go('dcm.home');
                         } else {
@@ -109,6 +109,11 @@ angular.module('yp-ewl',
 
             $rootScope.$on('event:authority-authorized', function() {
 
+                $rootScope.isSystemAdmin = _.any(UserService.principal.getUser().roles, function (role) {
+                    return _.contains([
+                        'systemadmin'
+                    ], role);
+                });
                 $rootScope.isProductAdmin = _.any(UserService.principal.getUser().roles, function (role) {
                     return _.contains([
                         'productadmin',

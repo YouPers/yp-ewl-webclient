@@ -149,7 +149,7 @@
 
                 function _gotoHome(done) {
                     if ($scope.principal.isAuthorized('admin')) {
-                        return $state.go('admin-idea.list', {topic: assessment.topic});
+                        return $state.go('admin.idea-list', {topic: assessment.topic});
                     } else {
                         return $state.go(done ? '^.focus' : '^.game', {view: ""});
                     }

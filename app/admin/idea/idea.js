@@ -8,13 +8,9 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('admin-idea', {
-                        templateUrl: "layout/admin-default.html",
-                        access: accessLevels.admin
-                    })
 
-                    .state('admin-idea.list', {
-                        url: "/admin/ideas?tab&page&topic",
+                    .state('admin.idea-list', {
+                        url: "/ideas?tab&page&topic",
                         access: accessLevels.admin,
                         views: {
                             content: {
@@ -32,8 +28,8 @@
 
                         }
                     })
-                    .state('admin-idea.edit', {
-                        url: "/admin/ideas/:ideaId/admin?tab&page&topic",
+                    .state('admin.idea-edit', {
+                        url: "/ideas/:ideaId/admin?tab&page&topic",
                         views: {
                             content: {
                                 templateUrl: "admin/idea/idea-admin.html",
@@ -339,12 +335,12 @@
                 $scope.recWeights = idea.getRecWeightsByQuestionId();
 
                 $scope.onSave = function () {
-                    $scope.$state.go('admin-idea.list', $rootScope.$stateParams);
+                    $scope.$state.go('admin.idea-list', $rootScope.$stateParams);
                     $rootScope.$emit('clientmsg:success', 'idea.save');
                 };
 
                 $scope.onCancel = function () {
-                    $scope.$state.go('admin-idea.list', $rootScope.$stateParams);
+                    $scope.$state.go('admin.idea-list', $rootScope.$stateParams);
                 };
             }]);
 

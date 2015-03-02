@@ -1,21 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('yp.admin',
-        [
-            'restangular',
-            'ui.router'
-        ])
+    angular.module('yp.admin')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('admin-home', {
-                        templateUrl: "layout/admin-default.html",
-                        access: accessLevels.all
-                    })
-                    .state('admin-home.content', {
-                        url: "/admin/home",
+                    .state('admin.home', {
+                        url: "/home",
                         access: accessLevels.admin,
                         views: {
                             content: {
