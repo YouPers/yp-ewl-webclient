@@ -40,8 +40,8 @@ var specificConfigs = {
     default: {},
     dev: {
         name: 'dev',
-        webclientUrl: 'http://dev:9000',
-        backendUrl: 'http://dev:8000'
+        webclientUrl: 'http://localhost:9000',
+        backendUrl: 'http://localhost:8000'
     },
     localvm: {
         // used to test from Windows VMs on your local machine,
