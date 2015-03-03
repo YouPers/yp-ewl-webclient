@@ -29,8 +29,8 @@
                 //$translateWtiPartialLoaderProvider.addPart('admin/assessment/assessments');
             }])
 
-        .controller('AdminAssessmentController', ['$rootScope', '$scope', '$timeout', '$q', 'AssessmentService', 'ActivityService', 'topics',
-            function ($rootScope, $scope, $timeout, $q, AssessmentService, ActivityService, topics) {
+        .controller('AdminAssessmentController', ['$rootScope', '$scope', '$timeout', '$q', 'util', 'AssessmentService', 'ActivityService', 'topics',
+            function ($rootScope, $scope, $timeout, $q, util, AssessmentService, ActivityService, topics) {
                 var adminAssessmentController = $scope.adminAssessmentController = this;
                 $scope.topics = topics;
                 adminAssessmentController.topic = topics[0].id;
@@ -41,6 +41,7 @@
                         ActivityService.populateIdeas(assessment).then(function (assessment) {
 
                             $scope.questions = assessment.questions;
+
                             $scope.assessment = _.clone(assessment);
                             delete $scope.assessment.questions;
 
@@ -87,6 +88,9 @@
                         });
                     });
                 };
+
+
+                $scope.move = util.move;
 
                 $scope.save = _.debounce(function () {
 
