@@ -36,6 +36,30 @@
                 }
 
                 var assService = {
+
+
+                    saveAssessment: function (assessment) {
+                        delete _cachedAssessmentPromise[assessment.topic];
+
+                        if (assessment.id) {
+                            return Restangular.restangularizeElement(null, assessment, "assessments").put();
+                        } else {
+                            return Restangular.restangularizeElement(null, assessment, 'assessments').post();
+                        }
+                    },
+                    saveQuestion: function (assessmentId, question) {
+                        var assessment = Restangular.one('assessments', assessmentId.id || assessmentId);
+                        if (question.id) {
+                            return Restangular.restangularizeElement(assessment, question, "questions").put();
+                        } else {
+                            return Restangular.restangularizeElement(assessment, question, 'questions').post();
+                        }
+                    },
+                    deleteQuestion: function (assessmentId, question) {
+                        var assessment = Restangular.one('assessments', assessmentId.id || assessmentId);
+                        return Restangular.restangularizeElement(assessment, question, "questions").remove();
+                    },
+
                     getAssessment: function (topicId) {
                         if (!topicId) {
                             throw new Error("topicId is required");
