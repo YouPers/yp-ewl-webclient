@@ -28,6 +28,8 @@
     "duration": "Durata (min) ",
     "save": "Salva",
     "back": "Indietro",
+    "newInvitation": null,
+    "newRecommendation": null,
     "header": {
       "recommendation": null
     },

@@ -68,9 +68,9 @@
     },
     "backToTopicSelection": "Back to topic selection",
     "paymentCode": {
-      "invalidCode": "Invalid payment code. You get a valid payment code <a href=\"http://healthcampaign.youpers.com\">here.</a>",
+      "invalidCode": "Invalid activation code. You get a valid activation code <a href=\"http://healthcampaign.youpers.com\">here.</a>",
       "invalidTopic": "This code is valid only for campaigns to topic {{ invalidTopic }}",
-      "label": "Payment code"
+      "label": "Activation code"
     }
   },
   "inviteCampaignLeadForm": {
