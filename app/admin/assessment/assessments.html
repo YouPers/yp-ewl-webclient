@@ -1,0 +1,98 @@
+<div class="container">
+
+    <form name="assessmentForm">
+
+        <div class="row">
+
+            <div class="col-sm-12">
+
+
+                <div class="btn-group">
+
+                    <div class="btn-group" ng-repeat="topic in topics">
+                        <button type="button" class="btn btn-default"
+                                ng-model="adminAssessmentController.topic" btn-radio="topic.id">
+                            {{ topic.name }}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row" ng-if="assessment">
+
+            <div class="col-sm-6">
+
+                <h3>{{ assessment.name }}</h3>
+
+                <button class="btn btn-primary pull-right" ng-disabled="!assessmentForm.$dirty"
+                        ng-click="save()">
+                    Save
+                </button>
+
+                <button class="btn btn-flat" ng-click="addQuestion()">
+                    <i class="fa fa-plus"></i>
+                    add question
+                </button>
+
+                <!--<idea-card idea="assessment.idea"></idea-card>-->
+
+
+
+            </div>
+            <div class="col-sm-6">
+
+                <dl class="dl-horizontal">
+                    <dt>impact</dt>
+                    <dd><input ng-model="assessment.impactQuestion"></dd>
+                    <dt>impact left</dt>
+                    <dd><input ng-model="assessment.impactQuestionLeft"></dd>
+                    <dt>impact right</dt>
+                    <dd><input ng-model="assessment.impactQuestionRight"></dd>
+                </dl>
+
+            </div>
+            <div class="col-sm-12">
+
+                <div class="question" ng-repeat="question in questions">
+
+                    <div class="header">
+                        <input ng-model="question.title" placeholder="title">
+                        <select class="form-control" ng-model="question.type" placeholder="type" ng-options="type for type in types"></select>
+                        <input ng-model="question.category" placeholder="category" typeahead="type for type in uniqueValues('category')">
+
+                        <button class="btn btn-flat" ng-click="deleteQuestion(question)"><i class="fa fa-trash-o" ></i></button>
+                        <button class="btn btn-flat" ng-click="move(questions, $index, $index-1);assessmentForm.$setDirty();" ng-disabled="$index == 0"><i class="fa fa-chevron-circle-up" ></i></button>
+                        <button class="btn btn-flat" ng-click="move(questions, $index, $index+1);assessmentForm.$setDirty();" ng-disabled="$index == questions.length-1"><i class="fa fa-chevron-circle-down" ></i></button>
+                    </div>
+
+                    <div class="content">
+                        <div ng-if="question.type !== 'rightSided'">
+                            <input ng-model="question.mintext" placeholder="mintext">
+                            <textarea ng-model="question.mintextexample" placeholder="mintextexample"></textarea>
+                            <textarea ng-model="question.mintextresult" placeholder="mintextresult"></textarea>
+                        </div>
+                        <div>
+                            <input ng-model="question.midtext" placeholder="midtext">
+                            <textarea ng-model="question.midtextexample" placeholder="midtextexample"></textarea>
+                            <!--<textarea ng-model="question.midtextresult" placeholder="midtextresult"></textarea>-->
+                        </div>
+                        <div ng-if="question.type !== 'leftSided'">
+                            <input ng-model="question.maxtext" placeholder="maxtext">
+                            <textarea ng-model="question.maxtextexample" placeholder="maxtextexample"></textarea>
+                            <textarea ng-model="question.maxtextresult" placeholder="maxtextresult"></textarea>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>

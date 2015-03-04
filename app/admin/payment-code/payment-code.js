@@ -8,7 +8,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
 
                 $stateProvider
-                    .state('paymentCodeAdmin', {
+                    .state('admin.payment-code', {
                         url: '/paymentCode',
                         templateUrl: 'admin/payment-code/payment-code.html',
                         controller: 'PaymentCodeAdminController',

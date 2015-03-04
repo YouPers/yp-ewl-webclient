@@ -7,32 +7,38 @@
 
 <div class="row">
 
-    <div class="col-sm-4 center-block text-center">
+    <div class="col-sm-12 center-block text-center">
 
-        <button class="btn btn-large btn-default" type="button" ui-sref="admin-idea.list">
-            <span translate>admin.navigation.activities</span>
-        </button>
+       <div class="btn-group-vertical">
+           <button class="btn btn-large btn-default" type="button" ui-sref="admin.idea-list">
+               <span translate>admin.navigation.activities</span>
+           </button>
 
-        <button class="btn btn-large btn-default" type="button" ui-sref="users.content">
-            <span>User Administration</span>
-        </button>
+           <button class="btn btn-large btn-default" type="button" ui-sref="admin.users" ng-if="isSystemAdmin">
+               <span>User Administration</span>
+           </button>
 
-        <button class="btn btn-large btn-default" type="button" ui-sref="paymentCodeAdmin">
-            <span>Payment Codes</span>
-        </button>
+           <button class="btn btn-large btn-default" type="button" ui-sref="admin.assessments">
+               <span>Assessments</span>
+           </button>
 
-        <button class="btn btn-large btn-default" type="button" ui-sref="admin-campaigns.content">
-            <span>Campaigns</span>
-        </button>
+           <button class="btn btn-large btn-default" type="button" ui-sref="admin.payment-code">
+               <span>Payment Codes</span>
+           </button>
 
-        <button class="btn btn-large btn-default" type="button" ui-sref="messages.content">
-            <span>Messages</span>
-        </button>
+           <button class="btn btn-large btn-default" type="button" ui-sref="admin.campaigns">
+               <span>Campaigns</span>
+           </button>
 
-        <button class="btn btn-large btn-default" type="button" ui-sref="dbdumps.content">
-            <span>Database dump / restore</span>
-        </button>
+           <button class="btn btn-large btn-default" type="button" ui-sref="admin.messages">
+               <span>Messages</span>
+           </button>
 
+           <button class="btn btn-large btn-default" type="button" ui-sref="admin.dbdumps">
+               <span>Database dump / restore</span>
+           </button>
+
+       </div>
         <br/>
         <br/>
         <br/>

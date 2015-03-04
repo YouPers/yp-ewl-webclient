@@ -7,13 +7,9 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('dbdumps', {
-                        templateUrl: "layout/admin-default.html",
-                        access: accessLevels.admin
-                    })
 
-                    .state('dbdumps.content', {
-                        url: "/admin/dbdumps",
+                    .state('admin.dbdumps', {
+                        url: "/dbdumps",
                         access: accessLevels.admin,
                         views: {
                             content: {
