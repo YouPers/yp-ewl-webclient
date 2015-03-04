@@ -19,7 +19,7 @@
                     abstract: true,
 
                     url: "/dcm/campaign/:campaignId",
-                    templateUrl: "layout/single-column.html",
+                    templateUrl: "layout/default.html",
                     controller: 'DcmController as dcmController',
 
                     access: accessLevels.all,
