@@ -7,18 +7,10 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('invite', {
-                        templateUrl: "layout/single-column.html",
-                        access: accessLevels.all
-                    })
-                    .state('invite.content', {
                         url: "/invite/:invitationId?invalidCampaign",
+                        templateUrl: "components/user/invite/invite.html",
+                        controller: 'InviteController as inviteController',
                         access: accessLevels.all,
-                        views: {
-                            content: {
-                                templateUrl: 'components/user/invite/invite.html',
-                                controller: 'InviteController as inviteController'
-                            }
-                        },
                         resolve: {
                             invitation: ['SocialInteractionService', '$stateParams', function (SocialInteractionService, $stateParams) {
                                 return SocialInteractionService.getSocialInteraction($stateParams.invitationId);

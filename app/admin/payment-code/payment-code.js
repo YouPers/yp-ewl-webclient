@@ -10,9 +10,13 @@
                 $stateProvider
                     .state('admin.payment-code', {
                         url: '/paymentCode',
-                        templateUrl: 'admin/payment-code/payment-code.html',
-                        controller: 'PaymentCodeAdminController',
                         access: accessLevels.admin,
+                        views: {
+                            content: {
+                                templateUrl: "admin/payment-code/payment-code.html",
+                                controller: 'PaymentCodeAdminController'
+                            }
+                        },
 
                         resolve: {
                             topics: ['TopicService', function(TopicService) {

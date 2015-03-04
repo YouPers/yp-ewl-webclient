@@ -20,7 +20,7 @@
                         }
                     })
                     .state('moreinfo', {
-                        templateUrl: "layout/single-column.html",
+                        templateUrl: "layout/default.html",
                         access: accessLevels.all,
                         controller: ['$scope','$window', function($scope, $window) {
                             $scope.close = function() {
@@ -81,7 +81,7 @@
                     } else {
                         // user is not authenticated, we redirect him to signUp / signIn
                         $rootScope.nextStateAfterLogin = {toState: 'homedispatcher', toParams: {campaignId: campaign.id, view: ""}};
-                        $state.go('signup.content');
+                        $state.go('signup');
                     }
 
                 };

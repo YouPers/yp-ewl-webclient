@@ -17,7 +17,7 @@
                     abstract: true,
 
                     url: "/admin",
-                    templateUrl: "layout/admin-default.html",
+                    templateUrl: "layout/default.html",
                     controller: 'AdminController as adminController',
 
                     access: accessLevels.all,
