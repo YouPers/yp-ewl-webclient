@@ -36,7 +36,6 @@
             'yp.components.ideaCard',
             'yp.components.ideaEdit',
             'yp.components.avatarUpload',
-            'yp.components.campaignSwitcher',
             'yp.components.campaignCard',
             'yp.components.organizationCard',
             'yp.components.datePicker',
