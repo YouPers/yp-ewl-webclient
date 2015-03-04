@@ -170,7 +170,7 @@
 
                         var answer = $scope.answers[key];
                         if(value && value !== oldValue) {
-                            var oldValue = answer.answerValue;
+                            var oldAnswerValue = answer.answerValue;
                             if(value === 'mid') {
                                 answer.answer = 0;
                                 answer.answerValue = 0;
@@ -179,7 +179,7 @@
                                 answer.answerValue = 50;
 
                                 // putAnswer is invoked in the watcher below if the value changes
-                                if(answer.answerValue === oldValue) {
+                                if(answer.answerValue === oldAnswerValue) {
                                     putAnswer(answer);
                                 }
                             }
