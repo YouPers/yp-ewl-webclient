@@ -1,46 +1,49 @@
-<div class="row">
-    <div class="col-sm-12">
-        <div class="state-header-1" translate>campaign-list.stateHeader1</div>
-        <div class="state-header-2" translate>campaign-list.stateHeader2</div>
-    </div>
-</div>
-<div class="row" ng-if="principal.isAuthorized('campaignlead')">
-    <div class="col-sm-12">
-        <p>Dieser Benutzeraccount wird für die Verwaltung der Kampagne verwendet. Wenn du selber an der
-        Kampagne teilnehmen möchtest, <a ui-sref=""> logge dich aus</a> und klicke auf den Kampagnen-Einladungslink, den du an die Teilnehmer versendet hast.</p>
-        <p>Erstelle dann einen anderen Benutzeraccount für die Teilnahme.</p>
-    </div>
-</div>
-<div class="row" ng-if="!principal.isAuthorized('campaignlead')">
-    <div class="col-sm-4">
-        <div class="row">
-            <div class="col-sm-12">
-                <p>Um YOUPERS Healthcampaigns benutzen zu können benötigst eine Einladung zu einer Kampagne. </p>
-
-                <p>Klicke auf den Link im Einladungsemail, das du von deiner Firma oder Organisation erhalten hast.</p>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="state-header-1" translate>campaign-list.stateHeader1</div>
+            <div class="state-header-2" translate>campaign-list.stateHeader2</div>
         </div>
-        <h3>Die folgende Liste erscheint nur während dem Test für Testuser!!!!</h3>
-
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="campaign in campaigns">
-
-                <a ui-sref="welcome({campaignId: campaign.id, preview: true})">
-                    <h3>
-                        {{ campaign.title }}
-                        <small>
-                            {{ campaign.participants }}
-                            {{ campaign.start | date}} - {{campaign.end | date}}
-                        </small>
-
-
-                    </h3>
-                </a>
-
-            </li>
-
-        </ul>
-
     </div>
-</div>
+    <div class="row" ng-if="principal.isAuthorized('campaignlead')">
+        <div class="col-sm-12">
+            <p>Dieser Benutzeraccount wird für die Verwaltung der Kampagne verwendet. Wenn du selber an der
+                Kampagne teilnehmen möchtest, <a ui-sref=""> logge dich aus</a> und klicke auf den Kampagnen-Einladungslink, den du an die Teilnehmer versendet hast.</p>
+            <p>Erstelle dann einen anderen Benutzeraccount für die Teilnahme.</p>
+        </div>
+    </div>
+    <div class="row" ng-if="!principal.isAuthorized('campaignlead')">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>Um YOUPERS Healthcampaigns benutzen zu können benötigst eine Einladung zu einer Kampagne. </p>
 
+                    <p>Klicke auf den Link im Einladungsemail, das du von deiner Firma oder Organisation erhalten hast.</p>
+                </div>
+            </div>
+            <h3>Die folgende Liste erscheint nur während dem Test für Testuser!!!!</h3>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="campaign in campaigns">
+
+                    <a ui-sref="welcome({campaignId: campaign.id, preview: true})">
+                        <h3>
+                            {{ campaign.title }}
+                            <small>
+                                {{ campaign.participants }}
+                                {{ campaign.start | date}} - {{campaign.end | date}}
+                            </small>
+
+
+                        </h3>
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+
+</div>

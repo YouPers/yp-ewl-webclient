@@ -7,18 +7,10 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('signup', {
-                        templateUrl: "layout/single-column.html",
-                        access: accessLevels.all
-                    })
-                    .state('signup.content', {
                         url: "/signup",
+                        templateUrl: 'components/user/signup/signup.html',
+                        controller: 'SignupController',
                         access: accessLevels.all,
-                        views: {
-                            content: {
-                                templateUrl: 'components/user/signup/signup.html',
-                                controller: 'SignupController'
-                            }
-                        },
                         resolve: {
 
                         }

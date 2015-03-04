@@ -25,7 +25,7 @@
                             function($state, $stateParams, CampaignService, UserService, $rootScope, $window) {
                                 if (!$rootScope.principal.isAuthenticated()) {
                                     $rootScope.nextStateAfterLogin = {toState: 'assignCampaignLead', toParams: $stateParams};
-                                    return $state.go('signup.content');
+                                    return $state.go('signup');
                                 }
 
                                 var campaignId = $stateParams.id;

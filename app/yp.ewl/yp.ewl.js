@@ -37,7 +37,7 @@ angular.module('yp-ewl',
                     controller: ['UserService', '$state', function (UserService, $state) {
                         var user = UserService.principal.getUser();
                         if (!UserService.principal.isAuthenticated()) {
-                            return $state.go('signin.content');
+                            return $state.go('signin');
                         } else if (UserService.principal.isAuthorized(accessLevels.admin)) {
                             return $state.go('admin.home');
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
@@ -165,9 +165,9 @@ angular.module('yp-ewl',
                         event.preventDefault();
 
                         if (!UserService.principal.isAuthenticated()) {
-                            $rootScope.$log.log('preventing state change, because user is not authenticated, redirect to signin.content');
+                            $rootScope.$log.log('preventing state change, because user is not authenticated, redirect to signin');
                             $rootScope.nextStateAfterLogin = {toState: toState, toParams: toParams};
-                            $state.go('signin.content');
+                            $state.go('signin');
                         } else {
                             $rootScope.$log.log('preventing state change, because user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
                             $rootScope.$emit('clientmsg:error', 'user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
@@ -196,7 +196,7 @@ angular.module('yp-ewl',
 
                 if(error.status === 401) { // Unauthorized
 
-                    $state.go('signin.content');
+                    $state.go('signin');
 
                 } else if (error.status === 503) {
                     // the backend is down for maintenance, we stay on the page

@@ -1,70 +1,71 @@
-
-<div class="row">
-    <div class="col-sm-3">
-
-
-        <idea-card class="idea-card-invite" idea="idea"></idea-card>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
 
 
-    </div>
-
-    <div class="col-sm-9">
+            <idea-card class="idea-card-invite" idea="idea"></idea-card>
 
 
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-
-                <br/>
-
-                <h4 ng-if="!inviteController.isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageUnauthenticated</h4>
-                <h4 ng-if="inviteController.isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageAuthenticated</h4>
-
-            </div>
         </div>
 
-        <div>
+        <div class="col-sm-9">
+
 
             <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
+                <div class="col-sm-8 col-sm-offset-2 text-center">
 
-                    <div ng-if="!inviteController.isAuthenticated">
+                    <br/>
 
-                        <sign-in on-sign-in="onSignIn()"></sign-in>
+                    <h4 ng-if="!inviteController.isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageUnauthenticated</h4>
+                    <h4 ng-if="inviteController.isAuthenticated" translate translate-values="{ user: invitingUser.fullname, idea: idea }">invite.messageAuthenticated</h4>
 
-                        <br/>
-
-
-                        <p ng-if="!inviteController.invalidCampaignUser"
-                           translate
-                           translate-values="{ campaign: campaign }"
-                                >invite.noAccount</p>
-
-                        <div class="invalid-campaign" ng-if="inviteController.invalidCampaignUser">
-                            <h2 translate>invite.invalidCampaignHeader</h2>
-                            <p
-                                    translate
-                                    translate-values="{ campaign: campaign, invalidCampaignUser: inviteController.invalidCampaignUser }"
-                                    >invite.invalidCampaign</p>
-                        </div>
-
-                    </div>
-
-                    <div ng-if="inviteController.isAuthenticated">
-                        <br/>
-                        <button class="btn btn-primary center-block" translate ng-click="showActivity()">
-                            invite.continueToActivity
-                        </button>
-                    </div>
                 </div>
             </div>
 
+            <div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+
+                        <div ng-if="!inviteController.isAuthenticated">
+
+                            <sign-in on-sign-in="onSignIn()"></sign-in>
+
+                            <br/>
+
+
+                            <p ng-if="!inviteController.invalidCampaignUser"
+                               translate
+                               translate-values="{ campaign: campaign }"
+                                    >invite.noAccount</p>
+
+                            <div class="invalid-campaign" ng-if="inviteController.invalidCampaignUser">
+                                <h2 translate>invite.invalidCampaignHeader</h2>
+                                <p
+                                        translate
+                                        translate-values="{ campaign: campaign, invalidCampaignUser: inviteController.invalidCampaignUser }"
+                                        >invite.invalidCampaign</p>
+                            </div>
+
+                        </div>
+
+                        <div ng-if="inviteController.isAuthenticated">
+                            <br/>
+                            <button class="btn btn-primary center-block" translate ng-click="showActivity()">
+                                invite.continueToActivity
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
 
 
         </div>
 
-
-
     </div>
-
 </div>
 

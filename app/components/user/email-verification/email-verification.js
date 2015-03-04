@@ -25,7 +25,7 @@
                 }, function (err) {
                     // the only possible good case why the token is not valid would be that a different user is already logged in
                     UserService.logout();
-                    $scope.$state.go('signin.content');
+                    $scope.$state.go('signin');
                 });
 
             }]);
