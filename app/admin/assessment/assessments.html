@@ -68,6 +68,10 @@
                     </div>
 
                     <div class="content">
+                        <div>
+                            <div></div>
+                            <textarea ng-model="question.exptext" placeholder="exptext"></textarea>
+                        </div>
                         <div ng-if="question.type !== 'rightSided'">
                             <input ng-model="question.mintext" placeholder="mintext">
                             <textarea ng-model="question.mintextexample" placeholder="mintextexample"></textarea>
