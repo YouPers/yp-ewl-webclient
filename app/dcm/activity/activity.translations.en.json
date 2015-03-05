@@ -28,6 +28,8 @@
     "duration": "Duration (min) ",
     "save": "Save",
     "back": "Back",
+    "newInvitation": null,
+    "newRecommendation": null,
     "header": {
       "recommendation": "Campaign recommendation"
     },
