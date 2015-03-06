@@ -60,7 +60,7 @@
                     <div class="header">
                         <input ng-model="question.title" placeholder="title">
                         <select class="form-control" ng-model="question.type" placeholder="type" ng-options="type for type in types"></select>
-                        <input ng-model="question.category" placeholder="category" typeahead="type for type in uniqueValues('category')">
+                        <input ng-model="question.category" placeholder="category" typeahead="type for type in uniqueValues('category', $index) | filter:question.category">
 
                         <button class="btn btn-flat" ng-click="deleteQuestion(question)"><i class="fa fa-trash-o" ></i></button>
                         <button class="btn btn-flat" ng-click="move(questions, $index, $index-1);assessmentForm.$setDirty();" ng-disabled="$index == 0"><i class="fa fa-chevron-circle-up" ></i></button>
