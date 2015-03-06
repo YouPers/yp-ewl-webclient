@@ -64,8 +64,10 @@
 
                 $scope.types = 'twoSided leftSided rightSided'.split(' ');
 
-                $scope.uniqueValues = function (field) {
-                    return _.unique(_.map($scope.questions, field));
+                $scope.uniqueValues = function (field, indexToExclude) {
+                    return _.unique(_.map(_.filter($scope.questions, function (question, index) {
+                        return indexToExclude !== index;
+                    }), field));
                 };
 
                 $scope.addQuestion = function () {
