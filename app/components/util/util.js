@@ -51,6 +51,8 @@
                                 });
                             };
                         }
+
+                        return deferred.promise;
                     },
 
                     move: function (array, old_index, new_index) {
