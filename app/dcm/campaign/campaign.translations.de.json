@@ -73,13 +73,41 @@
       "label": "Aktivierungscode"
     }
   },
-  "inviteCampaignLeadForm": {
-    "email": {
-      "placeholder": "Eine oder mehrere Email-Adressen"
-    },
-    "inviteSubmit": "Senden",
-    "invitationSent": "Einladung via Email versandt, der neue Kampagnenleiter muss nun bestätigen"
+
+  "newCampaignLead": {
+    "label": "Neuen Kampagnenleiter erstellen",
+
+    "submit": "Erstellen"
   },
+  "campaignLeadForm": {
+    "header": "Kampagnenleiter",
+    "newCampaignLead": "Neuen Kampagnenleiter erstellen",
+    "firstname": {
+      "label": "Vorname",
+      "placeholder": "Vorname",
+      "error": {
+        "required": "Bitte einen gültigen Vornamen eingeben."
+      }
+    },
+    "lastname": {
+      "label": "Nachname",
+      "placeholder": "Nachname",
+      "error": {
+        "required": "Bitte einen gültigen Nachnamen eingeben."
+      }
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Email",
+      "error": {
+        "required": "Bitte eine Email-Adresse eingeben",
+        "email": "Bitte eine gültige Email-Adresse eingeben",
+        "unique": "Diese Email-Adresse ist schon registriert"
+      }
+    },
+    "submit": "Erstellen"
+  },
+
   "clientmsg": {
     "success": {
       "campaign": {

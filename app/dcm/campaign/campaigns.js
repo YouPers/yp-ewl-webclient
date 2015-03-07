@@ -52,8 +52,10 @@
             }])
 
 
-        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'PaymentCodeService', 'campaign', 'campaigns', 'topics', 'newTopic',
-            function ($scope, CampaignService, UserService, HealthCoachService, PaymentCodeService, campaign, campaigns, topics, newTopic) {
+        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'PaymentCodeService',
+            'organization', 'campaign', 'campaigns', 'topics', 'newTopic',
+            function ($scope, CampaignService, UserService, HealthCoachService, PaymentCodeService,
+                      organization, campaign, campaigns, topics, newTopic) {
 
                 $scope.campaignController = this;
 
@@ -74,11 +76,13 @@
                         throw new Error("no topic found, we should always have a topic to create a new campaign");
                     }
                     $scope.campaign = {
+                        organization: organization,
                         start: start,
                         end: end,
                         topic: newTopic,
                         title: newTopic.name,
-                        avatar: newTopic.picture
+                        avatar: newTopic.picture,
+                        campaignLeads: []
                     };
                 }
 
@@ -97,16 +101,37 @@
                     }
                 });
 
-                $scope.inviteCampaignLead = function (emails, campaign) {
-                    CampaignService.inviteCampaignLead(emails, campaign.id).then(function () {
-                        $scope.invitationSent = true;
+                var campaignLeads = organization.administrators;
+                _.each(campaigns, function (campaign) {
+                    campaignLeads = campaignLeads.concat(campaign.campaignLeads);
+                });
+                $scope.campaignLeads = _.unique(campaignLeads, 'id');
+                $scope.newCampaignLead = {};
+                $scope.submitNewCampaignLead = function () {
+                    $scope.newCampaignLead.password = $scope.newCampaignLead.email;
+                    UserService.submitNewUser($scope.newCampaignLead).then(function (newUser) {
+                        $scope.campaignLeads.push(newUser);
+                        $scope.campaign.campaignLeads.push(newUser);
+                        $scope.newCampaignLead = {};
+                        $scope.campaignForm.$setDirty();
+                        $scope.campaignLeadForm.$setPristine();
                     });
                 };
-
-                $scope.showForm = function () {
-                    $scope.formVisible = true;
-                    $scope.invitationSent = false;
+                $scope.isAssigned = function (campaignLead) {
+                    return _.any($scope.campaign.campaignLeads, function (cl) {
+                        return cl.id === campaignLead.id;
+                    });
                 };
+                $scope.assignCampaignLead = function (campaignLead) {
+                    if($scope.isAssigned(campaignLead)) {
+                        _.remove($scope.campaign.campaignLeads, { id: campaignLead.id });
+                    } else {
+                        $scope.campaign.campaignLeads.push(campaignLead);
+                    }
+                };
+                $scope.$watch('campaignForm.$dirty', function () {
+                    $scope.$parent.$broadcast('initialize-scroll-along');
+                });
 
 
                 $scope.validatePaymentCode = function(code) {
@@ -155,7 +180,6 @@
                     $scope.$emit('clientmsg:error', err);
                     $scope.campaignController.submitting = false;
                     $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
-
                 }
 
                 $scope.saveCampaign = function () {
