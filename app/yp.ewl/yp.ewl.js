@@ -173,6 +173,14 @@ angular.module('yp-ewl',
                             $rootScope.$emit('clientmsg:error', 'user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
                         }
 
+                    } else {
+                        var user = UserService.principal.getUser();
+                        var whiteListedStates = ['signupFinalization', 'emailVerification', 'signup'];
+                        if(UserService.principal.isAuthenticated() && !user.emailValidatedFlag &&
+                            !_.contains(whiteListedStates, toState.name)) {
+                            event.preventDefault();
+                            $state.go('signupFinalization');
+                        }
                     }
                 } else {
                     // if the UserService is not done initializing we cancel the stateChange and schedule it again in 100ms
