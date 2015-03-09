@@ -93,7 +93,7 @@
 
             <div class="campaign-leads">
 
-                <div class="campaign-lead" ng-repeat="campaignLead in campaignLeads">
+                <div class="campaign-lead" ng-repeat="campaignLead in availableCampaignLeads">
                     <img ng-src="{{ campaignLead.avatar }}">
 
                     <a href ng-click="assignCampaignLead(campaignLead); campaignForm.$setDirty();">

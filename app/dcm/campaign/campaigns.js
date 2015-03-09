@@ -101,21 +101,20 @@
                     }
                 });
 
+                // gather campaign leads from all campaigns
                 var campaignLeads = organization.administrators;
                 _.each(campaigns, function (campaign) {
                     campaignLeads = campaignLeads.concat(campaign.campaignLeads);
                 });
-                $scope.campaignLeads = _.unique(campaignLeads, 'id');
+                $scope.availableCampaignLeads = _.unique(campaignLeads, 'id');
                 $scope.newCampaignLead = {};
+
                 $scope.submitNewCampaignLead = function () {
-                    $scope.newCampaignLead.password = $scope.newCampaignLead.email;
-                    UserService.submitNewUser($scope.newCampaignLead).then(function (newUser) {
-                        $scope.campaignLeads.push(newUser);
-                        $scope.campaign.campaignLeads.push(newUser);
-                        $scope.newCampaignLead = {};
-                        $scope.campaignForm.$setDirty();
-                        $scope.campaignLeadForm.$setPristine();
-                    });
+                    $scope.availableCampaignLeads.push($scope.newCampaignLead);
+                    $scope.campaign.campaignLeads.push($scope.newCampaignLead);
+                    $scope.newCampaignLead = {};
+                    $scope.campaignForm.$setDirty();
+                    $scope.campaignLeadForm.$setPristine();
                 };
                 $scope.isAssigned = function (campaignLead) {
                     return _.any($scope.campaign.campaignLeads, function (cl) {
