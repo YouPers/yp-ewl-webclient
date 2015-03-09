@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+
+            <h2 translate>signupFinalization.header</h2>
+            <br/>
+            <br/>
+
+            <p translate translate-values="translateValues">signupFinalization.verificationEmail</p>
+
+            <p translate>signupFinalization.noVerificationEmail</p>
+
+            <ul>
+                <li class="resend-verification-email">
+                    <span translate>signupFinalization.resend1.text</span>
+                    <a ng-click="sendVerificationEmail()" translate>signupFinalization.resend1.link</a>
+                    <span ng-show="verificationSent" class="verification-sent fa fa-check-circle-o" translate>signupFinalization.resend1.verificationSent</span>
+                </li>
+                <li>
+                    <span translate>signupFinalization.invalidEmailAddress.text</span>
+                    <a ng-click="signUp()" translate>signupFinalization.invalidEmailAddress.link</a>
+                </li>
+                <li class="resend-verification-email">
+                    <span translate>signupFinalization.resend2.text</span>
+                    <a ng-click="sendVerificationEmail()" translate>signupFinalization.resend2.link</a>
+                    <span ng-show="verificationSent" class="verification-sent fa fa-check-circle-o" translate>signupFinalization.resend2.verificationSent</span>
+                </li>
+                <li>
+                    <span translate>signupFinalization.contactCustomerSupport</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
