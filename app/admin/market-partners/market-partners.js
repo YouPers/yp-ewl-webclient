@@ -48,7 +48,7 @@
                             return p.id === (partner.id || partner);
                         });
                     });
-                }
+                };
 
                 $scope.uploader = ImageService.getImageUploader('marketPartnerLogo', $scope, function successCb (url) {
                     self.partners[self.currentEdit].logo = url;
