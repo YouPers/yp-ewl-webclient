@@ -395,6 +395,8 @@
                         }).then(function (results) {
                             var res = results[0].usersTotal;
 
+                            $scope.campaignParticipantsCount = res.usersTotal;
+
                             $scope.campaignParticipants = [
                                 {
                                     "key": $translate.instant('dcm-end-of-campaign.usersTotal.title'),
