@@ -21,6 +21,12 @@
                         resolve: {
                             topics: ['TopicService', function(TopicService) {
                                 return TopicService.getTopics();
+                            }],
+                            codes: ['PaymentCodeService', function (PaymentCodeService) {
+                                return PaymentCodeService.getPaymentCodes({populate: 'author campaign marketPartner', populateDeep: 'campaign.organization'});
+                            }],
+                            partners: ['MarketPartnerService', function (MarketPartnerService) {
+                                return MarketPartnerService.getMarketPartners();
                             }]
                         }
                     });
@@ -28,12 +34,17 @@
                 //$translateWtiPartialLoaderProvider.addPart('admin/payment-code/payment-code');
             }])
 
-        .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'topics',
-            function ($rootScope, $scope, PaymentCodeService, topics) {
+        .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'topics', 'codes', 'partners',
+            function ($rootScope, $scope, PaymentCodeService, topics, codes, partners) {
 
+                $scope.codes = codes;
+                $scope.topics = topics;
+                $scope.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
+                $scope.partners = partners;
+                $scope.endorsementTypes = ['sponsored', 'presented'];
 
                 $scope.validate = function(code) {
-                    PaymentCodeService.validatePaymentCode(code).then(function(result) {
+                    PaymentCodeService.validatePaymentCode({code: code}).then(function(result) {
                         $scope.paymentCode = result;
                         $scope.valid = true;
                     }, function(reason) {
@@ -61,17 +72,11 @@
                     return _.find(topics, {id: topic});
                 };
 
-                $scope.topics = topics;
-                $scope.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
 
                 $scope.paymentCode = {
                     productType: $rootScope.enums.productType[0],
                     topic: topics[0].id
                 };
-
-                PaymentCodeService.getPaymentCodes().then(function(codes) {
-                    $scope.codes = codes;
-                });
 
             }]);
 }());

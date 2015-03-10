@@ -6,21 +6,21 @@
         .factory("PaymentCodeService", ['$rootScope', 'Restangular',
             function ($rootScope, Rest) {
 
-                var paymentResource = Rest.one('paymentcodes');
+                var paymentResource = Rest.all('paymentcodes');
 
                 var PaymentCodeService = {
 
                     generatePaymentCode: function(paymentCode) {
-                        return paymentResource.post('generate', paymentCode);
+                        return paymentResource.all('generate').post( paymentCode);
                     },
                     validatePaymentCode: function(options) {
-                        return paymentResource.post('validate', options);
+                        return paymentResource.all('validate').post(options);
                     },
                     redeemPaymentCode: function(code, campaign) {
-                        return paymentResource.post('redeem', { code: code, campaign: campaign });
+                        return paymentResource.all('redeem').post({ code: code, campaign: campaign });
                     },
-                    getPaymentCodes: function() {
-                        return paymentResource.get();
+                    getPaymentCodes: function(options) {
+                        return paymentResource.getList(options);
                     }
                 };
                 return PaymentCodeService;

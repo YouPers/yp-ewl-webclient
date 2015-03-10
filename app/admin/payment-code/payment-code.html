@@ -1,6 +1,11 @@
-<div class="container">
-
-
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>Activation Codes</h2>
+        </div>
+        <div class="col-sm-2" >
+            <a ui-sref="admin.home">&lt; back</a>
+        </div>
+    </div>
     <div class="row">
 
         <div class="col-sm-6">
@@ -25,13 +30,6 @@
 
             <div class="input-group">
                 <span class="input-group-addon">
-                    <span>productType</span>
-                </span>
-                <select required class="form-control" ng-model="paymentCode.productType" ng-options="type for type in productTypes"></select>
-            </div>
-
-            <div class="input-group">
-                <span class="input-group-addon">
                     <span>topic</span>
                 </span>
                 <select required class="form-control" ng-model="paymentCode.topic" ng-options="topic.id as topic.name for topic in topics"></select>
@@ -39,25 +37,95 @@
 
             <div class="input-group">
                 <span class="input-group-addon">
-                    <span>users</span>
+                    <span>Market Partner</span>
                 </span>
-                <input ng-model="paymentCode.users" type="text" class="form-control">
+                <select class="form-control" ng-model="paymentCode.marketPartner" ng-options="partner.id as partner.name for partner in partners">
+                    <option value="">No partner</option>
+                </select>
             </div>
 
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>Endorsement Type</span>
+                </span>
+                <select class="form-control" ng-model="paymentCode.endorsementType" ng-options="type as type for type in endorsementTypes">
+                    <option value="">No endorsement</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>Number of Users</span>
+                </span>
+                <input required ng-model="paymentCode.users" type="text" class="form-control">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span>Order Number</span>
+                </span>
+                <input required ng-model="paymentCode.orderNumber" type="text" class="form-control">
+            </div>
 
             <br/>
             <br/>
-
-
-            <ul class="list-group">
-                <li ng-repeat="paymentCode in codes" class="list-group-item">
-                    <span select-on-click>{{ paymentCode.code }}</span>
-                    <span class="badge">{{ topic(paymentCode.topic).name }}</span>
-                    <span class="badge">{{ paymentCode.productType }}</span>
-                    <span class="badge" ng-show="paymentCode.users">{{ paymentCode.users }} users</span>
-                </li>
-            </ul>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-sm-2">
+            Code
+        </div>
+        <div class="col-sm-1">
+            Topic
+        </div>
+        <div class="col-sm-1">
+            OrderNumber
+        </div>
+        <div class="col-sm-1">
+            MarketPartner
+        </div>
+        <div class="col-sm-1">
+            Type
+        </div>
+        <div class="col-sm-1">
+            Status
+        </div>
+        <div class="col-sm-1">
+            used by
+        </div>
+        <div class="col-sm-3">
+            when/who
+        </div>
+        <div class="col-sm-1">
 
         </div>
     </div>
-</div>
+    <div class="row" ng-repeat="paymentCode in codes">
+        <div class="col-sm-2">
+            {{ paymentCode.code }}
+        </div>
+        <div class="col-sm-1">
+            {{ topic(paymentCode.topic).name }}
+        </div>
+        <div class="col-sm-1">
+            {{ paymentCode.orderNumber }}
+        </div>
+        <div class="col-sm-1">
+            {{ paymentCode.marketPartner.name }}
+        </div>
+        <div class="col-sm-1 badge">
+            {{paymentCode.endorsementType || 'none'}}
+        </div>
+        <div class="col-sm-1">
+            {{ paymentCode.campaign ? 'used' : 'open' }}
+        </div>
+        <div class="col-sm-1">
+            <a ui-sref="dcm.home({ campaignId: paymentCode.campaign.id})">{{ paymentCode.campaign.organization.name}}</a>
+        </div>
+        <div class="col-sm-2">
+            {{ paymentCode.created | fromNow }} <br>by: {{paymentCode.author.fullname}}
+        </div>
+        <div class="col-sm-2">
+            <i class="fa fa-edit" ng-click="edit(paymentCode)"></i><i class="fa fa-trash-o" ng-click="delete(paymentCode)"></i>
+        </div>
+    </div>
