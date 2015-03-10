@@ -21,6 +21,7 @@
             'yp.components.stats',
             'yp.components.topic',
             'yp.components.paymentCode',
+            'yp.components.marketPartner',
 
             // directives
             'yp.components.title',
