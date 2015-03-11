@@ -7,44 +7,34 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
 
-                    .state('assignCampaignLead', {
-                        url: '/campaigns/{id}/becomeCampaignLead?accessToken',
-                        access: accessLevels.all,
-                        onEnter:['$state','$stateParams','CampaignService', 'UserService', '$rootScope', '$window',
-                            function($state, $stateParams, CampaignService, UserService, $rootScope, $window) {
-                                if (!$rootScope.principal.isAuthenticated()) {
-                                    $rootScope.nextStateAfterLogin = {toState: 'assignCampaignLead', toParams: $stateParams};
-                                    return $state.go('signup');
-                                }
-
-                                var campaignId = $stateParams.id;
-                                var token = $stateParams.accessToken;
-                                CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
-                                    $rootScope.$emit('clientmsg:success', 'campaign.lead');
-                                    $state.go('dcm.home');
-                                }, function(err) {
-
-                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {
-                                        UserService.logout();
-                                        $window.location.reload();
-                                    } else {
-                                        $state.go('dcm.home');
-                                    }
-                                });
-                            }]
-
-                    })
-
                     .state('campaignLeadResetPassword', {
-                        url: '/campaigns/{id}/campaignLeadResetPassword?accessToken',
+                        url: '/campaigns/{id}/campaignLeadResetPassword?invitingUserId&invitedUserId&username&accessToken',
                         access: accessLevels.all,
                         templateUrl: 'dcm/campaign/campaign-lead-reset-password.html',
                         controller: 'CampaignLeadResetPasswordController as campaignLeadResetPasswordController',
                         resolve: {
                             campaign: ['CampaignService', '$stateParams', function (CampaignService, $stateParams) {
                                 return CampaignService.getCampaign($stateParams.id);
+                            }],
+                            invitingUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
+                                return UserService.getUser($stateParams.invitingUserId);
+                            }],
+                            invitedUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
+                                return UserService.getUser($stateParams.invitedUserId);
                             }]
-                        }
+                        },
+                        onEnter: ['$state', 'UserService', 'invitedUser', function ($state, UserService, invitedUser) {
+
+                            if(UserService.principal.isAuthenticated()) { // already logged in
+                                if(UserService.principal.getUser().id === invitedUser.id) { // correct user
+                                    $state.go('dcm.home');
+                                } else { // wrong user
+                                    UserService.logout().then(function () {
+                                        $window.location.reload();
+                                    });
+                                }
+                            }
+                        }]
                     })
 
                     .state('dcm.campaigns', {
@@ -252,8 +242,6 @@
                             }, onError);
                     }
                 };
-
-
             }
         ])
 
@@ -289,11 +277,26 @@
             }
         ])
 
-        .controller('CampaignLeadResetPasswordController', ['$scope', 'campaign',
-            function ($scope, campaign) {
+        .controller('CampaignLeadResetPasswordController', ['$scope', '$state', '$stateParams', 'UserService', 'campaign', 'invitingUser', 'invitedUser',
+            function ($scope, $state, $stateParams, UserService, campaign, invitingUser, invitedUser) {
 
                 $scope.campaign = campaign;
+                $scope.translateValues = {
+                    invitingUser: invitingUser.fullname,
+                    invitedUser: invitedUser.fullname,
+                    campaign: campaign
+                };
 
+                $scope.passwordReset = function () {
+                    UserService.passwordReset($scope.$stateParams.accessToken, $scope.passwordResetObj.password).then(function () {
+                        UserService.login({
+                            username: $stateParams.username,
+                            password: $scope.passwordResetObj.password
+                        }).then(function () {
+                            $state.go('dcm.home');
+                        });
+                    });
+                };
             }
         ]);
 

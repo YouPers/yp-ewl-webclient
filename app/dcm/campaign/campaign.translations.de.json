@@ -74,13 +74,9 @@
     }
   },
 
-  "newCampaignLead": {
-    "label": "Neuen Kampagnenleiter erstellen",
-
-    "submit": "Erstellen"
-  },
   "campaignLeadForm": {
     "header": "Kampagnenleiter",
+    "newCampaignLeads": "Neue Kampagnenleiter",
     "newCampaignLead": "Neuen Kampagnenleiter erstellen",
     "firstname": {
       "label": "Vorname",
@@ -106,6 +102,13 @@
       }
     },
     "submit": "Erstellen"
+  },
+
+  "campaignLeadResetPassword": {
+    "header": "Hallo {{invitedUser}}",
+    "message": "<strong>{{invitingUser}}</strong> hat dich eingeladen, Kampagnenleiter der {{ campaign.topic.name }} HealthCampaign zu werden.",
+    "passwordReset": "Bitte wähle ein Passwort, um fortzufahren.",
+    "save": "Weiter"
   },
 
   "clientmsg": {

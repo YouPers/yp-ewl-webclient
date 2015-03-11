@@ -105,22 +105,25 @@
 
             </div>
 
+            <div ng-if="campaign.newCampaignLeads.length > 0">
+                <h3 translate>campaignLeadForm.newCampaignLeads</h3>
+                <div class="new-campaign-leads" >
+
+
+                    <div class="campaign-lead" ng-repeat="campaignLead in campaign.newCampaignLeads">
+                        <span>{{ campaignLead.fullname }}</span>
+                        <span>({{ campaignLead.email }})</span>
+
+                        <a href ng-click="campaign.newCampaignLeads.splice($index, 1)">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
 
             <h3 translate>campaignLeadForm.newCampaignLead</h3>
 
-
-            <div class="new-campaign-leads">
-
-                <div class="campaign-lead" ng-repeat="campaignLead in campaign.newCampaignLeads">
-                    <span>{{ campaignLead.fullname }}</span>
-                    <span>({{ campaignLead.email }})</span>
-
-                    <a href ng-click="campaign.newCampaignLeads.splice($index, 1)">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
-                </div>
-
-            </div>
 
             <div class="new-campaign-lead">
                 <yp-input name="firstname" required></yp-input>
@@ -141,7 +144,7 @@
 
     <aside>
 
-        <div scroll-along>
+        <div>
 
             <div class="header-row">
                 <div class="back-link" ui-sref="^.home">
@@ -159,8 +162,6 @@
                     <span translate>campaignForm.cancel</span>
                 </button>
             </div>
-
-
 
             <health-coach event="'stateEnter'"></health-coach>
         </div>
