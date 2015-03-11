@@ -76,6 +76,10 @@
 
   "campaignLeadForm": {
     "header": "Kampagnenleiter",
+    "defaultCampaignLead": {
+      "header": "Erster Kampagnenleiter",
+      "text": "Die Einladungen und Empfehungen der Kampagne werden im Namen dieses Kampagnenleiters erstellt."
+    },
     "newCampaignLeads": "Neue Kampagnenleiter",
     "newCampaignLead": "Neuen Kampagnenleiter erstellen",
     "firstname": {

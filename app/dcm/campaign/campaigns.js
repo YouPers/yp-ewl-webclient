@@ -139,6 +139,9 @@
                     campaignLeads = campaignLeads.concat(campaign.campaignLeads);
                 });
                 $scope.availableCampaignLeads = _.unique(campaignLeads, 'id');
+                $scope.allCampaignLeads = function () {
+                    return $scope.campaign.campaignLeads.concat($scope.campaign.newCampaignLeads);
+                };
                 $scope.campaignController.newCampaignLead = {};
 
                 $scope.submitNewCampaignLead = function () {
@@ -230,6 +233,10 @@
 
                         }, onError);
                     } else {
+                        var options = {};
+                        if($scope.defaultCampaignLead) {
+                            options.defaultCampaignLead = $scope.defaultCampaignLead.username;
+                        }
                         CampaignService.postCampaign($scope.campaign)
                             .then(function (campaign) {
 

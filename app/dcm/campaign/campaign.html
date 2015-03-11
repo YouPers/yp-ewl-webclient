@@ -122,6 +122,22 @@
                 </div>
             </div>
 
+
+            <div class="default-campaign-lead" ng-if="!campaign.id && campaign.campaignLeads.length + campaign.newCampaignLeads.length > 1">
+                <h3 translate>campaignLeadForm.defaultCampaignLead.header</h3>
+                <div class="form-group" ng-init="defaultCampaignLead = allCampaignLeads()[0]">
+                    <label></label>
+                    <select class="form-control" ng-model="defaultCampaignLead" ng-options="campaignLead.fullname for campaignLead in allCampaignLeads()"></select>
+                    <br/>
+
+                </div>
+                <span translate>campaignLeadForm.defaultCampaignLead.text</span>
+                <br/>
+                <br/>
+
+            </div>
+
+
             <h3 translate>campaignLeadForm.newCampaignLead</h3>
 
 
