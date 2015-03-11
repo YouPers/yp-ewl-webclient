@@ -16,11 +16,9 @@
         <div class="col-sm-3"><h3>{{ partner.name }}</h3></div>
         <div class="col-sm-3">{{ partner.byline }}</div>
         <div class="col-sm-4"><img ng-src="{{ partner.logo }}" ng-if="partner.logo"><span ng-if="!partner.logo">No logo uploaded</span></div>
-        <div class="col-sm-1">
-            <button type="button" class="btn btn-primary btn-sm" ng-click="marketController.deletePartner(partner)">delete</button>
-        </div>
-        <div class="col-sm-1">
-            <button type="button" class="btn btn-primary btn-sm" ng-click="marketController.currentEdit=$index">edit</button>
+        <div class="col-sm-2">
+            <button type="button" class="fa fa-trash-o" ng-confirm-click="are ye sure to delete this partner" confirmed-click="marketController.deletePartner(partner)"></button>
+            <button type="button" class="fa fa-edit" ng-click="marketController.currentEdit=$index"></button>
         </div>
         <div class="col-sm-2">created: {{partner.created | fromNow}}</div>
         <div class="col-sm-2">updated: {{partner.updated | fromNow}}</div>
@@ -31,17 +29,19 @@
                                          placeholder="partner name"></div>
             <div class="col-sm-3"><input type="text" class="form-control" ng-model="partner.byline"
                                          placeholder="partner byline"></div>
-            <div class="col-sm-4"><img ng-src="{{ partner.logo }}" ng-if="partner.logo"> <div class="col-sm-5">
+            <div class="col-sm-4"><img ng-src="{{ partner.logo }}" ng-if="partner.logo">
                 <button type="button" translate onclick="document.getElementById('uploadInput').click()">upload logo</button>
                 <input id="uploadInput" type="file" nv-file-select uploader="uploader" ng-if="uploader" style="display:none"/>
-                <input name="picture" id="picture" required type="hidden" ng-model="idea.picture">
-            </div>
+                <input name="picture" id="picture" required type="hidden" ng-model="marketController.picture">
+                <div class="progress" ng-show="uploader.isUploading">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                </div>
             </div>
             <div class="col-sm-1">
                 <button type="submit" class="btn btn-sm btn-primary">submit</button>
             </div>
             <div class="col-sm-1">
-                <button type="button" class="btn btn-sm btn-default" ng-click="partner.inEditMode=false">cancel</button>
+                <button type="button" class="btn btn-sm btn-default" ng-click="marketController.currentEdit=undefined">cancel</button>
             </div>
         </form>
     </div>

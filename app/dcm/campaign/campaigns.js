@@ -172,6 +172,7 @@
 
                         }, onError);
                     } else {
+                        $scope.campaign.paymentCode =  $scope.paymentCode;
                         CampaignService.postCampaign($scope.campaign)
                             .then(function (campaign) {
 
