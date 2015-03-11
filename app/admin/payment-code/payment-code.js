@@ -23,10 +23,18 @@
                                 return TopicService.getTopics();
                             }],
                             codes: ['PaymentCodeService', function (PaymentCodeService) {
-                                return PaymentCodeService.getPaymentCodes({populate: 'author campaign marketPartner', populateDeep: 'campaign.organization'});
+                                return PaymentCodeService.getPaymentCodes({populate: 'author campaign marketPartner', populatedeep: 'campaign.organization'});
                             }],
                             partners: ['MarketPartnerService', function (MarketPartnerService) {
                                 return MarketPartnerService.getMarketPartners();
+                            }],
+                            usersPerCampaign: ['StatsService', function (StatsService) {
+                                return StatsService.loadStats(null, {
+                                    type: 'usersPerCampaign',
+                                    scopeType: 'all'
+                                }).then(function(statsResults) {
+                                    return _.indexBy(statsResults[0].usersPerCampaign,'campaign');
+                                });
                             }]
                         }
                     });
@@ -34,14 +42,15 @@
                 //$translateWtiPartialLoaderProvider.addPart('admin/payment-code/payment-code');
             }])
 
-        .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'topics', 'codes', 'partners',
-            function ($rootScope, $scope, PaymentCodeService, topics, codes, partners) {
+        .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'topics', 'codes', 'partners', 'usersPerCampaign',
+            function ($rootScope, $scope, PaymentCodeService, topics, codes, partners, usersPerCampaign) {
 
                 $scope.codes = codes;
                 $scope.topics = topics;
                 $scope.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
                 $scope.partners = partners;
                 $scope.endorsementTypes = ['sponsored', 'presented'];
+                $scope.usersPerCampaign = usersPerCampaign;
 
                 $scope.validate = function(code) {
                     PaymentCodeService.validatePaymentCode({code: code}).then(function(result) {
@@ -66,6 +75,15 @@
                     }, function (err) {
                         $scope.$emit('clientmsg:error', err);
                     });
+                };
+
+                $scope.delete = function(paymentCodeId) {
+                    PaymentCodeService.deletePaymentCode(paymentCodeId).then(function () {
+                        _.remove($scope.codes, function(code) {
+                            return code.id === paymentCodeId;
+                        });
+                    });
+
                 };
 
                 $scope.topic = function (topic) {

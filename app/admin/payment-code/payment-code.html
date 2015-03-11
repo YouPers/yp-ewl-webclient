@@ -71,7 +71,7 @@
             <br/>
             </div>
         </div>
-    <div class="row">
+    <div class="row header">
         <div class="col-sm-2">
             Code
         </div>
@@ -88,19 +88,21 @@
             Type
         </div>
         <div class="col-sm-1">
+            Users <br>paid/current
+        </div>
+        <div class="col-sm-1">
             Status
         </div>
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             used by
         </div>
-        <div class="col-sm-3">
-            when/who
-        </div>
-        <div class="col-sm-1">
+        <div class="col-sm-2">
+            created
+
 
         </div>
     </div>
-    <div class="row" ng-repeat="paymentCode in codes">
+    <div class="row code-row" ng-repeat="paymentCode in codes" ng-class="{'code-used': paymentCode.campaign, 'code-open': !paymentCode.campaign}">
         <div class="col-sm-2" select-on-click>
             {{ paymentCode.code }}
         </div>
@@ -111,21 +113,25 @@
             {{ paymentCode.orderNumber }}
         </div>
         <div class="col-sm-1">
-            {{ paymentCode.marketPartner.name }}
+            <a ui-sref="admin.market-partners">{{ paymentCode.marketPartner.name }}</a>
         </div>
         <div class="col-sm-1 badge">
             {{paymentCode.endorsementType || 'none'}}
         </div>
         <div class="col-sm-1">
-            {{ paymentCode.campaign ? 'used' : 'open' }}
+            {{paymentCode.users}} / {{usersPerCampaign[paymentCode.campaign.id].usersTotal}}
+
         </div>
         <div class="col-sm-1">
-            <a ui-sref="dcm.home({ campaignId: paymentCode.campaign.id})">{{ paymentCode.campaign.organization.name}}</a>
+            {{ paymentCode.campaign ? 'used' : 'open' }}
+        </div>
+        <div class="col-sm-2">
+            <a ui-sref="dcm.home({ campaignId: paymentCode.campaign.id})">{{ paymentCode.campaign.organization.name}}</a><br>
+            <span ng-if="paymentCode.campaign">start: {{paymentCode.campaign.start | date}}</span> <br>
+            <span ng-if="paymentCode.campaign">end: {{paymentCode.campaign.end | date}}</span>
         </div>
         <div class="col-sm-2">
             {{ paymentCode.created | fromNow }} <br>by: {{paymentCode.author.fullname}}
-        </div>
-        <div class="col-sm-2">
-            <i class="fa fa-edit" ng-click="edit(paymentCode)"></i><i class="fa fa-trash-o" ng-click="delete(paymentCode)"></i>
+            <i class="fa fa-edit" ng-click="edit(paymentCode)"></i><i class="fa fa-trash-o" ng-click="delete(paymentCode.id)" ng-if="!paymentCode.campaign"></i>
         </div>
     </div>

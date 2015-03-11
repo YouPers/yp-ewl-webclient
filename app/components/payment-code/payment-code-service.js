@@ -21,6 +21,9 @@
                     },
                     getPaymentCodes: function(options) {
                         return paymentResource.getList(options);
+                    },
+                    deletePaymentCode: function(id) {
+                        return paymentResource.one(id).remove();
                     }
                 };
                 return PaymentCodeService;
