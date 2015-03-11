@@ -51,8 +51,6 @@
                                 });
                             };
                         }
-
-                        return deferred.promise;
                     },
 
                     /**

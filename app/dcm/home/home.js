@@ -51,9 +51,7 @@
 
 
                             jsInclude: ["util", function (util) {
-                                return util.loadJSInclude('lib/d3/d3.min.js').then(function () {
-                                    util.loadJSInclude('lib/nvd3/nv.d3.min.js');
-                                });
+                                return util.loadJSIncludes(['lib/d3/d3.min.js', 'lib/nvd3/nv.d3.min.js']);
                             }],
 
                             messages: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
