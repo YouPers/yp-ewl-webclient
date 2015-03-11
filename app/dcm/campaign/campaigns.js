@@ -6,6 +6,47 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
+
+                    .state('assignCampaignLead', {
+                        url: '/campaigns/{id}/becomeCampaignLead?accessToken',
+                        access: accessLevels.all,
+                        onEnter:['$state','$stateParams','CampaignService', 'UserService', '$rootScope', '$window',
+                            function($state, $stateParams, CampaignService, UserService, $rootScope, $window) {
+                                if (!$rootScope.principal.isAuthenticated()) {
+                                    $rootScope.nextStateAfterLogin = {toState: 'assignCampaignLead', toParams: $stateParams};
+                                    return $state.go('signup');
+                                }
+
+                                var campaignId = $stateParams.id;
+                                var token = $stateParams.accessToken;
+                                CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
+                                    $rootScope.$emit('clientmsg:success', 'campaign.lead');
+                                    $state.go('dcm.home');
+                                }, function(err) {
+
+                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {
+                                        UserService.logout();
+                                        $window.location.reload();
+                                    } else {
+                                        $state.go('dcm.home');
+                                    }
+                                });
+                            }]
+
+                    })
+
+                    .state('campaignLeadResetPassword', {
+                        url: '/campaigns/{id}/campaignLeadResetPassword?accessToken',
+                        access: accessLevels.all,
+                        templateUrl: 'dcm/campaign/campaign-lead-reset-password.html',
+                        controller: 'CampaignLeadResetPasswordController as campaignLeadResetPasswordController',
+                        resolve: {
+                            campaign: ['CampaignService', '$stateParams', function (CampaignService, $stateParams) {
+                                return CampaignService.getCampaign($stateParams.id);
+                            }]
+                        }
+                    })
+
                     .state('dcm.campaigns', {
                         url: "/campaigns",
                         access: accessLevels.campaignlead,
@@ -82,7 +123,8 @@
                         topic: newTopic,
                         title: newTopic.name,
                         avatar: newTopic.picture,
-                        campaignLeads: []
+                        campaignLeads: [],
+                        newCampaignLeads: []
                     };
                 }
 
@@ -107,12 +149,15 @@
                     campaignLeads = campaignLeads.concat(campaign.campaignLeads);
                 });
                 $scope.availableCampaignLeads = _.unique(campaignLeads, 'id');
-                $scope.newCampaignLead = {};
+                $scope.campaignController.newCampaignLead = {};
 
                 $scope.submitNewCampaignLead = function () {
-                    $scope.availableCampaignLeads.push($scope.newCampaignLead);
-                    $scope.campaign.campaignLeads.push($scope.newCampaignLead);
-                    $scope.newCampaignLead = {};
+                    $scope.newCampaignLead.fullname = $scope.newCampaignLead.firstname + ' ' + $scope.newCampaignLead.lastname;
+                    $scope.newCampaignLead.username = $scope.newCampaignLead.email;
+                    $scope.campaign.newCampaignLeads.push(_.clone($scope.newCampaignLead));
+                    _.each($scope.newCampaignLead, function (value, key) {
+                        delete $scope.newCampaignLead[key];
+                    });
                     $scope.campaignForm.$setDirty();
                     $scope.campaignLeadForm.$setPristine();
                 };
@@ -240,6 +285,14 @@
                         });
                     }
                 });
+
+            }
+        ])
+
+        .controller('CampaignLeadResetPasswordController', ['$scope', 'campaign',
+            function ($scope, campaign) {
+
+                $scope.campaign = campaign;
 
             }
         ]);
