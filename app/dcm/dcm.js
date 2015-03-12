@@ -39,7 +39,7 @@
                         }],
                         campaigns: ['CampaignService', 'organization', function (CampaignService) {
                             return CampaignService
-                                .getCampaigns({ populate: 'topic campaignLeads organization' })
+                                .getCampaigns({ populate: 'topic campaignLeads organization marketPartner' })
                                 .then(function (campaigns) {
                                     return campaigns;
                                 });

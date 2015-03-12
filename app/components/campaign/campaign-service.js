@@ -22,7 +22,7 @@
                         return Rest.restangularizeElement(null, campaign, "campaigns").put();
                     },
                     getCampaign: function(campaignId) {
-                        return campaigns.one(campaignId).get({populate: ['organization', 'campaignLeads', 'topic']});
+                        return campaigns.one(campaignId).get({populate: ['organization', 'campaignLeads', 'topic', 'marketPartner']});
                     },
                     getCampaigns: function(options) {
                         return campaigns.getList(options);
