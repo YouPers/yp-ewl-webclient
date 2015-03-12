@@ -52,10 +52,13 @@
             }])
 
 
-        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService', 'PaymentCodeService', 'campaign', 'campaigns', 'topics', 'newTopic',
-            function ($scope, CampaignService, UserService, HealthCoachService, PaymentCodeService, campaign, campaigns, topics, newTopic) {
+        .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService',
+            'PaymentCodeService', 'campaign', 'campaigns', 'topics', 'newTopic', 'yp.config',
+            function ($scope, CampaignService, UserService, HealthCoachService,
+                      PaymentCodeService, campaign, campaigns, topics, newTopic, config) {
 
                 $scope.campaignController = this;
+                $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
@@ -110,12 +113,13 @@
 
 
                 $scope.validatePaymentCode = function(code) {
+                    var validationFailedResult = config.paymentCodeChecking === 'disabled' ? true : false;
                     if(!code) {
                         return;
                     }
 
                     if (code.length < 14 || code.length > 14) {
-                        $scope.validPaymentCode = false;
+                        $scope.validPaymentCode = validationFailedResult;
                         $scope.paymentCode = {status: 404};
                         return;
                     }
@@ -129,7 +133,7 @@
 
                         $scope.invalidTopic = _.find(topics, { id: reason.data.data.expected });
                         $scope.paymentCode = reason;
-                        $scope.validPaymentCode = false;
+                        $scope.validPaymentCode = validationFailedResult;
                     });
                 };
 

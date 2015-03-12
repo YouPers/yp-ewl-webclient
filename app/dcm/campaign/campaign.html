@@ -75,7 +75,8 @@
 
                     </div>
 
-                    <div class="validation-result" ng-if="validPaymentCode === false">
+                    <div class="validation-result">
+                        <span ng-if="paymentCodeCheckingDisabled">!! PaymentCode Checking-disabled on this instance !!</span>
 
                         <span ng-if="paymentCode.status == 404" translate>campaignForm.paymentCode.invalidCode</span>
 
@@ -157,8 +158,8 @@
                 <span translate>activity.link.back</span>
             </div>
         </div>
-        <div class="button-row" ng-if="(campaign.id && campaignForm.$dirty) || (!campaign.id && validPaymentCode)">
-            <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true" class="btn btn-primary" ng-disabled="campaignForm.$invalid" busy>
+        <div class="button-row">
+            <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true" class="btn btn-primary" ng-disabled="campaignForm.$invalid || !campaignForm.$dirty || (!campaign.id && !validPaymentCode)" busy>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                 <span translate>campaignForm.save</span>
 
@@ -167,9 +168,6 @@
                     <span translate>campaignForm.cancel</span>
                 </button>
         </div>
-
-
-
         <health-coach event="'stateEnter'"></health-coach>
     </aside>
 
