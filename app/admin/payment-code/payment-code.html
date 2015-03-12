@@ -1,23 +1,26 @@
-    <div class="row">
-        <div class="col-sm-10">
-            <h2>Activation Codes</h2>
-        </div>
-        <div class="col-sm-2" >
-            <a ui-sref="admin.home">&lt; back</a>
-        </div>
+<div class="row">
+    <div class="col-sm-10">
+        <h2>Activation Codes</h2>
     </div>
-    <div class="row">
+    <div class="col-sm-2">
+        <a ui-sref="admin.home">&lt; back</a>
+    </div>
+</div>
+<div class="row">
 
-        <div class="col-sm-6">
+    <div class="col-sm-6">
 
-            <br/>
-            <br/>
+        <br/>
+        <br/>
 
-            <div class="input-group">
+        <form ng-submit="ctrl.generate(ctrl.paymentCode)" name="newCodeForm">
+
+
+        <div class="input-group">
 
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="generate(paymentCode)">generate</button>
-                    <button class="btn btn-default" type="button" ng-click="validate(code)">validate</button>
+                    <button class="btn btn-primary" type="submit">generate</button>
+                    <button class="btn btn-default" type="button" ng-click="ctrl.validate(ctrl.code)">validate</button>
                 </span>
 
                 <span class="input-group-addon">
@@ -25,113 +28,168 @@
                     <span ng-show="valid" class="glyphicon glyphicon-ok"></span>
                     <span ng-show="!valid" class="glyphicon glyphicon-remove"></span>
                 </span>
-                <input ng-model="code" type="text" class="form-control" ng-change="validate(code)">
-            </div>
+            <input ng-model="ctrl.code" type="text" class="form-control" ng-change="ctrl.validate(code)">
+        </div>
 
-            <div class="input-group">
+        <div class="input-group">
                 <span class="input-group-addon">
                     <span>topic</span>
                 </span>
-                <select required class="form-control" ng-model="paymentCode.topic" ng-options="topic.id as topic.name for topic in topics"></select>
-            </div>
+            <select required class="form-control" ng-model="ctrl.paymentCode.topic"
+                    ng-options="topic.id as topic.name for topic in ctrl.topics"></select>
+        </div>
 
-            <div class="input-group">
+        <div class="input-group">
                 <span class="input-group-addon">
-                    <span>Market Partner</span>
+                    <span><a ui-sref="admin.market-partners">Market Partner</a></span>
                 </span>
-                <select class="form-control" ng-model="paymentCode.marketPartner" ng-options="partner.id as partner.name for partner in partners">
-                    <option value="">No partner</option>
-                </select>
-            </div>
+            <select class="form-control" ng-model="paymentCode.marketPartner"
+                    ng-options="partner.id as partner.name for partner in ctrl.partners">
+                <option value="">No partner</option>
+            </select>
+        </div>
 
-            <div class="input-group">
+        <div class="input-group">
                 <span class="input-group-addon">
                     <span>Endorsement Type</span>
                 </span>
-                <select class="form-control" ng-model="paymentCode.endorsementType" ng-options="type as type for type in endorsementTypes">
-                    <option value="">No endorsement</option>
-                </select>
-            </div>
+            <select class="form-control" ng-model="paymentCode.endorsementType"
+                    ng-options="type as type for type in ctrl.endorsementTypes">
+                <option value="">No endorsement</option>
+            </select>
+        </div>
 
-            <div class="input-group">
+        <div class="input-group">
                 <span class="input-group-addon">
                     <span>Number of Users</span>
                 </span>
-                <input required ng-model="paymentCode.users" type="text" class="form-control">
-            </div>
+            <input required ng-model="ctrl.paymentCode.users" type="number" class="form-control">
+        </div>
 
-            <div class="input-group">
+        <div class="input-group">
                 <span class="input-group-addon">
                     <span>Order Number</span>
                 </span>
-                <input required ng-model="paymentCode.orderNumber" type="text" class="form-control">
-            </div>
-
-            <br/>
-            <br/>
-            </div>
+            <input required ng-model="ctrl.paymentCode.orderNumber" type="text" class="form-control">
         </div>
-    <div class="row header">
-        <div class="col-sm-2">
-            Code
-        </div>
-        <div class="col-sm-1">
-            Topic
-        </div>
-        <div class="col-sm-1">
-            OrderNumber
-        </div>
-        <div class="col-sm-1">
-            MarketPartner
-        </div>
-        <div class="col-sm-1">
-            Type
-        </div>
-        <div class="col-sm-1">
-            Users <br>paid/current
-        </div>
-        <div class="col-sm-1">
-            Status
-        </div>
-        <div class="col-sm-2">
-            used by
-        </div>
-        <div class="col-sm-2">
-            created
-
-
-        </div>
+        </form>
+        <br/>
+        <br/>
     </div>
-    <div class="row code-row" ng-repeat="paymentCode in codes" ng-class="{'code-used': paymentCode.campaign, 'code-open': !paymentCode.campaign}">
+</div>
+<div class="row header">
+    <div class="col-sm-2">
+        Code
+    </div>
+    <div class="col-sm-1">
+        Topic
+    </div>
+    <div class="col-sm-1">
+        OrderNumber
+    </div>
+    <div class="col-sm-1">
+        MarketPartner
+    </div>
+    <div class="col-sm-1">
+        Type
+    </div>
+    <div class="col-sm-1">
+        Users <br>paid/current
+    </div>
+    <div class="col-sm-1">
+        Status
+    </div>
+    <div class="col-sm-2">
+        used by
+    </div>
+    <div class="col-sm-2">
+        created
+    </div>
+</div>
+<div class="row code-row" ng-repeat="paymentCode in ctrl.codes"
+     ng-class="{'code-used': paymentCode.campaign, 'code-open': !paymentCode.campaign}">
+
+    <div ng-if="$index!== ctrl.currentEdit">
         <div class="col-sm-2" select-on-click>
             {{ paymentCode.code }}
         </div>
         <div class="col-sm-1">
-            {{ topic(paymentCode.topic).name }}
+            {{ ctrl.topic(paymentCode.topic).name }}
         </div>
         <div class="col-sm-1">
             {{ paymentCode.orderNumber }}
         </div>
         <div class="col-sm-1">
-            <a ui-sref="admin.market-partners">{{ paymentCode.marketPartner.name }}</a>
+            <a ui-sref="admin.market-partners">{{paymentCode.marketPartner.name }}</a>
         </div>
         <div class="col-sm-1 badge">
             {{paymentCode.endorsementType || 'none'}}
         </div>
         <div class="col-sm-1">
-            {{paymentCode.users}} / {{usersPerCampaign[paymentCode.campaign.id].usersTotal}}
+            {{paymentCode.users}} / {{ctrl.getUsersPerCampaign(paymentCode.campaign.id)}}
 
         </div>
         <div class="col-sm-1">
             {{ paymentCode.campaign ? 'used' : 'open' }}
         </div>
         <div class="col-sm-2">
-            <a ui-sref="dcm.home({ campaignId: paymentCode.campaign.id})">{{ paymentCode.campaign.organization.name}}</a><br>
+            <a ui-sref="dcm.home({ campaignId: paymentCode.campaign.id})">{{
+                paymentCode.campaign.organization.name}}</a><br>
             <span ng-if="paymentCode.campaign">start: {{paymentCode.campaign.start | date}}</span> <br>
             <span ng-if="paymentCode.campaign">end: {{paymentCode.campaign.end | date}}</span>
         </div>
         <div class="col-sm-2">
             {{ paymentCode.created | fromNow }} <br>by: {{paymentCode.author.fullname}}
-            <i class="fa fa-edit" ng-click="edit(paymentCode)"></i><i class="fa fa-trash-o" ng-click="delete(paymentCode.id)" ng-if="!paymentCode.campaign"></i>
+            <i class="fa fa-edit" ng-click="ctrl.edit(paymentCode,$index)"></i><i class="fa fa-trash-o"
+                                                                      ng-click="ctrl.delete(paymentCode.id)"
+                                                                      ng-if="!paymentCode.campaign"></i>
         </div>
     </div>
+
+    <div ng-if="$index==ctrl.currentEdit">
+        <form class="form-horizontal" ng-submit="ctrl.saveCode(ctrl.editCode, $index)" name="editCode">
+        <div class="col-sm-2" select-on-click>
+            {{ ctrl.editCode.code }}
+        </div>
+        <div class="col-sm-1">
+            <select name="topic" ng-options="topic.id as topic.name for topic in ctrl.topics" ng-model="ctrl.editCode.topic" class="form-control">
+
+            </select>
+        </div>
+        <div class="col-sm-1">
+            <input name="oderNumber" ng-model="ctrl.editCode.orderNumber" type="text" class="form-control">
+        </div>
+        <div class="col-sm-1">
+            <select class="form-control" ng-model="ctrl.editCode.marketPartner"
+                    ng-options="partner.id as partner.name for partner in ctrl.partners" class="form-control">
+                <option value="">No partner</option>
+            </select>
+
+        </div>
+        <div class="col-sm-1">
+            <select class="form-control" ng-model="ctrl.editCode.endorsementType"
+                    ng-options="type as type for type in ctrl.endorsementTypes" class="form-control">
+                <option value="">No endorsement</option>
+            </select>
+        </div>
+        <div class="col-sm-1">
+            <input required ng-model="ctrl.editCode.users" type="number" class="form-control">
+        </div>
+        <div class="col-sm-1">
+            {{ paymentCode.campaign ? 'used' : 'open' }}
+        </div>
+        <div class="col-sm-2">
+            <a ui-sref="dcm.home({ campaignId: paymentCode.campaign.id})">{{
+                paymentCode.campaign.organization.name}}</a><br>
+            <span ng-if="paymentCode.campaign">start: {{paymentCode.campaign.start | date}}</span> <br>
+            <span ng-if="paymentCode.campaign">end: {{paymentCode.campaign.end | date}}</span>
+        </div>
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-small btn-primary">submit</button>
+            <button type="button" class="btn btn-small btn-default" ng-click="ctrl.cancelEdit()">cancel</button>
+        </div>
+
+
+        </form>
+    </div>
+</div>

@@ -14,16 +14,19 @@
                         views: {
                             content: {
                                 templateUrl: "admin/payment-code/payment-code.html",
-                                controller: 'PaymentCodeAdminController'
+                                controller: 'PaymentCodeAdminController as ctrl'
                             }
                         },
 
                         resolve: {
-                            topics: ['TopicService', function(TopicService) {
+                            topics: ['TopicService', function (TopicService) {
                                 return TopicService.getTopics();
                             }],
                             codes: ['PaymentCodeService', function (PaymentCodeService) {
-                                return PaymentCodeService.getPaymentCodes({populate: 'author campaign marketPartner', populatedeep: 'campaign.organization'});
+                                return PaymentCodeService.getPaymentCodes({
+                                    populate: 'author campaign marketPartner',
+                                    populatedeep: 'campaign.organization'
+                                });
                             }],
                             partners: ['MarketPartnerService', function (MarketPartnerService) {
                                 return MarketPartnerService.getMarketPartners();
@@ -32,8 +35,8 @@
                                 return StatsService.loadStats(null, {
                                     type: 'usersPerCampaign',
                                     scopeType: 'all'
-                                }).then(function(statsResults) {
-                                    return _.indexBy(statsResults[0].usersPerCampaign,'campaign');
+                                }).then(function (statsResults) {
+                                    return _.indexBy(statsResults[0].usersPerCampaign, 'campaign');
                                 });
                             }]
                         }
@@ -44,57 +47,88 @@
 
         .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'topics', 'codes', 'partners', 'usersPerCampaign',
             function ($rootScope, $scope, PaymentCodeService, topics, codes, partners, usersPerCampaign) {
+                var self = this;
 
-                $scope.codes = codes;
-                $scope.topics = topics;
-                $scope.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
-                $scope.partners = partners;
-                $scope.endorsementTypes = ['sponsored', 'presented'];
-                $scope.usersPerCampaign = usersPerCampaign;
+                self.codes = codes;
+                self.topics = topics;
+                self.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
+                self.partners = partners;
+                self.endorsementTypes = ['sponsored', 'presented'];
 
-                $scope.validate = function(code) {
-                    PaymentCodeService.validatePaymentCode({code: code}).then(function(result) {
-                        $scope.paymentCode = result;
-                        $scope.valid = true;
-                    }, function(reason) {
-                        $scope.valid = false;
+                self.validate = function (code) {
+                    PaymentCodeService.validatePaymentCode({code: code}).then(function (result) {
+                        self.paymentCode = result;
+                        self.valid = true;
+                    }, function (reason) {
+                        self.valid = false;
                     });
                 };
 
-                $scope.generate = function(paymentCode) {
+                self.generate = function (paymentCode) {
                     $rootScope.$log.log('paymentCode: ' + paymentCode);
 
-                    PaymentCodeService.generatePaymentCode(paymentCode).then(function(result) {
-                        $scope.codes = $scope.codes || [];
-                        if(!_.contains($scope.codes, function(pc) { return pc.code === result.code; })) {
-                            $scope.codes.push(result);
+                    PaymentCodeService.generatePaymentCode(paymentCode).then(function (result) {
+                        // the author is not populated in the post result, we do it manually
+                        result.author = $rootScope.principal.getUser();
+
+                        self.codes = self.codes || [];
+                        if (!_.contains(self.codes, function (pc) {
+                                return pc.code === result.code;
+                            })) {
+                            self.codes.push(result);
                         }
 
-                        $scope.code = result.code;
-                        $scope.valid = true;
+                        self.code = result.code;
+                        self.valid = true;
                     }, function (err) {
-                        $scope.$emit('clientmsg:error', err);
+                        $rootScope.$emit('clientmsg:error', err);
                     });
                 };
 
-                $scope.delete = function(paymentCodeId) {
+                self.saveCode = function (code, index) {
+                    PaymentCodeService.putPaymentCode(code).then(function (result) {
+                        self.currentEdit = undefined;
+                        self.codes[index] = result;
+                    }, function (err) {
+                        $rootScope.$emit('clientmsg:error', err);
+                    });
+                };
+
+                self.delete = function (paymentCodeId) {
                     PaymentCodeService.deletePaymentCode(paymentCodeId).then(function () {
-                        _.remove($scope.codes, function(code) {
+                        _.remove(self.codes, function (code) {
                             return code.id === paymentCodeId;
                         });
                     });
 
                 };
 
-                $scope.topic = function (topic) {
+                self.topic = function (topic) {
                     return _.find(topics, {id: topic});
                 };
 
 
-                $scope.paymentCode = {
+                self.paymentCode = {
                     productType: $rootScope.enums.productType[0],
                     topic: topics[0].id
                 };
 
+                self.edit = function (code, index) {
+                    self.currentEdit = index;
+                    self.editCode = code.clone();
+                };
+
+                self.cancelEdit = function () {
+                    self.currentEdit = undefined;
+                    self.editCode = undefined;
+                };
+
+                self.getUsersPerCampaign = function (campaignId) {
+                    if (usersPerCampaign[campaignId]) {
+                        return usersPerCampaign[campaignId].usersTotal;
+                    } else {
+                        return 0;
+                    }
+                };
             }]);
 }());

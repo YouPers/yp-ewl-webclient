@@ -11,7 +11,7 @@
                 var PaymentCodeService = {
 
                     generatePaymentCode: function(paymentCode) {
-                        return paymentResource.all('generate').post( paymentCode);
+                        return paymentResource.post( paymentCode);
                     },
                     validatePaymentCode: function(options) {
                         return paymentResource.all('validate').post(options);
@@ -24,6 +24,9 @@
                     },
                     deletePaymentCode: function(id) {
                         return paymentResource.one(id).remove();
+                    },
+                    putPaymentCode: function(code) {
+                        return code.put();
                     }
                 };
                 return PaymentCodeService;
