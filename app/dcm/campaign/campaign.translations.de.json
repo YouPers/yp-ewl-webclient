@@ -21,7 +21,9 @@
     "stateHeader1": "deine",
     "stateHeader2": "Kampagne",
     "card": {
-      "title": "HealthCampaign"
+      "title": "HealthCampaign",
+      "campaignLead": "Kampagnenleiter/in",
+      "campaignLeadUnconfirmed": "Dieser Kampagenleiter hat seine Email-Adresse noch nicht bestätigt. Fordere ihn auf, den Link in seiner Einladungsmail zu öffnen, oder erstelle eine neue Kampagne mit der korrekten Email-Adresse des Kampagnenleiters."
     }
   },
   "campaignForm": {
