@@ -23,7 +23,7 @@
                                 return UserService.getUser($stateParams.invitedUserId);
                             }]
                         },
-                        onEnter: ['$state', 'UserService', 'invitedUser', function ($state, UserService, invitedUser) {
+                        onEnter: ['$state', '$window', 'UserService', 'invitedUser', function ($state, $window, UserService, invitedUser) {
 
                             if(UserService.principal.isAuthenticated()) { // already logged in
                                 if(UserService.principal.getUser().id === invitedUser.id) { // correct user
