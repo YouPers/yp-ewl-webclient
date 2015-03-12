@@ -43,7 +43,7 @@
                 <span class="input-group-addon">
                     <span><a ui-sref="admin.market-partners">Market Partner</a></span>
                 </span>
-            <select class="form-control" ng-model="paymentCode.marketPartner"
+            <select class="form-control" ng-model="ctrl.paymentCode.marketPartner"
                     ng-options="partner.id as partner.name for partner in ctrl.partners">
                 <option value="">No partner</option>
             </select>
@@ -53,7 +53,7 @@
                 <span class="input-group-addon">
                     <span>Endorsement Type</span>
                 </span>
-            <select class="form-control" ng-model="paymentCode.endorsementType"
+            <select class="form-control" ng-model="ctrl.paymentCode.endorsementType"
                     ng-options="type as type for type in ctrl.endorsementTypes">
                 <option value="">No endorsement</option>
             </select>
