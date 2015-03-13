@@ -137,7 +137,7 @@
                     link: function (scope, elem, attrs) {
 
                         var publishFrom = moment().isAfter(scope.minPublishFrom) ?
-                            new Date(moment().startOf('day')).toDate() :
+                            moment().startOf('day').toDate() :
                             moment(scope.minPublishFrom).toDate();
                         var publishTo = moment(publishFrom).add(2, 'days').toDate();
 
