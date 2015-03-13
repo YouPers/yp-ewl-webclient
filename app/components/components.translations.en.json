@@ -99,5 +99,9 @@
     "username": {
       "label": "Username"
     }
+  },
+  "endorsementType": {
+    "presented": null,
+    "sponsored": null
   }
 }

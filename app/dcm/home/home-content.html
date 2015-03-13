@@ -136,7 +136,7 @@
 
     <!-- participants -->
 
-    <accordion-group class="participants" is-open="participantsOpen">
+    <accordion-group ng-if="campaign" class="participants" is-open="participantsOpen">
         <div ng-controller="HomeParticipantsController as homeParticipantsController">
 
             <accordion-heading>
@@ -187,7 +187,7 @@
 
     <!-- campaign stats -->
 
-    <accordion-group class="campaign-stats" is-open="campaignStatsOpen">
+    <accordion-group ng-if="campaign" class="campaign-stats" is-open="campaignStatsOpen">
         <div ng-controller="HomeStatsController as homeStatsController">
 
             <accordion-heading>
@@ -205,14 +205,6 @@
 
 
             <div>
-                <div ng-if="!campaign">
-                    <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
-                    <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
-                        <span translate>dcmhome.organization.addCampaign</span>
-                        <i class="fa fa-plus"></i>
-                    </a>
-
-                </div>
 
                 <div ng-if="campaign && !campaignStarted">
 
@@ -695,3 +687,11 @@
 
 
 </accordion>
+<div ng-if="!campaign">
+    <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
+    <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
+        <span translate>dcmhome.organization.addCampaign</span>
+        <i class="fa fa-plus"></i>
+    </a>
+
+</div>

@@ -32,5 +32,13 @@
         </div>
 
     </div>
+    <div ng-init="unconfirmed = campaign.campaignLeads[0].emailValidatedFlag === false" class="campaign-lead sheet">
+        <div translate>campaign.card.campaignLead</div>
+        <div ng-class="{ unconfirmed: unconfirmed }"
+             popover="{{ 'campaign.card.campaignLeadUnconfirmed' | translate }}" popover-trigger="{{ unconfirmed ? 'mouseenter' : '' }}" popover-placement="right" popover-append-to-body="true">
+            {{ campaign.campaignLeads[0].fullname }}
+            <i ng-if="unconfirmed" class="fa fa-warning"></i>
+        </div>
+    </div>
 
 </div>

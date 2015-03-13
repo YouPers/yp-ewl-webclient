@@ -3,20 +3,22 @@
 
 .dcm-campaign {
 
+  form {
 
-  form[name='campaignForm'] .form-group > label {
-    .make-sm-column(3);
+    margin: 0 30px;
 
-    text-align: right;
-    padding-top: (@padding-base-vertical + 1);
-  }
-  form[name='campaignForm'] {
+    .form-group > label {
+      .make-sm-column(3);
+
+      text-align: right;
+      padding-top: (@padding-base-vertical + 1);
+    }
     .form-group > input, .form-group > select {
       .make-sm-column(9);
     }
   }
 
-  form[name='campaignForm'] .validation {
+  form .validation {
     margin-left: 25%;
     padding-left: 0;
     list-style-type: none;
@@ -29,26 +31,18 @@
         margin-top: 5px;
       }
     }
-
     .form-group.date {
-
-      label {
-        padding: 7px;
-      }
-
-    }
-
-
-    .payment-code {
-
       .input-group {
         width: 200px;
-
+      }
+    }
+    .payment-code {
+      .input-group {
+        width: 200px;
         input {
           height: 36px;
         }
       }
-
       .validation-result {
         margin-left: 140px;
         padding: 4px;
@@ -56,36 +50,46 @@
     }
   }
 
+  form[name='campaignLeadForm'] {
 
-  // campaign avatar
-  form[name='campaignForm'] avatar-upload {
-    float: left;
-  }
-  form[name='campaignForm'] .avatar-upload .avatar {
-    width: @yp-avatar-campaign-size;
-    height: @yp-avatar-campaign-size;
-    background-size: @yp-avatar-campaign-size @yp-avatar-campaign-size;
-  }
+    margin-top: 30px;
 
-  form[name='campaignForm'] .avatar-upload > div {
-    display: inline-block;
-    vertical-align: middle;
-  }
+    .campaign-leads {
 
-  // invite campaign leads
-  .invite-campaign-lead input.form-control {
-    width: 25em;
+      padding: 30px 24%;
 
-  }
+      .campaign-lead {
+        padding-bottom: 8px;
 
+        img {
+          width: 50px;
+        }
+        i.fa.campaign-lead-avatar {
+          width: 50px;
+          font-size: 32px;
+          padding: 9px 12px;
+        }
 
-  // campaign lead avatar
-  .campaign-leads img {
-    width: 50px;
-    height: 50px;
-  }
-  .campaign-leads > div > div {
-    padding-top: (@padding-base-vertical * 2);
+        a {
+          padding-left: 8px;
+          > i {
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    .new-campaign-leads {
+      padding: 30px 24%;
+    }
+
+    .new-campaign-lead {
+      padding: 30px 0;
+      button {
+        float: right;
+      }
+    }
+
   }
 
 }

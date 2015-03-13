@@ -74,4 +74,20 @@ campaign-card {
       font-size: 14px;
     }
   }
+
+  .campaign-lead {
+    border-top: 1px solid @yp-divider;
+    padding: 4px 8px;
+    background-color: @yp-accent;
+    > * {
+      color: @yp-accent-contrast;
+      &.unconfirmed {
+        color: @yp-warning;
+        i.fa {
+          font-size: 14px;
+          color: @yp-warning;
+        }
+      }
+    }
+  }
 }

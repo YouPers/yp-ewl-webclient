@@ -21,7 +21,9 @@
     "stateHeader1": "deine",
     "stateHeader2": "Kampagne",
     "card": {
-      "title": "HealthCampaign"
+      "title": "HealthCampaign",
+      "campaignLead": "Kampagnenleiter/in",
+      "campaignLeadUnconfirmed": "Dieser Kampagenleiter hat seine Email-Adresse noch nicht bestätigt. Fordere ihn auf, den Link in seiner Einladungsmail zu öffnen, oder erstelle eine neue Kampagne mit der korrekten Email-Adresse des Kampagnenleiters."
     }
   },
   "campaignForm": {
@@ -73,12 +75,44 @@
       "label": "Aktivierungscode"
     }
   },
-  "inviteCampaignLeadForm": {
-    "email": {
-      "placeholder": "Eine oder mehrere Email-Adressen"
+  "campaignLeadForm": {
+    "header": "Kampagnenleiter",
+    "defaultCampaignLead": {
+      "header": "Erster Kampagnenleiter",
+      "text": "Die Einladungen und Empfehlungen der Kampagne werden im Namen dieses Kampagnenleiters erstellt."
     },
-    "inviteSubmit": "Senden",
-    "invitationSent": "Einladung via Email versandt, der neue Kampagnenleiter muss nun bestätigen"
+    "newCampaignLeads": "Neue Kampagnenleiter",
+    "newCampaignLead": "Neuen Kampagnenleiter erstellen",
+    "firstname": {
+      "label": "Vorname",
+      "placeholder": "Vorname",
+      "error": {
+        "required": "Bitte einen gültigen Vornamen eingeben."
+      }
+    },
+    "lastname": {
+      "label": "Nachname",
+      "placeholder": "Nachname",
+      "error": {
+        "required": "Bitte einen gültigen Nachnamen eingeben."
+      }
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Email",
+      "error": {
+        "required": "Bitte eine Email-Adresse eingeben",
+        "email": "Bitte eine gültige Email-Adresse eingeben",
+        "unique": "Diese Email-Adresse ist schon registriert"
+      }
+    },
+    "submit": "Erstellen"
+  },
+  "campaignLeadResetPassword": {
+    "header": "Hallo {{invitedUser}}",
+    "message": "<strong>{{invitingUser}}</strong> hat dich eingeladen, Kampagnenleiter der {{ campaign.topic.name }} HealthCampaign zu werden.",
+    "passwordReset": "Bitte wähle ein Passwort, um fortzufahren.",
+    "save": "Weiter"
   },
   "clientmsg": {
     "success": {

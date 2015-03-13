@@ -12,8 +12,8 @@
 
                 var CampaignService = {
 
-                    postCampaign: function(campaign) {
-                        return campaigns.post(campaign).then(function(postedCampaign) {
+                    postCampaign: function(campaign, options) {
+                        return campaigns.post(campaign, options).then(function(postedCampaign) {
                             CampaignService.currentCampaign = postedCampaign;
                             return postedCampaign;
                         });

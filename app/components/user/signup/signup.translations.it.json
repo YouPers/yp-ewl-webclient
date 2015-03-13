@@ -69,5 +69,25 @@
       "placeholder": "Nome società"
     },
     "termsLink": null
+  },
+  "signupFinalization": {
+    "header": null,
+    "verificationEmail": null,
+    "noVerificationEmail": null,
+    "resend1": {
+      "text": null,
+      "link": null,
+      "verificationSent": null
+    },
+    "invalidEmailAddress": {
+      "text": null,
+      "link": null
+    },
+    "resend2": {
+      "text": null,
+      "link": null,
+      "verificationSent": null
+    },
+    "contactCustomerSupport": null
   }
 }

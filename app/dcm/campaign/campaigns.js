@@ -6,6 +6,37 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
+
+                    .state('campaignLeadResetPassword', {
+                        url: '/campaigns/{id}/campaignLeadResetPassword?invitingUserId&invitedUserId&username&accessToken',
+                        access: accessLevels.all,
+                        templateUrl: 'dcm/campaign/campaign-lead-reset-password.html',
+                        controller: 'CampaignLeadResetPasswordController as campaignLeadResetPasswordController',
+                        resolve: {
+                            campaign: ['CampaignService', '$stateParams', function (CampaignService, $stateParams) {
+                                return CampaignService.getCampaign($stateParams.id);
+                            }],
+                            invitingUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
+                                return UserService.getUser($stateParams.invitingUserId);
+                            }],
+                            invitedUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
+                                return UserService.getUser($stateParams.invitedUserId);
+                            }]
+                        },
+                        onEnter: ['$state', '$window', 'UserService', 'invitedUser', function ($state, $window, UserService, invitedUser) {
+
+                            if(UserService.principal.isAuthenticated()) { // already logged in
+                                if(UserService.principal.getUser().id === invitedUser.id) { // correct user
+                                    $state.go('dcm.home');
+                                } else { // wrong user
+                                    UserService.logout().then(function () {
+                                        $window.location.reload();
+                                    });
+                                }
+                            }
+                        }]
+                    })
+
                     .state('dcm.campaigns', {
                         url: "/campaigns",
                         access: accessLevels.campaignlead,
@@ -53,9 +84,9 @@
 
 
         .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService',
-            'PaymentCodeService', 'campaign', 'campaigns', 'topics', 'newTopic', 'yp.config',
+            'PaymentCodeService', 'organization', 'campaign', 'campaigns', 'topics', 'newTopic', 'yp.config',
             function ($scope, CampaignService, UserService, HealthCoachService,
-                      PaymentCodeService, campaign, campaigns, topics, newTopic, config) {
+                      PaymentCodeService, organization, campaign, campaigns, topics, newTopic, config) {
 
                 $scope.campaignController = this;
                 $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
@@ -77,11 +108,14 @@
                         throw new Error("no topic found, we should always have a topic to create a new campaign");
                     }
                     $scope.campaign = {
+                        organization: organization,
                         start: start,
                         end: end,
                         topic: newTopic,
                         title: newTopic.name,
-                        avatar: newTopic.picture
+                        avatar: newTopic.picture,
+                        campaignLeads: [],
+                        newCampaignLeads: []
                     };
                 }
 
@@ -100,17 +134,58 @@
                     }
                 });
 
-                $scope.inviteCampaignLead = function (emails, campaign) {
-                    CampaignService.inviteCampaignLead(emails, campaign.id).then(function () {
-                        $scope.invitationSent = true;
+                // gather campaign leads from all campaigns
+                var campaignLeads = organization.administrators;
+                _.each(campaigns, function (campaign) {
+                    campaignLeads = campaignLeads.concat(campaign.campaignLeads);
+                });
+                $scope.availableCampaignLeads = _.unique(campaignLeads, 'id');
+
+                // we keep the newCampaignLeads in the campaign.newCampaignLeads, for a correct campaign-card
+                $scope.newCampaignLeads = _.filter.bind(this, $scope.campaign.campaignLeads, function (campaignLead) {
+                    return !campaignLead.id;
+                });
+                $scope.allCampaignLeads = function () {
+                    return $scope.campaign.campaignLeads.concat($scope.campaign.newCampaignLeads);
+                };
+                $scope.campaignController.newCampaignLead = { emailValidatedFlag: false };
+
+                $scope.submitNewCampaignLead = function () {
+                    $scope.newCampaignLead.fullname = $scope.newCampaignLead.firstname + ' ' + $scope.newCampaignLead.lastname;
+                    $scope.newCampaignLead.username = $scope.newCampaignLead.email;
+                    $scope.campaign.campaignLeads.push(_.clone($scope.newCampaignLead));
+                    _.each($scope.newCampaignLead, function (value, key) {
+                        delete $scope.newCampaignLead[key];
+                    });
+
+                    $scope.campaignForm.$setDirty();
+                    $scope.campaignLeadForm.$setPristine();
+                };
+
+                // ensure the selected default campaign lead is first in order to be displayed in the campaign-card
+                $scope.$watch('campaignController.defaultCampaignLead', function (defaultCampaignLead) {
+                    if(defaultCampaignLead) {
+                        var campaignLead = _.remove($scope.campaign.campaignLeads, function(campaignLead) {
+                            return defaultCampaignLead.id === campaignLead.id || defaultCampaignLead.username && defaultCampaignLead.username === campaignLead.username;
+                        });
+                        if(campaignLead.length > 0) {
+                            $scope.campaign.campaignLeads.unshift(campaignLead[0]);
+                        }
+                    }
+                });
+
+                $scope.isAssigned = function (campaignLead) {
+                    return _.any($scope.campaign.campaignLeads, function (cl) {
+                        return cl.id === campaignLead.id;
                     });
                 };
-
-                $scope.showForm = function () {
-                    $scope.formVisible = true;
-                    $scope.invitationSent = false;
+                $scope.assignCampaignLead = function (campaignLead) {
+                    if($scope.isAssigned(campaignLead)) {
+                        _.remove($scope.campaign.campaignLeads, { id: campaignLead.id });
+                    } else {
+                        $scope.campaign.campaignLeads.push(campaignLead);
+                    }
                 };
-
 
                 $scope.validatePaymentCode = function(code) {
                     var validationFailedResult = config.paymentCodeChecking === 'disabled' ? true : false;
@@ -159,7 +234,6 @@
                     $scope.$emit('clientmsg:error', err);
                     $scope.campaignController.submitting = false;
                     $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
-
                 }
 
                 $scope.saveCampaign = function () {
@@ -168,6 +242,9 @@
                     $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
                     $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
 
+                    $scope.campaign.newCampaignLeads = _.remove($scope.campaign.campaignLeads, function (campaignLead) {
+                        return !campaignLead.id;
+                    });
 
                     if ($scope.campaign.id) {
                         CampaignService.putCampaign($scope.campaign).then(function (campaign) {
@@ -177,7 +254,11 @@
                         }, onError);
                     } else {
                         $scope.campaign.paymentCode =  $scope.paymentCode;
-                        CampaignService.postCampaign($scope.campaign)
+                        var options = {};
+                        if($scope.campaignController.defaultCampaignLead) {
+                            options.defaultCampaignLead = $scope.campaignController.defaultCampaignLead.username;
+                        }
+                        CampaignService.postCampaign($scope.campaign, options)
                             .then(function (campaign) {
 
                                 // queue healthCoach message for new campaigns
@@ -189,8 +270,6 @@
                             }, onError);
                     }
                 };
-
-
             }
         ])
 
@@ -223,6 +302,29 @@
                     }
                 });
 
+            }
+        ])
+
+        .controller('CampaignLeadResetPasswordController', ['$scope', '$state', '$stateParams', 'UserService', 'campaign', 'invitingUser', 'invitedUser',
+            function ($scope, $state, $stateParams, UserService, campaign, invitingUser, invitedUser) {
+
+                $scope.campaign = campaign;
+                $scope.translateValues = {
+                    invitingUser: invitingUser.fullname,
+                    invitedUser: invitedUser.fullname,
+                    campaign: campaign
+                };
+
+                $scope.passwordReset = function () {
+                    UserService.passwordReset($scope.$stateParams.accessToken, $scope.passwordResetObj.password).then(function () {
+                        UserService.login({
+                            username: $stateParams.username,
+                            password: $scope.passwordResetObj.password
+                        }).then(function () {
+                            $state.go('dcm.home');
+                        });
+                    });
+                };
             }
         ]);
 
