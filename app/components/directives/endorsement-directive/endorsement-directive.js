@@ -11,12 +11,7 @@
                     scope: {
                         campaign: '='
                     },
-                    templateUrl: 'components/directives/endorsement-directive/endorsement-directive.html',
-
-                    link: function (scope, elem, attrs) {
-                        console.log(scope);
-
-                    }
+                    templateUrl: 'components/directives/endorsement-directive/endorsement-directive.html'
                 };
             }]);
 
