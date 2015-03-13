@@ -25,21 +25,9 @@
                     access: accessLevels.all,
 
                     resolve: {
-                        organization: ['OrganizationService', function (OrganizationService) {
-                            return OrganizationService.getOrganizations().then(function (list) {
-                                if (!list || list.length === 0) {
-                                    return undefined;
-                                } else if (list.length > 1) {
-                                    throw new Error('organization not unique');
-                                } else {
-                                    return list[0];
-                                }
-                            });
-
-                        }],
-                        campaigns: ['CampaignService', 'organization', function (CampaignService) {
+                        campaigns: ['CampaignService', function (CampaignService) {
                             return CampaignService
-                                .getCampaigns({ populate: 'topic campaignLeads organization marketPartner' })
+                                .getCampaigns({populate: 'topic campaignLeads organization marketPartner'})
                                 .then(function (campaigns) {
                                     return campaigns;
                                 });
@@ -47,9 +35,26 @@
                         campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
 
                             if ($stateParams.campaignId) {
-                                return _.find(campaigns, { id: $stateParams.campaignId });
+                                return _.find(campaigns, {id: $stateParams.campaignId});
                             } else {
                                 return undefined;
+                            }
+
+                        }],
+                        organization: ['campaign', 'OrganizationService', '$q', function (campaign, OrganizationService, $q) {
+
+                            if (campaign && campaign.organization && campaign.organization.id) {
+                                return $q.when(campaign.organization);
+                            } else {
+                                return OrganizationService.getOrganizations().then(function (list) {
+                                    if (!list || list.length === 0) {
+                                        return undefined;
+                                    } else if (list.length > 1) {
+                                        throw new Error('organization not unique');
+                                    } else {
+                                        return list[0];
+                                    }
+                                });
                             }
 
                         }]
@@ -70,7 +75,7 @@
                 $scope.campaigns = campaigns;
 
                 $scope.editCampaign = function editCampaign($event, campaignId) {
-                    $state.go('dcm.campaign', { campaignId: campaignId });
+                    $state.go('dcm.campaign', {campaignId: campaignId});
                     $event.stopPropagation();
                 };
 
