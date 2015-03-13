@@ -8,7 +8,7 @@
         <label for="pubFrom" class="col-md-1 control-label" translate>composeMessageForm.publishFrom.label</label>
 
         <div class="col-md-4">
-            <date-picker id="pubFrom" date="message.publishFrom"></date-picker>
+            <date-picker id="pubFrom" date="message.publishFrom" min-date="minPublishFrom" max-date="maxPublishTo"></date-picker>
         </div>
     </div>
     <div class="form-group">
@@ -19,7 +19,7 @@
         <label class="col-md-1 control-label" for="pubTo" translate>composeMessageForm.publishTo.label</label>
 
         <div class="col-md-4">
-            <date-picker id="pubTo" date="message.publishTo"></date-picker>
+            <date-picker id="pubTo" date="message.publishTo" max-date="maxPublishTo" min-date="message.publishFrom"></date-picker>
         </div>
     </div>
     <div class="form-group">

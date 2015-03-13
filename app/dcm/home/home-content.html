@@ -287,7 +287,7 @@
                     </label>
                 </div>
 
-                <social-interaction-message-composer on-post="msgCtrl.onMessageSaved(message)" edited-message="editedMessage"></social-interaction-message-composer>
+                <social-interaction-message-composer on-post="msgCtrl.onMessageSaved(message)" edited-message="editedMessage" min-publish-from="currentCampaign.start" max-publish-to="currentCampaign.end"></social-interaction-message-composer>
 
                 <span ng-if="msgCtrl.messages.length === 0" class="empty-content-hint" translate>dcmhome.noMessages</span>
 
