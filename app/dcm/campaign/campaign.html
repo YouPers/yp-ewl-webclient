@@ -66,7 +66,8 @@
 
                     </div>
 
-                    <div class="validation-result" ng-if="validPaymentCode === false">
+                    <div class="validation-result">
+                        <span ng-if="paymentCodeCheckingDisabled">!! PaymentCode Checking-disabled on this instance !!</span>
 
                         <span ng-if="paymentCode.status == 404" translate>campaignForm.paymentCode.invalidCode</span>
 

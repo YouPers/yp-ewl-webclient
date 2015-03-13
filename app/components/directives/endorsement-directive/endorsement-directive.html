@@ -1,0 +1,8 @@
+<div class="endorsement" ng-if="campaign.marketPartner">
+    <div class="endorsement-type">{{'endorsementType.' + campaign.endorsementType | translate}}</div>
+    <div class="endorsement-image">
+        <img ng-src="{{campaign.marketPartner.logo}}">
+    </div>
+    <div ng-if="campaign.marketPartner.byline" class="endorsement-byline" ng-bind-html="campaign.marketPartner.byline">
+    </div>
+</div>

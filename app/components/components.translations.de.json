@@ -101,7 +101,7 @@
     }
   },
   "endorsementType": {
-    "presented": "präsentiert von:",
-    "sponsored": "offeriert von:"
+    "sponsored": "offeriert von:",
+    "presented": "präsentiert von:"
   }
 }
