@@ -175,7 +175,7 @@
                     <span translate>campaignForm.save</span>
 
                 </button>
-                <button type="button" class="btn btn-default pull-right" ng-click="campaign.id ? $state.go('dcm.campaign',{campaignId: campaign.id}, {reload: true}) : $state.go('dcm.home')">
+                <button type="button" class="btn btn-default pull-right" ng-click="campaign.id ? $state.go('dcm.campaign',{campaignId: campaign.id}, {reload: true}) : $state.go('dcm.home')" ng-disabled="!campaignForm.$dirty">
                     <span translate>campaignForm.cancel</span>
                 </button>
             </div>
