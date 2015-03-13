@@ -105,12 +105,12 @@
 
             </div>
 
-            <div ng-if="campaign.newCampaignLeads.length > 0">
+            <div ng-if="newCampaignLeads().length > 0">
                 <h3 translate>campaignLeadForm.newCampaignLeads</h3>
                 <div class="new-campaign-leads" >
 
 
-                    <div class="campaign-lead" ng-repeat="campaignLead in campaign.newCampaignLeads">
+                    <div class="campaign-lead" ng-repeat="campaignLead in newCampaignLeads()">
                         <span>{{ campaignLead.fullname }}</span>
                         <span>({{ campaignLead.email }})</span>
 
@@ -125,9 +125,9 @@
 
             <div class="default-campaign-lead" ng-if="!campaign.id && campaign.campaignLeads.length + campaign.newCampaignLeads.length > 1">
                 <h3 translate>campaignLeadForm.defaultCampaignLead.header</h3>
-                <div class="form-group" ng-init="defaultCampaignLead = allCampaignLeads()[0]">
+                <div class="form-group" ng-init="campaignController.defaultCampaignLead = allCampaignLeads()[0]">
                     <label></label>
-                    <select class="form-control" ng-model="defaultCampaignLead" ng-options="campaignLead.fullname for campaignLead in allCampaignLeads()"></select>
+                    <select class="form-control" ng-model="campaignController.defaultCampaignLead" ng-options="campaignLead.fullname for campaignLead in allCampaignLeads()"></select>
                     <br/>
 
                 </div>

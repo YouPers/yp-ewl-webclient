@@ -139,21 +139,40 @@
                     campaignLeads = campaignLeads.concat(campaign.campaignLeads);
                 });
                 $scope.availableCampaignLeads = _.unique(campaignLeads, 'id');
+
+                // we keep the newCampaignLeads in the campaign.newCampaignLeads, for a correct campaign-card
+                $scope.newCampaignLeads = _.filter.bind(this, $scope.campaign.campaignLeads, function (campaignLead) {
+                    return !campaignLead.id;
+                });
                 $scope.allCampaignLeads = function () {
                     return $scope.campaign.campaignLeads.concat($scope.campaign.newCampaignLeads);
                 };
-                $scope.campaignController.newCampaignLead = {};
+                $scope.campaignController.newCampaignLead = { emailValidatedFlag: false };
 
                 $scope.submitNewCampaignLead = function () {
                     $scope.newCampaignLead.fullname = $scope.newCampaignLead.firstname + ' ' + $scope.newCampaignLead.lastname;
                     $scope.newCampaignLead.username = $scope.newCampaignLead.email;
-                    $scope.campaign.newCampaignLeads.push(_.clone($scope.newCampaignLead));
+                    $scope.campaign.campaignLeads.push(_.clone($scope.newCampaignLead));
                     _.each($scope.newCampaignLead, function (value, key) {
                         delete $scope.newCampaignLead[key];
                     });
+
                     $scope.campaignForm.$setDirty();
                     $scope.campaignLeadForm.$setPristine();
                 };
+
+                // ensure the selected default campaign lead is first in order to be displayed in the campaign-card
+                $scope.$watch('campaignController.defaultCampaignLead', function (defaultCampaignLead) {
+                    if(defaultCampaignLead) {
+                        var campaignLead = _.remove($scope.campaign.campaignLeads, function(campaignLead) {
+                            return defaultCampaignLead.id === campaignLead.id || defaultCampaignLead.username && defaultCampaignLead.username === campaignLead.username;
+                        });
+                        if(campaignLead.length > 0) {
+                            $scope.campaign.campaignLeads.unshift(campaignLead[0]);
+                        }
+                    }
+                });
+
                 $scope.isAssigned = function (campaignLead) {
                     return _.any($scope.campaign.campaignLeads, function (cl) {
                         return cl.id === campaignLead.id;
@@ -166,10 +185,6 @@
                         $scope.campaign.campaignLeads.push(campaignLead);
                     }
                 };
-                $scope.$watch('campaignForm.$dirty', function () {
-                    $scope.$parent.$broadcast('initialize-scroll-along');
-                });
-
 
                 $scope.validatePaymentCode = function(code) {
                     if(!code) {
@@ -225,6 +240,9 @@
                     $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
                     $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
 
+                    $scope.campaign.newCampaignLeads = _.remove($scope.campaign.campaignLeads, function (campaignLead) {
+                        return !campaignLead.id;
+                    });
 
                     if ($scope.campaign.id) {
                         CampaignService.putCampaign($scope.campaign).then(function (campaign) {
@@ -234,10 +252,10 @@
                         }, onError);
                     } else {
                         var options = {};
-                        if($scope.defaultCampaignLead) {
-                            options.defaultCampaignLead = $scope.defaultCampaignLead.username;
+                        if($scope.campaignController.defaultCampaignLead) {
+                            options.defaultCampaignLead = $scope.campaignController.defaultCampaignLead.username;
                         }
-                        CampaignService.postCampaign($scope.campaign)
+                        CampaignService.postCampaign($scope.campaign, options)
                             .then(function (campaign) {
 
                                 // queue healthCoach message for new campaigns
