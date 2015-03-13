@@ -39,10 +39,11 @@
 
                 var user = UserService.principal.getUser();
                 $scope.translateValues = { email: user.email };
-                $scope.sendVerificationEmail = function () {
-                    $scope.verificationSent = false;
+                $scope.verificationSent = {};
+                $scope.sendVerificationEmail = function (index) {
+                    $scope.verificationSent[index] = false;
                     UserService.sendVerificationEmail(user.id).then(function () {
-                        $scope.verificationSent = true;
+                        $scope.verificationSent[index] = true;
                     });
                 };
                 $scope.signUp = function () {

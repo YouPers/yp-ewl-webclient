@@ -13,8 +13,8 @@
             <ul>
                 <li class="resend-verification-email">
                     <span translate>signupFinalization.resend1.text</span>
-                    <a ng-click="sendVerificationEmail()" translate>signupFinalization.resend1.link</a>
-                    <span ng-show="verificationSent" class="verification-sent fa fa-check-circle-o" translate>signupFinalization.resend1.verificationSent</span>
+                    <a ng-click="sendVerificationEmail(0)" translate>signupFinalization.resend1.link</a>
+                    <span ng-show="verificationSent[0]" class="verification-sent fa fa-check-circle-o" translate>signupFinalization.resend1.verificationSent</span>
                 </li>
                 <li>
                     <span translate>signupFinalization.invalidEmailAddress.text</span>
@@ -22,8 +22,8 @@
                 </li>
                 <li class="resend-verification-email">
                     <span translate>signupFinalization.resend2.text</span>
-                    <a ng-click="sendVerificationEmail()" translate>signupFinalization.resend2.link</a>
-                    <span ng-show="verificationSent" class="verification-sent fa fa-check-circle-o" translate>signupFinalization.resend2.verificationSent</span>
+                    <a ng-click="sendVerificationEmail(1)" translate>signupFinalization.resend2.link</a>
+                    <span ng-show="verificationSent[1]" class="verification-sent fa fa-check-circle-o" translate>signupFinalization.resend2.verificationSent</span>
                 </li>
                 <li>
                     <span translate>signupFinalization.contactCustomerSupport</span>
