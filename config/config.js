@@ -33,7 +33,8 @@ var defaultConfig = {
         'en_GB': 'en',
         'de_DE': 'de',
         'de_CH': 'de'
-    }
+    },
+    paymentCodeChecking: 'enabled'
 };
 
 var specificConfigs = {
@@ -41,7 +42,8 @@ var specificConfigs = {
     dev: {
         name: 'dev',
         webclientUrl: 'http://localhost:9000',
-        backendUrl: 'http://localhost:8000'
+        backendUrl: 'http://localhost:8000',
+        paymentCodeChecking: 'disabled'
     },
     localvm: {
         // used to test from Windows VMs on your local machine,
@@ -49,7 +51,8 @@ var specificConfigs = {
         //           - set the NODE_ENV to 'localvm' in the shell where your weblclient is grunted.
         name: 'localvm',
         webclientUrl: 'http://localvm:9000',
-        backendUrl: 'http://localvm:8000'
+        backendUrl: 'http://localvm:8000',
+        paymentCodeChecking: 'disabled'
     },
 
 // RBLU: I think this is not used anywhere, so commenting out and checking in to see what happens
@@ -76,7 +79,8 @@ var specificConfigs = {
             'en': 'de',
             'fr': 'de',
             'it': 'de'
-        }
+        },
+        paymentCodeChecking: 'disabled'
     },
     "hc-uat": {
         name: '',
