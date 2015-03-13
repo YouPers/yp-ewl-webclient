@@ -84,9 +84,9 @@
 
 
         .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService',
-            'PaymentCodeService', 'campaign', 'campaigns', 'topics', 'newTopic', 'yp.config',
+            'PaymentCodeService', 'organization', 'campaign', 'campaigns', 'topics', 'newTopic', 'yp.config',
             function ($scope, CampaignService, UserService, HealthCoachService,
-                      PaymentCodeService, campaign, campaigns, topics, newTopic, config) {
+                      PaymentCodeService, organization, campaign, campaigns, topics, newTopic, config) {
 
                 $scope.campaignController = this;
                 $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
