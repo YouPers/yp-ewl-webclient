@@ -21,7 +21,9 @@
     "stateHeader1": "Ta",
     "stateHeader2": "Campagne",
     "card": {
-      "title": null
+      "title": null,
+      "campaignLead": null,
+      "campaignLeadUnconfirmed": null
     }
   },
   "campaignForm": {
@@ -73,12 +75,44 @@
       "label": null
     }
   },
-  "inviteCampaignLeadForm": {
-    "email": {
-      "placeholder": "Une ou plusieurs adresses e-mail ?\t"
+  "campaignLeadForm": {
+    "header": null,
+    "defaultCampaignLead": {
+      "header": null,
+      "text": null
     },
-    "inviteSubmit": "Envoyer",
-    "invitationSent": "Invitation envoyée par e-mail, le nouveau directeur de campagne doit maintenant confirmer"
+    "newCampaignLeads": null,
+    "newCampaignLead": null,
+    "firstname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "lastname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "email": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null,
+        "email": null,
+        "unique": null
+      }
+    },
+    "submit": null
+  },
+  "campaignLeadResetPassword": {
+    "header": null,
+    "message": null,
+    "passwordReset": null,
+    "save": null
   },
   "clientmsg": {
     "success": {

@@ -21,7 +21,9 @@
     "stateHeader1": "your",
     "stateHeader2": "Campaign",
     "card": {
-      "title": "HealthCampaign"
+      "title": "HealthCampaign",
+      "campaignLead": null,
+      "campaignLeadUnconfirmed": null
     }
   },
   "campaignForm": {
@@ -73,12 +75,44 @@
       "label": "Activation code"
     }
   },
-  "inviteCampaignLeadForm": {
-    "email": {
-      "placeholder": "One or multiple emails"
+  "campaignLeadForm": {
+    "header": null,
+    "defaultCampaignLead": {
+      "header": null,
+      "text": null
     },
-    "inviteSubmit": "Send",
-    "invitationSent": "Invitation email sent, the new campaign leader needs to confirm"
+    "newCampaignLeads": null,
+    "newCampaignLead": null,
+    "firstname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "lastname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "email": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null,
+        "email": null,
+        "unique": null
+      }
+    },
+    "submit": null
+  },
+  "campaignLeadResetPassword": {
+    "header": null,
+    "message": null,
+    "passwordReset": null,
+    "save": null
   },
   "clientmsg": {
     "success": {

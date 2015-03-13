@@ -71,6 +71,7 @@
       "placeholder": "Nuova password",
       "error": {
         "minlength": "Almeno 6 caratteri",
+        "$invalid": null,
         "required": null
       }
     },

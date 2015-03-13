@@ -75,7 +75,6 @@
       "label": "Aktivierungscode"
     }
   },
-
   "campaignLeadForm": {
     "header": "Kampagnenleiter",
     "defaultCampaignLead": {
@@ -109,14 +108,12 @@
     },
     "submit": "Erstellen"
   },
-
   "campaignLeadResetPassword": {
     "header": "Hallo {{invitedUser}}",
     "message": "<strong>{{invitingUser}}</strong> hat dich eingeladen, Kampagnenleiter der {{ campaign.topic.name }} HealthCampaign zu werden.",
     "passwordReset": "Bitte wähle ein Passwort, um fortzufahren.",
     "save": "Weiter"
   },
-
   "clientmsg": {
     "success": {
       "campaign": {
