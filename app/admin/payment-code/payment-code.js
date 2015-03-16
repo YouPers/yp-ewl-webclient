@@ -70,7 +70,8 @@
                     PaymentCodeService.generatePaymentCode(paymentCode).then(function (result) {
                         // the author is not populated in the post result, we do it manually
                         result.author = $rootScope.principal.getUser();
-
+                        // populate the marketPartner
+                        result.marketPartner = _.find(self.partners, 'id', result.marketPartner);
                         self.codes = self.codes || [];
                         if (!_.contains(self.codes, function (pc) {
                                 return pc.code === result.code;
@@ -87,6 +88,8 @@
 
                 self.saveCode = function (code, index) {
                     PaymentCodeService.putPaymentCode(code).then(function (result) {
+                        // repopulate the marketpartner
+                        result.marketPartner = _.find(self.partners, 'id', result.marketPartner);
                         self.currentEdit = undefined;
                         self.codes[index] = result;
                     }, function (err) {
