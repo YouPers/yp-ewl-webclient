@@ -17,10 +17,6 @@
                         },
                         resolve: {
 
-                            jsInclude: ["util", function (util) {
-                                return util.loadJSIncludes(['lib/d3/d3.min.js', 'lib/nvd3/nv.d3.min.js']);
-                            }],
-
                             assessmentResult: ['AssessmentService', 'UserService', '$q', function (AssessmentService, UserService, $q) {
                                 var currentUsersCampaign = UserService.principal.getUser().campaign;
                                 if (!currentUsersCampaign) {
