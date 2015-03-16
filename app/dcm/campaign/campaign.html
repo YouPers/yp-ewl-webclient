@@ -92,49 +92,47 @@
 
             <h3 translate>campaignLeadForm.header</h3>
 
+
             <div class="campaign-leads">
 
-                <div class="campaign-lead" ng-repeat="campaignLead in availableCampaignLeads">
-                    <img ng-src="{{ campaignLead.avatar }}">
-
-                    <a href ng-click="assignCampaignLead(campaignLead); campaignForm.$setDirty();">
-                        <span>{{ campaignLead.fullname }}</span>
-                        <i ng-show="isAssigned(campaignLead)" class="fa fa-check-square-o"></i>
-                        <i ng-show="!isAssigned(campaignLead)" class="fa fa-square-o"></i>
-                    </a>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-2" translate>campaignLeadForm.serviceManager</div>
+                    <div class="col-sm-3" popover="{{'campaignLeadForm.mainLeaderExplanation' | translate}}"
+                         popover-trigger="mouseenter" popover-placement="top"><span translate>campaignLeadForm.mainLeader</span>
+                        <i class="fa fa-info-circle"></i></div>
+                    <div class="col-sm-3" popover="{{'campaignLeadForm.coLeaderExplanation' | translate}}",
+                         popover-trigger="mouseenter" popover-placement="top"><span translate>campaignLeadForm.coLeader</span>
+                        <i class="fa fa-info-circle" ></i></div>
                 </div>
-
-            </div>
-
-            <div ng-if="newCampaignLeads().length > 0">
-                <h3 translate>campaignLeadForm.newCampaignLeads</h3>
-                <div class="new-campaign-leads" >
-
-
-                    <div class="campaign-lead" ng-repeat="campaignLead in newCampaignLeads()">
+                <div class="campaign-lead row" ng-repeat="campaignLead in availableCampaignLeads()">
+                    <div class="col-sm-1">
+                        <img ng-src="{{ campaignLead.avatar }}">
+                    </div>
+                    <div class="col-sm-3">
                         <span>{{ campaignLead.fullname }}</span>
-                        <span>({{ campaignLead.email }})</span>
-
-                        <a href ng-click="campaign.newCampaignLeads.splice($index, 1)">
+                        <a href ng-click="removeNewCampaignLead(campaignLead)" ng-if="!campaignLead.id">
                             <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <i ng-show="isOrgAdm(campaignLead)" class="fa fa-check-square-o"></i>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href ng-click="selectMainLeader(campaignLead)">
+                        <i ng-show="isMainLeader(campaignLead)" class="fa fa-check-square-o"></i>
+                        <i ng-show="!isMainLeader(campaignLead)" class="fa fa-square-o"></i>
+                        </a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href ng-click="assignCampaignLead(campaignLead); campaignForm.$setDirty();" ng-show="!isMainLeader(campaignLead)">
+                            <i ng-show="isAssigned(campaignLead)" class="fa fa-check-square-o"></i>
+                            <i ng-show="!isAssigned(campaignLead)" class="fa fa-square-o"></i>
                         </a>
                     </div>
 
                 </div>
-            </div>
-
-
-            <div class="default-campaign-lead" ng-if="!campaign.id && campaign.campaignLeads.length + campaign.newCampaignLeads.length > 1">
-                <h3 translate>campaignLeadForm.defaultCampaignLead.header</h3>
-                <div class="form-group" ng-init="campaignController.defaultCampaignLead = allCampaignLeads()[0]">
-                    <label></label>
-                    <select class="form-control" ng-model="campaignController.defaultCampaignLead" ng-options="campaignLead.fullname for campaignLead in allCampaignLeads()"></select>
-                    <br/>
-
-                </div>
-                <span translate>campaignLeadForm.defaultCampaignLead.text</span>
-                <br/>
-                <br/>
 
             </div>
 

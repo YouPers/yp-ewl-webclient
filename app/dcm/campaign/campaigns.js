@@ -25,8 +25,8 @@
                         },
                         onEnter: ['$state', '$window', 'UserService', 'invitedUser', function ($state, $window, UserService, invitedUser) {
 
-                            if(UserService.principal.isAuthenticated()) { // already logged in
-                                if(UserService.principal.getUser().id === invitedUser.id) { // correct user
+                            if (UserService.principal.isAuthenticated()) { // already logged in
+                                if (UserService.principal.getUser().id === invitedUser.id) { // correct user
                                     $state.go('dcm.home');
                                 } else { // wrong user
                                     UserService.logout().then(function () {
@@ -139,7 +139,10 @@
                 _.each(campaigns, function (campaign) {
                     campaignLeads = campaignLeads.concat(campaign.campaignLeads);
                 });
-                $scope.availableCampaignLeads = _.unique(campaignLeads, 'id');
+
+                $scope.availableCampaignLeads = function () {
+                    return _.unique(campaignLeads.concat($scope.campaign.campaignLeads), 'id');
+                };
 
                 // we keep the newCampaignLeads in the campaign.newCampaignLeads, for a correct campaign-card
                 $scope.newCampaignLeads = _.filter.bind(this, $scope.campaign.campaignLeads, function (campaignLead) {
@@ -148,11 +151,12 @@
                 $scope.allCampaignLeads = function () {
                     return $scope.campaign.campaignLeads.concat($scope.campaign.newCampaignLeads);
                 };
-                $scope.campaignController.newCampaignLead = { emailValidatedFlag: false };
+                $scope.campaignController.newCampaignLead = {emailValidatedFlag: false};
 
                 $scope.submitNewCampaignLead = function () {
                     $scope.newCampaignLead.fullname = $scope.newCampaignLead.firstname + ' ' + $scope.newCampaignLead.lastname;
                     $scope.newCampaignLead.username = $scope.newCampaignLead.email;
+                    $scope.newCampaignLead.avatar = config.webclientUrl + '/assets/img/default_avatar_woman.png';
                     $scope.campaign.campaignLeads.push(_.clone($scope.newCampaignLead));
                     _.each($scope.newCampaignLead, function (value, key) {
                         delete $scope.newCampaignLead[key];
@@ -162,34 +166,47 @@
                     $scope.campaignLeadForm.$setPristine();
                 };
 
-                // ensure the selected default campaign lead is first in order to be displayed in the campaign-card
-                $scope.$watch('campaignController.defaultCampaignLead', function (defaultCampaignLead) {
-                    if(defaultCampaignLead) {
-                        var campaignLead = _.remove($scope.campaign.campaignLeads, function(campaignLead) {
-                            return defaultCampaignLead.id === campaignLead.id || defaultCampaignLead.username && defaultCampaignLead.username === campaignLead.username;
-                        });
-                        if(campaignLead.length > 0) {
-                            $scope.campaign.campaignLeads.unshift(campaignLead[0]);
-                        }
+                $scope.selectMainLeader = function (leader) {
+
+
+                    // ensure the selected default campaign lead is first in order to be displayed in the campaign-card
+                    var newLeader = _.remove($scope.campaign.campaignLeads, function (campaignLead) {
+                        return leader.id === campaignLead.id || leader.username && leader.username === campaignLead.username;
+                    });
+                    if (newLeader.length > 0) {
+                        $scope.campaign.campaignLeads.unshift(newLeader[0]);
+                    } else {
+                        $scope.campaign.campaignLeads.unshift(leader);
                     }
-                });
+                };
 
                 $scope.isAssigned = function (campaignLead) {
                     return _.any($scope.campaign.campaignLeads, function (cl) {
                         return cl.id === campaignLead.id;
                     });
                 };
+
+                $scope.isMainLeader = function (campaignLead) {
+                    return $scope.campaign.campaignLeads[0] && $scope.campaign.campaignLeads[0].id === campaignLead.id;
+                };
+
+                $scope.isOrgAdm = function (campaignLead) {
+                    return _.any(organization.administrators, function (oa) {
+                        return oa.id === campaignLead.id;
+                    });
+                };
+
                 $scope.assignCampaignLead = function (campaignLead) {
-                    if($scope.isAssigned(campaignLead)) {
-                        _.remove($scope.campaign.campaignLeads, { id: campaignLead.id });
+                    if ($scope.isAssigned(campaignLead)) {
+                        _.remove($scope.campaign.campaignLeads, {id: campaignLead.id});
                     } else {
                         $scope.campaign.campaignLeads.push(campaignLead);
                     }
                 };
 
-                $scope.validatePaymentCode = function(code) {
+                $scope.validatePaymentCode = function (code) {
                     var validationFailedResult = config.paymentCodeChecking === 'disabled' ? true : false;
-                    if(!code) {
+                    if (!code) {
                         return;
                     }
 
@@ -198,15 +215,18 @@
                         $scope.paymentCode = {status: 404};
                         return;
                     }
-                    PaymentCodeService.validatePaymentCode({ code: code, topic: $scope.campaign.topic.id}).then(function(result) {
+                    PaymentCodeService.validatePaymentCode({
+                        code: code,
+                        topic: $scope.campaign.topic.id
+                    }).then(function (result) {
                         $scope.paymentCode = result;
 
                         $scope.validPaymentCode = true;
                         //$scope.campaign.productType = result.productType;
 
-                    }, function(reason) {
+                    }, function (reason) {
 
-                        $scope.invalidTopic = _.find(topics, { id: reason.data.data.expected });
+                        $scope.invalidTopic = _.find(topics, {id: reason.data.data.expected});
                         $scope.paymentCode = reason;
                         $scope.validPaymentCode = validationFailedResult;
                     });
@@ -225,7 +245,7 @@
                         });
                         $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
                         $scope.$state.go('dcm.home', {campaignId: ''});
-                    }, function(err) {
+                    }, function (err) {
                         $scope.$emit('clientmsg:error', 'alreadyJoinedUsers');
                     });
                 };
@@ -253,9 +273,9 @@
 
                         }, onError);
                     } else {
-                        $scope.campaign.paymentCode =  $scope.paymentCode;
+                        $scope.campaign.paymentCode = $scope.paymentCode;
                         var options = {};
-                        if($scope.campaignController.defaultCampaignLead) {
+                        if ($scope.campaignController.defaultCampaignLead) {
                             options.defaultCampaignLead = $scope.campaignController.defaultCampaignLead.username;
                         }
                         CampaignService.postCampaign($scope.campaign, options)

@@ -1,12 +1,8 @@
 @import "../../../styles/youpers-variables";
 
-
-
-
 campaign-card {
 
   display: block; // needed for custom html elements, they are not initialized by bootstrap
-
   position: relative;
   overflow: hidden;
 
@@ -47,6 +43,10 @@ campaign-card {
 
   }
 
+  .details.sheet {
+      font-weight: 300;
+  }
+
   .details {
 
     background-color: @yp-accent;
@@ -76,6 +76,10 @@ campaign-card {
   }
 
   .campaign-lead {
+    .leader-label {
+      font-weight: 300;
+    }
+
     background-color: @yp-accent;
     > * {
       color: @yp-accent-contrast;
