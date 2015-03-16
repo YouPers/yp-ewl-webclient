@@ -1,0 +1,47 @@
+<accordion-group ng-if="campaign" class="participants" is-open="participantsOpen">
+    <div ng-controller="HomeParticipantsController as homeParticipantsController">
+
+        <accordion-heading>
+                <span  ng-click="displayCoachMsg('participants')">
+
+                    <span translate>dcmhome.participants.header</span>
+
+                    <a href>
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': participantsOpen, 'fa-chevron-right': !participantsOpen }"></i>
+                    </a>
+                </span>
+        </accordion-heading>
+
+        <div class="row">
+
+            <div class="col-sm-12">
+
+
+                <div class="participant" ng-repeat="participant in homeParticipantsController.participants">
+
+                    <div class="avatar">
+                        <img ng-src="{{ participant.avatar }}">
+                    </div>
+
+                    <div class="details">
+
+                        <div class="name">
+                            <span>{{ participant.fullname }}</span>
+                        </div>
+
+                        <div class="email">
+                            <span>{{ participant.email }}</span>
+                            <span class="pull-right">{{ participant.created | fromNow }}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</accordion-group>

@@ -113,6 +113,7 @@
             function ($scope, $rootScope, $state, UserService, socialInteractions, messages, SocialInteractionService, campaign, campaigns, CampaignService, healthCoachEvent, $translate) {
 
                 $scope.homeController = this;
+                $scope.homeScope = $scope;
                 $scope.homeController.healthCoachEvent = healthCoachEvent;
                 $scope.homeController.messages = messages;
                 $scope.homeController.offerTypes = 'Invitation';
@@ -129,9 +130,8 @@
                     $scope.campaignMessagesAvailable = !$scope.campaignEnded;
                     $scope.campaignEndAvailable = moment().businessDiff(moment(campaign.end).startOf('day')) > -2;
 
-                    // campaign start section is open on the day of the campaign start and the day before
-                    $scope.campaignStartOpen =  moment(campaign.start).isSame(now, 'day') ||
-                    moment(campaign.start).subtract(1, 'day').isSame(now, 'day');
+                    // campaign start section is open until the campaign has started
+                    $scope.campaignStartOpen =  moment(campaign.start).isAfter(now, 'day');
                     // campaign end section is open when the campaign has ended
                     $scope.campaignEndOpen = $scope.campaignEnded;
                     // offer section is open otherwise
@@ -191,6 +191,30 @@
                     }
 
                     if(campaign) {
+
+                        $scope.campaignPreparation = {
+                            step1: {
+                                complete: !UserService.hasDefaultAvatar()
+                            },
+                            step2: {
+                                complete: CampaignService.isComplete(campaign)
+                            },
+                            step3: {
+                                complete: !_.any($scope.offers, function (offer) {
+                                    return offer.__t === 'Invitation' && !offer.activity.location;
+                                })
+                            },
+                            step4: {
+                                complete: false
+                            }
+                        };
+                        var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
+                        firstIncompleteStep.active = true;
+
+                        $scope.completeCampaignPreparation = function () {
+                            campaign.preparationComplete = true;
+                            CampaignService.putCampaign(campaign);
+                        };
 
                         $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $state.href('welcome',{campaignId: campaign.id});
                         var createDraftLocals = {

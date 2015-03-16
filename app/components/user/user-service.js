@@ -227,6 +227,9 @@
                     getProfiles: function (options) {
                         return profiles.getList(options);
                     },
+                    hasDefaultAvatar: function (user) {
+                        return (user || UserService.principal.getUser()).avatar.lastIndexOf('/assets/img/default', 0) === 0;
+                    },
                     principal: {
                         getUser: function () {
                             return _currentUser;

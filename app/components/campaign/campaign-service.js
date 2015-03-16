@@ -47,7 +47,17 @@
                         }
                         return campaigns.one(campaignId).all('inviteParticipantsEmail')
                             .post(postBody);
+                    },
+                    isComplete: function (campaign) {
+                        if (!campaign) {
+                            return false;
+                        }
+                        // all other fields are required by the model schema
+                        return !!campaign.participants &&
+                            !!campaign.location &&
+                            !!campaign.city;
                     }
+
 
                 };
 
