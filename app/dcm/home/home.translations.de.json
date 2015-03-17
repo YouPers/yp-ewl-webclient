@@ -80,23 +80,28 @@
       "campaignLeadGuidance": {
         "step1": {
           "link": "zum Profil",
-          "tab": "Avatar",
-          "text": "Wähle einen Avatar als Kampagnenleiter"
+          "tab": "Profilfoto",
+          "text": "Lade ein Profilfoto von dir hoch. Ein Foto ist sehr wichtig, damit die Teilnehmer dich als Kampagnenleiter erkennen."
         },
         "step2": {
           "link": "zur Kampagne",
-          "tab": "Kampagne",
-          "text": "Überprüfe deine Kampagne und ergänze die fehlenden Informationen"
+          "tab": "Kampagnendaten",
+          "text": "Überprüfe die Daten deiner Kampagne. Korrigiere oder ergänze Informationen"
         },
         "step3": {
-          "link": "zu den Aktivitäten",
-          "tab": "Aktivitäten",
-          "text": "Überprüfe deine Aktivitätseinladungen durch klicken auf die Aktivität und wähle einen <strong>Ort</strong> für die Aktivität aus. Falls dir die Aktivität nicht zusagt, kannst du sie auch löschen."
+          "link": "zur Aktivitätsübersicht",
+          "tab": "Events",
+          "text": "Wir haben pro Woche einen Kampagnenevent in deinem Namen provisorisch erstellt. Plane diese Events konkret ein oder lösche sie."
         },
         "step4": {
-          "link": "weiter",
+          "link": "zu den Empfehlungen",
+          "tab": "Empfehlungen",
+          "text": "Wir haben pro Tag eine oder zwei Aktivitätsempfehlungen erstellt. Schaue dir diese an, lösche unpassende und ergänze mit eigenen Empfehlungen."
+        },
+        "step5": {
+          "link": "Einladungen erstellen und versenden",
           "tab": "Einladungen",
-          "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Du kannst jetzt die Einladungen an die Teilnehmer verschicken"
+          "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Versende am Kampagenenstarttag oder am Abend vorher die Einladungen an die Teilnehmer"
         }
       }
     },

@@ -206,8 +206,12 @@
                                 complete: $scope.offersWithoutLocation.length === 0
                             },
                             step4: {
+                                complete: (campaign.preparationComplete >= 4)
+                            },
+                            step5: {
                                 complete: false
                             }
+
                         };
                         var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
                         firstIncompleteStep.active = true;
@@ -216,8 +220,12 @@
                         _.each($scope.campaignPreparation, function (step) {
                             step.disabled = !step.enabled && !step.complete;
                         });
-                        $scope.completeCampaignPreparation = function () {
-                            campaign.preparationComplete = true;
+
+                        $scope.completeCampaignPreparation = function (step) {
+                            $scope.campaignPreparation['step' + step].complete = true;
+                            $scope.campaignPreparation['step' + (step+1)].active = true;
+                            $scope.campaignPreparation['step' + (step+1)].enabled = true;
+                            campaign.preparationComplete = step;
                             CampaignService.putCampaign(campaign);
                         };
 
