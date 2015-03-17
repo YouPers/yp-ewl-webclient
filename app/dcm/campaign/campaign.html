@@ -129,12 +129,12 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-12"> <a href ng-click="showNewCampainleadForm=true" translate>campaignLeadForm.newCampaignLead</a></div>
+                    <div class="col-sm-12"> <a href ng-click="campaignController.showNewCampainleadForm=true" translate>campaignLeadForm.newCampaignLead</a></div>
                 </div>
 
             </div>
 
-            <div class="new-campaign-lead" ng-if="showNewCampainleadForm">
+            <div class="new-campaign-lead" ng-if="campaignController.showNewCampainleadForm">
                 <yp-input name="firstname" required></yp-input>
                 <yp-input name="lastname" required></yp-input>
                 <yp-input name="email" type="email" required unique-user-field></yp-input>
