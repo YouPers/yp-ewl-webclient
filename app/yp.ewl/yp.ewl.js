@@ -34,14 +34,14 @@ angular.module('yp-ewl',
                 .state('homedispatcher', {
                     url: "/dispatch",
                     access: accessLevels.all,
-                    controller: ['UserService', '$state', function (UserService, $state) {
+                    controller: ['UserService', 'CampaignService', '$state', function (UserService, CampaignService, $state) {
                         var user = UserService.principal.getUser();
                         if (!UserService.principal.isAuthenticated()) {
                             return $state.go('signin');
                         } else if (UserService.principal.isAuthorized(accessLevels.admin)) {
                             return $state.go('admin.home');
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
-                            return $state.go('dcm.home');
+                            return $state.go('dcm.home', { campaignId: CampaignService.currentCampaign.id });
                         } else {
                             return $state.go('dhc.game', {view: "", campaignId: user.campaign && user.campaign.id || user.campaign});
                         }

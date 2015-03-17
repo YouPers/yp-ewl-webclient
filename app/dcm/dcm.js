@@ -68,7 +68,7 @@
 
                 $scope.parentState = 'dcm';
 
-                $scope.currentCampaign = campaign;
+                $scope.currentCampaign = CampaignService.currentCampaign = campaign;
 
                 // my org or the current campaign's org in case I am a product Admin looking at somebody else's campaign
                 $scope.organization = organization || campaign.organization;
