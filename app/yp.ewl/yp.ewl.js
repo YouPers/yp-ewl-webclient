@@ -41,7 +41,7 @@ angular.module('yp-ewl',
                         } else if (UserService.principal.isAuthorized(accessLevels.admin)) {
                             return $state.go('admin.home');
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
-                            return $state.go('dcm.home', { campaignId: CampaignService.currentCampaign.id });
+                            return $state.go('dcm.home', { campaignId: CampaignService.currentCampaign ? CampaignService.currentCampaign.id : undefined });
                         } else {
                             return $state.go('dhc.game', {view: "", campaignId: user.campaign && user.campaign.id || user.campaign});
                         }
