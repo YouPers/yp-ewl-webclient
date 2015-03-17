@@ -1,12 +1,8 @@
 @import "../../../styles/youpers-variables";
 
-
-
-
 campaign-card {
 
   display: block; // needed for custom html elements, they are not initialized by bootstrap
-
   position: relative;
   overflow: hidden;
 
@@ -34,7 +30,7 @@ campaign-card {
     line-height: 14px;
 
     > * {
-      margin: 0 0 0 30px;
+      margin: 0 0 0 20px;
     }
 
     > h2 {
@@ -45,6 +41,10 @@ campaign-card {
 
     }
 
+  }
+
+  .details.sheet {
+      font-weight: 300;
   }
 
   .details {
@@ -65,7 +65,7 @@ campaign-card {
       }
 
       > i {
-        flex: 0 0 30px;
+        flex: 0 0 50px;
         text-align: center;
       }
     }
@@ -76,8 +76,10 @@ campaign-card {
   }
 
   .campaign-lead {
-    border-top: 1px solid @yp-divider;
-    padding: 4px 8px;
+    .leader-label {
+      font-weight: 300;
+    }
+
     background-color: @yp-accent;
     > * {
       color: @yp-accent-contrast;
@@ -89,5 +91,14 @@ campaign-card {
         }
       }
     }
+
+    > .col-sm-9 {
+      padding-left: 10px;
+    }
+  }
+
+  .avatar-image {
+    width: 45px;
+    height: 45px;
   }
 }
