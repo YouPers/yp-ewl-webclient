@@ -213,7 +213,7 @@
                         firstIncompleteStep.enabled = true;
 
                         _.each($scope.campaignPreparation, function (step) {
-                            step.disabled = !(step.enabled || step.complete)
+                            step.disabled = !(step.enabled || step.complete);
                         });
                         $scope.completeCampaignPreparation = function () {
                             campaign.preparationComplete = true;
