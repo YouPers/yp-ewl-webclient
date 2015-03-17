@@ -77,11 +77,11 @@
   },
   "campaignLeadForm": {
     "header": null,
-    "defaultCampaignLead": {
-      "header": null,
-      "text": null
-    },
-    "newCampaignLeads": null,
+    "serviceManager": null,
+    "mainLeader": null,
+    "coLeader": null,
+    "mainLeaderExplanation": null,
+    "coLeaderExplanation": null,
     "newCampaignLead": null,
     "firstname": {
       "label": null,

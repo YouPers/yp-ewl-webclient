@@ -42,29 +42,6 @@
     "campaignNotStarted": "Sobald die Kampagne gestartet ist, werden hier einige Eckdaten zum Verlauf deiner Kampagne angezeigt.",
     "campaignStart": {
       "header": "Start der Kampagne",
-      "campaignLeadGuidance": {
-        "step1": {
-          "tab": "Avatar",
-          "text": "Wähle einen Avatar als Kampagnenleiter",
-          "link": "zum Profil"
-        },
-        "step2": {
-          "tab": "Kampagne",
-          "text": "Überprüfe die Kampagne und ergänze fehlende Informationen",
-          "link": "zur Kampagne"
-        },
-        "step3": {
-          "tab": "Aktivitäten",
-          "text": "Überprüfe deine Aktivitätseinladungen und wähle einen <strong>Ort</strong> für die Aktivität aus. Falls dir die Aktivität nicht zusagt, kannst du sie auch löschen.",
-          "link": "zu den Aktivitäten"
-        },
-        "step4": {
-          "tab": "Einladungen",
-          "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Du kannst jetzt die Einladungen an die Teilnehmer verschicken",
-          "link": "weiter",
-          "disabled": "Hier kannst du die Teilnehmer einladen, sobald du deine Kampagne fertig gestellt hast."
-        }
-      },
       "welcomeLink": {
         "header": "<strong>Option B:</strong> Kampagnen-Einladungen mit deiner Email Anwendung versenden",
         "createDraft": {
@@ -98,6 +75,28 @@
           "text": "Bitte überprüfe die Email-Adressen in der Versandliste, bevor du die Einladungen mit Hilfe des \"Absenden\"-Buttons versendest.",
           "submit": "Absenden",
           "emailInvitesSent": "Die Einladungen wurden erfolgreich versendet."
+        }
+      },
+      "campaignLeadGuidance": {
+        "step1": {
+          "link": "zum Profil",
+          "tab": "Avatar",
+          "text": "Wähle einen Avatar als Kampagnenleiter"
+        },
+        "step2": {
+          "link": "zur Kampagne",
+          "tab": "Kampagne",
+          "text": "Überprüfe deine Kampagne und ergänze die fehlenden Informationen"
+        },
+        "step3": {
+          "link": "zu den Aktivitäten",
+          "tab": "Aktivitäten",
+          "text": "Überprüfe deine Aktivitätseinladungen und wähle einen <strong>Ort</strong> für die Aktivität aus. Falls dir die Aktivität nicht zusagt, kannst du sie auch löschen."
+        },
+        "step4": {
+          "link": "weiter",
+          "tab": "Einladungen",
+          "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Du kannst jetzt die Einladungen an die Teilnehmer verschicken"
         }
       }
     },
