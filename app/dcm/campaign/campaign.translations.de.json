@@ -78,11 +78,11 @@
   "campaignLeadForm": {
     "header": "Wähle einen Kampagnenleiter",
     "serviceManager": "Service Manager",
-    "mainLeader": "Hauptleiter",
-    "coLeader": "Co-Leiter",
+    "mainLeader": "Kampagnenleiter",
+    "coLeader": "Stellvertreter",
     "mainLeaderExplanation": "Dieser Leiter wird in der Kampagnen-Karte gezeigt und die Standard-Empfehlungen werden im Namen dieses Kampagnenleiters erstellt.",
-    "coLeaderExplanation": "Co-Leiter bekommen Einsicht in die Kampagne und können den Hauptleiter vertreten",
-    "newCampaignLead": "Neuen Kampagnenleiter erstellen",
+    "coLeaderExplanation": "Stellvertreter bekommen Einsicht in die Kampagne und können den Kampagnenleiter vertreten",
+    "newCampaignLead": "+ neuen Kampagnenleiter einladen",
     "firstname": {
       "label": "Vorname",
       "placeholder": "Vorname",

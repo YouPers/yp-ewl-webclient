@@ -151,7 +151,7 @@
                 $scope.allCampaignLeads = function () {
                     return $scope.campaign.campaignLeads.concat($scope.campaign.newCampaignLeads);
                 };
-                $scope.campaignController.newCampaignLead = {emailValidatedFlag: false};
+                $scope.newCampaignLead = {emailValidatedFlag: false};
 
                 $scope.submitNewCampaignLead = function () {
                     $scope.newCampaignLead.fullname = $scope.newCampaignLead.firstname + ' ' + $scope.newCampaignLead.lastname;
@@ -164,6 +164,7 @@
 
                     $scope.campaignForm.$setDirty();
                     $scope.campaignLeadForm.$setPristine();
+                    $scope.showNewCampainleadForm = false;
                 };
 
                 $scope.selectMainLeader = function (leader) {
@@ -268,6 +269,9 @@
 
                     if ($scope.campaign.id) {
                         CampaignService.putCampaign($scope.campaign).then(function (campaign) {
+                            // update version number of the campaign we have in the session, otherweise
+                            // we get version conflict on next save.
+                            $scope.campaign.__v = campaign.__v;
                             $scope.$state.go('dcm.home');
                             $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
 
