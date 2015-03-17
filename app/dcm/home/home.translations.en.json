@@ -76,6 +76,28 @@
           "submit": null,
           "emailInvitesSent": null
         }
+      },
+      "campaignLeadGuidance": {
+        "step1": {
+          "link": null,
+          "tab": null,
+          "text": null
+        },
+        "step2": {
+          "link": null,
+          "tab": null,
+          "text": null
+        },
+        "step3": {
+          "link": null,
+          "tab": null,
+          "text": null
+        },
+        "step4": {
+          "link": null,
+          "tab": null,
+          "text": null
+        }
       }
     },
     "participants": {

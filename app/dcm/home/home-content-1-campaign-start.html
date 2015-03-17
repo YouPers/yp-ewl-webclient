@@ -67,6 +67,21 @@
 
                 <div>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.text</span>
+
+                    <ul class="list-unstyled">
+                        <li ng-repeat="offer in offers">
+                            <a ui-sref="dcm.activity({ edit: true, idea: offer.idea.id, activity: offer.activity.id, socialInteraction: offer.id, mode: 'campaignlead' })"
+                               class="offer">
+                                <h3>{{ offer.activity.title}}</h3>
+
+                                <i ng-if="offer.activity.location" class="fa fa-check-circle-o"></i>
+                                <h4 ng-if="offer.activity.location">{{ offer.activity.location }}</h4>
+
+                                <span ng-if="!offer.activity.location"><i class="fa fa-warning"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+
                     <a ng-click="homeScope.offerSectionOpen = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step3.link</a>
                 </div>
 
@@ -87,6 +102,7 @@
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step4.text</span>
                     <a ng-click="completeCampaignPreparation()" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step4.link</a>
                 </div>
+
 
             </tab>
 

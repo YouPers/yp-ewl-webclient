@@ -188,6 +188,7 @@
                 activityController.canEdit = $scope.isScheduled && $scope.isOwner;
                 activityController.canDelete = $scope.isScheduled && ($scope.isOwner || $scope.isJoiner);
 
+
                 $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
 
                 var invitation = {
@@ -364,6 +365,14 @@
                         $scope.healthCoachEvent = 'editOwnActivityWithJoiners';
                     }
                 };
+                if($stateParams.edit) {
+                    $scope.enterEditMode();
+                    $scope.$watch('formContainer.form', function (form) {
+                        if(form) {
+                            form.$setDirty();
+                        }
+                    });
+                }
 
                 $scope.enterDeleteMode = function () {
                     activityController.deleteModeEnabled = true;
@@ -408,6 +417,10 @@
                         function _finalCb(savedSoi, healthCoachEvent) {
                             if (healthCoachEvent) {
                                 HealthCoachService.queueEvent(healthCoachEvent);
+                            }
+
+                            if($stateParams.edit) {
+                                return $scope.backToGame();
                             }
 
                             $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: savedSoi ? savedSoi.id : '' }, { reload: true });
