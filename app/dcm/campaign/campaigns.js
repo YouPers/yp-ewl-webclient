@@ -268,13 +268,15 @@
                     });
 
                     if ($scope.campaign.id) {
-                        CampaignService.putCampaign($scope.campaign).then(function (campaign) {
-                            // update version number of the campaign we have in the session, otherweise
-                            // we get version conflict on next save.
-                            $scope.campaign.__v = campaign.__v;
-                            $scope.$state.go('dcm.home');
-                            $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
-
+                        CampaignService.putCampaign($scope.campaign).then(function (savedCampaign) {
+                            // we need to get the campaign again from the backend, to get the updated, populated
+                            // campaignLeads
+                            CampaignService.getCampaign(savedCampaign.id).then(function(reloadedCampaign) {
+                                // merging to into the existing object to preserve references in the parent state
+                                _.merge($scope.campaign, reloadedCampaign);
+                                $scope.$state.go('dcm.home');
+                                $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+                            });
                         }, onError);
                     } else {
                         $scope.campaign.paymentCode = $scope.paymentCode;
