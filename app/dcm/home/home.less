@@ -95,11 +95,22 @@
           color: @yp-divider;
         }
       }
-      .tab-pane > div {
+      .tab-pane {
         padding: 24px;
-        a {
-          margin-top: 1em;
-          float: right;
+        > div {
+          .btn {
+            margin-top: 1em;
+            float: right;
+          }
+        }
+      }
+      .offer {
+        > * {
+          display: inline-block;
+          color: @yp-subtitle;
+        }
+        i.fa {
+          padding-left: 1em;
         }
       }
     }

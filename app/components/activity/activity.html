@@ -39,7 +39,7 @@
                         activity.editStatus.indexOf('editable') === 0 &&
                         activityController.canEdit" popover="{{ 'activity.editPopover' | translate }}" popover-trigger="mouseenter" popover-placement="bottom" popover-append-to-body="true"></a>
                     <a class="fa fa-trash-o" ng-click="enterDeleteMode()"
-                       ng-if="!activityController.formEnabled &&
+                       ng-if="
                        activity.deleteStatus.indexOf('deletable') === 0 &&
                        activityController.canDelete" popover="{{ 'activity.deletePopover' | translate }}" popover-trigger="mouseenter" popover-placement="bottom" popover-append-to-body="true"></a>
                 </span>
@@ -215,7 +215,7 @@
         </div>
 
         <!-- buttons in edit Mode -->
-        <div class="button-row" ng-if="activityController.editModeEnabled">
+        <div class="button-row" ng-if="activityController.editModeEnabled && !activityController.deleteModeEnabled">
             <button class="btn btn-primary"
                     ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
