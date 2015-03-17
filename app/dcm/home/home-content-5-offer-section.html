@@ -1,0 +1,79 @@
+<accordion-group ng-if="offerSectionAvailable" class="offer-section" is-open="homeScope.offerSectionOpen">
+    <div>
+
+        <accordion-heading>
+                <span  ng-click="displayCoachMsg('offers')">
+
+                    <span translate>dcmhome.activities</span>
+
+                    <a href>
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': offerSectionOpen, 'fa-chevron-right': !offerSectionOpen }"></i>
+                    </a>
+                </span>
+
+        </accordion-heading>
+
+
+        <div>
+
+            <!-- header / filters -->
+            <div ng-if="campaign" class="offer-filter">
+                <div class="checkbox show-old" ng-if="campaign">
+                    <label>
+                        <input type="checkbox" ng-model="homeController.showOld"> <span
+                            translate>dcmhome.showOld</span>
+                    </label>
+                </div>
+
+                <a class="add-offer" ui-sref="dcm.ideas" ng-if="campaign">
+                    <span translate>dcmhome.addOffer</span>
+                    <i class="fa fa-plus"></i>
+                </a>
+
+                <div class="offer-type">
+
+                    <button type="button" class="btn btn-default" ng-model="homeController.offerTypes" btn-radio="'Recommendation'">
+                        <i class="fa fa-lightbulb-o"></i><span translate>dcmhome.offerType.Recommendation</span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-model="homeController.offerTypes" btn-radio="'Invitation'">
+                        <i class="fa fa-envelope-o"></i><span translate>dcmhome.offerType.Invitation</span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-model="homeController.offerTypes" btn-radio="'UserInvitation'">
+                        <i class="fa fa-group"></i><span translate>dcmhome.offerType.UserInvitation</span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-model="homeController.offerTypes" btn-radio="'All'">
+                        <span translate>dcmhome.offerType.All</span>
+                    </button>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <!-- activity offers -->
+
+            <div class="offer-section-content">
+
+                <div ng-if="campaign && offers.length === 0" class="empty-content">
+
+                    <span class="empty-content-hint" translate>dcmhome.noOffers</span>
+
+                </div>
+
+                <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
+                                     activity="offer.activity"
+                                     idea="offer.idea"
+                                     social-interaction="offer"
+                                     ng-repeat="offer in offers"
+                                     ui-sref="{{ offer.__t === 'Invitation' ? 'dcm.activity' : 'dcm.recommendation' }}({ idea: offer.idea.id, activity: offer.activity.id, socialInteraction: offer.id, mode: 'campaignlead' })"
+                        >
+
+                </activity-offer-card>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</accordion-group>

@@ -25,7 +25,7 @@
 .dcm-home {
 
   accordion {
-    .panel-group .panel:not(:first-of-type) {
+    .panel-group ng-include:not(:first-of-type) .panel {
       margin-top: 0;
       border-top: none;
     }
@@ -72,6 +72,7 @@
     .nav-tabs.nav-justified a {
       text-align: left;
       background: none;
+      cursor: default;
     }
     tab-heading span {
       font-size: 16px;
@@ -79,6 +80,26 @@
       color: @yp-subtitle;
       text-transform: none;
     }
+
+    .campaign-preparation {
+      i.fa {
+        cursor: default;
+        &.fa-check-circle-o {
+          color: @yp-success;
+        }
+        &.fa-circle-o {
+          color: @yp-divider;
+        }
+      }
+      .tab-pane > div {
+        padding: 24px;
+        a {
+          margin-top: 1em;
+          float: right;
+        }
+      }
+    }
+
 
     h3 {
       padding-top: 1em;
