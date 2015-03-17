@@ -1,0 +1,34 @@
+<accordion-group ng-if="campaignMessagesAvailable" class="campaign-messages" is-open="campaignMessagesOpen">
+    <div ng-controller="HomeMessagesController as msgCtrl">
+
+        <accordion-heading>
+                <span  ng-click="displayCoachMsg('CampaignMessages')">
+                    <span translate>dcmhome.messages</span>
+
+                    <a href>
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': campaignMessagesOpen, 'fa-chevron-right': !campaignMessagesOpen }"></i>
+                    </a>
+                </span>
+        </accordion-heading>
+
+
+        <div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="homeController.showOld"> <span translate>dcmhome.showOld</span>
+                </label>
+            </div>
+
+            <social-interaction-message-composer on-post="msgCtrl.onMessageSaved(message)" edited-message="editedMessage" min-publish-from="currentCampaign.start" max-publish-to="currentCampaign.end"></social-interaction-message-composer>
+
+            <span ng-if="msgCtrl.messages.length === 0" class="empty-content-hint" translate>dcmhome.noMessages</span>
+
+            <social-interaction soi="message" on-remove="msgCtrl.soiRemoved(socialInteraction)" on-edit="msgCtrl.soiEdited(socialInteraction)"
+                                ng-repeat="message in msgCtrl.messages" soi-administration="true"></social-interaction>
+
+        </div>
+
+    </div>
+</accordion-group>

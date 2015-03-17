@@ -383,7 +383,7 @@
 
                     ActivityService.deleteActivity($scope.activity.id)
                         .then(function () {
-                            $state.go('homedispatcher');
+                            $scope.backToGame();
                             $scope.$root.$broadcast('busy.end', {url: "activities", name: "deleteActivity"});
                         });
                 };

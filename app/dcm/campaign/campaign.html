@@ -168,7 +168,8 @@
                 </div>
             </div>
             <div class="button-row">
-                <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true" class="btn btn-primary" ng-disabled="campaignForm.$invalid || (campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (campaign.id && !campaignForm.$dirty) || (!campaign.id && !validPaymentCode)" busy>
+                <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true" class="btn btn-primary"
+                        ng-disabled="campaignForm.$invalid || (campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (campaign.id && !campaignForm.$dirty) || (!campaign.id && !paymentCodeCheckingDisabled && !validPaymentCode)" busy>
                     <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                     <span translate>campaignForm.save</span>
 
