@@ -210,7 +210,11 @@
                         };
                         var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
                         firstIncompleteStep.active = true;
+                        firstIncompleteStep.enabled = true;
 
+                        $scope.isStepDisabled = function (step) {
+                            return !($scope.campaignPreparation[step].enabled || $scope.campaignPreparation[step].complete);
+                        };
                         $scope.completeCampaignPreparation = function () {
                             campaign.preparationComplete = true;
                             CampaignService.putCampaign(campaign);

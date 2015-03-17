@@ -19,7 +19,7 @@
         <tabset class="campaign-preparation" ng-if="!campaign.preparationComplete" justified="true">
 
             <!-- step 1 -->
-            <tab active="campaignPreparation.step1.active" disabled="!campaignPreparation.step1.active">
+            <tab active="campaignPreparation.step1.active" disabled="isStepDisabled('step1')">
 
                 <tab-heading>
 
@@ -37,7 +37,7 @@
             </tab>
 
             <!-- step 2 -->
-            <tab active="campaignPreparation.step2.active" disabled="!campaignPreparation.step2.active">
+            <tab active="campaignPreparation.step2.active" disabled="isStepDisabled('step2')">
 
                 <tab-heading>
 
@@ -55,7 +55,7 @@
             </tab>
 
             <!-- step 3 -->
-            <tab active="campaignPreparation.step3.active" disabled="!campaignPreparation.step3.active">
+            <tab active="campaignPreparation.step3.active" disabled="isStepDisabled('step3')">
 
                 <tab-heading>
 
@@ -73,7 +73,7 @@
             </tab>
 
             <!-- step 4 -->
-            <tab active="campaignPreparation.step4.active" disabled="!campaignPreparation.step4.active">
+            <tab active="campaignPreparation.step4.active" disabled="isStepDisabled('step4')">
 
                 <tab-heading>
 

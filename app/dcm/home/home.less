@@ -69,10 +69,14 @@
     .nav-tabs.nav-justified li.active a {
       border-bottom-color: transparent;
     }
-    .nav-tabs.nav-justified a {
-      text-align: left;
-      background: none;
-      cursor: default;
+    .nav-tabs.nav-justified {
+      li.disabled a {
+        cursor: default;
+      }
+      a {
+        text-align: left;
+        background: none;
+      }
     }
     tab-heading span {
       font-size: 16px;
