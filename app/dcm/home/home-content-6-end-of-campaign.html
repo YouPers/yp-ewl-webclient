@@ -17,15 +17,19 @@
 
         <div ng-if="campaignEndOpen">
 
-            <div ng-if="campaign.leaderSurveyUrl">
+            <div>
                 <p>
                     <span translate>dcmhome.surveyInfo</span>
                 </p>
 
-                <a ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red">
+                <a ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red"  ng-if="campaign.leaderSurveyUrl">
                     <span translate>dcmhome.surveyLink</span>
                     <span class="fa fa-chevron-right"></span>
                 </a>
+                <a ng-if="!campaign.leaderSurveyUrl" href class="btn btn-flat btn-big btn-red" popover="normally SurveyMonkey should be enabled on HC-UAT and PRODUCTION" popover-trigger="mouseenter" popover-placement="top">
+                    <span translate >Survey Disabled on this instance!</span>
+                </a>
+
             </div>
 
         </div>
