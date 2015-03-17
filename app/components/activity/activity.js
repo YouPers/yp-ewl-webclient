@@ -188,6 +188,10 @@
                 activityController.canEdit = $scope.isScheduled && $scope.isOwner;
                 activityController.canDelete = $scope.isScheduled && ($scope.isOwner || $scope.isJoiner);
 
+                if($stateParams.edit) {
+                    $scope.enterEditMode();
+                }
+
                 $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
 
                 var invitation = {

@@ -19,77 +19,33 @@
         <tabset class="campaign-preparation" ng-if="!campaign.preparationComplete" justified="true">
 
             <!-- step 1 -->
-            <tab active="campaignPreparation.step1.active" disabled="campaignPreparation.step1.disabled">
+            <tab ng-repeat="step in campaignPreparation" active="step.active">
 
                 <tab-heading>
 
-                    <i class="fa" ng-class="campaignPreparation.step1.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
+                    <i class="fa" ng-class="step.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
 
                     <span>1</span>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.tab</span>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step{{$index+1}}.tab</span>
                 </tab-heading>
 
-                <div>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.text</span>
-                    <a ui-sref="profile" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step1.link</a>
+                <div ng-if="!step.disabled">
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step{{$index+1}}.text</span>
+                    <a ui-sref="profile" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step{{$index+1}}.link</a>
+                </div>
+                <div ng-if="step.disabled">
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step{{$index+1}}.disabled</span>
+                </div>
+
+                <div ng-if="$index+1 == 3">
+                    <ul>
+                        <li ng-repeat="offer in offersWithoutLocation">
+                            <a class="btn-flat">{{ offer.title}}</a>
+                        </li>
+                    </ul>
                 </div>
 
             </tab>
-
-            <!-- step 2 -->
-            <tab active="campaignPreparation.step2.active" disabled="campaignPreparation.step2.disabled">
-
-                <tab-heading>
-
-                    <i class="fa" ng-class="campaignPreparation.step2.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
-
-                    <span>2</span>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.tab</span>
-                </tab-heading>
-
-                <div>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.text</span>
-                    <a ui-sref="dcm.campaign({campaignId: $stateParams.campaignId})" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step2.link</a>
-                </div>
-
-            </tab>
-
-            <!-- step 3 -->
-            <tab active="campaignPreparation.step3.active" disabled="campaignPreparation.step3.disabled">
-
-                <tab-heading>
-
-                    <i class="fa" ng-class="campaignPreparation.step3.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
-
-                    <span>3</span>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.tab</span>
-                </tab-heading>
-
-                <div>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.text</span>
-                    <a ng-click="homeScope.offerSectionOpen = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step3.link</a>
-                </div>
-
-            </tab>
-
-            <!-- step 4 -->
-            <tab active="campaignPreparation.step4.active" disabled="campaignPreparation.step4.disabled">
-
-                <tab-heading>
-
-                    <i class="fa" ng-class="campaignPreparation.step4.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
-
-                    <span>4</span>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step4.tab</span>
-                </tab-heading>
-
-                <div>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step4.text</span>
-                    <a ng-click="completeCampaignPreparation()" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step4.link</a>
-                </div>
-
-            </tab>
-
 
         </tabset>
 

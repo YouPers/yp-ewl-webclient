@@ -61,7 +61,8 @@
         "step4": {
           "tab": "Einladungen",
           "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Du kannst jetzt die Einladungen an die Teilnehmer verschicken",
-          "link": "weiter"
+          "link": "weiter",
+          "disabled": "Hier kannst du die Teilnehmer einladen, sobald du deine Kampagne fertig gestellt hast."
         }
       },
       "welcomeLink": {

@@ -192,6 +192,9 @@
 
                     if(campaign) {
 
+                        $scope.offersWithoutLocation = _.filter(function (offer) {
+                            return offer.__t === 'Invitation' && !offer.activity.location;
+                        });
                         $scope.campaignPreparation = {
                             step1: {
                                 complete: !UserService.hasDefaultAvatar()
@@ -200,9 +203,7 @@
                                 complete: CampaignService.isComplete(campaign)
                             },
                             step3: {
-                                complete: !_.any($scope.offers, function (offer) {
-                                    return offer.__t === 'Invitation' && !offer.activity.location;
-                                })
+                                complete: !_.any($scope.offers, $scope.offersWithoutLocation)
                             },
                             step4: {
                                 complete: false
@@ -212,9 +213,8 @@
                         firstIncompleteStep.active = true;
                         firstIncompleteStep.enabled = true;
 
-                        _.each($scope.campaignPreparation, function (step) {
-                            step.disabled = !(step.enabled || step.complete);
-                        });
+                        $scope.campaignPreparation.step4.disabled = !$scope.campaignPreparation.step4.enabled;
+
                         $scope.completeCampaignPreparation = function () {
                             campaign.preparationComplete = true;
                             CampaignService.putCampaign(campaign);
