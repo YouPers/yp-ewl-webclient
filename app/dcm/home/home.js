@@ -212,9 +212,9 @@
                         firstIncompleteStep.active = true;
                         firstIncompleteStep.enabled = true;
 
-                        $scope.isStepDisabled = function (step) {
-                            return !($scope.campaignPreparation[step].enabled || $scope.campaignPreparation[step].complete);
-                        };
+                        _.each($scope.campaignPreparation, function (step) {
+                            step.disabled = !(step.enabled || step.complete)
+                        });
                         $scope.completeCampaignPreparation = function () {
                             campaign.preparationComplete = true;
                             CampaignService.putCampaign(campaign);
