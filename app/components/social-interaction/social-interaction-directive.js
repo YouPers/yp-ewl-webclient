@@ -59,12 +59,15 @@
                         var options = scope.options = {};
                         options.isCampaignLead = attrs.soiAdministration;
 
-                        scope.componentClass = function (socialInteraction) {
+                        scope.componentClasses = function (socialInteraction) {
                             if (!socialInteraction) {
                                 return undefined;
                             }
                             var authorType = socialInteraction.authorType;
-                            return 'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1);
+                            return [
+                                'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1),
+                                socialInteraction.__t.toLowerCase()
+                            ];
 
                         };
 
