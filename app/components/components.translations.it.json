@@ -98,7 +98,9 @@
     "submitted": "Grazie per aver inviato un feedback!",
     "username": {
       "label": "Nome utente"
-    }
+    },
+    "header": null,
+    "header2": null
   },
   "endorsementType": {
     "presented": null,

@@ -16,12 +16,11 @@
                     </div>
                 </div>
                 <div ng-if="!submitted">
+                    <h3 translate>feedbackForm.header</h3>
+                    <h3 translate>feedbackForm.header2</h3>
+                    <br>
                     <form name="feedbackForm" ypModel="feedback" class="form" role="form" ng-submit="submitFeedback()" novalidate>
 
-                        <div class="form-group">
-                            <input id="anonymous" type="checkbox" ng-model="anonymous">
-                            <label for="anonymous" translate>feedbackForm.anonymous.label</label>
-                        </div>
 
                         <div ng-show="!anonymous && contactInfo" class="form-group">
                             <label for="username" translate>feedbackForm.username.label</label>
@@ -30,6 +29,10 @@
 
                         <div ng-show="!anonymous && !contactInfo" >
                             <yp-input name="contactInfo" type="email"></yp-input>
+                        </div>
+                        <div class="form-group">
+                            <input id="anonymous" type="checkbox" ng-model="anonymous">
+                            <label for="anonymous" translate>feedbackForm.anonymous.label</label>
                         </div>
 
                         <div class="form-group">

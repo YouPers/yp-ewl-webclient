@@ -24,6 +24,7 @@
     "profile": "Profil",
     "language": "Sprache",
     "feedback": "Feedback",
+    "contact": "Kontakt",
     "moreinfo": "Mehr Erfahren",
     "dcm": "Kampagnenverwaltung",
     "dhc": "Sicht als Teilnehmer",
@@ -70,5 +71,16 @@
       "title": "Willkommen zum Persönlichen Stress Management",
       "text": "<p>Verbessere deine Worklife-Balance durch eine nachhaltige Verhaltensänderung.</p><p>Gratulation: der erste Schritt ist schon gemacht!</p><h2>Fachlicher Review</h2><p>Wir reviewen fachlichen Inhalt - den Fragebogen, die Aktivitäten und die Vorschläge.<ul><li>Feedback zum Fragebogen wird im Excel gesammelt. </li><li>Korrekturen / Feedback zu den Aktiväten können wir direkt mittels des Admin-Buttons auf der Website eintragen.</li></ul></p><p> Start: Mittwoch 20. Novemeber</p><p> Ende: Montag 25. Dezember</p>"
     }
+  },
+  "help": {
+    "help": "Hilfe",
+    "campaignParticipant": "Kampagnenteilnehmer",
+    "campaignLeader": "Kampagnenleiter",
+    "serviceManager": "Service Manager",
+    "faq": "FAQ",
+    "moreInfoParticipantLink": "http://healthcampaign.youpers.com/?p=21102",
+    "moreInfoCampaignLeaderLink": "http://healthcampaign.youpers.com/?p=21058",
+    "moreInfoServiceManagerLink": "http://healthcampaign.youpers.com/?p=20985",
+    "faqLink": "http://healthcampaign.youpers.com/?p=20989"
   }
 }

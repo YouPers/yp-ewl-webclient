@@ -25,6 +25,7 @@
     "language": "Voce",
     "feedback": null,
     "moreinfo": "Impara",
+    "contact": null,
     "dcm": null,
     "dhc": null,
     "logoHeader": "HealthCampaign"
@@ -70,5 +71,16 @@
       "title": null,
       "text": null
     }
+  },
+  "help": {
+    "campaignLeader": null,
+    "campaignParticipant": null,
+    "faq": null,
+    "faqLink": null,
+    "help": null,
+    "moreInfoCampaignLeaderLink": null,
+    "moreInfoParticipantLink": null,
+    "moreInfoServiceManagerLink": null,
+    "serviceManager": null
   }
 }
