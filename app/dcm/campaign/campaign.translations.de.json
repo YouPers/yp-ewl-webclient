@@ -45,7 +45,8 @@
       "label": "Ende"
     },
     "usersInCampaign": "Die Kampagne hat bereits Teilnehmer.",
-    "offerRecreation": "Alle Empfehlungen und Einladungen werden neu erstellt.",
+    "offersRecreated": "Alle Empfehlungen und Einladungen werden neu erstellt.",
+    "offersRemain": "Empfehlungen und Einladungen bleiben erhalten.",
     "campaignEnded": "Die Kampagne ist bereits beendet.",
     "participants": {
       "label": "Personenkreis",

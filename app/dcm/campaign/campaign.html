@@ -46,8 +46,8 @@
                         <span translate>campaignForm.usersInCampaign</span>
                     </div>
 
-                    <div ng-cloak ng-if="campaignStartChanged || campaignEndChanged && campaignEndChangeRecreatesOffers">
-                        <span translate>campaignForm.offerRecreation</span>
+                    <div class="recreation" ng-cloak ng-if="campaignStartChanged || campaignEndChanged && campaignEndChangeRecreatesOffers">
+                        <span translate>campaignForm.offersRecreated</span>
                         <i class="fa fa-warning"></i>
                     </div>
                 </div>
@@ -58,6 +58,9 @@
 
                     <div ng-if="disabledEnd">
                         <span translate>campaignForm.campaignEnded</span>
+                    </div>
+                    <div ng-if="campaignEndChanged && !campaignEndChangeRecreatesOffers">
+                        <span translate>campaignForm.offersRemain</span>
                     </div>
                 </div>
 
