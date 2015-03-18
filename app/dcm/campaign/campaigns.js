@@ -140,7 +140,7 @@
                 // watch and ensure that start is before end date of a campaign, using the same default weekday/duration as above
                 $scope.$watch('campaign.start', function (date) {
 
-                    $scope.campaignStartChanged = $scope.campaignStart && !moment(date).isSame(moment($scope.campaignStart))
+                    $scope.campaignStartChanged = $scope.campaignStart && !moment(date).isSame(moment($scope.campaignStart));
 
                     var campaign = $scope.campaign;
                     $scope.minDateEnd = $scope.disabledEnd ? undefined : moment(campaign.start).hour(17).minutes(0).seconds(0).add(1, 'days').toDate();
@@ -151,7 +151,7 @@
                     }
                 });
                 $scope.$watch('campaign.end', function (date) {
-                    $scope.campaignEndChanged = $scope.campaignEnd && !moment(date).isSame(moment($scope.campaignEnd))
+                    $scope.campaignEndChanged = $scope.campaignEnd && !moment(date).isSame(moment($scope.campaignEnd));
                 });
 
                 // gather campaign leads from all campaigns
