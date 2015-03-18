@@ -125,7 +125,7 @@
         <div class="col-sm-1 badge">
             {{paymentCode.endorsementType || 'none'}}
         </div>
-        <div class="col-sm-1 {{ctrl.getParticipantsColor(paymentCode.users, getUsersPerCampaign(paymentCode.campaign.id))}}">
+        <div class="col-sm-1 {{ctrl.getParticipantsColor(paymentCode.users, ctrl.getUsersPerCampaign(paymentCode.campaign.id))}}">
             {{paymentCode.users}} / {{ctrl.getUsersPerCampaign(paymentCode.campaign.id)}}
 
         </div>
