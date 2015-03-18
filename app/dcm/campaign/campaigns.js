@@ -74,6 +74,11 @@
                                 } else {
                                     return null;
                                 }
+                            }],
+                            usersInCampaign: ['UserService', 'campaign', function (UserService, campaign) {
+                                return !campaign ? undefined : UserService.getUsers({ campaign: campaign.id }).then(function (users) {
+                                    return users && users.length > 0;
+                                });
                             }]
 
                         }
@@ -84,29 +89,36 @@
 
 
         .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService',
-            'PaymentCodeService', 'organization', 'campaign', 'campaigns', 'topics', 'newTopic', 'yp.config',
+            'PaymentCodeService', 'organization', 'campaign', 'campaigns', 'topics', 'newTopic', 'yp.config', 'usersInCampaign',
             function ($scope, CampaignService, UserService, HealthCoachService,
-                      PaymentCodeService, organization, campaign, campaigns, topics, newTopic, config) {
+                      PaymentCodeService, organization, campaign, campaigns, topics, newTopic, config, usersInCampaign) {
 
                 $scope.campaignController = this;
                 $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
+                $scope.usersInCampaign = usersInCampaign;
+
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
                     'starting-day': 1
                 };
 
-                // default start date = Monday in 2 weeks
-                var start = new Date(moment().day(1).hour(8).minutes(0).seconds(0).add(2, 'weeks'));
-                // default end date = Friday of the 4th week since the start date
-                var end = new Date(moment(start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
+
 
                 if (campaign) {
                     $scope.campaign = campaign;
+                    $scope.campaignEnded = moment().isAfter(campaign.end);
+                    $scope.campaignStart = _.clone(campaign.start);
+                    $scope.campaignEnd = _.clone(campaign.end);
                 } else {
                     if (!newTopic) {
                         throw new Error("no topic found, we should always have a topic to create a new campaign");
                     }
+
+                    // default start date = Monday in 2 weeks
+                    var start = new Date(moment().day(1).hour(8).minutes(0).seconds(0).add(2, 'weeks'));
+                    // default end date = Friday of the 4th week since the start date
+                    var end = new Date(moment(start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
                     $scope.campaign = {
                         organization: organization,
                         start: start,
@@ -120,18 +132,26 @@
                 }
 
 
+
+                $scope.disabledStart = usersInCampaign;
+                $scope.disabledEnd = $scope.campaignEnded;
+                $scope.minDateStart = $scope.disabledStart ? undefined : moment().add(1, 'days').toDate();
+
                 // watch and ensure that start is before end date of a campaign, using the same default weekday/duration as above
                 $scope.$watch('campaign.start', function (date) {
+
+                    $scope.campaignStartChanged = $scope.campaignStart && !moment(date).isSame(moment($scope.campaignStart))
+
                     var campaign = $scope.campaign;
-                    if (moment(campaign.start).diff(moment(campaign.end), 'weeks') > -1) {
+                    $scope.minDateEnd = $scope.disabledEnd ? undefined : moment(campaign.start).hour(17).minutes(0).seconds(0).add(1, 'days').toDate();
+                    $scope.maxDateEnd = $scope.disabledEnd ? undefined : moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(8, 'weeks').toDate();
+
+                    if (moment(campaign.start).isAfter(campaign.end)) {
                         campaign.end = moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks').toDate();
                     }
                 });
                 $scope.$watch('campaign.end', function (date) {
-                    var campaign = $scope.campaign;
-                    if (moment(campaign.start).diff(moment(campaign.end), 'weeks') > -1) {
-                        campaign.start = moment(campaign.end).day(1).hour(8).minutes(0).seconds(0).subtract(3, 'weeks').toDate();
-                    }
+                    $scope.campaignEndChanged = $scope.campaignEnd && !moment(date).isSame(moment($scope.campaignEnd))
                 });
 
                 // gather campaign leads from all campaigns
@@ -233,7 +253,7 @@
                     });
                 };
 
-                $scope.canDelete = $scope.campaign.id;
+                $scope.canDelete = $scope.campaign.id && !usersInCampaign;
 
                 $scope.deleteCampaign = function () {
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "deleteCampaign"});
@@ -260,40 +280,56 @@
                 $scope.saveCampaign = function () {
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "saveCampaign"});
 
-                    $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
-                    $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
-
-                    $scope.campaign.newCampaignLeads = _.remove($scope.campaign.campaignLeads, function (campaignLead) {
-                        return !campaignLead.id;
-                    });
-
-                    if ($scope.campaign.id) {
-                        CampaignService.putCampaign($scope.campaign).then(function (savedCampaign) {
-                            // we need to get the campaign again from the backend, to get the updated, populated
-                            // campaignLeads
-                            CampaignService.getCampaign(savedCampaign.id).then(function(reloadedCampaign) {
-                                // merging to into the existing object to preserve references in the parent state
-                                _.merge($scope.campaign, reloadedCampaign);
-                                $scope.$state.go('dcm.home');
-                                $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
-                            });
-                        }, onError);
+                    // recreate campaign and all offers, if
+                    // - campaign start has changed OR
+                    // - campaign end has changed AND the campaign has NOT already started
+                    // TODO: clean up offers, discuss campaignStarted vs. campaignHasUsers
+                    if($scope.campaignStartChanged || $scope.campaignEndChanged && moment().isAfter($scope.campaign.start)) {
+                        CampaignService.deleteCampaign($scope.campaign).then(function () {
+                            _.remove(campaigns, 'id', $scope.campaign.id);
+                            delete $scope.campaign.id;
+                            save();
+                        });
                     } else {
-                        $scope.campaign.paymentCode = $scope.paymentCode;
-                        var options = {};
-                        if ($scope.campaignController.defaultCampaignLead) {
-                            options.defaultCampaignLead = $scope.campaignController.defaultCampaignLead.username;
-                        }
-                        CampaignService.postCampaign($scope.campaign, options)
-                            .then(function (campaign) {
+                        save();
+                    }
 
-                                // queue healthCoach message for new campaigns
-                                if (!$scope.campaign.id) {
-                                    HealthCoachService.queueEvent('campaignCreated');
-                                }
-                                $scope.$state.go('dcm.home', {campaignId: campaign.id});
-                                $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+                    function save() {
+                        $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
+                        $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
+
+                        $scope.campaign.newCampaignLeads = _.remove($scope.campaign.campaignLeads, function (campaignLead) {
+                            return !campaignLead.id;
+                        });
+
+                        if ($scope.campaign.id) {
+                            CampaignService.putCampaign($scope.campaign).then(function (savedCampaign) {
+                                // we need to get the campaign again from the backend, to get the updated, populated
+                                // campaignLeads
+                                CampaignService.getCampaign(savedCampaign.id).then(function(reloadedCampaign) {
+                                    // merging to into the existing object to preserve references in the parent state
+                                    _.merge($scope.campaign, reloadedCampaign);
+                                    $scope.$state.go('dcm.home');
+                                    $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+                                });
                             }, onError);
+                        } else {
+                            $scope.campaign.paymentCode = $scope.paymentCode;
+                            var options = {};
+                            if ($scope.campaignController.defaultCampaignLead) {
+                                options.defaultCampaignLead = $scope.campaignController.defaultCampaignLead.username;
+                            }
+                            CampaignService.postCampaign($scope.campaign, options)
+                                .then(function (campaign) {
+
+                                    // queue healthCoach message for new campaigns
+                                    if (!$scope.campaign.id) {
+                                        HealthCoachService.queueEvent('campaignCreated');
+                                    }
+                                    $scope.$state.go('dcm.home', {campaignId: campaign.id});
+                                    $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+                                }, onError);
+                        }
                     }
                 };
             }

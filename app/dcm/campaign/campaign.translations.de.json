@@ -44,6 +44,9 @@
     "end": {
       "label": "Ende"
     },
+    "usersInCampaign": "Die Kampagne hat bereits Teilnehmer.",
+    "campaignStartChanged": "Alle Empfehlungen und Einladungen werden neu erstellt.",
+    "campaignEnded": "Die Kampagne ist bereits beendet.",
     "participants": {
       "label": "Personenkreis",
       "placeholder": "Personenkreis",
