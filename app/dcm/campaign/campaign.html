@@ -41,17 +41,21 @@
                 <div class="form-group date">
                     <label class="control-label" translate>campaignForm.start.label</label>
                     <date-picker disabled="disabledStart" min-date="minDateStart" date="campaign.start" ng-model="campaign.start"></date-picker>
+
                     <div ng-if="disabledStart">
                         <span translate>campaignForm.usersInCampaign</span>
                     </div>
-                    <div ng-if="campaignStartChanged">
-                        <span translate>campaignForm.campaignStartChanged</span>
+
+                    <div ng-cloak ng-if="campaignStartChanged || campaignEndChanged && campaignEndChangeRecreatesOffers">
+                        <span translate>campaignForm.offerRecreation</span>
+                        <i class="fa fa-warning"></i>
                     </div>
                 </div>
 
                 <div class="form-group date">
                     <label translate>campaignForm.end.label</label>
                     <date-picker disabled="disabledEnd" min-date="minDateEnd" max-date="maxDateEnd" date="campaign.end" ng-model="campaign.end"></date-picker>
+
                     <div ng-if="disabledEnd">
                         <span translate>campaignForm.campaignEnded</span>
                     </div>

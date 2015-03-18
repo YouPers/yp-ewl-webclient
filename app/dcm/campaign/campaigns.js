@@ -152,6 +152,7 @@
                 });
                 $scope.$watch('campaign.end', function (date) {
                     $scope.campaignEndChanged = $scope.campaignEnd && !moment(date).isSame(moment($scope.campaignEnd));
+                    $scope.campaignEndChangeRecreatesOffers = moment().isBefore($scope.campaign.start) && !usersInCampaign;
                 });
 
                 // gather campaign leads from all campaigns
@@ -284,7 +285,7 @@
                     // - campaign start has changed OR
                     // - campaign end has changed AND the campaign has NOT already started
                     // TODO: clean up offers, discuss campaignStarted vs. campaignHasUsers
-                    if($scope.campaignStartChanged || $scope.campaignEndChanged && moment().isAfter($scope.campaign.start)) {
+                    if($scope.campaignStartChanged || $scope.campaignEndChanged && $scope.campaignEndChangeRecreatesOffers) {
                         CampaignService.deleteCampaign($scope.campaign).then(function () {
                             _.remove(campaigns, 'id', $scope.campaign.id);
                             delete $scope.campaign.id;
