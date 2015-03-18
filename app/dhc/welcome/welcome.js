@@ -18,7 +18,7 @@
                                     return CampaignService.getCampaign($stateParams.campaignId);
                                 }]
                         }
-                    })
+                    });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/welcome/welcome');
             }])
