@@ -105,14 +105,15 @@ social-interaction-message-composer {
 
 }
 
-
-
 .inbox-item {
+
+  &.invitation, &.recommendation {
+    cursor: pointer;
+  }
 
   border-top: 1px solid @yp-divider;
   display: flex;
   flex-direction: row;
-  cursor: pointer;
 
   > *:first-child {
     flex: 0 0 48px;
