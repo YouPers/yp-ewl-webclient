@@ -25,6 +25,7 @@
     "language": "Language",
     "feedback": "Feedback",
     "moreinfo": "More Information",
+    "contact": null,
     "dcm": "Campaign administration",
     "dhc": "View as participant",
     "logoHeader": "HealthCampaign"
@@ -70,5 +71,16 @@
       "title": "Welcome to the YOUPERS personal Stress-Management Campaign",
       "text": "<p> Improve your work life balance through sustainable behavioral change. </p><p> Congratulations: the first step is already done! </p><h2> Technical review </h2><p> We review our technical content - the questionnaire, the activities and proposals. <ul><li> Feedback on the questionnaire is collected in Excel. </li><li> Corrections / feedback on the activities can be entered directly, via the admin button on the website. </li></ul></p><p> Start: Wednesday 20th Novemeber </p><p> End: Monday, December 25 </p>"
     }
+  },
+  "help": {
+    "campaignLeader": null,
+    "campaignParticipant": null,
+    "faq": "FAQ",
+    "faqLink": "http://healthcampaign.youpers.com/?p=21686",
+    "help": null,
+    "moreInfoCampaignLeaderLink": "http://healthcampaign.youpers.com/?p=21726",
+    "moreInfoParticipantLink": "http://healthcampaign.youpers.com/?p=21728",
+    "moreInfoServiceManagerLink": "http://healthcampaign.youpers.com/?p=21730",
+    "serviceManager": null
   }
 }

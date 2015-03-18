@@ -98,7 +98,9 @@
     "submitted": "Merci pour ton commentaire!",
     "username": {
       "label": "Nom d'utilisateur"
-    }
+    },
+    "header": null,
+    "header2": null
   },
   "endorsementType": {
     "presented": null,
