@@ -284,7 +284,6 @@
                     // recreate campaign and all offers, if
                     // - campaign start has changed OR
                     // - campaign end has changed AND the campaign has NOT already started
-                    // TODO: clean up offers, discuss campaignStarted vs. campaignHasUsers
                     if($scope.campaignStartChanged || $scope.campaignEndChanged && $scope.campaignEndChangeRecreatesOffers) {
                         CampaignService.deleteCampaign($scope.campaign).then(function () {
                             _.remove(campaigns, 'id', $scope.campaign.id);
