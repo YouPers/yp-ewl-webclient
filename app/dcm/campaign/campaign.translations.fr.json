@@ -44,6 +44,10 @@
     "end": {
       "label": "Fin"
     },
+    "usersInCampaign": null,
+    "offersRecreated": null,
+    "offersRemain": null,
+    "campaignEnded": null,
     "participants": {
       "label": "Le groupe de personnes",
       "placeholder": "Le groupe de personnes",
