@@ -26,7 +26,7 @@
 
 
 </accordion>
-<div ng-if="!campaign">
+<div ng-cloak ng-if="!campaign">
     <span class="empty-content-hint" translate>dcmhome.noCampaigns</span>
     <a class="new-campaign" ui-sref="dcm.topics({campaignId: undefined})">
         <span translate>dcmhome.organization.addCampaign</span>
