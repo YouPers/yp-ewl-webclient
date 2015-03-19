@@ -68,15 +68,11 @@
       "label": "Firmenname",
       "placeholder": "Firmenname"
     },
-    "termsLink": "http://healthcampaign.youpers.com/nutzungsbedingungen/?lang=de"
+    "termsLink": "http://healthcampaign.youpers.com/?p=19669"
   },
-
-
   "signupFinalization": {
     "header": "Danke für deine Registrierung",
-
     "verificationEmail": "Wir haben dir eine Email geschickt an: <strong>{{ email }}</strong><br/><br/>Bitte öffne den Bestätigungs-Link in dieser Email um fortzufahren.",
-
     "noVerificationEmail": "Hast du die Email nicht bekommen?",
     "resend1": {
       "text": "Bitte überprüfe deinen Spamordner",
