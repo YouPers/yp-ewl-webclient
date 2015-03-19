@@ -133,5 +133,18 @@
                         return 0;
                     }
                 };
+
+                self.getParticipantsColor = function (numberPaid, numberCurrent) {
+                    if (!numberCurrent) {
+                        numberCurrent = 0;
+                    }
+                    if (numberPaid * 0.75 > numberCurrent) {
+                        return 'participants-lower';
+                    } else if (numberPaid * 1.25 < numberCurrent) {
+                        return 'participants-higher';
+                    } else {
+                        return 'participants-ok';
+                    }
+                };
             }]);
 }());

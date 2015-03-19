@@ -18,27 +18,6 @@
                                     return CampaignService.getCampaign($stateParams.campaignId);
                                 }]
                         }
-                    })
-                    .state('moreinfo', {
-                        templateUrl: "layout/default.html",
-                        access: accessLevels.all,
-                        controller: ['$scope','$window', function($scope, $window) {
-                            $scope.close = function() {
-                                $window.close();
-                            };
-                        }]
-                    })
-                    .state('moreinfo.content', {
-                        url: "/moreinfo",
-                        access: accessLevels.all,
-                        views: {
-                            content: {
-                                templateUrl: 'dhc/welcome/moreinfo.html'
-                            }
-                        },
-                        resolve: {
-
-                        }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/welcome/welcome');
