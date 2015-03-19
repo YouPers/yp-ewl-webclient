@@ -13,6 +13,7 @@
            max-date="maxDate"
 
            ng-required="!!date"
+           ng-disabled="disabled"
 
            current-text="{{'datePicker.current-text' | translate}}"
            clear-text="{{'datePicker.clear-text' | translate}}"
@@ -21,7 +22,7 @@
             />
 
        <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="toggle($event)">
+              <button type="button" class="btn btn-default" ng-disabled="disabled" ng-click="toggle($event)">
                      <i class="glyphicon glyphicon-calendar"></i>
               </button>
        </span>

@@ -100,7 +100,9 @@
     "submitted": "Danke für dein Feedback!",
     "username": {
       "label": "Username"
-    }
+    },
+    "header": "Vielen Dank für ihre Rückmeldung! ",
+    "header2": "Wir sind ständig daran unseren Service zu verbessern."
   },
   "endorsementType": {
     "presented": "präsentiert von:",
