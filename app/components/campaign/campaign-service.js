@@ -18,8 +18,8 @@
                             return postedCampaign;
                         });
                     },
-                    putCampaign: function(campaign) {
-                        return Rest.restangularizeElement(null, campaign, "campaigns").put();
+                    putCampaign: function(campaign, options) {
+                        return Rest.restangularizeElement(null, campaign, "campaigns").put(options);
                     },
                     getCampaign: function(campaignId) {
                         return campaigns.one(campaignId).get({populate: ['organization', 'campaignLeads', 'topic', 'marketPartner']});
