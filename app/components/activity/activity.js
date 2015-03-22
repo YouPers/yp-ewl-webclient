@@ -515,6 +515,9 @@
                         } else {
                             return _finalCb();
                         }
+                    }, function saveErrorCb(err) {
+                        $scope.$emit('clientmsg:error', err);
+                        $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
                     });
 
 
