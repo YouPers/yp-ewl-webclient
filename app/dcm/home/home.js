@@ -197,7 +197,7 @@
                         });
                         $scope.campaignPreparation = {
                             step1: {
-                                complete: !UserService.hasDefaultAvatar()
+                                complete: !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
                             },
                             step2: {
                                 complete: CampaignService.isComplete(campaign)

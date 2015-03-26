@@ -298,16 +298,23 @@
                         $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
                         $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
 
+                        // preserve the main campaignlead
+                        var options = {
+                            defaultCampaignLead:  $scope.campaign.campaignLeads[0]
+                        };
+
+                        // remove the new campaignleads from the regular campaignleads collection and put them in a special
+                        // one, the backend needs to store them first before they can be added to the regular collection.
                         $scope.campaign.newCampaignLeads = _.remove($scope.campaign.campaignLeads, function (campaignLead) {
                             return !campaignLead.id;
                         });
 
                         if ($scope.campaign.id) {
-                            CampaignService.putCampaign($scope.campaign).then(function (savedCampaign) {
+                            CampaignService.putCampaign($scope.campaign, options).then(function (savedCampaign) {
                                 // we need to get the campaign again from the backend, to get the updated, populated
                                 // campaignLeads
                                 CampaignService.getCampaign(savedCampaign.id).then(function(reloadedCampaign) {
-                                    // merging to into the existing object to preserve references in the parent state
+                                    // merging saved object into the existing object to preserve references in the parent state
                                     _.merge($scope.campaign, reloadedCampaign);
                                     $scope.$state.go('dcm.home');
                                     $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
@@ -315,10 +322,7 @@
                             }, onError);
                         } else {
                             $scope.campaign.paymentCode = $scope.paymentCode;
-                            var options = {};
-                            if ($scope.campaignController.defaultCampaignLead) {
-                                options.defaultCampaignLead = $scope.campaignController.defaultCampaignLead.username;
-                            }
+
                             CampaignService.postCampaign($scope.campaign, options)
                                 .then(function (campaign) {
 
