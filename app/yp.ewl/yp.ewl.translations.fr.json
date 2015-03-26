@@ -59,12 +59,6 @@
   "footer": {
     "copyright": "&copy; YouPers 2014"
   },
-  "terms": {
-    "termsAndConditionsHeading": "Les conditions générales",
-    "termsAndConditions": "",
-    "privacyStatementHeading": "La politique de confidentialité",
-    "privacyStatement": ""
-  },
   "topic": {
     "chooseATopic": "Choisis un programme",
     "setGoal": {

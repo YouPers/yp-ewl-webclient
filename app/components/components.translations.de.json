@@ -13,8 +13,7 @@
       "502": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals.",
       "503": "Wir verbessern den HealthCampaign Service. Darum ist die Anwendung im Moment nicht verfügbar. Bitte versuchen sie in einigen Minuten nochmals. Vielen Dank für das Verständnis.",
       "504": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals.",
-      "alreadyJoinedUsers": "Die Kampagne kann nicht gelöscht werden, da sich bereits Teilnehmer angemeldet haben",
-      "NotAuthorizedError": "Keine Berechtigung für diese Aktion"
+      "alreadyJoinedUsers": "Die Kampagne kann nicht gelöscht werden, da sich bereits Teilnehmer angemeldet haben"
     }
   },
   "busy": {
@@ -101,9 +100,7 @@
     "submitted": "Danke für dein Feedback!",
     "username": {
       "label": "Username"
-    },
-    "header": "Vielen Dank für ihre Rückmeldung! ",
-    "header2": "Wir sind ständig daran unseren Service zu verbessern."
+    }
   },
   "endorsementType": {
     "presented": "präsentiert von:",
