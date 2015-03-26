@@ -561,7 +561,8 @@
                                             }
                                         });
                                         var factor = sum / (sum + overflow); // factor for having 100% again
-                                        return { flex: '0 0 ' + (value < threshold ? threshold : value) * factor * 100 + '%' };
+                                        var width = (value < threshold ? threshold : value) * factor * 100;
+                                        return { width: width + '%' };
                                     };
 
                                     _.each($scope.assessmentResults.concat($scope.assessmentResultsAverage), function (result, index) {

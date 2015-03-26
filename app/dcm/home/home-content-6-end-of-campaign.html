@@ -167,7 +167,7 @@
                             <div class="assessment-chart">
                                 <div
                                         ng-repeat="val in [10,20,32,15,23]"
-                                        ng-style="{ flex: '0 0 '+val+'%' }"
+                                        ng-style="{ width: ''+val+'%' }"
                                         ng-class="'assessmentRange' + $index">
                                     {{ val }}%
                                 </div>
@@ -178,7 +178,7 @@
                             <div class="assessment-chart dimmed">
                                 <div
                                         ng-repeat="val in [22,17,29,13,19]"
-                                        ng-style="{ flex: '0 0 '+val+'%' }"
+                                        ng-style="{ width: ''+val+'%' }"
                                         ng-class="'assessmentRange' + $index">
                                     {{ val }}%
                                 </div>
