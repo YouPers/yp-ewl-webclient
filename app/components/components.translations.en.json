@@ -77,6 +77,8 @@
     "submit": null
   },
   "feedbackForm": {
+    "header": null,
+    "header2": null,
     "anonymous": {
       "label": "Anonymous feedback"
     },
@@ -98,9 +100,7 @@
     "submitted": "Thank you for your feedback!",
     "username": {
       "label": "Username"
-    },
-    "header": null,
-    "header2": null
+    }
   },
   "endorsementType": {
     "presented": null,
