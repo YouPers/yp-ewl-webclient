@@ -135,7 +135,7 @@
 
                 $scope.disabledStart = usersInCampaign;
                 $scope.disabledEnd = $scope.campaignEnded;
-                $scope.minDateStart = $scope.disabledStart ? undefined : moment().add(1, 'days').toDate();
+                $scope.minDateStart = $scope.disabledStart ? undefined : moment().toDate();
 
                 // watch and ensure that start is before end date of a campaign, using the same default weekday/duration as above
                 $scope.$watch('campaign.start', function (date) {
