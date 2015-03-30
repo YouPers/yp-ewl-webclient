@@ -78,6 +78,7 @@
         }
       },
       "campaignLeadGuidance": {
+        "notCampaignLead": "Fortschritt der Kampagnenvorbereitung",
         "step1": {
           "link": "zum Profil",
           "tab": "Profilfoto",
