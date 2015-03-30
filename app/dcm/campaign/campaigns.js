@@ -298,7 +298,10 @@
                                 // campaignLeads
                                 CampaignService.getCampaign(savedCampaign.id).then(function(reloadedCampaign) {
                                     // merging saved object into the existing object to preserve references in the parent state
+
+                                    delete reloadedCampaign.organization; // keep the populated organization
                                     _.merge($scope.campaign, reloadedCampaign);
+
                                     $scope.$state.go('dcm.home');
                                     $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
                                 });
