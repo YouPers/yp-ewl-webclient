@@ -22,7 +22,7 @@
             ng-repeat="campaign in campaigns"
             ng-class="{ active: campaign.id === $stateParams.campaignId }"
             campaign="campaign"
-
+            show-nav-link="'dcmToDhc'"
             ui-sref="dcm.home({ campaignId: campaign.id })">
 
 

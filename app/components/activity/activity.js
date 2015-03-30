@@ -128,11 +128,11 @@
 
 
         .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
-            'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService',
+            'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService', 'CampaignService',
             'healthCoachEvent', // this resolve is from dhc or dcm activity state
             'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
             function ($scope, $rootScope, $state, $stateParams, $timeout,
-                      UserService, ActivityService, SocialInteractionService, HealthCoachService, healthCoachEvent,
+                      UserService, ActivityService, SocialInteractionService, HealthCoachService, CampaignService, healthCoachEvent,
                       campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
 
 
@@ -163,7 +163,7 @@
                 $scope.isScheduled = activity && activity.id;
                 $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isJoiner = $scope.isScheduled && ActivityService.isJoiningUser(activity);
-                $scope.isCampaignLead = $state.$current.parent.name === 'dcm';
+                $scope.isCampaignLead = CampaignService.isCampaignLead(campaign);
                 $scope.isInvitation = socialInteraction && socialInteraction.__t === 'Invitation';
                 $scope.isRecommendation = socialInteraction && socialInteraction.__t === 'Recommendation';
                 $scope.isNewCampaignActivity = $scope.isCampaignLead && !$scope.isScheduled;
@@ -326,10 +326,12 @@
                 );
 
                 $scope.backToGame = function () {
-                    if ($scope.isCampaignLead) {
-                        $state.go('dcm.home');
+
+                    // we want to stay in the app we are in
+                    if ($state.current.name.indexOf('dcm') !== -1) {
+                        $state.go('dcm.home', {campaignId: campaign.id});
                     } else {
-                        $state.go('dhc.game', {view: ""});
+                        $state.go('dhc.game', {view: "", campaignId: campaign.id});
                     }
                 };
 

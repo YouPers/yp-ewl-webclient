@@ -44,7 +44,10 @@
                 <i ng-if="unconfirmed" class="fa fa-warning"></i>
             </div>
         </div>
-
     </div>
 
+</div>
+<div ng-if="isCampaignLead && showNavLink">
+    <a ui-sref="dhc.game({campaignId: campaign.id})" ng-if="showNavLink==='dcmToDhc'" translate>campaignCard.dcmToDhcLink</a>
+    <a ui-sref="dcm.home({campaignId: campaign.id})" ng-if="showNavLink==='dhcToDcm'" translate>campaignCard.dhcToDcmLink</a>
 </div>
