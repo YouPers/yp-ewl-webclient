@@ -96,15 +96,15 @@
                 $scope.campaignController = this;
                 $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
                 $scope.usersInCampaign = usersInCampaign;
-                var initialMainCampaignLeadId = campaign && campaign.campaignLeads && (campaign.campaignLeads[0].id || campaign.campaignLeads[0]);
+                this.campaignLeadVerified = campaign && campaign.campaignLeads && campaign.campaignLeads[0].emailValidatedFlag;
 
+                // we store the main Leaders Id so we can compare on save
+                var initialMainCampaignLeadId = campaign && campaign.campaignLeads && (campaign.campaignLeads[0].id || campaign.campaignLeads[0]);
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
                     'starting-day': 1
                 };
-
-
 
                 if (campaign) {
                     $scope.campaign = campaign;
@@ -132,8 +132,6 @@
                     };
                 }
 
-
-
                 $scope.disabledStart = usersInCampaign;
                 $scope.disabledEnd = $scope.campaignEnded;
                 $scope.minDateStart = $scope.disabledStart ? undefined : moment().toDate();
@@ -151,6 +149,7 @@
                         campaign.end = moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks').toDate();
                     }
                 });
+
                 $scope.$watch('campaign.end', function (date) {
                     $scope.campaignEndChanged = $scope.campaignEnd && !moment(date).isSame(moment($scope.campaignEnd));
                     $scope.campaignEndChangeRecreatesOffers = moment().isBefore($scope.campaign.start) && !usersInCampaign;
@@ -163,7 +162,13 @@
                 });
 
                 $scope.availableCampaignLeads = function () {
-                    return _.unique(campaignLeads.concat($scope.campaign.campaignLeads), 'id');
+                    // once the campaignLead is verified, we don't give the option to change anymore,
+                    // only list the current campaignLeads
+                    if ($scope.campaignController.campaignLeadVerified) {
+                        return $scope.campaign.campaignLeads;
+                    } else {
+                        return _.unique(campaignLeads.concat($scope.campaign.campaignLeads), 'id');
+                    }
                 };
 
                 // we keep the newCampaignLeads in the campaign.newCampaignLeads, for a correct campaign-card
@@ -186,7 +191,7 @@
 
                     $scope.campaignForm.$setDirty();
                     $scope.campaignLeadForm.$setPristine();
-                    $scope.showNewCampainleadForm = false;
+                    $scope.campaignController.showNewCampainleadForm = false;
                     $scope.campaignLeadChanged = true;
                 };
 
