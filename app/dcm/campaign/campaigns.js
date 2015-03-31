@@ -96,7 +96,7 @@
                 $scope.campaignController = this;
                 $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
                 $scope.usersInCampaign = usersInCampaign;
-                var initialMainCampaignLeadId = campaign.campaignLeads && (campaign.campaignLeads[0].id || campaign.campaignLeads[0]);
+                var initialMainCampaignLeadId = campaign && campaign.campaignLeads && (campaign.campaignLeads[0].id || campaign.campaignLeads[0]);
 
 
                 $scope.dateOptions = {
