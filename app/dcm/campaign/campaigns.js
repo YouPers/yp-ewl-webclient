@@ -96,6 +96,7 @@
                 $scope.campaignController = this;
                 $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
                 $scope.usersInCampaign = usersInCampaign;
+                var initialMainCampaignLeadId = campaign.campaignLeads && (campaign.campaignLeads[0].id || campaign.campaignLeads[0]);
 
 
                 $scope.dateOptions = {
@@ -186,6 +187,7 @@
                     $scope.campaignForm.$setDirty();
                     $scope.campaignLeadForm.$setPristine();
                     $scope.showNewCampainleadForm = false;
+                    $scope.campaignLeadChanged = true;
                 };
 
 
@@ -207,6 +209,7 @@
                     } else {
                         $scope.campaign.campaignLeads = [campaignLead];
                     }
+                    $scope.campaignLeadChanged = true;
                 };
 
                 $scope.validatePaymentCode = function (code) {
@@ -267,12 +270,17 @@
                     // recreate campaign and all offers, if
                     // - campaign start has changed OR
                     // - campaign end has changed AND the campaign has NOT already started
-                    if($scope.campaignStartChanged || $scope.campaignEndChanged && $scope.campaignEndChangeRecreatesOffers) {
+                    // - campaignLead has changed (we need to do that, because otherwise the new CampaignLead cannot edit
+                    //   the default answers.
+                    if ($scope.campaignStartChanged ||
+                        ($scope.campaignEndChanged && $scope.campaignEndChangeRecreatesOffers) ||
+                        (initialMainCampaignLeadId && (initialMainCampaignLeadId !== ($scope.campaign.campaignLeads[0].id || $scope.campaign.campaignLeads[0])))
+                    ) {
                         CampaignService.deleteCampaign($scope.campaign).then(function () {
                             _.remove(campaigns, 'id', $scope.campaign.id);
                             delete $scope.campaign.id;
                             save();
-                        });
+                        }, onError);
                     } else {
                         save();
                     }
