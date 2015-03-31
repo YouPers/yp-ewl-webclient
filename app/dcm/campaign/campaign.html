@@ -108,18 +108,10 @@
 
             <h3>Kampagnenleiter</h3>
 
+            <br/>
+
             <div class="campaign-leads">
 
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-3" popover="{{'campaignLeadForm.mainLeaderExplanation' | translate}}"
-                         popover-trigger="mouseenter" popover-placement="top"><span translate>campaignLeadForm.mainLeader</span>
-                        <i class="fa fa-info-circle"></i></div>
-                    <div class="col-sm-3" popover="{{'campaignLeadForm.coLeaderExplanation' | translate}}"
-                         popover-trigger="mouseenter" popover-placement="top"><span translate>campaignLeadForm.coLeader</span>
-                        <i class="fa fa-info-circle" ></i></div>
-                </div>
                 <div class="campaign-lead row" ng-repeat="campaignLead in availableCampaignLeads()">
                     <div class="col-sm-1">
                         <img ng-src="{{ campaignLead.avatar }}">
@@ -130,14 +122,9 @@
                             <i class="fa fa-trash-o"></i>
                         </a>
                     </div>
+
                     <div class="col-sm-3">
-                        <a href ng-click="selectMainLeader(campaignLead);campaignForm.$setDirty();">
-                        <i ng-show="isMainLeader(campaignLead)" class="fa fa-check-square-o"></i>
-                        <i ng-show="!isMainLeader(campaignLead)" class="fa fa-square-o"></i>
-                        </a>
-                    </div>
-                    <div class="col-sm-3">
-                        <a href ng-click="assignCampaignLead(campaignLead); campaignForm.$setDirty();" ng-show="!isMainLeader(campaignLead)">
+                        <a href ng-click="assignCampaignLead(campaignLead); campaignForm.$setDirty();">
                             <i ng-show="isAssigned(campaignLead)" class="fa fa-check-square-o"></i>
                             <i ng-show="!isAssigned(campaignLead)" class="fa fa-square-o"></i>
                         </a>
@@ -145,7 +132,7 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-12"> <a href ng-click="campaignController.showNewCampainleadForm=true" translate>campaignLeadForm.newCampaignLead</a></div>
+                    <div class="col-sm-12"> <a href ng-click="campaignController.showNewCampainleadForm=true" ng-if="!campaignController.showNewCampainleadForm" translate>campaignLeadForm.newCampaignLead</a></div>
                 </div>
 
             </div>

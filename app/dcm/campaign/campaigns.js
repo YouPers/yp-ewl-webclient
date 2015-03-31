@@ -178,7 +178,7 @@
                     $scope.newCampaignLead.fullname = $scope.newCampaignLead.firstname + ' ' + $scope.newCampaignLead.lastname;
                     $scope.newCampaignLead.username = $scope.newCampaignLead.email;
                     $scope.newCampaignLead.avatar = config.webclientUrl + '/assets/img/default_avatar_woman.png';
-                    $scope.campaign.campaignLeads.push(_.clone($scope.newCampaignLead));
+                    $scope.campaign.campaignLeads = [_.clone($scope.newCampaignLead)];
                     _.each($scope.newCampaignLead, function (value, key) {
                         delete $scope.newCampaignLead[key];
                     });
@@ -188,28 +188,11 @@
                     $scope.showNewCampainleadForm = false;
                 };
 
-                $scope.selectMainLeader = function (leader) {
-
-
-                    // ensure the selected default campaign lead is first in order to be displayed in the campaign-card
-                    var newLeader = _.remove($scope.campaign.campaignLeads, function (campaignLead) {
-                        return leader.id === campaignLead.id || leader.username && leader.username === campaignLead.username;
-                    });
-                    if (newLeader.length > 0) {
-                        $scope.campaign.campaignLeads.unshift(newLeader[0]);
-                    } else {
-                        $scope.campaign.campaignLeads.unshift(leader);
-                    }
-                };
 
                 $scope.isAssigned = function (campaignLead) {
                     return _.any($scope.campaign.campaignLeads, function (cl) {
                         return cl.id === campaignLead.id;
                     });
-                };
-
-                $scope.isMainLeader = function (campaignLead) {
-                    return $scope.campaign.campaignLeads[0] && $scope.campaign.campaignLeads[0].id === campaignLead.id;
                 };
 
                 $scope.isOrgAdm = function (campaignLead) {
@@ -222,7 +205,7 @@
                     if ($scope.isAssigned(campaignLead)) {
                         _.remove($scope.campaign.campaignLeads, {id: campaignLead.id});
                     } else {
-                        $scope.campaign.campaignLeads.push(campaignLead);
+                        $scope.campaign.campaignLeads = [campaignLead];
                     }
                 };
 
@@ -315,7 +298,10 @@
                                 // campaignLeads
                                 CampaignService.getCampaign(savedCampaign.id).then(function(reloadedCampaign) {
                                     // merging saved object into the existing object to preserve references in the parent state
+
+                                    delete reloadedCampaign.organization; // keep the populated organization
                                     _.merge($scope.campaign, reloadedCampaign);
+
                                     $scope.$state.go('dcm.home');
                                     $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
                                 });
