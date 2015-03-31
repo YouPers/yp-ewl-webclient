@@ -10,7 +10,8 @@
                     scope: {
                         activity: '=',
                         isCampaignLead: '=',
-                        socialInteraction: '='
+                        socialInteraction: '=',
+                        calenderLinkActive: '='
                     },
                     templateUrl: 'components/activity/activity-view-directive.html',
 
