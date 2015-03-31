@@ -8,6 +8,8 @@
         publishFrom: false
     };
 
+    var _getAllCurrentAndFutureOffersOptions = _.clone(_getOffersOptions);
+
     var _getMessagesOptions = {
         populate: 'author',
         authored: true,
@@ -60,13 +62,25 @@
                             }],
 
                             socialInteractions: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
+
                                 if (campaign) {
+
+                                    // setup the _getOffersOptions for future calls
                                     _getOffersOptions.targetId = campaign.id;
-                                    return SocialInteractionService.getSocialInteractions(_getOffersOptions).then(_sortSois);
+
+                                    // but use the default one, because we want to get all on initial page load
+                                    _getAllCurrentAndFutureOffersOptions.targetId = campaign.id;
+                                    return SocialInteractionService.getSocialInteractions(_getAllCurrentAndFutureOffersOptions).then(_sortSois);
                                 } else {
                                     return [];
                                 }
 
+                            }],
+
+                            currentAndFutureInvitations: ['socialInteractions', function(socialInteractions) {
+                                return _.filter(socialInteractions, function(soi) {
+                                    return soi.__t === 'Invitation';
+                                });
                             }],
 
 
@@ -109,8 +123,12 @@
 
 
 
-        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'socialInteractions', 'messages', 'SocialInteractionService', 'campaign', 'campaigns', 'CampaignService', 'healthCoachEvent', '$translate',
-            function ($scope, $rootScope, $state, UserService, socialInteractions, messages, SocialInteractionService, campaign, campaigns, CampaignService, healthCoachEvent, $translate) {
+        .controller('HomeController', ['$scope', '$translate',
+            'UserService', 'CampaignService', 'SocialInteractionService',
+            'socialInteractions', 'currentAndFutureInvitations', 'messages',  'campaign', 'campaigns', 'healthCoachEvent',
+            function ($scope, $translate,
+                      UserService, CampaignService, SocialInteractionService,
+                      socialInteractions, currentAndFutureInvitations, messages, campaign, campaigns, healthCoachEvent) {
 
                 $scope.homeController = this;
                 $scope.homeScope = $scope;
@@ -140,6 +158,7 @@
 
 
                 $scope.offers = socialInteractions;
+                $scope.currentAndFutureInvitations = currentAndFutureInvitations;
                 $scope.messages = messages;
                 $scope.emailAddress = UserService.principal.getUser().email;
 
@@ -170,7 +189,7 @@
 
                 $scope.displayCoachMsg = function(section) {
                     $translate('healthCoach.dcm.home.sectionOpening.' + section).then(function (translated) {
-                        $rootScope.$emit('healthCoach:displayMessage', translated);
+                        $scope.$root.$emit('healthCoach:displayMessage', translated);
                     });
                 };
 
@@ -187,12 +206,12 @@
                 /////////////////////
                 function init () {
                     if (!campaign && campaigns.length > 0) {
-                        return $state.go('dcm.home', { campaignId: campaigns[0].id });
+                        return $scope.$state.go('dcm.home', { campaignId: campaigns[0].id });
                     }
 
                     if(campaign) {
 
-                        $scope.offersWithoutLocation = _.filter($scope.offers, function (offer) {
+                        $scope.offersWithoutLocation = _.filter(currentAndFutureInvitations, function (offer) {
                             return offer.__t === 'Invitation' && !offer.activity.location;
                         });
                         $scope.campaignPreparation = {
@@ -229,7 +248,7 @@
                             CampaignService.putCampaign(campaign);
                         };
 
-                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $state.href('welcome',{campaignId: campaign.id});
+                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $scope.$state.href('welcome',{campaignId: campaign.id});
                         var createDraftLocals = {
                             organizationName: campaign.organization.name,
                             welcomeLink: $scope.homeController.welcomeLink
@@ -606,8 +625,6 @@
 
 
                     // eventsPlanned, popular activities
-
-
                     StatsService.loadStats($scope.campaign.id,
                         {
                             type: 'eventsPlanned',
@@ -629,10 +646,6 @@
                         });
 
                 }
-
-
-
-
             }
         ]);
 
