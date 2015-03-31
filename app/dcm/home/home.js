@@ -119,6 +119,7 @@
                 $scope.homeController.offerTypes = 'Invitation';
                 $scope.campaign = campaign;
 
+
                 var now = moment();
 
                 if (campaign) {
@@ -136,6 +137,10 @@
                     $scope.campaignEndOpen = $scope.campaignEnded;
                     // offer section is open otherwise
                     $scope.offerSectionOpen = !$scope.campaignEndOpen && !$scope.campaignStartOpen;
+
+                    $scope.showDhcGameLink = CampaignService.isCampaignLead(campaign) && $scope.campaignStarted;
+                    $scope.showDhcWelcomeLink = CampaignService.isCampaignLead(campaign) && !$scope.campaignStarted;
+
                 }
 
 

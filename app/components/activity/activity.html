@@ -48,7 +48,7 @@
 
         <!-- read only view -->
         <div ng-if="!activityController.formEnabled">
-            <activity-view activity="activity" is-campaign-lead="isCampaignLead"
+            <activity-view activity="activity" is-campaign-lead="isCampaignLead && isDcm"
                            social-interaction="socialInteraction"></activity-view>
             <div class="activity-view">
                 <dl class="dl-horizontal">
@@ -62,7 +62,7 @@
         <!-- new and edit view -->
         <div ng-if="activityController.formEnabled">
             <activity-edit activity="activity" campaign="campaign" form="formContainer.form"
-                           is-campaign-lead="isCampaignLead" social-interaction="socialInteraction"></activity-edit>
+                           is-campaign-lead="isCampaignLead && isDcm" social-interaction="socialInteraction"></activity-edit>
 
             <!-- new invitations -->
             <div ng-if="!isCampaignLead && idea.defaultexecutiontype !== 'self' && isOwner && !inviteLocked"

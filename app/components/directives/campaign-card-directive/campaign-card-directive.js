@@ -15,7 +15,7 @@
                 templateUrl: 'components/directives/campaign-card-directive/campaign-card-directive.html',
 
                 link: function (scope, elem, attrs) {
-                    scope.isCampaignLead = CampaignService.isCampaignLead(scope.campaign);
+
                 }
             };
         }]);

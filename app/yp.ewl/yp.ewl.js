@@ -178,6 +178,7 @@ angular.module('yp-ewl',
                         var whiteListedStates = ['signupFinalization', 'emailVerification', 'signup'];
                         if(UserService.principal.isAuthenticated() && !user.emailValidatedFlag &&
                             !_.contains(whiteListedStates, toState.name)) {
+                            console.log('redirecting to signupFinalization: user has emailaddress not verfied');
                             event.preventDefault();
                             $state.go('signupFinalization');
                         }

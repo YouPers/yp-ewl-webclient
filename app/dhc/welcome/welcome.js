@@ -23,21 +23,24 @@
                 $translateWtiPartialLoaderProvider.addPart('dhc/welcome/welcome');
             }])
 
-        .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'ActivityService', 'campaign', 'HealthCoachService',
-            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, campaign, HealthCoachService) {
+        .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'ActivityService', 'campaign', 'HealthCoachService', 'CampaignService',
+            function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, campaign, HealthCoachService, CampaignService) {
+
+                var userIsAlreadyInThisCampaign = UserService.principal.getUser().campaign &&
+                    UserService.principal.getUser().campaign.id === campaign.id;
+                var campaignHasStarted = $scope.campaignHasStarted = moment().isAfter(moment(campaign.start));
+
 
                 if (!campaign) {
                     $state.go('dhc.game', {view: ""});
-                } else if ($scope.principal.isAuthorized('campaignlead')) {
-                    $scope.isCampaignlead = true;
-                } else if(!$stateParams.preview && UserService.principal.getUser().campaign && UserService.principal.getUser().campaign.id === campaign.id) {
+                }  else if(!$stateParams.preview && userIsAlreadyInThisCampaign && campaignHasStarted) {
                     // user is already in this campaign
-                    $state.go('dhc.game', {view: ""});
+                    $state.go('dhc.game', {campaignId: campaign.id, view: ""});
                 } else {
                     $scope.campaign = campaign;
                 }
 
-                $scope.campaignHasStarted = moment().isAfter(moment(campaign.start));
+                $scope.isCampaignLead = CampaignService.isCampaignLead(campaign);
 
                 $scope.join = function () {
 

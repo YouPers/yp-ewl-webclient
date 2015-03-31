@@ -17,6 +17,12 @@
     </a>
 </div>
 <div class="campaign-list">
+    <div ng-if="showDhcGameLink">
+        <a ui-sref="dhc.game({campaignId: campaign.id, view: ''})" translate>campaignCard.dcmToDhcLink</a>
+    </div>
+    <div ng-if="showDhcWelcomeLink">
+        <a ui-sref="welcome({campaignId: campaign.id})" translate>campaignCard.dcmToDhcLink</a>
+    </div>
 
     <campaign-card
             ng-repeat="campaign in campaigns"
