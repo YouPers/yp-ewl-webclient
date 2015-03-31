@@ -56,6 +56,17 @@
                         return !!campaign.participants &&
                             !!campaign.location &&
                             !!campaign.city;
+                    },
+                    isCampaignLead: function(campaign, user) {
+                        if (!campaign) {
+                            return false;
+                        }
+                        if (!user) {
+                            user = UserService.principal.getUser();
+                        }
+                        return _.any(campaign.campaignLeads, function (lead) {
+                            return (lead.id || lead) === user.id;
+                        });
                     }
 
 
