@@ -69,7 +69,7 @@
                 $scope.parentState = 'dcm';
 
                 $scope.currentCampaign = CampaignService.currentCampaign = campaign;
-                $scope.isCampaignLead = _.contains(campaign.campaignLeads, UserService.principal.getUser().id);
+                $scope.isCampaignLead = campaign && _.contains(campaign.campaignLeads, UserService.principal.getUser().id);
 
                 // my org or the current campaign's org in case I am a product Admin looking at somebody else's campaign
                 $scope.organization = organization || campaign.organization;
