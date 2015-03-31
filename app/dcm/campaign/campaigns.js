@@ -214,7 +214,11 @@
                     } else {
                         $scope.campaign.campaignLeads = [campaignLead];
                     }
-                    $scope.campaignLeadChanged = true;
+                    if (initialMainCampaignLeadId && initialMainCampaignLeadId !== campaignLead.id) {
+                        $scope.campaignLeadChanged = true;
+                    } else {
+                        $scope.campaignLeadChanged = false;
+                    }
                 };
 
                 $scope.validatePaymentCode = function (code) {
