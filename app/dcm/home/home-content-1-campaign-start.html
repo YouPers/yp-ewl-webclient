@@ -16,7 +16,9 @@
 
         <!-- campaign lead guidance -->
 
-        <tabset class="campaign-preparation" ng-if="!homeController.preparationComplete" justified="true">
+        <span ng-if="!isCampaignLead" translate>dcmhome.campaignStart.campaignLeadGuidance.notCampaignLead</span>
+
+        <tabset class="campaign-preparation" ng-class="{ 'campaign-lead': isCampaignLead }" ng-if="!homeController.preparationComplete" justified="true">
 
             <!-- step 1 -->
             <tab active="campaignPreparation.step1.active" disabled="campaignPreparation.step1.disabled">
