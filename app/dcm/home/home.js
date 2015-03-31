@@ -243,7 +243,8 @@
                         $scope.completeCampaignPreparation = function (step) {
                             $scope.campaignPreparation['step' + step].complete = true;
                             $scope.campaignPreparation['step' + (step+1)].active = true;
-                            $scope.campaignPreparation['step' + (step+1)].enabled = true;
+                            $scope.campaignPreparation['step' + (step+1)].enabled = true;WL-
+                            $scope.campaignPreparation['step' + (step+1)].disabled = false;
                             campaign.preparationComplete = step;
                             CampaignService.putCampaign(campaign);
                         };
