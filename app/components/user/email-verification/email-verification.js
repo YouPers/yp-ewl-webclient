@@ -17,8 +17,8 @@
                     });
             }])
 
-        .controller('EmailVerificationCtrl', ['$scope', 'UserService', '$window',
-            function ($scope, UserService, $window) {
+        .controller('EmailVerificationCtrl', ['$scope', 'UserService',
+            function ($scope, UserService) {
 
                 UserService.verifyEmail($scope.principal.getUser().id, $scope.$stateParams.token).then(function (result) {
                     $scope.emailValid = true;
@@ -28,6 +28,17 @@
                     UserService.logout();
                     $scope.$state.go('signin');
                 });
+
+
+                $scope.go = function() {
+                    if (UserService.principal.isAuthorized('orgadmin') && !UserService.principal.isAuthorized('productadmin')) {
+                        // we want to direct a new Orgadmin directly to the organization screen on first login
+                        $scope.$state.go('organization');
+                    } else {
+                        $scope.$state.go('homedispatcher');
+                    }
+                };
+
 
             }]);
 
