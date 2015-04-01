@@ -513,8 +513,9 @@
 
                                     });
 
+                                } else {
+                                    return _finalCb();
                                 }
-
                             }
                         } else {
                             return _finalCb();
