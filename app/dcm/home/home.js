@@ -93,8 +93,6 @@
 
                                     if (!OrganizationService.isComplete(organization) && UserService.principal.isAuthorized('orgadmin')) {
                                         return 'organizationIncomplete';
-                                    } else if (UserService.principal.getUser().avatar.indexOf('default') !== -1) {
-                                        return 'noAvatarPicture';
                                     } else if(campaigns.length === 0) {
                                         return 'noCampaigns';
                                     } else if (socialInteractions.length === 0 && daysSinceCampaignStart <= -1) {
