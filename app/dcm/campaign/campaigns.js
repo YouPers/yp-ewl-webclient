@@ -99,7 +99,7 @@
                 this.campaignLeadVerified = campaign && campaign.campaignLeads && campaign.campaignLeads[0].emailValidatedFlag;
 
                 // we store the main Leaders Id so we can compare on save
-                var initialMainCampaignLeadId = campaign && campaign.campaignLeads && (campaign.campaignLeads[0].id || campaign.campaignLeads[0]);
+                $scope.initialMainCampaignLeadId = campaign && campaign.campaignLeads && (campaign.campaignLeads[0].id || campaign.campaignLeads[0]);
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
@@ -214,7 +214,7 @@
                     } else {
                         $scope.campaign.campaignLeads = [campaignLead];
                     }
-                    if (initialMainCampaignLeadId && initialMainCampaignLeadId !== campaignLead.id) {
+                    if ($scope.initialMainCampaignLeadId && $scope.initialMainCampaignLeadId !== campaignLead.id) {
                         $scope.campaignLeadChanged = true;
                     } else {
                         $scope.campaignLeadChanged = false;
@@ -283,7 +283,7 @@
                     //   the default answers.
                     if ($scope.campaignStartChanged ||
                         ($scope.campaignEndChanged && $scope.campaignEndChangeRecreatesOffers) ||
-                        (initialMainCampaignLeadId && (initialMainCampaignLeadId !== ($scope.campaign.campaignLeads[0].id || $scope.campaign.campaignLeads[0])))
+                        ($scope.initialMainCampaignLeadId && ($scope.initialMainCampaignLeadId !== ($scope.campaign.campaignLeads[0].id || $scope.campaign.campaignLeads[0])))
                     ) {
                         CampaignService.deleteCampaign($scope.campaign).then(function () {
                             _.remove(campaigns, 'id', $scope.campaign.id);
