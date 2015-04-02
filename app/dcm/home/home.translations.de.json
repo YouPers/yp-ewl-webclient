@@ -78,14 +78,13 @@
         }
       },
       "campaignLeadGuidance": {
-        "notCampaignLead": "Fortschritt der Kampagnenvorbereitung",
         "step1": {
           "link": "zum Profil",
           "tab": "Profilfoto",
           "text": "Lade ein Profilfoto von dir hoch. Ein Foto ist sehr wichtig, damit die Teilnehmer dich als Kampagnenleiter erkennen."
         },
         "step2": {
-          "link": "zur Kampagne",
+          "link": "Zu den Kampagnendaten",
           "tab": "Kampagnendaten",
           "text": "Überprüfe die Daten deiner Kampagne. Korrigiere oder ergänze Informationen"
         },
@@ -103,7 +102,8 @@
           "link": "Einladungen erstellen und versenden",
           "tab": "Einladungen",
           "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Versende am Kampagenenstarttag oder am Abend vorher die Einladungen an die Teilnehmer"
-        }
+        },
+        "notCampaignLead": "Fortschritt der Kampagnenvorbereitung"
       }
     },
     "participants": {
