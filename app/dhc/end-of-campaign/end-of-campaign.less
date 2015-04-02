@@ -2,6 +2,22 @@
 
 .end-of-campaign {
 
+
+  @media(min-width: @screen-sm) {
+    .three-column-layout {
+      section {
+        flex: 0 0 668px;
+        border: none;
+      }
+      section:first-of-type {
+        flex: 0 0 204px;
+      }
+      section:last-of-type {
+        flex: 0 0 265px;
+      }
+    }
+  }
+
   .need-for-action {
 
   }
@@ -23,21 +39,6 @@
         padding-right: 5px;
       }
     }
-  }
-
-  .charts {
-    width: 100%;
-
-    display: flex;
-
-    > * {
-      flex: 0 0 50%;
-    }
-
-    nvd3-multi-bar-chart {
-
-    }
-
   }
 
   .ratings-chart .nv-x .nv-axis .tick > text {
