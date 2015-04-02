@@ -79,7 +79,7 @@
 
                             currentAndFutureInvitations: ['socialInteractions', function(socialInteractions) {
                                 return _.filter(socialInteractions, function(soi) {
-                                    return soi.__t === 'Invitation';
+                                    return soi.__t === 'Invitation' && soi.authorType=== 'campaignLead';
                                 });
                             }],
 
