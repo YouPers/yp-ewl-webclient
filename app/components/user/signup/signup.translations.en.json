@@ -68,6 +68,26 @@
       "label": "Company name",
       "placeholder": "Company name"
     },
-    "termsLink": "http://healthcampaign.youpers.com/nutzungsbedingungen/?lang=en"
+    "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions/?lang=en"
+  },
+  "signupFinalization": {
+    "header": null,
+    "verificationEmail": null,
+    "noVerificationEmail": null,
+    "resend1": {
+      "text": null,
+      "link": null,
+      "verificationSent": null
+    },
+    "invalidEmailAddress": {
+      "text": null,
+      "link": null
+    },
+    "resend2": {
+      "text": null,
+      "link": null,
+      "verificationSent": null
+    },
+    "contactCustomerSupport": null
   }
 }

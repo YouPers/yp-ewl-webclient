@@ -149,7 +149,7 @@
 
                 function _gotoHome(done) {
                     if ($scope.principal.isAuthorized('admin')) {
-                        return $state.go('admin-idea.list', {topic: assessment.topic});
+                        return $state.go('admin.idea-list', {topic: assessment.topic});
                     } else {
                         return $state.go(done ? '^.focus' : '^.game', {view: ""});
                     }
@@ -170,14 +170,18 @@
 
                         var answer = $scope.answers[key];
                         if(value && value !== oldValue) {
-
+                            var oldAnswerValue = answer.answerValue;
                             if(value === 'mid') {
                                 answer.answer = 0;
                                 answer.answerValue = 0;
                             } else {
                                 answer.answer = value === 'min' ? -50 : 50;
                                 answer.answerValue = 50;
-                                putAnswer(answer);
+
+                                // putAnswer is invoked in the watcher below if the value changes
+                                if(answer.answerValue === oldAnswerValue) {
+                                    putAnswer(answer);
+                                }
                             }
                         }
 
@@ -225,13 +229,13 @@
                 function renderCoachMessageFromQuestion(question) {
                     // the Coach speaks MARKDOWN!
                     var myText =  question.exptext + '\n\n';
-                    if (question.mintext && question.mintext !== 'n/a') {
+                    if (question.type !== 'rightSided' && question.mintext && question.mintext !== 'n/a') {
                         myText += '**' + question.mintext + ':** ' + question.mintextexample +'\n\n';
                     }
                     if (question.midtext && question.midtext !== 'n/a') {
                         myText += '**' + question.midtext + ':** ' + question.midtextexample +'\n\n';
                     }
-                    if (question.maxtext && question.maxtext !== 'n/a') {
+                    if (question.type !== 'leftSided' && question.maxtext && question.maxtext !== 'n/a') {
                         myText += '**' + question.maxtext + ':** ' + question.maxtextexample +'\n\n';
                     }
                     return myText;

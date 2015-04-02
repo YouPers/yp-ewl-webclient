@@ -7,13 +7,9 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('users', {
-                        templateUrl: "layout/admin-default.html",
-                        access: accessLevels.systemadmin
-                    })
 
-                    .state('users.content', {
-                        url: "/admin/users",
+                    .state('admin.users', {
+                        url: "/users",
                         access: accessLevels.systemadmin,
                         views: {
                             content: {

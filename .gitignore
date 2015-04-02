@@ -8,6 +8,10 @@ lib-cov
 *.gz
 .DS_Store
 .idea
+
+# these are the backend repo translation files, they get exported here by "wti pull" because we use the same wti project, just ignore
+translations
+
 pids
 logs
 results

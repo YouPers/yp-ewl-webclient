@@ -23,15 +23,38 @@
                         <li ng-show="config.ui.showUserFeedbackLink">
                             <a href="#/feedback" target="_blank">
                                 {{ 'topmenu.feedback' | translate }}
-                                <i class="glyphicon glyphicon-pencil"></i>
                             </a>
                         </li>
-                        <li><a href="{{'welcome.moreInfoLink' | translate}}" target="_blank" translate>topmenu.moreinfo</a></li>
-                        <li class="dropdown" ng-show="principal.isAuthenticated()">
-                            <a class="dropdown-toggle user-nav-link" data-toggle="dropdown">{{ principal.getUser().fullname }}
+                        <li class="dropdown">
+                            <a class="dropdown-toggle user-nav-link" data-toggle="dropdown" translate>help.help
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a class="user-logout-link" href="" ng-click="topnavCollapsed.collapsed =true; logout()" translate>topmenu.logout</a>
+
+
+                                <li><a ng-href="{{'help.faqLink' | translate}}" target="_blank" translate>help.faq</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a ng-href="{{'help.moreInfoParticipantLink' | translate}}" target="_blank" translate>help.campaignParticipant</a>
+                                </li>
+                                <li><a ng-href="{{'help.moreInfoCampaignLeaderLink' | translate}}" target="_blank" translate>help.campaignLeader</a>
+                                </li>
+                                <li><a ng-href="{{'help.moreInfoServiceManagerLink' | translate}}" target="_blank" translate>help.serviceManager</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li ng-show="config.ui.showUserFeedbackLink">
+                                    <a href="#/feedback" target="_blank">
+                                        {{ 'topmenu.contact' | translate }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" ng-show="principal.isAuthenticated()">
+                            <a class="dropdown-toggle user-nav-link" data-toggle="dropdown">{{
+                                principal.getUser().fullname }}
+                                <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="user-logout-link" href=""
+                                       ng-click="topnavCollapsed.collapsed =true; logout()" translate>topmenu.logout</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="#/account" translate>topmenu.account</a></li>
@@ -40,22 +63,26 @@
                         </li>
 
                         <li ng-show="!principal.isAuthenticated()">
-                            <a ui-sref="signin.content" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signin</a>
+                            <a ui-sref="signin" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signin</a>
                         </li>
                         <!--<li ng-show="!principal.isAuthenticated()">-->
-                            <!--<a ui-sref="signup.content" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signup</a>-->
+                        <!--<a ui-sref="signup" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signup</a>-->
                         <!--</li>-->
                         <li class="dropdown" ng-controller="i18nCtrl">
                             <a class="dropdown-toggle" data-toggle="dropdown">{{currentLocale}}
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li ng-class="{active: currentLocale=='en', disabled: isEnabled('en')}"><a href="" ng-click="changeLang('en')">english</a>
+                                <li ng-class="{active: currentLocale=='en', disabled: isEnabled('en')}"><a href=""
+                                                                                                           ng-click="changeLang('en')">english</a>
                                 </li>
-                                <li ng-class="{active: currentLocale=='de', disabled: isEnabled('de')}"><a href="" ng-click="changeLang('de')">deutsch</a>
+                                <li ng-class="{active: currentLocale=='de', disabled: isEnabled('de')}"><a href=""
+                                                                                                           ng-click="changeLang('de')">deutsch</a>
                                 </li>
-                                <li ng-class="{active: currentLocale=='it', disabled: isEnabled('it')}"><a href="" ng-click="changeLang('it')">italiano</a>
+                                <li ng-class="{active: currentLocale=='it', disabled: isEnabled('it')}"><a href=""
+                                                                                                           ng-click="changeLang('it')">italiano</a>
                                 </li>
-                                <li ng-class="{active: currentLocale=='fr', disabled: isEnabled('fr')}"><a href="" ng-click="changeLang('fr')">français</a>
+                                <li ng-class="{active: currentLocale=='fr', disabled: isEnabled('fr')}"><a href=""
+                                                                                                           ng-click="changeLang('fr')">français</a>
                                 </li>
                             </ul>
                         </li>

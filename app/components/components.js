@@ -21,6 +21,7 @@
             'yp.components.stats',
             'yp.components.topic',
             'yp.components.paymentCode',
+            'yp.components.marketPartner',
 
             // directives
             'yp.components.title',
@@ -36,7 +37,6 @@
             'yp.components.ideaCard',
             'yp.components.ideaEdit',
             'yp.components.avatarUpload',
-            'yp.components.campaignSwitcher',
             'yp.components.campaignCard',
             'yp.components.organizationCard',
             'yp.components.datePicker',

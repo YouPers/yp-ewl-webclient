@@ -77,6 +77,8 @@
     "submit": "Senden"
   },
   "feedbackForm": {
+    "header": "Vielen Dank für ihre Rückmeldung! ",
+    "header2": "Wir sind ständig daran unseren Service zu verbessern.",
     "anonymous": {
       "label": "Anonymes Feedback"
     },
@@ -99,5 +101,9 @@
     "username": {
       "label": "Username"
     }
+  },
+  "endorsementType": {
+    "presented": "präsentiert von:",
+    "sponsored": "offeriert von:"
   }
 }

@@ -42,7 +42,10 @@ activity-offer-card {
       justify-content: center;
       align-content:center;
       flex-direction:column;
-      width: 100%; // IE10 fix
+      flex: 0 1 95%; // IE10 fix
+      > * {
+        white-space: normal;
+      }
       > .caption {
         margin-top: -4px;
       }

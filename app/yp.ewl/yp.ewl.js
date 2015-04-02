@@ -34,14 +34,14 @@ angular.module('yp-ewl',
                 .state('homedispatcher', {
                     url: "/dispatch",
                     access: accessLevels.all,
-                    controller: ['UserService', '$state', function (UserService, $state) {
+                    controller: ['UserService', 'CampaignService', '$state', function (UserService, CampaignService, $state) {
                         var user = UserService.principal.getUser();
                         if (!UserService.principal.isAuthenticated()) {
-                            return $state.go('signin.content');
+                            return $state.go('signin');
                         } else if (UserService.principal.isAuthorized(accessLevels.admin)) {
-                            return $state.go('admin-home.content');
+                            return $state.go('admin.home');
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
-                            return $state.go('dcm.home');
+                            return $state.go('dcm.home', { campaignId: CampaignService.currentCampaign ? CampaignService.currentCampaign.id : undefined });
                         } else {
                             return $state.go('dhc.game', {view: "", campaignId: user.campaign && user.campaign.id || user.campaign});
                         }
@@ -89,6 +89,19 @@ angular.module('yp-ewl',
 
             localStorageServiceProvider
                 .setPrefix('yp-ewl');
+
+
+            addthisevent.settings({
+                license    : "00000000000000000000",
+                mouse      : false,
+                css        : true,
+                outlook    : {show:true, text:"Outlook / Lotus Notes"},
+                google     : {show:true, text:"Google Calendar"},
+                outlookcom : {show:true, text:"Outlook.com Calendar"},
+                appleical  : {show:true, text:"Apple iCalendar"},
+                dropdown   : {order:"outlook,appleical,google"},
+                callback   : ""
+            });
         }])
 
 /**
@@ -109,6 +122,11 @@ angular.module('yp-ewl',
 
             $rootScope.$on('event:authority-authorized', function() {
 
+                $rootScope.isSystemAdmin = _.any(UserService.principal.getUser().roles, function (role) {
+                    return _.contains([
+                        'systemadmin'
+                    ], role);
+                });
                 $rootScope.isProductAdmin = _.any(UserService.principal.getUser().roles, function (role) {
                     return _.contains([
                         'productadmin',
@@ -160,14 +178,22 @@ angular.module('yp-ewl',
                         event.preventDefault();
 
                         if (!UserService.principal.isAuthenticated()) {
-                            $rootScope.$log.log('preventing state change, because user is not authenticated, redirect to signin.content');
+                            $rootScope.$log.log('preventing state change, because user is not authenticated, redirect to signin');
                             $rootScope.nextStateAfterLogin = {toState: toState, toParams: toParams};
-                            $state.go('signin.content');
+                            $state.go('signin');
                         } else {
                             $rootScope.$log.log('preventing state change, because user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
                             $rootScope.$emit('clientmsg:error', 'user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
                         }
 
+                    } else {
+                        var user = UserService.principal.getUser();
+                        var whiteListedStates = ['signupFinalization', 'emailVerification', 'signup'];
+                        if(UserService.principal.isAuthenticated() && !user.emailValidatedFlag &&
+                            !_.contains(whiteListedStates, toState.name)) {
+                            event.preventDefault();
+                            $state.go('signupFinalization');
+                        }
                     }
                 } else {
                     // if the UserService is not done initializing we cancel the stateChange and schedule it again in 100ms
@@ -191,7 +217,7 @@ angular.module('yp-ewl',
 
                 if(error.status === 401) { // Unauthorized
 
-                    $state.go('signin.content');
+                    $state.go('signin');
 
                 } else if (error.status === 503) {
                     // the backend is down for maintenance, we stay on the page

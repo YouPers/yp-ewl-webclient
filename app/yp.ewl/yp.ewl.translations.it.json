@@ -25,6 +25,7 @@
     "language": "Voce",
     "feedback": null,
     "moreinfo": "Impara",
+    "contact": null,
     "dcm": null,
     "dhc": null,
     "logoHeader": "HealthCampaign"
@@ -58,17 +59,22 @@
   "footer": {
     "copyright": null
   },
-  "terms": {
-    "termsAndConditionsHeading": "Termini e condizioni d'uso",
-    "termsAndConditions": null,
-    "privacyStatementHeading": "Tutela privacy",
-    "privacyStatement": null
-  },
   "topic": {
     "chooseATopic": null,
     "setGoal": {
       "title": null,
       "text": null
     }
+  },
+  "help": {
+    "campaignLeader": null,
+    "campaignParticipant": null,
+    "faq": null,
+    "faqLink": null,
+    "help": null,
+    "moreInfoCampaignLeaderLink": null,
+    "moreInfoParticipantLink": null,
+    "moreInfoServiceManagerLink": null,
+    "serviceManager": null
   }
 }

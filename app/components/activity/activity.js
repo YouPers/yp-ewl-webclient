@@ -152,7 +152,11 @@
                     activity.start = moment(activity.start)
                         .hour(moment(activity.startTime).hour())
                         .minute(moment(activity.startTime).minute()).startOf('minute').toDate();
-                    activity.end = moment(activity.end)
+
+                    // set the activity.end by combining the activity.start "date-portion" with the "endTime"
+                    // reason: we do not support multi-day events, and when the user changes the start-date,
+                    // the end-date needs to stay on the same day.
+                    activity.end = moment(activity.start)
                         .hour(moment(activity.endTime).hour())
                         .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
                 }
@@ -187,6 +191,7 @@
                 activityController.formEnabled = !$scope.isScheduled;
                 activityController.canEdit = $scope.isScheduled && $scope.isOwner;
                 activityController.canDelete = $scope.isScheduled && ($scope.isOwner || $scope.isJoiner);
+
 
                 $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
 
@@ -364,6 +369,14 @@
                         $scope.healthCoachEvent = 'editOwnActivityWithJoiners';
                     }
                 };
+                if($stateParams.edit) {
+                    $scope.enterEditMode();
+                    $scope.$watch('formContainer.form', function (form) {
+                        if(form) {
+                            form.$setDirty();
+                        }
+                    });
+                }
 
                 $scope.enterDeleteMode = function () {
                     activityController.deleteModeEnabled = true;
@@ -383,7 +396,7 @@
 
                     ActivityService.deleteActivity($scope.activity.id)
                         .then(function () {
-                            $state.go('homedispatcher');
+                            $scope.backToGame();
                             $scope.$root.$broadcast('busy.end', {url: "activities", name: "deleteActivity"});
                         });
                 };
@@ -408,6 +421,10 @@
                         function _finalCb(savedSoi, healthCoachEvent) {
                             if (healthCoachEvent) {
                                 HealthCoachService.queueEvent(healthCoachEvent);
+                            }
+
+                            if($stateParams.edit) {
+                                return $scope.backToGame();
                             }
 
                             $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: savedSoi ? savedSoi.id : '' }, { reload: true });
@@ -496,12 +513,16 @@
 
                                     });
 
+                                } else {
+                                    return _finalCb();
                                 }
-
                             }
                         } else {
                             return _finalCb();
                         }
+                    }, function saveErrorCb(err) {
+                        $scope.$emit('clientmsg:error', err);
+                        $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
                     });
 
 

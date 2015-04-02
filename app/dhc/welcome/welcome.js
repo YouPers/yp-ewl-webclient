@@ -18,27 +18,6 @@
                                     return CampaignService.getCampaign($stateParams.campaignId);
                                 }]
                         }
-                    })
-                    .state('moreinfo', {
-                        templateUrl: "layout/single-column.html",
-                        access: accessLevels.all,
-                        controller: ['$scope','$window', function($scope, $window) {
-                            $scope.close = function() {
-                                $window.close();
-                            };
-                        }]
-                    })
-                    .state('moreinfo.content', {
-                        url: "/moreinfo",
-                        access: accessLevels.all,
-                        views: {
-                            content: {
-                                templateUrl: 'dhc/welcome/moreinfo.html'
-                            }
-                        },
-                        resolve: {
-
-                        }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dhc/welcome/welcome');
@@ -81,7 +60,7 @@
                     } else {
                         // user is not authenticated, we redirect him to signUp / signIn
                         $rootScope.nextStateAfterLogin = {toState: 'homedispatcher', toParams: {campaignId: campaign.id, view: ""}};
-                        $state.go('signup.content');
+                        $state.go('signup');
                     }
 
                 };

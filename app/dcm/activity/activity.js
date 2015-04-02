@@ -8,7 +8,7 @@
                 $stateProvider
                     .state('dcm.activity', {
                         parent: 'dcm',
-                        url: "/idea/:idea/activity/:activity/socialInteraction/:socialInteraction",
+                        url: "/idea/:idea/activity/:activity/socialInteraction/:socialInteraction?edit",
                         access: accessLevels.all,
                         views: {
                             content: {

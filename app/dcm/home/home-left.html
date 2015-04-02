@@ -1,5 +1,7 @@
 
-<div>
+    <endorsement campaign="currentCampaign"></endorsement>
+
+    <div>
 
     <organization-card organization="organization" ng-if="organization">
         <a href class="icon" ui-sref="organization" ng-if="principal.isAuthorized('orgadmin')">
@@ -8,7 +10,7 @@
     </organization-card>
 
 </div>
-<div ng-if="principal.isAuthorized('orgadmin')">
+<div ng-cloak ng-if="principal.isAuthorized('orgadmin')">
     <a class="btn-flat new-campaign" ui-sref="dcm.topics({campaignId:''})">
         <span translate>dcmhome.organization.addCampaign</span>
         <i class="fa fa-plus"></i>

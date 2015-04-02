@@ -1,0 +1,312 @@
+<accordion-group ng-if="campaignEndAvailable" class="campaign-end end-of-campaign" is-open="campaignEndOpen">
+    <div ng-controller="DcmEndOfCampaignController as dcmEndOfCampaignController">
+
+        <accordion-heading>
+                <span  ng-click="displayCoachMsg('campaignEnd')">
+
+                    <span translate>dcmhome.endOfCampaignTitle</span>
+
+                    <a href>
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': campaignEndOpen, 'fa-chevron-right': !campaignEndOpen }"></i>
+                    </a>
+
+                    </span>
+        </accordion-heading>
+
+
+        <div ng-if="campaignEndOpen">
+
+            <div>
+                <p>
+                    <span translate>dcmhome.surveyInfo</span>
+                </p>
+
+                <a ng-href="{{campaign.leaderSurveyUrl}}" target="_blank" class="btn btn-flat btn-big btn-red"  ng-if="campaign.leaderSurveyUrl">
+                    <span translate>dcmhome.surveyLink</span>
+                    <span class="fa fa-chevron-right"></span>
+                </a>
+                <a ng-if="!campaign.leaderSurveyUrl" href class="btn btn-flat btn-big btn-red" popover="normally SurveyMonkey should be enabled on HC-UAT and PRODUCTION" popover-trigger="mouseenter" popover-placement="top">
+                    <span translate >Survey Disabled on this instance!</span>
+                </a>
+
+            </div>
+
+        </div>
+
+        <br/>
+
+        <div>
+
+
+            <h3 translate>
+                dcm-end-of-campaign.usersTotal.title
+            </h3>
+
+            <nvd3-multi-bar-horizontal-chart
+                    data="campaignParticipants"
+                    id="campaignParticipants"
+
+                    width="500"
+                    height="150"
+                    yAxisTickFormat="roundFn"
+                    valueFormat="round1Fn"
+                    showValues="true"
+                    showXAxis="false"
+                    showYAxis="false"
+                    showLegend="false">
+                <svg></svg>
+            </nvd3-multi-bar-horizontal-chart>
+
+
+            <div class="color-legend">
+                <div>
+                    <div></div>
+                    <span translate>dcm-end-of-campaign.legend.campaign</span>
+                </div>
+                <div>
+                    <div></div>
+                    <span translate>dcm-end-of-campaign.legend.average</span>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div>
+
+
+            <div class="charts">
+                <div class="event-status-chart">
+                    <h3 translate>
+                        dcm-end-of-campaign.eventsStatus.title
+                    </h3>
+                    <nvd3-multi-bar-horizontal-chart
+                            data="eventStatus"
+                            id="eventStatus"
+
+                            width="320"
+                            height="240"
+
+                            showXAxis="true"
+                            showYAxis="false"
+                            valueFormat="round1Fn"
+                            showValues="true"
+                            yAxisTickFormat="roundFn"
+                            >
+                        <svg></svg>
+                    </nvd3-multi-bar-horizontal-chart>
+                </div>
+
+                <div class="ratings-chart">
+                    <h3 translate>end-of-campaign.eventsRatings.title</h3>
+
+                    <nvd3-multi-bar-horizontal-chart ng-if="eventsRatings"
+                                                     data="eventsRatings"
+                                                     id="eventsRatings"
+
+                                                     width="320"
+                                                     height="260"
+                                                     showYAxis="false"
+                                                     showXAxis="true"
+                                                     showLegend="false"
+                                                     valueFormat="percetageFn"
+                                                     showValues="true"
+                                                     yAxisTickFormat="percetageFn"
+                            >
+                        <svg></svg>
+                    </nvd3-multi-bar-horizontal-chart>
+
+                </div>
+            </div>
+            <div class="color-legend">
+                <div>
+                    <div></div>
+                    <span translate>dcm-end-of-campaign.legend.campaign</span>
+                </div>
+                <div>
+                    <div></div>
+                    <span translate>dcm-end-of-campaign.legend.average</span>
+                </div>
+            </div>
+
+            <hr/>
+
+
+        </div>
+
+        <div ng-if="principal.isAuthorized('admin') || campaignParticipantsCount >=10">
+
+            <h3 translate>
+                dcm-end-of-campaign.assessmentResults.title
+            </h3>
+
+
+            <accordion class="check" close-others="true" ng-if="categories" ng-init="cat[orderedCategoryNames[0]]=true">
+
+                <accordion-group class="legend" >
+
+                    <accordion-heading>
+                        <span class="question-category-header" translate>dcm-end-of-campaign.assessmentResults.legend.title</span>
+                        <i class="pull-right glyphicon"
+                           ng-class="{'glyphicon-chevron-down': cat['legend'], 'glyphicon-chevron-right': !cat['legend']}"></i>
+                    </accordion-heading>
+
+                    <div class="question">
+                        <div class="question-legend">
+                            <div translate>dcm-end-of-campaign.assessmentResults.legend.min</div>
+                            <div class="title">
+                                <span translate>dcm-end-of-campaign.assessmentResults.legend.question</span>
+                                <i ng-mouseover="displayInfo(question)"
+                                   class="glyphicon glyphicon-info-sign"></i>
+                            </div>
+                            <div translate>dcm-end-of-campaign.assessmentResults.legend.max</div>
+                        </div>
+
+                        <div class="assessment-chart-row">
+                            <div class="assessment-chart">
+                                <div
+                                        ng-repeat="val in [10,20,32,15,23]"
+                                        ng-style="{ width: ''+val+'%' }"
+                                        ng-class="'assessmentRange' + $index">
+                                    {{ val }}%
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="assessment-chart-row">
+                            <div class="assessment-chart dimmed">
+                                <div
+                                        ng-repeat="val in [22,17,29,13,19]"
+                                        ng-style="{ width: ''+val+'%' }"
+                                        ng-class="'assessmentRange' + $index">
+                                    {{ val }}%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="descriptions">
+                        <div><div class="assessmentRange0">10%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.1</div></div>
+                        <div><div class="assessmentRange1">20%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.2</div></div>
+                        <div><div class="assessmentRange2">32%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.3</div></div>
+                        <div><div class="assessmentRange3">15%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.4</div></div>
+                        <div><div class="assessmentRange4">23%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.5</div></div>
+                        <div><div class="assessmentRange0 dimmed">22%</div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.6</div></div>
+                        <div class="question"><div class="title"><i class="glyphicon glyphicon-info-sign"></i></div><div translate>dcm-end-of-campaign.assessmentResults.legend.descriptions.7</div></div>
+                    </div>
+
+
+                </accordion-group>
+
+                <accordion-group ng-repeat="name in orderedCategoryNames" is-open="cat[name]"
+                                 ng-if="assessmentResultsByQuestion && !isCategoryEmpty(categories[name])"
+                                 analytics-on="click" analytics-event="CheckCategoriesAccordion"
+                                 analytics-category="InPageNavigation"
+                                 analytics-label="Accordion Expanded Or Collapsed">
+                    <accordion-heading>
+                        <div>
+                            <span class="question-category-header">{{ 'questionCategory.' + name | translate }}</span>
+                            <i class="pull-right glyphicon"
+                               ng-class="{'glyphicon-chevron-down': cat[name], 'glyphicon-chevron-right': !cat[name]}"></i>
+                        </div>
+                    </accordion-heading>
+
+
+
+
+                    <div ng-repeat="question in categories[name]" ng-click="displayInfo(question)"
+
+                         ng-init="assessmentResult = assessmentResultsByQuestion[question.id]">
+
+                        <div ng-if="assessmentResult" class="question">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+
+
+                                    <div class="question-legend">
+                                        <div>{{question.type === 'rightSided' ? '' : question.mintext}}</div>
+                                        <div class="title">
+                                            <span>{{ question.title }}</span>
+                                            <i ng-mouseover="displayInfo(question)"
+                                               class="glyphicon glyphicon-info-sign"></i>
+                                        </div>
+                                        <div>{{question.type === 'leftSided' ? '' : question.maxtext}}</div>
+                                    </div>
+
+
+                                    <div class="assessment-chart-row">
+
+                                        <div></div>
+                                        <div class="assessment-chart">
+
+                                            <div
+                                                    ng-repeat="val in assessmentResult.percentages track by $index"
+                                                    ng-if="assessmentResultVisible(question.type, $index)"
+                                                    ng-style="assessmentResultStyle(val, assessmentResult.percentages, question.type)"
+                                                    ng-class="'assessmentRange' + $index">
+
+                                                {{ formatValue(val, $index, question) }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="assessment-chart-row">
+
+                                        <div></div>
+                                        <div class="assessment-chart dimmed">
+
+                                            <div ng-repeat="val in assessmentResultsAverageByQuestion[question.id].percentages track by $index"
+                                                 ng-if="assessmentResultVisible(question.type, $index)"
+                                                 ng-style="assessmentResultStyle(val, assessmentResultsAverageByQuestion[question.id].percentages, question.type)"
+                                                 ng-class="'assessmentRange' + $index">
+
+                                                {{ formatValue(val, $index, question) }}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </accordion-group>
+            </accordion>
+        </div>
+
+        <br/>
+        <br/>
+
+        <div>
+
+            <h3>
+                <span translate>dcm-end-of-campaign.eventsPlanned.header</span>
+            </h3>
+
+            <div class="eventPlanned" ng-repeat="eventPlanned in eventsPlanned | orderBy:['-byUsersCount', '-plannedCount'] | limitTo:10">
+
+                <img ng-src="{{eventPlanned.idea.picture}}">
+
+                    <span>
+                        {{ eventPlanned.idea.title | stripTags }}
+                    </span>
+
+                    <span>
+                        {{ 'dcm-end-of-campaign.eventsPlanned.content' | translate:eventPlanned:"messageformat" }}
+                    </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</accordion-group>

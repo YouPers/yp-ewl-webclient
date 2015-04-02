@@ -6,12 +6,16 @@
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('admin', {
-                        abstract: true,
-                        url: "/topic/:topicId",
-                        templateUrl: "layout/single-column.html",
-                        access: accessLevels.all,
 
+                    .state('admin.check', {
+                        url: "/topic/{topicId}/check",
+                        access: accessLevels.admin,
+                        views: {
+                            content: {
+                                templateUrl: 'dhc/check/check.html',
+                                controller: 'CheckController as checkController'
+                            }
+                        },
                         resolve: {
                             campaign: ['$stateParams', function ($stateParams) {
 
@@ -25,40 +29,29 @@
                                     return undefined;
                                 }
 
-                            }]
+                            }],
+                            assessment: ['campaign', 'AssessmentService', function (campaign, AssessmentService) {
+
+                                return AssessmentService.getAssessment(campaign.topic.id || campaign.topic);
+                            }],
+                            newestResult: ['campaign', 'AssessmentService', 'UserService', function (campaign, AssessmentService, UserService) {
+
+                                return AssessmentService.getNewestAssessmentResults(campaign.topic.id || campaign.topic);
+                            }],
+                            assessmentIdea: ['ActivityService', 'assessment', function (ActivityService, assessment) {
+                                return ActivityService.getIdea(assessment.idea.id || assessment.idea);
+                            }],
+                            assessmentEvent: function () {
+                                return {
+                                    status: 'done'
+                                };
+                            }
                         },
-                        controller: ['$scope', function($scope) {
-                            $scope.parentState = 'admin';
+
+                        onExit: ['AssessmentService', function (AssessmentService) {
+                            return AssessmentService.regenerateRecommendations();
                         }]
-                    })
-
-                    .state('admin.check', {
-                    url: "/check",
-                    access: accessLevels.admin,
-                    views: {
-                        content: {
-                            templateUrl: 'dhc/check/check.html',
-                            controller: 'CheckController as checkController'
-                        }
-                    },
-                    resolve: {
-                        assessment: ['campaign', 'AssessmentService', function (campaign, AssessmentService) {
-
-                            return AssessmentService.getAssessment(campaign.topic.id || campaign.topic);
-                        }],
-                        newestResult: ['campaign', 'AssessmentService', 'UserService', function (campaign, AssessmentService, UserService) {
-
-                            return AssessmentService.getNewestAssessmentResults(campaign.topic.id || campaign.topic);
-                        }],
-                        assessmentIdea: ['ActivityService', 'assessment', function (ActivityService, assessment) {
-                            return ActivityService.getIdea(assessment.idea.id || assessment.idea);
-                        }]
-                    },
-
-                    onExit: ['AssessmentService', function (AssessmentService) {
-                        return AssessmentService.regenerateRecommendations();
-                    }]
-                });
+                    });
             }]);
 
 

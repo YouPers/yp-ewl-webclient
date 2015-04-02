@@ -1,0 +1,246 @@
+<accordion-group class="campaign-start" ng-if="campaign && campaignStartAvailable" is-open="campaignStartOpen">
+    <div>
+
+        <accordion-heading>
+                <span  ng-click="displayCoachMsg('startOfCampaign')">
+
+                    <span translate>dcmhome.campaignStart.header</span>
+
+                    <a>
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': campaignStartOpen, 'fa-chevron-right': !campaignStartOpen }"></i>
+                    </a>
+                </span>
+        </accordion-heading>
+
+
+        <!-- campaign lead guidance -->
+
+        <span ng-if="!isCampaignLead" translate>dcmhome.campaignStart.campaignLeadGuidance.notCampaignLead</span>
+
+        <tabset class="campaign-preparation" ng-class="{ 'campaign-lead': isCampaignLead }" ng-if="!homeController.preparationComplete" justified="true">
+
+            <!-- step 1 -->
+            <tab active="campaignPreparation.step1.active" disabled="campaignPreparation.step1.disabled">
+
+                <tab-heading>
+
+                    <i class="fa" ng-class="campaignPreparation.step1.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
+
+                    <span>1</span><br>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.tab</span>
+                </tab-heading>
+
+                <div>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.text</span>
+                    <a ui-sref="profile" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step1.link</a>
+                </div>
+
+            </tab>
+
+            <!-- step 2 -->
+            <tab active="campaignPreparation.step2.active" disabled="campaignPreparation.step2.disabled">
+
+                <tab-heading>
+
+                    <i class="fa" ng-class="campaignPreparation.step2.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
+
+                    <span>2</span><br>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.tab</span>
+                </tab-heading>
+
+                <div>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.text</span>
+                    <a ui-sref="dcm.campaign({campaignId: $stateParams.campaignId})" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step2.link</a>
+                </div>
+
+            </tab>
+
+            <!-- step 3 -->
+            <tab active="campaignPreparation.step3.active" disabled="campaignPreparation.step3.disabled">
+
+                <!-- we need to set the filter for offers to "Invitation" to show the correct offers here -->
+                <tab-heading ng-click="homeController.offerTypes = 'Invitation'">
+
+                    <i class="fa" ng-class="campaignPreparation.step3.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
+
+                    <span>3</span><br>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.tab</span>
+                </tab-heading>
+
+                <div>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.text</span>
+
+                    <ul class="list-unstyled">
+                        <li ng-repeat="offer in currentAndFutureInvitations">
+                            <a ui-sref="dcm.activity({ edit: true, idea: offer.idea.id, activity: offer.activity.id, socialInteraction: offer.id, mode: 'campaignlead' })"
+                               class="offer">
+                                <h3>{{ offer.activity.title}} ({{offer.activity.start | date}} {{offer.activity.start | time}} {{ offer.activity.location }}) </h3>
+
+                                <i ng-if="offer.activity.location" class="fa fa-check-circle-o"></i>
+
+                                <span ng-if="!offer.activity.location"><i class="fa fa-warning"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <a ng-click="homeScope.offerSectionOpen = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step3.link</a>
+
+                </div>
+
+            </tab>
+            <!-- step 4 -->
+            <tab active="campaignPreparation.step4.active" disabled="campaignPreparation.step4.disabled">
+
+                <tab-heading>
+
+                    <i class="fa" ng-class="campaignPreparation.step4.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
+
+                    <span>4</span><br>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step4.tab</span>
+                </tab-heading>
+
+                <div>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step4.text</span>
+
+                    <a ng-click="completeCampaignPreparation(4); homeController.offerTypes = 'Recommendation'; homeScope.offerSectionOpen = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step4.link</a>
+                </div>
+
+            </tab>
+            <!-- step 5 -->
+            <tab active="campaignPreparation.step5.active" disabled="campaignPreparation.step5.disabled">
+
+                <tab-heading>
+
+                    <i class="fa" ng-class="campaignPreparation.step5.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
+
+                    <span>5</span><br>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step5.tab</span>
+                </tab-heading>
+
+                <div>
+                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step5.text</span>
+                    <a ng-click="homeController.preparationComplete = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step5.link</a>
+                </div>
+            </tab>
+
+
+        </tabset>
+
+
+        <!-- campaign invitations -->
+
+        <tabset ng-if="homeController.preparationComplete" justified="true">
+
+            <!-- option A - emailInvite -->
+            <tab>
+
+                <tab-heading>
+                    <span translate>dcmhome.campaignStart.emailInvite.header</span>
+                </tab-heading>
+
+                <br/>
+
+                <div class="step1">
+                    <div>
+                        <p translate>dcmhome.campaignStart.emailInvite.subheader</p>
+
+                        <h3 translate>dcmhome.campaignStart.emailInvite.step1.title</h3>
+                        <p translate>dcmhome.campaignStart.emailInvite.step1.text</p>
+                        <p ng-if="homeController.testEmailSent" translate translate-values="{ email: emailAddress }">dcmhome.campaignStart.emailInvite.step1.success</p>
+                    </div>
+
+                    <div>
+                        <button ng-click="sendTestInvitationMail(emailSubject, emailText)"
+                                class="btn btn-default pull-right"
+                                translate>dcmhome.campaignStart.emailInvite.step1.sendTestMail
+                        </button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="step2">
+
+                    <h3 translate>dcmhome.campaignStart.emailInvite.step2.title</h3>
+
+                    <div>
+                            <textarea class="form-control email-addresses"
+                                      ng-model="homeController.rawEmailAddressesInput"
+                                      ng-attr-placeholder="{{ 'dcmhome.campaignStart.emailInvite.step2.emailList.placeholder' | translate }}"></textarea>
+
+
+                        <div>
+                            <button ng-disabled="!homeController.rawEmailAddressesInput || homeController.rawEmailAddressesInput.length === 0"
+                                    ng-click="parseEmailAddresses(homeController.rawEmailAddressesInput);homeController.rawEmailAddressesInput = ''"
+                                    class="btn btn-default pull-right" translate>dcmhome.campaignStart.emailInvite.step2.emailList.add
+                            </button>
+                        </div>
+
+                        <div>
+
+                            <div class="email-address-list-placeholder" ng-if="!homeController.emailAddressesToBeInvited || homeController.emailAddressesToBeInvited.length === 0">
+                                <span translate>dcmhome.campaignStart.emailInvite.step2.emailList.parsedEmailsPlaceholder</span>
+                            </div>
+
+                            <div class="email-address-list-item badge" ng-repeat="email in homeController.emailAddressesToBeInvited">
+
+                                <span>{{ email }}</span>
+                                <a><i class="fa fa-times" ng-click="homeController.emailAddressesToBeInvited.splice($index, 1)"></i></a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="step3">
+
+                    <h3 translate>dcmhome.campaignStart.emailInvite.step3.title</h3>
+                    <p translate>dcmhome.campaignStart.emailInvite.step3.text</p>
+
+                    <button ng-click="onEmailInviteSubmit(homeController.emailAddressesToBeInvited.join(', '), emailSubject, emailText); homeController.emailAddressesToBeInvited = []"
+                            class="btn btn-default pull-right"
+                            ng-disabled="!homeController.emailAddressesToBeInvited || homeController.emailAddressesToBeInvited.length == 0" translate>
+                        dcmhome.campaignStart.emailInvite.step3.submit
+                    </button>
+
+                    <div class="clearfix"></div>
+
+                    <p ng-if="homeController.emailInvitesSent" translate>dcmhome.campaignStart.emailInvite.step3.emailInvitesSent</p>
+                </div>
+
+            </tab>
+
+            <!-- option B - welcomeLink -->
+            <tab>
+
+                <tab-heading>
+                    <span translate>dcmhome.campaignStart.welcomeLink.header</span>
+                </tab-heading>
+
+
+                <p translate>dcmhome.campaignStart.welcomeLink.createDraft.text</p>
+
+                <a ng-href="{{ homeController.createDraftUrl }}" class="btn btn-default" translate>
+                    dcmhome.campaignStart.welcomeLink.createDraft.link
+                </a>
+
+                <p translate>dcmhome.campaignStart.welcomeLink.copyLink</p>
+
+                <!--
+
+                 HINT: manual concatenation of absolute url instead of { absolute: true }
+                       because there is an issue with html5mode in ui-router with angular 1.3
+                       see http://stackoverflow.com/questions/26220037/ui-sref-not-generating-hash-in-url-angular-1-3-0-rc-3
+                 -->
+                <div class="welcome-link" select-on-click ng-show="campaign.id">{{ homeController.welcomeLink }}
+                </div>
+
+            </tab>
+
+
+        </tabset>
+
+
+    </div>
+</accordion-group>

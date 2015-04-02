@@ -21,7 +21,9 @@
     "stateHeader1": "deine",
     "stateHeader2": "Kampagne",
     "card": {
-      "title": "HealthCampaign"
+      "title": "HealthCampaign",
+      "campaignLead": "Kampagnenleitung",
+      "campaignLeadUnconfirmed": "Dieser Kampagenleiter hat die Einladung noch nicht angenommen. Fordere ihn auf, den Link in seiner Einladungsmail zu öffnen, oder erstelle eine neue Kampagne mit der korrekten Email-Adresse des Kampagnenleiters."
     }
   },
   "campaignForm": {
@@ -42,6 +44,10 @@
     "end": {
       "label": "Ende"
     },
+    "usersInCampaign": "Die Kampagne hat bereits Teilnehmer.",
+    "offersRecreated": "Alle Empfehlungen und Einladungen werden neu erstellt.",
+    "offersRemain": "Empfehlungen und Einladungen bleiben erhalten.",
+    "campaignEnded": "Die Kampagne ist bereits beendet.",
     "participants": {
       "label": "Personenkreis",
       "placeholder": "Personenkreis",
@@ -68,17 +74,49 @@
     },
     "backToTopicSelection": "Zurück zur Themenauswahl",
     "paymentCode": {
-      "invalidCode": "Ungültiger Bezahl-Code. Einen gültigen Bezahl-Code bekommst du <a href=\"http://healthcampaign.youpers.com\">hier.</a>",
+      "invalidCode": "Ungültiger oder schon benutzter Aktivierungscode. Einen gültigen Aktivierungscode bekommst du <a href=\"http://healthcampaign.youpers.com\">hier.</a>",
       "invalidTopic": "Dieser Code ist nur für Kampagnen zum Thema {{ invalidTopic }} gültig",
-      "label": "Bezahl-Code"
+      "label": "Aktivierungscode"
     }
   },
-  "inviteCampaignLeadForm": {
-    "email": {
-      "placeholder": "Eine oder mehrere Email-Adressen"
+  "campaignLeadForm": {
+    "header": "Wähle einen Kampagnenleiter",
+    "serviceManager": "Service Manager",
+    "mainLeader": "Kampagnenleiter",
+    "coLeader": "Stellvertreter",
+    "mainLeaderExplanation": "Dieser Leiter wird in der Kampagnen-Karte gezeigt und die Standard-Empfehlungen werden im Namen dieses Kampagnenleiters erstellt.",
+    "coLeaderExplanation": "Stellvertreter bekommen Einsicht in die Kampagne und können den Kampagnenleiter vertreten",
+    "newCampaignLead": "+ neuen Kampagnenleiter einladen",
+    "firstname": {
+      "label": "Vorname",
+      "placeholder": "Vorname",
+      "error": {
+        "required": "Bitte einen gültigen Vornamen eingeben."
+      }
     },
-    "inviteSubmit": "Senden",
-    "invitationSent": "Einladung via Email versandt, der neue Kampagnenleiter muss nun bestätigen"
+    "lastname": {
+      "label": "Nachname",
+      "placeholder": "Nachname",
+      "error": {
+        "required": "Bitte einen gültigen Nachnamen eingeben."
+      }
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Email",
+      "error": {
+        "required": "Bitte eine Email-Adresse eingeben",
+        "email": "Bitte eine gültige Email-Adresse eingeben",
+        "unique": "Diese Email-Adresse ist schon registriert"
+      }
+    },
+    "submit": "Erstellen"
+  },
+  "campaignLeadResetPassword": {
+    "header": "Hallo {{invitedUser}}",
+    "message": "<strong>{{invitingUser}}</strong> hat dich eingeladen, Kampagnenleiter der {{ campaign.topic.name }} HealthCampaign zu werden.",
+    "passwordReset": "Bitte wähle ein Passwort, um fortzufahren.",
+    "save": "Weiter"
   },
   "clientmsg": {
     "success": {

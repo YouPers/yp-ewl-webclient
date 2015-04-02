@@ -206,8 +206,11 @@
                             return updatedUser;
                         });
                     },
-                    verifyEmail: function (userid, token) {
-                        return users.one(userid).all("email_verification").post({token: token});
+                    sendVerificationEmail: function (userId) {
+                        return users.one(userId).all("send_verification_email").post();
+                    },
+                    verifyEmail: function (userId, token) {
+                        return users.one(userId).all("email_verification").post({token: token});
                     },
                     requestPasswordReset: function (usernameOrEmail) {
                         return users.all("request_password_reset").post({usernameOrEmail: usernameOrEmail});
@@ -223,6 +226,9 @@
                     },
                     getProfiles: function (options) {
                         return profiles.getList(options);
+                    },
+                    hasDefaultAvatar: function (user) {
+                        return (user || UserService.principal.getUser()).avatar.lastIndexOf('/assets/img/default') !== -1;
                     },
                     principal: {
                         getUser: function () {

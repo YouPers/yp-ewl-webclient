@@ -8,6 +8,8 @@
         publishFrom: false
     };
 
+    var _getAllCurrentAndFutureOffersOptions = _.clone(_getOffersOptions);
+
     var _getMessagesOptions = {
         populate: 'author',
         authored: true,
@@ -49,11 +51,6 @@
                         },
                         resolve: {
 
-
-                            jsInclude: ["util", function (util) {
-                                return util.loadJSIncludes(['lib/d3/d3.min.js', 'lib/nvd3/nv.d3.min.js']);
-                            }],
-
                             messages: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
                                 if (campaign) {
                                     _getMessagesOptions.targetId = campaign.id;
@@ -65,13 +62,25 @@
                             }],
 
                             socialInteractions: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
+
                                 if (campaign) {
+
+                                    // setup the _getOffersOptions for future calls
                                     _getOffersOptions.targetId = campaign.id;
-                                    return SocialInteractionService.getSocialInteractions(_getOffersOptions).then(_sortSois);
+
+                                    // but use the default one, because we want to get all on initial page load
+                                    _getAllCurrentAndFutureOffersOptions.targetId = campaign.id;
+                                    return SocialInteractionService.getSocialInteractions(_getAllCurrentAndFutureOffersOptions).then(_sortSois);
                                 } else {
                                     return [];
                                 }
 
+                            }],
+
+                            currentAndFutureInvitations: ['socialInteractions', function(socialInteractions) {
+                                return _.filter(socialInteractions, function(soi) {
+                                    return soi.__t === 'Invitation';
+                                });
                             }],
 
 
@@ -84,8 +93,6 @@
 
                                     if (!OrganizationService.isComplete(organization) && UserService.principal.isAuthorized('orgadmin')) {
                                         return 'organizationIncomplete';
-                                    } else if (UserService.principal.getUser().avatar.indexOf('default') !== -1) {
-                                        return 'noAvatarPicture';
                                     } else if(campaigns.length === 0) {
                                         return 'noCampaigns';
                                     } else if (socialInteractions.length === 0 && daysSinceCampaignStart <= -1) {
@@ -114,10 +121,15 @@
 
 
 
-        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'socialInteractions', 'messages', 'SocialInteractionService', 'campaign', 'campaigns', 'CampaignService', 'healthCoachEvent', '$translate',
-            function ($scope, $rootScope, $state, UserService, socialInteractions, messages, SocialInteractionService, campaign, campaigns, CampaignService, healthCoachEvent, $translate) {
+        .controller('HomeController', ['$scope', '$translate',
+            'UserService', 'CampaignService', 'SocialInteractionService',
+            'socialInteractions', 'currentAndFutureInvitations', 'messages',  'campaign', 'campaigns', 'healthCoachEvent',
+            function ($scope, $translate,
+                      UserService, CampaignService, SocialInteractionService,
+                      socialInteractions, currentAndFutureInvitations, messages, campaign, campaigns, healthCoachEvent) {
 
                 $scope.homeController = this;
+                $scope.homeScope = $scope;
                 $scope.homeController.healthCoachEvent = healthCoachEvent;
                 $scope.homeController.messages = messages;
                 $scope.homeController.offerTypes = 'Invitation';
@@ -134,9 +146,8 @@
                     $scope.campaignMessagesAvailable = !$scope.campaignEnded;
                     $scope.campaignEndAvailable = moment().businessDiff(moment(campaign.end).startOf('day')) > -2;
 
-                    // campaign start section is open on the day of the campaign start and the day before
-                    $scope.campaignStartOpen =  moment(campaign.start).isSame(now, 'day') ||
-                    moment(campaign.start).subtract(1, 'day').isSame(now, 'day');
+                    // campaign start section is open until the campaign has started
+                    $scope.campaignStartOpen =  moment(campaign.start).isAfter(now, 'day');
                     // campaign end section is open when the campaign has ended
                     $scope.campaignEndOpen = $scope.campaignEnded;
                     // offer section is open otherwise
@@ -145,6 +156,7 @@
 
 
                 $scope.offers = socialInteractions;
+                $scope.currentAndFutureInvitations = currentAndFutureInvitations;
                 $scope.messages = messages;
                 $scope.emailAddress = UserService.principal.getUser().email;
 
@@ -175,7 +187,7 @@
 
                 $scope.displayCoachMsg = function(section) {
                     $translate('healthCoach.dcm.home.sectionOpening.' + section).then(function (translated) {
-                        $rootScope.$emit('healthCoach:displayMessage', translated);
+                        $scope.$root.$emit('healthCoach:displayMessage', translated);
                     });
                 };
 
@@ -192,12 +204,50 @@
                 /////////////////////
                 function init () {
                     if (!campaign && campaigns.length > 0) {
-                        return $state.go('dcm.home', { campaignId: campaigns[0].id });
+                        return $scope.$state.go('dcm.home', { campaignId: campaigns[0].id });
                     }
 
                     if(campaign) {
 
-                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $state.href('welcome',{campaignId: campaign.id});
+                        $scope.offersWithoutLocation = _.filter(currentAndFutureInvitations, function (offer) {
+                            return offer.__t === 'Invitation' && !offer.activity.location;
+                        });
+                        $scope.campaignPreparation = {
+                            step1: {
+                                complete: !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
+                            },
+                            step2: {
+                                complete: CampaignService.isComplete(campaign)
+                            },
+                            step3: {
+                                complete: $scope.offersWithoutLocation.length === 0
+                            },
+                            step4: {
+                                complete: (campaign.preparationComplete >= 4)
+                            },
+                            step5: {
+                                complete: false
+                            }
+
+                        };
+                        var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
+                        firstIncompleteStep.active = true;
+                        firstIncompleteStep.enabled = true;
+
+                        _.each($scope.campaignPreparation, function (step) {
+                            step.disabled = !step.enabled && !step.complete;
+                        });
+
+                        $scope.completeCampaignPreparation = function (step) {
+                            $scope.campaignPreparation['step' + step].complete = true;
+                            $scope.campaignPreparation['step' + (step+1)].active = true;
+                            $scope.campaignPreparation['step' + (step+1)].enabled = true;
+                            $scope.campaignPreparation['step' + (step+1)].disabled = false;
+                            campaign.preparationComplete = step;
+                            CampaignService.putCampaign(campaign);
+                        };
+
+                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $scope.$state.href('welcome',{campaignId: campaign.id});
                         var createDraftLocals = {
                             organizationName: campaign.organization.name,
                             welcomeLink: $scope.homeController.welcomeLink
@@ -393,6 +443,8 @@
                         }).then(function (results) {
                             var res = results[0].usersTotal;
 
+                            $scope.campaignParticipantsCount = res.usersTotal;
+
                             $scope.campaignParticipants = [
                                 {
                                     "key": $translate.instant('dcm-end-of-campaign.usersTotal.title'),
@@ -527,7 +579,8 @@
                                             }
                                         });
                                         var factor = sum / (sum + overflow); // factor for having 100% again
-                                        return { flex: '0 0 ' + (value < threshold ? threshold : value) * factor * 100 + '%' };
+                                        var width = (value < threshold ? threshold : value) * factor * 100;
+                                        return { width: width + '%' };
                                     };
 
                                     _.each($scope.assessmentResults.concat($scope.assessmentResultsAverage), function (result, index) {
@@ -571,8 +624,6 @@
 
 
                     // eventsPlanned, popular activities
-
-
                     StatsService.loadStats($scope.campaign.id,
                         {
                             type: 'eventsPlanned',
@@ -594,10 +645,6 @@
                         });
 
                 }
-
-
-
-
             }
         ]);
 

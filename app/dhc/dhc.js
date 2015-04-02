@@ -21,7 +21,7 @@
                     abstract: true,
 
                     url: "/campaign/:campaignId",
-                    templateUrl: "layout/single-column.html",
+                    templateUrl: "layout/default.html",
                     controller: 'DhcController as dhcController',
 
                     access: accessLevels.all,
@@ -57,7 +57,7 @@
 
                     } else {
                         $rootScope.$log.log('DhcController: redirecting to campaign list(no campaign in URL, no campaign on user');
-                        $state.go('campaign-list.content');
+                        $state.go('campaign-list');
                     }
                 } else {
                     // last 2 days of the users campaign -> redirect non-campaignAdmins to dhc end of campaign

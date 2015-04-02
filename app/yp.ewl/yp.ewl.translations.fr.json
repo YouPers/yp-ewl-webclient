@@ -25,6 +25,7 @@
     "language": "La Langue",
     "feedback": "Les réactions",
     "moreinfo": "En savoir plus",
+    "contact": null,
     "dcm": null,
     "dhc": null,
     "logoHeader": "HealthCampaign"
@@ -58,17 +59,22 @@
   "footer": {
     "copyright": "&copy; YouPers 2014"
   },
-  "terms": {
-    "termsAndConditionsHeading": "Les conditions générales",
-    "termsAndConditions": "",
-    "privacyStatementHeading": "La politique de confidentialité",
-    "privacyStatement": ""
-  },
   "topic": {
     "chooseATopic": "Choisis un programme",
     "setGoal": {
       "title": "Bienvenue à la Gestion du Stress personnel",
       "text": "<p> Améliore ton équilibre de vie en changeant tes habitudes de façon durable. </p><p> Félicitations! Tu as franchi le premier pas! </p><h2> Évaluation d'expertise </h2><p> Nous passons en revue notre contenu spécialisé: le questionnaire, les activités et les propositions. <ul><li> Les commentaires sur le questionnaire sont recueillis dans Excel. </li><li> Les commentaires sur les activités peuvent être saisis directement au moyen du bouton Admin sur le site. </li></ul></p><p> Début: Mercredi 20 novembre </p><p> Fin: lundi, 25 Décembre </p>"
     }
+  },
+  "help": {
+    "campaignLeader": null,
+    "campaignParticipant": null,
+    "faq": null,
+    "faqLink": null,
+    "help": null,
+    "moreInfoCampaignLeaderLink": null,
+    "moreInfoParticipantLink": null,
+    "moreInfoServiceManagerLink": null,
+    "serviceManager": null
   }
 }

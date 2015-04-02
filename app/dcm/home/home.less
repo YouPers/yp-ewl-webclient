@@ -16,16 +16,20 @@
   > span {
     padding: 0 1em;
     overflow: hidden;
+    display: inline-block;
   }
   > span:first-of-type {
-    flex: 1 1 auto;
+    flex: 1 0 auto;
+  }
+  > span:last-of-type {
+    flex: 0 1 auto;
   }
 }
 
 .dcm-home {
 
   accordion {
-    .panel-group .panel:not(:first-of-type) {
+    .panel-group ng-include:not(:first-of-type) .panel {
       margin-top: 0;
       border-top: none;
     }
@@ -69,9 +73,14 @@
     .nav-tabs.nav-justified li.active a {
       border-bottom-color: transparent;
     }
-    .nav-tabs.nav-justified a {
-      text-align: left;
-      background: none;
+    .nav-tabs.nav-justified {
+      li.disabled a {
+        cursor: default;
+      }
+      a {
+        text-align: left;
+        background: none;
+      }
     }
     tab-heading span {
       font-size: 16px;
@@ -79,6 +88,61 @@
       color: @yp-subtitle;
       text-transform: none;
     }
+
+    .campaign-preparation {
+
+      &:not(.campaign-lead) {
+        .nav-tabs.nav-justified > li > a {
+          border: none;
+          cursor: default;
+        }
+        .tab-pane {
+          display: none;
+        }
+      }
+
+
+
+      i.fa {
+        cursor: default;
+        &.fa-check-circle-o {
+          color: @yp-success;
+        }
+        &.fa-circle-o {
+          color: @yp-divider;
+        }
+      }
+      .tab-pane {
+        padding: 24px;
+        > div {
+          .btn {
+            margin-top: 1em;
+            float: right;
+          }
+        }
+      }
+      .offer {
+        > * {
+          display: inline-block;
+          color: @yp-accent;
+          font-size: 16px;
+          font-weight: 400;
+        }
+        i.fa {
+          padding-left: 1em;
+          font-size: 14px;
+          &.fa-warning {
+            color: @yp-warning;
+          }
+        }
+      }
+      .offer:hover {
+        > * {
+          color: @yp-accent-hover;
+        }
+      }
+    }
+
 
     h3 {
       padding-top: 1em;
@@ -153,8 +217,8 @@
       display: flex;
       flex-direction: row;
       .details {
+        flex: 1 1 auto;
         margin: 7px;
-        width: 100%;
       }
     }
   }

@@ -24,7 +24,7 @@
 
         <form name="campaignForm" ypModel="campaign" role="form" class="form-horizontal"
               ng-submit="saveCampaign()" novalidate>
-            <div class="col-sm-12">
+            <div>
                 <div class="form-group topic">
                     <label class="control-label" translate>campaignForm.topic.label</label>
 
@@ -39,16 +39,29 @@
                 <yp-input name="city"></yp-input>
 
                 <div class="form-group date">
-                        <label class="control-label" translate>campaignForm.start.label</label>
+                    <label class="control-label" translate>campaignForm.start.label</label>
+                    <date-picker disabled="disabledStart" min-date="minDateStart" date="campaign.start" ng-model="campaign.start"></date-picker>
 
-                        <date-picker date="campaign.start" ng-model="campaign.start"></date-picker>
-                        <!--<date-picker date="campaign.start" future-date ng-model="campaign.start"></date-picker>-->
-                        <!--<date-picker date="campaign.end" future-date ng-model="campaign.end"></date-picker>-->
+                    <div ng-if="disabledStart">
+                        <span translate>campaignForm.usersInCampaign</span>
+                    </div>
+
+                    <div class="recreation" ng-cloak ng-if="campaignStartChanged || (campaignEndChanged && campaignEndChangeRecreatesOffers) || (initialMainCampaignLeadId && campaignLeadChanged)">
+                        <span translate>campaignForm.offersRecreated</span>
+                        <i class="fa fa-warning"></i>
+                    </div>
                 </div>
 
                 <div class="form-group date">
                     <label translate>campaignForm.end.label</label>
-                    <date-picker date="campaign.end" ng-model="campaign.end"></date-picker>
+                    <date-picker disabled="disabledEnd" min-date="minDateEnd" max-date="maxDateEnd" date="campaign.end" ng-model="campaign.end"></date-picker>
+
+                    <div ng-if="disabledEnd">
+                        <span translate>campaignForm.campaignEnded</span>
+                    </div>
+                    <div ng-if="campaignEndChanged && !campaignEndChangeRecreatesOffers && !campaignStartChanged">
+                        <span translate>campaignForm.offersRemain</span>
+                    </div>
                 </div>
 
 
@@ -65,17 +78,12 @@
                                 <span ng-show="!validPaymentCode" class="glyphicon glyphicon-remove"></span>
                             </span>
 
-                            <!--<span class="input-group-btn">-->
-                            <!--<button class="btn btn-default" type="button" ng-click="validatePaymentCode(code)">-->
-                            <!--validate-->
-                            <!--</button>-->
-                            <!--</span>-->
-
                         </div>
 
                     </div>
 
-                    <div class="validation-result" ng-if="validPaymentCode === false">
+                    <div class="validation-result">
+                        <span ng-if="paymentCodeCheckingDisabled">!! PaymentCode Checking-disabled on this instance !!</span>
 
                         <span ng-if="paymentCode.status == 404" translate>campaignForm.paymentCode.invalidCode</span>
 
@@ -90,87 +98,85 @@
                     </div>
 
                 </div>
+
+                <div class="clearfix"></div>
+
             </div>
         </form>
 
+        <form name="campaignLeadForm" ypModel="newCampaignLead" ng-submit="submitNewCampaignLead()" class="form-horizontal">
 
-        <!--<div ng-show="campaign.id">-->
-            <!--<div class="row">-->
-                <!--<div class="col-sm-12">-->
-                    <!--<h3 translate>campaign.campaignLeads.header</h3>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row campaign-leads" ng-repeat="campaignLead in campaign.campaignLeads">-->
-                <!--<div class="col-sm-1">-->
-                    <!--<img ng-src="{{campaignLead.avatar}}">-->
-                <!--</div>-->
-                <!--<div class="col-sm-4">-->
-                    <!--<div>{{ campaignLead.fullname }}</div>-->
-                <!--</div>-->
-                <!--<div class="col-sm-4">-->
-                    <!--<div>{{ campaignLead.email }}</div>-->
-                <!--</div>-->
-            <!--</div>-->
+            <h3>Kampagnenleiter</h3>
+
+            <br/>
+
+            <div class="campaign-leads">
+
+                <div class="campaign-lead row" ng-repeat="campaignLead in availableCampaignLeads()">
+                    <div class="col-sm-1">
+                        <img ng-src="{{ campaignLead.avatar }}">
+                    </div>
+                    <div class="col-sm-5">
+                        <span>{{ campaignLead.fullname }} {{campaignLead.email}}</span>
+
+                    </div>
+
+                    <div class="col-sm-3">
+                        <a href ng-click="assignCampaignLead(campaignLead); campaignForm.$setDirty(); " ng-if="!campaignController.campaignLeadVerified">
+                            <i ng-show="isAssigned(campaignLead)" class="fa fa-check-square-o"></i>
+                            <i ng-show="!isAssigned(campaignLead)" class="fa fa-square-o"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="row" ng-if="!campaignController.campaignLeadVerified">
+                    <div class="col-sm-12"> <a href ng-click="campaignController.showNewCampainleadForm=true" ng-if="!campaignController.showNewCampainleadForm" translate>campaignLeadForm.newCampaignLead</a></div>
+                </div>
+
+            </div>
+
+            <div class="new-campaign-lead" ng-if="campaignController.showNewCampainleadForm">
+                <yp-input name="firstname" required></yp-input>
+                <yp-input name="lastname" required></yp-input>
+                <yp-input name="email" type="email" required unique-user-field></yp-input>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-disabled="!campaignLeadForm.$dirty || !campaignLeadForm.$valid" translate>
+                        campaignLeadForm.submit
+                    </button>
+                </div>
+            </div>
 
 
-            <!--<div class="row invite-campaign-lead" ng-show="formVisible">-->
-                <!--<div class="col-sm-12">-->
+        </form>
 
-                    <!--<div translate ng-if="invitationSent">inviteCampaignLeadForm.invitationSent</div>-->
-
-                    <!--<form class="form-inline" ng-if="!invitationSent"-->
-                          <!--role="form"-->
-                          <!--ng-submit="inviteCampaignLeadForm.$valid && inviteCampaignLead(campaignLeads, campaign)"-->
-                          <!--name="inviteCampaignLeadForm">-->
-                        <!--<div class="form-group"-->
-                             <!--ng-class="{'has-error': inviteCampaignLeadForm.email.$dirty && inviteCampaignLeadForm.email.$invalid}">-->
-                            <!--<label class="sr-only" translate>inviteCampaignLeadForm.email.label</label>-->
-                            <!--<input class="form-control email-field" name="email" type="text"-->
-                                   <!--ng-model="campaignLeads"-->
-                                   <!--placeholder="{{'inviteCampaignLeadForm.email.placeholder' | translate}}"-->
-                                   <!--multiple-Emails required>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<button type="submit" class="btn btn-primary"-->
-                                    <!--ng-disabled="inviteCampaignLeadForm.$invalid"-->
-                                    <!--translate>inviteCampaignLeadForm.inviteSubmit-->
-                            <!--</button>-->
-                        <!--</div>-->
-                    <!--</form>-->
-
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<button class="btn btn-default" ng-click="showForm()"-->
-                    <!--translate>-->
-                <!--campaign.campaignLeads.add-->
-            <!--</button>-->
-        <!--</div>-->
     </section>
 
     <aside>
 
+        <div>
 
-        <div class="header-row">
-            <div class="back-link" ui-sref="^.home">
-                <span class="fa fa-chevron-left"></span>
-                <span translate>activity.link.back</span>
+            <div class="header-row">
+                <div class="back-link" ui-sref="^.home">
+                    <span class="fa fa-chevron-left"></span>
+                    <span translate>activity.link.back</span>
+                </div>
             </div>
-        </div>
-        <div class="button-row" ng-if="(campaign.id && campaignForm.$dirty) || (!campaign.id && validPaymentCode)">
-            <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true" class="btn btn-primary" ng-disabled="campaignForm.$invalid" busy>
-                <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
-                <span translate>campaignForm.save</span>
+            <div class="button-row">
+                <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true" class="btn btn-primary"
+                        ng-disabled="(campaignForm.$invalid && campaignForm.$dirty) || (campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (campaign.id && !campaignForm.$dirty) || (!campaign.id && !paymentCodeCheckingDisabled && !validPaymentCode)" busy>
+                    <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
+                    <span translate>campaignForm.save</span>
 
-            </button>
-                <button type="button" class="btn btn-default pull-right" ng-click="campaign.id ? $state.go('dcm.campaign',{campaignId: campaign.id}, {reload: true}) : $state.go('dcm.home')">
+                </button>
+                <button type="button" class="btn btn-default pull-right" ng-click="campaign.id ? $state.go('dcm.campaign',{campaignId: campaign.id}, {reload: true}) : $state.go('dcm.home')" ng-disabled="!campaignForm.$dirty">
                     <span translate>campaignForm.cancel</span>
                 </button>
+            </div>
+
+            <health-coach event="'stateEnter'"></health-coach>
         </div>
 
-
-
-        <health-coach event="'stateEnter'"></health-coach>
     </aside>
 
 </div>

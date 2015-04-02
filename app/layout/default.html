@@ -1,13 +1,3 @@
-<div class="container main-layout dhc {{ $state.current.name.substr(0, $state.current.name.indexOf('.')) }}">
-
-    <div class="row main-content">
-        <div class="col-sm-9">
-            <div ui-view="content" autoscroll="false"></div>
-        </div>
-        <div class="col-sm-3">
-
-            <social-interaction></social-interaction>
-            <health-coach></health-coach>
-        </div>
-    </div>
+<div class="container {{ $state.current.name.split('.')[0] }} {{ $state.current.name.replace('.', '-') }}">
+    <div  ui-view="content" autoscroll="false"></div>
 </div>

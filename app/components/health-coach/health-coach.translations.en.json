@@ -32,7 +32,7 @@
         "sectionOpening": {
           "campaignEnd": null,
           "CampaignMessages": null,
-          "CampaignStats": null,
+          "CampaignStats": "missing",
           "offers": null,
           "participants": null,
           "startOfCampaign": null

@@ -8,15 +8,36 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
 
                 $stateProvider
-                    .state('paymentCodeAdmin', {
+                    .state('admin.payment-code', {
                         url: '/paymentCode',
-                        templateUrl: 'admin/payment-code/payment-code.html',
-                        controller: 'PaymentCodeAdminController',
                         access: accessLevels.admin,
+                        views: {
+                            content: {
+                                templateUrl: "admin/payment-code/payment-code.html",
+                                controller: 'PaymentCodeAdminController as ctrl'
+                            }
+                        },
 
                         resolve: {
-                            topics: ['TopicService', function(TopicService) {
+                            topics: ['TopicService', function (TopicService) {
                                 return TopicService.getTopics();
+                            }],
+                            codes: ['PaymentCodeService', function (PaymentCodeService) {
+                                return PaymentCodeService.getPaymentCodes({
+                                    populate: 'author campaign marketPartner',
+                                    populatedeep: 'campaign.organization'
+                                });
+                            }],
+                            partners: ['MarketPartnerService', function (MarketPartnerService) {
+                                return MarketPartnerService.getMarketPartners();
+                            }],
+                            usersPerCampaign: ['StatsService', function (StatsService) {
+                                return StatsService.loadStats(null, {
+                                    type: 'usersPerCampaign',
+                                    scopeType: 'all'
+                                }).then(function (statsResults) {
+                                    return _.indexBy(statsResults[0].usersPerCampaign, 'campaign');
+                                });
                             }]
                         }
                     });
@@ -24,50 +45,106 @@
                 //$translateWtiPartialLoaderProvider.addPart('admin/payment-code/payment-code');
             }])
 
-        .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'topics',
-            function ($rootScope, $scope, PaymentCodeService, topics) {
+        .controller('PaymentCodeAdminController', ['$rootScope', '$scope', 'PaymentCodeService', 'topics', 'codes', 'partners', 'usersPerCampaign',
+            function ($rootScope, $scope, PaymentCodeService, topics, codes, partners, usersPerCampaign) {
+                var self = this;
 
+                self.codes = codes;
+                self.topics = topics;
+                self.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
+                self.partners = partners;
+                self.endorsementTypes = ['sponsored', 'presented'];
 
-                $scope.validate = function(code) {
-                    PaymentCodeService.validatePaymentCode(code).then(function(result) {
-                        $scope.paymentCode = result;
-                        $scope.valid = true;
-                    }, function(reason) {
-                        $scope.valid = false;
+                self.validate = function (code) {
+                    PaymentCodeService.validatePaymentCode({code: code}).then(function (result) {
+                        self.paymentCode = result;
+                        self.valid = true;
+                    }, function (reason) {
+                        self.valid = false;
                     });
                 };
 
-                $scope.generate = function(paymentCode) {
+                self.generate = function (paymentCode) {
                     $rootScope.$log.log('paymentCode: ' + paymentCode);
 
-                    PaymentCodeService.generatePaymentCode(paymentCode).then(function(result) {
-                        $scope.codes = $scope.codes || [];
-                        if(!_.contains($scope.codes, function(pc) { return pc.code === result.code; })) {
-                            $scope.codes.push(result);
+                    PaymentCodeService.generatePaymentCode(paymentCode).then(function (result) {
+                        // the author is not populated in the post result, we do it manually
+                        result.author = $rootScope.principal.getUser();
+                        // populate the marketPartner
+                        result.marketPartner = _.find(self.partners, 'id', result.marketPartner);
+                        self.codes = self.codes || [];
+                        if (!_.contains(self.codes, function (pc) {
+                                return pc.code === result.code;
+                            })) {
+                            self.codes.push(result);
                         }
 
-                        $scope.code = result.code;
-                        $scope.valid = true;
+                        self.code = result.code;
+                        self.valid = true;
                     }, function (err) {
-                        $scope.$emit('clientmsg:error', err);
+                        $rootScope.$emit('clientmsg:error', err);
                     });
                 };
 
-                $scope.topic = function (topic) {
+                self.saveCode = function (code, index) {
+                    PaymentCodeService.putPaymentCode(code).then(function (result) {
+                        // repopulate the marketpartner
+                        result.marketPartner = _.find(self.partners, 'id', result.marketPartner);
+                        self.currentEdit = undefined;
+                        self.codes[index] = result;
+                    }, function (err) {
+                        $rootScope.$emit('clientmsg:error', err);
+                    });
+                };
+
+                self.delete = function (paymentCodeId) {
+                    PaymentCodeService.deletePaymentCode(paymentCodeId).then(function () {
+                        _.remove(self.codes, function (code) {
+                            return code.id === paymentCodeId;
+                        });
+                    });
+
+                };
+
+                self.topic = function (topic) {
                     return _.find(topics, {id: topic});
                 };
 
-                $scope.topics = topics;
-                $scope.productTypes = ['CampaignProductType1', 'CampaignProductType2', 'CampaignProductType3'];
 
-                $scope.paymentCode = {
+                self.paymentCode = {
                     productType: $rootScope.enums.productType[0],
                     topic: topics[0].id
                 };
 
-                PaymentCodeService.getPaymentCodes().then(function(codes) {
-                    $scope.codes = codes;
-                });
+                self.edit = function (code, index) {
+                    self.currentEdit = index;
+                    self.editCode = code.clone();
+                };
 
+                self.cancelEdit = function () {
+                    self.currentEdit = undefined;
+                    self.editCode = undefined;
+                };
+
+                self.getUsersPerCampaign = function (campaignId) {
+                    if (usersPerCampaign[campaignId]) {
+                        return usersPerCampaign[campaignId].usersTotal;
+                    } else {
+                        return 0;
+                    }
+                };
+
+                self.getParticipantsColor = function (numberPaid, numberCurrent) {
+                    if (!numberCurrent) {
+                        numberCurrent = 0;
+                    }
+                    if (numberPaid * 0.75 > numberCurrent) {
+                        return 'participants-lower';
+                    } else if (numberPaid * 1.25 < numberCurrent) {
+                        return 'participants-higher';
+                    } else {
+                        return 'participants-ok';
+                    }
+                };
             }]);
 }());

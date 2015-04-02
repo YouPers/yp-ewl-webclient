@@ -10,7 +10,8 @@
                     date: '=',
                     minDate: '=?',
                     maxDate: '=?',
-                    required: '='
+                    required: '=',
+                    disabled: '=?'
                 },
                 templateUrl: 'components/directives/date-picker-directive/date-picker-directive.html',
 

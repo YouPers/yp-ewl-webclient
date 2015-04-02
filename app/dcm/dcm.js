@@ -19,27 +19,15 @@
                     abstract: true,
 
                     url: "/dcm/campaign/:campaignId",
-                    templateUrl: "layout/single-column.html",
+                    templateUrl: "layout/default.html",
                     controller: 'DcmController as dcmController',
 
                     access: accessLevels.all,
 
                     resolve: {
-                        organization: ['OrganizationService', function (OrganizationService) {
-                            return OrganizationService.getOrganizations().then(function (list) {
-                                if (!list || list.length === 0) {
-                                    return undefined;
-                                } else if (list.length > 1) {
-                                    throw new Error('organization not unique');
-                                } else {
-                                    return list[0];
-                                }
-                            });
-
-                        }],
-                        campaigns: ['CampaignService', 'organization', function (CampaignService) {
+                        campaigns: ['CampaignService', function (CampaignService) {
                             return CampaignService
-                                .getCampaigns({ populate: 'topic campaignLeads organization' })
+                                .getCampaigns({populate: 'topic campaignLeads organization marketPartner', populatedeep: 'organization.administrators'})
                                 .then(function (campaigns) {
                                     return campaigns;
                                 });
@@ -47,9 +35,26 @@
                         campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
 
                             if ($stateParams.campaignId) {
-                                return _.find(campaigns, { id: $stateParams.campaignId });
+                                return _.find(campaigns, {id: $stateParams.campaignId});
                             } else {
                                 return undefined;
+                            }
+
+                        }],
+                        organization: ['campaign', 'OrganizationService', '$q', function (campaign, OrganizationService, $q) {
+
+                            if (campaign && campaign.organization && campaign.organization.id) {
+                                return $q.when(campaign.organization);
+                            } else {
+                                return OrganizationService.getOrganizations().then(function (list) {
+                                    if (!list || list.length === 0) {
+                                        return undefined;
+                                    } else if (list.length > 1) {
+                                        throw new Error('organization not unique');
+                                    } else {
+                                        return list[0];
+                                    }
+                                });
                             }
 
                         }]
@@ -63,14 +68,15 @@
 
                 $scope.parentState = 'dcm';
 
-                $scope.currentCampaign = campaign;
+                $scope.currentCampaign = CampaignService.currentCampaign = campaign;
+                $scope.isCampaignLead = CampaignService.isCampaignLead(campaign);
 
                 // my org or the current campaign's org in case I am a product Admin looking at somebody else's campaign
                 $scope.organization = organization || campaign.organization;
                 $scope.campaigns = campaigns;
 
                 $scope.editCampaign = function editCampaign($event, campaignId) {
-                    $state.go('dcm.campaign', { campaignId: campaignId });
+                    $state.go('dcm.campaign', {campaignId: campaignId});
                     $event.stopPropagation();
                 };
 

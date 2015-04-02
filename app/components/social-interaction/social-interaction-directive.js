@@ -59,12 +59,15 @@
                         var options = scope.options = {};
                         options.isCampaignLead = attrs.soiAdministration;
 
-                        scope.componentClass = function (socialInteraction) {
+                        scope.componentClasses = function (socialInteraction) {
                             if (!socialInteraction) {
                                 return undefined;
                             }
                             var authorType = socialInteraction.authorType;
-                            return 'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1);
+                            return [
+                                'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1),
+                                socialInteraction.__t.toLowerCase()
+                            ];
 
                         };
 
@@ -128,11 +131,18 @@
                     restrict: 'E',
                     scope: {
                         onPost: '&',
-                        editedMessage: '='
+                        editedMessage: '=',
+                        minPublishFrom: '=',
+                        maxPublishTo: '='
                     },
                     templateUrl: 'components/social-interaction/social-interaction-message-compose-directive.html',
 
                     link: function (scope, elem, attrs) {
+
+                        var publishFrom = moment().isAfter(scope.minPublishFrom) ?
+                            moment().startOf('day').toDate() :
+                            moment(scope.minPublishFrom).toDate();
+                        var publishTo = moment(publishFrom).add(2, 'days').toDate();
 
                         var messageTemplate = {
                             author: UserService.principal.getUser(),
@@ -147,8 +157,8 @@
 
                             __t: 'Message',
 
-                            publishFrom: new Date(moment().startOf('day')),
-                            publishTo: new Date(moment().endOf('day'))
+                            publishFrom: publishFrom,
+                            publishTo: publishTo
                         };
 
                         scope.hasCampaign = $stateParams.campaignId;
@@ -156,6 +166,17 @@
                         scope.$watch('editedMessage', function (newVal, oldVal) {
                             if (newVal) {
                                 scope.message = newVal;
+                            }
+                        });
+
+                        scope.$watch('message.publishFrom', function (newVal, oldVal) {
+                            if (newVal && newVal !== oldVal) {
+                                var newPublishTo =  moment(newVal).add(2, 'days');
+                                if (newPublishTo.isAfter(scope.maxPublishTo)) {
+                                    newPublishTo = moment(scope.maxPublishTo);
+                                }
+
+                                scope.message.publishTo = newPublishTo.toDate();
                             }
                         });
 

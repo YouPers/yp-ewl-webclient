@@ -1,0 +1,51 @@
+.admin-assessments {
+
+  .question {
+
+    .saved.ng-hide-add.ng-hide-add-active,
+    .saved.ng-hide-remove.ng-hide-remove-active {
+      -webkit-transition: all linear 0.5s;
+      transition: all linear 0.5s;
+    }
+
+    .saved.ng-hide {
+      line-height: 0;
+      opacity: 0;
+      padding: 0 10px;
+    }
+
+    input, textarea {
+      padding: 4px;
+      border: none;
+      box-shadow: none;
+    }
+    .form-control {
+      width: auto;
+    }
+
+    &:not(:first-of-type) {
+//      border-top: 1px solid @yp-divider;
+      padding-top: 15px;
+    }
+    .header {
+      display: flex;
+      padding-right: 1em;
+    }
+
+    .content {
+      > div {
+        height: 6em;
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid @yp-divider;
+        > *:first-child {
+
+        }
+        > *:not(:first-child) {
+          flex: auto;
+        }
+      }
+    }
+
+  }
+}

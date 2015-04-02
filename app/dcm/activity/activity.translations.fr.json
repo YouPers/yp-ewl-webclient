@@ -28,6 +28,8 @@
     "duration": "Le temps nécessaire (min.) ",
     "save": "Enregistrer",
     "back": "Retour",
+    "newInvitation": null,
+    "newRecommendation": null,
     "header": {
       "recommendation": null
     },

@@ -52,7 +52,7 @@
       "error": {
         "required": "Bitte eine Email-Adresse eingeben",
         "email": "Bitte eine gültige Email-Adresse eingeben",
-        "unique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein"
+        "unique": "Diese Email-Adresse ist schon registriert, bitte melde dich an"
       }
     },
     "save": "Speichern",
@@ -71,6 +71,7 @@
       "placeholder": "Neues Passwort",
       "error": {
         "minlength": "Mindestens 6 Zeichen",
+        "$invalid": "Mindestens 6 Zeichen",
         "required": "Dein neues Passwort"
       }
     },
@@ -105,7 +106,7 @@
     "setNewPassword": "Du kannst Dir nun ein neues Passwort setzen:",
     "newPassword": "Neues Passwort",
     "success": "Passwort erfolgreich gesetzt",
-    "loginAgainWithNewPassword": "Logge Dich mit deinem neuen Passwort ein..."
+    "loginAgainWithNewPassword": "Du kannst dich jetzt mit deinem neuen Passwort anmelden."
   },
   "profileForm": {
     "profile": {

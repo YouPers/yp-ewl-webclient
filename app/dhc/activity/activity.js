@@ -8,7 +8,7 @@
                 $stateProvider
                     .state('dhc.activity', {
                         parent: 'dhc',
-                        url: "/idea/:idea/activity/:activity/socialInteraction/:socialInteraction",
+                        url: "/idea/:idea/activity/:activity/socialInteraction/:socialInteraction?edit",
                         access: accessLevels.user,
                         views: {
                             content: {

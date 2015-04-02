@@ -57,7 +57,7 @@
       "label2": "Nutzungsbedingungen",
       "label3": "gelesen und stimme ihnen zu",
       "$error": {
-        "required": "Bitte akzeptiere die Geschäftsbedingungen"
+        "required": "Bitte akzeptiere die Nutzungsbedingungen"
       }
     },
     "register": "registrieren",
@@ -68,6 +68,26 @@
       "label": "Firmenname",
       "placeholder": "Firmenname"
     },
-    "termsLink": "http://healthcampaign.youpers.com/nutzungsbedingungen/?lang=de"
+    "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions/?lang=de ‎"
+  },
+  "signupFinalization": {
+    "header": "Danke für deine Registrierung",
+    "verificationEmail": "Wir haben dir eine Email geschickt an: <strong>{{ email }}</strong><br/><br/>Bitte öffne den Bestätigungs-Link in dieser Email um fortzufahren.",
+    "noVerificationEmail": "Hast du die Email nicht bekommen?",
+    "resend1": {
+      "text": "Bitte überprüfe deinen Spamordner",
+      "link": "Erneut senden",
+      "verificationSent": "Versendet"
+    },
+    "invalidEmailAddress": {
+      "text": "Falsche Email-Adresse?",
+      "link": "Neu registrieren"
+    },
+    "resend2": {
+      "text": "Bereits gelöscht oder nicht mehr auffindbar?",
+      "link": "Erneut senden",
+      "verificationSent": "Versendet"
+    },
+    "contactCustomerSupport": "Kontaktiere den Kundendienst <a href=\"mailto:customer.support@youpers.com\">customer.support@youpers.com</a>"
   }
 }

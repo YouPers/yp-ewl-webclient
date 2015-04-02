@@ -280,7 +280,7 @@ module.exports = function (grunt) {
             options: {
                 base: '<%= yeoman.app %>',
                 htmlmin: {
-                    collapseBooleanAttributes: true,
+                    collapseBooleanAttributes: false,
                     collapseWhitespace: true,
                     removeAttributeQuotes: true,
                     removeComments: true,

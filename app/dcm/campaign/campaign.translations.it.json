@@ -21,7 +21,9 @@
     "stateHeader1": "Tuo",
     "stateHeader2": "campagna",
     "card": {
-      "title": null
+      "title": null,
+      "campaignLead": null,
+      "campaignLeadUnconfirmed": null
     }
   },
   "campaignForm": {
@@ -42,6 +44,10 @@
     "end": {
       "label": "Fine"
     },
+    "usersInCampaign": null,
+    "offersRecreated": null,
+    "offersRemain": null,
+    "campaignEnded": null,
     "participants": {
       "label": "Gruppo di persone",
       "placeholder": "Gruppo di persone",
@@ -73,12 +79,44 @@
       "label": null
     }
   },
-  "inviteCampaignLeadForm": {
-    "email": {
-      "placeholder": "Una o diverse email"
+  "campaignLeadForm": {
+    "header": null,
+    "serviceManager": null,
+    "mainLeader": null,
+    "coLeader": null,
+    "mainLeaderExplanation": null,
+    "coLeaderExplanation": null,
+    "newCampaignLead": null,
+    "firstname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
     },
-    "inviteSubmit": "Invia",
-    "invitationSent": "Invito spedito via e-mail, il nuovo leader della campagna deve confermare"
+    "lastname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "email": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null,
+        "email": null,
+        "unique": null
+      }
+    },
+    "submit": null
+  },
+  "campaignLeadResetPassword": {
+    "header": null,
+    "message": null,
+    "passwordReset": null,
+    "save": null
   },
   "clientmsg": {
     "success": {

@@ -18,33 +18,6 @@
                             }]
                         }
                     })
-                    .state('assignCampaignLead', {
-                        url: '/campaigns/{id}/becomeCampaignLead?accessToken',
-                        access: accessLevels.all,
-                        onEnter:['$state','$stateParams','CampaignService', 'UserService', '$rootScope', '$window',
-                            function($state, $stateParams, CampaignService, UserService, $rootScope, $window) {
-                                if (!$rootScope.principal.isAuthenticated()) {
-                                    $rootScope.nextStateAfterLogin = {toState: 'assignCampaignLead', toParams: $stateParams};
-                                    return $state.go('signup.content');
-                                }
-
-                                var campaignId = $stateParams.id;
-                                var token = $stateParams.accessToken;
-                                CampaignService.assignCampaignLead(campaignId, token).then(function(data) {
-                                    $rootScope.$emit('clientmsg:success', 'campaign.lead');
-                                    $state.go('dcm.home');
-                                }, function(err) {
-
-                                    if(err.data && err.data.code === 'InvalidArgumentError' && (err.data.data.userId || err.data.data.email)) {
-                                        UserService.logout();
-                                        $window.location.reload();
-                                    } else {
-                                        $state.go('dcm.home');
-                                    }
-                                });
-                            }]
-
-                    })
                     .state('assignOrganizationAdmin', {
                         url: '/organizations/{id}/becomeOrganizationAdmin?token',
                         access: accessLevels.user,

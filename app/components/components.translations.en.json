@@ -77,6 +77,8 @@
     "submit": null
   },
   "feedbackForm": {
+    "header": null,
+    "header2": null,
     "anonymous": {
       "label": "Anonymous feedback"
     },
@@ -99,5 +101,9 @@
     "username": {
       "label": "Username"
     }
+  },
+  "endorsementType": {
+    "presented": null,
+    "sponsored": null
   }
 }

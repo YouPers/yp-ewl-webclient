@@ -21,7 +21,9 @@
     "stateHeader1": "your",
     "stateHeader2": "Campaign",
     "card": {
-      "title": "HealthCampaign"
+      "title": "HealthCampaign",
+      "campaignLead": null,
+      "campaignLeadUnconfirmed": null
     }
   },
   "campaignForm": {
@@ -42,6 +44,10 @@
     "end": {
       "label": "End"
     },
+    "usersInCampaign": null,
+    "offersRecreated": null,
+    "offersRemain": null,
+    "campaignEnded": null,
     "participants": {
       "label": "Group of people",
       "placeholder": "Group of people",
@@ -68,17 +74,49 @@
     },
     "backToTopicSelection": "Back to topic selection",
     "paymentCode": {
-      "invalidCode": "Invalid payment code. You get a valid payment code <a href=\"http://healthcampaign.youpers.com\">here.</a>",
+      "invalidCode": "Invalid or already used activation code. You get a valid activation code <a href=\"http://healthcampaign.youpers.com\">here.</a>",
       "invalidTopic": "This code is valid only for campaigns to topic {{ invalidTopic }}",
-      "label": "Payment code"
+      "label": "Activation code"
     }
   },
-  "inviteCampaignLeadForm": {
-    "email": {
-      "placeholder": "One or multiple emails"
+  "campaignLeadForm": {
+    "header": null,
+    "serviceManager": null,
+    "mainLeader": null,
+    "coLeader": null,
+    "mainLeaderExplanation": null,
+    "coLeaderExplanation": null,
+    "newCampaignLead": null,
+    "firstname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
     },
-    "inviteSubmit": "Send",
-    "invitationSent": "Invitation email sent, the new campaign leader needs to confirm"
+    "lastname": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null
+      }
+    },
+    "email": {
+      "label": null,
+      "placeholder": null,
+      "error": {
+        "required": null,
+        "email": null,
+        "unique": null
+      }
+    },
+    "submit": null
+  },
+  "campaignLeadResetPassword": {
+    "header": null,
+    "message": null,
+    "passwordReset": null,
+    "save": null
   },
   "clientmsg": {
     "success": {
