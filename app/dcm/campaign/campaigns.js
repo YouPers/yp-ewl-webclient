@@ -155,11 +155,7 @@
                     $scope.campaignEndChangeRecreatesOffers = moment().isBefore($scope.campaign.start) && !usersInCampaign;
                 });
 
-                // gather campaign leads from all campaigns
                 var campaignLeads = organization.administrators;
-                _.each(campaigns, function (campaign) {
-                    campaignLeads = campaignLeads.concat(campaign.campaignLeads);
-                });
 
                 $scope.availableCampaignLeads = function () {
                     // once the campaignLead is verified, we don't give the option to change anymore,
