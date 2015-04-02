@@ -37,7 +37,7 @@
     "mt60min": "mehr als 1 Stunde",
     "rating": "Bewertung",
     "activities": "Aktivitäten",
-    "recommendedForYou": "Empfohlen für Dich",
+    "recommendedForYou": "Empfohlen für dich",
     "campaignActivities": "Kampagnenaktivitäten",
     "all": "Alle",
     "ofTotal": "von total",
@@ -93,8 +93,8 @@
   },
   "activityPlanInvite": {
     "header": "HealthCampaign - Herzlich Willkommen",
-    "subheader": " hat Dich eingeladen an einer Aktivität teilzunehmen.",
-    "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}>logge Dich ein</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
+    "subheader": " hat dich eingeladen an einer Aktivität teilzunehmen.",
+    "inviteMessage": "Um teilzunehmen <a {{loginLinkAttribute}}> melde dich an</a> oder <a href='' {{registerLinkAttribute}}>registriere dich</a>"
   },
   "activityPlanFrequency": {
     "once": "einmalig",
