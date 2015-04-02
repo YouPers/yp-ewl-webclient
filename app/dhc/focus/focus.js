@@ -76,9 +76,17 @@
 
                 };
 
+                function _needForActionPercentage(value) {
+                    var minPercentage = 50;
+                    var maxPercentage = 350;
+                    var minNfa = 1;
+                    var maxNfa = 10;
+                    return minPercentage + ((maxPercentage-minPercentage)/(maxNfa-minNfa)) * (value -minNfa) + '%';
+                }
+
                 $scope.needForActionStyle = function(category) {
                     return {
-                        width: _getNeedForCategory(category) * 10 * 0.6 + '%'
+                        width: _needForActionPercentage(_getNeedForCategory(category)) +'%'
                     };
                 };
 

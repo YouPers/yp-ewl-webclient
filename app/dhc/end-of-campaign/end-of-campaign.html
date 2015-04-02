@@ -46,13 +46,15 @@
 
             <h2>
                 <span ng-hide="campaignEnded"
-                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"  translate-interpolation="messageformat"></span>
+                      translate="end-of-campaign.lastDaysHeader" translate-values="{ daysLeft: daysLeft }"
+                      translate-interpolation="messageformat"></span>
                 <span ng-show="campaignEnded"
                       translate="end-of-campaign.campaignEndendHeader"></span>
             </h2>
             <br/>
-            <h3 translate="end-of-campaign.subheader"  translate-values="{ daysLeft: daysLeft }"  translate-interpolation="messageformat"></h3>
 
+            <h3 translate="end-of-campaign.subheader" translate-values="{ daysLeft: daysLeft }"
+                translate-interpolation="messageformat"></h3>
 
 
             <table class="table focus need-for-action" ng-if="needForAction">
@@ -70,11 +72,14 @@
                 <tr ng-repeat="need in needForAction">
                     <td class="left" translate>questionCategory.{{need.category}}</td>
 
-                    <td>
-                        <div class="bar" ng-class="needForActionClass(need.avg)"
-                             ng-style="needForActionStyle(need.avg)">
+                    <td class="bar-holder-td">
+                        <div class="bar-holder">
+                            <div class="bar" ng-class="needForActionClass(need.avg)"
+                                 ng-style="needForActionStyle(need.avg)">
+                            </div>
+                            <div class="mark" ng-if="need.campaignAvg"
+                                 ng-style="needForActionStyle(need.campaignAvg)"></div>
                         </div>
-                        <div class="mark" ng-if="need.campaignAvg" ng-style="needForActionStyle(need.campaignAvg)"></div>
                     </td>
 
                     <td class="active">
@@ -135,9 +140,6 @@
                     </nvd3-multi-bar-chart>
 
                 </div>
-
-
-
 
 
             </div>
