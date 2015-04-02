@@ -1,4 +1,4 @@
-<accordion-group ng-if="campaign" class="campaign-stats" is-open="campaignStatsOpen">
+<accordion-group ng-if="campaign && campaignStarted" class="campaign-stats" is-open="campaignStatsOpen">
     <div ng-controller="HomeStatsController as homeStatsController">
 
         <accordion-heading>
