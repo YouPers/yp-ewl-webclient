@@ -285,16 +285,17 @@
                         ($scope.campaignEndChanged && $scope.campaignEndChangeRecreatesOffers) ||
                         ($scope.initialMainCampaignLeadId && ($scope.initialMainCampaignLeadId !== ($scope.campaign.campaignLeads[0].id || $scope.campaign.campaignLeads[0])))
                     ) {
-                        CampaignService.deleteCampaign($scope.campaign).then(function () {
+                        CampaignService.deleteCampaign($scope.campaign).then(function (deleteResult) {
                             _.remove(campaigns, 'id', $scope.campaign.id);
                             delete $scope.campaign.id;
-                            save();
+                            save(deleteResult.code);
                         }, onError);
                     } else {
                         save();
                     }
 
-                    function save() {
+                    function save(paymentCodeOfDeletedCampaign) {
+
                         $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
                         $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
 
@@ -324,7 +325,7 @@
                                 });
                             }, onError);
                         } else {
-                            $scope.campaign.paymentCode = $scope.paymentCode;
+                            $scope.campaign.paymentCode = paymentCodeOfDeletedCampaign || $scope.paymentCode;
 
                             CampaignService.postCampaign($scope.campaign, options)
                                 .then(function (campaign) {
