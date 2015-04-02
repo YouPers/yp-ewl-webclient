@@ -18,7 +18,7 @@
 
         <span ng-if="!isCampaignLead" translate>dcmhome.campaignStart.campaignLeadGuidance.notCampaignLead</span>
 
-        <tabset class="campaign-preparation" ng-class="{ 'campaign-lead': isCampaignLead }" ng-if="!homeController.preparationComplete" justified="true">
+        <tabset class="campaign-preparation" ng-class="{ 'campaign-lead': isCampaignLead }"  justified="true">
 
             <!-- step 1 -->
             <tab active="campaignPreparation.step1.active" disabled="campaignPreparation.step1.disabled">
@@ -119,7 +119,7 @@
 
                 <div>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step5.text</span>
-                    <a ng-click="homeController.preparationComplete = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step5.link</a>
+                    <a ng-if="!homeController.preparationComplete" ng-click="homeController.preparationComplete = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step5.link</a>
                 </div>
             </tab>
 
@@ -129,7 +129,7 @@
 
         <!-- campaign invitations -->
 
-        <tabset ng-if="homeController.preparationComplete" justified="true">
+        <tabset ng-if="homeController.preparationComplete && campaignPreparation.step5.active" justified="true">
 
             <!-- option A - emailInvite -->
             <tab>
