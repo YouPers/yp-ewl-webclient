@@ -21,9 +21,11 @@
                 <tr ng-repeat="category in categories">
                     <td class="left" translate>questionCategory.{{category}}</td>
 
-                    <td>
-                        <div class="bar" ng-class="needForActionClass(category)" ng-style="needForActionStyle(category)">
+                    <td class="bar-holder-td">
+                        <div class="bar-holder">
+                            <div class="bar" ng-class="needForActionClass(category)" ng-style="needForActionStyle(category)">
 
+                            </div>
                         </div>
                     </td>
 

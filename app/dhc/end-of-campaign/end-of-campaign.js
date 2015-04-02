@@ -147,6 +147,13 @@
                     $scope.needForAction = needForAction;
                 });
 
+                /**
+                 * return a an object containing the class name that represents the current nfa level.
+                 * ready to be used for ng-class
+                 *
+                 * @param value
+                 * @returns {<level>: true}
+                 */
                 $scope.needForActionClass = function (value) {
 
                     var level = !value || value < 1 ? "none" :
@@ -158,12 +165,16 @@
                     return obj;
                 };
 
-                function needForActionPercentage(value) {
-                    return Math.min(value * 2.6, 26) + '%';
+                function _needForActionPercentage(value) {
+                    var minPercentage = 50;
+                    var maxPercentage = 350;
+                    var minNfa = 1;
+                    var maxNfa = 10;
+                    return minPercentage + ((maxPercentage-minPercentage)/(maxNfa-minNfa)) * (value -minNfa) + '%';
                 }
                 $scope.needForActionStyle = function (value) {
                     return {
-                        width: needForActionPercentage(value)
+                        width: _needForActionPercentage(value)
                     };
                 };
 

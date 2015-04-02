@@ -36,7 +36,7 @@
     "healthPromoters": "Gesundheits-Promotoren"
   },
   "loginDialog": {
-    "pleaseLoginOrRegister": "Bitte logge Dich ein oder registriere Dich.",
+    "pleaseLoginOrRegister": "Bitte melde dich an oder registriere dich.",
     "loginReason": "Sonst gehen deine Daten verloren.",
     "register": "Neu registrieren",
     "registerNewAccount": "Neuer Account registrieren",

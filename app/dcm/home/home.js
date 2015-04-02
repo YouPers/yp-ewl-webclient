@@ -79,7 +79,7 @@
 
                             currentAndFutureInvitations: ['socialInteractions', function(socialInteractions) {
                                 return _.filter(socialInteractions, function(soi) {
-                                    return soi.__t === 'Invitation';
+                                    return soi.__t === 'Invitation' && soi.authorType=== 'campaignLead';
                                 });
                             }],
 
@@ -174,6 +174,7 @@
                     $scope.homeController.emailInvitesSent = false;
                     CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
                         $scope.homeController.emailInvitesSent = true;
+                        $scope.completeCampaignPreparation(5);
                     });
                 };
 
@@ -226,13 +227,18 @@
                                 complete: (campaign.preparationComplete >= 4)
                             },
                             step5: {
-                                complete: false
+                                complete: (campaign.preparationComplete >= 5)
                             }
 
                         };
                         var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
-                        firstIncompleteStep.active = true;
-                        firstIncompleteStep.enabled = true;
+                        if (firstIncompleteStep) {
+                            firstIncompleteStep.active = true;
+                            firstIncompleteStep.enabled = true;
+                        } else {
+                            // enable last step
+                            $scope.campaignPreparation.step5.active = true;
+                        }
 
                         _.each($scope.campaignPreparation, function (step) {
                             step.disabled = !step.enabled && !step.complete;
@@ -240,9 +246,11 @@
 
                         $scope.completeCampaignPreparation = function (step) {
                             $scope.campaignPreparation['step' + step].complete = true;
-                            $scope.campaignPreparation['step' + (step+1)].active = true;
-                            $scope.campaignPreparation['step' + (step+1)].enabled = true;
-                            $scope.campaignPreparation['step' + (step+1)].disabled = false;
+                            if ( $scope.campaignPreparation['step' + (step+1)]) {
+                                $scope.campaignPreparation['step' + (step+1)].active = true;
+                                $scope.campaignPreparation['step' + (step+1)].enabled = true;
+                                $scope.campaignPreparation['step' + (step+1)].disabled = false;
+                            }
                             campaign.preparationComplete = step;
                             CampaignService.putCampaign(campaign);
                         };
