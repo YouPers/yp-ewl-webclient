@@ -8,7 +8,8 @@
     "stateHeader2": "kampagnen"
   },
   "campaign": {
-    "header": "Kampagne erstellen/ändern",
+    "headerNew": "Kampagne erstellen",
+    "headerEdit": "Kampagne ändern",
     "link": {
       "new": "neue kampagne",
       "campaignoffers": "Aktivitäten",
@@ -50,12 +51,12 @@
     "campaignEnded": "Die Kampagne ist bereits beendet.",
     "participants": {
       "label": "Personenkreis",
-      "placeholder": "Personenkreis",
+      "placeholder": "Bezeichnung der Gruppe/Abteilung/Team dieser Kampagne",
       "$invalid": "Bitte einen gültigen Personenkreis eingeben"
     },
     "location": {
       "label": "Lokalität",
-      "placeholder": "Lokalität",
+      "placeholder": "Wo findet diese Kampagne statt? (z.B. Gebäude, Trakt, Stockwerk)",
       "error": {
         "required": "Bitte eine gültige Lokalität eingeben"
       }
