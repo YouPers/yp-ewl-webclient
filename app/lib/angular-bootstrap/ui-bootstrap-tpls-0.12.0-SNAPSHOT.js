@@ -989,7 +989,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   minMode: 'day',
   maxMode: 'year',
   showWeeks: true,
-  startingDay: 1,
+  startingDay: 0,
   yearRange: 20,
   minDate: null,
   maxDate: null
