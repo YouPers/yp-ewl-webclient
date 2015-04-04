@@ -284,7 +284,7 @@
                         CampaignService.deleteCampaign($scope.campaign).then(function (deleteResult) {
                             _.remove(campaigns, 'id', $scope.campaign.id);
                             delete $scope.campaign.id;
-                            save(deleteResult.code);
+                            save(deleteResult && deleteResult.code);
                         }, onError);
                     } else {
                         save();
