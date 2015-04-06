@@ -8,7 +8,8 @@
     "stateHeader2": "Campagnes"
   },
   "campaign": {
-    "header": "La gestion du stress",
+    "headerNew": null,
+    "headerEdit": null,
     "link": {
       "new": "Nouvelle campagne",
       "campaignoffers": "Activités",
