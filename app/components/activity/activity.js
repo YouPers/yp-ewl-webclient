@@ -151,7 +151,11 @@
                     activity.start = moment(activity.start)
                         .hour(moment(activity.startTime).hour())
                         .minute(moment(activity.startTime).minute()).startOf('minute').toDate();
-                    activity.end = moment(activity.end)
+
+                    // set the activity.end by combining the activity.start "date-portion" with the "endTime"
+                    // reason: we do not support multi-day events, and when the user changes the start-date,
+                    // the end-date needs to stay on the same day.
+                    activity.end = moment(activity.start)
                         .hour(moment(activity.endTime).hour())
                         .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
                 }
@@ -524,8 +528,9 @@
 
                                     });
 
+                                } else {
+                                    return _finalCb();
                                 }
-
                             }
                         } else {
                             return _finalCb();

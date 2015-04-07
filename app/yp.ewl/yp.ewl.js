@@ -89,6 +89,19 @@ angular.module('yp-ewl',
 
             localStorageServiceProvider
                 .setPrefix('yp-ewl');
+
+
+            addthisevent.settings({
+                license    : "00000000000000000000",
+                mouse      : false,
+                css        : true,
+                outlook    : {show:true, text:"Outlook / Lotus Notes"},
+                google     : {show:true, text:"Google Calendar"},
+                outlookcom : {show:true, text:"Outlook.com Calendar"},
+                appleical  : {show:true, text:"Apple iCalendar"},
+                dropdown   : {order:"outlook,appleical,google"},
+                callback   : ""
+            });
         }])
 
 /**

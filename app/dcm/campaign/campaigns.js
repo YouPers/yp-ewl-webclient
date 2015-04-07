@@ -96,14 +96,15 @@
                 $scope.campaignController = this;
                 $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
                 $scope.usersInCampaign = usersInCampaign;
+                this.campaignLeadVerified = campaign && campaign.campaignLeads && campaign.campaignLeads[0].emailValidatedFlag;
 
+                // we store the main Leaders Id so we can compare on save
+                $scope.initialMainCampaignLeadId = campaign && campaign.campaignLeads && (campaign.campaignLeads[0].id || campaign.campaignLeads[0]);
 
                 $scope.dateOptions = {
                     'year-format': "'yy'",
                     'starting-day': 1
                 };
-
-
 
                 if (campaign) {
                     $scope.campaign = campaign;
@@ -131,8 +132,6 @@
                     };
                 }
 
-
-
                 $scope.disabledStart = usersInCampaign;
                 $scope.disabledEnd = $scope.campaignEnded;
                 $scope.minDateStart = $scope.disabledStart ? undefined : moment().toDate();
@@ -150,19 +149,22 @@
                         campaign.end = moment(campaign.start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks').toDate();
                     }
                 });
+
                 $scope.$watch('campaign.end', function (date) {
                     $scope.campaignEndChanged = $scope.campaignEnd && !moment(date).isSame(moment($scope.campaignEnd));
                     $scope.campaignEndChangeRecreatesOffers = moment().isBefore($scope.campaign.start) && !usersInCampaign;
                 });
 
-                // gather campaign leads from all campaigns
                 var campaignLeads = organization.administrators;
-                _.each(campaigns, function (campaign) {
-                    campaignLeads = campaignLeads.concat(campaign.campaignLeads);
-                });
 
                 $scope.availableCampaignLeads = function () {
-                    return _.unique(campaignLeads.concat($scope.campaign.campaignLeads), 'id');
+                    // once the campaignLead is verified, we don't give the option to change anymore,
+                    // only list the current campaignLeads
+                    if ($scope.campaignController.campaignLeadVerified) {
+                        return $scope.campaign.campaignLeads;
+                    } else {
+                        return _.unique(campaignLeads.concat($scope.campaign.campaignLeads), 'id');
+                    }
                 };
 
                 // we keep the newCampaignLeads in the campaign.newCampaignLeads, for a correct campaign-card
@@ -178,38 +180,22 @@
                     $scope.newCampaignLead.fullname = $scope.newCampaignLead.firstname + ' ' + $scope.newCampaignLead.lastname;
                     $scope.newCampaignLead.username = $scope.newCampaignLead.email;
                     $scope.newCampaignLead.avatar = config.webclientUrl + '/assets/img/default_avatar_woman.png';
-                    $scope.campaign.campaignLeads.push(_.clone($scope.newCampaignLead));
+                    $scope.campaign.campaignLeads = [_.clone($scope.newCampaignLead)];
                     _.each($scope.newCampaignLead, function (value, key) {
                         delete $scope.newCampaignLead[key];
                     });
 
                     $scope.campaignForm.$setDirty();
                     $scope.campaignLeadForm.$setPristine();
-                    $scope.showNewCampainleadForm = false;
+                    $scope.campaignController.showNewCampainleadForm = false;
+                    $scope.campaignLeadChanged = true;
                 };
 
-                $scope.selectMainLeader = function (leader) {
-
-
-                    // ensure the selected default campaign lead is first in order to be displayed in the campaign-card
-                    var newLeader = _.remove($scope.campaign.campaignLeads, function (campaignLead) {
-                        return leader.id === campaignLead.id || leader.username && leader.username === campaignLead.username;
-                    });
-                    if (newLeader.length > 0) {
-                        $scope.campaign.campaignLeads.unshift(newLeader[0]);
-                    } else {
-                        $scope.campaign.campaignLeads.unshift(leader);
-                    }
-                };
 
                 $scope.isAssigned = function (campaignLead) {
                     return _.any($scope.campaign.campaignLeads, function (cl) {
                         return cl.id === campaignLead.id;
                     });
-                };
-
-                $scope.isMainLeader = function (campaignLead) {
-                    return $scope.campaign.campaignLeads[0] && $scope.campaign.campaignLeads[0].id === campaignLead.id;
                 };
 
                 $scope.isOrgAdm = function (campaignLead) {
@@ -222,7 +208,12 @@
                     if ($scope.isAssigned(campaignLead)) {
                         _.remove($scope.campaign.campaignLeads, {id: campaignLead.id});
                     } else {
-                        $scope.campaign.campaignLeads.push(campaignLead);
+                        $scope.campaign.campaignLeads = [campaignLead];
+                    }
+                    if ($scope.initialMainCampaignLeadId && $scope.initialMainCampaignLeadId !== campaignLead.id) {
+                        $scope.campaignLeadChanged = true;
+                    } else {
+                        $scope.campaignLeadChanged = false;
                     }
                 };
 
@@ -284,17 +275,23 @@
                     // recreate campaign and all offers, if
                     // - campaign start has changed OR
                     // - campaign end has changed AND the campaign has NOT already started
-                    if($scope.campaignStartChanged || $scope.campaignEndChanged && $scope.campaignEndChangeRecreatesOffers) {
-                        CampaignService.deleteCampaign($scope.campaign).then(function () {
+                    // - campaignLead has changed (we need to do that, because otherwise the new CampaignLead cannot edit
+                    //   the default answers.
+                    if ($scope.campaignStartChanged ||
+                        ($scope.campaignEndChanged && $scope.campaignEndChangeRecreatesOffers) ||
+                        ($scope.initialMainCampaignLeadId && ($scope.initialMainCampaignLeadId !== ($scope.campaign.campaignLeads[0].id || $scope.campaign.campaignLeads[0])))
+                    ) {
+                        CampaignService.deleteCampaign($scope.campaign).then(function (deleteResult) {
                             _.remove(campaigns, 'id', $scope.campaign.id);
                             delete $scope.campaign.id;
-                            save();
-                        });
+                            save(deleteResult && deleteResult.code);
+                        }, onError);
                     } else {
                         save();
                     }
 
-                    function save() {
+                    function save(paymentCodeOfDeletedCampaign) {
+
                         $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
                         $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
 
@@ -315,13 +312,16 @@
                                 // campaignLeads
                                 CampaignService.getCampaign(savedCampaign.id).then(function(reloadedCampaign) {
                                     // merging saved object into the existing object to preserve references in the parent state
+
+                                    delete reloadedCampaign.organization; // keep the populated organization
                                     _.merge($scope.campaign, reloadedCampaign);
+
                                     $scope.$state.go('dcm.home');
                                     $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
                                 });
                             }, onError);
                         } else {
-                            $scope.campaign.paymentCode = $scope.paymentCode;
+                            $scope.campaign.paymentCode = paymentCodeOfDeletedCampaign || $scope.paymentCode;
 
                             CampaignService.postCampaign($scope.campaign, options)
                                 .then(function (campaign) {

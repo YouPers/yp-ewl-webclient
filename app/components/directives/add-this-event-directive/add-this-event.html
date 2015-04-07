@@ -1,0 +1,12 @@
+<div title="Add to calendar" class="addthisevent">
+    <icon class="ypicon ypicon-add-to-calendar"></icon>
+    <span translate>activity.view.addToCalendar</span>
+    <span class="start">{{activity.start | date:'dd/MM/yyyy HH:mm'}}</span>
+    <span class="end">{{activity.end | date:'dd/MM/yyyy HH:mm'}}</span>
+    <span class="timezone">Europe/Paris</span>
+    <span class="title">{{activity.title}}</span>
+    <span class="description">{{activity.idea.description}}</span>
+    <span class="location">{{activity.location}}</span>
+    <span class="date_format">DD/MM/YYYY</span>
+    <span class="recurring" ng-if="activity.frequency !== 'once'">{{activity.rrule}}</span>
+</div>

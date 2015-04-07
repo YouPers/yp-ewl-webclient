@@ -8,7 +8,8 @@
     "stateHeader2": "CAMPAIGNS"
   },
   "campaign": {
-    "header": "Stress Management",
+    "headerNew": null,
+    "headerEdit": null,
     "link": {
       "new": "new campaign",
       "campaignoffers": "Acitivities",
@@ -74,7 +75,7 @@
     },
     "backToTopicSelection": "Back to topic selection",
     "paymentCode": {
-      "invalidCode": "Invalid activation code. You get a valid activation code <a href=\"http://healthcampaign.youpers.com\">here.</a>",
+      "invalidCode": "Invalid or already used activation code. You get a valid activation code <a href=\"http://shop.youpers.com\">here.</a>",
       "invalidTopic": "This code is valid only for campaigns to topic {{ invalidTopic }}",
       "label": "Activation code"
     }

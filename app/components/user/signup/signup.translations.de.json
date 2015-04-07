@@ -33,7 +33,7 @@
       "error": {
         "required": "Bitte eine Email-Adresse eingeben",
         "email": "Bitte eine gültige Email-Adresse eingeben",
-        "unique": "Diese Email-Adresse ist schon registriert, bitte logge dich ein"
+        "unique": "Diese Email-Adresse ist schon registriert, bitte melde dich an"
       }
     },
     "password": {
@@ -68,7 +68,7 @@
       "label": "Firmenname",
       "placeholder": "Firmenname"
     },
-    "termsLink": "http://healthcampaign.youpers.com/?p=19669"
+    "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions/?lang=de ‎"
   },
   "signupFinalization": {
     "header": "Danke für deine Registrierung",
@@ -88,6 +88,6 @@
       "link": "Erneut senden",
       "verificationSent": "Versendet"
     },
-    "contactCustomerSupport": "Kontaktiere den Kundendienst <a href=\"mailto:customersupport@youpers.com\">customersupport@youpers.com</a>"
+    "contactCustomerSupport": "Kontaktiere den Kundendienst <a href=\"mailto:customer.support@youpers.com\">customer.support@youpers.com</a>"
   }
 }

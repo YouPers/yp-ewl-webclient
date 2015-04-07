@@ -1,5 +1,5 @@
 {
   "signin": {
-    "instructions": "<p>Logge dich mit deiner Email-Adresse und dem Passwort ein.</p>\n<p>Wenn du noch kein HealthCampaign Benutzerkonto hast, kannst Du eines eröffnen, indem du auf den Link im Einladungsemail deines Kampagnenleiters klickst.</p>\n<p>Auf der Webseite <a href='http://healthcampaign.youpers.com'>hier</a> findest du Informationen, wie du eine HealthCampaign in deinem Unternehmen starten kannst."
+    "instructions": "<p>Melde dich mit deiner Email-Adresse und dem Passwort an.</p>"
   }
 }

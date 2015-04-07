@@ -90,6 +90,19 @@
     }
 
     .campaign-preparation {
+
+      &:not(.campaign-lead) {
+        .nav-tabs.nav-justified > li > a {
+          border: none;
+          cursor: default;
+        }
+        .tab-pane {
+          display: none;
+        }
+      }
+
+
+
       i.fa {
         cursor: default;
         &.fa-check-circle-o {

@@ -23,14 +23,7 @@
 
                     scope.date = moment(scope.date).toDate();
 
-                    scope.showWeeks = false;
-
                     scope.dateFormat = 'dd.MM.yyyy';
-
-                    scope.dateOptions = {
-                        'year-format': "'yy'",
-                        'starting-day': 1
-                    };
 
                     scope.toggle = function ($event) {
                         $event.preventDefault();

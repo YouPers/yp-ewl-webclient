@@ -4,7 +4,7 @@
 
         <health-coach event="homeController.healthCoachEvent" data="{campaign: campaign}"></health-coach>
 
-        <social-interaction-inbox></social-interaction-inbox>
+        <social-interaction-inbox ng-if="isCampaignLead"></social-interaction-inbox>
 
     </div>
 </div>

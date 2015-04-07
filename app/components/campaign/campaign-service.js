@@ -58,6 +58,9 @@
                             !!campaign.city;
                     },
                     isCampaignLead: function(campaign, user) {
+                        if (!campaign) {
+                            return false;
+                        }
                         if (!user) {
                             user = UserService.principal.getUser();
                         }

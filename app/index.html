@@ -9,8 +9,7 @@
     <meta name="author" content="YouPers">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />  <!-- http://stackoverflow.com/questions/23288283/nvd3-ie-object-doesnt-support-property-or-method-addgraph -->
 
-    <link rel="icon" href="assets/ico/favicon_youpers_blue.ico" type="image/ico">
-    <link rel="shortcut icon" href="assets/ico/favicon_youpers_blue.ico" type="image/ico">
+    <link rel="shortcut icon" href="assets/img/favicon-blue.ico" type="image/ico">
 
     <!-- page title, displayed in your browser bar -->
     <title>YOUPERS</title>
@@ -60,6 +59,7 @@
     <script src="lib/restangular/dist/restangular.js"></script>
 
     <script src="lib/stacktrace.js"></script>
+    <script src="lib/addthisevent/ate.min.js"></script>
 
     <script src="components/i18n/angular-translate-loader-wti-partial.js"></script>
 
@@ -141,8 +141,7 @@
     <script src="components/directives/avatar-upload-directive/avatar-upload-directive.js"></script>
     <script src="components/directives/statistics-chart-directive/statistics-chart-directive.js"></script>
     <script src="components/directives/endorsement-directive/endorsement-directive.js"></script>
-
-
+    <script src="components/directives/add-this-event-directive/add-this-event.js"></script>
 
     <!-- admin -->
     <script src="admin/admin.js"></script>
@@ -243,6 +242,8 @@
         window.location = "/unsupportedBrowser.html";
     </script>
     <![endif]-->
+
+    <!-- large, already minified scripts, we do not concatenate, because it takes too long in build -->
     <script src="lib/d3/d3.min.js"></script>
     <script src="lib/nvd3/nv.d3.min.js"></script>
 

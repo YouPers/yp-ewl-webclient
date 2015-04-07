@@ -8,6 +8,8 @@
         publishFrom: false
     };
 
+    var _getAllCurrentAndFutureOffersOptions = _.clone(_getOffersOptions);
+
     var _getMessagesOptions = {
         populate: 'author',
         authored: true,
@@ -60,13 +62,25 @@
                             }],
 
                             socialInteractions: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
+
                                 if (campaign) {
+
+                                    // setup the _getOffersOptions for future calls
                                     _getOffersOptions.targetId = campaign.id;
-                                    return SocialInteractionService.getSocialInteractions(_getOffersOptions).then(_sortSois);
+
+                                    // but use the default one, because we want to get all on initial page load
+                                    _getAllCurrentAndFutureOffersOptions.targetId = campaign.id;
+                                    return SocialInteractionService.getSocialInteractions(_getAllCurrentAndFutureOffersOptions).then(_sortSois);
                                 } else {
                                     return [];
                                 }
 
+                            }],
+
+                            currentAndFutureInvitations: ['socialInteractions', function(socialInteractions) {
+                                return _.filter(socialInteractions, function(soi) {
+                                    return soi.__t === 'Invitation' && soi.authorType=== 'campaignLead';
+                                });
                             }],
 
 
@@ -79,8 +93,6 @@
 
                                     if (!OrganizationService.isComplete(organization) && UserService.principal.isAuthorized('orgadmin')) {
                                         return 'organizationIncomplete';
-                                    } else if (UserService.principal.getUser().avatar.indexOf('default') !== -1) {
-                                        return 'noAvatarPicture';
                                     } else if(campaigns.length === 0) {
                                         return 'noCampaigns';
                                     } else if (socialInteractions.length === 0 && daysSinceCampaignStart <= -1) {
@@ -109,8 +121,12 @@
 
 
 
-        .controller('HomeController', ['$scope', '$rootScope', '$state', 'UserService', 'socialInteractions', 'messages', 'SocialInteractionService', 'campaign', 'campaigns', 'CampaignService', 'healthCoachEvent', '$translate',
-            function ($scope, $rootScope, $state, UserService, socialInteractions, messages, SocialInteractionService, campaign, campaigns, CampaignService, healthCoachEvent, $translate) {
+        .controller('HomeController', ['$scope', '$translate',
+            'UserService', 'CampaignService', 'SocialInteractionService',
+            'socialInteractions', 'currentAndFutureInvitations', 'messages',  'campaign', 'campaigns', 'healthCoachEvent',
+            function ($scope, $translate,
+                      UserService, CampaignService, SocialInteractionService,
+                      socialInteractions, currentAndFutureInvitations, messages, campaign, campaigns, healthCoachEvent) {
 
                 $scope.homeController = this;
                 $scope.homeScope = $scope;
@@ -145,6 +161,7 @@
 
 
                 $scope.offers = socialInteractions;
+                $scope.currentAndFutureInvitations = currentAndFutureInvitations;
                 $scope.messages = messages;
                 $scope.emailAddress = UserService.principal.getUser().email;
 
@@ -162,6 +179,7 @@
                     $scope.homeController.emailInvitesSent = false;
                     CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
                         $scope.homeController.emailInvitesSent = true;
+                        $scope.completeCampaignPreparation(5);
                     });
                 };
 
@@ -175,7 +193,7 @@
 
                 $scope.displayCoachMsg = function(section) {
                     $translate('healthCoach.dcm.home.sectionOpening.' + section).then(function (translated) {
-                        $rootScope.$emit('healthCoach:displayMessage', translated);
+                        $scope.$root.$emit('healthCoach:displayMessage', translated);
                     });
                 };
 
@@ -192,12 +210,12 @@
                 /////////////////////
                 function init () {
                     if (!campaign && campaigns.length > 0) {
-                        return $state.go('dcm.home', { campaignId: campaigns[0].id });
+                        return $scope.$state.go('dcm.home', { campaignId: campaigns[0].id });
                     }
 
                     if(campaign) {
 
-                        $scope.offersWithoutLocation = _.filter($scope.offers, function (offer) {
+                        $scope.offersWithoutLocation = _.filter(currentAndFutureInvitations, function (offer) {
                             return offer.__t === 'Invitation' && !offer.activity.location;
                         });
                         $scope.campaignPreparation = {
@@ -214,13 +232,18 @@
                                 complete: (campaign.preparationComplete >= 4)
                             },
                             step5: {
-                                complete: false
+                                complete: (campaign.preparationComplete >= 5)
                             }
 
                         };
                         var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
-                        firstIncompleteStep.active = true;
-                        firstIncompleteStep.enabled = true;
+                        if (firstIncompleteStep) {
+                            firstIncompleteStep.active = true;
+                            firstIncompleteStep.enabled = true;
+                        } else {
+                            // enable last step
+                            $scope.campaignPreparation.step5.active = true;
+                        }
 
                         _.each($scope.campaignPreparation, function (step) {
                             step.disabled = !step.enabled && !step.complete;
@@ -228,13 +251,16 @@
 
                         $scope.completeCampaignPreparation = function (step) {
                             $scope.campaignPreparation['step' + step].complete = true;
-                            $scope.campaignPreparation['step' + (step+1)].active = true;
-                            $scope.campaignPreparation['step' + (step+1)].enabled = true;
+                            if ( $scope.campaignPreparation['step' + (step+1)]) {
+                                $scope.campaignPreparation['step' + (step+1)].active = true;
+                                $scope.campaignPreparation['step' + (step+1)].enabled = true;
+                                $scope.campaignPreparation['step' + (step+1)].disabled = false;
+                            }
                             campaign.preparationComplete = step;
                             CampaignService.putCampaign(campaign);
                         };
 
-                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $state.href('welcome',{campaignId: campaign.id});
+                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $scope.$state.href('welcome',{campaignId: campaign.id});
                         var createDraftLocals = {
                             organizationName: campaign.organization.name,
                             welcomeLink: $scope.homeController.welcomeLink
@@ -611,8 +637,6 @@
 
 
                     // eventsPlanned, popular activities
-
-
                     StatsService.loadStats($scope.campaign.id,
                         {
                             type: 'eventsPlanned',
@@ -634,10 +658,6 @@
                         });
 
                 }
-
-
-
-
             }
         ]);
 

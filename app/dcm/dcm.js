@@ -69,6 +69,7 @@
                 $scope.parentState = 'dcm';
 
                 $scope.currentCampaign = CampaignService.currentCampaign = campaign;
+                $scope.isCampaignLead = CampaignService.isCampaignLead(campaign);
 
                 // my org or the current campaign's org in case I am a product Admin looking at somebody else's campaign
                 $scope.organization = organization || campaign.organization;
