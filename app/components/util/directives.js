@@ -3,20 +3,22 @@
 
 
     angular.module('yp.components.util.directives', [])
-        .directive("head", function(){
+        .directive('head', ['$state', function($state) {
             return {
                 restrict: "E",
                 link: function(scope, element, attr, controller) {
 
                     // fixed meta[name=viewport] instead of device-width width for campaign admins
                     var width = '1200';
-                    scope.$watch('isCampaignAdmin', function (val) {
-                        var content = 'width=' + (val ? width : 'device-width') +', initial-scale=1, maximum-scale=1';
+                    scope.$watch(function () { // observe if we have dcm as the current parent state
+                        return $state.$current.parent ? $state.$current.parent.name === 'dcm' : false;
+                    }, function (dcm) {
+                        var content = 'width=' + (dcm ? width : 'device-width') +', initial-scale=1, maximum-scale=1';
                         angular.element(document.querySelector("meta[name= viewport]")).attr('content', content);
                     });
                 }
             };
-        })
+        }])
         // see https://github.com/angular-ui/bootstrap/issues/2659
         .directive('datepickerPopup', function (){
             return {
