@@ -48,7 +48,7 @@
 
         <!-- read only view -->
         <div ng-if="!activityController.formEnabled">
-            <activity-view activity="activity" is-campaign-lead="isCampaignLead && isDcm"
+            <activity-view activity="activity" is-campaign-lead="isDcm"
                            social-interaction="socialInteraction" calender-link-active="isJoiner || isOwner"></activity-view>
             <div class="activity-view">
                 <dl class="dl-horizontal">
@@ -62,10 +62,10 @@
         <!-- new and edit view -->
         <div ng-if="activityController.formEnabled">
             <activity-edit activity="activity" campaign="campaign" form="formContainer.form"
-                           is-campaign-lead="isCampaignLead && isDcm" social-interaction="socialInteraction"></activity-edit>
+                           is-campaign-lead="isDcm" social-interaction="socialInteraction"></activity-edit>
 
             <!-- new invitations -->
-            <div ng-if="!isCampaignLead && idea.defaultexecutiontype !== 'self' && isOwner && !inviteLocked"
+            <div ng-if="!isDcm && idea.defaultexecutiontype !== 'self' && isOwner && !inviteLocked"
                  class="activity-edit radio-buttons form-section">
                 <div>
                     <label translate>activity.header.inviteOthers</label>
@@ -241,7 +241,7 @@
         </div>
 
         <!-- buttons for new Invitation -->
-        <div class="button-row" ng-if="isInvitation && !isCampaignLead">
+        <div class="button-row" ng-if="isInvitation && !isDcm">
             <button class="btn btn-primary"
                     ng-click="joinActivity()" busy busy-disabled>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
@@ -272,8 +272,8 @@
             <health-coach event="healthCoachEvent"/>
         </div>
 
-        <!-- disabled for campaignLeads if the activity is not owned -->
-        <div class="box" ng-if="isScheduled && !(isCampaignLead && !isOwner)">
+
+        <div class="box" ng-if="isScheduled">
 
             <h3 translate>activity.header.comments</h3>
 

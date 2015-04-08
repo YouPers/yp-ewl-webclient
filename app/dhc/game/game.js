@@ -28,19 +28,30 @@
                                 return _.filter(activities, {status: 'old'});
                             }],
 
-                            offers: ['SocialInteractionService', 'ActivityService', 'CampaignService', 'campaign',
-                                function (SocialInteractionService, ActivityService, CampaignService, campaign) {
+                            offers: ['SocialInteractionService', 'ActivityService', 'CampaignService', 'UserService', 'campaign',
+                                function (SocialInteractionService, ActivityService, CampaignService, UserService, campaign) {
                                     var options = {
                                         populate: ['author', 'activity']
                                     };
 
                                     // if the user is campaignlead of the current campaign, also get the authored
-                                    // offers.
+                                    // offers, but then in the then() exclude his Invitations, because he is
+                                    // already participating in his own Invitations
                                     if (CampaignService.isCampaignLead(campaign)) {
                                         options.authored = true;
                                     }
                                     return SocialInteractionService
-                                        .getOffers(options).then(ActivityService.populateIdeas);
+                                        .getOffers(options)
+                                        .then(ActivityService.populateIdeas)
+                                        .then(function(offers) {
+                                            if (CampaignService.isCampaignLead(campaign)) {
+                                                return _.filter(offers, function(offer) {
+                                                    return offer.author.id !== UserService.principal.getUser().id || offer.__t === 'Recommendation';
+                                                });
+                                            } else {
+                                                return offers;
+                                            }
+                                        });
                                 }],
                             sortedOffers: ['offers', function (offers) {
 
