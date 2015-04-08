@@ -152,7 +152,6 @@
                     $scope.campaignEndOpen = $scope.campaignEnded;
                     // offer section is open otherwise
                     $scope.offerSectionOpen = !$scope.campaignEndOpen && !$scope.campaignStartOpen;
-
                 }
 
 
