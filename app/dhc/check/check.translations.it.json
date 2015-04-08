@@ -25,6 +25,7 @@
     "attitude": null,
     "equipment": null,
     "extendedEnvironment": null,
+    "nutritionAndRecovery": null,
     "officeEquipment": null,
     "risks": null,
     "safetyRelatedFreetimeBehavior": null,
