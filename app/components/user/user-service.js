@@ -257,6 +257,12 @@
                                 reqAccessLevel = _accessLevels[reqAccessLevel];
                             }
                             return reqAccessLevel & roles;
+                        },
+                        hasRole: function(role, user) {
+                            if (!user) {
+                                user = _currentUser;
+                            }
+                            return _.contains(user.roles, role);
                         }
                     },
                     initialized: false

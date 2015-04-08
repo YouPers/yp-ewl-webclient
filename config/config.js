@@ -16,7 +16,7 @@
 var _ = require('lodash');
 
 var defaultConfig = {
-    name: process.env.NODE_ENV || 'dev',
+    name: process.env.NODE_ENV || '',
     webclientUrl: 'https://'+ process.env.NODE_ENV +'.youpers.com',
     backendUrl: 'https://'+ process.env.NODE_ENV +'.youpers.com/api',
     translationSource: 'local',
@@ -40,7 +40,7 @@ var defaultConfig = {
 var specificConfigs = {
     default: {},
     dev: {
-        name: 'dev',
+        name: '',
         webclientUrl: 'http://localhost:9000',
         backendUrl: 'http://localhost:8000',
         paymentCodeChecking: 'disabled'

@@ -4,28 +4,28 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('yp-ewl',
-        [
-            'restangular', 'ui.router', 'ui.bootstrap',  'ngAnimate', 'ipCookie', 'LocalStorageModule',
-            'angulartics','angulartics.google.analytics', 'nvd3ChartDirectives', 'ngBusy',
+    [
+        'restangular', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ipCookie', 'LocalStorageModule',
+        'angulartics', 'angulartics.google.analytics', 'nvd3ChartDirectives', 'ngBusy',
 
-            'yp.config',
+        'yp.config',
 
-            'yp.components',
-
-
-            'yp.admin',
-            'yp.dhc',
-            'yp.dcm',
+        'yp.components',
 
 
-            'templates-main'
+        'yp.admin',
+        'yp.dhc',
+        'yp.dcm',
 
-        ]).
 
-    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config','$translateProvider', '$translateWtiPartialLoaderProvider', 'localStorageServiceProvider', '$injector',
+        'templates-main'
+
+    ]).
+
+    config(['$stateProvider', '$urlRouterProvider', 'accessLevels', 'RestangularProvider', 'yp.config', '$translateProvider', '$translateWtiPartialLoaderProvider', 'localStorageServiceProvider', '$injector',
         function ($stateProvider, $urlRouterProvider, accessLevels, RestangularProvider, config, $translateProvider, $translateWtiPartialLoaderProvider, localStorageServiceProvider, $injector) {
 
-            $urlRouterProvider.otherwise( function($injector) {
+            $urlRouterProvider.otherwise(function ($injector) {
                 var $state = $injector.get("$state");
                 $state.go("homedispatcher");
             });
@@ -41,9 +41,12 @@ angular.module('yp-ewl',
                         } else if (UserService.principal.isAuthorized(accessLevels.admin)) {
                             return $state.go('admin.home');
                         } else if (UserService.principal.isAuthorized(accessLevels.campaignlead) || UserService.principal.isAuthorized(accessLevels.orgadmin)) {
-                            return $state.go('dcm.home', { campaignId: CampaignService.currentCampaign ? CampaignService.currentCampaign.id : undefined });
+                            return $state.go('dcm.home', {campaignId: CampaignService.currentCampaign ? CampaignService.currentCampaign.id : undefined});
                         } else {
-                            return $state.go('dhc.game', {view: "", campaignId: user.campaign && user.campaign.id || user.campaign});
+                            return $state.go('dhc.game', {
+                                view: "",
+                                campaignId: user.campaign && user.campaign.id || user.campaign
+                            });
                         }
                     }]
                 })
@@ -59,17 +62,17 @@ angular.module('yp-ewl',
 
                 // temporary bounce state while we wait for this bug to be fixed: https://github.com/angular-ui/ui-router/issues/76
                 .state('bounce', {
-                params: ['state', 'params'],
-                template: '<h4>Loading stuff...</h4>', // you can even put some loading template here, wow!
-                controller: ['$state', '$stateParams', function($state, $stateParams) {
-                    // just redirect to caller
-                    $state.go(
-                        $stateParams.state,
-                        JSON.parse($stateParams.params)
-                    );
-                }],
-                access:  accessLevels.all
-            });
+                    params: ['state', 'params'],
+                    template: '<h4>Loading stuff...</h4>', // you can even put some loading template here, wow!
+                    controller: ['$state', '$stateParams', function ($state, $stateParams) {
+                        // just redirect to caller
+                        $state.go(
+                            $stateParams.state,
+                            JSON.parse($stateParams.params)
+                        );
+                    }],
+                    access: accessLevels.all
+                });
 
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
 
@@ -92,22 +95,22 @@ angular.module('yp-ewl',
 
 
             addthisevent.settings({
-                license    : "00000000000000000000",
-                mouse      : false,
-                css        : true,
-                outlook    : {show:true, text:"Outlook / Lotus Notes"},
-                google     : {show:true, text:"Google Calendar"},
-                outlookcom : {show:true, text:"Outlook.com Calendar"},
-                appleical  : {show:true, text:"Apple iCalendar"},
-                dropdown   : {order:"outlook,appleical,google"},
-                callback   : ""
+                license: "00000000000000000000",
+                mouse: false,
+                css: true,
+                outlook: {show: true, text: "Outlook / Lotus Notes"},
+                google: {show: true, text: "Google Calendar"},
+                outlookcom: {show: true, text: "Outlook.com Calendar"},
+                appleical: {show: true, text: "Apple iCalendar"},
+                dropdown: {order: "outlook,appleical,google"},
+                callback: ""
             });
         }])
 
 /**
  * setup checking of access levels for logged in user.
  */
-    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'yp.config', '$analytics', '$sce','tmhDynamicLocale', '$log',
+    .run(['$rootScope', '$state', '$stateParams', '$window', 'UserService', '$timeout', '$http', '$translate', 'yp.config', '$analytics', '$sce', 'tmhDynamicLocale', '$log',
         function ($rootScope, $state, $stateParams, $window, UserService, $timeout, $http, $translate, config, $analytics, $sce, tmhDynamicLocale, $log) {
 
             // setup globally available objects on the top most scope, so all other controllers
@@ -120,7 +123,7 @@ angular.module('yp-ewl',
             $rootScope.config = config;
             $rootScope.$log = $log;
 
-            $rootScope.$on('event:authority-authorized', function() {
+            $rootScope.$on('event:authority-authorized', function () {
 
                 $rootScope.isSystemAdmin = _.any(UserService.principal.getUser().roles, function (role) {
                     return _.contains([
@@ -158,12 +161,12 @@ angular.module('yp-ewl',
             // translate.use() returns undefined until the partial async loader has found the "proposedLanguage"
             // therefore we use in this case $translate.proposedLanguage()
             var localeToUse = $translate.use() || $translate.proposedLanguage();
-            $http.defaults.headers.common['yp-language'] =  localeToUse;
+            $http.defaults.headers.common['yp-language'] = localeToUse;
 
             $translate.refresh();
             moment.locale(localeToUse);
             tmhDynamicLocale.set(localeToUse);
-            $rootScope.currentLocale=localeToUse;
+            $rootScope.currentLocale = localeToUse;
 
             // handle routing authentication
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
@@ -182,15 +185,14 @@ angular.module('yp-ewl',
                             $rootScope.nextStateAfterLogin = {toState: toState, toParams: toParams};
                             $state.go('signin');
                         } else {
-                            $rootScope.$log.log('preventing state change, because user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
-                            $rootScope.$emit('clientmsg:error', 'user is not authorized for: ' + requiredAccessLevel + ', has roles: '+  UserService.principal.getUser().roles);
+                            $rootScope.$log.log('preventing state change, because user is not authorized for: ' + requiredAccessLevel + ', has roles: ' + UserService.principal.getUser().roles);
+                            $rootScope.$emit('clientmsg:error', 'user is not authorized for: ' + requiredAccessLevel + ', has roles: ' + UserService.principal.getUser().roles);
                         }
 
                     } else {
                         var user = UserService.principal.getUser();
                         var whiteListedStates = ['signupFinalization', 'emailVerification', 'signup'];
-                        if(UserService.principal.isAuthenticated() && !user.emailValidatedFlag &&
-                            !_.contains(whiteListedStates, toState.name)) {
+                        if (UserService.principal.isAuthenticated() && !user.emailValidatedFlag && !_.contains(whiteListedStates, toState.name)) {
                             console.log('redirecting to signupFinalization: user has emailaddress not verfied');
                             event.preventDefault();
                             $state.go('signupFinalization');
@@ -214,9 +216,9 @@ angular.module('yp-ewl',
             // log stateChangeErrors
             $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
 
-                $rootScope.$log.log('Error on StateChange from: "' + (fromState && fromState.name) + '" to:  "'+ toState.name + '", err:' + error.message + ", code: " + error.status);
+                $rootScope.$log.log('Error on StateChange from: "' + (fromState && fromState.name) + '" to:  "' + toState.name + '", err:' + error.message + ", code: " + error.status);
 
-                if(error.status === 401) { // Unauthorized
+                if (error.status === 401) { // Unauthorized
 
                     $state.go('signin');
 
@@ -244,6 +246,48 @@ angular.module('yp-ewl',
                 }
 
             });
+
+        }])
+
+    .controller("AppRoleController", ['CampaignService', 'UserService', '$state', '$stateParams', '$rootScope',
+        function (CampaignService, UserService, $state, $stateParams, $rootScope) {
+
+            var self = this;
+            self.goToDhc = goToDhc;
+            self.goToDcm = goToDcm;
+
+            $rootScope.$on('$stateChangeSuccess', init);
+
+            function init() {
+
+                self.appRole = UserService.principal.hasRole('orgadmin') ? 'orgadmin' : 'campaignLead';
+                if ($state.current.name === 'dhc.game') {
+                    self.appRole = 'participant';
+                }
+
+                var userCanSeeSwitcher = (UserService.principal.hasRole('orgadmin') || UserService.principal.hasRole('campaignLead')) && UserService.principal.getUser().campaign;
+                var stateShowsSwitcher = $state.current.name === 'dcm.home' || $state.current.name === 'dhc.game';
+                self.showSwitcher = userCanSeeSwitcher && stateShowsSwitcher;
+
+                self.showOrgadmin = UserService.principal.hasRole('orgadmin');
+                self.showCampaignlead = !self.showOrgadm;
+            }
+
+            function goToDhc() {
+                if ($stateParams.campaignId) {
+                    return $state.go('dhc.game', {campaignId: $stateParams.campaignId, view: ""});
+                } else {
+                    return $state.go('dhc.game');
+                }
+            }
+
+            function goToDcm() {
+                if ($stateParams.campaignId) {
+                    return $state.go('dcm.home', {campaignId: $stateParams.campaignId});
+                } else {
+                    return $state.go('dcm.home');
+                }
+            }
 
         }]);
 
