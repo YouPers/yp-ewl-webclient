@@ -105,9 +105,5 @@
   "endorsementType": {
     "presented": "präsentiert von:",
     "sponsored": "offeriert von:"
-  },
-  "campaignCard": {
-    "dhcToDcmLink": "zur Kampagnenverwaltung",
-    "dcmToDhcLink": "zur Teilnehmersicht"
   }
 }
