@@ -261,12 +261,12 @@ angular.module('yp-ewl',
             function init() {
 
                 self.appRole = UserService.principal.hasRole('orgadmin') ? 'orgadmin' : 'campaignlead';
-                if ($state.current.name === 'dhc.game') {
+                if ($state.current.name === 'dhc.game' || $state.current.name === 'welcome') {
                     self.appRole = 'participant';
                 }
 
                 var userCanSeeSwitcher = (UserService.principal.hasRole('orgadmin') || UserService.principal.hasRole('campaignlead')) && UserService.principal.getUser().campaign;
-                var stateShowsSwitcher = $state.current.name === 'dcm.home' || $state.current.name === 'dhc.game';
+                var stateShowsSwitcher = $state.current.name === 'dcm.home' || $state.current.name === 'dhc.game' ||  $state.current.name === 'welcome';
                 self.showSwitcher = userCanSeeSwitcher && stateShowsSwitcher;
 
                 self.showOrgadmin = UserService.principal.hasRole('orgadmin');
@@ -274,10 +274,14 @@ angular.module('yp-ewl',
             }
 
             function goToDhc() {
-                if ($stateParams.campaignId) {
-                    return $state.go('dhc.game', {campaignId: $stateParams.campaignId, view: ""});
+                var campaign = UserService.principal.getUser().campaign;
+                if (campaign &&  moment(campaign.start).isBefore(moment())) {
+                    return $state.go('dhc.game', {campaignId: UserService.principal.getUser().campaign.id, view: ""});
+                } else if (campaign) {
+                    return $state.go('welcome', {campaignId: UserService.principal.getUser().campaign.id});
                 } else {
-                    return $state.go('dhc.game');
+                    $rootScope.$log.log('AppRoleController: no campaign on user, cannot go to dhc');
+                    return;
                 }
             }
 
