@@ -270,7 +270,7 @@ angular.module('yp-ewl',
                 self.showSwitcher = userCanSeeSwitcher && stateShowsSwitcher;
 
                 self.showOrgadmin = UserService.principal.hasRole('orgadmin');
-                self.showCampaignlead = !self.showOrgadm;
+                self.showCampaignlead = !self.showOrgadmin;
             }
 
             function goToDhc() {
