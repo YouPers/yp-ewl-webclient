@@ -260,12 +260,12 @@ angular.module('yp-ewl',
 
             function init() {
 
-                self.appRole = UserService.principal.hasRole('orgadmin') ? 'orgadmin' : 'campaignLead';
+                self.appRole = UserService.principal.hasRole('orgadmin') ? 'orgadmin' : 'campaignlead';
                 if ($state.current.name === 'dhc.game') {
                     self.appRole = 'participant';
                 }
 
-                var userCanSeeSwitcher = (UserService.principal.hasRole('orgadmin') || UserService.principal.hasRole('campaignLead')) && UserService.principal.getUser().campaign;
+                var userCanSeeSwitcher = (UserService.principal.hasRole('orgadmin') || UserService.principal.hasRole('campaignlead')) && UserService.principal.getUser().campaign;
                 var stateShowsSwitcher = $state.current.name === 'dcm.home' || $state.current.name === 'dhc.game';
                 self.showSwitcher = userCanSeeSwitcher && stateShowsSwitcher;
 
