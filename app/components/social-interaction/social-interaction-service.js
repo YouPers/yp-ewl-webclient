@@ -21,6 +21,9 @@
                         if (socialInteraction.idea && socialInteraction.idea.id) {
                             socialInteraction.idea = socialInteraction.idea.id;
                         }
+                        if (socialInteraction.activity && socialInteraction.activity.id) {
+                            socialInteraction.activity = socialInteraction.activity.id;
+                        }
                         return Rest.restangularizeElement(null, socialInteraction, "socialInteractions").put();
                     },
                     postSocialInteraction: function(socialInteraction) {
@@ -28,6 +31,12 @@
                         // Message was written this morning at midnight
                         if (moment(socialInteraction.publishFrom).isBefore(moment())) {
                             socialInteraction.publishFrom = new Date();
+                        }
+                        if (socialInteraction.idea && socialInteraction.idea.id) {
+                            socialInteraction.idea = socialInteraction.idea.id;
+                        }
+                        if (socialInteraction.activity && socialInteraction.activity.id) {
+                            socialInteraction.activity = socialInteraction.activity.id;
                         }
                         return socialInteractions.post(socialInteraction);
                     },

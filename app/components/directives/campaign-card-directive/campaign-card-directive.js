@@ -3,8 +3,7 @@
     'use strict';
 
     angular.module('yp.components.campaignCard', [])
-        .directive('campaignCard', [
-            function () {
+        .directive('campaignCard', [function () {
             return {
                 restrict: 'E',
                 scope: {

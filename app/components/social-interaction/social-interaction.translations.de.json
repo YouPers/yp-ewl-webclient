@@ -12,12 +12,12 @@
       "Recommendation": {
         "user": "persönliche Empfehlung",
         "campaignLead": "Kampagnenempfehlung",
-        "coach": "HealthCoach"
+        "coach": "Digital Coach"
       },
       "Message": {
         "user": "Aktivitätskommentar",
         "campaignLead": "Kampagnenmitteilung",
-        "coach": "HealthCoach"
+        "coach": "Digital Coach"
       }
     }
   },

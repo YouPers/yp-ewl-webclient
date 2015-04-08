@@ -77,7 +77,7 @@
                             }],
                             usersInCampaign: ['UserService', 'campaign', function (UserService, campaign) {
                                 return !campaign ? undefined : UserService.getUsers({ campaign: campaign.id }).then(function (users) {
-                                    return users && users.length > 0;
+                                    return users && users.length > campaign.campaignLeads.length;
                                 });
                             }]
 
@@ -326,12 +326,15 @@
                             CampaignService.postCampaign($scope.campaign, options)
                                 .then(function (campaign) {
 
-                                    // queue healthCoach message for new campaigns
-                                    if (!$scope.campaign.id) {
-                                        HealthCoachService.queueEvent('campaignCreated');
-                                    }
-                                    $scope.$state.go('dcm.home', {campaignId: campaign.id});
-                                    $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+                                    // reloading the current user, in case it is now in another campaign.
+                                    UserService.reload().then(function () {
+                                        // queue healthCoach message for new campaigns
+                                        if (!$scope.campaign.id) {
+                                            HealthCoachService.queueEvent('campaignCreated');
+                                        }
+                                        $scope.$state.go('dcm.home', {campaignId: campaign.id});
+                                        $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
+                                    });
                                 }, onError);
                         }
                     }

@@ -56,7 +56,7 @@
                         $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign , view: ""});
 
                     } else {
-                        $rootScope.$log.log('DhcController: redirecting to campaign list(no campaign in URL, no campaign on user');
+                        $rootScope.$log.log('DhcController: redirecting to campaign list(no campaign in URL, no campaign on user)');
                         $state.go('campaign-list');
                     }
                 } else {

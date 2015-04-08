@@ -26,9 +26,10 @@
     "feedback": "Feedback",
     "moreinfo": "Mehr Erfahren",
     "contact": "Kontakt",
-    "dcm": "Kampagnenverwaltung",
-    "dhc": "Sicht als Teilnehmer",
-    "logoHeader": "HealthCampaign"
+    "logoHeader": "HealthCampaign",
+    "participant": "Teilnehmer",
+    "campaignlead": "Kampagnenleiter",
+    "serviceManager": "Service Manager"
   },
   "home": {
     "for": "für",

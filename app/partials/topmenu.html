@@ -10,10 +10,18 @@
 
             <a class="navbar-logo" href="http://yp-web2.youpers.com/">
                 <img src="../assets/img/avatar_coach_blue.svg" alt="YouPers">
-                <h4 translate>topmenu.logoHeader</h4>
+                <h4 translate class="hidden-xs">topmenu.logoHeader</h4>
                 <h4 ng-if="config.name" class="config-hint">{{ config.name }}</h4>
             </a>
+            <div class="btn-group app-role" ng-controller="AppRoleController as appRoleCtrl">
+                <div ng-if="appRoleCtrl.showSwitcher">
+                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'orgadmin'" ng-if="appRoleCtrl.showOrgadmin" ng-click="appRoleCtrl.goToDcm()" translate>topmenu.serviceManager</label>
+                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'campaignlead'" ng-if="appRoleCtrl.showCampaignlead" ng-click="appRoleCtrl.goToDcm()" translate>topmenu.campaignlead</label>
+                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'participant'" ng-click="appRoleCtrl.goToDhc()" translate>topmenu.participant</label>
+                </div>
+            </div>
         </div>
+
         <div class="navbar-collapse collapse" collapse="topnavCollapsed.collapsed">
 
             <div ng-controller="MenuLoginCtrl">

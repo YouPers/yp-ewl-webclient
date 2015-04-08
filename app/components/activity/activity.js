@@ -19,7 +19,7 @@
                 if (idea.id) { // we found a populated idea, just return it
                     return idea;
                 } else if (idea) { // we found a idea id, get it from Service
-                    return  ActivityService.getIdea(idea);
+                    return ActivityService.getIdea(idea);
                 } else {
                     throw new Error('activity: idea is required');
                 }
@@ -27,31 +27,31 @@
 
             socialInteraction: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
                 if ($stateParams.socialInteraction) {
-                    return  SocialInteractionService.getSocialInteraction($stateParams.socialInteraction);
+                    return SocialInteractionService.getSocialInteraction($stateParams.socialInteraction);
                 } else {
                     return undefined;
                 }
             }],
-            campaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea',
+            existingCampaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea',
                 function ($stateParams, SocialInteractionService, activity, idea) {
-                if (activity.id && idea.defaultexecutiontype !== 'self') {
-                    return SocialInteractionService.getInvitations({
-                        populate: 'author',
-                        targetId: $stateParams.campaignId,
-                        authored: true,
-                        publishFrom: false,
-                        publishTo: false,
-                        "filter[activity]": activity.id
-                    }).then(function (invitations) {
-                        return invitations.length > 0 ? invitations[0] : undefined;
-                    });
-                } else {
-                    return undefined;
-                }
-            }],
+                    if (activity.id && idea.defaultexecutiontype !== 'self') {
+                        return SocialInteractionService.getInvitations({
+                            populate: 'author',
+                            targetId: $stateParams.campaignId,
+                            authored: true,
+                            publishFrom: false,
+                            publishTo: false,
+                            "filter[activity]": activity.id
+                        }).then(function (invitations) {
+                            return invitations.length > 0 ? invitations[0] : undefined;
+                        });
+                    } else {
+                        return undefined;
+                    }
+                }],
             invitationStatus: ['$stateParams', 'ActivityService', 'idea', function ($stateParams, ActivityService, idea) {
                 if ($stateParams.activity && idea.defaultexecutiontype !== 'self') {
-                    return  ActivityService.getInvitationStatus($stateParams.activity);
+                    return ActivityService.getInvitationStatus($stateParams.activity);
                 } else {
                     return [];
                 }
@@ -63,9 +63,9 @@
                         return socialInteraction.activity;
                     }
                     if ($stateParams.activity) {
-                        return  ActivityService.getActivity($stateParams.activity);
+                        return ActivityService.getActivity($stateParams.activity);
                     } else {
-                        return ActivityService.getDefaultActivity($stateParams.idea, { campaignId: $stateParams.campaignId });
+                        return ActivityService.getDefaultActivity($stateParams.idea, {campaignId: $stateParams.campaignId});
                     }
                 }],
 
@@ -85,34 +85,33 @@
             healthCoachEvent: ['$state', 'ActivityService', 'UserService', 'campaign', 'socialInteraction', 'activity', 'activityEvents',
                 function ($state, ActivityService, UserService, campaign, socialInteraction, activity, activityEvents) {
 
-                    if(!campaign) {
+                    if (!campaign) {
                         return;
                     }
 
                     function getEventName() {
 
                         // workaround until we find a fix to have 2 distinct activity states with a dhc/dcm parent
-                        if($state.$current.parent && $state.$current.parent.toString() === 'dhc') { // dhc
+                        if ($state.$current.parent && $state.$current.parent.toString() === 'dhc') { // dhc
 
                             var hasDueEvents = _.filter(activityEvents, function (event) {
-                                return moment().diff((event).end) > 0;
-                            }).length > 0;
+                                    return moment().diff((event).end) > 0;
+                                }).length > 0;
 
-                            if(socialInteraction && socialInteraction.__t === 'Recommendation') {
+                            if (socialInteraction && socialInteraction.__t === 'Recommendation') {
                                 return 'scheduleRecommendedActivity';
-                            } else if(hasDueEvents) {
+                            } else if (hasDueEvents) {
                                 return 'eventsDue';
-                            }else if(!hasDueEvents && activity.executionType === 'group') {
+                            } else if (!hasDueEvents && activity.executionType === 'group') {
                                 return 'groupActivityNoEventsDue';
                             } else {
                                 return 'stateEnter';
                             }
 
 
-
                         } else { // dcm
 
-                            if(!ActivityService.isOwner(activity, UserService.principal.getUser())) {
+                            if (!ActivityService.isOwner(activity, UserService.principal.getUser())) {
                                 return 'stateEnterAsSpectator';
                             }
 
@@ -127,218 +126,123 @@
         })
 
 
-        .controller('ActivityController', [ '$scope', '$rootScope', '$state', '$stateParams', '$timeout',
-            'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService',
+        .controller('ActivityController', ['$scope', '$rootScope', '$state', '$stateParams', '$timeout',
+            'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService', 'CampaignService',
             'healthCoachEvent', // this resolve is from dhc or dcm activity state
-            'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'campaignInvitation', 'invitationStatus',
+            'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'existingCampaignInvitation', 'invitationStatus',
             function ($scope, $rootScope, $state, $stateParams, $timeout,
-                      UserService, ActivityService, SocialInteractionService, HealthCoachService, healthCoachEvent,
-                      campaign, idea, activity, activityEvents, socialInteraction, campaignInvitation, invitationStatus) {
+                      UserService, ActivityService, SocialInteractionService, HealthCoachService, CampaignService, healthCoachEvent,
+                      campaign, idea, activity, activityEvents, socialInteraction, existingCampaignInvitation, invitationStatus) {
 
 
+                if (socialInteraction && existingCampaignInvitation && socialInteraction.id !== existingCampaignInvitation.id) {
+                    console.log("this should never happen: if we have a socialInteracion and an existingCampaignInvitation, they should be the same");
+                }
+
+                //////////////////////////
+                // setup scope properties
                 $scope.healthCoachEvent = healthCoachEvent;
                 $scope.campaign = campaign;
                 $scope.idea = idea;
-                $scope.socialInteraction = socialInteraction;
-                $scope.events = _.filter(activityEvents, { status: 'open'});
-
+                $scope.events = _.filter(activityEvents, {status: 'open'});
                 $scope.activity = activity;
-
-                // start and end times are stored/manipulated in distinct properties, because the date-picker removes the time in a date
                 $scope.activity.startTime = $scope.activity.start;
                 $scope.activity.endTime = $scope.activity.end;
-
-                function restoreActivityTime(activity) {
-                    activity.start = moment(activity.start)
-                        .hour(moment(activity.startTime).hour())
-                        .minute(moment(activity.startTime).minute()).startOf('minute').toDate();
-
-                    // set the activity.end by combining the activity.start "date-portion" with the "endTime"
-                    // reason: we do not support multi-day events, and when the user changes the start-date,
-                    // the end-date needs to stay on the same day.
-                    activity.end = moment(activity.start)
-                        .hour(moment(activity.endTime).hour())
-                        .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
-                }
-
-                // campaign wide invitation, no individual invitations once the whole campaign was invited -> delete and create new instead
-                $scope.campaignInvitation = campaignInvitation;
-
                 $scope.isScheduled = activity && activity.id;
                 $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isJoiner = $scope.isScheduled && ActivityService.isJoiningUser(activity);
-                $scope.isCampaignLead = $state.$current.parent.name === 'dcm';
+                $scope.isCampaignLead = CampaignService.isCampaignLead(campaign);
                 $scope.isInvitation = socialInteraction && socialInteraction.__t === 'Invitation';
                 $scope.isRecommendation = socialInteraction && socialInteraction.__t === 'Recommendation';
-                $scope.isNewCampaignActivity = $scope.isCampaignLead && !$scope.isScheduled;
+                $scope.isDcm = $state.current.name.indexOf('dcm') !== -1;
+                $scope.isNewCampaignActivity = $scope.isCampaignLead && !$scope.isScheduled && $scope.isDcm;
+                $scope.pageTitle = _getPageTitle();
+                $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
 
-                if ($scope.isScheduled) {
-                    $scope.pageTitle = 'PlannedActivity';
-                } else if ($scope.isInvitation) {
-                    $scope.pageTitle = 'Invitation';
-                } else if ($scope.isRecommendation) {
-                    $scope.pageTitle = 'Recommendation';
-                } else if ($scope.isCampaignLead) {
-                    $scope.pageTitle = 'NewCampaignActivity';
-                } else {
-                    throw new Error('Unknown state');
+                $scope.socialInteraction = socialInteraction || existingCampaignInvitation;
+
+                if (!$scope.socialInteraction) {
+                    $scope.socialInteraction = {
+                        author: UserService.principal.getUser(),
+                        authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
+                        __t: 'Invitation',
+                        activity: activity.id,
+                        idea: $scope.idea.id,
+                        publishFrom: $scope.minPublishDate,
+                        publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate()
+                    };
                 }
-
                 $scope.formContainer = {};
 
-                var activityController = this;
 
+                //////////////////////////
+                // setup controller properties
+
+                var activityController = this;
                 activityController.formEnabled = !$scope.isScheduled;
                 activityController.canEdit = $scope.isScheduled && $scope.isOwner;
                 activityController.canDelete = $scope.isScheduled && ($scope.isOwner || $scope.isJoiner);
 
 
-                $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
+                ///////////////////////////////////
+                // setup watchers and event-handlers
 
-                var invitation = {
-                    author: UserService.principal.getUser(),
-                    authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
-                    __t: 'Invitation',
-
-                    publishFrom: $scope.minPublishDate,
-                    publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate()
-                };
-
-                if($scope.isCampaignLead) {
-                    $scope.socialInteraction = campaignInvitation || invitation;
-
+                if ($scope.isDcm) {
                     $scope.$watch('socialInteraction.publishFrom', function (date) {
                         var si = $scope.socialInteraction;
-                        if(moment(si.publishFrom).isAfter(moment(si.publishTo))) {
+                        if (moment(si.publishFrom).isAfter(moment(si.publishTo))) {
                             si.publishTo = moment(si.publishFrom).startOf('day').toDate();
                         }
                     });
                     $scope.$watch('socialInteraction.publishTo', function (date) {
                         var si = $scope.socialInteraction;
-                        if(moment(si.publishFrom).isAfter(moment(si.publishTo))) {
+                        if (moment(si.publishFrom).isAfter(moment(si.publishTo))) {
                             si.publishFrom = moment(si.publishTo).startOf('day').toDate();
                         }
                     });
+
+                    $scope.$watch('activity.start', function (date) {
+                        var si = $scope.socialInteraction;
+                        si.publishTo = moment($scope.activity.start).endOf('day').toDate();
+                    });
                 }
 
+                $scope.$watch('activity', _.debounce(_validateActivity, 200), true);
 
-                // user, email & campaign wide selections
-                if ($scope.isScheduled) {
-
-                    // set the organizer's invitation status if this is already scheduled, so he shows up as organizer
-                    activity.owner.invitationStatus = 'organizer';
-                    $scope.invitedUsers = [activity.owner];
-
-                    if (campaignInvitation && campaignInvitation.id) { // check if campaign is already invited
-                        activityController.inviteOthers = 'all';
-                        $scope.inviteLocked = true;
-                    }
-
-                    // find out whether we do inviteAll oder Selected or nobody
-                    if (invitationStatus && invitationStatus.length > 0) {
-                        activityController.inviteOthers = activityController.inviteOthers || 'selected';
-                        _.each(invitationStatus, function (status) {
-                            var user = status.user || {email: status.email};
-                            user.invitationStatus = status.status;
-                            $scope.invitedUsers.push(user);
-                        });
-                    }
-
-
-                } else {
-                    $scope.invitedUsers = [];
-
-                    if ($scope.isCampaignLead) {
-                        activityController.inviteOthers = 'all';
-                        $scope.inviteLocked = true;
-                    }
-                }
-                activityController.inviteOthers = activityController.inviteOthers || 'none';
-
-                // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
-                $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner).concat(campaign.campaignLeads);
-
-                $scope.usersToBeInvited = [];
-
-                $scope.onUserSelected = function onUserSelected(selection) {
-                    $scope.usersToBeInvited.push(selection);
-                    $scope.usersExcludedForInvitation.push(selection);
-                    selection = '';
-                    $scope.noUserFound = false;
-                };
-
-                $scope.onEmailSelected = function onEmailSelected(selection) {
-                    $scope.usersToBeInvited.push(selection);
-                    $scope.emailToBeInvited = "";
-                    $scope.noUserFound = false;
-                };
-
-                $scope.removeUserToBeInvited = function (user) {
-                    _.remove($scope.usersToBeInvited, function (item) {
-                        return user.id ? user.id === item.id : user === item;
-                    });
-                };
-
-                var validateActivity = _.debounce(function (newActivity, old) {
-                    // return if the form is in invalid state
-                    if ($scope.formContainer.form && !$scope.formContainer.form.$valid) {
-                        return;
-                    }
-                    // cancel if activity did not change, and the activity is not new
-                    if (_.isEqual(newActivity, old) && $scope.isScheduled && $scope.events.length > 0) {
-                        return;
-                    }
-
-                    // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
-                    var clonedActivity = _.clone($scope.activity);
-                    restoreActivityTime(clonedActivity);
-
-                    ActivityService.validateActivity(clonedActivity).then(function (activityValidationResults) {
-
-                        var events = [];
-                        var conflictingEvents = [];
-                        _.forEach(activityValidationResults, function (result) {
-                            var event = result.event;
-
-                            event.activity = $scope.activity;
-
-                            if(result.conflictingEvent) {
-                                event.conflictingEvent = result.conflictingEvent;
-                                conflictingEvents.push(event.conflictingEvent);
-                                $scope.healthCoachEvent = 'conflictingEvent';
-                            } else {
-                                if ($scope.healthCoachEvent === 'conflictingEvent') {
-                                    $scope.healthCoachEvent = healthCoachEvent;
-                                }
-                            }
-
-                            events.push(event);
-
-                        });
-                        ActivityService.populateIdeas(events);
-                        ActivityService.populateIdeas(conflictingEvents);
-                        $scope.events = events;
-
-                    });
-                }, 200);
-
-                $scope.$watch('activity', validateActivity, true);
-
-                $scope.$root.$on('InviteUserSearch:noCandidatesFound', function(event) {
+                $scope.$root.$on('InviteUserSearch:noCandidatesFound', function (event) {
                         $scope.noUserFound = true;
                     }
                 );
 
+
+                //////////////////////////////////////////////////////////
+                // setup invitations control
+                _setupInvitationsControl();
+
+                if ($stateParams.edit) {
+                    _enterEditMode();
+                    $scope.$watch('formContainer.form', function (form) {
+                        if (form) {
+                            form.$setDirty();
+                        }
+                    });
+                }
+
+                ////////////////////////////////////////////////////////////
+                // $scope methods
+
                 $scope.backToGame = function () {
-                    if ($scope.isCampaignLead) {
-                        $state.go('dcm.home');
+
+                    // we want to stay in the app we are in
+                    if ($scope.isDcm) {
+                        $state.go('dcm.home', {campaignId: campaign.id});
                     } else {
-                        $state.go('dhc.game', {view: ""});
+                        $state.go('dhc.game', {view: "", campaignId: campaign.id});
                     }
                 };
 
                 $scope.dismiss = function dismiss() {
-                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, { reason: 'denied'})
+                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, {reason: 'denied'})
                         .then(function (result) {
                             if ($scope.isRecommendation) {
                                 HealthCoachService.queueEvent('recommendationDismissed');
@@ -356,27 +260,12 @@
                             }
 
 
-                    });
+                        });
 
                 };
 
-                $scope.enterEditMode = function () {
-                    activityController.editModeEnabled = true;
-                    activityController.formEnabled = true;
-                    if ($scope.activity.joiningUsers && $scope.activity.joiningUsers.length === 0) {
-                        $scope.healthCoachEvent = 'editOwnActivityAlone';
-                    } else {
-                        $scope.healthCoachEvent = 'editOwnActivityWithJoiners';
-                    }
-                };
-                if($stateParams.edit) {
-                    $scope.enterEditMode();
-                    $scope.$watch('formContainer.form', function (form) {
-                        if(form) {
-                            form.$setDirty();
-                        }
-                    });
-                }
+                $scope.enterEditMode = _enterEditMode;
+
 
                 $scope.enterDeleteMode = function () {
                     activityController.deleteModeEnabled = true;
@@ -406,14 +295,16 @@
                     ActivityService.joinPlan($scope.activity).then(function (joinedActivity) {
                         // queue event for next state
                         HealthCoachService.queueEvent('invitationAccepted');
-                        $state.go('dhc.activity', { idea: idea.id, activity: joinedActivity.id, socialInteraction: '' });
+                        $state.go('dhc.activity', {idea: idea.id, activity: joinedActivity.id, socialInteraction: ''});
                         $scope.$root.$broadcast('busy.end', {url: "activities", name: "joinActivity"});
                     });
                 };
+
+
                 $scope.saveActivity = function saveActivity() {
                     $scope.$root.$broadcast('busy.begin', {url: "activities", name: "saveActivity"});
 
-                    restoreActivityTime($scope.activity);
+                    _restoreActivityTime($scope.activity);
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
 
@@ -423,11 +314,15 @@
                                 HealthCoachService.queueEvent(healthCoachEvent);
                             }
 
-                            if($stateParams.edit) {
+                            if ($stateParams.edit) {
                                 return $scope.backToGame();
                             }
 
-                            $state.go($state.current.name, { idea: idea.id, activity: savedActivity.id, socialInteraction: savedSoi ? savedSoi.id : '' }, { reload: true });
+                            $state.go($state.current.name, {
+                                idea: idea.id,
+                                activity: savedActivity.id,
+                                socialInteraction: savedSoi ? savedSoi.id : ''
+                            }, {reload: true});
                             $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
 
                         }
@@ -435,88 +330,77 @@
                         // queue event for next state
                         HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
-                        $scope.activity = savedActivity;
+                        var invitation = $scope.socialInteraction;
+                        invitation.activity = savedActivity.id;
+
+                        // in the case where this is a newly planned event by a participant, we
+                        // have in $scope.socialInteration the initial recommendation, the user clicked on
+                        // for saving
+                        if (invitation.__t === 'Recommendation') {
+                            invitation = {
+                                author: UserService.principal.getUser(),
+                                authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
+                                __t: 'Invitation',
+                                activity: savedActivity.id,
+                                idea: $scope.idea.id,
+                                publishFrom: $scope.minPublishDate,
+                                publishTo: moment(savedActivity.start).endOf('day').toDate()
+                            };
+                        }
 
                         var inviteAll = activityController.inviteOthers === 'all';
-                        if (inviteAll || $scope.usersToBeInvited.length > 0) {
+                        var inviteNewSelected = $scope.usersToBeInvited.length > 0;
 
-                            invitation.activity = $scope.activity.id;
-                            invitation.idea = $scope.idea.id;
-
-                            if ($scope.isCampaignLead) {
-
-                                // is it PUT / update   or POST a new one
-                                if(campaignInvitation) {
-                                    SocialInteractionService.putSocialInteraction(campaignInvitation).then(function (savedInv) {
-                                        return _finalCb(savedInv);
-                                    });
-                                } else {
-                                    invitation.targetSpaces = [
-                                        {
-                                            type: 'campaign',
-                                            targetId: campaign.id
-                                        }
-                                    ];
-                                    SocialInteractionService.postInvitation($scope.socialInteraction).then(function (saved) {
-                                        return _finalCb(saved, 'invitationCreated');
-                                    });
+                        if (inviteAll) {
+                            invitation.targetSpaces = [
+                                {
+                                    type: 'campaign',
+                                    targetId: campaign.id
                                 }
+                            ];
 
+                            // we are calling the PUT or POST,
+                            // PUT is needed to update publish-dates when activity was shifted
+                            if (invitation.id) {
+                                SocialInteractionService.putSocialInteraction(invitation).then(function (savedInv) {
+                                    return _finalCb(savedInv);
+                                });
                             } else {
+                                SocialInteractionService.postInvitation(invitation).then(function (saved) {
+                                    return _finalCb(saved, 'invitationCreated');
+                                });
+                            }
 
-                                invitation.publishFrom = $scope.minPublishDate;
-                                invitation.publishTo = $scope.events[$scope.events.length - 1].end;
+                        } else if (inviteNewSelected) {
+                            var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
+                                return typeof user;
+                            });
 
-                                if (inviteAll && !campaignInvitation) {
-                                    invitation.targetSpaces = [
-                                        {
-                                            type: 'campaign',
-                                            targetId: campaign.id
-                                        }
-                                    ];
+                            var users = toBeInvited.object;
+                            var emails = toBeInvited.string;
 
-                                    SocialInteractionService.postInvitation(invitation).then(function(savedInv) {
+                            invitation.targetSpaces = [];
+                            _.forEach(users, function (user) {
+                                invitation.targetSpaces.push({
+                                    type: 'user',
+                                    targetId: user.id
+                                });
+                            });
+
+                            SocialInteractionService.postInvitation(invitation).then(function (savedInv) {
+                                if (emails && emails.length > 0) {
+                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
                                         // do not pass the savedInv to the Cb, because we don't want to show
                                         // the soi on the following state. WL-1603
                                         return _finalCb();
                                     });
-
-                                } else if (!inviteAll) {
-
-                                    var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
-                                        return typeof user;
-                                    });
-
-                                    var users = toBeInvited.object;
-                                    var emails = toBeInvited.string;
-
-                                    invitation.targetSpaces = [];
-                                    _.forEach(users, function (user) {
-                                        invitation.targetSpaces.push({
-                                            type: 'user',
-                                            targetId: user.id
-                                        });
-                                    });
-
-                                    SocialInteractionService.postInvitation(invitation).then(function(savedInv) {
-                                        if (emails && emails.length > 0) {
-                                            ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
-                                                // do not pass the savedInv to the Cb, because we don't want to show
-                                                // the soi on the following state. WL-1603
-                                                return _finalCb();
-                                            });
-                                        } else {
-                                            // do not pass the savedInv to the Cb, because we don't want to show
-                                            // the soi on the following state. WL-1603
-                                            return _finalCb();
-                                        }
-
-                                    });
-
                                 } else {
+                                    // do not pass the savedInv to the Cb, because we don't want to show
+                                    // the soi on the following state. WL-1603
                                     return _finalCb();
                                 }
-                            }
+
+                            });
                         } else {
                             return _finalCb();
                         }
@@ -527,6 +411,149 @@
 
 
                 };
+
+                //////////////////////////////////////////////////////
+                // internal helper functions
+                ////////////////////////////////////////////
+
+                // start and end times are stored/manipulated in distinct properties, because the date-picker removes the time in a date
+                function _restoreActivityTime(activity) {
+                    activity.start = moment(activity.start)
+                        .hour(moment(activity.startTime).hour())
+                        .minute(moment(activity.startTime).minute()).startOf('minute').toDate();
+
+                    // set the activity.end by combining the activity.start "date-portion" with the "endTime"
+                    // reason: we do not support multi-day events, and when the user changes the start-date,
+                    // the end-date needs to stay on the same day.
+                    activity.end = moment(activity.start)
+                        .hour(moment(activity.endTime).hour())
+                        .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
+                }
+
+                function _validateActivity(newActivity, old) {
+                    // return if the form is in invalid state
+                    if ($scope.formContainer.form && !$scope.formContainer.form.$valid) {
+                        return;
+                    }
+                    // cancel if activity did not change, and the activity is not new
+                    if (_.isEqual(newActivity, old) && $scope.isScheduled && $scope.events.length > 0) {
+                        return;
+                    }
+
+                    // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
+                    var clonedActivity = _.clone($scope.activity);
+                    _restoreActivityTime(clonedActivity);
+
+                    ActivityService.validateActivity(clonedActivity).then(function (activityValidationResults) {
+
+                        var events = [];
+                        var conflictingEvents = [];
+                        _.forEach(activityValidationResults, function (result) {
+                            var event = result.event;
+
+                            event.activity = $scope.activity;
+
+                            if (result.conflictingEvent) {
+                                event.conflictingEvent = result.conflictingEvent;
+                                conflictingEvents.push(event.conflictingEvent);
+                                $scope.healthCoachEvent = 'conflictingEvent';
+                            } else {
+                                if ($scope.healthCoachEvent === 'conflictingEvent') {
+                                    $scope.healthCoachEvent = healthCoachEvent;
+                                }
+                            }
+
+                            events.push(event);
+
+                        });
+                        ActivityService.populateIdeas(events);
+                        ActivityService.populateIdeas(conflictingEvents);
+                        $scope.events = events;
+
+                    });
+                }
+
+
+                function _getPageTitle() {
+                    if ($scope.isScheduled) {
+                        return 'PlannedActivity';
+                    } else if ($scope.isInvitation) {
+                        return 'Invitation';
+                    } else if ($scope.isRecommendation) {
+                        return 'Recommendation';
+                    } else if ($scope.isCampaignLead) {
+                        return 'NewCampaignActivity';
+                    } else {
+                        throw new Error('Unknown state');
+                    }
+                }
+
+                function _enterEditMode() {
+                    activityController.editModeEnabled = true;
+                    activityController.formEnabled = true;
+                    if ($scope.activity.joiningUsers && $scope.activity.joiningUsers.length === 0) {
+                        $scope.healthCoachEvent = 'editOwnActivityAlone';
+                    } else {
+                        $scope.healthCoachEvent = 'editOwnActivityWithJoiners';
+                    }
+                }
+
+                function _setupInvitationsControl() {
+                    if ($scope.isScheduled) {
+
+                        // set the organizer's invitation status if this is already scheduled, so he shows up as organizer
+                        activity.owner.invitationStatus = 'organizer';
+                        $scope.invitedUsers = [activity.owner];
+
+                        if (existingCampaignInvitation && existingCampaignInvitation.id) { // check if campaign is already invited
+                            activityController.inviteOthers = 'all';
+                            $scope.inviteLocked = true;
+                        }
+
+                        // find out whether we do inviteAll oder Selected or nobody
+                        if (invitationStatus && invitationStatus.length > 0) {
+                            activityController.inviteOthers = activityController.inviteOthers || 'selected';
+                            _.each(invitationStatus, function (status) {
+                                var user = status.user || {email: status.email};
+                                user.invitationStatus = status.status;
+                                $scope.invitedUsers.push(user);
+                            });
+                        }
+                    } else {
+                        $scope.invitedUsers = [];
+
+                        if ($scope.isDcm) {
+                            activityController.inviteOthers = 'all';
+                            $scope.inviteLocked = true;
+                        }
+                    }
+                    activityController.inviteOthers = activityController.inviteOthers || 'none';
+
+                    // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
+                    $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
+
+                    $scope.usersToBeInvited = [];
+
+                    $scope.onUserSelected = function onUserSelected(selection) {
+                        $scope.usersToBeInvited.push(selection);
+                        $scope.usersExcludedForInvitation.push(selection);
+                        selection = '';
+                        $scope.noUserFound = false;
+                    };
+
+                    $scope.onEmailSelected = function onEmailSelected(selection) {
+                        $scope.usersToBeInvited.push(selection);
+                        $scope.emailToBeInvited = "";
+                        $scope.noUserFound = false;
+                    };
+
+                    $scope.removeUserToBeInvited = function (user) {
+                        _.remove($scope.usersToBeInvited, function (item) {
+                            return user.id ? user.id === item.id : user === item;
+                        });
+                    };
+
+                }
             }
         ]);
 
