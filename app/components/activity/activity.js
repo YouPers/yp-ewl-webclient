@@ -136,30 +136,17 @@
                       campaign, idea, activity, activityEvents, socialInteraction, existingCampaignInvitation, invitationStatus) {
 
 
+                //////////////////////////
+                // setup scope properties
+
+
                 $scope.healthCoachEvent = healthCoachEvent;
                 $scope.campaign = campaign;
                 $scope.idea = idea;
                 $scope.events = _.filter(activityEvents, { status: 'open'});
-
                 $scope.activity = activity;
-
-                // start and end times are stored/manipulated in distinct properties, because the date-picker removes the time in a date
                 $scope.activity.startTime = $scope.activity.start;
                 $scope.activity.endTime = $scope.activity.end;
-
-                function restoreActivityTime(activity) {
-                    activity.start = moment(activity.start)
-                        .hour(moment(activity.startTime).hour())
-                        .minute(moment(activity.startTime).minute()).startOf('minute').toDate();
-
-                    // set the activity.end by combining the activity.start "date-portion" with the "endTime"
-                    // reason: we do not support multi-day events, and when the user changes the start-date,
-                    // the end-date needs to stay on the same day.
-                    activity.end = moment(activity.start)
-                        .hour(moment(activity.endTime).hour())
-                        .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
-                }
-
                 $scope.isScheduled = activity && activity.id;
                 $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isJoiner = $scope.isScheduled && ActivityService.isJoiningUser(activity);
@@ -170,17 +157,8 @@
                 $scope.isNewCampaignActivity = $scope.isCampaignLead && !$scope.isScheduled && $scope.isDcm;
                 $scope.isCampaignActivity = (activity.authorType === 'campaignLead') || $scope.isNewCampaignActivity;
 
-                if ($scope.isScheduled) {
-                    $scope.pageTitle = 'PlannedActivity';
-                } else if ($scope.isInvitation) {
-                    $scope.pageTitle = 'Invitation';
-                } else if ($scope.isRecommendation) {
-                    $scope.pageTitle = 'Recommendation';
-                } else if ($scope.isCampaignLead) {
-                    $scope.pageTitle = 'NewCampaignActivity';
-                } else {
-                    throw new Error('Unknown state');
-                }
+                $scope.pageTitle = _getPageTitle();
+
 
                 // determine the right socialInteraction
                 var newInvitation = {
@@ -195,7 +173,7 @@
                 // determine the right socialInteraction to work with
                 if ($scope.isRecommendation) {
                     // the passed in soi is a rec, so this is a new activity
-                    $scope.socialInteraction = newInvitation;
+                    $scope.socialInteraction = socialInteraction;
                 } else if ($scope.isInvitation) {
                     // the passed in SocialInteraction is an Invitation
                     $scope.socialInteraction = socialInteraction;
@@ -291,7 +269,26 @@
                     });
                 };
 
-                var validateActivity = _.debounce(function (newActivity, old) {
+
+                //////////////////////////////////////////////////////
+                // internal helper functions
+                ////////////////////////////////////////////
+
+                // start and end times are stored/manipulated in distinct properties, because the date-picker removes the time in a date
+                function _restoreActivityTime(activity) {
+                    activity.start = moment(activity.start)
+                        .hour(moment(activity.startTime).hour())
+                        .minute(moment(activity.startTime).minute()).startOf('minute').toDate();
+
+                    // set the activity.end by combining the activity.start "date-portion" with the "endTime"
+                    // reason: we do not support multi-day events, and when the user changes the start-date,
+                    // the end-date needs to stay on the same day.
+                    activity.end = moment(activity.start)
+                        .hour(moment(activity.endTime).hour())
+                        .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
+                }
+
+                var _validateActivity = _.debounce(function (newActivity, old) {
                     // return if the form is in invalid state
                     if ($scope.formContainer.form && !$scope.formContainer.form.$valid) {
                         return;
@@ -303,7 +300,7 @@
 
                     // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
                     var clonedActivity = _.clone($scope.activity);
-                    restoreActivityTime(clonedActivity);
+                    _restoreActivityTime(clonedActivity);
 
                     ActivityService.validateActivity(clonedActivity).then(function (activityValidationResults) {
 
@@ -334,7 +331,23 @@
                     });
                 }, 200);
 
-                $scope.$watch('activity', validateActivity, true);
+
+                function _getPageTitle() {
+                    if ($scope.isScheduled) {
+                        return 'PlannedActivity';
+                    } else if ($scope.isInvitation) {
+                        return 'Invitation';
+                    } else if ($scope.isRecommendation) {
+                        return 'Recommendation';
+                    } else if ($scope.isCampaignLead) {
+                        return 'NewCampaignActivity';
+                    } else {
+                        throw new Error('Unknown state');
+                    }
+                }
+
+
+                $scope.$watch('activity', _validateActivity, true);
 
                 $scope.$root.$on('InviteUserSearch:noCandidatesFound', function(event) {
                         $scope.noUserFound = true;
@@ -424,10 +437,14 @@
                         $scope.$root.$broadcast('busy.end', {url: "activities", name: "joinActivity"});
                     });
                 };
+
+
+
+
                 $scope.saveActivity = function saveActivity() {
                     $scope.$root.$broadcast('busy.begin', {url: "activities", name: "saveActivity"});
 
-                    restoreActivityTime($scope.activity);
+                    _restoreActivityTime($scope.activity);
 
                     ActivityService.savePlan($scope.activity).then(function (savedActivity) {
 
