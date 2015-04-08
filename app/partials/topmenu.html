@@ -15,9 +15,9 @@
             </a>
             <div class="btn-group app-role" ng-controller="AppRoleController as appRoleCtrl">
                 <div ng-if="appRoleCtrl.showSwitcher">
-                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'orgadmin'" ng-if="appRoleCtrl.showOrgadmin" ng-click="appRoleCtrl.goToDcm()">Service Manager</label>
-                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'campaignlead'" ng-if="appRoleCtrl.showCampaignlead" ng-click="appRoleCtrl.goToDcm()">Kampagnenleiter</label>
-                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'participant'" ng-click="appRoleCtrl.goToDhc()">Teilnehmer</label>
+                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'orgadmin'" ng-if="appRoleCtrl.showOrgadmin" ng-click="appRoleCtrl.goToDcm()" translate>topmenu.serviceManager</label>
+                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'campaignlead'" ng-if="appRoleCtrl.showCampaignlead" ng-click="appRoleCtrl.goToDcm()" translate>topmenu.campaignlead</label>
+                <label class="btn btn-primary" ng-model="appRoleCtrl.appRole" btn-radio="'participant'" ng-click="appRoleCtrl.goToDhc()" translate>topmenu.participant</label>
                 </div>
             </div>
         </div>

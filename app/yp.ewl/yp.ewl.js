@@ -260,17 +260,18 @@ angular.module('yp-ewl',
 
             function init() {
 
-                self.appRole = UserService.principal.hasRole('orgadmin') ? 'orgadmin' : 'campaignlead';
+                self.appRole = UserService.principal.hasRole('campaignlead') ? 'campaignlead' : 'orgadmin';
                 if ($state.current.name === 'dhc.game' || $state.current.name === 'welcome') {
                     self.appRole = 'participant';
                 }
 
-                var userCanSeeSwitcher = (UserService.principal.hasRole('orgadmin') || UserService.principal.hasRole('campaignlead')) && UserService.principal.getUser().campaign;
+                var userIsParticipatingInCampaign = UserService.principal.getUser().campaign;
+                var userCanSeeSwitcher = userIsParticipatingInCampaign && (UserService.principal.hasRole('orgadmin') || UserService.principal.hasRole('campaignlead'));
                 var stateShowsSwitcher = $state.current.name === 'dcm.home' || $state.current.name === 'dhc.game' ||  $state.current.name === 'welcome';
                 self.showSwitcher = userCanSeeSwitcher && stateShowsSwitcher;
 
-                self.showOrgadmin = UserService.principal.hasRole('orgadmin');
-                self.showCampaignlead = !self.showOrgadmin;
+                self.showCampaignlead = UserService.principal.hasRole('campaignlead');
+                self.showOrgadmin = !self.showCampaignlead;
             }
 
             function goToDhc() {
