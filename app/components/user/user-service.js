@@ -78,7 +78,7 @@
                             // --> we need to check whether the authenticated user has the same campaign set, and if
                             // not tell the user that he cannot switch campaign
                             if (authenticatedUser.campaign && (authenticatedUser.campaign.id !== _currentUser.campaign.id)) {
-                                $rootScope.$emit('clientmsg:error', 'cannotSwitchCampaign');
+                                $rootScope.$emit('clientmsg:error', 'cannotSwitchCampaign', {duration: 10000});
                             }
 
                             // the authenticatedUser does not have a campaign set yet, we need to update the
