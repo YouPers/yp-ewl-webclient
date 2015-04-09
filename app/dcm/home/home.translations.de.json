@@ -118,7 +118,6 @@
     "offerType": {
       "Recommendation": "Deine Empfehlungen",
       "Invitation": "Deine Events",
-      "UserInvitation": "Events von Teilnehmern",
       "All": "Alle"
     }
   },

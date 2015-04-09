@@ -272,9 +272,6 @@
                             if(offerTypes === 'All') {
                                 _getOffersOptions.discriminators = '';
                                 _getOffersOptions.authorType = undefined;
-                            } else if(offerTypes === 'UserInvitation') {
-                                _getOffersOptions.discriminators = 'Invitation';
-                                _getOffersOptions.authorType = 'user';
                             } else {
                                 _getOffersOptions.discriminators = offerTypes;
                                 _getOffersOptions.authorType = 'campaignLead';
