@@ -135,7 +135,7 @@
                         </a>
                     </div>
                     <div class="col-sm-3">
-                        <a ng-if="isAssigned(campaignLead) && !campaignController.campaignLeadVerified"
+                        <a ng-if="isAssigned(campaignLead) && !campaignController.campaignLeadVerified && campaign.id"
                            ng-click="resendCampaignLeadInvite(campaignLead.id)"
                            popover="{{ 'campaign.card.campaignLeadUnconfirmed' | translate }}" popover-trigger="mouseenter" popover-placement="right" popover-append-to-body="true">
                             <i class="fa fa-warning"></i>
