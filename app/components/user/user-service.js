@@ -70,13 +70,20 @@
 
                     // if the user is not already authenticated we need to manage data he collected on the user
                     if (!_authenticated) {
+
                         // the current, unauthenticated User has a campaign set, this means he clicked on a
                         // campaign welcome message "participate"-link
-                        // --> we need to check whether the authenticated user has the same campaign set, and if
-                        // not update the authenticated user
                         if (_currentUser.campaign) {
-                            if (!authenticatedUser.campaign ||
-                                (authenticatedUser.campaign.id !== _currentUser.campaign.id)) {
+
+                            // --> we need to check whether the authenticated user has the same campaign set, and if
+                            // not tell the user that he cannot switch campaign
+                            if (authenticatedUser.campaign && (authenticatedUser.campaign.id !== _currentUser.campaign.id)) {
+                                $rootScope.$emit('clientmsg:error', 'cannotSwitchCampaign');
+                            }
+
+                            // the authenticatedUser does not have a campaign set yet, we need to update the
+                            // backend object and set the new campaign on it
+                            if (!authenticatedUser.campaign) {
                                 $rootScope.$log.log('need to update user');
                                 authenticatedUser.campaign = _currentUser.campaign;
                                 authenticatedUser.put();
@@ -85,8 +92,7 @@
 
                     }
 
-                    // clean current user in order to keep the same reference,
-
+                    // clean current user in order to keep the same reference
 
                     // keep the profile, if the newly authenticated user does not provide an updated populated profile
                     var hasProfilePopulated = authenticatedUser.profile && authenticatedUser.profile.id;

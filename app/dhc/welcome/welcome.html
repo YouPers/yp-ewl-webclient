@@ -46,7 +46,7 @@
                 </div>
 
 
-                <div class="campaign-start" ng-if="!campaignHasStarted">
+                <div class="campaign-start" ng-if="!campaignHasStarted && !existingCampaign">
 
                     <p translate>welcome.campaignNotStartedYet</p>
 
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="col-sm-6">
-                        <button class="btn btn-default join" ui-sref="dhc.game" ng-if="existingCampaign">
+                        <button class="btn btn-default join" ui-sref="homedispatcher" ng-if="existingCampaign">
                             <span translate>welcome.link.back</span>
                         </button>
                     </div>
