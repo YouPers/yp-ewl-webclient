@@ -241,7 +241,7 @@
         </div>
 
         <!-- buttons for new Invitation -->
-        <div class="button-row" ng-if="isInvitation && !isDcm">
+        <div class="button-row" ng-if="isInvitation && !isDcm && !isOwner && !isJoiner">
             <button class="btn btn-primary"
                     ng-click="joinActivity()" busy busy-disabled>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
