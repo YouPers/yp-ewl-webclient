@@ -304,7 +304,7 @@
 
                         if(campaignId) {
                             // provide campaignId as query parameter, does not work as body parameter
-                            options.campaignId = campaignId
+                            options.campaignId = campaignId;
                         }
 
                         // remove the new campaignleads from the regular campaignleads collection and put them in a special
