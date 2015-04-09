@@ -76,7 +76,7 @@
                                 }
                             }],
                             usersInCampaign: ['UserService', 'campaign', function (UserService, campaign) {
-                                return !campaign ? undefined : UserService.getUsers({ campaign: campaign.id }).then(function (users) {
+                                return !campaign ? undefined : UserService.getUsers({campaign: campaign.id}).then(function (users) {
                                     return users && users.length > 0;
                                 });
                             }]
@@ -263,6 +263,14 @@
                     });
                 };
 
+                $scope.resendCampaignLeadInvite = function (campaignLeadId) {
+                    $scope.resendSent = false;
+                    return CampaignService.resendCampaignLeadInvite($scope.campaign.id, campaignLeadId)
+                        .then(function () {
+                            $scope.resendSent = true;
+                        }, onError);
+                };
+
                 function onError(err) {
                     $scope.$emit('clientmsg:error', err);
                     $scope.campaignController.submitting = false;
@@ -299,10 +307,10 @@
 
                         // preserve the main campaignlead
                         var options = {
-                            defaultCampaignLead:  $scope.campaign.campaignLeads[0]
+                            defaultCampaignLead: $scope.campaign.campaignLeads[0]
                         };
 
-                        if(campaignId) {
+                        if (campaignId) {
                             // provide campaignId as query parameter, does not work as body parameter
                             options.campaignId = campaignId;
                         }
@@ -317,7 +325,7 @@
                             CampaignService.putCampaign($scope.campaign, options).then(function (savedCampaign) {
                                 // we need to get the campaign again from the backend, to get the updated, populated
                                 // campaignLeads
-                                CampaignService.getCampaign(savedCampaign.id).then(function(reloadedCampaign) {
+                                CampaignService.getCampaign(savedCampaign.id).then(function (reloadedCampaign) {
                                     // merging saved object into the existing object to preserve references in the parent state
 
                                     delete reloadedCampaign.organization; // keep the populated organization
