@@ -5,7 +5,9 @@
         populate: 'author idea activity',
         authored: true,
         publishTo: new Date(),
-        publishFrom: false
+        publishFrom: false,
+        authorType: 'campaignLead',
+        dismissed: true
     };
 
     var _getAllCurrentAndFutureOffersOptions = _.clone(_getOffersOptions);

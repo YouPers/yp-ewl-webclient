@@ -242,7 +242,7 @@
                 };
 
                 $scope.dismiss = function dismiss() {
-                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, {reason: 'denied'})
+                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, {reason: 'denied', mode: 'participate'})
                         .then(function (result) {
                             if ($scope.isRecommendation) {
                                 HealthCoachService.queueEvent('recommendationDismissed');
