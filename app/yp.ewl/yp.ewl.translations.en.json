@@ -26,9 +26,10 @@
     "feedback": "Feedback",
     "moreinfo": "More Information",
     "contact": null,
-    "dcm": "Campaign administration",
-    "dhc": "View as participant",
-    "logoHeader": "HealthCampaign"
+    "logoHeader": "HealthCampaign",
+    "participant": null,
+    "campaignlead": null,
+    "serviceManager": null
   },
   "home": {
     "for": "for",

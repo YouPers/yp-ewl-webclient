@@ -111,7 +111,9 @@
         "unique": null
       }
     },
-    "submit": null
+    "submit": null,
+    "resend": null,
+    "resendSent": null
   },
   "campaignLeadResetPassword": {
     "header": null,

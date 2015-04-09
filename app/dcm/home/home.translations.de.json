@@ -41,7 +41,7 @@
     "addMoreUsers": "Lade weitere Teilnehmer ein, indem du ihnen folgenden Link per Email versendest:",
     "campaignNotStarted": "Sobald die Kampagne gestartet ist, werden hier einige Eckdaten zum Verlauf deiner Kampagne angezeigt.",
     "campaignStart": {
-      "header": "Start der Kampagne",
+      "header": "Vorbereitung der Kampagne",
       "welcomeLink": {
         "header": "<strong>Option B:</strong> Kampagnen-Einladungen mit deiner Email Anwendung versenden",
         "createDraft": {
@@ -107,18 +107,18 @@
       }
     },
     "participants": {
-      "header": "Teilnehmer"
+      "header": "Teilnehmerliste"
     },
     "messages": "Nachrichten",
     "noCampaigns": "Es existiert noch keine Kampagne. Erstelle eine neue Kampagne.",
     "noMessages": "Hier werden deine Nachrichten an die Kampagnenteilnehmer angezeigt.",
-    "noOffers": "Hier werden meine vorgeschlagenen Empfehlungen und Einladungen zu Kampagnenevents als auch die von Kampagnenteilnehmern eingeplanten Gruppenaktivitäten angezeigt. Klicke auf \"Angebot hinzufügen\", um den Kampagnenteilnehmern eine Aktivität anzubieten.",
+    "noOffers": "Aktuell sind hier keine Aktivitäten geplant. Klicke auf \"Angebot hinzufügen\", um den Kampagnenteilnehmern eine Aktivität anzubieten.",
     "noParticipants": "Es gibt noch keine Kampagnenteilnehmer",
     "showOld": "Vergangene anzeigen",
     "offerType": {
-      "Recommendation": "Empfehlungen",
-      "Invitation": "Einladungen",
-      "UserInvitation": "Einladungen von Teilnehmern",
+      "Recommendation": "Deine Empfehlungen",
+      "Invitation": "Deine Events",
+      "UserInvitation": "Events von Teilnehmern",
       "All": "Alle"
     }
   },

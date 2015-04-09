@@ -26,9 +26,10 @@
     "feedback": "Les réactions",
     "moreinfo": "En savoir plus",
     "contact": null,
-    "dcm": null,
-    "dhc": null,
-    "logoHeader": "HealthCampaign"
+    "logoHeader": "HealthCampaign",
+    "participant": null,
+    "campaignlead": null,
+    "serviceManager": null
   },
   "home": {
     "for": "pour",
