@@ -283,14 +283,16 @@
                     ) {
                         CampaignService.deleteCampaign($scope.campaign).then(function (deleteResult) {
                             _.remove(campaigns, 'id', $scope.campaign.id);
-                            delete $scope.campaign.id;
-                            save(deleteResult && deleteResult.code);
+                            var campaignId = $scope.campaign.id;
+                            delete $scope.campaign.id; // needed for post instead of put
+                            // reuse campaignId
+                            save(campaignId, deleteResult && deleteResult.code);
                         }, onError);
                     } else {
                         save();
                     }
 
-                    function save(paymentCodeOfDeletedCampaign) {
+                    function save(campaignId, paymentCodeOfDeletedCampaign) {
 
                         $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
                         $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
@@ -299,6 +301,11 @@
                         var options = {
                             defaultCampaignLead:  $scope.campaign.campaignLeads[0]
                         };
+
+                        if(campaignId) {
+                            // provide campaignId as query parameter, does not work as body parameter
+                            options.campaignId = campaignId
+                        }
 
                         // remove the new campaignleads from the regular campaignleads collection and put them in a special
                         // one, the backend needs to store them first before they can be added to the regular collection.
