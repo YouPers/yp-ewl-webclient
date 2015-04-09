@@ -35,13 +35,7 @@
         <section>
 
             <div class="header-row"></div>
-            <div class="button-row">
-
-                <div ng-if="!campaignEnded"
-                     class="back-link" ui-sref="^.game({view: ''})"><span
-                        class="fa fa-chevron-left"></span> <span translate>activity.link.back</span></div>
-                <div class="clearfix"></div>
-            </div>
+            <div class="button-row"></div>
 
 
             <h2>
@@ -161,8 +155,12 @@
         <section>
 
 
-            <div class="header-row visible-lg-block"></div>
-            <div class="button-row visible-lg-block"></div>
+            <div class="header-row">
+
+                <div ng-if="!campaignEnded"
+                     class="back-link" ui-sref="^.game({view: ''})"><span
+                        class="fa fa-chevron-left"></span> <span translate>activity.link.back</span></div>
+            </div>
 
             <health-coach event="healthCoachEvent"></health-coach>
 

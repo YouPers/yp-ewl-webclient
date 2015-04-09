@@ -257,7 +257,7 @@
     <ng-include src="'partials/topmenu.html'"></ng-include>
 
 
-    <div class="yp-clientmsg">
+    <div class="yp-clientmsg" ng-if="clientmsgs.length > 0">
         <div>
             <alert ng-repeat="msg in clientmsgs" type='{{msg.alertType}}' close="closeClientmsg(msg.id)" >
                 {{ msg.message | translate:msg.values }}
