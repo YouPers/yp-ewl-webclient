@@ -1,4 +1,4 @@
-<div class="container welcome" ng-if="!isCampaignlead" >
+<div class="container welcome" ng-if="!isCampaignlead">
 
     <div class="row">
 
@@ -16,30 +16,34 @@
                 <h1>
                     <span translate>welcome.header</span><br/>
                 </h1>
-                <h1>
-                    <strong translate>{{ campaign.title }}</strong>
-                </h1>
 
-                <br/>
+                <div ng-if="!existingCampaign">
+                    <h1>
+                        <strong translate>{{ campaign.title }}</strong>
+                    </h1>
 
-                <div class="organization">
-                    <div>{{ campaign.organization.name }}</div>
-                </div>
+                    <br/>
 
-                <div class="participants">
-                    <div>
-                        {{ campaign.participants }}
+
+                    <div class="organization">
+                        <div>{{ campaign.organization.name }}</div>
                     </div>
-                </div>
 
-                <div class="location">
-                    <div>
-                        {{ campaign.location }}
-                        {{ campaign.location && campaign.city ? ' / ' : '' }}
-                        {{ campaign.city }}
+                    <div class="participants">
+                        <div>
+                            {{ campaign.participants }}
+                        </div>
                     </div>
-                </div>
 
+                    <div class="location">
+                        <div>
+                            {{ campaign.location }}
+                            {{ campaign.location && campaign.city ? ' / ' : '' }}
+                            {{ campaign.city }}
+                        </div>
+                    </div>
+
+                </div>
 
 
                 <div class="campaign-start" ng-if="!campaignHasStarted">
@@ -50,23 +54,42 @@
 
                 </div>
 
+                <div class="campaign-start" ng-if="existingCampaign">
+
+                    <p translate>welcome.existingCampaign</p>
+
+                    <h4>Kampagne {{ existingCampaign.participants }} / {{existingCampaign.location}},
+                        {{existingCampaign.city}}</h4>
+
+                </div>
+
                 <div class="row welcome-links">
                     <div class="col-sm-6">
-                        <a class="btn btn-default info" target="_blank" ng-href="{{'help.moreInfoParticipantLink' | translate }}"
-                           analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="More Info">
+                        <a class="btn btn-default info" target="_blank"
+                           ng-href="{{'help.moreInfoParticipantLink' | translate }}" ng-if="!existingCampaign"
+                           analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation"
+                           analytics-label="More Info">
                             <span translate>welcome.link.info</span>
                         </a>
                     </div>
 
                     <div class="col-sm-6">
-                        <button class="btn btn-default join" ng-click="join()" ng-if="campaignHasStarted"
-                                analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation" analytics-label="Join">
+                        <button class="btn btn-default join" ng-click="join()"
+                                ng-if="campaignHasStarted && !existingCampaign"
+                                analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation"
+                                analytics-label="Join">
                             <span translate>welcome.link.join</span>
+                        </button>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <button class="btn btn-default join" ui-sref="dhc.game" ng-if="existingCampaign">
+                            <span translate>welcome.link.back</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="campaign-leads">
+                <div class="campaign-leads" ng-if="!existingCampaign">
                     <h4 translate>welcome.yourCampaignLeads</h4>
 
                     <div ng-repeat="campaignLead in campaign.campaignLeads">
@@ -90,8 +113,4 @@
 
     </div>
 
-</div>
-
-<div ng-if="isCampaignLead" class="container">
-    <button class="btn btn-primary" ui-sref="dcm.home({campaignId: campaign.id})" translate>welcome.backToDcm</button>
 </div>

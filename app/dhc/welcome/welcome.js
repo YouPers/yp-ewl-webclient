@@ -26,8 +26,8 @@
         .controller('WelcomeController', [ '$scope', '$rootScope', '$state', '$stateParams', 'UserService', 'ActivityService', 'campaign', 'HealthCoachService', 'CampaignService',
             function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, campaign, HealthCoachService, CampaignService) {
 
-                var userIsAlreadyInThisCampaign = UserService.principal.getUser().campaign &&
-                    UserService.principal.getUser().campaign.id === campaign.id;
+                var existingCampaign = UserService.principal.getUser().campaign;
+                var userIsAlreadyInThisCampaign = UserService.principal.getUser().campaign && existingCampaign.id === campaign.id;
                 var campaignHasStarted = $scope.campaignHasStarted = moment().isAfter(moment(campaign.start));
 
 
@@ -38,6 +38,10 @@
                     $state.go('dhc.game', {campaignId: campaign.id, view: ""});
                 } else {
                     $scope.campaign = campaign;
+                }
+
+                if (existingCampaign && !userIsAlreadyInThisCampaign) {
+                    $scope.existingCampaign = existingCampaign;
                 }
 
                 $scope.isCampaignLead = CampaignService.isCampaignLead(campaign);
