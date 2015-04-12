@@ -38,6 +38,13 @@
                             UserService.reload();
                         });
                     },
+                    resendCampaignLeadInvite: function(campaignId, campaignLeadId) {
+                        var bodyBody = {
+                            campaignLeadId: campaignLeadId
+                        };
+                        return campaigns.one(campaignId).all('resendCampaignLeadEmail')
+                            .post(bodyBody);
+                    },
                     inviteParticipants: function(campaignId, particpantEmails, mailSubject, mailText, testOnly) {
                         var postBody = {email: particpantEmails,
                             subject: mailSubject,
