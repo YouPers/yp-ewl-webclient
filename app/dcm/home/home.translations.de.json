@@ -67,7 +67,8 @@
           "emailList": {
             "placeholder": "Email-Adressen einfügen",
             "add": "Email-Adressen<br/>hinzufügen",
-            "parsedEmailsPlaceholder": "Eingefügte Email-Adressen anzeigen"
+            "parsedEmailsPlaceholder": "Eingefügte Email-Adressen anzeigen",
+            "emailAddressesFound": "Es { count, plural, one{wurde eine Email-Adresse} other{wurden # Email-Adressen} } gefunden."
           }
         },
         "step3": {

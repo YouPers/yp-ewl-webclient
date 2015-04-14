@@ -191,6 +191,14 @@
                         </div>
                     </div>
 
+                    <div ng-if="homeController.emailAddressesToBeInvited">
+                        <br/>
+                        <span translate="dcmhome.campaignStart.emailInvite.step2.emailList.emailAddressesFound"
+                            translate-values="{ count: homeController.emailAddressesToBeInvited.length }"
+                            translate-interpolation="messageformat">
+                        </span>
+                    </div>
+
                 </div>
 
                 <div class="step3">
