@@ -264,9 +264,9 @@
                         };
 
                         $scope.homeController.createDraftUrl =
-                            'mailto:' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
-                            '?subject=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
-                            '&body=' + encodeURI($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
+                            'mailto:' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
+                            '?subject=' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
+                            '&body=' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
 
                         $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
                             if(offerTypes === 'All') {
