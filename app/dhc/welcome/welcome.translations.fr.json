@@ -3,11 +3,13 @@
     "header": "Bienvenue au campagne ",
     "link": {
       "info": "en savoir plus",
-      "join": "Participer"
+      "join": "Participer",
+      "back": null
     },
     "backToDcm": null,
     "campaignNotStartedYet": null,
     "isCampaignlead": null,
-    "yourCampaignLeads": null
+    "yourCampaignLeads": null,
+    "existingCampaign": null
   }
 }

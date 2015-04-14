@@ -13,7 +13,8 @@
       "502": null,
       "503": null,
       "504": null,
-      "alreadyJoinedUsers": null
+      "alreadyJoinedUsers": null,
+      "cannotSwitchCampaign": null
     }
   },
   "busy": {

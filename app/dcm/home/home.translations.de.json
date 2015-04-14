@@ -45,13 +45,13 @@
       "welcomeLink": {
         "header": "<strong>Option B:</strong> Kampagnen-Einladungen mit deiner Email Anwendung versenden",
         "createDraft": {
-          "text": "Du kannst die Einladungen mit deiner Email Anwendung versenden.",
+          "text": "Du kannst die Einladungen mit deiner Email Anwendung versenden, indem du auf den nachfolgenden Button klickst:",
           "link": "Email Entwurf<br/>erstellen",
           "recipient": "deine.teilnehmer@deinunternehmen.com",
           "subject": "{{ organizationName }} Kampagne Stressmanagement: Persönliche Einladung",
           "body": "Liebe Mitarbeiterin, lieber Mitarbeiter\n\n{{ organizationName }} lädt dich ein... \n\nBenutze diesen Link: {{ welcomeLink }}"
         },
-        "copyLink": "Sende den nachfolgenden Link an alle Personen, die du einladen möchtest. Benutze Copy/Paste um den Link in ein neues Email zu kopieren."
+        "copyLink": "Falls die Email Generierung nicht funktioniert, kannst du den nachfolgenden Link in deine Email-Einladungen kopieren."
       },
       "emailInvite": {
         "header": "<strong>Option A:</strong> Kampagnen-Einladungen mit HealthCampaign Service versenden",
@@ -67,7 +67,7 @@
           "emailList": {
             "placeholder": "Email-Adressen einfügen",
             "add": "Email-Adressen<br/>hinzufügen",
-            "parsedEmailsPlaceholder": "Eingefügte Email-Adressen anzeigen",
+            "parsedEmailsPlaceholder": "Eingefügte Email-Adressen anzeigen"
             "emailAddressesFound": "Es { count, plural, one{wurde eine Email-Adresse} other{wurden # Email-Adressen} } gefunden."
           }
         },
@@ -119,6 +119,7 @@
     "offerType": {
       "Recommendation": "Deine Empfehlungen",
       "Invitation": "Deine Events",
+      "UserInvitation": "Events von Teilnehmern",
       "All": "Alle"
     }
   },
