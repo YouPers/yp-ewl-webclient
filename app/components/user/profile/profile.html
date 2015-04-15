@@ -44,31 +44,11 @@
 
                 <div class="avatar-form">
 
-                    <avatar-upload avatar-object="avatarObject">
+                    <avatar-upload avatar-object="avatarObject"></avatar-upload>
 
-
-                    </avatar-upload>
-
-
-
-                        <span class="dropdown" is-open="dropdownOpen">
-                              <a href class="dropdown-toggle">
-                                  <span translate>profileForm.avatar.change</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                  <li>
-                                      <a href onclick="document.getElementById('avatarUpload').click()">
-                                          <span translate>profileForm.avatar.upload</span>
-                                      </a>
-                                  </li>
-                                  <li ng-hide="isDefaultAvatar()">
-                                      <a href ng-click="defaultAvatar($event)">
-                                          <span translate>profileForm.avatar.default</span>
-                                      </a>
-                                  </li>
-                              </ul>
-                        </span>
-
+                    <a href onclick="document.getElementById('avatarUpload').click()">
+                        <span translate>profileForm.avatar.change</span>
+                    </a>
 
                 </div>
 

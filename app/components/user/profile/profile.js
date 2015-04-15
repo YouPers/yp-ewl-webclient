@@ -69,32 +69,12 @@
                 var avatarMale = '/assets/img/default_avatar_man.png';
                 var avatarFemale = '/assets/img/default_avatar_woman.png';
 
-                $scope.defaultAvatar = function defaultAvatar(ev) {
-                    var user = $scope.principal.getUser();
-                    user.avatar = $scope.profileUserObj.gender === 'male' ? avatarMale : avatarFemale;
-                    UserService.putUser(user).then(function(result) {
-                        _.extend($scope.avatarObject, result);
-                    });
-                    if(ev) {
-                        ev.stopPropagation();
-                    }
-                };
-
-                $scope.isDefaultAvatar = function isDefaultAvatar() {
-                    var user = $scope.avatarObject;
-                    return user.avatar === avatarFemale ||user.avatar === avatarMale;
-                };
-
                 $scope.$watch('profileUserObj.gender', function(gender, old) {
 
                     var user = $scope.principal.getUser();
 
-                    if (!user.avatar ||
-                        user.avatar === avatarFemale ||
-                        user.avatar === avatarMale
-                        ) {
-
-                        $scope.defaultAvatar();
+                    if (!user.avatar || UserService.hasDefaultAvatar()) {
+                        user.avatar = $scope.profileUserObj.gender === 'male' ? avatarMale : avatarFemale;
                     }
                 });
 
