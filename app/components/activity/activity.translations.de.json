@@ -116,14 +116,14 @@
       "time": "Zeit",
       "frequency": "Häufigkeit",
       "recurrence": "Anzahl",
-      "addToCalendar": "zum Kalender hinzufügen",
       "socialInteraction": {
         "title": "Nachricht"
       },
       "comment": {
         "placeholder": "Kommentar schreiben"
       },
-      "publish": "publiziert"
+      "publish": "publiziert",
+      "addToCalendar": "zum Kalender hinzufügen"
     },
     "edit": {
       "stateHeader1": "deine",
