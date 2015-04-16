@@ -23,7 +23,7 @@
     "eventsRatings": {
       "title": "Aktivitätsbewertungen",
       "user": "Deine Bewertungen",
-      "campaign": "Kampagne"
+      "campaign": "Kampagne",
       "null": "offen"
     }
   }
