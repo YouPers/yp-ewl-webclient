@@ -91,7 +91,9 @@
         .controller('CampaignController', ['$scope', 'CampaignService', 'UserService', 'HealthCoachService',
             'PaymentCodeService', 'organization', 'campaign', 'campaigns', 'topics', 'newTopic', 'yp.config', 'usersInCampaign',
             function ($scope, CampaignService, UserService, HealthCoachService,
-                      PaymentCodeService, organization, campaign, campaigns, topics, newTopic, config, usersInCampaign) {
+                      PaymentCodeService, organization, campaignOriginal, campaigns, topics, newTopic, config, usersInCampaign) {
+
+                var campaign = _.clone(campaignOriginal);
 
                 $scope.campaignController = this;
                 $scope.paymentCodeCheckingDisabled = (config.paymentCodeChecking === 'disabled');
@@ -331,7 +333,7 @@
                                     delete reloadedCampaign.organization; // keep the populated organization
                                     _.merge($scope.campaign, reloadedCampaign);
 
-                                    $scope.$state.go('dcm.home');
+                                    $scope.$state.go('dcm.home', undefined, { reload: true });
                                     $scope.$root.$broadcast('busy.end', {url: "campaign", name: "saveCampaign"});
                                 });
                             }, onError);
