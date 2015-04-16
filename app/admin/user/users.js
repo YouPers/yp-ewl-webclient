@@ -10,7 +10,7 @@
 
                     .state('admin.users', {
                         url: "/users",
-                        access: accessLevels.systemadmin,
+                        access: accessLevels.admin,
                         views: {
                             content: {
                                 templateUrl: "admin/user/users.html",
