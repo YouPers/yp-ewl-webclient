@@ -219,13 +219,8 @@
                 // setup invitations control
                 _setupInvitationsControl();
 
-                if ($stateParams.edit) {
+                if ($stateParams.edit === 'true') {
                     _enterEditMode();
-                    $scope.$watch('formContainer.form', function (form) {
-                        if (form) {
-                            form.$setDirty();
-                        }
-                    });
                 }
 
                 ////////////////////////////////////////////////////////////
@@ -314,14 +309,11 @@
                                 HealthCoachService.queueEvent(healthCoachEvent);
                             }
 
-                            if ($stateParams.edit) {
-                                return $scope.backToGame();
-                            }
-
                             $state.go($state.current.name, {
                                 idea: idea.id,
                                 activity: savedActivity.id,
-                                socialInteraction: savedSoi ? savedSoi.id : ''
+                                socialInteraction: savedSoi ? savedSoi.id : '',
+                                edit: false
                             }, {reload: true});
                             $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
 
