@@ -31,7 +31,10 @@
     "inviteOthers": {
       "selected": "ausgewählte",
       "all": "alle",
-      "inviteByEmail": "Email eingeben und Enter drücken",
+      "inviteByEmail": {
+        "placeholder": "Email eingeben",
+        "submit": "Hinzufügen"
+      },
       "inviteByUser": "In der Kampagne suchen",
       "invitedOnSave": "Beim Einplanen werden eingeladen:",
       "none": "Niemand",

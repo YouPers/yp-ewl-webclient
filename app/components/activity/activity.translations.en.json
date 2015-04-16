@@ -31,7 +31,10 @@
     "inviteOthers": {
       "selected": "selected",
       "all": "all",
-      "inviteByEmail": "Enter email and press enter",
+      "inviteByEmail": {
+        "placeholder": "Enter email",
+        "submit": "Add"
+      },
       "inviteByUser": "Search within campaign",
       "invitedOnSave": "Invited when scheduled:",
       "none": "Nobody",

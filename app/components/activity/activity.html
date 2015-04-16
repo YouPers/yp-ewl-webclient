@@ -99,11 +99,16 @@
 
                             <form class="form"
                                   role="form"
-                                  ng-submit="emailInvitation.$valid && onEmailSelected(emailToBeInvited); emailToBeInvited = ''"
+                                  ng-submit="emailInvitation.$valid && onEmailSelected(emailToBeInvited); emailToBeInvited = ''; showPostButton = false"
                                   name="emailInvitation">
 
                                 <input type="email" class="form-control" ng-model="emailToBeInvited"
-                                       placeholder="{{ 'activity.inviteOthers.inviteByEmail' | translate }}">
+
+                                       ng-focus="showPostButton = true"
+
+                                       placeholder="{{ 'activity.inviteOthers.inviteByEmail.placeholder' | translate }}">
+
+                                <button ng-disabled="!emailInvitation.$dirty || !emailInvitation.$valid" ng-show="showPostButton" class="btn btn-primary pull-right" translate>activity.inviteOthers.inviteByEmail.submit</button>
 
                             </form>
 
