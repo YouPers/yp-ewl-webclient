@@ -123,8 +123,14 @@
                     return ( _.find(results[0][type], { rating: rating } ) || {} ).count  || 0;
                 }
 
+                var ratingLegend = {
+                    "1": "\uf119",
+                    "3": "\uf11a",
+                    "5": "\uf118"
+                };
+
                 function _ratingValue(rating, ratings, sum) {
-                    return [ $translate.instant('end-of-campaign.eventsRatings.' + rating), ratings[rating] / sum ];
+                    return [ ratingLegend[rating], ratings[rating] / sum ];
                 }
 
                 statsService.getRatingsStats = function (scopeType, scopeId) {
