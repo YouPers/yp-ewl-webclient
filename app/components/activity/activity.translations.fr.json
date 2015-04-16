@@ -31,7 +31,10 @@
     "inviteOthers": {
       "selected": "Avec sélectionnées",
       "all": "T",
-      "inviteByEmail": null,
+      "inviteByEmail": {
+        "placeholder": null,
+        "submit": null
+      },
       "inviteByUser": null,
       "invitedOnSave": null,
       "none": null,

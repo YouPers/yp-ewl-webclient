@@ -31,7 +31,10 @@
     "inviteOthers": {
       "selected": null,
       "all": "Ogni",
-      "inviteByEmail": null,
+      "inviteByEmail": {
+        "placeholder": null,
+        "submit": null
+      },
       "inviteByUser": null,
       "invitedOnSave": null,
       "none": null,
