@@ -203,8 +203,6 @@
 
                 $scope.view = $stateParams.view;
 
-                $scope.doneActivities = doneActivities;
-
                 $scope.offers = sortedOffers;
                 $scope.offersDismissed = dismissedOffers;
 
@@ -215,6 +213,25 @@
                 _.forEach($scope.doneEvents, function (event) {
                     event.activity = _.find($scope.activities, {id: event.activity});
                 });
+
+                // currentActivities are all activities with status 'open':
+                // - status stays 'open' until ALL participants have either clicked 'done' or 'missed'
+                //   on all events of this activity, because the same activity object is not only delivered to the
+                //   owner but also to all participants for display in this screen.
+                // - but for the current user in this UI we do want to consider the activity as done
+                //   when all the user's events are marked 'done' or 'missed', even though other users
+                //   have not feedbacked all events
+                //
+                // --> so we have to move those activities from the currentActvities to the doneActivities collection
+
+                doneActivities = doneActivities.concat(_.remove(currentActivities, function(act) {
+
+                    // eventsByActivity only contains the 'open' events, therefore we check
+                    // whether we don't have open events for this activity
+                    return _.isUndefined($scope.eventsByActivity[act.id]);
+                }));
+
+                $scope.doneActivities = doneActivities;
 
                 // sort activities by the end date of the oldest event of an activity with the status 'open'
                 $scope.activities = _.sortBy(currentActivities, function (activity) {

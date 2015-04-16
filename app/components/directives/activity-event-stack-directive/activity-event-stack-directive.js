@@ -38,7 +38,7 @@
 
                     if(type === 'current' || type === 'past') {
                         if(!scope.events) {
-                            throw new Error('"events" is required for type "current"');
+                            throw new Error('"events" is required for type "current" and type "past"');
                         }
 
                         scope.events = _.sortBy(scope.events, function(event) {

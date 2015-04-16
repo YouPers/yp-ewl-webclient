@@ -67,7 +67,8 @@
           "emailList": {
             "placeholder": null,
             "add": null,
-            "parsedEmailsPlaceholder": null
+            "parsedEmailsPlaceholder": null,
+            "emailAddressesFound": null
           }
         },
         "step3": {
