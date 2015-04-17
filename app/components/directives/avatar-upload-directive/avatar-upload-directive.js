@@ -48,6 +48,7 @@
                                     user.avatar = url;
                                     UserService.putUser(user).then(function(savedUser) {
                                         scope.avatarObject = savedUser;
+                                        scope.$root.$emit('clientmsg:success','pictureSaved');
                                     });
                                 });
                         }
