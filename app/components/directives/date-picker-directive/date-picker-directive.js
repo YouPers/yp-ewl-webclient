@@ -21,7 +21,7 @@
                         throw new Error('date attribute is required');
                     }
 
-                    scope.date = moment(scope.date).toDate();
+                    scope.date = _.isUndefined(scope.date) ? undefined: moment(scope.date).toDate();
 
                     scope.dateFormat = 'dd.MM.yyyy';
 
