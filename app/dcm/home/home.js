@@ -204,6 +204,21 @@
                         });
                 }
 
+                function _activateFirstIncompleteStep() {
+                    var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
+                    if (firstIncompleteStep) {
+                        firstIncompleteStep.active = true;
+                        firstIncompleteStep.enabled = true;
+                    } else {
+                        // enable last step
+                        $scope.campaignPreparation.step5.active = true;
+                    }
+                    _.each($scope.campaignPreparation, function (step) {
+                        step.disabled = !step.enabled && !step.complete;
+                    });
+                }
+
+
                 /////////////////////
                 function init () {
                     if (!campaign && campaigns.length > 0) {
@@ -233,26 +248,14 @@
                             }
 
                         };
-                        var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
-                        if (firstIncompleteStep) {
-                            firstIncompleteStep.active = true;
-                            firstIncompleteStep.enabled = true;
-                        } else {
-                            // enable last step
-                            $scope.campaignPreparation.step5.active = true;
-                        }
 
-                        _.each($scope.campaignPreparation, function (step) {
-                            step.disabled = !step.enabled && !step.complete;
-                        });
+                        _activateFirstIncompleteStep();
+
 
                         $scope.completeCampaignPreparation = function (step) {
                             $scope.campaignPreparation['step' + step].complete = true;
-                            if ( $scope.campaignPreparation['step' + (step+1)]) {
-                                $scope.campaignPreparation['step' + (step+1)].active = true;
-                                $scope.campaignPreparation['step' + (step+1)].enabled = true;
-                                $scope.campaignPreparation['step' + (step+1)].disabled = false;
-                            }
+                            _activateFirstIncompleteStep();
+
                             campaign.preparationComplete = step;
                             CampaignService.putCampaign(campaign);
                         };
@@ -275,6 +278,10 @@
                             } else {
                                 _getOffersOptions.discriminators = offerTypes;
                                 _getOffersOptions.authorType = 'campaignLead';
+                            }
+
+                            if (offerTypes === 'Recommendation') {
+                                $scope.completeCampaignPreparation(4);
                             }
 
                             _loadSocialInteractions();
