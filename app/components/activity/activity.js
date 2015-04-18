@@ -530,13 +530,11 @@
                         $scope.usersToBeInvited.push(selection);
                         $scope.usersExcludedForInvitation.push(selection);
                         selection = '';
-                        $scope.noUserFound = false;
                     };
 
                     $scope.onEmailSelected = function onEmailSelected(selection) {
                         $scope.usersToBeInvited.push(selection);
                         $scope.emailToBeInvited = "";
-                        $scope.noUserFound = false;
                     };
 
                     $scope.removeUserToBeInvited = function (user) {
