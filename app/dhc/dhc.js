@@ -50,6 +50,8 @@
                 var user = UserService.principal.getUser();
                 $rootScope.$log.log('DhcController is run now.');
 
+                // there was no campaign in the URL of this dhc.* state, so we try to get the campaign of the current
+                // user and redirect
                 if (!campaign) {
                     if(user.campaign){
                         $rootScope.$log.log('DhcController: redirecting to dhc.game (no campaign in URL');
@@ -60,6 +62,15 @@
                         $state.go('campaign-list');
                     }
                 } else {
+                    // check whether the current user is not a member of another campaign than the one he is trying to navigate to
+                    // if yes, redirect to his home state
+                    if (user.campaign && user.campaign.id !== campaign.id) {
+                        $rootScope.$emit('clientmsg:error', 'memberOfOtherCampaign', {duration: 10000});
+                        return $state.go('dhc.game', {campaignId: user.campaign.id});
+                    }
+
+
+
                     // last 2 days of the users campaign -> redirect non-campaignAdmins to dhc end of campaign
                     // if endOfCampaignDisplayed has not been set yet, or it is more than 1 day in the past
                     if(!$rootScope.isCampaignAdmin &&
