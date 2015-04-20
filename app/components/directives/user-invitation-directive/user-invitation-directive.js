@@ -22,6 +22,7 @@
 
                     scope.selectUser = function($item, $model, $label) {
                         scope.onUserSelected($item);
+                        scope.query = '';
                     };
 
                     scope.getUsers = function(val) {
