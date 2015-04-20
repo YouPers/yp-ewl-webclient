@@ -127,8 +127,10 @@
 
                         <div ng-if="!user.fullname">
                             <i class="fa fa-envelope-o"></i>
-                            <span>{{ user }}</span>
-                            <i class="remove fa fa-times" ng-click="removeUserToBeInvited(user)"></i>
+                            <div>
+                                <span>{{ user }}</span>
+                                <i class="remove fa fa-times" ng-click="removeUserToBeInvited(user)"></i>
+                            </div>
                         </div>
                     </div>
                 </div>

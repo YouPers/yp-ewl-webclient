@@ -273,6 +273,12 @@
       }
       > * {
         flex: 1 1 auto;
+        white-space: nowrap;
+        z-index: 200;
+
+        > * {
+          vertical-align: middle;
+        }
       }
     }
 
@@ -291,9 +297,6 @@
       cursor: pointer;
     }
     i.remove {
-      position: absolute;
-      top: 15px;
-      right: 5px;
       font-size: 1.5em;
     }
   }
