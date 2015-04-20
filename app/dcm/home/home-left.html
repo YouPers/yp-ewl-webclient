@@ -18,13 +18,7 @@
 </div>
 <div class="campaign-list">
 
-    <campaign-card
-            ng-repeat="campaign in campaigns"
-            ng-class="{ active: campaign.id === $stateParams.campaignId }"
-            campaign="campaign"
-
-            ui-sref="dcm.home({ campaignId: campaign.id })">
-
+    <campaign-card campaign="currentCampaign">
 
         <a href class="icon" ng-click="editCampaign($event, campaign.id)">
             <i class="fa fa-pencil-square-o"></i>

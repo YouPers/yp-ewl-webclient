@@ -68,6 +68,44 @@
     }
   }
 
+  .campaign-selection {
+
+    .panel-heading {
+      background-color: @yp-divider;
+    }
+
+    table {
+      tr:not(.selected):hover {
+        cursor: pointer;
+      }
+      td {
+        vertical-align: middle;
+      }
+
+      td.campaignLead {
+        > div {
+          display: flex;
+          align-items: center;
+          img {
+            flex: 0 0 32px;
+            height: 32px;
+            margin-right: 4px;
+          }
+        }
+      }
+
+      td.duration {
+        white-space: nowrap;
+      }
+
+      td.selected {
+        width: 20px;
+      }
+    }
+
+
+  }
+
   .campaign-start {
 
     .nav-tabs.nav-justified li.active a {
@@ -357,49 +395,17 @@
 
   campaign-card {
 
-    margin-bottom: 1em;
-    cursor: pointer;
 
     .avatar {
       img {
         width: 100%;
       }
     }
-
-    .title {
-
-    }
-    .details {
-
-    }
   }
 
   campaign-card {
     box-sizing: content-box;
-    transition: opacity 0.3s ease;
   }
-
-  campaign-card:not(.active) {
-    opacity: 0.4;
-  }
-
-  campaign-card.active, campaign-card:hover {
-    opacity: 1;
-  }
-  campaign-card.active {
-
-    cursor: default;
-
-    i.fa {
-      cursor: pointer;
-    }
-  }
-
-
-
-
-
-
 
   .campaign-messages {
 
