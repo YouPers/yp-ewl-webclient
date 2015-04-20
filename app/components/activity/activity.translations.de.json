@@ -7,6 +7,11 @@
         "Save": "Aktivität gespeichert",
         "SaveAndInvite": "Termine gespeichert und Einladungen verschickt"
       }
+    },
+    "error": {
+      "activity": {
+        "notParticipating": "Du nimmst nicht mehr an dieser Aktivität teil"
+      }
     }
   },
   "activity": {
