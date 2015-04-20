@@ -57,13 +57,15 @@
                 }
             }],
 
-            activity: ['$stateParams', 'ActivityService', 'socialInteraction', '$q',
-                function ($stateParams, ActivityService, socialInteraction, $q) {
+            activity: ['$rootScope', '$stateParams', 'ActivityService', 'socialInteraction', '$q',
+                function ($rootScope, $stateParams, ActivityService, socialInteraction, $q) {
                     if (socialInteraction && socialInteraction.activity) {
                         return socialInteraction.activity;
                     }
                     if ($stateParams.activity) {
-                        return ActivityService.getActivity($stateParams.activity);
+                        return ActivityService.getActivity($stateParams.activity).catch(function (err) {
+                            return $q.reject(err.status === 403 ? 'clientmsg.error.activity.notParticipating' : err);
+                        });
                     } else {
                         return ActivityService.getDefaultActivity($stateParams.idea, {campaignId: $stateParams.campaignId});
                     }
