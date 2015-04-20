@@ -38,7 +38,7 @@
         </div>
         <div class="col-xs-9">
             <div translate class="leader-label">campaign.card.campaignLead</div>
-            <div ng-class="{ unconfirmed: unconfirmed }"
+            <div ng-class="{ unconfirmed: unconfirmed }" title="{{ campaign.campaignLeads[0].fullname }}"
                  popover="{{ 'campaign.card.campaignLeadUnconfirmed' | translate }}" popover-trigger="{{ unconfirmed ? 'mouseenter' : '' }}" popover-placement="right" popover-append-to-body="true">
                 {{ campaign.campaignLeads[0].fullname }}
                 <i ng-if="unconfirmed" class="fa fa-warning"></i>
