@@ -82,10 +82,14 @@ campaign-card {
     }
 
     background-color: @yp-accent;
-    > * {
-      color: @yp-accent-contrast;
-      white-space: nowrap;
-      padding-right: 4px;
+    > *:nth-child(2) {
+      > * {
+        color: @yp-accent-contrast;
+        white-space: nowrap;
+        width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       &.unconfirmed {
         color: @yp-warning;
