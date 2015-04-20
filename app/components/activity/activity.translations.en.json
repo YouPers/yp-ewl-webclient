@@ -32,8 +32,8 @@
       "selected": "selected",
       "all": "all",
       "inviteByEmail": {
-        "placeholder": "Enter email",
-        "submit": "Add"
+        "placeholder": null,
+        "submit": null
       },
       "inviteByUser": "Search within campaign",
       "invitedOnSave": "Invited when scheduled:",

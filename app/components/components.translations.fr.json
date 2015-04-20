@@ -3,7 +3,8 @@
     "success": {
       "comment": {
         "save": "Commentaire enregistré."
-      }
+      },
+      "pictureSaved": null
     },
     "error": {
       "avatar": {
