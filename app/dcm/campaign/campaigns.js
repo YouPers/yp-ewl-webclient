@@ -157,25 +157,25 @@
                     $scope.campaignEndChangeRecreatesOffers = moment().isBefore($scope.campaign.start) && !usersInCampaign;
                 });
 
-                var campaignLeads = organization.administrators;
 
-                $scope.availableCampaignLeads = function () {
-                    // once the campaignLead is verified, we don't give the option to change anymore,
-                    // only list the current campaignLeads
-                    if ($scope.campaignController.campaignLeadVerified) {
-                        return $scope.campaign.campaignLeads;
-                    } else {
-                        return _.unique(campaignLeads.concat($scope.campaign.campaignLeads), 'id');
-                    }
-                };
+                // availableCampaignLeads
+                // once the campaignLead is verified, we don't give the option to change anymore,
+                // only list the current campaignLeads
+                if ($scope.campaignController.campaignLeadVerified) {
+                    $scope.availableCampaignLeads = $scope.campaign.campaignLeads;
+                } else {
+                    // return a distinct list of campaignLeads, excluding those organisation administrators,
+                    // that are already a campaignLead of any campaign
+                    var campaignLeads = organization.administrators.concat($scope.campaign.campaignLeads);
+                    $scope.availableCampaignLeads = _.unique(_.filter(campaignLeads, function (campaignLead) {
+                        return !_.any(_.flatten(_.map(campaigns, 'campaignLeads')), {id: campaignLead.id});
+                    }), 'id');
+                }
 
                 // we keep the newCampaignLeads in the campaign.newCampaignLeads, for a correct campaign-card
                 $scope.newCampaignLeads = _.filter.bind(this, $scope.campaign.campaignLeads, function (campaignLead) {
                     return !campaignLead.id;
                 });
-                $scope.allCampaignLeads = function () {
-                    return $scope.campaign.campaignLeads.concat($scope.campaign.newCampaignLeads);
-                };
                 $scope.newCampaignLead = {emailValidatedFlag: false};
 
                 $scope.submitNewCampaignLead = function () {
