@@ -11,7 +11,7 @@
                     activity: '=',
                     socialInteraction: '='
                 },
-                templateUrl: 'components/directives/idea-card-directive/idea-card-directive.html',
+                templateUrl: 'components/idea/idea-card-directive/idea-card-directive.html',
 
                 link: function (scope, elem, attrs) {
 

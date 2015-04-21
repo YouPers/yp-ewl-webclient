@@ -71,7 +71,7 @@
 
                     <!-- links -->
 
-                    <div>
+                    <div ng-if="parentState==='dcm'">
 
                         <a ui-sref="dcm.recommendation(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '' })">
                             <i class="fa fa-lightbulb-o" popover-placement="top"  popover="{{::'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
@@ -83,6 +83,14 @@
                         </a>
 
                     </div>
+                    <div ng-if="parentState==='dhc'">
+
+                        <a
+                           ui-sref="dhc.activity(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '', activity: '' })" >
+                            <i class="fa fa-envelope-o" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
+                        </a>
+
+                    </div>
 
 
                     <!-- toggle list item content -->
@@ -90,7 +98,7 @@
 
                         <a href ng-click="toggleListItem($index)">
                             <i class="fa "
-                               ng-class="{ 'fa-chevron-down': dcmIdeasController.expanedListItem === $index, 'fa-chevron-right': dcmIdeasController.expanedListItem !== $index }"></i>
+                               ng-class="{ 'fa-chevron-down': ideasController.expanedListItem === $index, 'fa-chevron-right': ideasController.expanedListItem !== $index }"></i>
                         </a>
 
                     </div>
@@ -98,7 +106,7 @@
 
                 </div>
 
-                <div class="content animate-if" ng-if="dcmIdeasController.expanedListItem === $index ">
+                <div class="content animate-if" ng-if="ideasController.expanedListItem === $index ">
 
                     <idea-card idea="idea"></idea-card>
 
@@ -113,7 +121,7 @@
 
         <div class="header-row"></div>
         <div class="button-row">
-            <button class="btn back-link" ui-sref="dcm.home">
+            <button class="btn back-link" ui-sref="{{parentState == 'dcm' ? 'dcm.home({campaignId: campaign.id})' : 'dhc.game({campaignId: campaign.id})'}}">
                 <span class="fa fa-chevron-left"></span>
                 <span translate>account.backToHome</span>
             </button>

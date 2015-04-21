@@ -22,7 +22,7 @@
     <section>
 
         <idea-edit idea="idea" on-save="onSave" on-cancel="back">
-            <div dropdown is-open="options.dropdownOpen">
+            <div dropdown is-open="options.dropdownOpen" ng-if="parentState == 'dcm'">
                 <ul class="dropdown-menu">
                     <li role="presentation">
                         <a role="menuitem" ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })" translate>
