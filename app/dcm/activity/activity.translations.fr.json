@@ -68,6 +68,7 @@
   "recommendationForm": {
     "submit": "Sauver",
     "delete": null,
+    "publishDates": null,
     "header": {
       "publish": null
     }

@@ -1,6 +1,7 @@
 {
   "activityOfferCard": {
     "authorPrefix": {
+      "ExpertRecommendation": null,
       "Recommendation": null,
       "Invitation": null
     },
