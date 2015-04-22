@@ -26,11 +26,6 @@
                     </label>
                 </div>
 
-                <a class="add-offer" ui-sref="dcm.ideas" ng-if="campaign">
-                    <span translate>dcmhome.addOffer</span>
-                    <i class="fa fa-plus"></i>
-                </a>
-
                 <div class="offer-type">
 
                     <button type="button" class="btn btn-default" ng-model="homeController.offerTypes" btn-radio="'Recommendation'">
@@ -50,12 +45,6 @@
             <!-- activity offers -->
 
             <div class="offer-section-content">
-
-                <div ng-if="campaign && offers.length === 0" class="empty-content">
-
-                    <span class="empty-content-hint" translate>dcmhome.noOffers</span>
-
-                </div>
 
                 <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
                                      activity="offer.activity"
