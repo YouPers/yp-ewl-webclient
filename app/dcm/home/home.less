@@ -123,14 +123,6 @@
         border-right-color: @yp-divider;
       }
 
-      li.active a span {
-        color: @yp-accent;
-      }
-
-      li:hover:not(.active) a span {
-        color: @yp-accent-hover;
-      }
-
       li.disabled a {
         cursor: default;
       }
@@ -188,6 +180,17 @@
         }
         .tab-pane {
           display: none;
+        }
+      }
+
+      &.campaign-lead .nav-tabs.nav-justified {
+
+        li.active a span {
+          color: @yp-accent;
+        }
+
+        li:hover:not(.active) a span {
+          color: @yp-accent-hover;
         }
       }
 

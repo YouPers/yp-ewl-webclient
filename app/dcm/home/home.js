@@ -257,14 +257,8 @@
                         $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
                             if(offerTypes === 'All') {
                                 _getOffersOptions.discriminators = '';
-                                _getOffersOptions.authorType = undefined;
                             } else {
                                 _getOffersOptions.discriminators = offerTypes;
-                                _getOffersOptions.authorType = 'campaignLead';
-                            }
-
-                            if (offerTypes === 'Recommendation') {
-                                $scope.completeCampaignPreparation(4);
                             }
 
                             _loadSocialInteractions();
