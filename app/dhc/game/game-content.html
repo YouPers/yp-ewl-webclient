@@ -68,23 +68,10 @@
 
             </activity-offer-card>
 
-            <div class="activity-offer-card offerYoupers" ui-sref="dhc.ideas">
-
-                    <div class="title sheet primary">
-                        <div><i class="fa fa-search offer"></i></div>
-                        <div translate>Stöbern in der Bibliothek</div>
-                    </div>
-                    <div class="lower-part" translate>Suche in der YOUPERS Bibliothek nach weiteren Ideen</div>
-
-            </div>
-            <div class="activity-offer-card offerYoupers" ui-sref="dhc.idea">
-                <div class="title sheet primary">
-                    <div><i class="fa fa-edit offer"></i></div>
-                    <div>Eigene Idee erstellen</div>
-                </div>
-                <div class="lower-part">Erstelle eine eigene Aktivität und lade Mitarbeitende ein</div>
-
-            </div>
+            <div ng-include="'components/directives/activity-offer-card-directive/default-offer-card-seachidea.html'"
+                 class="activity-offer-card offerYoupers" ui-sref="dhc.ideas"></div>
+            <div ng-include="'components/directives/activity-offer-card-directive/default-offer-card-ownidea.html'"
+                 class="activity-offer-card offerYoupers" ui-sref="dhc.idea"></div>
 
         </div>
 
