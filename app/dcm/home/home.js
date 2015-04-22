@@ -137,7 +137,7 @@
                     $scope.campaignEnded = now.isAfter(campaign.end);
 
                     $scope.campaignStartAvailable = !$scope.campaignEnded;
-                    $scope.offerSectionAvailable = !$scope.campaignEnded;
+                    $scope.offerSectionAvailable = $scope.campaignStarted && !$scope.campaignEnded;
                     $scope.campaignMessagesAvailable = !$scope.campaignEnded;
                     $scope.campaignEndAvailable = moment().businessDiff(moment(campaign.end).startOf('day')) > -2;
 
