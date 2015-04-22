@@ -66,22 +66,6 @@
     "daily": "Giornaliero"
   },
   "recommendationForm": {
-    "title": {
-      "label": "Brani",
-      "placeholder": "Title"
-    },
-    "text": {
-      "label": "Lettera",
-      "placeholder": "Lettera"
-    },
-    "publishFrom": {
-      "label": "Da",
-      "placeholder": "Da"
-    },
-    "publishTo": {
-      "label": "…",
-      "placeholder": "…"
-    },
     "submit": "salva",
     "delete": null,
     "header": {

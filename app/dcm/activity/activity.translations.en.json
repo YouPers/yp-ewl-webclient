@@ -66,24 +66,9 @@
     "daily": "Daily"
   },
   "recommendationForm": {
-    "title": {
-      "label": "Title",
-      "placeholder": "Title"
-    },
-    "text": {
-      "label": "Message",
-      "placeholder": "Message"
-    },
-    "publishFrom": {
-      "label": "From",
-      "placeholder": "From"
-    },
-    "publishTo": {
-      "label": "To",
-      "placeholder": "To"
-    },
     "submit": "Save",
     "delete": "Delete recommendation",
+    "publishDates": "The recommendation {{ recommendation.id ? 'is' : 'will be' }} visible for all campaign participants from now until {{ recommendation.publishTo | date }}",
     "header": {
       "publish": "Publish recommendation"
     }

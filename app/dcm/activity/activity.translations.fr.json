@@ -66,22 +66,6 @@
     "daily": "Quotidien"
   },
   "recommendationForm": {
-    "title": {
-      "label": "Titre",
-      "placeholder": "Titre"
-    },
-    "text": {
-      "label": "Écrire",
-      "placeholder": "Écrire"
-    },
-    "publishFrom": {
-      "label": "De",
-      "placeholder": "De"
-    },
-    "publishTo": {
-      "label": "…",
-      "placeholder": "…"
-    },
     "submit": "Sauver",
     "delete": null,
     "header": {
