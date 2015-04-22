@@ -99,16 +99,6 @@
           "text": "Überprüfe die Daten deiner Kampagne. Korrigiere oder ergänze Informationen"
         },
         "step3": {
-          "link": "zur Aktivitätsübersicht",
-          "tab": "Events",
-          "text": "Wir haben pro Woche einen Kampagnenevent in deinem Namen provisorisch erstellt. Plane diese Events konkret ein oder lösche sie."
-        },
-        "step4": {
-          "link": "zu den Empfehlungen",
-          "tab": "Empfehlungen",
-          "text": "Wir haben pro Tag eine oder zwei Aktivitätsempfehlungen in deinem Namen erstellt. Schaue dir diese an, lösche unpassende und ergänze mit eigenen Empfehlungen."
-        },
-        "step5": {
           "link": "Einladungen erstellen und versenden",
           "tab": "Einladungen",
           "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Versende am Kampagenenstarttag oder am Abend vorher die Einladungen an die Teilnehmer"

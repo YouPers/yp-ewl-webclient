@@ -79,13 +79,6 @@
 
                             }],
 
-                            currentAndFutureInvitations: ['socialInteractions', function(socialInteractions) {
-                                return _.filter(socialInteractions, function(soi) {
-                                    return soi.__t === 'Invitation' && soi.authorType=== 'campaignLead';
-                                });
-                            }],
-
-
                             healthCoachEvent: ['OrganizationService', 'organization', 'campaigns', 'campaign', 'socialInteractions', 'messages', 'UserService',
                                 function (OrganizationService, organization, campaigns, campaign, socialInteractions, messages, UserService) {
 
@@ -125,10 +118,10 @@
 
         .controller('HomeController', ['$scope', '$translate',
             'UserService', 'CampaignService', 'SocialInteractionService',
-            'socialInteractions', 'currentAndFutureInvitations', 'messages',  'campaign', 'campaigns', 'healthCoachEvent',
+            'socialInteractions', 'messages',  'campaign', 'campaigns', 'healthCoachEvent',
             function ($scope, $translate,
                       UserService, CampaignService, SocialInteractionService,
-                      socialInteractions, currentAndFutureInvitations, messages, campaign, campaigns, healthCoachEvent) {
+                      socialInteractions, messages, campaign, campaigns, healthCoachEvent) {
 
                 $scope.homeController = this;
                 $scope.homeScope = $scope;
@@ -158,7 +151,6 @@
 
 
                 $scope.offers = socialInteractions;
-                $scope.currentAndFutureInvitations = currentAndFutureInvitations;
                 $scope.messages = messages;
                 $scope.emailAddress = UserService.principal.getUser().email;
 
@@ -227,9 +219,6 @@
 
                     if(campaign) {
 
-                        $scope.offersWithoutLocation = _.filter(currentAndFutureInvitations, function (offer) {
-                            return offer.__t === 'Invitation' && !offer.activity.location;
-                        });
                         $scope.campaignPreparation = {
                             step1: {
                                 complete: !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
@@ -238,13 +227,7 @@
                                 complete: CampaignService.isComplete(campaign)
                             },
                             step3: {
-                                complete: $scope.offersWithoutLocation.length === 0
-                            },
-                            step4: {
-                                complete: (campaign.preparationComplete >= 4)
-                            },
-                            step5: {
-                                complete: (campaign.preparationComplete >= 5)
+                                complete: (campaign.preparationComplete >= 3)
                             }
 
                         };
