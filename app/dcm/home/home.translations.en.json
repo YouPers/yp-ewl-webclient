@@ -40,6 +40,15 @@
     },
     "addMoreUsers": "Invite more participants by sending them the following link by email:",
     "campaignNotStarted": "Once the campaign is launched, some key data on the progress of your campaign are displayed here.",
+    "campaignSelection": {
+      "header": null,
+      "title": null,
+      "location": null,
+      "participants": null,
+      "campaignLead": null,
+      "duration": null,
+      "selected": null
+    },
     "campaignStart": {
       "header": "Start of campaign",
       "welcomeLink": {

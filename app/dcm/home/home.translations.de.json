@@ -50,7 +50,7 @@
       "selected": "Ausgewählt"
     },
     "campaignStart": {
-      "header": "Vorbereitung der Kampagne",
+      "header": "Start der Kampagne",
       "welcomeLink": {
         "header": "<strong>Option B:</strong> Kampagnen-Einladungen mit deiner Email Anwendung versenden",
         "createDraft": {
@@ -103,7 +103,7 @@
           "tab": "Einladungen",
           "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Versende am Kampagenenstarttag oder am Abend vorher die Einladungen an die Teilnehmer"
         },
-        "notCampaignLead": "Fortschritt der Kampagnenvorbereitung"
+        "notCampaignLead": "Kampagnenstart-Status"
       }
     },
     "participants": {

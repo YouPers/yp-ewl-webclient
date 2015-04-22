@@ -7,6 +7,11 @@
         "Save": "Activity saved",
         "SaveAndInvite": "Dates stored and sent out invitations"
       }
+    },
+    "error": {
+      "activity": {
+        "notParticipating": null
+      }
     }
   },
   "activity": {
