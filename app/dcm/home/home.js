@@ -79,13 +79,6 @@
 
                             }],
 
-                            currentAndFutureInvitations: ['socialInteractions', function(socialInteractions) {
-                                return _.filter(socialInteractions, function(soi) {
-                                    return soi.__t === 'Invitation' && soi.authorType=== 'campaignLead';
-                                });
-                            }],
-
-
                             healthCoachEvent: ['OrganizationService', 'organization', 'campaigns', 'campaign', 'socialInteractions', 'messages', 'UserService',
                                 function (OrganizationService, organization, campaigns, campaign, socialInteractions, messages, UserService) {
 
@@ -125,10 +118,10 @@
 
         .controller('HomeController', ['$scope', '$translate',
             'UserService', 'CampaignService', 'SocialInteractionService',
-            'socialInteractions', 'currentAndFutureInvitations', 'messages',  'campaign', 'campaigns', 'healthCoachEvent',
+            'socialInteractions', 'messages',  'campaign', 'campaigns', 'healthCoachEvent',
             function ($scope, $translate,
                       UserService, CampaignService, SocialInteractionService,
-                      socialInteractions, currentAndFutureInvitations, messages, campaign, campaigns, healthCoachEvent) {
+                      socialInteractions, messages, campaign, campaigns, healthCoachEvent) {
 
                 $scope.homeController = this;
                 $scope.homeScope = $scope;
@@ -144,7 +137,7 @@
                     $scope.campaignEnded = now.isAfter(campaign.end);
 
                     $scope.campaignStartAvailable = !$scope.campaignEnded;
-                    $scope.offerSectionAvailable = !$scope.campaignEnded;
+                    $scope.offerSectionAvailable = $scope.campaignStarted && !$scope.campaignEnded;
                     $scope.campaignMessagesAvailable = !$scope.campaignEnded;
                     $scope.campaignEndAvailable = moment().businessDiff(moment(campaign.end).startOf('day')) > -2;
 
@@ -158,7 +151,6 @@
 
 
                 $scope.offers = socialInteractions;
-                $scope.currentAndFutureInvitations = currentAndFutureInvitations;
                 $scope.messages = messages;
                 $scope.emailAddress = UserService.principal.getUser().email;
 
@@ -227,24 +219,15 @@
 
                     if(campaign) {
 
-                        $scope.offersWithoutLocation = _.filter(currentAndFutureInvitations, function (offer) {
-                            return offer.__t === 'Invitation' && !offer.activity.location;
-                        });
                         $scope.campaignPreparation = {
                             step1: {
-                                complete: !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
-                            },
-                            step2: {
                                 complete: CampaignService.isComplete(campaign)
                             },
+                            step2: {
+                                complete: !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
+                            },
                             step3: {
-                                complete: $scope.offersWithoutLocation.length === 0
-                            },
-                            step4: {
-                                complete: (campaign.preparationComplete >= 4)
-                            },
-                            step5: {
-                                complete: (campaign.preparationComplete >= 5)
+                                complete: (campaign.preparationComplete >= 3)
                             }
 
                         };
@@ -274,14 +257,8 @@
                         $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
                             if(offerTypes === 'All') {
                                 _getOffersOptions.discriminators = '';
-                                _getOffersOptions.authorType = undefined;
                             } else {
                                 _getOffersOptions.discriminators = offerTypes;
-                                _getOffersOptions.authorType = 'campaignLead';
-                            }
-
-                            if (offerTypes === 'Recommendation') {
-                                $scope.completeCampaignPreparation(4);
                             }
 
                             _loadSocialInteractions();

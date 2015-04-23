@@ -159,7 +159,6 @@
                 $scope.isDcm = $state.current.name.indexOf('dcm') !== -1;
                 $scope.isNewActivity = !$scope.isScheduled && !$scope.isRecommendation;
                 $scope.pageTitle = _getPageTitle();
-                $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
 
                 $scope.socialInteraction = socialInteraction || existingCampaignInvitation;
 
@@ -169,9 +168,7 @@
                         authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
                         __t: 'Invitation',
                         activity: activity.id,
-                        idea: $scope.idea.id,
-                        publishFrom: $scope.minPublishDate,
-                        publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate()
+                        idea: $scope.idea.id
                     };
                 }
                 $scope.formContainer = {};
@@ -189,25 +186,6 @@
                 ///////////////////////////////////
                 // setup watchers and event-handlers
 
-                if ($scope.isDcm) {
-                    $scope.$watch('socialInteraction.publishFrom', function (date) {
-                        var si = $scope.socialInteraction;
-                        if (moment(si.publishFrom).isAfter(moment(si.publishTo))) {
-                            si.publishTo = moment(si.publishFrom).startOf('day').toDate();
-                        }
-                    });
-                    $scope.$watch('socialInteraction.publishTo', function (date) {
-                        var si = $scope.socialInteraction;
-                        if (moment(si.publishFrom).isAfter(moment(si.publishTo))) {
-                            si.publishFrom = moment(si.publishTo).startOf('day').toDate();
-                        }
-                    });
-
-                    $scope.$watch('activity.start', function (date) {
-                        var si = $scope.socialInteraction;
-                        si.publishTo = moment($scope.activity.start).endOf('day').toDate();
-                    });
-                }
 
                 $scope.$watch('activity', _.debounce(_validateActivity, 200), true);
 
@@ -328,7 +306,7 @@
                         invitation.activity = savedActivity.id;
 
                         // in the case where this is a newly planned event by a participant, we
-                        // have in $scope.socialInteration the initial recommendation, the user clicked on
+                        // have in $scope.socialInteraction the initial recommendation, the user clicked on
                         // for saving
                         if (invitation.__t === 'Recommendation') {
                             invitation = {
@@ -336,11 +314,12 @@
                                 authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
                                 __t: 'Invitation',
                                 activity: savedActivity.id,
-                                idea: $scope.idea.id,
-                                publishFrom: $scope.minPublishDate,
-                                publishTo: moment(savedActivity.start).endOf('day').toDate()
+                                idea: $scope.idea.id
                             };
                         }
+
+                        // publish dates
+                        _updatePublishDates(invitation, campaign, $scope.events);
 
                         var inviteAll = activityController.inviteOthers === 'all';
                         var inviteNewSelected = $scope.usersToBeInvited.length > 0;
@@ -424,6 +403,11 @@
                         .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
                 }
 
+                function _updatePublishDates(socialInteraction, campaign, events) {
+                    socialInteraction.publishFrom = moment.max(moment(), moment(campaign.start)).toDate();
+                    socialInteraction.publishTo = moment.min(moment(_.last(events).end), moment(campaign.end)).toDate();
+                }
+
                 function _validateActivity(newActivity, old) {
                     // return if the form is in invalid state
                     if ($scope.formContainer.form && !$scope.formContainer.form.$valid) {
@@ -433,6 +417,7 @@
                     if (_.isEqual(newActivity, old) && $scope.isScheduled && $scope.events.length > 0) {
                         return;
                     }
+
 
                     // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
                     var clonedActivity = _.clone($scope.activity);
@@ -463,6 +448,13 @@
                         ActivityService.populateIdeas(events);
                         ActivityService.populateIdeas(conflictingEvents);
                         $scope.events = events;
+
+
+                        // publishTo/publishFrom
+
+                        if($scope.isDcm) {
+                            _updatePublishDates($scope.socialInteraction, campaign, events);
+                        }
 
                     });
                 }

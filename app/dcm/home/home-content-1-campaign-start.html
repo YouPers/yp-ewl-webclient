@@ -27,13 +27,13 @@
 
                     <i class="fa" ng-class="campaignPreparation.step1.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
 
-                    <span>1</span><br>
+                    <span>1</span>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.tab</span>
                 </tab-heading>
 
                 <div>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.text</span>
-                    <a ui-sref="profile" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step1.link</a>
+                    <a ui-sref="dcm.campaign({campaignId: $stateParams.campaignId})" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step1.link</a>
                 </div>
 
             </tab>
@@ -45,13 +45,13 @@
 
                     <i class="fa" ng-class="campaignPreparation.step2.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
 
-                    <span>2</span><br>
+                    <span>2</span>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.tab</span>
                 </tab-heading>
 
                 <div>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.text</span>
-                    <a ui-sref="dcm.campaign({campaignId: $stateParams.campaignId})" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step2.link</a>
+                    <a ui-sref="profile" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step2.link</a>
                 </div>
 
             </tab>
@@ -59,67 +59,17 @@
             <!-- step 3 -->
             <tab active="campaignPreparation.step3.active" disabled="campaignPreparation.step3.disabled">
 
-                <!-- we need to set the filter for offers to "Invitation" to show the correct offers here -->
-                <tab-heading ng-click="homeController.offerTypes = 'Invitation'">
+                <tab-heading>
 
                     <i class="fa" ng-class="campaignPreparation.step3.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
 
-                    <span>3</span><br>
+                    <span>3</span>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.tab</span>
                 </tab-heading>
 
                 <div>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.text</span>
-
-                    <ul class="list-unstyled">
-                        <li ng-repeat="offer in currentAndFutureInvitations">
-                            <a ui-sref="dcm.activity({ edit: true, idea: offer.idea.id, activity: offer.activity.id, socialInteraction: offer.id, mode: 'campaignlead' })"
-                               class="offer">
-                                <h3>{{ offer.activity.title}} ({{offer.activity.start | date}} {{offer.activity.start | time}} {{ offer.activity.location }}) </h3>
-
-                                <i ng-if="offer.activity.location" class="fa fa-check-circle-o"></i>
-
-                                <span ng-if="!offer.activity.location"><i class="fa fa-warning"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                    <a ng-click="homeScope.offerSectionOpen = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step3.link</a>
-
-                </div>
-
-            </tab>
-            <!-- step 4 -->
-            <tab active="campaignPreparation.step4.active" disabled="campaignPreparation.step4.disabled">
-
-                <tab-heading>
-
-                    <i class="fa" ng-class="campaignPreparation.step4.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
-
-                    <span>4</span><br>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step4.tab</span>
-                </tab-heading>
-
-                <div>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step4.text</span>
-
-                    <a ng-click="completeCampaignPreparation(4); homeController.offerTypes = 'Recommendation'; homeScope.offerSectionOpen = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step4.link</a>
-                </div>
-
-            </tab>
-            <!-- step 5 -->
-            <tab active="campaignPreparation.step5.active" disabled="campaignPreparation.step5.disabled">
-
-                <tab-heading>
-
-                    <i class="fa" ng-class="campaignPreparation.step5.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
-
-                    <span>5</span><br>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step5.tab</span>
-                </tab-heading>
-
-                <div>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step5.text</span>
-                    <a ng-if="!homeController.preparationComplete" ng-click="homeController.preparationComplete = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step5.link</a>
+                    <a ng-if="!homeController.preparationComplete" ng-click="homeController.preparationComplete = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step3.link</a>
                 </div>
             </tab>
 
@@ -129,7 +79,7 @@
 
         <!-- campaign invitations -->
 
-        <div ng-if="homeController.preparationComplete && campaignPreparation.step5.active" justified="true">
+        <div ng-if="homeController.preparationComplete && campaignPreparation.step3.active" justified="true">
 
                 <p translate>dcmhome.campaignStart.welcomeLink.createDraft.text</p>
 

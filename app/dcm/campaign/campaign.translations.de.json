@@ -50,15 +50,15 @@
     "offersRemain": "Empfehlungen und Einladungen bleiben erhalten.",
     "campaignEnded": "Die Kampagne ist bereits beendet.",
     "participants": {
-      "label": "Personenkreis",
+      "label": "Teilnehmerkreis",
       "placeholder": "Bezeichnung der Gruppe/Abteilung/Team dieser Kampagne",
-      "$invalid": "Bitte einen gültigen Personenkreis eingeben"
+      "$invalid": "Bitte Teilnehmerkreis eingeben"
     },
     "location": {
-      "label": "Lokalität",
+      "label": "Gebäude/Strasse",
       "placeholder": "Wo findet diese Kampagne statt? (z.B. Gebäude, Trakt, Stockwerk)",
       "error": {
-        "required": "Bitte eine gültige Lokalität eingeben"
+        "required": "Bitte Gebäude/Strasse eingeben"
       }
     },
     "city": {

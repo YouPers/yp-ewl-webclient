@@ -66,24 +66,9 @@
     "daily": "täglich"
   },
   "recommendationForm": {
-    "title": {
-      "label": "Titel",
-      "placeholder": "Titel"
-    },
-    "text": {
-      "label": "Nachricht",
-      "placeholder": "Nachricht"
-    },
-    "publishFrom": {
-      "label": "Von",
-      "placeholder": "Von"
-    },
-    "publishTo": {
-      "label": "Bis",
-      "placeholder": "Bis"
-    },
     "submit": "Speichern",
     "delete": "Empfehlung löschen",
+    "publishDates": "Empfehlung {{ recommendation.id ? 'ist' : 'wird' }} sichtbar für alle Kampagnenteilnehmer ab sofort bis {{ recommendation.publishTo | date }}",
     "header": {
       "publish": "Empfehlung publizieren"
     }
