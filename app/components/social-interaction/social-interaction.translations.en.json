@@ -12,7 +12,8 @@
       "Recommendation": {
         "user": "personal recommendation from",
         "campaignLead": "Campaign recommendation from",
-        "coach": "Digital Coach"
+        "coach": "Digital Coach",
+        "expert": null
       },
       "Message": {
         "user": "Activity comment",

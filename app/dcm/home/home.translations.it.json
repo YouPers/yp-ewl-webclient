@@ -40,6 +40,15 @@
     },
     "addMoreUsers": null,
     "campaignNotStarted": null,
+    "campaignSelection": {
+      "header": null,
+      "title": null,
+      "location": null,
+      "participants": null,
+      "campaignLead": null,
+      "duration": null,
+      "selected": null
+    },
     "campaignStart": {
       "header": null,
       "welcomeLink": {
@@ -90,16 +99,6 @@
           "text": null
         },
         "step3": {
-          "link": null,
-          "tab": null,
-          "text": null
-        },
-        "step4": {
-          "link": null,
-          "tab": null,
-          "text": null
-        },
-        "step5": {
           "link": null,
           "tab": null,
           "text": null
