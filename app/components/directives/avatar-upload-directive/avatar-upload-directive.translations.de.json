@@ -3,6 +3,7 @@
     "progress": {
       "header": "Profilbild wird hochgeladen",
       "cancel": "Abbrechen"
-    }
+    },
+    "defaultAvatarHint": "Lade ein Profilfoto von dir hoch. Ein Foto ist sehr wichtig, damit dich die Teilnehmer der Kampagne erkennen."
   }
 }

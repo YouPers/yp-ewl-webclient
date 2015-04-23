@@ -16,6 +16,20 @@ avatar {
 
 avatar-upload {
 
+  .avatar.default-avatar {
+    border: 1px solid @yp-warning;
+    position: relative;
+  }
+  .avatar.default-avatar:after {
+    content: "\f071";
+    display: block;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    font-family: FontAwesome;
+    color: @yp-warning;
+  }
+
   display: block;
   cursor: pointer;
 
@@ -44,7 +58,6 @@ avatar-upload {
       }
 
       > div {
-
         position: relative;
         margin: auto;
         width: 50%;

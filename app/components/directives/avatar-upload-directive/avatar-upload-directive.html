@@ -1,7 +1,14 @@
 <div class="avatar-upload" onclick="document.getElementById('avatarUpload').click()" ng-if="uploader">
     <!-- ng-if because of this:  https://github.com/nervgh/angular-file-upload/issues/183 -->
 
-    <div class="avatar" ng-style="{ 'background-image': 'url(' + user.avatar + ')' }"></div>
+    <div class="avatar"
+         ng-style="{ 'background-image': 'url(' + user.avatar + ')' }"
+         ng-class="{ 'default-avatar': defaultAvatar }"
+
+         popover="{{ 'avatarUpload.defaultAvatarHint' | translate }}"
+         popover-trigger="{{ defaultAvatar ? 'mouseenter' : '' }}"
+         popover-placement="top" popover-append-to-body="true"
+            ></div>
 
     <input id="avatarUpload" nv-file-select type="file" ng-hide="true" uploader="uploader">
 

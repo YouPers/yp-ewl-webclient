@@ -25,6 +25,8 @@
                     link: function (scope, elem, attrs) {
 
                         scope.user = UserService.principal.getUser();
+                        scope.defaultAvatar = UserService.hasDefaultAvatar(scope.user);
+
                         scope.uploader = ImageService.getImageUploader(attrs.type || 'user', scope,
                             function successCb(url) {
                                 var user = UserService.principal.getUser();
@@ -52,12 +54,13 @@
 
                     if(!scope.user) {
                         scope.user = authenticatedUser;
-
-                    }
-                    if(UserService.hasDefaultAvatar(scope.user)) {
-                        scope.showAvatarUpload = true;
                     }
 
+                    scope.$watch(function () {
+                        return authenticatedUser.id === scope.user.id && UserService.hasDefaultAvatar(scope.user)
+                    }, function (showAvatarUpload) {
+                        scope.showAvatarUpload = showAvatarUpload;
+                    });
                 }
             };
         }]);
