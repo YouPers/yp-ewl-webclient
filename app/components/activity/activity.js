@@ -157,7 +157,7 @@
                 $scope.isInvitation = socialInteraction && socialInteraction.__t === 'Invitation';
                 $scope.isRecommendation = socialInteraction && socialInteraction.__t === 'Recommendation';
                 $scope.isDcm = $state.current.name.indexOf('dcm') !== -1;
-                $scope.isNewCampaignActivity = $scope.isCampaignLead && !$scope.isScheduled && $scope.isDcm;
+                $scope.isNewActivity = !$scope.isScheduled && !$scope.isRecommendation;
                 $scope.pageTitle = _getPageTitle();
 
                 $scope.socialInteraction = socialInteraction || existingCampaignInvitation;
@@ -459,7 +459,6 @@
                     });
                 }
 
-
                 function _getPageTitle() {
                     if ($scope.isScheduled) {
                         return 'PlannedActivity';
@@ -469,6 +468,8 @@
                         return 'Recommendation';
                     } else if ($scope.isCampaignLead) {
                         return 'NewCampaignActivity';
+                    } else if (!$scope.isScheduled && !$scope.socialInteraction) {
+                        return 'newActivity';
                     } else {
                         throw new Error('Unknown state');
                     }
