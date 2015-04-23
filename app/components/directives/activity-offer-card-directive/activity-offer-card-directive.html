@@ -69,14 +69,14 @@
             <img ng-src="{{ socialInteraction.author.avatar }}">
         </div>
         <div>
-            <div class="caption">{{'activityOfferCard.authorPrefix.' + socialInteraction.__t | translate}}</div>
+            <div class="caption">{{'activityOfferCard.authorPrefix.' + (socialInteraction.authorType === 'expert' ? 'ExpertRecommendation' : socialInteraction.__t) | translate}}</div>
             <div class="author" ng-bind="socialInteraction.author.fullname" title="{{ socialInteraction.author.fullname }}"></div>
         </div>
 
 
     </div>
 
-    <div class="publishedDate" ng-if="isDcm">
+    <div class="publishedDate" ng-if="isDcm && socialInteraction.publishFrom && socialInteraction.publishTo">
 
         <div>
             <span translate>activityOfferCard.published</span>

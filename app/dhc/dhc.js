@@ -49,6 +49,7 @@
             function ($scope, $rootScope, $state, $timeout, UserService, campaign) {
                 var user = UserService.principal.getUser();
                 $rootScope.$log.log('DhcController is run now.');
+                $scope.parentState = 'dhc';
 
                 // there was no campaign in the URL of this dhc.* state, so we try to get the campaign of the current
                 // user and redirect

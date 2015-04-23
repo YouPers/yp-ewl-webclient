@@ -24,12 +24,6 @@
 
         </div>
 
-        <div>
-
-            <idea-card idea="idea" activity="activity"></idea-card>
-
-        </div>
-
 
     </section>
 
@@ -46,13 +40,14 @@
 
         </div>
 
-        <div class="publish" ng-model="recommendation.publishFrom" synchronized-date="recommendation.publishTo">
+        <div>
 
-            <label translate>recommendationForm.publishFrom.label</label>
-            <date-picker min-date="minPublishDate" max-date="campaign.end" date="recommendation.publishFrom"></date-picker>
-            <label translate>recommendationForm.publishTo.label</label>
-            <date-picker min-date="minPublishDate" max-date="campaign.end" date="recommendation.publishTo"></date-picker>
+            <idea-card idea="idea" activity="activity"></idea-card>
 
+        </div>
+
+        <div class="publish">
+            <span translate="recommendationForm.publishDates" translate-values="{ recommendation: recommendation }"></span>
         </div>
 
         <div class="clearfix"></div>

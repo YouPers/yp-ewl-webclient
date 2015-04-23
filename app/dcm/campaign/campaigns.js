@@ -118,8 +118,8 @@
                         throw new Error("no topic found, we should always have a topic to create a new campaign");
                     }
 
-                    // default start date = Monday in 2 weeks
-                    var start = new Date(moment().day(1).hour(8).minutes(0).seconds(0).add(2, 'weeks'));
+                    // default start date = today
+                    var start = new Date(moment().hour(8).minutes(0).seconds(0));
                     // default end date = Friday of the 4th week since the start date
                     var end = new Date(moment(start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
                     $scope.campaign = {

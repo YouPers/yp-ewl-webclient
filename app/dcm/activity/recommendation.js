@@ -60,7 +60,7 @@
                     }],
 
                     publishFrom: $scope.minPublishDate,
-                    publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate(),
+                    publishTo: moment.min(moment($scope.minPublishDate).add(1, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate(),
                     __t: "Recommendation"
 
                 };

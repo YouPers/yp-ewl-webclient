@@ -1,11 +1,16 @@
 {
   "activityOfferCard": {
     "authorPrefix": {
+      "ExpertRecommendation": "Expert recommendation",
       "Recommendation": "Recommended by",
       "Invitation": "Invitation from"
     },
     "published": "published:",
     "from": "from",
-    "to": "to"
+    "to": "to",
+    "createOwnIdea": null,
+    "createOwnIdeaText": null,
+    "searchIdea": null,
+    "searchIdeaText": null
   }
 }

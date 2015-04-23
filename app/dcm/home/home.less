@@ -111,16 +111,57 @@
 
   .campaign-start {
 
-    .nav-tabs.nav-justified li.active a {
-      border-bottom-color: transparent;
-    }
     .nav-tabs.nav-justified {
+
+      li a {
+        border-color: @yp-divider transparent;
+      }
+      li:first-of-type a {
+        border-left-color: @yp-divider;
+      }
+      li:last-of-type a {
+        border-right-color: @yp-divider;
+      }
+
       li.disabled a {
         cursor: default;
       }
       a {
         text-align: left;
         background: none;
+      }
+      @yp-cl-guidance-arrow-height: 44px;
+      @yp-cl-guidance-arrow-width: 22px;
+      li:not(:last-of-type) a {
+        &:after {
+          content: " ";
+          display: block;
+          width: 0;
+          height: 0;
+          border-top: @yp-cl-guidance-arrow-height/2 solid transparent;           /* Go big on the size, and let overflow hide */
+          border-bottom: @yp-cl-guidance-arrow-height/2 solid transparent;
+          border-left: @yp-cl-guidance-arrow-width solid white;
+          position: absolute;
+          top: 50%;
+          margin-top: -@yp-cl-guidance-arrow-height/2;
+          left: 90%;
+          z-index: 2;
+        }
+        &:before {
+          content: " ";
+          display: block;
+          width: 0;
+          height: 0;
+          border-top: @yp-cl-guidance-arrow-height/2 solid transparent;
+          border-bottom: @yp-cl-guidance-arrow-height/2 solid transparent;
+          border-left: @yp-cl-guidance-arrow-width solid @yp-divider;
+          position: absolute;
+          top: 50%;
+          margin-top: -@yp-cl-guidance-arrow-height/2;
+          margin-left: 1px;
+          left: 90%;
+          z-index: 1;
+        }
       }
     }
     tab-heading span {
@@ -142,7 +183,16 @@
         }
       }
 
+      &.campaign-lead .nav-tabs.nav-justified {
 
+        li.active a span {
+          color: @yp-accent;
+        }
+
+        li:hover:not(.active) a span {
+          color: @yp-accent-hover;
+        }
+      }
 
       i.fa {
         cursor: default;
@@ -280,30 +330,14 @@
 
   .offer-section {
 
-    .add-offer:hover {
-      color: @yp-accent-hover;
-    }
-    .add-offer {
-      .button();
-      color: @yp-primary;
-      position: absolute;
-
-      top: 0;
-      right: 10px;
-
-      i.fa {
-        font-size: 16px;
-      }
-    }
-
     .offer-filter {
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
     }
 
     .offer-type {
       position: absolute;
-      top: 25px;
+      top: 0;
       right: 5px;
 
       i.fa {

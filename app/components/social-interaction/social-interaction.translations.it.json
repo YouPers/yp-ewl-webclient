@@ -12,7 +12,8 @@
       "Recommendation": {
         "user": null,
         "campaignLead": null,
-        "coach": null
+        "coach": null,
+        "expert": null
       },
       "Message": {
         "user": null,

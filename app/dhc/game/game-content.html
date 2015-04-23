@@ -52,21 +52,20 @@
 
         <div class="offered-activities-content">
 
-            <div ng-if="offers.length === 0">
-
-                <span class="empty-content-hint" translate>game.noOffers</span>
-
-            </div>
-
             <activity-offer-card type="{{ offer.__t.toLowerCase() }}"
                                  activity="offer.activity"
                                  idea="offer.idea"
                                  social-interaction="offer"
                                  ng-repeat="offer in offers"
-                                 ng-click="openSocialInteraction(offer)"
+                                 ng-click="openSocialInteraction(offer)" class="activity-offer-card"
                     >
 
             </activity-offer-card>
+
+            <div ng-include="'components/directives/activity-offer-card-directive/default-offer-card-searchidea.html'"
+                 class="activity-offer-card offerYoupers" ui-sref="dhc.ideas"></div>
+            <div ng-include="'components/directives/activity-offer-card-directive/default-offer-card-ownidea.html'"
+                 class="activity-offer-card offerYoupers" ui-sref="dhc.idea"></div>
 
         </div>
 

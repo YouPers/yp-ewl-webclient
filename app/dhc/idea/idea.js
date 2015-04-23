@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('yp.dcm')
+    angular.module('yp.dhc')
 
         .config(['$stateProvider', '$urlRouterProvider', 'accessLevels', '$translateWtiPartialLoaderProvider',
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
-                    .state('dcm.ideas', {
+                    .state('dhc.ideas', {
                         url: "/ideas",
-                        access: accessLevels.campaignlead,
+                        access: accessLevels.individual,
                         views: {
                             content: {
                                 templateUrl: 'components/idea/ideas.html',
@@ -26,9 +26,9 @@
                             }]
                         }
                     })
-                    .state('dcm.idea', {
+                    .state('dhc.idea', {
                         url: "/ideas/:id",
-                        access: accessLevels.campaignlead,
+                        access: accessLevels.individual,
                         views: {
                             content: {
                                 templateUrl: 'components/idea/idea.html',
@@ -36,13 +36,14 @@
                             }
                         },
                         resolve: {
-                            idea: ['$stateParams', 'ActivityService', 'CampaignService',
-                                function ($stateParams, ActivityService, CampaignService) {
+                            idea: ['$stateParams', 'ActivityService', 'CampaignService', 'UserService',
+                                function ($stateParams, ActivityService, CampaignService, UserService) {
                                     if ($stateParams.id) {
                                         return ActivityService.getIdea($stateParams.id);
                                     } else {
                                         return ActivityService.newIdea($stateParams.campaignId);
                                     }
+
                                 }],
                             topics: ['TopicService', function(TopicService) {
                                 return TopicService.getTopics();

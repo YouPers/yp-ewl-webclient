@@ -9,13 +9,12 @@
                 return {
 
                     restrict: 'EA',
-                    templateUrl: 'components/directives/idea-edit-directive/idea-edit-directive.html',
+                    templateUrl: 'components/idea/idea-edit-directive/idea-edit-directive.html',
                     transclude: true,
                     scope: {
                         idea: "=",
                         topics: "=",
-                        onSave: "=",
-                        onCancel: "="
+                        ideaForm: "="
                     },
 
                     link: function ($scope, elem, attrs) {
@@ -47,45 +46,10 @@
                             return (UserService.principal.getUser().roles.indexOf('productadmin') !== -1);
                         };
 
-                        $scope.save = function() {
-                            if ($scope.idea.noDefaultStartTime) {
-                                $scope.idea.defaultStartTime = "";
-                            } else {
-                                // noDefaultStartTime is not selected, check whether a real date is in idea.defaultStartTime,
-                                // if not: set to current date
-                                // -> prevents the empty idea.defaultStartTime, when the
-                                // timepicker is not manually touched by the user
-                                if (!$scope.idea.defaultStartTime) {
-                                    $scope.idea.defaultStartTime = new Date();
-                                }
-                            }
-
-                            // reset the currentCampaign to the idea, the user might have changed it
-                            if (CampaignService.currentCampaign) {
-                                $scope.idea.campaign = CampaignService.currentCampaign;
-                            }
-                            ActivityService.saveIdea($scope.idea).then(function (result) {
-                                // reinitialize the UI flag for noDefaultStartTime
-                                result.noDefaultStartTime = !idea.defaultStartTime;
-                                $scope.idea = result;
-
-                                if(attrs.onSave) {
-                                    $scope.onSave(result);
-                                }
-
-                            });
-                        };
-
-                        $scope.cancel = function() {
-                            if(attrs.onCancel) {
-                                $scope.onCancel();
-                            }
-                        };
-
 
                         $scope.selectIdeaImage = function selectIdeaImage() {
                             var modalInstance = $modal.open({
-                                templateUrl: 'components/directives/idea-edit-directive/idea-image-modal.html',
+                                templateUrl: 'components/idea/idea-edit-directive/idea-image-modal.html',
                                 controller: 'IdeaImageModalController',
                                 resolve: {
 

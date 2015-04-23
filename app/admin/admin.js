@@ -9,7 +9,7 @@
         ])
 
 
-        .config(['$stateProvider', 'accessLevels', '$translateWtiPartialLoaderProvider', function ($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
+        .config(['$stateProvider', 'accessLevels', function ($stateProvider, accessLevels) {
 
             $stateProvider
                 .state('admin', {

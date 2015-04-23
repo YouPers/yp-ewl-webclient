@@ -11,7 +11,7 @@
                     activity: '=',
                     socialInteraction: '='
                 },
-                templateUrl: 'components/directives/idea-card-directive/idea-card-directive.html',
+                templateUrl: 'components/idea/idea-card-directive/idea-card-directive.html',
 
                 link: function (scope, elem, attrs) {
 
@@ -23,7 +23,10 @@
                     // show edit link:
                     // - if we are not currently on one of the edit states
                     // - the user is the author of the idea
-                    scope.showEditLink = $state.current.name !== 'dcm.idea' && $state.current.name !== 'admin.idea-edit' &&
+                    scope.showEditLink =
+                        $state.current.name !== 'dhc.idea' &&
+                        $state.current.name !== 'dcm.idea' &&
+                        $state.current.name !== 'admin.idea-edit' &&
                         (scope.idea.author || scope.idea.author.id) === UserService.principal.getUser().id;
 
                     scope.flip = function() {
