@@ -2,28 +2,68 @@
 
 // avatar ( placeholder is needed for upload )
 .avatar {
-  margin: 5px;
   width: 48px;
   height: 48px;
+  background-size: cover;
   img {
     width: 100%;
   }
 }
 
-.avatar-upload .avatar.placeholder {
-  border: 1px dashed greenyellow;
-}
-.avatar-upload .avatar {
-  width: 100px;
-  height: 100px;
-  background-size: cover;
+avatar {
+  display: block;
 }
 
-.organization .avatar-upload .avatar {
-  width: 265px;
-  height: 167px;
-}
-.campaign .avatar-upload .avatar {
-  width: 265px;
-  height: 167px;
+avatar-upload {
+
+  .avatar.default-avatar {
+    border: 1px solid @yp-warning;
+    position: relative;
+  }
+  .avatar.default-avatar:after {
+    content: "\f071";
+    display: block;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    font-family: FontAwesome;
+    color: @yp-warning;
+  }
+
+  display: block;
+  cursor: pointer;
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(1,1,1,0.2);
+
+    > div {
+
+      position: relative;
+      margin: auto;
+      height: 50%;
+      top: 25%;
+      background-color: @yp-secondary;
+      text-align: center;
+
+      @media(min-width: @screen-sm) {
+        width: 50%;
+      }
+      @media(max-width: @screen-sm) {
+        width: 80%;
+      }
+
+      > div {
+        position: relative;
+        margin: auto;
+        width: 50%;
+        top: 30%;
+      }
+    }
+  }
 }

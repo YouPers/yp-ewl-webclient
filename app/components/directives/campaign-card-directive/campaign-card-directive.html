@@ -1,5 +1,5 @@
 <div ng-class="'topic' + campaign.topic.name">
-    <div class="avatar">
+    <div class="campaign-avatar">
         <img ng-src="{{ campaign.avatar }}">
     </div>
     <div class="topic sheet primary">
@@ -34,7 +34,7 @@
     </div>
     <div ng-init="unconfirmed = campaign.campaignLeads[0].emailValidatedFlag === false" class="campaign-lead sheet row">
         <div class="col-xs-3">
-            <img ng-src="{{campaign.campaignLeads[0].avatar}}" class="avatar-image">
+            <avatar ng-if="campaign.campaignLeads[0]" user="campaign.campaignLeads[0]" class="campaign-lead-avatar"></avatar>
         </div>
         <div class="col-xs-9">
             <div translate class="leader-label">campaign.card.campaignLead</div>

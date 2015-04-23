@@ -4,14 +4,14 @@
 
     <li class="list-group-item clearfix">
         <form name="composeCommentForm" class="form-horizontal" ng-submit="saveMessage()">
-            <img class="avatar" ng-src="{{ user.avatar }}">
+            <avatar user="user"></avatar>
             <textarea ng-keypress="keypress($event)"
                       class="form-control"
                       ng-model="message.text"
                       ng-focus="showPostButton=true"
                       ng-blur="onCommentAreaBlur()"
                       ng-attr-placeholder="{{ 'composeCommentForm.comment.paceholder' | translate }}" ></textarea>
-            <button ng-show="showPostButton" class="btn btn-primary pull-right" translate>composeCommentForm.submit</button>
+            <button ng-show="showPostButton" class="btn btn-flat pull-right" translate>composeCommentForm.submit</button>
 
         </form>
     </li>
