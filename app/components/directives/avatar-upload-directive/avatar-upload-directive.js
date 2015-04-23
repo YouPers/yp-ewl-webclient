@@ -56,10 +56,21 @@
                         scope.user = authenticatedUser;
                     }
 
+                    var isAuthenticatedUser = authenticatedUser.id === scope.user.id;
+
                     scope.$watch(function () {
-                        return authenticatedUser.id === scope.user.id && UserService.hasDefaultAvatar(scope.user)
+
+                        // check authenticated user (omit parameter) for the case of a change due to the upload
+                        // TODO:
+                        // research if there is a better way to reevaluate the user in the scope attribute,
+                        // something like scope: { user: '&' } and scope.$eval
+
+                        return  isAuthenticatedUser && UserService.hasDefaultAvatar(isAuthenticatedUser ? undefined : scope.user);
                     }, function (showAvatarUpload) {
                         scope.showAvatarUpload = showAvatarUpload;
+                        if(isAuthenticatedUser) {
+                            scope.user = UserService.principal.getUser();
+                        }
                     });
                 }
             };
