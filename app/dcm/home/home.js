@@ -221,10 +221,10 @@
 
                         $scope.campaignPreparation = {
                             step1: {
-                                complete: !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
+                                complete: CampaignService.isComplete(campaign)
                             },
                             step2: {
-                                complete: CampaignService.isComplete(campaign)
+                                complete: !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
                             },
                             step3: {
                                 complete: (campaign.preparationComplete >= 3)
