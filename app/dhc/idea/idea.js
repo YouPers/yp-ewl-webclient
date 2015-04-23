@@ -8,7 +8,7 @@
                 $stateProvider
                     .state('dhc.ideas', {
                         url: "/ideas",
-                        access: accessLevels.campaignlead,
+                        access: accessLevels.individual,
                         views: {
                             content: {
                                 templateUrl: 'components/idea/ideas.html',
@@ -28,7 +28,7 @@
                     })
                     .state('dhc.idea', {
                         url: "/ideas/:id",
-                        access: accessLevels.campaignlead,
+                        access: accessLevels.individual,
                         views: {
                             content: {
                                 templateUrl: 'components/idea/idea.html',
