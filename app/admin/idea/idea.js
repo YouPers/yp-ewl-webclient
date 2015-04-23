@@ -255,8 +255,8 @@
             };
         }])
 
-        .controller('IdeaAdminController', ['$scope', '$rootScope',  'ActivityService', 'AssessmentService', 'TopicService', 'Restangular',
-            function ($scope, $rootScope, ActivityService, AssessmentService, TopicService, Restangular) {
+        .controller('IdeaAdminController', ['$scope', '$rootScope',  'ActivityService', 'AssessmentService', 'TopicService',
+            function ($scope, $rootScope, ActivityService, AssessmentService, TopicService) {
 
                 $scope.assessment = {questions: []};
                 $scope.$watch('idea.topics', function (newValue, oldValue) {
