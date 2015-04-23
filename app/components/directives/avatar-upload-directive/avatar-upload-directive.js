@@ -48,11 +48,14 @@
                 },
                 link: function (scope, elem, attrs) {
 
+                    var authenticatedUser = UserService.principal.getUser();
+
                     if(!scope.user) {
-                        scope.user = UserService.principal.getUser();
-                        if(UserService.hasDefaultAvatar()) {
-                            scope.showAvatarUpload = true;
-                        }
+                        scope.user = authenticatedUser;
+
+                    }
+                    if(UserService.hasDefaultAvatar(scope.user)) {
+                        scope.showAvatarUpload = true;
                     }
 
                 }

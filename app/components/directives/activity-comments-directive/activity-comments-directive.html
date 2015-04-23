@@ -4,7 +4,7 @@
 
     <li class="list-group-item clearfix">
         <form name="composeCommentForm" class="form-horizontal" ng-submit="saveMessage()">
-            <img class="avatar" ng-src="{{ user.avatar }}">
+            <avatar user="user.avatar"></avatar>
             <textarea ng-keypress="keypress($event)"
                       class="form-control"
                       ng-model="message.text"
