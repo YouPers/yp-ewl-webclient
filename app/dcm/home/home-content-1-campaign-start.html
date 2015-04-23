@@ -83,7 +83,7 @@
 
                 <p translate>dcmhome.campaignStart.welcomeLink.createDraft.text</p>
 
-                <a ng-href="{{ homeController.createDraftUrl }}" class="btn btn-default" ng-click="completeCampaignPreparation(5)" translate>
+                <a ng-href="{{ homeController.createDraftUrl }}" class="btn btn-default" ng-click="completeCampaignPreparation(3)" translate>
                     dcmhome.campaignStart.welcomeLink.createDraft.link
                 </a>
 
@@ -95,7 +95,7 @@
                        because there is an issue with html5mode in ui-router with angular 1.3
                        see http://stackoverflow.com/questions/26220037/ui-sref-not-generating-hash-in-url-angular-1-3-0-rc-3
                  -->
-                <div class="welcome-link" select-on-click ng-show="campaign.id" ng-click="completeCampaignPreparation(5)">{{ homeController.welcomeLink }}
+                <div class="welcome-link" select-on-click ng-show="campaign.id" ng-click="completeCampaignPreparation(3)">{{ homeController.welcomeLink }}
                 </div>
         </div>
 
