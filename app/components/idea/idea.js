@@ -37,7 +37,9 @@
                         // reinitialize the UI flag for noDefaultStartTime
                         result.noDefaultStartTime = !idea.defaultStartTime;
                         $scope.idea = result;
-                        $scope.idea.uiRecWeights = $scope.idea.getRecWeightsByQuestionId();
+                        if ($scope.idea.getRecWeightsByQuestionId) {
+                            $scope.idea.uiRecWeights = $scope.idea.getRecWeightsByQuestionId();
+                        }
                         $scope.ideaForm.$setPristine();
                     });
                 };
