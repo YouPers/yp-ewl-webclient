@@ -405,7 +405,7 @@
                         UserService.login({
                             username: $stateParams.username,
                             password: $scope.passwordResetObj.password
-                        }).then(function () {
+                        }, true).then(function () {
                             $state.go('dcm.home');
                         });
                     });
