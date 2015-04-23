@@ -459,7 +459,6 @@
                     });
                 }
 
-
                 function _getPageTitle() {
                     if ($scope.isScheduled) {
                         return 'PlannedActivity';
@@ -469,6 +468,8 @@
                         return 'Recommendation';
                     } else if ($scope.isCampaignLead) {
                         return 'NewCampaignActivity';
+                    } else if (!$scope.isScheduled && !$scope.socialInteraction) {
+                        return 'newActivity';
                     } else {
                         throw new Error('Unknown state');
                     }
