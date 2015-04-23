@@ -203,7 +203,7 @@
                         firstIncompleteStep.enabled = true;
                     } else {
                         // enable last step
-                        $scope.campaignPreparation.step5.active = true;
+                        $scope.campaignPreparation.step3.active = true;
                     }
                     _.each($scope.campaignPreparation, function (step) {
                         step.disabled = !step.enabled && !step.complete;
