@@ -4,6 +4,10 @@
     angular.module('yp.components.avatarUpload', [])
 
 
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('components/directives/avatar-upload-directive/avatar-upload-directive');
+        }])
+
     /**
      * directive: avatar-upload
      *

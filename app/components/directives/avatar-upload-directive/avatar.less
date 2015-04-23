@@ -10,20 +10,44 @@
   }
 }
 
-.avatar-upload .avatar.placeholder {
-  border: 1px dashed greenyellow;
-}
-.avatar-upload .avatar {
-  width: 100px;
-  height: 100px;
-  background-size: cover;
-}
+avatar-upload {
 
-.organization .avatar-upload .avatar {
-  width: 265px;
-  height: 167px;
-}
-.campaign .avatar-upload .avatar {
-  width: 265px;
-  height: 167px;
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(1,1,1,0.2);
+
+    > div {
+
+      position: relative;
+      margin: auto;
+      height: 50%;
+      top: 25%;
+      background-color: @yp-secondary;
+
+      @media(min-width: @screen-sm) {
+        width: 50%;
+      }
+      @media(max-width: @screen-sm) {
+        width: 80%;
+      }
+
+      > div {
+
+        position: relative;
+        margin: auto;
+        width: 50%;
+        top: 30%;
+      }
+    }
+  }
+
+
+
+  .progress {
+  }
 }
