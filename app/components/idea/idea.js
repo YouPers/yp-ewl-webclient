@@ -3,12 +3,15 @@
 
     angular.module('yp.components')
 
-        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+        .config(['$translateWtiPartialLoaderProvider', function ($translateWtiPartialLoaderProvider) {
             $translateWtiPartialLoaderProvider.addPart('components/idea/idea');
         }])
 
-        .controller('IdeaController', ['$scope', '$rootScope', '$state', '$window', 'ActivityService', 'idea', 'campaign',
-            function ($scope, $rootScope, $state, $window, ActivityService, idea, campaign) {
+        .controller('IdeaController', ['$scope', '$rootScope', '$state', '$window', 'ActivityService', 'topics', 'idea', 'campaign',
+            function ($scope, $rootScope, $state, $window, ActivityService, topics, idea, campaign) {
+
+                topics.byId = _.indexBy(topics, 'id');
+                $scope.topics = topics;
 
                 // if it has an id, it comes from the backend, so we use the Restangular clone method,
                 // otherwise use lodash
@@ -30,18 +33,19 @@
                         }
                     }
 
-                    $scope.idea.campaign = campaign.id || campaign;
-
                     ActivityService.saveIdea($scope.idea).then(function (result) {
                         // reinitialize the UI flag for noDefaultStartTime
                         result.noDefaultStartTime = !idea.defaultStartTime;
                         $scope.idea = result;
+                        $scope.idea.uiRecWeights = $scope.idea.getRecWeightsByQuestionId();
                         $scope.ideaForm.$setPristine();
                     });
                 };
 
                 $scope.cancel = function () {
                     $scope.idea = ideaClone.id ? ideaClone.clone() : _.clone(ideaClone);
+                    $scope.idea.uiRecWeights = $scope.idea.getRecWeightsByQuestionId();
+                    $scope.ideaForm.$setPristine();
                 };
 
             }

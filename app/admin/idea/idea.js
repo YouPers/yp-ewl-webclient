@@ -33,15 +33,22 @@
                         views: {
                             content: {
                                 templateUrl: "admin/idea/idea-admin.html",
-                                controller: "IdeaAdminCtrl"
+                                controller: "IdeaController"
                             }
                         },
                         access: accessLevels.admin,
                         resolve: {
                             idea: ['ActivityService', '$stateParams', function (ActivityService, $stateParams) {
-                                return ActivityService.getIdea($stateParams.ideaId);
+                                if ($stateParams.ideaId) {
+                                    return ActivityService.getIdea($stateParams.ideaId);
+                                } else {
+                                    return ActivityService.newIdea($stateParams.campaignId);
+                                }
                             }],
-                            topics: ['TopicService', function (TopicService) {
+                            campaign: function() {
+                                return null;
+                            },
+                            topics: ['TopicService', function(TopicService) {
                                 return TopicService.getTopics();
                             }]
                         }
@@ -248,49 +255,27 @@
             };
         }])
 
-        .controller('IdeaAdminCtrl', ['$scope', '$rootScope', 'idea', 'ActivityService', 'AssessmentService', 'TopicService', 'Restangular', 'topics',
-            function ($scope, $rootScope, loadedIdea, ActivityService, AssessmentService, TopicService, Restangular, topics) {
+        .controller('IdeaAdminController', ['$scope', '$rootScope',  'ActivityService', 'AssessmentService', 'TopicService', 'Restangular',
+            function ($scope, $rootScope, ActivityService, AssessmentService, TopicService, Restangular) {
 
-                var idea;
-                if (!loadedIdea) {
-                    idea = Restangular.restangularizeElement(null, {
-                        number: 'NEW',
-                        source: "youpers",
-                        defaultfrequency: "once",
-                        "defaultexecutiontype": "self",
-                        "defaultvisibility": "private",
-                        "defaultduration": 60,
-                        "defaultStartTime": moment().startOf('hour'),
-                        fields: [],
-                        recWeights: [],
-                        topics: []
-                    }, 'ideas');
-                } else {
-                    idea = loadedIdea.clone();
-                }
-
-                $scope.idea = idea;
                 $scope.assessment = {questions: []};
-                $scope.topics = topics;
-
                 $scope.$watch('idea.topics', function (newValue, oldValue) {
-                        $scope.selectedTopics = _.filter(topics, function (topic) {
-                            return _.contains(idea.topics, topic.id);
+                        $scope.selectedTopics = _.filter($scope.topics, function (topic) {
+                            return _.contains($scope.idea.topics, topic.id);
                         }, true);
                     }
                 );
-
 
                 $scope.$watch('currentTopic', function (newVal, oldVal) {
                     if (newVal) {
                         AssessmentService.getAssessment(newVal)
                             .then(function (assessment) {
                                 _.forEach(assessment.questions, function (question) {
-                                    if (!_.any(idea.recWeights, function (recWeight) {
+                                    if (!_.any($scope.idea.recWeights, function (recWeight) {
                                         return recWeight[0] === question.id;
                                     })) {
-                                        idea.recWeights.push([question.id, 0, 0]);
-                                        $scope.recWeights = idea.getRecWeightsByQuestionId();
+                                        $scope.idea.recWeights.push([question.id, 0, 0]);
+                                        $scope.idea.uiRecWeights = $scope.idea.getRecWeightsByQuestionId();
                                     }
                                 });
                                 $scope.assessment = assessment;
@@ -304,7 +289,7 @@
                     var weekday = 'MO';
 
                     topic.templateCampaignOffers.push({
-                        idea: idea.id,
+                        idea: $scope.idea.id,
                         type: 'Recommendation',
                         week: week,
                         weekday: weekday
@@ -321,27 +306,16 @@
                     });
                 };
 
-
                 // Weighting to generate recommendation of idea based on answers of this assessment
                 // initialize weights if they do not yet exist
-                if (!idea.recWeights || idea.recWeights.length === 0) {
-                    idea.recWeights = [];
+                if (!$scope.idea.recWeights || $scope.idea.recWeights.length === 0) {
+                    $scope.idea.recWeights = [];
                 }
 
                 // backend does not store emtpy (0/0) weights, but our UI needs an empty record for each question
                 // so we add one for all questions that don't have one
+                $scope.idea.uiRecWeights = $scope.idea.getRecWeightsByQuestionId();
 
-
-                $scope.recWeights = idea.getRecWeightsByQuestionId();
-
-                $scope.onSave = function () {
-                    $scope.$state.go('admin.idea-list', $rootScope.$stateParams);
-                    $rootScope.$emit('clientmsg:success', 'idea.save');
-                };
-
-                $scope.onCancel = function () {
-                    $scope.$state.go('admin.idea-list', $rootScope.$stateParams);
-                };
             }]);
 
 

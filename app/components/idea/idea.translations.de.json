@@ -138,7 +138,8 @@
       "planCampaignLeadPopover": "'Einplanen' bedeutet, dass du einen Ort und eine Zeit festlegst für diesen Event und die Kampagnenteilnehmer eingeladen werden teilzunehmen. Es wird im Normalfall erwartet, dass du selber am Event anwesend bist",
       "planParticipant": "Einplanen",
       "planParticipantText": "Diese Aktivität einplanen",
-      "planParticipantPopover": "Du kannst diese Aktivität für dich einplanen und dann, wenn du möchtest weitere Teilnehmer dazu einladen."
+      "planParticipantPopover": "Du kannst diese Aktivität für dich einplanen und dann, wenn du möchtest weitere Teilnehmer dazu einladen.",
+      "cancel": "abbrechen"
     }
   }
 }

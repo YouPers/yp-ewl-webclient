@@ -38,29 +38,16 @@
                         resolve: {
                             idea: ['$stateParams', 'ActivityService', 'CampaignService', 'UserService',
                                 function ($stateParams, ActivityService, CampaignService, UserService) {
-
                                     if ($stateParams.id) {
                                         return ActivityService.getIdea($stateParams.id);
                                     } else {
-
-                                        return CampaignService.getCampaign($stateParams.campaignId).then(function (campaign) {
-
-                                            return {
-                                                source: "campaign",
-                                                defaultfrequency: "once",
-                                                "defaultexecutiontype": "group",
-                                                "defaultvisibility": "campaign",
-                                                "defaultduration": 60,
-                                                topics: [campaign.topic.id],
-                                                campaign: $stateParams.campaignId,
-                                                number: "Custom",
-                                                author: UserService.principal.getUser()
-                                            };
-                                        });
-
+                                        return ActivityService.newIdea($stateParams.campaignId);
                                     }
 
-                                }]
+                                }],
+                            topics: ['TopicService', function(TopicService) {
+                                return TopicService.getTopics();
+                            }]
                         }
                     });
 

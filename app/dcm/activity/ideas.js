@@ -17,7 +17,10 @@
                         },
                         resolve: {
                             ideas: ['ActivityService', 'campaign', function (ActivityService, campaign) {
-                                return ActivityService.getIdeas({campaign: campaign.id || campaign, topic: campaign.topic.id || campaign.topic}).then(function (ideas) {
+                                return ActivityService.getIdeas({
+                                    campaign: campaign.id || campaign,
+                                    topic: campaign.topic.id || campaign.topic
+                                }).then(function (ideas) {
                                     return _.sortBy(ideas, "title");
                                 });
                             }]
@@ -33,36 +36,22 @@
                             }
                         },
                         resolve: {
-                            idea: ['$stateParams', 'ActivityService', 'CampaignService', function ($stateParams, ActivityService, CampaignService) {
-
-                                if ($stateParams.id) {
-                                    return ActivityService.getIdea($stateParams.id);
-                                } else {
-
-                                    return CampaignService.getCampaign($stateParams.campaignId).then(function (campaign) {
-
-                                        return {
-                                            source: "campaign",
-                                            defaultfrequency: "once",
-                                            "defaultexecutiontype": "group",
-                                            "defaultvisibility": "campaign",
-                                            "defaultduration": 60,
-                                            topics: [campaign.topic.id],
-                                            campaign: $stateParams.campaignId,
-                                            number: "Custom"
-                                        };
-                                    });
-
-                                }
-
+                            idea: ['$stateParams', 'ActivityService', 'CampaignService',
+                                function ($stateParams, ActivityService, CampaignService) {
+                                    if ($stateParams.id) {
+                                        return ActivityService.getIdea($stateParams.id);
+                                    } else {
+                                        return ActivityService.newIdea($stateParams.campaignId);
+                                    }
+                                }],
+                            topics: ['TopicService', function(TopicService) {
+                                return TopicService.getTopics();
                             }]
                         }
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/activity/activity');
             }]);
-
-
 
 
 }());
