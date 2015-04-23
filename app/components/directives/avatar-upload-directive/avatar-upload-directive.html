@@ -1,7 +1,8 @@
 <div class="avatar-upload" onclick="document.getElementById('avatarUpload').click()" ng-if="uploader">
     <!-- ng-if because of this:  https://github.com/nervgh/angular-file-upload/issues/183 -->
 
-    <div avatar class="avatar"></div>
+    <div class="avatar" ng-style="{ 'background-image': 'url(' + user.avatar + ')' }"></div>
+
     <input id="avatarUpload" nv-file-select type="file" ng-hide="true" uploader="uploader">
 
     <div ng-transclude></div>
