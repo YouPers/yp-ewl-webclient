@@ -3,31 +3,45 @@
 
     angular.module('yp.components')
 
-        .controller('IdeaController', ['$scope', '$rootScope', '$state', '$window', 'ActivityService', 'idea',
-            function ($scope, $rootScope, $state, $window, ActivityService, idea) {
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('components/idea/idea');
+        }])
+
+        .controller('IdeaController', ['$scope', '$rootScope', '$state', '$window', 'ActivityService', 'idea', 'campaign',
+            function ($scope, $rootScope, $state, $window, ActivityService, idea, campaign) {
+
+                // if it has an id, it comes from the backend, so we use the Restangular clone method,
+                // otherwise use lodash
+                var ideaClone = idea.id ? idea.clone() : _.clone(idea);
 
                 $scope.options = {};
                 $scope.idea = idea;
 
-                var backToPreviousState = $state.$current.previous.name === 'dcm.activity' ||
-                    $state.$current.previous.name === 'dcm.recommendation';
-
-                $scope.onSave = function (idea) {
-                    if (backToPreviousState) {
-                        $scope.back();
-                    } else if ($scope.parentState === 'dcm') {
-                        $scope.idea = idea;
-                        $scope.options.dropdownOpen = true;
-                    } else if ($scope.parentState === 'dhc') {
-                        $scope.$state.go('dhc.activity', {idea: idea.id, activity: '', socialInteraction: ''});
-                    }
-                };
-                $scope.back = function () {
-                    if (backToPreviousState) {
-                        $window.history.back();
+                $scope.save = function () {
+                    if ($scope.idea.noDefaultStartTime) {
+                        $scope.idea.defaultStartTime = "";
                     } else {
-                        $state.go('homedispatcher');
+                        // noDefaultStartTime is not selected, check whether a real date is in idea.defaultStartTime,
+                        // if not: set to current date
+                        // -> prevents the empty idea.defaultStartTime, when the
+                        // timepicker is not manually touched by the user
+                        if (!$scope.idea.defaultStartTime) {
+                            $scope.idea.defaultStartTime = new Date();
+                        }
                     }
+
+                    $scope.idea.campaign = campaign.id || campaign;
+
+                    ActivityService.saveIdea($scope.idea).then(function (result) {
+                        // reinitialize the UI flag for noDefaultStartTime
+                        result.noDefaultStartTime = !idea.defaultStartTime;
+                        $scope.idea = result;
+                        $scope.ideaForm.$setPristine();
+                    });
+                };
+
+                $scope.cancel = function () {
+                    $scope.idea = ideaClone.id ? ideaClone.clone() : _.clone(ideaClone);
                 };
 
             }
@@ -38,7 +52,6 @@
                 var ideasController = this;
                 $scope.campaign = campaign;
                 $scope.ideas = ideas;
-
 
 
                 $scope.toggleListItem = function ($index) {

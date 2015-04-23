@@ -127,5 +127,18 @@
   "executiontype": {
     "self": "Selber",
     "group": "Gruppe"
+  },
+  "idea": {
+    "edit": {
+      "recommend": "Empfehlen",
+      "recommendText": "Diese Aktivität empfehlen",
+      "recommendPopover": "'Empfehlen' bedeutet, dass diese Aktivität den Teilnehmenden als Tipp präsentiert wird und jeder sie für sich selber einplanen kann.",
+      "planCampaignLead": "Einplanen",
+      "planCampaignLeadText": "Diese Aktivität als Kampagnenevent einplanen",
+      "planCampaignLeadPopover": "'Einplanen' bedeutet, dass du einen Ort und eine Zeit festlegst für diesen Event und die Kampagnenteilnehmer eingeladen werden teilzunehmen. Es wird im Normalfall erwartet, dass du selber am Event anwesend bist",
+      "planParticipant": "Einplanen",
+      "planParticipantText": "Diese Aktivität einplanen",
+      "planParticipantPopover": "Du kannst diese Aktivität für dich einplanen und dann, wenn du möchtest weitere Teilnehmer dazu einladen."
+    }
   }
 }

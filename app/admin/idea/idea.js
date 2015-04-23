@@ -47,7 +47,7 @@
                         }
                     });
 
-                $translateWtiPartialLoaderProvider.addPart('admin/idea/idea');
+                $translateWtiPartialLoaderProvider.addPart('components/idea/idea');
 
             }])
 

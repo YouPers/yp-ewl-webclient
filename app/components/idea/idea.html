@@ -1,10 +1,3 @@
-<div class="row">
-    <div class="col-sm-12">
-
-    </div>
-</div>
-
-
 <div class="three-column-layout">
 
     <section>
@@ -20,28 +13,67 @@
     </section>
 
     <section>
-
-        <idea-edit idea="idea" on-save="onSave" on-cancel="back">
-            <div dropdown is-open="options.dropdownOpen" ng-if="parentState == 'dcm'">
-                <ul class="dropdown-menu">
-                    <li role="presentation">
-                        <a role="menuitem" ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })" translate>
-                            activity.newInvitation
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" ui-sref="dcm.recommendation({ idea: idea.id })" translate>
-                            activity.newRecommendation
-                        </a></li>
-                </ul>
-            </div>
-        </idea-edit>
-
+        <div class="header-row"></div>
+        <idea-edit idea="idea" idea-form="ideaForm"></idea-edit>
     </section>
 
     <section>
+        <div class="header-row">
+            <button class="btn back-link"
+                    ui-sref="{{parentState == 'dcm' ? 'dcm.home({campaignId: campaign.id})' : 'dhc.game({campaignId: campaign.id})'}}">
+                <span class="fa fa-chevron-left"></span>
+                <span translate>account.backToHome</span>
+            </button>
+        </div>
+        <div class="button-row">
+            <button type="button" class="btn btn-default" ng-click="cancel()" translate ng-disabled="!ideaForm.$dirty">abbrechen</button>
+            <button type="button" class="btn btn-primary" ng-click="ideaForm.$valid && save() || (ideaForm.submitted = true)" ng-disabled="idea.id && !ideaForm.$dirty" translate>activity.save
+            </button>
+        </div>
 
+        <div ng-if="idea.id">
+            <div class="row" ng-if="parentState=='dcm' && idea.defaultexecutiontype== 'group'">
+                <div class="col-xs-6">
+                    <span translate>idea.edit.planCampaignLeadText</span>
+                    <i class="fa fa-info-circle" popover="{{'idea.edit.planCampaignLeadPopover' | translate}}" popover-trigger="mouseenter" popover-placement="bottom"></i>
+                </div>
+
+                <button type="button" class="btn btn-primary col-xs-6" ng-disabled="ideaForm.$dirty"
+                        ui-sref="dcm.activity({ idea: idea.id, mode: 'campaignlead' })">
+                    <i class="fa fa-envelope-o"></i>
+                    <span translate>idea.edit.planCampaignLead</span>
+                </button>
+            </div>
+            <br>
+
+            <div class="row" ng-if="parentState=='dcm'">
+                <div class="col-xs-6">
+                    <span translate>idea.edit.recommendText</span>
+                    <i class="fa fa-info-circle" popover="{{'idea.edit.recommendPopover' | translate}}" popover-trigger="mouseenter" popover-placement="bottom"  ></i>
+                </div>
+
+                <button  type="button" class="btn btn-primary col-xs-6" ng-disabled="ideaForm.$dirty"
+                        ui-sref="dcm.recommendation({ idea: idea.id })">
+                    <i class="fa fa-lightbulb-o"></i>
+                    <span translate>idea.edit.recommend</span>
+                </button>
+
+            </div>
+            <div class="row" ng-if="parentState=='dhc'">
+                <div class="col-xs-6">
+                    <span translate>idea.edit.planParticipantText</span>
+                    <i class="fa fa-info-circle" popover="{{'idea.edit.planParticipantPopover' | translate}}" popover-trigger="mouseenter" popover-placement="bottom"></i>
+                </div>
+
+                <button class="btn btn-primary" class="col-xs-6" ng-disabled="ideaForm.$dirty"
+                        ui-sref="dhc.activity({ idea: idea.id})">
+
+                    <i class="fa fa-lightbulb-o"></i>
+                    <span translate>idea.edit.planParticipant</span>
+                </button>
+
+            </div>
+        </div>
+        <health-coach event="'stateEnter'"></health-coach>
     </section>
-
-
 </div>

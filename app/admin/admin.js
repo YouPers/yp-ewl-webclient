@@ -5,11 +5,11 @@
     angular.module('yp.admin',
         [
             'yp.components.user',
-            'ngSanitize'
+            'ngSanitize',
         ])
 
 
-        .config(['$stateProvider', 'accessLevels', '$translateWtiPartialLoaderProvider', function ($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
+        .config(['$stateProvider', 'accessLevels', function ($stateProvider, accessLevels) {
 
             $stateProvider
                 .state('admin', {
