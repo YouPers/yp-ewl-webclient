@@ -157,42 +157,22 @@
                     $scope.campaignEndChangeRecreatesOffers = moment().isBefore($scope.campaign.start) && !usersInCampaign;
                 });
 
+                var newCampaignLeadEmpty = {emailValidatedFlag: false};
 
-                // availableCampaignLeads
-                // once the campaignLead is verified, we don't give the option to change anymore,
-                // only list the current campaignLeads
-                if ($scope.campaignController.campaignLeadVerified) {
-                    $scope.availableCampaignLeads = $scope.campaign.campaignLeads;
-                } else {
-                    // return a distinct list of campaignLeads, excluding those organisation administrators,
-                    // that are already a campaignLead of any campaign
-                    var campaignLeads = organization.administrators.concat($scope.campaign.campaignLeads);
-                    $scope.availableCampaignLeads = _.unique(_.filter(campaignLeads, function (campaignLead) {
-                        return !_.any(_.flatten(_.map(campaigns, 'campaignLeads')), {id: campaignLead.id});
-                    }), 'id');
-                }
-
-                // we keep the newCampaignLeads in the campaign.newCampaignLeads, for a correct campaign-card
-                $scope.newCampaignLeads = _.filter.bind(this, $scope.campaign.campaignLeads, function (campaignLead) {
-                    return !campaignLead.id;
-                });
-                $scope.newCampaignLead = {emailValidatedFlag: false};
+                $scope.newCampaignLead = _.clone(newCampaignLeadEmpty);
 
                 $scope.submitNewCampaignLead = function () {
                     $scope.newCampaignLead.fullname = $scope.newCampaignLead.firstname + ' ' + $scope.newCampaignLead.lastname;
                     $scope.newCampaignLead.username = $scope.newCampaignLead.email;
                     $scope.newCampaignLead.avatar = config.webclientUrl + '/assets/img/default_avatar_woman.png';
                     $scope.campaign.campaignLeads = [_.clone($scope.newCampaignLead)];
-                    _.each($scope.newCampaignLead, function (value, key) {
-                        delete $scope.newCampaignLead[key];
-                    });
 
+                    $scope.newCampaignLead = _.clone(newCampaignLeadEmpty);
                     $scope.campaignForm.$setDirty();
                     $scope.campaignLeadForm.$setPristine();
                     $scope.campaignController.showNewCampainleadForm = false;
                     $scope.campaignLeadChanged = true;
                 };
-
 
                 $scope.isAssigned = function (campaignLead) {
                     return _.any($scope.campaign.campaignLeads, function (cl) {
@@ -206,18 +186,6 @@
                     });
                 };
 
-                $scope.assignCampaignLead = function (campaignLead) {
-                    if ($scope.isAssigned(campaignLead)) {
-                        _.remove($scope.campaign.campaignLeads, {id: campaignLead.id});
-                    } else {
-                        $scope.campaign.campaignLeads = [campaignLead];
-                    }
-                    if ($scope.initialMainCampaignLeadId && $scope.initialMainCampaignLeadId !== campaignLead.id) {
-                        $scope.campaignLeadChanged = true;
-                    } else {
-                        $scope.campaignLeadChanged = false;
-                    }
-                };
 
                 $scope.validatePaymentCode = function (code) {
                     var validationFailedResult = config.paymentCodeChecking === 'disabled' ? true : false;
@@ -248,6 +216,23 @@
                 };
 
                 $scope.canDelete = $scope.campaign.id && !usersInCampaign && $scope.isOrgAdm($scope.principal.getUser());
+
+                $scope.canBecomeCampaignLead = function() {
+                    var user = $scope.principal.getUser();
+
+                    var isOrgAdmin = _.any(organization.administrators, function (oa) {
+                        return oa.id === user.id;
+                    });
+                    var leadsOrParticipatesInOtherCampaign = user.campaign;
+
+                    var isAlreadySelected = ($scope.campaign.campaignLeads[0] && $scope.campaign.campaignLeads[0].id) === user.id;
+                    return isOrgAdmin && !leadsOrParticipatesInOtherCampaign && !isAlreadySelected;
+
+                };
+
+                $scope.becomeCampaignLead = function() {
+                    $scope.campaign.campaignLeads = [$scope.principal.getUser()];
+                };
 
                 $scope.deleteCampaign = function () {
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "deleteCampaign"});
@@ -307,10 +292,7 @@
                         $scope.campaign.start = moment($scope.campaign.start).startOf('day').toDate();
                         $scope.campaign.end = moment($scope.campaign.end).endOf('day').toDate();
 
-                        // preserve the main campaignlead
-                        var options = {
-                            defaultCampaignLead: $scope.campaign.campaignLeads[0]
-                        };
+                        var options = {};
 
                         if (campaignId) {
                             // provide campaignId as query parameter, does not work as body parameter
