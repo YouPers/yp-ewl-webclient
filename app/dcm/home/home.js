@@ -246,7 +246,8 @@
                         $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $scope.$state.href('welcome',{campaignId: campaign.id});
                         var createDraftLocals = {
                             organizationName: campaign.organization.name,
-                            welcomeLink: $scope.homeController.welcomeLink
+                            welcomeLink: $scope.homeController.welcomeLink,
+                            campaign: campaign
                         };
 
                         $scope.homeController.createDraftUrl =
