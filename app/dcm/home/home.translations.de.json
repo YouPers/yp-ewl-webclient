@@ -57,7 +57,7 @@
           "text": "Du kannst die Einladungen mit deiner Email Anwendung versenden, indem du auf den nachfolgenden Button klickst:",
           "link": "Email Entwurf<br/>erstellen",
           "recipient": "deine.teilnehmer@deinunternehmen.com",
-          "subject": "{{ organizationName }} Kampagne Stressmanagement: Persönliche Einladung",
+          "subject": "{{ organizationName }} Kampagne {{campaign.title}}: Persönliche Einladung",
           "body": "Liebe Mitarbeiterin, lieber Mitarbeiter\n\n{{ organizationName }} lädt dich ein, an der betrieblichen Gesundheitskampagne teilzunehmen. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen.\n\nBenutze diesen Link: {{ welcomeLink }}"
         },
         "copyLink": "Falls die Email Generierung nicht funktioniert, kannst du den nachfolgenden Link in deine Email-Einladungen kopieren."

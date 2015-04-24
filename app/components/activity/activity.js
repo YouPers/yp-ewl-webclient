@@ -157,6 +157,7 @@
                 $scope.isInvitation = socialInteraction && socialInteraction.__t === 'Invitation';
                 $scope.isRecommendation = socialInteraction && socialInteraction.__t === 'Recommendation';
                 $scope.isDcm = $state.current.name.indexOf('dcm') !== -1;
+                $scope.isDhc = $state.current.name.indexOf('dhc') !== -1;
                 $scope.isNewActivity = !$scope.isScheduled && !$scope.isRecommendation;
                 $scope.pageTitle = _getPageTitle();
 
