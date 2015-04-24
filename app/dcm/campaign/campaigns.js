@@ -247,7 +247,7 @@
                     });
                 };
 
-                $scope.canDelete = $scope.campaign.id && !usersInCampaign;
+                $scope.canDelete = $scope.campaign.id && !usersInCampaign && $scope.isOrgAdm($scope.principal.getUser());
 
                 $scope.deleteCampaign = function () {
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "deleteCampaign"});
