@@ -262,12 +262,26 @@
 
         <!--buttons for new CampaignActivity -->
 
-        <div class="button-row" ng-if="isNewActivity">
+        <div class="button-row" ng-if="isNewActivity && isDcm">
             <button class="btn btn-primary"
                     ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
 
                 {{ 'activity.submit.campaignleadSave' | translate }}
+            </button>
+            <button class="btn btn-default pull-right" ng-click="backToGame()">
+                {{ 'activity.submit.cancel' | translate }}
+            </button>
+        </div>
+
+        <!--buttons for general new Activity in DHC, without Recommendation -->
+
+        <div class="button-row" ng-if="isNewActivity && isDhc">
+            <button class="btn btn-primary"
+                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
+                <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
+
+                {{ 'activity.submit.newActivityDhcSave' | translate }}
             </button>
             <button class="btn btn-default pull-right" ng-click="backToGame()">
                 {{ 'activity.submit.cancel' | translate }}
