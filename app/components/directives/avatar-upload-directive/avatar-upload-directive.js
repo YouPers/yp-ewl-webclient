@@ -25,7 +25,12 @@
                     link: function (scope, elem, attrs) {
 
                         scope.user = UserService.principal.getUser();
-                        scope.defaultAvatar = UserService.hasDefaultAvatar(scope.user);
+
+                        scope.$watch(function () {
+                            return scope.user.avatar;
+                        }, function (avatar) {
+                            scope.defaultAvatar = UserService.hasDefaultAvatar(scope.user);
+                        });
 
                         scope.uploader = ImageService.getImageUploader(attrs.type || 'user', scope,
                             function successCb(url) {
