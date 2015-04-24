@@ -3,8 +3,8 @@
 
     angular.module('yp.components.activity')
 
-        .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',
-            function ($http, Restangular, $q, UserService, $rootScope) {
+        .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope', 'localStorageService',
+            function ($http, Restangular, $q, UserService, $rootScope, localStorageService) {
                 var ideas = Restangular.all('ideas');
                 var activities = Restangular.all('activities');
                 var activityEvents = Restangular.all('activityevents');
@@ -281,6 +281,16 @@
                             idea.campaign = campaignId;
                         }
                         return idea;
+                    },
+
+                    updateActivityLookahead: function (activity) {
+
+                        if(activity.id) {
+                            var localStorageKey = 'user=' + UserService.principal.getUser().id;
+                            var localStorage = localStorageService.get(localStorageKey) || {};
+                            localStorage[activity.id] = moment();
+                            localStorageService.set(localStorageKey, localStorage);
+                        }
                     },
 
                     populateIdeas: _populateIdeas

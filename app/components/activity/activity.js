@@ -128,11 +128,11 @@
         })
 
 
-        .controller('ActivityController', ['$scope', '$rootScope', '$state', '$stateParams', '$timeout',
+        .controller('ActivityController', ['$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'localStorageService',
             'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService', 'CampaignService',
             'healthCoachEvent', // this resolve is from dhc or dcm activity state
             'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'existingCampaignInvitation', 'invitationStatus',
-            function ($scope, $rootScope, $state, $stateParams, $timeout,
+            function ($scope, $rootScope, $state, $stateParams, $timeout, localStorageService,
                       UserService, ActivityService, SocialInteractionService, HealthCoachService, CampaignService, healthCoachEvent,
                       campaign, idea, activity, activityEvents, socialInteraction, existingCampaignInvitation, invitationStatus) {
 
@@ -182,6 +182,11 @@
                 activityController.canEdit = $scope.isScheduled && $scope.isOwner;
                 activityController.canDelete = $scope.isScheduled && ($scope.isOwner || $scope.isJoiner);
 
+
+
+                ///////////////////////////////////
+                // update activity lookahead
+                ActivityService.updateActivityLookahead(activity);
 
                 ///////////////////////////////////
                 // setup watchers and event-handlers
