@@ -39,7 +39,7 @@
         }
       },
       "ideas": {
-        "stateEnter": "Lieber Kampagnenleiter\n\nSchaue dir die von mir bereitgestellten Aktivitätsideen an und überlege dir, welche Aktivitätsideen du den Kampagnenteilnehmern \"zum selber machen\" oder \"in der Gruppe\" empfehlen willst bzw. welche du selber als Organisator eines Kampagnen-Aktivitätstermins einplanen willst.\n\nAlternativ kannst du auch selber eine Aktivitätsidee erstellen, die du dann den Kampagnenteilnehmern entweder empfehlen kannst, oder zu der du dann selber einlädst."
+        "stateEnter": "Lieber Kampagnenleiter\n\nSchaue dir die von mir bereitgestellten Ideen an und suche dir eine Aktivität aus, die dir gefällt.\n\nKlicke auf das Glühbirne-Symbol der gewünschten Aktivität, um sie den Kampagnenteilnehmern zur Durchführung zu empfehlen. Der Kampagnenteilnehmer kann dann selber entscheiden, ob er die empfohlene Aktivität für sich einplanen möchte oder nicht. Beachte dabei, dass es sowohl Aktivitäten \"zum selber machen\" als auch \"Gruppenaktivitäten\" gibt.\n\nKlicke auf das Brief-Symbol der gewünschten Aktivität, um sie als Kampagnen-Event einzuplanen. Mit der Einplanung werden die Kampagnenteilnehmer automatisch von dir als Organisator eingeladen, am Kampagnen-Event teilzunehmen."
       },
       "organization": {
         "missingFields": "Lieber Service Manager\n\nIch möchte dich darauf hinweisen, dass noch folgende Angaben zur vollständigen Erfassung deiner Organisation fehlen: {{ fields }}"
