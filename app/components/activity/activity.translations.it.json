@@ -26,7 +26,8 @@
         "Invitation": null,
         "NewCampaignActivity": null,
         "PlannedActivity": null,
-        "Recommendation": null
+        "Recommendation": null,
+        "newActivity": null
       }
     },
     "comment": {

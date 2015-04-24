@@ -26,7 +26,8 @@
         "Invitation": "Invitation",
         "NewCampaignActivity": "New campaign activity",
         "PlannedActivity": "Your activity",
-        "Recommendation": "Recommendation"
+        "Recommendation": "Recommendation",
+        "newActivity": null
       }
     },
     "comment": {
