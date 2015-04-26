@@ -586,6 +586,10 @@
 
 
                     $scope.$watch('activityController.inviteOthers', function(newValue, oldVal) {
+                        // if I am not the organizer of this event, I will never publish an invitation for it
+                        if (user.id !== activity.owner.id) {
+                            return;
+                        }
                         if (newValue === 'none') {
                             $scope.soiPublished = undefined;
                         } else if (newValue === 'all') {
