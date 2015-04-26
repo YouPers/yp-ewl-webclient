@@ -169,25 +169,28 @@
                 $scope.pageTitle = _getPageTitle();
 
                 // we deal with possibly two SocialInteractions here
-                // - the Soi that caused the user to come here: an Invitation or a Recommendation BY ANOTHER user that
-                //   this user is answering by clicking on the buttons on the right side.
+                // - the Soi that caused the user to come here and needs to be answered:
+                //   an Invitation or a Recommendation BY ANOTHER user that this user is answering by clicking
+                //   on the buttons on the right side.
                 //   --> $scope.soiToAnswer
                 // - the Soi that is being published by me by saving this activity, authored by me.
                 //   --> $scope.soiPublished
                 //
+                //
                 // The user came here either by clicking a Soi or by clicking on a planned activity event (without
                 // directly referencing a Social Interaction, so we need to fill in our scope attriubtes with
-                // the correct Sois
+                // the correct Sois. The Soi a user clicked on can be the one being published (in case a campaignlead
+                // clicks it in DCM) or, more common, one to answer here. We need to figure out what we have...
 
-                // if the user came here by clicking a Soi, but the Soi is not authored by himself, the he needs
-                // to answer to Soi
+                // if the user came here by clicking a Soi, but the Soi is not authored by himself, then he needs
+                // to answer the Soi
                 if (clickedSocialInteraction &&
                     (user.id !== (clickedSocialInteraction.author.id || clickedSocialInteraction.author))) {
                     $scope.soiToAnswer = clickedSocialInteraction;
                 }
 
                 // if the user clicked on a SocialInteraction of type Invitation AND he is the author of it, he has the option to
-                // edit it, same if there is existing campaignInvitation authored by this user
+                // edit it, same if there is an existing campaignInvitation authored by this user
                 if (clickedSocialInteraction &&
                     clickedSocialInteraction.__t === 'Invitation' &&
                     ((clickedSocialInteraction.author.id || clickedSocialInteraction.author) === user.id)) {
@@ -196,15 +199,6 @@
                     ((existingCampaignInvitation.author.id || existingCampaignInvitation.author) === user.id)) {
                     $scope.soiPublished = existingCampaignInvitation;
                 }
-
-                var invitationTemplate = {
-                        author: user,
-                        authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
-                        __t: 'Invitation',
-                        activity: activity.id,
-                        idea: $scope.idea.id
-                    };
-
 
                 $scope.formContainer = {};
 
@@ -494,7 +488,7 @@
                         return 'Invitation';
                     } else if ($scope.isRecommendation) {
                         return 'Recommendation';
-                    } else if ($scope.isCampaignLead) {
+                    } else if ($scope.isDcm) {
                         return 'NewCampaignActivity';
                     } else if (!$scope.isScheduled && !$scope.soiToAnswer) {
                         return 'newActivity';
@@ -514,18 +508,26 @@
                 }
 
                 function _setupInvitationsControl() {
+                    $scope.invitedUsers = [];
+
                     if ($scope.isScheduled) {
 
                         // set the organizer's invitation status if this is already scheduled, so he shows up as organizer
                         activity.owner.invitationStatus = 'organizer';
-                        $scope.invitedUsers = [activity.owner];
+                        $scope.invitedUsers.push(activity.owner);
 
-                        if (existingCampaignInvitation && existingCampaignInvitation.id) { // check if campaign is already invited
+                        if (existingCampaignInvitation) {
+                            // check if campaign is already invited, do the check with existingCampaignInvitation because
+                            // this includes the all-invitation also if it is not authored by the current user
+                            // (the $scope.soiPublished is only there is this user publishes the Invitation.
                             activityController.inviteOthers = 'all';
+
+                            // we have invited everybody, so we cannot undo this invitation and go back to
+                            // "selected" or "none":  user needs to cancel the event if he is not happy with "inviting all"
                             $scope.inviteLocked = true;
                         }
 
-                        // find out whether we do inviteAll oder Selected or nobody
+                        // find out whether we have already invited some individuals.
                         if (invitationStatus && invitationStatus.length > 0) {
                             activityController.inviteOthers = activityController.inviteOthers || 'selected';
                             _.each(invitationStatus, function (status) {
@@ -534,15 +536,22 @@
                                 $scope.invitedUsers.push(user);
                             });
                         }
-                    } else {
-                        $scope.invitedUsers = [];
 
+                        // well, we have not invited 'all' and not invited any individuals, it is save to
+                        // assume that we have not invited anybody yet!
+                        activityController.inviteOthers = activityController.inviteOthers || 'none';
+
+                    } else {
+                        // this is a new, unsaved activity
+                        // in DCM we always force to invite 'all', no other option possible
                         if ($scope.isDcm) {
                             activityController.inviteOthers = 'all';
                             $scope.inviteLocked = true;
                         }
+
+                        // in DHC we make the user choose, so we leave activityController.inviteOthers empty in the
+                        // beginning
                     }
-                    activityController.inviteOthers = activityController.inviteOthers || 'none';
 
                     // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
                     $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
@@ -565,6 +574,32 @@
                             return user.id ? user.id === item.id : user === item;
                         });
                     };
+
+
+                    var invitationTemplate = {
+                        author: user,
+                        authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
+                        __t: 'Invitation',
+                        activity: activity.id,
+                        idea: $scope.idea.id
+                    };
+
+
+                    $scope.$watch('activityController.inviteOthers', function(newValue, oldVal) {
+                        if (newValue === 'none') {
+                            $scope.soiPublished = undefined;
+                        } else if (newValue === 'all') {
+                            $scope.soiPublished = existingCampaignInvitation || _.clone(invitationTemplate);
+                        } else if (newValue === 'selected') {
+                            $scope.soiPublished = _.clone(invitationTemplate);
+                        } else if (!newValue) {
+                            // newValue is empty, this is in the beginning, do nothing
+                        } else {
+                            throw new Error('this should not be possible');
+                        }
+                    });
+
+
 
                 }
             }
