@@ -39,6 +39,7 @@
                             populate: 'author',
                             targetId: $stateParams.campaignId,
                             authored: true,
+                            dismissed: true,
                             publishFrom: false,
                             publishTo: false,
                             "filter[activity]": activity.id
