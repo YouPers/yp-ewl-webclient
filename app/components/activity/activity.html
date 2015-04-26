@@ -49,7 +49,7 @@
         <!-- read only view -->
         <div ng-if="!activityController.formEnabled">
             <activity-view activity="activity" is-campaign-lead="isDcm"
-                           social-interaction="socialInteraction" calender-link-active="isJoiner || isOwner"></activity-view>
+                           social-interaction="soiPublished" calender-link-active="isJoiner || isOwner"></activity-view>
             <div class="activity-view">
                 <dl class="dl-horizontal">
 
@@ -62,7 +62,7 @@
         <!-- new and edit view -->
         <div ng-if="activityController.formEnabled">
             <activity-edit activity="activity" campaign="campaign" form="formContainer.form"
-                           is-campaign-lead="isDcm" social-interaction="socialInteraction"></activity-edit>
+                           is-campaign-lead="isDcm"></activity-edit>
 
             <!-- new invitations -->
             <div ng-if="!isDcm && idea.defaultexecutiontype !== 'self' && isOwner && !inviteLocked"
@@ -196,6 +196,7 @@
         </div>
 
         <div ng-if="soiPublished">
+            <span>Publizierte Einladungskarte, die bei allen Eingeladenen sichtbar ist:</span>
             <activity-offer-card
 
                     idea="idea"

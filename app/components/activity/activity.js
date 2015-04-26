@@ -255,7 +255,7 @@
                 };
 
                 $scope.dismiss = function dismiss() {
-                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, {
+                    SocialInteractionService.deleteSocialInteraction($scope.soiToAnswer.id, {
                         reason: 'denied',
                         mode: 'participate'
                     })
@@ -343,21 +343,8 @@
                         // queue event for next state
                         HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
-                        var invitation = $scope.socialInteraction;
+                        var invitation = $scope.soiPublished;
                         invitation.activity = savedActivity.id;
-
-                        // in the case where this is a newly planned event by a participant, we
-                        // have in $scope.socialInteraction the initial recommendation, the user clicked on
-                        // for saving
-                        if (invitation.__t === 'Recommendation') {
-                            invitation = {
-                                author: UserService.principal.getUser(),
-                                authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
-                                __t: 'Invitation',
-                                activity: savedActivity.id,
-                                idea: $scope.idea.id
-                            };
-                        }
 
                         // publish dates
                         _updatePublishDates(invitation, campaign, $scope.events);
@@ -494,7 +481,7 @@
                         // publishTo/publishFrom
 
                         if ($scope.isDcm) {
-                            _updatePublishDates($scope.socialInteraction, campaign, events);
+                            _updatePublishDates($scope.soiPublished, campaign, events);
                         }
 
                     });
@@ -509,7 +496,7 @@
                         return 'Recommendation';
                     } else if ($scope.isCampaignLead) {
                         return 'NewCampaignActivity';
-                    } else if (!$scope.isScheduled && !$scope.socialInteraction) {
+                    } else if (!$scope.isScheduled && !$scope.soiToAnswer) {
                         return 'newActivity';
                     } else {
                         throw new Error('Unknown state');
