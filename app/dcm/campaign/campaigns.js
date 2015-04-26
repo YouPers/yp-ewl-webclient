@@ -121,7 +121,7 @@
                     // default start date = today
                     var start = new Date(moment().hour(8).minutes(0).seconds(0));
                     // default end date = Friday of the 4th week since the start date
-                    var end = new Date(moment(start).day(5).hour(17).minutes(0).seconds(0).add(3, 'weeks'));
+                    var end = new Date(moment(start).businessAdd(19).hour(17).minutes(0).seconds(0));
                     $scope.campaign = {
                         organization: organization,
                         start: start,
