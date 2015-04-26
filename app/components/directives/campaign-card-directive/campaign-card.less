@@ -20,7 +20,14 @@ campaign-card {
     }
   }
 
-  .topic {
+  .sheet {
+    background-color: @yp-accent;
+    span {
+      font-weight: 300;
+    }
+  }
+
+  .topic.sheet {
 
     position: relative;
 
@@ -42,13 +49,8 @@ campaign-card {
 
   }
 
+
   .details.sheet {
-      font-weight: 300;
-  }
-
-  .details {
-
-    background-color: @yp-accent;
 
     padding: 10px 0;
 
@@ -75,37 +77,54 @@ campaign-card {
     }
   }
 
-  .campaign-lead {
-    .leader-label {
-      font-weight: 300;
-    }
+  .campaign-lead.sheet {
 
-    background-color: @yp-accent;
-    > *:nth-child(2) {
+    > div {
+      position: relative;
+
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+
       > * {
         color: @yp-accent-contrast;
-        white-space: nowrap;
-        width: 130px;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
 
-      &.unconfirmed {
-        color: @yp-warning;
-        i.fa {
-          font-size: 14px;
-          color: @yp-warning;
+      > avatar, .avatar {
+        width: 45px;
+        height: 45px;
+      }
+
+      > div {
+        padding-left: 8px;
+
+        .campaign-lead-name {
+          > div {
+            white-space: nowrap;
+            width: 133px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          &.unconfirmed {
+            > * {
+              float: left;
+            }
+            > div {
+              width: 113px;
+            }
+            i.fa {
+              font-size: 14px;
+              margin-top: 2px;
+              color: @yp-warning;
+              background-color: @yp-accent;
+            }
+          }
         }
       }
     }
 
-    > .col-sm-9 {
-      padding-left: 10px;
-    }
+
   }
 
-  .campaign-lead-avatar .avatar {
-    width: 45px;
-    height: 45px;
-  }
 }
