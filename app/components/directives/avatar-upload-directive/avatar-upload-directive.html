@@ -5,8 +5,8 @@
          ng-style="{ 'background-image': 'url(' + user.avatar + ')' }"
          ng-class="{ 'default-avatar': defaultAvatar }"
 
-         popover="{{ 'avatarUpload.defaultAvatarHint' | translate }}"
-         popover-trigger="{{ defaultAvatar ? 'mouseenter' : '' }}"
+         popover="{{ defaultAvatar ? 'avatarUpload.defaultAvatarHint' : '' | translate }}"
+         popover-trigger="mouseenter"
          popover-placement="top" popover-append-to-body="true"
             ></div>
 
