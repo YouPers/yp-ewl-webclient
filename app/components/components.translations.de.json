@@ -8,7 +8,10 @@
     },
     "error": {
       "avatar": {
-        "invalid": "Kein gültiges Avatar Bild",
+        "invalid": {
+          "fileFormat": "Keine gültiges Bild",
+          "fileSize": "Bitte wähle eine kleinere Datei (<2MB)"
+        },
         "error": "Ein Fehler ist aufgetreten"
       },
       "502": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals.",

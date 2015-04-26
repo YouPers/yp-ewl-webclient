@@ -34,7 +34,8 @@ var defaultConfig = {
         'de_DE': 'de',
         'de_CH': 'de'
     },
-    paymentCodeChecking: 'enabled'
+    paymentCodeChecking: 'enabled',
+    avatarFileSizeLimit: 2 * 1024 * 1024 // 2MB
 };
 
 var specificConfigs = {
