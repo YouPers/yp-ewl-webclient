@@ -9,7 +9,7 @@
 
         </div>
 
-        <div ng-if="socialInteraction">
+        <div ng-if="soiToAnswer">
 
             <activity-offer-card
 
@@ -17,7 +17,7 @@
 
                     idea="idea"
                     activity="activity"
-                    social-interaction="socialInteraction"
+                    social-interaction="soiToAnswer"
                     class="activity-offer-card"
                     ></activity-offer-card>
 
@@ -195,7 +195,14 @@
 
         </div>
 
-        <div>
+        <div ng-if="soiPublished">
+            <activity-offer-card
+
+                    idea="idea"
+                    activity="activity"
+                    social-interaction="soiPublished"
+                    class="activity-offer-card"
+                    ></activity-offer-card>
 
         </div>
     </section>
