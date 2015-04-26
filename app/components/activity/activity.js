@@ -81,6 +81,10 @@
                 return ActivityService.getActivityEvents({
                     'filter[activity]': activity.id,
                     sort: 'start'
+                }).then(function(events) {
+                    // replace the unpopulated event.activity with the full activity object
+                    _.forEach(events, function(event) {event.activity = activity;});
+                    return events;
                 });
             }],
 
