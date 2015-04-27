@@ -186,6 +186,12 @@
                     });
                 };
 
+                $scope.parseDate = function (field) {
+                    return function (item) {
+                        return moment(item[field]).toDate();
+                    };
+                };
+
                 init();
 
                 function _loadSocialInteractions() {

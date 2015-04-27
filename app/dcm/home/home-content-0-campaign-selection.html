@@ -40,7 +40,7 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="campaign in campaigns" ui-sref="dcm.home({ campaignId: campaign.id })"
+                <tr ng-repeat="campaign in campaigns | orderBy:parseDate('start'):true" ui-sref="dcm.home({ campaignId: campaign.id })"
                     ng-init="selected = campaign.id === currentCampaign.id"
                         ng-class="{ selected: selected }">
                     <td>

@@ -27,7 +27,10 @@
                     resolve: {
                         campaigns: ['CampaignService', function (CampaignService) {
                             return CampaignService
-                                .getCampaigns({populate: 'topic campaignLeads organization marketPartner', populatedeep: 'organization.administrators'})
+                                .getCampaigns({
+                                    populate: 'topic campaignLeads organization marketPartner',
+                                    populatedeep: 'organization.administrators'
+                                })
                                 .then(function (campaigns) {
                                     return campaigns;
                                 });
