@@ -141,12 +141,21 @@
                     $scope.campaignMessagesAvailable = !$scope.campaignEnded;
                     $scope.campaignEndAvailable = moment().businessDiff(moment(campaign.end).startOf('day')) > -2;
 
-                    // campaign start section is open until the campaign has started
-                    $scope.campaignStartOpen =  moment(campaign.start).isAfter(now, 'day');
-                    // campaign end section is open when the campaign has ended
-                    $scope.campaignEndOpen = $scope.campaignEnded;
-                    // offer section is open otherwise
-                    $scope.offerSectionOpen = !$scope.campaignEndOpen && !$scope.campaignStartOpen;
+                    if($scope.isCampaignLead) {
+
+                        // campaign start section is open before and including the day of the campaign start
+                        // during campaign we open the
+                        if (moment().isBefore(moment(campaign.start).endOf('day'))) {
+                            $scope.campaignStartOpen = true;
+                        } else if ($scope.campaignEnded) {
+                            $scope.campaignEndOpen = true;
+                        } else {
+                            $scope.campaignStatsOpen = true;
+                        }
+
+                    } else if(campaigns.length > 1) { // service manager is not campaign lead of the selected campaign
+                        $scope.campaignSelectionOpen = true;
+                    }
                 }
 
 
