@@ -35,7 +35,7 @@ var defaultConfig = {
         'de_CH': 'de'
     },
     paymentCodeChecking: 'enabled',
-    avatarFileSizeLimit: 2 * 1024 * 1024 // 2MB
+    avatarFileSizeLimit: 5 * 1024 * 1024 // 5MB
 };
 
 var specificConfigs = {
