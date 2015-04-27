@@ -211,6 +211,22 @@
                         });
                 }
 
+                function _initCampaignPreparation() {
+                    $scope.campaignPreparation = {
+                        step1: {
+                            complete:
+                            CampaignService.isComplete(campaign) &&
+                            !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
+                        },
+                        step2: {
+                            complete: (campaign.preparationComplete >= 3)
+                        }
+
+                    };
+                    _activateFirstIncompleteStep();
+
+                }
+
                 function _activateFirstIncompleteStep() {
                     var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
                     if (firstIncompleteStep) {
@@ -234,19 +250,12 @@
 
                     if(campaign) {
 
-                        $scope.campaignPreparation = {
-                            step1: {
-                                complete:
-                                    CampaignService.isComplete(campaign) &&
-                                    !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
-                            },
-                            step2: {
-                                complete: (campaign.preparationComplete >= 3)
-                            }
+                        _initCampaignPreparation();
 
-                        };
+                        $scope.$watch(function () {
+                            return UserService.hasDefaultAvatar(campaign.campaignLeads[0]);
+                        }, _initCampaignPreparation);
 
-                        _activateFirstIncompleteStep();
 
 
                         $scope.completeCampaignPreparation = function (step) {
