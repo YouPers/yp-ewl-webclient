@@ -51,14 +51,16 @@
                 restrict: 'E',
                 template: '<img ng-if="!showAvatarUpload" class="avatar" ng-src="{{user.avatar}}"><avatar-upload ng-if="showAvatarUpload"></avatar-upload>',
                 scope: {
-                    user: '='
+                    user: '&'
                 },
                 link: function (scope, elem, attrs) {
 
                     var authenticatedUser = UserService.principal.getUser();
 
-                    if(!scope.user) {
+                    if(!scope.user()) {
                         scope.user = authenticatedUser;
+                    } else {
+                        scope.user = scope.user();
                     }
 
                     var isAuthenticatedUser = authenticatedUser.id === scope.user.id;

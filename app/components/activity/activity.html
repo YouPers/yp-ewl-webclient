@@ -136,7 +136,7 @@
                  ng-repeat="user in invitedUsers">
 
                 <div ng-if="user.fullname">
-                    <div><img class="avatar" ng-src="{{ user.avatar }}"/></div>
+                    <div><avatar user="user"></avatar></div>
                     <div bind-html-unsafe="user.fullname"></div>
                     <div>{{ 'activity.invitationStatus.' + user.invitationStatus | translate }}</div>
                 </div>
