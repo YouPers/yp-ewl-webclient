@@ -67,8 +67,8 @@
                         <span>{{campaign.start | date:'d.MM.yyyy'}} -  {{campaign.end | date:'d.MM.yyyy'}}</span>
                     </td>
                     <td class="selected">
-                        <i class="fa fa-check-circle-o active" ng-if="selected"></i>
-                        <i class="fa fa-circle-o" ng-if="!selected"></i>
+                        <a ng-if="selected" ui-sref="dcm.campaign({campaignId: $stateParams.campaignId})" stop-propagation><i class="fa fa-edit active"></i></a>
+                        <i ng-if="!selected" class="fa fa-circle-o"></i>
                     </td>
                 </tr>
             </tbody>

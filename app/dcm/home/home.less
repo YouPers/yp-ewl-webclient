@@ -75,6 +75,10 @@
     }
 
     table {
+      tr.selected td {
+        cursor: default;
+        background-color: @yp-accent-background;
+      }
       tr:not(.selected):hover {
         cursor: pointer;
         td.selected i.fa {
