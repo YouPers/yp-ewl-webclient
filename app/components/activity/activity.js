@@ -75,6 +75,7 @@
                             targetId: $stateParams.campaignId,
                             dismissed: true,
                             authored: true,
+                            dismissed: true,
                             publishFrom: false,
                             publishTo: false,
                             "filter[activity]": activity.id
