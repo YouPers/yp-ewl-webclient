@@ -8,7 +8,10 @@
     },
     "error": {
       "avatar": {
-        "invalid": null,
+        "invalid": {
+          "fileFormat": null,
+          "fileSize": null
+        },
         "error": "Si è verificato un errore"
       },
       "502": null,

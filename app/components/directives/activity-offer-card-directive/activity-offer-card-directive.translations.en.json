@@ -8,9 +8,9 @@
     "published": "published:",
     "from": "from",
     "to": "to",
-    "createOwnIdea": null,
-    "createOwnIdeaText": null,
-    "searchIdea": null,
-    "searchIdeaText": null
+    "createOwnIdea": "Create an activity of your own",
+    "createOwnIdeaText": "Create an activity of your own and invite an employee",
+    "searchIdea": "Browse the library",
+    "searchIdeaText": "Browse in YOUPERS library for more ideas"
   }
 }

@@ -33,7 +33,7 @@
         "placeholder": "Postal code",
         "error": {
           "required": "Please enter a valid postal code",
-          "pattern": "Enter a valid postal code"
+          "pattern": "Please enter a valid postal code"
         }
       },
       "city": {
@@ -86,7 +86,7 @@
     "cancel": "Cancel",
     "create": "Create",
     "missingOrganizationFieldsWarning": {
-      "header": "WARNING: ",
+      "header": "Warning:",
       "text": "You have not filled out the following information of your organization:"
     },
     "user": {
@@ -101,15 +101,15 @@
         "error": {
           "required": "Please enter a valid first name"
         },
-        "label": "Name",
-        "placeholder": "First"
+        "label": "Last Name",
+        "placeholder": "First Name"
       },
       "lastname": {
         "error": {
           "required": "Please enter a valid last name"
         },
-        "label": "Last",
-        "placeholder": "Last"
+        "label": "Last Name",
+        "placeholder": "Last Name"
       }
     }
   },

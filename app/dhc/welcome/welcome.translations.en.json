@@ -4,12 +4,12 @@
     "link": {
       "info": "Learn more",
       "join": "Participate",
-      "back": null
+      "back": "Home"
     },
     "backToDcm": "back to campaign administration",
     "campaignNotStartedYet": "You are still a little too early, this campaign will start on",
     "isCampaignlead": "This user account is used to manage a campaign. Therefore, she/he cannot take part in a campaign herself/himself.",
     "yourCampaignLeads": "Your Campaign Leader(s):",
-    "existingCampaign": null
+    "existingCampaign": "You can not participate in several campaigns simultaneously. You already take part in"
   }
 }

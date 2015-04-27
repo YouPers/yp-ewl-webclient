@@ -17,7 +17,7 @@
     "toSelect": "to your recommendations",
     "link": {
       "back": "Home",
-      "backToAssessment": null
+      "backToAssessment": "Back to self-assessment"
     }
   }
 }

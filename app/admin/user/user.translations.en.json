@@ -2,7 +2,7 @@
   "admin": {
     "user": {
       "stateHeader1": "user",
-      "stateHeader2": "Admin",
+      "stateHeader2": "admin",
       "typeahead": {
         "placeholder": "Go"
       }
