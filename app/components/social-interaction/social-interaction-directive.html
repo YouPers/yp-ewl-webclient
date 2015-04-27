@@ -1,4 +1,3 @@
-
 <li class="inbox-item" ng-class="componentClasses(soi)" ng-click="openSocialInteraction(soi)" ng-if="!soi._editMode">
 
 
@@ -49,15 +48,10 @@
 
                     </accordion-heading>
 
-                    <div class="text" ng-if="soi.text">{{ soi.text }}</div>
+                    <div class="text" ng-if="soi.text" ng-bind-html="getRenderedText(soi.text)"></div>
 
                 </accordion-group>
             </accordion>
-
-
-
-
-
         </div>
 
         <div class="sheet publishDates" ng-if="options.isCampaignLead">

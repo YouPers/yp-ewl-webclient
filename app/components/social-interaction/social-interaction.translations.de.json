@@ -18,7 +18,8 @@
       "Message": {
         "user": "Aktivitätskommentar",
         "campaignLead": "Kampagnenmitteilung",
-        "coach": "Digital Coach"
+        "coach": "Digital Coach",
+        "productAdmin": "YOUPERS Meldung"
       }
     }
   },

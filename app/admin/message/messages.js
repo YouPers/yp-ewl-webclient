@@ -44,7 +44,9 @@
 
                 var messageTemplate = {
                     targetSpaces: [],
-                    author: UserService.principal.getUser().id
+                    author: UserService.principal.getUser().id,
+                    authorType: "productAdmin",
+                    publishFrom: new Date()
                 };
 
                 $scope.message = _.clone(messageTemplate);
