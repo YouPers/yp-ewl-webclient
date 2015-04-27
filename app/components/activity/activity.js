@@ -73,7 +73,6 @@
                         return SocialInteractionService.getInvitations({
                             populate: 'author',
                             targetId: $stateParams.campaignId,
-                            dismissed: true,
                             authored: true,
                             dismissed: true,
                             publishFrom: false,
@@ -587,18 +586,27 @@
 
 
                     $scope.$watch('activityController.inviteOthers', function(newValue, oldVal) {
-                        // if I am not the organizer of this event, I will never publish an invitation for it
-                        if (user.id !== activity.owner.id) {
+                        if (!newValue) {
                             return;
                         }
+
+                        // if I am not the organizer of this event, I will never publish an invitation for it
+                        if (user.id !== (activity.owner.id || activity.owner)) {
+                            return;
+                        }
+
+                        // using timeout here to give the form time to check its status, we are using $invalid
+                        // in _validateActivity()
+                        $timeout(function() {_validateActivity($scope.activity, {});});
+
+
+
                         if (newValue === 'none') {
                             $scope.soiPublished = undefined;
                         } else if (newValue === 'all') {
                             $scope.soiPublished = existingCampaignInvitation || _.clone(invitationTemplate);
                         } else if (newValue === 'selected') {
                             $scope.soiPublished = _.clone(invitationTemplate);
-                        } else if (!newValue) {
-                            // newValue is empty, this is in the beginning, do nothing
                         } else {
                             throw new Error('this should not be possible');
                         }

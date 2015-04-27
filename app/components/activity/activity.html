@@ -1,6 +1,5 @@
 <div class="four-column-layout">
 
-
     <section ng-class="{dimmed: activityController.deleteModeEnabled}">
         <div class="header-row">
 
@@ -53,7 +52,7 @@
             <div class="activity-view">
                 <dl class="dl-horizontal">
 
-                    <dt translate>Einladungen an</dt>
+                    <dt translate>activity.inviteOthers.readOnlyLabel</dt>
                     <dd>{{ 'activity.inviteOthers.' + activityController.inviteOthers | translate}}</dd>
                 </dl>
             </div>
@@ -158,8 +157,20 @@
 
         </div>
 
+        <div ng-if="soiPublished">
+            <div translate>activity.preview.soiPublishedRemark</div>
+            <br/>
+            <activity-offer-card
 
-        <div>
+                    idea="idea"
+                    activity="activity"
+                    social-interaction="soiPublished"
+                    class="activity-offer-card"
+                    ></activity-offer-card>
+        </div>
+        <div ng-if="events.length > 0">
+            <div translate>activity.preview.plannedEventsRemark</div>
+            <br>
 
             <div ng-repeat="event in events" class="event-list animate-repeat">
 
@@ -183,17 +194,7 @@
 
         </div>
 
-        <div ng-if="soiPublished">
-            <span>Publizierte Einladungskarte, die bei allen Eingeladenen sichtbar ist:</span>
-            <activity-offer-card
 
-                    idea="idea"
-                    activity="activity"
-                    social-interaction="soiPublished"
-                    class="activity-offer-card"
-                    ></activity-offer-card>
-
-        </div>
     </section>
 
     <section>
@@ -273,6 +274,8 @@
         <!--buttons for general new Activity in DHC, without Recommendation -->
 
         <div class="button-row" ng-if="isNewActivity && isDhc">
+
+
             <button class="btn btn-primary"
                     ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
@@ -283,7 +286,10 @@
                 {{ 'activity.submit.cancel' | translate }}
             </button>
         </div>
+        <div ng-if="soiToAnswer">
 
+
+        </div>
 
         <div class="box">
             <health-coach event="healthCoachEvent"/>

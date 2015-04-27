@@ -88,30 +88,36 @@
 
         </div>
 
-        <div ng-if="showInviteControl" class="invite-control" ng-class="{invalid: activityForm.invitationType.$invalid}">
+        <div ng-if="showInviteControl" >
 
             <div>
-                <label translate>activity.header.inviteOthers</label>
+                <h3 translate>activity.header.inviteOthers</h3>
             </div>
-            <label for="invitation-type.all">
-                <input id="invitation-type.all" type="radio" ng-model="activityController.inviteOthers" name="invitationType"
-                       ng-value="'all'" required>
-                </input>
-                <span translate>activity.inviteOthers.all</span>
-            </label>
-            <label for="invitation-type.selected">
-                <input id="invitation-type.selected" type="radio" ng-model="activityController.inviteOthers" name="invitationType"
-                       ng-value="'selected'" required>
-                </input>
-                <span translate>activity.inviteOthers.selected</span>
-            </label>
-            <label for="invitation-type.none">
-                <input id="invitation-type.none" type="radio" ng-model="activityController.inviteOthers" name="invitationType"
-                       ng-value="'none'" required>
-                </input>
-                <span translate>activity.inviteOthers.none</span>
-            </label>
-            <div ng-show="activityForm.invitationType.$invalid">Bitte wähle aus, ob du jemanden einladen möchtest</div>
+            <div ng-class="{invalid: activityForm.invitationType.$invalid}" class="invite-control radio-buttons">
+                <label for="invitation-type.all">
+                    <input id="invitation-type.all" type="radio" ng-model="activityController.inviteOthers"
+                           name="invitationType"
+                           ng-value="'all'" required ng-class="{invalid: activityForm.invitationType.$invalid}">
+                    </input>
+                    <span translate>activity.inviteOthers.all</span>
+                </label>
+                <label for="invitation-type.selected">
+                    <input id="invitation-type.selected" type="radio" ng-model="activityController.inviteOthers"
+                           name="invitationType"
+                           ng-value="'selected'" required>
+                    </input>
+                    <span translate>activity.inviteOthers.selected</span>
+                </label>
+                <label for="invitation-type.none">
+                    <input id="invitation-type.none" type="radio" ng-model="activityController.inviteOthers"
+                           name="invitationType"
+                           ng-value="'none'" required>
+                    </input>
+                    <span translate>activity.inviteOthers.none</span>
+                </label>
+
+            </div>
+
         </div>
 
     </fieldset>
