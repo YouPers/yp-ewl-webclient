@@ -12,7 +12,8 @@
                         campaign: '=',// used to set the min/max range for the date picker
                         form: '=', // we pass the form to the parent scope, to react on validations.
                         isCampaignLead: '=',
-                        socialInteraction: '='
+                        showInviteControl: '=',
+                        activityController: '='
                     },
                     templateUrl: 'components/activity/activity-edit-directive.html',
 
