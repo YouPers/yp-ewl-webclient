@@ -35,16 +35,17 @@
       "save": "Speichern"
     },
     "inviteOthers": {
-      "selected": "ausgewählte",
-      "all": "alle",
+      "selected": "ausgewählte Benutzer",
+      "all": "alle Kampagnenteilnehmer",
       "inviteByEmail": {
         "placeholder": "Email eingeben",
         "submit": "Hinzufügen"
       },
       "inviteByUser": "In der Kampagne suchen",
       "invitedOnSave": "Beim Einplanen werden eingeladen:",
-      "none": "Niemand",
-      "notFound": "nicht gefunden? - Lade mittels Email ein:"
+      "none": "niemanden",
+      "notFound": "nicht gefunden? - Lade mittels Email ein:",
+      "readOnlyLabel": "Einladungen an"
     },
     "emailToBeInvited": {
       "placeholder": "Email",
@@ -66,6 +67,10 @@
       "undo": "Rückgängig",
       "edit": "Ändern",
       "delete": "Löschen"
+    },
+    "preview": {
+      "soiPublishedRemark": "Publizierte Einladungskarte, die bei allen Eingeladenen sichtbar ist:",
+      "plannedEventsRemark": "Eingeplante Termine"
     },
     "submit": {
       "save": "Speichern",
