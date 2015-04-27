@@ -32,10 +32,21 @@
                 </tab-heading>
 
                 <div>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.text</span>
-                    <a ui-sref="dcm.campaign({campaignId: $stateParams.campaignId})" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step1.link</a>
-                </div>
 
+                    <campaign-card campaign="currentCampaign"></campaign-card>
+
+                    <div>
+
+                        <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.text</span>
+
+                        <div>
+                            <avatar-upload></avatar-upload>
+                            <br/>
+                            <a class="btn btn-flat" onclick="document.getElementById('avatarUpload').click()" translate>dcmhome.campaignStart.campaignLeadGuidance.step1.avatarLink</a>
+                            <a class="btn btn-flat" ui-sref="dcm.campaign({campaignId: $stateParams.campaignId})" translate>dcmhome.campaignStart.campaignLeadGuidance.step1.campaignLink</a>
+                        </div>
+                    </div>
+                </div>
             </tab>
 
             <!-- step 2 -->
@@ -51,25 +62,7 @@
 
                 <div>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.text</span>
-                    <a ui-sref="profile" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step2.link</a>
-                </div>
-
-            </tab>
-
-            <!-- step 3 -->
-            <tab active="campaignPreparation.step3.active" disabled="campaignPreparation.step3.disabled">
-
-                <tab-heading>
-
-                    <i class="fa" ng-class="campaignPreparation.step3.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
-
-                    <span>3</span>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.tab</span>
-                </tab-heading>
-
-                <div>
-                    <span translate>dcmhome.campaignStart.campaignLeadGuidance.step3.text</span>
-                    <a ng-if="!homeController.preparationComplete" ng-click="homeController.preparationComplete = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step3.link</a>
+                    <a ng-if="!homeController.preparationComplete" ng-click="homeController.preparationComplete = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step2.link</a>
                 </div>
             </tab>
 

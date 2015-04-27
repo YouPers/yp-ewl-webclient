@@ -12,22 +12,24 @@
     <div class="details sheet">
         <div>
             <i class="fa fa-clock-o"></i>
-            <span>{{campaign.start | date:'d.MM.yyyy'}} -  {{campaign.end | date:'d.MM.yyyy'}}</span>
+            <span>{{campaign.start | date:'d.MM.yyyy'}} - {{campaign.end | date:'d.MM.yyyy'}}</span>
         </div>
-        <div>
+        <div ng-class="{ invalid: !campaign.location || !campaign.city }">
             <i class="fa fa-location-arrow"></i>
             <div>
-                <span>{{campaign.location}}</span>
-                <span ng-show="campaign.location && campaign.city">, </span>
-                <span>{{campaign.city}}</span>
+                <span ng-if="campaign.location">{{campaign.location}}</span>
+                <span ng-if="!campaign.location"><i class="fa fa-question"></i></span><span>, </span>
+                <span ng-if="campaign.city">{{campaign.city}}</span>
+                <span ng-if="!campaign.city"><i class="fa fa-question"></i></span>
             </div>
         </div>
-        <div>
+        <div ng-class="{ invalid: !campaign.participants }">
             <i class="fa fa-building-o"></i>
             <div>
                 <span class="organization">{{campaign.organization.name}}</span>
-                <span ng-show="campaign.participants"><br/></span>
-                <span class="participants">{{campaign.participants}}</span>
+                <br/>
+                <span class="participants" ng-if="campaign.participants">{{campaign.participants}}</span>
+                <span ng-if="!campaign.participants"><i class="fa fa-question"></i></span>
             </div>
         </div>
 

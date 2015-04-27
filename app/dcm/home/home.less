@@ -206,32 +206,35 @@
       .tab-pane {
         padding: 24px;
         > div {
-          .btn {
+          .btn-flat {
             margin-top: 1em;
             float: right;
           }
         }
-      }
-      .offer {
-        > * {
-          display: inline-block;
-          color: @yp-accent;
-          font-size: 16px;
-          font-weight: 400;
-        }
-        i.fa {
-          padding-left: 1em;
-          font-size: 14px;
-          &.fa-warning {
-            color: @yp-warning;
+
+        // step 1
+        &:first-of-type > div {
+          display: flex;
+          flex-direction: row;
+          > campaign-card {
+            flex-shrink: 0;
+          }
+          > div {
+            padding: 30px 0 0 30px;
+            > div {
+              padding-top: 30px;
+              text-align: center;
+              avatar-upload {
+                display: inline-block;
+              }
+              a {
+                float: none;
+              }
+            }
           }
         }
       }
-      .offer:hover {
-        > * {
-          color: @yp-accent-hover;
-        }
-      }
+
     }
 
 

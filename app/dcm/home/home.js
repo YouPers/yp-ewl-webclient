@@ -218,7 +218,7 @@
                         firstIncompleteStep.enabled = true;
                     } else {
                         // enable last step
-                        $scope.campaignPreparation.step3.active = true;
+                        $scope.campaignPreparation.step2.active = true;
                     }
                     _.each($scope.campaignPreparation, function (step) {
                         step.disabled = !step.enabled && !step.complete;
@@ -236,12 +236,11 @@
 
                         $scope.campaignPreparation = {
                             step1: {
-                                complete: CampaignService.isComplete(campaign)
+                                complete:
+                                    CampaignService.isComplete(campaign) &&
+                                    !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
                             },
                             step2: {
-                                complete: !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
-                            },
-                            step3: {
                                 complete: (campaign.preparationComplete >= 3)
                             }
 
