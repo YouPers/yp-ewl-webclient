@@ -86,7 +86,7 @@
 
                 $scope.needForActionStyle = function(category) {
                     return {
-                        width: _needForActionPercentage(_getNeedForCategory(category)) +'%'
+                        width: _needForActionPercentage(_getNeedForCategory(category))
                     };
                 };
 
