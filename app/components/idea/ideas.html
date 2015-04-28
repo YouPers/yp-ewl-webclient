@@ -25,7 +25,7 @@
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
-                    <input ng-model="query.query" ng-minlength="3" type="text" class="form-control"
+                    <input ng-model="query.$" ng-minlength="3" type="text" class="form-control"
                            placeholder="{{ 'activities.search' | translate }}" name="query">
 
                 </div>
@@ -34,9 +34,9 @@
 
         </div>
 
-        <div class="idea-list">
+        <div class="idea-list" ng-init="query.defaultexecutiontype = $stateParams.type">
 
-            <div class="idea-list-item" ng-repeat="idea in ideas | filter:query.query">
+            <div class="idea-list-item" ng-repeat="idea in ideas | filter:query">
 
                 <div class="heading">
 
@@ -71,7 +71,7 @@
 
                     <div ng-if="parentState==='dcm'">
 
-                        <a ui-sref="dcm.recommendation(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '' })">
+                        <a ng-show="$stateParams.type !== 'group'" ui-sref="dcm.recommendation(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '' })">
                             <i class="fa fa-lightbulb-o" popover-placement="top"  popover="{{::'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
                         </a>
 
