@@ -111,7 +111,7 @@
                 <label for="invitation-type.none">
                     <input id="invitation-type.none" type="radio" ng-model="activityController.inviteOthers"
                            name="invitationType"
-                           ng-value="'none'" required>
+                           ng-value="'none'" required ng-disabled="activityController.invitedUsers.length > 1">
                     </input>
                     <span translate>activity.inviteOthers.none</span>
                 </label>

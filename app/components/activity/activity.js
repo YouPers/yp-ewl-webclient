@@ -408,7 +408,13 @@
                                         return _finalCb();
                                     }
 
+                                }, function saveErrorCb(err) {
+                                    $scope.$emit('clientmsg:error', err);
+                                    $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
                                 });
+                            } else {
+                                // user clicked "selected" but did not enter anybody --> same as none
+                                return _finalCb();
                             }
                         }
                     }, function saveErrorCb(err) {
@@ -520,7 +526,7 @@
                 }
 
                 function _setupInvitationsControl() {
-                    $scope.invitedUsers = [];
+                    activityController.invitedUsers = [];
 
                     if ($scope.isScheduled) {
 
@@ -529,9 +535,9 @@
                         // if the current user is the organizer put the reference to the user in the session instead
                         // of the one delivered by the server
                         if ($scope.isOwner) {
-                            $scope.invitedUsers.push($scope.principal.getUser());
+                            activityController.invitedUsers.push($scope.principal.getUser());
                         } else {
-                            $scope.invitedUsers.push(activity.owner);
+                            activityController.invitedUsers.push(activity.owner);
                         }
 
                         if (existingCampaignInvitation) {
@@ -551,7 +557,7 @@
                             _.each(invitationStatus, function (status) {
                                 var user = status.user || {email: status.email};
                                 user.invitationStatus = status.status;
-                                $scope.invitedUsers.push(user);
+                                activityController.invitedUsers.push(user);
                             });
                         }
 
@@ -572,7 +578,7 @@
                     }
 
                     // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
-                    $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
+                    $scope.usersExcludedForInvitation = activityController.invitedUsers.concat($scope.activity.owner);
 
                     $scope.usersToBeInvited = [];
 
