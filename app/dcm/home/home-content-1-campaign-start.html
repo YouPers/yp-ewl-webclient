@@ -62,7 +62,6 @@
 
                 <div>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.text</span>
-                    <a ng-if="!homeController.preparationComplete" ng-click="homeController.preparationComplete = true" class="btn btn-flat" translate>dcmhome.campaignStart.campaignLeadGuidance.step2.link</a>
                 </div>
             </tab>
 
@@ -72,7 +71,7 @@
 
         <!-- campaign invitations -->
 
-        <div ng-if="homeController.preparationComplete && campaignPreparation.step2.active" justified="true">
+        <div ng-if="campaignPreparation.step2.active" justified="true">
 
                 <p translate>dcmhome.campaignStart.welcomeLink.createDraft.text</p>
 
