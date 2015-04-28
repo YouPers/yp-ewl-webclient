@@ -42,7 +42,7 @@
             function ($stateProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dcm.home', {
-                        url: "/home",
+                        url: "/home?section",
                         access: accessLevels.all,
                         views: {
                             content: {
@@ -143,9 +143,13 @@
 
                     if($scope.isCampaignLead) {
 
+                        if($scope.$stateParams.section && $scope.$stateParams.section === 'messages') {
+                            $scope.campaignMessagesOpen = true;
+                        }
+
                         // campaign start section is open before and including the day of the campaign start
                         // during campaign we open the
-                        if (moment().isBefore(moment(campaign.start).endOf('day'))) {
+                        else if (moment().isBefore(moment(campaign.start).endOf('day'))) {
                             $scope.campaignStartOpen = true;
                         } else if ($scope.campaignEnded) {
                             $scope.campaignEndOpen = true;
