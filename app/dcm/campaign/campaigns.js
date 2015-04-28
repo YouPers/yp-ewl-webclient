@@ -266,7 +266,7 @@
                 }
 
                 $scope.saveCampaign = function () {
-                    $scope.campaignController.submitting = true
+                    $scope.campaignController.submitting = true;
                     if ($scope.campaignForm.$invalid) {
                         $scope.campaignForm.submitted = true;
                         $scope.campaignController.submitting = false;
