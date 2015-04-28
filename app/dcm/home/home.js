@@ -177,7 +177,7 @@
                     $scope.homeController.emailInvitesSent = false;
                     CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
                         $scope.homeController.emailInvitesSent = true;
-                        $scope.completeCampaignPreparation(5);
+                        $scope.completeCampaignPreparation(2);
                     });
                 };
 
