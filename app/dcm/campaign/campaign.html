@@ -188,7 +188,7 @@
             <div class="button-row">
                 <button ng-click="!campaignController.submitting && saveCampaign()"
                         class="btn btn-primary"
-                        ng-disabled="(campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (!campaign.id && !paymentCodeCheckingDisabled && !validPaymentCode)"
+                        ng-disabled="campaignForm.$invalid || (campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (!campaign.id && !paymentCodeCheckingDisabled && !validPaymentCode)"
                         busy>
                     <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                     <span translate>campaignForm.save</span>

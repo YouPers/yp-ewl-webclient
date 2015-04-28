@@ -134,6 +134,7 @@
                     };
                 }
 
+
                 $scope.disabledStart = usersInCampaign;
                 $scope.disabledEnd = $scope.campaignEnded;
                 $scope.minDateStart = $scope.disabledStart ? undefined : moment().toDate();
@@ -155,6 +156,15 @@
                 $scope.$watch('campaign.end', function (date) {
                     $scope.campaignEndChanged = $scope.campaignEnd && !moment(date).isSame(moment($scope.campaignEnd));
                     $scope.campaignEndChangeRecreatesOffers = moment().isBefore($scope.campaign.start) && !usersInCampaign;
+                });
+
+
+                $scope.$watch('campaignForm', function(form) {
+                    if (form) {
+                        // mark the form as submitted to display errors form the beginning
+                        // WL-2021:
+                        form.submitted = true;
+                    }
                 });
 
                 var newCampaignLeadEmpty = {emailValidatedFlag: false};
