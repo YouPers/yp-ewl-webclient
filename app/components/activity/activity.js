@@ -67,8 +67,8 @@
             }],
 
 
-            existingCampaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea',
-                function ($stateParams, SocialInteractionService, activity, idea) {
+            existingCampaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea', 'UserService',
+                function ($stateParams, SocialInteractionService, activity, idea, UserService) {
                     if (activity.id && idea.defaultexecutiontype !== 'self') {
                         return SocialInteractionService.getInvitations({
                             populate: 'author',
@@ -79,7 +79,16 @@
                             publishTo: false,
                             "filter[activity]": activity.id
                         }).then(function (invitations) {
-                            return invitations.length > 0 ? invitations[0] : undefined;
+                            var campInv =  invitations.length > 0 ? invitations[0] : undefined;
+
+                            // if the author is the current user, use the session object instead,
+                            // so we get updates when the user changes.
+                            if (campInv) {
+                                if (campInv.author.id === UserService.principal.getUser().id ) {
+                                    campInv.author = UserService.principal.getUser();
+                                }
+                            }
+                            return campInv;
                         });
                     } else {
                         return undefined;
@@ -515,9 +524,15 @@
 
                     if ($scope.isScheduled) {
 
-                        // set the organizer's invitation status if this is already scheduled, so he shows up as organizer
-                        activity.owner.invitationStatus = 'organizer';
-                        $scope.invitedUsers.push(activity.owner);
+                        // add the organizer, the first in the array is always the organizer!
+
+                        // if the current user is the organizer put the reference to the user in the session instead
+                        // of the one delivered by the server
+                        if ($scope.isOwner) {
+                            $scope.invitedUsers.push($scope.principal.getUser());
+                        } else {
+                            $scope.invitedUsers.push(activity.owner);
+                        }
 
                         if (existingCampaignInvitation) {
                             // check if campaign is already invited, do the check with existingCampaignInvitation because
@@ -604,13 +619,16 @@
                             _validateActivity($scope.activity, {});
                         });
 
+                        var newInvite = _.clone(invitationTemplate);
+                        // reset the author to point to the session reference
+                        newInvite.author = $scope.principal.getUser();
 
                         if (newValue === 'none') {
                             $scope.soiPublished = undefined;
                         } else if (newValue === 'all') {
-                            $scope.soiPublished = existingCampaignInvitation || _.clone(invitationTemplate);
+                            $scope.soiPublished = existingCampaignInvitation || newInvite;
                         } else if (newValue === 'selected') {
-                            $scope.soiPublished = _.clone(invitationTemplate);
+                            $scope.soiPublished = newInvite;
                         } else {
                             throw new Error('this should not be possible');
                         }
