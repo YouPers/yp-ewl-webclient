@@ -4,23 +4,26 @@
       "comment": {
         "save": "Comment saved"
       },
-      "pictureSaved": null
+      "pictureSaved": "Image saved successfully"
     },
     "error": {
       "avatar": {
-        "invalid": "Not a valid avatar image",
+        "invalid": {
+          "fileFormat": "Invalid image format",
+          "fileSize": "Please choose a smaller file size (<2MB)"
+        },
         "error": "An error occurred"
       },
-      "502": null,
-      "503": null,
-      "504": null,
-      "alreadyJoinedUsers": null,
-      "cannotSwitchCampaign": null,
-      "memberOfOtherCampaign": null
+      "502": "Our servers are not available at the moment, we are taking care of this. Please try again in a few minutes.",
+      "503": "We are currently improving the HealthCampaign service. Therefore, the application is not available at the moment. Please try again in a few minutes. Thank you for understanding.",
+      "504": "Our servers are not available at the moment, we are taking care of this. Please try again in a few minutes.",
+      "alreadyJoinedUsers": "The campaign can not be deleted because participants have already registered.",
+      "cannotSwitchCampaign": "You can not accept this campaign invitation because you are already participating in another campaign. It is not possible to take part in several campaigns simultaneously.",
+      "memberOfOtherCampaign": "The page you are requesting belongs to the campaign of another team. You yourself are already participating in different campaign. Cross-Campaign actions are not possible."
     }
   },
   "busy": {
-    "submitting": null
+    "submitting": "Saving..."
   },
   "calendar": {
     "tomorrow": "Tomorrow",
@@ -77,11 +80,11 @@
     "comment": {
       "paceholder": "Write a comment"
     },
-    "submit": null
+    "submit": "Send"
   },
   "feedbackForm": {
-    "header": null,
-    "header2": null,
+    "header": "Thank you for your feedback! ",
+    "header2": "We are constantly working to improve our service.",
     "anonymous": {
       "label": "Anonymous feedback"
     },
@@ -106,7 +109,7 @@
     }
   },
   "endorsementType": {
-    "presented": null,
-    "sponsored": null
+    "presented": "presented by:",
+    "sponsored": "sponsored by:"
   }
 }

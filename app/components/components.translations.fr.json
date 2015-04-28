@@ -8,7 +8,10 @@
     },
     "error": {
       "avatar": {
-        "invalid": "Cette image d'Avatar n'est pas valable.",
+        "invalid": {
+          "fileFormat": null,
+          "fileSize": null
+        },
         "error": "Il y a eu un problème."
       },
       "502": null,

@@ -5,7 +5,7 @@
         "save": "Activity saved"
       },
       "activityPlan": {
-        "save": "Activity scheduled",
+        "save": "Activity planned",
         "join": "Activity planned",
         "invite": "You've invited {{email}} to this activity",
         "delete": "Activity deleted",
@@ -22,7 +22,7 @@
     }
   },
   "list": {
-    "planAnActivity": "Schedule an activity",
+    "planAnActivity": "Plan an activity",
     "createNewActivity": "Create a new activity",
     "search": "Search",
     "setFocus": "Focus on",
@@ -47,7 +47,7 @@
     "ifYouFillAssessment": "By filling out the assessment we will provide you with personal recommendations.",
     "toAssessment": "Go to Self-Check",
     "showAllActivities": "show all activities",
-    "planIt": "Schedule it",
+    "planIt": "Plan it",
     "notForMe": "not for me!"
   },
   "admin": {

@@ -177,7 +177,7 @@
                     $scope.homeController.emailInvitesSent = false;
                     CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
                         $scope.homeController.emailInvitesSent = true;
-                        $scope.completeCampaignPreparation(5);
+                        $scope.completeCampaignPreparation(2);
                     });
                 };
 
@@ -219,7 +219,7 @@
                             !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
                         },
                         step2: {
-                            complete: (campaign.preparationComplete >= 3)
+                            complete: (campaign.preparationComplete >= 2)
                         }
 
                     };

@@ -1,7 +1,7 @@
 {
   "socialInteraction": {
     "mainHeader": "inbox",
-    "important": "important",
+    "important": "Important",
     "publishFrom": "Published from: ",
     "publishTo": "Published to: ",
     "header": {
@@ -13,7 +13,7 @@
         "user": "personal recommendation from",
         "campaignLead": "Campaign recommendation from",
         "coach": "Digital Coach",
-        "expert": null
+        "expert": "Recommendation from an expert"
       },
       "Message": {
         "user": "Activity comment",
