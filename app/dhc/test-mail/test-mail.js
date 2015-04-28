@@ -20,8 +20,8 @@
                     });
             }])
 
-        .controller('TestMailController', [ '$scope', '$interval', '$sce', 'UserService', 'TestMailService', 'campaign',
-            function ($scope, $interval, $sce, UserService, TestMailService, campaign) {
+        .controller('TestMailController', [ '$scope', '$interval', '$sce', '$window', 'UserService', 'TestMailService', 'campaign',
+            function ($scope, $interval, $sce, $window, UserService, TestMailService, campaign) {
 
                 var user = UserService.principal.getUser();
 
@@ -33,7 +33,7 @@
                 $scope.sendMail = function (options) {
 
                     if($scope.mailType === 'campaignLeadSummaryMail' && !$scope.isOrdinalDate($scope.options.currentDate)) {
-                        alert('campaignLeadSummaryMail will NOT be sent by the backend for the current date');
+                        $window.alert('campaignLeadSummaryMail will NOT be sent by the backend for the current date');
                     }
 
                     TestMailService.sendMail($scope.mailType, options);
