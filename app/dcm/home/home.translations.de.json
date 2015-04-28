@@ -92,12 +92,12 @@
           "avatarLink": "Profilfoto hochladen",
           "campaignLink": "Kampagendaten anpassen",
           "tab": "Kampagnenkarte ergänzen",
-          "text": "Überprüfe die Daten deiner Kampagne. Korrigiere oder ergänze Informationen"
+          "text": "Überprüfe die Daten deiner Kampagne und korrigiere oder ergänze die Informationen bei Bedarf."
         },
         "step2": {
           "link": "Einladungen erstellen und versenden",
           "tab": "Einladungen versenden",
-          "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Versende am Kampagenenstarttag oder am Abend vorher die Einladungen an die Teilnehmer"
+          "text": "Gratuliere! Deine Kampagne ist jetzt bereit zum Start. Versende gleich jetzt die Einladungen an die Kampagnenteilnehmer."
         },
         "notCampaignLead": "Kampagnenstart-Status"
       }

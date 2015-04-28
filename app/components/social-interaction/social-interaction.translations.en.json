@@ -18,7 +18,8 @@
       "Message": {
         "user": "Activity comment",
         "campaignLead": "Campaign message",
-        "coach": "Digital Coach"
+        "coach": "Digital Coach",
+        "productAdmin": null
       }
     }
   },
