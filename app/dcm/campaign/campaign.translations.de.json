@@ -53,7 +53,7 @@
       "label": "Teilnehmerkreis",
       "placeholder": "Bezeichnung der Gruppe/Abteilung/Team dieser Kampagne",
       "error": {
-        "required": "Bitte einen Ort erfassen"
+        "required": "Bitte einen Teilnehemerkreis erfassen"
       }
     },
     "location": {
