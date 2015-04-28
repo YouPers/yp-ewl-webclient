@@ -337,67 +337,70 @@
                         // queue event for next state
                         HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
-                        var invitation = $scope.soiPublished;
-                        invitation.activity = savedActivity.id;
+                        if (activityController.inviteOthers === 'none') {
+                            // nobody to invite, so nothing else to do
+                            return _finalCb();
+                        } else {
+                            var invitation = $scope.soiPublished;
+                            invitation.activity = savedActivity.id;
 
-                        // publish dates
-                        _updatePublishDates(invitation, campaign, $scope.events);
+                            // publish dates
+                            _updatePublishDates(invitation, campaign, $scope.events);
 
-                        var inviteAll = activityController.inviteOthers === 'all';
-                        var inviteNewSelected = $scope.usersToBeInvited.length > 0;
+                            var inviteAll = activityController.inviteOthers === 'all';
+                            var inviteNewSelected = $scope.usersToBeInvited.length > 0;
 
-                        if (inviteAll) {
-                            invitation.targetSpaces = [
-                                {
-                                    type: 'campaign',
-                                    targetId: campaign.id
+                            if (inviteAll) {
+                                invitation.targetSpaces = [
+                                    {
+                                        type: 'campaign',
+                                        targetId: campaign.id
+                                    }
+                                ];
+
+                                // we are calling the PUT or POST,
+                                // PUT is needed to update publish-dates when activity was shifted
+                                if (invitation.id) {
+                                    SocialInteractionService.putSocialInteraction(invitation).then(function (savedInv) {
+                                        return _finalCb(savedInv);
+                                    });
+                                } else {
+                                    SocialInteractionService.postInvitation(invitation).then(function (saved) {
+                                        return _finalCb(saved, 'invitationCreated');
+                                    });
                                 }
-                            ];
 
-                            // we are calling the PUT or POST,
-                            // PUT is needed to update publish-dates when activity was shifted
-                            if (invitation.id) {
-                                SocialInteractionService.putSocialInteraction(invitation).then(function (savedInv) {
-                                    return _finalCb(savedInv);
+                            } else if (inviteNewSelected) {
+                                var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
+                                    return typeof user;
                                 });
-                            } else {
-                                SocialInteractionService.postInvitation(invitation).then(function (saved) {
-                                    return _finalCb(saved, 'invitationCreated');
+
+                                var users = toBeInvited.object;
+                                var emails = toBeInvited.string;
+
+                                invitation.targetSpaces = [];
+                                _.forEach(users, function (user) {
+                                    invitation.targetSpaces.push({
+                                        type: 'user',
+                                        targetId: user.id
+                                    });
                                 });
-                            }
 
-                        } else if (inviteNewSelected) {
-                            var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
-                                return typeof user;
-                            });
-
-                            var users = toBeInvited.object;
-                            var emails = toBeInvited.string;
-
-                            invitation.targetSpaces = [];
-                            _.forEach(users, function (user) {
-                                invitation.targetSpaces.push({
-                                    type: 'user',
-                                    targetId: user.id
-                                });
-                            });
-
-                            SocialInteractionService.postInvitation(invitation).then(function (savedInv) {
-                                if (emails && emails.length > 0) {
-                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                SocialInteractionService.postInvitation(invitation).then(function (savedInv) {
+                                    if (emails && emails.length > 0) {
+                                        ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                            // do not pass the savedInv to the Cb, because we don't want to show
+                                            // the soi on the following state. WL-1603
+                                            return _finalCb();
+                                        });
+                                    } else {
                                         // do not pass the savedInv to the Cb, because we don't want to show
                                         // the soi on the following state. WL-1603
                                         return _finalCb();
-                                    });
-                                } else {
-                                    // do not pass the savedInv to the Cb, because we don't want to show
-                                    // the soi on the following state. WL-1603
-                                    return _finalCb();
-                                }
+                                    }
 
-                            });
-                        } else {
-                            return _finalCb();
+                                });
+                            }
                         }
                     }, function saveErrorCb(err) {
                         $scope.$emit('clientmsg:error', err);
@@ -585,7 +588,7 @@
                     };
 
 
-                    $scope.$watch('activityController.inviteOthers', function(newValue, oldVal) {
+                    $scope.$watch('activityController.inviteOthers', function (newValue, oldVal) {
                         if (!newValue) {
                             return;
                         }
@@ -597,8 +600,9 @@
 
                         // using timeout here to give the form time to check its status, we are using $invalid
                         // in _validateActivity()
-                        $timeout(function() {_validateActivity($scope.activity, {});});
-
+                        $timeout(function () {
+                            _validateActivity($scope.activity, {});
+                        });
 
 
                         if (newValue === 'none') {
@@ -611,7 +615,6 @@
                             throw new Error('this should not be possible');
                         }
                     });
-
 
 
                 }
