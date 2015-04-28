@@ -50,7 +50,11 @@
 
                 <div class="row">
                     <div class="col-sm-2 col-sm-push-10">
-                        <button type="button" class="btn btn-default" ng-click="campaignPreparation.step2.active = true">Weiter</button>
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="campaignPreparation.step2.active = true"
+                                ng-disabled="campaignPreparation.step2.disabled"
+                                translate>Weiter</button>
                     </div>
                 </div>
             </tab>
