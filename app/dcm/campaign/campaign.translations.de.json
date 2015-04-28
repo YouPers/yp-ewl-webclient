@@ -52,7 +52,9 @@
     "participants": {
       "label": "Teilnehmerkreis",
       "placeholder": "Bezeichnung der Gruppe/Abteilung/Team dieser Kampagne",
-      "$invalid": "Bitte Teilnehmerkreis eingeben"
+      "error": {
+        "required": "Bitte einen Ort erfassen"
+      }
     },
     "location": {
       "label": "Gebäude/Strasse",
@@ -63,7 +65,10 @@
     },
     "city": {
       "label": "Ort",
-      "placeholder": "Ort"
+      "placeholder": "Ort",
+      "error": {
+        "required": "Bitte einen Ort erfassen"
+      }
     },
     "back": "Zurück",
     "save": "Speichern",

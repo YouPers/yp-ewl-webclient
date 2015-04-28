@@ -174,9 +174,10 @@
                     $scope.campaignLeadChanged = true;
                 };
 
-                $scope.isAssigned = function (campaignLead) {
+                $scope.isAssigned = function (user) {
+                    user = user || $scope.principal.getUser();
                     return _.any($scope.campaign.campaignLeads, function (cl) {
-                        return cl.id === campaignLead.id;
+                        return cl.id === user.id;
                     });
                 };
 
@@ -265,6 +266,13 @@
                 }
 
                 $scope.saveCampaign = function () {
+                    $scope.campaignController.submitting = true
+                    if ($scope.campaignForm.$invalid) {
+                        $scope.campaignForm.submitted = true;
+                        $scope.campaignController.submitting = false;
+                        return;
+                    }
+
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "saveCampaign"});
 
                     // recreate campaign and all offers, if
