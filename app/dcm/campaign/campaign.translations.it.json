@@ -52,7 +52,9 @@
     "participants": {
       "label": "Gruppo di persone",
       "placeholder": "Gruppo di persone",
-      "$invalid": "Prego inserire un valido gruppo di persone"
+      "error": {
+        "required": null
+      }
     },
     "location": {
       "label": "Luogo",
@@ -63,7 +65,10 @@
     },
     "city": {
       "label": "Città",
-      "placeholder": "Città"
+      "placeholder": "Città",
+      "error": {
+        "required": null
+      }
     },
     "back": "Indietro",
     "save": "Salva",

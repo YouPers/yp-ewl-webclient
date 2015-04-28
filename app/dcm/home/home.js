@@ -215,7 +215,11 @@
                         });
                 }
 
-                function _initCampaignPreparation() {
+                function _initCampaignPreparation(stayOnStep) {
+                    var activeBefore;
+                    if (stayOnStep) {
+                        activeBefore = _.findKey($scope.campaignPreparation, { active: true });
+                    }
                     $scope.campaignPreparation = {
                         step1: {
                             complete:
@@ -227,18 +231,23 @@
                         }
 
                     };
-                    _activateFirstIncompleteStep();
+                    _activateFirstIncompleteStep(activeBefore);
 
                 }
 
-                function _activateFirstIncompleteStep() {
+                function _activateFirstIncompleteStep(stayOnStep) {
                     var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
                     if (firstIncompleteStep) {
-                        firstIncompleteStep.active = true;
+                        if (!stayOnStep) {
+                            firstIncompleteStep.active = true;
+                        }
                         firstIncompleteStep.enabled = true;
-                    } else {
+                    } else if (!stayOnStep){
                         // enable last step
                         $scope.campaignPreparation.step2.active = true;
+                    }
+                    if (stayOnStep) {
+                        $scope.campaignPreparation[stayOnStep].active = true;
                     }
                     _.each($scope.campaignPreparation, function (step) {
                         step.disabled = !step.enabled && !step.complete;
@@ -258,8 +267,7 @@
 
                         $scope.$watch(function () {
                             return UserService.hasDefaultAvatar(campaign.campaignLeads[0]);
-                        }, _initCampaignPreparation);
-
+                        }, function() {_initCampaignPreparation(true);});
 
 
                         $scope.completeCampaignPreparation = function (step) {

@@ -67,8 +67,8 @@
             }],
 
 
-            existingCampaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea',
-                function ($stateParams, SocialInteractionService, activity, idea) {
+            existingCampaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea', 'UserService',
+                function ($stateParams, SocialInteractionService, activity, idea, UserService) {
                     if (activity.id && idea.defaultexecutiontype !== 'self') {
                         return SocialInteractionService.getInvitations({
                             populate: 'author',
@@ -79,7 +79,16 @@
                             publishTo: false,
                             "filter[activity]": activity.id
                         }).then(function (invitations) {
-                            return invitations.length > 0 ? invitations[0] : undefined;
+                            var campInv =  invitations.length > 0 ? invitations[0] : undefined;
+
+                            // if the author is the current user, use the session object instead,
+                            // so we get updates when the user changes.
+                            if (campInv) {
+                                if (campInv.author.id === UserService.principal.getUser().id ) {
+                                    campInv.author = UserService.principal.getUser();
+                                }
+                            }
+                            return campInv;
                         });
                     } else {
                         return undefined;
@@ -337,67 +346,76 @@
                         // queue event for next state
                         HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
-                        var invitation = $scope.soiPublished;
-                        invitation.activity = savedActivity.id;
+                        if (activityController.inviteOthers === 'none') {
+                            // nobody to invite, so nothing else to do
+                            return _finalCb();
+                        } else {
+                            var invitation = $scope.soiPublished;
+                            invitation.activity = savedActivity.id;
 
-                        // publish dates
-                        _updatePublishDates(invitation, campaign, $scope.events);
+                            // publish dates
+                            _updatePublishDates(invitation, campaign, $scope.events);
 
-                        var inviteAll = activityController.inviteOthers === 'all';
-                        var inviteNewSelected = $scope.usersToBeInvited.length > 0;
+                            var inviteAll = activityController.inviteOthers === 'all';
+                            var inviteNewSelected = $scope.usersToBeInvited.length > 0;
 
-                        if (inviteAll) {
-                            invitation.targetSpaces = [
-                                {
-                                    type: 'campaign',
-                                    targetId: campaign.id
+                            if (inviteAll) {
+                                invitation.targetSpaces = [
+                                    {
+                                        type: 'campaign',
+                                        targetId: campaign.id
+                                    }
+                                ];
+
+                                // we are calling the PUT or POST,
+                                // PUT is needed to update publish-dates when activity was shifted
+                                if (invitation.id) {
+                                    SocialInteractionService.putSocialInteraction(invitation).then(function (savedInv) {
+                                        return _finalCb(savedInv);
+                                    });
+                                } else {
+                                    SocialInteractionService.postInvitation(invitation).then(function (saved) {
+                                        return _finalCb(saved, 'invitationCreated');
+                                    });
                                 }
-                            ];
 
-                            // we are calling the PUT or POST,
-                            // PUT is needed to update publish-dates when activity was shifted
-                            if (invitation.id) {
-                                SocialInteractionService.putSocialInteraction(invitation).then(function (savedInv) {
-                                    return _finalCb(savedInv);
+                            } else if (inviteNewSelected) {
+                                var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
+                                    return typeof user;
                                 });
-                            } else {
-                                SocialInteractionService.postInvitation(invitation).then(function (saved) {
-                                    return _finalCb(saved, 'invitationCreated');
+
+                                var users = toBeInvited.object;
+                                var emails = toBeInvited.string;
+
+                                invitation.targetSpaces = [];
+                                _.forEach(users, function (user) {
+                                    invitation.targetSpaces.push({
+                                        type: 'user',
+                                        targetId: user.id
+                                    });
                                 });
-                            }
 
-                        } else if (inviteNewSelected) {
-                            var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
-                                return typeof user;
-                            });
-
-                            var users = toBeInvited.object;
-                            var emails = toBeInvited.string;
-
-                            invitation.targetSpaces = [];
-                            _.forEach(users, function (user) {
-                                invitation.targetSpaces.push({
-                                    type: 'user',
-                                    targetId: user.id
-                                });
-                            });
-
-                            SocialInteractionService.postInvitation(invitation).then(function (savedInv) {
-                                if (emails && emails.length > 0) {
-                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                SocialInteractionService.postInvitation(invitation).then(function (savedInv) {
+                                    if (emails && emails.length > 0) {
+                                        ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                            // do not pass the savedInv to the Cb, because we don't want to show
+                                            // the soi on the following state. WL-1603
+                                            return _finalCb();
+                                        });
+                                    } else {
                                         // do not pass the savedInv to the Cb, because we don't want to show
                                         // the soi on the following state. WL-1603
                                         return _finalCb();
-                                    });
-                                } else {
-                                    // do not pass the savedInv to the Cb, because we don't want to show
-                                    // the soi on the following state. WL-1603
-                                    return _finalCb();
-                                }
+                                    }
 
-                            });
-                        } else {
-                            return _finalCb();
+                                }, function saveErrorCb(err) {
+                                    $scope.$emit('clientmsg:error', err);
+                                    $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
+                                });
+                            } else {
+                                // user clicked "selected" but did not enter anybody --> same as none
+                                return _finalCb();
+                            }
                         }
                     }, function saveErrorCb(err) {
                         $scope.$emit('clientmsg:error', err);
@@ -508,13 +526,19 @@
                 }
 
                 function _setupInvitationsControl() {
-                    $scope.invitedUsers = [];
+                    activityController.invitedUsers = [];
 
                     if ($scope.isScheduled) {
 
-                        // set the organizer's invitation status if this is already scheduled, so he shows up as organizer
-                        activity.owner.invitationStatus = 'organizer';
-                        $scope.invitedUsers.push(activity.owner);
+                        // add the organizer, the first in the array is always the organizer!
+
+                        // if the current user is the organizer put the reference to the user in the session instead
+                        // of the one delivered by the server
+                        if ($scope.isOwner) {
+                            activityController.invitedUsers.push($scope.principal.getUser());
+                        } else {
+                            activityController.invitedUsers.push(activity.owner);
+                        }
 
                         if (existingCampaignInvitation) {
                             // check if campaign is already invited, do the check with existingCampaignInvitation because
@@ -533,7 +557,7 @@
                             _.each(invitationStatus, function (status) {
                                 var user = status.user || {email: status.email};
                                 user.invitationStatus = status.status;
-                                $scope.invitedUsers.push(user);
+                                activityController.invitedUsers.push(user);
                             });
                         }
 
@@ -554,7 +578,7 @@
                     }
 
                     // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
-                    $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
+                    $scope.usersExcludedForInvitation = activityController.invitedUsers.concat($scope.activity.owner);
 
                     $scope.usersToBeInvited = [];
 
@@ -585,7 +609,7 @@
                     };
 
 
-                    $scope.$watch('activityController.inviteOthers', function(newValue, oldVal) {
+                    $scope.$watch('activityController.inviteOthers', function (newValue, oldVal) {
                         if (!newValue) {
                             return;
                         }
@@ -597,21 +621,24 @@
 
                         // using timeout here to give the form time to check its status, we are using $invalid
                         // in _validateActivity()
-                        $timeout(function() {_validateActivity($scope.activity, {});});
+                        $timeout(function () {
+                            _validateActivity($scope.activity, {});
+                        });
 
-
+                        var newInvite = _.clone(invitationTemplate);
+                        // reset the author to point to the session reference
+                        newInvite.author = $scope.principal.getUser();
 
                         if (newValue === 'none') {
                             $scope.soiPublished = undefined;
                         } else if (newValue === 'all') {
-                            $scope.soiPublished = existingCampaignInvitation || _.clone(invitationTemplate);
+                            $scope.soiPublished = existingCampaignInvitation || newInvite;
                         } else if (newValue === 'selected') {
-                            $scope.soiPublished = _.clone(invitationTemplate);
+                            $scope.soiPublished = newInvite;
                         } else {
                             throw new Error('this should not be possible');
                         }
                     });
-
 
 
                 }

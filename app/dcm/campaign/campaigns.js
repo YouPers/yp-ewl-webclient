@@ -134,6 +134,7 @@
                     };
                 }
 
+
                 $scope.disabledStart = usersInCampaign;
                 $scope.disabledEnd = $scope.campaignEnded;
                 $scope.minDateStart = $scope.disabledStart ? undefined : moment().toDate();
@@ -157,6 +158,15 @@
                     $scope.campaignEndChangeRecreatesOffers = moment().isBefore($scope.campaign.start) && !usersInCampaign;
                 });
 
+
+                $scope.$watch('campaignForm', function(form) {
+                    if (form) {
+                        // mark the form as submitted to display errors form the beginning
+                        // WL-2021:
+                        form.submitted = true;
+                    }
+                });
+
                 var newCampaignLeadEmpty = {emailValidatedFlag: false};
 
                 $scope.newCampaignLead = _.clone(newCampaignLeadEmpty);
@@ -174,9 +184,10 @@
                     $scope.campaignLeadChanged = true;
                 };
 
-                $scope.isAssigned = function (campaignLead) {
+                $scope.isAssigned = function (user) {
+                    user = user || $scope.principal.getUser();
                     return _.any($scope.campaign.campaignLeads, function (cl) {
-                        return cl.id === campaignLead.id;
+                        return cl.id === user.id;
                     });
                 };
 
@@ -265,6 +276,13 @@
                 }
 
                 $scope.saveCampaign = function () {
+                    $scope.campaignController.submitting = true;
+                    if ($scope.campaignForm.$invalid) {
+                        $scope.campaignForm.submitted = true;
+                        $scope.campaignController.submitting = false;
+                        return;
+                    }
+
                     $scope.$root.$broadcast('busy.begin', {url: "campaign", name: "saveCampaign"});
 
                     // recreate campaign and all offers, if

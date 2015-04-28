@@ -44,7 +44,8 @@
       "inviteByUser": "Search within campaign",
       "invitedOnSave": "Invited when planned:",
       "none": "Nobody",
-      "notFound": "not found? invite someone by email:"
+      "notFound": "not found? invite someone by email:",
+      "readOnlyLabel": null
     },
     "emailToBeInvited": {
       "placeholder": "Email",
@@ -141,6 +142,10 @@
     },
     "publishTo": {
       "label": "To"
+    },
+    "preview": {
+      "plannedEventsRemark": null,
+      "soiPublishedRemark": null
     }
   },
   "activityForm": {
