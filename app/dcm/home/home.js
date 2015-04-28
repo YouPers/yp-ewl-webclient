@@ -252,12 +252,6 @@
 
                         _initCampaignPreparation();
 
-                        $scope.$watch(function () {
-                            return UserService.hasDefaultAvatar(campaign.campaignLeads[0]);
-                        }, _initCampaignPreparation);
-
-
-
                         $scope.completeCampaignPreparation = function (step) {
                             $scope.campaignPreparation['step' + step].complete = true;
                             _activateFirstIncompleteStep();

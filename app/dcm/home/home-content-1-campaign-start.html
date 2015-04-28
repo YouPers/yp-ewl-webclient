@@ -47,6 +47,12 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-2 col-sm-push-10">
+                        <button type="button" class="btn btn-default" ng-click="campaignPreparation.step2.active = true">Weiter</button>
+                    </div>
+                </div>
             </tab>
 
             <!-- step 2 -->
@@ -63,16 +69,6 @@
                 <div>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.text</span>
                 </div>
-            </tab>
-
-
-        </tabset>
-
-
-        <!-- campaign invitations -->
-
-        <div ng-if="campaignPreparation.step2.active" justified="true">
-
                 <p translate>dcmhome.campaignStart.welcomeLink.createDraft.text</p>
 
                 <a ng-href="{{ homeController.createDraftUrl }}" class="btn btn-default" ng-click="completeCampaignPreparation(2)" translate>
@@ -89,8 +85,13 @@
                  -->
                 <div class="welcome-link" select-on-click ng-show="campaign.id" ng-click="completeCampaignPreparation(2)">{{ homeController.welcomeLink }}
                 </div>
-        </div>
 
-
+                <div class="row">
+                    <div class="col-sm-2 col-sm-push-10">
+                        <button type="button" class="btn btn-default" ng-click="campaignPreparation.step1.active = true">Zurück</button>
+                    </div>
+                </div>
+            </tab>
+        </tabset>
     </div>
 </accordion-group>
