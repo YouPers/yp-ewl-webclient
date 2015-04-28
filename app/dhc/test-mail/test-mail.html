@@ -23,6 +23,22 @@
                 <span ng-show="refreshing">refreshing ... </span>
             </div>
 
+            <div class="well" ng-if="mailType === 'campaignLeadSummaryMail'">
+
+                <p>
+                    campaign.start: {{ campaign.start | date }}
+                </p>
+
+                <p>
+                    campaignLeadSummaryMail would <span ng-if="!isOrdinalDate(options.currentDate)" style="color: red">NOT</span> be sent
+                </p>
+
+                <div ng-repeat="ordinalNumber in [0,1,2,3]">
+                    <a ng-click="setCurrentDate(ordinalDate(ordinalNumber))">{{ ordinalDate(ordinalNumber) | date }}</a>
+                </div>
+
+            </div>
+
             <div class="well" ng-if="mailType === 'dailySummaryMail'">
 
 
@@ -41,27 +57,27 @@
 
                     <h3>
                         campaign.start:
-                        <a ng-click="setcurrentDate(campaign.start)">{{ campaign.start | fulldate }}</a>
+                        <a ng-click="setCurrentDate(campaign.start)">{{ campaign.start | fulldate }}</a>
                     </h3>
                     <h3>
                         campaign.end:
-                        <a ng-click="setcurrentDate(campaign.end)">{{ campaign.end | fulldate }}</a>
+                        <a ng-click="setCurrentDate(campaign.end)">{{ campaign.end | fulldate }}</a>
                     </h3>
                     <h3>
                         first monday:
-                        <a ng-click="setcurrentDate(campaign.firstMonday)">{{ campaign.firstMonday | fulldate }}</a>
+                        <a ng-click="setCurrentDate(campaign.firstMonday)">{{ campaign.firstMonday | fulldate }}</a>
                     </h3>
                     <h3>
                         midterm ({{ campaign.midtermWeek }}th) monday:
-                        <a ng-click="setcurrentDate(campaign.midtermMonday)">{{ campaign.midtermMonday | fulldate }}</a>
+                        <a ng-click="setCurrentDate(campaign.midtermMonday)">{{ campaign.midtermMonday | fulldate }}</a>
                     </h3>
                     <h3>
                         last monday:
-                        <a ng-click="setcurrentDate(campaign.lastMonday)">{{ campaign.lastMonday | fulldate }}</a>
+                        <a ng-click="setCurrentDate(campaign.lastMonday)">{{ campaign.lastMonday | fulldate }}</a>
                     </h3>
                     <h3>
                         last day:
-                        <a ng-click="setcurrentDate(campaign.end)">{{ campaign.end | fulldate }}</a>
+                        <a ng-click="setCurrentDate(campaign.end)">{{ campaign.end | fulldate }}</a>
                     </h3>
                 </div>
 

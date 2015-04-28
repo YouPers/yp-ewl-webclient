@@ -31,12 +31,22 @@
 
 
                 $scope.sendMail = function (options) {
+
+                    if($scope.mailType === 'campaignLeadSummaryMail' && !$scope.isOrdinalDate($scope.options.currentDate)) {
+                        alert('campaignLeadSummaryMail will NOT be sent by the backend for the current date');
+                    }
+
                     TestMailService.sendMail($scope.mailType, options);
+                };
+
+
+                $scope.setCurrentDate = function (date) {
+                    $scope.options.currentDate = moment(date).toDate();
                 };
 
                 $scope.options = {};
 
-                // dailySummaryMail scope attributes
+                // dailySummaryMail
                 (function initDailySummaryMail() {
                     $scope.campaign = campaign;
                     $scope.lastSummaryMail = user.lastSummaryMail;
@@ -44,9 +54,6 @@
                     $scope.options.lastSentMailDate = $scope.lastSummaryMail ? moment($scope.lastSummaryMail).toDate() :
                         moment($scope.options.currentDate).subtract(1, 'days').toDate();
 
-                    $scope.setcurrentDate = function (date) {
-                        $scope.options.currentDate = moment(date).toDate();
-                    };
                     var midtermWeek = Math.floor(moment(user.campaign.end).diff(user.campaign.start, 'weeks') / 2);
                     _.extend($scope.campaign, {
                         midtermWeek: midtermWeek,
@@ -54,6 +61,16 @@
                         midtermMonday: moment(campaign.start).day(1).add(midtermWeek, 'weeks'),
                         lastMonday: moment(user.campaign.end).day(1)
                     });
+                })();
+
+                // campaignLeadSummaryMail
+                (function initCampaignLeadSummaryMail() {
+                    $scope.ordinalDate = function (ordinalNumber) {
+                        return moment(campaign.start).businessAdd(1 + ordinalNumber * 5).toDate();
+                    };
+                    $scope.isOrdinalDate = function (date) {
+                        return moment(campaign.start).businessAdd(1).businessDiff(date) % 5 === 0;
+                    };
                 })();
 
 
