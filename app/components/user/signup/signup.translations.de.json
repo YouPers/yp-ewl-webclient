@@ -2,7 +2,9 @@
   "signup": {
     "header": "Herzlich Willkommen zur HealthCampaign!",
     "signupNote": "Neu registrieren",
-    "signinNote": "Anmelden"
+    "signinNote": "Anmelden",
+    "noCampaignRemark": "Bitte klicke auf den Link im Einladungsmail deines Kampagnenleiters",
+    "useLoginIfHaveAccount": "Falls du schon ein HealthCampaign Konto hast, melde dich hier an"
   },
   "registerForm": {
     "firstname": {
