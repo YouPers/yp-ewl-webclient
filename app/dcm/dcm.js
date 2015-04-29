@@ -35,10 +35,20 @@
                                     return campaigns;
                                 });
                         }],
-                        campaign: ['$stateParams', 'campaigns', function ($stateParams, campaigns) {
+                        campaign: ['$stateParams', 'campaigns', 'UserService',
+                            function ($stateParams, campaigns, UserService) {
 
                             if ($stateParams.campaignId) {
-                                return _.find(campaigns, {id: $stateParams.campaignId});
+                                var campaign =  _.find(campaigns, {id: $stateParams.campaignId});
+
+                                // TODO: Replace with WL-1017
+                                if (campaign.campaignLeads[0] &&
+                                    campaign.campaignLeads[0].id === UserService.principal.getUser().id)  {
+                                    campaign.campaignLeads[0] = UserService.principal.getUser();
+                                }
+
+
+                                return campaign;
                             } else {
                                 return undefined;
                             }

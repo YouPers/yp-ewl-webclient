@@ -83,6 +83,8 @@
 
                             // if the author is the current user, use the session object instead,
                             // so we get updates when the user changes.
+
+                            // TODO: Replace with WL-1017
                             if (campInv) {
                                 if (campInv.author.id === UserService.principal.getUser().id ) {
                                     campInv.author = UserService.principal.getUser();
