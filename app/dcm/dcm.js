@@ -42,7 +42,7 @@
                                 var campaign =  _.find(campaigns, {id: $stateParams.campaignId});
 
                                 // TODO: Replace with WL-1017
-                                if (campaign.campaignLeads[0] &&
+                                if (campaign && campaign.campaignLeads && campaign.campaignLeads[0] &&
                                     campaign.campaignLeads[0].id === UserService.principal.getUser().id)  {
                                     campaign.campaignLeads[0] = UserService.principal.getUser();
                                 }
