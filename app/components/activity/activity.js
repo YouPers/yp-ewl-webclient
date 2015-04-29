@@ -348,7 +348,8 @@
                         // queue event for next state
                         HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
-                        if (activityController.inviteOthers === 'none') {
+                        // it is empty in case of "non-group activities, where the control is hidden
+                        if (activityController.inviteOthers === 'none' || !activityController.inviteOthers) {
                             // nobody to invite, so nothing else to do
                             return _finalCb();
                         } else {
