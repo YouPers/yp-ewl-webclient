@@ -181,6 +181,7 @@
     "email": {
       "actPlanInvites": "Einladungen zu Aktivitäten ",
       "dailyUserMail": "Tägliche Zusammenfassung",
+      "weeklyCampaignLeadMail": "Wöchentlicher Kampagnenstatus",
       "iCalInvites": "Kalender-Einträge per Email"
     },
     "emailNotificationsSettings": "Email-Benachrichtigungen erhalten?",

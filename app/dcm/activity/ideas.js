@@ -7,7 +7,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dcm.ideas', {
-                        url: "/ideas",
+                        url: "/ideas?type",
                         access: accessLevels.campaignlead,
                         views: {
                             content: {
