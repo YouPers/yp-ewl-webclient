@@ -34,7 +34,7 @@
 
         </div>
 
-        <div class="idea-list" ng-init="query.defaultexecutiontype = $stateParams.type">
+        <div class="idea-list" ng-init="!$stateParams.type || (query.defaultexecutiontype = $stateParams.type)">
 
             <div class="idea-list-item" ng-repeat="idea in ideas | filter:query">
 

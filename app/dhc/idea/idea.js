@@ -7,7 +7,7 @@
             function ($stateProvider, $urlRouterProvider, accessLevels, $translateWtiPartialLoaderProvider) {
                 $stateProvider
                     .state('dhc.ideas', {
-                        url: "/ideas",
+                        url: "/ideas?type",
                         access: accessLevels.individual,
                         views: {
                             content: {
