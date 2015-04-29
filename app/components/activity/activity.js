@@ -556,6 +556,12 @@
                             activityController.inviteOthers = activityController.inviteOthers || 'selected';
                             _.each(invitationStatus, function (status) {
                                 var user = status.user || {email: status.email};
+
+                                // if the current user is listed put the session object instead of the
+                                // server side object
+                                if (user.id === $scope.principal.getUser().id) {
+                                    user = $scope.principal.getUser();
+                                }
                                 user.invitationStatus = status.status;
                                 activityController.invitedUsers.push(user);
                             });
