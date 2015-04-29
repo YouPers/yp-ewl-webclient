@@ -20,7 +20,9 @@
                     restrict: 'E',
                     transclude: true,
                     templateUrl: 'components/directives/avatar-upload-directive/avatar-upload-directive.html',
-                    scope: { },
+                    scope: {
+                        popoverplace: '='
+                    },
                     priority: 10,
                     link: function (scope, elem, attrs) {
 
@@ -49,9 +51,10 @@
         .directive('avatar', ['UserService', function (UserService) {
             return {
                 restrict: 'E',
-                template: '<img ng-if="!showAvatarUpload" class="avatar" ng-src="{{user.avatar}}"><avatar-upload ng-if="showAvatarUpload"></avatar-upload>',
+                template: '<img ng-if="!showAvatarUpload" class="avatar" ng-src="{{user.avatar}}"><avatar-upload ng-if="showAvatarUpload" popoverplace="popoverplace"></avatar-upload>',
                 scope: {
-                    user: '&'
+                    user: '&',
+                    popoverplace: '='
                 },
                 link: function (scope, elem, attrs) {
 

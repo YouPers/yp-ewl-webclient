@@ -89,19 +89,15 @@
       },
       "campaignLeadGuidance": {
         "step1": {
-          "link": "To campaign data",
+          "avatarLink": null,
+          "campaignLink": null,
           "tab": "Campaign data",
           "text": "Please check the details of your campaign. Correct or complete information"
         },
         "step2": {
           "link": "To Profile",
           "tab": "Profile Photo",
-          "text": "Upload your profile photo. A photo is important so that participants can recognize you as their Campaign Leader.s"
-        },
-        "step3": {
-          "link": "Create and send invitations",
-          "tab": "Invitations",
-          "text": "Congratulations! Your campaign is now ready. Send the invitations to the participants on the campaign starting day or on the evening before"
+          "text": "Congratulations! Your campaign is now ready for launch. Send right now the invitations to the campaign participants."
         },
         "notCampaignLead": "Campaign start status"
       }

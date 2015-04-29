@@ -7,7 +7,7 @@
 
          popover="{{ defaultAvatar ? 'avatarUpload.defaultAvatarHint' : '' | translate }}"
          popover-trigger="mouseenter"
-         popover-placement="top" popover-append-to-body="true"
+         popover-placement="{{popoverplace || 'top'}}" popover-append-to-body="true"
             ></div>
 
     <input id="avatarUpload" nv-file-select type="file" ng-hide="true" uploader="uploader">

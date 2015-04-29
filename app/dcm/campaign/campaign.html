@@ -35,9 +35,9 @@
                            ng-if="!campaign.id">campaignForm.topic.change</a>
                     </p>
                 </div>
-                <yp-input name="participants"></yp-input>
-                <yp-input name="location"></yp-input>
-                <yp-input name="city"></yp-input>
+                <yp-input name="participants" required></yp-input>
+                <yp-input name="location" required></yp-input>
+                <yp-input name="city" required></yp-input>
 
                 <div class="form-group date">
                     <label class="control-label" translate>campaignForm.start.label</label>
@@ -120,7 +120,7 @@
 
                 <div class="campaign-lead row" ng-if="campaign.campaignLeads[0]">
                     <div class="col-sm-1">
-                        <img ng-src="{{ campaign.campaignLeads[0].avatar }}">
+                        <avatar user="campaign.campaignLeads[0]"></avatar>
                     </div>
                     <div class="col-sm-3">
                         <span>{{ campaign.campaignLeads[0].fullname }}</span>
@@ -186,9 +186,9 @@
                 </div>
             </div>
             <div class="button-row">
-                <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true"
+                <button ng-click="!campaignController.submitting && saveCampaign()"
                         class="btn btn-primary"
-                        ng-disabled="(campaignForm.$invalid && campaignForm.$dirty) || (campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (campaign.id && !campaignForm.$dirty) || (!campaign.id && !paymentCodeCheckingDisabled && !validPaymentCode)"
+                        ng-disabled="campaignForm.$invalid || (campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (!campaign.id && !paymentCodeCheckingDisabled && !validPaymentCode)"
                         busy>
                     <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                     <span translate>campaignForm.save</span>

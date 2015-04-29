@@ -89,16 +89,12 @@
       },
       "campaignLeadGuidance": {
         "step1": {
-          "link": null,
+          "avatarLink": null,
+          "campaignLink": null,
           "tab": null,
           "text": null
         },
         "step2": {
-          "link": null,
-          "tab": null,
-          "text": null
-        },
-        "step3": {
           "link": null,
           "tab": null,
           "text": null

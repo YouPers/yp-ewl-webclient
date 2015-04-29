@@ -52,7 +52,9 @@
     "participants": {
       "label": "Le groupe de personnes",
       "placeholder": "Le groupe de personnes",
-      "$invalid": "S'il te plaît entrer un groupe de personnes valides"
+      "error": {
+        "required": null
+      }
     },
     "location": {
       "label": "La localité",
@@ -63,7 +65,10 @@
     },
     "city": {
       "label": "Le lieu",
-      "placeholder": "Le lieu"
+      "placeholder": "Le lieu",
+      "error": {
+        "required": null
+      }
     },
     "back": "dos",
     "save": "Enregistrer",

@@ -68,7 +68,7 @@
       "label": "Company name",
       "placeholder": "Company name"
     },
-    "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions/?lang=en"
+    "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions"
   },
   "signupFinalization": {
     "header": "Thank you for your registration!",
