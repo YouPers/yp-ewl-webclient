@@ -181,7 +181,8 @@
     "email": {
       "actPlanInvites": "Les invitations à des activités ",
       "dailyUserMail": "Le résumé journalier",
-      "iCalInvites": "L'entrée de l'agenda par email"
+      "iCalInvites": "L'entrée de l'agenda par email",
+      "weeklyCampaignLeadMail": null
     },
     "emailNotificationsSettings": "Messages reçus?",
     "calendarNotificationSettings": "Des indications dans le calendrier",

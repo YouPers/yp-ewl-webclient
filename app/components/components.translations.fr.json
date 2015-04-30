@@ -19,7 +19,9 @@
       "504": null,
       "alreadyJoinedUsers": null,
       "cannotSwitchCampaign": null,
-      "memberOfOtherCampaign": null
+      "memberOfOtherCampaign": null,
+      "DhcButNoCampaign": null,
+      "invalidUserForEmailVerificationToken": null
     }
   },
   "busy": {

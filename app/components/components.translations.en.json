@@ -19,7 +19,9 @@
       "504": "Our servers are not available at the moment, we are taking care of this. Please try again in a few minutes.",
       "alreadyJoinedUsers": "The campaign can not be deleted because participants have already registered.",
       "cannotSwitchCampaign": "You can not accept this campaign invitation because you are already participating in another campaign. It is not possible to take part in several campaigns simultaneously.",
-      "memberOfOtherCampaign": "The page you are requesting belongs to the campaign of another team. You yourself are already participating in different campaign. Cross-Campaign actions are not possible."
+      "memberOfOtherCampaign": "The page you are requesting belongs to the campaign of another team. You yourself are already participating in different campaign. Cross-Campaign actions are not possible.",
+      "DhcButNoCampaign": null,
+      "invalidUserForEmailVerificationToken": null
     }
   },
   "busy": {

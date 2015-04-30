@@ -2,7 +2,9 @@
   "signup": {
     "header": "Benvenuto in YOUPERS!",
     "signupNote": "Registrati",
-    "signinNote": "Autenticazione"
+    "signinNote": "Autenticazione",
+    "noCampaignRemark": null,
+    "useLoginIfHaveAccount": null
   },
   "registerForm": {
     "firstname": {

@@ -101,7 +101,7 @@
     "fullname": "YOUPERS Coach",
     "expand": "more",
     "dcmSignup": {
-      "stateEnter": "Welcome! <br> I am your Digital Coach and I am glad that you chose to order the HealthCampaign service.\n\nPlease register yourself and your organisation on this page. After entering the your organisation's details, you can start by creating your first campaign.\n\nI will assist you with creating and monitoring your campaigns by giving you tips and advice.\n\nFor more information click \"Help\" in the Top Menu or go to the <a href=\"http://healthcampaign.youpers.com/?p=20985\">Learn More page for Service Manager</a>"
+      "stateEnter": "Welcome! <br> I am your Digital Coach and I am glad that you chose to order the HealthCampaign service.\n\nPlease register yourself and your organisation on this page. After entering the your organisation's details, you can start by creating your first campaign.\n\nI will assist you with creating and monitoring your campaigns by giving you tips and advice.\n\nFor more information click \"Help\" in the Top Menu or go to the <a href=\"http://healthcampaign.youpers.com/?p=20985\" target='_blank'>Learn More page for Service Manager</a>"
     }
   }
 }

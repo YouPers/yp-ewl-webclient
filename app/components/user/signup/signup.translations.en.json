@@ -4,8 +4,7 @@
     "signupNote": "register",
     "signinNote": "Login",
     "noCampaignRemark": "Please click on the welcome link in the invitation email of your campaignLead",
-    "signup.useLoginIfHaveAccount": "if you already have a HealthCampaign account,  sign in here"
-
+    "useLoginIfHaveAccount": null
   },
   "registerForm": {
     "firstname": {

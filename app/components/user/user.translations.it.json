@@ -181,7 +181,8 @@
     "email": {
       "actPlanInvites": null,
       "dailyUserMail": null,
-      "iCalInvites": null
+      "iCalInvites": null,
+      "weeklyCampaignLeadMail": null
     },
     "emailNotificationsSettings": null,
     "calendarNotificationSettings": null,

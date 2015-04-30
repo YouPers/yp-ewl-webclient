@@ -180,9 +180,9 @@
     "$invalid": "Bitte gültigen Wert eintragen",
     "email": {
       "actPlanInvites": "Einladungen zu Aktivitäten ",
-      "dailyUserMail": "Tägliche Zusammenfassung",
-      "weeklyCampaignLeadMail": "Wöchentlicher Kampagnenstatus",
-      "iCalInvites": "Kalender-Einträge per Email"
+      "dailyUserMail": "Daily Mail",
+      "iCalInvites": "Kalender-Einträge per Email",
+      "weeklyCampaignLeadMail": "Weekly Mail"
     },
     "emailNotificationsSettings": "Email-Benachrichtigungen erhalten?",
     "calendarNotificationSettings": "Hinweise im Bürokalender",
