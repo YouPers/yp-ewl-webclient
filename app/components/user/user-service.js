@@ -38,7 +38,7 @@
             systemadmin: _userRoles.systemadmin
         };
 
-    var _emptyDefaultUser = {profile: {prefs: {email: {}}}};
+    var _emptyDefaultUser = {avatar: "", profile: {prefs: {email: {}}}};
     var _currentUser = _.clone(_emptyDefaultUser);
     var _authenticated = false;
 
