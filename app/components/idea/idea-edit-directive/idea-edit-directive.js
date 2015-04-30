@@ -78,16 +78,21 @@
         .controller('IdeaImageModalController', ['$scope', '$modalInstance',
             function ($scope, $modalInstance) {
 
-                var prefix = 'https://dxjlk9p2h4a7j.cloudfront.net/ideas/';
+                var prefix = 'https://dxjlk9p2h4a7j.cloudfront.net/customideadefaultpics/';
                 $scope.list = [];
+
+                var pics = ("Fotolia_23380966_XS.jpg Fotolia_61363991_XS.jpg Fotolia_64195461_XS.jpg " +
+                    "Fotolia_71239295_XS.jpg Fotolia_73498966_XS.jpg Fotolia_81123380_XS.jpg "+
+                    "Fotolia_50572236_XS.jpg Fotolia_62968358_XS.jpg Fotolia_66960425_XS.jpg " +
+                    "Fotolia_72329892_XS.jpg Fotolia_80763519_XS.jpg Fotolia_82092559_XS.jpg").split(' ');
 
                 for(var i=0;i<12;i++) {
 
-                    var id = 'Act-' + (100 + i);
+                    var id = 'Cust-' + (100 + i);
 
                     $scope.list.push({
                         id: id,
-                        path: prefix + id + '.jpg'
+                        path: prefix + pics[i]
                     });
                 }
 
