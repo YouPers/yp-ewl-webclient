@@ -59,16 +59,16 @@
                 link: function (scope, elem, attrs) {
 
                     var authenticatedUser = UserService.principal.getUser();
+                    var user = scope.user();
 
-                    if(!scope.user()) {
+                    if(!user) {
                         scope.user = authenticatedUser;
-                    } else if (scope.user().id === authenticatedUser.id) {
+                    } else if (user.id === authenticatedUser.id) {
                         scope.user = authenticatedUser;
+                        scope.showAvatarUpload = UserService.hasDefaultAvatar();
                     } else {
-                        scope.user = scope.user();
+                        scope.user = user;
                     }
-
-                    scope.showAvatarUpload = UserService.hasDefaultAvatar(scope.user);
                 }
             };
         }]);
