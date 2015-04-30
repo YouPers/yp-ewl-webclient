@@ -35,9 +35,9 @@
                            ng-if="!campaign.id">campaignForm.topic.change</a>
                     </p>
                 </div>
-                <yp-input name="participants"></yp-input>
-                <yp-input name="location"></yp-input>
-                <yp-input name="city"></yp-input>
+                <yp-input name="participants" required></yp-input>
+                <yp-input name="location" required></yp-input>
+                <yp-input name="city" required></yp-input>
 
                 <div class="form-group date">
                     <label class="control-label" translate>campaignForm.start.label</label>
@@ -48,11 +48,11 @@
                         <span translate>campaignForm.usersInCampaign</span>
                     </div>
 
-                    <div class="recreation" ng-cloak
-                         ng-if="campaignStartChanged || (campaignEndChanged && campaignEndChangeRecreatesOffers) || (initialMainCampaignLeadId && campaignLeadChanged)">
-                        <span translate>campaignForm.offersRecreated</span>
-                        <i class="fa fa-warning"></i>
-                    </div>
+                    <!--<div class="recreation" ng-cloak-->
+                         <!--ng-if="campaignStartChanged || (campaignEndChanged && campaignEndChangeRecreatesOffers) || (initialMainCampaignLeadId && campaignLeadChanged)">-->
+                        <!--<span translate>campaignForm.offersRecreated</span>-->
+                        <!--<i class="fa fa-warning"></i>-->
+                    <!--</div>-->
                 </div>
 
                 <div class="form-group date">
@@ -62,9 +62,6 @@
 
                     <div ng-if="disabledEnd">
                         <span translate>campaignForm.campaignEnded</span>
-                    </div>
-                    <div ng-if="campaignEndChanged && !campaignEndChangeRecreatesOffers && !campaignStartChanged">
-                        <span translate>campaignForm.offersRemain</span>
                     </div>
                 </div>
 
@@ -118,25 +115,21 @@
 
             <div class="campaign-leads">
 
-                <div class="campaign-lead row" ng-repeat="campaignLead in availableCampaignLeads()">
+                <div class="campaign-lead row" ng-if="campaign.campaignLeads[0]">
                     <div class="col-sm-1">
-                        <img ng-src="{{ campaignLead.avatar }}">
+                        <avatar user="campaign.campaignLeads[0]"></avatar>
                     </div>
-                    <div class="col-sm-5">
-                        <span>{{ campaignLead.fullname }} {{campaignLead.email}}</span>
+                    <div class="col-sm-3">
+                        <span>{{ campaign.campaignLeads[0].fullname }}</span>
 
                     </div>
 
-                    <div class="col-sm-3">
-                        <a href ng-click="assignCampaignLead(campaignLead); campaignForm.$setDirty(); "
-                           ng-if="!campaignController.campaignLeadVerified">
-                            <i ng-show="isAssigned(campaignLead)" class="fa fa-check-square-o"></i>
-                            <i ng-show="!isAssigned(campaignLead)" class="fa fa-square-o"></i>
-                        </a>
+                    <div class="col-sm-3" ng-if="campaign.campaignLeads[0].email">
+                       <span>{{campaign.campaignLeads[0].email}}</span>
                     </div>
                     <div class="col-sm-3">
-                        <a ng-if="isAssigned(campaignLead) && !campaignController.campaignLeadVerified && campaign.id"
-                           ng-click="resendCampaignLeadInvite(campaignLead.id)"
+                        <a ng-if="isAssigned(campaign.campaignLeads[0]) && !campaignController.campaignLeadVerified && campaign.id"
+                           ng-click="resendCampaignLeadInvite(campaign.campaignLeads[0].id)"
                            popover="{{ 'campaign.card.campaignLeadUnconfirmed' | translate }}" popover-trigger="mouseenter" popover-placement="right" popover-append-to-body="true">
                             <i class="fa fa-warning"></i>
                             <span translate>campaignLeadForm.resend</span
@@ -144,9 +137,18 @@
                         </a>
                     </div>
                 </div>
+                <div ng-if="!campaign.campaignLeads[0]" class="row">
+                    <div class="col-sm-6 col-sm-offset-3" translate>Die Kampagne hat noch keinen Leiter. Bestimme einen Kampagnenleiter:</div>
+                </div>
+                <br>
                 <div class="row" ng-if="!campaignController.campaignLeadVerified">
-                    <div class="col-sm-12"><a href ng-click="campaignController.showNewCampainleadForm=true"
-                                              ng-if="!campaignController.showNewCampainleadForm" translate>campaignLeadForm.newCampaignLead</a>
+                    <div class="col-sm-6" ng-if="canBecomeCampaignLead() && !campaignController.showNewCampainleadForm">
+                        <button type="button" class="btn btn-default" ng-click="becomeCampaignLead()"
+                                 translate>Selber Kampagnenleiter werden</button>
+                    </div>
+                    <div class="col-sm-6" ng-if="!campaignController.showNewCampainleadForm">
+                        <button class="btn btn-default" type="button" ng-click="campaignController.showNewCampainleadForm=true"
+                                 translate>campaignLeadForm.newCampaignLead</button>
                     </div>
                 </div>
 
@@ -181,9 +183,9 @@
                 </div>
             </div>
             <div class="button-row">
-                <button ng-click="!campaignController.submitting && saveCampaign();campaignController.submitting = true"
+                <button ng-click="!campaignController.submitting && saveCampaign()"
                         class="btn btn-primary"
-                        ng-disabled="(campaignForm.$invalid && campaignForm.$dirty) || (campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (campaign.id && !campaignForm.$dirty) || (!campaign.id && !paymentCodeCheckingDisabled && !validPaymentCode)"
+                        ng-disabled="campaignForm.$invalid || (campaign.campaignLeads.length + campaign.newCampaignLeads.length === 0) || (!campaign.id && !paymentCodeCheckingDisabled && !validPaymentCode)"
                         busy>
                     <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
                     <span translate>campaignForm.save</span>

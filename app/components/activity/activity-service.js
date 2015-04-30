@@ -3,8 +3,8 @@
 
     angular.module('yp.components.activity')
 
-        .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope',
-            function ($http, Restangular, $q, UserService, $rootScope) {
+        .factory('ActivityService', ['$http', 'Restangular', '$q', 'UserService', '$rootScope', 'localStorageService',
+            function ($http, Restangular, $q, UserService, $rootScope, localStorageService) {
                 var ideas = Restangular.all('ideas');
                 var activities = Restangular.all('activities');
                 var activityEvents = Restangular.all('activityevents');
@@ -45,8 +45,8 @@
                      * @returns {*}
                      * @private
                      */
-                    function _populateFromCache () {
-                        _.forEach(objects, function(obj) {
+                    function _populateFromCache() {
+                        _.forEach(objects, function (obj) {
                             if (obj.idea && !_.isObject(obj.idea)) {
                                 obj.idea = ideaCache[obj.idea];
                             }
@@ -71,19 +71,19 @@
 
                         var promise = ideas.getList(options)
                             .then(function (ideas) {
-                                    _.forEach(ideas, function (idea) {
-                                        ideaCache[idea.id] = idea;
-                                    });
-                                })
+                                _.forEach(ideas, function (idea) {
+                                    ideaCache[idea.id] = idea;
+                                });
+                            })
                             .finally(function (ideas) {
                                 // remove the ids from the pending
-                                _.forEach(ideaIdsToFetch, function(id) {
+                                _.forEach(ideaIdsToFetch, function (id) {
                                     delete ideaCachePending[id];
                                 });
                             });
 
                         // put the ids to the pending
-                        _.forEach(ideaIdsToFetch, function(id) {
+                        _.forEach(ideaIdsToFetch, function (id) {
                             ideaCachePending[id] = promise;
                         });
 
@@ -111,22 +111,22 @@
                         if (ideaId && ideaCache[ideaId]) {
                             return $q.when(ideaCache[ideaId]);
                         } else if (ideaId) {
-                            return Restangular.one('ideas', ideaId).get().then(function(idea) {
+                            return Restangular.one('ideas', ideaId).get().then(function (idea) {
                                 ideaCache[idea.id] = idea;
                                 return idea;
                             });
                         } else {
-                           return $q.when(null);
+                            return $q.when(null);
                         }
                     },
                     saveIdea: function (idea) {
                         if (idea.id) {
-                            return Restangular.restangularizeElement(null, idea, "ideas").put().then(function(storedIdea) {
+                            return Restangular.restangularizeElement(null, idea, "ideas").put().then(function (storedIdea) {
                                 ideaCache[storedIdea.id] = storedIdea;
                                 return storedIdea;
                             });
                         } else {
-                            return Restangular.restangularizeElement(null, idea, 'ideas').post().then(function(storedIdea) {
+                            return Restangular.restangularizeElement(null, idea, 'ideas').post().then(function (storedIdea) {
                                 ideaCache[storedIdea.id] = storedIdea;
                                 return storedIdea;
                             });
@@ -150,10 +150,10 @@
                             return $q.when([]);
                         }
                     },
-                    getActivityLookaheadCounters: function(activityId, lastAccessSince) {
-                        return Restangular.one('activities', activityId).one('lookAheadCounters').get({ since: lastAccessSince });
+                    getActivityLookaheadCounters: function (activityId, lastAccessSince) {
+                        return Restangular.one('activities', activityId).one('lookAheadCounters').get({since: lastAccessSince});
                     },
-                    getActivityEventDueState: function(event, type) {
+                    getActivityEventDueState: function (event, type) {
                         // type may be one of ["current, "past", "done", "feedback", "conflict"]
                         // and is used to determine which type of event Card is to be showed
 
@@ -165,11 +165,11 @@
 
                         // Due State is one of: [Conflict, Coach, Past, Present, Future]
 
-                        function _getTimeBasedState (myEvent) {
+                        function _getTimeBasedState(myEvent) {
                             var now = moment();
-                            if(now.isAfter(myEvent.start, 'day')) {
+                            if (now.isAfter(myEvent.start, 'day')) {
                                 return 'Past';
-                            } else if(now.isSame(myEvent.start, 'day')) {
+                            } else if (now.isSame(myEvent.start, 'day')) {
                                 return 'Present';
                             } else {
                                 return 'Future';
@@ -177,19 +177,19 @@
 
                         }
 
-                        if(type === 'conflict') {
+                        if (type === 'conflict') {
                             return 'Conflict';
 
                         } else if (type === 'current') {
-                            if(event.idea && event.idea.action) {
+                            if (event.idea && event.idea.action) {
                                 return 'Coach';
                             } else {
                                 return _getTimeBasedState(event);
                             }
 
 
-                        } else if (type === 'past' || type=== 'done' || type === 'feedback') {
-                            if(event.idea && event.idea.action) {
+                        } else if (type === 'past' || type === 'done' || type === 'feedback') {
+                            if (event.idea && event.idea.action) {
                                 return 'Coach';
                             } else {
                                 return _getTimeBasedState(event); // reuse 'neutral' eventFuture component type
@@ -234,7 +234,7 @@
                     validateActivity: function (activity) {
                         return Restangular.all('activities/validate').post(activity);
                     },
-                    getInvitationStatus: function(activityId) {
+                    getInvitationStatus: function (activityId) {
                         return Restangular.one('activities', activityId).one('invitationStatus').getList();
                     },
 
@@ -261,6 +261,36 @@
 
                     getDefaultActivity: function (idea, options) {
                         return ideas.one(idea.id || idea).one('defaultActivity').get(options).then(_populateIdeas);
+                    },
+                    newIdea: function (campaignId) {
+
+                        var idea = Restangular.restangularizeElement(null, {
+                            number: campaignId ? 'CUSTOM_CAMPAIGN_ACTIVITY' : 'NEW',
+                            source: campaignId ? 'campaign' : 'youpers',
+                            defaultfrequency: "once",
+                            "defaultexecutiontype": "group",
+                            "defaultduration": 60,
+                            "defaultStartTime": moment().startOf('hour'),
+                            fields: [],
+                            recWeights: [],
+                            topics: [],
+                            author: UserService.principal.getUser().id
+                        }, 'ideas');
+
+                        if (campaignId) {
+                            idea.campaign = campaignId;
+                        }
+                        return idea;
+                    },
+
+                    updateActivityLookahead: function (activity) {
+
+                        if(activity.id) {
+                            var localStorageKey = 'user=' + UserService.principal.getUser().id;
+                            var localStorage = localStorageService.get(localStorageKey) || {};
+                            localStorage[activity.id] = moment();
+                            localStorageService.set(localStorageKey, localStorage);
+                        }
                     },
 
                     populateIdeas: _populateIdeas

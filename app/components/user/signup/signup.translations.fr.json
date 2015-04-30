@@ -2,7 +2,9 @@
   "signup": {
     "header": "Bienvenue chez YouPers!",
     "signupNote": "Enregistrer nouveau",
-    "signinNote": "Login"
+    "signinNote": "Login",
+    "noCampaignRemark": null,
+    "useLoginIfHaveAccount": null
   },
   "registerForm": {
     "firstname": {

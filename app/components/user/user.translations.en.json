@@ -71,7 +71,7 @@
       "placeholder": "New password",
       "error": {
         "minlength": "At least 6 characters",
-        "$invalid": null,
+        "$invalid": "Minimum of 6 characters",
         "required": "Your new password"
       }
     },
@@ -181,7 +181,8 @@
     "email": {
       "actPlanInvites": "Invitations for activities",
       "dailyUserMail": "Daily Summary",
-      "iCalInvites": "Calendar events by email"
+      "iCalInvites": "Calendar events by email",
+      "weeklyCampaignLeadMail": null
     },
     "emailNotificationsSettings": "Did you receive email notifications?",
     "calendarNotificationSettings": "calendar alerts",

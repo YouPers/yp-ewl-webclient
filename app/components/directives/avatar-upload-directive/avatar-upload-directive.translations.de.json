@@ -1,0 +1,9 @@
+{
+  "avatarUpload": {
+    "progress": {
+      "header": "Profilbild wird hochgeladen",
+      "cancel": "Abbrechen"
+    },
+    "defaultAvatarHint": "Klick hier, um ein Profilfoto von dir hochzuladen, damit dich die anderen Kampagnenteilnehmer sofort erkennen."
+  }
+}

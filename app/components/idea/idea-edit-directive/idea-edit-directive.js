@@ -9,13 +9,12 @@
                 return {
 
                     restrict: 'EA',
-                    templateUrl: 'components/directives/idea-edit-directive/idea-edit-directive.html',
+                    templateUrl: 'components/idea/idea-edit-directive/idea-edit-directive.html',
                     transclude: true,
                     scope: {
                         idea: "=",
                         topics: "=",
-                        onSave: "=",
-                        onCancel: "="
+                        ideaForm: "="
                     },
 
                     link: function ($scope, elem, attrs) {
@@ -47,45 +46,10 @@
                             return (UserService.principal.getUser().roles.indexOf('productadmin') !== -1);
                         };
 
-                        $scope.save = function() {
-                            if ($scope.idea.noDefaultStartTime) {
-                                $scope.idea.defaultStartTime = "";
-                            } else {
-                                // noDefaultStartTime is not selected, check whether a real date is in idea.defaultStartTime,
-                                // if not: set to current date
-                                // -> prevents the empty idea.defaultStartTime, when the
-                                // timepicker is not manually touched by the user
-                                if (!$scope.idea.defaultStartTime) {
-                                    $scope.idea.defaultStartTime = new Date();
-                                }
-                            }
-
-                            // reset the currentCampaign to the idea, the user might have changed it
-                            if (CampaignService.currentCampaign) {
-                                $scope.idea.campaign = CampaignService.currentCampaign;
-                            }
-                            ActivityService.saveIdea($scope.idea).then(function (result) {
-                                // reinitialize the UI flag for noDefaultStartTime
-                                result.noDefaultStartTime = !idea.defaultStartTime;
-                                $scope.idea = result;
-
-                                if(attrs.onSave) {
-                                    $scope.onSave(result);
-                                }
-
-                            });
-                        };
-
-                        $scope.cancel = function() {
-                            if(attrs.onCancel) {
-                                $scope.onCancel();
-                            }
-                        };
-
 
                         $scope.selectIdeaImage = function selectIdeaImage() {
                             var modalInstance = $modal.open({
-                                templateUrl: 'components/directives/idea-edit-directive/idea-image-modal.html',
+                                templateUrl: 'components/idea/idea-edit-directive/idea-image-modal.html',
                                 controller: 'IdeaImageModalController',
                                 resolve: {
 
@@ -114,16 +78,21 @@
         .controller('IdeaImageModalController', ['$scope', '$modalInstance',
             function ($scope, $modalInstance) {
 
-                var prefix = 'https://dxjlk9p2h4a7j.cloudfront.net/ideas/';
+                var prefix = 'https://dxjlk9p2h4a7j.cloudfront.net/customideadefaultpics/';
                 $scope.list = [];
+
+                var pics = ("Fotolia_23380966_XS.jpg Fotolia_61363991_XS.jpg Fotolia_64195461_XS.jpg " +
+                    "Fotolia_71239295_XS.jpg Fotolia_73498966_XS.jpg Fotolia_81123380_XS.jpg "+
+                    "Fotolia_50572236_XS.jpg Fotolia_62968358_XS.jpg Fotolia_66960425_XS.jpg " +
+                    "Fotolia_72329892_XS.jpg Fotolia_80763519_XS.jpg Fotolia_82092559_XS.jpg").split(' ');
 
                 for(var i=0;i<12;i++) {
 
-                    var id = 'Act-' + (100 + i);
+                    var id = 'Cust-' + (100 + i);
 
                     $scope.list.push({
                         id: id,
-                        path: prefix + id + '.jpg'
+                        path: prefix + pics[i]
                     });
                 }
 

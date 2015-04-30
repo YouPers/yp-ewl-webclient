@@ -7,13 +7,18 @@
         "Save": "Activity saved",
         "SaveAndInvite": "Dates stored and sent out invitations"
       }
+    },
+    "error": {
+      "activity": {
+        "notParticipating": "You don't take part in this activity anymore"
+      }
     }
   },
   "activity": {
     "header": {
-      "second": "plan",
-      "third": "Appointments",
-      "invitedUsers": "People",
+      "second": "Plan",
+      "third": "Planned activities",
+      "invitedUsers": "Participants",
       "inviteOthers": "Invite others",
       "comments": "Comments",
       "publish": "Publish invitation",
@@ -21,43 +26,45 @@
         "Invitation": "Invitation",
         "NewCampaignActivity": "New campaign activity",
         "PlannedActivity": "Your activity",
-        "Recommendation": "Recommendation"
+        "Recommendation": "Recommendation",
+        "newActivity": "Plan a new activity"
       }
     },
     "comment": {
-      "placeholder": null,
-      "save": null
+      "placeholder": "Notes",
+      "save": "Save"
     },
     "inviteOthers": {
       "selected": "selected",
       "all": "all",
       "inviteByEmail": {
-        "placeholder": null,
-        "submit": null
+        "placeholder": "Enter Email",
+        "submit": "Add"
       },
       "inviteByUser": "Search within campaign",
-      "invitedOnSave": "Invited when scheduled:",
+      "invitedOnSave": "Invited when planned:",
       "none": "Nobody",
-      "notFound": "not found? invite someone by email:"
+      "notFound": "not found? invite someone by email:",
+      "readOnlyLabel": null
     },
     "emailToBeInvited": {
       "placeholder": "Email",
       "submit": "Add"
     },
     "invitationStatus": {
-      "activityJoined": "Assumed",
+      "activityJoined": "Accepted",
       "denied": "Denied",
       "pending": "?",
       "organizer": "Organizer"
     },
     "link": {
-      "campaignlead": "Schedule it",
+      "campaignlead": "Plan it",
       "owned": "Edit",
-      "recommendation": "Schedule it",
+      "recommendation": "Plan it",
       "invitation": "Accept",
       "dismiss": "Dismiss",
       "back": "Home",
-      "undo": "UNDO",
+      "undo": "Undo",
       "edit": "Edit",
       "delete": "Delete"
     },
@@ -65,10 +72,11 @@
       "save": "Save",
       "delete": "Delete",
       "invitationSave": "Accept",
-      "recommendationSave": "Schedule it",
-      "ownedSave": "Schedule it",
-      "joinedSave": "Schedule it",
-      "scheduleSave": "Schedule it",
+      "recommendationSave": "Plan it",
+      "ownedSave": "Plan it",
+      "joinedSave": "Plan it",
+      "scheduleSave": "Plan it",
+      "newActivityDhcSave": "Plan",
       "campaignleadSave": "Publish",
       "campaignleadSaveAndInvite": "Publish",
       "ownedSaveAndInvite": "Plan & send",
@@ -78,10 +86,10 @@
       "invitationDecline": "Reject",
       "recommendationDismiss": "No, thank you!"
     },
-    "owner": "Host",
-    "isJoining": "People",
+    "owner": "Organizer",
+    "isJoining": "Participating",
     "isInvited": "Invited",
-    "reschedule": "Re-schedule",
+    "reschedule": "Plan newly",
     "editPopover": "Edit",
     "deletePopover": "Delete",
     "event": {
@@ -90,18 +98,18 @@
     },
     "list": {
       "stateHeader1": "all",
-      "stateHeader2": "Activity",
+      "stateHeader2": "Activities",
       "editTooltip": "Edit activity",
-      "newTooltip": "Schedule new activity",
+      "newTooltip": "Plan new activity",
       "statusFilter": {
         "all": "All Activities",
-        "invited": "1NV1735",
+        "invited": "Invitations",
         "owned": "Activities organized by me",
         "joined": "Activities I participate in"
       },
       "item": {
         "title": "What",
-        "text": "Bio",
+        "text": "Description",
         "date": "When",
         "location": "Where"
       }
@@ -109,21 +117,21 @@
     "view": {
       "stateHeader1": "your/one",
       "stateHeader2": "Activity",
-      "title": "Tab",
-      "text": "Bio",
-      "location": "City",
+      "title": "Title",
+      "text": "Description",
+      "location": "Location",
       "date": "Date",
       "time": "Time",
-      "frequency": "Period",
-      "recurrence": "Count",
+      "frequency": "Frequency",
+      "recurrence": "Recurrence",
       "socialInteraction": {
-        "title": "Txt"
+        "title": "Message"
       },
       "comment": {
         "placeholder": "write comment"
       },
       "publish": "published",
-      "addToCalendar": null
+      "addToCalendar": "Add to calendar"
     },
     "edit": {
       "stateHeader1": "your",
@@ -134,16 +142,20 @@
     },
     "publishTo": {
       "label": "To"
+    },
+    "preview": {
+      "plannedEventsRemark": null,
+      "soiPublishedRemark": null
     }
   },
   "activityForm": {
     "title": {
-      "label": "Tab",
-      "placeholder": "Tab"
+      "label": "Title",
+      "placeholder": "Title"
     },
     "location": {
-      "label": "City",
-      "placeholder": "City"
+      "label": "Location",
+      "placeholder": "Location"
     },
     "date": {
       "label": "Date"
@@ -152,11 +164,11 @@
       "label": "Time"
     },
     "recurrence": {
-      "label": "repeat count"
+      "label": "Number of times to repeat"
     },
-    "create": "Forge",
+    "create": "Create",
     "save": "Save",
     "delete": "Delete",
-    "cancel": "Stop"
+    "cancel": "Cancel"
   }
 }

@@ -198,7 +198,8 @@
         <div class="form-group">
 
             <h3 translate>profileForm.emailNotificationsSettings</h3>
-            <div ng-repeat="(emailsetting, value) in profileUserObj.prefs.email">
+            <div ng-repeat="(emailsetting, value) in profileUserObj.prefs.email"
+                    ng-if="emailsetting !== 'weeklyCampaignLeadMail' || isCampaignAdmin">
                 <label>
                     <input name="{{'email.'+emailsetting}}" type="checkbox"
                            ng-model="profileUserObj.prefs.email[emailsetting]">

@@ -4,18 +4,14 @@
     angular.module('yp.components.avatarUpload', [])
 
 
+        .config(['$translateWtiPartialLoaderProvider', function($translateWtiPartialLoaderProvider) {
+            $translateWtiPartialLoaderProvider.addPart('components/directives/avatar-upload-directive/avatar-upload-directive');
+        }])
+
     /**
      * directive: avatar-upload
      *
-     * dependencies: avatarObject in parent scope, with the avatar at avatarObject.avatar
-     *               or a custom object specified as attribute
-     *
-     * default: user avatar for the authenticated user
-     *
-     * optional attributes:
-     *
-     *  - type: [ 'organization' ]
-     *  - avatarObject: the object where the avatar is located, avatarObject.avatar
+     * user avatar upload directive for the authenticated user
      *
      */
         .directive('avatarUpload', ['UserService', 'ImageService',
@@ -25,46 +21,55 @@
                     transclude: true,
                     templateUrl: 'components/directives/avatar-upload-directive/avatar-upload-directive.html',
                     scope: {
-                        avatarObject: "="
+                        popoverplace: '='
                     },
                     priority: 10,
                     link: function (scope, elem, attrs) {
 
-                        if (!scope.avatarObject && (!attrs.avatarObject || !scope[attrs.avatarObject])) {
-                            throw "avatar-upload: avatarObject not found or specified";
-                        } else {
+                        scope.user = UserService.principal.getUser();
 
-                            var avatarObject = scope.avatarObject;
+                        scope.$watch(function () {
+                            return scope.user.avatar;
+                        }, function (avatar) {
+                            scope.defaultAvatar = UserService.hasDefaultAvatar(scope.user);
+                        });
 
-                            if (!avatarObject || _.isEmpty(avatarObject)) {
-                                return;
-                            }
-
-                            scope.avatarObject = avatarObject;
-
-                            scope.uploader = ImageService.getImageUploader(attrs.type || 'user', scope,
-                                function successCb(url) {
-                                    var user = UserService.principal.getUser();
-                                    user.avatar = url;
-                                    UserService.putUser(user).then(function(savedUser) {
-                                        scope.avatarObject = savedUser;
-                                        scope.$root.$emit('clientmsg:success','pictureSaved');
-                                    });
+                        scope.uploader = ImageService.getImageUploader(attrs.type || 'user', scope,
+                            function successCb(url) {
+                                var user = UserService.principal.getUser();
+                                user.avatar = url;
+                                UserService.putUser(user).then(function(savedUser) {
+                                    scope.user = savedUser;
+                                    scope.$root.$emit('clientmsg:success','pictureSaved');
                                 });
-                        }
+                            });
                     }
                 };
             }])
 
 
-        .directive('avatar', function () {
-            return function (scope, element, attrs) {
+        .directive('avatar', ['UserService', function (UserService) {
+            return {
+                restrict: 'E',
+                template: '<img ng-if="!showAvatarUpload" class="avatar" ng-src="{{user.avatar}}"><avatar-upload ng-if="showAvatarUpload" popoverplace="popoverplace"></avatar-upload>',
+                scope: {
+                    user: '&',
+                    popoverplace: '='
+                },
+                link: function (scope, elem, attrs) {
 
-                scope.$watch('avatarObject.avatar', function (avatar) {
-                    if (avatar) {
-                        element.css("background-image", "url(" + avatar + ")");
+                    var authenticatedUser = UserService.principal.getUser();
+                    var user = scope.user();
+
+                    if(!user) {
+                        scope.user = authenticatedUser;
+                    } else if (user.id === authenticatedUser.id) {
+                        scope.user = authenticatedUser;
+                        scope.showAvatarUpload = UserService.hasDefaultAvatar();
+                    } else {
+                        scope.user = user;
                     }
-                });
+                }
             };
-        });
+        }]);
 }());

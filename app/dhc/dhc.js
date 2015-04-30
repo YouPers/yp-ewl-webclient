@@ -49,6 +49,7 @@
             function ($scope, $rootScope, $state, $timeout, UserService, campaign) {
                 var user = UserService.principal.getUser();
                 $rootScope.$log.log('DhcController is run now.');
+                $scope.parentState = 'dhc';
 
                 // there was no campaign in the URL of this dhc.* state, so we try to get the campaign of the current
                 // user and redirect
@@ -58,8 +59,11 @@
                         $state.go('dhc.game', { campaignId: user.campaign.id || user.campaign , view: ""});
 
                     } else {
-                        $rootScope.$log.log('DhcController: redirecting to campaign list(no campaign in URL, no campaign on user)');
-                        $state.go('campaign-list');
+                        // the user has no user.campaign and in the URL was no campaign.
+                        // should never happen...
+                        $rootScope.$log.log('DhcController: redirecting to error(no campaign in URL, no campaign on user)');
+                        $rootScope.$emit('clientmsg:error', "DhcButNoCampaign", {duration: 10000});
+                        UserService.logout();
                     }
                 } else {
                     // check whether the current user is not a member of another campaign than the one he is trying to navigate to

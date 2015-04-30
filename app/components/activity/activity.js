@@ -10,57 +10,19 @@
 
         .constant('activityResolveConfiguration', {
 
-            idea: ['$stateParams', 'ActivityService', 'activity', function ($stateParams, ActivityService, activity) {
-                var idea = $stateParams.idea;
-                // if we do not have an idea in the stateParams try to get it from the activity
-                if (!idea) {
-                    idea = activity && activity.idea;
-                }
-                if (idea.id) { // we found a populated idea, just return it
-                    return idea;
-                } else if (idea) { // we found a idea id, get it from Service
-                    return ActivityService.getIdea(idea);
-                } else {
-                    throw new Error('activity: idea is required');
-                }
-            }],
-
-            socialInteraction: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
+            clickedSocialInteraction: ['$stateParams', 'SocialInteractionService', function ($stateParams, SocialInteractionService) {
                 if ($stateParams.socialInteraction) {
                     return SocialInteractionService.getSocialInteraction($stateParams.socialInteraction);
                 } else {
                     return undefined;
                 }
             }],
-            existingCampaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea',
-                function ($stateParams, SocialInteractionService, activity, idea) {
-                    if (activity.id && idea.defaultexecutiontype !== 'self') {
-                        return SocialInteractionService.getInvitations({
-                            populate: 'author',
-                            targetId: $stateParams.campaignId,
-                            authored: true,
-                            publishFrom: false,
-                            publishTo: false,
-                            "filter[activity]": activity.id
-                        }).then(function (invitations) {
-                            return invitations.length > 0 ? invitations[0] : undefined;
-                        });
-                    } else {
-                        return undefined;
-                    }
-                }],
-            invitationStatus: ['$stateParams', 'ActivityService', 'idea', function ($stateParams, ActivityService, idea) {
-                if ($stateParams.activity && idea.defaultexecutiontype !== 'self') {
-                    return ActivityService.getInvitationStatus($stateParams.activity);
-                } else {
-                    return [];
-                }
-            }],
 
-            activity: ['$rootScope', '$stateParams', 'ActivityService', 'socialInteraction', '$q',
-                function ($rootScope, $stateParams, ActivityService, socialInteraction, $q) {
-                    if (socialInteraction && socialInteraction.activity) {
-                        return socialInteraction.activity;
+
+            activity: ['$rootScope', '$stateParams', 'ActivityService', 'clickedSocialInteraction', '$q',
+                function ($rootScope, $stateParams, ActivityService, clickedSocialInteraction, $q) {
+                    if (clickedSocialInteraction && clickedSocialInteraction.activity) {
+                        return clickedSocialInteraction.activity;
                     }
                     if ($stateParams.activity) {
                         return ActivityService.getActivity($stateParams.activity).catch(function (err) {
@@ -71,21 +33,80 @@
                     }
                 }],
 
+            idea: ['$stateParams', 'ActivityService', 'activity', function ($stateParams, ActivityService, activity) {
+                var ideaId = $stateParams.idea;
+                // if we do not have an idea in the stateParams try to get it from the activity
+                if (!ideaId) {
+                    ideaId = activity && activity.idea;
+                }
+
+                if (ideaId.id) { // we found a populated idea, just return it
+                    return ideaId;
+                } else if (ideaId) { // we found a idea id, get it from Service
+                    return ActivityService.getIdea(ideaId);
+                } else {
+                    throw new Error('activity: idea is required');
+                }
+            }],
 
             activityEvents: ['ActivityService', 'activity', function (ActivityService, activity) {
 
                 if (!activity.id) {
                     return [];
                 }
-
                 return ActivityService.getActivityEvents({
                     'filter[activity]': activity.id,
                     sort: 'start'
+                }).then(function (events) {
+                    // replace the unpopulated event.activity with the full activity object
+                    _.forEach(events, function (event) {
+                        event.activity = activity;
+                    });
+                    return events;
                 });
             }],
 
-            healthCoachEvent: ['$state', 'ActivityService', 'UserService', 'campaign', 'socialInteraction', 'activity', 'activityEvents',
-                function ($state, ActivityService, UserService, campaign, socialInteraction, activity, activityEvents) {
+
+            existingCampaignInvitation: ['$stateParams', 'SocialInteractionService', 'activity', 'idea', 'UserService',
+                function ($stateParams, SocialInteractionService, activity, idea, UserService) {
+                    if (activity.id && idea.defaultexecutiontype !== 'self') {
+                        return SocialInteractionService.getInvitations({
+                            populate: 'author',
+                            targetId: $stateParams.campaignId,
+                            authored: true,
+                            dismissed: true,
+                            publishFrom: false,
+                            publishTo: false,
+                            "filter[activity]": activity.id
+                        }).then(function (invitations) {
+                            var campInv =  invitations.length > 0 ? invitations[0] : undefined;
+
+                            // if the author is the current user, use the session object instead,
+                            // so we get updates when the user changes.
+
+                            // TODO: Replace with WL-1017
+                            if (campInv) {
+                                if (campInv.author.id === UserService.principal.getUser().id ) {
+                                    campInv.author = UserService.principal.getUser();
+                                }
+                            }
+                            return campInv;
+                        });
+                    } else {
+                        return undefined;
+                    }
+                }],
+
+            invitationStatus: ['$stateParams', 'ActivityService', 'idea', function ($stateParams, ActivityService, idea) {
+                if ($stateParams.activity && idea.defaultexecutiontype !== 'self') {
+                    return ActivityService.getInvitationStatus($stateParams.activity);
+                } else {
+                    return [];
+                }
+            }],
+
+            healthCoachEvent: ['$state', 'ActivityService', 'UserService', 'campaign', 'clickedSocialInteraction', 'activity', 'activityEvents',
+                function ($state, ActivityService, UserService, campaign, clickedSocialInteraction, activity, activityEvents) {
 
                     if (!campaign) {
                         return;
@@ -100,7 +121,7 @@
                                     return moment().diff((event).end) > 0;
                                 }).length > 0;
 
-                            if (socialInteraction && socialInteraction.__t === 'Recommendation') {
+                            if (clickedSocialInteraction && clickedSocialInteraction.__t === 'Recommendation') {
                                 return 'scheduleRecommendedActivity';
                             } else if (hasDueEvents) {
                                 return 'eventsDue';
@@ -128,18 +149,15 @@
         })
 
 
-        .controller('ActivityController', ['$scope', '$rootScope', '$state', '$stateParams', '$timeout',
+        .controller('ActivityController', ['$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'localStorageService',
             'UserService', 'ActivityService', 'SocialInteractionService', 'HealthCoachService', 'CampaignService',
             'healthCoachEvent', // this resolve is from dhc or dcm activity state
-            'campaign', 'idea', 'activity', 'activityEvents', 'socialInteraction', 'existingCampaignInvitation', 'invitationStatus',
-            function ($scope, $rootScope, $state, $stateParams, $timeout,
+            'campaign', 'idea', 'activity', 'activityEvents', 'clickedSocialInteraction', 'existingCampaignInvitation', 'invitationStatus',
+            function ($scope, $rootScope, $state, $stateParams, $timeout, localStorageService,
                       UserService, ActivityService, SocialInteractionService, HealthCoachService, CampaignService, healthCoachEvent,
-                      campaign, idea, activity, activityEvents, socialInteraction, existingCampaignInvitation, invitationStatus) {
+                      campaign, idea, activity, activityEvents, clickedSocialInteraction, existingCampaignInvitation, invitationStatus) {
 
-
-                if (socialInteraction && existingCampaignInvitation && socialInteraction.id !== existingCampaignInvitation.id) {
-                    console.log("this should never happen: if we have a socialInteracion and an existingCampaignInvitation, they should be the same");
-                }
+                var user = $scope.principal.getUser();
 
                 //////////////////////////
                 // setup scope properties
@@ -154,28 +172,46 @@
                 $scope.isOwner = (activity.owner.id || activity.owner) === UserService.principal.getUser().id;
                 $scope.isJoiner = $scope.isScheduled && ActivityService.isJoiningUser(activity);
                 $scope.isCampaignLead = CampaignService.isCampaignLead(campaign);
-                $scope.isInvitation = socialInteraction && socialInteraction.__t === 'Invitation';
-                $scope.isRecommendation = socialInteraction && socialInteraction.__t === 'Recommendation';
+                $scope.isInvitation = clickedSocialInteraction && clickedSocialInteraction.__t === 'Invitation';
+                $scope.isRecommendation = clickedSocialInteraction && clickedSocialInteraction.__t === 'Recommendation';
                 $scope.isDcm = $state.current.name.indexOf('dcm') !== -1;
-                $scope.isNewCampaignActivity = $scope.isCampaignLead && !$scope.isScheduled && $scope.isDcm;
+                $scope.isDhc = $state.current.name.indexOf('dhc') !== -1;
+                $scope.isNewActivity = !$scope.isScheduled && !$scope.isRecommendation;
                 $scope.pageTitle = _getPageTitle();
-                $scope.minPublishDate = moment.max(moment(), moment(campaign.start)).toDate();
 
-                $scope.socialInteraction = socialInteraction || existingCampaignInvitation;
+                // we deal with possibly two SocialInteractions here
+                // - the Soi that caused the user to come here and needs to be answered:
+                //   an Invitation or a Recommendation BY ANOTHER user that this user is answering by clicking
+                //   on the buttons on the right side.
+                //   --> $scope.soiToAnswer
+                // - the Soi that is being published by me by saving this activity, authored by me.
+                //   --> $scope.soiPublished
+                //
+                //
+                // The user came here either by clicking a Soi or by clicking on a planned activity event (without
+                // directly referencing a Social Interaction, so we need to fill in our scope attriubtes with
+                // the correct Sois. The Soi a user clicked on can be the one being published (in case a campaignlead
+                // clicks it in DCM) or, more common, one to answer here. We need to figure out what we have...
 
-                if (!$scope.socialInteraction) {
-                    $scope.socialInteraction = {
-                        author: UserService.principal.getUser(),
-                        authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
-                        __t: 'Invitation',
-                        activity: activity.id,
-                        idea: $scope.idea.id,
-                        publishFrom: $scope.minPublishDate,
-                        publishTo: moment.min(moment($scope.minPublishDate).add(3, 'days').endOf('day'), moment(campaign.end).endOf('day')).toDate()
-                    };
+                // if the user came here by clicking a Soi, but the Soi is not authored by himself, then he needs
+                // to answer the Soi
+                if (clickedSocialInteraction &&
+                    (user.id !== (clickedSocialInteraction.author.id || clickedSocialInteraction.author))) {
+                    $scope.soiToAnswer = clickedSocialInteraction;
                 }
-                $scope.formContainer = {};
 
+                // if the user clicked on a SocialInteraction of type Invitation AND he is the author of it, he has the option to
+                // edit it, same if there is an existing campaignInvitation authored by this user
+                if (clickedSocialInteraction &&
+                    clickedSocialInteraction.__t === 'Invitation' &&
+                    ((clickedSocialInteraction.author.id || clickedSocialInteraction.author) === user.id)) {
+                    $scope.soiPublished = clickedSocialInteraction;
+                } else if (existingCampaignInvitation &&
+                    ((existingCampaignInvitation.author.id || existingCampaignInvitation.author) === user.id)) {
+                    $scope.soiPublished = existingCampaignInvitation;
+                }
+
+                $scope.formContainer = {};
 
                 //////////////////////////
                 // setup controller properties
@@ -187,27 +223,12 @@
 
 
                 ///////////////////////////////////
+                // update activity lookahead
+                ActivityService.updateActivityLookahead(activity);
+
+                ///////////////////////////////////
                 // setup watchers and event-handlers
 
-                if ($scope.isDcm) {
-                    $scope.$watch('socialInteraction.publishFrom', function (date) {
-                        var si = $scope.socialInteraction;
-                        if (moment(si.publishFrom).isAfter(moment(si.publishTo))) {
-                            si.publishTo = moment(si.publishFrom).startOf('day').toDate();
-                        }
-                    });
-                    $scope.$watch('socialInteraction.publishTo', function (date) {
-                        var si = $scope.socialInteraction;
-                        if (moment(si.publishFrom).isAfter(moment(si.publishTo))) {
-                            si.publishFrom = moment(si.publishTo).startOf('day').toDate();
-                        }
-                    });
-
-                    $scope.$watch('activity.start', function (date) {
-                        var si = $scope.socialInteraction;
-                        si.publishTo = moment($scope.activity.start).endOf('day').toDate();
-                    });
-                }
 
                 $scope.$watch('activity', _.debounce(_validateActivity, 200), true);
 
@@ -239,7 +260,10 @@
                 };
 
                 $scope.dismiss = function dismiss() {
-                    SocialInteractionService.deleteSocialInteraction($scope.socialInteraction.id, {reason: 'denied', mode: 'participate'})
+                    SocialInteractionService.deleteSocialInteraction($scope.soiToAnswer.id, {
+                        reason: 'denied',
+                        mode: 'participate'
+                    })
                         .then(function (result) {
                             if ($scope.isRecommendation) {
                                 HealthCoachService.queueEvent('recommendationDismissed');
@@ -324,79 +348,77 @@
                         // queue event for next state
                         HealthCoachService.queueEvent(activity.executionType + 'ActivitySaved');
 
-                        var invitation = $scope.socialInteraction;
-                        invitation.activity = savedActivity.id;
+                        // it is empty in case of "non-group activities, where the control is hidden
+                        if (activityController.inviteOthers === 'none' || !activityController.inviteOthers) {
+                            // nobody to invite, so nothing else to do
+                            return _finalCb();
+                        } else {
+                            var invitation = $scope.soiPublished;
+                            invitation.activity = savedActivity.id;
 
-                        // in the case where this is a newly planned event by a participant, we
-                        // have in $scope.socialInteration the initial recommendation, the user clicked on
-                        // for saving
-                        if (invitation.__t === 'Recommendation') {
-                            invitation = {
-                                author: UserService.principal.getUser(),
-                                authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
-                                __t: 'Invitation',
-                                activity: savedActivity.id,
-                                idea: $scope.idea.id,
-                                publishFrom: $scope.minPublishDate,
-                                publishTo: moment(savedActivity.start).endOf('day').toDate()
-                            };
-                        }
+                            // publish dates
+                            _updatePublishDates(invitation, campaign, $scope.events);
 
-                        var inviteAll = activityController.inviteOthers === 'all';
-                        var inviteNewSelected = $scope.usersToBeInvited.length > 0;
+                            var inviteAll = activityController.inviteOthers === 'all';
+                            var inviteNewSelected = $scope.usersToBeInvited.length > 0;
 
-                        if (inviteAll) {
-                            invitation.targetSpaces = [
-                                {
-                                    type: 'campaign',
-                                    targetId: campaign.id
+                            if (inviteAll) {
+                                invitation.targetSpaces = [
+                                    {
+                                        type: 'campaign',
+                                        targetId: campaign.id
+                                    }
+                                ];
+
+                                // we are calling the PUT or POST,
+                                // PUT is needed to update publish-dates when activity was shifted
+                                if (invitation.id) {
+                                    SocialInteractionService.putSocialInteraction(invitation).then(function (savedInv) {
+                                        return _finalCb(savedInv);
+                                    });
+                                } else {
+                                    SocialInteractionService.postInvitation(invitation).then(function (saved) {
+                                        return _finalCb(saved, 'invitationCreated');
+                                    });
                                 }
-                            ];
 
-                            // we are calling the PUT or POST,
-                            // PUT is needed to update publish-dates when activity was shifted
-                            if (invitation.id) {
-                                SocialInteractionService.putSocialInteraction(invitation).then(function (savedInv) {
-                                    return _finalCb(savedInv);
+                            } else if (inviteNewSelected) {
+                                var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
+                                    return typeof user;
                                 });
-                            } else {
-                                SocialInteractionService.postInvitation(invitation).then(function (saved) {
-                                    return _finalCb(saved, 'invitationCreated');
+
+                                var users = toBeInvited.object;
+                                var emails = toBeInvited.string;
+
+                                invitation.targetSpaces = [];
+                                _.forEach(users, function (user) {
+                                    invitation.targetSpaces.push({
+                                        type: 'user',
+                                        targetId: user.id
+                                    });
                                 });
-                            }
 
-                        } else if (inviteNewSelected) {
-                            var toBeInvited = _.groupBy($scope.usersToBeInvited, function (user) {
-                                return typeof user;
-                            });
-
-                            var users = toBeInvited.object;
-                            var emails = toBeInvited.string;
-
-                            invitation.targetSpaces = [];
-                            _.forEach(users, function (user) {
-                                invitation.targetSpaces.push({
-                                    type: 'user',
-                                    targetId: user.id
-                                });
-                            });
-
-                            SocialInteractionService.postInvitation(invitation).then(function (savedInv) {
-                                if (emails && emails.length > 0) {
-                                    ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                SocialInteractionService.postInvitation(invitation).then(function (savedInv) {
+                                    if (emails && emails.length > 0) {
+                                        ActivityService.inviteEmailToJoinPlan(emails.join(' '), savedActivity).then(function () {
+                                            // do not pass the savedInv to the Cb, because we don't want to show
+                                            // the soi on the following state. WL-1603
+                                            return _finalCb();
+                                        });
+                                    } else {
                                         // do not pass the savedInv to the Cb, because we don't want to show
                                         // the soi on the following state. WL-1603
                                         return _finalCb();
-                                    });
-                                } else {
-                                    // do not pass the savedInv to the Cb, because we don't want to show
-                                    // the soi on the following state. WL-1603
-                                    return _finalCb();
-                                }
+                                    }
 
-                            });
-                        } else {
-                            return _finalCb();
+                                }, function saveErrorCb(err) {
+                                    $scope.$emit('clientmsg:error', err);
+                                    $scope.$root.$broadcast('busy.end', {url: "activities", name: "saveActivity"});
+                                });
+                            } else {
+                                // user clicked "selected" but did not enter anybody --> same as none
+                                return _finalCb();
+                            }
                         }
                     }, function saveErrorCb(err) {
                         $scope.$emit('clientmsg:error', err);
@@ -424,6 +446,11 @@
                         .minute(moment(activity.endTime).minute()).startOf('minute').toDate();
                 }
 
+                function _updatePublishDates(socialInteraction, campaign, events) {
+                    socialInteraction.publishFrom = moment.max(moment(), moment(campaign.start)).toDate();
+                    socialInteraction.publishTo = moment.min(moment(_.last(events).end), moment(campaign.end)).toDate();
+                }
+
                 function _validateActivity(newActivity, old) {
                     // return if the form is in invalid state
                     if ($scope.formContainer.form && !$scope.formContainer.form.$valid) {
@@ -433,6 +460,7 @@
                     if (_.isEqual(newActivity, old) && $scope.isScheduled && $scope.events.length > 0) {
                         return;
                     }
+
 
                     // clone the activity before replacing the start/end dates, the date-picker would loose it's focus otherwise
                     var clonedActivity = _.clone($scope.activity);
@@ -464,9 +492,15 @@
                         ActivityService.populateIdeas(conflictingEvents);
                         $scope.events = events;
 
+
+                        // publishTo/publishFrom
+
+                        if ($scope.isDcm) {
+                            _updatePublishDates($scope.soiPublished, campaign, events);
+                        }
+
                     });
                 }
-
 
                 function _getPageTitle() {
                     if ($scope.isScheduled) {
@@ -475,8 +509,10 @@
                         return 'Invitation';
                     } else if ($scope.isRecommendation) {
                         return 'Recommendation';
-                    } else if ($scope.isCampaignLead) {
+                    } else if ($scope.isDcm) {
                         return 'NewCampaignActivity';
+                    } else if (!$scope.isScheduled && !$scope.soiToAnswer) {
+                        return 'newActivity';
                     } else {
                         throw new Error('Unknown state');
                     }
@@ -493,38 +529,65 @@
                 }
 
                 function _setupInvitationsControl() {
+                    activityController.invitedUsers = [];
+
                     if ($scope.isScheduled) {
 
-                        // set the organizer's invitation status if this is already scheduled, so he shows up as organizer
-                        activity.owner.invitationStatus = 'organizer';
-                        $scope.invitedUsers = [activity.owner];
+                        // add the organizer, the first in the array is always the organizer!
 
-                        if (existingCampaignInvitation && existingCampaignInvitation.id) { // check if campaign is already invited
+                        // if the current user is the organizer put the reference to the user in the session instead
+                        // of the one delivered by the server
+                        if ($scope.isOwner) {
+                            activityController.invitedUsers.push($scope.principal.getUser());
+                        } else {
+                            activityController.invitedUsers.push(activity.owner);
+                        }
+
+                        if (existingCampaignInvitation) {
+                            // check if campaign is already invited, do the check with existingCampaignInvitation because
+                            // this includes the all-invitation also if it is not authored by the current user
+                            // (the $scope.soiPublished is only there is this user publishes the Invitation.
                             activityController.inviteOthers = 'all';
+
+                            // we have invited everybody, so we cannot undo this invitation and go back to
+                            // "selected" or "none":  user needs to cancel the event if he is not happy with "inviting all"
                             $scope.inviteLocked = true;
                         }
 
-                        // find out whether we do inviteAll oder Selected or nobody
+                        // find out whether we have already invited some individuals.
                         if (invitationStatus && invitationStatus.length > 0) {
                             activityController.inviteOthers = activityController.inviteOthers || 'selected';
                             _.each(invitationStatus, function (status) {
                                 var user = status.user || {email: status.email};
+
+                                // if the current user is listed put the session object instead of the
+                                // server side object
+                                if (user.id === $scope.principal.getUser().id) {
+                                    user = $scope.principal.getUser();
+                                }
                                 user.invitationStatus = status.status;
-                                $scope.invitedUsers.push(user);
+                                activityController.invitedUsers.push(user);
                             });
                         }
-                    } else {
-                        $scope.invitedUsers = [];
 
+                        // well, we have not invited 'all' and not invited any individuals, it is save to
+                        // assume that we have not invited anybody yet!
+                        activityController.inviteOthers = activityController.inviteOthers || 'none';
+
+                    } else {
+                        // this is a new, unsaved activity
+                        // in DCM we always force to invite 'all', no other option possible
                         if ($scope.isDcm) {
                             activityController.inviteOthers = 'all';
                             $scope.inviteLocked = true;
                         }
+
+                        // in DHC we make the user choose, so we leave activityController.inviteOthers empty in the
+                        // beginning
                     }
-                    activityController.inviteOthers = activityController.inviteOthers || 'none';
 
                     // exclude all already invited users, me as the owner, and all campaignLeads from this campaign
-                    $scope.usersExcludedForInvitation = $scope.invitedUsers.concat($scope.activity.owner);
+                    $scope.usersExcludedForInvitation = activityController.invitedUsers.concat($scope.activity.owner);
 
                     $scope.usersToBeInvited = [];
 
@@ -544,6 +607,48 @@
                             return user.id ? user.id === item.id : user === item;
                         });
                     };
+
+
+                    var invitationTemplate = {
+                        author: user,
+                        authorType: $scope.isCampaignLead ? 'campaignLead' : 'user',
+                        __t: 'Invitation',
+                        activity: activity.id,
+                        idea: $scope.idea.id
+                    };
+
+
+                    $scope.$watch('activityController.inviteOthers', function (newValue, oldVal) {
+                        if (!newValue) {
+                            return;
+                        }
+
+                        // if I am not the organizer of this event, I will never publish an invitation for it
+                        if (user.id !== (activity.owner.id || activity.owner)) {
+                            return;
+                        }
+
+                        // using timeout here to give the form time to check its status, we are using $invalid
+                        // in _validateActivity()
+                        $timeout(function () {
+                            _validateActivity($scope.activity, {});
+                        });
+
+                        var newInvite = _.clone(invitationTemplate);
+                        // reset the author to point to the session reference
+                        newInvite.author = $scope.principal.getUser();
+
+                        if (newValue === 'none') {
+                            $scope.soiPublished = undefined;
+                        } else if (newValue === 'all') {
+                            $scope.soiPublished = existingCampaignInvitation || newInvite;
+                        } else if (newValue === 'selected') {
+                            $scope.soiPublished = newInvite;
+                        } else {
+                            throw new Error('this should not be possible');
+                        }
+                    });
+
 
                 }
             }

@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('yp.components.user')
-        .directive('user', ['UserService', function (UserService) {
+        .directive('userComponent', ['UserService', function (UserService) {
             return {
                 restrict: 'EA',
                 transclude: true,

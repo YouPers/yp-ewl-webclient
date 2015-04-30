@@ -127,5 +127,19 @@
   "executiontype": {
     "self": "Lui-même",
     "group": "Le groupe"
+  },
+  "idea": {
+    "edit": {
+      "cancel": null,
+      "planCampaignLead": null,
+      "planCampaignLeadPopover": null,
+      "planCampaignLeadText": null,
+      "planParticipant": null,
+      "planParticipantPopover": null,
+      "planParticipantText": null,
+      "recommend": null,
+      "recommendPopover": null,
+      "recommendText": null
+    }
   }
 }

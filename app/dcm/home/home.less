@@ -68,18 +68,104 @@
     }
   }
 
+  .campaign-selection {
+
+    .panel-heading {
+      background-color: @yp-divider;
+    }
+
+    table {
+      tr.selected td {
+        cursor: default;
+        background-color: @yp-accent-background;
+      }
+      tr:not(.selected):hover {
+        cursor: pointer;
+        td.selected i.fa {
+          color: @yp-accent-hover;
+        }
+      }
+      td {
+        vertical-align: middle;
+      }
+
+      td.campaignLead {
+        > div {
+          display: flex;
+          align-items: center;
+          img {
+            flex: 0 0 32px;
+            height: 32px;
+            margin-right: 4px;
+          }
+        }
+      }
+
+      td.duration {
+        white-space: nowrap;
+      }
+
+      td.selected {
+        width: 20px;
+      }
+    }
+
+
+  }
+
   .campaign-start {
 
-    .nav-tabs.nav-justified li.active a {
-      border-bottom-color: transparent;
-    }
     .nav-tabs.nav-justified {
+
+      li a {
+        border-color: @yp-divider transparent;
+      }
+      li:first-of-type a {
+        border-left-color: @yp-divider;
+      }
+      li:last-of-type a {
+        border-right-color: @yp-divider;
+      }
+
       li.disabled a {
         cursor: default;
       }
       a {
         text-align: left;
         background: none;
+      }
+      @yp-cl-guidance-arrow-height: 44px;
+      @yp-cl-guidance-arrow-width: 22px;
+      li:not(:last-of-type) a {
+        &:after {
+          content: " ";
+          display: block;
+          width: 0;
+          height: 0;
+          border-top: @yp-cl-guidance-arrow-height/2 solid transparent;           /* Go big on the size, and let overflow hide */
+          border-bottom: @yp-cl-guidance-arrow-height/2 solid transparent;
+          border-left: @yp-cl-guidance-arrow-width solid white;
+          position: absolute;
+          top: 50%;
+          margin-top: -@yp-cl-guidance-arrow-height/2;
+          left: 90%;
+          z-index: 2;
+        }
+        &:before {
+          content: " ";
+          display: block;
+          width: 0;
+          height: 0;
+          border-top: @yp-cl-guidance-arrow-height/2 solid transparent;
+          border-bottom: @yp-cl-guidance-arrow-height/2 solid transparent;
+          border-left: @yp-cl-guidance-arrow-width solid @yp-divider;
+          position: absolute;
+          top: 50%;
+          margin-top: -@yp-cl-guidance-arrow-height/2;
+          margin-left: 1px;
+          left: 90%;
+          z-index: 1;
+        }
       }
     }
     tab-heading span {
@@ -101,7 +187,16 @@
         }
       }
 
+      &.campaign-lead .nav-tabs.nav-justified {
 
+        li.active a span {
+          color: @yp-accent;
+        }
+
+        li:hover:not(.active) a span {
+          color: @yp-accent-hover;
+        }
+      }
 
       i.fa {
         cursor: default;
@@ -115,32 +210,35 @@
       .tab-pane {
         padding: 24px;
         > div {
-          .btn {
+          .btn-flat {
             margin-top: 1em;
             float: right;
           }
         }
-      }
-      .offer {
-        > * {
-          display: inline-block;
-          color: @yp-accent;
-          font-size: 16px;
-          font-weight: 400;
-        }
-        i.fa {
-          padding-left: 1em;
-          font-size: 14px;
-          &.fa-warning {
-            color: @yp-warning;
+
+        // step 1
+        &:first-of-type > div {
+          display: flex;
+          flex-direction: row;
+          > campaign-card {
+            flex-shrink: 0;
+          }
+          > div {
+            padding: 30px 0 0 30px;
+            > div {
+              padding-top: 30px;
+              text-align: center;
+              avatar-upload {
+                display: inline-block;
+              }
+              a {
+                float: none;
+              }
+            }
           }
         }
       }
-      .offer:hover {
-        > * {
-          color: @yp-accent-hover;
-        }
-      }
+
     }
 
 
@@ -239,30 +337,14 @@
 
   .offer-section {
 
-    .add-offer:hover {
-      color: @yp-accent-hover;
-    }
-    .add-offer {
-      .button();
-      color: @yp-primary;
-      position: absolute;
-
-      top: 0;
-      right: 10px;
-
-      i.fa {
-        font-size: 16px;
-      }
-    }
-
     .offer-filter {
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
     }
 
     .offer-type {
       position: absolute;
-      top: 25px;
+      top: 0;
       right: 5px;
 
       i.fa {
@@ -357,49 +439,17 @@
 
   campaign-card {
 
-    margin-bottom: 1em;
-    cursor: pointer;
 
     .avatar {
       img {
         width: 100%;
       }
     }
-
-    .title {
-
-    }
-    .details {
-
-    }
   }
 
   campaign-card {
     box-sizing: content-box;
-    transition: opacity 0.3s ease;
   }
-
-  campaign-card:not(.active) {
-    opacity: 0.4;
-  }
-
-  campaign-card.active, campaign-card:hover {
-    opacity: 1;
-  }
-  campaign-card.active {
-
-    cursor: default;
-
-    i.fa {
-      cursor: pointer;
-    }
-  }
-
-
-
-
-
-
 
   .campaign-messages {
 

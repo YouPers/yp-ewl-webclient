@@ -12,12 +12,14 @@
       "Recommendation": {
         "user": "persönliche Empfehlung",
         "campaignLead": "Kampagnenempfehlung",
-        "coach": "Digital Coach"
+        "coach": "Digital Coach",
+        "expert": "Expertenempfehlung"
       },
       "Message": {
         "user": "Aktivitätskommentar",
         "campaignLead": "Kampagnenmitteilung",
-        "coach": "Digital Coach"
+        "coach": "Digital Coach",
+        "productAdmin": "YOUPERS Meldung"
       }
     }
   },

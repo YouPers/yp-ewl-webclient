@@ -40,15 +40,24 @@
     },
     "addMoreUsers": "Lade weitere Teilnehmer ein, indem du ihnen folgenden Link per Email versendest:",
     "campaignNotStarted": "Sobald die Kampagne gestartet ist, werden hier einige Eckdaten zum Verlauf deiner Kampagne angezeigt.",
+    "campaignSelection": {
+      "header": "Kampagnenliste",
+      "title": "Kampagne",
+      "location": "Ort",
+      "participants": "Teilnehmer",
+      "campaignLead": "Leitung",
+      "duration": "Zeitraum",
+      "selected": "Ausgewählt"
+    },
     "campaignStart": {
-      "header": "Vorbereitung der Kampagne",
+      "header": "Start der Kampagne",
       "welcomeLink": {
         "header": "<strong>Option B:</strong> Kampagnen-Einladungen mit deiner Email Anwendung versenden",
         "createDraft": {
           "text": "Du kannst die Einladungen mit deiner Email Anwendung versenden, indem du auf den nachfolgenden Button klickst:",
           "link": "Email Entwurf<br/>erstellen",
           "recipient": "deine.teilnehmer@deinunternehmen.com",
-          "subject": "{{ organizationName }} Kampagne Stressmanagement: Persönliche Einladung",
+          "subject": "{{ organizationName }} Kampagne {{campaign.title}}: Persönliche Einladung",
           "body": "Liebe Mitarbeiterin, lieber Mitarbeiter\n\n{{ organizationName }} lädt dich ein, an der betrieblichen Gesundheitskampagne teilzunehmen. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen.\n\nBenutze diesen Link: {{ welcomeLink }}"
         },
         "copyLink": "Falls die Email Generierung nicht funktioniert, kannst du den nachfolgenden Link in deine Email-Einladungen kopieren."
@@ -80,31 +89,17 @@
       },
       "campaignLeadGuidance": {
         "step1": {
-          "link": "zum Profil",
-          "tab": "Profilfoto",
-          "text": "Lade ein Profilfoto von dir hoch. Ein Foto ist sehr wichtig, damit die Teilnehmer dich als Kampagnenleiter erkennen."
+          "avatarLink": "Profilfoto hochladen",
+          "campaignLink": "Kampagendaten anpassen",
+          "tab": "Kampagnenkarte ergänzen",
+          "text": "Überprüfe und korrigiere die Daten deiner Kampagne und lade ein Profilfoto von dir hoch, damit die Kampagnenteilnehmer dich als Kampagnenleiter erkennen."
         },
         "step2": {
-          "link": "Zu den Kampagnendaten",
-          "tab": "Kampagnendaten",
-          "text": "Überprüfe die Daten deiner Kampagne. Korrigiere oder ergänze Informationen"
-        },
-        "step3": {
-          "link": "zur Aktivitätsübersicht",
-          "tab": "Events",
-          "text": "Wir haben pro Woche einen Kampagnenevent in deinem Namen provisorisch erstellt. Plane diese Events konkret ein oder lösche sie."
-        },
-        "step4": {
-          "link": "zu den Empfehlungen",
-          "tab": "Empfehlungen",
-          "text": "Wir haben pro Tag eine oder zwei Aktivitätsempfehlungen in deinem Namen erstellt. Schaue dir diese an, lösche unpassende und ergänze mit eigenen Empfehlungen."
-        },
-        "step5": {
           "link": "Einladungen erstellen und versenden",
-          "tab": "Einladungen",
-          "text": "Gratuliere! Deine Kampagne ist jetzt bereit. Versende am Kampagenenstarttag oder am Abend vorher die Einladungen an die Teilnehmer"
+          "tab": "Einladungen versenden",
+          "text": "Gratuliere! Deine Kampagne ist jetzt bereit zum Start. Versende gleich jetzt die Einladungen an die Kampagnenteilnehmer."
         },
-        "notCampaignLead": "Fortschritt der Kampagnenvorbereitung"
+        "notCampaignLead": "Kampagnenstart-Status"
       }
     },
     "participants": {

@@ -1,5 +1,5 @@
 <div ng-class="'topic' + campaign.topic.name">
-    <div class="avatar">
+    <div class="campaign-avatar">
         <img ng-src="{{ campaign.avatar }}">
     </div>
     <div class="topic sheet primary">
@@ -12,36 +12,41 @@
     <div class="details sheet">
         <div>
             <i class="fa fa-clock-o"></i>
-            <span>{{campaign.start | date:'d.MM.yyyy'}} -  {{campaign.end | date:'d.MM.yyyy'}}</span>
+            <span>{{campaign.start | date:'d.MM.yyyy'}} - {{campaign.end | date:'d.MM.yyyy'}}</span>
         </div>
-        <div>
+        <div ng-class="{ invalid: !campaign.location || !campaign.city }">
             <i class="fa fa-location-arrow"></i>
             <div>
-                <span>{{campaign.location}}</span>
-                <span ng-show="campaign.location && campaign.city">, </span>
-                <span>{{campaign.city}}</span>
+                <span ng-if="campaign.location">{{campaign.location}}</span>
+                <span ng-if="!campaign.location"><i class="fa fa-question"></i></span><span>, </span>
+                <span ng-if="campaign.city">{{campaign.city}}</span>
+                <span ng-if="!campaign.city"><i class="fa fa-question"></i></span>
             </div>
         </div>
-        <div>
+        <div ng-class="{ invalid: !campaign.participants }">
             <i class="fa fa-building-o"></i>
             <div>
                 <span class="organization">{{campaign.organization.name}}</span>
-                <span ng-show="campaign.participants"><br/></span>
-                <span class="participants">{{campaign.participants}}</span>
+                <br/>
+                <span class="participants" ng-if="campaign.participants">{{campaign.participants}}</span>
+                <span ng-if="!campaign.participants"><i class="fa fa-question"></i></span>
             </div>
         </div>
 
     </div>
-    <div ng-init="unconfirmed = campaign.campaignLeads[0].emailValidatedFlag === false" class="campaign-lead sheet row">
-        <div class="col-xs-3">
-            <img ng-src="{{campaign.campaignLeads[0].avatar}}" class="avatar-image">
-        </div>
-        <div class="col-xs-9">
-            <div translate class="leader-label">campaign.card.campaignLead</div>
-            <div ng-class="{ unconfirmed: unconfirmed }" title="{{ campaign.campaignLeads[0].fullname }}"
-                 popover="{{ 'campaign.card.campaignLeadUnconfirmed' | translate }}" popover-trigger="{{ unconfirmed ? 'mouseenter' : '' }}" popover-placement="right" popover-append-to-body="true">
-                {{ campaign.campaignLeads[0].fullname }}
-                <i ng-if="unconfirmed" class="fa fa-warning"></i>
+    <div ng-init="unconfirmed = campaign.campaignLeads[0].emailValidatedFlag === false" class="campaign-lead sheet">
+        <div>
+            <avatar ng-if="campaign.campaignLeads[0]" user="campaign.campaignLeads[0]" popoverplace="'right'"></avatar>
+            <div>
+                <span translate>campaign.card.campaignLead</span>
+                <div class="campaign-lead-name"
+                     ng-class="{ unconfirmed: unconfirmed }"
+                     title="{{ campaign.campaignLeads[0].fullname }}"
+                     popover="{{ 'campaign.card.campaignLeadUnconfirmed' | translate }}"
+                     popover-trigger="{{ unconfirmed ? 'mouseenter' : '' }}" popover-placement="right" popover-append-to-body="true">
+                    <div>{{ campaign.campaignLeads[0].fullname }}</div>
+                    <i ng-if="unconfirmed" class="fa fa-warning"></i>
+                </div>
             </div>
         </div>
     </div>

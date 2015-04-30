@@ -1,14 +1,38 @@
 <div class="avatar-upload" onclick="document.getElementById('avatarUpload').click()" ng-if="uploader">
     <!-- ng-if because of this:  https://github.com/nervgh/angular-file-upload/issues/183 -->
 
-    <div avatar class="avatar" ng-class="{placeholder: !(avatarObject.avatar)}"></div>
+    <div class="avatar"
+         ng-style="{ 'background-image': 'url(' + user.avatar + ')' }"
+         ng-class="{ 'default-avatar': defaultAvatar }"
+
+         popover="{{ defaultAvatar ? 'avatarUpload.defaultAvatarHint' : '' | translate }}"
+         popover-trigger="mouseenter"
+         popover-placement="{{popoverplace || 'top'}}" popover-append-to-body="true"
+            ></div>
+
     <input id="avatarUpload" nv-file-select type="file" ng-hide="true" uploader="uploader">
 
     <div ng-transclude></div>
 
-    <div class="progress" ng-show="uploader.isUploading">
-        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-    </div>
+    <div class="overlay" ng-show="uploader.isUploading" stop-propagation>
+        <div>
 
-    <button ng-click="upload.abort()" ng-show="uploader.isUploading">Cancel Upload</button>
+            <div>
+
+                <h3 translate>avatarUpload.progress.header</h3>
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+
+                <button class="btn btn-default" ng-click="upload.abort()" ng-show="uploader.isUploading">
+                    <span translate>
+                        avatarUpload.progress.cancel
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+    </div>
 </div>

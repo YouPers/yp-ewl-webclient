@@ -2,7 +2,9 @@
   "signup": {
     "header": "Welcome to YOUPERS!",
     "signupNote": "register",
-    "signinNote": "Login"
+    "signinNote": "Login",
+    "noCampaignRemark": "Please click on the welcome link in the invitation email of your campaignLead",
+    "useLoginIfHaveAccount": null
   },
   "registerForm": {
     "firstname": {
@@ -68,26 +70,26 @@
       "label": "Company name",
       "placeholder": "Company name"
     },
-    "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions/?lang=en"
+    "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions"
   },
   "signupFinalization": {
-    "header": null,
-    "verificationEmail": null,
-    "noVerificationEmail": null,
+    "header": "Thank you for your registration!",
+    "verificationEmail": "We have sent you an email at: <strong>{{ email }}</strong> <br/><br/> Please click on the confirmation link in this email to continue.",
+    "noVerificationEmail": "Didn't you receive the email?",
     "resend1": {
-      "text": null,
-      "link": null,
-      "verificationSent": null
+      "text": "Please check your spam folder",
+      "link": "Resend",
+      "verificationSent": "Sent"
     },
     "invalidEmailAddress": {
-      "text": null,
-      "link": null
+      "text": "Wrong email address?",
+      "link": "Register a new account"
     },
     "resend2": {
-      "text": null,
-      "link": null,
-      "verificationSent": null
+      "text": "Already deleted or no longer to be found?",
+      "link": "Resend",
+      "verificationSent": "Sent"
     },
-    "contactCustomerSupport": null
+    "contactCustomerSupport": "Contact Customer Service <a href=\"mailto:customer.support@youpers.com\">customer.support@youpers.com</a>"
   }
 }

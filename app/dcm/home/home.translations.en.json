@@ -3,7 +3,7 @@
     "statsTitle": "Progress of campaign",
     "endOfCampaignTitle": "End of campaign",
     "participantsCount": "Number of registered participants",
-    "plannedActsCount": "Number of scheduled activities",
+    "plannedActsCount": "Number of planned activities",
     "moreStats": "More",
     "notifications": "Notifications",
     "campaigns": "Campaigns",
@@ -11,23 +11,23 @@
     "statistics": "Statistics",
     "stats": {
       "eventsDonePerDay": {
-        "title": null,
+        "title": "Number of activity events per day",
         "legend": {
-          "Done": null,
-          "Missed": null,
-          "Open": null
+          "Done": "Done",
+          "Missed": "Missed",
+          "Open": "Open"
         }
       },
       "newUsersPerDay": {
-        "title": null,
+        "title": "Number of Campaign Participants",
         "legend": {
-          "count": null
+          "count": "Campaign Participants"
         }
       },
       "newestPlans": {
-        "title": null,
-        "count": null,
-        "countTooltip": null
+        "title": "Newly planned",
+        "count": "{{ count }}",
+        "countTooltip": "{{ count }} times planned in this campaign up to now"
       }
     },
     "end-of-campaign": "Review",
@@ -40,75 +40,70 @@
     },
     "addMoreUsers": "Invite more participants by sending them the following link by email:",
     "campaignNotStarted": "Once the campaign is launched, some key data on the progress of your campaign are displayed here.",
+    "campaignSelection": {
+      "header": "Campaign list",
+      "title": "Campaign",
+      "location": "Location",
+      "participants": "Participant",
+      "campaignLead": "Lead",
+      "duration": "Period",
+      "selected": "Selected"
+    },
     "campaignStart": {
       "header": "Start of campaign",
       "welcomeLink": {
-        "header": null,
+        "header": "<strong>Option B:</strong> Send your campaign invitations with your email application",
         "createDraft": {
-          "text": null,
-          "link": null,
-          "recipient": null,
-          "subject": null,
-          "body": null
+          "text": "You can send the Invitations with your email application by clicking on the button below:",
+          "link": "Design email",
+          "recipient": "your.participants@yourcompany.com",
+          "subject": "{{ organizationName }} Campaign {{campaign.title}} : Personal invitation",
+          "body": "Dear employee, \n\n{{ organizationName }} invites you to participate in the workplace Health Campaign. This web-based health campaign is a service of YOUPERS AG, a Swiss software company for digital health solutions. \n\nClick on this link: {{ welcomeLink }}"
         },
-        "copyLink": null
+        "copyLink": "If generating the email does't work, you can copy the following link and paste it in your e-mail invitations."
       },
       "emailInvite": {
-        "header": null,
-        "subheader": null,
+        "header": "<strong>Option A:</strong> Send the campaigns invitations with the HealthCampaign Service",
+        "subheader": "You can directly send email invitations from this page.",
         "step1": {
-          "title": null,
-          "text": null,
-          "success": null,
-          "sendTestMail": null
+          "title": "Send a test invitation (optional)",
+          "text": "Send a test invitation to yourself to get a preview of the campaign invitation.",
+          "success": "Invitation sent to {{ email }}.<br>Please check the invitation in your inbox.",
+          "sendTestMail": "Send Test Invitation"
         },
         "step2": {
-          "title": null,
+          "title": "2. Create a mailing list",
           "emailList": {
-            "placeholder": null,
-            "add": null,
-            "parsedEmailsPlaceholder": null,
-            "emailAddressesFound": null
+            "placeholder": "Insert Email addresses",
+            "add": "Add <br/> Email Address",
+            "parsedEmailsPlaceholder": "Show inserted email addresses",
+            "emailAddressesFound": "{count, plural, one {email address} other {# email addresses} } found."
           }
         },
         "step3": {
-          "title": null,
-          "text": null,
-          "submit": null,
-          "emailInvitesSent": null
+          "title": "Send Campaign Invitations",
+          "text": "Please verify the email addresses in the mailing list before you click on the \"Send\" button.",
+          "submit": "Send",
+          "emailInvitesSent": "Invitations were sent successfully"
         }
       },
       "campaignLeadGuidance": {
         "step1": {
-          "link": null,
-          "tab": null,
-          "text": null
+          "avatarLink": null,
+          "campaignLink": null,
+          "tab": "Campaign data",
+          "text": "Please check the details of your campaign. Correct or complete information"
         },
         "step2": {
-          "link": null,
-          "tab": null,
-          "text": null
+          "link": "To Profile",
+          "tab": "Profile Photo",
+          "text": "Congratulations! Your campaign is now ready for launch. Send right now the invitations to the campaign participants."
         },
-        "step3": {
-          "link": null,
-          "tab": null,
-          "text": null
-        },
-        "step4": {
-          "link": null,
-          "tab": null,
-          "text": null
-        },
-        "step5": {
-          "link": null,
-          "tab": null,
-          "text": null
-        },
-        "notCampaignLead": null
+        "notCampaignLead": "Campaign start status"
       }
     },
     "participants": {
-      "header": null
+      "header": "Participants list"
     },
     "messages": "Messages",
     "noCampaigns": "You have not created any campaigns yet",
@@ -117,51 +112,51 @@
     "noParticipants": "There are no campaign participants yet",
     "showOld": "Show past",
     "offerType": {
-      "Recommendation": "Recommendations",
-      "Invitation": "Invitations",
-      "UserInvitation": null,
+      "Recommendation": "Your recommendations",
+      "Invitation": "Your invitations",
+      "UserInvitation": "Events of Participants",
       "All": "All"
     }
   },
   "dcm-end-of-campaign": {
     "usersTotal": {
-      "title": null,
-      "campaign": null,
-      "average": null
+      "title": "Number of Campaign Participants",
+      "campaign": "This campaign",
+      "average": "Average"
     },
     "eventsStatus": {
-      "title": null,
-      "campaign": null,
-      "average": null,
-      "done": null,
-      "missed": null,
-      "open": null
+      "title": "Activities per Participant",
+      "campaign": "Campaign",
+      "average": "Average",
+      "done": "Done",
+      "missed": "Missed",
+      "open": "Open"
     },
     "assessmentResults": {
-      "title": null,
+      "title": "Self-assessment",
       "legend": {
-        "title": null,
-        "min": null,
-        "max": null,
-        "question": null,
+        "title": "\"How to\" guide",
+        "min": "Too little",
+        "max": "Too much",
+        "question": "Example",
         "descriptions": {
-          "1": null,
-          "2": null,
-          "3": null,
-          "4": null,
-          "5": null,
-          "6": null,
-          "7": null
+          "1": "10% of users have selected \"too little\" and said, <br/> that they are <strong>strongly affected</strong>",
+          "2": "20% of users have selected \"too little\" and said, <br/> that they are therefore <strong>little affected</strong>",
+          "3": "32% of all users have selected \"adequate\"",
+          "4": "15% of users have selected \"too much\"and said <br/> that they are therefore <strong>little affected</strong>",
+          "5": "23% of users have chosen \"too much\" <br/> and said that they are <strong>greatly affected</strong>",
+          "6": "the lower line shows the average values ​​of all previously completed campaigns for comparison",
+          "7": "By pointing the mouse cursor over the blue \"i\" icon, the evaluation criterion and the meaning of the characteristics are displayed in the Digital Coach section."
         }
       }
     },
     "eventsPlanned": {
-      "header": null,
-      "content": null
+      "header": "Popular Activities",
+      "content": "{ plannedCount } times planned by { byUsersCount, plural, one{one person} other{# people} }"
     },
     "legend": {
-      "campaign": null,
-      "average": null
+      "campaign": "This campaign",
+      "average": "Average of all campaigns"
     }
   }
 }

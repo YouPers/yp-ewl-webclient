@@ -1,10 +1,10 @@
 
-<form class="signin-form" ng-submit="submit()">
+<form name="signinForm" class="signin-form" ng-submit="submit()">
 
     <div class="row">
         <div class="col-sm-12">
             <input type="text" placeholder="{{'loginform.usernameOrEmail.label' | translate}}" class="form-control login"
-                   ng-model="username">
+                   ng-model="username" required>
         </div>
     </div>
 
@@ -12,7 +12,7 @@
         <div class="col-sm-12">
             <input type="password" placeholder="{{'loginform.password.label' | translate}}"
                    class="form-control login"
-                   ng-model="password">
+                   ng-model="password" required>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-lg-4 col-xs-12">
-            <button type="submit" class="btn btn-primary" translate>loginform.login</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="signinForm.$invalid" translate>loginform.login</button>
         </div>
 
 

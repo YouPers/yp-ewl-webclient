@@ -8,8 +8,8 @@
     "stateHeader2": "CAMPAIGNS"
   },
   "campaign": {
-    "headerNew": null,
-    "headerEdit": null,
+    "headerNew": "Create a Campaign",
+    "headerEdit": "Change Campaign",
     "link": {
       "new": "new campaign",
       "campaignoffers": "Acitivities",
@@ -23,8 +23,8 @@
     "stateHeader2": "Campaign",
     "card": {
       "title": "HealthCampaign",
-      "campaignLead": null,
-      "campaignLeadUnconfirmed": null
+      "campaignLead": "Campaign Lead",
+      "campaignLeadUnconfirmed": "This Campaign Leader has not yet accepted the invitation. Ask him/her to open the link in the invitation email, or create a new campaign with the correct email address of the CampaignLeader."
     }
   },
   "campaignForm": {
@@ -45,25 +45,30 @@
     "end": {
       "label": "End"
     },
-    "usersInCampaign": null,
-    "offersRecreated": null,
-    "offersRemain": null,
-    "campaignEnded": null,
+    "usersInCampaign": "The Campaign already has participants.",
+    "offersRecreated": "All recommendations and invitations will be recreated.",
+    "offersRemain": "Recommendations and invitations remain unchanged.",
+    "campaignEnded": "The Campaign has ended.",
     "participants": {
-      "label": "Group of people",
+      "label": "Group of participants",
       "placeholder": "Group of people",
-      "$invalid": "Please enter a valid group of people"
+      "error": {
+        "required": null
+      }
     },
     "location": {
-      "label": "Location",
+      "label": "Building/Street",
       "placeholder": "Location",
       "error": {
-        "required": "Please enter a valid location"
+        "required": "Please enter Building/Street"
       }
     },
     "city": {
       "label": "City",
-      "placeholder": "City"
+      "placeholder": "City",
+      "error": {
+        "required": null
+      }
     },
     "back": "Back",
     "save": "Save",
@@ -81,45 +86,45 @@
     }
   },
   "campaignLeadForm": {
-    "header": null,
-    "serviceManager": null,
-    "mainLeader": null,
-    "coLeader": null,
-    "mainLeaderExplanation": null,
-    "coLeaderExplanation": null,
-    "newCampaignLead": null,
+    "header": "Choose a Campaign Leader",
+    "serviceManager": "Service Manager",
+    "mainLeader": "Campaign Leader",
+    "coLeader": "Deputy",
+    "mainLeaderExplanation": "This Leader is displayed on the campaign map and the standard recommendations are made on behalf of this Campaign Leader.",
+    "coLeaderExplanation": "Deputies get insight into the campaign and can replace the Campaign Leader",
+    "newCampaignLead": "Invite other Campaign Leader(s)",
     "firstname": {
-      "label": null,
-      "placeholder": null,
+      "label": "First name",
+      "placeholder": "First name",
       "error": {
-        "required": null
+        "required": "Please enter a valid first name"
       }
     },
     "lastname": {
-      "label": null,
-      "placeholder": null,
+      "label": "Last Name",
+      "placeholder": "Last Name",
       "error": {
-        "required": null
+        "required": "Please enter a valid last name"
       }
     },
     "email": {
-      "label": null,
-      "placeholder": null,
+      "label": "Email",
+      "placeholder": "Email",
       "error": {
-        "required": null,
-        "email": null,
-        "unique": null
+        "required": "Please enter an email address",
+        "email": "Please enter a valid email address",
+        "unique": "This email address is already registered"
       }
     },
-    "submit": null,
-    "resend": null,
-    "resendSent": null
+    "submit": "Submit",
+    "resend": "Send invitation again",
+    "resendSent": "Sent"
   },
   "campaignLeadResetPassword": {
-    "header": null,
-    "message": null,
-    "passwordReset": null,
-    "save": null
+    "header": "Hello {{invitedUser}}",
+    "message": "<strong>{{invitingUser}}</strong> has invited you to become the campaign Leader of the {{ campaign.topic.name }} HealthCampaign.",
+    "passwordReset": "Please choose a password to continue.",
+    "save": "Next"
   },
   "clientmsg": {
     "success": {

@@ -64,10 +64,14 @@
                                 return undefined;
                             }
                             var authorType = socialInteraction.authorType;
-                            return [
+                            var classes =  [
                                 'offer' + authorType.charAt(0).toUpperCase() + authorType.slice(1),
                                 socialInteraction.__t.toLowerCase()
                             ];
+                            if (socialInteraction.important) {
+                                classes.push('important-soi');
+                            }
+                            return classes;
 
                         };
 
@@ -121,6 +125,7 @@
 
                         };
 
+                        scope.getRenderedText = $rootScope.getRenderedText;
                     }
                 };
             }])

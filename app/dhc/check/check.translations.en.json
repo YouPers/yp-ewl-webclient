@@ -23,16 +23,16 @@
     "stamina": "Endurance",
     "agility": "Mobility",
     "attitude": "Personal attitude",
-    "equipment": null,
-    "extendedEnvironment": null,
+    "equipment": "Appliances and equipment",
+    "extendedEnvironment": "Doors, stairs, floors",
     "nutritionAndRecovery": "Nutrition and Recovery",
-    "officeEquipment": null,
-    "risks": null,
-    "safetyRelatedFreetimeBehavior": null,
-    "safetyRelatedWorkBehavior": null,
-    "seating": null,
-    "transportation": null,
-    "workEnvironment": null,
-    "workEquipment": null
+    "officeEquipment": "Office equipment",
+    "risks": "Identify hazards and risks",
+    "safetyRelatedFreetimeBehavior": "Safety in leisure behavior",
+    "safetyRelatedWorkBehavior": "Safety in work behavior",
+    "seating": "Table and chair",
+    "transportation": "Transportation",
+    "workEnvironment": "Working and moving space",
+    "workEquipment": "Work equipment"
   }
 }

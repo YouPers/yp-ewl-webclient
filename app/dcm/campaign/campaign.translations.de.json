@@ -50,20 +50,25 @@
     "offersRemain": "Empfehlungen und Einladungen bleiben erhalten.",
     "campaignEnded": "Die Kampagne ist bereits beendet.",
     "participants": {
-      "label": "Personenkreis",
+      "label": "Teilnehmerkreis",
       "placeholder": "Bezeichnung der Gruppe/Abteilung/Team dieser Kampagne",
-      "$invalid": "Bitte einen gültigen Personenkreis eingeben"
+      "error": {
+        "required": "Bitte einen Teilnehmerkreis erfassen"
+      }
     },
     "location": {
-      "label": "Lokalität",
+      "label": "Gebäude/Strasse",
       "placeholder": "Wo findet diese Kampagne statt? (z.B. Gebäude, Trakt, Stockwerk)",
       "error": {
-        "required": "Bitte eine gültige Lokalität eingeben"
+        "required": "Bitte Gebäude/Strasse eingeben"
       }
     },
     "city": {
       "label": "Ort",
-      "placeholder": "Ort"
+      "placeholder": "Ort",
+      "error": {
+        "required": "Bitte einen Ort erfassen"
+      }
     },
     "back": "Zurück",
     "save": "Speichern",
@@ -87,7 +92,7 @@
     "coLeader": "Stellvertreter",
     "mainLeaderExplanation": "Dieser Leiter wird in der Kampagnen-Karte gezeigt und die Standard-Empfehlungen werden im Namen dieses Kampagnenleiters erstellt.",
     "coLeaderExplanation": "Stellvertreter bekommen Einsicht in die Kampagne und können den Kampagnenleiter vertreten",
-    "newCampaignLead": "+ neuen Kampagnenleiter einladen",
+    "newCampaignLead": "anderen Kampagnenleiter einladen",
     "firstname": {
       "label": "Vorname",
       "placeholder": "Vorname",

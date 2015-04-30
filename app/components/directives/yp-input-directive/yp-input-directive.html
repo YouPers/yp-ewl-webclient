@@ -1,9 +1,9 @@
-<div class="form-group" ng-non-bindable ng-class="{'has-error': {{ypFormName}}.{{ypInputName}}.$dirty && {{ypFormName}}.{{ypInputName}}.$invalid}">
+<div class="form-group" ng-non-bindable ng-class="{'has-error': ({{ypFormName}}.{{ypInputName}}.$dirty ||{{ypFormName}}.submitted) && {{ypFormName}}.{{ypInputName}}.$invalid}">
     <label ng-show="showLabel">{{ypFormName + '.' + ypInputName + '.label' | translate}}</label>
     <input name="{{ypInputName}}" type="text" placeholder="{{ypFormName + '.' + ypInputName + '.placeholder' | translate}}"
            class="form-control" >
 
     <div class="validation">
-        <div ng-repeat="(key, error) in errors" ng-show="{{ypFormName}}['{{ypInputName}}'].$dirty && error" class="help-inline">{{ypFormName + '.' + ypInputName + '.error.' + key | translate}}</div>
+        <div ng-repeat="(key, error) in errors" ng-show="({{ypFormName}}['{{ypInputName}}'].$dirty || {{ypFormName}}.submitted) && error" class="help-inline">{{ypFormName + '.' + ypInputName + '.error.' + key | translate}}</div>
     </div>
 </div>

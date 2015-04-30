@@ -1,11 +1,16 @@
 {
   "activityOfferCard": {
     "authorPrefix": {
+      "ExpertRecommendation": "Expert recommendation",
       "Recommendation": "Recommended by",
       "Invitation": "Invitation from"
     },
     "published": "published:",
     "from": "from",
-    "to": "to"
+    "to": "to",
+    "createOwnIdea": "Create an activity of your own",
+    "createOwnIdeaText": "Create an activity of your own and invite an employee",
+    "searchIdea": "Browse the library",
+    "searchIdeaText": "Browse in YOUPERS library for more ideas"
   }
 }

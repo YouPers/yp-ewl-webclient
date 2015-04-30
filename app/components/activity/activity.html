@@ -1,6 +1,5 @@
 <div class="four-column-layout">
 
-
     <section ng-class="{dimmed: activityController.deleteModeEnabled}">
         <div class="header-row">
 
@@ -9,7 +8,7 @@
 
         </div>
 
-        <div ng-if="socialInteraction">
+        <div ng-if="soiToAnswer">
 
             <activity-offer-card
 
@@ -17,8 +16,8 @@
 
                     idea="idea"
                     activity="activity"
-                    social-interaction="socialInteraction"
-
+                    social-interaction="soiToAnswer"
+                    class="activity-offer-card"
                     ></activity-offer-card>
 
         </div>
@@ -49,11 +48,11 @@
         <!-- read only view -->
         <div ng-if="!activityController.formEnabled">
             <activity-view activity="activity" is-campaign-lead="isDcm"
-                           social-interaction="socialInteraction" calender-link-active="isJoiner || isOwner"></activity-view>
+                           social-interaction="soiPublished" calender-link-active="isJoiner || isOwner"></activity-view>
             <div class="activity-view">
                 <dl class="dl-horizontal">
 
-                    <dt translate>Einladungen an</dt>
+                    <dt translate>activity.inviteOthers.readOnlyLabel</dt>
                     <dd>{{ 'activity.inviteOthers.' + activityController.inviteOthers | translate}}</dd>
                 </dl>
             </div>
@@ -61,27 +60,15 @@
 
         <!-- new and edit view -->
         <div ng-if="activityController.formEnabled">
-            <activity-edit activity="activity" campaign="campaign" form="formContainer.form"
-                           is-campaign-lead="isDcm" social-interaction="socialInteraction"></activity-edit>
-
+            <activity-edit activity="activity"
+                           campaign="campaign"
+                           form="formContainer.form"
+                           is-campaign-lead="isDcm"
+                           show-invite-control="!isDcm && idea.defaultexecutiontype !== 'self' && isOwner && !inviteLocked"
+                           activity-controller="activityController"></activity-edit>
             <!-- new invitations -->
             <div ng-if="!isDcm && idea.defaultexecutiontype !== 'self' && isOwner && !inviteLocked"
                  class="activity-edit radio-buttons form-section">
-                <div>
-                    <label translate>activity.header.inviteOthers</label>
-                </div>
-                <label for="invitation-type.all">
-                    <input id="invitation-type.all" type="radio" ng-model="activityController.inviteOthers"
-                           ng-value="'all'">
-                    </input>
-                    <span translate>activity.inviteOthers.all</span>
-                </label>
-                <label for="invitation-type.selected">
-                    <input id="invitation-type.selected" type="radio" ng-model="activityController.inviteOthers"
-                           ng-value="'selected'">
-                    </input>
-                    <span translate>activity.inviteOthers.selected</span>
-                </label>
 
                 <div ng-if="activityController.inviteOthers == 'selected'">
 
@@ -146,12 +133,12 @@
             </div>
 
             <div class="invitedUser"
-                 ng-repeat="user in invitedUsers">
+                 ng-repeat="user in activityController.invitedUsers">
 
                 <div ng-if="user.fullname">
-                    <div><img class="avatar" ng-src="{{ user.avatar }}"/></div>
+                    <div><avatar user="user"></avatar></div>
                     <div bind-html-unsafe="user.fullname"></div>
-                    <div>{{ 'activity.invitationStatus.' + user.invitationStatus | translate }}</div>
+                    <div>{{ ('activity.invitationStatus.' + ($index == 0 ? 'organizer' : user.invitationStatus)) | translate }}</div>
                 </div>
                 <div ng-if="!user.fullname">
                     <div><i class="fa fa-envelope-o"></i></div>
@@ -170,8 +157,20 @@
 
         </div>
 
+        <div ng-if="soiPublished">
+            <div translate>activity.preview.soiPublishedRemark</div>
+            <br/>
+            <activity-offer-card
 
-        <div>
+                    idea="idea"
+                    activity="activity"
+                    social-interaction="soiPublished"
+                    class="activity-offer-card"
+                    ></activity-offer-card>
+        </div>
+        <div ng-if="events.length > 0">
+            <div translate>activity.preview.plannedEventsRemark</div>
+            <br>
 
             <div ng-repeat="event in events" class="event-list animate-repeat">
 
@@ -195,9 +194,7 @@
 
         </div>
 
-        <div>
 
-        </div>
     </section>
 
     <section>
@@ -262,7 +259,7 @@
 
         <!--buttons for new CampaignActivity -->
 
-        <div class="button-row" ng-if="isNewCampaignActivity">
+        <div class="button-row" ng-if="isNewActivity && isDcm">
             <button class="btn btn-primary"
                     ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
                 <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
@@ -274,6 +271,25 @@
             </button>
         </div>
 
+        <!--buttons for general new Activity in DHC, without Recommendation -->
+
+        <div class="button-row" ng-if="isNewActivity && isDhc">
+
+
+            <button class="btn btn-primary"
+                    ng-disabled="formContainer.form.$invalid" ng-click="saveActivity()" busy busy-disabled>
+                <busy-message><i class="fa fa-cog fa-spin"></i><span translate>busy.submitting</span></busy-message>
+
+                {{ 'activity.submit.newActivityDhcSave' | translate }}
+            </button>
+            <button class="btn btn-default pull-right" ng-click="backToGame()">
+                {{ 'activity.submit.cancel' | translate }}
+            </button>
+        </div>
+        <div ng-if="soiToAnswer">
+
+
+        </div>
 
         <div class="box">
             <health-coach event="healthCoachEvent"/>

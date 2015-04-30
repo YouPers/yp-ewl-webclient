@@ -1,0 +1,79 @@
+<accordion-group class="campaign-selection" ng-if="campaigns.length > 1" is-open="campaignSelectionOpen">
+    <div>
+
+        <accordion-heading>
+                <span>
+
+                    <span translate>dcmhome.campaignSelection.header</span>
+
+                    <a>
+                        <i class="fa "
+                           ng-class="{ 'fa-chevron-down': campaignSelectionOpen, 'fa-chevron-right': !campaignSelectionOpen }"></i>
+                    </a>
+                </span>
+        </accordion-heading>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <span translate>dcmhome.campaignSelection.title</span>
+                    </th>
+                    <th>
+                        <!--<i class="fa fa-location-arrow"></i>-->
+                        <span translate>dcmhome.campaignSelection.location</span>
+                    </th>
+                    <th>
+                        <!--<i class="fa fa-building-o"></i>-->
+                        <span translate>dcmhome.campaignSelection.participants</span>
+                    </th>
+                    <th>
+                        <span translate>dcmhome.campaignSelection.campaignLead</span>
+                    </th>
+                    <th>
+                        <span translate>dcmhome.campaignSelection.duration</span>
+                    </th>
+                    <th>
+                        <!--<span translate>dcmhome.campaignSelection.selected</span>-->
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="campaign in campaigns | orderBy:parseDate('start'):true" ui-sref="dcm.home({ campaignId: campaign.id })"
+                    ng-init="selected = campaign.id === currentCampaign.id"
+                        ng-class="{ selected: selected }">
+                    <td>
+                        {{ campaign.title }}
+                    </td>
+                    <td>
+                        {{ campaign.location }}<span ng-show="campaign.location && campaign.city">, </span>{{ campaign.city }}
+                    </td>
+                    <td>
+                        {{campaign.participants}}
+                    </td>
+                    <td class="campaignLead">
+                        <div ng-init="unconfirmed = campaign.campaignLeads[0].emailValidatedFlag === false">
+                            <img ng-src="{{campaign.campaignLeads[0].avatar}}" class="avatar-image">
+
+                            <span ng-class="{ unconfirmed: unconfirmed }"
+                                  popover="{{ 'campaign.card.campaignLeadUnconfirmed' | translate }}" popover-trigger="{{ unconfirmed ? 'mouseenter' : '' }}" popover-placement="right" popover-append-to-body="true">
+                                {{ campaign.campaignLeads[0].fullname }}
+                                <i ng-if="unconfirmed" class="fa fa-warning"></i>
+                            </span>
+                        </div>
+                    </td>
+                    <td class="duration">
+                        <span>{{campaign.start | date:'d.MM.yyyy'}} -  {{campaign.end | date:'d.MM.yyyy'}}</span>
+                    </td>
+                    <td class="selected">
+                        <a ng-if="selected" ui-sref="dcm.campaign({campaignId: $stateParams.campaignId})" stop-propagation><i class="fa fa-edit active"></i></a>
+                        <i ng-if="!selected" class="fa fa-circle-o"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</accordion-group>

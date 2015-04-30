@@ -11,11 +11,18 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" ng-if="principal.getUser().campaign">
 
             <h1 class="signup-note" translate>signup.signupNote</h1>
 
             <sign-up></sign-up>
+
+        </div>
+        <div class="col-sm-6" ng-if="!principal.getUser().campaign">
+
+            <h3 translate>signup.noCampaignRemark</h3>
+            <br>
+            <h3 translate>signup.useLoginIfHaveAccount</h3>
 
         </div>
         <div class="col-sm-5 col-sm-offset-1">

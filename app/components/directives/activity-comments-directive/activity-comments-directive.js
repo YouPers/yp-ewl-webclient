@@ -3,8 +3,8 @@
     'use strict';
 
     angular.module('yp.components.activityComments', [])
-        .directive('activityComments', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService', 'localStorageService',
-            function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService, localStorageService) {
+        .directive('activityComments', ['$rootScope', '$state', '$stateParams', 'accessLevels', 'UserService', 'SocialInteractionService', 'ActivityService',
+            function ($rootScope, $state, $stateParams, accessLevels, UserService, SocialInteractionService, ActivityService) {
                 return {
                     restrict: 'E',
                     scope: {
@@ -67,14 +67,7 @@
                             scope.message = _.clone(template);
                             scope.showPostButton = false;
 
-                            if(scope.activity.id) {
-
-                                var localStorageKey = 'user=' + user.id;
-                                var localStorage = localStorageService.get(localStorageKey) || {};
-                                localStorage[scope.activity.id] = moment();
-                                localStorageService.set(localStorageKey, localStorage);
-                            }
-
+                            ActivityService.updateActivityLookahead(scope.activity);
                         }
 
                         function activate() {

@@ -1,5 +1,5 @@
 
-activity-offer-card {
+.activity-offer-card {
 
   .game-card();
 
@@ -51,19 +51,11 @@ activity-offer-card {
       }
     }
 
-    &.author > div > * {
+    &.author > div > *:nth-child(2) {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    img {
-
-      position: absolute;
-      height: 100%;
-
-      top: 0;
-      left: 0;
+      width: 145px;
     }
 
   }
@@ -82,16 +74,16 @@ activity-offer-card {
     .caption();
   }
 
-  > .author {
+  > div.author {
     padding: 0;
+
+    > div:first-of-type {
+      text-align: left;
+    }
 
     > * {
       display: inline-block;
       vertical-align: middle;
-    }
-
-    > div {
-      padding-left: 5px;
     }
 
     img {
@@ -124,4 +116,23 @@ activity-offer-card {
     visibility: hidden;
   }
 
+}
+
+.activity-offer-card.offerYoupers {
+  .lower-part {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    height: 90px;
+    flex-direction: column;
+  }
+}
+
+.activity-offer-card.offerExpert {
+  .caption {
+    color: white;
+    font-weight: 200;
+  }
 }

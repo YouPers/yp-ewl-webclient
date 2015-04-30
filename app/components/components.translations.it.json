@@ -8,14 +8,20 @@
     },
     "error": {
       "avatar": {
-        "invalid": null,
+        "invalid": {
+          "fileFormat": null,
+          "fileSize": null
+        },
         "error": "Si è verificato un errore"
       },
       "502": null,
       "503": null,
       "504": null,
       "alreadyJoinedUsers": null,
-      "cannotSwitchCampaign": null
+      "cannotSwitchCampaign": null,
+      "memberOfOtherCampaign": null,
+      "DhcButNoCampaign": null,
+      "invalidUserForEmailVerificationToken": null
     }
   },
   "busy": {
