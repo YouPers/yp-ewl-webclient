@@ -20,8 +20,8 @@
                     });
             }])
 
-        .controller('TestMailController', [ '$scope', '$interval', '$sce', '$window', 'UserService', 'TestMailService', 'campaign',
-            function ($scope, $interval, $sce, $window, UserService, TestMailService, campaign) {
+        .controller('TestMailController', [ '$scope', '$rootScope','$interval', '$sce', '$window', 'UserService', 'TestMailService', 'campaign',
+            function ($scope, $rootScope, $interval, $sce, $window, UserService, TestMailService, campaign) {
 
                 var user = UserService.principal.getUser();
 
@@ -36,7 +36,9 @@
                         $window.alert('campaignLeadSummaryMail will NOT be sent by the backend for the current date');
                     }
 
-                    TestMailService.sendMail($scope.mailType, options);
+                    TestMailService.sendMail($scope.mailType, options).then(function () {
+                        $rootScope.$emit('clientmsg:success', 'testMail.sent');
+                    });
                 };
 
 
@@ -81,13 +83,13 @@
                         $scope.refreshing = false;
                     }, function (err) {
                         $scope.error = err;
-                        $interval.cancel(promise);
+                        //$interval.cancel(promise);
                         $scope.refreshing = false;
                     });
                 }
-
                 refresh();
-                var promise = $interval(refresh, 10000);
+                $scope.refresh = refresh;
+                //var promise = $interval(refresh, 10000);
 
                 $scope.$watch('mailType', refresh);
                 $scope.$watch('options', refresh, true);
