@@ -44,7 +44,7 @@ var specificConfigs = {
         name: 'dev',
         webclientUrl: 'http://localhost:9000',
         backendUrl: 'http://localhost:8000',
-        paymentCodeChecking: 'enabled'
+        paymentCodeChecking: 'disabled'
     },
     localvm: {
         // used to test from Windows VMs on your local machine,
