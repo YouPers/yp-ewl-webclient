@@ -17,8 +17,8 @@
                     });
             }])
 
-        .controller('EmailVerificationCtrl', ['$scope', 'UserService', '$rootScope',
-            function ($scope, UserService, $rootScope) {
+        .controller('EmailVerificationCtrl', ['$scope', 'UserService', '$rootScope', 'HealthCoachService',
+            function ($scope, UserService, $rootScope, HealthCoachService) {
 
                 UserService.verifyEmail($scope.principal.getUser().id, $scope.$stateParams.token).then(function (result) {
                     $scope.emailValid = true;
@@ -38,6 +38,9 @@
                         // we want to direct a new Orgadmin directly to the organization screen on first login
                         $scope.$state.go('organization');
                     } else {
+                        if (!UserService.principal.isAuthorized('orgadmin') && !UserService.principal.isAuthorized('campaignlead') ) {
+                            HealthCoachService.queueEvent('campaignWelcome');
+                        }
                         $scope.$state.go('homedispatcher');
                     }
                 };
