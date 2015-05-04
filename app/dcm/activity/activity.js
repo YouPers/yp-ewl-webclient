@@ -9,7 +9,7 @@
                     .state('dcm.activity', {
                         parent: 'dcm',
                         url: "/idea/:idea/activity/:activity/socialInteraction/:socialInteraction?edit",
-                        access: accessLevels.all,
+                        access: accessLevels.user,
                         views: {
                             content: {
                                 templateUrl: 'components/activity/activity.html',
