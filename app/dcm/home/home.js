@@ -148,8 +148,9 @@
                         }
 
                         // campaign start section is open before and including the day of the campaign start
-                        // during campaign we open the
-                        else if (moment().isBefore(moment(campaign.start).endOf('day'))) {
+                        // or if the wizard is not completed
+                        // during campaign we open the Verlauf section
+                        else if (moment().isBefore(moment(campaign.start).endOf('day')) || campaign.preparationComplete < 2) {
                             $scope.campaignStartOpen = true;
                         } else if ($scope.campaignEnded) {
                             $scope.campaignEndOpen = true;
@@ -205,7 +206,8 @@
                     };
                 };
 
-                init();
+                ///////////////////////
+                // local private functions
 
                 function _loadSocialInteractions() {
                     SocialInteractionService.getSocialInteractions(_getOffersOptions)
@@ -253,6 +255,9 @@
                         step.disabled = !step.enabled && !step.complete;
                     });
                 }
+
+
+                init();
 
 
                 /////////////////////
