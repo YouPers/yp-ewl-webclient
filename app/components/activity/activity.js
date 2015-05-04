@@ -457,7 +457,7 @@
                         return;
                     }
                     // cancel if activity did not change, and the activity is not new
-                    if (_.isEqual(newActivity, old) && $scope.isScheduled && $scope.events.length > 0) {
+                    if ((_.isEqual(old, {}) || _.isEqual(newActivity, old)) && $scope.isScheduled && $scope.events.length > 0) {
                         return;
                     }
 
@@ -490,6 +490,8 @@
                         });
                         ActivityService.populateIdeas(events);
                         ActivityService.populateIdeas(conflictingEvents);
+
+                        // TODO: This is wrong for already planned events, because they lose the .id
                         $scope.events = events;
 
 
