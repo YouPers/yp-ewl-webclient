@@ -21,7 +21,6 @@
                         if ($rootScope.principal.isAuthenticated() && $stateParams.campaignId) {
                             var params = {
                                 populate: 'author activity',
-                                limit: 10,
                                 sort: 'publishFrom:-1',
                                 "filter[authorType]": '!coach'
                             };
