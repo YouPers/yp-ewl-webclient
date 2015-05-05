@@ -78,7 +78,7 @@
 
         .controller('DcmController', ['$scope', '$rootScope', '$state', 'UserService', 'CampaignService', 'organization', 'campaign', 'campaigns',
             function ($scope, $rootScope, $state, UserService, CampaignService, organization, campaign, campaigns) {
-                $scope.$log.log("DCM Controller is run now")
+                $scope.$log.log("DCM Controller is run now");
                 $scope.parentState = 'dcm';
 
                 $scope.currentCampaign = campaign;
