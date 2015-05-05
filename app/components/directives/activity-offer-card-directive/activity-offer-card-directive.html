@@ -32,8 +32,10 @@
 
             <div ng-if="!isRecommendation">
                 <div>
-
-                    <span>
+                    <span ng-if="activity.startTime">
+                        {{ activity.start | shortCalendarNoTime }}, {{activity.startTime | time}}
+                    </span>
+                    <span ng-if="!activity.startTime">
                         {{ activity.start | shortCalendar }}
                     </span>
                 </div>

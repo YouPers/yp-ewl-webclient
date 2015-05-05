@@ -39,6 +39,22 @@
                 return day + ', ' + m.format('HH:mm');
             };
         }])
+        .filter('shortCalendarNoTime', ['$translate', function ($translate) {
+            return function (dateString) {
+                var m = moment(dateString);
+                var day;
+                if(moment().isSame(m, 'day')) {
+                    day = $translate.instant('calendar.today');
+                } else if(moment().add(1, 'days').isSame(m, 'day')) {
+                    day = $translate.instant('calendar.tomorrow');
+                } else if(moment().subtract(1, 'days').isSame(m, 'day')) {
+                    day = $translate.instant('calendar.yesterday');
+                } else {
+                    day = m.format('D. MMM');
+                }
+                return day;
+            };
+        }])
         .filter('eventDate', function () {
             return function (dateString) {
                 var myMoment = moment(dateString);
