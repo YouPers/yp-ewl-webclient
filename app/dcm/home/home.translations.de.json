@@ -1,5 +1,6 @@
 {
   "dcmhome": {
+    "refreshDisplay": "Anzeige aktualisieren",
     "statsTitle": "Verlauf der Kampagne",
     "endOfCampaignTitle": "Ende der Kampagne",
     "participantsCount": "Anzahl angemeldete Teilnehmer",
