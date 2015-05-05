@@ -78,10 +78,10 @@
 
         .controller('DcmController', ['$scope', '$rootScope', '$state', 'UserService', 'CampaignService', 'organization', 'campaign', 'campaigns',
             function ($scope, $rootScope, $state, UserService, CampaignService, organization, campaign, campaigns) {
-
+                $scope.$log.log("DCM Controller is run now")
                 $scope.parentState = 'dcm';
 
-                $scope.currentCampaign = CampaignService.currentCampaign = campaign;
+                $scope.currentCampaign = campaign;
                 $scope.isCampaignLead = CampaignService.isCampaignLead(campaign);
 
                 // my org or the current campaign's org in case I am a product Admin looking at somebody else's campaign

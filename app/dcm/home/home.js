@@ -206,6 +206,10 @@
                     };
                 };
 
+                $scope.reloadState = function() {
+                    $scope.$state.go('bounce', {state: $scope.$state.current.name, params: JSON.stringify($scope.$stateParams)});
+                };
+
                 ///////////////////////
                 // local private functions
 
