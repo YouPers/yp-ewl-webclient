@@ -96,7 +96,7 @@ angular.module('yp-ewl',
 
 
             addthisevent.settings({
-                license: "00000000000000000000",
+                license: "awsuw8cyszc1xuo65mnv1528",
                 mouse: false,
                 css: true,
                 outlook: {show: true, text: "Outlook / Lotus Notes"},
