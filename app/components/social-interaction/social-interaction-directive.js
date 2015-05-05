@@ -147,7 +147,7 @@
                         var publishFrom = moment().isAfter(scope.minPublishFrom) ?
                             moment().startOf('day').toDate() :
                             moment(scope.minPublishFrom).toDate();
-                        var publishTo = moment(publishFrom).add(2, 'days').toDate();
+                        var publishTo = moment(publishFrom).endOf('day').add(2, 'days').toDate();
 
                         var messageTemplate = {
                             author: UserService.principal.getUser(),
@@ -204,6 +204,11 @@
                                 message.publishFrom = new Date(moment());
                             } else {
                                 message.publishFrom = new Date(moment(message.publishFrom).startOf('day'));
+                            }
+
+                            // put the publishTo to the end of the day
+                            if (message.publishTo) {
+                                message.publishTo = moment(message.publishTo).endOf('day').toDate();
                             }
 
                             if (message.id) {
