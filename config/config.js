@@ -91,6 +91,10 @@ var specificConfigs = {
         }
 
     },
+    "hc-content": {
+        name: 'content',
+        googleAnalytics: {}
+    },
     prod: {
         name: '',
         webclientUrl: 'https://hc.youpers.com',
