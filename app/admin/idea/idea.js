@@ -235,7 +235,7 @@
                             })) &&
                             (allExecutiontypes || query.executiontype[idea.defaultexecutiontype]) &&
                             (allTimes || !idea.defaultduration || query.time[durationMapping(idea.defaultduration)]) &&
-                            (!query.fulltext || (idea.title.toUpperCase() + idea.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
+                            (!query.fulltext || ((idea.title && idea.title.toUpperCase()) +  (idea.description && idea.description.toUpperCase())+  (idea.text && idea.text.toUpperCase()) + idea.number.toUpperCase()).indexOf(query.fulltext.toUpperCase()) !== -1) &&
                             (!query.emptyTexts || idea.text === '' || idea.text === 'MISSING TRANSLATION')
                             ) {
                             out.push(idea);
