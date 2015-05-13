@@ -6,6 +6,7 @@ deployment:
     branch: uat
     commands:
     - ssh youpers@hc-uat.youpers.com "~/hc-uat-frontend/bin/deploy.sh uat hc-uat"
+    - ssh youpers@hc-content.youpers.com "~/hc-content-frontend/bin/deploy.sh uat hc-content"
 
   cimaster:
     branch: master
