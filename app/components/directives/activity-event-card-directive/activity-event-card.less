@@ -30,8 +30,15 @@ activity-event-card {
 
 
   .date, .location {
+    display: inline-flex;
     i.fa {
       margin: 0 8px;
+    }
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 98px;
     }
   }
 
