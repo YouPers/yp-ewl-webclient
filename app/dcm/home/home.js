@@ -207,7 +207,7 @@
                 };
 
                 $scope.reloadState = function() {
-                    $scope.$state.go('bounce', {state: $scope.$state.current.name, params: JSON.stringify($scope.$stateParams)});
+                    $scope.$state.reload();
                 };
 
                 ///////////////////////
@@ -287,7 +287,7 @@
                             CampaignService.putCampaign(campaign);
                         };
 
-                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/#' + $scope.$state.href('welcome',{campaignId: campaign.id});
+                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/' + $scope.$state.href('welcome',{campaignId: campaign.id});
                         var createDraftLocals = {
                             organizationName: campaign.organization.name,
                             welcomeLink: $scope.homeController.welcomeLink,

@@ -33,8 +33,8 @@
                                 {{ 'topmenu.feedback' | translate }}
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle user-nav-link" data-toggle="dropdown" translate>help.help
+                        <li class="dropdown" dropdown>
+                            <a class="dropdown-toggle user-nav-link" dropdown-toggle translate>help.help
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
 
@@ -56,8 +56,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown" ng-show="principal.isAuthenticated()">
-                            <a class="dropdown-toggle user-nav-link" data-toggle="dropdown">{{
+                        <li class="dropdown" dropdown ng-show="principal.isAuthenticated()">
+                            <a class="dropdown-toggle user-nav-link" dropdown-toggle>{{
                                 principal.getUser().fullname }}
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -76,8 +76,8 @@
                         <!--<li ng-show="!principal.isAuthenticated()">-->
                         <!--<a ui-sref="signup" translate ng-click="topnavCollapsed.collapsed =true">topmenu.signup</a>-->
                         <!--</li>-->
-                        <li class="dropdown" ng-controller="i18nCtrl">
-                            <a class="dropdown-toggle" data-toggle="dropdown">{{currentLocale}}
+                        <li class="dropdown" dropdown ng-controller="i18nCtrl">
+                            <a class="dropdown-toggle" dropdown-toggle>{{currentLocale}}
                                 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li ng-class="{active: currentLocale=='en', disabled: isEnabled('en')}"><a href=""
