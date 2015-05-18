@@ -60,21 +60,6 @@ angular.module('yp-ewl',
                     "<button class='btn btn-primary' ui-sref='homedispatcher'>try again</button></div></body></html>"
                 })
 
-
-                // temporary bounce state while we wait for this bug to be fixed: https://github.com/angular-ui/ui-router/issues/76
-                .state('bounce', {
-                    params: ['state', 'params'],
-                    template: '<h4>Loading...</h4>', // you can even put some loading template here, wow!
-                    controller: ['$state', '$stateParams', function ($state, $stateParams) {
-                        // just redirect to caller
-                        $state.go(
-                            $stateParams.state,
-                            JSON.parse($stateParams.params)
-                        );
-                    }],
-                    access: accessLevels.all
-                });
-
             RestangularProvider.setBaseUrl(config && config.backendUrl || "");
 
             $translateProvider
@@ -88,7 +73,8 @@ angular.module('yp-ewl',
                     wtiProjectId: '8233-eWL',
                     wtiPublicApiToken: '8lfoHUymg_X8XETa_uLaHg',
                     fromWti: config.translationSource === 'wti'
-                });
+                })
+                .useSanitizeValueStrategy(null);
             $translateWtiPartialLoaderProvider.addPart('yp.ewl/yp.ewl');
 
             localStorageServiceProvider

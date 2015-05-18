@@ -1,3 +1,8 @@
+/**
+ * Angular Dynamic Locale - 0.1.27
+ * https://github.com/lgalfaso/angular-dynamic-locale
+ * License: MIT
+ */
 (function(window) {
 'use strict';
 angular.module('tmh.dynamicLocale', []).config(['$provide', function ($provide) {
