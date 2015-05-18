@@ -142,7 +142,7 @@
                             scopeType: 'campaign',
                             scopeId: $scope.campaign.id
                         }).then(function (results) {
-                            var res = results[0].usersTotal;
+                            return results[0].usersTotal.usersTotal;
                         })
 
                 ]).then(function (results) {
