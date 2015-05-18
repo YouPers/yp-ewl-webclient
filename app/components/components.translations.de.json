@@ -14,14 +14,14 @@
         },
         "error": "Ein Fehler ist aufgetreten"
       },
-      "502": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals.",
+      "502": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche es in ein paar Minuten nochmals.",
       "503": "Wir verbessern den HealthCampaign Service. Darum ist die Anwendung im Moment nicht verfügbar. Bitte versuchen sie in einigen Minuten nochmals. Vielen Dank für das Verständnis.",
-      "504": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche in ein paar Minuten nochmals.",
+      "504": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche es in ein paar Minuten nochmals.",
       "alreadyJoinedUsers": "Die Kampagne kann nicht gelöscht werden, da sich bereits Teilnehmer angemeldet haben",
       "cannotSwitchCampaign": "Du kannst diese Einladung zur Kampagne nicht annehmen da du bereits Teilnehmer einer anderen Kampagne bist. Es ist nicht möglich in mehreren Kampagnen gleichzeitig teilzunehmen.",
       "memberOfOtherCampaign": "Die gewünschte Seite gehört zur Kampagne eines anderen Teams. Du selber bist schon Teilnehmer an einer andern Kampagne. Kampagnenübergreifende Aktionen sind nicht möglich.",
-      "invalidUserForEmailVerificationToken": "Der geklickte Link gehört nicht zu diesem Benutzerkonto. Bitte melde dich mit der richtigen Emailadresse an.",
-      "DhcButNoCampaign": "Entschuldigung! Irgendetwas ist schief gelaufen, bitte registriere dich neu, indem du auf den Einladungslink im Email des Kampagnenleiters klickt (Dieser Benutzer hat keine aktive Kampagne)"
+      "DhcButNoCampaign": "Entschuldigung! Irgendetwas ist schief gelaufen, bitte registriere dich neu, indem du auf den Einladungslink im Email des Kampagnenleiters klickt (Dieser Benutzer hat keine aktive Kampagne)",
+      "invalidUserForEmailVerificationToken": "Der geklickte Link gehört nicht zu diesem Benutzerkonto. Bitte melde dich mit der richtigen Emailadresse an."
     }
   },
   "busy": {

@@ -1,11 +1,11 @@
 {
   "end-of-campaign": {
-    "lastDaysHeader": "{ daysLeft, plural, 0{ Last day of the campaign } one {Still 1 day to the end of the campaign} other {Still # days to the end of the campaign} }",
+    "lastDaysHeader": "{ daysLeft, plural, 0{ Last day of the campaign } one {Still 1 day until the end of the campaign} other {Still # days until the end of the campaign} }",
     "campaignEndendHeader": "Campaign - Review",
-    "subheader": "Need for action due to your self-assessment",
-    "surveyInfo": "Here you can participate in the survey",
+    "subheader": "Need for action according to your Self-Assessment",
+    "surveyInfo": "You can participate in the survey here",
     "surveyLink": "Survey",
-    "reviewInfo": "Here you can review the campaign",
+    "reviewInfo": "You can review the campaign here",
     "reviewLink": "Review",
     "legend": {
       "user": "Your result",
@@ -13,7 +13,7 @@
       "needForActionAvg": "Average of all campaign participants"
     },
     "eventsStatus": {
-      "title": "Scheduled activity appointments",
+      "title": "Planned Activities",
       "user": "Results",
       "campaign": "Average",
       "done": "done",
@@ -21,8 +21,8 @@
       "open": "open"
     },
     "eventsRatings": {
-      "title": "activity evaluations",
-      "user": "Your evaluations",
+      "title": "Activity Evaluation",
+      "user": "Your Evaluation",
       "campaign": "Campaign",
       "null": "open"
     }

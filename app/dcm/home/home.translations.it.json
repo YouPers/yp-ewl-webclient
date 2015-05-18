@@ -116,7 +116,8 @@
       "Invitation": null,
       "UserInvitation": null,
       "All": null
-    }
+    },
+    "refreshDisplay": null
   },
   "dcm-end-of-campaign": {
     "usersTotal": {

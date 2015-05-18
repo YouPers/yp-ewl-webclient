@@ -1,11 +1,11 @@
 {
   "pageTitle": {
-    "default": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
+    "default": "HealthCampaign {{ campaign.topic.name }}",
     "signin": {
-      "content": "Sign In - YOUPERS HealthCampaign"
+      "content": "Sign In - HealthCampaign"
     },
-    "account": "Account",
-    "profile": "Profile",
+    "account": "User account",
+    "profile": "User profile",
     "dcm": {
       "home": "YOUPERS HealthCampaign {{ campaign.topic.name }}",
       "activity": "{{ activity.title }}",
@@ -17,7 +17,7 @@
     "dhc": {
       "game": "Home",
       "activity": "{{activity.title}}",
-      "check": "Self-assessment"
+      "check": "Self-Assessment"
     }
   }
 }

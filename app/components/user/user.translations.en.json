@@ -180,14 +180,14 @@
     "$invalid": "Please enter a valid value",
     "email": {
       "actPlanInvites": "Invitations for activities",
-      "dailyUserMail": "Daily Summary",
+      "dailyUserMail": "Daily Mail",
       "iCalInvites": "Calendar events by email",
-      "weeklyCampaignLeadMail": null
+      "weeklyCampaignLeadMail": "Weekly Mail"
     },
     "emailNotificationsSettings": "Did you receive email notifications?",
     "calendarNotificationSettings": "calendar alerts",
     "rejectedActivities": {
-      "header": "Rejected Activities"
+      "header": "Declined Activities"
     }
   }
 }

@@ -19,9 +19,9 @@
         }
       },
       "newUsersPerDay": {
-        "title": "Number of Campaign Participants",
+        "title": "Number of campaign participants",
         "legend": {
-          "count": "Campaign Participants"
+          "count": "Campaign participants"
         }
       },
       "newestPlans": {
@@ -31,7 +31,7 @@
       }
     },
     "end-of-campaign": "Review",
-    "addOffer": "Add offer",
+    "addOffer": "Add Offer",
     "surveyInfo": "Please let us know about your experiences with HealthCampaign by filling out the survey",
     "surveyLink": "Survey",
     "organization": {
@@ -58,7 +58,7 @@
           "link": "Design email",
           "recipient": "your.participants@yourcompany.com",
           "subject": "{{ organizationName }} Campaign {{campaign.title}} : Personal invitation",
-          "body": "Dear employee, \n\n{{ organizationName }} invites you to participate in the workplace Health Campaign. This web-based health campaign is a service of YOUPERS AG, a Swiss software company for digital health solutions. \n\nClick on this link: {{ welcomeLink }}"
+          "body": "Dear employee, \n\n{{ organizationName }} invites you to participate in the company-based Health Campaign. This web-based health campaign is a service of YOUPERS AG, a Swiss software company for digital health solutions. \n\nClick on this link: {{ welcomeLink }}"
         },
         "copyLink": "If generating the email does't work, you can copy the following link and paste it in your e-mail invitations."
       },
@@ -89,10 +89,10 @@
       },
       "campaignLeadGuidance": {
         "step1": {
-          "avatarLink": null,
-          "campaignLink": null,
+          "avatarLink": "Upload profile photo",
+          "campaignLink": "Customize campaign information",
           "tab": "Campaign data",
-          "text": "Please check the details of your campaign. Correct or complete information"
+          "text": "Please check and correct the details of your campaign. Upload a profile photo of yourself so that the campaign participants can recognise you as the Campaign Leader."
         },
         "step2": {
           "link": "To Profile",
@@ -107,20 +107,21 @@
     },
     "messages": "Messages",
     "noCampaigns": "You have not created any campaigns yet",
-    "noMessages": "Your messages for the campaign participants are displayed here. Click on CAMPAIGN MESSAGE to compose a message.",
-    "noOffers": "Once you, as a campaign leader, have recommended to perform an activity to the campaign participants or you, as an organizer, have invited the campaign participants to a joint campaign activity, the offered activities will be displayed here. Click on \"Add offer\" to offer an activity to the campaign participants.",
+    "noMessages": "Your messages for the campaign participants are displayed here.",
+    "noOffers": "Currently there are no activities planned. Click on \"Add Offer\" to submit an activity the campaign participants.",
     "noParticipants": "There are no campaign participants yet",
-    "showOld": "Show past",
+    "showOld": "Show Past",
     "offerType": {
       "Recommendation": "Your recommendations",
       "Invitation": "Your invitations",
       "UserInvitation": "Events of Participants",
       "All": "All"
-    }
+    },
+    "refreshDisplay": "Refresh"
   },
   "dcm-end-of-campaign": {
     "usersTotal": {
-      "title": "Number of Campaign Participants",
+      "title": "Number of campaign participants",
       "campaign": "This campaign",
       "average": "Average"
     },

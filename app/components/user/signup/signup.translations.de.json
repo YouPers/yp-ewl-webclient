@@ -70,7 +70,7 @@
       "label": "Firmenname",
       "placeholder": "Firmenname"
     },
-    "termsLink": "http://healthcampaign.youpers.com/nutzungsbedigungen/?lang=de"
+    "termsLink": "http://healthcampaign.youpers.com/nutzungsbedigungen/?lang=de&show_menu=no"
   },
   "signupFinalization": {
     "header": "Danke für deine Registrierung",

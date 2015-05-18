@@ -5,7 +5,7 @@
         "joined": "Invitation accepted",
         "deleted": "Activity deleted",
         "Save": "Activity saved",
-        "SaveAndInvite": "Dates stored and sent out invitations"
+        "SaveAndInvite": "Events saved and invitations sent"
       }
     },
     "error": {
@@ -45,7 +45,7 @@
       "invitedOnSave": "Invited when planned:",
       "none": "Nobody",
       "notFound": "not found? invite someone by email:",
-      "readOnlyLabel": null
+      "readOnlyLabel": "Invitations to"
     },
     "emailToBeInvited": {
       "placeholder": "Email",
@@ -53,7 +53,7 @@
     },
     "invitationStatus": {
       "activityJoined": "Accepted",
-      "denied": "Denied",
+      "denied": "declined",
       "pending": "?",
       "organizer": "Organizer"
     },
@@ -83,7 +83,7 @@
       "recommendationSaveAndInvite": "Plan & send",
       "scheduleSaveAndInvite": "Plan & send",
       "cancel": "Cancel",
-      "invitationDecline": "Reject",
+      "invitationDecline": "Decline",
       "recommendationDismiss": "No, thank you!"
     },
     "owner": "Organizer",
@@ -144,8 +144,8 @@
       "label": "To"
     },
     "preview": {
-      "plannedEventsRemark": null,
-      "soiPublishedRemark": null
+      "plannedEventsRemark": "Planned activity event",
+      "soiPublishedRemark": "Published invitation visible to all invitees:"
     }
   },
   "activityForm": {

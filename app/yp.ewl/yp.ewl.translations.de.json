@@ -71,11 +71,11 @@
     "campaignLeader": "Kampagnenleiter",
     "campaignParticipant": "Kampagnenteilnehmer",
     "faq": "FAQ",
-    "faqLink": "http://healthcampaign.youpers.com/?p=20989",
+    "faqLink": "http://healthcampaign.youpers.com/faq/?lang=de&show_menu=no",
     "help": "Hilfe",
-    "moreInfoCampaignLeaderLink": "http://healthcampaign.youpers.com/?p=21058",
-    "moreInfoParticipantLink": "http://healthcampaign.youpers.com/?p=21102",
-    "moreInfoServiceManagerLink": "http://healthcampaign.youpers.com/?p=20985",
+    "moreInfoCampaignLeaderLink": "http://healthcampaign.youpers.com/mehr-erfahren-fuer-kampagnenleiter/?lang=de&show_menu=no",
+    "moreInfoParticipantLink": "http://healthcampaign.youpers.com/mehr-erfahren-fuer-teilnehmer/?lang=de&show_menu=no",
+    "moreInfoServiceManagerLink": "http://healthcampaign.youpers.com/mehr-erfahren-fuer-service-manager/?lang=de&show_menu=no",
     "serviceManager": "Service Manager"
   }
 }

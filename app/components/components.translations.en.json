@@ -20,17 +20,17 @@
       "alreadyJoinedUsers": "The campaign can not be deleted because participants have already registered.",
       "cannotSwitchCampaign": "You can not accept this campaign invitation because you are already participating in another campaign. It is not possible to take part in several campaigns simultaneously.",
       "memberOfOtherCampaign": "The page you are requesting belongs to the campaign of another team. You yourself are already participating in different campaign. Cross-Campaign actions are not possible.",
-      "DhcButNoCampaign": null,
-      "invalidUserForEmailVerificationToken": null
+      "DhcButNoCampaign": "We are sorry! Something went wrong, please register again by clicking on the link in the email from the Campaign Leader. (Error: This user doesn't have an active campaign)",
+      "invalidUserForEmailVerificationToken": "The clicked link does not belong to this account. Please log in with the correct email address."
     }
   },
   "busy": {
     "submitting": "Saving..."
   },
   "calendar": {
-    "tomorrow": "Tomorrow",
-    "today": "Today",
-    "yesterday": "Yesterday"
+    "tomorrow": "tomorrow",
+    "today": "today",
+    "yesterday": "yesterday"
   },
   "executiontype": {
     "self": "self",

@@ -1,9 +1,9 @@
 {
   "avatarUpload": {
     "progress": {
-      "header": null,
-      "cancel": null
+      "header": "Your profile photo is uploading",
+      "cancel": "Cancel"
     },
-    "defaultAvatarHint": null
+    "defaultAvatarHint": "Click here to upload a profile photo of yourself, so that the other campaign participants can recognise you right away."
   }
 }

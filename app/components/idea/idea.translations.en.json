@@ -12,7 +12,7 @@
         "sampleInvitationSent": "Invitation mail sent to {{email}}"
       },
       "templateCampaign": {
-        "save": "Standard offers saved"
+        "save": "Standard activity offers saved"
       }
     },
     "error": {
@@ -62,10 +62,10 @@
       "valueRangeHint": "Value range from 0 to 10<br/>0 = not recommended, 10 = recommended"
     },
     "templateCampaign": {
-      "addOffer": "Add offer +",
+      "addOffer": "Add Offer +",
       "header": "Use this idea as standard offer for the topic {{ topic }}",
       "remove": "Remove",
-      "save": "Save standard offers",
+      "save": "Save standard activity offers",
       "type": {
         "Invitation": "Invitation",
         "Recommendation": "Recommendation"
@@ -130,16 +130,16 @@
   },
   "idea": {
     "edit": {
-      "cancel": null,
-      "planCampaignLead": null,
-      "planCampaignLeadPopover": null,
-      "planCampaignLeadText": null,
-      "planParticipant": null,
-      "planParticipantPopover": null,
-      "planParticipantText": null,
-      "recommend": null,
-      "recommendPopover": null,
-      "recommendText": null
+      "cancel": "cancel",
+      "planCampaignLead": "Plan",
+      "planCampaignLeadPopover": "'Planning' means that you fix a location and a date for this activity and invite the campaign participants to take part. It is usually expected, that you are present at this activity event.",
+      "planCampaignLeadText": "Plan this activity as a campaign event",
+      "planParticipant": "Plan",
+      "planParticipantPopover": "You can plan this activity for yourself and if you wish, invite other participants to join you.",
+      "planParticipantText": "Plan this activity",
+      "recommend": "Recommend",
+      "recommendPopover": "'Recommend' means that this activity is presented to the participants as a tip, and everyone can plan individually.",
+      "recommendText": "Recommend this activity"
     }
   }
 }

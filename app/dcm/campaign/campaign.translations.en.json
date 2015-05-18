@@ -53,7 +53,7 @@
       "label": "Group of participants",
       "placeholder": "Group of people",
       "error": {
-        "required": null
+        "required": "Please create a group of participants"
       }
     },
     "location": {
@@ -67,7 +67,7 @@
       "label": "City",
       "placeholder": "City",
       "error": {
-        "required": null
+        "required": "Please define a location"
       }
     },
     "back": "Back",
@@ -80,7 +80,7 @@
     },
     "backToTopicSelection": "Back to topic selection",
     "paymentCode": {
-      "invalidCode": "Invalid or already used activation code. You get a valid activation code <a href=\"http://shop.youpers.com\">here.</a>",
+      "invalidCode": "Invalid or already used activation code. You get a valid activation code <a href=\"http://shop.youpers.com/en/\">here.</a>",
       "invalidTopic": "This code is valid only for campaigns to topic {{ invalidTopic }}",
       "label": "Activation code"
     }
