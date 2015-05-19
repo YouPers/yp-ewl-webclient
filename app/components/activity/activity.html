@@ -138,7 +138,7 @@
                 <div ng-if="user.fullname">
                     <div><avatar user="user"></avatar></div>
                     <div bind-html-unsafe="user.fullname"></div>
-                    <div>{{ ('activity.invitationStatus.' + ($index == 0 ? 'organizer' : user.invitationStatus)) | translate }}</div>
+                    <div>{{ ('activity.invitationStatus.' + ($index == 0 ? 'organizer' : invitationStatus(user))) | translate }}</div>
                 </div>
                 <div ng-if="!user.fullname">
                     <div><i class="fa fa-envelope-o"></i></div>
