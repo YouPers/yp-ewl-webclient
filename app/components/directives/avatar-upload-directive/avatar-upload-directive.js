@@ -53,22 +53,28 @@
                 restrict: 'E',
                 template: '<img ng-if="!showAvatarUpload" class="avatar" ng-src="{{user.avatar}}"><avatar-upload ng-if="showAvatarUpload" popoverplace="popoverplace"></avatar-upload>',
                 scope: {
-                    user: '&',
+                    user: '=',
                     popoverplace: '='
                 },
                 link: function (scope, elem, attrs) {
 
                     var authenticatedUser = UserService.principal.getUser();
-                    var user = scope.user();
 
-                    if(!user) {
+                    // only assign user if scope attribute is omitted
+                    if(!attrs.user) {
                         scope.user = authenticatedUser;
-                    } else if (user.id === authenticatedUser.id) {
-                        scope.user = authenticatedUser;
-                        scope.showAvatarUpload = UserService.hasDefaultAvatar();
-                    } else {
-                        scope.user = user;
                     }
+
+                    scope.$watch('user.avatar', function () {
+                        /**
+                         * show upload directive if the user
+                         *
+                         * - is defined (may be undefined at the time the directive is initialized)
+                         * - equals the authenticated user
+                         * - has the default avatar
+                         */
+                        scope.showAvatarUpload = scope.user && scope.user.id === authenticatedUser.id && UserService.hasDefaultAvatar();
+                    });
                 }
             };
         }]);
