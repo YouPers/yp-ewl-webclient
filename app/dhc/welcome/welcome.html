@@ -16,8 +16,15 @@
                 <h1>
                     <span translate>welcome.header</span><br/>
                 </h1>
+                <div class="campaign-start" ng-if="existingCampaign">
 
-                <div ng-if="!existingCampaign">
+                    <p translate>welcome.existingCampaign</p>
+
+                    <h4>Kampagne {{ existingCampaign.participants }} / {{existingCampaign.location}},
+                        {{existingCampaign.city}}</h4>
+
+                </div>
+                <div>
                     <h1>
                         <strong translate>{{ campaign.title }}</strong>
                     </h1>
