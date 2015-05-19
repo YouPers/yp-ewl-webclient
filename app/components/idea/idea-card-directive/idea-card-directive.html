@@ -28,7 +28,7 @@
                 </li>
                 <li>
                     <div ng-if="showEditLink">
-                        <a ui-sref="{{parentState == 'dcm' ? 'dcm.idea({ id: idea.id})' : 'dhc.idea({id: idea.id})'}}" stop-propagation>
+                        <a ui-sref="{{($parent.parentState || $parent.$parent.parentState) == 'dcm' ? 'dcm.idea({ id: idea.id})' : 'dhc.idea({id: idea.id})'}}" stop-propagation>
                             <i class="fa fa-edit"></i>
                         </a>
                     </div>
