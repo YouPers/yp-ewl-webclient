@@ -11,19 +11,19 @@
         <div class="col-sm-8">
 
             <div class="content">
+                <div class="campaign-start panel panel-default" ng-if="existingCampaign">
 
+                    <p translate>welcome.existingCampaign</p>
+
+                    <h4>Kampagne {{ existingCampaign.title | uppercase }} / {{ existingCampaign.participants }} / {{existingCampaign.location}}
+                        {{existingCampaign.city}}</h4>
+
+                </div>
 
                 <h1>
                     <span translate>welcome.header</span><br/>
                 </h1>
-                <div class="campaign-start" ng-if="existingCampaign">
 
-                    <p translate>welcome.existingCampaign</p>
-
-                    <h4>Kampagne {{ existingCampaign.participants }} / {{existingCampaign.location}},
-                        {{existingCampaign.city}}</h4>
-
-                </div>
                 <div>
                     <h1>
                         <strong translate>{{ campaign.title }}</strong>

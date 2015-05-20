@@ -13,27 +13,27 @@
 
         _accessLevels = {
             all: _userRoles.anonymous | // 11111
-                _userRoles.individual |
-                _userRoles.orgadmin |
-                _userRoles.campaignlead |
-                _userRoles.productadmin |
-                _userRoles.systemadmin,
+            _userRoles.individual |
+            _userRoles.orgadmin |
+            _userRoles.campaignlead |
+            _userRoles.productadmin |
+            _userRoles.systemadmin,
             anonymous: _userRoles.anonymous,  // 10000  nur zugänglich,  wenn nicht eingeloggt
             user: _userRoles.individual |
-                _userRoles.orgadmin |
-                _userRoles.campaignlead |
-                _userRoles.productadmin |
-                _userRoles.systemadmin,  // 10000  nur zugänglich,  wenn nicht eingeloggt
+            _userRoles.orgadmin |
+            _userRoles.campaignlead |
+            _userRoles.productadmin |
+            _userRoles.systemadmin,  // 10000  nur zugänglich,  wenn nicht eingeloggt
             individual: _userRoles.individual |
-                _userRoles.productadmin |
-                _userRoles.systemadmin,
+            _userRoles.productadmin |
+            _userRoles.systemadmin,
             orgadmin: _userRoles.orgadmin |
-                _userRoles.productadmin |
-                _userRoles.systemadmin,
+            _userRoles.productadmin |
+            _userRoles.systemadmin,
             campaignlead: _userRoles.campaignlead |
-                _userRoles.orgadmin |
-                _userRoles.productadmin |
-                _userRoles.systemadmin,
+            _userRoles.orgadmin |
+            _userRoles.productadmin |
+            _userRoles.systemadmin,
             admin: _userRoles.productadmin | _userRoles.systemadmin,   // 00011
             systemadmin: _userRoles.systemadmin
         };
@@ -51,8 +51,8 @@
 
         .constant('accessLevels', _accessLevels)
 
-        .factory("UserService", ['userRoles', 'localStorageService', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q',
-            function (userRoles, localStorageService, $rootScope, Rest, $location, $http, base64codec, $q) {
+        .factory("UserService", ['userRoles', 'localStorageService', '$rootScope', 'Restangular', '$location', '$http', 'base64codec', '$q', '$timeout',
+            function (userRoles, localStorageService, $rootScope, Rest, $location, $http, base64codec, $q, $timeout) {
                 var users = Rest.all('users');
                 var profiles = Rest.all('profiles');
                 var login = Rest.all('login');
@@ -76,9 +76,9 @@
                         if (_currentUser.campaign) {
 
                             // --> we need to check whether the authenticated user has the same campaign set, and if
-                            // not tell the user that he cannot switch campaign
+                            // not redirect to user the the welcome page so he can really decide whether he wants to swith
                             if (authenticatedUser.campaign && (authenticatedUser.campaign.id !== _currentUser.campaign.id)) {
-                                $rootScope.$emit('clientmsg:error', 'cannotSwitchCampaign', {duration: 10000});
+                                    $rootScope.nextStateAfterLogin = {toState: 'welcome', toParams: {campaignId: _currentUser.campaign.id}};
                             }
 
                             // the authenticatedUser does not have a campaign set yet, we need to update the
@@ -131,7 +131,7 @@
 
                 var _authorizeLoginResponse = function _authorizeLoginResponse(result) {
 
-                    var user = Rest.restangularizeElement(null,result.user, 'users');
+                    var user = Rest.restangularizeElement(null, result.user, 'users');
 
                     if (result.token) {
                         $http.defaults.headers.common.Authorization = 'Bearer ' + result.token;
@@ -166,7 +166,7 @@
                                 $http.defaults.headers.common.Authorization = '';
 
                                 if (err.data && err.data.code === 'UnauthorizedError') {
-                                    $rootScope.$emit('clientmsg:error', 'loginFailed', { error: err });
+                                    $rootScope.$emit('clientmsg:error', 'loginFailed', {error: err});
                                 } else {
                                     $rootScope.$emit('clientmsg:error', err);
                                 }
@@ -264,7 +264,7 @@
                             }
                             return reqAccessLevel & roles;
                         },
-                        hasRole: function(role, user) {
+                        hasRole: function (role, user) {
                             if (!user) {
                                 user = _currentUser;
                             }

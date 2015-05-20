@@ -10,6 +10,6 @@
     "campaignNotStartedYet": "Du bist noch etwas zu früh, diese Kampagne startet am",
     "isCampaignlead": "Dieser Benutzeraccount wird zur Verwaltung einer Kampagne eingesetzt. Er kann darum nicht selbst an einer Kampagne teilnehmen.",
     "yourCampaignLeads": "Dein/e Kampagnenleiter/in:",
-    "existingCampaign": "Du kannst nicht gleichzeitig an mehreren Kampagnen teilnehmen. Du nimmst bereits teil bei"
+    "existingCampaign": "ACHTUNG: Du nimmst aktuell an einer andern Kampagne teil. Wenn du nun bei dieser Einladung auf \"Teilnehmen\" klickst verlässt du deine aktuelle Kampagne und nimmst dafür an dieser neuen Kampagne teil. Deine aktuelle Kampagne:"
   }
 }
