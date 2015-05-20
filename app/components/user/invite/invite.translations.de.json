@@ -1,7 +1,8 @@
 {
   "clientmsg": {
     "error": {
-      "userWithoutcampaign": "Der aktuelle Benutzer hat keine Kampagne!"
+      "userWithoutcampaign": "Der aktuelle Benutzer hat keine Kampagne!",
+      "invitationNotFound": "Der Organisator hat diese Einladung bereits gelöscht"
     }
   },
   "invite": {
