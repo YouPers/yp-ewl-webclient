@@ -1,4 +1,4 @@
-<div ng-if="coachMessage || eventMessage" ng-class="{ expanded: expanded, overlay: overlay }" ng-style="style"
+<div ng-if="formattedMessage" ng-class="{overlay: overlay }" ng-style="style"
      ng-click="overlay = !overlay; $parent.newMessage = false"
         >
 
@@ -15,15 +15,8 @@
     </div>
 
     <div class="message">
-
-        <div ng-if="coachMessage" ng-bind-html="coachMessage" ></div>
-        <div ng-if="!coachMessage && eventMessage" ng-bind-html="eventMessage"></div>
-
+        <div ng-if="formattedMessage" ng-bind-html="formattedMessage"></div>
     </div>
-
-    <a ng-show="expandable" class="expand" ng-click="expanded = true; expandable = false">
-        <span translate>healthCoach.expand</span>
-    </a>
 
     <div class="health-coach-notification-background" ng-class="{ overlay: overlay }"></div>
     <div class="health-coach-notification" ng-class="{ 'new-message': $parent.newMessage}">
@@ -32,4 +25,5 @@
         <i class="fa" ng-class="overlay ? 'fa-chevron-down' : 'fa-chevron-up'"></i>
 
     </div>
+
 </div>
