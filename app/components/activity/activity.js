@@ -556,6 +556,14 @@
                             $scope.inviteLocked = true;
                         }
 
+                        // lookup invitation status (again) as the user object may be replaced by avatar upload
+                        $scope.invitationStatus = function invitationStatus(user) {
+                            return user.invitationStatus ||
+                                _.find(invitationStatus, function (status) {
+                                    return user.email ? status.user.email === user.email : status.user.id === user.id;
+                                }).status;
+                        };
+
                         // find out whether we have already invited some individuals.
                         if (invitationStatus && invitationStatus.length > 0) {
                             activityController.inviteOthers = activityController.inviteOthers || 'selected';

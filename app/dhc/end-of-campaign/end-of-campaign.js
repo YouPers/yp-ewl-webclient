@@ -135,15 +135,29 @@
                         }).then(function (results) {
 
                             return results[0].needForAction;
+                        }),
+                    StatsService.loadStats($scope.campaign.id,
+                        {
+                            type: 'usersTotal',
+                            scopeType: 'campaign',
+                            scopeId: $scope.campaign.id
+                        }).then(function (results) {
+                            return results[0].usersTotal.usersTotal;
                         })
 
                 ]).then(function (results) {
                     var needForAction = results[0];
                     var needForActionCampaign = results[1];
+                    var usersTotal = results[2];
 
-                    _.each(needForAction, function (need) {
-                        need.campaignAvg = ( _.find(needForActionCampaign, {category: need.category}) || {}).avg;
-                    });
+                    // don't display campaign average if there are less than 10 users in the campaign for privacy reasons
+                    if(usersTotal >= 10) {
+                        $scope.showCampaignAvg = true;
+                        _.each(needForAction, function (need) {
+                            need.campaignAvg = ( _.find(needForActionCampaign, {category: need.category}) || {}).avg;
+                        });
+                    }
+
                     $scope.needForAction = needForAction;
                 });
 

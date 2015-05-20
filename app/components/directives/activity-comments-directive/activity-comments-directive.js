@@ -65,7 +65,7 @@
                                 ]
                             };
                             scope.message = _.clone(template);
-                            scope.showPostButton = false;
+                            //scope.showPostButton = false; // always show post button once activated, see WL-2100
 
                             ActivityService.updateActivityLookahead(scope.activity);
                         }

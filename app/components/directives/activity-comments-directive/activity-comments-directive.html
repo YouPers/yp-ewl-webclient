@@ -5,13 +5,14 @@
     <li class="list-group-item clearfix">
         <form name="composeCommentForm" class="form-horizontal" ng-submit="saveMessage()">
             <avatar user="user"></avatar>
-            <textarea ng-keypress="keypress($event)"
+            <textarea
+                      ng-keypress="keypress($event)"
                       class="form-control"
                       ng-model="message.text"
                       ng-focus="showPostButton=true"
                       ng-blur="onCommentAreaBlur()"
                       ng-attr-placeholder="{{ 'composeCommentForm.comment.paceholder' | translate }}" ></textarea>
-            <button ng-show="showPostButton" class="btn btn-flat pull-right" translate>composeCommentForm.submit</button>
+            <button ng-disabled="!message.text" ng-show="showPostButton" class="btn btn-flat pull-right" translate>composeCommentForm.submit</button>
 
         </form>
     </li>
