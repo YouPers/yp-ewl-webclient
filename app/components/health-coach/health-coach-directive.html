@@ -2,7 +2,7 @@
      ng-click="overlay = !overlay; $parent.newMessage = false"
         >
 
-    <div class="inbox-item">
+    <div class="inbox-item" ng-click="messageHidden = !messageHidden">
 
         <div class="avatar">
             <img ng-src="/assets/img/avatar_coach_blue.svg">
@@ -12,9 +12,10 @@
         <div class="author">
             <h3 translate>healthCoach.fullname</h3>
         </div>
+        <i ng-show="messageHidden" class="fa fa-chevron-right chevron"></i>
+        <i ng-hide="messageHidden" class="fa fa-chevron-down chevron"></i>
     </div>
-
-    <div class="message">
+    <div class="message" ng-hide="messageHidden">
         <div ng-if="formattedMessage" ng-bind-html="formattedMessage"></div>
     </div>
 

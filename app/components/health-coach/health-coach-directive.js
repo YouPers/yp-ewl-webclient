@@ -18,8 +18,10 @@
      */
 
     angular.module('yp.components.healthCoach')
-        .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state', '$translate', '$sce', 'localStorageService',
-            function ($rootScope, HealthCoachService, $window, $timeout, $state, $translate, $sce, localStorageService) {
+        .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state',
+            '$translate', '$sce', 'localStorageService',
+            function ($rootScope, HealthCoachService, $window, $timeout, $state,
+                      $translate, $sce, localStorageService) {
                 return {
                     restrict: 'E',
                     scope: {
@@ -42,6 +44,14 @@
 
                         scope.$watch('event', function (val, old) {
                             var eventKey = 'healthCoach.' + ( scope.event ? $state.current.name + '.' + scope.event : undefined );
+                            if (localStorageService.get(eventKey)) {
+                                scope.messageHidden = true;
+                            } else {
+                                $timeout(function() {
+                                    scope.messageHidden = true;
+                                }, 10000);
+                            }
+                            localStorageService.set(eventKey, true);
                             $translate(eventKey, scope.data).then(function (eventMessage) {
                                 _displayMessage(eventMessage);
                             });
@@ -52,6 +62,7 @@
                         });
 
                         $rootScope.$on('healthCoach:displayMessage', function (event, message) {
+                            scope.messageHidden = false;
                             _displayMessage(message);
                             scope.$parent.$broadcast('initialize-scroll-along');
                         });
