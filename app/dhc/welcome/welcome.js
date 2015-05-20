@@ -27,6 +27,7 @@
             function ($scope, $rootScope, $state, $stateParams, UserService, ActivityService, campaign, HealthCoachService, CampaignService) {
 
                 var existingCampaign = UserService.principal.getUser().campaign;
+                var existingCampaignEnded = existingCampaign && moment(existingCampaign.end).isBefore(moment());
                 var userIsAlreadyInThisCampaign = UserService.principal.isAuthenticated() &&  UserService.principal.getUser().campaign && existingCampaign.id === campaign.id;
                 var campaignHasStarted = $scope.campaignHasStarted = moment().isAfter(moment(campaign.start));
 
@@ -40,7 +41,7 @@
                     $scope.campaign = campaign;
                 }
 
-                if (existingCampaign && !userIsAlreadyInThisCampaign) {
+                if (existingCampaign && !userIsAlreadyInThisCampaign && !existingCampaignEnded) {
                     $scope.existingCampaign = existingCampaign;
                 }
 

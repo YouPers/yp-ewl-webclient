@@ -11,13 +11,20 @@
         <div class="col-sm-8">
 
             <div class="content">
+                <div class="campaign-start panel panel-default" ng-if="existingCampaign">
 
+                    <p translate>welcome.existingCampaign</p>
+
+                    <h4>Kampagne {{ existingCampaign.title | uppercase }} / {{ existingCampaign.participants }} / {{existingCampaign.location}}
+                        {{existingCampaign.city}}</h4>
+
+                </div>
 
                 <h1>
                     <span translate>welcome.header</span><br/>
                 </h1>
 
-                <div ng-if="!existingCampaign">
+                <div>
                     <h1>
                         <strong translate>{{ campaign.title }}</strong>
                     </h1>
@@ -54,19 +61,10 @@
 
                 </div>
 
-                <div class="campaign-start" ng-if="existingCampaign">
-
-                    <p translate>welcome.existingCampaign</p>
-
-                    <h4>Kampagne {{ existingCampaign.participants }} / {{existingCampaign.location}},
-                        {{existingCampaign.city}}</h4>
-
-                </div>
-
                 <div class="row welcome-links">
                     <div class="col-sm-6">
                         <a class="btn btn-default info" target="_blank"
-                           ng-href="{{'help.moreInfoParticipantLink' | translate }}" ng-if="!existingCampaign"
+                           ng-href="{{'help.moreInfoParticipantLink' | translate }}"
                            analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation"
                            analytics-label="More Info">
                             <span translate>welcome.link.info</span>
@@ -75,21 +73,16 @@
 
                     <div class="col-sm-6">
                         <button class="btn btn-default join" ng-click="join()"
-                                ng-if="campaignHasStarted && !existingCampaign"
+                                ng-if="campaignHasStarted"
                                 analytics-on="click" analytics-event="WelcomeNavigation" analytics-category="Navigation"
                                 analytics-label="Join">
                             <span translate>welcome.link.join</span>
                         </button>
                     </div>
 
-                    <div class="col-sm-6">
-                        <button class="btn btn-default join" ui-sref="homedispatcher" ng-if="existingCampaign">
-                            <span translate>welcome.link.back</span>
-                        </button>
-                    </div>
                 </div>
 
-                <div class="campaign-leads" ng-if="!existingCampaign">
+                <div class="campaign-leads">
                     <h4 translate>welcome.yourCampaignLeads</h4>
 
                     <div ng-repeat="campaignLead in campaign.campaignLeads">
