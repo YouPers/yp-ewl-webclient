@@ -15,7 +15,7 @@
                             invitation: ['SocialInteractionService', '$stateParams', '$q', function (SocialInteractionService, $stateParams, $q) {
                                 return SocialInteractionService.getSocialInteraction($stateParams.invitationId).catch(function (err) {
                                     return $q.reject(err.status === 404 ? 'clientmsg.error.invitationNotFound' : err);
-                                });;
+                                });
                             }],
 
                             campaign: ['CampaignService', 'invitation', function (CampaignService, invitation) {
