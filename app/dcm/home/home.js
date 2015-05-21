@@ -141,16 +141,19 @@
                     $scope.campaignMessagesAvailable = !$scope.campaignEnded;
                     $scope.campaignEndAvailable = moment().businessDiff(moment(campaign.end).startOf('day')) > -2;
 
-                    if($scope.isCampaignLead) {
 
-                        if($scope.$stateParams.section && $scope.$stateParams.section === 'messages') {
-                            $scope.campaignMessagesOpen = true;
-                        }
+                    // state parameter 'section' overrides all other conditions
+                    if($scope.$stateParams.section && $scope.$stateParams.section === 'offers') {
+                        $scope.offerSectionOpen = true;
+                    } else if($scope.$stateParams.section && $scope.$stateParams.section === 'messages') {
+                        $scope.campaignMessagesOpen = true;
+
+                    } else if($scope.isCampaignLead) {
 
                         // campaign start section is open before and including the day of the campaign start
                         // or if the wizard is not completed
                         // during campaign we open the Verlauf section
-                        else if (moment().isBefore(moment(campaign.start).endOf('day')) || campaign.preparationComplete < 2) {
+                        if (moment().isBefore(moment(campaign.start).endOf('day')) || campaign.preparationComplete < 2) {
                             $scope.campaignStartOpen = true;
                         } else if ($scope.campaignEnded) {
                             $scope.campaignEndOpen = true;
