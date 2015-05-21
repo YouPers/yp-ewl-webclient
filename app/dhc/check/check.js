@@ -228,7 +228,7 @@
 
                 function renderCoachMessageFromQuestion(question) {
                     // the Coach speaks MARKDOWN!
-                    var myText =  question.exptext + '\n\n';
+                    var myText =  '**' +question.title + '**\n\n' + question.exptext + '\n\n';
                     if (question.type !== 'rightSided' && question.mintext && question.mintext !== 'n/a') {
                         myText += '**' + question.mintext + ':** ' + question.mintextexample +'\n\n';
                     }
