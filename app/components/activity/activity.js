@@ -253,7 +253,7 @@
 
                     // we want to stay in the app we are in
                     if ($scope.isDcm) {
-                        $state.go('dcm.home', {campaignId: campaign.id});
+                        $state.go('dcm.home', {campaignId: campaign.id, section: 'offers'});
                     } else {
                         $state.go('dhc.game', {view: "", campaignId: campaign.id});
                     }
