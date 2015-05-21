@@ -18,77 +18,70 @@
      */
 
     angular.module('yp.components.healthCoach')
-        .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state', '$translate','$sce',
-            function ($rootScope, HealthCoachService, $window, $timeout, $state, $translate, $sce) {
-            return {
-                restrict: 'E',
-                scope: {
-                    event: '=',
-                    data: '=',
-                    coachMessage: '@'
-                },
-                templateUrl: 'components/health-coach/health-coach-directive.html',
+        .directive('healthCoach', ['$rootScope', 'HealthCoachService', '$window', '$timeout', '$state',
+            '$translate', '$sce', 'localStorageService',
+            function ($rootScope, HealthCoachService, $window, $timeout, $state,
+                      $translate, $sce, localStorageService) {
+                return {
+                    restrict: 'E',
+                    scope: {
+                        event: '=',
+                        data: '=',
+                        coachMessage: '@'
+                    },
+                    templateUrl: 'components/health-coach/health-coach-directive.html',
 
-                link: function (scope, elem, attrs) {
+                    link: function (scope, elem, attrs) {
 
-                    scope.getFormattedMessage = function(message) {
-                        return $sce.trustAsHtml(marked(message));
-                    };
-
-                    var queuedEvent = HealthCoachService.getQueuedEvent();
-                    if(queuedEvent) {
-                        scope.event = queuedEvent;
-                    }
-
-                    function newMessage() {
-                        scope.newMessage = false;
-                        $timeout(function () {
-                            scope.newMessage = true;
-                        });
-                    }
-
-                    scope.$watch('event', function (val, old) {
-                        var eventKey = 'healthCoach.' + ( scope.event ? $state.current.name + '.' + scope.event : undefined );
-                        $translate(eventKey, scope.data).then(function (eventMessage) {
-
-                            if(scope.eventMessage) {
-                                newMessage();
-                            }
-
-                            scope.eventMessage = scope.getFormattedMessage(eventMessage);
-
-                        });
-                    });
-
-                    $rootScope.$on('healthCoach:event', function (event, healthCoachEvent) {
-                        scope.event = healthCoachEvent;
-                        newMessage();
-                    });
-                    $rootScope.$on('healthCoach:displayMessage', function (event, message) {
-                        scope.coachMessage = scope.getFormattedMessage(message);
-                        scope.$parent.$broadcast('initialize-scroll-along');
-                        newMessage();
-                    });
-
-                    var coach = elem[0];
-
-                    scope.$watch(function () {
-                        return window.innerHeight + coach.clientHeight; // listen to both the window height and the coach height
-
-                    }, function () {
-                        if(!scope.expandable) { // one way only, no 'show-less'
-                            var availableHeight = window.innerHeight - 50; // minus an offset from the top
-                            scope.expandable = availableHeight < coach.clientHeight;
-                            if(scope.expandable) {
-                                scope.style = { 'max-height': availableHeight /2 + 'px' };
-                            }
+                        if (scope.coachMessage) {
+                            _displayMessage(scope.coachMessage);
                         }
 
-                    });
+                        var queuedEvent = HealthCoachService.getQueuedEvent();
+                        if (queuedEvent) {
+                            scope.event = queuedEvent;
+                        }
+
+                        scope.$watch('event', function (val, old) {
+                            var eventKey = 'healthCoach.' + ( scope.event ? $state.current.name + '.' + scope.event : undefined );
+                            if (localStorageService.get(eventKey)) {
+                                scope.messageHidden = true;
+                            } else {
+                                $timeout(function() {
+                                    scope.messageHidden = true;
+                                }, 10000);
+                            }
+                            localStorageService.set(eventKey, true);
+                            $translate(eventKey, scope.data).then(function (eventMessage) {
+                                _displayMessage(eventMessage);
+                            });
+                        });
+
+                        $rootScope.$on('healthCoach:event', function (event, healthCoachEvent) {
+                            scope.event = healthCoachEvent;
+                        });
+
+                        $rootScope.$on('healthCoach:displayMessage', function (event, message) {
+                            scope.messageHidden = false;
+                            _displayMessage(message);
+                            scope.$parent.$broadcast('initialize-scroll-along');
+                        });
+
+                        function _getFormattedMessage(message) {
+                            return $sce.trustAsHtml(marked(message));
+                        }
+
+                        function _displayMessage (msg) {
+                            scope.formattedMessage = _getFormattedMessage(msg);
+                            scope.newMessage = false;
+                            $timeout(function () {
+                                scope.newMessage = true;
+                            });
+                        }
 
 
-                }
-            };
-        }]);
+                    }
+                };
+            }]);
 
 }());

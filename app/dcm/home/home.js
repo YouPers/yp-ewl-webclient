@@ -127,7 +127,6 @@
                 $scope.homeScope = $scope;
                 $scope.homeController.healthCoachEvent = healthCoachEvent;
                 $scope.homeController.messages = messages;
-                $scope.homeController.offerTypes = 'Invitation';
                 $scope.campaign = campaign;
 
                 var now = moment();
@@ -298,16 +297,6 @@
                             'mailto:' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
                             '?subject=' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
                             '&body=' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
-
-                        $scope.$watch('homeController.offerTypes', function (offerTypes, oldValue) {
-                            if(offerTypes === 'All') {
-                                _getOffersOptions.discriminators = '';
-                            } else {
-                                _getOffersOptions.discriminators = offerTypes;
-                            }
-
-                            _loadSocialInteractions();
-                        }, true);
 
                         $scope.$watch('homeController.showOld', function (showOld, oldValue) {
 

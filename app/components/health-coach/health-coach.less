@@ -15,10 +15,21 @@ health-coach {
   .message {
     padding: 15px;
     color: @yp-subtitle;
+
   }
+
 
   > div.expanded {
     max-height: none !important;
+  }
+
+  .chevron {
+    margin-top: 8px;
+    font-size: 2em;
+  }
+
+  .inbox-item {
+    cursor: pointer;
   }
 
   .expand {
@@ -51,6 +62,14 @@ health-coach {
 }
 
 @media (max-width: @screen-sm) {
+
+  .chevron {
+    display: none;
+  }
+
+  .message.ng-hide {
+    display: inherit !important;
+  }
 
   .health-coach-notification-background {
     position: fixed;
@@ -115,6 +134,23 @@ health-coach {
 }
 
 @media (min-width: @screen-sm) {
+
+  .message {
+    opacity: 1;
+
+    &.ng-hide-add.ng-hide-add-active,
+    &.ng-hide-remove.ng-hide-remove-active {
+      -webkit-transition: all linear 0.3s;
+      transition: all linear 0.3s;
+    }
+
+    &.ng-hide {
+      line-height: 0;
+      opacity: 0;
+      padding: 0 10px;
+    }
+  }
+
   .health-coach-notification, .health-coach-notification-background {
     display: none;
   }
