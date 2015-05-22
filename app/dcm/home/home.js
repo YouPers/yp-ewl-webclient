@@ -179,7 +179,7 @@
                     }
                 });
 
-                _setSectionOpen(self, $scope);
+                _setInitialSectionOpen(self, $scope);
 
                 // setting these on $scope, so the child controllers get access to this data we got from resolves
                 $scope.offers = socialInteractions;
@@ -204,8 +204,9 @@
                 }
 
 
-                function _setSectionOpen(homeController, $scope) {
+                function _setInitialSectionOpen(homeController, $scope) {
 
+                    // starting if we are before or on the first day of the campaign OR if the wizard is not complete
                     var isStarting = $scope.currentCampaign && (moment().isBefore(moment($scope.currentCampaign.start).endOf('day')) ||
                         $scope.currentCampaign.preparationComplete < 2);
                     var isEnding = $scope.currentCampaign && moment().isAfter(moment($scope.currentCampaign.end).startOf('day').subtract(1, 'day'));
