@@ -136,27 +136,27 @@
 
                 self.sections = {
                     campaigns: {
-                        available: !$scope.campaignEnded,
+                        available: $scope.campaigns && $scope.campaigns.length > 0,
                         open: false
                     },
                     start: {
-                        available: true,
+                        available: $scope.currentCampaign && !$scope.campaignEnded,
                         open: false
                     },
                     participants: {
-                        available: true,
+                        available: $scope.currentCampaign && $scope.isCampaignLead,
                         open: false
                     },
                     stats: {
-                        available: true,
+                        available: $scope.currentCampaign,
                         open: false
                     },
                     messages: {
-                        available: !$scope.campaignEnded,
+                        available: $scope.currentCampaign && $scope.isCampaignLead && !$scope.campaignEnded,
                         open: false
                     },
                     offers: {
-                        available: $scope.campaignStarted && !$scope.campaignEnded,
+                        available: $scope.currentCampaign && $scope.isCampaignLead && !$scope.campaignEnded,
                         open: false
                     },
                     end: {
