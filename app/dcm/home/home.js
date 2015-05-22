@@ -165,8 +165,9 @@
                     }
                 };
 
-                _setSectionOpen(self, $scope);
-
+                // watch the opening of sections to
+                // - save the last opened section to localStorate
+                // - display a coachMessage
                 $scope.$watch(function () {
                     return _.findKey(self.sections, function (section) {
                         return section.open;
@@ -178,18 +179,17 @@
                     }
                 });
 
+                _setSectionOpen(self, $scope);
+
                 // setting these on $scope, so the child controllers get access to this data we got from resolves
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
 
+                // used in campaigns Section to sort the campaigns
                 $scope.parseDate = function (field) {
                     return function (item) {
                         return moment(item[field]).toDate();
                     };
-                };
-
-                $scope.reloadState = function () {
-                    $scope.$state.reload();
                 };
 
                 ///////////////////////
