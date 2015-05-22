@@ -1,14 +1,15 @@
-<accordion-group class="campaign-start" ng-if="campaign && campaignStartAvailable" is-open="campaignStartOpen">
-    <div>
+<accordion-group class="campaign-start"
+                 ng-if="homeController.sections.start.available"
+                 is-open="homeController.sections.start.open">
+    <div ng-controller="HomeCampaignStartController as startController" >
 
         <accordion-heading>
-                <span  ng-click="displayCoachMsg('startOfCampaign')">
+                <span>
 
                     <span translate>dcmhome.campaignStart.header</span>
-
                     <a>
                         <i class="fa "
-                           ng-class="{ 'fa-chevron-down': campaignStartOpen, 'fa-chevron-right': !campaignStartOpen }"></i>
+                           ng-class="{ 'fa-chevron-down': homeController.sections.start.open, 'fa-chevron-right': !homeController.sections.start.open }"></i>
                     </a>
                 </span>
         </accordion-heading>
@@ -21,11 +22,11 @@
         <tabset class="campaign-preparation" ng-class="{ 'campaign-lead': isCampaignLead }"  justified="true">
 
             <!-- step 1 -->
-            <tab active="campaignPreparation.step1.active" disable="campaignPreparation.step1.disabled">
+            <tab active="startController.campaignPreparation.step1.active" disable="startController.campaignPreparation.step1.disabled">
 
                 <tab-heading>
 
-                    <i class="fa" ng-class="campaignPreparation.step1.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
+                    <i class="fa" ng-class="startController.campaignPreparation.step1.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
 
                     <span>1</span>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step1.tab</span>
@@ -52,20 +53,19 @@
                     <div class="col-sm-2 col-sm-push-10">
                         <button type="button"
                                 class="btn btn-default"
-                                ng-click="campaignPreparation.step2.active = true"
-                                ng-disabled="campaignPreparation.step2.disabled"
+                                ng-click="startController.campaignPreparation.step2.active = true"
+                                ng-disabled="startController.campaignPreparation.step2.disabled"
                                 translate>Weiter</button>
                     </div>
                 </div>
             </tab>
 
             <!-- step 2 -->
-            <tab active="campaignPreparation.step2.active" disable="campaignPreparation.step2.disabled">
+            <tab active="startController.campaignPreparation.step2.active" disable="startController.campaignPreparation.step2.disabled">
 
                 <tab-heading>
 
-                    <i class="fa" ng-class="campaignPreparation.step2.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
-
+                    <i class="fa" ng-class="startController.campaignPreparation.step2.complete ? 'fa-check-circle-o' : 'fa-circle-o'"></i>
                     <span>2</span>
                     <span translate>dcmhome.campaignStart.campaignLeadGuidance.step2.tab</span>
                 </tab-heading>
@@ -75,7 +75,7 @@
                 </div>
                 <p translate>dcmhome.campaignStart.welcomeLink.createDraft.text</p>
 
-                <a ng-href="{{ homeController.createDraftUrl }}" class="btn btn-default" ng-click="completeCampaignPreparation(2)" translate>
+                <a ng-href="{{ startController.createDraftUrl }}" class="btn btn-default" ng-click="startController.completeCampaignPreparation(2)" translate>
                     dcmhome.campaignStart.welcomeLink.createDraft.link
                 </a>
 
@@ -87,12 +87,12 @@
                        because there is an issue with html5mode in ui-router with angular 1.3
                        see http://stackoverflow.com/questions/26220037/ui-sref-not-generating-hash-in-url-angular-1-3-0-rc-3
                  -->
-                <div class="welcome-link" select-on-click ng-show="campaign.id" ng-click="completeCampaignPreparation(2)">{{ homeController.welcomeLink }}
+                <div class="welcome-link" select-on-click ng-show="currentCampaign.id" ng-click="startController.completeCampaignPreparation(2)">{{ startController.welcomeLink }}
                 </div>
 
                 <div class="row">
                     <div class="col-sm-2 col-sm-push-10">
-                        <button type="button" class="btn btn-default" ng-click="campaignPreparation.step1.active = true">Zurück</button>
+                        <button type="button" class="btn btn-default" ng-click="startController.campaignPreparation.step1.active = true">Zurück</button>
                     </div>
                 </div>
             </tab>

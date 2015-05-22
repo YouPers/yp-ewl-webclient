@@ -1,14 +1,16 @@
-<accordion-group ng-if="campaignEndAvailable" class="campaign-end end-of-campaign" is-open="campaignEndOpen">
+<accordion-group ng-if="homeController.sections.end.available"
+                 class="campaign-end end-of-campaign"
+                 is-open="homeController.sections.end.open">
     <div ng-controller="DcmEndOfCampaignController as dcmEndOfCampaignController">
 
         <accordion-heading>
-                <span  ng-click="displayCoachMsg('campaignEnd')">
+                <span>
 
                     <span translate>dcmhome.endOfCampaignTitle</span>
 
                     <a href>
                         <i class="fa "
-                           ng-class="{ 'fa-chevron-down': campaignEndOpen, 'fa-chevron-right': !campaignEndOpen }"></i>
+                           ng-class="{ 'fa-chevron-down': homeController.sections.end.open, 'fa-chevron-right': !homeController.sections.end.open }"></i>
                     </a>
 
                     </span>

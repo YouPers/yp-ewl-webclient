@@ -1,13 +1,15 @@
-<accordion-group ng-if="campaignMessagesAvailable && isCampaignLead" class="campaign-messages" is-open="campaignMessagesOpen">
+<accordion-group ng-if="homeController.sections.messages.available"
+                 class="campaign-messages"
+                 is-open="homeController.sections.messages.open">
     <div ng-controller="HomeMessagesController as msgCtrl">
 
         <accordion-heading>
-                <span  ng-click="displayCoachMsg('CampaignMessages')">
+                <span>
                     <span translate>dcmhome.messages</span>
 
                     <a href>
                         <i class="fa "
-                           ng-class="{ 'fa-chevron-down': campaignMessagesOpen, 'fa-chevron-right': !campaignMessagesOpen }"></i>
+                           ng-class="{ 'fa-chevron-down': homeController.sections.messages.open, 'fa-chevron-right': !homeController.sections.messages.open }"></i>
                     </a>
                 </span>
         </accordion-heading>
