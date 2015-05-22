@@ -1,9 +1,9 @@
 
 <div>
     <div scroll-along>
-        <button type="button" class="btn btn-default" ng-click="reloadState()"><i class="fa fa-refresh"></i><span translate>dcmhome.refreshDisplay</span></button>
+        <button type="button" class="btn btn-default" ng-click="$state.reload()"><i class="fa fa-refresh"></i><span translate>dcmhome.refreshDisplay</span></button>
         <br/><br/>
-        <health-coach event="homeController.healthCoachEvent" data="{campaign: campaign}"></health-coach>
+        <health-coach event="homeController.healthCoachEvent" data="{campaign: currentCampaign}"></health-coach>
 
         <social-interaction-inbox ng-if="isCampaignLead"></social-interaction-inbox>
 

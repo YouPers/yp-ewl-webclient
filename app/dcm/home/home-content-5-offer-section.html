@@ -1,14 +1,16 @@
-<accordion-group ng-if="offerSectionAvailable && isCampaignLead" class="offer-section" is-open="homeScope.offerSectionOpen">
+<accordion-group ng-if="homeController.sections.offers.available"
+                 class="offer-section"
+                 is-open="homeController.sections.offers.open">
     <div>
 
         <accordion-heading>
-                <span  ng-click="displayCoachMsg('offers')">
+                <span>
 
                     <span translate>dcmhome.activities</span>
 
                     <a href>
                         <i class="fa "
-                           ng-class="{ 'fa-chevron-down': offerSectionOpen, 'fa-chevron-right': !offerSectionOpen }"></i>
+                           ng-class="{ 'fa-chevron-down': homeController.sections.offers.open, 'fa-chevron-right': !homeController.sections.offers.open }"></i>
                     </a>
                 </span>
 
@@ -18,8 +20,8 @@
         <div>
 
             <!-- header / filters -->
-            <div ng-if="campaign" class="offer-filter">
-                <div class="checkbox show-old" ng-if="campaign">
+            <div class="offer-filter">
+                <div class="checkbox show-old">
                     <label>
                         <input type="checkbox" ng-model="homeController.showOld"> <span
                             translate>dcmhome.showOld</span>

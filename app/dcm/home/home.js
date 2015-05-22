@@ -33,8 +33,8 @@
         });
 
         return offers;
-
     }
+
 
     angular.module('yp.dcm')
 
@@ -53,7 +53,7 @@
                         },
                         resolve: {
 
-                            messages: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
+                            messages: ['SocialInteractionService', 'campaign', function (SocialInteractionService, campaign) {
                                 if (campaign) {
                                     _getMessagesOptions.targetId = campaign.id;
                                     return SocialInteractionService.getMessages(_getMessagesOptions);
@@ -63,7 +63,7 @@
 
                             }],
 
-                            socialInteractions: ['SocialInteractionService', 'campaign', function(SocialInteractionService, campaign) {
+                            socialInteractions: ['SocialInteractionService', 'campaign', function (SocialInteractionService, campaign) {
 
                                 if (campaign) {
 
@@ -88,23 +88,23 @@
 
                                     if (!OrganizationService.isComplete(organization) && UserService.principal.isAuthorized('orgadmin')) {
                                         return 'organizationIncomplete';
-                                    } else if(campaigns.length === 0) {
+                                    } else if (campaigns.length === 0) {
                                         return 'noCampaigns';
                                     } else if (socialInteractions.length === 0 && daysSinceCampaignStart <= -1) {
                                         return 'nothingOffered';
                                     } else if (messages.length === 0 && daysSinceCampaignStart <= -1) {
                                         return 'noMessages';
-                                    } else if(daysSinceCampaignStart <= 0) {
+                                    } else if (daysSinceCampaignStart <= 0) {
                                         return 'oneDayOrMoreUntilCampaignStart';
-                                    } else if(daysSinceCampaignStart <= 1) {
+                                    } else if (daysSinceCampaignStart <= 1) {
                                         return 'campaignStartedToday';
-                                    } else if(daysSinceCampaignStart > 1 && daysSinceCampaignStart <= 7) {
+                                    } else if (daysSinceCampaignStart > 1 && daysSinceCampaignStart <= 7) {
                                         return 'campaignFirstWeek';
-                                    } else if(daysSinceCampaignStart > 7 && daysUntilCampaignEnd > 7) {
+                                    } else if (daysSinceCampaignStart > 7 && daysUntilCampaignEnd > 7) {
                                         return 'campaignAfterFirstWeek';
-                                    } else if(daysUntilCampaignEnd < 0) {
+                                    } else if (daysUntilCampaignEnd < 0) {
                                         return 'campaignEnded';
-                                    } else if(daysUntilCampaignEnd <= 7) {
+                                    } else if (daysUntilCampaignEnd <= 7) {
                                         return 'campaignLastWeek';
                                     }
                                 }]
@@ -115,101 +115,81 @@
             }])
 
 
-
         .controller('HomeController', ['$scope', '$translate',
             'UserService', 'CampaignService', 'SocialInteractionService',
-            'socialInteractions', 'messages',  'campaign', 'campaigns', 'healthCoachEvent',
+            'socialInteractions', 'messages', 'healthCoachEvent', 'localStorageService',
             function ($scope, $translate,
                       UserService, CampaignService, SocialInteractionService,
-                      socialInteractions, messages, campaign, campaigns, healthCoachEvent) {
+                      socialInteractions, messages, healthCoachEvent, localStorageService) {
+                console.log("Home Controller run now");
+                // $scope.campaigns, $scope.currentCampaign and $scope.isCampaignLead
+                // are inherited from DcmController $scope!
 
-                $scope.homeController = this;
-                $scope.homeScope = $scope;
-                $scope.homeController.healthCoachEvent = healthCoachEvent;
-                $scope.homeController.messages = messages;
-                $scope.campaign = campaign;
+                var self = this;
+                self.healthCoachEvent = healthCoachEvent;
+                self.messages = messages;
+
 
                 var now = moment();
+                $scope.campaignStarted = $scope.currentCampaign && moment($scope.currentCampaign.start).isBefore(now);
+                $scope.campaignEnded = $scope.currentCampaign && now.isAfter($scope.currentCampaign.end);
 
-                if (campaign) {
-                    $scope.campaignStarted = campaign && moment(campaign.start).isBefore(now);
-                    $scope.campaignEnded = now.isAfter(campaign.end);
-
-                    $scope.campaignStartAvailable = !$scope.campaignEnded;
-                    $scope.offerSectionAvailable = $scope.campaignStarted && !$scope.campaignEnded;
-                    $scope.campaignMessagesAvailable = !$scope.campaignEnded;
-                    $scope.campaignEndAvailable = moment().businessDiff(moment(campaign.end).startOf('day')) > -2;
-
-
-                    // state parameter 'section' overrides all other conditions
-                    if($scope.$stateParams.section && $scope.$stateParams.section === 'offers') {
-                        $scope.offerSectionOpen = true;
-                    } else if($scope.$stateParams.section && $scope.$stateParams.section === 'messages') {
-                        $scope.campaignMessagesOpen = true;
-
-                    } else if($scope.isCampaignLead) {
-
-                        // campaign start section is open before and including the day of the campaign start
-                        // or if the wizard is not completed
-                        // during campaign we open the Verlauf section
-                        if (moment().isBefore(moment(campaign.start).endOf('day')) || campaign.preparationComplete < 2) {
-                            $scope.campaignStartOpen = true;
-                        } else if ($scope.campaignEnded) {
-                            $scope.campaignEndOpen = true;
-                        } else {
-                            $scope.campaignStatsOpen = true;
-                        }
-
-                    } else if(campaigns.length > 1) { // service manager is not campaign lead of the selected campaign
-                        $scope.campaignSelectionOpen = true;
+                self.sections = {
+                    campaigns: {
+                        available: $scope.campaigns && $scope.campaigns.length > 0,
+                        open: false
+                    },
+                    start: {
+                        available: $scope.currentCampaign && !$scope.campaignEnded,
+                        open: false
+                    },
+                    participants: {
+                        available: $scope.currentCampaign && $scope.isCampaignLead,
+                        open: false
+                    },
+                    stats: {
+                        available: $scope.currentCampaign,
+                        open: false
+                    },
+                    messages: {
+                        available: $scope.currentCampaign && $scope.isCampaignLead && !$scope.campaignEnded,
+                        open: false
+                    },
+                    offers: {
+                        available: $scope.currentCampaign && $scope.isCampaignLead && !$scope.campaignEnded,
+                        open: false
+                    },
+                    end: {
+                        available: moment().businessDiff(moment($scope.currentCampaign.end).startOf('day')) > -2,
+                        open: false
                     }
-                }
+                };
 
+                // watch the opening of sections to
+                // - save the last opened section to localStorate
+                // - display a coachMessage
+                $scope.$watch(function () {
+                    return _.findKey(self.sections, function (section) {
+                        return section.open;
+                    });
+                }, function (newSection, oldSection) {
+                    if (newSection && (newSection !== oldSection)) {
+                        localStorageService.set('dcm.home.lastSectionOpen', newSection);
+                        $scope.$root.$emit('healthCoach:event', 'sectionOpening.' + newSection);
+                    }
+                });
 
+                _setInitialSectionOpen(self, $scope);
+
+                // setting these on $scope, so the child controllers get access to this data we got from resolves
                 $scope.offers = socialInteractions;
                 $scope.messages = messages;
-                $scope.emailAddress = UserService.principal.getUser().email;
 
-                $scope.parseEmailAddresses = function (input) {
-                    if(!input) {
-                        return;
-                    }
-                    var list = input.match(/([_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]+)+)/gi);
-                    if(list && list.length > 0) {
-                        $scope.homeController.emailAddressesToBeInvited = _.unique( ($scope.homeController.emailAddressesToBeInvited || []).concat(list) );
-                    }
-                };
-
-                $scope.onEmailInviteSubmit = function(emailsToInvite, mailSubject, mailText) {
-                    $scope.homeController.emailInvitesSent = false;
-                    CampaignService.inviteParticipants(campaign.id, emailsToInvite, mailSubject, mailText).then(function () {
-                        $scope.homeController.emailInvitesSent = true;
-                        $scope.completeCampaignPreparation(2);
-                    });
-                };
-
-                $scope.sendTestInvitationMail= function(mailSubject, mailText) {
-                    $scope.homeController.testEmailSent = false;
-                    CampaignService.inviteParticipants(campaign.id, $scope.principal.getUser().email, mailSubject, mailText, true).then(function () {
-                        $scope.homeController.testEmailSent = true;
-                        $scope.homeController.healthCoachEvent = 'testEmailSent';
-                    });
-                };
-
-                $scope.displayCoachMsg = function(section) {
-                    $translate('healthCoach.dcm.home.sectionOpening.' + section).then(function (translated) {
-                        $scope.$root.$emit('healthCoach:displayMessage', translated);
-                    });
-                };
-
+                // used in campaigns Section to sort the campaigns
                 $scope.parseDate = function (field) {
                     return function (item) {
                         return moment(item[field]).toDate();
                     };
-                };
-
-                $scope.reloadState = function() {
-                    $scope.$state.reload();
                 };
 
                 ///////////////////////
@@ -223,43 +203,37 @@
                         });
                 }
 
-                function _initCampaignPreparation(stayOnStep) {
-                    var activeBefore;
-                    if (stayOnStep) {
-                        activeBefore = _.findKey($scope.campaignPreparation, { active: true });
-                    }
-                    $scope.campaignPreparation = {
-                        step1: {
-                            complete:
-                            CampaignService.isComplete(campaign) &&
-                            !UserService.hasDefaultAvatar(campaign.campaignLeads[0])
-                        },
-                        step2: {
-                            complete: (campaign.preparationComplete >= 2)
-                        }
 
-                    };
-                    _activateFirstIncompleteStep(activeBefore);
+                function _setInitialSectionOpen(homeController, $scope) {
 
-                }
+                    // starting if we are before or on the first day of the campaign OR if the wizard is not complete
+                    var isStarting = $scope.currentCampaign && (moment().isBefore(moment($scope.currentCampaign.start).endOf('day')) ||
+                        $scope.currentCampaign.preparationComplete < 2);
+                    var isEnding = $scope.currentCampaign && moment().isAfter(moment($scope.currentCampaign.end).startOf('day').subtract(1, 'day'));
 
-                function _activateFirstIncompleteStep(stayOnStep) {
-                    var firstIncompleteStep = _.find($scope.campaignPreparation, { complete: false });
-                    if (firstIncompleteStep) {
-                        if (!stayOnStep) {
-                            firstIncompleteStep.active = true;
-                        }
-                        firstIncompleteStep.enabled = true;
-                    } else if (!stayOnStep){
-                        // enable last step
-                        $scope.campaignPreparation.step2.active = true;
+                    var sectionToOpen;
+
+                    // state parameter 'section' overrides all other conditions
+                    if ($scope.$stateParams.section) {
+                        sectionToOpen = $scope.$stateParams.section;
+                    } else if (isStarting) {
+                        sectionToOpen = 'start';
+                    } else if (isEnding) {
+                        sectionToOpen = 'end';
+                    } else if (localStorageService.get('dcm.home.lastSectionOpen')) {
+                        sectionToOpen = localStorageService.get('dcm.home.lastSectionOpen');
+
+                        // we have no rule and no lastSection saved, so use fallbacks
+                    } else if ($scope.isCampaignLead) {
+                        sectionToOpen = 'stats';
+                    } else if ($scope.campaigns && $scope.campaigns.length > 0) {
+                        sectionToOpen = 'campaigns';
+                    } else {
+                        // there is nothing we can open...
                     }
-                    if (stayOnStep) {
-                        $scope.campaignPreparation[stayOnStep].active = true;
+                    if (sectionToOpen) {
+                        homeController.sections[sectionToOpen].open = true;
                     }
-                    _.each($scope.campaignPreparation, function (step) {
-                        step.disabled = !step.enabled && !step.complete;
-                    });
                 }
 
 
@@ -267,39 +241,12 @@
 
 
                 /////////////////////
-                function init () {
-                    if (!campaign && campaigns.length > 0) {
-                        return $scope.$state.go('dcm.home', { campaignId: campaigns[0].id });
+                function init() {
+                    if (!$scope.currentCampaign && $scope.campaigns.length > 0) {
+                        return $scope.$state.go('dcm.home', {campaignId: $scope.campaigns[0].id});
                     }
 
-                    if(campaign) {
-
-                        _initCampaignPreparation();
-
-                        $scope.$watch(function () {
-                            return UserService.hasDefaultAvatar(campaign.campaignLeads[0]);
-                        }, function() {_initCampaignPreparation(true);});
-
-
-                        $scope.completeCampaignPreparation = function (step) {
-                            $scope.campaignPreparation['step' + step].complete = true;
-                            _activateFirstIncompleteStep();
-
-                            campaign.preparationComplete = step;
-                            CampaignService.putCampaign(campaign);
-                        };
-
-                        $scope.homeController.welcomeLink = $scope.config.webclientUrl + '/' + $scope.$state.href('welcome',{campaignId: campaign.id});
-                        var createDraftLocals = {
-                            organizationName: campaign.organization.name,
-                            welcomeLink: $scope.homeController.welcomeLink,
-                            campaign: campaign
-                        };
-
-                        $scope.homeController.createDraftUrl =
-                            'mailto:' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
-                            '?subject=' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
-                            '&body=' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
+                    if ($scope.currentCampaign) {
 
                         $scope.$watch('homeController.showOld', function (showOld, oldValue) {
 
@@ -314,17 +261,104 @@
 
             }])
 
+        .controller('HomeCampaignStartController', ['$scope', 'UserService', 'CampaignService', '$translate',
+            function ($scope, UserService, CampaignService, $translate) {
+                console.log("Start Controller run now");
+                this.gugu = "gugu";
+                var self = this;
+                self.emailAddress = UserService.principal.getUser().email;
+                self.welcomeLink = $scope.config.webclientUrl + '/' + $scope.$state.href('welcome', {campaignId: $scope.currentCampaign.id});
+
+
+                self.parseEmailAddresses = function (input) {
+                    if (!input) {
+                        return;
+                    }
+                    var list = input.match(/([_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]+)+)/gi);
+                    if (list && list.length > 0) {
+                        self.emailAddressesToBeInvited = _.unique((self.emailAddressesToBeInvited || []).concat(list));
+                    }
+                };
+
+                _initCampaignPreparation();
+
+                $scope.$watch(function () {
+                    return UserService.hasDefaultAvatar($scope.currentCampaign.campaignLeads[0]);
+                }, function () {
+                    _initCampaignPreparation(true);
+                });
+
+
+                self.completeCampaignPreparation = function (step) {
+                    self.campaignPreparation['step' + step].complete = true;
+                    _activateFirstIncompleteStep();
+
+                    $scope.currentCampaign.preparationComplete = step;
+                    CampaignService.putCampaign($scope.currentCampaign);
+                };
+
+                var createDraftLocals = {
+                    organizationName: $scope.currentCampaign.organization.name,
+                    welcomeLink: self.welcomeLink,
+                    campaign: $scope.currentCampaign
+                };
+
+                self.createDraftUrl =
+                    'mailto:' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.recipient')) +
+                    '?subject=' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.subject', createDraftLocals)) +
+                    '&body=' + encodeURIComponent($translate.instant('dcmhome.campaignStart.welcomeLink.createDraft.body', createDraftLocals));
+
+
+                function _initCampaignPreparation(stayOnStep) {
+                    var activeBefore;
+                    if (stayOnStep) {
+                        activeBefore = _.findKey(self.campaignPreparation, {active: true});
+                    }
+                    self.campaignPreparation = {
+                        step1: {
+                            complete: CampaignService.isComplete($scope.currentCampaign) && !UserService.hasDefaultAvatar($scope.currentCampaign.campaignLeads[0])
+                        },
+                        step2: {
+                            complete: ($scope.currentCampaign.preparationComplete >= 2)
+                        }
+
+                    };
+                    _activateFirstIncompleteStep(activeBefore);
+
+                }
+
+                function _activateFirstIncompleteStep(stayOnStep) {
+                    var firstIncompleteStep = _.find(self.campaignPreparation, {complete: false});
+                    if (firstIncompleteStep) {
+                        if (!stayOnStep) {
+                            firstIncompleteStep.active = true;
+                        }
+                        firstIncompleteStep.enabled = true;
+                    } else if (!stayOnStep) {
+                        // enable last step
+                        self.campaignPreparation.step2.active = true;
+                    }
+                    if (stayOnStep) {
+                        self.campaignPreparation[stayOnStep].active = true;
+                    }
+                    _.each(self.campaignPreparation, function (step) {
+                        step.disabled = !step.enabled && !step.complete;
+                    });
+                }
+
+            }])
+
 
         .controller('HomeParticipantsController', ['$scope', 'UserService', function ($scope, UserService) {
 
             var homeParticipantsController = this;
 
-            if($scope.campaign) {
+            if ($scope.currentCampaign) {
                 init();
             }
 
             function init() {
-                UserService.getUsers({campaign: $scope.campaign.id, sort: 'lastname:1'}).then(function (users) {
+                UserService.getUsers({campaign: $scope.currentCampaign.id, sort: 'lastname:1'}).then(function (users) {
                     homeParticipantsController.participants = users;
                 });
             }
@@ -340,21 +374,24 @@
 
             function init() {
 
-                if ($scope.campaign) {
+                if ($scope.currentCampaign) {
                     var options = {
                         runningTotal: true,
-                        newestDay: moment.min(moment(), moment($scope.campaign.end)),
+                        newestDay: moment.min(moment(), moment($scope.currentCampaign.end)),
                         nrOfDaysToPlot: 7
                     };
 
 
-
-                    StatsService.loadStats($scope.campaign.id, {type: 'eventsDonePerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                    StatsService.loadStats($scope.currentCampaign.id, {
+                        type: 'eventsDonePerDay',
+                        scopeType: 'campaign',
+                        scopeId: $scope.currentCampaign.id
+                    }).then(function (result) {
                         var prefix = 'dcmhome.stats.eventsDonePerDay.legend.';
                         options = {
                             runningTotal: false,
-                            newestDay: moment($scope.campaign.end),
-                            oldestDay: moment($scope.campaign.start),
+                            newestDay: moment($scope.currentCampaign.end),
+                            oldestDay: moment($scope.currentCampaign.start),
                             propsToPlot: ['Done', 'Missed', 'Open'],
                             legend: [
                                 $translate.instant(prefix + 'Done'),
@@ -367,11 +404,15 @@
                     });
 
 
-                    StatsService.loadStats($scope.campaign.id, {type: 'newUsersPerDay', scopeType: 'campaign', scopeId: $scope.campaign.id}).then(function (result) {
+                    StatsService.loadStats($scope.currentCampaign.id, {
+                        type: 'newUsersPerDay',
+                        scopeType: 'campaign',
+                        scopeId: $scope.currentCampaign.id
+                    }).then(function (result) {
                         var options = {
                             runningTotal: true,
-                            newestDay: moment($scope.campaign.end),
-                            oldestDay: moment($scope.campaign.start),
+                            newestDay: moment($scope.currentCampaign.end),
+                            oldestDay: moment($scope.currentCampaign.start),
                             legend: [
                                 $translate.instant('dcmhome.stats.newUsersPerDay.legend.count')
                             ]
@@ -381,8 +422,11 @@
                     });
 
 
-
-                    StatsService.loadStats($scope.campaign.id, {type: 'newestPlans', scopeType: 'campaign', scopeId: $scope.campaign.id }).then(function (result) {
+                    StatsService.loadStats($scope.currentCampaign.id, {
+                        type: 'newestPlans',
+                        scopeType: 'campaign',
+                        scopeId: $scope.currentCampaign.id
+                    }).then(function (result) {
                         ActivityService.populateIdeas(result[0].newestPlans);
                         $scope.chartData.newestPlans = result[0].newestPlans;
                     });
@@ -391,61 +435,61 @@
 
         }])
 
-    .controller('HomeMessagesController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService',
-        function ($scope, $rootScope, $state, UserService, SocialInteractionService) {
-            var self = this;
-            self.messages = $scope.messages;
+        .controller('HomeMessagesController', ['$scope', '$rootScope', '$state', 'UserService', 'SocialInteractionService',
+            function ($scope, $rootScope, $state, UserService, SocialInteractionService) {
+                var self = this;
+                self.messages = $scope.messages;
 
-            self.onMessageSaved = function (message) {
-                self.messages.unshift(message);
-            };
+                self.onMessageSaved = function (message) {
+                    self.messages.unshift(message);
+                };
 
-            self.soiRemoved = function (soi) {
-                _.remove(self.messages, { id: soi.id });
-            };
+                self.soiRemoved = function (soi) {
+                    _.remove(self.messages, {id: soi.id});
+                };
 
-            self.soiEdited = function (soi) {
-                $scope.editedMessage = soi;
-                _.each(self.messages, function (message) {
-                    if(message.id !== soi.id) {
-                        message._editMode = false;
-                    }
-                });
-            };
+                self.soiEdited = function (soi) {
+                    $scope.editedMessage = soi;
+                    _.each(self.messages, function (message) {
+                        if (message.id !== soi.id) {
+                            message._editMode = false;
+                        }
+                    });
+                };
 
-            init();
-           //-----------
+                init();
+                //-----------
 
-            function init() {
+                function init() {
 
-                if ($scope.campaign) {
+                    if ($scope.currentCampaign) {
 
-                    $scope.$watch('homeController.showOld', function (showOld) {
-                        _getMessagesOptions.publishTo = showOld ? false : new Date();
+                        $scope.$watch('homeController.showOld', function (showOld) {
+                            _getMessagesOptions.publishTo = showOld ? false : new Date();
 
-                        SocialInteractionService.getMessages(_getMessagesOptions).then(function (messages) {
-                            self.messages = messages;
+                            SocialInteractionService.getMessages(_getMessagesOptions).then(function (messages) {
+                                self.messages = messages;
+                            });
+
                         });
 
-                    });
+                    }
 
                 }
-
-            }
-        }])
+            }])
 
 
-        .controller('DcmEndOfCampaignController', [ '$scope', '$q', '$translate', '$rootScope', 'UserService', 'StatsService', 'ActivityService', 'AssessmentService',
+        .controller('DcmEndOfCampaignController', ['$scope', '$q', '$translate', '$rootScope', 'UserService', 'StatsService', 'ActivityService', 'AssessmentService',
             function ($scope, $q, $translate, $rootScope, UserService, StatsService, ActivityService, AssessmentService) {
 
-                if (!$scope.campaign) {
+                if (!$scope.currentCampaign) {
                     return;
                 }
-                $scope.daysLeft = - moment().diff($scope.campaign.end, 'days');
-                $scope.campaignEnded = moment().diff($scope.campaign.end) > 0;
+                $scope.daysLeft = -moment().diff($scope.currentCampaign.end, 'days');
+                $scope.campaignEnded = moment().diff($scope.currentCampaign.end) > 0;
 
                 $scope.percetageFn = function (value) {
-                    return Math.round((value || 0) *100) + '%';
+                    return Math.round((value || 0) * 100) + '%';
                 };
                 $scope.roundFn = function (value) {
                     return Math.round(value);
@@ -463,11 +507,11 @@
                 function init() {
 
 
-                    StatsService.loadStats($scope.campaign.id,
+                    StatsService.loadStats($scope.currentCampaign.id,
                         {
                             type: 'usersTotal',
                             scopeType: 'campaign',
-                            scopeId: $scope.campaign.id
+                            scopeId: $scope.currentCampaign.id
                         }).then(function (results) {
                             var res = results[0].usersTotal;
 
@@ -476,32 +520,32 @@
                             $scope.campaignParticipants = [
                                 {
                                     "key": $translate.instant('dcm-end-of-campaign.usersTotal.title'),
-                                    "values": [ [ $translate.instant('dcm-end-of-campaign.usersTotal.title') , res.usersTotal]  ]
+                                    "values": [[$translate.instant('dcm-end-of-campaign.usersTotal.title'), res.usersTotal]]
                                 },
                                 {
                                     "key": $translate.instant('dcm-end-of-campaign.usersTotal.title'),
-                                    "values": [ [ $translate.instant('dcm-end-of-campaign.usersTotal.title') , res.usersAvg]  ]
+                                    "values": [[$translate.instant('dcm-end-of-campaign.usersTotal.title'), res.usersAvg]]
                                 }
                             ];
 
                         });
 
 
-
                     function findByStatus(results, type, status) {
                         var res = results[0][type];
-                        return (_.find(res, { status: status}) || {}).count || 0;
+                        return (_.find(res, {status: status}) || {}).count || 0;
                     }
+
                     // eventsStatus / eventsStatusAvg
                     var eventStatus = [];
                     $q.all([
 
 
-                        StatsService.loadStats($scope.campaign.id,
+                        StatsService.loadStats($scope.currentCampaign.id,
                             {
                                 type: 'eventsStatusAvg',
                                 scopeType: 'campaign',
-                                scopeId: $scope.campaign.id
+                                scopeId: $scope.currentCampaign.id
                             }).then(function (results) {
                                 var type = 'eventsStatusAvg';
                                 eventStatus.push({
@@ -513,7 +557,7 @@
                                 });
 
                             }),
-                        StatsService.loadStats($scope.campaign.id,
+                        StatsService.loadStats($scope.currentCampaign.id,
                             {
                                 type: 'eventsStatusAvg'
                             }).then(function (results) {
@@ -533,8 +577,8 @@
                     });
 
                     $q.all([
-                        StatsService.getRatingsStats('campaign', $scope.campaign.id),
-                        StatsService.getRatingsStats('all', $scope.campaign.id)
+                        StatsService.getRatingsStats('campaign', $scope.currentCampaign.id),
+                        StatsService.getRatingsStats('all', $scope.currentCampaign.id)
                     ]).then(function (results) {
                         $scope.eventsRatings = results;
                     });
@@ -542,15 +586,15 @@
 
                     // assessmentResults
 
-                    $scope.displayInfo = function(question) {
+                    $scope.displayInfo = function (question) {
                         $rootScope.$emit('healthCoach:displayMessage', AssessmentService.renderCoachMessageFromQuestion(question));
                     };
 
-                    StatsService.loadStats($scope.campaign.id,
+                    StatsService.loadStats($scope.currentCampaign.id,
                         {
                             type: 'assessmentResults',
                             scopeType: 'campaign',
-                            scopeId: $scope.campaign.id,
+                            scopeId: $scope.currentCampaign.id,
                             dontReplaceIds: 'true'
                         }).then(function (results) {
                             var type = 'assessmentResults';
@@ -560,11 +604,11 @@
 
                             $q.all(
                                 [
-                                    StatsService.loadStats($scope.campaign.id,
+                                    StatsService.loadStats($scope.currentCampaign.id,
                                         {
                                             type: 'assessmentResults',
                                             scopeType: 'topic',
-                                            scopeId: $scope.campaign.topic.id,
+                                            scopeId: $scope.currentCampaign.topic.id,
                                             dontReplaceIds: 'true'
                                         }).then(function (results) {
                                             var type = 'assessmentResults';
@@ -573,7 +617,7 @@
                                             $scope.assessmentResultsAverage = res;
 
                                         }),
-                                    AssessmentService.getAssessment($scope.campaign.topic.id || $scope.campaign.topic).then(function (assessment) {
+                                    AssessmentService.getAssessment($scope.currentCampaign.topic.id || $scope.currentCampaign.topic).then(function (assessment) {
 
                                         $scope.categories = _.groupBy(assessment.questions, 'category');
                                         $scope.orderedCategoryNames = _.uniq(_.map(assessment.questions, 'category'));
@@ -584,9 +628,9 @@
                                 .then(function () {
 
                                     $scope.assessmentResultVisible = function (questionType, index) {
-                                        if(questionType === 'leftSided') {
-                                            return index <=2;
-                                        } else if(questionType === 'rightSided') {
+                                        if (questionType === 'leftSided') {
+                                            return index <= 2;
+                                        } else if (questionType === 'rightSided') {
                                             return index >= 2;
                                         } else {
                                             return true;
@@ -599,16 +643,16 @@
                                             sum = 0;
 
                                         _.each(values, function (val, index) {
-                                            if($scope.assessmentResultVisible(questionType, index)) {
+                                            if ($scope.assessmentResultVisible(questionType, index)) {
                                                 sum += val;
-                                                if(val < threshold) {
+                                                if (val < threshold) {
                                                     overflow += threshold - val;
                                                 }
                                             }
                                         });
                                         var factor = sum / (sum + overflow); // factor for having 100% again
                                         var width = (value < threshold ? threshold : value) * factor * 100;
-                                        return { width: width + '%' };
+                                        return {width: width + '%'};
                                     };
 
                                     _.each($scope.assessmentResults.concat($scope.assessmentResultsAverage), function (result, index) {
@@ -652,11 +696,11 @@
 
 
                     // eventsPlanned, popular activities
-                    StatsService.loadStats($scope.campaign.id,
+                    StatsService.loadStats($scope.currentCampaign.id,
                         {
                             type: 'eventsPlanned',
                             scopeType: 'campaign',
-                            scopeId: $scope.campaign.id,
+                            scopeId: $scope.currentCampaign.id,
                             dontReplaceIds: 'true'
                         })
                         .then(function (results) {

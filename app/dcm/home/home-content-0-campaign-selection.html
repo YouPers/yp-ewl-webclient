@@ -1,4 +1,6 @@
-<accordion-group class="campaign-selection" ng-if="principal.isAuthorized('orgadmin') && campaigns.length > 0" is-open="campaignSelectionOpen">
+<accordion-group class="campaign-selection"
+                 ng-if="homeController.sections.campaigns.available"
+                 is-open="homeController.sections.campaigns.open">
     <div>
 
         <accordion-heading>
@@ -8,7 +10,7 @@
 
                     <a>
                         <i class="fa "
-                           ng-class="{ 'fa-chevron-down': campaignSelectionOpen, 'fa-chevron-right': !campaignSelectionOpen }"></i>
+                           ng-class="{ 'fa-chevron-down': homeController.sections.campaigns.open, 'fa-chevron-right': !homeController.sections.campaigns.open }"></i>
                     </a>
                 </span>
         </accordion-heading>
