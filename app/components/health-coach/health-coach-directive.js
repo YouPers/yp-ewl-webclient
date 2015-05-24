@@ -33,10 +33,6 @@
 
                     link: function (scope, elem, attrs) {
 
-                        if (scope.coachMessage) {
-                            _displayMessage(scope.coachMessage);
-                        }
-
                         var queuedEvent = HealthCoachService.getQueuedEvent();
                         if (queuedEvent) {
                             scope.event = queuedEvent;
@@ -56,6 +52,11 @@
                             $translate(eventKey, scope.data).then(function (eventMessage) {
                                 _displayMessage(eventMessage);
                             });
+                        });
+                        scope.$watch('coachMessage', function (newVal, oldVal) {
+                            if (newVal) {
+                                _displayMessage(newVal);
+                            }
                         });
 
                         $rootScope.$on('healthCoach:event', function (event, healthCoachEvent) {
