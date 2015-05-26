@@ -38,9 +38,8 @@ angular.module('yp.components.i18n', ['pascalprecht.translate', 'yp.components.u
                 // change the locale for angular-translate (text translation), works asynchronously
                 $translate.use(key).then(function (key) {
                     $translate.refresh();
-                    $scope.$state.go('bounce', {state: $scope.$state.current.name, params: JSON.stringify($scope.$stateParams)});
                     $rootScope.currentLocale = $translate.use() || $translate.proposedLanguage();
-
+                    $scope.$state.reload();
                     // store the last language a user chose in the user's profile, so we know a user's language when
                     // we need to send him notifications/emails from the backend.
                     var profile = $scope.principal.getUser().profile;
