@@ -43,7 +43,10 @@
                             if (localStorageService.get(eventKey)) {
                                 scope.messageHidden = true;
                             } else {
-                                scope.messageHidden = false;
+                                scope.messageHidden = true;
+                                $timeout(function() {
+                                    scope.messageHidden = false;
+                                }, 1000);
                                 $timeout(function() {
                                     scope.messageHidden = true;
                                 }, 10000);
