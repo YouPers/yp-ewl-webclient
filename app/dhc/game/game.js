@@ -181,13 +181,13 @@
             }])
 
 
-        .controller('GameController', ['$scope', '$state', '$stateParams', '$window',
+        .controller('GameController', ['$scope', '$state', '$stateParams', '$window', 'SocialInteractionService',
             'activities', 'currentActivities', 'doneActivities',
             'offers', 'sortedOffers', 'dismissedOffers',
             'events', 'openEvents', 'missedEvents', 'doneEvents', 'closedEvents',
             'healthCoachEvent', 'campaign',
 
-            function ($scope, $state, $stateParams, $window,
+            function ($scope, $state, $stateParams, $window, SocialInteractionService,
                       activities, currentActivities, doneActivities,
                       offers, sortedOffers, dismissedOffers,
                       events, openEvents, missedEvents, doneEvents, closedEvents,
@@ -298,7 +298,20 @@
                         activity: socialInteraction.activity ? socialInteraction.activity.id : '',
                         socialInteraction: socialInteraction.id
                     });
+                };
 
+                $scope.dismissOffer = function dismissOffer(socialInteraction) {
+                    SocialInteractionService.deleteSocialInteraction(socialInteraction.id || socialInteraction, {
+                        reason: 'denied',
+                        mode: 'participate'
+                    }).then(function () {
+                        var offer = _.remove($scope.offers, {id: socialInteraction.id})[0];
+                        $scope.offersDismissed.push({
+                            activity: offer.activity,
+                            idea: offer.idea || offer.activity.idea,
+                            socialInteraction: offer
+                        });
+                    });
                 };
             }]);
 
