@@ -1,7 +1,8 @@
 {
   "clientmsg": {
     "error": {
-      "userWithoutcampaign": "The current user is not assigned to any campaign!"
+      "userWithoutcampaign": "The current user is not assigned to any campaign!",
+      "invitationNotFound": null
     }
   },
   "invite": {
