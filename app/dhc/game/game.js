@@ -78,7 +78,7 @@
                                 }
 
                                 var filteredOffers = _.filter(offers, function (si) {
-                                    return !(si.dismissed || si.rejected);
+                                    return !si.dismissed; // only dismissed offers, not offers with rejected ideas
                                 });
                                 return sortOffers(filteredOffers);
 
@@ -86,7 +86,7 @@
                             dismissedOffers: ['offers', function (offers) {
 
                                 var offersDismissed = _.filter(offers, function (si) {
-                                    return si.dismissed || si.rejected;
+                                    return si.dismissed; // only dismissed offers, not offers with rejected ideas
                                 });
                                 var dismissedOffers = [];
                                 _.forEach(offersDismissed, function (sid) {
