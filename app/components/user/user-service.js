@@ -190,10 +190,8 @@
                         newuser.roles = ['individual'];
                         newuser.fullname = newuser.firstname + ' ' + newuser.lastname;
 
-                        // default the username to the user's email
-                        if (!newuser.username) {
-                            newuser.username = newuser.email;
-                        }
+                        // set the username to the user's email
+                        newuser.username = newuser.email;
 
                         // in case this was an unauthenticated user who was browsing and collecting data,
                         // we need to merge the user we submit with the data we have already collected

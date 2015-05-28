@@ -282,15 +282,44 @@
         .directive('uniqueUserField', ['UserService', function (UserService) {
             return {
                 require: 'ngModel',
+                scope: {
+                    name: '=',
+                    form: '='
+                },
                 link: function (scope, elm, attrs, ctrl) {
+
+
+                    var validateWithBackend = _.throttle(function (value) {
+
+                        var user = {};
+                        user[attrs.name] = value; // currently only username and email are checked in the backend
+
+                        // invalidate form during the server round trip, if available
+                        if(scope.form) {
+                            scope.form.$setValidity('validating', false);
+                        }
+
+                        // validate and use a "unique" postfix to have different error messages
+                        UserService.validateUser(user).then(function (res) {
+                            ctrl.$setValidity("unique", true);
+
+                            if(scope.form) {
+                                scope.form.$setValidity('validating', true);
+                            }
+                        }, function (err) {
+                            ctrl.$setValidity("unique", false);
+
+                            if(scope.form) {
+                                scope.form.$setValidity('validating', true);
+                            }
+                        });
+
+                    }, 500);
 
                     var initialValue;
 
                     // onchange instead of onblur is nice, but we should not hit the server all the time
                     var validate = function (value) {
-
-                        var user = {};
-                        user[attrs.name] = value; // currently only username and email are checked in the backend
 
                         if (!value) {
                             return;
@@ -302,20 +331,12 @@
                             initialValue = value;
                         } else if(initialValue !== value) {
 
-                            _.throttle(function () {
+                            // if the field is the email address, only validate if it is valid
+                            if(attrs.name !== 'email' || _isValidEmail(value)) {
+                                validateWithBackend(value);
+                            }
 
-                                // validate and use a "unique" postfix to have different error messages
-
-                                UserService.validateUser(user).then(function (res) {
-                                    ctrl.$setValidity("unique", true);
-                                }, function (err) {
-                                    ctrl.$setValidity("unique", false);
-                                });
-
-                            }, 500)();
                         }
-
-
 
                         // we can't return undefined for invalid values as it is validated asynchronously
                         return value;
