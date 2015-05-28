@@ -93,15 +93,22 @@
       width: 45px;
       height: 45px;
     }
+  }
 
-    .dismiss {
-      position: absolute;
-      right: 8px;
-      top: 12px;
-      i.fa {
-        font-size: 18px;
-      }
+  .sheet.author .dismiss {
+
+    position: absolute;
+    right: 8px;
+    top: 12px;
+    i.fa {
+      font-size: 18px;
     }
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  &:hover .sheet.author .dismiss {
+    opacity: 1;
   }
 
   div.publishedDate {
