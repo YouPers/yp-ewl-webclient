@@ -11,7 +11,13 @@
                         access: accessLevels.all,
                         templateUrl: 'dcm/signup/signup.html',
                         controller: 'DcmSignupController as dcmSignupController',
-                        resolve: {}
+                        resolve: {},
+                        onEnter: ['$state', '$window', 'UserService', function ($state, $window, UserService) {
+
+                            if (UserService.principal.isAuthenticated()) { // redirect to home if the user is already logged in
+                                $state.go('dcm.home');
+                            }
+                        }]
                     });
 
                 $translateWtiPartialLoaderProvider.addPart('dcm/signup/signup');
