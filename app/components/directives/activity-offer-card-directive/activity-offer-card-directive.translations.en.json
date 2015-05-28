@@ -11,6 +11,10 @@
     "createOwnIdea": "Create an activity of your own",
     "createOwnIdeaText": "Create an activity of your own and invite an employee",
     "searchIdea": "Browse the library",
-    "searchIdeaText": "Browse the YOUPERS library for more ideas"
+    "searchIdeaText": "Browse the YOUPERS library for more ideas",
+    "dismiss": {
+      "Recommendation": null,
+      "Invitation": null
+    }
   }
 }

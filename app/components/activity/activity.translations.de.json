@@ -35,15 +35,15 @@
       "save": "Speichern"
     },
     "inviteOthers": {
-      "selected": "ausgewählte",
-      "all": "alle",
+      "selected": "ausgewählte Benutzer",
+      "all": "alle Kampagnenteilnehmer",
       "inviteByEmail": {
         "placeholder": "Email eingeben",
         "submit": "Hinzufügen"
       },
       "inviteByUser": "In der Kampagne suchen",
       "invitedOnSave": "Beim Einplanen werden eingeladen:",
-      "none": "Niemand",
+      "none": "niemanden",
       "notFound": "nicht gefunden? - Lade mittels Email ein:",
       "readOnlyLabel": "Einladungen an"
     },

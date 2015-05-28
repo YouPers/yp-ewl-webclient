@@ -11,6 +11,10 @@
     "createOwnIdea": null,
     "createOwnIdeaText": null,
     "searchIdea": null,
-    "searchIdeaText": null
+    "searchIdeaText": null,
+    "dismiss": {
+      "Recommendation": null,
+      "Invitation": null
+    }
   }
 }
