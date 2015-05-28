@@ -17,14 +17,14 @@
             }])
 
 
-        .controller('UserAccountCtrl', ['$scope', '$rootScope', 'UserService',
-            function ($scope, $rootScope, UserService) {
+        .controller('UserAccountCtrl', ['$scope', '$rootScope', '$state', 'UserService',
+            function ($scope, $rootScope, $state, UserService) {
 
-                $scope.accountUserObjReset = function () {
-                    $scope.accountUserObj = _.clone($scope.principal.getUser());
+                $scope.reset = function () {
+                    $state.reload();
                 };
 
-                $scope.accountUserObjReset();
+                $scope.accountUserObj = _.clone($scope.principal.getUser());
 
                 $scope.saveAccount = function () {
 
@@ -34,6 +34,7 @@
 
                     UserService.putUser($scope.accountUserObj).then(function (user) {
                         $rootScope.$emit('clientmsg:success', 'account.save');
+                        $state.reload();
                     });
 
                 };

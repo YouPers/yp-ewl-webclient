@@ -31,11 +31,12 @@
                         <yp-input name="firstname" required></yp-input>
                         <yp-input name="lastname" required></yp-input>
                         <yp-input name="username" required></yp-input>
-                        <yp-input name="email" type="email" required unique-user-field></yp-input>
+                        <yp-input name="email" type="email" required unique-user-field form="accountForm"></yp-input>
 
-                        <button type="button" class="btn btn-default" ng-click="accountUserObjReset()" translate>accountForm.reset</button>
-                        <button type="submit" class="btn btn-success" ng-disabled="accountForm.$invalid" translate>accountForm.save</button>
-
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default" ng-disabled="!accountForm.$dirty" ng-click="reset()" translate>accountForm.reset</button>
+                            <button type="submit" class="btn btn-primary" ng-disabled="accountForm.$dirty && accountForm.$invalid" translate>accountForm.save</button>
+                        </div>
                     </form>
                     
                 </accordion-group>
