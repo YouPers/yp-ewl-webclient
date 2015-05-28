@@ -1,6 +1,6 @@
 {
   "name": "HealthCampaign-Webapp",
-  "version": "31.0.0-beta1",
+  "version": "31.0.0-beta3",
   "description": "HealthCampaign by YOUPERS",
   "dependencies": {
     "grunt": "~0.4.x",
