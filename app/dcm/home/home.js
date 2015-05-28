@@ -160,7 +160,7 @@
                         open: false
                     },
                     end: {
-                        available: moment().businessDiff(moment($scope.currentCampaign.end).startOf('day')) > -2,
+                        available: $scope.currentCampaign && moment().businessDiff(moment($scope.currentCampaign.end).startOf('day')) > -2,
                         open: false
                     }
                 };
