@@ -283,8 +283,7 @@
             return {
                 require: 'ngModel',
                 scope: {
-                    name: '=',
-                    form: '='
+                    name: '='
                 },
                 link: function (scope, elm, attrs, ctrl) {
 
@@ -294,24 +293,11 @@
                         var user = {};
                         user[attrs.name] = value; // currently only username and email are checked in the backend
 
-                        // invalidate form during the server round trip, if available
-                        if(scope.form) {
-                            scope.form.$setValidity('validating', false);
-                        }
-
                         // validate and use a "unique" postfix to have different error messages
                         UserService.validateUser(user).then(function (res) {
                             ctrl.$setValidity("unique", true);
-
-                            if(scope.form) {
-                                scope.form.$setValidity('validating', true);
-                            }
                         }, function (err) {
                             ctrl.$setValidity("unique", false);
-
-                            if(scope.form) {
-                                scope.form.$setValidity('validating', true);
-                            }
                         });
 
                     }, 500);
