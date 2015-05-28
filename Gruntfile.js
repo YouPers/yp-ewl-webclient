@@ -456,7 +456,7 @@ module.exports = function (grunt) {
         version: {
             // options: {},
             defaults: {
-                src: [ '.tmp/index.html','config/config.js']
+                src: [ '.tmp/index.html']
             }
         }
     });
