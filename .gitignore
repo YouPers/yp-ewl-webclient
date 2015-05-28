@@ -19,6 +19,7 @@ results
 npm-debug.log
 node_modules
 /dist
+/deploy
 .tmp
 ToDos*.txt
 atlassian-ide-plugin.xml
