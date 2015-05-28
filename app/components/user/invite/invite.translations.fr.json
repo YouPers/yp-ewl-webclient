@@ -1,7 +1,8 @@
 {
   "clientmsg": {
     "error": {
-      "userWithoutcampaign": null
+      "userWithoutcampaign": null,
+      "invitationNotFound": null
     }
   },
   "invite": {

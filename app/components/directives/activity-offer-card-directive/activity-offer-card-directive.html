@@ -75,6 +75,17 @@
             <div class="author" ng-bind="socialInteraction.author.fullname" title="{{ socialInteraction.author.fullname }}"></div>
         </div>
 
+        <a class="dismiss" ng-if="hasDismiss">
+            <i class="fa fa-trash-o"
+
+               ng-click="onDismiss()"
+               stop-propagation
+
+               tooltip="{{ 'activityOfferCard.dismiss.' + socialInteraction.__t | translate }}" tooltip-append-to-body="true"
+
+                    ></i>
+        </a>
+
 
     </div>
 

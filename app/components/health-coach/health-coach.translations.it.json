@@ -30,12 +30,13 @@
         "nothingOffered": null,
         "testEmailSent": null,
         "sectionOpening": {
-          "campaignEnd": null,
-          "CampaignMessages": null,
-          "CampaignStats": null,
+          "end": null,
+          "messages": null,
+          "stats": null,
           "offers": null,
           "participants": null,
-          "startOfCampaign": null
+          "start": null,
+          "campaigns": null
         }
       },
       "ideas": {
