@@ -15,7 +15,10 @@
  */
 var _ = require('lodash');
 
+var version = '31.0.0-beta1';
+
 var defaultConfig = {
+    version: version,
     name: process.env.NODE_ENV || 'dev',
     webclientUrl: 'https://'+ process.env.NODE_ENV +'.youpers.com',
     backendUrl: 'https://'+ process.env.NODE_ENV +'.youpers.com/api',

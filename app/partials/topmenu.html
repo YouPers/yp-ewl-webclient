@@ -11,7 +11,7 @@
             <a class="navbar-logo" href="http://yp-web2.youpers.com/">
                 <img src="../assets/img/avatar_coach_blue.svg" alt="YouPers">
                 <h4 translate class="hidden-xs">topmenu.logoHeader</h4>
-                <h4 ng-if="config.name" class="config-hint">{{ config.name }}</h4>
+                <h4 ng-if="config.name" class="config-hint">{{ config.name ? config.name + ': v' + config.version : '' }}</h4>
             </a>
             <div class="btn-group app-role" ng-controller="AppRoleController as appRoleCtrl">
                 <div ng-if="appRoleCtrl.showSwitcher">

@@ -1,7 +1,7 @@
 // Generated on 2013-09-18 using generator-angular 0.4.0
 'use strict';
 var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
+var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
 
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
@@ -26,7 +26,8 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app',
-        dist: 'dist'
+        dist: 'dist',
+        deploy: 'deploy'
     };
 
     try {
@@ -150,6 +151,14 @@ module.exports = function (grunt) {
             }
         },
         clean: {
+            deploy: {
+                files: [
+                    {
+                        dot: true,
+                        src: ['<%= yeoman.deploy %>/*']
+                    }
+                ]
+            },
             dist: {
                 files: [
                     {
@@ -174,9 +183,7 @@ module.exports = function (grunt) {
             ]
         },
         less: {
-            options: {
-
-            },
+            options: {},
             dist: {
                 files: [
                     {
@@ -306,6 +313,17 @@ module.exports = function (grunt) {
         },
         copy: {
             // copies files from app to dist, which are not moved there by other tasks like cssmin, htmlmin, ...
+            deploy: {
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.dist %>',
+                        dest: '<%= yeoman.deploy %>',
+                        src: ['*', '**/*']
+                    }
+                ]
+            },
             dist: {
                 files: [
                     {
@@ -434,6 +452,12 @@ module.exports = function (grunt) {
                 }
             }
 
+        },
+        version: {
+            // options: {},
+            defaults: {
+                src: [ '.tmp/index.html','config/config.js']
+            }
         }
     });
 
@@ -449,7 +473,8 @@ module.exports = function (grunt) {
             return grunt.task.run([
                 'clean:server',
                 'concurrent:server',
-                    'template:' + grunt.config('clientMode'),
+                'template:' + grunt.config('clientMode'),
+                'version',
                 'autoprefixer',
                 'connect:livereload',
                 'open',
@@ -475,6 +500,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'template:server',
+        'version',
         'less:dist',
         'useminPrepare',
         'copy:styles',
@@ -490,6 +516,11 @@ module.exports = function (grunt) {
         'usemin'
     ]);
 
+    grunt.registerTask('deploy', [
+        'build',
+        'clean:deploy',
+        'copy:deploy'
+    ]);
 
     grunt.registerTask('imageopt', [
         'imagemin',
