@@ -49,7 +49,7 @@
 
                 $scope.needForAction = assessmentResult? assessmentResult.needForAction : null;
 
-                $scope.categories = _.map(assessmentResult.needForAction, 'category');
+                $scope.categories = _.uniq(_.map(assessment.questions, 'category'));
 
                 $scope.assessmentIdea = assessmentIdea;
 

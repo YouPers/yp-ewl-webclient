@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="category in categories">
-                    <td class="left" translate>questionCategory.{{category}}</td>
+                    <td class="left" translate>{{ 'questionCategory.' + category | translate }}</td>
 
                     <td class="bar-holder-td">
                         <div class="bar-holder">
