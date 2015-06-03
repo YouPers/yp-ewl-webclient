@@ -1,25 +1,25 @@
 {
   "socialInteraction": {
-    "mainHeader": null,
+    "mainHeader": "messagerie",
     "important": "important",
-    "publishFrom": null,
-    "publishTo": null,
+    "publishFrom": "Publié à partir de: ",
+    "publishTo": "Publié jusqu'au: ",
     "header": {
       "Invitation": {
-        "user": null,
-        "campaignLead": null
+        "user": "Invitation personnelle",
+        "campaignLead": "invitation de campagne"
       },
       "Recommendation": {
-        "user": null,
-        "campaignLead": null,
+        "user": "recommandation personnelle",
+        "campaignLead": "recommandation de campagne",
         "coach": null,
-        "expert": null
+        "expert": "Recommandation d'expert"
       },
       "Message": {
         "user": null,
         "campaignLead": null,
         "coach": null,
-        "productAdmin": null
+        "productAdmin": "Message YouPers"
       }
     }
   },

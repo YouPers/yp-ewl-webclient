@@ -3,8 +3,8 @@
     "message": {
       "stateHeader1": "Système",
       "stateHeader2": "Messages",
-      "publishFrom": null,
-      "publishTo": null,
+      "publishFrom": "Publié à partir de: ",
+      "publishTo": "Publié jusqu'au: ",
       "important": "important"
     }
   },
@@ -13,7 +13,7 @@
       "label": "Titre",
       "placeholder": "Titre",
       "error": {
-        "required": null
+        "required": "Écris un titre s'il-te-plaît"
       }
     },
     "text": {
@@ -25,14 +25,14 @@
     },
     "campaign": {
       "label": "Campagne",
-      "none": null
+      "none": "- aucun -"
     },
     "language": {
       "label": "Langue",
-      "none": null
+      "none": "- aucun -"
     },
     "publishFrom": {
-      "label": null
+      "label": "Publié à partir de"
     },
     "publishTo": {
       "label": "Publié jusqu'au"

@@ -13,8 +13,8 @@
     "searchIdea": "Browse the library",
     "searchIdeaText": "Browse the YOUPERS library for more ideas",
     "dismiss": {
-      "Recommendation": null,
-      "Invitation": null
+      "Recommendation": "Discard the recommendation",
+      "Invitation": "Decline the invitation"
     }
   }
 }

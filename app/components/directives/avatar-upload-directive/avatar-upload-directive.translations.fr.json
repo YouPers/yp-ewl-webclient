@@ -1,9 +1,9 @@
 {
   "avatarUpload": {
     "progress": {
-      "header": null,
-      "cancel": null
+      "header": "Téléchargement de la photo de profil en cours",
+      "cancel": "Annuler"
     },
-    "defaultAvatarHint": null
+    "defaultAvatarHint": "Clique ici pour télécharger une photo de profil de toi, de sorte que les participants te reconnaissent tout de suite."
   }
 }

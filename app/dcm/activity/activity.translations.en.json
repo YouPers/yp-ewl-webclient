@@ -3,7 +3,7 @@
     "stateHeader1": "Activity",
     "title": {
       "label": "Title",
-      "placeholder": "Enter a short title (2x20 chars max)"
+      "placeholder": "Enter a short title (3x20 chars max)"
     },
     "image": {
       "label": "Activity image",

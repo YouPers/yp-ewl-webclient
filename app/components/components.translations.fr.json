@@ -33,8 +33,8 @@
     "yesterday": "Hier"
   },
   "executiontype": {
-    "self": "Soi-même",
-    "group": "Le groupe"
+    "self": "Seul",
+    "group": "En groupe"
   },
   "gender": {
     "undefined": "inconnu",
@@ -99,7 +99,7 @@
       "placeholder": "Email"
     },
     "description": {
-      "label": "La description"
+      "label": "Description"
     },
     "feedbackCategory": {
       "label": "La catégorie"

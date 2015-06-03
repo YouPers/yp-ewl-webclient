@@ -3,7 +3,7 @@
     "stateHeader1": "Attività",
     "title": {
       "label": "Titolo",
-      "placeholder": "Inserisci un breve titolo (max 2x20 caratteri)"
+      "placeholder": "Inserisci un breve titolo (max 3x20 caratteri)"
     },
     "image": {
       "label": "Immagine dell'attività",

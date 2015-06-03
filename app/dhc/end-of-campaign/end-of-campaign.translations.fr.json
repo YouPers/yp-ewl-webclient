@@ -1,30 +1,30 @@
 {
   "end-of-campaign": {
-    "lastDaysHeader": null,
-    "campaignEndendHeader": null,
-    "subheader": null,
-    "surveyInfo": null,
-    "surveyLink": null,
-    "reviewInfo": null,
-    "reviewLink": null,
+    "lastDaysHeader": "{DaysLeft, pluriel, 0 { Dernier jour de la campagne} one {Plus qu'un jour avant la fin de la campagne} other {Encore # jours jusqu'à la fin de la campagne} }",
+    "campaignEndendHeader": "Campagne - Rétrospective",
+    "subheader": "Besoin d'action selon ton auto-évaluation",
+    "surveyInfo": "Tu peux participer au sondage ici",
+    "surveyLink": "Sondage",
+    "reviewInfo": "Ici tu peux jeter un coup d'oeil rétrospectif à la campagne",
+    "reviewLink": "Rétrospective",
     "legend": {
-      "user": null,
-      "campaign": null,
-      "needForActionAvg": null
+      "user": "Tes résultats",
+      "campaign": "Moyenne pour tous les participants à la campagne",
+      "needForActionAvg": "Moyenne pour tous les participants à la campagne"
     },
     "eventsStatus": {
-      "title": null,
-      "user": null,
-      "campaign": null,
-      "done": null,
-      "missed": null,
-      "open": null
+      "title": "Activités planifiées",
+      "user": "Résultats",
+      "campaign": "Moyenne",
+      "done": "accompli",
+      "missed": "manqué",
+      "open": "ouvert à tous"
     },
     "eventsRatings": {
-      "title": null,
-      "user": null,
-      "campaign": null,
-      "null": null
+      "title": "Évaluation des activités",
+      "user": "Tes évaluations",
+      "campaign": "Campagne",
+      "null": "ouvert"
     }
   }
 }

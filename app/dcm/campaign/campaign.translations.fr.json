@@ -8,8 +8,8 @@
     "stateHeader2": "Campagnes"
   },
   "campaign": {
-    "headerNew": null,
-    "headerEdit": null,
+    "headerNew": "Créer une campagne",
+    "headerEdit": "Changer de campagne",
     "link": {
       "new": "Nouvelle campagne",
       "campaignoffers": "Activités",
@@ -22,8 +22,8 @@
     "stateHeader1": "Ta",
     "stateHeader2": "Campagne",
     "card": {
-      "title": null,
-      "campaignLead": null,
+      "title": "HealthCampaign",
+      "campaignLead": "Gestion des campagnes",
       "campaignLeadUnconfirmed": null
     }
   },
@@ -33,8 +33,8 @@
       "change": "Modifier"
     },
     "title": {
-      "label": "Le title",
-      "placeholder": "Le title",
+      "label": "Titre",
+      "placeholder": "Titre",
       "error": {
         "required": "S'il te plaît entres un titre valide"
       }
@@ -45,15 +45,15 @@
     "end": {
       "label": "Fin"
     },
-    "usersInCampaign": null,
-    "offersRecreated": null,
-    "offersRemain": null,
-    "campaignEnded": null,
+    "usersInCampaign": "La campagne a déjà des participants.",
+    "offersRecreated": "Toutes les recommandations et invitations sont recréées.",
+    "offersRemain": "Les recommandations et invitations sont maintenues.",
+    "campaignEnded": "La campagne est déjà finie.",
     "participants": {
-      "label": "Le groupe de personnes",
-      "placeholder": "Le groupe de personnes",
+      "label": "Groupe de participants",
+      "placeholder": "Désignation du groupe/ du département/ de l'équipe pour cette campagne",
       "error": {
-        "required": null
+        "required": "S'il te plaît définis un cercle de participants"
       }
     },
     "location": {
@@ -67,70 +67,70 @@
       "label": "Le lieu",
       "placeholder": "Le lieu",
       "error": {
-        "required": null
+        "required": "S'il te plaît définis un lieu"
       }
     },
     "back": "dos",
     "save": "Enregistrer",
     "create": "Enregistrer",
-    "cancel": null,
+    "cancel": "Annuler",
     "topic": {
       "change": "modifier",
       "label": "Programme"
     },
-    "backToTopicSelection": null,
+    "backToTopicSelection": "Retour au choix de programme",
     "paymentCode": {
       "invalidCode": null,
-      "invalidTopic": null,
-      "label": null
+      "invalidTopic": "Ce code n'est valide que pour la campagne {{ invalidTopic }}",
+      "label": "Code d'activation"
     }
   },
   "campaignLeadForm": {
-    "header": null,
-    "serviceManager": null,
-    "mainLeader": null,
+    "header": "Choisi un-e Leader de Campagne",
+    "serviceManager": "Manager de Service",
+    "mainLeader": "Leader de Campagne",
     "coLeader": null,
     "mainLeaderExplanation": null,
     "coLeaderExplanation": null,
-    "newCampaignLead": null,
+    "newCampaignLead": "inviter d'autres participants",
     "firstname": {
-      "label": null,
-      "placeholder": null,
+      "label": "Prénom",
+      "placeholder": "Prénom",
       "error": {
-        "required": null
+        "required": "S'il te plaît, entrer un prénom valide."
       }
     },
     "lastname": {
-      "label": null,
-      "placeholder": null,
+      "label": "Nom de famille",
+      "placeholder": "Nom de famille",
       "error": {
-        "required": null
+        "required": "S'il te plaît, entrer un nom de famille valide."
       }
     },
     "email": {
-      "label": null,
-      "placeholder": null,
+      "label": "Email",
+      "placeholder": "ail",
       "error": {
-        "required": null,
-        "email": null,
-        "unique": null
+        "required": "S'il te plaît, entrer une adresse email.",
+        "email": "S'il te plaît, entrer une adresse email valide.",
+        "unique": "Cette adresse email est déjà inscrite."
       }
     },
-    "submit": null,
-    "resend": null,
-    "resendSent": null
+    "submit": "Créer",
+    "resend": "Envoyer l'invitation de nouveau",
+    "resendSent": "Envoyé"
   },
   "campaignLeadResetPassword": {
-    "header": null,
-    "message": null,
-    "passwordReset": null,
-    "save": null
+    "header": "Bonjour {{invitedUser}}",
+    "message": "<strong>{{invitingUser}}</strong> t'a invité-e à devenir Leader de Campagne.",
+    "passwordReset": "Choisis un mot de passe pour continuer",
+    "save": "Continuer"
   },
   "clientmsg": {
     "success": {
       "campaign": {
-        "lead": null,
-        "saved": null
+        "lead": "L'invitation en tant que Leader de Campagne a été acceptée",
+        "saved": "Campagne sauvegardée"
       }
     }
   }

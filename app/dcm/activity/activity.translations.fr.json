@@ -1,47 +1,47 @@
 {
   "activity": {
-    "stateHeader1": "L'activité",
+    "stateHeader1": "activité",
     "title": {
-      "label": "Le title",
-      "placeholder": "Enregistrez un titre court, s.v.p. (2x20 caractères max.)"
+      "label": "Titre",
+      "placeholder": "Enregistrez un titre court, s.v.p. (3x20 caractères max.)"
     },
     "image": {
-      "label": "L'image de l'activité",
+      "label": "Photo de l'activité",
       "select": "Sélectionner",
-      "upload": null,
-      "required": null
+      "upload": "télécharger une image soi-même",
+      "required": "S'il te plaît choisis ou télécharge une image"
     },
     "description": {
-      "label": "La description",
-      "placeholder": "La description"
+      "label": "Description",
+      "placeholder": "Description"
     },
     "text": {
-      "label": "Le texte",
-      "placeholder": "La description détaillée de l'activité"
+      "label": "Texte",
+      "placeholder": "Description détaillée de l'activité"
     },
     "number": "L'activité numéro",
-    "executiontype": "La réalisation",
-    "frequency": "La fréquence",
-    "source": "La source",
-    "activityField": "Les cadres activités",
-    "qualityFactor": "Le facteur de la qualité (1-10)",
-    "duration": "Le temps nécessaire (min.) ",
+    "executiontype": "Réalisation",
+    "frequency": "Fréquence",
+    "source": "source",
+    "activityField": "cadres d'activités",
+    "qualityFactor": "facteur de la qualité (1-10)",
+    "duration": "temps nécessaire (min.) ",
     "save": "Enregistrer",
     "back": "Retour",
-    "newInvitation": null,
-    "newRecommendation": null,
+    "newInvitation": "Planifier et inviter",
+    "newRecommendation": "Recommander seulement",
     "header": {
-      "recommendation": null
+      "recommendation": "Recommandation de campagne"
     },
-    "noDefaultStartTime": null,
-    "startTime": null
+    "noDefaultStartTime": "Aucune recommandation",
+    "startTime": "Heure recommandée"
   },
   "activities": {
     "duration": {
       "suffix": "Min"
     },
     "link": {
-      "new": "La nouvelle activité",
+      "new": "nouvelle activité",
       "schedule": "Planifier",
       "recommend": "Recommander"
     },
@@ -50,10 +50,10 @@
   },
   "campaignoffers": {
     "stateHeader1": "Les campagnes",
-    "stateHeader2": "Les activité",
+    "stateHeader2": "Les activités",
     "link": {
       "newActivity": "Créer une activité propre",
-      "publishActivity": "L'activité existant <br/>recommander/planifier"
+      "publishActivity": "recommander/planifier <br/> une activité existant"
     },
     "published": "Publié",
     "offertype": {
@@ -63,20 +63,20 @@
     "userNamesNotShown": "Noms ne sont pas affichés pour la protection de la vie privée"
   },
   "scheduledDate": {
-    "daily": "Quotidien"
+    "daily": "quotidien"
   },
   "recommendationForm": {
-    "submit": "Sauver",
-    "delete": null,
-    "publishDates": null,
+    "submit": "Enregistrer",
+    "delete": "Effacer la recommandation",
+    "publishDates": "Recommandation {{ recommendation.id ? 'ist' : 'wird' }} visible pour tous les participants à la campagne à partir de maintenant jusqu'au {{ recommendation.publishTo | date }}",
     "header": {
-      "publish": null
+      "publish": "Publier la recommandation"
     }
   },
   "clientmsg": {
     "recommendation": {
-      "deleted": null,
-      "saved": null
+      "deleted": "recommandation effacée",
+      "saved": "Sauvegarder la recommandation"
     }
   }
 }

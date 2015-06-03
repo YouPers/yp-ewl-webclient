@@ -1,20 +1,20 @@
 {
   "activityOfferCard": {
     "authorPrefix": {
-      "ExpertRecommendation": null,
-      "Recommendation": null,
-      "Invitation": null
+      "ExpertRecommendation": "Recommandation d'expert",
+      "Recommendation": "recommandé par",
+      "Invitation": "Invitation de"
     },
-    "published": null,
+    "published": "publié:",
     "from": "de",
     "to": "…",
-    "createOwnIdea": null,
-    "createOwnIdeaText": null,
-    "searchIdea": null,
-    "searchIdeaText": null,
+    "createOwnIdea": "Créer sa propre activité",
+    "createOwnIdeaText": "Crée ta propre activité et invite les employés à participer",
+    "searchIdea": "Naviguer dans la bibliothèque",
+    "searchIdeaText": "Cherche d'autres idées d'activités dans la bibliothèque YouPers",
     "dismiss": {
-      "Recommendation": null,
-      "Invitation": null
+      "Recommendation": "Rejeter la recommandation",
+      "Invitation": "Décliner l'invitation"
     }
   }
 }

@@ -2,7 +2,7 @@
   "clientmsg": {
     "error": {
       "userWithoutcampaign": "The current user is not assigned to any campaign!",
-      "invitationNotFound": null
+      "invitationNotFound": "The organizer has already deleted this invitation"
     }
   },
   "invite": {

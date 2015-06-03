@@ -1,9 +1,9 @@
 {
   "dcmhome": {
-    "statsTitle": null,
-    "endOfCampaignTitle": null,
-    "participantsCount": null,
-    "plannedActsCount": null,
+    "statsTitle": "Déroulement de la campagne",
+    "endOfCampaignTitle": "Fin de la campagne",
+    "participantsCount": "Nombre de participants inscrits",
+    "plannedActsCount": "Nombre d'activités planifiées",
     "moreStats": "Plus",
     "notifications": "Les messages",
     "campaigns": "Les campagnes",
@@ -30,10 +30,10 @@
         "countTooltip": null
       }
     },
-    "end-of-campaign": null,
-    "addOffer": null,
+    "end-of-campaign": "Rétrospective",
+    "addOffer": "Ajouter une offre",
     "surveyInfo": null,
-    "surveyLink": null,
+    "surveyLink": "Sondage",
     "organization": {
       "addCampaign": "Nouvelle Campagne",
       "edit": "éd"
@@ -50,14 +50,14 @@
       "selected": null
     },
     "campaignStart": {
-      "header": null,
+      "header": "Début de la campagne",
       "welcomeLink": {
         "header": null,
         "createDraft": {
           "text": null,
           "link": null,
-          "recipient": null,
-          "subject": null,
+          "recipient": "tes.participants@tonorganisation.com",
+          "subject": "Campagne {{campaign.title}} {{ organizationName }}: Invitation personnelle",
           "body": null
         },
         "copyLink": null
@@ -66,25 +66,25 @@
         "header": null,
         "subheader": null,
         "step1": {
-          "title": null,
+          "title": "1. Envoyer l'invitation-test (optionnel)",
           "text": null,
           "success": null,
-          "sendTestMail": null
+          "sendTestMail": "Envoyer<br/>l'invitation-test"
         },
         "step2": {
-          "title": null,
+          "title": "2. Créer une liste d'envoi",
           "emailList": {
             "placeholder": null,
-            "add": null,
+            "add": "Ajouter des<br/>adresses email",
             "parsedEmailsPlaceholder": null,
             "emailAddressesFound": null
           }
         },
         "step3": {
-          "title": null,
-          "text": null,
+          "title": "3. Envoyer les invitations",
+          "text": "Vérifie bien ta liste d'envoi avant de les envoyer en cliquant sur \"Envoyer\".",
           "submit": null,
-          "emailInvitesSent": null
+          "emailInvitesSent": "Les invitations ont été envoyées avec succès"
         }
       },
       "campaignLeadGuidance": {
@@ -103,19 +103,19 @@
       }
     },
     "participants": {
-      "header": null
+      "header": "Liste des participants"
     },
     "messages": "Annonce",
-    "noCampaigns": null,
-    "noMessages": null,
+    "noCampaigns": "Il n'y a pas encore de campagne. Créée une première campagne.",
+    "noMessages": "Ici sont affichés les messages aux participants à la campagne.",
     "noOffers": null,
-    "noParticipants": null,
-    "showOld": null,
+    "noParticipants": "Il n'y a toujours pas de participant à la campagne",
+    "showOld": "Montrer le passé",
     "offerType": {
-      "Recommendation": null,
-      "Invitation": null,
+      "Recommendation": "Tes recommandations",
+      "Invitation": "Tes événements",
       "UserInvitation": null,
-      "All": null
+      "All": "Tous"
     },
     "refreshDisplay": null
   },

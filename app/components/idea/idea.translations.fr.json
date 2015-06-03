@@ -12,7 +12,7 @@
         "sampleInvitationSent": "Invitation envoyée à {{email}}"
       },
       "templateCampaign": {
-        "save": null
+        "save": "Offre de référence sauvegardée"
       }
     },
     "error": {
@@ -28,9 +28,9 @@
     "setFocus": "Mettre l'accent sur",
     "areas": "Les domaines",
     "togetherWith": "Avec qui?",
-    "alone": "Lui-même",
-    "asAGroup": "Dans le groupe",
-    "duration": "La durée",
+    "alone": "Seul",
+    "asAGroup": "En groupe",
+    "duration": "Durée",
     "lt15min": "< 15 min",
     "15-30min": "15-30 min",
     "30-60min": "30 minutes - 1 heure",
@@ -57,21 +57,21 @@
     },
     "matrix": {
       "header": "La matrice d'évaluation, questions sur les recommandations ",
-      "recommendationSliderLeft": "La recommandation<br/>Slider à gauche",
+      "recommendationSliderLeft": "Recommandation<br/>Slider à gauche",
       "recommendationSliderRight": "La recommandation<br/>Slider à droite",
       "valueRangeHint": "Toutes les valeurs comprises entre 0 et 10 <br/> 0 = Ne pas recommander activité 10 = activité recommander"
     },
     "templateCampaign": {
-      "addOffer": null,
-      "header": null,
-      "remove": null,
-      "save": null,
+      "addOffer": "Ajouter une offre +",
+      "header": "Utiliser cette idée comme offre de référence pour le thème {{ topic }}",
+      "remove": "Effacer",
+      "save": "Sauvegarder l'offre de référence",
       "type": {
-        "Invitation": null,
-        "Recommendation": null
+        "Invitation": "Invitation",
+        "Recommendation": "Recommandation"
       },
-      "week": null,
-      "weekday": null
+      "week": "Semaine",
+      "weekday": "Jour de la semaine"
     }
   },
   "source": {
@@ -97,10 +97,10 @@
     "inviteMessage": "Pour rejoindre <a {{loginLinkAttribute}} &gt;logge Dich ein</a> ou <a href='' {{registerLinkAttribute}} &gt;registriere dich</a>"
   },
   "activityPlanFrequency": {
-    "once": "Ponctuel",
-    "day": "Quotidien",
+    "once": "Une fois",
+    "day": "quotidien",
     "week": "Hebdomadaire",
-    "month": "Mensuel",
+    "month": "mensuel",
     "year": "Annuel"
   },
   "activityPlanEditable": {
@@ -125,21 +125,21 @@
     "socialInteraction": "L'échange social"
   },
   "executiontype": {
-    "self": "Lui-même",
-    "group": "Le groupe"
+    "self": "Seul",
+    "group": "En groupe"
   },
   "idea": {
     "edit": {
-      "cancel": null,
-      "planCampaignLead": null,
+      "cancel": "annuler",
+      "planCampaignLead": "Planifier",
       "planCampaignLeadPopover": null,
-      "planCampaignLeadText": null,
-      "planParticipant": null,
-      "planParticipantPopover": null,
-      "planParticipantText": null,
-      "recommend": null,
-      "recommendPopover": null,
-      "recommendText": null
+      "planCampaignLeadText": "Planifier cette activité comme événement de campagne",
+      "planParticipant": "Planifier",
+      "planParticipantPopover": "Tu peux planifier cette activité pour toi et après, si tu veux, inviter d'autres personnes à participer.",
+      "planParticipantText": "Planifier cette activité",
+      "recommend": "Recommander",
+      "recommendPopover": "\"Recommander\" signifie que cette activité est présentée comme suggestion aux participants, qui peuvent ensuite la planifier individuellement s'ils le souhaitent.",
+      "recommendText": "Recommander cette activité"
     }
   }
 }

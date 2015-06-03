@@ -30,13 +30,13 @@
         "nothingOffered": "Dear Campaign Leader,\n\nI advise you to recommend daily a new activity to the campaign participants and to organise a campaign activity event once a week. You can do this in the \"Activities\" section",
         "testEmailSent": "Dear Campaign Leader,\n\nI have sent you a Test Invitation email to your email address.\n\nPlease read this email and decide whether the content is appropriate for an Invitation to the Campaign to send to the employees. Note that the button link doesn't work in this Test Invitation email. \n\nTo invite your target participants using the automatic email, start collecting their email addresses only on the starting day of the campaign. However, I recommend you to announce the HealthCampaign in an internal email a few days before the Start.\n\nYou also have the possibility to create your own Campaign Invitation with a personalised text in a company email on the starting day of the campaign: just include the referral link in your message.t",
         "sectionOpening": {
-          "end": null,
-          "messages": null,
-          "stats": null,
+          "end": "Dear Campaign Leader,\n\nIn the \"End of Campaign\" section you can find interesting statistics about the campaign participants and their self-assessments and carried out activities.\n\nPlease take part in this short online survey to let us and the company Service Manager know how you liked the HealthCampaign Service. You can also send us your suggestions on how to improve our service by clicking \"Feedback\" in the menu. \n\nMany thanks and best regards,\n\nYour Digital Coach",
+          "messages": "Dear Campaign Leader,\n\nYou can create a message to send to all participants in the \"Messages\" section. Create a message and set the date of publication (from, until) within which you want your message to be displayed.\n\nClick on \"Save\" and your message will be released for publication. You can edit or delete your message at any time.",
+          "stats": "Dear Campaign Leader,\n\nIn the \"Progress of Campaign\" section you can follow how many employees are participating in the campaign as well as their activities. Click in the legend of the graphic (number of activities per day) to display or hide individual curves. \n\nIf the campaign is not progressing like you want, reflect on what you could do more or better (e.g. send a motivating message to the participants or invite them to a campaign event).",
           "offers": "Dear Campaign Leader,\n \nYour Recommendations and Events as Campaign Leader are displayed in the \"Activities\" section. Browse the library for activity ideas to plan a campaign event or to recommend an activity to campaign participants. You can also create your own activity.\n \nYou can see all past events and recommendations by clicking on \"Show Past\".",
           "participants": "Dear Campaign Leader,\n\nAs from the campaign's starting day, you can see all the people who participate in your campaign in the section \"List of Participants\".",
-          "start": null,
-          "campaigns": null
+          "start": "Dear Campaign Leader,\n\nTo start a new campaign, follow the steps described in the section \"Start of Campaign\". The steps marked in the checkbox are those you've already completed.\n\nYou can send invitations, edit your campaign data or upload another profile picture of yourself at any time, even after the campaign has started.",
+          "campaigns": "In this section, you can view all of your campaigns and if necessary, edit the  campaign information."
         }
       },
       "ideas": {

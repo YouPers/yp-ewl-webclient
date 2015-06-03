@@ -3,17 +3,17 @@
     "showMore": "Plus",
     "activities": {
       "current": "ich weiss nicht",
-      "donePreview": null,
+      "donePreview": "Activités accomplies",
       "done": "Résultats",
       "offered": null,
-      "rejectedPreview": null,
-      "rejected": null
+      "rejectedPreview": "Activités rejetées",
+      "rejected": "Activités rejetées"
     },
     "invitations": "Invitations",
     "recommendations": "Recommandations",
     "noActivities": null,
     "noOffers": null,
     "noClosedEvents": null,
-    "noDismissedOffers": null
+    "noDismissedOffers": "Lorsque tu rejettes une activité, elle apparaît ici."
   }
 }

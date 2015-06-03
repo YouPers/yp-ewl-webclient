@@ -2,22 +2,22 @@
   "pageTitle": {
     "default": "YouPers HealthCampaign {{ campaign.topic.name }}",
     "signin": {
-      "content": null
+      "content": "Inscription - HealthCampaign"
     },
-    "account": null,
-    "profile": null,
+    "account": "Compte d'utilisateur",
+    "profile": "Profil utilisateur",
     "dcm": {
       "home": "{{ campaign.topic.name | uppercase }} - Accueil",
-      "activity": null,
-      "ideas": null,
-      "recommendation": null,
+      "activity": "{{ activity.title }}",
+      "ideas": "Idées pour {{ campaign.title }}",
+      "recommendation": "{{idea.title}}",
       "topics": "Choisir un programme",
       "campaign": "{{ (campaign.topic.name || newTopic.name) | uppercase}} modifier"
     },
     "dhc": {
-      "game": null,
-      "activity": null,
-      "check": null
+      "game": "Accueil",
+      "activity": "{{ activity.title }}",
+      "check": "Auto-évaluation"
     }
   }
 }

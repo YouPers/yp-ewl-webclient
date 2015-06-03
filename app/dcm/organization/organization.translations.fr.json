@@ -83,11 +83,11 @@
       }
     },
     "save": "Enregistrer",
-    "cancel": null,
+    "cancel": "Annuler",
     "create": "Créer",
     "missingOrganizationFieldsWarning": {
       "header": "WARNING:",
-      "text": null
+      "text": ""
     },
     "user": {
       "email": {

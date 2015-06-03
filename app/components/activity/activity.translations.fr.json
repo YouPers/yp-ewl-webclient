@@ -2,15 +2,15 @@
   "clientmsg": {
     "success": {
       "activity": {
-        "joined": null,
+        "joined": "Accepter l'invitation",
         "deleted": "Activité supprimée",
         "Save": "Activité enregistrée",
-        "SaveAndInvite": null
+        "SaveAndInvite": "Activité planifiée et invitation envoyée"
       }
     },
     "error": {
       "activity": {
-        "notParticipating": null
+        "notParticipating": "Tu ne participes pas à cette activité"
       }
     }
   },
@@ -19,33 +19,33 @@
       "second": "Le plan",
       "third": "Rendez-vous",
       "invitedUsers": "Invité",
-      "inviteOthers": null,
+      "inviteOthers": "Inviter d'autres personnes",
       "comments": "Notes",
-      "publish": null,
+      "publish": "Publier l'invitation",
       "first": {
-        "Invitation": null,
-        "NewCampaignActivity": null,
-        "PlannedActivity": null,
-        "Recommendation": null,
-        "newActivity": null
+        "Invitation": "Invitation",
+        "NewCampaignActivity": "Nouvelle activité de campagne",
+        "PlannedActivity": "Ton activité",
+        "Recommendation": "Recommandation",
+        "newActivity": "Planifier une nouvelle activité"
       }
     },
     "comment": {
-      "placeholder": null,
-      "save": null
+      "placeholder": "Remarques",
+      "save": "Sauvegarder"
     },
     "inviteOthers": {
       "selected": "Avec sélectionnées",
       "all": "T",
       "inviteByEmail": {
-        "placeholder": null,
-        "submit": null
+        "placeholder": "entrer l'adresse email",
+        "submit": "ajouter"
       },
-      "inviteByUser": null,
-      "invitedOnSave": null,
-      "none": null,
-      "notFound": null,
-      "readOnlyLabel": null
+      "inviteByUser": "Chercher dans la campagne",
+      "invitedOnSave": "Sont invités à participer:",
+      "none": "personne",
+      "notFound": "pas trouvé? Invite par Email:",
+      "readOnlyLabel": "Inviter à"
     },
     "emailToBeInvited": {
       "placeholder": "Sujet",
@@ -54,8 +54,8 @@
     "invitationStatus": {
       "activityJoined": "Relevé",
       "denied": "Refusé",
-      "pending": null,
-      "organizer": null
+      "pending": "?",
+      "organizer": "Organisateur-trice"
     },
     "link": {
       "campaignlead": "Prévoir",
@@ -76,46 +76,46 @@
       "ownedSave": "Prévoir",
       "joinedSave": "Prévoir",
       "scheduleSave": "Prévoir",
-      "newActivityDhcSave": null,
+      "newActivityDhcSave": "Planifier",
       "campaignleadSave": "Publier",
       "campaignleadSaveAndInvite": "Publier",
-      "ownedSaveAndInvite": null,
-      "recommendationSaveAndInvite": null,
-      "scheduleSaveAndInvite": null,
-      "cancel": null,
-      "invitationDecline": null,
-      "recommendationDismiss": null
+      "ownedSaveAndInvite": "Planifier et envoyer",
+      "recommendationSaveAndInvite": "Planifier et envoyer",
+      "scheduleSaveAndInvite": "Planifier et envoyer",
+      "cancel": "Annuler",
+      "invitationDecline": "Décliner",
+      "recommendationDismiss": "Rejeter"
     },
     "owner": "Hôte",
     "isJoining": "Invité",
     "isInvited": "Invité",
-    "reschedule": null,
-    "editPopover": null,
-    "deletePopover": null,
+    "reschedule": "Planifier de nouveau",
+    "editPopover": "Modifier",
+    "deletePopover": "Effacer",
     "event": {
-      "status": null,
-      "rating": null
+      "status": "Accompli?",
+      "rating": "Comment c'était?"
     },
     "list": {
       "stateHeader1": "T",
       "stateHeader2": "Activité",
-      "editTooltip": null,
-      "newTooltip": null,
+      "editTooltip": "Modifier l'activité",
+      "newTooltip": "Planifier une nouvelle activité",
       "statusFilter": {
         "all": "Toutes les activités",
         "invited": "Invitations",
-        "owned": null,
-        "joined": null
+        "owned": "Activités organisées par moi",
+        "joined": "Activités auxquelles je participe"
       },
       "item": {
-        "title": null,
+        "title": "Quoi",
         "text": "Bio",
-        "date": null,
-        "location": null
+        "date": "Quand",
+        "location": "Où"
       }
     },
     "view": {
-      "stateHeader1": null,
+      "stateHeader1": "une/ton/ta",
       "stateHeader2": "Activité",
       "title": "Titre",
       "text": "Bio",
@@ -128,10 +128,10 @@
         "title": "Écrire"
       },
       "comment": {
-        "placeholder": null
+        "placeholder": "Écrire un commentaire"
       },
-      "publish": null,
-      "addToCalendar": null
+      "publish": "publié",
+      "addToCalendar": "ajouter au calendrier"
     },
     "edit": {
       "stateHeader1": "Ta",
@@ -144,8 +144,8 @@
       "label": "…"
     },
     "preview": {
-      "plannedEventsRemark": null,
-      "soiPublishedRemark": null
+      "plannedEventsRemark": "Activités planifiées",
+      "soiPublishedRemark": "Invitation publiée, visible pour tous les invités"
     }
   },
   "activityForm": {
