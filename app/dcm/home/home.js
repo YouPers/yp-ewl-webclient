@@ -43,7 +43,7 @@
                 $stateProvider
                     .state('dcm.home', {
                         url: "/home?section",
-                        access: accessLevels.all,
+                        access: accessLevels.campaignlead,
                         views: {
                             content: {
                                 templateUrl: 'dcm/home/home.html',
