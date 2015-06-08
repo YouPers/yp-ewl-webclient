@@ -89,9 +89,6 @@
     "header": "Wähle einen Kampagnenleiter",
     "serviceManager": "Service Manager",
     "mainLeader": "Kampagnenleiter",
-    "coLeader": "Stellvertreter",
-    "mainLeaderExplanation": "Dieser Leiter wird in der Kampagnen-Karte gezeigt und die Standard-Empfehlungen werden im Namen dieses Kampagnenleiters erstellt.",
-    "coLeaderExplanation": "Stellvertreter bekommen Einsicht in die Kampagne und können den Kampagnenleiter vertreten",
     "newCampaignLead": "anderen Kampagnenleiter einladen",
     "firstname": {
       "label": "Vorname",

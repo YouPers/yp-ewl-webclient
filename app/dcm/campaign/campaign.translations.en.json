@@ -89,9 +89,6 @@
     "header": "Choose a Campaign Leader",
     "serviceManager": "Service Manager",
     "mainLeader": "Campaign Leader",
-    "coLeader": "Deputy",
-    "mainLeaderExplanation": "This Leader is displayed on the campaign map and the standard recommendations are made on behalf of this Campaign Leader.",
-    "coLeaderExplanation": "Deputies get insight into the campaign and can replace the Campaign Leader",
     "newCampaignLead": "Invite other Campaign Leader(s)",
     "firstname": {
       "label": "First name",

@@ -89,9 +89,6 @@
     "header": null,
     "serviceManager": null,
     "mainLeader": null,
-    "coLeader": null,
-    "mainLeaderExplanation": null,
-    "coLeaderExplanation": null,
     "newCampaignLead": null,
     "firstname": {
       "label": null,

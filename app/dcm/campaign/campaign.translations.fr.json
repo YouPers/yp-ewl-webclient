@@ -88,9 +88,6 @@
   "campaignLeadForm": {
     "header": "Choisi un-e Leader de Campagne",
     "serviceManager": "Manager de Service",
-    "mainLeader": "Leader de Campagne",
-    "coLeader": null,
-    "mainLeaderExplanation": null,
     "coLeaderExplanation": null,
     "newCampaignLead": "inviter d'autres participants",
     "firstname": {
