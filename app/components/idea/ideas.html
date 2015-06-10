@@ -1,6 +1,6 @@
-<div class="column-layout">
+<div class="three-column-layout">
 
-    <nav>
+    <section class="hidden-xs">
 
 
         <div class="header-row"></div>
@@ -8,7 +8,7 @@
 
         <campaign-card campaign="campaign"></campaign-card>
 
-    </nav>
+    </section>
 
     <section>
 
@@ -52,52 +52,62 @@
                         <div ng-bind-html="::idea.title"></div>
                     </div>
 
-                    <!-- duration -->
+                    <!-- info and link icons -->
                     <div>
+
+                        <!-- info  -->
                         <div>
-                            <i class="fa fa-clock-o"></i>
-                            <span>{{:: idea.defaultduration }}</span>
-                            <span>&nbsp;</span>
-                            <span translate>activities.duration.suffix</span>
+                            <div>
+                                <i class="fa fa-clock-o"></i>
+                                <span>{{:: idea.defaultduration }}&nbsp;{{ 'activities.duration.suffix' | translate }}</span>
+                            </div>
+
+                            <i class="fa"
+                               ng-class="::{ 'fa-users': idea.defaultexecutiontype == 'group',
+                                 'fa-user': idea.defaultexecutiontype == 'self'}">
+                            </i>
                         </div>
 
-                        <i class="fa"
-                           ng-class="::{ 'fa-users': idea.defaultexecutiontype == 'group',
-                                 'fa-user': idea.defaultexecutiontype == 'self'}">
-                        </i>
-                    </div>
+                        <!-- links -->
 
-                    <!-- links -->
+                        <div>
 
-                    <div ng-if="parentState==='dcm'">
+                            <!-- recommend / invite -->
 
-                        <a ng-show="$stateParams.type !== 'group'" ui-sref="dcm.recommendation(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '' })">
-                            <i class="fa fa-lightbulb-o" popover-placement="top"  popover="{{::'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
-                        </a>
+                            <div ng-if="parentState==='dcm'">
 
-                        <a ng-show="idea.defaultexecutiontype === 'group'"
-                           ui-sref="dcm.activity(::{ idea: idea.id, mode: 'campaignlead', campaignId: campaign.id, socialInteraction: '', activity: '' })" >
-                            <i class="fa fa-envelope-o" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
-                        </a>
+                                <a ng-show="idea.defaultexecutiontype === 'group'"
+                                   ui-sref="dcm.activity(::{ idea: idea.id, mode: 'campaignlead', campaignId: campaign.id, socialInteraction: '', activity: '' })" >
+                                    <i class="fa fa-envelope-o" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
+                                </a>
 
-                    </div>
-                    <div ng-if="parentState==='dhc'">
-
-                        <a
-                           ui-sref="dhc.activity(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '', activity: '' })" >
-                            <i class="fa fa-envelope-o" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
-                        </a>
-
-                    </div>
+                                <a ng-show="$stateParams.type !== 'group'" ui-sref="dcm.recommendation(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '' })">
+                                    <i class="fa fa-lightbulb-o" popover-placement="top"  popover="{{::'activities.link.recommend' | translate}}" popover-trigger="mouseenter"></i>
+                                </a>
 
 
-                    <!-- toggle list item content -->
-                    <div>
+                            </div>
+                            <div ng-if="parentState==='dhc'">
 
-                        <a href ng-click="toggleListItem($index)">
-                            <i class="fa "
-                               ng-class="{ 'fa-chevron-down': ideasController.expanedListItem === $index, 'fa-chevron-right': ideasController.expanedListItem !== $index }"></i>
-                        </a>
+                                <a
+                                        ui-sref="dhc.activity(::{ idea: idea.id, campaignId: campaign.id, socialInteraction: '', activity: '' })" >
+                                    <i class="fa fa-envelope-o" popover-placement="top"  popover="{{::'activities.link.schedule' | translate}}" popover-trigger="mouseenter"></i>
+                                </a>
+
+                            </div>
+
+
+                            <!-- toggle list item content -->
+                            <div>
+
+                                <a href ng-click="toggleListItem($index)">
+                                    <i class="fa "
+                                       ng-class="{ 'fa-chevron-down': ideasController.expanedListItem === $index, 'fa-chevron-right': ideasController.expanedListItem !== $index }"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -115,18 +125,20 @@
 
     </section>
 
-    <aside>
+    <section>
 
-        <div class="header-row"></div>
-        <div class="button-row">
+        <div class="header-row">
+
             <button class="btn back-link" ui-sref="{{parentState == 'dcm' ? 'dcm.home({campaignId: campaign.id})' : 'dhc.game({campaignId: campaign.id})'}}">
                 <span class="fa fa-chevron-left"></span>
                 <span translate>account.backToHome</span>
             </button>
+
         </div>
+        <div class="button-row"></div>
 
         <health-coach event="'stateEnter'"></health-coach>
 
-    </aside>
+    </section>
 
 </div>
