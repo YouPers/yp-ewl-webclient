@@ -14,6 +14,8 @@
         },
         "error": "Ein Fehler ist aufgetreten"
       },
+      "invitedUserNotFound": "Diese Einladung existiert nicht mehr",
+      "ResourceNotFoundError": "Die gewünschte Ressource existiert nicht mehr",
       "502": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche es in ein paar Minuten nochmals.",
       "503": "Wir verbessern den HealthCampaign Service. Darum ist die Anwendung im Moment nicht verfügbar. Bitte versuchen sie in einigen Minuten nochmals. Vielen Dank für das Verständnis.",
       "504": "Unsere Server sind im Moment nicht verfügbar, wir arbeiten daran. Bitte versuche es in ein paar Minuten nochmals.",

@@ -19,8 +19,10 @@
                             invitingUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
                                 return UserService.getUser($stateParams.invitingUserId);
                             }],
-                            invitedUser: ['UserService', '$stateParams', function (UserService, $stateParams) {
-                                return UserService.getUser($stateParams.invitedUserId);
+                            invitedUser: ['UserService', '$stateParams', '$q', function (UserService, $stateParams, $q) {
+                                return UserService.getUser($stateParams.invitedUserId).catch(function (err) {
+                                    return $q.reject(err.status === 404 ? 'clientmsg.error.invitedUserNotFound' : err);
+                                });
                             }]
                         },
                         onEnter: ['$state', '$window', 'UserService', 'invitedUser', function ($state, $window, UserService, invitedUser) {
