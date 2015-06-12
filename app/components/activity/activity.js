@@ -566,6 +566,7 @@
 
                         // find out whether we have already invited some individuals.
                         if (invitationStatus && invitationStatus.length > 0) {
+                            var invitedUsers = [];
                             activityController.inviteOthers = activityController.inviteOthers || 'selected';
                             _.each(invitationStatus, function (status) {
                                 var user = status.user || {email: status.email};
@@ -576,9 +577,12 @@
                                     user = $scope.principal.getUser();
                                 }
                                 user.invitationStatus = status.status;
-                                activityController.invitedUsers.push(user);
+                                invitedUsers.push(user);
                             });
+                            activityController.invitedUsers = activityController.invitedUsers.concat(_.sortBy(invitedUsers, 'invitationStatus'));
                         }
+
+
 
                         // well, we have not invited 'all' and not invited any individuals, it is save to
                         // assume that we have not invited anybody yet!
