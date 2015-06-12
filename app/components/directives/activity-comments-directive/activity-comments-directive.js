@@ -56,6 +56,7 @@
                                 author: user,
                                 authorType: 'user',
                                 publishFrom: new Date(),
+                                activity: scope.activity.id,
 
                                 targetSpaces: [
                                     {
