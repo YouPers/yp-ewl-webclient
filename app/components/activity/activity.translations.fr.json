@@ -38,13 +38,13 @@
       "selected": "Avec sélectionnées",
       "all": "T",
       "inviteByEmail": {
-        "placeholder": "entrer l'adresse email",
+        "placeholder": "entrer l'adresse courriel",
         "submit": "ajouter"
       },
       "inviteByUser": "Chercher dans la campagne",
       "invitedOnSave": "Sont invités à participer:",
       "none": "personne",
-      "notFound": "pas trouvé? Invite par Email:",
+      "notFound": "pas trouvé? Invite par courriel:",
       "readOnlyLabel": "Inviter à"
     },
     "emailToBeInvited": {

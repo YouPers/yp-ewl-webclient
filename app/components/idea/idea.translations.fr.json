@@ -12,7 +12,7 @@
         "sampleInvitationSent": "Invitation envoyée à {{email}}"
       },
       "templateCampaign": {
-        "save": "Offre de référence sauvegardée"
+        "save": "Proposition standard sauvegardée"
       }
     },
     "error": {
@@ -62,10 +62,10 @@
       "valueRangeHint": "Toutes les valeurs comprises entre 0 et 10 <br/> 0 = Ne pas recommander activité 10 = activité recommander"
     },
     "templateCampaign": {
-      "addOffer": "Ajouter une offre +",
-      "header": "Utiliser cette idée comme offre de référence pour le thème {{ topic }}",
+      "addOffer": "Ajouter Proposition +",
+      "header": "Prendre cette idée comme proposition standard pour le thème {{ topic }}",
       "remove": "Effacer",
-      "save": "Sauvegarder l'offre de référence",
+      "save": "Sauvegarder la proposition standard",
       "type": {
         "Invitation": "Invitation",
         "Recommendation": "Recommandation"
@@ -132,13 +132,13 @@
     "edit": {
       "cancel": "annuler",
       "planCampaignLead": "Planifier",
-      "planCampaignLeadPopover": null,
+      "planCampaignLeadPopover": "«Planifier» signifie que tu fixes un lieu et un moment précis pour cet événement et que les participants sont invités à y participer. Il est de mise en général que tu sois toi-même présent à cet événement.",
       "planCampaignLeadText": "Planifier cette activité comme événement de campagne",
       "planParticipant": "Planifier",
       "planParticipantPopover": "Tu peux planifier cette activité pour toi et après, si tu veux, inviter d'autres personnes à participer.",
       "planParticipantText": "Planifier cette activité",
       "recommend": "Recommander",
-      "recommendPopover": "\"Recommander\" signifie que cette activité est présentée comme suggestion aux participants, qui peuvent ensuite la planifier individuellement s'ils le souhaitent.",
+      "recommendPopover": "«Recommander» signifie que cette activité est présentée comme suggestion aux participants, qui peuvent ensuite la planifier individuellement s'ils le souhaitent.",
       "recommendText": "Recommander cette activité"
     }
   }

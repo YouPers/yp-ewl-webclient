@@ -17,7 +17,7 @@
     "toSelect": "aux recommandations",
     "link": {
       "back": "Accueil",
-      "backToAssessment": null
+      "backToAssessment": "retour à l'Auto-Évaluation"
     }
   }
 }

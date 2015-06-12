@@ -4,28 +4,28 @@
       "comment": {
         "save": "Commentaire enregistré."
       },
-      "pictureSaved": null
+      "pictureSaved": "Photo sauvegardée avec succès"
     },
     "error": {
       "avatar": {
         "invalid": {
-          "fileFormat": null,
-          "fileSize": null
+          "fileFormat": "Format d'image invalide",
+          "fileSize": "S'il te plaît choisi un fichier plus petit (<2 Mo)"
         },
         "error": "Il y a eu un problème."
       },
-      "502": null,
+      "502": "Nos serveurs ne sont pas disponibles pour le moment, nous y travaillons. S'il te plaît, essaie de nouveau dans quelques minutes.",
       "503": null,
-      "504": null,
-      "alreadyJoinedUsers": null,
+      "504": "Nos serveurs ne sont pas disponibles pour le moment, nous y travaillons. S'il te plaît, essaie de nouveau dans quelques minutes.",
+      "alreadyJoinedUsers": "La campagne ne peut pas être supprimée car il y a déjà des participants inscrits",
       "cannotSwitchCampaign": null,
       "memberOfOtherCampaign": null,
-      "DhcButNoCampaign": null,
-      "invalidUserForEmailVerificationToken": null
+      "DhcButNoCampaign": "Nous sommes désolés! Quelque chose n'a pas fonctionné. S'il te plaît, inscris-toi de nouveau en cliquant sur le lien dans l'invitation que t'a envoyée ton/ta Leader de Campagne (Cet utilisateur n'a pas de campagne active)",
+      "invalidUserForEmailVerificationToken": "Le lien cliqué n'appartient pas à cet utilisateur. S'il te plaît, connecte-toi de nouveau avec la bonne adresse courriel."
     }
   },
   "busy": {
-    "submitting": null
+    "submitting": "Enregistrement..."
   },
   "calendar": {
     "tomorrow": "Demain",
@@ -80,12 +80,12 @@
   },
   "composeCommentForm": {
     "comment": {
-      "paceholder": null
+      "paceholder": "Écrire un commentaire"
     },
-    "submit": null
+    "submit": "Envoyer"
   },
   "feedbackForm": {
-    "header": null,
+    "header": "Merci pour ton commentaire! ",
     "header2": null,
     "anonymous": {
       "label": "le commentaire anonyme"
@@ -93,10 +93,10 @@
     "close": "Fermer",
     "contactInfo": {
       "error": {
-        "email": "S'il te plaît entrer une adresse email valid ou sélectionner des commentaires anonymes"
+        "email": "S'il te plaît entre une adresse courriel valide ou choisis «Feedback» (anonyme)"
       },
-      "label": "Email",
-      "placeholder": "Email"
+      "label": "Courriel",
+      "placeholder": "Courriel"
     },
     "description": {
       "label": "Description"
@@ -111,7 +111,7 @@
     }
   },
   "endorsementType": {
-    "presented": null,
-    "sponsored": null
+    "presented": "présenté par:",
+    "sponsored": "sponsorisé par:"
   }
 }

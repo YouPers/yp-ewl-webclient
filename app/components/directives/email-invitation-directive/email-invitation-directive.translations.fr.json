@@ -1,7 +1,7 @@
 {
   "emailInvitation": {
     "email": {
-      "placeholder": "Entre l'adresse email et appuyer la touche Retour"
+      "placeholder": "Entre l'adresse courriel et appuyer la touche Retour"
     },
     "inviteSubmit": "Envoi"
   }

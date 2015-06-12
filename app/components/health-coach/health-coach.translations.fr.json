@@ -27,8 +27,8 @@
         "enterAdresses": null,
         "noAvatarPicture": null,
         "noMessages": null,
-        "nothingOffered": null,
-        "testEmailSent": null,
+        "nothingOffered": "Cher/Chère Leader de Campagne,\n\nDans la section «Activités des Participants» je te conseille, chaque semaine, de recommander aux participants une nouvelle activité et d'organiser un événement de campagne.",
+        "testEmailSent": "Cher/Chère Leader de Campagne,\n\nJe viens de t'envoyer une invitation test par courriel.\n\nVérifie ce courriel et juge si le contenu te convient et si tu souhaites l'utiliser comme invitation à la campagne pour les employés. Note que le bouton sur ce courriel-test ne fonctionne pas.\n\nSi tu veux inviter les participants potentiels à la campagne avec le courriel automatique, saisis leurs adresses courriel à partir du premier jour de la campagne seulement. Cependant, je te recommande de leur annoncer la mise en oeuvre de la campagne et de les inviter quelques jours à l'avance avec un courriel interne de ton organisation.\n\nAu lieu d'envoyer l'invitation courriel automatique le premier jour de la campagne, tu peux aussi envoyer ton propre message avec le lien d'invitation dans un mail interne de ton organisation.",
         "sectionOpening": {
           "end": null,
           "messages": null,
@@ -51,17 +51,17 @@
     },
     "dhc": {
       "activity": {
-        "selfActivitySaved": null,
-        "groupActivitySaved": null,
+        "selfActivitySaved": "Ton activité est maintenant planifiée selon tes données. Elle est visible sur la page d'accueil dans la section «Activités Planifiées».",
+        "groupActivitySaved": "Ton activité est maintenant planifiée.\n\nSur la page d'accueil, j'ai déplacé l'activité de la section «Activités Proposées» vers la section «Activités Planifiées».\n\nLes personnes invitées peuvent maintenant voir cette activité dans la section «Activités Proposées» de leur page d'accueil. Ils/elles recevront également une invitation courriel de ma part au sujet de cette activité.",
         "conflictingEvent": null,
-        "deleteJoinedActivity": null,
+        "deleteJoinedActivity": "Supprimer a pour conséquence que l'organisateur voit que tu as annulé ta participation à l'activité de groupe.",
         "deleteOwnActivityAlone": null,
         "deleteOwnActivityWithJoiners": null,
         "editOwnActivityAlone": null,
         "editOwnActivityWithJoiners": null,
-        "eventDone": null,
-        "eventMissed": null,
-        "eventsDue": null,
+        "eventDone": "Félicitations pour l'activité accomplie! Continue comme ça!",
+        "eventMissed": "Dommage, ça peut arriver à n'importe qui. Fais un effort pour exécuter la prochaine activité que tu as planifiée.",
+        "eventsDue": "Regarde s'il te plaît les activités planifiées déjà échues, confirme celles que tu accomplie(s) et/ou manquée(s) et note comment tu t'es senti(e) lorsque tu l'as accomplie.",
         "groupActivityNoEventsDue": null,
         "invitationAccepted": null,
         "lastEventDone": null,
@@ -79,7 +79,7 @@
         "stateEnter": null
       },
       "game": {
-        "campaignEnded": null,
+        "campaignEnded": "Chère utilisatrice, cher utilisateur,\n\nMerci beaucoup d'avoir participé à la Campagne Santé au Travail!\n\nCordialement,\n\nTon Coach Numérique",
         "campaignEndingWithCurrentActivities": null,
         "noCurrentActivities": null,
         "campaignWelcome": null,
@@ -91,7 +91,7 @@
         "presentEvents": null,
         "recommendationDismissed": null,
         "invitationDismissed": null,
-        "noOffers": null,
+        "noOffers": "Comme première activité je te recommande de compléter une courte **Auto-évaluation** (environ 10 minutes).\n\nTon auto-évaluation me permet de te recommander quotidiennement une activité la plus appropriée possible dans la section «Activités Proposées».",
         "campaignLastDay": null
       },
       "end-of-campaign": {
@@ -99,10 +99,10 @@
         "ended": null
       }
     },
-    "fullname": null,
-    "expand": null,
+    "fullname": "Coach Numérique",
+    "expand": "plus",
     "dcmSignup": {
-      "stateEnter": null
+      "stateEnter": "Bienvenue! <br> Je suis ton Coach Numérique et je me réjouis que tu aies choisis le Service HealthCampaign. \n\nInscris-toi ainsi que ton organisation sur cette page. Après avoir entré les données sur ton organisation, tu peux commencer en créant ta première campagne.\n\nJe vais t'accompagner dans la préparation et le suivi de tes campagnes avec des trucs et astuces.\n\nTu peux obtenir plus d'informations sous la rubrique «Aide» dans le menu ou <a href=\"http://healthcampaign.youpers.com/learn-more-service-manager/'>ici</a>"
     }
   }
 }

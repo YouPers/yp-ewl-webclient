@@ -4,12 +4,12 @@
     "link": {
       "info": "en savoir plus",
       "join": "Participer",
-      "back": null
+      "back": "Page d'accueil"
     },
-    "backToDcm": null,
-    "campaignNotStartedYet": null,
+    "backToDcm": "retour à Administration de la Campagne",
+    "campaignNotStartedYet": "C'est encore trop tôt, la campagne ne démarre que le",
     "isCampaignlead": null,
-    "yourCampaignLeads": null,
+    "yourCampaignLeads": "Ton/Ta Leader de Campagne:",
     "existingCampaign": null
   }
 }

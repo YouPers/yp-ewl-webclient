@@ -68,10 +68,10 @@
         }
       },
       "email": {
-        "label": "E-mail",
-        "placeholder": "Adresse e-mail",
+        "label": "Courriel",
+        "placeholder": "Adresse courriel",
         "error": {
-          "required": "S'il te plaît, entrer une adresse email valide"
+          "required": "Entre une adresse courriel valide s'il te plaît"
         }
       },
       "phone": {
@@ -92,10 +92,10 @@
     "user": {
       "email": {
         "error": {
-          "required": "S'il te plaît, entrer une adresse email valide"
+          "required": "Entre une adresse email valide s'il te plaît"
         },
-        "label": "email",
-        "placeholder": "Alias mail"
+        "label": "courriel",
+        "placeholder": "Adresse courriel"
       },
       "firstname": {
         "error": {

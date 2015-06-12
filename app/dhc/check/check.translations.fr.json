@@ -1,11 +1,11 @@
 {
   "check": {
     "link": {
-      "done": null,
+      "done": "Terminer",
       "back": "dos"
     },
     "header": "l'auto-évaluation",
-    "of": null,
+    "of": "de",
     "questionsAnswered": "juger des critères"
   },
   "questionCategory": {
@@ -13,26 +13,26 @@
     "leisure": "Stress dans la vie personnelle",
     "stresstypus": "Amplificateurs de stress",
     "handling": "Compensation du stress",
-    "lunch": null,
-    "qualityAndQuantity": null,
-    "time": null,
-    "badHabbits": null,
+    "lunch": "Alimentation le midi",
+    "qualityAndQuantity": "Qualité et quantité",
+    "time": "Moments pour une saine alimentation",
+    "badHabbits": "Mauvaises habitudes",
     "attitudeAndAdaptability": null,
     "exercise": "Exercice",
     "musculature": null,
-    "stamina": null,
-    "agility": null,
-    "attitude": null,
-    "equipment": null,
-    "extendedEnvironment": null,
-    "nutritionAndRecovery": null,
-    "officeEquipment": null,
-    "risks": null,
+    "stamina": "Endurance",
+    "agility": "Agilité",
+    "attitude": "Attitude",
+    "equipment": "Équipement",
+    "extendedEnvironment": "Portes, escaliers, planchers",
+    "nutritionAndRecovery": "Alimentation et relaxation",
+    "officeEquipment": "Équipement de bureau",
+    "risks": "Identifier les risques et dangers",
     "safetyRelatedFreetimeBehavior": null,
     "safetyRelatedWorkBehavior": null,
-    "seating": null,
-    "transportation": null,
-    "workEnvironment": null,
-    "workEquipment": null
+    "seating": "Bureau et chaise",
+    "transportation": "Transport",
+    "workEnvironment": "Espace de travail",
+    "workEquipment": "Équipement de travail"
   }
 }

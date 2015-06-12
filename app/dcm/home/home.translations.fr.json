@@ -11,95 +11,95 @@
     "statistics": "Les statistiques",
     "stats": {
       "eventsDonePerDay": {
-        "title": null,
+        "title": "Nombre d'activités planifiées par jour",
         "legend": {
-          "Done": null,
-          "Missed": null,
-          "Open": null
+          "Done": "effectué",
+          "Missed": "manqué",
+          "Open": "ouvert"
         }
       },
       "newUsersPerDay": {
-        "title": null,
+        "title": "Nombre de participants à la campagne",
         "legend": {
-          "count": null
+          "count": "Participants à la campagne"
         }
       },
       "newestPlans": {
-        "title": null,
-        "count": null,
-        "countTooltip": null
+        "title": "Nouvellement planifié",
+        "count": "{{ count }}",
+        "countTooltip": "{{ count }} fois planifié dans cette campagne jusqu'ici"
       }
     },
     "end-of-campaign": "Rétrospective",
-    "addOffer": "Ajouter une offre",
-    "surveyInfo": null,
+    "addOffer": "Ajouter une proposition",
+    "surveyInfo": "Merci de partager ton expérience HealthCampaign en répondant à ce court sondage.",
     "surveyLink": "Sondage",
     "organization": {
       "addCampaign": "Nouvelle Campagne",
       "edit": "éd"
     },
-    "addMoreUsers": null,
-    "campaignNotStarted": null,
+    "addMoreUsers": "Invite plus de participants en leur envoyant ce lien suivant:",
+    "campaignNotStarted": "Une fois la campagne lancée, des informations de base sur la campagne en cours seront affichées ici.",
     "campaignSelection": {
-      "header": null,
-      "title": null,
-      "location": null,
-      "participants": null,
-      "campaignLead": null,
-      "duration": null,
-      "selected": null
+      "header": "Liste de campagnes",
+      "title": "Campagne",
+      "location": "Lieu",
+      "participants": "Participant",
+      "campaignLead": "Direction",
+      "duration": "Durée",
+      "selected": "Sélectionné"
     },
     "campaignStart": {
       "header": "Début de la campagne",
       "welcomeLink": {
-        "header": null,
+        "header": "<strong>Option B:</strong> envoyer les invitations à la campagne via ton application Mail",
         "createDraft": {
-          "text": null,
-          "link": null,
+          "text": "Tu peux envoyer les invitations à la campagne via ton application Mail en cliquant sur ce bouton:",
+          "link": "Créer un<br/>courriel brouillon",
           "recipient": "tes.participants@tonorganisation.com",
           "subject": "Campagne {{campaign.title}} {{ organizationName }}: Invitation personnelle",
-          "body": null
+          "body": "Chère collègue, cher collègue,\n\n{{ organizationName }} t'invite à participer à la campagne de santé au travail. Cette campagne santé basée sur le Web est un service de YOUPERS AG, une société suisse de logiciels dédiés à la santé numérique. \n\nClique sur ce lien: {{ welcomeLink }}"
         },
-        "copyLink": null
+        "copyLink": "Si la génération de ce email ne fonctionne pas, tu peux copier-coller ce lien dans ton invitation courriel."
       },
       "emailInvite": {
-        "header": null,
-        "subheader": null,
+        "header": "<strong>Option A:</strong> envoyer les invitations à la campagne via le service HealthCampaign",
+        "subheader": "Tu peux envoyer des invitations par courriel directement depuis cette page.",
         "step1": {
           "title": "1. Envoyer l'invitation-test (optionnel)",
-          "text": null,
-          "success": null,
+          "text": "Envoie-toi une invitation-test pour que tu puisses recevoir un aperçu de ton invitation à la campagne.",
+          "success": "Invitation envoyée à {{ email }}. Vérifie s'il te plaît l'invitation dans ta boîte de réception.",
           "sendTestMail": "Envoyer<br/>l'invitation-test"
         },
         "step2": {
           "title": "2. Créer une liste d'envoi",
           "emailList": {
-            "placeholder": null,
+            "placeholder": "Entrer les adresses courriel",
             "add": "Ajouter des<br/>adresses email",
-            "parsedEmailsPlaceholder": null,
-            "emailAddressesFound": null
+            "parsedEmailsPlaceholder": "Afficher les adresses courriel insérées",
+            "emailAddressesFound": "{count, plural, one{Une adresse email a été trouvée} other{# adresses email ont été trouvées}."
           }
         },
         "step3": {
           "title": "3. Envoyer les invitations",
-          "text": "Vérifie bien ta liste d'envoi avant de les envoyer en cliquant sur \"Envoyer\".",
-          "submit": null,
+          "text": "Vérifie bien les adresses courriel dans ta liste d'envoi avant de cliquer sur «Envoyer».",
+          "submit": "Envoyer",
           "emailInvitesSent": "Les invitations ont été envoyées avec succès"
         }
       },
       "campaignLeadGuidance": {
         "step1": {
-          "avatarLink": null,
-          "campaignLink": null,
-          "tab": null,
-          "text": null
+          "avatarLink": "Télécharger la photo du profil",
+          "campaignLink": "Personnaliser les données de la campagne",
+          "tab": "Compléter la carte de campagne",
+          "text": "Vérifie et corrige les informations de ta campagne et télécharge une photo de toi pour ton profil, de sorte que les participants te reconnaissent comme Leader de Campagne."
         },
         "step2": {
-          "link": null,
-          "tab": null,
-          "text": null
+          "link": "Créer et envoyer des invitations",
+          "tab": "Envoyer les invitations",
+          "text": "Félicitations! Ta campagne est maintenant lancée. Envoie dès maintenant les invitations aux employés pour participer."
         },
-        "notCampaignLead": null
+        "notCampaignLead": "Statut du début de campagne"
       }
     },
     "participants": {
@@ -108,56 +108,56 @@
     "messages": "Annonce",
     "noCampaigns": "Il n'y a pas encore de campagne. Créée une première campagne.",
     "noMessages": "Ici sont affichés les messages aux participants à la campagne.",
-    "noOffers": null,
+    "noOffers": "Pas d'activité planifiée pour le moment. Clique sur «Ajouter Proposition» pour recommander une activité aux participants.",
     "noParticipants": "Il n'y a toujours pas de participant à la campagne",
     "showOld": "Montrer le passé",
     "offerType": {
       "Recommendation": "Tes recommandations",
       "Invitation": "Tes événements",
-      "UserInvitation": null,
+      "UserInvitation": "Événements de participants",
       "All": "Tous"
     },
-    "refreshDisplay": null
+    "refreshDisplay": "Actualiser l'affichage"
   },
   "dcm-end-of-campaign": {
     "usersTotal": {
-      "title": null,
-      "campaign": null,
-      "average": null
+      "title": "Nombre de participants",
+      "campaign": "Cette campagne",
+      "average": "Moyenne"
     },
     "eventsStatus": {
-      "title": null,
-      "campaign": null,
-      "average": null,
-      "done": null,
-      "missed": null,
-      "open": null
+      "title": "Activités par participant",
+      "campaign": "Campagne",
+      "average": "Moyenne",
+      "done": "accompli",
+      "missed": "manqué",
+      "open": "ouvert"
     },
     "assessmentResults": {
-      "title": null,
+      "title": "Auto-évaluation",
       "legend": {
-        "title": null,
-        "min": null,
-        "max": null,
-        "question": null,
+        "title": "Aide (tutoriel)",
+        "min": "Trop peu",
+        "max": "Trop",
+        "question": "Exemple",
         "descriptions": {
-          "1": null,
-          "2": null,
-          "3": null,
-          "4": null,
-          "5": null,
-          "6": null,
-          "7": null
+          "1": "10% des utilisateurs ont choisi «trop peu» et dit <br/> qu'ils sont donc <strong>très affectés</strong>",
+          "2": "20% des utilisateurs ont choisi «trop peu» et dit <br/> qu'ils sont donc <strong>peu affectés</strong>",
+          "3": "32% de tous les utilisateurs ont choisi «raisonnable»",
+          "4": "15% des utilisateurs ont choisi «trop» et dit<br/> qu'ils sont donc <strong>peu affectés</strong>",
+          "5": "23% des utilisateurs ont choisi «trop» et dit<br/> qu'ils sont donc <strong>très affectés</strong>",
+          "6": "pour comparer, la ligne du bas montre les valeurs moyennes de toutes les campagnes menées jusqu'ici",
+          "7": "En survolant l'icône «i» avec le curseur, le critère d'évaluation et l'importance des caractéristiques apparaissent dans la fenêtre du Coach Numérique."
         }
       }
     },
     "eventsPlanned": {
-      "header": null,
-      "content": null
+      "header": "Activités populaires",
+      "content": "planifié { plannedCount } fois par { byUsersCount, plural, one{une personne} other {# personnes} }"
     },
     "legend": {
-      "campaign": null,
-      "average": null
+      "campaign": "Cette campagne",
+      "average": "Moyenne de toutes les campagnes"
     }
   }
 }

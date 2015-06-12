@@ -25,11 +25,11 @@
     "language": "La Langue",
     "feedback": "Les réactions",
     "moreinfo": "En savoir plus",
-    "contact": null,
+    "contact": "Contact",
     "logoHeader": "HealthCampaign",
-    "participant": null,
-    "campaignlead": null,
-    "serviceManager": null
+    "participant": "Participant",
+    "campaignlead": "Leader de Campagne",
+    "serviceManager": "Manager de Service"
   },
   "home": {
     "for": "pour",
@@ -45,8 +45,8 @@
   },
   "loginform": {
     "usernameOrEmail": {
-      "label": "Nom d'utilisateur / email",
-      "$invalid": "S'il te plaît, entrer un nom d'utilisateur ou email valide"
+      "label": "Nom d'utilisateur / courriel",
+      "$invalid": "S'il te plaît, entrer un nom d'utilisateur ou une adresse courriel valide"
     },
     "password": {
       "label": "Mot de passe",
@@ -68,14 +68,14 @@
     }
   },
   "help": {
-    "campaignLeader": null,
-    "campaignParticipant": null,
-    "faq": null,
-    "faqLink": null,
-    "help": null,
-    "moreInfoCampaignLeaderLink": null,
-    "moreInfoParticipantLink": null,
-    "moreInfoServiceManagerLink": null,
-    "serviceManager": null
+    "campaignLeader": "Leader de Campagne",
+    "campaignParticipant": "Participant à la Campagne",
+    "faq": "FAQ",
+    "faqLink": "http://healthcampaign.youpers.com/faq/?lang=de&show_menu=no",
+    "help": "Aide",
+    "moreInfoCampaignLeaderLink": "http://healthcampaign.youpers.com/learn-more-campaign-leader/",
+    "moreInfoParticipantLink": "http://healthcampaign.youpers.com/learn-more-participant/",
+    "moreInfoServiceManagerLink": "http://healthcampaign.youpers.com/learn-more-service-manager/",
+    "serviceManager": "Manager de Service"
   }
 }

@@ -3,8 +3,8 @@
     "header": "Bienvenue chez YouPers!",
     "signupNote": "Enregistrer nouveau",
     "signinNote": "Login",
-    "noCampaignRemark": null,
-    "useLoginIfHaveAccount": null
+    "noCampaignRemark": "Clique s'il te plaît sur le lien dans l'invitation courriel de ton Leader de Campagne",
+    "useLoginIfHaveAccount": "Si tu as déjà un compte HealthCampaign, connecte-toi ici"
   },
   "registerForm": {
     "firstname": {
@@ -30,12 +30,12 @@
       }
     },
     "email": {
-      "label": "E-mail",
-      "placeholder": "E-mail",
+      "label": "Courriel",
+      "placeholder": "Courriel",
       "error": {
-        "required": "S'il te plaît, entrer un email valide.",
-        "email": "S'il te plaît, entrer une adresse email valide",
-        "unique": "Cette adresse e-mail est déjà enregistrée, connectes-toi, s'il te plaît"
+        "required": "Entre une adresse courriel s'il te plaît",
+        "email": "Entre une adresse courriel valide s'il te plaît",
+        "unique": "Cette adresse courriel est déjà inscrite, s'il te plaît connecte-toi"
       }
     },
     "password": {
@@ -65,31 +65,31 @@
     "register": "Enregistrer",
     "organizationName": {
       "error": {
-        "required": null
+        "required": "S'il te plaît, entre le nom de ton organisation."
       },
       "label": "Nom de société",
       "placeholder": "Nom de société"
     },
-    "termsLink": null
+    "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions/"
   },
   "signupFinalization": {
-    "header": null,
-    "verificationEmail": null,
-    "noVerificationEmail": null,
+    "header": "Merci pour ton inscription",
+    "verificationEmail": "Nous avons envoyé un courriel à: <strong>{{ email }}</strong> <br/><br/> S'il te plaît, clique sur le lien de confirmation dans cet e-mail pour continuer.",
+    "noVerificationEmail": "N'as-tu pas reçu le courriel?",
     "resend1": {
-      "text": null,
-      "link": null,
-      "verificationSent": null
+      "text": "S'il te plaît, vérifie ta boîte de pourriels (spams)",
+      "link": "Envoyer à nouveau",
+      "verificationSent": "Envoyé"
     },
     "invalidEmailAddress": {
-      "text": null,
-      "link": null
+      "text": "Mauvaise adresse courriel?",
+      "link": "S'inscrire de nouveau"
     },
     "resend2": {
-      "text": null,
-      "link": null,
-      "verificationSent": null
+      "text": "Déjà supprimé ou introuvable?",
+      "link": "Envoyer à nouveau",
+      "verificationSent": "Envoyé"
     },
-    "contactCustomerSupport": null
+    "contactCustomerSupport": "Contacte le service à la clientèle <a href=\"mailto:customer.support@youpers.com\">customer.support@youperscom</a>"
   }
 }

@@ -24,7 +24,7 @@
     "card": {
       "title": "HealthCampaign",
       "campaignLead": "Gestion des campagnes",
-      "campaignLeadUnconfirmed": null
+      "campaignLeadUnconfirmed": "Ce/cette Leader de Campagne n'a pas encore accepté ton invitation. Encourage-le/la à cliquer sur le lien dans son email d'invitation ou crée une nouvelle campagne avec la bonne adresse courriel du/de la Leader de Campagne."
     }
   },
   "campaignForm": {
@@ -46,7 +46,7 @@
       "label": "Fin"
     },
     "usersInCampaign": "La campagne a déjà des participants.",
-    "offersRecreated": "Toutes les recommandations et invitations sont recréées.",
+    "offersRecreated": "Toutes les recommandations et invitations sont créées à nouveau.",
     "offersRemain": "Les recommandations et invitations sont maintenues.",
     "campaignEnded": "La campagne est déjà finie.",
     "participants": {
@@ -80,7 +80,7 @@
     },
     "backToTopicSelection": "Retour au choix de programme",
     "paymentCode": {
-      "invalidCode": null,
+      "invalidCode": "Code d'activation invalide ou déjà utilisé. Tu peux obtenir un code d'activation valide <a href=\"http://shop.youpers.com/en/\">ici.</a>",
       "invalidTopic": "Ce code n'est valide que pour la campagne {{ invalidTopic }}",
       "label": "Code d'activation"
     }
@@ -88,7 +88,7 @@
   "campaignLeadForm": {
     "header": "Choisi un-e Leader de Campagne",
     "serviceManager": "Manager de Service",
-    "coLeaderExplanation": null,
+    "mainLeader": "Leader de Campagne",
     "newCampaignLead": "inviter d'autres participants",
     "firstname": {
       "label": "Prénom",
@@ -105,11 +105,11 @@
       }
     },
     "email": {
-      "label": "Email",
-      "placeholder": "ail",
+      "label": "Courriel",
+      "placeholder": "Courriel",
       "error": {
-        "required": "S'il te plaît, entrer une adresse email.",
-        "email": "S'il te plaît, entrer une adresse email valide.",
+        "required": "Entre une adresse courriel s'il te plaît",
+        "email": "Entre une adresse courriel valide s'il te plaît",
         "unique": "Cette adresse email est déjà inscrite."
       }
     },

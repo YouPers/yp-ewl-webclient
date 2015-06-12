@@ -49,24 +49,24 @@
     "header": "Les idées d'activités de YouPers"
   },
   "campaignoffers": {
-    "stateHeader1": "Les campagnes",
-    "stateHeader2": "Les activités",
+    "stateHeader1": "campagnes",
+    "stateHeader2": "Activités",
     "link": {
-      "newActivity": "Créer une activité propre",
-      "publishActivity": "recommander/planifier <br/> une activité existant"
+      "newActivity": "Créer sa propre activité",
+      "publishActivity": "recommander/planifier <br/> une activité existante"
     },
-    "published": "Publié",
+    "published": "publié",
     "offertype": {
-      "campaignActivity": "Recommandé",
-      "campaignActivityPlan": "Planifié"
+      "campaignActivity": "recommandé",
+      "campaignActivityPlan": "planifié"
     },
-    "userNamesNotShown": "Noms ne sont pas affichés pour la protection de la vie privée"
+    "userNamesNotShown": "Les noms ne sont pas affichés en vertu de la protection de la vie privée"
   },
   "scheduledDate": {
     "daily": "quotidien"
   },
   "recommendationForm": {
-    "submit": "Enregistrer",
+    "submit": "Sauvegarder",
     "delete": "Effacer la recommandation",
     "publishDates": "Recommandation {{ recommendation.id ? 'ist' : 'wird' }} visible pour tous les participants à la campagne à partir de maintenant jusqu'au {{ recommendation.publishTo | date }}",
     "header": {

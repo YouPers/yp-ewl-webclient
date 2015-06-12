@@ -14,7 +14,7 @@
     "error": {
       "password": {
         "invalid": "Le mot de passe actuel n'est pas correcte",
-        "reset": "Nom d'utilisateur / Email est inconnu"
+        "reset": "Le nom d'utilisateur ou l'adresse courriel est inconnu(e)"
       }
     }
   },
@@ -22,7 +22,7 @@
     "account": "Le compte",
     "changeAccount": "Changer de compte",
     "changePassword": "Changer mot de passe",
-    "backToHome": null
+    "backToHome": "Page d'accueil"
   },
   "accountForm": {
     "firstname": {
@@ -47,12 +47,12 @@
       }
     },
     "email": {
-      "label": "E-mail",
-      "placeholder": "Email",
+      "label": "Courriel",
+      "placeholder": "Courriel",
       "error": {
-        "required": "S'il te plaît, entrer un email valide.",
-        "email": "S'il te plaît, entrer une adresse email valide",
-        "unique": "Cette adresse email est déjà enregistré, Connectes-toi, s'il te plaît"
+        "required": "Entre une adresse courriel s'il te plaît",
+        "email": "Entre une adresse email valide s'il te plaît.",
+        "unique": "Cette adresse email est déjà inscrite. Connecte-toi s'il te plaît."
       }
     },
     "save": "Enregistrer",
@@ -71,7 +71,7 @@
       "placeholder": "Nouveau mot de passe",
       "error": {
         "minlength": "6 caractères minimum",
-        "$invalid": null,
+        "$invalid": "6 caractères minimum",
         "required": "Ton nouveau mot de passe"
       }
     },
@@ -85,19 +85,19 @@
     "save": "Éditer"
   },
   "emailVerification": {
-    "emailValid": "l'adresse e-mail confirmé!",
-    "thankYou": "Merci pour la confirmation de l'adresse e-mail - tu peux maintenant procéder.",
+    "emailValid": "L'adresse courriel est confirmée!",
+    "thankYou": "Merci d'avoir confirmé ton adresse courriel. Tu peux maintenant continuer.",
     "next": "suivant"
   },
   "passwordResetRequest": {
     "resetPasswordFor": "Mot de passe réinitialisé",
     "identification": "L'identité",
-    "checkYourEmails": "Vérifies tes emails",
-    "weSentALink": "Nous  t'avons envoyé un e-mail avec un lien pour réinitialiser ton mot de passe. S'il vous plaît,vérifier ta boîte aux lettres"
+    "checkYourEmails": "Vérifie tes courriels",
+    "weSentALink": "Nous t'avons envoyé(e) un courriel avec un lien pour réinitialiser ton mot de passe. Vérifie ta boîte de réception s'il te plaît."
   },
   "passwordResetRequestForm": {
-    "usernameOrEmail": "Nom d’utilisateur ou email",
-    "$invalid": "S'il vous plaît, entrer un nom d'utilisateur valide ou email",
+    "usernameOrEmail": "Nom d’utilisateur ou courriel",
+    "$invalid": "S'il vous plaît, entrer un nom d'utilisateur ou un courriel valide",
     "submit": "suivant",
     "reset": "reculer"
   },
@@ -138,7 +138,7 @@
       "zipCode": {
         "placeholder": "Code postal",
         "error": {
-          "pattern": null
+          "pattern": "S'il te plaît entrer un numéro valide"
         }
       },
       "city": {
@@ -159,7 +159,7 @@
       "zipCode": {
         "placeholder": "Code postal",
         "error": {
-          "pattern": null
+          "pattern": "S'il te plaît entrer un numéro valide"
         }
       },
       "city": {
@@ -179,12 +179,12 @@
     "language": "Langue",
     "$invalid": "Intégrer les encours valides",
     "email": {
-      "actPlanInvites": "Les invitations à des activités ",
-      "dailyUserMail": "Le résumé journalier",
-      "iCalInvites": "L'entrée de l'agenda par email",
-      "weeklyCampaignLeadMail": null
+      "actPlanInvites": "Invitations à des activités ",
+      "dailyUserMail": "Courriel journalier",
+      "iCalInvites": "Ajouter au calendrier par courriel",
+      "weeklyCampaignLeadMail": "Courriel hebdomadaire"
     },
-    "emailNotificationsSettings": "Messages reçus?",
+    "emailNotificationsSettings": "Notifications courriel reçues?",
     "calendarNotificationSettings": "Des indications dans le calendrier",
     "rejectedActivities": {
       "header": "Des activités réfusés"
