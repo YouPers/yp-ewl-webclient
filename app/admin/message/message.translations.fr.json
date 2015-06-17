@@ -1,11 +1,11 @@
 {
   "admin": {
     "message": {
-      "stateHeader1": "Système",
-      "stateHeader2": "Messages",
+      "stateHeader1": "système",
+      "stateHeader2": "messages",
       "publishFrom": "Publié à partir de: ",
       "publishTo": "Publié jusqu'au: ",
-      "important": "important"
+      "important": "Important"
     }
   },
   "adminMessageForm": {
@@ -21,7 +21,7 @@
       "placeholder": "Texte"
     },
     "important": {
-      "label": "important"
+      "label": "Important"
     },
     "campaign": {
       "label": "Campagne",
@@ -37,6 +37,6 @@
     "publishTo": {
       "label": "Publié jusqu'au"
     },
-    "submit": "Envoi"
+    "submit": "Envoyer"
   }
 }

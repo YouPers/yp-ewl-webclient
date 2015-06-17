@@ -8,7 +8,7 @@
   "invite": {
     "continueToActivity": "Continuer vers Activité",
     "invalidCampaign": "<strong>{{ invalidCampaignUser.fullname }}</strong> est dans une autre campagne (<strong>{{ invalidCampaignUser.campaign.title }}</strong>). Cependant, l'invitation à cette activité est pour la campagne <strong>{{ campaign.title }}</strong>. Connecte-toi à cette campagne avec ton nom d'utilisateur pour participer à cette activité.",
-    "invalidCampaignHeader": "Alerte",
+    "invalidCampaignHeader": "Attention!",
     "messageAuthenticated": "<strong>{{user}}</strong> t'a invité(e) à l'activité <strong>{{ idea.title }}</strong>.",
     "messageUnauthenticated": "<strong>{{user}}</strong> t'a invité(e) à l'activité <strong>{{ idea.title }}</strong>. Connecte-toi pour y participer.",
     "noAccount": "Pas encore inscrit? Clique sur le lien dans le courriel d'invitation de <strong>{{ campaign.campaignLeads[0].fullname }}</strong> pour participer à la campagne <strong>{{ campaign.title }}</strong>!"

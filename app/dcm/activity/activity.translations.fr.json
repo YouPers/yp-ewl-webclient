@@ -3,7 +3,7 @@
     "stateHeader1": "activité",
     "title": {
       "label": "Titre",
-      "placeholder": "Enregistrez un titre court, s.v.p. (3x20 caractères max.)"
+      "placeholder": "Entrer un titre court (3-20 caractères max)"
     },
     "image": {
       "label": "Photo de l'activité",
@@ -46,7 +46,7 @@
       "recommend": "Recommander"
     },
     "search": "Chercher",
-    "header": "Les idées d'activités de YouPers"
+    "header": "Idées d'activités HealthCampaign"
   },
   "campaignoffers": {
     "stateHeader1": "campagnes",

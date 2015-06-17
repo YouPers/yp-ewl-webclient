@@ -2,9 +2,9 @@
   "check": {
     "link": {
       "done": "Terminer",
-      "back": "dos"
+      "back": "Interrompre"
     },
-    "header": "l'auto-évaluation",
+    "header": "Auto-Évaluation",
     "of": "de",
     "questionsAnswered": "juger des critères"
   },
@@ -17,9 +17,9 @@
     "qualityAndQuantity": "Qualité et quantité",
     "time": "Moments pour une saine alimentation",
     "badHabbits": "Mauvaises habitudes",
-    "attitudeAndAdaptability": null,
+    "attitudeAndAdaptability": "Attitude et capacité d’adaptation",
     "exercise": "Exercice",
-    "musculature": null,
+    "musculature": "Puissance",
     "stamina": "Endurance",
     "agility": "Agilité",
     "attitude": "Attitude",
@@ -28,8 +28,8 @@
     "nutritionAndRecovery": "Alimentation et relaxation",
     "officeEquipment": "Équipement de bureau",
     "risks": "Identifier les risques et dangers",
-    "safetyRelatedFreetimeBehavior": null,
-    "safetyRelatedWorkBehavior": null,
+    "safetyRelatedFreetimeBehavior": "Sécurité comportementale durant les loisirs",
+    "safetyRelatedWorkBehavior": "Sécurité comportementale au travail",
     "seating": "Bureau et chaise",
     "transportation": "Transport",
     "workEnvironment": "Espace de travail",

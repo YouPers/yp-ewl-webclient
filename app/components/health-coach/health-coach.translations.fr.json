@@ -5,38 +5,38 @@
         "groupActivitySaved": null,
         "deleteOwnActivity": null,
         "editOwnActivity": null,
-        "stateEnterAsSpectator": null,
+        "stateEnterAsSpectator": "Cher/Chère Leader de Campagne,\n\nCette activité de groupe ouverte à tous a été organisée par un-e participant-e de la campagne et t'est affichée ici pour fins d'information seulement.\n\nTu peux voir ici quelle activité de groupe est ouverte à tous, qui l'organise, quand et à quelle heure et quels-quelles participants-tes l'ont déjà acceptée ou déclinée.",
         "stateEnter": null
       },
       "campaign": {
         "stateEnter": null
       },
       "home": {
-        "oneDayOrMoreUntilCampaignStart": null,
+        "oneDayOrMoreUntilCampaignStart": "Cher/Chère Leader de Campagne,\n\nInvite les personnes de ton groupe cible à participer à la campagne en leur envoyant le lien d'invitation le jour de lancement de la campagne.",
         "campaignAfterFirstWeek": null,
         "campaignCreated": null,
-        "campaignEnded": null,
+        "campaignEnded": "Cher/Chère Leader de Campagne,\n\nLa campagne Santé est maintenant terminée. Merci d'avoir géré cette campagne internet. \n\nDans la section «Déroulement de la Campagne», regarde comment la campagne s'est déroulée. Tu trouveras des statistiques intéressantes sur la campagne affichées dans la section «Fin de la Campagne».\n\nPrends quelques minutes s'il-te-plaît pour répondre au court sondage en ligne et partager avec nous et avec ton Manager de Service ce qui t'as plu-e le plus du service HealthCampaign et ce qui pourrait être amélioré (dans le sondage ou sur «Feedback»).\n\nMerci beaucoup et mes salutations les plus cordiales!\n\nTon Coach Numérique",
         "campaignFirstWeek": null,
         "campaignLastWeek": null,
         "campaignStartedToday": null,
         "invitationCreated": null,
-        "noCampaigns": "Félicitations. Tu as saisi toutes les informations sur ton organisation.\n\nTu peux maintenant démarrer la création de <a href=\"/#/dcm/campaign//topics\"> ta première campagne </a>.\n\nJe te conseille que chaque département mène sa propre campagne. Réfléchis aussi si cela fait sens que différents groupes d'employés mènent chacun leur propre campagne.\n\nNote également que chaque campagne est associée à un programme choisi et à une période et durée précises.",
-        "organizationIncomplete": null,
+        "noCampaigns": "Cher/chère Manager de Service,\n\nFélicitations. Tu as saisi toutes les informations sur ton organisation.\n\nTu peux maintenant commencer à <a href=\"/#/dcm/campaign//topics\">créer ta première campagne </a>.",
+        "organizationIncomplete": "Cher/Chère Manager de Service,\n\nMerci beaucoup pour ton inscription.\n\nS'il te plaît entre <a href=\"/#/organization/\">toutes les informations sur ton organisation ainsi que sur toi en tant que personne-contact</a> avant de commencer à créer ta première campagne.",
         "recommendationCreated": null,
         "recommendationDeleted": null,
-        "enterAdresses": null,
-        "noAvatarPicture": null,
-        "noMessages": null,
+        "enterAdresses": "Cher/Chère Leader de Campagne,\n\nInvite les personnes de ton groupe cible à participer à la campagne en leur envoyant le lien d'invitation dans un courriel interne le jour de lancement de la campagne.\n\nSi ta campagne ne commence que dans quelques jours, je te recommande d'informer à l'avance les participants-cibles par courriel interne à propos de la campagne en question.",
+        "noAvatarPicture": "S'il-te-plaît télécharge une photo de toi pour <a href=\"/#/profile\">ton profil</a>.\n\nLes participants verront cette photo associée à ton invitation courriel ainsi qu'à tes activités de campagne et à tes messages dans l'application.",
+        "noMessages": "Cher/Chère Leader de Campagne,\n\nPour démarrer une campagne, effectue les étapes décrites dans la section \"Début de la Campagne\". Les étapes marquées d'un crochet sont déjà complétées.\n\nPour composer un message, clique sur la section \"Messages\".\n\nJe te recommande d'envoyer un message de bienvenue le jour de lancement de la campagne, un message de motivation pendant le déroulement de la campagne et un message de remerciement vers la fin de la campagne.\n\nCompose tes messages avant même le début de la campagne et détermine leur date de publication d'avance «de - à».",
         "nothingOffered": "Cher/Chère Leader de Campagne,\n\nDans la section «Activités des Participants» je te conseille, chaque semaine, de recommander aux participants une nouvelle activité et d'organiser un événement de campagne.",
         "testEmailSent": "Cher/Chère Leader de Campagne,\n\nJe viens de t'envoyer une invitation test par courriel.\n\nVérifie ce courriel et juge si le contenu te convient et si tu souhaites l'utiliser comme invitation à la campagne pour les employés. Note que le bouton sur ce courriel-test ne fonctionne pas.\n\nSi tu veux inviter les participants potentiels à la campagne avec le courriel automatique, saisis leurs adresses courriel à partir du premier jour de la campagne seulement. Cependant, je te recommande de leur annoncer la mise en oeuvre de la campagne et de les inviter quelques jours à l'avance avec un courriel interne de ton organisation.\n\nAu lieu d'envoyer l'invitation courriel automatique le premier jour de la campagne, tu peux aussi envoyer ton propre message avec le lien d'invitation dans un mail interne de ton organisation.",
         "sectionOpening": {
-          "end": null,
-          "messages": null,
-          "stats": null,
-          "offers": null,
-          "participants": null,
-          "start": null,
-          "campaigns": null
+          "end": "Cher/Chère Leader de Campagne,\n\nDans la section «Fin de la Campagne», tu trouveras des statistiques intéressantes sur les participants de la campagne, sur leur auto-évaluation et leurs activités.\n\nPrends quelques minutes s'il-te-plaît pour répondre au court sondage en ligne et partager avec nous et avec ton Manager de Service ce qui t'as plu-e du service HealthCampaign et ce qui pourrait être amélioré (en cliquant sur «Feedback» dans le menu).\n\nMerci beaucoup et mes salutations les plus cordiales!\n\nTon Coach Numérique",
+          "messages": "Cher/Chère Leader de Campagne,\n\nTu peux composer un message pour les participants à la campagne dans la section «Messages». Compose un message et détermine la période de publication à l'intérieur de laquelle tu veux que ton message soit affiché.\n\nEn cliquant sur «Sauvegarder» ton message sera publié. Tu peux à tout moment éditer ou supprimer ton message.",
+          "stats": "Cher/Chère Leader de Campagne,\n\nDans la section «Déroulement de la campagne» tu peux suivre le nombre de participants à la campagne, tout comme leurs activités. Le graphique du nombre d'activités par jour affiche des courbes individuelles que tu peux activer et désactiver en cliquant dans la légende.\n\nSi la campagne ne se passe comme tu le souhaites, réfléchis à ce que tu pourrais faire pour améliorer son déroulement (par exemple, envoyer un message de motivation aux participants ou les inviter à un événement de campagne).",
+          "offers": "Cher/Chère Leader de Campagne,\n\nDans la section «Activités» sont affichés tes recommandations et événements en tant que Leader de Campagne. Navigue dans la Bibliothèque à la recherche d'idées pour planifier un événement de campagne ou encore pour recommander une activité aux participants. Tu peux également créer ta propre activité.\n\nTu peux accéder aux recommandations et événements passés en cliquant sur «Afficher le Passé».",
+          "participants": "Cher/Chère Leader de campagne,\n\nDès le premier jour de la campagne, tu peux voir toutes les personnes qui y participent dans la section «Liste des Participants».",
+          "start": "Cher/Chère Leader de Campagne,\n\nPour lancer une nouvelle campagne, suis les étapes décrites dans la section «Début de la Campagne». Les étapes marquées d'un crochet sont celles déjà complétées.\n\nMême si la campagne a déjà commencé, tu peux à tout moment envoyer de nouvelles invitations, éditer les dates de la campagne ou télécharger une autre photo de toi pour ton profil.",
+          "campaigns": "Dans cette section tu peux voir toutes tes campagnes et si nécessaire, éditer les informations relatives à tes campagnes."
         }
       },
       "ideas": {
@@ -55,10 +55,10 @@
         "groupActivitySaved": "Ton activité est maintenant planifiée.\n\nSur la page d'accueil, j'ai déplacé l'activité de la section «Activités Proposées» vers la section «Activités Planifiées».\n\nLes personnes invitées peuvent maintenant voir cette activité dans la section «Activités Proposées» de leur page d'accueil. Ils/elles recevront également une invitation courriel de ma part au sujet de cette activité.",
         "conflictingEvent": null,
         "deleteJoinedActivity": "Supprimer a pour conséquence que l'organisateur voit que tu as annulé ta participation à l'activité de groupe.",
-        "deleteOwnActivityAlone": null,
-        "deleteOwnActivityWithJoiners": null,
-        "editOwnActivityAlone": null,
-        "editOwnActivityWithJoiners": null,
+        "deleteOwnActivityAlone": "La suppression de cette activité a comme conséquence que la carte sera supprimée de la section \"Activités Planifiées\".",
+        "deleteOwnActivityWithJoiners": "La suppression de cette activité a pour conséquence que les participants invités à cette activités ne verront plus ta carte d'invitation dans leur section «Activités Proposées».\n\nSi un participant a déjà accepté votre invitation et planifié l'activité, cette activité sera automatiquement supprimée de sa section «Activités Planifiées» et il ou elle recevra un courriel d'information.",
+        "editOwnActivityAlone": "Les données de ton activité seront ajustées en fonction de tes modifications, une fois qu'elles seront enregistrées.",
+        "editOwnActivityWithJoiners": "Les modifications apportées à cette activité de groupe seront également affichées dans la section «Activités Proposées» de chacun des participants invités. \n\nSi un participant a déjà accepté votre invitation et planifié l'activité, les modifications seront automatiquement affichées dans sa section «Activités Planifiées» et il ou elle recevra un courriel pour l'informer du changement.",
         "eventDone": "Félicitations pour l'activité accomplie! Continue comme ça!",
         "eventMissed": "Dommage, ça peut arriver à n'importe qui. Fais un effort pour exécuter la prochaine activité que tu as planifiée.",
         "eventsDue": "Regarde s'il te plaît les activités planifiées déjà échues, confirme celles que tu accomplie(s) et/ou manquée(s) et note comment tu t'es senti(e) lorsque tu l'as accomplie.",
@@ -68,35 +68,35 @@
         "lastEventMissed": null,
         "recommendationAccepted": null,
         "scheduleRecommendedActivity": null,
-        "scheduleRecommendedActivityConflict": null,
+        "scheduleRecommendedActivityConflict": "Attention! Il y a un conflit d'horaire avec une activité déjà planifiée.\n\nPlanifie donc cette activité à une autre heure ou à une autre date.",
         "stateEnter": null
       },
       "check": {
         "stateEnter": null,
-        "assessmentAlreadyDone": null
+        "assessmentAlreadyDone": "Tu vois ici les réponses à ton auto-évaluation et tu peux les ajuster maintenant si tu le souhaites. \n\nAinsi je peux te recommander les activités les plus appropriées pour toi."
       },
       "focus": {
         "stateEnter": null
       },
       "game": {
-        "campaignEnded": "Chère utilisatrice, cher utilisateur,\n\nMerci beaucoup d'avoir participé à la Campagne Santé au Travail!\n\nCordialement,\n\nTon Coach Numérique",
+        "campaignEnded": "Chère utilisatrice, cher utilisateur,\n\nMerci beaucoup d'avoir participé à la Campagne Santé!\n\nCordialement,\n\nTon Coach Numérique",
         "campaignEndingWithCurrentActivities": null,
         "noCurrentActivities": null,
-        "campaignWelcome": null,
+        "campaignWelcome": "<h3>Bienvenue!</h3>\n\nJe suis ton Coach Numérique.\n\nJe t'accompagne pendant ta participation à la campagne Santé en te donnant des trucs et astuces.\n\nComme première activité de campagne, je te recommande de compléter une courte Auto-Évaluation (ca. 10 minutes). Les informations relatives à ton état de santé me permettront de te recommander quotidiennement une activité  appropriée à tes besoins. Pour commencer ton Auto-Évaluation, clique sur la carte «Auto-Évaluation» dans la section «Activités Planifiées».\n\nLes invitations à des activités de la part de/de la Leader de Campagne et d'autres participants sont affichées dans la section «Activités Proposées». Il en est de même pour les recommandations d'expert YouPers, les recommandations du/de la Leader de Campagne ainsi que des miennes en tant que ton Coach Numérique. Tu peux aussi à tout moment chercher des idées d'activité dans la Bibliothèque ou encore créer ta propre activité.",
         "noPastOrPresentEventsAndEnoughActivities": null,
         "noPastOrPresentEventsAndTooFewActivities": null,
-        "pastEvents": null,
-        "checkBackClicked": null,
-        "pastAndPresentEvents": null,
-        "presentEvents": null,
-        "recommendationDismissed": null,
-        "invitationDismissed": null,
+        "pastEvents": "Dans la section «Activités Planifiées», j'ai marqué d'une couleur les activités planifiées déjà échues. Dis-moi, en cliquant sur leur carte respective, si tu les a accomplis ou non et si oui, comment tu t'es senti-e.\n\nLes invitations à des activités de la part de/de la Leader de Campagne et d'autres participants sont affichées dans la section «Activités Proposées». Il en est de même pour les recommandations d'expert YouPers, les recommandations du/de la Leader de Campagne ainsi que des miennes en tant que ton Coach Numérique. Tu peux aussi à tout moment chercher des idées d'activité dans la Bibliothèque ou encore créer ta propre activité.",
+        "checkBackClicked": "En fonction des premières réponses de ton auto-évaluation, je peux déjà te recommander une première activité.\n\nJe te conseille cependant de répondre aux questions suivantes afin que je puisse te recommander les activités les plus appropriées à tes besoins.",
+        "pastAndPresentEvents": "Dans la section «Activités Planifiées», j'ai marqué d'une couleur les activités qui sont planifiées aujourd'hui. Accomplis celles-là aujourd'hui et dis-moi, en cliquant sur leur carte respective, si tu les a réalisées et si oui, comment tu t'es senti-e.\n\nLes invitations à des activités de la part de/de la Leader de Campagne et d'autres participants sont affichées dans la section «Activités Proposées». Il en est de même pour les recommandations d'expert YouPers, les recommandations du/de la Leader de Campagne ainsi que des miennes en tant que ton Coach Numérique. Tu peux aussi à tout moment chercher des idées d'activité dans la Bibliothèque ou encore créer ta propre activité.",
+        "presentEvents": "Dans la section «Activités Planifiées», j'ai marqué d'une couleur les activités qui sont planifiées aujourd'hui. Accomplis celles-là aujourd'hui et dis-moi, en cliquant sur leur carte respective, si tu les a réalisées et si oui, comment tu t'es senti-e.\n\nLes invitations à des activités de la part de/de la Leader de Campagne et d'autres participants sont affichées dans la section «Activités Proposées». Il en est de même pour les recommandations d'expert YouPers, les recommandations du/de la Leader de Campagne ainsi que des miennes en tant que ton Coach Numérique. Tu peux aussi à tout moment chercher des idées d'activité dans la Bibliothèque ou encore créer ta propre activité.",
+        "recommendationDismissed": "Tu as choisi de décliner cette recommandation.\n\nJ'ai donc déplacé cette activité de la section «Activités Proposées» vers la section «Activités Rejetées».\n\nConsulte la section «Activités Proposées» pour d'autre propositions d'activités à planifier pout toi.",
+        "invitationDismissed": "Tu as choisi de décliner cette invitation.\n\nJ'ai donc déplacé cette activité de la section «Activités Proposées» vers la section «Activités Rejetées».",
         "noOffers": "Comme première activité je te recommande de compléter une courte **Auto-évaluation** (environ 10 minutes).\n\nTon auto-évaluation me permet de te recommander quotidiennement une activité la plus appropriée possible dans la section «Activités Proposées».",
-        "campaignLastDay": null
+        "campaignLastDay": "Aujourd'hui est le dernier jour de campagne.\n\nS'il-te-plaît vois si tu as encore des activités planifiées pour aujourd'hui et si oui, accomplis-les.\n\nClique sur l'icône des «Activités Complétées» et regarde toutes les activités que tu as accomplies pendant la campagne. Pense à celles que tu as le plus aimées et à celles qui t'ont fait le plus de bien.\n\nGarde ces activités à ton programme à l'avenir, une façon efficace de trouver la santé et de rester en santé!"
       },
       "end-of-campaign": {
-        "endingsoon": null,
-        "ended": null
+        "endingsoon": "Chères Participantes, Chers Participants,\n\nLa campagne Santé basée sur le web tire à sa fin.\n\nSur cette page, tu peux encore une fois réfléchir à tes besoins d'action ainsi qu'à tes activités pendant la campagne.\n\nS'il-te-plaît donne à ton organisation et à nous tes impressions sur cette campagne Santé en répondant au sondage anonyme dans la colonne de gauche. Important: les données recueillies sur ta participation à la campagne seront traitées de façon confidentielle.\n\nPour retourner à la page d'accueil, clique sur le bouton.",
+        "ended": "Chères Participantes, Chers Participants,\n\nLa campagne Santé basée sur le web est maintenant terminée.\n\nSur cette page, tu peux encore une fois réfléchir à tes besoins d'action ainsi qu'à tes activités pendant la campagne.\n\nS'il-te-plaît donne-nous ainsi qu'à ton organisation tes impressions sur cette campagne Santé en répondant au sondage anonyme dans la colonne de gauche. Important: les données recueillies sur ta participation à la campagne seront traitées de façon confidentielle.\n\nPour retourner à la page d'accueil, clique sur le bouton."
       }
     },
     "fullname": "Coach Numérique",

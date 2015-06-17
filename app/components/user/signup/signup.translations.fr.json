@@ -1,6 +1,6 @@
 {
   "signup": {
-    "header": "Bienvenue chez YouPers!",
+    "header": "Bienvenue à la HealthCampaign!",
     "signupNote": "Enregistrer nouveau",
     "signinNote": "Login",
     "noCampaignRemark": "Clique s'il te plaît sur le lien dans l'invitation courriel de ton Leader de Campagne",
@@ -56,7 +56,7 @@
     },
     "termsAccepted": {
       "label1": "J'ai lu et accepté les conditions générales ",
-      "label2": "Les conditions générales",
+      "label2": "Conditions générales",
       "label3": "",
       "$error": {
         "required": "S'il te plaît, acceptes les condition générales"
@@ -67,8 +67,8 @@
       "error": {
         "required": "S'il te plaît, entre le nom de ton organisation."
       },
-      "label": "Nom de société",
-      "placeholder": "Nom de société"
+      "label": "Nom de l'organisation",
+      "placeholder": "Nom de l'organisation"
     },
     "termsLink": "http://healthcampaign.youpers.com/terms-and-conditions/"
   },

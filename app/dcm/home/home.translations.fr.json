@@ -5,9 +5,9 @@
     "participantsCount": "Nombre de participants inscrits",
     "plannedActsCount": "Nombre d'activités planifiées",
     "moreStats": "Plus",
-    "notifications": "Les messages",
+    "notifications": "Messages",
     "campaigns": "Les campagnes",
-    "activities": "Les nouvelles activités",
+    "activities": "Activités",
     "statistics": "Les statistiques",
     "stats": {
       "eventsDonePerDay": {
@@ -36,7 +36,7 @@
     "surveyLink": "Sondage",
     "organization": {
       "addCampaign": "Nouvelle Campagne",
-      "edit": "éd"
+      "edit": "Éditer"
     },
     "addMoreUsers": "Invite plus de participants en leur envoyant ce lien suivant:",
     "campaignNotStarted": "Une fois la campagne lancée, des informations de base sur la campagne en cours seront affichées ici.",
@@ -58,7 +58,7 @@
           "link": "Créer un<br/>courriel brouillon",
           "recipient": "tes.participants@tonorganisation.com",
           "subject": "Campagne {{campaign.title}} {{ organizationName }}: Invitation personnelle",
-          "body": "Chère collègue, cher collègue,\n\n{{ organizationName }} t'invite à participer à la campagne de santé au travail. Cette campagne santé basée sur le Web est un service de YOUPERS AG, une société suisse de logiciels dédiés à la santé numérique. \n\nClique sur ce lien: {{ welcomeLink }}"
+          "body": "Chère collègue, cher collègue,\n\n{{ organizationName }} t'invite à participer à la campagne corporative Santé. Cette campagne Santé internet est un service de YouPers AG, société suisse de logiciels dédiés à la santé numérique. \n\nClique sur ce lien: {{ welcomeLink }}"
         },
         "copyLink": "Si la génération de ce email ne fonctionne pas, tu peux copier-coller ce lien dans ton invitation courriel."
       },
@@ -105,7 +105,7 @@
     "participants": {
       "header": "Liste des participants"
     },
-    "messages": "Annonce",
+    "messages": "Messages",
     "noCampaigns": "Il n'y a pas encore de campagne. Créée une première campagne.",
     "noMessages": "Ici sont affichés les messages aux participants à la campagne.",
     "noOffers": "Pas d'activité planifiée pour le moment. Clique sur «Ajouter Proposition» pour recommander une activité aux participants.",

@@ -16,8 +16,8 @@
       "notifications": "Les messages"
     },
     "campaignLeads": {
-      "header": "Le directeur de campagne",
-      "add": "Ajouter plus"
+      "header": "Leader de Campagne",
+      "add": "ajouter"
     },
     "stateHeader1": "Ta",
     "stateHeader2": "Campagne",
@@ -57,10 +57,10 @@
       }
     },
     "location": {
-      "label": "La localité",
+      "label": "Bâtiment/Rue",
       "placeholder": "La localité",
       "error": {
-        "required": "S'il te plaît entrer une Localité valide"
+        "required": "S'il te plaît entrer un bâtiment et une rue valides"
       }
     },
     "city": {
@@ -70,7 +70,7 @@
         "required": "S'il te plaît définis un lieu"
       }
     },
-    "back": "dos",
+    "back": "Retour",
     "save": "Enregistrer",
     "create": "Enregistrer",
     "cancel": "Annuler",

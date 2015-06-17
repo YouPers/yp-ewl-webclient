@@ -1,13 +1,13 @@
 {
   "game": {
-    "showMore": "Plus",
+    "showMore": "plus",
     "activities": {
-      "current": "ich weiss nicht",
+      "current": "Activités Planifiées",
       "donePreview": "Activités accomplies",
-      "done": "Résultats",
+      "done": "Activités Complétées",
       "offered": "Activités proposées",
-      "rejectedPreview": "Activités rejetées",
-      "rejected": "Activités rejetées"
+      "rejectedPreview": "Activités Rejetées",
+      "rejected": "Activités Rejetées"
     },
     "invitations": "Invitations",
     "recommendations": "Recommandations",

@@ -14,7 +14,7 @@
     "error": {
       "password": {
         "invalid": "Le mot de passe actuel n'est pas correcte",
-        "reset": "Le nom d'utilisateur ou l'adresse courriel est inconnu(e)"
+        "reset": "L'adresse courriel est inconnue"
       }
     }
   },
@@ -55,7 +55,7 @@
         "unique": "Cette adresse email est déjà inscrite. Connecte-toi s'il te plaît."
       }
     },
-    "save": "Enregistrer",
+    "save": "Sauvegarder",
     "reset": "Reculer"
   },
   "passwordForm": {
@@ -102,7 +102,7 @@
     "reset": "reculer"
   },
   "passwordReset": {
-    "hello": "Allô",
+    "hello": "Bonjour!",
     "setNewPassword": "Tu peux te parier un nouveau mot de passe maintenant:",
     "newPassword": "Nouveau mot de passe",
     "success": "Le mot de passe soit réinitialisé avec succès",
@@ -187,7 +187,7 @@
     "emailNotificationsSettings": "Notifications courriel reçues?",
     "calendarNotificationSettings": "Des indications dans le calendrier",
     "rejectedActivities": {
-      "header": "Des activités réfusés"
+      "header": "Activités déclinées"
     }
   }
 }

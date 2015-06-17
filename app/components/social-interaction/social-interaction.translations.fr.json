@@ -1,7 +1,7 @@
 {
   "socialInteraction": {
     "mainHeader": "messagerie",
-    "important": "important",
+    "important": "Important",
     "publishFrom": "Publié à partir de: ",
     "publishTo": "Publié jusqu'au: ",
     "header": {
@@ -12,36 +12,36 @@
       "Recommendation": {
         "user": "recommandation personnelle",
         "campaignLead": "recommandation de campagne",
-        "coach": null,
+        "coach": "Coach Numérique",
         "expert": "Recommandation d'expert"
       },
       "Message": {
-        "user": null,
-        "campaignLead": null,
-        "coach": null,
+        "user": "Commentaires",
+        "campaignLead": "Communications",
+        "coach": "Coach Numérique",
         "productAdmin": "Message YouPers"
       }
     }
   },
   "composeMessageForm": {
-    "show": null,
-    "cancel": "Annuler",
+    "show": "Communications",
+    "cancel": "annuler",
     "title": {
       "label": "Titre",
       "placeholder": "Titre"
     },
     "text": {
-      "label": "Écrire",
-      "placeholder": "Écrire"
+      "label": "Message",
+      "placeholder": "Message"
     },
     "publishFrom": {
-      "label": "de",
-      "placeholder": "de"
+      "label": "De",
+      "placeholder": "De"
     },
     "publishTo": {
-      "label": "…",
-      "placeholder": "…"
+      "label": "Jusqu'au",
+      "placeholder": "Jusqu'au"
     },
-    "submit": "Sauver"
+    "submit": "Sauvegarder"
   }
 }

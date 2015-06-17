@@ -4,7 +4,7 @@
       "activity": {
         "joined": "Accepter l'invitation",
         "deleted": "Activité supprimée",
-        "Save": "Activité enregistrée",
+        "Save": "Activité sauvegardée",
         "SaveAndInvite": "Activité planifiée et invitation envoyée"
       }
     },
@@ -16,11 +16,11 @@
   },
   "activity": {
     "header": {
-      "second": "Le plan",
-      "third": "Rendez-vous",
-      "invitedUsers": "Invité",
+      "second": "Plan",
+      "third": "Date et Heure",
+      "invitedUsers": "Participants",
       "inviteOthers": "Inviter d'autres personnes",
-      "comments": "Notes",
+      "comments": "Commentaires",
       "publish": "Publier l'invitation",
       "first": {
         "Invitation": "Invitation",
@@ -35,8 +35,8 @@
       "save": "Sauvegarder"
     },
     "inviteOthers": {
-      "selected": "Avec sélectionnées",
-      "all": "T",
+      "selected": "utilisateur sélectionné",
+      "all": "tous les participants",
       "inviteByEmail": {
         "placeholder": "entrer l'adresse courriel",
         "submit": "ajouter"
@@ -52,30 +52,30 @@
       "submit": "Ajouter"
     },
     "invitationStatus": {
-      "activityJoined": "Relevé",
-      "denied": "Refusé",
+      "activityJoined": "accepté",
+      "denied": "décliné",
       "pending": "?",
       "organizer": "Organisateur-trice"
     },
     "link": {
-      "campaignlead": "Prévoir",
-      "owned": "éd",
-      "recommendation": "Prévoir",
-      "invitation": "Relever",
+      "campaignlead": "Planifier",
+      "owned": "Éditer",
+      "recommendation": "Planifier",
+      "invitation": "Accepter",
       "dismiss": "Rejeter",
       "back": "Accueil",
       "undo": "Annuler",
       "edit": "Éditer",
-      "delete": "Remove"
+      "delete": "Supprimer"
     },
     "submit": {
-      "save": "Sauver",
-      "delete": "Remove",
-      "invitationSave": "Relever",
-      "recommendationSave": "Prévoir",
-      "ownedSave": "Prévoir",
-      "joinedSave": "Prévoir",
-      "scheduleSave": "Prévoir",
+      "save": "Sauvegarder",
+      "delete": "Supprimer",
+      "invitationSave": "Accepter",
+      "recommendationSave": "Planifier",
+      "ownedSave": "Planifier",
+      "joinedSave": "Planifier",
+      "scheduleSave": "Planifier",
       "newActivityDhcSave": "Planifier",
       "campaignleadSave": "Publier",
       "campaignleadSaveAndInvite": "Publier",
@@ -86,9 +86,9 @@
       "invitationDecline": "Décliner",
       "recommendationDismiss": "Rejeter"
     },
-    "owner": "Hôte",
-    "isJoining": "Invité",
-    "isInvited": "Invité",
+    "owner": "Organisateur-trice",
+    "isJoining": "Participants",
+    "isInvited": "Invités",
     "reschedule": "Planifier de nouveau",
     "editPopover": "Modifier",
     "deletePopover": "Effacer",
@@ -97,8 +97,8 @@
       "rating": "Comment c'était?"
     },
     "list": {
-      "stateHeader1": "T",
-      "stateHeader2": "Activité",
+      "stateHeader1": "tous",
+      "stateHeader2": "Activités",
       "editTooltip": "Modifier l'activité",
       "newTooltip": "Planifier une nouvelle activité",
       "statusFilter": {
@@ -109,23 +109,23 @@
       },
       "item": {
         "title": "Quoi",
-        "text": "Bio",
+        "text": "Description",
         "date": "Quand",
         "location": "Où"
       }
     },
     "view": {
-      "stateHeader1": "une/ton/ta",
+      "stateHeader1": "un/une/ton/ta",
       "stateHeader2": "Activité",
       "title": "Titre",
-      "text": "Bio",
-      "location": "Où",
-      "date": "Le",
-      "time": "Date",
-      "frequency": "Période",
-      "recurrence": "Compte",
+      "text": "Description",
+      "location": "Lieu",
+      "date": "Date",
+      "time": "Heure",
+      "frequency": "Fréquence",
+      "recurrence": "Récurrence",
       "socialInteraction": {
-        "title": "Écrire"
+        "title": "Message"
       },
       "comment": {
         "placeholder": "Écrire un commentaire"
@@ -134,14 +134,14 @@
       "addToCalendar": "ajouter au calendrier"
     },
     "edit": {
-      "stateHeader1": "Ta",
+      "stateHeader1": "ta",
       "stateHeader2": "Activité"
     },
     "publishFrom": {
       "label": "De"
     },
     "publishTo": {
-      "label": "…"
+      "label": "jusqu'au"
     },
     "preview": {
       "plannedEventsRemark": "Activités planifiées",
@@ -154,21 +154,21 @@
       "placeholder": "Titre"
     },
     "location": {
-      "label": "Où",
-      "placeholder": "Où"
+      "label": "Lieu",
+      "placeholder": "Lieu"
     },
     "date": {
-      "label": "Le"
-    },
-    "time": {
       "label": "Date"
     },
+    "time": {
+      "label": "Heure"
+    },
     "recurrence": {
-      "label": "répétition"
+      "label": "Nombre de fois"
     },
     "create": "Créer",
-    "save": "Sauver",
-    "delete": "Remove",
+    "save": "Sauvegarder",
+    "delete": "Supprimer",
     "cancel": "Annuler"
   }
 }

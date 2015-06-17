@@ -1,6 +1,6 @@
 {
   "welcome": {
-    "header": "Bienvenue au campagne ",
+    "header": "Bienvenue à la campagne",
     "link": {
       "info": "en savoir plus",
       "join": "Participer",
@@ -8,8 +8,8 @@
     },
     "backToDcm": "retour à Administration de la Campagne",
     "campaignNotStartedYet": "C'est encore trop tôt, la campagne ne démarre que le",
-    "isCampaignlead": null,
+    "isCampaignlead": "Ce compte utilisateur est déjà utilisé pour gérer une campagne et ne peut pas être utilisé pour être participant-e à une campagne.",
     "yourCampaignLeads": "Ton/Ta Leader de Campagne:",
-    "existingCampaign": null
+    "existingCampaign": "Attention: tu participes déjà à une autre campagne. Si tu acceptes maintenant cette invitation en cliquant «Participer», tu quittes la campagne à laquelle tu participes actuellement pour participer à celle nouvelle campagne. Voici ta campagne actuelle:"
   }
 }

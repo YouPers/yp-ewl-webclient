@@ -33,7 +33,7 @@
         "placeholder": "Code postal",
         "error": {
           "required": "S'il te plaît, entrer un code postale valide",
-          "pattern": "Saisissez un code postal valide."
+          "pattern": "Entre un code postal valide s'il te plaît"
         }
       },
       "city": {
@@ -64,7 +64,7 @@
         "label": "Rôle",
         "placeholder": "Rôle / Organisation",
         "error": {
-          "required": "S'il te plaît entrer une fonction valable"
+          "required": "Entre une fonction valide s'il te plaît"
         }
       },
       "email": {
@@ -82,11 +82,11 @@
         }
       }
     },
-    "save": "Enregistrer",
+    "save": "Sauvegarder",
     "cancel": "Annuler",
     "create": "Créer",
     "missingOrganizationFieldsWarning": {
-      "header": "WARNING:",
+      "header": "Attention:",
       "text": ""
     },
     "user": {
@@ -99,14 +99,14 @@
       },
       "firstname": {
         "error": {
-          "required": "S'il te plaît, entrer un prénom valide"
+          "required": "Entre un prénom valide s'il te plaît"
         },
-        "label": "Nom",
-        "placeholder": "Nom"
+        "label": "Nom de famille",
+        "placeholder": "Prénom"
       },
       "lastname": {
         "error": {
-          "required": "S'il te plaît, entrer un nom valide"
+          "required": "Entre un nom valide s'il te plaît"
         },
         "label": "Nom",
         "placeholder": "Nom"

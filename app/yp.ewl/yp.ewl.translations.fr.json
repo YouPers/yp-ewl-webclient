@@ -41,7 +41,7 @@
     "loginReason": "Sinon, toutes tes données sont perdues.",
     "register": "S'enregistrer",
     "registerNewAccount": "Enregistrer un nouveau compte",
-    "passwordForgotten": "Mot de passe oublié"
+    "passwordForgotten": "Mot de passe oublié?"
   },
   "loginform": {
     "usernameOrEmail": {
@@ -58,7 +58,7 @@
     }
   },
   "footer": {
-    "copyright": "&copy; YouPers 2014"
+    "copyright": "&copy; YouPers 2015"
   },
   "topic": {
     "chooseATopic": "Choisis un programme",

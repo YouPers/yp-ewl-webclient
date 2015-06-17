@@ -1,6 +1,6 @@
 {
   "pageTitle": {
-    "default": "YouPers HealthCampaign {{ campaign.topic.name }}",
+    "default": "HealthCampaign {{ campaign.topic.name }}",
     "signin": {
       "content": "Inscription - HealthCampaign"
     },
