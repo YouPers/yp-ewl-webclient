@@ -277,5 +277,20 @@
 
     <ng-include src="'partials/footer.html'"></ng-include>
 
+    <div id='cptup-ready'></div>
+    <script data-cfasync='false' type='text/javascript'>
+        window.captain = {up: function(fn) { captain.topics.push(fn) }, topics: []};
+        // Add your settings here:
+        captain.up({
+            api_key: '5579995ae6808babbc0000c8'
+        });
+    </script>
+    <script data-cfasync='false' type='text/javascript'>
+        (function() {
+            var cpt = document.createElement('script'); cpt.type = 'text/javascript'; cpt.async = true;
+            cpt.src = 'https://captainup.com/assets/embed.de.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(cpt);
+        })();
+    </script>
 </body>
 </html>
