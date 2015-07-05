@@ -2,7 +2,7 @@
   "focus": {
     "stateHeader1": "Ton",
     "stateHeader2": "l'accent",
-    "assessmentNotCompleted": "Une fois que tu ton <a href='/#/check'>auto-évaluation</a> ont complètement rempli, nous te présentons une évaluation de ton situation stressante avec des zones à problèmes, grâce à laquelle tu peux mettre ton attention personnelle.",
+    "assessmentNotCompleted": "Une fois que tu as complété ton <a href='/#/check'>auto-évaluation</a>, nous te présentons une évaluation de ta situation de stress, ainsi que tes zones problématiques auxquelles tu peux porter une attention particulière..",
     "assessmentNoStressors": "Félicitations - ton <a href='/#/check'>auto-évaluation</a> n'a révélé aucun besoin urgent d'agir!",
     "header": "L'action",
     "none": "Aucun",

@@ -11,9 +11,9 @@
     },
     "invitations": "Invitations",
     "recommendations": "Recommandations",
-    "noActivities": null,
-    "noOffers": null,
-    "noClosedEvents": null,
+    "noActivities": "Une fois que tu as planifié une activité proposée, les détails de l'activité en question sont affichés ici.",
+    "noOffers": "Ici sont affichées les recommandations et invitations de ton/ta Leader de Campagne, de ton Coach Numérique et de tes collègues de travail.",
+    "noClosedEvents": "Dès que tu as marqué une activité planifiée comme accomplie ou manquée, cette activité se retrouve affichée dans la section «Activités Complétées».",
     "noDismissedOffers": "Lorsque tu rejettes une activité, elle apparaît ici."
   }
 }

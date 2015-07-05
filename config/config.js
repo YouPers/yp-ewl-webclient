@@ -71,7 +71,7 @@ var specificConfigs = {
     },
     "hc-ci": { // used by automtatic deploys on cimaster machine
         googleAnalytics: {},
-        availableLanguages: [ 'de', 'en'],
+        availableLanguages: [ 'de', 'fr', 'en'],
         languageMappings: {
             'en_US': 'de',
             'en_UK': 'de',
@@ -103,15 +103,15 @@ var specificConfigs = {
         googleAnalytics: {
             webPropertyId: 'UA-39309635-3'
         },
-        availableLanguages: [ 'de'],
+        availableLanguages: [ 'de', 'fr', 'en'],
         languageMappings: {
-            'en_US': 'de',
-            'en_UK': 'de',
-            'en_GB': 'de',
+            'en_US': 'en',
+            'en_UK': 'en',
+            'en_GB': 'en',
             'de_DE': 'de',
             'de_CH': 'de',
-            'en': 'de',
-            'fr': 'de',
+            'en': 'en',
+            'fr': 'fr',
             'it': 'de'
         }
     }
