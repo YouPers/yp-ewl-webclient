@@ -56,7 +56,7 @@
     "url": "https://github.com/YouPers/yp-ewl-webapp.git"
   },
   "author": "YouPers",
-  "license": "closed",
+  "license": "UNLICENSED",
   "readmeFilename": "README.md",
   "gitHead": "ea0a8ec144c211d7ce0d229b8ccd884c06d1ba9c",
   "devDependencies": {
