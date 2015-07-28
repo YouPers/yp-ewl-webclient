@@ -81,7 +81,7 @@
                             <div id="weekday" class="btn-group">
                                 <button type="button" ng-repeat="weekday in enums.weekday" class="btn btn-default btn-sm"
                                         ng-model="offer.weekday" btn-radio="weekday" translate>
-                                    weekday.{{weekday}}
+                                    {{'weekday.' +weekday}}
                                 </button>
                             </div>
 
